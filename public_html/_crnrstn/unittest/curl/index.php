@@ -208,11 +208,11 @@ $oCRNRSTN_USR->init_input_listener('curl', 'crnrstn_curl_unit_test_automation_fr
 
 
     /*UTILITY*/
-    .crnrstn_hidden						        { width:0; height:0; position:absolute; left:-2000px; overflow:hidden;}
-    .crnrstn_cb 								{ display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;}
+    .crnrstn_hidden                             { width:0; height:0; position:absolute; left:-2000px; overflow:hidden;}
+    .crnrstn_cb                             { display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;}
     .crnrstn_cb_3                               { display:block; clear:both; height:3px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
-    .crnrstn_cb_5	 							{ display:block; clear:both; height:5px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
-    .crnrstn_cb_10	 							{ display:block; clear:both; height:10px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
+    .crnrstn_cb_5	                      	{ display:block; clear:both; height:5px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
+    .crnrstn_cb_10	                      	{ display:block; clear:both; height:10px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
     .crnrstn_cb_15	 							{ display:block; clear:both; height:15px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
     .crnrstn_cb_20								{ display:block; clear:both; height:20px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
     .crnrstn_cb_30								{ display:block; clear:both; height:30px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
