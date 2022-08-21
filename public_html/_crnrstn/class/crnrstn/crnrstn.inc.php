@@ -70,6 +70,7 @@ class crnrstn {
     // THIS CAN BE MORE ROBUST (A PRETTY HTML DOCUMENT), BUT WE SHOULD HANDLE SOAP
     // (RESPONSES TO OTHER SERVERS), AS WELL...RIGHT? ERR HERE ARE SUPER LOW-LEVEL THO.
     public $destruct_output = '';
+    private static $system_termination_flag_ARRAY = array();
 
     private static $lang_content_ARRAY = array();
     private static $sys_logging_profile_ARRAY = array();
@@ -2159,12 +2160,16 @@ class crnrstn {
 
     private function system_terminate($message_type = 'config_serial'){
 
-        switch($message_type){
-            case 'detection':
+        if(!isset(self::$system_termination_flag_ARRAY[$message_type])){
 
-                $dom_sess_serial = $this->generate_new_key(26, '01');
+            self::$system_termination_flag_ARRAY[$message_type] = 1;
 
-                $this->destruct_output .= '<!doctype html>
+            switch($message_type){
+                case 'detection':
+
+                    $dom_sess_serial = $this->generate_new_key(26, '01');
+
+                    $this->destruct_output .= '<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -2232,22 +2237,22 @@ class crnrstn {
 </body>
 </html>
 ';
-                $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 544] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 544] in the CRNRSTN :: config file.');
+                    $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 544] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 544] in the CRNRSTN :: config file.');
 
-            break;
-            default:
+                    break;
+                default:
 
-                $tmp_serial_str_len  = 64;
-                // $CRNRSTN_config_serial = '[n2X0@F2=?C8[-8ij5X6k*4k8XT}uuDQ{ZHkCr*KK5!sT%Z~cdGylAx(8WVYPb@N';
-                $tmp_serial = $this->generate_new_key($tmp_serial_str_len, -2);
-                $dom_sess_serial = $this->generate_new_key(26, '01');
+                    $tmp_serial_str_len  = 64;
+                    // $CRNRSTN_config_serial = '[n2X0@F2=?C8[-8ij5X6k*4k8XT}uuDQ{ZHkCr*KK5!sT%Z~cdGylAx(8WVYPb@N';
+                    $tmp_serial = $this->generate_new_key($tmp_serial_str_len, -2);
+                    $dom_sess_serial = $this->generate_new_key(26, '01');
 
-                //
-                // MAYBE GENERATE A CONFIG SERIAL COPY-PASTE INTO CONFIG FILE PAGE WITH BASE64 CRNRSTN :: LOGO STUFF?
-                // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
-                // TEMPLATE FOR SOMETHING ADMIN-NEWY-ISH BACK TO "HERE" FOR CONSISTENCY.
-                $this->destruct_output .= '<!doctype html>
+                    //
+                    // MAYBE GENERATE A CONFIG SERIAL COPY-PASTE INTO CONFIG FILE PAGE WITH BASE64 CRNRSTN :: LOGO STUFF?
+                    // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
+                    // TEMPLATE FOR SOMETHING ADMIN-NEWY-ISH BACK TO "HERE" FOR CONSISTENCY.
+                    $this->destruct_output .= '<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -2316,12 +2321,14 @@ class crnrstn {
 </html>
 ';
 
-                $this->error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].');
+                    $this->error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].');
 
-                exit();
+                    exit();
 
-            break;
+                    break;
+
+            }
 
         }
 
