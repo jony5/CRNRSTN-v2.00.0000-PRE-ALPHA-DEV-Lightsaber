@@ -169,7 +169,7 @@ $CRNRSTN_config_serial = '';
  *  log trace data and are cumbersome to dig through in order to find the relatively
  *  scant trace data currently under investigation.
  *
- * @var string
+ * @var integer         // DOCUMENTATION (IN CODE) IT'S LIKE..."WELCOME TO 5 YEARS AGO!" NEEDS A SOLID GO.
  */
 
 /*
