@@ -2990,6 +2990,87 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'FOR_REFERENCE_PLEASE_SEE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'For reference, please see:';
+
+                    break;
+
+                }
+
+            break;
+            case 'TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'char string to clipboard';
+
+                    break;
+
+                }
+
+            break;
+            case 'CLICK_HERE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+                        //case 'en':
+
+                        return 'Click here';
+
+                    break;
+
+                }
+
+            break;
+            case 'TO_COPY_THE_LINE_ABOVE_TO_CLIPBOARD':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+                        //case 'en':
+
+                        return ' to copy the line above to clipboard';
+
+                    break;
+
+                }
+
+            break;
+            case  'PLEASE_ENTER_VALID_ENV_DETECTION':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+                        //case 'en':
+
+                        return 'To enable server detection, please configure C<span style="color:#F90000;">R</span>NRSTN :: for this 
+environment within the configuration file.';
+
+                    break;
+
+                }
+
+            break;
             case 'PLEASE_ENTER_A_CONFIG_SERIAL':
 
                 switch($this->country_iso_code) {
@@ -2999,7 +3080,7 @@ class crnrstn_multi_language_manager {
                     default:
                         //case 'en':
 
-                        return 'Please specify a configuration serial (such as what follows) in the CRNRSTN :: config file.';
+                        return 'Please specify a configuration serial (such as what follows) in the C<span style="color:#F90000;">R</span>NRSTN :: config file.';
 
                     break;
 

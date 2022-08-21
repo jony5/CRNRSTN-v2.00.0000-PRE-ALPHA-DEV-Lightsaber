@@ -2107,7 +2107,7 @@ class crnrstn_image_v_html_content_manager {
                 // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
                 // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
 
-                return '<link rel="shortcut icon" type="image/x-icon" href="'.self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/' . $tmp_filename . '.ico?v=420.00" />';
+                return '<link rel="shortcut icon" type="image/x-icon" href="' . self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/' . $tmp_filename . '.ico?v=420.00" />';
 
             break;
 

@@ -8989,7 +8989,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function return_creative($creative_element_key, $image_output_mode = NULL){
 
-        error_log(__LINE__ . ' user ' . $creative_element_key . ' [' . $image_output_mode . ']');
+        //error_log(__LINE__ . ' user ' . $creative_element_key . ' [' . $image_output_mode . ']');
         return self::$oCommRichMediaProvider->return_creative($creative_element_key, $image_output_mode);
 
     }

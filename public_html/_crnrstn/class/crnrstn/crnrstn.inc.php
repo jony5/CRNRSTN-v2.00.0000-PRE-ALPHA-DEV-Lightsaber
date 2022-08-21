@@ -245,31 +245,7 @@ class crnrstn {
         // THIS COULD BE DEVELOPED A BIT MORE. SUFFICIENT FOR SUCH A LOW LEVEL ERR THOUGH
         if(strlen($CRNRSTN_config_serial) < 1){
 
-            $tmp_serial = $this->generate_new_key(64, -2);
-
-            //
-            // MAYBE GENERATE A CONFIG SERIAL COPY-PASTE INTO CONFIG FILE PAGE WITH BASE64 CRNRSTN :: LOGO STUFF?
-            // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
-            // TEMPLATE FOR SOMETHING ADMIN-NEWY-ISH BACK TO "HERE" FOR CONSISTENCY.
-            $this->destruct_output .= '
-<div style="padding: 10px 0 0 20px;"><div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
-<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
-<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . ' [rtime ' . $this->wall_time() .' secs]  
-<br>$CRNRSTN_config_serial = \'' . $tmp_serial . '\'</div>
-<div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
-<pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre></div>
-<div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-
-<div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
-    <div class="crnrstn_j5_wolf_pup_inner_wrap">
-        ' . $this->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
-    </div>
-</div>
-';
-            $this->error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-            error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file.');
-
-            exit();
+            $this->system_terminate();
 
         }
 
@@ -1559,7 +1535,7 @@ class crnrstn {
 
                     $slashChar = '/';
 
-                } else {
+                }else{
 
                     $slashChar = '\\';
 
@@ -1579,6 +1555,12 @@ class crnrstn {
         }
 
         return true;
+
+    }
+
+    public function crnrstn_resources_http_path(){
+
+        return $this->get_resource('crnrstn_resources_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
 
     }
 
@@ -2149,7 +2131,17 @@ class crnrstn {
                 if(($tmp_env_key_crc == self::$server_env_key_crc_ARRAY[$this->config_serial_crc]) || ($env_key === CRNRSTN_RESOURCE_ALL)){
 
                     //error_log(__LINE__ . ' crnrstn ' .  __METHOD__ . ':: input_data_value(), WHERE $data_key=' . $data_key . ' $env_key=[' . $env_key . '/' . self::$server_env_key_ARRAY[$this->config_serial_crc] . '.].');
-                    $this->input_data_value($data_value, $data_key, $data_type_family, NULL, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_crc]);
+                    if(!isset(self::$server_env_key_ARRAY[$this->config_serial_crc])){
+
+                        $this->system_terminate('detection');
+
+                    }
+
+                    if(isset(self::$server_env_key_ARRAY[$this->config_serial_crc])){
+
+                        $this->input_data_value($data_value, $data_key, $data_type_family, NULL, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_crc]);
+
+                    }
 
                 }
 
@@ -2160,6 +2152,154 @@ class crnrstn {
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+        }
+
+    }
+
+    private function system_terminate($message_type = 'config_serial'){
+
+        switch($message_type){
+            case 'detection':
+
+                $dom_sess_serial = $this->generate_new_key(26, '01');
+
+                $this->destruct_output .= '<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
+    <script>
+
+    function crnrstn_copy_detection() {
+
+        //
+        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+        if (document.selection) { // IE
+
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById("detection_config_' . $dom_sess_serial . '"));
+            range.select();
+
+        } else if (window.getSelection) {
+
+            var range = document.createRange();
+            range.selectNode(document.getElementById("detection_config_' . $dom_sess_serial . '"));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+        }
+
+        //
+        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+        /* Copy the text inside the text field */
+        document.execCommand(\'copy\');
+
+        /* Alert the copied text */
+        alert("Copied the text: " + document.getElementById("detection_config_' . $dom_sess_serial . '").innerHTML);
+
+    }
+
+    </script>
+</head>
+<body>
+<div style="padding: 10px 0 0 20px;"><div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
+<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 544].' . '
+<br><span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
+<br>// <a href="#" onclick="crnrstn_copy_detection();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINE_ABOVE_TO_CLIPBOARD') . '.<br></div>
+</div>
+<div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
+<pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre></div>
+<div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
+<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
+<div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
+    <div class="crnrstn_j5_wolf_pup_inner_wrap">
+        ' . $this->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
+    </div>
+</div>
+</body>
+</html>
+';
+                $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 544] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 544] in the CRNRSTN :: config file.');
+
+            break;
+            default:
+
+                $tmp_serial_str_len  = 64;
+                // $CRNRSTN_config_serial = '[n2X0@F2=?C8[-8ij5X6k*4k8XT}uuDQ{ZHkCr*KK5!sT%Z~cdGylAx(8WVYPb@N';
+                $tmp_serial = $this->generate_new_key($tmp_serial_str_len, -2);
+                $dom_sess_serial = $this->generate_new_key(26, '01');
+
+                //
+                // MAYBE GENERATE A CONFIG SERIAL COPY-PASTE INTO CONFIG FILE PAGE WITH BASE64 CRNRSTN :: LOGO STUFF?
+                // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
+                // TEMPLATE FOR SOMETHING ADMIN-NEWY-ISH BACK TO "HERE" FOR CONSISTENCY.
+                $this->destruct_output .= '<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
+    <script>
+
+    function crnrstn_copy_serial() {
+
+        //
+        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+        if (document.selection) { // IE
+
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById("crrnstn_config_serial_' . $dom_sess_serial . '"));
+            range.select();
+
+        } else if (window.getSelection) {
+
+            var range = document.createRange();
+            range.selectNode(document.getElementById("crrnstn_config_serial_' . $dom_sess_serial . '"));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+        }
+
+        //
+        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+        /* Copy the text inside the text field */
+        document.execCommand(\'copy\');
+
+        /* Alert the copied text */
+        alert("Copied the text: " + document.getElementById("crrnstn_config_serial_' . $dom_sess_serial . '").innerHTML);
+
+    }
+
+    </script>
+</head>
+<body>
+<div style="padding: 10px 0 0 20px;"><div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
+<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
+<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
+<br>$CRNRSTN_config_serial = \'<span id="crrnstn_config_serial_'  . $dom_sess_serial . '">' . $tmp_serial . '</span>\';<br>
+// <a href="#" onclick="crnrstn_copy_serial();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.<br></div>
+<div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
+<pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre></div>
+<div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
+<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
+<div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
+    <div class="crnrstn_j5_wolf_pup_inner_wrap">
+        ' . $this->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
+    </div>
+</div>
+</body></html>
+';
+                $this->error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].');
+
+                exit();
+
+            break;
 
         }
 
@@ -2190,6 +2330,11 @@ class crnrstn {
     }
 
     public function get_resource($data_key, $index = NULL, $data_type_family = NULL, $soap_transport = false){
+//
+//        if(!){
+//
+//
+//        }
 
         // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_transport = false){
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_crc], $soap_transport);
@@ -6414,6 +6559,134 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         $tmp_array = explode('=', $param_str);
 
         return $tmp_array[0];
+
+    }
+
+    public function return_server_resp_status($error_code, $crnrstn_html_burn = NULL){
+
+        //
+        // Source: http://php.net/manual/en/function.http-response-code.php
+        // Source of source: Wikipedia "List_of_HTTP_status_codes"
+        $http_status_codes = array(100 => 'Continue', 101 => 'Switching Protocols', 102 => 'Processing', 200 => 'OK', 201 => 'Created', 202 => 'Accepted', 203 => 'Non-Authoritative Information', 204 => 'No Content', 205 => 'Reset Content', 206 => 'Partial Content', 207 => 'Multi-Status', 300 => 'Multiple Choices', 301 => 'Moved Permanently', 302 => 'Found', 303 => 'See Other', 304 => 'Not Modified', 305 => 'Use Proxy', 306 => '(Unused)', 307 => 'Temporary Redirect', 308 => 'Permanent Redirect', 400 => 'Bad Request', 401 => 'Unauthorized', 402 => 'Payment Required', 403 => 'Forbidden', 404 => 'Not Found', 405 => 'Method Not Allowed', 406 => 'Not Acceptable', 407 => 'Proxy Authentication Required', 408 => 'Request Timeout', 409 => 'Conflict', 410 => 'Gone', 411 => 'Length Required', 412 => 'Precondition Failed', 413 => 'Request Entity Too Large', 414 => 'Request-URI Too Long', 415 => 'Unsupported Media Type', 416 => 'Requested Range Not Satisfiable', 417 => 'Expectation Failed', 418 => 'I\'m a teapot', 419 => 'Authentication Timeout', 420 => 'Enhance Your Calm', 422 => 'Unprocessable Entity', 423 => 'Locked', 424 => 'Failed Dependency', 424 => 'Method Failure', 425 => 'Unordered Collection', 426 => 'Upgrade Required', 428 => 'Precondition Required', 429 => 'Too Many Requests', 431 => 'Request Header Fields Too Large', 444 => 'No Response', 449 => 'Retry With', 450 => 'Blocked by Windows Parental Controls', 451 => 'Unavailable For Legal Reasons', 494 => 'Request Header Too Large', 495 => 'Cert Error', 496 => 'No Cert', 497 => 'HTTP to HTTPS', 499 => 'Client Closed Request', 500 => 'Internal Server Error', 501 => 'Not Implemented', 502 => 'Bad Gateway', 503 => 'Service Unavailable', 504 => 'Gateway Timeout', 505 => 'HTTP Version Not Supported', 506 => 'Variant Also Negotiates', 507 => 'Insufficient Storage', 508 => 'Loop Detected', 509 => 'Bandwidth Limit Exceeded', 510 => 'Not Extended', 511 => 'Network Authentication Required', 598 => 'Network read timeout error', 599 => 'Network connect timeout error');
+
+        if(!isset($crnrstn_html_burn)){
+            /*
+            There are two special-case header calls. The first is a header that starts with
+            the string "HTTP/" (case is not significant), which will be used to figure out the
+            HTTP status code to send. For example, if you have configured Apache to use a PHP
+            script to handle requests for missing files (using the ErrorDocument directive),
+            you may want to make sure that your script generates the proper status code.
+            */
+            header($_SERVER['SERVER_PROTOCOL'] . ' ' . $error_code . ' ' . $http_status_codes[$error_code]);
+            exit();
+
+        }
+
+        header($_SERVER['SERVER_PROTOCOL'] . ' ' . $error_code . ' ' . $http_status_codes[$error_code]);
+
+        //
+        // THO WE HAVE SINCE MIGRATED TO BITWISE, I AM LEAVING THIS SWITCH AS IS...FOR FUTURE WHITE LABELING INTEGRATIONS.
+        switch($this->sys_notices_creative_mode){
+            case 'ALL_IMAGE':
+            case 'ALL_IMAGE_LOGO_OFF':
+
+                $str = '<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    ' . $this->return_creative('CRNRSTN_FAVICON') . '
+    <title>' . $error_code . ' ' . $http_status_codes[$error_code] . '</title>
+</head>
+<body style="background-color: #FFF; width:100%; text-align: left; margin:0px auto;">
+<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-bottom: 2px solid #F90000;"></div>
+<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-bottom: 1px solid #DB1717;"></div>
+
+<div style=\'width:96%; margin:0 0 0 0; padding:6px 2% 0 2%; color:#FFF; font-family:"trebuchet MS", Verdana, sans-serif;background-color:#BEBEBE; height:30px; line-height: 28px;\'><h1 style="font-size: 30px; overflow: hidden; height:23px; padding-top:7px; margin-top: 0;">Server Error</h1></div>
+<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-top: 2px solid #FFF;"></div>
+
+<div style="height:5px; '.$this->return_creative('BG_ELEMENT_RESPONSE_CODE', CRNRSTN_UI_IMG_BASE64).' background-repeat: repeat-x;">
+    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+</div>
+
+<div style="padding:100px 0 300px 100px; float:left; font-family:arial; font-weight:bold; font-size:11px;">' . $error_code . ' ' . $http_status_codes[$error_code] . '</div>
+<!--
+<div style="position:absolute; padding:200px 0 0 10px; float:left;"><pre>
+
+' . $crnrstn_html_burn . '
+
+</pre></div>
+-->
+<div style="padding:16px 2% 0 0; float:right; width:260px;">
+    <div style="float:right; ">
+        ' . $this->return_component_branding_creative(true) . '
+    </div>
+</div>
+
+<div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
+    <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
+        ' . $this->return_creative('J5_WOLF_PUP_RAND') . '
+    </div>
+</div>
+
+<div style="height:0px; width:100%; clear:both; display: block; overflow: hidden;"></div>
+
+</body>
+</html>';
+
+                break;
+            case 'ALL_HTML_LOGO_OFF':
+            case 'ALL_HTML':
+            default:
+
+                $str = '<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>' . $error_code . ' ' . $http_status_codes[$error_code] . '</title>
+</head>
+<body style="background-color: #FFF; text-align: left; margin:0px auto; border: 0; padding:0; margin:0; font-family:Arial, Helvetica, sans-serif; ">
+<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-bottom: 2px solid #F90000;"></div>
+<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-bottom: 1px solid #DB1717;"></div>
+
+<div style=\'width:96%; margin:0 0 0 0; padding:6px 2% 0 2%; color:#FFF; font-family:"trebuchet MS", Verdana, sans-serif;background-color:#BEBEBE; height:30px; line-height: 28px;\'><h1 style="font-size: 30px; overflow: hidden; height:23px; padding-top:7px; margin-top: 0;">Server Error</h1></div>
+<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-top: 2px solid #FFF;"></div>
+
+<div style="height:5px; '.$this->return_creative('BG_ELEMENT_RESPONSE_CODE', CRNRSTN_UI_IMG_BASE64).' background-repeat: repeat-x;">
+    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+</div>
+
+<div style="padding:100px 0 300px 100px; float:left; font-family:arial; font-weight:bold; font-size:11px;">' . $error_code . ' ' . $http_status_codes[$error_code] . '</div>
+<!--
+<div style="position:absolute; padding:200px 0 0 10px; float:left;"><pre>
+
+' . $crnrstn_html_burn . '
+
+</pre></div>
+-->
+<div style="padding:16px 2% 0 0; float:right; width:260px;">
+    <div style="float:right; ">
+        ' . $this->return_component_branding_creative(true) . '
+    </div>
+</div>
+
+<div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
+    <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
+        ' . $this->return_creative('J5_WOLF_PUP_RAND') . '
+    </div>
+</div>
+
+<div style="height:0px; width:100%; clear:both; display: block; overflow: hidden;"></div>
+
+</body>
+</html>';
+
+                break;
+
+        }
+
+        echo $str;
+
+        exit();
 
     }
 

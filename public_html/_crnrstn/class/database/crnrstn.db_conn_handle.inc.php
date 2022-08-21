@@ -101,38 +101,44 @@ class crnrstn_database_connection_handle{
 
         $this->oConnection = $mysqli;
 
-        $version = explode('.', $this->oConnection->server_info);
-        $patch = '';
+        if(is_object($this->oConnection)){
 
-        $tmp_array = str_split($version[2]);
+            $version = explode('.', $this->oConnection->server_info);
+            $patch = '';
 
-        $tmp_size = sizeof($tmp_array);
+            $tmp_array = str_split($version[2]);
 
-        for($i = 0; $i < $tmp_size; $i++){
+            $tmp_size = sizeof($tmp_array);
 
-            if(is_numeric($tmp_array[$i])){
+            for($i = 0; $i < $tmp_size; $i++){
 
-                $patch .= $tmp_array[$i];
+                if(is_numeric($tmp_array[$i])){
+
+                    $patch .= $tmp_array[$i];
+
+                }else{
+
+                    $i = $tmp_size + 1;
+
+                }
+
+            }
+
+            if(strlen($patch) > 0){
+
+                $tmp_version_mysqli = $version[0].'.' . $version[1].'.' . $patch;
+                $this->oCRNRSTN_USR->input_data_value_simple($tmp_version_mysqli, 'version_mysqli');
 
             }else{
 
-                $i = $tmp_size + 1;
+                $tmp_version_mysqli = $version[0].'.' . $version[1];
+                $this->oCRNRSTN_USR->input_data_value_simple($tmp_version_mysqli, 'version_mysqli');
 
             }
 
         }
 
-        if(strlen($patch) > 0){
-
-            $tmp_version_mysqli = $version[0].'.' . $version[1].'.' . $patch;
-            $this->oCRNRSTN_USR->input_data_value_simple($tmp_version_mysqli, 'version_mysqli');
-
-        }else{
-
-            $tmp_version_mysqli = $version[0].'.' . $version[1];
-            $this->oCRNRSTN_USR->input_data_value_simple($tmp_version_mysqli, 'version_mysqli');
-
-        }
+        return false;
 
         //
         // SELECT MYSQLI SETTINGS
