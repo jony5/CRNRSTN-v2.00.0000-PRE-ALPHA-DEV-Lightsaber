@@ -11849,7 +11849,15 @@ class crnrstn_image_v_html_content_manager {
 
         if(strlen($link)>0){
 
-            $tmp_str = '<a href="' . self::$oCRNRSTN_n->return_sticky_link($link, $meta_params_ARRAY) . '" target="'.$target.'">' . $tmp_str . '</a>';
+            if(strlen(self::$oCRNRSTN_n->env_key) > 0){
+
+                $tmp_str = '<a href="' . self::$oCRNRSTN_n->return_sticky_link($link, $meta_params_ARRAY) . '" target="'.$target.'">' . $tmp_str . '</a>';
+
+                return $tmp_str;
+
+            }
+
+            $tmp_str = '<a href="' . $link . '" target="'.$target.'">' . $tmp_str . '</a>';
 
             return $tmp_str;
 

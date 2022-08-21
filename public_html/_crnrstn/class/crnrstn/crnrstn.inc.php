@@ -2204,21 +2204,31 @@ class crnrstn {
     </script>
 </head>
 <body>
-<div style="padding: 10px 0 0 20px;"><div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
-<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
-<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 544].' . '
-<br><span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
-<br>// <a href="#" onclick="crnrstn_copy_detection();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINE_ABOVE_TO_CLIPBOARD') . '.<br></div>
+<div style="padding: 0 0 0 20px;">
+
+    <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+    
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
+        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 544].' . '
+        <br><span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
+        <br>// <a href="#" onclick="crnrstn_copy_detection();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINE_ABOVE_TO_CLIPBOARD') . '.
+        <br>
+    </div>
+    
+    <div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
+    <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre>
+
 </div>
-<div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
-<pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre></div>
+
 <div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
 <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
+
 <div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
     <div class="crnrstn_j5_wolf_pup_inner_wrap">
         ' . $this->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
     </div>
 </div>
+   
 </body>
 </html>
 ';
@@ -2277,23 +2287,35 @@ class crnrstn {
     </script>
 </head>
 <body>
-<div style="padding: 10px 0 0 20px;"><div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
-<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
-<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
-<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
-<br>$CRNRSTN_config_serial = \'<span id="crrnstn_config_serial_'  . $dom_sess_serial . '">' . $tmp_serial . '</span>\';<br>
-// <a href="#" onclick="crnrstn_copy_serial();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.<br></div>
-<div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
-<pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre></div>
+<div style="padding: 0 0 0 20px;">
+
+    <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+    
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
+        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
+        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
+        <br>$CRNRSTN_config_serial = \'<span id="crrnstn_config_serial_'  . $dom_sess_serial . '">' . $tmp_serial . '</span>\';
+        <br>// <a href="#" onclick="crnrstn_copy_serial();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
+        <br>
+    </div>
+    
+    <div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
+    <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre>
+    
+</div>
+
 <div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
 <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
+
 <div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
     <div class="crnrstn_j5_wolf_pup_inner_wrap">
         ' . $this->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
     </div>
 </div>
-</body></html>
+</body>
+</html>
 ';
+
                 $this->error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
                 error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].');
 
