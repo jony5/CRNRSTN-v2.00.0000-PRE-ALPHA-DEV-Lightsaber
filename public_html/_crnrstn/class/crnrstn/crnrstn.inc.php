@@ -59,10 +59,10 @@ class crnrstn {
     public $oCRNRSTN_TRM;  // TODO :: INSTANTIATION IS CURRENTLY BOUND TO THIRD PARTY SERVICE; UNBIND BEFORE USE. Thursday, August 18, 2022 @ 2134 hrs
     private static $oCRNRSTN_CONFIG_MGR;
     public $oMYSQLI_CONN_MGR;
-	private static $oLog_ProfileManager;
-	private static $oCommRichMediaProvider;
-	public $oCRNRSTN_BITFLIP_MGR;
-	public $oCRNRSTN_PERFORMANCE_REGULATOR;
+    private static $oLog_ProfileManager;
+    private static $oCommRichMediaProvider;
+    public $oCRNRSTN_BITFLIP_MGR;
+    public $oCRNRSTN_PERFORMANCE_REGULATOR;
     public $oCRNRSTN_ASSET_MGR;
     public $oCRNRSTN_LANG_MGR;
 
@@ -76,52 +76,52 @@ class crnrstn {
     private static $sys_logging_meta_ARRAY = array();
 
     private static $crnrstn_session_salt;
-	private static $config_serial;
-	public $config_serial_crc;
-	public $os_bit_size;
+    private static $config_serial;
+    public $config_serial_crc;
+    public $os_bit_size;
     public $process_id;
     public $operating_system;
-	
-	public $opensslSessEncryptCipher = array();
-	public $opensslSessEncryptSecretKey = array();
-	public $opensslSessEncryptOptions = array();
-	public $sessHmac_algorithm = array();
-	public $opensslCookieEncryptCipher = array();
-	public $opensslCookieEncryptSecretKey = array();
-	public $opensslCookieEncryptOptions = array();
-	public $cookieHmac_algorithm = array();
-	
-	public $opensslTunnelEncryptCipher = array();
-	public $opensslTunnelEncryptSecretKey = array();
-	public $opensslTunnelEncryptOptions = array();
-	public $tunnelHmac_algorithm = array();
 
-	private static $env_detect_ARRAY = array();
-	public $env_err_reporting_profile_ARRAY = array();
+    public $opensslSessEncryptCipher = array();
+    public $opensslSessEncryptSecretKey = array();
+    public $opensslSessEncryptOptions = array();
+    public $sessHmac_algorithm = array();
+    public $opensslCookieEncryptCipher = array();
+    public $opensslCookieEncryptSecretKey = array();
+    public $opensslCookieEncryptOptions = array();
+    public $cookieHmac_algorithm = array();
+
+    public $opensslTunnelEncryptCipher = array();
+    public $opensslTunnelEncryptSecretKey = array();
+    public $opensslTunnelEncryptOptions = array();
+    public $tunnelHmac_algorithm = array();
+
+    private static $env_detect_ARRAY = array();
+    public $env_err_reporting_profile_ARRAY = array();
     public $env_key;
     public $env_key_crc;
-	public $env_key_ARRAY = array();
-	private static $env_name_ARRAY = array();
-	public $ini_set_ARRAY = array();
-	
-	public $grant_accessIP_ARRAY = array();
-	public $deny_accessIP_ARRAY = array();
-	public $add_admin_creds_ARRAY = array();
+    public $env_key_ARRAY = array();
+    private static $env_name_ARRAY = array();
+    public $ini_set_ARRAY = array();
 
-	private static $database_extension_type_ARRAY = array();
+    public $grant_accessIP_ARRAY = array();
+    public $deny_accessIP_ARRAY = array();
+    public $add_admin_creds_ARRAY = array();
+
+    private static $database_extension_type_ARRAY = array();
 
     private static $server_env_key_ARRAY = array();
-	private static $server_env_key_crc_ARRAY = array();
+    private static $server_env_key_crc_ARRAY = array();
 
-	private static $env_select_ARRAY = array();
+    private static $env_select_ARRAY = array();
 
     public $log_silo_profile;
-	public $starttime;
+    public $starttime;
     public $cache_ttl_default = 80;
     public $useCURL_default = true;
-	public $oLog_output_ARRAY = array();
-	public $oWildCardResource_ARRAY = array();
-	public $wildCardResource_filePath_ARRAY = array();
+    public $oLog_output_ARRAY = array();
+    public $oWildCardResource_ARRAY = array();
+    public $wildCardResource_filePath_ARRAY = array();
     private static $encryptable_data_types_ARRAY = array();
     private static $arch_permissions_int_const_ARRAY = array();
     public $sys_notices_creative_mode = 'ALL_IMAGE';
