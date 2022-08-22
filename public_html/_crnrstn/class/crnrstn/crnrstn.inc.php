@@ -2241,15 +2241,15 @@ class crnrstn {
         <br>
     </div>
     
-    <div style="display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
-    <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
+    <div style="display:block; clear:both; height:50px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
+    <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
 
-    <div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
+    <div style="display:block; clear:both; height:5px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
 
 </div>
 
-<div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
+<div style="float:right; width:100%; padding:10px 0 0 0; margin:0; text-align: right;">
     <div class="crnrstn_j5_wolf_pup_inner_wrap">
         ' . $this->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
     </div>
@@ -2325,15 +2325,15 @@ class crnrstn {
         <br>
     </div>
     
-    <div style="display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
-    <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
+    <div style="display:block; clear:both; height:50px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
+    <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
     
-    <div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
+    <div style="display:block; clear:both; height:5px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
 
 </div>
 
-<div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
+<div style="float:right; width:100%; padding:10px 0 0 0; margin:0; text-align: right;">
     <div class="crnrstn_j5_wolf_pup_inner_wrap">
         ' . $this->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
     </div>
@@ -5655,8 +5655,8 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 |      _|<span style="color:#F90000;">|    __  |</span>|  _    ||    __  ||_____  |  |   |  |  _    |  |   | |   | 
 |     |_ <span style="color:#F90000;">|   |  | |</span>| | |   ||   |  | | _____| |  |   |  | | |   |  |___| |___| 
 |_______|<span style="color:#F90000;">|___|  |_|</span>|_|  |__||___|  |_||_______|  |___|  |_|  |__|              
-                                                                                                         
-                                                                                                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                                                                                                                                                                            
+        
         
         
 <!-- 
@@ -5678,9 +5678,9 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 <span style="color:#F90000;">((</span>/ __|<span style="color:#F90000;">| _ \</span> | \| || _ \/ __||_   _| | \| | (_)(_) 
  | (__ <span style="color:#F90000;">|   /</span> | .` ||   /\__ \  | |   | .` |  _  _  
   \___|<span style="color:#F90000;">|_|_\</span> |_|\_||_|_\|___/  |_|   |_|\_| (_)(_) 
-                                                                                                                                                                                                                                                                                                                                                   
-        
-        
+                                                                                                                                                                                                                                                                                                                                                              
+     
+     
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
@@ -5701,6 +5701,8 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 (  .  .-\'_/  )<span style="color:#F90000;">|  | \ `\'   /</span>|  (_,_)\  ||  | \ `\'   /\    `-\'  |   (_(=)_)  |  (_,_)\  |         _( )_  _( )_  
  `-\'`-\'     /<span style="color:#F90000;"> |  |  \    / </span>|  |    |  ||  |  \    /  \       /     (_I_)   |  |    |  |        (_ o _)(_ o _) 
    `._____.\'  <span style="color:#F90000;">\'\'-\'   `\'-\'</span>  \'--\'    \'--\'\'\'-\'   `\'-\'    `-...-\'      \'---\'   \'--\'    \'--\'         (_,_)  (_,_)
+
+
 
 
         <!--
