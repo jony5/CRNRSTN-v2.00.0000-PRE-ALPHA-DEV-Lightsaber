@@ -519,7 +519,7 @@ function crnrstn_constants_init($const_nom){
         // 8051
         // 'CRNRSTN_LOG_ALL', 'CRNRSTN_LOG_NONE', 'CRNRSTN_LOG_EMAIL', 'CRNRSTN_LOG_EMAIL_PROXY', 'CRNRSTN_LOG_FILE',
         // 'CRNRSTN_LOG_FILE_PROXY', 'CRNRSTN_LOG_FILE_FTP', 'CRNRSTN_LOG_SCREEN_TEXT', 'CRNRSTN_LOG_SCREEN', 'CRNRSTN_LOG_SCREEN_HTML',
-        // 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN', 'CRNRSTN_LOG_DEFAULT', 'CRNRSTN_LOG_ELECTRUM'
+        // 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN', 'CRNRSTN_LOG_DEFAULT', 'CRNRSTN_LOG_DEFAULT_PROXY', 'CRNRSTN_LOG_ELECTRUM'
         case 'CRNRSTN_LOG_EMAIL':
 
             return (int) 8051;
@@ -570,9 +570,14 @@ function crnrstn_constants_init($const_nom){
             return (int) 8060;
 
         break;
-        case 'CRNRSTN_LOG_ELECTRUM':
+        case 'CRNRSTN_LOG_DEFAULT_PROXY':
 
             return (int) 8061;
+
+        break;
+        case 'CRNRSTN_LOG_ELECTRUM':
+
+            return (int) 8062;
 
         break;
 
@@ -580,57 +585,57 @@ function crnrstn_constants_init($const_nom){
         // ARCHITCTURE PERMISSIONS FLAGS FOR CRNRSTN :: STORED DATA
         case 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY':
 
-            return (int) 8062;
+            return (int) 8063;
 
         break;
         case 'CRNRSTN_AUTHORIZE_ALL':
 
-            return (int) 8063;
+            return (int) 8064;
 
         break;
         case 'CRNRSTN_AUTHORIZE_DATABASE':
 
-            return (int) 8064;
+            return (int) 8065;
 
         break;
         case 'CRNRSTN_AUTHORIZE_SSDTLA':
 
-            return (int) 8065;
+            return (int) 8066;
 
         break;
         case 'CRNRSTN_AUTHORIZE_PSSDTLA':
 
-            return (int) 8066;
+            return (int) 8067;
 
         break;
         case 'CRNRSTN_AUTHORIZE_SESSION':
 
-            return (int) 8067;
+            return (int) 8068;
 
         break;
         case 'CRNRSTN_AUTHORIZE_COOKIE':
 
-            return (int) 8068;
+            return (int) 8069;
 
         break;
         case 'CRNRSTN_AUTHORIZE_SOAP':
 
-            return (int) 8069;
+            return (int) 8070;
 
         break;
         case 'CRNRSTN_AUTHORIZE_GET':
 
-            return (int) 8070;
+            return (int) 8071;
 
         break;
         case 'CRNRSTN_AUTHORIZE_ISEMAIL':
 
-            return (int) 8071;
+            return (int) 8072;
 
         break;
         case 'CRNRSTN_AUTHORIZE_ISPASSWORD':
 
-            return (int) 8072;
+            return (int) 8073;
 
         break;
 
@@ -638,32 +643,32 @@ function crnrstn_constants_init($const_nom){
         // CRNRSTN :: ENCRYPTION PROFILES
         case 'CRNRSTN_ENCRYPT_TUNNEL':
 
-            return (int) 8073;
+            return (int) 8074;
 
         break;
         case 'CRNRSTN_ENCRYPT_DATABASE':
 
-            return (int) 8074;
+            return (int) 8075;
 
         break;
         case 'CRNRSTN_ENCRYPT_SESSION':
 
-            return (int) 8075;
+            return (int) 8076;
 
         break;
         case 'CRNRSTN_ENCRYPT_COOKIE':
 
-            return (int) 8076;
+            return (int) 8077;
 
         break;
         case 'CRNRSTN_ENCRYPT_SOAP':
 
-            return (int) 8077;
+            return (int) 8078;
 
         break;
         case 'CRNRSTN_ENCRYPT_OERSL':
 
-            return (int) 8078;
+            return (int) 8079;
 
         break;
 
@@ -671,17 +676,17 @@ function crnrstn_constants_init($const_nom){
         // RESOURCE PERMISSIONS FLAGS FOR CRNRSTN :: RESOURCES
         case 'CRNRSTN_RESOURCE_ALL':
 
-            return (int) 8079;
+            return (int) 8080;
 
         break;
         case 'CRNRSTN_RESOURCE_OPENSOURCE':
 
-            return (int) 8080;
+            return (int) 8081;
 
         break;
         case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
 
-            return (int) 8081;
+            return (int) 8082;
 
         break;
 
