@@ -2237,7 +2237,7 @@ class crnrstn {
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 541].' . '
         <br><span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
         <br>$oCRNRSTN->detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
-        <br>// <a href="#" onclick="crnrstn_copy_detection();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD') . '.
+        <br>// <a href="#" onclick="crnrstn_copy_detection();" style="color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD') . '.
         <br>
     </div>
     
@@ -2321,7 +2321,7 @@ class crnrstn {
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
         <br>$CRNRSTN_config_serial = \'<span id="crrnstn_config_serial_'  . $dom_sess_serial . '">' . $tmp_serial . '</span>\';
-        <br>// <a href="#" onclick="crnrstn_copy_serial();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
+        <br>// <a href="#" onclick="crnrstn_copy_serial();" style="color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
         <br>
     </div>
     
