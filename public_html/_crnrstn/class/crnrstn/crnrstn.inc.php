@@ -2231,7 +2231,7 @@ class crnrstn {
 <body>
 <div style="padding: 0 0 0 20px;">
 
-    <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 541].' . '
@@ -2241,13 +2241,13 @@ class crnrstn {
         <br>
     </div>
     
-    <div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
+    <div style="display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
     <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre>
 
-</div>
+    <div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
 
-<div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
+</div>
 
 <div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
     <div class="crnrstn_j5_wolf_pup_inner_wrap">
@@ -2315,7 +2315,7 @@ class crnrstn {
 <body>
 <div style="padding: 0 0 0 20px;">
 
-    <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
@@ -2325,13 +2325,13 @@ class crnrstn {
         <br>
     </div>
     
-    <div style="height:50px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>
+    <div style="display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
     <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre>
     
-</div>
+    <div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
 
-<div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-<div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
+</div>
 
 <div style="float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right;">
     <div class="crnrstn_j5_wolf_pup_inner_wrap">
@@ -6816,7 +6816,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 
 
             //$this->print_r($this->destruct_output, 'C<span style="color:#F00;">R</span>NRSTN Debug Mode 2 :: Error Log Trace Debug Output ::', $style_theme, __LINE__, __METHOD__, __FILE__);
-            print_r('<div style="height:20px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>');
+            print_r('<div style="height:10px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>');
             print_r($this->destruct_output);
 
         }
