@@ -2242,7 +2242,7 @@ class crnrstn {
     </div>
     
     <div style="display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
-    <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre>
+    <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
 
     <div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
@@ -2326,7 +2326,7 @@ class crnrstn {
     </div>
     
     <div style="display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
-    <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(8) . '</pre>
+    <pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
     
     <div style="display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
@@ -5410,14 +5410,14 @@ class crnrstn {
 
         $tmp_crnrstnART[0] = '      ___           <span style="color:#F00;">___</span>           ___           ___           ___                         ___              
      /\__\         <span style="color:#F00;">/\  \</span>         /\  \         /\  \         /\__\                       /\  \             
-    /:/  /        <span style="color:#F00;">/::\  \</span>        \:\  \       /::\  \       /:/ _/_         ___          \:\  \            
-   /:/  /        <span style="color:#F00;">/:/\:\__\</span>        \:\  \     /:/\:\__\     /:/ /\  \       /\__\          \:\  \      ::::::  ::::::           
-  /:/  /  ___   <span style="color:#F00;">/:/ /:/  /</span>    _____\:\  \   /:/ /:/  /    /:/ /::\  \     /:/  /      _____\:\  \     ::::::  ::::::          
+    /:/  /        <span style="color:#F00;">/::\  \</span>        \:\  \       /::\  \       /:/ _/_         ___          \:\  \          ___         ___
+   /:/  /        <span style="color:#F00;">/:/\:\__\</span>        \:\  \     /:/\:\__\     /:/ /\  \       /\__\          \:\  \        /\__\       /\__\      
+  /:/  /  ___   <span style="color:#F00;">/:/ /:/  /</span>    _____\:\  \   /:/ /:/  /    /:/ /::\  \     /:/  /      _____\:\  \       \/__/       \/__/          
  /:/__/  /\__\ <span style="color:#F00;">/:/_/:/__/</span>___ /::::::::\__\ /:/_/:/__/___ /:/_/:/\:\__\   /:/__/      /::::::::\__\         
- \:\  \ /:/  / <span style="color:#F00;">\:\/:::::/  / </span>\:\~~\~~\/__/ \:\/:::::/  / \:\/:/ /:/  /  /::\  \      \:\~~\~~\/__/         
-  \:\  /:/  /   <span style="color:#F00;">\::/~~/~~~~</span>   \:\  \        \::/~~/~~~~   \::/ /:/  /  /:/\:\  \      \:\  \          ::::::  ::::::         
-   \:\/:/  /     <span style="color:#F00;">\:\~~\</span>        \:\  \        \:\~~\        \/_/:/  /   \/__\:\  \      \:\  \         ::::::  ::::::          
-    \::/  /       <span style="color:#F00;">\:\__\</span>        \:\__\        \:\__\         /:/  /         \:\__\      \:\__\             
+ \:\  \ /:/  / <span style="color:#F00;">\:\/:::::/  / </span>\:\~~\~~\/__/ \:\/:::::/  / \:\/:/ /:/  /  /::\  \      \:\~~\~~\/__/       ___         ___
+  \:\  /:/  /   <span style="color:#F00;">\::/~~/~~~~</span>   \:\  \        \::/~~/~~~~   \::/ /:/  /  /:/\:\  \      \:\  \            /\__\       /\__\         
+   \:\/:/  /     <span style="color:#F00;">\:\~~\</span>        \:\  \        \:\~~\        \/_/:/  /   \/__\:\  \      \:\  \           \/__/       \/__/     
+    \::/  /       <span style="color:#F00;">\:\__\</span>        \:\__\        \:\__\         /:/  /         \:\__\      \:\__\          
      \/__/         <span style="color:#F00;">\/__/</span>         \/__/         \/__/         \/__/           \/__/       \/__/      
 	 
         
@@ -5432,7 +5432,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 -->        
 ';
 
-        $tmp_crnrstnART[8] = '      ___           <span style="color:#F00;">___</span>           ___           ___           ___                       ___              
+        $tmp_crnrstnART[1] = '      ___           <span style="color:#F00;">___</span>           ___           ___           ___                       ___              
      /  /\         <span style="color:#F00;">/  /\</span>         /__/\         /  /\         /  /\          ___        /__/\             
     /  /:/        <span style="color:#F00;">/  /::\</span>        \  \:\       /  /::\       /  /:/_        /  /\       \  \:\          ___        ___
    /  /:/        <span style="color:#F00;">/  /:/\:\</span>        \  \:\     /  /:/\:\     /  /:/ /\      /  /:/        \  \:\        /__/\      /__/\    
@@ -5481,7 +5481,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 -->        
 ';
 
-        $tmp_crnrstnART[1] = '        CCCCCCCCCCCCC<span style="color:#F00;">RRRRRRRRRRRRRRRRR</span>   NNNNNNNN        NNNNNNNNRRRRRRRRRRRRRRRRR      SSSSSSSSSSSSSSS TTTTTTTTTTTTTTTTTTTTTTTNNNNNNNN        NNNNNNNN
+        $tmp_crnrstnART[2] = '        CCCCCCCCCCCCC<span style="color:#F00;">RRRRRRRRRRRRRRRRR</span>   NNNNNNNN        NNNNNNNNRRRRRRRRRRRRRRRRR      SSSSSSSSSSSSSSS TTTTTTTTTTTTTTTTTTTTTTTNNNNNNNN        NNNNNNNN
      CCC::::::::::::C<span style="color:#F00;">R::::::::::::::::R</span>  N:::::::N       N::::::NR::::::::::::::::R   SS:::::::::::::::ST:::::::::::::::::::::TN:::::::N       N::::::N
    CC:::::::::::::::C<span style="color:#F00;">R::::::RRRRRR:::::R</span> N::::::::N      N::::::NR::::::RRRRRR:::::R S:::::SSSSSS::::::ST:::::::::::::::::::::TN::::::::N      N::::::N
   C:::::CCCCCCCC::::C<span style="color:#F00;">RR:::::R     R:::::R</span>N:::::::::N     N::::::NRR:::::R     R:::::RS:::::S     SSSSSSST:::::TT:::::::TT:::::TN:::::::::N     N::::::N
@@ -5540,7 +5540,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 -->        
 ';
 
-        $tmp_crnrstnART[2]= '
+        $tmp_crnrstnART[3]= '
 
  ######  <span style="color:#F00;">########</span>  ##    ## ########   ######  ######## ##    ##     ##   ##  
 ##    ## <span style="color:#F00;">##     ##</span> ###   ## ##     ## ##    ##    ##    ###   ##    #### #### 
@@ -5584,7 +5584,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 -->        
 ';
 
-        $tmp_crnrstnART[3] = '
+        $tmp_crnrstnART[4] = '
 
                                                                                          
    _|_|_|  <span style="color:#F00;">_|_|_|</span>    _|      _|  _|_|_|      _|_|_|  _|_|_|_|_|  _|      _|              
@@ -5631,7 +5631,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 
         if(!isset($index)){
 
-            return $tmp_crnrstnART[rand ( 0 , 3)];
+            return $tmp_crnrstnART[rand (0 , 4)];
 
         }else{
 
