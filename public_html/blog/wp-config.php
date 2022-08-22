@@ -23,7 +23,17 @@
 // Code is Poetry */
 require_once('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
-
+//
+// ULTIMATELY, THE PLAN IS TO MANAGE THIS (AND OTHER) THIRD PARTY ACCOUNT META
+// THROUGH OUR OWN CUSTOM AND SUPER SLEEK LOGIN ADMIN INTERFACE.
+//
+// NOTE: THERE IS NO WordPress CONFIGURATION DATA HERE.
+// FOR THE POINT OF COLLECTION OF THIS INFORMATION (BY CRNRSTN ::),...
+//
+// ...PLEASE SEE:
+// /_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php
+//
+//
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', $oCRNRSTN->get_resource_wp('DB_NAME', 0, 'CRNRSTN::WP::INTEGRATIONS'));
