@@ -203,6 +203,7 @@ $oCRNRSTN->init_input_listener('crnrstn_image_to_encode', 'crnrstn_resource_file
         <button type="submit" style="width:150px; height:30px; text-align: center; font-weight: bold;" onclick="crnrstn_validate();">ENCODE</button>
         <input type="hidden" name="fs" value="<?php echo $oCRNRSTN->generate_new_key(100, '01') ?>">
         <?php
+
         echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_image_to_encode');
 
         if($tmp_filename = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_image_to_process_name')){

@@ -3038,7 +3038,7 @@ class crnrstn_multi_language_manager {
                 }
 
             break;
-            case 'TO_COPY_THE_LINE_ABOVE_TO_CLIPBOARD':
+            case 'TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD':
 
                 switch($this->country_iso_code) {
                     case 'es':
@@ -3047,7 +3047,7 @@ class crnrstn_multi_language_manager {
                     default:
                         //case 'en':
 
-                        return ' to copy the line above to clipboard';
+                        return ' to copy the lines above to clipboard';
 
                     break;
 

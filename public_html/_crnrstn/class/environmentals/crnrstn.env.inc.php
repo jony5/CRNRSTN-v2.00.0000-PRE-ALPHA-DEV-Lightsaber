@@ -216,9 +216,9 @@ class crnrstn_environment {
 
                     $this->env_key = $oCRNRSTN->env_key_ARRAY[$this->config_serial_crc][$this->env_key_crc];
 
-                    //
+                    // TODO :: DO NOT RUN THIS AGAIN. FIGURE SOMETHING ELSE OUT.
                     // FLASH WILD CARD RESOURCES OBJECT ARRAY TO ENVIRONMENTAL CLASS OBJECT
-                    $this->initializeWildCardResource($oCRNRSTN);
+                    //$this->initializeWildCardResource($oCRNRSTN);
 
                     $this->oSESSION_MGR = new crnrstn_session_manager($this);
 
@@ -2683,7 +2683,7 @@ class crnrstn_environment {
 
                     //
                     // INITIALIZE WORDPRESS CONFIGURATION PROFILE(S) FOR THIS ENVIRONMENT
-                    $this->init_wp_config($oCRNRSTN);
+                    //$this->init_wp_config($oCRNRSTN);
 
                     //
                     // INITIALIZE ANALYTICS CONFIGURATION PROFILE(S) FOR THIS ENVIRONMENT
@@ -2900,7 +2900,7 @@ class crnrstn_environment {
 
     }
 
-    private function init_wp_config($oCRNRSTN){
+    private function ___init_wp_config($oCRNRSTN){
 
         if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
 
@@ -8603,6 +8603,9 @@ class crnrstn_decoupled_data_object {
 
                 }else{
 
+                    //
+                    // TODO :: SHOULD THIS RETURN SOMETHING TIED TO THE SESSION FOR PROPER
+                    // TODO :: DETERMINATION OF "NO DATA TO RETURN"
                     // BOOLEAN FALSE WILL RETURN (string) 'false'
                     //error_log(__LINE__ .' env ddo - return false... NOT SET ['.$data_key.']');
                     return false;

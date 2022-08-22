@@ -1,7 +1,7 @@
 <?php
 
 //
-// INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT.
+// INITIALIZE DATABASE CONNECTION PROFILE(S) FOR EACH ENVIRONMENT.
 // $this->oMYSQLI_CONN_MGR->add_connection([environment-key], [db-host], [db-user-name], [db-user-pswd], [db-database-name], [optional-db-port]);
 $this->oMYSQLI_CONN_MGR->add_connection('LOCALHOST_MACBOOKPRO', 'localhost', 'jony5_stage', 'aXNTPxGPeLRwYzTS', 'jony5_stage','3306');
 $this->oMYSQLI_CONN_MGR->add_connection('LOCALHOST_CHAD_MACBOOKPRO', 'localhost', 'jony5_stage', 'aXNTPxGPeLRwYzTS', 'jony5_stage','3306');

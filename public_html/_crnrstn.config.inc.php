@@ -392,8 +392,6 @@ CRNRSTN_RESOURCE_OPENSOURCE
 CRNRSTN_RESOURCE_NEWS_SYNDICATION
 CRNRSTN_WORDPRESS_DEBUG
 
-
-
  * */
 
 $CRNRSTN_loggingProfile = CRNRSTN_LOG_ALL;
@@ -749,7 +747,7 @@ $oCRNRSTN->init_sys_comm_img_HTTP_DIR('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.1
  * Example :: /var/www/html/alpha.jony5.com/_crnrstn/_config/config.resource_wildcards.secure
  * $oCRNRSTN->add_wildcards('LOCALHOST_PC', C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//config.resource_wildcards.secure//_crnrstn.resource_wildcards.inc.php);
  */
-$oCRNRSTN->add_wildcards(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.resource_wildcards.secure/_crnrstn.resource_wildcards.inc.php');
+//$oCRNRSTN->add_wildcards(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.resource_wildcards.secure/_crnrstn.resource_wildcards.inc.php');
 
 //
 // INITIALIZE LOGGING FUNCTIONALITY FOR EACH ENVIRONMENT

@@ -181,214 +181,17 @@ class crnrstn_mysqli_conn_manager {
 
 	}
 
-    private function wp_db_name(){
+    public function add_data_wp($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::WP::INTEGRATIONS'){
 
-        $tmp_dirty_db_ = $this->oCRNRSTN_USR->get_resource('DB_NAME', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-        $tmp_dirty_un = $this->oCRNRSTN_USR->get_resource('DB_USER', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-        $tmp_dirty_host = $this->oCRNRSTN_USR->get_resource('DB_HOST', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-
-        if(isset(self::$db_db_ARRAY[$this->config_serial_crc][$this->oCRNRSTN_USR->env_key_crc][$this->crcINT($tmp_dirty_host)][$this->crcINT($tmp_dirty_db_)][$this->crcINT($tmp_dirty_un)])){
-
-            $tmp_str = self::$db_db_ARRAY[$this->config_serial_crc][$this->oCRNRSTN_USR->env_key_crc][$this->crcINT($tmp_dirty_host)][$this->crcINT($tmp_dirty_db_)][$this->crcINT($tmp_dirty_un)];
-
-            $this->oCRNRSTN_USR->error_log('CRNRSTN :: is returning the database name, ' . $tmp_str . ', for a WordPress related request from a private, static, multi-dimensional, and signed integer indexed array pointer.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_WORDPRESS);
-
-            return $tmp_str;
-
-        }else{
-
-            return false;
-
-        }
+        $this->oCRNRSTN->add_system_resource($env_key, $data_key, $data_value, $data_type_family);
 
     }
 
-    private function wp_db_user(){
+    public function get_resource_wp($data_key, $index = 0, $data_type_family = 'CRNRSTN::WP::INTEGRATIONS', $soap_transport = false){
 
-        $tmp_dirty_db_ = $this->oCRNRSTN_USR->get_resource('DB_NAME', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-        $tmp_dirty_un = $this->oCRNRSTN_USR->get_resource('DB_USER', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-        $tmp_dirty_host = $this->oCRNRSTN_USR->get_resource('DB_HOST', 0,$this->oCRNRSTN_USR->return_wcr_wp_key());
+        $this->oCRNRSTN->error_log('CRNRSTN :: is returning the data, ' . $data_key . ', for a WordPress related request.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_WORDPRESS);
 
-        if(isset(self::$db_un[$this->config_serial_crc][$this->crcINT($this->oCRNRSTN_USR->env_key)][$this->crcINT($tmp_dirty_host)][$this->crcINT($tmp_dirty_db_)][$this->crcINT($tmp_dirty_un)])){
-
-            $tmp_str = self::$db_un[$this->config_serial_crc][$this->crcINT($this->oCRNRSTN_USR->env_key)][$this->crcINT($tmp_dirty_host)][$this->crcINT($tmp_dirty_db_)][$this->crcINT($tmp_dirty_un)];
-
-            $this->oCRNRSTN_USR->error_log('CRNRSTN :: is returning the database account username, ' . $tmp_str . ', for a WordPress related request from a private, static, multi-dimensional, and signed integer indexed array pointer.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_WORDPRESS);
-
-            return $tmp_str;
-
-        }else{
-
-            return false;
-
-        }
-
-    }
-
-    private function wp_db_password(){
-
-        $tmp_dirty_db_ = $this->oCRNRSTN_USR->get_resource('DB_NAME', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-        $tmp_dirty_un = $this->oCRNRSTN_USR->get_resource('DB_USER', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-        $tmp_dirty_host = $this->oCRNRSTN_USR->get_resource('DB_HOST', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-
-        if(isset(self::$db_pwd[$this->config_serial_crc][$this->crcINT($this->oCRNRSTN_USR->env_key)][$this->crcINT($tmp_dirty_host)][$this->crcINT($tmp_dirty_db_)][$this->crcINT($tmp_dirty_un)])){
-
-            $tmp_str = self::$db_pwd[$this->config_serial_crc][$this->crcINT($this->oCRNRSTN_USR->env_key)][$this->crcINT($tmp_dirty_host)][$this->crcINT($tmp_dirty_db_)][$this->crcINT($tmp_dirty_un)];
-
-            $this->oCRNRSTN_USR->error_log('CRNRSTN :: is returning the database account (' . $this->wp_db_user() . ') password, ##REDACTED##, for a WordPress related request from a private, static, multi-dimensional, and signed integer indexed array pointer.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_WORDPRESS);
-
-            return $tmp_str;
-
-        }else{
-
-            return false;
-
-        }
-
-    }
-
-    private function wp_db_host(){
-
-        $tmp_dirty_db_ = $this->oCRNRSTN_USR->get_resource('DB_NAME', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-        $tmp_dirty_un = $this->oCRNRSTN_USR->get_resource('DB_USER', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-        $tmp_dirty_host = $this->oCRNRSTN_USR->get_resource('DB_HOST', 0, $this->oCRNRSTN_USR->return_wcr_wp_key());
-
-        if(isset(self::$db_host[$this->config_serial_crc][$this->crcINT($this->oCRNRSTN_USR->env_key)][$this->crcINT($tmp_dirty_host)][$this->crcINT($tmp_dirty_db_)][$this->crcINT($tmp_dirty_un)])){
-
-            $tmp_str = self::$db_host[$this->config_serial_crc][$this->crcINT($this->oCRNRSTN_USR->env_key)][$this->crcINT($tmp_dirty_host)][$this->crcINT($tmp_dirty_db_)][$this->crcINT($tmp_dirty_un)];
-
-            $this->oCRNRSTN_USR->error_log('CRNRSTN :: is returning the database host, ' . $tmp_str . ', for a WordPress related request from a private, static, multi-dimensional, and signed integer indexed array pointer.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_WORDPRESS);
-
-            return $tmp_str;
-
-        }else{
-
-            return false;
-
-        }
-
-    }
-
-    private function return_dataset_nomination_prefix($output_format = NULL, $var0 = NULL, $var1 = NULL, $var2 = NULL, $var3 = NULL, $var4 = NULL, $var5 = NULL, $var6 = NULL, $var7 = NULL, $var8 = NULL, $var9 = NULL, $var10 = NULL, $var11 = NULL){
-
-	    if(!isset($output_format)){
-
-            $output_format = 'array';
-
-        }
-
-	    $tmp_str_out = '';
-        $tmp_array_str_unit_ARRAY = array();
-        $tmp_array_out_ARRAY = array();
-
-        if(isset($var0)){
-
-            $tmp_crc = $this->crcINT($var0);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var1)){
-
-            $tmp_crc = $this->crcINT($var1);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var2)){
-
-            $tmp_crc = $this->crcINT($var2);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var3)){
-
-            $tmp_crc = $this->crcINT($var3);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var4)){
-
-            $tmp_crc = $this->crcINT($var4);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var5)){
-
-            $tmp_crc = $this->crcINT($var5);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var6)){
-
-            $tmp_crc = $this->crcINT($var6);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var7)){
-
-            $tmp_crc = $this->crcINT($var7);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var8)){
-
-            $tmp_crc = $this->crcINT($var8);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var9)){
-
-            $tmp_crc = $this->crcINT($var9);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var10)){
-
-            $tmp_crc = $this->crcINT($var10);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        if(isset($var11)){
-
-            $tmp_crc = $this->crcINT($var11);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_array_out_ARRAY['str_out'] = $tmp_str_out;
-        $tmp_array_out_ARRAY['str_section_array'] = $tmp_array_str_unit_ARRAY;
-
-        if($output_format == 'array') {
-
-            return $tmp_array_out_ARRAY;
-
-        }
-
-        //
-        // $output_format = 'string'
-        return $tmp_array_out_ARRAY['str_out'];
+        return $this->oCRNRSTN->get_resource($data_key, $index, $data_type_family, $soap_transport);
 
     }
 
@@ -1356,7 +1159,130 @@ class crnrstn_mysqli_conn_manager {
 		}
 
 	}
-		
+
+    private function return_dataset_nomination_prefix($output_format = NULL, $var0 = NULL, $var1 = NULL, $var2 = NULL, $var3 = NULL, $var4 = NULL, $var5 = NULL, $var6 = NULL, $var7 = NULL, $var8 = NULL, $var9 = NULL, $var10 = NULL, $var11 = NULL){
+
+        if(!isset($output_format)){
+
+            $output_format = 'array';
+
+        }
+
+        $tmp_str_out = '';
+        $tmp_array_str_unit_ARRAY = array();
+        $tmp_array_out_ARRAY = array();
+
+        if(isset($var0)){
+
+            $tmp_crc = $this->crcINT($var0);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var1)){
+
+            $tmp_crc = $this->crcINT($var1);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var2)){
+
+            $tmp_crc = $this->crcINT($var2);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var3)){
+
+            $tmp_crc = $this->crcINT($var3);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var4)){
+
+            $tmp_crc = $this->crcINT($var4);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var5)){
+
+            $tmp_crc = $this->crcINT($var5);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var6)){
+
+            $tmp_crc = $this->crcINT($var6);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var7)){
+
+            $tmp_crc = $this->crcINT($var7);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var8)){
+
+            $tmp_crc = $this->crcINT($var8);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var9)){
+
+            $tmp_crc = $this->crcINT($var9);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var10)){
+
+            $tmp_crc = $this->crcINT($var10);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        if(isset($var11)){
+
+            $tmp_crc = $this->crcINT($var11);
+            $tmp_str_out .= $tmp_crc . '::';
+            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+
+        }
+
+        $tmp_array_out_ARRAY['str_out'] = $tmp_str_out;
+        $tmp_array_out_ARRAY['str_section_array'] = $tmp_array_str_unit_ARRAY;
+
+        if($output_format == 'array') {
+
+            return $tmp_array_out_ARRAY;
+
+        }
+
+        //
+        // $output_format = 'string'
+        return $tmp_array_out_ARRAY['str_out'];
+
+    }
+
 //	public function setEnvironment($oCRNRSTN_ENV){
 //
 //		//

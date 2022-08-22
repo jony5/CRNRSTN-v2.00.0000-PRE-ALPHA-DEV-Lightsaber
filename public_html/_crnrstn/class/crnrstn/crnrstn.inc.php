@@ -1227,15 +1227,25 @@ class crnrstn {
 
     public function add_wordpress($env_key, $crnrstn_wp_config_file_path){
 
-        if(isset(self::$server_env_key_crc_ARRAY[$this->config_serial_crc])) {
+        if(isset(self::$server_env_key_crc_ARRAY[$this->config_serial_crc])){
 
             if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_crc_ARRAY[$this->config_serial_crc] == $this->crcINT($env_key)) {
 
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_wp_config_file_path, 'crnrstn_wp_config_file_path',NULL,NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
-                //
-                // TODO :: WE CAN RUN THIS (NOT DUMB STORE IT). WE KNOW THE ENVIRONMENT NOW.
-                //$this->wp_config_file_path_ARRAY[$this->config_serial_crc][$this->crcINT($env_key)][] = $crnrstn_wp_config_file_path;
+                if(is_file($crnrstn_wp_config_file_path)){
+
+                    //
+                    // EXTRACT PROFILE FROM FILE
+                    $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    include_once($crnrstn_wp_config_file_path);
+
+                }else{
+
+                    $this->error_log('Unable to initialize data supporting WordPress integrations with CRNRSTN :: [' . $env_key . ']. Not a file: [' . $crnrstn_wp_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                }
 
             }
 
@@ -1899,7 +1909,7 @@ class crnrstn {
 			
 			//
 			// SEND DATABASE CONFIGURATION PARAMETERS TO THE CONNECTION MANAGER
-            $this->error_log('addDatabase() for environment [' . $env_key . '] sending database authentication profile [db->##### REDACTED ##### | un->##### REDACTED ##### |...etc.] to connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            $this->error_log('Sending [' . $env_key . '] database profile information to the CRNRSTN :: MySQLi database connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
 			$this->oMYSQLI_CONN_MGR->add_connection($env_key, $host_or_creds_path, $un, $pwd, $db, $port);
 
@@ -1908,6 +1918,16 @@ class crnrstn {
 		return true;
 
 	}
+
+	private function add_data_wp($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::WP::INTEGRATIONS'){
+
+        //
+        // SEND DATABASE CONFIGURATION PARAMETERS TO THE CONNECTION MANAGER
+        $this->error_log('Sending ' . $data_key . ' WordPress profile information for [ '. $env_key . ' ] to the CRNRSTN :: MySQLi database connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+        $this->oMYSQLI_CONN_MGR->add_data_wp($env_key, $data_key, $data_value, $data_type_family);
+
+    }
 
 	public function add_administration($env_key, $email_or_creds_path, $pwd = NULL, $ttl = 120, $max_login_attempts = 10){
 
@@ -2214,9 +2234,10 @@ class crnrstn {
     <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
-        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 544].' . '
-        <br><span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
-        <br>// <a href="#" onclick="crnrstn_copy_detection();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINE_ABOVE_TO_CLIPBOARD') . '.
+        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 541].' . '
+        <br><span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
+        <br>$oCRNRSTN->detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
+        <br>// <a href="#" onclick="crnrstn_copy_detection();">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD') . '.
         <br>
     </div>
     
@@ -2237,10 +2258,10 @@ class crnrstn {
 </body>
 </html>
 ';
-                    $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 544] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                    error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 544] in the CRNRSTN :: config file.');
+                    $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.');
 
-                    break;
+                break;
                 default:
 
                     $tmp_serial_str_len  = 64;
@@ -2358,12 +2379,13 @@ class crnrstn {
 
     }
 
+    public function get_resource_wp($data_key, $index = 0, $data_type_family = 'CRNRSTN::WP::INTEGRATIONS', $soap_transport = false){
+
+        return $this->oMYSQLI_CONN_MGR->get_resource_wp($data_key, $index, $data_type_family, $soap_transport);
+
+    }
+
     public function get_resource($data_key, $index = NULL, $data_type_family = NULL, $soap_transport = false){
-//
-//        if(!){
-//
-//
-//        }
 
         // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_transport = false){
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_crc], $soap_transport);
@@ -3379,7 +3401,9 @@ class crnrstn {
             // DID WE DETERMINE ENVIRONMENT KEY THROUGH INITIALIZATION OF CRNRSTN? IF SO, THIS PARAMETER WILL BE SET. JUST USE IT.
             if(self::$server_env_key_crc_ARRAY[$this->config_serial_crc] != '') {
 
-                $this->error_log('Detected server environment [' . self::$server_env_key_ARRAY[$this->config_serial_crc] . '] returned from private static array.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                // Monday, August 22, 2022 @ 0231 hrs
+                // WE SUCCESSFULLY DETECTED THE ENVIRONMENT, PEOPLE. WOO-HOO. POP BOTTLES.
+                //$this->error_log('Detected server environment [' . self::$server_env_key_ARRAY[$this->config_serial_crc] . '] returned from private static array.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 if($output == 'crc'){
 
@@ -6964,14 +6988,37 @@ class crnrstn_config_manager {
 
             }
 
-            //error_log(__LINE__ . ' crnrstn config '. __METHOD__ . ' [' . $data_key . '(strlen=' . strlen($data_key) . ')][' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].');
-            //$this->oCRNRSTN->print_r(' crnrstn config '. __METHOD__ . ' [' . $data_key . '(strlen=' . strlen($data_key) . ')][' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', 'CRNRSTN :: CONFIGURATION TEST',NULL, __LINE__,__METHOD__,__FILE__);
+            $tmp_return_data_spec_a = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $soap_transport, $index);
 
-            return $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $soap_transport, $index);
+            if(!$tmp_return_data_spec_a || $tmp_return_data_spec_a  == '' || !isset($tmp_return_data_spec_a)){
+
+                $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key(CRNRSTN_RESOURCE_ALL, $env_key, $data_type_family), $soap_transport, $index);
+
+            }
+
+            if(!isset($tmp_return_data_spec_b)){
+
+                return $tmp_return_data_spec_a;
+
+            }
+
+            if($tmp_return_data_spec_b != '' || $tmp_return_data_spec_b  == '' || !isset($tmp_return_data_spec_a)){
+
+                $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key(CRNRSTN_RESOURCE_ALL, $env_key, $data_type_family), $soap_transport, $index);
+
+            }
+
+            if($tmp_return_data_spec_b){
+
+                return $tmp_return_data_spec_b;
+
+            }
 
             //
-            // HOOOSTON...VE HAF PROBLEM!
-            //throw new Exception('CRNRSTN :: error :: on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ').');
+            // STILL NEED THIS FOR NULL OR EMPTY STRING VALUES THAT NEED TO BE SENT BACK.
+            // IMPLEMENTATION OF A CUSTOM (OR SERIALIZED) "NO MATCH" RETURN WOULD DEFINITIVELY INDICATE WHETHER
+            // OR NOT WE SHOULD CHECK THE DATA_KEY AGAINST CRNRSTN_RESOURCE_ALL.
+            return $tmp_return_data_spec_a;
 
         } catch( Exception $e ) {
 
