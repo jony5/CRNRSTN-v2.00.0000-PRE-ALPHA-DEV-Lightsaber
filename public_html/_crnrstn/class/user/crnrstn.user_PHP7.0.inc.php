@@ -2833,6 +2833,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function ui_module_out($module, $module_permissions_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
 
+        $module = strtolower($module);
+
         switch($module){
             case  'bassdrive_inject':
 
@@ -2866,7 +2868,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin_m();
 
             break;
-            case 'MIT_license':
+            case 'mit_license':
 
                 //$this->oCRNRSTN_UX->sync_back_link_state();
 
