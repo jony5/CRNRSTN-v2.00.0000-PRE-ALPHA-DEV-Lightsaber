@@ -39,10 +39,10 @@ if ($oCRNRSTN->isset_http_superglobal($_GET)){
 
     }
 
-    if($oCRNRSTN->isset_http_param($_GET, 'run')){
+    if($oCRNRSTN->isset_http_param('run', $_GET)){
 
-        $tmp_run_command = $oCRNRSTN->extract_data_HTTP($_GET, 'run');
-        $tmp_auth_id = $oCRNRSTN->extract_data_HTTP($_GET, 'auth_id');
+        $tmp_run_command = $oCRNRSTN->extract_data_HTTP( 'run', $_GET);
+        $tmp_auth_id = $oCRNRSTN->extract_data_HTTP('auth_id', $_GET);
 
         $oCRNRSTN->print_r('hello run $tmp_run_command=[' . $tmp_run_command . '] $tmp_auth_id=[' . $tmp_auth_id . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
@@ -50,8 +50,8 @@ if ($oCRNRSTN->isset_http_superglobal($_GET)){
 
     }
 
-    $tmp_run_command = $oCRNRSTN->extract_data_HTTP($_GET, 'run');
-    $tmp_auth_id = $oCRNRSTN->extract_data_HTTP($_GET, 'auth_id');
+    $tmp_run_command = $oCRNRSTN->extract_data_HTTP( 'run', $_GET);
+    $tmp_auth_id = $oCRNRSTN->extract_data_HTTP('auth_id', $_GET);
 
     $oCRNRSTN->print_r('$tmp_run_command=[' . $tmp_run_command . '] $tmp_auth_id=[' . $tmp_auth_id . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
     $oCRNRSTN->print_r('GET=[' . print_r($_GET, true) . '] $tmp_auth_id=[' . $tmp_auth_id . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
