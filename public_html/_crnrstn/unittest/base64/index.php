@@ -6,6 +6,64 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
+
+//
+// JUST NEED SOMETHING TO BASH OUT BASE64 FOR ALL SYSTEM ASSETS.
+if ($oCRNRSTN->isset_http_superglobal($_GET)){
+
+    foreach($_GET as $data_key){
+
+        $oCRNRSTN->print_r(' base64 index $data_key=[' . $data_key . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+    }
+
+    $tmp_data_key_cnt = count($_GET);
+
+    for($i = 0; $i < $tmp_data_key_cnt; $i++){
+
+//        switch($_GET[$i]){
+//            case 'run':
+//
+//                $oCRNRSTN->print_r_str(' base64 index KNOWN DATA KEY. $GET[i]=[' . $_GET[$i] . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//            break;
+//            default:
+//
+//                $oCRNRSTN->print_r_str(' base64 index UNKNOWN DATA KEY. $GET[i]=[' . $_GET[$i] . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//            break;
+//
+//        }
+
+                $oCRNRSTN->print_r(' base64 index $_GET HAS DATA AT POSITION [' . $i . '].', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+    }
+
+    if($oCRNRSTN->isset_http_param($_GET, 'run')){
+
+        $tmp_run_command = $oCRNRSTN->extract_data_HTTP($_GET, 'run');
+        $tmp_auth_id = $oCRNRSTN->extract_data_HTTP($_GET, 'auth_id');
+
+        $oCRNRSTN->print_r('hello run $tmp_run_command=[' . $tmp_run_command . '] $tmp_auth_id=[' . $tmp_auth_id . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        exit();
+
+    }
+
+    $tmp_run_command = $oCRNRSTN->extract_data_HTTP($_GET, 'run');
+    $tmp_auth_id = $oCRNRSTN->extract_data_HTTP($_GET, 'auth_id');
+
+    $oCRNRSTN->print_r('$tmp_run_command=[' . $tmp_run_command . '] $tmp_auth_id=[' . $tmp_auth_id . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+    $oCRNRSTN->print_r('GET=[' . print_r($_GET, true) . '] $tmp_auth_id=[' . $tmp_auth_id . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+    exit();
+
+}
+
+
+
+die();
+
 //
 // BASE64 IMAGE HELPER where, ?crnrstn_to_base64=imgs/png/j5_wolf_pup_lil_5_pts.png
 //if($tmp_html = $oCRNRSTN->base64_asset_path_listener()){
