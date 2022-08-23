@@ -2165,7 +2165,7 @@ class crnrstn_user{
         }
         //die();
 
-        //if($this->isset_HTTP_Param($this->oCRNRSTN_ENV->data_decrypt($this->get_resource('CRNRSTN_SYSTEM_DATA_GET'), CRNRSTN_ENCRYPT_TUNNEL, 'GET'))){
+        //if($this->isset_http_param($this->oCRNRSTN_ENV->data_decrypt($this->get_resource('CRNRSTN_SYSTEM_DATA_GET'), CRNRSTN_ENCRYPT_TUNNEL, 'GET'))){
 
         //$tmp_filename = $this->oCRNRSTN_ENV->data_decrypt($tmp_filename);
 
@@ -2451,7 +2451,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 //
                 // LOGIN SUCCESS PATHWAY
-                $tmp_form_handle = $this->extractData_HTTP('CRNRSTN_FORM_HANDLE', 'POST', true);
+                $tmp_form_handle = $this->extract_data_HTTP('CRNRSTN_FORM_HANDLE', 'POST', true);
                 switch($tmp_form_handle){
                     case 'signin':
 
@@ -2466,7 +2466,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                         //
                         // VALIDATE CSS
-                        $raw_html_data = $this->extractData_HTTP('ugc_html', 'POST');
+                        $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
 
                         $tmp_validation_results_ARRAY = $this->validate_css($raw_html_data);
 
@@ -2602,12 +2602,12 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 //
 //            }
 //
-//            if($this->isset_HTTP_Param('crnrstn_l', 'GET')){
+//            if($this->isset_http_param('crnrstn_l', 'GET')){
 //
-//                $tmp_req = $this->extractData_HTTP('crnrstn_l', true);
-//                $tmp_mit = $this->extractData_HTTP('crnrstn_mit');
-//                //$tmp_crnrstn_kivotos = $this->extractData_HTTP('crnrstn_kivotos');
-//                $tmp_crnrstn_css_rtime = $this->extractData_HTTP('crnrstn_css_rtime');
+//                $tmp_req = $this->extract_data_HTTP('crnrstn_l', true);
+//                $tmp_mit = $this->extract_data_HTTP('crnrstn_mit');
+//                //$tmp_crnrstn_kivotos = $this->extract_data_HTTP('crnrstn_kivotos');
+//                $tmp_crnrstn_css_rtime = $this->extract_data_HTTP('crnrstn_css_rtime');
 //
 //                if((strlen($tmp_mit) > 0) || (strlen($tmp_crnrstn_css_rtime) > 0)){
 //
@@ -2663,7 +2663,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 //                        break;
 //                        case 'css_validator':
 //
-//                            if($this->isset_HTTP_Param('crnrstn_r', 'GET')){
+//                            if($this->isset_http_param('crnrstn_r', 'GET')){
 //
 //                                $this->proper_response_return($this->sticky_uri_listener(), NULL, 'RESPONSE_STICKY');
 //
@@ -2695,7 +2695,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 //
 //                                    error_log(__LINE__ . ' crnrstn_css_rtime is NOT set.');
 //
-//                                    if($this->isset_HTTP_Param('crnrstn_css_valptrn', 'GET')){
+//                                    if($this->isset_http_param('crnrstn_css_valptrn', 'GET')){
 //
 //                                        //
 //                                        // VALIDATOR ALGORITHM LOGICAL PROFILE PRESENTATION PAGE
@@ -2987,13 +2987,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         $tmp_param_array[] = 'crnrstn_sk=' . $stream_key;
         */
 
-        if($this->isset_HTTP_Param('crnrstn_bst', 'GET')){
+        if($this->isset_http_param('crnrstn_bst', 'GET')){
 
-            $tmp_tracking_status = $this->oCRNRSTN_ENV->data_decrypt($this->extractData_HTTP('crnrstn_bst'), CRNRSTN_ENCRYPT_TUNNEL, true);
-            $tmp_social_media_key = $this->oCRNRSTN_ENV->data_decrypt($this->extractData_HTTP('crnrstn_smk'), CRNRSTN_ENCRYPT_TUNNEL, true);
-            $tmp_social_id = $this->oCRNRSTN_ENV->data_decrypt($this->extractData_HTTP('crnrstn_sid'), CRNRSTN_ENCRYPT_TUNNEL, true);
-            $tmp_stream_key = $this->oCRNRSTN_ENV->data_decrypt($this->extractData_HTTP('crnrstn_sk'), CRNRSTN_ENCRYPT_TUNNEL, true);
-            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($this->extractData_HTTP('crnrstn_r'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_tracking_status = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_bst'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_social_media_key = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_smk'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_social_id = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_sid'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_stream_key = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_sk'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_r'), CRNRSTN_ENCRYPT_TUNNEL, true);
 
             //error_log(__LINE__ . ' user sticky[' . $tmp_tracking_status . '][' . $this->oCRNRSTN_ENV->data_decrypt(urldecode($tmp_uri), CRNRSTN_ENCRYPT_TUNNEL, true) . '][' . $tmp_social_media_key . '][' . $tmp_social_id . '][' . $tmp_stream_key . ']');
 
@@ -3003,10 +3003,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         //
         // CHECK FOR INITIALIZATION OF STICKY LINK VAR
-        if($this->isset_HTTP_Param('crnrstn_r', 'GET')){
+        if($this->isset_http_param('crnrstn_r', 'GET')){
 
-            // $tmp_uri = html_entity_decode($this->extractData_HTTP('crnrstn_r'));
-            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($this->extractData_HTTP('crnrstn_r'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            // $tmp_uri = html_entity_decode($this->extract_data_HTTP('crnrstn_r'));
+            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_r'), CRNRSTN_ENCRYPT_TUNNEL, true);
             $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt(urldecode($tmp_uri), CRNRSTN_ENCRYPT_TUNNEL, true);
 
             $tmp_redirect_html = '<!DOCTYPE html>
@@ -6091,7 +6091,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 //
 //                        //
 //                        // VALIDATE CSS
-//                        $raw_html_data = $this->extractData_HTTP('ugc_html', 'POST');
+//                        $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
 //
 //                        $tmp_validation_results_ARRAY = $this->validate_css($raw_html_data);
 //
@@ -6213,7 +6213,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 ////
 ////                            //
 ////                            // VALIDATE CSS
-////                            $raw_html_data = $this->extractData_HTTP('ugc_html', 'POST');
+////                            $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
 ////
 ////                            $tmp_validation_results = $this->validate_css($raw_html_data);
 ////                            error_log(__LINE__ . ' user POST CSS $tmp_validation_results cnt = ' . strlen($tmp_validation_results));
@@ -7039,7 +7039,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function isset_HTTP_Param($param, $transport_protocol = 'POST'){
+    public function isset_http_param($param, $transport_protocol = 'POST'){
 
         $http_protocol = strtoupper($transport_protocol);
         $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
@@ -7099,7 +7099,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function extractData_HTTP($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
+    public function extract_data_HTTP($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
 
         $http_protocol = strtoupper($transport_protocol);
         $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
@@ -12258,9 +12258,9 @@ class crnrstn_user_auth{
         // crnrstn_auth_pwd
         /**
 
-        $raw_html_data = $this->extractData_HTTP('ugc_html', 'POST');
-        $tmp_crnrstn_css_rtime = $this->extractData_HTTP('css_rtime');
-        if($this->isset_HTTP_Param('crnrstn_r', 'GET')){
+        $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
+        $tmp_crnrstn_css_rtime = $this->extract_data_HTTP('css_rtime');
+        if($this->isset_http_param('crnrstn_r', 'GET')){
 
          * return_admin_ARRAY
 

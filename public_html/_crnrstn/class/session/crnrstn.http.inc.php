@@ -563,7 +563,7 @@ class crnrstn_http_manager {
 //
 //                        //
 //                        // VALIDATE CSS
-//                        $raw_html_data = $this->extractData_HTTP('ugc_html', 'POST');
+//                        $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
 //
 //                        $tmp_validation_results_ARRAY = $this->validate_css($raw_html_data);
 //
@@ -685,7 +685,7 @@ class crnrstn_http_manager {
 ////
 ////                            //
 ////                            // VALIDATE CSS
-////                            $raw_html_data = $this->extractData_HTTP('ugc_html', 'POST');
+////                            $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
 ////
 ////                            $tmp_validation_results = $this->validate_css($raw_html_data);
 ////                            error_log(__LINE__ . ' user POST CSS $tmp_validation_results cnt = ' . strlen($tmp_validation_results));

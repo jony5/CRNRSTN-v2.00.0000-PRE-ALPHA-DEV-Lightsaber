@@ -2624,7 +2624,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                 case '/suite_methods/http_management/isset_http_param/':
                     $tmp_categ_name = 'HTTP Management';
                     $tmp_subcateg_name = 'HTTP Management';            # MATCHES SECTION TITLE LINK COPY
-                    $tmp_subsubcat_name = 'isset_HTTP_param()';
+                    $tmp_subsubcat_name = 'isset_http_param()';
                     self::$page_serial = self::$oCRNRSTN_UI_ASSEMBLER->initializePage('PAGE', $tmp_categ_name, $tmp_subcateg_name, $tmp_subsubcat_name);
 
                     //

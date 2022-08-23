@@ -243,7 +243,7 @@ class crnrstn_view_state_controller {
 
                     //
                     // VALIDATE CSS
-                    $raw_html_data = $this->oCRNRSTN_USR->extractData_HTTP('ugc_html', 'POST');
+                    $raw_html_data = $this->oCRNRSTN_USR->extract_data_HTTP('ugc_html', 'POST');
 
                     $tmp_validation_results = $this->oCRNRSTN_USR->validate_css($raw_html_data);
 
@@ -299,15 +299,15 @@ class crnrstn_view_state_controller {
                 if(isset($this->oCRNRSTN_AUTH)){
 
                     //if($this->oCRNRSTN_AUTH->is_logged_in()){
-                        if($this->oCRNRSTN_USR->isset_HTTP_Param('crnrstn_l', 'GET')){
-                            error_log(__LINE__ . ' vsc isset_HTTP_Param time...');
+                        if($this->oCRNRSTN_USR->isset_http_param('crnrstn_l', 'GET')){
+                            error_log(__LINE__ . ' vsc isset_http_param time...');
 
-                            $tmp_req = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
-                            $tmp_mit = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_mit', 'GET', true);           // GETS YOU LICENSE...ALWAYS
-                            $tmp_crnrstn_r = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_r', 'GET', true);       // INDICATION OF REDIRECT
-                            $tmp_crnrstn_kivotos = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_kivotos');        // YOU ARE SECURELY IN THE BOX..? OR USE SESSION...
-                            $tmp_crnrstn_css_rtime = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_css_rtime');    // INDICATION OF CSS VALIDATOR RESULTS OUT
-                            $tmp_crnrstn_css_valptrn = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_css_valptrn');// INDICATION OF CSS VALIDATOR ALGORITHM OUT
+                            $tmp_req = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
+                            $tmp_mit = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_mit', 'GET', true);           // GETS YOU LICENSE...ALWAYS
+                            $tmp_crnrstn_r = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_r', 'GET', true);       // INDICATION OF REDIRECT
+                            $tmp_crnrstn_kivotos = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_kivotos');        // YOU ARE SECURELY IN THE BOX..? OR USE SESSION...
+                            $tmp_crnrstn_css_rtime = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_rtime');    // INDICATION OF CSS VALIDATOR RESULTS OUT
+                            $tmp_crnrstn_css_valptrn = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_valptrn');// INDICATION OF CSS VALIDATOR ALGORITHM OUT
 
                             //error_log(__LINE__ . ' ui snap DIE() $tmp_req=' . $tmp_req);
                             //die();
@@ -386,7 +386,7 @@ class crnrstn_view_state_controller {
                                     break;
                                     case 'css_validator':
 
-                                        if($this->oCRNRSTN_USR->isset_HTTP_Param('crnrstn_r', 'GET')){
+                                        if($this->oCRNRSTN_USR->isset_http_param('crnrstn_r', 'GET')){
 
                                             return $this->oCRNRSTN_USR->proper_response_return($this->oCRNRSTN_USR->sticky_uri_listener(), NULL, 'RESPONSE_STICKY');
 
@@ -417,7 +417,7 @@ class crnrstn_view_state_controller {
 
                                                 error_log(__LINE__ . ' css_rtime is NOT set.');
 
-                                                if($this->oCRNRSTN_USR->isset_HTTP_Param('crnrstn_css_valptrn', 'GET')){
+                                                if($this->oCRNRSTN_USR->isset_http_param('crnrstn_css_valptrn', 'GET')){
 
                                                     //
                                                     // VALIDATOR ALGORITHM LOGICAL PROFILE PRESENTATION PAGE
@@ -461,16 +461,16 @@ class crnrstn_view_state_controller {
 
                 }else{
 
-                    error_log(__LINE__ . ' vsc isset_HTTP_Param time...');
+                    error_log(__LINE__ . ' vsc isset_http_param time...');
 
-                    if($this->oCRNRSTN_USR->isset_HTTP_Param('crnrstn_l', 'GET')){
+                    if($this->oCRNRSTN_USR->isset_http_param('crnrstn_l', 'GET')){
 
-                        $tmp_req = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
-                        $tmp_mit = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_mit', 'GET');                 // GETS YOU LICENSE...ALWAYS
+                        $tmp_req = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
+                        $tmp_mit = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_mit', 'GET');                 // GETS YOU LICENSE...ALWAYS
 
-                        if($this->oCRNRSTN_USR->isset_HTTP_Param('crnrstn_r', 'GET')) {
+                        if($this->oCRNRSTN_USR->isset_http_param('crnrstn_r', 'GET')) {
 
-                            $tmp_crnrstn_r = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_r', 'GET', true);       // INDICATION OF REDIRECT
+                            $tmp_crnrstn_r = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_r', 'GET', true);       // INDICATION OF REDIRECT
 
                         }else{
 
@@ -478,9 +478,9 @@ class crnrstn_view_state_controller {
 
                         }
 
-                        $tmp_crnrstn_kivotos = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_kivotos');        // YOU ARE SECURELY IN THE BOX..? OR USE SESSION...
-                        $tmp_crnrstn_css_rtime = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_css_rtime');    // INDICATION OF CSS VALIDATOR RESULTS OUT
-                        $tmp_crnrstn_css_valptrn = $this->oCRNRSTN_USR->extractData_HTTP('crnrstn_css_valptrn');// INDICATION OF CSS VALIDATOR ALGORITHM OUT
+                        $tmp_crnrstn_kivotos = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_kivotos');        // YOU ARE SECURELY IN THE BOX..? OR USE SESSION...
+                        $tmp_crnrstn_css_rtime = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_rtime');    // INDICATION OF CSS VALIDATOR RESULTS OUT
+                        $tmp_crnrstn_css_valptrn = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_valptrn');// INDICATION OF CSS VALIDATOR ALGORITHM OUT
 
                         //error_log(__LINE__ . ' ui snap DIE() $tmp_req=' . $tmp_req);
                         //die();
@@ -559,7 +559,7 @@ class crnrstn_view_state_controller {
                                 break;
                                 case 'css_validator':
 
-                                    if($this->oCRNRSTN_USR->isset_HTTP_Param('crnrstn_r', 'GET')){
+                                    if($this->oCRNRSTN_USR->isset_http_param('crnrstn_r', 'GET')){
 
                                         return $this->oCRNRSTN_USR->proper_response_return($this->oCRNRSTN_USR->sticky_uri_listener(), NULL, 'RESPONSE_STICKY');
 
@@ -590,7 +590,7 @@ class crnrstn_view_state_controller {
 
                                             error_log(__LINE__ . ' css_rtime is NOT set.');
 
-                                            if($this->oCRNRSTN_USR->isset_HTTP_Param('crnrstn_css_valptrn', 'GET')){
+                                            if($this->oCRNRSTN_USR->isset_http_param('crnrstn_css_valptrn', 'GET')){
 
                                                 //
                                                 // VALIDATOR ALGORITHM LOGICAL PROFILE PRESENTATION PAGE
@@ -630,7 +630,7 @@ class crnrstn_view_state_controller {
                         return '';
 
                     }
-                    error_log(__LINE__ . ' vsc isset_HTTP_Param time...');
+                    error_log(__LINE__ . ' vsc isset_http_param time...');
 
                     return '';
 
@@ -705,7 +705,7 @@ class crnrstn_view_state_controller {
     //
     //                            //
     //                            // VALIDATE CSS
-    //                            $raw_html_data = $this->extractData_HTTP('ugc_html', 'POST');
+    //                            $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
     //
     //                            $tmp_validation_results = $this->validate_css($raw_html_data);
     //                            error_log(__LINE__ . ' user POST CSS $tmp_validation_results cnt = '.strlen($tmp_validation_results));

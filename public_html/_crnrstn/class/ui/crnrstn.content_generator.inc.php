@@ -197,14 +197,14 @@ class crnrstn_content_generator {
 
                         if($this->oCRNRSTN_USR->isset_http_superglobal('GET')){
 
-                            $tmp_encrypt = $this->oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED', 'POST');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST'));
+                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED', 'POST');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST'));
                             //error_log('154 gen - encode=>packet=' . $tmp_ipacket);
 
                         }else{
 
-                            $tmp_encrypt = $this->oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET'));
+                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET'));
                             //error_log('160 gen - packet=' . $tmp_ipacket);
                         }
 
@@ -502,14 +502,14 @@ class crnrstn_content_generator {
 
                         if($this->oCRNRSTN_USR->isset_http_superglobal('POST')){
 
-                            $tmp_encrypt = $this->oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED', 'POST');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST'));
+                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED', 'POST');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST'));
                             //error_log('154 gen - encode=>packet=' . $tmp_ipacket);
 
                         }else{
 
-                            $tmp_encrypt = $this->oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET'));
+                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET'));
                             //error_log('160 gen - packet=' . $tmp_ipacket);
                         }
 

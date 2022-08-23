@@ -450,6 +450,139 @@ class crnrstn {
 
     }
 
+
+    public function isset_http_param($param, $transport_protocol = 'POST'){
+
+        $http_protocol = strtoupper($transport_protocol);
+        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+
+        try {
+
+            switch ($http_protocol) {
+                case 'POST':
+
+                    if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST, $param)) {
+                        if (strlen($_POST[$param]) > 0) {
+
+                            return true;
+
+                        } else {
+
+                            return false;
+
+                        }
+
+                    } else {
+
+                        return false;
+
+                    }
+
+                default:
+
+                    //
+                    // $_GET
+                    if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_GET, $param)) {
+                        if (strlen($_GET[$param]) > 0) {
+
+                            return true;
+
+                        } else {
+
+                            return false;
+
+                        }
+
+                    } else {
+
+                        return false;
+
+                    }
+
+            }
+
+        } catch (Exception $e) {
+
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+    }
+
+    public function isset_http_superglobal($transport_protocol = 'POST'){
+
+        //
+        // WE WILL STILL TAKE $_POST, $_GET, etc...ONLY NEED THIS FOR HTTP AT THE MOMENT.
+        // IF SENDING STRING, ONLY THINGS LIKE 'POST', '$_POST', OR 'GET'...etc...WILL WORK. NOT 'FILE'. NOT 'SESSION'...
+        if(is_array($transport_protocol)){
+
+            return $this->oCRNRSTN_ENV->issetHTTP($transport_protocol);
+
+        }
+
+        $http_protocol = strtoupper($transport_protocol);
+        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+
+        return $this->oCRNRSTN_ENV->issetHTTP($http_protocol);
+
+    }
+
+    public function extract_data_HTTP($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
+
+        $http_protocol = strtoupper($transport_protocol);
+        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+
+        try {
+
+            switch ($http_protocol) {
+                case 'POST':
+                    if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST, $param)) {
+
+                        return $this->oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST, $param, $tunnel_encrypted);
+
+                    } else {
+
+                        //
+                        // HOOOSTON...VE HAF PROBLEM!
+                        throw new Exception('The desired HTTP _' . $http_protocol . ' parameter, ' . $param . ', is not available.');
+
+                    }
+
+                    break;
+                default:
+
+                    //
+                    // $_GET
+                    if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_GET, $param)) {
+
+                        return $this->oCRNRSTN_ENV->oHTTP_MGR->extractData($_GET, $param, $tunnel_encrypted);
+
+                    } else {
+
+                        //
+                        // HOOOSTON...VE HAF PROBLEM!
+                        //throw new Exception('The desired HTTP _' . $http_protocol . ' parameter, ' . $param . ', is not available.');
+                        //$this->error_log('The desired HTTP _' . $http_protocol . ' parameter, ' . $param . ', is not available.', __LINE__, __METHOD__, __FILE__,CRNRSTN_SETTINGS_CRNRSTN);
+
+                        return false;
+
+                    }
+
+                    break;
+            }
+
+        } catch (Exception $e) {
+
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+    }
+
     public function isset_crnrstn_svc_http(){
 
         return $this->oCRNRSTN_USR->isset_crnrstn_svc_http();
