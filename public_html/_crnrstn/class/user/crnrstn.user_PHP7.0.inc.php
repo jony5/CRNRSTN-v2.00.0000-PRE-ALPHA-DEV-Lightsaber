@@ -2831,7 +2831,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function ui_module_out($module, $module_permissions_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+    public function ui_module_out($module){
 
         $module = strtolower($module);
 
