@@ -60,7 +60,8 @@ if ($oCRNRSTN->isset_http_superglobal($_GET)){
 
 }
 
-
+$oCRNRSTN->print_r('TESTING CRNRSTN :: $_GET data handling USING the params "run" and "auth".', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$_GET[]=' . print_r($_GET, true), NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
 die();
 
