@@ -126,7 +126,8 @@ class crnrstn_image_v_html_content_manager {
 
         //
         // LAST USE :: Saturday August 6, 2022 @ 1805 hrs
-        //error_log(__LINE__ . ' img $creative_element_key=[' . $creative_element_key . '] $tmp_sys_notices_creative_mode=[' . $tmp_sys_notices_creative_mode . '] self::$image_output_mode=[' . self::$image_output_mode . ']');
+        // LAST USE :: Wednesday August 24, 2022 @ 0516 hrs
+        error_log(__LINE__ . ' img ' . __METHOD__ . ' $creative_element_key=[' . $creative_element_key . '] $tmp_sys_notices_creative_mode=[' . $tmp_sys_notices_creative_mode . '] self::$image_output_mode=[' . self::$image_output_mode . ']');
 
         //
         // ALL_IMAGE, ALL_HTML, ALL_IMAGE_LOGO_OFF, ALL_HTML_LOGO_OFF
@@ -11839,25 +11840,25 @@ class crnrstn_image_v_html_content_manager {
         $alt = $this->html_img_dom_return($alt, 'ALT');
         $title = $this->html_img_dom_return($title, 'TITLE');
 
-        $tmp_str = '<img src="'.$str.'" '.$width.' '.$height.' '.$alt.' '.$title.' style="border:0;">';
+        $tmp_str = '<img src="' . $str . '" ' . $width . ' ' . $height . ' ' . $alt . ' ' . $title . ' style="border:0;">';
 
-        if(strlen($target)<1){
+        if(strlen($target) < 1){
 
             $target = '_self';
 
         }
 
-        if(strlen($link)>0){
+        if(strlen($link) > 0){
 
-            if(strlen(self::$oCRNRSTN_n->env_key) > 0){
+            if(strlen(self::$oCRNRSTN_n->env_key) > 0 && self::$oCRNRSTN_n->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
 
-                $tmp_str = '<a href="' . self::$oCRNRSTN_n->return_sticky_link($link, $meta_params_ARRAY) . '" target="'.$target.'">' . $tmp_str . '</a>';
+                $tmp_str = '<a href="' . self::$oCRNRSTN_n->return_sticky_link($link, $meta_params_ARRAY) . '" target="' . $target . '">' . $tmp_str . '</a>';
 
                 return $tmp_str;
 
             }
 
-            $tmp_str = '<a href="' . $link . '" target="'.$target.'">' . $tmp_str . '</a>';
+            $tmp_str = '<a href="' . $link . '" target="' . $target . '">' . $tmp_str . '</a>';
 
             return $tmp_str;
 

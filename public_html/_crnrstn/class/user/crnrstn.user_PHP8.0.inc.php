@@ -2429,7 +2429,6 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 }
 
-
             }else{
 
                 $this->error_log('[SYSTEM_BASE64] PERFECT MATCH. base64 CONTENT FOR php FILE [' . $tmp_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
@@ -5313,7 +5312,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     //
                     // NEED TO VERIFY TUNNEL ENCRYPTION SETTINGS OR DO NOT ENCRYPT PARAMS.
-                    $tmp_tunnelEncryptionState = $this->is_tunnel_encrypt_configured();
+                    $tmp_tunnelEncryptionState = $this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL);
 
                     if (!$tmp_tunnelEncryptionState) {
 
@@ -5647,6 +5646,12 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
+    public function isset_encryption($encryption_channel){
+
+        return $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->is_bit_set($encryption_channel);
+
+    }
+
     public function data_encrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         return $this->oCRNRSTN_ENV->data_encrypt($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
@@ -5659,12 +5664,14 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function is_tunnel_encrypt_configured($cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    // REPLACED BY public function isset_encryption($encryption_channel)
+    // OLD METHOD NAME: $this->is_tunnel_encrypt_configured()
+    public function is_encryption_configured($encryption_channel, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         $tmp_test_str = 'The quick brown fox jumped over the lazy dog.';
-        $tmp_encryptedVal = $this->oCRNRSTN_ENV->data_encrypt($tmp_test_str, CRNRSTN_ENCRYPT_TUNNEL, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+        $tmp_encryptedVal = $this->oCRNRSTN_ENV->data_encrypt($tmp_test_str, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
         //error_log('5936 user - Fire Decrypt TEST...[' . $tmp_test_str.']==[' . $tmp_encryptedVal.']');
-        $tmp_decryptedVal = $this->oCRNRSTN_ENV->data_decrypt($tmp_encryptedVal, CRNRSTN_ENCRYPT_TUNNEL, true, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+        $tmp_decryptedVal = $this->oCRNRSTN_ENV->data_decrypt($tmp_encryptedVal, $encryption_channel, true, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
         //error_log('5938 user - Fire Decrypt TEST...[' . $tmp_test_str.']==[' . $tmp_decryptedVal.']');
 
         if ($tmp_test_str == $tmp_decryptedVal) {
@@ -7049,18 +7056,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             switch ($http_protocol) {
                 case 'POST':
 
-                    if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST, $param)) {
-                        if (strlen($_POST[$param]) > 0) {
+                    if($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST, $param)){
 
-                            return true;
+                        return true;
 
-                        } else {
-
-                            return false;
-
-                        }
-
-                    } else {
+                    }else{
 
                         return false;
 
@@ -7070,22 +7070,17 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     //
                     // $_GET
-                    if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_GET, $param)) {
-                        if (strlen($_GET[$param]) > 0) {
+                    if($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_GET, $param)){
 
-                            return true;
+                        return true;
 
-                        } else {
-
-                            return false;
-
-                        }
-
-                    } else {
+                    }else{
 
                         return false;
 
                     }
+
+                    break;
 
             }
 

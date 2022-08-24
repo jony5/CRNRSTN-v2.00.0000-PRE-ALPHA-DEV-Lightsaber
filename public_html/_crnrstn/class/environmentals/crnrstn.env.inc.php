@@ -1246,7 +1246,7 @@ class crnrstn_environment {
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
         //$this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_client_auth_key');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $this->oCRNRSTN_USR->generate_new_key(128, '01'), 'crnrstn_client_id');
+        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_crc], 'crnrstn_client_id');
 
         $tmp_str_array[] = '
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
@@ -2360,12 +2360,12 @@ class crnrstn_environment {
             //
             // NO SESSION AUTHORIZATION KEY. CREATE NEW SYSTEM SESSION.
             $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_client_auth_key');
-            $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $this->oCRNRSTN_USR->generate_new_key(128, '01'), 'crnrstn_client_id');
+            $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_crc], 'crnrstn_client_id');
 
 
         }
 
-        error_log(__LINE__ . ' env ' . __METHOD__ . ':: STOPPED UNTIL DATABASE SUPPORT HOOKS CREATED TO GET PSSDTLP DRIVEN SESSION INITIALIZATION. die();');
+        error_log(__LINE__ . ' env ' . __METHOD__ . ':: STOPPED UNTIL DATABASE DRIVEN SESSION INITIALIZATION COMPLETED. die();');
         die();
 
         //
@@ -2509,10 +2509,6 @@ class crnrstn_environment {
             //
             // NO SESSION SET
             $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('session[' . session_id() . '] has not been initialized with CRNRSTN :: configuration yet. process all config parameters and initialize.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-            //
-            // CLEAR OUT ANY INACCESSIBLE MEMORY RESOURCES IN SESSION FROM PREVIOUS SESSION CONFIG INITIALIZATION
-            $this->remove_previous_sess_env_detect_data($oCRNRSTN);
 
             return false;
 
@@ -4049,6 +4045,12 @@ class crnrstn_environment {
 
     }
 
+    public function isset_encryption($encryption_channel){
+
+        return $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->is_bit_set($encryption_channel);
+
+    }
+
     public function data_encrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         /*
@@ -4152,7 +4154,6 @@ class crnrstn_environment {
                 break;
 
             }
-
 
             $tmp_encrypt_cipher = $this->oCRNRSTN->get_resource('encrypt_cipher', 0, $data_type_family);
             $tmp_encrypt_secret_key = $this->oCRNRSTN->get_resource('encrypt_secret_key', 0, $data_type_family);
@@ -8175,7 +8176,8 @@ class crnrstn_decoupled_data_object {
                     // TODO :: DETERMINATION OF "NO DATA TO RETURN"
                     // BOOLEAN FALSE WILL RETURN (string) 'false'
                     //error_log(__LINE__ .' env ddo - return false... NOT SET ['.$data_key.']');
-                    return false;
+                    //return false;
+                    return $this->oCRNRSTN->session_salt('NO_MATCH');
 
                 }
 

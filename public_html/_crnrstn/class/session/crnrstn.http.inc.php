@@ -974,15 +974,16 @@ class crnrstn_http_manager {
 
 		if(isset($superGlobal[$param])){
 
-			if(strlen($superGlobal[$param])>0){
+		    // COMMENTED OUT TO ACCEPT NULL/EMPTY VALUES
+			//if(strlen($superGlobal[$param])>0){
 
 				return true;
 
-			}else{
+			//}else{
 
-				return false;
+			//	return false;
 
-			}
+			//}
 
 		}else{
 
