@@ -150,9 +150,9 @@ class crnrstn {
     public $engagement_config_file_path_ARRAY = array();
     public $response_header_attribute_ARRAY = array();
 
-    private static $alpha_shift_key_ARRAY = array();
-    private static $alpha_shift_key_int_ARRAY = array();
-    private static $alpha_shift_key_01_ARRAY = array();
+    private static $char_01_ARRAY = array();
+    private static $char_01_index_ARRAY = array();
+    private static $wheel_encoder_salt;
 
     private static $CRNRSTN_debug_mode;
 
@@ -193,7 +193,6 @@ class crnrstn {
         // INTEGER ARRAY WITH ALL THE BITS AND THE FLIPS
         $this->initialize_bitwise();
         $this->initialize_integer_length();
-
         $this->initialize_language();
 
         //
@@ -207,9 +206,6 @@ class crnrstn {
         //
         // J5, my boy!
         // INITIALIZE ALPHA SHIFT CRYPT KEY
-        // SOURCE :: https://www.php.net/manual/en/function.range.php
-        // SOURCE :: https://stackoverflow.com/questions/431912/way-to-get-all-alphabetic-chars-in-an-array-in-php
-        // AUTHOR :: PEZ :: https://stackoverflow.com/users/44639/pez
         $this->initialize_alpha_shift_crypt('JFIVEMYBOY');
 
         //
@@ -391,6 +387,8 @@ class crnrstn {
 
     public function session_salt($type = 'NO_MATCH'){
 
+        $type = strtoupper($type);
+
         switch($type){
             case 'GET':
 
@@ -404,7 +402,7 @@ class crnrstn {
             default:
                 // $type = 'NO_MATCH'
 
-                return '"OOPS, I DID IT AGAIN!...I PLAYED WITH YOUR HEART..." $crnrstn_session_salt=[' . self::$crnrstn_session_salt . ']';
+                return self::$crnrstn_session_salt;
 
             break;
         }
@@ -988,59 +986,83 @@ class crnrstn {
 
     }
 
-    public function generate_alpha_shift_key($salt, $is_config = false){
+    public function return_encoder_wheel_output($code_controller, $background_noise = NULL, $output_length = 25){
 
-        error_log(__LINE__ . ' crnrstn [' . $salt . '].');
+        $tmp_output_str = '';
+        $tmp_output_str_len = 0;
 
-        $this->print_r($salt, '$salt', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-        $this->print_r(self::$alpha_shift_key_int_ARRAY, '$alpha_shift_key_int_ARRAY', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-        $this->print_r(self::$alpha_shift_key_01_ARRAY, '$alpha_shift_key_01_ARRAY', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        if(isset($background_noise)){
 
-        //die();
+            $background_noise = strtoupper($background_noise);
 
-        $tmp_shift_key = '';
-        $tmp_shift_index = -1;
-        $tmp_shift_cnt = count(self::$alpha_shift_key_int_ARRAY);
-        $salt_upper = strtoupper($salt);
-        $tmp_shift_ARRAY = str_split($salt_upper);
+        }
 
-        $tmp_len = count($tmp_shift_ARRAY);
-        for($i = 0; $i < $tmp_len; $i++ ) {
+        $code_controller = strtoupper($code_controller);
 
-            if(isset(self::$alpha_shift_key_int_ARRAY[$tmp_shift_ARRAY[$i]])){
+        //
+        // BUILD STRING OF 0/1 USING $code_controller
+        $tmp_code_controller_char_ARRAY = str_split($code_controller);
 
-                $tmp_shift_index++;
-                foreach(self::$alpha_shift_key_01_ARRAY[self::$alpha_shift_key_int_ARRAY[$tmp_shift_ARRAY[$i]]] as $index_shift => $value){
+        foreach($tmp_code_controller_char_ARRAY as $index => $controller_char){
 
-                    $tmp_shift_key .= self::$alpha_shift_key_01_ARRAY[$value];
+            $tmp_output_str_len++;
+            $tmp_output_str .= self::$char_01_ARRAY[$controller_char];
+            $tmp_encoder_position_ARRAY[] = self::$char_01_index_ARRAY[$controller_char];
 
-                }
+            if($tmp_output_str_len >= $output_length){
 
-            }
-
-            error_log(__LINE__ . ' crnrstn ' . __METHOD__ . '::key=' . $tmp_shift_key . '. [index]===[cnt] | [' . $tmp_shift_index . '][' . $tmp_shift_cnt . ']');
-            if($tmp_shift_index === $tmp_shift_cnt){
-
-                error_log(__LINE__ . ' crnrstn [index]===[cnt] | [' . $tmp_shift_index . '][' . $tmp_shift_cnt . ']');
-                break 1;
+                return $tmp_output_str;
 
             }
 
         }
 
-        if($is_config){
+        //
+        // DO WE HAVE THE LENGTH?
+        $tmp_delta = $output_length - strlen($tmp_output_str);
+        if($tmp_delta > 0){
 
-            error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' self::$tmp_shift_key[' . print_r($tmp_shift_key,true) . ']');
+            if(!isset($background_noise)){
 
-            self::$crnrstn_session_salt = $tmp_shift_key;
+                $background_noise = strtoupper($this->generate_new_key(40));
 
-            return $salt;
+            }
+
+            if(strlen($background_noise) < count(self::$char_01_ARRAY)){
+
+                $background_noise .= strtoupper($this->generate_new_key(40));
+
+            }
 
         }
 
-        error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' self::$tmp_shift_key[' . print_r($tmp_shift_key,true) . ']');
+        $tmp_noise_ARRAY = str_split($background_noise);
 
-        return $tmp_shift_key;
+        //
+        // USING CODE CONTROLLER CHARACTER INDEX POSITIONS AS KEY, CONCATENATE MATCHES WITH
+        // BACKGROUND NOISE TO FILL ANY REMAINING LENGTH
+        foreach($tmp_encoder_position_ARRAY as $index => $position){
+
+            $tmp_output_str .= self::$char_01_ARRAY[$tmp_noise_ARRAY[$position]];
+
+        }
+
+        $tmp_padd_char_cnt = $output_length - strlen($tmp_output_str);
+
+        if($tmp_padd_char_cnt > 0){
+
+            $tmp_output_str .= $this->generate_new_key($tmp_padd_char_cnt, '01');
+
+        }
+
+        return $tmp_output_str;
+
+    }
+
+    private function encode_wheel_integrations(){
+
+        $tmp_salt_tail = $this->return_encoder_wheel_output(self::$wheel_encoder_salt, $this->generate_new_key(128));
+        self::$crnrstn_session_salt = 'crnrstn_' . $tmp_salt_tail;
 
     }
 
@@ -1049,89 +1071,59 @@ class crnrstn {
         //
         // J5, my boy!
         // INITIALIZE ALPHA SHIFT KEY
+        self::$wheel_encoder_salt = $salt;
+
+        $int_str_01 = 0;
+        $char_count = 0;
+        $tmp_int = rand(0, 100);
+        if($tmp_int > 50){
+
+            $int_str_01 = 1;
+
+        }
+
+        //
+        // LOAD ALPHABET
         // SOURCE :: https://www.php.net/manual/en/function.range.php
         // SOURCE :: https://stackoverflow.com/questions/431912/way-to-get-all-alphabetic-chars-in-an-array-in-php
         // AUTHOR :: PEZ :: https://stackoverflow.com/users/44639/pez
-        $str_index = -1;
-        $str_01 = 0;
+        foreach(range('A', 'Z') as $letter) {
 
-        $tmp_salt_ARRAY = str_split($salt);
+            self::$char_01_ARRAY[$letter] = $int_str_01;
+            self::$char_01_index_ARRAY[$letter] = $char_count;
+            $char_count++;
 
-        foreach($tmp_salt_ARRAY as $index_salt => $letter_salt){
+            if($int_str_01 === 0){
 
-            foreach(range('A', 'Z') as $letter){
+                $int_str_01 = 1;
 
-                $break_out = false;
-                $str_index++;
-                if(stripos($letter_salt, $letter) !== false){
+            }else{
 
-                    self::$alpha_shift_key_int_ARRAY[$letter][] = $str_index;
-                    self::$alpha_shift_key_01_ARRAY[$letter][] = $str_01;
-
-                    $break_out = true;
-
-                    self::$alpha_shift_key_ARRAY[] = $letter;
-
-                }
-
-                if($str_01 === 0){
-
-                    $str_01 = 1;
-
-                }else{
-
-                    $str_01 = 0;
-
-                }
-
-                if($break_out){
-
-                    break 1;
-
-                }
-
-            }
-
-            $str_01 = 0;
-            foreach(range(0, 9) as $letter){
-
-                $break_out = false;
-                $str_index++;
-                if(strpos($letter_salt, $letter) !== false) {
-
-                    self::$alpha_shift_key_int_ARRAY[$letter] = $str_index;
-                    self::$alpha_shift_key_01_ARRAY[] = $str_01;
-
-                    $break_out = true;
-
-                    self::$alpha_shift_key_ARRAY[] = $letter;
-
-                }
-
-                if($str_01 === 0){
-
-                    $str_01 = 1;
-
-                }else{
-
-                    $str_01 = 0;
-
-                }
-
-                if($break_out){
-
-                    break 1;
-
-                }
+                $int_str_01 = 0;
 
             }
 
         }
 
-//        error_log(__LINE__ . ' crnrstn->' . __METHOD__ . ' $salt[' . print_r($salt,true) . ']');
-//        error_log(__LINE__ . ' crnrstn self::$alpha_shift_key_ARRAY[' . print_r(self::$alpha_shift_key_ARRAY,true) . ']');
-//        error_log(__LINE__ . ' crnrstn self::$alpha_shift_key_int_ARRAY[' . print_r(self::$alpha_shift_key_int_ARRAY,true) . ']');
-//        error_log(__LINE__ . ' crnrstn self::$alpha_shift_key_01_ARRAY[' . print_r(self::$alpha_shift_key_01_ARRAY,true) . ']');
+        //
+        // LOAD NUMBERS
+        foreach(range(0, 9) as $letter) {
+
+            self::$char_01_ARRAY[$letter] = $int_str_01;
+            self::$char_01_index_ARRAY[$letter] = $char_count;
+            $char_count++;
+
+            if($int_str_01 === 0){
+
+                $int_str_01 = 1;
+
+            }else{
+
+                $int_str_01 = 0;
+
+            }
+
+        }
 
     }
 
@@ -2208,7 +2200,9 @@ class crnrstn {
                 $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_crc] = $tmp_salt;
 
                 $tmp_salt = $this->generate_new_key(128);
-                $this->generate_alpha_shift_key($tmp_salt,true);
+
+                $this->encode_wheel_integrations();
+//                $this->generate_alpha_shift_key($tmp_salt,true);
 
                 $this->error_log('Environmental detection complete. Setting application server app key for CRNRSTN :: config serial [' . $this->config_serial_crc . '] to [' . $env_key_crc . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -5906,9 +5900,31 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 -->      
 ';
 
+
+        $tmp_crnrstnART[-5]='
+   _____ <span style="color:#F90000;">_____</span>  _   _ _____   _____ _______ _   _       
+  / ____<span style="color:#F90000;">|   __ \</span>| \ | |  __ \ / ____|__   __| \ | |  _ _ 
+ | |    <span style="color:#F90000;">|  |__) |</span>  \| | |__) | (___    | |  |  \| | (_|_)
+ | |    <span style="color:#F90000;">|  __  /</span>| . ` |  _  / \___ \   | |  | . ` |      
+ | |____<span style="color:#F90000;">|  | \ \</span>| |\  | | \ \ ____) |  | |  | |\  |  _ _ 
+  \_____<span style="color:#F90000;">|__|  \_\</span>_| \_|_|  \_\_____/   |_|  |_| \_| (_|_)
+                                                        
+                                                       
+
+
+        <!--
+ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
+TITLE :: Big
+TIMESTAMP :: ' . $this->return_micro_time() . '
+
+CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Big&t=CRNRSTN%20%3A%3A
+DATE :: Thursday, August 25, 2022 @ 0948 hrs ::  
+-->      
+';
+
         if(!isset($index)){
 
-            return $tmp_crnrstnART[rand (-4, 4)];
+            return $tmp_crnrstnART[rand (-5, 4)];
 
         }else{
 
@@ -7239,8 +7255,6 @@ class crnrstn_config_manager {
 
     public function input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL){
 
-        //
-        // ESTABLISH AND RETURN MYSQLI CONNECTION
         try{
 
             if(!isset($env_key)){
@@ -7256,14 +7270,14 @@ class crnrstn_config_manager {
             }
 
             //error_log(__LINE__ . ' crnstn CONFIG_MGR(' . __METHOD__ . ') [' . $data_key . '].');
-            if($data_key == 'DOCUMENT_ROOT'){
-
-                $this->oCRNRSTN->print_r('[' . $data_key . '][' . $env_key . '][' . $data_type_family .'] converts to [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', NULL, NULL,  __LINE__, __METHOD__, __FILE__);
-
-                error_log(__LINE__ . ' DDO(' . __METHOD__ . ') [' . $data_key . '].');
-                //die();
-
-            }
+//            if($data_key == 'DOCUMENT_ROOT'){
+//
+//                $this->oCRNRSTN->print_r('[' . $data_key . '][' . $env_key . '][' . $data_type_family .'] converts to [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', NULL, NULL,  __LINE__, __METHOD__, __FILE__);
+//
+//                error_log(__LINE__ . ' DDO (' . __METHOD__ . ') [' . $data_key . '].');
+//                //die();
+//
+//            }
 
             // error_log(__LINE__ . ' '. __METHOD__ . ' [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].');
             // $this->oCRNRSTN->print_r(' crnrstn config '. __METHOD__ . ' [' . $data_key . '(strlen=' . strlen($data_key) . ')][' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', 'CRNRSTN :: CONFIGURATION TEST',NULL, __LINE__,__METHOD__,__FILE__);
@@ -7309,59 +7323,24 @@ class crnrstn_config_manager {
 
             }
 
-            if($data_key == 'DOCUMENT_ROOT'){
-
-                $this->oCRNRSTN->print_r('[' . $data_key . '][' . $env_key . '][' . $data_type_family .'] converts to [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', NULL, NULL,  __LINE__, __METHOD__, __FILE__);
-
-                error_log(__LINE__ . ' DDO (' . __METHOD__ . ') [' . $data_key . '].');
-                //die();
-
-            }
-
             $tmp_return_data_spec_a = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $soap_transport, $index);
-            if($data_key == 'DOCUMENT_ROOT'){
 
-                error_log(__LINE__ . ' DDO (' . __METHOD__ . ') $tmp_return_data_spec_a=[' . $tmp_return_data_spec_a . '].');
-                error_log(__LINE__ . ' DDO (' . __METHOD__ . ') salt=[' . $this->oCRNRSTN->session_salt() . '].');
-
-                die();
-
-            }
-
-            if(!$tmp_return_data_spec_a || $tmp_return_data_spec_a  == '' || !isset($tmp_return_data_spec_a)){
+            if($tmp_return_data_spec_a == $this->oCRNRSTN->session_salt()){
 
                 $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, CRNRSTN_RESOURCE_ALL, $data_type_family), $soap_transport, $index);
 
-            }
+                if($tmp_return_data_spec_b != $this->oCRNRSTN->session_salt()){
 
-            if($data_key == 'DOCUMENT_ROOT'){
-
-                error_log(__LINE__ . ' DDO (' . __METHOD__ . ') $tmp_return_data_spec_b=[' . $tmp_return_data_spec_b . '].');
-
-            }
-
-            if(!isset($tmp_return_data_spec_b)){
-
-                return $tmp_return_data_spec_a;
-
-            }
-
-            // NOT SURE WHY I AM DOING THIS...CLEAN UP?
-            if($tmp_return_data_spec_b == '' || !isset($tmp_return_data_spec_a)){
-
-                $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key(CRNRSTN_RESOURCE_ALL, $env_key, $data_type_family), $soap_transport, $index);
-
-            }
-
-            if($tmp_return_data_spec_b){
-
-                if($data_key == 'DOCUMENT_ROOT'){
-
-                    error_log(__LINE__ . ' DDO (' . __METHOD__ . ') $tmp_return_data_spec_b=[' . $tmp_return_data_spec_b . '].');
+                    return $tmp_return_data_spec_b;
 
                 }
 
-                return $tmp_return_data_spec_b;
+                //
+                // WE COULD NOT FIND THE REQUESTED DATA KEY IN THE SYSTEM.
+                // HOOOSTON...VE HAF PROBLEM!
+                //throw new Exception('The requested data key, ' . $data_key . ', could not be found.');
+
+                return NULL;
 
             }
 

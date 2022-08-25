@@ -2869,6 +2869,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             break;
             case 'mit_license':
 
+                error_log(__LINE__ . ' user ' . __METHOD__);
+
+                //die();
                 //$this->oCRNRSTN_UX->sync_back_link_state();
 
                 $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);

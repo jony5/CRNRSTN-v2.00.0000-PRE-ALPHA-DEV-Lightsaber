@@ -344,7 +344,7 @@ class crnrstn_http_manager {
             $tmp_channel_int_constant = (int) $this->oCRNRSTN->get_resource('CRNRSTN_DEVICE_DETECTED');  // , $data_family_str
             //$tmp_channel_int_constant = (int) $this->oCRNRSTN_USR->get_session_param('CRNRSTN_DEVICE_DETECTED');
 
-            //error_log(__LINE__ . ' http CRNRSTN_DEVICE_DETECTED [' . $tmp_channel_int_constant.']');
+            error_log(__LINE__ . ' http CRNRSTN_DEVICE_DETECTED [' . $tmp_channel_int_constant.']');
 
             //$this->oCRNRSTN_USR->toggle_bit($tmp_channel_int_constant, true);
 
@@ -356,7 +356,7 @@ class crnrstn_http_manager {
             // DETECT APPROPRIATE CHANNEL AND SYNC SESSION
             if($this->is_client_mobile()){
 
-                //error_log(__LINE__ . ' http is_client_mobile ['.CRNRSTN_UI_MOBILE.']');
+                error_log(__LINE__ . ' http is_client_mobile [' . CRNRSTN_UI_MOBILE . ']');
 
                 return $this->set_client_mobile();
 
@@ -364,13 +364,13 @@ class crnrstn_http_manager {
 
                 if($this->is_client_tablet()){
 
-                    //error_log(__LINE__ . ' http is_client_tablet ['.CRNRSTN_UI_TABLET.']');
+                    error_log(__LINE__ . ' http is_client_tablet [' . CRNRSTN_UI_TABLET . ']');
 
                     return $this->set_client_tablet();
 
                 }else{
 
-                    //error_log(__LINE__ . ' http set_client_desktop ['.CRNRSTN_UI_DESKTOP.']');
+                    error_log(__LINE__ . ' http set_client_desktop [' . CRNRSTN_UI_DESKTOP . ']');
 
                     return $this->set_client_desktop();
 
@@ -806,7 +806,7 @@ class crnrstn_http_manager {
             //
             // SET (OR RESET) THIS DATA. THERE SHOULD ALWAYS AND ONLY BE ONE.
             $tmp_bit = $this->sync_device_detected();
-            //error_log(__LINE__ . ' user $tmp_bit=' . print_r($tmp_bit, true));
+            error_log(__LINE__ . ' http $tmp_bit=' . print_r($tmp_bit, true));
 
             $this->oCRNRSTN_USR->device_type_bit = $tmp_bit;
 
@@ -1013,11 +1013,15 @@ class crnrstn_http_manager {
 
         //
         // MAY USE FALSE vs NULL TO CLEAR ISMOBILE IN SESSION. CRNRSTN :: ONLY SETS THIS TO TRUE.
-        if (isset($tmp_ismobile)) {
+        if(isset($tmp_ismobile)){
 
-            if ($tmp_ismobile) {
+            if($tmp_ismobile != $this->oCRNRSTN->session_salt()){
 
-                return 'isMobile';
+                if($tmp_ismobile){
+
+                    return 'isMobile';
+
+                }
 
             }
 
@@ -1025,17 +1029,21 @@ class crnrstn_http_manager {
 
         //
         // MAY USE FALSE vs NULL TO CLEAR ISTABLET IN SESSION. CRNRSTN :: ONLY SETS THIS TO TRUE.
-        if (isset($tmp_istablet)) {
+        if(isset($tmp_istablet)){
 
-            if ($tmp_istablet && $tabletIsMobile) {
+            if($tmp_ismobile != $this->oCRNRSTN->session_salt()){
 
-                return 'isTablet';
+                if($tmp_istablet && $tabletIsMobile){
+
+                    return 'isTablet';
+
+                }
 
             }
 
         }
 
-        if ($tmp_custom_device != '') {
+        if($tmp_custom_device != '' && ($tmp_custom_device != $this->oCRNRSTN->session_salt())){
 
             # NOTE :: $tmp_custom_device HAS BOTH MOBILE AND TABLET OPPORTUNITIES
 
@@ -1043,15 +1051,15 @@ class crnrstn_http_manager {
             // MOBILE HAS BEEN PERSISTED IN SESSION. STICK WITH IT.
             return $tmp_custom_device;
 
-        } else {
+        }else{
 
             //
             // SESSION PROVIDES NO CONFIRMATION OF MOBILE STATE. LET'S DO THE WORK TO ANSWER THE QUESTION.
-            if (!isset($this->isMobile)) {
+            if(!isset($this->isMobile)){
 
                 //
                 // NEED TO DETERMINE DEVICE TYPE.
-                if (!isset($this->mobi_detect)) {
+                if(!isset($this->mobi_detect)){
 
                     //
                     //  INITIALIZE MOBILE DETECT 3RD PARTY SERVICE.
@@ -1059,25 +1067,25 @@ class crnrstn_http_manager {
 
                 }
 
-                if ($tabletIsMobile) {
+                if($tabletIsMobile){
 
                     //
                     // HANDLE TABLETS AS MOBILE
-                    if ($this->mobi_detect->isMobile($this->http_headers_string) || $this->mobi_detect->isTablet($this->http_headers_string)) {
+                    if($this->mobi_detect->isMobile($this->http_headers_string) || $this->mobi_detect->isTablet($this->http_headers_string)){
 
                         $this->isMobile = true;
 
-                    } else {
+                    }else{
 
                         $this->isMobile = false;
 
                     }
 
-                } else {
+                }else{
 
                     //
                     // EXCLUDE TABLETS FROM POSITIVE MOBILE IDENTIFICATION
-                    if ($this->mobi_detect->isMobile($this->http_headers_string) && !$this->mobi_detect->isTablet($this->http_headers_string)) {
+                    if($this->mobi_detect->isMobile($this->http_headers_string) && !$this->mobi_detect->isTablet($this->http_headers_string)){
 
                         $this->isMobile = true;
 
@@ -1092,11 +1100,11 @@ class crnrstn_http_manager {
 
         }
 
-        if ($this->isMobile) {
+        if($this->isMobile){
 
             return 'isMobile';
 
-        } else {
+        }else{
 
             return false;
 
@@ -1124,10 +1132,15 @@ class crnrstn_http_manager {
 
         //
         // MAY USE FALSE vs NULL TO CLEAR ISTABLET IN SESSION. CRNRSTN ONLY SETS THIS TO TRUE.
-        if (isset($tmp_istablet)) {
-            if ($tmp_istablet) {
+        if(isset($tmp_istablet)){
 
-                return 'isTablet';
+            if($tmp_istablet != $this->oCRNRSTN->session_salt()){
+
+                if($tmp_istablet){
+
+                    return 'isTablet';
+
+                }
 
             }
 
@@ -1135,16 +1148,21 @@ class crnrstn_http_manager {
 
         //
         // MAY USE FALSE vs NULL TO CLEAR ISMOBILE IN SESSION. CRNRSTN ONLY SETS THIS TO TRUE.
-        if (isset($tmp_ismobile)) {
-            if ($tmp_ismobile && $mobileIsTablet) {
+        if(isset($tmp_ismobile)){
 
-                return 'isMobile';
+            if($tmp_ismobile != $this->oCRNRSTN->session_salt()){
+
+                if($tmp_ismobile && $mobileIsTablet){
+
+                    return 'isMobile';
+
+                }
 
             }
 
         }
 
-        if ($tmp_custom_device != '') {
+        if($tmp_custom_device != '' && ($tmp_custom_device != $this->oCRNRSTN->session_salt())){
 
             # NOTE :: $tmp_custom_device HAS BOTH MOBILE AND TABLET OPPORTUNITIES
 
@@ -1152,66 +1170,57 @@ class crnrstn_http_manager {
             // MOBILE/TABLET HAS BEEN PERSISTED IN SESSION. STICK WITH IT. RETURN STRING FOR DEVICE TYPE.
             return $tmp_custom_device;
 
-        } else {
+        }else{
 
-            if (!isset($this->isTablet)) {
+            if(!isset($this->isTablet)){
 
                 //
                 // NEED TO DETERMINE DEVICE TYPE.
-                if (!isset($this->mobi_detect)) {
+                if(!isset($this->mobi_detect)){
 
                     //
                     //  INITIALIZE MOBILE DETECT (3RD PARTY OPEN SOURCE).
                     $this->mobi_detect = new crnrstn_Mobile_Detect();
                 }
 
-                if ($mobileIsTablet) {
-                    if ($this->mobi_detect->isMobile($this->http_headers_string) || $this->mobi_detect->isTablet($this->http_headers_string)) {
+                if($mobileIsTablet){
+
+                    if($this->mobi_detect->isMobile($this->http_headers_string) || $this->mobi_detect->isTablet($this->http_headers_string)){
 
                         $this->isTablet = true;
 
-                    } else {
+                    }else{
 
                         $this->isTablet = false;
 
                     }
 
-                } else {
+                }else{
 
-                    if (!$this->mobi_detect->isMobile($this->http_headers_string) && $this->mobi_detect->isTablet($this->http_headers_string)) {
+                    if(!$this->mobi_detect->isMobile($this->http_headers_string) && $this->mobi_detect->isTablet($this->http_headers_string)){
 
                         $this->isTablet = true;
 
-                    } else {
+                    }else{
 
                         $this->isTablet = false;
 
                     }
 
-                }
-
-            } else {
-
-                if ($this->isTablet) {
-
-                    return 'isTablet';
-
-                } else {
-
-                    return false;
                 }
 
             }
 
         }
 
-        if ($this->isTablet) {
+        if($this->isTablet){
 
             return 'isTablet';
 
-        } else {
+        }else{
 
             return false;
+
         }
 
     }
