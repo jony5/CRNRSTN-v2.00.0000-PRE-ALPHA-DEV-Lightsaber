@@ -4462,8 +4462,8 @@ class crnrstn_image_v_html_content_manager {
                 case 'signin_frm_reflection.png':
 
                     //signin_frm_reflection.php
-                    $tmp_base64_prefix = '<div style="width:722px; height:55px; background: url(\'';
-                    $tmp_base64_append = '\'); background-repeat: no-repeat;"></div>';
+                    $tmp_base64_prefix = '<div style="width:722px; height:55px; background: url(\\\'';
+                    $tmp_base64_append = '\\\'); background-repeat: no-repeat;"></div>';
 
                 break;
 
