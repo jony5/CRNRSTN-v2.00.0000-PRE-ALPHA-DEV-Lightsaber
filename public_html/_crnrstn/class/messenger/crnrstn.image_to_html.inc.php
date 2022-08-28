@@ -4615,7 +4615,7 @@ class crnrstn_image_v_html_content_manager {
                 fwrite($resource_file, $tmp_data_str_out);
                 fclose($resource_file);
 
-                $this->oCRNRSTN->error_log('Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+                $this->oCRNRSTN->error_log('[**DEV BLOCKED**]Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 
             }else{
 
@@ -4644,6 +4644,8 @@ class crnrstn_image_v_html_content_manager {
                         fwrite($resource_file, $tmp_data_str_out);
                         fclose($resource_file);
 
+                        $this->oCRNRSTN->error_log('[**DEV BLOCKED**]Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
                     }
 
                     return true;
@@ -4660,7 +4662,7 @@ class crnrstn_image_v_html_content_manager {
             }
 
             // THE BASE64 OUTPUT WRITTEN TO FILE
-            //$this->oCRNRSTN->print_r($tmp_data_str_out, self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] . ' :: BASE64 CHECK.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->print_r($tmp_data_str_out, self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] . ' :: BASE64 CHECK.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             return true;
 

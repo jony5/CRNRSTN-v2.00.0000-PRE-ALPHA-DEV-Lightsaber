@@ -735,7 +735,7 @@ class crnrstn {
 
         $tmp_version_soap = self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('version_soap');
 
-        error_log(__LINE__ . ' crrnstn $tmp_version_soap=' . $tmp_version_soap);
+        //error_log(__LINE__ . ' crrnstn $tmp_version_soap=' . $tmp_version_soap);
         //die();
         if($tmp_version_soap == $this->session_salt() || $tmp_version_soap == ''){
 
@@ -4801,9 +4801,11 @@ class crnrstn {
 
             //
             // REVIEW BASE64 SITUATION FOR DATA KEY. MAKE ANY NECESSARY ADJUSTMENTS.
-            $this->oCRNRSTN_ENV->system_base64_synchronize($data_key);
+            return $this->oCRNRSTN_ENV->system_base64_synchronize($data_key);
 
         }
+
+        return $this->oCRNRSTN_ENV->system_base64_synchronize_batch();
 
     }
 

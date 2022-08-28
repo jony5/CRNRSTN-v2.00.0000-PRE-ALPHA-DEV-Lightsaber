@@ -6058,7 +6058,81 @@ class crnrstn_environment {
 
     public function system_base64_synchronize($data_key = NULL){
 
-        $this->oCRNRSTN_MEDIA_CONVERTOR->system_base64_synchronize($data_key);
+        return $this->oCRNRSTN_MEDIA_CONVERTOR->system_base64_synchronize($data_key);
+
+    }
+
+    public function system_base64_synchronize_batch(){
+
+        $tmp_dir_path = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/png/';
+
+        $this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        $tmp_scraped_filename_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path);
+
+        $tmp = array_pop($tmp_scraped_filename_ARRAY);
+        $tmp = array_pop($tmp_scraped_filename_ARRAY);
+
+        //
+        // BUILD NEW ARRAY WITH NO PNG
+        $tmp_filtered_filename_ARRAY = array();
+        $tmp_processed_filename_ARRAY = array();
+        $tmp_invalid_img_cnt = 0;
+        $tmp_skipped = 0;
+        $tmp_banner_size = sizeof($tmp_scraped_filename_ARRAY);
+        //$tmp_filename_ARRAY = $this->queueFileByTimestamp($tmp_filename_ARRAY, $dir_path);
+
+        for($i = 0; $i < $tmp_banner_size; $i++){
+
+            $tmp_pos_png = strpos($tmp_scraped_filename_ARRAY[$i], '.png');
+            $tmp_pos_ds_store = strpos($tmp_scraped_filename_ARRAY[$i], 'DS_Store');
+
+            //
+            // IF NO PNG
+            if(($tmp_pos_png !== false) && ($tmp_pos_ds_store === false)){
+
+                $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_ARRAY[$i];
+
+            }else{
+
+                $tmp_skipped++;
+
+            }
+
+        }
+
+        //$this->oCRNRSTN->print_r('Selected Images (' . $tmp_skipped . ' skipped): [' . print_r($tmp_filtered_filename_ARRAY, true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        $tmp_current_batch = $tmp_batch_size = 5;
+        $tmp_oMEDIA_CONVERTOR = new crnrstn_image_v_html_content_manager($this->oCRNRSTN);
+
+        foreach($tmp_filtered_filename_ARRAY as $index => $tmp_filename){
+
+            $tmp_current_batch--;
+
+            if($tmp_current_batch < 0){
+
+                $tmp_current_batch = $tmp_batch_size;
+                $tmp_oMEDIA_CONVERTOR = new crnrstn_image_v_html_content_manager($this->oCRNRSTN);
+
+            }
+
+            if($this->oCRNRSTN_MEDIA_CONVERTOR->system_base64_synchronize($tmp_filename)){
+
+                $tmp_processed_filename_ARRAY[] = $tmp_filename;
+
+            }
+
+            $this->oCRNRSTN->print_r('Processed Image [' . $tmp_filename . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+
+        }
+
+        $tmp_err_cnt = count($tmp_filtered_filename_ARRAY) - count($tmp_processed_filename_ARRAY);
+
+        $this->oCRNRSTN->print_r('Processed Images [skipped=' . $tmp_skipped . '] [err=' . $tmp_err_cnt . '][' . print_r($tmp_processed_filename_ARRAY, true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        return true;
 
     }
 

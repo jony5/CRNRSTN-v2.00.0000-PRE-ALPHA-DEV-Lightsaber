@@ -8,6 +8,10 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 $oCRNRSTN->system_base64_synchronize('success_chk');
 
+//
+// THIS WILL SYNC ALL (~120 IMAGE) BASE64 FILES WITH THE CURRENT PNG AND JPEG.
+//$oCRNRSTN->system_base64_synchronize();
+
 //$DOCUMENT_ROOT = $oCRNRSTN->get_resource('DOCUMENT_ROOT');
 //$DOCUMENT_ROOT_DIR = $oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR');
 //$oCRNRSTN->system_base64_synchronize('elem_shadow_btm.png');
@@ -16,7 +20,6 @@ $oCRNRSTN->system_base64_synchronize('success_chk');
 echo  '<div style="padding: 40px;">' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>';
 //echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 //echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG) . '" width="100" height="100">';
-
 
 die();
 
