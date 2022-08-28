@@ -9,7 +9,7 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 $oCRNRSTN->system_base64_synchronize('success_chk');
 
 //
-// THIS WILL SYNC ALL (~120 IMAGE) BASE64 FILES WITH THE CURRENT PNG AND JPEG.
+// THIS WILL SYNC ALL (~120 IMAGE) BASE64 FILES WITH THE CURRENT PNG AND JPEG (~33 SECS).
 //$oCRNRSTN->system_base64_synchronize();
 
 //$DOCUMENT_ROOT = $oCRNRSTN->get_resource('DOCUMENT_ROOT');
