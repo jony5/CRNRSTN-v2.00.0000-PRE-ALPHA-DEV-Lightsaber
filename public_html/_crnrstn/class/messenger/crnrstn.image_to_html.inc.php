@@ -4118,7 +4118,28 @@ class crnrstn_image_v_html_content_manager {
 
                     if(!@include($tmp_path_base64)){
 
+                        $this->oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                        //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
+                        $this->oCRNRSTN->system_base64_synchronize($tmp_filename);
+
+                        //
+                        // TRY AGAIN (...AFTER system_base64_synchronize())
+                        if(!@include($tmp_path_base64)){
+
+                            $this->oCRNRSTN->error_log('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                            //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                            //
+                            // HOOOSTON...VE HAF PROBLEM!
+                            throw new Exception('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.');
+
+                        }else{
+
+                            //$this->oCRNRSTN->print_r('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                            $this->oCRNRSTN->error_log('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+
+                        }
 
                     }
 
@@ -4146,7 +4167,7 @@ class crnrstn_image_v_html_content_manager {
 
                     $tmp_path_base64 = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php';
 
-                    if(!include($tmp_path_base64)){
+                    if(!@include($tmp_path_base64)){
 
                         $this->oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
                         $this->oCRNRSTN->print_r('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
@@ -4193,7 +4214,34 @@ class crnrstn_image_v_html_content_manager {
                 break;
                 case CRNRSTN_UI_IMG_BASE64_JPEG:
 
-                    require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
+                    $tmp_path_base64 = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php';
+
+                    if(!@include($tmp_path_base64)){
+
+                        $this->oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                        //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                        $this->oCRNRSTN->system_base64_synchronize($tmp_filename);
+
+                        //
+                        // TRY AGAIN (...AFTER system_base64_synchronize())
+                        if(!@include($tmp_path_base64)){
+
+                            $this->oCRNRSTN->error_log('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                            //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                            //
+                            // HOOOSTON...VE HAF PROBLEM!
+                            throw new Exception('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.');
+
+                        }else{
+
+                            //$this->oCRNRSTN->print_r('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                            $this->oCRNRSTN->error_log('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+
+                        }
+
+                    }
 
                     if(isset($system_file_serial)){
 
@@ -4577,9 +4625,6 @@ class crnrstn_image_v_html_content_manager {
             $tmp_current_perms = '';
             $tmp_data_str_out = $this->return_system_base64_file_contents();
 
-            //$this->oCRNRSTN->print_r('FAKEY-FAKE-WRITE SYSTEM FILE NOW [' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-            //$this->oCRNRSTN->print_r('WRITE SYSTEM FILE NOW [' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
             $mkdir_mode = 775;
             $tmp_filepath = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'];
             $tmp_filename = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'];
@@ -4781,27 +4826,31 @@ class crnrstn_image_v_html_content_manager {
 
         */
 
-        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['datecreated_base64'])){
+        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['datecreated_base64_PNG'])){
 
-            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['datecreated_base64'] = $this->oCRNRSTN->return_micro_time();
-
-        }
-
-        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['datecreated_base64'])){
-
-            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['datecreated_base64'] = $this->oCRNRSTN->return_micro_time();
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['datecreated_base64_PNG'] = $this->oCRNRSTN->return_micro_time();
 
         }
 
-        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][self::$request_salt]['lastmodified_base64'])){
+        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['datecreated_base64_JPEG'])){
 
-            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['lastmodified_base64'] = $this->oCRNRSTN->return_micro_time();
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['datecreated_base64_JPEG'] = $this->oCRNRSTN->return_micro_time();
 
         }
 
-        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['lastmodified_base64'])){
+        $tmp_val = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'];
+        if(!isset($tmp_val) || ($tmp_val == '')){
 
-            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['lastmodified_base64'] = $this->oCRNRSTN->return_micro_time();
+            //$this->oCRNRSTN->print_r('lastmodified_base64_PNG BEING UPDATED.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'] = $this->oCRNRSTN->return_micro_time();
+
+        }
+
+        $tmp_val = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'];
+        if(!isset($tmp_val) || ($tmp_val == '')){
+
+            //$this->oCRNRSTN->print_r('lastmodified_base64_JPEG BEING UPDATED.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'] = $this->oCRNRSTN->return_micro_time();
 
         }
 
@@ -4820,7 +4869,7 @@ switch(self::$image_output_mode){
         if($has_jpeg){
 
             $tmp_file_input_str  .= '
-        self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'datecreated_base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['datecreated_base64'] . '\';
+        self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'datecreated_base64_JPEG\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['datecreated_base64_JPEG'] . '\';
         self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['base64'] . '\';
 ';
 
@@ -4835,7 +4884,7 @@ switch(self::$image_output_mode){
         if($has_png){
 
             $tmp_file_input_str  .= '
-        self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'datecreated_base64_PNG\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['datecreated_base64'] . '\';
+        self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'datecreated_base64_PNG\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['datecreated_base64_PNG'] . '\';
         self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial][\'base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['base64'] . '\';
 ';
 
@@ -4851,14 +4900,14 @@ switch(self::$image_output_mode){
 ';
         if($has_png){
 
-            $tmp_file_input_str .= 'self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'lastmodified_base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['lastmodified_base64'] . '\';';
+            $tmp_file_input_str .= 'self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial][\'lastmodified_base64_PNG\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'] . '\';';
 
         }
 
         if($has_jpeg){
 
             $tmp_file_input_str .= '
-self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'lastmodified_base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['lastmodified_base64'] . '\';
+self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'lastmodified_base64_JPEG\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'] . '\';
 
 ';
 
@@ -4947,12 +4996,13 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
                 $this->system_file_serial = $system_file_serial;
 
-                if (isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial]['base64'])) {
-
-                    $tmp_bpng = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial]['base64'];
-                    //$this->oCRNRSTN->print_r('BASE64 [PNG] CHECKSUM = [' . print_r($this->oCRNRSTN->crcINT($tmp_bpng), true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
-                }
+//                // HOW BASE64 DATA WANTS TO BE HANDLED
+//                if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial]['base64'])){
+//
+//                    $tmp_bpng = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial]['base64'];
+//                    //$this->oCRNRSTN->print_r('BASE64 [PNG] CHECKSUM = [' . print_r($this->oCRNRSTN->crcINT($tmp_bpng), true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//                }
 
             }
 
@@ -4968,14 +5018,15 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
             // ...(THEN PUT IT BACK.)
             self::$image_output_mode = $tmp_curr_output_mode;
 
-            if (isset($system_file_serial)) {
+            if(isset($system_file_serial)){
 
-                if (isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial]['base64'])) {
-
-                    $tmp_bj = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial]['base64'];
-                    //$this->oCRNRSTN->print_r('BASE64 [JPEG] CHECKSUM = [' . print_r($this->oCRNRSTN->crcINT($tmp_bj), true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
-                }
+//                // HOW BASE64 DATA WANTS TO BE HANDLED
+//                if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial]['datecreated_base64_JPEG'])){
+//
+//                    $tmp_bj = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial]['datecreated_base64_JPEG'];
+//                    $this->oCRNRSTN->print_r('BASE64 [JPEG] datecreated_base64 = [' . print_r($tmp_bj, true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//                }
 
             }
 
@@ -5009,6 +5060,12 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
             if(!$this->valid_system_asset(CRNRSTN_UI_IMG_PNG, 'SYSTEM_BASE64')){
 
+                if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'])){
+
+                    $this->oCRNRSTN->print_r('lastmodified_base64_PNG WILL BE UPDATED.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'] = '';
+
+                }
                 $this->oCRNRSTN->error_log('System BASE64 is NOT in sync with file: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
                 $tmp_base64_content_delta++;
 
@@ -5025,10 +5082,18 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
             if(!$this->valid_system_asset(CRNRSTN_UI_IMG_JPEG, 'SYSTEM_BASE64')){
 
+                if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'])){
+
+                    //$this->oCRNRSTN->print_r('lastmodified_base64_JPEG WILL BE UPDATED.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'] = '';
+
+                }
+
                 $this->oCRNRSTN->error_log('System BASE64 is NOT in sync with file: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
                 $tmp_base64_content_delta++;
 
             }
+
         }
 
         if($tmp_base64_content_delta > 0){
