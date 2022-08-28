@@ -151,15 +151,6 @@ class crnrstn_session_manager {
 
     }
 
-//    ????? MARRED BY KEYBOARD INPUT...I DON'T THINK WE NEED IT ANYWAYS...
-//    public function consumeoDDO($oDDO){
-//
-//        //
-//        // TAKE THE DESPARATE oDDO OBJECTS ARRAY AND COMBINE (ADD) THEM INTO A SINGULARITY
-//        $this->oCRNRSTN_SESSION_DDO->injest_DDO($oDDO);
-//
-//    }
-
     public function return_session_oDDO_profile($output_channel){
 
 	    $tmp_output_str = '';
@@ -1485,6 +1476,7 @@ class crnrstn_session_manager {
 					//
 					// HOOOSTON...VE HAF PROBLEM!
 					throw new Exception('CRNRSTN :: Session Param Decrypt Notice :: Oops. Something went wrong. Hash_equals comparison failed during data decryption.');
+
 				}
 			
 			}else{

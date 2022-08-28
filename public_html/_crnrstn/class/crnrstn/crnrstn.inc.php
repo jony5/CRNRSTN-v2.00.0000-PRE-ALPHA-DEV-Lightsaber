@@ -60,7 +60,7 @@ class crnrstn {
     private static $oCRNRSTN_CONFIG_MGR;
     public $oMYSQLI_CONN_MGR;
     private static $oLog_ProfileManager;
-    private static $oCommRichMediaProvider;
+    public $oCRNRSTN_MEDIA_CONVERTOR;
     public $oCRNRSTN_BITFLIP_MGR;
     public $oCRNRSTN_PERFORMANCE_REGULATOR;
     public $oCRNRSTN_ASSET_MGR;
@@ -156,6 +156,11 @@ class crnrstn {
 
     private static $CRNRSTN_debug_mode;
 
+    //
+    // MAXIMUM PERCENTAGE OF DISK (E.G. "FILL UP TO 85% AND STOP") USAGE WHERE CRNRSTN :: WILL STILL
+    // WRITE FILES. 100 *WILL* BRICK YOUR SERVER WITH LOG TO CUSTOM FILE ENABLED.
+    public $max_storage_utilization = 85;
+
     private static $version_crnrstn = '2.00.0000 PRE-ALPHA-DEV (Lightsaber)';
 
     public function __construct($config_filepath, $CRNRSTN_config_serial, $CRNRSTN_debug_mode = 0, $PHPMAILER_debug_mode = 0, $CRNRSTN_loggingProfile = CRNRSTN_LOG_DEFAULT){
@@ -194,6 +199,10 @@ class crnrstn {
         $this->initialize_bitwise();
         $this->initialize_integer_length();
         $this->initialize_language();
+
+        //
+        // INSTANTIATE CRNRSTN :: SYSTEM EMAIL CONTENT HELPER CLASS
+        $this->oCRNRSTN_MEDIA_CONVERTOR = new crnrstn_image_v_html_content_manager($this);
 
         //
         // INITIALIZE ARRAY OF ENCRYPTABLE DATATYPES
@@ -382,6 +391,18 @@ class crnrstn {
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
+
+    }
+
+    public function get_performance_metric($profile_name){
+
+        return $this->oCRNRSTN_PERFORMANCE_REGULATOR->get_performance_metric($profile_name);
+
+    }
+
+    public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
+
+        return $this->oCRNRSTN_PERFORMANCE_REGULATOR->grant_permissions_fwrite($filepath, $minimum_bytes_required);
 
     }
 
@@ -712,7 +733,23 @@ class crnrstn {
 
     public function version_soap(){
 
-        return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('version_soap');
+        $tmp_version_soap = self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('version_soap');
+
+        error_log(__LINE__ . ' crrnstn $tmp_version_soap=' . $tmp_version_soap);
+        //die();
+        if($tmp_version_soap == $this->session_salt() || $tmp_version_soap == ''){
+
+            $tmp_soap = new nusoap_base();
+
+            $tmp_version_soap = $tmp_soap->title;             //'NuSOAP';
+            $tmp_version_soap .= $tmp_soap->version;          //' v0.9.5';
+            //$tmp_version_soap .= $tmp_soap->revision;         //' $Revision: 1.123 $';
+
+            $this->input_data_value($tmp_version_soap, 'version_soap', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
+
+        }
+
+        return $tmp_version_soap;
 
     }
 
@@ -942,12 +979,14 @@ class crnrstn {
 
     private function initialize_config_manager(){
 
-        foreach($_SERVER as $data_key => $value){
+        foreach($_SERVER as $data_key => $data_value){
 
             // WE DON'T HAVE ENV KEY HERE. DO WE USE CRNRSTN_RESOURCE_ALL?
             // input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL)
             //self::$oCRNRSTN_CONFIG_MGR->input_data_value($value, $data_key);
-            $this->input_data_value_simple($value, $data_key);
+            $this->input_data_value($data_value, $data_key);
+
+            //$this->input_data_value_simple($data_value, $data_key);
 
         }
 
@@ -2074,7 +2113,7 @@ class crnrstn {
 
         //
         // SEND DATABASE CONFIGURATION PARAMETERS TO THE CONNECTION MANAGER
-        $this->error_log('Sending ' . $data_key . ' WordPress profile information for [ '. $env_key . ' ] to the CRNRSTN :: MySQLi database connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        $this->error_log('Sending ' . $data_key . ' WordPress profile information for ['. $env_key . '] to the CRNRSTN :: MySQLi database connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         $this->oMYSQLI_CONN_MGR->add_data_wp($env_key, $data_key, $data_value, $data_type_family);
 
@@ -2285,7 +2324,7 @@ class crnrstn {
 
     }
 
-    public function add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+    public function add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
 
         try{
 
@@ -2550,7 +2589,7 @@ class crnrstn {
 
     }
 
-    public function get_resource($data_key, $index = NULL, $data_type_family = NULL, $soap_transport = false){
+    public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $soap_transport = false){
 
         // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_transport = false){
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_crc], $soap_transport);
@@ -2786,9 +2825,9 @@ class crnrstn {
 
     }
 
-    public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL){
+    public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL){
 
-        self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, NULL, $data_auth_profile, $env_key);
+        self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, $env_key);
 
     }
 
@@ -4181,7 +4220,7 @@ class crnrstn {
 
     public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
 
-        $tmp_err_trace_str = $this->return_PHPExceptionTracePretty($exception_obj->getTraceAsString());
+        $tmp_err_trace_str = $this->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString());
 
         if(strlen($tmp_err_trace_str) > 0){
 
@@ -4195,7 +4234,7 @@ class crnrstn {
 
     }
 
-    public function return_PHPExceptionTracePretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
+    public function return_PHP_exception_trace_pretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
 
         switch($format){
             case 'HTML':
@@ -4716,15 +4755,61 @@ class crnrstn {
     //
     // SOURCE :: https://www.php.net/manual/en/function.base64-encode.php
     // AUTHOR :: luke at lukeoliff.com :: https://www.php.net/manual/en/function.base64-encode.php#105200
-    public function base64_encode_image($filename, $filetype){
+    public function encode_image($file_path, $filetype = NULL) {
 
-        if (is_file($filename) || (is_string($filename) && $filename != '')) {
+        $this->error_log('$file_path=[' . $file_path . '] $filetype=[' . $filetype . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-            $imgbinary = fread(fopen($filename, 'r'), $this->find_filesize($filename));
+        if(!isset($filetype)){
 
-            return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
+            $filetype = pathinfo($file_path, PATHINFO_EXTENSION);
 
         }
+
+        if(is_file($file_path) || (is_string($file_path) && (strlen($file_path) > 0))){
+
+            $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempting to open ' . $file_path . '. ';
+
+            $img_binary = fread(fopen($file_path, 'r'), $this->find_filesize($file_path));
+
+            $tmp_base64 = 'data:image/' . $filetype . ';base64,' . base64_encode($img_binary);
+
+            return $tmp_base64;
+
+        }else{
+
+            if(!is_file($file_path)){
+
+                $this->error_log('Error when attempting to encode an image of type [' . $filetype . ']. Not a file [' . $file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            }
+
+            if(!is_string($file_path)){
+
+                $this->error_log('Error when attempting to encode an image of type [' . $filetype . ']. Filepath is not string data [' . $file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            }
+
+        }
+
+        return NULL;
+
+    }
+
+    public function system_base64_synchronize($data_key = NULL){
+
+        if(isset($data_key)){
+
+            //
+            // REVIEW BASE64 SITUATION FOR DATA KEY. MAKE ANY NECESSARY ADJUSTMENTS.
+            $this->oCRNRSTN_ENV->system_base64_synchronize($data_key);
+
+        }
+
+    }
+
+    public function return_client_ip(){
+
+        return $this->oCRNRSTN_ENV->oCRNRSTN_IPSECURITY_MGR->clientIpAddress();
 
     }
 
@@ -4799,7 +4884,9 @@ class crnrstn {
 
             }else{
 
-                //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' [img=' . $tmp_weighted_elements_keys_ARRAY[$tmp_int] . '][$output_mode=' . $output_mode . '].');
+//                error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' [img=' . $tmp_weighted_elements_keys_ARRAY[$tmp_int] . '][$output_mode=' . $output_mode . '].');
+//                error_log(__LINE__ . ' crnrstn [' . print_r($tmp_weighted_elements_keys_ARRAY[$tmp_int], true).'][' . $output_mode . '].');
+//                error_log(__LINE__ . ' crnrstn [' . print_r($this->return_creative($tmp_weighted_elements_keys_ARRAY[$tmp_int], $output_mode), true) . '][' . $output_mode . '].');
                 $creative = '<div style="float:left; padding:4px 0 5px 5px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">' . $this->return_creative($tmp_weighted_elements_keys_ARRAY[$tmp_int], $output_mode) . '</div>';
 
             }
@@ -5130,11 +5217,7 @@ class crnrstn {
 
     public function return_creative($creative_element_key, $image_output_mode = NULL, $creative_mode = NULL){
 
-        //
-        // INSTANTIATE CRNRSTN SYSTEM EMAIL CONTENT HELPER CLASS
-        self::$oCommRichMediaProvider = new crnrstn_image_v_html_content_manager($this);
-
-        return self::$oCommRichMediaProvider->return_creative($creative_element_key, $image_output_mode, $creative_mode);
+        return $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative($creative_element_key, $image_output_mode, $creative_mode);
 
     }
 
@@ -5598,7 +5681,7 @@ class crnrstn {
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Isometric2
+ARTWORK TITLE :: Isometric2
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Isometric2&t=CRNRSTN%20%3A%3A
@@ -5623,7 +5706,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Isometric3
+ARTWORK TITLE :: Isometric3
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Isometric3&t=CRNRSTN%20%3A%3A
@@ -5649,7 +5732,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Isometric2
+ARTWORK TITLE :: Isometric2
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Isometric2&t=CRNRSTN%20%3A%3A
@@ -5679,7 +5762,7 @@ C:::::C                <span style="color:#F90000;">R::::R</span>     <span styl
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Doh
+ARTWORK TITLE :: Doh
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Doh&t=CRNRSTN%20%3A%3A
@@ -5710,7 +5793,7 @@ C:::::C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Doh
+ARTWORK TITLE :: Doh
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Doh&t=CRNRSTN%20%3A%3A
@@ -5731,7 +5814,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Banner3
+ARTWORK TITLE :: Banner3
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Banner3&t=CRNRSTN%20%3A%3A
@@ -5754,7 +5837,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Banner3
+ARTWORK TITLE :: Banner3
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Banner3&t=CRNRSTN%20%3A%3A
@@ -5773,7 +5856,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Block
+ARTWORK TITLE :: Block
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Block&t=CRNRSTN%20%3A%3A
@@ -5797,7 +5880,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Block
+ARTWORK TITLE :: Block
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Block&t=CRNRSTN%20%3A%3A
@@ -5822,7 +5905,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Impossible
+ARTWORK TITLE :: Impossible
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Impossible&t=CRNRSTN%20%3A%3A
@@ -5844,7 +5927,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Modular
+ARTWORK TITLE :: Modular
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Modular&t=CRNRSTN%20%3A%3A
@@ -5868,7 +5951,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
         
 <!-- 
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Fire Font
+ARTWORK TITLE :: Fire Font
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Fire%20Font-k&t=CRNRSTN%20%3A%3A
@@ -5890,9 +5973,9 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 
 
 
-        <!--
+<!--
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Flower Power
+ARTWORK TITLE :: Flower Power
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Flower%20Power&t=CRNRSTN%20%3A%3A
@@ -5912,9 +5995,9 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
                                                        
 
 
-        <!--
+<!--
 ASCII ARTWORK GENERATED BY CRNRSTN :: v' . self::$version_crnrstn . '
-TITLE :: Big
+ARTWORK TITLE :: Big
 TIMESTAMP :: ' . $this->return_micro_time() . '
 
 CREATIVE SOURCE :: http://patorjk.com/software/taag/#p=display&f=Big&t=CRNRSTN%20%3A%3A
@@ -6500,12 +6583,12 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         if(strlen($patch) > 0){
 
             $tmp_version_apache = $version[0] . '.' . $version[1] . '.' . $patch;
-            self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_apache, 'version_apache_sysimg');
+            self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_apache, 'version_apache');
 
         }else{
 
             $tmp_version_apache = $version[0] . '.' . $version[1];
-            self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_apache, 'version_apache_sysimg');
+            self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_apache, 'version_apache');
 
         }
 
@@ -7090,6 +7173,121 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     }
 
     //
+    // SOURCE :: https://www.php.net/manual/en/function.rtrim.php
+    // AUTHOR :: pinkgothic at gmail dot com :: https://www.php.net/manual/en/function.rtrim.php#95802
+    public function strrtrim($message, $strip) {
+        // break message apart by strip string
+        $lines = explode($strip, $message);
+        $last  = '';
+        // pop off empty strings at the end
+        do {
+            $last = array_pop($lines);
+        } while (empty($last) && (count($lines)));
+        // re-assemble what remains
+        return implode($strip, array_merge($lines, array($last)));
+    }
+
+    public function validate_DIR_endpoint($dir_path, $endpoint_type = 'DESTINATION', $mkdir_mode = 775){
+
+        switch($endpoint_type) {
+            case 'SOURCE':
+
+                if(is_dir($dir_path)){
+
+                    //
+                    // SOURCE - LOCAL_DIR
+                    if(is_readable($dir_path)){
+
+                        return true;
+
+                    }else{
+
+                        //
+                        // HOOOSTON...VE HAF PROBLEM!
+                        $this->error_log('CRNRSTN :: has experienced permissions related errors attempting to read from the source directory, ' . $dir_path . '.');
+
+                    }
+
+                }else{
+
+                    //
+                    // HOOOSTON...VE HAF PROBLEM!
+                    $this->error_log('CRNRSTN :: has experienced errors attempting to find the source directory, ' . $dir_path . ', within the local file system.');
+
+                }
+
+            break;
+            default:
+
+                //
+                // DESTINATION - LOCAL_DIR
+                if(is_dir($dir_path)){
+
+                    if(is_writable($dir_path)){
+
+                        error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' THE DIRECTORY [' . $dir_path . '] IS WRITABLE!');
+
+                        return true;
+
+                    }else{
+
+                        error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' THE DIRECTORY IS **NOT** WRITABLE!');
+
+                        //
+                        // ATTEMPT TO CHANGE PERMISSIONS AND CHECK AGAIN
+                        // BEFORE COMPLETELY GIVING UP
+                        $tmp_current_perms = substr(decoct( fileperms($dir_path) ), 2);
+                        $tmp_config_serial_crc = self::$oCRNRSTN_n->config_serial_crc;
+
+                        $_SESSION['CRNRSTN_' . $tmp_config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'CRNRSTN :: has experienced permissions related error as the destination directory, ' . $dir_path . ' (' . $tmp_current_perms . '), is NOT writable to ' . $mkdir_mode . ', and furthermore ';
+                        if(chmod($dir_path, $mkdir_mode)){
+
+                            $_SESSION['CRNRSTN_'. $tmp_config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+                            return true;
+
+                        }else{
+
+                            $tmp_current_perms = substr(decoct( fileperms($dir_path) ), 2);
+
+                            //
+                            // HOOOSTON...VE HAF PROBLEM!
+                            $this->error_log('CRNRSTN :: has experienced permissions related error as the destination directory, ' . $dir_path . ', is NOT writable with current permissions as ' . $tmp_current_perms . '.');
+
+                        }
+
+                    }
+
+                }else{
+
+                    //
+                    // ATTEMPT TO MAKE DIRECTORY
+                    // BEFORE COMPLETELY GIVING UP
+                    if (!$this->mkdir_r($dir_path, $mkdir_mode)) {
+
+                        $mkdir_mode = octdec( str_pad($mkdir_mode,4,'0',STR_PAD_LEFT) );
+
+                        //
+                        // HOOOSTON...VE HAF PROBLEM!
+                        $this->error_log('CRNRSTN :: has experienced error as the destination directory, ' . $dir_path . ', does NOT exist, and it could NOT be created as ' . $mkdir_mode . '.');
+
+                    }else{
+
+                        return true;
+
+                    }
+
+                }
+
+                break;
+
+        }
+
+        return false;
+
+    }
+
+
+    //
     // SOURCE :: https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified
     // AUTHOR :: Giacomo1968 :: https://stackoverflow.com/users/117259/giacomo1968
     public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING) {
@@ -7269,19 +7467,9 @@ class crnrstn_config_manager {
 
             }
 
-            //error_log(__LINE__ . ' crnstn CONFIG_MGR(' . __METHOD__ . ') [' . $data_key . '].');
-//            if($data_key == 'DOCUMENT_ROOT'){
-//
-//                $this->oCRNRSTN->print_r('[' . $data_key . '][' . $env_key . '][' . $data_type_family .'] converts to [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', NULL, NULL,  __LINE__, __METHOD__, __FILE__);
-//
-//                error_log(__LINE__ . ' DDO (' . __METHOD__ . ') [' . $data_key . '].');
-//                //die();
-//
-//            }
-
             // error_log(__LINE__ . ' '. __METHOD__ . ' [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].');
             // $this->oCRNRSTN->print_r(' crnrstn config '. __METHOD__ . ' [' . $data_key . '(strlen=' . strlen($data_key) . ')][' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', 'CRNRSTN :: CONFIGURATION TEST',NULL, __LINE__,__METHOD__,__FILE__);
-            $this->oCRNRSTN->error_log('Receiving input: ' . $data_key . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            //$this->oCRNRSTN->error_log('Receiving [' . $env_key . '] input: ' . $data_key . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             $this->oCRNRSTN_CONFIG_DDO->add($data_val, $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $index, $data_auth_profile);
 

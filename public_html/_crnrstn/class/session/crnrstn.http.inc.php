@@ -344,7 +344,7 @@ class crnrstn_http_manager {
             $tmp_channel_int_constant = (int) $this->oCRNRSTN->get_resource('CRNRSTN_DEVICE_DETECTED');  // , $data_family_str
             //$tmp_channel_int_constant = (int) $this->oCRNRSTN_USR->get_session_param('CRNRSTN_DEVICE_DETECTED');
 
-            error_log(__LINE__ . ' http CRNRSTN_DEVICE_DETECTED [' . $tmp_channel_int_constant.']');
+            //error_log(__LINE__ . ' http CRNRSTN_DEVICE_DETECTED [' . $tmp_channel_int_constant.']');
 
             //$this->oCRNRSTN_USR->toggle_bit($tmp_channel_int_constant, true);
 
@@ -356,7 +356,7 @@ class crnrstn_http_manager {
             // DETECT APPROPRIATE CHANNEL AND SYNC SESSION
             if($this->is_client_mobile()){
 
-                error_log(__LINE__ . ' http is_client_mobile [' . CRNRSTN_UI_MOBILE . ']');
+                //error_log(__LINE__ . ' http is_client_mobile [' . CRNRSTN_UI_MOBILE . ']');
 
                 return $this->set_client_mobile();
 
@@ -364,13 +364,13 @@ class crnrstn_http_manager {
 
                 if($this->is_client_tablet()){
 
-                    error_log(__LINE__ . ' http is_client_tablet [' . CRNRSTN_UI_TABLET . ']');
+                    //error_log(__LINE__ . ' http is_client_tablet [' . CRNRSTN_UI_TABLET . ']');
 
                     return $this->set_client_tablet();
 
                 }else{
 
-                    error_log(__LINE__ . ' http set_client_desktop [' . CRNRSTN_UI_DESKTOP . ']');
+                    //error_log(__LINE__ . ' http set_client_desktop [' . CRNRSTN_UI_DESKTOP . ']');
 
                     return $this->set_client_desktop();
 
@@ -390,7 +390,7 @@ class crnrstn_http_manager {
 
             $tmp_channel_int_constant = (int) $this->oCRNRSTN->get_resource('CRNRSTN_DEVICE_DETECTED');
 
-            error_log(__LINE__ . ' http CRNRSTN_DEVICE_DETECTED [' . $tmp_channel_int_constant.']');
+            //error_log(__LINE__ . ' http CRNRSTN_DEVICE_DETECTED [' . $tmp_channel_int_constant.']');
 
             //$this->oCRNRSTN_USR->toggle_bit($tmp_channel_int_constant, true);
 
@@ -806,7 +806,7 @@ class crnrstn_http_manager {
             //
             // SET (OR RESET) THIS DATA. THERE SHOULD ALWAYS AND ONLY BE ONE.
             $tmp_bit = $this->sync_device_detected();
-            error_log(__LINE__ . ' http $tmp_bit=' . print_r($tmp_bit, true));
+            //error_log(__LINE__ . ' http $tmp_bit=' . print_r($tmp_bit, true));
 
             $this->oCRNRSTN_USR->device_type_bit = $tmp_bit;
 

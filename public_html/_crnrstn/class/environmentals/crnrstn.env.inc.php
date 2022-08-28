@@ -80,7 +80,7 @@ class crnrstn_environment {
     public $oFINITE_EXPRESS;
     public $oCRNRSTN_LANG_MGR;
     public $oCRNRSTN_ASSET_MGR;
-    private static $oCommRichMediaProvider;
+    public $oCRNRSTN_MEDIA_CONVERTOR;
 
     private static $sess_env_param_ARRAY = array();
     private static $m_starttime = array();
@@ -173,7 +173,7 @@ class crnrstn_environment {
 
         $this->config_serial_crc = $oCRNRSTN->config_serial_crc;
         self::$config_serial = $oCRNRSTN->return_config_serial('raw');
-        self::$oCommRichMediaProvider = new crnrstn_image_v_html_content_manager($this);
+        $this->oCRNRSTN_MEDIA_CONVERTOR = $oCRNRSTN->oCRNRSTN_MEDIA_CONVERTOR;
 
         $this->oLogger = new crnrstn_logging(__CLASS__, $this);
 
@@ -5998,7 +5998,7 @@ class crnrstn_environment {
 
             }else{
 
-                error_log(__LINE__ . ' env ' . __METHOD__ . ' [img=' . self::$weighted_elements_keys_ARRAY[$tmp_int] . '][$output_mode=' . $output_mode . '].');
+                //error_log(__LINE__ . ' env ' . __METHOD__ . ' [img=' . self::$weighted_elements_keys_ARRAY[$tmp_int] . '][$output_mode=' . $output_mode . '].');
                 $creative = '<div style="float:left; padding:4px 0 5px 5px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">' . $this->return_creative(self::$weighted_elements_keys_ARRAY[$tmp_int], $output_mode) . '</div>';
 
             }
@@ -6056,17 +6056,23 @@ class crnrstn_environment {
 
     }
 
+    public function system_base64_synchronize($data_key = NULL){
+
+        $this->oCRNRSTN_MEDIA_CONVERTOR->system_base64_synchronize($data_key);
+
+    }
+
     public function return_creative($creative_element_key, $image_output_mode = NULL){
 
-        return self::$oCommRichMediaProvider->return_creative($creative_element_key, $image_output_mode);
+        return $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative($creative_element_key, $image_output_mode);
 
     }
 
     public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
 
-        $tmp_err_trace_str = $this->return_PHPExceptionTracePretty($exception_obj->getTraceAsString());
+        $tmp_err_trace_str = $this->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString());
 
-        if(strlen($tmp_err_trace_str)>0){
+        if(strlen($tmp_err_trace_str) > 0){
 
             $this->error_log('PHP native exception output log trace received ::' . $tmp_err_trace_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -6078,7 +6084,7 @@ class crnrstn_environment {
 
     }
 
-    public function return_PHPExceptionTracePretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
+    public function return_PHP_exception_trace_pretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
 
         switch($format){
             case 'HTML':
@@ -7855,92 +7861,6 @@ class crnrstn_decoupled_data_object {
             break;
 
         }
-
-    }
-
-    public function return_data_auth_profile_ARRAY(){
-
-        return $this->data_auth_profile_ARRAY;
-
-    }
-
-    public function return_data_value_ARRAY(){
-
-        return $this->data_value_ARRAY;
-
-    }
-
-    public function return_data_type_ARRAY(){
-
-        return $this->data_type_ARRAY;
-
-    }
-
-    public function return_data_flag_ARRAY(){
-
-        return $this->data_flag_ARRAY;
-
-    }
-
-    public function injest_DDO($oDDO){
-
-        if(!is_bool($oDDO)){
-
-            //
-            // CONSUME THE CONTENTS OF A PROVIDED DECOUPLED DATA OBJECT.
-            $tmp_data_auth_profile_ARRAY = $oDDO->return_data_auth_profile_ARRAY();
-            $tmp_data_value_ARRAY = $oDDO->return_data_value_ARRAY();
-            $tmp_data_type_ARRAY = $oDDO->return_data_type_ARRAY();
-            $tmp_data_flag_ARRAY = $oDDO->return_data_flag_ARRAY();
-
-            foreach($tmp_data_auth_profile_ARRAY as $tmp_attribute_key => $iterate_ARRAY){
-
-                foreach($iterate_ARRAY as $tmp_iterator => $value){
-
-                    $this->data_auth_profile_ARRAY[$tmp_attribute_key][$tmp_iterator] = $value;
-
-                }
-
-            }
-
-            foreach($tmp_data_value_ARRAY as $tmp_attribute_key => $iterate_ARRAY){
-
-                foreach($iterate_ARRAY as $tmp_iterator => $value){
-
-                    $this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator] = $value;
-
-                }
-
-            }
-
-            foreach($tmp_data_type_ARRAY as $tmp_attribute_key => $iterate_ARRAY){
-
-                foreach($iterate_ARRAY as $tmp_iterator => $value){
-
-                    $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator] = $value;
-
-                }
-
-            }
-
-            $tmp_count =  0;
-            foreach($tmp_data_flag_ARRAY as $tmp_attribute_key => $iterate_ARRAY){
-
-                foreach($iterate_ARRAY as $tmp_iterator => $value){
-
-                    $tmp_count++;
-                    $this->data_flag_ARRAY[$tmp_attribute_key][$tmp_iterator] = $value;
-
-                }
-
-            }
-
-            die();
-            return $tmp_count;
-
-        }
-
-        return false;
 
     }
 
@@ -10818,13 +10738,13 @@ class crnrstn_logging_oprofile{
 
         //
         // CONSTANTS
-        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
         $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_TEXT');
 
         if($tmp_ISHTML){
 
-            $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'HTML');
+            $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
             $tmp_log_constant_HTML = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant, 'HTML');
             $tmp_crnrstn_trace_HTML = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_HTML');
 
@@ -11811,14 +11731,14 @@ class crnrstn_logging_oprofile{
 
                             //
                             // CONSTANTS
-                            $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+                            $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
                             $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
                             $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_TEXT');
                             $crnrstn_phpmailer->Subject = 'Exception Notification from ' . $_SERVER['SERVER_NAME'] . ' via CRNRSTN ::';
 
                             if($tmp_isHTML){
 
-                                $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'HTML');
+                                $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
                                 $tmp_log_constant_HTML = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant, 'HTML');
                                 $tmp_crnrstn_trace_HTML = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_HTML');
 
@@ -12068,7 +11988,7 @@ class crnrstn_logging_oprofile{
 
             //
             // CONSTANTS
-            $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+            $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
             $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
             $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
@@ -12192,7 +12112,7 @@ class crnrstn_logging_oprofile{
 
                 //
                 // CONSTANTS
-                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
                 $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
@@ -12225,7 +12145,7 @@ class crnrstn_logging_oprofile{
 
         //
         // CONSTANTS
-        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
         $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
@@ -12247,7 +12167,7 @@ class crnrstn_logging_oprofile{
 
         //
         // CONSTANTS
-        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+        $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
         $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('SCREEN_TEXT', 74);
 
@@ -12272,7 +12192,7 @@ class crnrstn_logging_oprofile{
 
                 //
                 // CONSTANTS
-                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
                 $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
@@ -12306,7 +12226,7 @@ class crnrstn_logging_oprofile{
 
                 //
                 // CONSTANTS
-                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+                $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
                 $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('ERROR_LOG', 0);
 
@@ -12414,7 +12334,7 @@ class crnrstn_logging_oprofile{
 
         if(is_dir($file_path)){
 
-            if($this->validate_DIR_Endpoint('DESTINATION', $file_path, $mkdir_permissons_mode)){
+            if($this->validate_DIR_endpoint('DESTINATION', $file_path, $mkdir_permissons_mode)){
 
                 //
                 // WE HAVE A DIRECTORY PATH...NO FILE NAME PROVIDED; CREATE ONE.
@@ -12440,7 +12360,7 @@ class crnrstn_logging_oprofile{
             // WE HAVE PROPER FILE PATH.
             $tmp_sniffed_dir = dirname($file_path);
 
-            if(!$this->validate_DIR_Endpoint('DESTINATION', $tmp_sniffed_dir, $mkdir_permissons_mode)){
+            if(!$this->validate_DIR_endpoint('DESTINATION', $tmp_sniffed_dir, $mkdir_permissons_mode)){
 
                 self::$oCRNRSTN_n->error_log('Unable to write data to local directory file, ' . $file_path . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_FILE);
 
@@ -12471,7 +12391,7 @@ class crnrstn_logging_oprofile{
 
     }
 
-    private function validate_DIR_Endpoint($flow_type, $dir_path, $mkdir_mode = 775){
+    private function validate_DIR_endpoint($flow_type, $dir_path, $mkdir_mode = 775){
 
         switch($flow_type) {
             case 'SOURCE':

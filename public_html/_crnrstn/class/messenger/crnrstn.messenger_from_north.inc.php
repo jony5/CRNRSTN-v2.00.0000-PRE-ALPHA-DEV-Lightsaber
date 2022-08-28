@@ -3790,7 +3790,7 @@ LOG TRACE
 
     private function catch_exception($exception_obj, $syslog_constant=LOG_DEBUG, $method=NULL, $namespace=NULL, $profile_override_pipe=NULL, $endpoint_override_pipe=NULL, $wcr_override_pipe=NULL){
 
-        $tmp_err_trace_str = $this->return_PHPExceptionTracePretty($exception_obj->getTraceAsString());
+        $tmp_err_trace_str = $this->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString());
 
         if(strlen($tmp_err_trace_str)>0){
 
@@ -3804,7 +3804,7 @@ LOG TRACE
 
     }
 
-    private function return_PHPExceptionTracePretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
+    private function return_PHP_exception_trace_pretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
 
         switch($format){
             case 'HTML':

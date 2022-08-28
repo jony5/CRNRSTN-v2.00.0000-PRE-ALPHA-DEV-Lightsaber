@@ -176,14 +176,12 @@ class crnrstn_logging {
         $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
         $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
-        $this->oLog_ProfileManager = self::$oCRNRSTN_n->return_oLog_ProfileManager();
+        //error_log(__LINE__ . ' log [' . print_r($this->tmp_starttime_ARRAY, true) . '].');
 
-        //if(isset($oCRNRSTN)){
+        $this->oLog_ProfileManager = self::$oCRNRSTN_n->return_oLog_ProfileManager();
 
         // LET'S SEE IF WE GET NULL TROUBLES (BARNEY TOWN).
         $this->CRNRSTN_debug_mode = (int) self::$oCRNRSTN_n->CRNRSTN_debug_mode();
-
-        //}
 
 		$this->log_silo_profile = $log_silo_profile;
 

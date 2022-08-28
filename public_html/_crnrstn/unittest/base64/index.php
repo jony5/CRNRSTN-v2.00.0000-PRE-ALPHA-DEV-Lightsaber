@@ -6,36 +6,27 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
+$oCRNRSTN->system_base64_synchronize('success_chk');
 
-//
-// JUST NEED SOMETHING TO BASH OUT BASE64 FOR ALL SYSTEM ASSETS.
-if ($oCRNRSTN->isset_http_superglobal($_GET)){
+//$DOCUMENT_ROOT = $oCRNRSTN->get_resource('DOCUMENT_ROOT');
+//$DOCUMENT_ROOT_DIR = $oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR');
+//$oCRNRSTN->system_base64_synchronize('elem_shadow_btm.png');
 
-    foreach($_GET as $data_key){
+//$oCRNRSTN->print_r('System image processing using the params "run" and "auth_id".', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+echo  '<div style="padding: 40px;">' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>';
+//echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
+//echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG) . '" width="100" height="100">';
 
-        $oCRNRSTN->print_r(' base64 index $data_key=[' . $data_key . ']', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
-    }
-
-    $tmp_data_key_cnt = count($_GET);
-
-    if($oCRNRSTN->isset_http_param('run', $_GET)){
-
-        $tmp_run_command = $oCRNRSTN->extract_data_HTTP( 'run', $_GET);
-        $tmp_auth_id = $oCRNRSTN->extract_data_HTTP('auth_id', $_GET);
-
-        $oCRNRSTN->print_r('hello ' . $tmp_data_key_cnt . ' params including run $tmp_run_command=[' . $tmp_run_command . '] $tmp_auth_id=[' . $tmp_auth_id . '].', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
-        exit();
-
-    }
-
-}
-
-$oCRNRSTN->print_r('TESTING CRNRSTN :: $_GET data handling USING the params "run" and "auth_id".', 'HTTP param check', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-$oCRNRSTN->print_r('$_GET[]=' . print_r($_GET, true), NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
 die();
+
+//$oCRNRSTN->system_base64_synchronize('success_chk.png');
+//$oCRNRSTN->system_base64_synchronize('success_chk');
+//$oCRNRSTN->system_base64_synchronize('success_chk.jpg');
+//$oCRNRSTN->system_base64_synchronize('success_chk.RREWE.RERR.RERW.jpeg');
+//$oCRNRSTN->system_base64_synchronize('SUCCESS_CHECK');
+//$oCRNRSTN->system_base64_synchronize('err_x');
+//$oCRNRSTN->system_base64_synchronize('success_chk.jpg2');
 
 //
 // BASE64 IMAGE HELPER where, ?crnrstn_to_base64=imgs/png/j5_wolf_pup_lil_5_pts.png
@@ -44,8 +35,6 @@ die();
 //    return $tmp_html;
 //
 //}
-
-//base64_encode_image
 
 $oCRNRSTN->init_form_handling('crnrstn_image_to_encode');
 
@@ -180,7 +169,7 @@ $oCRNRSTN->init_input_listener('crnrstn_image_to_encode', 'crnrstn_resource_file
                     $tmp_base64_encoding .= $oCRNRSTN->data_encrypt('STATUS 200');
                     $tmp_base64_encoding .= '<br>--<br><br>';
 
-                    //                    if($oCRNRSTN->is_tunnel_encrypt_configured()){
+//                    if($oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
 //
 //                        $tmp_filename = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_image_to_process_name');
 //
@@ -188,7 +177,6 @@ $oCRNRSTN->init_input_listener('crnrstn_image_to_encode', 'crnrstn_resource_file
 //
 //                            $tmp_base64_encoding = $oCRNRSTN->encode_image($tmp_filename);
 //                            //echo $tmp_base64_encoding;
-//
 //
 //                        }
 //

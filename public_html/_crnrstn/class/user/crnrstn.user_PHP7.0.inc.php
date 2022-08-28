@@ -72,7 +72,7 @@ class crnrstn_user{
     private static $oMySQLi_hash_ARRAY = array();
     private static $oSqlSilo;
     private static $oPaginator;
-    private static $oCommRichMediaProvider;
+    public $oCRNRSTN_MEDIA_CONVERTOR;
     protected $oSoapClient;
     protected $oCRNRSTN_UX;
     private static $oCRNRSTN_CSS_VALIDATOR;
@@ -157,7 +157,7 @@ class crnrstn_user{
         $this->oCRNRSTN = $oCRNRSTN;
         $this->oCRNRSTN_ENV = $oCRNRSTN_ENV;
 
-        $this->starttime = $oCRNRSTN_ENV->starttime;
+        $this->starttime = $oCRNRSTN->starttime;
         $this->env_key = $oCRNRSTN->env_key;
         $this->env_key_crc = $oCRNRSTN->env_key_crc;
 
@@ -189,7 +189,7 @@ class crnrstn_user{
 
         //
         // INSTANTIATE CRNRSTN :: SYSTEM EMAIL CONTENT HELPER CLASS
-        self::$oCommRichMediaProvider = new crnrstn_image_v_html_content_manager($this);
+        $this->oCRNRSTN_MEDIA_CONVERTOR = $oCRNRSTN->oCRNRSTN_MEDIA_CONVERTOR;
 
         //
         // INSTANTIATE QUERY SILO
@@ -2869,9 +2869,6 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             break;
             case 'mit_license':
 
-                error_log(__LINE__ . ' user ' . __METHOD__);
-
-                //die();
                 //$this->oCRNRSTN_UX->sync_back_link_state();
 
                 $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
@@ -4108,6 +4105,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     }
 
     public function electrum_doNotPassDiskUsagePercent($CRNRSTN_oELECTRUM, $maxStorageUse){
+
+        // SEE: public_html/_crnrstn/class/crnrstn/crnrstn.performance_regulator.inc.php
 
         $this->error_log('Maximum storage usage at ANY destination LOCAL (FTP is not monitored) directory for this CRNRSTN :: Electrum process is being set to ' . $maxStorageUse . '%.', __LINE__, __METHOD__, __FILE__,CRNRSTN_ELECTRUM);
 
@@ -5519,7 +5518,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         }else{
 
             //error_log(__LINE__ . '  user I need to open a new connection [' . $tmp_mysqli_serial . '] now! ...mysqli not set.');
-            $this->error_log('MYSQLi is not set. Opening a new database connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            $this->error_log('Opening a new MYSQLi database connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             //
             // OPEN A DATABASE CONNECTION
@@ -7051,6 +7050,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function isset_http_param($param, $transport_protocol = 'POST'){
 
+        //
+        // WE WILL STILL TAKE $_POST, $_GET, etc...ONLY NEED THIS FOR HTTP AT THE MOMENT.
+        // IF SENDING STRING, ONLY THINGS LIKE 'POST', '$_POST', OR 'GET'...etc...WILL WORK. NOT 'FILE'. NOT 'SESSION'...
+        if(is_array($transport_protocol)){
+
+            return $this->oCRNRSTN_ENV->issetHTTP($transport_protocol);
+
+        }
+
         $http_protocol = strtoupper($transport_protocol);
         $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
 
@@ -7098,6 +7106,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     }
 
     public function extract_data_HTTP($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
+
+        //
+        // WE WILL STILL TAKE $_POST, $_GET, etc...ONLY NEED THIS FOR HTTP AT THE MOMENT.
+        // IF SENDING STRING, ONLY THINGS LIKE 'POST', '$_POST', OR 'GET'...etc...WILL WORK. NOT 'FILE'. NOT 'SESSION'...
+        if(is_array($transport_protocol)){
+
+            return $this->oCRNRSTN_ENV->oHTTP_MGR->extractData($transport_protocol, $param, $tunnel_encrypted);
+
+        }
 
         $http_protocol = strtoupper($transport_protocol);
         $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
@@ -7800,6 +7817,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     }
     
     public function isset_http_superglobal($transport_protocol = 'POST'){
+
+        //
+        // WE WILL STILL TAKE $_POST, $_GET, etc...ONLY NEED THIS FOR HTTP AT THE MOMENT.
+        // IF SENDING STRING, ONLY THINGS LIKE 'POST', '$_POST', OR 'GET'...etc...WILL WORK. NOT 'FILE'. NOT 'SESSION'...
+        if(is_array($transport_protocol)){
+
+            return $this->oCRNRSTN_ENV->issetHTTP($transport_protocol);
+
+        }
 
         $http_protocol = strtoupper($transport_protocol);
         $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
@@ -8825,7 +8851,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     public function return_creative($creative_element_key, $image_output_mode = NULL){
 
         //error_log(__LINE__ . ' user ' . $creative_element_key . ' [' . $image_output_mode . ']');
-        return self::$oCommRichMediaProvider->return_creative($creative_element_key, $image_output_mode);
+        return $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative($creative_element_key, $image_output_mode);
 
     }
 
@@ -8921,13 +8947,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                 <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                    <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                    <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                 </div></div></div>';
 
                     return $tmp_social_html;
@@ -8970,13 +8996,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9019,13 +9045,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9068,13 +9094,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9117,13 +9143,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9166,13 +9192,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9215,13 +9241,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9264,13 +9290,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9313,13 +9339,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9362,13 +9388,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9411,13 +9437,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9460,13 +9486,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9509,13 +9535,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9558,13 +9584,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                         <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                            <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                            <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                         </div></div></div>';
 
                     return $tmp_social_html;
@@ -9607,13 +9633,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9656,13 +9682,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                 <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                    <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                    <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                 </div></div></div>';
 
                     return $tmp_social_html;
@@ -9705,13 +9731,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                                 <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                    <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                    <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                 </div></div></div>';
 
                     return $tmp_social_html;
@@ -9754,13 +9780,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($email_channel){
 
-                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                        return '<a href="' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                     }
 
                     $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
                             <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                <img src="' . self::$oCommRichMediaProvider->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                             </div></div></div>';
 
                     return $tmp_social_html;
@@ -10515,7 +10541,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }
 
-        if (is_file($tmp_crnrstn_file_to_encode) || (is_string($tmp_crnrstn_file_to_encode) && (strlen($tmp_crnrstn_file_to_encode) > 0))) {
+        if(is_file($tmp_crnrstn_file_to_encode) || (is_string($tmp_crnrstn_file_to_encode) && (strlen($tmp_crnrstn_file_to_encode) > 0))){
 
             $this->error_log('CRNRSTN :: encode_image(\'' . $tmp_crnrstn_file_to_encode . '\', \'' . $filetype . '\') WE HAVE A FILE (OR SOMETHING ACTUALLY MADE IT THROUGH CRNRSTN :: OPENSSL DECRYPTION).', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -10598,7 +10624,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function return_PHPExceptionTracePretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
+    public function return_PHP_exception_trace_pretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
 
         switch($format){
             case 'HTML':
@@ -10735,7 +10761,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
 
-        $tmp_err_trace_str = $this->return_PHPExceptionTracePretty($exception_obj->getTraceAsString());
+        $tmp_err_trace_str = $this->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString());
 
         if(strlen($tmp_err_trace_str)>0){
 
@@ -11862,19 +11888,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    //
-    // SOURCE :: https://www.php.net/manual/en/function.rtrim.php
-    // AUTHOR :: pinkgothic at gmail dot com :: https://www.php.net/manual/en/function.rtrim.php#95802
-    public function strrtrim($message, $strip) {
-        // break message apart by strip string
-        $lines = explode($strip, $message);
-        $last  = '';
-        // pop off empty strings at the end
-        do {
-            $last = array_pop($lines);
-        } while (empty($last) && (count($lines)));
-        // re-assemble what remains
-        return implode($strip, array_merge($lines, array($last)));
+    public function strrtrim($message, $strip){
+
+        return $this->oCRNRSTN->strrtrim($message, $strip);
+
     }
 
     /**
@@ -11917,6 +11934,12 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     public function mkdir_r($dir_path, $mkdir_mode = NULL){
 
         return $this->oCRNRSTN_ENV->mkdir_r($dir_path, $mkdir_mode);
+
+    }
+
+    public function validate_DIR_endpoint($dir_path, $endpoint_type = 'DESTINATION', $mkdir_mode = 775){
+
+        return $this->oCRNRSTN->validate_DIR_endpoint($dir_path, $endpoint_type, $mkdir_mode);
 
     }
 

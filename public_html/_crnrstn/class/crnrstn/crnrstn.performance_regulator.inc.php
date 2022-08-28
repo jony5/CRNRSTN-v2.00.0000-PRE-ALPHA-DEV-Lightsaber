@@ -45,7 +45,7 @@
 #
 #  CLASS :: crnrstn_performance_regulator
 #  VERSION :: 1.00.0000
-#  DATE :: March 22, 2021 @ 0226hrs
+#  DATE :: March 22, 2021 @ 0226 hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI :: 
 #  DESCRIPTION :: Oversight of CPU, memory and server resource utilization and runtime management.
@@ -59,26 +59,33 @@ class crnrstn_performance_regulator{
     public $operating_system;
     public $starttime;
 
-    private static $config_relevant_ini_values_ARRAY = array('default_socket_timeout','file_uploads',
-        'max_execution_time','max_input_time','memory_limit','post_max_size',
-        'precision','realpath_cache_size','realpath_cache_ttl','upload_max_filesize',
-        'max_file_uploads','variables_order');
+    private static $config_relevant_ini_values_ARRAY = array();
 
     protected $php_ini_val = array();
+
+    protected $max_storage_utilization;
+    protected $byte_capacity;
+    protected $hard_disk_volume_size_bytes;
+    protected $disk_capacity_bytes_ARRAY = array();
+    protected $disk_size_bytes_ARRAY = array();
 
     public function __construct($oCRNRSTN) {
 
         $this->starttime = $oCRNRSTN->starttime;
+        $this->max_storage_utilization = $oCRNRSTN->max_storage_utilization;
 
         $this->snapshot_ini_values($oCRNRSTN);
 
-
-
-        //$this->oCRNRSTN_USR = $oCRNRSTN_USR;
+        $this->oCRNRSTN = $oCRNRSTN;
 
         //
         // INSTANTIATE LOGGER
-        //$this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
+        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
+
+        self::$config_relevant_ini_values_ARRAY = array('default_socket_timeout', 'file_uploads',
+            'max_execution_time', 'max_input_time', 'memory_limit', 'post_max_size',
+            'precision', 'realpath_cache_size', 'realpath_cache_ttl', 'upload_max_filesize',
+            'max_file_uploads', 'variables_order');
 
         /*
         $this->monitor_pid_performance(true);
@@ -185,7 +192,53 @@ class crnrstn_performance_regulator{
 
         */
 
+    }
 
+//    public function grant_permissions($profile_name, $minimum_bytes_required){
+//
+//        switch($profile_name) {
+//            case 'fwrite':
+//
+//                if($this->return_available_byte_capacity($minimum_bytes_required)){
+//
+//                    return true;
+//
+//                }
+//
+//            break;
+//
+//        }
+//
+//        return false;
+//
+//    }
+
+    public function grant_permissions_fwrite($filepath, $minimum_bytes_required){
+
+        if($this->return_available_byte_capacity($filepath, $minimum_bytes_required)){
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
+    public function get_performance_metric($profile_name, $env_key = CRNRSTN_RESOURCE_ALL){
+
+        $profile_name = strtolower($profile_name);
+
+        switch($profile_name){
+            case 'maximum_disk_use':
+
+                return $this->max_storage_utilization;
+
+            break;
+
+        }
+
+        return '';
 
     }
 
@@ -240,6 +293,39 @@ class crnrstn_performance_regulator{
             return false;
 
         }
+
+    }
+
+    public function return_available_byte_capacity($filepath, $required_bytes = 0){
+
+        //
+        // TOTAL AVAILABLE STORAGE SIZE AT DESTINATION (bytes)
+        $this->hard_disk_bytes_capacity_total = $this->return_disk_free_space($filepath);
+        $this->hard_disk_bytes_volume_size = $this->return_hard_disk_size($filepath);
+        $this->hard_disk_bytes_capacity_total_pretty = $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total, 5);
+        $required_bytes_pretty = $this->oCRNRSTN->format_bytes($required_bytes, 4);
+
+        //
+        // CALCULATE PERCENTAGE UTILIZATION OF REQUEST
+        $percentage_utilization_ask = 100 - ((($required_bytes + ($this->hard_disk_bytes_volume_size - $this->hard_disk_bytes_capacity_total)) / $this->hard_disk_bytes_volume_size) * 100);
+
+        if($percentage_utilization_ask > $this->max_storage_utilization){
+
+            $this->oCRNRSTN->error_log('CRNRSTN :: maximum storage utilization has been reached with an additional request which would result in ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% usage of the disk volume. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the currently configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            $this->oCRNRSTN->print_r('CRNRSTN :: maximum storage utilization has been reached with an additional request which would result in ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% usage of the disk volume. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the currently configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            return false;
+
+        }else{
+
+            //$this->oCRNRSTN->print_r('Maximum disk storage utilization (' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 1) . '% full) has NOT been reached. Adding ' . $required_bytes_pretty . ' during system repair which will result in ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% current disk volume usage. ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$this->oCRNRSTN->error_log('Maximum disk storage utilization (' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 1) . '% full) has NOT been reached. Adding ' . $required_bytes_pretty . ' during system repair which will result in ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% current disk volume usage. ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+        }
+
+        //
+        // RETURN PERCENTAGE DISK UTILIZATION...IF THE EXPECTED $required_bytes BYTES WOULD BE BURNED TO DISK
+        return $percentage_utilization_ask;
 
     }
 
@@ -429,10 +515,58 @@ class crnrstn_performance_regulator{
         }
     }
 
+    private function return_hard_disk_size($path = CRNRSTN_ROOT, $env_key = CRNRSTN_RESOURCE_ALL){
 
+        /*
+        Caution: On Windows, dirname() assumes the currently set codepage, so for
+        it to see the correct directory name with multibyte character
+        paths, the matching codepage must be set. If path contains
+        characters which are invalid for the current codepage, the
+        behavior of dirname() is undefined.
+
+        On other systems, dirname() assumes path to be encoded in an ASCII
+        compatible encoding. Otherwise the behavior of the the function
+        is undefined.
+
+        */
+
+        $path = dirname($path);
+
+        $this->disk_size_bytes_ARRAY[$env_key][$path] = disk_total_space($path);
+
+        //$this->oCRNRSTN->print_r('WE GOOD. CRNRSTN :: DISK TOTAL SIZE = ' . $this->oCRNRSTN->format_bytes($this->disk_size_bytes_ARRAY[$env_key][$path]) . '.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        return $this->disk_size_bytes_ARRAY[$env_key][$path];
+
+    }
+
+    private function return_disk_free_space($path = CRNRSTN_ROOT, $env_key = CRNRSTN_RESOURCE_ALL){
+
+        /*
+        Caution: On Windows, dirname() assumes the currently set codepage, so for
+        it to see the correct directory name with multibyte character
+        paths, the matching codepage must be set. If path contains
+        characters which are invalid for the current codepage, the
+        behavior of dirname() is undefined.
+
+        On other systems, dirname() assumes path to be encoded in an ASCII
+        compatible encoding. Otherwise the behavior of the the function
+        is undefined.
+        */
+
+        $path = dirname($path);
+
+        $this->disk_capacity_bytes_ARRAY[$env_key][$path] = disk_free_space($path);
+
+        //$this->oCRNRSTN->print_r('WE GOOD. CRNRSTN :: DISK FREE SPACE = ' . $this->oCRNRSTN->format_bytes($this->disk_capacity_bytes_ARRAY[$env_key][$path]) . '.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        return $this->disk_capacity_bytes_ARRAY[$env_key][$path];
+
+    }
 
     public function __destruct() {
 
 
     }
+
 }

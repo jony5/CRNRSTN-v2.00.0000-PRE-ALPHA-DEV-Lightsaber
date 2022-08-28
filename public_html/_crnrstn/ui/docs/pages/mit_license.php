@@ -5,15 +5,13 @@
 //$channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_output_channel_constants);
 $channel_constant = $this->oCRNRSTN_USR->device_type_bit;
 //error_log(__LINE__ . ' mit lic ['. print_r($this->oCRNRSTN_USR->system_output_channel_constants, true).'] $channel_constant=' . print_r($channel_constant, true));
-//die();
+
 switch($channel_constant){
     case CRNRSTN_UI_MOBILE:
         //
         // MOBILE DEVICE EXPERIENCE
         $tmp_str = 'hello mobi world!';
-
-        //$this->oCRNRSTN_USR->returnSrvrRespStatus(420);
-        //exit();
+        $tmp_str = '';
 
     break;
     case CRNRSTN_UI_TABLET:

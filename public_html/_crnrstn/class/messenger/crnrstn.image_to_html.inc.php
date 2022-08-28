@@ -55,24 +55,27 @@
 class crnrstn_image_v_html_content_manager {
 
     protected $oLogger;
-    private static $oCRNRSTN_n;
+    public $oCRNRSTN;
 
     public $sys_asset_mode;
+    protected $system_file_serial;
     private static $method_request_mode;
+    private static $request_salt;
     private static $image_output_mode;
 
-    public function __construct($oCRNRSTN_n){
+    private static $image_filesystem_meta_ARRAY = array();
 
-        self::$oCRNRSTN_n = $oCRNRSTN_n;
+    public function __construct($oCRNRSTN){
 
-        if(self::$oCRNRSTN_n->is_bit_set(CRNRSTN_ASSET_MODE_PNG)){
+        $this->oCRNRSTN = $oCRNRSTN;
 
-            //self::$image_output_mode = '';
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_ASSET_MODE_PNG)){
+
             $this->sys_asset_mode = CRNRSTN_UI_IMG_PNG_HTML_WRAPPED;
 
         }else{
 
-            if(self::$oCRNRSTN_n->is_bit_set(CRNRSTN_ASSET_MODE_JPEG)){
+            if($this->oCRNRSTN->is_bit_set(CRNRSTN_ASSET_MODE_JPEG)){
 
                 $this->sys_asset_mode = CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED;
 
@@ -88,22 +91,27 @@ class crnrstn_image_v_html_content_manager {
 
         //
         // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, self::$oCRNRSTN_n);
-
-        //$tmp_file_path = __FILE__;
-
-        //$tmp_path_ARRAY = explode(DIRECTORY_SEPARATOR, $tmp_file_path);
-        //$tmp_sect_cnt = sizeof($tmp_path_ARRAY);
+        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
     }
 
     public function return_creative($creative_element_key, $image_output_mode = NULL, $creative_mode = NULL){
 
-        self::$image_output_mode = $this->sys_asset_mode;
-
         if(!isset($image_output_mode)){
 
-            self::$image_output_mode = $this->sys_asset_mode;
+            //
+            // INITIALIZE WITH SYSTEM CONFIGURATION VALUE
+            if(!isset(self::$image_output_mode) || self::$image_output_mode == CRNRSTN_SETTINGS_CRNRSTN){
+
+                self::$image_output_mode = $this->sys_asset_mode;
+
+            }
+
+            if(self::$image_output_mode == CRNRSTN_SETTINGS_CRNRSTN){
+
+                self::$image_output_mode = $this->sys_asset_mode;
+
+            }
 
         }else{
 
@@ -120,14 +128,14 @@ class crnrstn_image_v_html_content_manager {
 
         }else{
 
-            $tmp_sys_notices_creative_mode = self::$oCRNRSTN_n->sys_notices_creative_mode;
+            $tmp_sys_notices_creative_mode = $this->oCRNRSTN->sys_notices_creative_mode;
 
         }
 
         //
         // LAST USE :: Saturday August 6, 2022 @ 1805 hrs
-        // LAST USE :: Wednesday August 24, 2022 @ 0516 hrs
-        error_log(__LINE__ . ' img ' . __METHOD__ . ' $creative_element_key=[' . $creative_element_key . '] $tmp_sys_notices_creative_mode=[' . $tmp_sys_notices_creative_mode . '] self::$image_output_mode=[' . self::$image_output_mode . ']');
+        // LAST USE :: Wednesday August 26, 2022 @ 0516 hrs
+        //error_log(__LINE__ . ' img ' . __METHOD__ . ' $creative_element_key=[' . $creative_element_key . '] $tmp_sys_notices_creative_mode=[' . $tmp_sys_notices_creative_mode . '] self::$image_output_mode=[' . self::$image_output_mode . ']');
 
         //
         // ALL_IMAGE, ALL_HTML, ALL_IMAGE_LOGO_OFF, ALL_HTML_LOGO_OFF
@@ -2073,13 +2081,13 @@ class crnrstn_image_v_html_content_manager {
             case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
             case CRNRSTN_UI_IMG_PNG_HTML_WRAPPED:
 
-                return '<link rel="shortcut icon" type="image/x-icon" href="'.self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/favicon.ico?v=420.00" />';
+                return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/favicon.ico?v=420.00" />';
 
             break;
             default:
                 //
                 // BASE64
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/favicon.ico';
+                return $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/favicon.ico';
 
             break;
 
@@ -2108,7 +2116,7 @@ class crnrstn_image_v_html_content_manager {
                 // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
                 // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
 
-                return '<link rel="shortcut icon" type="image/x-icon" href="' . self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/' . $tmp_filename . '.ico?v=420.00" />';
+                return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/' . $tmp_filename . '.ico?v=420.00" />';
 
             break;
 
@@ -2131,89 +2139,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -2232,89 +2158,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -2333,89 +2177,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -2434,89 +2196,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -2535,89 +2215,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -2636,89 +2234,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -2737,89 +2253,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -2838,89 +2272,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -2939,89 +2291,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3040,89 +2310,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3141,89 +2329,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3242,89 +2348,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3343,89 +2367,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3444,89 +2386,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3545,89 +2405,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3646,89 +2424,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3747,89 +2443,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3848,89 +2462,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -3949,89 +2481,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4050,89 +2500,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4150,89 +2518,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4250,89 +2536,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4350,89 +2554,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4450,89 +2572,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4550,89 +2590,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4650,89 +2608,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4750,89 +2626,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4850,89 +2644,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -4950,89 +2662,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5050,89 +2680,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5150,89 +2698,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5250,89 +2716,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5350,89 +2734,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5450,89 +2752,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5550,89 +2770,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5650,89 +2788,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5750,89 +2806,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5850,89 +2824,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -5950,89 +2842,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img id="crnrstn_messenger_message_bubbles_thumb" src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6050,89 +2860,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6151,89 +2879,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return '<div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">' . $tmp_str . '</div>';
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6252,89 +2898,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6353,89 +2917,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6447,96 +2929,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'crnrstn_logo_md';
         $tmp_width = 165;
         $tmp_height = 98;
-        $tmp_alt_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6548,96 +2948,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'crnrstn_R_lg';
         $tmp_width = 50;
         $tmp_height = 69;
-        $tmp_alt_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6649,96 +2967,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'crnrstn_R_md';
         $tmp_width = 26;
         $tmp_height = 35;
-        $tmp_alt_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6750,96 +2986,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'crnrstn_R_sm';
         $tmp_width = 12;
         $tmp_height = 16;
-        $tmp_alt_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6851,96 +3005,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'crnrstn_R_md_plus_wall';
         $tmp_width = 66;
         $tmp_height = 35;
-        $tmp_alt_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -6959,89 +3031,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7053,96 +3043,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'php_logo';
         $tmp_width = 65;
         $tmp_height = 35;
-        $tmp_alt_text = 'php v' . self::$oCRNRSTN_n->version_php();
-        $tmp_title_text = 'php v' . self::$oCRNRSTN_n->version_php() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'php v' . $this->oCRNRSTN->version_php();
+        $tmp_title_text = 'php v' . $this->oCRNRSTN->version_php() . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = 'https://www.php.net/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7152,98 +3060,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/powered_by_php.jpg
         $tmp_filename = 'powered_by_php';
-        $tmp_width = 100;
+        $tmp_width = '';
         $tmp_height = 35;
-        $tmp_alt_text = 'Powered by php v' . self::$oCRNRSTN_n->version_php();
-        $tmp_title_text = 'Powered by php v' . self::$oCRNRSTN_n->version_php() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'Powered by php v' . $this->oCRNRSTN->version_php();
+        $tmp_title_text = 'Powered by php v' . $this->oCRNRSTN->version_php() . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = 'https://www.php.net/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7256,95 +3082,13 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 73;
         $tmp_height = 39;
         $tmp_alt_text = 'ZEND';
-        $tmp_title_text = 'ZEND' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_title_text = 'ZEND' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = 'https://www.zend.com/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7357,95 +3101,13 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 212;
         $tmp_height = 40;
         $tmp_alt_text = 'ZEND FRAMEWORK';
-        $tmp_title_text = 'ZEND FRAMEWORK' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_title_text = 'ZEND FRAMEWORK' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = 'https://www.zend.com/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7458,95 +3120,13 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 224;
         $tmp_height = 38;
         $tmp_alt_text = 'ZEND FRAMEWORK 3';
-        $tmp_title_text = 'ZEND FRAMEWORK 3' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_title_text = 'ZEND FRAMEWORK 3' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = 'https://www.zend.com/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7559,95 +3139,13 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 30;
         $tmp_height = 35;
         $tmp_alt_text = 'Linux :: Tux the Penguin';
-        $tmp_title_text = 'Linux' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_title_text = 'Linux' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = 'https://www.linux.com/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7660,15 +3158,15 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 66;
         $tmp_height = 34;
 
-        if(strlen(self::$oCRNRSTN_n->version_mysqli()) > 0){
+        if(strlen($this->oCRNRSTN->version_mysqli()) > 0){
 
-            $tmp_alt_text = 'MySQLi v' . self::$oCRNRSTN_n->version_mysqli();
-            $tmp_title_text = 'MySQLi v' . self::$oCRNRSTN_n->version_mysqli() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_alt_text = 'MySQLi v' . $this->oCRNRSTN->version_mysqli();
+            $tmp_title_text = 'MySQLi v' . $this->oCRNRSTN->version_mysqli() . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }else{
 
             $tmp_alt_text = 'MySQLi';
-            $tmp_title_text = 'MySQLi' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_title_text = 'MySQLi' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }
 
@@ -7677,89 +3175,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7772,95 +3188,13 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 57;
         $tmp_height = 42;
         $tmp_alt_text = 'Red Hat';
-        $tmp_title_text = 'Red Hat' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_title_text = 'Red Hat' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = 'https://www.redhat.com/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7873,95 +3207,13 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 130;
         $tmp_height = 42;
         $tmp_alt_text = 'Red Hat';
-        $tmp_title_text = 'Red Hat' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_title_text = 'Red Hat' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = 'https://www.redhat.com/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7974,15 +3226,15 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 131;
         $tmp_height = 40;
 
-        if(strlen(self::$oCRNRSTN_n->version_apache()) > 0){
+        if(strlen($this->oCRNRSTN->version_apache()) > 0){
 
-            $tmp_alt_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache();
-            $tmp_title_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_alt_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache();
+            $tmp_title_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache() . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }else{
 
             $tmp_alt_text = 'Powered by Apache';
-            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }
 
@@ -7991,203 +3243,13 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
-
-        # # # # # # # #
-        // USE NO EXTENSION.
-        //_crnrstn/ui/imgs/jpg/powered_by_apache_2_4.jpg
-        $tmp_filename = 'powered_by_apache_2_4';
-        $tmp_width = 259;
-        $tmp_height = 32;
-
-        if(strlen(self::$oCRNRSTN_n->version_apache()) > 0){
-
-            $tmp_alt_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache();
-            $tmp_title_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-
-        }else{
-
-            $tmp_alt_text = 'Powered by Apache';
-            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-
-        }
-
-        $tmp_link = 'http://apache.org/';
-        $tmp_target = '_blank';
-        # # # # # # # #
-        # # # # # # # #
-
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
     private function APACHE_POWER_VERSION(){
 
-        $version = self::$oCRNRSTN_n->version_apache_sysimg();
+        $version = $this->oCRNRSTN->version_apache_sysimg();
 
         switch($version){
             case 2.4:
@@ -8229,15 +3291,15 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 259;
         $tmp_height = 32;
 
-        if(strlen(self::$oCRNRSTN_n->version_apache()) > 0){
+        if(strlen($this->oCRNRSTN->version_apache()) > 0){
 
-            $tmp_alt_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache();
-            $tmp_title_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_alt_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache();
+            $tmp_title_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache() . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }else{
 
             $tmp_alt_text = 'Powered by Apache';
-            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }
 
@@ -8246,89 +3308,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -8341,15 +3321,15 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 259;
         $tmp_height = 32;
 
-        if(strlen(self::$oCRNRSTN_n->version_apache()) > 0){
+        if(strlen($this->oCRNRSTN->version_apache()) > 0){
 
-            $tmp_alt_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache();
-            $tmp_title_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_alt_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache();
+            $tmp_title_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache() . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }else{
 
             $tmp_alt_text = 'Powered by Apache';
-            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }
 
@@ -8358,89 +3338,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -8453,15 +3351,15 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 259;
         $tmp_height = 32;
 
-        if(strlen(self::$oCRNRSTN_n->version_apache()) > 0){
+        if(strlen($this->oCRNRSTN->version_apache()) > 0){
 
-            $tmp_alt_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache();
-            $tmp_title_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_alt_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache();
+            $tmp_title_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache() . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }else{
 
             $tmp_alt_text = 'Powered by Apache';
-            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }
 
@@ -8470,89 +3368,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -8565,15 +3381,15 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 259;
         $tmp_height = 32;
 
-        if(strlen(self::$oCRNRSTN_n->version_apache()) > 0){
+        if(strlen($this->oCRNRSTN->version_apache()) > 0){
 
-            $tmp_alt_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache();
-            $tmp_title_text = 'Powered by Apache v' . self::$oCRNRSTN_n->version_apache() . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_alt_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache();
+            $tmp_title_text = 'Powered by Apache v' . $this->oCRNRSTN->version_apache() . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }else{
 
             $tmp_alt_text = 'Powered by Apache';
-            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+            $tmp_title_text = 'Powered by Apache v' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         }
 
@@ -8582,89 +3398,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -8678,96 +3412,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_height = 32;
 
         $tmp_alt_text = 'Powered by Apache';
-        $tmp_title_text = 'Powered by Apache' . ' :: CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_title_text = 'Powered by Apache' . ' :: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
 
         $tmp_link = 'http://apache.org/';
         $tmp_target = '_blank';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -8779,96 +3431,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'crnrstn_logo_lg';
         $tmp_width = 345;
         $tmp_height = 206;
-        $tmp_alt_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -8880,96 +3450,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'signin_frm_reflection';
         $tmp_width = 722;
         $tmp_height = 55;
-        $tmp_alt_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -8988,89 +3476,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -9089,89 +3495,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -9190,89 +3514,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -9291,89 +3533,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -9392,89 +3552,7 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -9486,96 +3564,14 @@ class crnrstn_image_v_html_content_manager {
         $tmp_filename = 'email_inbox_icon';
         $tmp_width = 201;
         $tmp_height = 185;
-        $tmp_alt_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn();
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -9721,95 +3717,13 @@ class crnrstn_image_v_html_content_manager {
         $tmp_width = 525;
         $tmp_height = 351;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<div style="border-right:10px solid #FFF;"><img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;"></div>';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -9819,98 +3733,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_lay_00.jpg
         $tmp_filename = 'j5_wolf_pup_lay_00';
-        $tmp_width = 480;
+        $tmp_width = '';
         $tmp_height = 345;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -9920,98 +3752,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_lay_01.jpg
         $tmp_filename = 'j5_wolf_pup_lay_01';
-        $tmp_width = 431;
+        $tmp_width = '';
         $tmp_height = 400;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10021,98 +3771,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_lay_02.jpg
         $tmp_filename = 'j5_wolf_pup_lay_02';
-        $tmp_width = 379;
+        $tmp_width = '';
         $tmp_height = 348;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10122,98 +3790,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_lay_look_away.jpg
         $tmp_filename = 'j5_wolf_pup_lay_look_away';
-        $tmp_width = 260;
+        $tmp_width = '';
         $tmp_height = 400;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10223,98 +3809,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_lay_look_forward.jpg
         $tmp_filename = 'j5_wolf_pup_lay_look_forward';
-        $tmp_width = 270;
+        $tmp_width = '';
         $tmp_height = 450;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10324,98 +3828,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_lay_look_forward_leash.jpg
         $tmp_filename = 'j5_wolf_pup_lay_look_forward_leash';
-        $tmp_width = 321;
+        $tmp_width = '';
         $tmp_height = 365;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10425,98 +3847,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_leash_eyes_closed.jpg
         $tmp_filename = 'j5_wolf_pup_leash_eyes_closed';
-        $tmp_width = 450;
+        $tmp_width = '';
         $tmp_height = 370;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10526,98 +3866,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_lil_5_pts.jpg
         $tmp_filename = 'j5_wolf_pup_lil_5_pts';
-        $tmp_width = 300;
+        $tmp_width = '';
         $tmp_height = 340;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10627,98 +3885,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_eyes_closed.jpg
         $tmp_filename = 'j5_wolf_pup_sit_eyes_closed';
-        $tmp_width = 307;
+        $tmp_width = '';
         $tmp_height = 376;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10728,98 +3904,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_look_forward.jpg
         $tmp_filename = 'j5_wolf_pup_sit_look_forward';
-        $tmp_width = 203;
+        $tmp_width = '';
         $tmp_height = 400;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10829,98 +3923,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_look_left_ish_shadow.jpg
         $tmp_filename = 'j5_wolf_pup_sit_look_left_ish_shadow';
-        $tmp_width = 585;
+        $tmp_width = '';
         $tmp_height = 305;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -10930,98 +3942,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_look_right.jpg
         $tmp_filename = 'j5_wolf_pup_sit_look_right';
-        $tmp_width = 261;
+        $tmp_width = '';
         $tmp_height = 416;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -11031,98 +3961,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_look_right_longshadow.jpg
         $tmp_filename = 'j5_wolf_pup_sit_look_right_longshadow';
-        $tmp_width = 541;
+        $tmp_width = '';
         $tmp_height = 346;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -11132,98 +3980,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_look_right_shadow.jpg
         $tmp_filename = 'j5_wolf_pup_sit_look_right_shadow';
-        $tmp_width = 497;
+        $tmp_width = '';
         $tmp_height = 290;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -11233,98 +3999,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_look_right_shortshadow.jpg
         $tmp_filename = 'j5_wolf_pup_sit_look_right_shortshadow';
-        $tmp_width = 387;
+        $tmp_width = '';
         $tmp_height = 443;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -11334,98 +4018,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_look_right_up.jpg
         $tmp_filename = 'j5_wolf_pup_sit_look_right_up';
-        $tmp_width = 207;
+        $tmp_width = '';
         $tmp_height = 413;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -11435,98 +4037,16 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_sit_look_rightsharp_shadow.jpg
         $tmp_filename = 'j5_wolf_pup_sit_look_rightsharp_shadow';
-        $tmp_width = 495;
+        $tmp_width = '';
         $tmp_height = 331;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -11536,121 +4056,77 @@ class crnrstn_image_v_html_content_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/j5_wolf_pup_stand_look_right.jpg
         $tmp_filename = 'j5_wolf_pup_stand_look_right';
-        $tmp_width = 300;
+        $tmp_width = '';
         $tmp_height = 390;
         $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
 
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-
-        }
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
     private function J5_WOLF_PUP_STAND_LOOK_UP(){
 
-            # # # # # # # #
-            // USE NO EXTENSION.
-            //_crnrstn/ui/imgs/jpg/j5_wolf_pup_stand_look_up.jpg
-            $tmp_filename = 'j5_wolf_pup_stand_look_up';
-            $tmp_width = 270;
-            $tmp_height = 347;
-            $tmp_alt_text = 'J5 Wolf Pup';
-            $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
-            $tmp_link = '';
-            $tmp_target = '';
-            # # # # # # # #
-            # # # # # # # #
+        # # # # # # # #
+        // USE NO EXTENSION.
+        //_crnrstn/ui/imgs/jpg/j5_wolf_pup_stand_look_up.jpg
+        $tmp_filename = 'j5_wolf_pup_stand_look_up';
+        $tmp_width = '';
+        $tmp_height = 347;
+        $tmp_alt_text = 'J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_link = '';
+        $tmp_target = '';
+        # # # # # # # #
+        # # # # # # # #
+
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
+
+    }
+
+    private function J5_WOLF_PUP_WALK(){
+
+        # # # # # # # #
+        // USE NO EXTENSION.
+        //_crnrstn/ui/imgs/jpg/j5_wolf_pup_walk.jpg
+        $tmp_filename = 'j5_wolf_pup_walk';
+        $tmp_width = '';
+        $tmp_height = 430;
+        $tmp_alt_text = 'J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_link = '';
+        $tmp_target = '';
+        # # # # # # # #
+        # # # # # # # #
+
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
+
+    }
+
+    private function return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target){
+
+        try{
 
             switch(self::$image_output_mode){
-                case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
+                case CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED:
 
-                    $tmp_str = '';
-                    require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
+                    $tmp_path_base64 = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php';
+
+                    if(!@include($tmp_path_base64)){
+
+
+
+                    }
+
+                    if(isset($system_file_serial)) {
+
+                        $tmp_str = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial]['base64'];
+
+                    }
 
                     if(strlen($tmp_link) > 0){
 
@@ -11665,10 +4141,81 @@ class crnrstn_image_v_html_content_manager {
                     }
 
                 break;
-                case CRNRSTN_UI_IMG_BASE64:
+                case CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED:
+                case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
 
-                    $tmp_str = '';
+                    $tmp_path_base64 = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php';
+
+                    if(!include($tmp_path_base64)){
+
+                        $this->oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                        $this->oCRNRSTN->print_r('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                        $this->oCRNRSTN->system_base64_synchronize($tmp_filename . '.png');
+
+                        //
+                        // TRY AGAIN (...AFTER system_base64_synchronize())
+                        if(!@include($tmp_path_base64)){
+
+                            $this->oCRNRSTN->error_log('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                            $this->oCRNRSTN->print_r('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                            //
+                            // HOOOSTON...VE HAF PROBLEM!
+                            throw new Exception('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.');
+
+                        }else{
+
+                            $this->oCRNRSTN->print_r('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                        }
+
+                    }
+
+                    if(isset($system_file_serial)){
+
+                        $tmp_str = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial ]['base64'];
+
+                    }
+
+                    if(strlen($tmp_link) > 0){
+
+                        $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
+
+                        return $tmp_str;
+
+                    }else{
+
+                        return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+
+                    }
+
+                break;
+                case CRNRSTN_UI_IMG_BASE64_JPEG:
+
                     require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
+
+                    if(isset($system_file_serial)){
+
+                        $tmp_str = self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial ]['base64'];
+
+                    }
+
+                    //
+                    // BASE64
+                    return $tmp_str;
+
+                break;
+                case CRNRSTN_UI_IMG_BASE64:
+                case CRNRSTN_UI_IMG_BASE64_PNG:
+
+                    require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
+
+                    if(isset($system_file_serial)) {
+
+                        $tmp_str = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial ]['base64'];
+
+                    }
 
                     //
                     // BASE64
@@ -11677,7 +4224,7 @@ class crnrstn_image_v_html_content_manager {
                 break;
                 case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
 
-                    $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
+                    $tmp_str = $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
 
                     if(strlen($tmp_link) > 0){
 
@@ -11694,7 +4241,7 @@ class crnrstn_image_v_html_content_manager {
                 break;
                 case CRNRSTN_UI_IMG_JPEG:
 
-                    $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
+                    $tmp_str = $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
 
                     //
                     // JPEG
@@ -11703,7 +4250,22 @@ class crnrstn_image_v_html_content_manager {
                 break;
                 case CRNRSTN_UI_IMG_PNG:
 
-                    return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
+                    return $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
+
+                break;
+                case CRNRSTN_SETTINGS_CRNRSTN:
+
+                    $tmp_ARRAY = array();
+
+                    $tmp_ARRAY['filename'] = $tmp_filename;
+                    $tmp_ARRAY['width'] = $tmp_width;
+                    $tmp_ARRAY['height'] = $tmp_height;
+                    $tmp_ARRAY['alt_text'] = $tmp_alt_text;
+                    $tmp_ARRAY['title_text'] = $tmp_title_text;
+                    $tmp_ARRAY['link'] = $tmp_link;
+                    $tmp_ARRAY['target'] = $tmp_target;
+
+                    return $tmp_ARRAY;
 
                 break;
                 default:
@@ -11712,7 +4274,7 @@ class crnrstn_image_v_html_content_manager {
 
                     //
                     // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                    $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
+                    $tmp_str = $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
 
                     if(strlen($tmp_link) > 0){
 
@@ -11730,104 +4292,13 @@ class crnrstn_image_v_html_content_manager {
 
             }
 
-        }
+        }catch( Exception $e ){
 
-    private function J5_WOLF_PUP_WALK(){
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
-        # # # # # # # #
-        // USE NO EXTENSION.
-        //_crnrstn/ui/imgs/jpg/j5_wolf_pup_walk.jpg
-        $tmp_filename = 'j5_wolf_pup_walk';
-        $tmp_width = 411;
-        $tmp_height = 430;
-        $tmp_alt_text = 'J5 Wolf Pup';
-        $tmp_title_text = 'CRNRSTN :: v' . self::$oCRNRSTN_n->version_crnrstn() . ' :: J5 Wolf Pup';
-        $tmp_link = '';
-        $tmp_target = '';
-        # # # # # # # #
-        # # # # # # # #
-
-        switch(self::$image_output_mode){
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64:
-
-                $tmp_str = '';
-                require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
-
-                //
-                // BASE64
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
-
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
-
-                //
-                // JPEG
-                return $tmp_str;
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
-
-                return self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-            break;
-            default:
-
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
-                //
-                // HTTP/S PATH TO IMAGE - PUBLIC IP...OF COURSE.
-                $tmp_str = self::$oCRNRSTN_n->crnrstn_resources_http_path() . 'ui/imgs/png/' . $tmp_filename . '.png';
-
-                if(strlen($tmp_link) > 0){
-
-                    $tmp_str = $this->return_linked_ui_element($tmp_str, $tmp_link, $tmp_target, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text);
-
-                    return $tmp_str;
-
-                }else{
-
-                    return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
-
-                }
-
-            break;
+            return false;
 
         }
 
@@ -11850,9 +4321,9 @@ class crnrstn_image_v_html_content_manager {
 
         if(strlen($link) > 0){
 
-            if(strlen(self::$oCRNRSTN_n->env_key) > 0 && self::$oCRNRSTN_n->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
+            if(strlen($this->oCRNRSTN->env_key) > 0 && $this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
 
-                $tmp_str = '<a href="' . self::$oCRNRSTN_n->return_sticky_link($link, $meta_params_ARRAY) . '" target="' . $target . '">' . $tmp_str . '</a>';
+                $tmp_str = '<a href="' . $this->oCRNRSTN->return_sticky_link($link, $meta_params_ARRAY) . '" target="' . $target . '">' . $tmp_str . '</a>';
 
                 return $tmp_str;
 
@@ -11929,6 +4400,879 @@ class crnrstn_image_v_html_content_manager {
         }
 
         return $attribute_data;
+
+    }
+
+    private function return_creative_profile($data_key){
+
+        /*
+        $tmp_filename = 'j5_wolf_pup_walk';
+        $tmp_width = '';
+        $tmp_height = 430;
+        $tmp_alt_text = 'J5 Wolf Pup';
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
+        $tmp_link = '';
+        $tmp_target = '';
+        */
+
+        return $this->return_creative($data_key, CRNRSTN_SETTINGS_CRNRSTN, 'ALL_IMAGE');
+
+    }
+
+    private function load_system_asset($data_type_constant){
+
+        $file_path = self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['path_filename'];
+
+        if(!($tmp_base64_filemtime = @filemtime(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename']))){
+
+            $tmp_base64_filemtime = $this->oCRNRSTN->return_micro_time();
+
+        }
+
+        switch($data_type_constant){
+            case CRNRSTN_UI_IMG_JPEG:
+            case CRNRSTN_UI_IMG_PNG:
+
+                list($tmp_width, $tmp_height) = getimagesize($file_path);
+                self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['image_dimensions'] = $tmp_width . ' pixels in width X ' . $tmp_height . ' pixels in height.';
+
+            break;
+
+        }
+
+        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['mime_content_type'] = mime_content_type($file_path);
+        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['filesize'] = $this->oCRNRSTN->format_bytes($this->oCRNRSTN->find_filesize($file_path), 5);
+        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['filemtime'] = filemtime($file_path);
+        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['md5'] = md5_file($file_path);
+        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['sha1'] = sha1_file($file_path);
+        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filemtime'] = $tmp_base64_filemtime;
+
+        $tmp_base64_prefix = '';
+        $tmp_base64_append = '';
+        if(isset(self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['BASE64_BACKGROUND_CSS_WRAPPED'])){
+
+            switch(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename']){
+                case 'elem_shadow_btm.png':
+
+                    //elem_shadow_btm.php
+                    $tmp_base64_prefix = 'background-image:url(';
+                    $tmp_base64_append = ')';
+
+                break;
+                case 'signin_frm_reflection.png':
+
+                    //signin_frm_reflection.php
+                    $tmp_base64_prefix = '<div style="width:722px; height:55px; background: url(\'';
+                    $tmp_base64_append = '\'); background-repeat: no-repeat;"></div>';
+
+                break;
+
+            }
+
+        }
+
+        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['base64'] = $tmp_base64_prefix . $this->oCRNRSTN->encode_image($file_path) . $tmp_base64_append;
+        //$this->oCRNRSTN->print_r('LOAD ASSET[' . $data_type_constant . ']['.print_r(self::$image_filesystem_meta_ARRAY, true).'].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        return true;
+
+    }
+
+    private function valid_system_asset($data_type_constant, $validation_type){
+
+        if(!isset(self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['path_filename'])){
+
+            $this->oCRNRSTN->error_log('System BASE64 asset sync with file [' . $data_type_constant . '] required.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+            return false;
+
+        }
+
+        $tmp_current_base64 = '';
+        $tmp_base64 = self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['base64'];
+
+        if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['arch_1.0_base64'])){
+
+            $tmp_current_base64 = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['arch_1.0_base64'];
+
+        }
+
+        if(strlen($tmp_current_base64) > 0){
+
+            if($tmp_current_base64 != $tmp_base64){
+
+                //self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['arch_1.0_base64'] = '';
+                //$this->oCRNRSTN->print_r('INVALID [' . $data_type_constant . '] BASE64 FROM FILE.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->error_log('System BASE64 asset sync with file [' . $data_type_constant . '] required.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+                return false;
+
+            }
+
+        }
+
+        //
+        // CURRENT BASE64
+        switch($data_type_constant){
+            case CRNRSTN_UI_IMG_JPEG:
+
+                $tmp_BASE64_STATIC_PHP = '';
+                $tmp_BASE64_LIVE = self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['base64'];
+
+                if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['base64'])){
+
+                    $tmp_BASE64_STATIC_PHP = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['base64'];
+
+                }
+
+                if(strcmp($tmp_BASE64_LIVE, $tmp_BASE64_STATIC_PHP) !== 0){
+
+                    //error_log(__LINE__ . ' img [' . print_r(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt], true) . '].');
+
+                    //$this->oCRNRSTN->print_r('DELTA [' . __METHOD__ . '] ERROR! [JPEG] IMAGE_FILE_BASE64[len=' . strlen($tmp_BASE64_LIVE) . '] STATIC_PHP_BASE64[len=' . strlen($tmp_BASE64_STATIC_PHP) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    //$this->oCRNRSTN->print_r('ERR VALUES [' . CRNRSTN_UI_IMG_BASE64_JPEG . '][' . self::$request_salt . '][' . $this->system_file_serial . '][\'base64\'].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                    $this->oCRNRSTN->error_log('System BASE64 asset sync with JPEG file [' . $data_type_constant . '] required.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+                    return false;
+
+                }
+
+            break;
+            default:
+
+                // case CRNRSTN_UI_IMG_PNG:
+                $tmp_BASE64_STATIC_PHP = '';
+                $tmp_BASE64_LIVE = self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['base64'];
+
+                if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['base64'])){
+
+                    $tmp_BASE64_STATIC_PHP = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['base64'];
+
+                }
+
+                if(strcmp($tmp_BASE64_LIVE, $tmp_BASE64_STATIC_PHP) !== 0){
+
+                    //$this->oCRNRSTN->print_r('DELTA ERROR ON [' . $data_type_constant . ']![PNG] LIVE=[' . $tmp_BASE64_LIVE . '] STATIC_PHP=[' . $tmp_BASE64_STATIC_PHP . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    //$this->oCRNRSTN->print_r('ERR VALUES [' . CRNRSTN_UI_IMG_BASE64_JPEG . '][' . self::$request_salt . '][' . $this->system_file_serial . '][\'base64\'].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                    $this->oCRNRSTN->error_log('System BASE64 asset sync with PNG file [' . $data_type_constant . '] required.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+                    return false;
+
+                }
+
+            break;
+
+        }
+
+        return true;
+
+    }
+
+    private function system_base64_write(){
+
+        try{
+
+            $tmp_current_perms = '';
+            $tmp_data_str_out = $this->return_system_base64_file_contents();
+
+            //$this->oCRNRSTN->print_r('FAKEY-FAKE-WRITE SYSTEM FILE NOW [' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$this->oCRNRSTN->print_r('WRITE SYSTEM FILE NOW [' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            $mkdir_mode = 775;
+            $tmp_filepath = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'];
+            $tmp_filename = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'];
+
+            //
+            // NEW IMAGES WILL NOT HAVE BASE64 FILE BY DEFAULT, AND fileperms() WILL THEN THROW PHP WARNING.
+            if(is_file($tmp_filepath)){
+
+                $tmp_current_perms = substr(decoct(fileperms($tmp_filepath)), 2);
+
+            }
+
+            //
+            // CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
+            $tmp_minimum_bytes_required = strlen($tmp_data_str_out);
+            if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
+
+                //
+                // HOOOSTON...VE HAF PROBLEM!
+                $this->oCRNRSTN->error_log('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                $this->oCRNRSTN->print_r('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                throw new Exception('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.');
+
+            }
+
+            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'CRNRSTN :: has experienced permissions related error as the destination file, ' . $tmp_filename . ' (' . $tmp_current_perms . '), is NOT writable to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ', and furthermore ';
+            if($resource_file = fopen($tmp_filepath, 'w')){
+
+                $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+
+                fwrite($resource_file, $tmp_data_str_out);
+                fclose($resource_file);
+
+                $this->oCRNRSTN->error_log('Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+            }else{
+
+                //$this->oCRNRSTN->print_r('SYSTEM FILE WRITE...ERROR!! [' . $tmp_filename. '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->error_log('CRNRSTN :: has experienced permissions related error as the target file, ' . $tmp_filepath . ', is NOT writable with current permissions as ' . $tmp_current_perms . '.');
+                $this->oCRNRSTN->print_r('CRNRSTN :: has experienced permissions related error as the target file, ' . $tmp_filepath . ', is NOT writable with current permissions as ' . $tmp_current_perms . '.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                //
+                // ATTEMPT TO CHANGE PERMISSIONS AND CHECK AGAIN
+                // BEFORE COMPLETELY GIVING UP
+                $this->oCRNRSTN->error_log('Attempting to modify permissions to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ' for file write at, ' . $tmp_filepath . '. The current permissions, ' . $tmp_current_perms . ', at file for CRNRSTN :: render the file NOT to be writable.');
+                $this->oCRNRSTN->print_r('Attempting to modify permissions to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ' for file write at, ' . $tmp_filepath . '. The current permissions, ' . $tmp_current_perms . ', at file for CRNRSTN :: render the file NOT to be writable.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'CRNRSTN :: has experienced permissions related error as the destination file, ' . $tmp_filepath . ' (' . $tmp_current_perms . '), is NOT writable to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ', and furthermore ';
+                if(chmod($tmp_filepath, $mkdir_mode)){
+
+                    $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+
+                    //
+                    // ANOTHER ATTEMPT TO WRITE AFTER MODIFICATION OF FILE PERMISSIONS
+                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'An attempt at resolving write permissions related err at the destination file, ' . $tmp_filename . ' (' . $tmp_current_perms . '), has failed. File permissions could NOT be set to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ', and furthermore ';
+                    if($resource_file = fopen($tmp_filepath, 'w')){
+
+                        $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+
+                        fwrite($resource_file, $tmp_data_str_out);
+                        fclose($resource_file);
+
+                    }
+
+                    return true;
+
+                }else{
+
+                    //
+                    // HOOOSTON...VE HAF PROBLEM!
+                    $this->oCRNRSTN->error_log('Permission denied. The target file, ' . $tmp_filepath . ', is NOT writable with current permissions as ' . $tmp_current_perms . '.');
+                    $this->oCRNRSTN->print_r('Permission denied. The target file, ' . $tmp_filepath . ', is NOT writable with current permissions as ' . $tmp_current_perms . '.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+            }
+
+            // THE BASE64 OUTPUT WRITTEN TO FILE
+            //$this->oCRNRSTN->print_r($tmp_data_str_out, self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] . ' :: BASE64 CHECK.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            return true;
+
+        }catch( Exception $e ) {
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+    }
+
+    private function return_system_base64_file_contents(){
+
+        $tmp_file_input_str = '';
+
+        $tmp_ascii = $this->oCRNRSTN->return_CRNRSTN_ASCII_ART();
+        $tmp_ascii = $this->oCRNRSTN->proper_replace('<span style="color:#F90000;">','', $tmp_ascii);
+        $tmp_ascii = $this->oCRNRSTN->proper_replace('</span>','', $tmp_ascii);
+
+        $has_png = false;
+        $has_jpeg = false;
+
+        $tmp_file_serial = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['serial'];
+
+        $tmp_lt = '<';
+
+        //
+        // BASE64 FILE HEADER :: July 30, 2022 @ 1908 hrs
+        $tmp_file_input_str .= $tmp_lt . '?php
+/* 
+// J5
+// Code is Poetry */
+# # C # R # N # R # S # T # N # : : # # ##
+#
+# CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . '
+#
+# DATE GENERATED: ' . $this->oCRNRSTN->return_micro_time() . '
+# FILE NAME: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] . '
+# FILE PATH: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] . '
+# FILE SERIAL: ' . $tmp_file_serial . '
+#
+# SERVER IP: ' . $_SERVER['SERVER_ADDR'] . '
+# CLIENT IP: ' . $this->oCRNRSTN->return_client_ip() . ' (' . $_SERVER['REMOTE_ADDR']. ')
+# PHPSESSION: ' . session_id(). '
+# GENERATING SERVER INFORMATION: ' . $this->oCRNRSTN->proper_version('LINUX') .
+            ', ' . $this->oCRNRSTN->proper_version('APACHE') .
+            ', ' . $this->oCRNRSTN->proper_version('MYSQLI') .
+            ', ' . $this->oCRNRSTN->proper_version('PHP') .
+            ', ' . $this->oCRNRSTN->proper_version('OPENSSL') .
+            ', ' . $this->oCRNRSTN->proper_version('SOAP') . '
+#';
+
+        if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['base64']) || isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['arch_1.0_base64'])){
+
+            $has_png = true;
+            $tmp_file_input_str .= '
+# # # # #
+# PNG FILE (ORIGINAL) :: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] . '
+# PNG IMAGE DIMENSIONS: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] . '
+# PNG FILE EXTENSION: ' . pathinfo(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'], PATHINFO_EXTENSION) . '
+# PNG FILE MIME TYPE: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['mime_content_type'] . '
+# PNG FILE PATH: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] . '
+# PNG FILE SIZE: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filesize'] . '
+# PNG FILE LAST MODIFIED: ' . date("Y-m-d H:i:s", self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filemtime']) . '
+# PNG FILE MD5: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['md5'] . '
+# PNG FILE SHA1: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['sha1'] . '
+# PNG FILE ENCODED LENGTH (BASE64): ' . $this->oCRNRSTN->number_format_keep_precision(strlen(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['base64'])) . ' bytes
+# PROFILE ACCESS: ANONYMOUS
+# ACCESS TYPE: BASIC
+#';
+
+        }
+
+        //
+        // WE HAVE $base64_encode_png AND $base64_encode_jpg TO CHECK AGAINST THE BASE64 $TMP_STR[] SITUATION
+        // THAT YOU SAID YOU'D TAKE CARE OF, REAL QUICK.
+        if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['base64']) || isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['arch_1.0_base64'])){
+
+            $has_jpeg = true;
+            $tmp_file_input_str .= '
+# # # # #
+# JPEG FILE (ORIGINAL) :: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] . '
+# JPEG IMAGE DIMENSIONS: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['image_dimensions'] . '
+# JPEG FILE EXTENSION: ' . pathinfo(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'], PATHINFO_EXTENSION) . '
+# JPEG FILE MIME TYPE: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['mime_content_type'] . '
+# JPEG FILE PATH: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] . '
+# JPEG FILE SIZE: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filesize'] . '
+# JPEG FILE LAST MODIFIED: ' . date("Y-m-d H:i:s", self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filemtime']) . '
+# JPEG FILE MD5: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['md5'] . '
+# JPEG FILE SHA1: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['sha1'] . '
+# JPEG FILE ENCODED LENGTH (BASE64): ' . $this->oCRNRSTN->number_format_keep_precision(strlen(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['base64'])) . ' bytes
+# PROFILE ACCESS: ANONYMOUS
+# ACCESS TYPE: BASIC
+#
+# # # # #
+';
+
+        }
+        /*
+        //
+        // July 31, 2022 @ 0259 hrs :: EVIFWEB IP INTEGRATIONS FOR (PNG/JPG)BASE64 .PHP FILE MANAGEMENT
+        $tmp_client_dir = substr(self::$oUser->retrieve_Form_Data("CLIENT_ID"), 0, -25);
+        $tmp_assetSerial = self::$oUser->generateNewKey(50);
+
+        $tmp_name = explode(\'.\', $_FILES[\'assetfile\'][\'name\']);
+
+        $this->oCRNRSTN->assetParams[\'FILE_EXT\'] = strtolower(array_pop($tmp_name));
+        $this->oCRNRSTN->assetParams[\'FILE_MIME_TYPE\'] = mime_content_type($_FILES["assetfile"]["tmp_name"]);
+        $this->oCRNRSTN->assetParams[\'FILE_MD5\'] = md5_file($_FILES["assetfile"]["tmp_name"]);  // 32
+        $this->oCRNRSTN->assetParams[\'FILE_SHA1\'] = sha1_file($_FILES["assetfile"]["tmp_name"]);  // 40
+        error_log("assetmgr (954) sha1[".$this->oCRNRSTN->assetParams[\'FILE_SHA1\']."] len[".strlen($this->oCRNRSTN->assetParams[\'FILE_SHA1\'])."]");
+
+        */
+
+        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['datecreated_base64'])){
+
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['datecreated_base64'] = $this->oCRNRSTN->return_micro_time();
+
+        }
+
+        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['datecreated_base64'])){
+
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['datecreated_base64'] = $this->oCRNRSTN->return_micro_time();
+
+        }
+
+        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][self::$request_salt]['lastmodified_base64'])){
+
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['lastmodified_base64'] = $this->oCRNRSTN->return_micro_time();
+
+        }
+
+        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['lastmodified_base64'])){
+
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['lastmodified_base64'] = $this->oCRNRSTN->return_micro_time();
+
+        }
+
+        $tmp_file_input_str  .= '/*
+' . $tmp_ascii . '*/
+
+
+$system_file_serial = \'' . $tmp_file_serial . '\';
+
+switch(self::$image_output_mode){
+    case CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED:
+    case CRNRSTN_UI_IMG_BASE64_JPEG:
+            
+        //
+        // BASE64 ENCODE OF JPG';
+        if($has_jpeg){
+
+            $tmp_file_input_str  .= '
+        self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'datecreated_base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['datecreated_base64'] . '\';
+        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['base64'] . '\';
+';
+
+        }
+
+        $tmp_file_input_str  .= '
+    break;
+    default:
+    
+        //
+        // BASE64 ENCODE OF PNG';
+        if($has_png){
+
+            $tmp_file_input_str  .= '
+        self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'datecreated_base64_PNG\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['datecreated_base64'] . '\';
+        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial][\'base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['base64'] . '\';
+';
+
+        }
+
+        $tmp_file_input_str  .= '
+    break;
+    
+}
+
+//
+// BASE64 LAST MODIFIED
+';
+        if($has_png){
+
+            $tmp_file_input_str .= 'self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'lastmodified_base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt]['lastmodified_base64'] . '\';';
+
+        }
+
+        if($has_jpeg){
+
+            $tmp_file_input_str .= '
+self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'lastmodified_base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt]['lastmodified_base64'] . '\';
+
+';
+
+        }
+
+        $tmp_file_input_str .= '//
+// BASE64 HASH/CHECKSUM
+';
+        if($has_png){
+
+            $tmp_file_input_str .= 'self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial][\'base64_crc\'] = \'' . $this->oCRNRSTN->crcINT(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['base64']) . '\';
+self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial][\'base64_md5\'] = \'' . md5(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['base64']) . '\';
+';
+
+        }
+
+        if($has_jpeg){
+
+            $tmp_file_input_str .= '
+self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'base64_crc\'] = \'' . $this->oCRNRSTN->crcINT(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['base64']) . '\';
+self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'base64_md5\'] = \'' . md5(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['base64']) . '\';
+
+';
+
+        }
+
+        $tmp_file_input_str .= '//
+// HASHES FOR BASE64 SOURCE PNG FILE
+';
+        if($has_png){
+
+            $tmp_file_input_str .= 'self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial][\'md5\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['md5'] . '\';';
+            $tmp_file_input_str .= '
+self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial][\'sha1\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['sha1'] . '\';
+
+';
+
+        }
+
+        $tmp_file_input_str .= '//
+// HASHES FOR BASE64 SOURCE JPEG FILE
+';
+        if($has_jpeg){
+
+            $tmp_file_input_str .= 'self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'md5\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['md5'] . '\';';
+            $tmp_file_input_str  .= '
+self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'sha1\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['sha1'] . '\';';
+
+        }
+
+        $tmp_file_input_str  .= '
+
+
+# # # # # 
+# # # # # END OF CRNRSTN :: GENERATED SYSTEM FILE
+# # # # # [' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . '] 
+';
+
+        return $tmp_file_input_str;
+
+    }
+
+    private function system_base64_file_synchronized(){
+
+        //
+        // ATTEMPT TO READ CURRENT BASE64 SITUATION FOR A CHECK.
+        $tmp_base64_content_delta = 0;
+        if(is_file(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'])) {
+
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['arch_1.0_base64'] = '';
+            $tmp_curr_output_mode = self::$image_output_mode;
+
+            //
+            // MANUALLY CHANGE MODE. A PRIVILEGE OF SYSTEM MAINTENANCE. (THEN PUT IT BACK.)
+            self::$image_output_mode = CRNRSTN_UI_IMG_BASE64_PNG;
+
+            //
+            // IS BASE64 ACCURATE? [PNG]
+            include(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename']);
+
+            self::$image_output_mode = $tmp_curr_output_mode;
+
+            if(isset($system_file_serial)){
+
+                //$this->oCRNRSTN->print_r('GETTING ON THAT NEW BASE64 DATA ARCH.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                $this->system_file_serial = $system_file_serial;
+
+                if (isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial]['base64'])) {
+
+                    $tmp_bpng = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial]['base64'];
+                    //$this->oCRNRSTN->print_r('BASE64 [PNG] CHECKSUM = [' . print_r($this->oCRNRSTN->crcINT($tmp_bpng), true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+            }
+
+            //
+            // MANUALLY CHANGE MODE. A PRIVILEGE OF SYSTEM MAINTENANCE. (THEN PUT IT BACK.)
+            self::$image_output_mode = CRNRSTN_UI_IMG_BASE64_JPEG;
+
+            //
+            // IS BASE64 ACCURATE? [JPEG]
+            include(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename']);
+
+            //
+            // ...(THEN PUT IT BACK.)
+            self::$image_output_mode = $tmp_curr_output_mode;
+
+            if (isset($system_file_serial)) {
+
+                if (isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial]['base64'])) {
+
+                    $tmp_bj = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial]['base64'];
+                    //$this->oCRNRSTN->print_r('BASE64 [JPEG] CHECKSUM = [' . print_r($this->oCRNRSTN->crcINT($tmp_bj), true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+            }
+
+            if(isset($tmp_str)){
+
+                //$this->oCRNRSTN->print_r('PROCESSING OLD BASE64 DATA ARCH.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                $tmp_base64_content_delta++;
+                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['base64'] = $tmp_str;
+                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['base64_crc'] = $this->oCRNRSTN->crcINT($tmp_str);
+                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['arch_1.0_base64'] = $tmp_str;
+
+                $pos_bg_css = stripos($tmp_str, 'background');
+                if ($pos_bg_css !== false) {
+
+                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['BASE64_BACKGROUND_CSS_WRAPPED'] = 1;
+                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['BASE64_BACKGROUND_CSS_WRAPPED'] = 1;
+
+                }
+
+            }
+
+        }
+
+        //
+        // LOAD (ATTEMPT TO) FILE META INTO MEMORY - PNG
+        if($this->load_system_asset(CRNRSTN_UI_IMG_PNG)){
+
+            //$this->oCRNRSTN->print_r('SYSTEM LOADED PNG FILE [' . print_r(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG], true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->error_log('System load of PNG file to check BASE64 file is complete. File: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+            if(!$this->valid_system_asset(CRNRSTN_UI_IMG_PNG, 'SYSTEM_BASE64')){
+
+                $this->oCRNRSTN->error_log('System BASE64 is NOT in sync with file: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+                $tmp_base64_content_delta++;
+
+            }
+
+        }
+
+        //
+        // LOAD (ATTEMPT TO) FILE META INTO MEMORY - JPEG
+        if($this->load_system_asset(CRNRSTN_UI_IMG_JPEG)){
+
+            //$this->oCRNRSTN->print_r('SYSTEM LOADED JPEG FILE [' . print_r(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG], true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->error_log('System load of JPEG file to check BASE64 file is complete. File: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+            if(!$this->valid_system_asset(CRNRSTN_UI_IMG_JPEG, 'SYSTEM_BASE64')){
+
+                $this->oCRNRSTN->error_log('System BASE64 is NOT in sync with file: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+                $tmp_base64_content_delta++;
+
+            }
+        }
+
+        if($tmp_base64_content_delta > 0){
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+    public function system_base64_synchronize($data_key){
+
+        //
+        // WHERE $data_key FORMAT LIKE
+        // 'SUCCESS_CHECK'
+        // 'success_chk.png'
+        // 'success_chk.jpg'
+        // 'success_chk.jpeg'
+        // 'success_chk.jpg2'
+        // 'success_chk'
+
+        self::$request_salt = $this->oCRNRSTN->generate_new_key(26);
+
+        //
+        // IS THIS A SYSTEM KEY
+        $tmp_system_data_profile_ARRAY = $this->return_creative_profile($data_key);
+        if(is_array($tmp_system_data_profile_ARRAY)){
+
+            /*
+            $tmp_ARRAY['filename'] = $tmp_filename;
+            $tmp_ARRAY['width'] = $tmp_width;
+            $tmp_ARRAY['height'] = $tmp_height;
+            $tmp_ARRAY['alt_text'] = $tmp_alt_text;
+            $tmp_ARRAY['title_text'] = $tmp_title_text;
+            $tmp_ARRAY['link'] = $tmp_link;
+            $tmp_ARRAY['target'] = $tmp_target;
+
+            */
+
+            $img_name = $tmp_system_data_profile_ARRAY['filename'];
+
+        }
+
+        if(!isset($img_name)){
+
+            $img_name = $data_key;
+
+            //
+            // PARSE DATA KEY FOR FILE HANDLE
+            $pos_dot = stripos($data_key, '.');
+            if($pos_dot !== false){
+
+                $img_name = '';
+
+                //
+                // WE HAVE POTENTIAL FILENAME DOT
+                $tmp_filename = explode('.', $data_key);
+                $tmp_original_file_extension_clean = array_pop($tmp_filename);   // $tmp_filename IS NOW ARRAY RETURN
+                foreach($tmp_filename as $index_=> $val){
+
+                    $img_name .= $val . '.';
+
+                }
+
+                $img_name = $this->oCRNRSTN->strrtrim($img_name, '.');
+
+            }
+
+        }
+
+        $tmp_file_serial = $this->oCRNRSTN->generate_new_key(64, '01');
+
+        $DOCUMENT_ROOT = $this->oCRNRSTN->get_resource('DOCUMENT_ROOT');
+        $DOCUMENT_ROOT_DIR = $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR');
+
+        //
+        // SYSTEM IMAGES DIRECTORIES
+        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['dir'] = $DOCUMENT_ROOT . $DOCUMENT_ROOT_DIR . '/_crnrstn/ui/imgs/png/';
+        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['dir'] = $DOCUMENT_ROOT . $DOCUMENT_ROOT_DIR . '/_crnrstn/ui/imgs/jpg/';
+        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['dir'] = $DOCUMENT_ROOT . $DOCUMENT_ROOT_DIR . '/_crnrstn/ui/imgs/base64/';
+
+        $tmp_dir_PNG = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['dir'];
+        $tmp_dir_JPEG = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['dir'];
+        $tmp_dir_BASE64 = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['dir'];
+
+        if(!isset($tmp_original_file_extension_clean)){
+
+            $tmp_original_file_extension_clean = 'png';
+
+        }
+
+        switch(strtolower($tmp_original_file_extension_clean)){
+            case 'png':
+
+                //
+                // CHECK PNG IS VALID FILE
+                if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_PNG, 'SOURCE')){
+
+                    //
+                    // DO WE HAVE A VALID FILE?
+                    if(is_file($tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean)){
+
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_original_file_extension_clean;
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] = $tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean;
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] = $img_name . '.php';
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] = $tmp_dir_BASE64 . $img_name . '.php';
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['serial'] = $tmp_file_serial;
+
+                        //
+                        // PNG IS VALID. IS THERE A MATCHING JPG?
+                        if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_JPEG, 'SOURCE')) {
+
+                            //
+                            // DO WE HAVE A VALID FILE?
+                            if(is_file($tmp_dir_JPEG . $img_name . '.jpg')){
+
+                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] = $img_name . '.jpg';
+                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] = $tmp_dir_JPEG . $img_name . '.jpg';
+                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
+
+                                //
+                                // PNG IS FILE. JPG IS FILE.
+                                if(!$this->system_base64_file_synchronized()){
+
+                                    return $this->system_base64_write();
+
+                                }
+
+                            }else{
+
+                                //
+                                // ONLY PNG IS FILE
+                                //$this->oCRNRSTN->print_r('VALID PNG FILE [' . $tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                                if(!$this->system_base64_file_synchronized()){
+
+                                    return $this->system_base64_write();
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }else{
+
+                    $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system PNG images directory [' . $tmp_dir_PNG . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                }
+
+            break;
+            case 'jpg':
+            case 'jpeg':
+            case 'jpg2':
+
+                //
+                // JPEG
+                if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_JPEG, 'SOURCE')){
+
+                    //
+                    // DO WE HAVE A VALID JPEG FILE NAME
+                    if(is_file($tmp_dir_JPEG . $img_name . '.' . $tmp_original_file_extension_clean)){
+
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_original_file_extension_clean;
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] = $tmp_dir_JPEG . $img_name . '.' . $tmp_original_file_extension_clean;
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] = $img_name . '.php';
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] = $tmp_dir_BASE64 . $img_name . '.php';
+                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['serial'] = $tmp_file_serial;
+
+                        //
+                        // JPEG IS VALID. IS THERE A MATCHING PNG?
+                        if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_PNG, 'SOURCE')) {
+
+                            //
+                            // DO WE HAVE A VALID FILE?
+                            if(is_file($tmp_dir_PNG . $img_name . '.png')){
+
+                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] = $img_name . '.png';
+                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] = $tmp_dir_PNG . $img_name . '.png';
+                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
+
+                                //
+                                // PNG IS FILE. JPG IS FILE.
+                                if(!$this->system_base64_file_synchronized()){
+
+                                    return $this->system_base64_write();
+
+                                }
+
+                            }else{
+
+                                //
+                                // ONLY PNG IS FILE
+                                //$this->oCRNRSTN->print_r('VALID JPEG FILE [' . $tmp_dir_JPEG . $img_name . '.jpg' . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                                if(!$this->system_base64_file_synchronized()){
+
+                                    return $this->system_base64_write();
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }else{
+
+                    $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system JPEG images directory [' . $tmp_dir_JPEG . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                }
+
+            break;
+            case 'php':
+
+                //
+                // JPEG
+                if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_BASE64, 'SOURCE')){
+
+                    //
+                    // DO WE HAVE A VALID PNG FILE NAME
+                    if(is_file($tmp_dir_BASE64 . $img_name . '.php')){
+
+                        //$this->oCRNRSTN->print_r('VALID FILE [' . $tmp_dir_BASE64 . $img_name . '.php].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                        //die();
+
+                    }
+
+                }else{
+
+                    $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system BASE64 encoded images directory [' . $tmp_dir_BASE64 . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                }
+
+            break;
+
+        }
+
+        return true;
 
     }
 

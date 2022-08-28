@@ -1462,14 +1462,14 @@ class crnrstn_soa_endpoint_request_manager {
 
                             //
                             // CONSTANTS
-                            $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'TEXT');
+                            $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
                             $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
                             $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_TEXT');
                             $crnrstn_phpmailer->Subject = 'Exception Notification from ' . $_SERVER['SERVER_NAME'].' via CRNRSTN ::';
 
                             if($tmp_isHTML){
 
-                                $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHPExceptionTracePretty($exception_obj->getTraceAsString(), 'HTML');
+                                $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
                                 $tmp_log_constant_HTML = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant, 'HTML');
                                 $tmp_crnrstn_trace_HTML = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_HTML');
 

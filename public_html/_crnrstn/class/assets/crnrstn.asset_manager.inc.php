@@ -60,7 +60,7 @@ class crnrstn_asset_validator {
 
     private static $approved_mime_ARRAY = array();
 
-    public function __construct($type,$ext,$mime){
+    public function __construct($type, $ext, $mime){
 
         self::$asset_type = $type;
         self::$asset_ext = $ext;
@@ -656,7 +656,7 @@ class crnrstn_asset_manager {
 		}
 	}
 	
-	private function  motherShipAssetAuthPing(){
+	private function motherShipAssetAuthPing(){
 		
 		//
 		// ** WE ARE ON A REMOTE SERVER **

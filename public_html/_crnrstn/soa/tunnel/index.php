@@ -57,7 +57,7 @@ $oCRNRSTN_USR->readfile_chunked($tmp_filename_xml);
 die();
 
 $oCRNRSTN_USR->is_soap_data_tunnel_endpoint(true);
-$raw_CRNRSTN_INTEGRATION_PACKET = $oCRNRSTN_USR->extractData_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST');
+$raw_CRNRSTN_INTEGRATION_PACKET = $oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST');
 
 if($tmp_decrypted_data = $oCRNRSTN_USR->data_decrypt($raw_CRNRSTN_INTEGRATION_PACKET)){
 
@@ -82,13 +82,13 @@ if($oCRNRSTN_USR->initialize_crnrstn_svc_http(false, true)) {
 
         //
         // REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
-        $raw_srvc_layer_wsdl = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_srvc_layer_wsdl', 'POST');
-        $raw_soap_data_tunnel_data = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_data_tunnel_data', 'POST');
-        $raw_soap_action = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_data_tunnel_soap_action', 'POST');
-        $raw_content_type = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_data_tunnel_content_type', 'POST');
-        $raw_content_length = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_data_tunnel_content_length', 'POST');
-        $raw_user_agent = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_data_tunnel_user_agent', 'POST');
-        $raw_host = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_data_tunnel_host', 'POST');
+        $raw_srvc_layer_wsdl = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_srvc_layer_wsdl', 'POST');
+        $raw_soap_data_tunnel_data = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_data_tunnel_data', 'POST');
+        $raw_soap_action = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_data_tunnel_soap_action', 'POST');
+        $raw_content_type = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_data_tunnel_content_type', 'POST');
+        $raw_content_length = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_data_tunnel_content_length', 'POST');
+        $raw_user_agent = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_data_tunnel_user_agent', 'POST');
+        $raw_host = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_data_tunnel_host', 'POST');
 
 /*
 
@@ -111,11 +111,11 @@ if($oCRNRSTN_USR->initialize_crnrstn_svc_http(false, true)) {
 
  * */
 
-        $raw_srvc_data = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_srvc_data', 'POST');
-        $raw_srvc_soap_action = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_srvc_soap_action', 'POST');
-        $raw_srvc_length = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_srvc_content_length', 'POST');
-        $raw_srvc_user_agent = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_srvc_layer_user_agent', 'POST');
-        $raw_srvc_layer_host = $oCRNRSTN_USR->extractData_HTTP('crnrstn_soap_srvc_layer_host', 'POST');
+        $raw_srvc_data = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_srvc_data', 'POST');
+        $raw_srvc_soap_action = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_srvc_soap_action', 'POST');
+        $raw_srvc_length = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_srvc_content_length', 'POST');
+        $raw_srvc_user_agent = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_srvc_layer_user_agent', 'POST');
+        $raw_srvc_layer_host = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_soap_srvc_layer_host', 'POST');
 
 
         $oCRNRSTN_USR->print_r('$raw_srvc_layer_wsdl=' . $raw_srvc_layer_wsdl, NULL, __LINE__, __METHOD__, __FILE__);

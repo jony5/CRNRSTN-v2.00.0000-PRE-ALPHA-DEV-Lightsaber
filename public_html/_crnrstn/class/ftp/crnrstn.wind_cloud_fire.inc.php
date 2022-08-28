@@ -159,9 +159,9 @@ class crnrstn_wind_cloud_fire {
             $this->FtpToFtp_tmp_dirPath = $FtpToFtp_tmp_dirPath;
             $this->timestamp_nom_pattern = $timestamp_versioning_pattern;
 
-            if($this->validate_DIR_Endpoint('DESTINATION', $this->FtpToFtp_tmp_dirPath)){
+            if($this->validate_DIR_endpoint('DESTINATION', $this->FtpToFtp_tmp_dirPath)){
 
-                if($this->validate_DIR_Endpoint('SOURCE', $this->FtpToFtp_tmp_dirPath)){
+                if($this->validate_DIR_endpoint('SOURCE', $this->FtpToFtp_tmp_dirPath)){
 
 
                 }else{
@@ -1682,7 +1682,7 @@ class crnrstn_wind_cloud_fire {
 
                 $this->oCRNRSTN_USR->error_log('****** SOURCE ENDPOINT = DIRECTORY[' . $tmp_src_DIR_PATH.'] ******', __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-                if($this->validate_DIR_Endpoint('SOURCE', $tmp_src_DIR_PATH)) {
+                if($this->validate_DIR_endpoint('SOURCE', $tmp_src_DIR_PATH)) {
 
                     $FIREHOT_oEndpoint_SOURCE->log_connection_status('batch transfer :: source validation complete');
 
@@ -1800,7 +1800,7 @@ class crnrstn_wind_cloud_fire {
 
                 $this->oCRNRSTN_USR->error_log('****** DESTINATION ENDPOINT = DIRECTORY[' . $tmp_dest_DIR.'] ******', __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-                if ($this->validate_DIR_Endpoint('DESTINATION', $tmp_dest_DIR, $mkdir_permissons_mode)) {
+                if ($this->validate_DIR_endpoint('DESTINATION', $tmp_dest_DIR, $mkdir_permissons_mode)) {
 
                     $FIREHOT_oEndpoint_DESTINATION->log_connection_status('batch transfer :: destination validation complete');
 
@@ -2208,7 +2208,7 @@ class crnrstn_wind_cloud_fire {
 
                 //
                 // DESTINATION DIRECTORY
-                if($this->validate_DIR_Endpoint('DESTINATION', $tmp_DIR_PATH, $tmp_MKDIR_MODE)){
+                if($this->validate_DIR_endpoint('DESTINATION', $tmp_DIR_PATH, $tmp_MKDIR_MODE)){
 
                     //
                     // COMPLETE THE INTEGRATION OF ENDPOINT INTO THIS ELECTRUM
@@ -2326,7 +2326,7 @@ class crnrstn_wind_cloud_fire {
 
                 //
                 // DESTINATION DIRECTORY
-                if($this->validate_DIR_Endpoint('DESTINATION', $tmp_DIR_PATH, $tmp_MKDIR_MODE)){
+                if($this->validate_DIR_endpoint('DESTINATION', $tmp_DIR_PATH, $tmp_MKDIR_MODE)){
 
                     //
                     // COMPLETE THE INTEGRATION OF ENDPOINT INTO THIS ELECTRUM
@@ -2443,7 +2443,7 @@ class crnrstn_wind_cloud_fire {
 
             if($this->ready_for_preload($tmp_endpoint_id) || $this->preload_endpoint_validation_fail[$tmp_endpoint_id]){
 
-                if($this->validate_DIR_Endpoint('SOURCE', $tmp_DIR_PATH)){
+                if($this->validate_DIR_endpoint('SOURCE', $tmp_DIR_PATH)){
 
                     //
                     // COMPLETE THE INTEGRATION OF ENDPOINT INTO THIS ELECTRUM
@@ -2557,7 +2557,7 @@ class crnrstn_wind_cloud_fire {
 
                 //
                 // DESTINATION DIRECTORY
-                if($this->validate_DIR_Endpoint('DESTINATION', $tmp_DIR_PATH, $tmp_MKDIR_MODE)){
+                if($this->validate_DIR_endpoint('DESTINATION', $tmp_DIR_PATH, $tmp_MKDIR_MODE)){
 
                     //
                     // COMPLETE THE INTEGRATION OF ENDPOINT INTO THIS ELECTRUM
@@ -2674,7 +2674,7 @@ class crnrstn_wind_cloud_fire {
 
                 //
                 // DESTINATION DIRECTORY
-                if($this->validate_DIR_Endpoint('DESTINATION', $tmp_DIR_PATH, $tmp_MKDIR_MODE)){
+                if($this->validate_DIR_endpoint('DESTINATION', $tmp_DIR_PATH, $tmp_MKDIR_MODE)){
 
                     //
                     // COMPLETE THE INTEGRATION OF ENDPOINT INTO THIS ELECTRUM
@@ -2789,7 +2789,7 @@ class crnrstn_wind_cloud_fire {
 
             if($this->ready_for_preload($tmp_endpoint_id) || $this->preload_endpoint_validation_fail[$tmp_endpoint_id]){
 
-                if($this->validate_DIR_Endpoint('SOURCE', $tmp_DIR_PATH)){
+                if($this->validate_DIR_endpoint('SOURCE', $tmp_DIR_PATH)){
 
                     //
                     // COMPLETE THE INTEGRATION OF ENDPOINT INTO THIS ELECTRUM
@@ -3364,7 +3364,7 @@ class crnrstn_wind_cloud_fire {
 
     }
 
-    private function validate_DIR_Endpoint($flow_type, $dirPath, $mkdir_mode=777){
+    private function validate_DIR_endpoint($flow_type, $dirPath, $mkdir_mode=777){
 
         try{
 
