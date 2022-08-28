@@ -6,11 +6,11 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-//$oCRNRSTN->system_base64_synchronize('success_chk');
+$oCRNRSTN->system_base64_synchronize('j5_wolf_pup_lay_look_forward_leash');
 
 //
 // THIS WILL SYNC ALL (~120 IMAGE) BASE64 FILES WITH THE CURRENT PNG AND JPEG (~33 SECS).
-$oCRNRSTN->system_base64_synchronize();
+//$oCRNRSTN->system_base64_synchronize();
 
 //$DOCUMENT_ROOT = $oCRNRSTN->get_resource('DOCUMENT_ROOT');
 //$DOCUMENT_ROOT_DIR = $oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR');

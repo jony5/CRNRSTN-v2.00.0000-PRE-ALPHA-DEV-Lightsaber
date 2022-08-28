@@ -5062,7 +5062,7 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
                 if(isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'])){
 
-                    $this->oCRNRSTN->print_r('lastmodified_base64_PNG WILL BE UPDATED.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    //$this->oCRNRSTN->print_r('lastmodified_base64_PNG WILL BE UPDATED.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
                     self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'] = '';
 
                 }
