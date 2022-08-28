@@ -6123,14 +6123,14 @@ class crnrstn_environment {
 
             }
 
-            $this->oCRNRSTN->print_r('Processed Image [' . $tmp_filename . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$this->oCRNRSTN->print_r('Processed Image [' . $tmp_filename . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
 
         }
 
         $tmp_err_cnt = count($tmp_filtered_filename_ARRAY) - count($tmp_processed_filename_ARRAY);
 
-        $this->oCRNRSTN->print_r('Processed Images [skipped=' . $tmp_skipped . '] [err=' . $tmp_err_cnt . '][' . print_r($tmp_processed_filename_ARRAY, true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        //$this->oCRNRSTN->print_r('Processed Images [skipped=' . $tmp_skipped . '] [err=' . $tmp_err_cnt . '][' . print_r($tmp_processed_filename_ARRAY, true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
         return true;
 
