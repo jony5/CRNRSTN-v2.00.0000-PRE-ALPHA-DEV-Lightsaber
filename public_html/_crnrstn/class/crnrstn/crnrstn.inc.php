@@ -2393,7 +2393,7 @@ class crnrstn {
                     $dom_sess_serial = $this->generate_new_key(26, '01');
 
                     $this->destruct_output .= '<!doctype html>
-<html lang="en">
+<html lang="' . $this->country_iso_code() . '">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
@@ -2477,7 +2477,7 @@ class crnrstn {
                     // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
                     // TEMPLATE FOR SOMETHING ADMIN-NEWY-ISH BACK TO "HERE" FOR CONSISTENCY.
                     $this->destruct_output .= '<!doctype html>
-<html lang="en">
+<html lang="' . $this->country_iso_code() . '">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
@@ -2550,7 +2550,7 @@ class crnrstn {
 
                     exit();
 
-                    break;
+                break;
 
             }
 
