@@ -697,7 +697,7 @@ class crnrstn {
 
     public function country_iso_code(){
 
-        return $this->oCRNRSTN_ENV->country_iso_code;
+        return $this->oCRNRSTN_USR->country_iso_code;
 
     }
 
@@ -741,7 +741,7 @@ class crnrstn {
 
         $tmp_version_soap = self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('version_soap');
 
-        //error_log(__LINE__ . ' crrnstn $tmp_version_soap=' . $tmp_version_soap);
+        //error_log(__LINE__ . ' crnstn $tmp_version_soap=' . $tmp_version_soap);
         //die();
         if($tmp_version_soap == $this->session_salt() || $tmp_version_soap == ''){
 
@@ -774,6 +774,12 @@ class crnrstn {
     public function version_linux(){
 
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('version_linux');
+
+    }
+
+    public function return_icon_social_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false){
+
+        return $this->oCRNRSTN_USR->return_icon_social_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false);
 
     }
 
@@ -2389,7 +2395,7 @@ class crnrstn {
                     $this->destruct_output .= '<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
     <script>
 
@@ -2473,7 +2479,7 @@ class crnrstn {
                     $this->destruct_output .= '<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
     <script>
 
@@ -2485,13 +2491,13 @@ class crnrstn {
         if (document.selection) { // IE
 
             var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById("crrnstn_config_serial_' . $dom_sess_serial . '"));
+            range.moveToElementText(document.getElementById("crnstn_config_serial_' . $dom_sess_serial . '"));
             range.select();
 
         } else if (window.getSelection) {
 
             var range = document.createRange();
-            range.selectNode(document.getElementById("crrnstn_config_serial_' . $dom_sess_serial . '"));
+            range.selectNode(document.getElementById("crnstn_config_serial_' . $dom_sess_serial . '"));
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
 
@@ -2503,7 +2509,7 @@ class crnrstn {
         document.execCommand(\'copy\');
 
         /* Alert the copied text */
-        alert("Copied the text: " + document.getElementById("crrnstn_config_serial_' . $dom_sess_serial . '").innerHTML);
+        alert("Copied the text: " + document.getElementById("crnstn_config_serial_' . $dom_sess_serial . '").innerHTML);
 
     }
 
@@ -2517,7 +2523,7 @@ class crnrstn {
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
-        <br>$CRNRSTN_config_serial = \'<span id="crrnstn_config_serial_'  . $dom_sess_serial . '">' . $tmp_serial . '</span>\';
+        <br>$CRNRSTN_config_serial = \'<span id="crnstn_config_serial_'  . $dom_sess_serial . '">' . $tmp_serial . '</span>\';
         <br>// <a href="#" onclick="crnrstn_copy_serial();" style="color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
         <br>
     </div>

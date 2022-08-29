@@ -120,6 +120,8 @@ class crnrstn_image_v_html_content_manager {
 
         }
 
+        error_log(__LINE__ . ' img html [' . $creative_element_key . '] self::$image_output_mode='. self::$image_output_mode);
+
         //
         // USE THIS TO SUPPORT WHITE LABELING
         if(isset($creative_mode)){
