@@ -23,27 +23,27 @@ $automation_frequency_title_value_ARRAY = array('Every 5 seconds', 'Every 10 sec
 
 //
 // TEST ENCRYPTION OUTPUT PERFORMANCE OF THE RECEIVED OPENSSL PROFILE
-$oCRNRSTN_UNITTEST_MGR = new crnrstn_unit_test_manager($oCRNRSTN_USR);
+$oCRNRSTN_UNITTEST_MGR = new crnrstn_unit_test_manager($oCRNRSTN);
 
-//error_log('28 curl index die() crc32(\'Subliminal\')=' . $oCRNRSTN_USR->crcINT('Subliminal'));  //  07/05/2022 @ 1537hrs
-//error_log('29 curl index die() ID=[' . $oCRNRSTN_USR->generate_new_key(64) . ']');
+//error_log('28 curl index die() crc32(\'Subliminal\')=' . $oCRNRSTN->crcINT('Subliminal'));  //  07/05/2022 @ 1537hrs
+//error_log('29 curl index die() ID=[' . $oCRNRSTN->generate_new_key(64) . ']');
 //die();
 //
 // ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
-if($oCRNRSTN_USR->receive_form_integration_packet()){
+if($oCRNRSTN->receive_form_integration_packet()){
 
-    if($oCRNRSTN_USR->isvalid_data_validation_check('POST')){
+    if($oCRNRSTN->isvalid_data_validation_check('POST')){
 
         $tmp_received_POST_data =  true;
 
         //
         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
-        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_curl_uri_endpoint');
-        $tmp_crnrstn_curl_batch_save = $oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_curl_batch_save');
-        $tmp_crnrstn_curl_batch_count = $oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_curl_batch_count');
+        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_uri_endpoint');
+        $tmp_crnrstn_curl_batch_save = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_batch_save');
+        $tmp_crnrstn_curl_batch_count = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_batch_count');
 
-        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_curl_enable_unit_test_automation');
-        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_curl_unit_test_automation_freq_secs');
+        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_enable_unit_test_automation');
+        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_unit_test_automation_freq_secs');
 
         if(strlen($tmp_crnrstn_curl_uri_endpoint) > 0){
 
@@ -62,7 +62,7 @@ if($oCRNRSTN_USR->receive_form_integration_packet()){
 
             <input type="hidden" name="crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt . '" value="' .  $tmp_crnrstn_curl_uri_endpoint . '">';
 
-            $oCRNRSTN_USR->init_input_listener('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
+            $oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
 
             $tmp_batch_preview_cnt++;
 
@@ -70,13 +70,13 @@ if($oCRNRSTN_USR->receive_form_integration_packet()){
 
                 for($i = 0; $i < $tmp_crnrstn_curl_batch_count; $i++){
 
-                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_curl_batch_uri_' . $i);
+                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_batch_uri_' . $i);
 
                     $tmp_crnrstn_curl_batch_preview .= '<div class="crnrstn_log_entry">[rtime ' . $oCRNRSTN_UNITTEST_MGR->rtime('curl', md5($tmp_crnrstn_curl_uri_endpoint)).'] ' .  $tmp_crnrstn_curl_uri_endpoint . '</div>
 
                     <input type="hidden" name="crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt . '" value="' .  $tmp_crnrstn_curl_uri_endpoint . '">';
 
-                    $oCRNRSTN_USR->init_input_listener('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
+                    $oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
 
                     $tmp_batch_preview_cnt++;
 
@@ -86,7 +86,7 @@ if($oCRNRSTN_USR->receive_form_integration_packet()){
 
         }
 
-        $oCRNRSTN_USR->init_hidden_input_listener('curl', 'crnrstn_curl_batch_count', true, $tmp_batch_preview_cnt);
+        $oCRNRSTN->init_hidden_input_listener('curl', 'crnrstn_curl_batch_count', true, $tmp_batch_preview_cnt);
 
         if($tmp_crnrstn_curl_enable_unit_test_automation == "automation_on"){
 
@@ -102,7 +102,7 @@ if($oCRNRSTN_USR->receive_form_integration_packet()){
 
         //
         // FORM INPUT ERROR HANDLING. CAN MANUALLY HANDLE REDIRECTS HERE IF DESIRED.
-        $tmp_err_array = $oCRNRSTN_USR->return_err_data_validation_check('POST');
+        $tmp_err_array = $oCRNRSTN->return_err_data_validation_check('POST');
         $test = '';
 
         foreach($tmp_err_array as $key=>$val){
@@ -115,31 +115,31 @@ if($oCRNRSTN_USR->receive_form_integration_packet()){
 
 }
 
-$oCRNRSTN_USR->init_form_handling('curl');
-$tmp_form_serial = $oCRNRSTN_USR->generate_new_key(5);
-$tmp_http_root = $oCRNRSTN_USR->current_location();
+$oCRNRSTN->init_form_handling('curl');
+$tmp_form_serial = $oCRNRSTN->generate_new_key(5);
+$tmp_http_root = $oCRNRSTN->current_location();
 
 //
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
 # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE
 # ENCRYPTED INITIALLY.
 # $this->oCRNRSTN_USR->init_input_listener({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
-$oCRNRSTN_USR->init_input_listener('curl', 'crnrstn_curl_uri_endpoint');
-$oCRNRSTN_USR->init_input_listener('curl', 'crnrstn_curl_batch_save');
-$oCRNRSTN_USR->init_input_listener('curl', 'crnrstn_curl_batch_count');
-$oCRNRSTN_USR->init_input_listener('curl', 'crnrstn_curl_enable_unit_test_automation');
-$oCRNRSTN_USR->init_input_listener('curl', 'crnrstn_curl_unit_test_automation_freq_secs');
+$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_uri_endpoint');
+$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_batch_save');
+$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_batch_count');
+$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_enable_unit_test_automation');
+$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_unit_test_automation_freq_secs');
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $oCRNRSTN_USR->country_iso_code; ?>">
+<html lang="<?php echo $oCRNRSTN->country_iso_code(); ?>">
 <head>
-<title>CRNRSTN :: <?php echo $oCRNRSTN_USR->version_crnrstn(); ?></title>
+<title>CRNRSTN :: <?php echo $oCRNRSTN->version_crnrstn(); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<?php echo $oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON'); ?>
-<?php echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
-    $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
-    $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
+<?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
+<?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
 <style type="text/css">
     *                                           { font-family:Arial, Helvetica, sans-serif;}
     .the_R_in_crnrstn                           { color:#F90000; }
@@ -234,13 +234,13 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
     <div class="crnrstn_cb"></div>
     <div style="font-size: 11px; font-weight: normal; padding: 5px 0 0 0; color: #9a9292;">
         <?php
-        echo $oCRNRSTN_USR->proper_version('LINUX') .
-            ', ' . $oCRNRSTN_USR->proper_version('APACHE') .
-            ', ' . $oCRNRSTN_USR->proper_version('MYSQLI') .
-            ', ' . $oCRNRSTN_USR->proper_version('PHP') .
-            ', ' . $oCRNRSTN_USR->proper_version('OPENSSL') .
-            ', ' . $oCRNRSTN_USR->proper_version('SOAP') .
-            ', C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $oCRNRSTN_USR->version_crnrstn();  ?>
+        echo $oCRNRSTN->proper_version('LINUX') .
+            ', ' . $oCRNRSTN->proper_version('APACHE') .
+            ', ' . $oCRNRSTN->proper_version('MYSQLI') .
+            ', ' . $oCRNRSTN->proper_version('PHP') .
+            ', ' . $oCRNRSTN->proper_version('OPENSSL') .
+            ', ' . $oCRNRSTN->proper_version('SOAP') .
+            ', C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $oCRNRSTN->version_crnrstn();  ?>
     </div>
     <div class="crnrstn_cb_15"></div>
 
@@ -274,7 +274,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
                     <div class="crnrstn_cb"></div>
                     <div style="float: left;"><input type="text" name="crnrstn_curl_uri_endpoint" style="width:500px;" value="" placeholder="Enter URI"></div>
                     <div style="float: left; width: 20px; padding: 5px 0 0 20px;"><input type="checkbox" style="width: 20px;" name="crnrstn_curl_batch_save" value="batch_save" <?php echo $tmp_crnrstn_curl_batch_save;?>></div>
-                    <div style="float: left; width: 110px; font-size: 12px; padding:13px 0 0 10px; cursor: pointer;" onclick="oCRNRSTN_JS.log_activity('[lnum 448] DOM click[' + this.innerHTML +  '] :: reporting for duty.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);"><?php echo $oCRNRSTN_USR->get_lang_copy('CHKBX_TEXT_PROCESS_TO_BATCH'); ?></div>
+                    <div style="float: left; width: 110px; font-size: 12px; padding:13px 0 0 10px; cursor: pointer;" onclick="oCRNRSTN_JS.log_activity('[lnum 448] DOM click[' + this.innerHTML +  '] :: reporting for duty.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);"><?php echo $oCRNRSTN->get_lang_copy('CHKBX_TEXT_PROCESS_TO_BATCH'); ?></div>
                     <div class="crnrstn_cb"></div>
                 </div>
                 <div class="crnrstn_cb"></div>
@@ -285,7 +285,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
             <div class="crnrstn_field_input_wrapper">
                 <div style="width:100%;">
                     <div style="float: left; padding-top: 10px;">
-                        <input style="width:100px;" type="submit" value="<?php echo $oCRNRSTN_USR->get_lang_copy('BUTTON_TEXT_SUBMIT'); ?>">
+                        <input style="width:100px;" type="submit" value="<?php echo $oCRNRSTN->get_lang_copy('BUTTON_TEXT_SUBMIT'); ?>">
                         <div class="crnrstn_cb_10"></div>
                         <div style="float: left; width: 100px; font-size: 12px; font-style: italic; line-height: 17px; padding:0 0 0 0;">14 secs before next POST.<br> <a href="#" style="text-decoration: none; color:#0066CC; text-decoration:underline;">Cancel</a></div>
                     </div>
@@ -325,7 +325,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
                                 <?php
 
-                                echo $oCRNRSTN_USR->return_branding_creative(true);
+                                echo $oCRNRSTN->return_branding_creative(true);
 
                                 ?>
 
@@ -343,7 +343,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
         </div>
         <?php
-        echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'curl');
+        echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'curl');
         ?>
     </form>
 
@@ -364,13 +364,13 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
     <div class="crnrstn_cb_20"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="<?php echo $tmp_http_root; ?>&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="<?php echo $tmp_http_root; ?>&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">
             <div class="crnrstn_j5_wolf_pup_inner_wrap">
                 <?php
-                echo $oCRNRSTN_USR->return_creative('J5_WOLF_PUP_RAND');
+                echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
                 ?>
             </div>
         </div>
@@ -379,7 +379,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
 <?php
 
-echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
 ?>
 </body>

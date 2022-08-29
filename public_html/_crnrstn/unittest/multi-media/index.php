@@ -63,9 +63,7 @@ $tmp_youtube_video_url_ARRAY = array();
 //$tmp_youtube_video_url_ARRAY[] = '';
 //$tmp_youtube_video_url_ARRAY[] = '';
 //$tmp_youtube_video_url_ARRAY[] = '';
-$tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=yJg_H_NVfAA';
-$tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=W9SwCjSFpBA'; // 07/01/2022 @ 1128 hrs
-$tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=VAoWeFhhno4';
+
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=PYQjEgOoaVg';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=UhsjFpRblb4';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=DlU_bcepqQU';
@@ -83,22 +81,23 @@ $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=1u7NSs4jNgQ';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=XFPtuFfT5D8';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=bPRKoIj2A80';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=PX-TLKkg0H8';
+$tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=yJg_H_NVfAA';
+$tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=W9SwCjSFpBA'; // 07/01/2022 @ 1128 hrs
+$tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=VAoWeFhhno4';
 
-
-$social_sprite_serial = $oCRNRSTN_USR->generate_new_key(10);
+$social_sprite_serial = $oCRNRSTN->generate_new_key(10);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $oCRNRSTN_USR->country_iso_code; ?>">
+<html lang="<?php echo $oCRNRSTN->country_iso_code(); ?>">
 <head>
-<title>CRNRSTN :: <?php echo $oCRNRSTN_USR->version_crnrstn(); ?></title>
+<title>CRNRSTN :: <?php echo $oCRNRSTN->version_crnrstn(); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<?php echo $oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON'); ?>
-<?php echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
-    $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
-    $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
+<?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
+<?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
 
-    <script type="text/javascript" language="javascript" src="<?php echo $oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/js/main.js?v=420.00<?php echo filesize($oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/js/main.js').'.'.filemtime($oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/js/main.js').'.0'; ?>"></script>
 <style type="text/css">
     *                                           { font-family:Arial, Helvetica, sans-serif;}
     .the_R_in_crnrstn                           { color:#F90000; }
@@ -154,18 +153,18 @@ $social_sprite_serial = $oCRNRSTN_USR->generate_new_key(10);
     <div class="crnrstn_cb"></div>
     <div style="font-size: 11px; font-weight: normal; padding: 5px 0 0 0; color: #9a9292;">
         <?php
-        echo $oCRNRSTN_USR->proper_version('LINUX') .
-            ', ' . $oCRNRSTN_USR->proper_version('APACHE') .
-            ', ' . $oCRNRSTN_USR->proper_version('MYSQLI') .
-            ', ' . $oCRNRSTN_USR->proper_version('PHP') .
-            ', ' . $oCRNRSTN_USR->proper_version('OPENSSL') .
-            ', ' . $oCRNRSTN_USR->proper_version('SOAP') .
-            ', C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $oCRNRSTN_USR->version_crnrstn();  ?>
+        echo $oCRNRSTN->proper_version('LINUX') .
+            ', ' . $oCRNRSTN->proper_version('APACHE') .
+            ', ' . $oCRNRSTN->proper_version('MYSQLI') .
+            ', ' . $oCRNRSTN->proper_version('PHP') .
+            ', ' . $oCRNRSTN->proper_version('OPENSSL') .
+            ', ' . $oCRNRSTN->proper_version('SOAP') .
+            ', C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $oCRNRSTN->version_crnrstn();  ?>
     </div>
 </div>
 
 <div style="font-weight: bold; font-size: 17px; padding: 10px 0 10px 10px;">
-    <div class="bassdrive_social_link stream_youtube" style="float:left; margin: 0 5px 0 10px; background-image:url(<?php echo $oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR'); ?>common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420<?php echo $social_sprite_serial; ?>)"></div>
+    <div style="float:left; margin: 0 5px 0 10px;"><?php echo $oCRNRSTN->return_icon_social_link('YOUTUBE_SMALL'); ?></div>
     <div style="float: left; padding-top: 4px;">Youtube Video Integrations</div>
 </div>
 <div class="crnrstn_cb"></div>
@@ -176,9 +175,9 @@ $social_sprite_serial = $oCRNRSTN_USR->generate_new_key(10);
     ?>
         <div class="youtube_thumb_wrapper">
             <?php
-            // $oCRNRSTN_USR->return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true)
-            //echo $oCRNRSTN_USR->return_youtube_embed('https://www.youtube.com/watch?v=WcHgsmZxJ34', $width = 560, $height = 315, $fullscreen = true)
-            echo $oCRNRSTN_USR->return_youtube_embed($uri);
+            // $oCRNRSTN->return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true)
+            //echo $oCRNRSTN->return_youtube_embed('https://www.youtube.com/watch?v=WcHgsmZxJ34', $width = 560, $height = 315, $fullscreen = true)
+            echo $oCRNRSTN->return_youtube_embed($uri);
             ?>
         </div>
 
@@ -189,13 +188,13 @@ $social_sprite_serial = $oCRNRSTN_USR->generate_new_key(10);
 </div>
 <div class="crnrstn_cb_20"></div>
 
-<div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="<?php echo $tmp_http_root; ?>&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+<div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
 <div style="width:700px;">
     <div class="crnrstn_j5_wolf_pup_outter_wrap">
         <div class="crnrstn_j5_wolf_pup_inner_wrap">
             <?php
-            echo $oCRNRSTN_USR->return_creative('J5_WOLF_PUP_RAND');
+            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
             ?>
         </div>
     </div>
@@ -203,7 +202,7 @@ $social_sprite_serial = $oCRNRSTN_USR->generate_new_key(10);
 
 <?php
 
-echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+//echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
 ?>
 </body>

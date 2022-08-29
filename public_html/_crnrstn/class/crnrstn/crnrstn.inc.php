@@ -783,6 +783,14 @@ class crnrstn {
 
     }
 
+    // SOURCE :: https://www.php.net/manual/en/function.parse-url.php
+    // AUTHOR :: ivijan dot stefan at gmail dot com :: https://www.php.net/manual/en/function.parse-url.php#114704
+    public function return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true){
+
+        return $this->oCRNRSTN_USR->return_youtube_embed($url, $width, $height, $fullscreen);
+
+    }
+
     public function return_prefixed_ddo_key($data_key, $env_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL'){
 
         $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_crc, $env_key, $data_type_family);
@@ -6641,6 +6649,12 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         Enables parsing of source files in multibyte encodings. Enabling zend.multibyte is required to use character encodings like SJIS, BIG5, etc that contain special characters in multibyte string data. ISO-8859-1 compatible encodings like UTF-8, EUC, etc do not require this option.
         Enabling zend.multibyte requires the mbstring extension to be available.
         */
+
+    }
+
+    public function openssl_get_cipher_methods(){
+
+        return $this->oCRNRSTN_USR->openssl_get_cipher_methods();
 
     }
 
