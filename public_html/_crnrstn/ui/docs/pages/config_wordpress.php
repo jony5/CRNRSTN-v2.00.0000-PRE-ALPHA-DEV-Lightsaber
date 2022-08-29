@@ -135,7 +135,7 @@ switch($channel_constant[0]){
         <div class="crnrstn_body_shell">
             <div class="crnrstn_hdr_branding_shell">
                 <div class="crnrstn_logo_bg_wrapper" onclick="load_page(\'' . $tmp_lnk_welcome . '\');">
-                    <div class="crnrstn_logo_bg" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_PNG) . '\');"></div>
+                    <div class="crnrstn_logo_bg" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_PNG) . '\');"></div>
                 </div>
                 
                 <div class="crnrstn_branding_elem_wrapper">

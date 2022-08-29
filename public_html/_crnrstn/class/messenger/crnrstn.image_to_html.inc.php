@@ -95,7 +95,497 @@ class crnrstn_image_v_html_content_manager {
 
     }
 
+    public function return_system_image($creative_element_key, $height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '', $image_output_mode = NULL){
+
+        self::$image_output_mode = $image_output_mode;
+
+        switch($creative_element_key){
+            case 'SOCIAL_ARCHIVES':
+
+                return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_BANDCAMP':
+
+                return $this->SOCIAL_BANDCAMP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_BASSDRIVE':
+
+                return $this->SOCIAL_BASSDRIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_BEATPORT':
+
+                return $this->SOCIAL_BEATPORT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_DISCOGS':
+
+                return $this->SOCIAL_DISCOGS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_FACEBOOK':
+
+                return $this->SOCIAL_FACEBOOK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_HISTORY':
+
+                return $this->SOCIAL_HISTORY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_INSTAGRAM':
+
+                return $this->SOCIAL_INSTAGRAM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_JSON':
+
+                return $this->SOCIAL_JSON($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_LINKEDIN':
+
+                return $this->SOCIAL_LINKEDIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_MIXCLOUD':
+
+                return $this->SOCIAL_MIXCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_PAYPAL':
+
+                return $this->SOCIAL_PAYPAL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_ROLLDABEATS':
+
+                return $this->SOCIAL_ROLLDABEATS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_SOUNDCLOUD':
+
+                return $this->SOCIAL_SOUNDCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_SPOTIFY':
+
+                return $this->SOCIAL_SPOTIFY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_TWITTER':
+
+                return $this->SOCIAL_TWITTER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_WWW':
+
+                return $this->SOCIAL_WWW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_YOUTUBE':
+
+                return $this->SOCIAL_YOUTUBE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SOCIAL_SPRITE':
+
+                return $this->SOCIAL_SPRITE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'TRANSPARENT_1X1':
+
+                return $this->TRANSPARENT_1X1($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_CLOSE_X':
+
+                return $this->PRIMARY_NAV_BLUE00_CLOSE_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_CLOSE_X_CLICK':
+
+                return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_CLOSE_X_HOVER':
+
+                return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE':
+
+                return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND':
+
+                return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK':
+
+                return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER':
+
+                return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE':
+
+                return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MENU':
+
+                return $this->PRIMARY_NAV_BLUE00_MENU($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MENU_CLICK':
+
+                return $this->PRIMARY_NAV_BLUE00_MENU_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MENU_HOVER':
+
+                return $this->PRIMARY_NAV_BLUE00_MENU_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MENU_INACTIVE':
+
+                return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MINIMIZE':
+
+                return $this->PRIMARY_NAV_BLUE00_MINIMIZE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MINIMIZE_CLICK':
+
+                return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MINIMIZE_HOVER':
+
+                return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE':
+
+                return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV':
+
+                return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL':
+
+                return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00':
+
+                return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'MESSAGE_CONVERSATION_BUBBLE':
+
+                return $this->MESSAGE_CONVERSATION_BUBBLE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case '5':
+
+                return $this->FIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_RAND':
+
+                $tmp_img_out = $this->J5_WOLF_PUP_RAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                return $tmp_img_out;
+
+            break;
+            case 'CRNRSTN_LOGO':
+
+                return $this->CRNRSTN_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'CRNRSTN_R_LG':
+
+                return $this->CRNRSTN_R_LG($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'CRNRSTN_R':
+            case 'CRNRSTN_R_MD':
+
+                return $this->CRNRSTN_R_MD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'CRNRSTN_R_SM':
+
+                return $this->CRNRSTN_R_SM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'CRNRSTN_R_WALL':
+
+                return $this->R_PLUS_WALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SUCCESS_CHECK':
+
+                return $this->SUCCESS_CHECK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'ERR_X':
+
+                return $this->ERR_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'CRNRSTN_FAVICON':
+
+                return $this->CRNRSTN_FAVICON();
+
+            break;
+            case 'LINUX_PENGUIN':
+
+                return $this->LINUX_PENGUIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'MYSQL_DOLPHIN':
+
+                return $this->MYSQL_DOLPHIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'APACHE_FEATHER':
+
+                return $this->APACHE_FEATHER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'APACHE_POWER_VERSION':
+
+                return $this->APACHE_POWER_VERSION($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'APACHE_POWER_2_4':
+
+                return $this->APACHE_POWER_2_4($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'APACHE_POWER_2_2':
+
+                return $this->APACHE_POWER_2_2($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'APACHE_POWER_2_0':
+
+                return $this->APACHE_POWER_2_0($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'APACHE_POWER_1_3':
+
+                return $this->APACHE_POWER_1_3($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'APACHE_POWER':
+
+                return $this->APACHE_POWER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'REDHAT_HAT_LOGO':
+
+                return $this->REDHAT_HAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'REDHAT_LOGO':
+
+                return $this->REDHAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'PHP_ELLIPSE':
+
+                return $this->PHP_ELLIPSE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'POW_BY_PHP':
+
+                return $this->POW_BY_PHP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'ZEND_LOGO':
+
+                return $this->ZEND_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'ZEND_FRAMEWORK_3':
+
+                return $this->ZEND_FRAMEWORK_3($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'ZEND_FRAMEWORK':
+
+                return $this->ZEND_FRAMEWORK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'BG_ELEMENT_RESPONSE_CODE':
+
+                return $this->BG_SHADOW_RESPONSE_CODE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'BG_ELEMENT_REFLECTION_SIGNIN':
+
+                return $this->BG_ELEMENT_REFLECTION_SIGNIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'DOT_GREEN':
+
+                return $this->DOT_GREEN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'DOT_RED':
+
+                return $this->DOT_RED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'DOT_OFF':
+
+                return $this->DOT_OFF($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'NOTICE_TRI_ALERT':
+
+                return $this->NOTICE_TRI_ALERT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'SEARCH_MAGNIFY_GLASS':
+
+                return $this->SEARCH_MAGNIFY_GLASS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'ICON_EMAIL_INBOX_REFLECT':
+
+                return $this->ICON_EMAIL_INBOX_REFLECT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP':
+
+                return $this->J5_WOLF_PUP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_LAY_00':
+
+                return $this->J5_WOLF_PUP_LAY_00($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_LAY_01':
+
+                return $this->J5_WOLF_PUP_LAY_01($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_LAY_02':
+
+                return $this->J5_WOLF_PUP_LAY_02($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_LAY_LOOK_AWAY':
+
+                return $this->J5_WOLF_PUP_LAY_LOOK_AWAY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_LAY_LOOK_FORWARD':
+
+                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH':
+
+                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_LEASH_EYES_CLOSED':
+
+                return $this->J5_WOLF_PUP_LEASH_EYES_CLOSED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_LIL_5_PTS':
+
+                return $this->J5_WOLF_PUP_LIL_5_PTS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_EYES_CLOSED':
+
+                return $this->J5_WOLF_PUP_SIT_EYES_CLOSED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_LOOK_FORWARD':
+
+                return $this->J5_WOLF_PUP_SIT_LOOK_FORWARD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW':
+
+                return $this->J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_LOOK_RIGHT':
+
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW':
+
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW':
+
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW':
+
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_UP':
+
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_UP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW':
+
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_STAND_LOOK_RIGHT':
+
+                return $this->J5_WOLF_PUP_STAND_LOOK_RIGHT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_STAND_LOOK_UP':
+
+                return $this->J5_WOLF_PUP_STAND_LOOK_UP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+            case 'J5_WOLF_PUP_WALK':
+
+                return $this->J5_WOLF_PUP_WALK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
+
+        }
+        
+    }
+
     public function return_creative($creative_element_key, $image_output_mode = NULL, $creative_mode = NULL){
+
+        $height_override = $link_override = $alt_override = $title_override = $target_override = $width_override = '';
 
         if(!isset($image_output_mode)){
 
@@ -119,8 +609,6 @@ class crnrstn_image_v_html_content_manager {
             self::$image_output_mode = $image_output_mode;
 
         }
-
-        error_log(__LINE__ . ' img html [' . $creative_element_key . '] self::$image_output_mode='. self::$image_output_mode);
 
         //
         // USE THIS TO SUPPORT WHITE LABELING
@@ -149,250 +637,250 @@ class crnrstn_image_v_html_content_manager {
                 switch($creative_element_key){
                     case 'SOCIAL_ARCHIVES':
 
-                        return $this->SOCIAL_ARCHIVES();
+                        return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BANDCAMP':
 
-                        return $this->SOCIAL_BANDCAMP();
+                        return $this->SOCIAL_BANDCAMP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BASSDRIVE':
 
-                        return $this->SOCIAL_BASSDRIVE();
+                        return $this->SOCIAL_BASSDRIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BEATPORT':
 
-                        return $this->SOCIAL_BEATPORT();
+                        return $this->SOCIAL_BEATPORT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_DISCOGS':
 
-                        return $this->SOCIAL_DISCOGS();
+                        return $this->SOCIAL_DISCOGS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_FACEBOOK':
 
-                        return $this->SOCIAL_FACEBOOK();
+                        return $this->SOCIAL_FACEBOOK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_HISTORY':
 
-                        return $this->SOCIAL_HISTORY();
+                        return $this->SOCIAL_HISTORY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_INSTAGRAM':
 
-                        return $this->SOCIAL_INSTAGRAM();
+                        return $this->SOCIAL_INSTAGRAM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_JSON':
 
-                        return $this->SOCIAL_JSON();
+                        return $this->SOCIAL_JSON($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_LINKEDIN':
 
-                        return $this->SOCIAL_LINKEDIN();
+                        return $this->SOCIAL_LINKEDIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_MIXCLOUD':
 
-                        return $this->SOCIAL_MIXCLOUD();
+                        return $this->SOCIAL_MIXCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_PAYPAL':
 
-                        return $this->SOCIAL_PAYPAL();
+                        return $this->SOCIAL_PAYPAL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_ROLLDABEATS':
 
-                        return $this->SOCIAL_ROLLDABEATS();
+                        return $this->SOCIAL_ROLLDABEATS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SOUNDCLOUD':
 
-                        return $this->SOCIAL_SOUNDCLOUD();
+                        return $this->SOCIAL_SOUNDCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SPOTIFY':
 
-                        return $this->SOCIAL_SPOTIFY();
+                        return $this->SOCIAL_SPOTIFY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_TWITTER':
 
-                        return $this->SOCIAL_TWITTER();
+                        return $this->SOCIAL_TWITTER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_WWW':
 
-                        return $this->SOCIAL_WWW();
+                        return $this->SOCIAL_WWW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_YOUTUBE':
 
-                        return $this->SOCIAL_YOUTUBE();
+                        return $this->SOCIAL_YOUTUBE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SPRITE':
 
-                        return $this->SOCIAL_SPRITE();
+                        return $this->SOCIAL_SPRITE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'TRANSPARENT_1X1':
 
-                        return $this->TRANSPARENT_1X1();
+                        return $this->TRANSPARENT_1X1($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X':
-                        //primary_nav_seriesblue00_120x120_close_x.png
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X();
+
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND':
-                        //primary_nav_seriesblue00_120x120_fs_expand.png
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND();
+
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU':
-                        //primary_nav_seriesblue00_120x120_menu.png
-                        return $this->PRIMARY_NAV_BLUE00_MENU();
+
+                        return $this->PRIMARY_NAV_BLUE00_MENU($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE':
-                        //primary_nav_seriesblue00_120x120_minimize.png
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE();
+
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00':
 
-                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00();
+                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MESSAGE_CONVERSATION_BUBBLE':
 
-                        return $this->MESSAGE_CONVERSATION_BUBBLE();
+                        return $this->MESSAGE_CONVERSATION_BUBBLE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case '5':
 
-                        return $this->FIVE();
+                        return $this->FIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_RAND':
 
-                        $tmp_img_out = $this->J5_WOLF_PUP_RAND();
+                        $tmp_img_out = $this->J5_WOLF_PUP_RAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                         return $tmp_img_out;
 
                     break;
                     case 'CRNRSTN_LOGO':
 
-                        return $this->CRNRSTN_LOGO();
+                        return $this->CRNRSTN_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_LG':
 
-                        return $this->CRNRSTN_R_LG();
+                        return $this->CRNRSTN_R_LG($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R':
                     case 'CRNRSTN_R_MD':
 
-                        return $this->CRNRSTN_R_MD();
+                        return $this->CRNRSTN_R_MD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_SM':
 
-                        return $this->CRNRSTN_R_SM();
+                        return $this->CRNRSTN_R_SM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_WALL':
 
-                        return $this->R_PLUS_WALL();
+                        return $this->R_PLUS_WALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SUCCESS_CHECK':
 
-                        return $this->SUCCESS_CHECK();
+                        return $this->SUCCESS_CHECK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ERR_X':
 
-                        return $this->ERR_X();
+                        return $this->ERR_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_FAVICON':
@@ -402,585 +890,227 @@ class crnrstn_image_v_html_content_manager {
                     break;
                     case 'LINUX_PENGUIN':
 
-                        return $this->LINUX_PENGUIN();
+                        return $this->LINUX_PENGUIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MYSQL_DOLPHIN':
 
-                        return $this->MYSQL_DOLPHIN();
+                        return $this->MYSQL_DOLPHIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_FEATHER':
 
-                        return $this->APACHE_FEATHER();
+                        return $this->APACHE_FEATHER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER_VERSION':
 
-                        return $this->APACHE_POWER_VERSION();
+                        return $this->APACHE_POWER_VERSION($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER_2_4':
 
-                        return $this->APACHE_POWER_2_4();
+                        return $this->APACHE_POWER_2_4($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER_2_2':
 
-                        return $this->APACHE_POWER_2_2();
+                        return $this->APACHE_POWER_2_2($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER_2_0':
 
-                        return $this->APACHE_POWER_2_0();
+                        return $this->APACHE_POWER_2_0($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER_1_3':
 
-                        return $this->APACHE_POWER_1_3();
+                        return $this->APACHE_POWER_1_3($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER':
 
-                        return $this->APACHE_POWER();
+                        return $this->APACHE_POWER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'REDHAT_HAT_LOGO':
 
-                        return $this->REDHAT_HAT_LOGO();
+                        return $this->REDHAT_HAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'REDHAT_LOGO':
 
-                        return $this->REDHAT_LOGO();
+                        return $this->REDHAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PHP_ELLIPSE':
 
-                        return $this->PHP_ELLIPSE();
+                        return $this->PHP_ELLIPSE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'POW_BY_PHP':
 
-                        return $this->POW_BY_PHP();
+                        return $this->POW_BY_PHP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_LOGO':
 
-                        return $this->ZEND_LOGO();
+                        return $this->ZEND_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_FRAMEWORK_3':
 
-                        return $this->ZEND_FRAMEWORK_3();
+                        return $this->ZEND_FRAMEWORK_3($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_FRAMEWORK':
 
-                        return $this->ZEND_FRAMEWORK();
+                        return $this->ZEND_FRAMEWORK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'BG_ELEMENT_RESPONSE_CODE':
 
-                        return $this->BG_SHADOW_RESPONSE_CODE();
-
-                    break;
-                    case 'BG_ELEMENT_LOGO_SIGNIN':
-
-                        return $this->BG_ELEMENT_LOGO_SIGNIN();
+                        return $this->BG_SHADOW_RESPONSE_CODE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'BG_ELEMENT_REFLECTION_SIGNIN':
 
-                        return $this->BG_ELEMENT_REFLECTION_SIGNIN();
+                        return $this->BG_ELEMENT_REFLECTION_SIGNIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_GREEN':
 
-                        return $this->DOT_GREEN();
+                        return $this->DOT_GREEN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_RED':
 
-                        return $this->DOT_RED();
+                        return $this->DOT_RED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_OFF':
 
-                        return $this->DOT_OFF();
+                        return $this->DOT_OFF($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'NOTICE_TRI_ALERT':
 
-                        return $this->NOTICE_TRI_ALERT();
+                        return $this->NOTICE_TRI_ALERT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SEARCH_MAGNIFY_GLASS':
 
-                        return $this->SEARCH_MAGNIFY_GLASS();
+                        return $this->SEARCH_MAGNIFY_GLASS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ICON_EMAIL_INBOX_REFLECT':
 
-                        return $this->ICON_EMAIL_INBOX_REFLECT();
+                        return $this->ICON_EMAIL_INBOX_REFLECT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP':
 
-                        return $this->J5_WOLF_PUP();
+                        return $this->J5_WOLF_PUP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_LAY_00':
 
-                        return $this->J5_WOLF_PUP_LAY_00();
+                        return $this->J5_WOLF_PUP_LAY_00($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_LAY_01':
 
-                        return $this->J5_WOLF_PUP_LAY_01();
+                        return $this->J5_WOLF_PUP_LAY_01($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_LAY_02':
 
-                        return $this->J5_WOLF_PUP_LAY_02();
+                        return $this->J5_WOLF_PUP_LAY_02($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_LAY_LOOK_AWAY':
 
-                        return $this->J5_WOLF_PUP_LAY_LOOK_AWAY();
+                        return $this->J5_WOLF_PUP_LAY_LOOK_AWAY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_LAY_LOOK_FORWARD':
 
-                        return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD();
+                        return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH':
 
-                        return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH();
+                        return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_LEASH_EYES_CLOSED':
 
-                        return $this->J5_WOLF_PUP_LEASH_EYES_CLOSED();
+                        return $this->J5_WOLF_PUP_LEASH_EYES_CLOSED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_LIL_5_PTS':
 
-                        return $this->J5_WOLF_PUP_LIL_5_PTS();
+                        return $this->J5_WOLF_PUP_LIL_5_PTS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_EYES_CLOSED':
 
-                        return $this->J5_WOLF_PUP_SIT_EYES_CLOSED();
+                        return $this->J5_WOLF_PUP_SIT_EYES_CLOSED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_LOOK_FORWARD':
 
-                        return $this->J5_WOLF_PUP_SIT_LOOK_FORWARD();
+                        return $this->J5_WOLF_PUP_SIT_LOOK_FORWARD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW':
 
-                        return $this->J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW();
+                        return $this->J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_LOOK_RIGHT':
 
-                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT();
+                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW':
 
-                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW();
+                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW':
 
-                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW();
+                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW':
 
-                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW();
+                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_UP':
 
-                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_UP();
+                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_UP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW':
 
-                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW();
+                        return $this->J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_STAND_LOOK_RIGHT':
 
-                        return $this->J5_WOLF_PUP_STAND_LOOK_RIGHT();
+                        return $this->J5_WOLF_PUP_STAND_LOOK_RIGHT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_STAND_LOOK_UP':
 
-                        return $this->J5_WOLF_PUP_STAND_LOOK_UP();
+                        return $this->J5_WOLF_PUP_STAND_LOOK_UP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_WALK':
 
-                        return $this->J5_WOLF_PUP_WALK();
-
-                    break;
-
-                }
-
-            break;
-            case 'ALL_HTML':
-
-                switch($creative_element_key){
-                    case 'SOCIAL_ARCHIVES':
-
-                        return $this->SOCIAL_ARCHIVES();
-
-                    break;
-                    case 'SOCIAL_BANDCAMP':
-
-                        return $this->SOCIAL_BANDCAMP();
-
-                    break;
-                    case 'SOCIAL_BASSDRIVE':
-
-                        return $this->SOCIAL_BASSDRIVE();
-
-                    break;
-                    case 'SOCIAL_BEATPORT':
-
-                        return $this->SOCIAL_BEATPORT();
-
-                    break;
-                    case 'SOCIAL_DISCOGS':
-
-                        return $this->SOCIAL_DISCOGS();
-
-                    break;
-                    case 'SOCIAL_FACEBOOK':
-
-                        return $this->SOCIAL_FACEBOOK();
-
-                    break;
-                    case 'SOCIAL_HISTORY':
-
-                        return $this->SOCIAL_HISTORY();
-
-                    break;
-                    case 'SOCIAL_INSTAGRAM':
-
-                        return $this->SOCIAL_INSTAGRAM();
-
-                    break;
-                    case 'SOCIAL_JSON':
-
-                        return $this->SOCIAL_JSON();
-
-                    break;
-                    case 'SOCIAL_LINKEDIN':
-
-                        return $this->SOCIAL_LINKEDIN();
-
-                    break;
-                    case 'SOCIAL_MIXCLOUD':
-
-                        return $this->SOCIAL_MIXCLOUD();
-
-                    break;
-                    case 'SOCIAL_PAYPAL':
-
-                        return $this->SOCIAL_PAYPAL();
-
-                    break;
-                    case 'SOCIAL_ROLLDABEATS':
-
-                        return $this->SOCIAL_ROLLDABEATS();
-
-                    break;
-                    case 'SOCIAL_SOUNDCLOUD':
-
-                        return $this->SOCIAL_SOUNDCLOUD();
-
-                    break;
-                    case 'SOCIAL_SPOTIFY':
-
-                        return $this->SOCIAL_SPOTIFY();
-
-                    break;
-                    case 'SOCIAL_TWITTER':
-
-                        return $this->SOCIAL_TWITTER();
-
-                    break;
-                    case 'SOCIAL_WWW':
-
-                        return $this->SOCIAL_WWW();
-
-                    break;
-                    case 'SOCIAL_YOUTUBE':
-
-                        return $this->SOCIAL_YOUTUBE();
-
-                    break;
-                    case 'SOCIAL_SPRITE':
-
-                        return $this->SOCIAL_SPRITE();
-
-                    break;
-                    case 'TRANSPARENT_1X1':
-
-                        return $this->TRANSPARENT_1X1();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_CLOSE_X':
-                        //primary_nav_seriesblue00_120x120_close_x.png
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_CLOSE_X_CLICK':
-
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_CLOSE_X_HOVER':
-
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE':
-
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND':
-                        //primary_nav_seriesblue00_120x120_fs_expand.png
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK':
-
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER':
-
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE':
-
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MENU':
-                        //primary_nav_seriesblue00_120x120_menu.png
-                        return $this->PRIMARY_NAV_BLUE00_MENU();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MENU_CLICK':
-
-                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MENU_HOVER':
-
-                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MENU_INACTIVE':
-
-                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MINIMIZE':
-                        //primary_nav_seriesblue00_120x120_minimize.png
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MINIMIZE_CLICK':
-
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MINIMIZE_HOVER':
-
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE':
-
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV':
-
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV();
-
-                    break;
-                    case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL':
-
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL();
-
-                    break;
-                    case 'MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00':
-
-                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00();
-
-                    break;
-                    case 'MESSAGE_CONVERSATION_BUBBLE':
-
-                        return $this->MESSAGE_CONVERSATION_BUBBLE();
-
-                    break;
-                    case '5':
-
-                        return $this->FIVE();
-
-                    break;
-                    case 'J5_WOLF_PUP_RAND':
-
-                        return $this->J5_WOLF_PUP_RAND();
-
-                    break;
-                    case 'CRNRSTN_LOGO':
-
-                        return $this->CRNRSTN_LOGO();
-
-                    break;
-                    case 'CRNRSTN_R_LG':
-
-                        return $this->CRNRSTN_R_LG();
-
-                    break;
-                    case 'CRNRSTN_R':
-                    case 'CRNRSTN_R_MD':
-
-                        return $this->CRNRSTN_R_MD();
-
-                    break;
-                    case 'CRNRSTN_R_SM':
-
-                        return $this->CRNRSTN_R_SM();
-
-                    break;
-                    case 'CRNRSTN_R_WALL':
-
-                        return $this->R_PLUS_WALL();
-
-                    break;
-                    case 'SUCCESS_CHECK':
-
-                        return $this->SUCCESS_CHECK();
-
-                    break;
-                    case 'ERR_X':
-
-                        return $this->ERR_X();
-
-                    break;
-                    case 'LINUX_PENGUIN':
-
-                        return $this->LINUX_PENGUIN();
-
-                    break;
-                    case 'MYSQL_DOLPHIN':
-
-                        return $this->MYSQL_DOLPHIN();
-
-                    break;
-                    case 'APACHE_FEATHER':
-
-                        return $this->APACHE_FEATHER();
-
-                    break;
-                    case 'APACHE_POWER_VERS':
-
-                        return $this->APACHE_POWER_VERSION();
-
-                    break;
-                    case 'APACHE_POWER':
-
-                        return $this->APACHE_POWER();
-
-                    break;
-                    case 'REDHAT_HAT_LOGO':
-
-                        return $this->REDHAT_HAT_LOGO();
-
-                    break;
-                    case 'REDHAT_LOGO':
-
-                        return $this->REDHAT_LOGO();
-
-                    break;
-                    case 'PHP_ELLIPSE':
-
-                        return $this->PHP_ELLIPSE();
-
-                    break;
-                    case 'POW_BY_PHP':
-
-                        return $this->POW_BY_PHP();
-
-                    break;
-                    case 'ZEND_LOGO':
-
-                        return $this->ZEND_LOGO();
-
-                    break;
-                    case 'ZEND_FRAMEWORK_3':
-
-                        return $this->ZEND_FRAMEWORK_3();
-
-                    break;
-                    case 'ZEND_FRAMEWORK':
-
-                        return $this->ZEND_FRAMEWORK();
-
-                    break;
-                    case 'BG_ELEMENT_LOGO_SIGNIN':
-
-                        return $this->BG_ELEMENT_LOGO_SIGNIN();
-
-                    break;
-                    case 'BG_ELEMENT_REFLECTION_SIGNIN':
-
-                        return $this->BG_ELEMENT_REFLECTION_SIGNIN();
-
-                    break;
-                    case 'DOT_GREEN':
-
-                        return $this->DOT_GREEN();
-
-                    break;
-                    case 'DOT_RED':
-
-                        return $this->DOT_RED();
-
-                    break;
-                    case 'DOT_OFF':
-
-                        return $this->DOT_OFF();
-
-                    break;
-                    case 'NOTICE_TRI_ALERT':
-
-                        return $this->NOTICE_TRI_ALERT();
-
-                    break;
-                    case 'ICON_EMAIL_INBOX_REFLECT':
-
-                        return $this->ICON_EMAIL_INBOX_REFLECT();
-
-                    break;
-                    case 'SEARCH_MAGNIFY_GLASS':
-
-                        return $this->SEARCH_MAGNIFY_GLASS();
+                        return $this->J5_WOLF_PUP_WALK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
 
@@ -992,212 +1122,212 @@ class crnrstn_image_v_html_content_manager {
                 switch($creative_element_key){
                     case 'SOCIAL_ARCHIVES':
 
-                        return $this->SOCIAL_ARCHIVES();
+                        return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BANDCAMP':
 
-                        return $this->SOCIAL_BANDCAMP();
+                        return $this->SOCIAL_BANDCAMP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BASSDRIVE':
 
-                        return $this->SOCIAL_BASSDRIVE();
+                        return $this->SOCIAL_BASSDRIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BEATPORT':
 
-                        return $this->SOCIAL_BEATPORT();
+                        return $this->SOCIAL_BEATPORT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_DISCOGS':
 
-                        return $this->SOCIAL_DISCOGS();
+                        return $this->SOCIAL_DISCOGS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_FACEBOOK':
 
-                        return $this->SOCIAL_FACEBOOK();
+                        return $this->SOCIAL_FACEBOOK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_HISTORY':
 
-                        return $this->SOCIAL_HISTORY();
+                        return $this->SOCIAL_HISTORY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_INSTAGRAM':
 
-                        return $this->SOCIAL_INSTAGRAM();
+                        return $this->SOCIAL_INSTAGRAM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_JSON':
 
-                        return $this->SOCIAL_JSON();
+                        return $this->SOCIAL_JSON($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_LINKEDIN':
 
-                        return $this->SOCIAL_LINKEDIN();
+                        return $this->SOCIAL_LINKEDIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_MIXCLOUD':
 
-                        return $this->SOCIAL_MIXCLOUD();
+                        return $this->SOCIAL_MIXCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_PAYPAL':
 
-                        return $this->SOCIAL_PAYPAL();
+                        return $this->SOCIAL_PAYPAL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_ROLLDABEATS':
 
-                        return $this->SOCIAL_ROLLDABEATS();
+                        return $this->SOCIAL_ROLLDABEATS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SOUNDCLOUD':
 
-                        return $this->SOCIAL_SOUNDCLOUD();
+                        return $this->SOCIAL_SOUNDCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SPOTIFY':
 
-                        return $this->SOCIAL_SPOTIFY();
+                        return $this->SOCIAL_SPOTIFY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_TWITTER':
 
-                        return $this->SOCIAL_TWITTER();
+                        return $this->SOCIAL_TWITTER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_WWW':
 
-                        return $this->SOCIAL_WWW();
+                        return $this->SOCIAL_WWW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_YOUTUBE':
 
-                        return $this->SOCIAL_YOUTUBE();
+                        return $this->SOCIAL_YOUTUBE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SPRITE':
 
-                        return $this->SOCIAL_SPRITE();
+                        return $this->SOCIAL_SPRITE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'TRANSPARENT_1X1':
 
-                        return $this->TRANSPARENT_1X1();
+                        return $this->TRANSPARENT_1X1($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X':
-                        //primary_nav_seriesblue00_120x120_close_x.png
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X();
+
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND':
-                        //primary_nav_seriesblue00_120x120_fs_expand.png
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND();
+
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU':
-                        //primary_nav_seriesblue00_120x120_menu.png
-                        return $this->PRIMARY_NAV_BLUE00_MENU();
+
+                        return $this->PRIMARY_NAV_BLUE00_MENU($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE':
-                        //primary_nav_seriesblue00_120x120_minimize.png
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE();
+
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00':
 
-                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00();
+                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MESSAGE_CONVERSATION_BUBBLE':
 
-                        return $this->MESSAGE_CONVERSATION_BUBBLE();
+                        return $this->MESSAGE_CONVERSATION_BUBBLE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case '5':
 
-                        return $this->FIVE();
+                        return $this->FIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_RAND':
 
-                        return $this->J5_WOLF_PUP_RAND();
+                        return $this->J5_WOLF_PUP_RAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_LOGO':
@@ -1207,143 +1337,138 @@ class crnrstn_image_v_html_content_manager {
                     break;
                     case 'CRNRSTN_R_LG':
 
-                        return $this->CRNRSTN_R_LG();
+                        return $this->CRNRSTN_R_LG($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R':
                     case 'CRNRSTN_R_MD':
 
-                        return $this->CRNRSTN_R_MD();
+                        return $this->CRNRSTN_R_MD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_SM':
 
-                        return $this->CRNRSTN_R_SM();
+                        return $this->CRNRSTN_R_SM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_WALL':
 
-                        return $this->R_PLUS_WALL();
+                        return $this->R_PLUS_WALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SUCCESS_CHECK':
 
-                        return $this->SUCCESS_CHECK();
+                        return $this->SUCCESS_CHECK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ERR_X':
 
-                        return $this->ERR_X();
+                        return $this->ERR_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_FAVICON':
 
-                        return $this->CRNRSTN_FAVICON();
+                        return $this->CRNRSTN_FAVICON($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'LINUX_PENGUIN':
 
-                        return $this->LINUX_PENGUIN();
+                        return $this->LINUX_PENGUIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MYSQL_DOLPHIN':
 
-                        return $this->MYSQL_DOLPHIN();
+                        return $this->MYSQL_DOLPHIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_FEATHER':
 
-                        return $this->APACHE_FEATHER();
+                        return $this->APACHE_FEATHER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER_VERS':
 
-                        return $this->APACHE_POWER_VERSION();
+                        return $this->APACHE_POWER_VERSION($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER':
 
-                        return $this->APACHE_POWER();
+                        return $this->APACHE_POWER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'REDHAT_HAT_LOGO':
 
-                        return $this->REDHAT_HAT_LOGO();
+                        return $this->REDHAT_HAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'REDHAT_LOGO':
 
-                        return $this->REDHAT_LOGO();
+                        return $this->REDHAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PHP_ELLIPSE':
 
-                        return $this->PHP_ELLIPSE();
+                        return $this->PHP_ELLIPSE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'POW_BY_PHP':
 
-                        return $this->POW_BY_PHP();
+                        return $this->POW_BY_PHP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_LOGO':
 
-                        return $this->ZEND_LOGO();
+                        return $this->ZEND_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_FRAMEWORK_3':
 
-                        return $this->ZEND_FRAMEWORK_3();
+                        return $this->ZEND_FRAMEWORK_3($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_FRAMEWORK':
 
-                        return $this->ZEND_FRAMEWORK();
+                        return $this->ZEND_FRAMEWORK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'BG_ELEMENT_RESPONSE_CODE':
 
-                        return $this->BG_SHADOW_RESPONSE_CODE();
-
-                    break;
-                    case 'BG_ELEMENT_LOGO_SIGNIN':
-
-                        return $this->BG_ELEMENT_LOGO_SIGNIN();
+                        return $this->BG_SHADOW_RESPONSE_CODE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'BG_ELEMENT_REFLECTION_SIGNIN':
 
-                        return $this->BG_ELEMENT_REFLECTION_SIGNIN();
+                        return $this->BG_ELEMENT_REFLECTION_SIGNIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_GREEN':
 
-                        return $this->DOT_GREEN();
+                        return $this->DOT_GREEN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_RED':
 
-                        return $this->DOT_RED();
+                        return $this->DOT_RED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_OFF':
 
-                        return $this->DOT_OFF();
+                        return $this->DOT_OFF($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'NOTICE_TRI_ALERT':
 
-                        return $this->NOTICE_TRI_ALERT();
+                        return $this->NOTICE_TRI_ALERT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ICON_EMAIL_INBOX_REFLECT':
 
-                        return $this->ICON_EMAIL_INBOX_REFLECT();
+                        return $this->ICON_EMAIL_INBOX_REFLECT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SEARCH_MAGNIFY_GLASS':
 
-                        return $this->SEARCH_MAGNIFY_GLASS();
+                        return $this->SEARCH_MAGNIFY_GLASS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
 
@@ -1356,212 +1481,212 @@ class crnrstn_image_v_html_content_manager {
                 switch($creative_element_key){
                     case 'SOCIAL_ARCHIVES':
 
-                        return $this->SOCIAL_ARCHIVES();
+                        return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BANDCAMP':
 
-                        return $this->SOCIAL_BANDCAMP();
+                        return $this->SOCIAL_BANDCAMP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BASSDRIVE':
 
-                        return $this->SOCIAL_BASSDRIVE();
+                        return $this->SOCIAL_BASSDRIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BEATPORT':
 
-                        return $this->SOCIAL_BEATPORT();
+                        return $this->SOCIAL_BEATPORT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_DISCOGS':
 
-                        return $this->SOCIAL_DISCOGS();
+                        return $this->SOCIAL_DISCOGS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_FACEBOOK':
 
-                        return $this->SOCIAL_FACEBOOK();
+                        return $this->SOCIAL_FACEBOOK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_HISTORY':
 
-                        return $this->SOCIAL_HISTORY();
+                        return $this->SOCIAL_HISTORY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_INSTAGRAM':
 
-                        return $this->SOCIAL_INSTAGRAM();
+                        return $this->SOCIAL_INSTAGRAM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_JSON':
 
-                        return $this->SOCIAL_JSON();
+                        return $this->SOCIAL_JSON($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_LINKEDIN':
 
-                        return $this->SOCIAL_LINKEDIN();
+                        return $this->SOCIAL_LINKEDIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_MIXCLOUD':
 
-                        return $this->SOCIAL_MIXCLOUD();
+                        return $this->SOCIAL_MIXCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_PAYPAL':
 
-                        return $this->SOCIAL_PAYPAL();
+                        return $this->SOCIAL_PAYPAL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_ROLLDABEATS':
 
-                        return $this->SOCIAL_ROLLDABEATS();
+                        return $this->SOCIAL_ROLLDABEATS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SOUNDCLOUD':
 
-                        return $this->SOCIAL_SOUNDCLOUD();
+                        return $this->SOCIAL_SOUNDCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SPOTIFY':
 
-                        return $this->SOCIAL_SPOTIFY();
+                        return $this->SOCIAL_SPOTIFY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_TWITTER':
 
-                        return $this->SOCIAL_TWITTER();
+                        return $this->SOCIAL_TWITTER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_WWW':
 
-                        return $this->SOCIAL_WWW();
+                        return $this->SOCIAL_WWW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_YOUTUBE':
 
-                        return $this->SOCIAL_YOUTUBE();
+                        return $this->SOCIAL_YOUTUBE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SPRITE':
 
-                        return $this->SOCIAL_SPRITE();
+                        return $this->SOCIAL_SPRITE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'TRANSPARENT_1X1':
 
-                        return $this->TRANSPARENT_1X1();
+                        return $this->TRANSPARENT_1X1($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X':
-                        //primary_nav_seriesblue00_120x120_close_x.png
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X();
+
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND':
-                        //primary_nav_seriesblue00_120x120_fs_expand.png
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND();
+
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU':
-                        //primary_nav_seriesblue00_120x120_menu.png
-                        return $this->PRIMARY_NAV_BLUE00_MENU();
+
+                        return $this->PRIMARY_NAV_BLUE00_MENU($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE':
-                        //primary_nav_seriesblue00_120x120_minimize.png
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE();
+
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00':
 
-                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00();
+                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MESSAGE_CONVERSATION_BUBBLE':
 
-                        return $this->MESSAGE_CONVERSATION_BUBBLE();
+                        return $this->MESSAGE_CONVERSATION_BUBBLE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case '5':
 
-                        return $this->FIVE();
+                        return $this->FIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_RAND':
 
-                        return $this->J5_WOLF_PUP_RAND();
+                        return $this->J5_WOLF_PUP_RAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_LOGO':
@@ -1571,133 +1696,128 @@ class crnrstn_image_v_html_content_manager {
                     break;
                     case 'CRNRSTN_R_LG':
 
-                        return $this->CRNRSTN_R_LG();
+                        return $this->CRNRSTN_R_LG($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R':
                     case 'CRNRSTN_R_MD':
 
-                        return $this->CRNRSTN_R_MD();
+                        return $this->CRNRSTN_R_MD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_SM':
 
-                        return $this->CRNRSTN_R_SM();
+                        return $this->CRNRSTN_R_SM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_WALL':
 
-                        return $this->R_PLUS_WALL();
+                        return $this->R_PLUS_WALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SUCCESS_CHECK':
 
-                        return $this->SUCCESS_CHECK();
+                        return $this->SUCCESS_CHECK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ERR_X':
 
-                        return $this->ERR_X();
+                        return $this->ERR_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'LINUX_PENGUIN':
 
-                        return $this->LINUX_PENGUIN();
+                        return $this->LINUX_PENGUIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MYSQL_DOLPHIN':
 
-                        return $this->MYSQL_DOLPHIN();
+                        return $this->MYSQL_DOLPHIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_FEATHER':
 
-                        return $this->APACHE_FEATHER();
+                        return $this->APACHE_FEATHER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER_VERS':
 
-                        return $this->APACHE_POWER_VERSION();
+                        return $this->APACHE_POWER_VERSION($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER':
 
-                        return $this->APACHE_POWER();
+                        return $this->APACHE_POWER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'REDHAT_HAT_LOGO':
 
-                        return $this->REDHAT_HAT_LOGO();
+                        return $this->REDHAT_HAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'REDHAT_LOGO':
 
-                        return $this->REDHAT_LOGO();
+                        return $this->REDHAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PHP_ELLIPSE':
 
-                        return $this->PHP_ELLIPSE();
+                        return $this->PHP_ELLIPSE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'POW_BY_PHP':
 
-                        return $this->POW_BY_PHP();
+                        return $this->POW_BY_PHP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_LOGO':
 
-                        return $this->ZEND_LOGO();
+                        return $this->ZEND_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_FRAMEWORK_3':
 
-                        return $this->ZEND_FRAMEWORK_3();
+                        return $this->ZEND_FRAMEWORK_3($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_FRAMEWORK':
 
-                        return $this->ZEND_FRAMEWORK();
-
-                    break;
-                    case 'BG_ELEMENT_LOGO_SIGNIN':
-
-                        return $this->BG_ELEMENT_LOGO_SIGNIN();
+                        return $this->ZEND_FRAMEWORK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'BG_ELEMENT_REFLECTION_SIGNIN':
 
-                        return $this->BG_ELEMENT_REFLECTION_SIGNIN();
+                        return $this->BG_ELEMENT_REFLECTION_SIGNIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_GREEN':
 
-                        return $this->DOT_GREEN();
+                        return $this->DOT_GREEN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_RED':
 
-                        return $this->DOT_RED();
+                        return $this->DOT_RED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_OFF':
 
-                        return $this->DOT_OFF();
+                        return $this->DOT_OFF($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'NOTICE_TRI_ALERT':
 
-                        return $this->NOTICE_TRI_ALERT();
+                        return $this->NOTICE_TRI_ALERT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ICON_EMAIL_INBOX_REFLECT':
 
-                        return $this->ICON_EMAIL_INBOX_REFLECT();
+                        return $this->ICON_EMAIL_INBOX_REFLECT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SEARCH_MAGNIFY_GLASS':
 
-                        return $this->SEARCH_MAGNIFY_GLASS();
+                        return $this->SEARCH_MAGNIFY_GLASS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
 
@@ -1710,360 +1830,347 @@ class crnrstn_image_v_html_content_manager {
 
             break;
             default:
-
-                //
-                // ALL_HTML
+                // case 'ALL_HTML':
                 switch($creative_element_key){
                     case 'SOCIAL_ARCHIVES':
 
-                        return $this->SOCIAL_ARCHIVES();
+                        return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BANDCAMP':
 
-                        return $this->SOCIAL_BANDCAMP();
+                        return $this->SOCIAL_BANDCAMP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BASSDRIVE':
 
-                        return $this->SOCIAL_BASSDRIVE();
+                        return $this->SOCIAL_BASSDRIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_BEATPORT':
 
-                        return $this->SOCIAL_BEATPORT();
+                        return $this->SOCIAL_BEATPORT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_DISCOGS':
 
-                        return $this->SOCIAL_DISCOGS();
+                        return $this->SOCIAL_DISCOGS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_FACEBOOK':
 
-                        return $this->SOCIAL_FACEBOOK();
+                        return $this->SOCIAL_FACEBOOK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_HISTORY':
 
-                        return $this->SOCIAL_HISTORY();
+                        return $this->SOCIAL_HISTORY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_INSTAGRAM':
 
-                        return $this->SOCIAL_INSTAGRAM();
+                        return $this->SOCIAL_INSTAGRAM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_JSON':
 
-                        return $this->SOCIAL_JSON();
+                        return $this->SOCIAL_JSON($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_LINKEDIN':
 
-                        return $this->SOCIAL_LINKEDIN();
+                        return $this->SOCIAL_LINKEDIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_MIXCLOUD':
 
-                        return $this->SOCIAL_MIXCLOUD();
+                        return $this->SOCIAL_MIXCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_PAYPAL':
 
-                        return $this->SOCIAL_PAYPAL();
+                        return $this->SOCIAL_PAYPAL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_ROLLDABEATS':
 
-                        return $this->SOCIAL_ROLLDABEATS();
+                        return $this->SOCIAL_ROLLDABEATS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SOUNDCLOUD':
 
-                        return $this->SOCIAL_SOUNDCLOUD();
+                        return $this->SOCIAL_SOUNDCLOUD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SPOTIFY':
 
-                        return $this->SOCIAL_SPOTIFY();
+                        return $this->SOCIAL_SPOTIFY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_TWITTER':
 
-                        return $this->SOCIAL_TWITTER();
+                        return $this->SOCIAL_TWITTER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_WWW':
 
-                        return $this->SOCIAL_WWW();
+                        return $this->SOCIAL_WWW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_YOUTUBE':
 
-                        return $this->SOCIAL_YOUTUBE();
+                        return $this->SOCIAL_YOUTUBE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SOCIAL_SPRITE':
 
-                        return $this->SOCIAL_SPRITE();
+                        return $this->SOCIAL_SPRITE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'TRANSPARENT_1X1':
 
-                        return $this->TRANSPARENT_1X1();
+                        return $this->TRANSPARENT_1X1($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X':
-                        //primary_nav_seriesblue00_120x120_close_x.png
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X();
+
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND':
-                        //primary_nav_seriesblue00_120x120_fs_expand.png
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND();
+
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU':
-                        //primary_nav_seriesblue00_120x120_menu.png
-                        return $this->PRIMARY_NAV_BLUE00_MENU();
+
+                        return $this->PRIMARY_NAV_BLUE00_MENU($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MENU_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_MENU_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE':
-                        //primary_nav_seriesblue00_120x120_minimize.png
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE();
+
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_CLICK':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_CLICK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_HOVER':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_HOVER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL':
 
-                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL();
+                        return $this->PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00':
 
-                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00();
+                        return $this->MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MESSAGE_CONVERSATION_BUBBLE':
 
-                        return $this->MESSAGE_CONVERSATION_BUBBLE();
+                        return $this->MESSAGE_CONVERSATION_BUBBLE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case '5':
 
-                        return $this->FIVE();
+                        return $this->FIVE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'J5_WOLF_PUP_RAND':
 
-                        return $this->J5_WOLF_PUP_RAND();
+                        return $this->J5_WOLF_PUP_RAND($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_LOGO':
 
-                        return $this->CRNRSTN_LOGO();
+                        return $this->CRNRSTN_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_LG':
 
-                        return $this->CRNRSTN_R_LG();
+                        return $this->CRNRSTN_R_LG($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R':
                     case 'CRNRSTN_R_MD':
 
-                        return $this->CRNRSTN_R_MD();
+                        return $this->CRNRSTN_R_MD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_SM':
 
-                        return $this->CRNRSTN_R_SM();
+                        return $this->CRNRSTN_R_SM($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'CRNRSTN_R_WALL':
 
-                        return $this->R_PLUS_WALL();
+                        return $this->R_PLUS_WALL($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SUCCESS_CHECK':
 
-                        return $this->SUCCESS_CHECK();
+                        return $this->SUCCESS_CHECK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ERR_X':
 
-                        return $this->ERR_X();
-
-                    break;
-                    case 'CRNRSTN_FAVICON':
-
-                        //return $this->CRNRSTN_FAVICON();
-                        return '';
+                        return $this->ERR_X($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'LINUX_PENGUIN':
 
-                        return $this->LINUX_PENGUIN();
+                        return $this->LINUX_PENGUIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'MYSQL_DOLPHIN':
 
-                        return $this->MYSQL_DOLPHIN();
+                        return $this->MYSQL_DOLPHIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_FEATHER':
 
-                        return $this->APACHE_FEATHER();
+                        return $this->APACHE_FEATHER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER_VERS':
 
-                        return $this->APACHE_POWER_VERSION();
+                        return $this->APACHE_POWER_VERSION($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'APACHE_POWER':
 
-                        return $this->APACHE_POWER();
+                        return $this->APACHE_POWER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'REDHAT_HAT_LOGO':
 
-                        return $this->REDHAT_HAT_LOGO();
+                        return $this->REDHAT_HAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'REDHAT_LOGO':
 
-                        return $this->REDHAT_LOGO();
+                        return $this->REDHAT_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'PHP_ELLIPSE':
 
-                        return $this->PHP_ELLIPSE();
+                        return $this->PHP_ELLIPSE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'POW_BY_PHP':
 
-                        return $this->POW_BY_PHP();
-
-                    break;
-                    case 'BG_ELEMENT_LOGO_SIGNIN':
-
-                        return $this->BG_ELEMENT_LOGO_SIGNIN();
-
-                    break;
-                    case 'BG_ELEMENT_REFLECTION_SIGNIN':
-
-                        return $this->BG_ELEMENT_REFLECTION_SIGNIN();
+                        return $this->POW_BY_PHP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_LOGO':
 
-                        return $this->ZEND_LOGO();
+                        return $this->ZEND_LOGO($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_FRAMEWORK_3':
 
-                        return $this->ZEND_FRAMEWORK_3();
+                        return $this->ZEND_FRAMEWORK_3($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ZEND_FRAMEWORK':
 
-                        return $this->ZEND_FRAMEWORK();
+                        return $this->ZEND_FRAMEWORK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
+                    case 'BG_ELEMENT_REFLECTION_SIGNIN':
+
+                        return $this->BG_ELEMENT_REFLECTION_SIGNIN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_GREEN':
 
-                        return $this->DOT_GREEN();
+                        return $this->DOT_GREEN($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_RED':
 
-                        return $this->DOT_RED();
+                        return $this->DOT_RED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'DOT_OFF':
 
-                        return $this->DOT_OFF();
+                        return $this->DOT_OFF($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'NOTICE_TRI_ALERT':
 
-                        return $this->NOTICE_TRI_ALERT();
+                        return $this->NOTICE_TRI_ALERT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'ICON_EMAIL_INBOX_REFLECT':
 
-                        return $this->ICON_EMAIL_INBOX_REFLECT();
+                        return $this->ICON_EMAIL_INBOX_REFLECT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
                     case 'SEARCH_MAGNIFY_GLASS':
 
-                        return $this->SEARCH_MAGNIFY_GLASS();
+                        return $this->SEARCH_MAGNIFY_GLASS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
                     break;
 
@@ -2087,6 +2194,7 @@ class crnrstn_image_v_html_content_manager {
 
             break;
             default:
+
                 //
                 // BASE64
                 return $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/favicon.ico';
@@ -2115,9 +2223,6 @@ class crnrstn_image_v_html_content_manager {
         switch(self::$image_output_mode){
             default:
 
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-                // CRNRSTN_UI_IMG_PNG_HTML_WRAPPED
-
                 return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/imgs/' . $tmp_filename . '.ico?v=420.00" />';
 
             break;
@@ -2126,7 +2231,7 @@ class crnrstn_image_v_html_content_manager {
 
     }
 
-    private function SOCIAL_ARCHIVES(){
+    private function SOCIAL_ARCHIVES($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_archives.png
         // USE NO EXTENSION.
@@ -2140,12 +2245,48 @@ class crnrstn_image_v_html_content_manager {
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
+        
+        if($height_override != ''){
 
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+            
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+            
+            $tmp_link = $link_override;
+            
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+            
+        }
+        
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+        
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_BANDCAMP(){
+    private function SOCIAL_BANDCAMP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_bandcamp.png
         // USE NO EXTENSION.
@@ -2160,11 +2301,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_BASSDRIVE(){
+    private function SOCIAL_BASSDRIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_bassdrive.png
         // USE NO EXTENSION.
@@ -2179,11 +2356,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_BEATPORT(){
+    private function SOCIAL_BEATPORT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_beatport.png
         // USE NO EXTENSION.
@@ -2198,11 +2411,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_DISCOGS(){
+    private function SOCIAL_DISCOGS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_discogs.png
         // USE NO EXTENSION.
@@ -2217,11 +2466,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_FACEBOOK(){
+    private function SOCIAL_FACEBOOK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_facebook.png
         // USE NO EXTENSION.
@@ -2236,11 +2521,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_HISTORY(){
+    private function SOCIAL_HISTORY($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_history.png
         // USE NO EXTENSION.
@@ -2255,11 +2576,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_INSTAGRAM(){
+    private function SOCIAL_INSTAGRAM($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_instagram.png
         // USE NO EXTENSION.
@@ -2274,11 +2631,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_JSON(){
+    private function SOCIAL_JSON($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_json.png
         // USE NO EXTENSION.
@@ -2293,11 +2686,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_LINKEDIN(){
+    private function SOCIAL_LINKEDIN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_linkedin.png
         // USE NO EXTENSION.
@@ -2312,11 +2741,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_MIXCLOUD(){
+    private function SOCIAL_MIXCLOUD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_mixcloud.png
         // USE NO EXTENSION.
@@ -2331,11 +2796,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_PAYPAL(){
+    private function SOCIAL_PAYPAL($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_paypal.png
         // USE NO EXTENSION.
@@ -2350,11 +2851,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_ROLLDABEATS(){
+    private function SOCIAL_ROLLDABEATS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_rolldabeats.png
         // USE NO EXTENSION.
@@ -2369,11 +2906,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_SOUNDCLOUD(){
+    private function SOCIAL_SOUNDCLOUD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_soundcloud.png
         // USE NO EXTENSION.
@@ -2388,11 +2961,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_SPOTIFY(){
+    private function SOCIAL_SPOTIFY($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_spotify.png
         // USE NO EXTENSION.
@@ -2407,11 +3016,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_TWITTER(){
+    private function SOCIAL_TWITTER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_twitter.png
         // USE NO EXTENSION.
@@ -2426,11 +3071,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_WWW(){
+    private function SOCIAL_WWW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_www.png
         // USE NO EXTENSION.
@@ -2445,11 +3126,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_YOUTUBE(){
+    private function SOCIAL_YOUTUBE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_youtube.png
         // USE NO EXTENSION.
@@ -2464,11 +3181,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SOCIAL_SPRITE(){
+    private function SOCIAL_SPRITE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_sprite.png
         // USE NO EXTENSION.
@@ -2483,11 +3236,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function TRANSPARENT_1X1(){
+    private function TRANSPARENT_1X1($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=x.png
         // USE NO EXTENSION.
@@ -2502,11 +3291,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_CLOSE_X(){
+    private function PRIMARY_NAV_BLUE00_CLOSE_X($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_close_x.png
         // USE NO EXTENSION.
@@ -2520,11 +3345,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_CLOSE_X_CLICK(){
+    private function PRIMARY_NAV_BLUE00_CLOSE_X_CLICK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_close_x_click.png
         // USE NO EXTENSION.
@@ -2538,11 +3399,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_CLOSE_X_HOVER(){
+    private function PRIMARY_NAV_BLUE00_CLOSE_X_HOVER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_close_x_hvr.png
         // USE NO EXTENSION.
@@ -2556,11 +3453,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE(){
+    private function PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_close_x_inactive.png
         // USE NO EXTENSION.
@@ -2574,11 +3507,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND(){
+    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_fs_expand.png
         // USE NO EXTENSION.
@@ -2592,11 +3561,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK(){
+    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_fs_expand_click.png
         // USE NO EXTENSION.
@@ -2610,11 +3615,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER(){
+    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_fs_expand_hvr.png
         // USE NO EXTENSION.
@@ -2628,11 +3669,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE(){
+    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_fs_expand_inactive.png
         // USE NO EXTENSION.
@@ -2646,11 +3723,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MENU(){
+    private function PRIMARY_NAV_BLUE00_MENU($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_menu.png
         // USE NO EXTENSION.
@@ -2664,11 +3777,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MENU_CLICK(){
+    private function PRIMARY_NAV_BLUE00_MENU_CLICK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_menu_click.png
         // USE NO EXTENSION.
@@ -2682,11 +3831,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MENU_HOVER(){
+    private function PRIMARY_NAV_BLUE00_MENU_HOVER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_menu_hvr.png
         // USE NO EXTENSION.
@@ -2700,11 +3885,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MENU_INACTIVE(){
+    private function PRIMARY_NAV_BLUE00_MENU_INACTIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_menu_inactive.png
         // USE NO EXTENSION.
@@ -2718,11 +3939,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE(){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize.png
         // USE NO EXTENSION.
@@ -2736,11 +3993,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_CLICK(){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_CLICK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_click.png
         // USE NO EXTENSION.
@@ -2754,11 +4047,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_HOVER(){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_HOVER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_hvr.png
         // USE NO EXTENSION.
@@ -2772,11 +4101,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE(){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_inactive.png
         // USE NO EXTENSION.
@@ -2790,11 +4155,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV(){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_fivedev.png
         // USE NO EXTENSION.
@@ -2808,11 +4209,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL(){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_fivedev_sm.png
         // USE NO EXTENSION.
@@ -2826,11 +4263,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00(){
+    private function MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=crnrstn_message_bubbles_seriesblue00.png
         // USE NO EXTENSION.
@@ -2844,11 +4317,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function MESSAGE_CONVERSATION_BUBBLE(){
+    private function MESSAGE_CONVERSATION_BUBBLE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # # http://172.16.225.128/jony5/?crnrstn_to_base64=crnrstn_message_bubbles_seriesblue00.png
         // USE NO EXTENSION.
@@ -2862,11 +4371,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function FIVE(){
+    private function FIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -2881,11 +4426,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SUCCESS_CHECK(){
+    private function SUCCESS_CHECK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -2900,11 +4481,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function ERR_X(){
+    private function ERR_X($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -2919,17 +4536,53 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function CRNRSTN_LOGO(){
+    private function CRNRSTN_LOGO($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
-        //_crnrstn/ui/imgs/jpg/crnrstn_logo_md.jpg
-        $tmp_filename = 'crnrstn_logo_md';
-        $tmp_width = 165;
+        //_crnrstn/ui/imgs/jpg/crnrstn_logo_lg.jpg
+        $tmp_filename = 'crnrstn_logo_lg';
+        $tmp_width = '';
         $tmp_height = 98;
         $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
         $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
@@ -2938,11 +4591,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function CRNRSTN_R_LG(){
+    private function CRNRSTN_R_LG($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -2957,11 +4646,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function CRNRSTN_R_MD(){
+    private function CRNRSTN_R_MD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -2976,11 +4701,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function CRNRSTN_R_SM(){
+    private function CRNRSTN_R_SM($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -2995,11 +4756,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function R_PLUS_WALL(){
+    private function R_PLUS_WALL($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3014,11 +4811,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function BG_SHADOW_RESPONSE_CODE(){
+    private function BG_SHADOW_RESPONSE_CODE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3033,11 +4866,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PHP_ELLIPSE(){
+    private function PHP_ELLIPSE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3052,11 +4921,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function POW_BY_PHP(){
+    private function POW_BY_PHP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3071,11 +4976,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function ZEND_LOGO(){
+    private function ZEND_LOGO($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3090,11 +5031,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function ZEND_FRAMEWORK(){
+    private function ZEND_FRAMEWORK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3109,11 +5086,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function ZEND_FRAMEWORK_3(){
+    private function ZEND_FRAMEWORK_3($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3128,11 +5141,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function LINUX_PENGUIN(){
+    private function LINUX_PENGUIN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3147,11 +5196,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function MYSQL_DOLPHIN(){
+    private function MYSQL_DOLPHIN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3177,11 +5262,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function REDHAT_HAT_LOGO(){
+    private function REDHAT_HAT_LOGO($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3196,11 +5317,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function REDHAT_LOGO(){
+    private function REDHAT_LOGO($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3215,11 +5372,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function APACHE_FEATHER(){
+    private function APACHE_FEATHER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3245,38 +5438,74 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function APACHE_POWER_VERSION(){
+    private function APACHE_POWER_VERSION($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         $version = $this->oCRNRSTN->version_apache_sysimg();
 
         switch($version){
             case 2.4:
 
-                return $this->APACHE_POWER_2_4();
+                return $this->APACHE_POWER_2_4($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 2.2:
 
-                return $this->APACHE_POWER_2_2();
+                return $this->APACHE_POWER_2_2($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 2.0:
 
-                return $this->APACHE_POWER_2_0();
+                return $this->APACHE_POWER_2_0($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 1.3:
 
-                return $this->APACHE_POWER_1_3();
+                return $this->APACHE_POWER_1_3($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             default:
 
-                return $this->APACHE_POWER();
+                return $this->APACHE_POWER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
 
@@ -3284,7 +5513,7 @@ class crnrstn_image_v_html_content_manager {
 
     }
 
-    private function APACHE_POWER_2_4(){
+    private function APACHE_POWER_2_4($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3310,11 +5539,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function APACHE_POWER_2_2(){
+    private function APACHE_POWER_2_2($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3340,11 +5605,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function APACHE_POWER_2_0(){
+    private function APACHE_POWER_2_0($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3370,11 +5671,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function APACHE_POWER_1_3(){
+    private function APACHE_POWER_1_3($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3400,11 +5737,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function APACHE_POWER(){
+    private function APACHE_POWER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3421,30 +5794,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function BG_ELEMENT_LOGO_SIGNIN(){
-
-        # # # # # # # #
-        // USE NO EXTENSION.
-        //_crnrstn/ui/imgs/jpg/crnrstn_logo_lg.jpg
-        $tmp_filename = 'crnrstn_logo_lg';
-        $tmp_width = 345;
-        $tmp_height = 206;
-        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
-        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
-        $tmp_link = '';
-        $tmp_target = '';
-        # # # # # # # #
-        # # # # # # # #
-
-        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
-
-    }
-
-    private function BG_ELEMENT_REFLECTION_SIGNIN(){
+    private function BG_ELEMENT_REFLECTION_SIGNIN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3459,11 +5849,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function DOT_GREEN(){
+    private function DOT_GREEN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3478,11 +5904,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function DOT_RED(){
+    private function DOT_RED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3497,11 +5959,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function DOT_OFF(){
+    private function DOT_OFF($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3516,11 +6014,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function NOTICE_TRI_ALERT(){
+    private function NOTICE_TRI_ALERT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3535,11 +6069,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function SEARCH_MAGNIFY_GLASS(){
+    private function SEARCH_MAGNIFY_GLASS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3554,11 +6124,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function ICON_EMAIL_INBOX_REFLECT(){
+    private function ICON_EMAIL_INBOX_REFLECT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3573,11 +6179,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_RAND(){
+    private function J5_WOLF_PUP_RAND($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         $tmp_array = array('J5_WOLF_PUP', 'J5_WOLF_PUP_LAY_00', 'J5_WOLF_PUP_LAY_01', 'J5_WOLF_PUP_LAY_02',
             'J5_WOLF_PUP_LAY_LOOK_AWAY', 'J5_WOLF_PUP_LAY_LOOK_FORWARD', 'J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH',
@@ -3594,115 +6236,114 @@ class crnrstn_image_v_html_content_manager {
         switch($tmp_array[$tmp_int]){
             case 'J5_WOLF_PUP':
 
-                return $this->J5_WOLF_PUP();
+                return $this->J5_WOLF_PUP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_LAY_00':
 
-                return $this->J5_WOLF_PUP_LAY_00();
+                return $this->J5_WOLF_PUP_LAY_00($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_LAY_01':
 
-                return $this->J5_WOLF_PUP_LAY_01();
+                return $this->J5_WOLF_PUP_LAY_01($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_LAY_02':
 
-                return $this->J5_WOLF_PUP_LAY_02();
+                return $this->J5_WOLF_PUP_LAY_02($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_LAY_LOOK_AWAY':
 
-                return $this->J5_WOLF_PUP_LAY_LOOK_AWAY();
+                return $this->J5_WOLF_PUP_LAY_LOOK_AWAY($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_LAY_LOOK_FORWARD':
 
-                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD();
+                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH':
 
-                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH();
+                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_LEASH_EYES_CLOSED':
 
-                return $this->J5_WOLF_PUP_LEASH_EYES_CLOSED();
+                return $this->J5_WOLF_PUP_LEASH_EYES_CLOSED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_LIL_5_PTS':
 
-                return $this->J5_WOLF_PUP_LIL_5_PTS();
+                return $this->J5_WOLF_PUP_LIL_5_PTS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_EYES_CLOSED':
 
-                return $this->J5_WOLF_PUP_SIT_EYES_CLOSED();
+                return $this->J5_WOLF_PUP_SIT_EYES_CLOSED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_FORWARD':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_FORWARD();
+                return $this->J5_WOLF_PUP_SIT_LOOK_FORWARD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW();
+                return $this->J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT();
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW();
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW();
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW();
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_UP':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_UP();
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_UP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW();
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_STAND_LOOK_RIGHT':
 
-                return $this->J5_WOLF_PUP_STAND_LOOK_RIGHT();
+                return $this->J5_WOLF_PUP_STAND_LOOK_RIGHT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_STAND_LOOK_UP':
 
-                return $this->J5_WOLF_PUP_STAND_LOOK_UP();
+                return $this->J5_WOLF_PUP_STAND_LOOK_UP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             case 'J5_WOLF_PUP_WALK':
 
-                return $this->J5_WOLF_PUP_WALK();
+                return $this->J5_WOLF_PUP_WALK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
             default:
 
                 //
                 //J5_WOLF_PUP
-
-                return $this->J5_WOLF_PUP();
+                return $this->J5_WOLF_PUP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
 
             break;
 
@@ -3710,7 +6351,7 @@ class crnrstn_image_v_html_content_manager {
 
     }
 
-    private function J5_WOLF_PUP(){
+    private function J5_WOLF_PUP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3725,11 +6366,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_LAY_00(){
+    private function J5_WOLF_PUP_LAY_00($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3744,11 +6421,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_LAY_01(){
+    private function J5_WOLF_PUP_LAY_01($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3763,11 +6476,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_LAY_02(){
+    private function J5_WOLF_PUP_LAY_02($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3782,11 +6531,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_LAY_LOOK_AWAY(){
+    private function J5_WOLF_PUP_LAY_LOOK_AWAY($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3801,11 +6586,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_LAY_LOOK_FORWARD(){
+    private function J5_WOLF_PUP_LAY_LOOK_FORWARD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3820,11 +6641,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH(){
+    private function J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3839,11 +6696,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_LEASH_EYES_CLOSED(){
+    private function J5_WOLF_PUP_LEASH_EYES_CLOSED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3858,11 +6751,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_LIL_5_PTS(){
+    private function J5_WOLF_PUP_LIL_5_PTS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3877,11 +6806,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_EYES_CLOSED(){
+    private function J5_WOLF_PUP_SIT_EYES_CLOSED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3896,11 +6861,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_FORWARD(){
+    private function J5_WOLF_PUP_SIT_LOOK_FORWARD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3915,11 +6916,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW(){
+    private function J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3934,11 +6971,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT(){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3953,11 +7026,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW(){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3972,11 +7081,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW(){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -3991,11 +7136,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW(){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4010,11 +7191,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_UP(){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_UP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4029,11 +7246,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW(){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4048,11 +7301,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_STAND_LOOK_RIGHT(){
+    private function J5_WOLF_PUP_STAND_LOOK_RIGHT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4067,11 +7356,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_STAND_LOOK_UP(){
+    private function J5_WOLF_PUP_STAND_LOOK_UP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4086,11 +7411,47 @@ class crnrstn_image_v_html_content_manager {
         # # # # # # # #
         # # # # # # # #
 
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function J5_WOLF_PUP_WALK(){
+    private function J5_WOLF_PUP_WALK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4104,6 +7465,42 @@ class crnrstn_image_v_html_content_manager {
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
+
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
 
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
@@ -4662,11 +8059,6 @@ class crnrstn_image_v_html_content_manager {
             $tmp_filepath = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'];
             $tmp_filename = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'];
 
-//            if(){
-//
-//
-//            }
-//
             //
             // NEW IMAGES WILL NOT HAVE BASE64 FILE BY DEFAULT, AND fileperms() WILL THEN THROW PHP WARNING.
             if(is_file($tmp_filepath)){
@@ -4698,7 +8090,7 @@ class crnrstn_image_v_html_content_manager {
                 fwrite($resource_file, $tmp_data_str_out);
                 fclose($resource_file);
 
-                $this->oCRNRSTN->error_log('[**DEV BLOCKED**]Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+                $this->oCRNRSTN->error_log('Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 
             }else{
 
@@ -4727,7 +8119,7 @@ class crnrstn_image_v_html_content_manager {
                         fwrite($resource_file, $tmp_data_str_out);
                         fclose($resource_file);
 
-                        $this->oCRNRSTN->error_log('[**DEV BLOCKED**]Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+                        $this->oCRNRSTN->error_log('Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 
                     }
 
@@ -5281,7 +8673,7 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
                     }
 
-                    break;
+                break;
                 case 'jpg':
                 case 'jpeg':
                 case 'jpg2':
@@ -5326,7 +8718,6 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
                                     //
                                     // ONLY PNG IS FILE
                                     //$this->oCRNRSTN->print_r('VALID JPEG FILE [' . $tmp_dir_JPEG . $img_name . '.jpg' . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
                                     if(!$this->system_base64_file_synchronized()){
 
                                         return $this->system_base64_write();
@@ -5345,30 +8736,7 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
                     }
 
-                    break;
-                case 'php':
-
-                    //
-                    // JPEG
-                    if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_BASE64, 'SOURCE')){
-
-                        //
-                        // DO WE HAVE A VALID PNG FILE NAME
-                        if(is_file($tmp_dir_BASE64 . $img_name . '.php')){
-
-                            //$this->oCRNRSTN->print_r('VALID FILE [' . $tmp_dir_BASE64 . $img_name . '.php].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
-                            //die();
-
-                        }
-
-                    }else{
-
-                        $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system BASE64 encoded images directory [' . $tmp_dir_BASE64 . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                    }
-
-                    break;
+                break;
 
             }
 

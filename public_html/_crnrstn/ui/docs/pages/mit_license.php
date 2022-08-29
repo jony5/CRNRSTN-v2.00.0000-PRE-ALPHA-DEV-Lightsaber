@@ -158,7 +158,7 @@ switch($channel_constant){
                     <div id="crnrstn_signin_meta00_' . $this->page_serial . '" class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ' secs]</div>
                     <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('5', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
 
-                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
 
                     <div class="crnrstn_cb"></div>
                 </div>

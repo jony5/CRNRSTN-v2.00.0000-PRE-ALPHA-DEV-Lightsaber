@@ -20,13 +20,13 @@ DEMO TOPICS ::
     ~ PRINT_R
     ~ FORMAT NUMBERS
 
-$oCRNRSTN->print_r('LOAD ASSET[' . $data_type_constant . ']['.print_r(self::$image_filesystem_meta_ARRAY, true).'].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-$oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
+$oCRNRSTN->set_timezone_default('America/New_York');
+$oCRNRSTN->ini_set('max_execution_time', 60);
+$oCRNRSTN->ini_set('memory_limit', '300M');
+$oCRNRSTN->add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
+...
 */
-
-//
-// FORMATTING NUMBERS WITH CRNRSTN ::
 
 ?>
 
@@ -44,7 +44,7 @@ $oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Att
         .crnrstn_logo_wrapper                       { padding: 15px 0 20px 15px; }
 
         .crnrstn_activity_log                       { opacity: 0; }
-        .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 0; width:800px; height:190px; overflow:scroll;}
+        .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 0; width:95%; height:190px; overflow:scroll;}
         .crnrstn_log_output                         { width:2000px; }
         .crnrstn_log_entry                          { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; }
         .crnrstn_j5_wolf_pup_outter_wrap            { float:right; padding:420px 0 0 0; margin:0; width:100%;}
@@ -55,12 +55,19 @@ $oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Att
     </style>
 </head>
 <body>
-<div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
+<div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
 
 <?php
 
 $oCRNRSTN->print_r('$oCRNRSTN->print_r(\'Output content.\', \'Output title.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-$oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$oCRNRSTN->print_r('$tmp_str = $oCRNRSTN->print_r_str(\'Output content.\', \'Output title.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r_str()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$oCRNRSTN->print_r('$oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', \'\', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);', '$oCRNRSTN->return_system_image()',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+//echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', 1000, 'http://jony5.com/', 'J5 MY BOY!', 'AWESOME!', '_blank', '', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);
 
 ?>
 

@@ -2434,7 +2434,7 @@ class crnrstn {
 <body>
 <div style="padding: 0 0 0 20px;">
 
-    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 541].' . '
@@ -2518,7 +2518,7 @@ class crnrstn {
 <body>
 <div style="padding: 0 0 0 20px;">
 
-    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
@@ -4515,8 +4515,48 @@ class crnrstn {
             case CRNRSTN_UI_PHP:
 
                 $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
+                    <div style="width:98%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
                 <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
@@ -4526,8 +4566,48 @@ class crnrstn {
             case CRNRSTN_UI_HTML:
 
                 $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
+                    <div style="width:98%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
                 <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
@@ -4537,8 +4617,48 @@ class crnrstn {
             case CRNRSTN_UI_PHPNIGHT:
 
                 $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
+                    <div style="width:98%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
                 <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
@@ -4548,8 +4668,48 @@ class crnrstn {
             default:
 
                 $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+            
+                }
+                </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
+                    <div style="width:98%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
                 <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
@@ -4578,7 +4738,7 @@ class crnrstn {
 
         }
 
-        $tmp_str_out .= '<pre>';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0;">' . $expression . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
         $tmp_str_out .= print_r($output, true);
         $tmp_str_out .= '</pre>';
 
@@ -4699,8 +4859,9 @@ class crnrstn {
                     document.execCommand(\'copy\');
                     
                     /* Alert the copied text */
-                    alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-            
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
@@ -4749,8 +4910,9 @@ class crnrstn {
                     document.execCommand(\'copy\');
                     
                     /* Alert the copied text */
-                    alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-            
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
@@ -4796,7 +4958,8 @@ class crnrstn {
                     document.execCommand(\'copy\');
                     
                     /* Alert the copied text */
-                    alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
             
                 }
                 </script>
@@ -4848,8 +5011,9 @@ class crnrstn {
                     document.execCommand(\'copy\');
                     
                     /* Alert the copied text */
-                    alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-            
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
@@ -4890,7 +5054,7 @@ class crnrstn {
 
         }
 
-        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="width:0; height:0; position:absolute; left:-2000px; overflow:hidden;">' . $expression . '</div><pre>';
+        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . $expression . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
         print_r($output);
         echo '</pre>';
 
@@ -5374,6 +5538,12 @@ class crnrstn {
             return false;
 
         }
+
+    }
+
+    public function return_system_image($creative_element_key, $height = '', $hyperlink = '', $alt = '', $title = '', $target = '', $width = '', $image_output_mode = NULL){
+
+        return $this->oCRNRSTN_MEDIA_CONVERTOR->return_system_image($creative_element_key, $height, $hyperlink, $alt, $title, $target, $width, $image_output_mode);
 
     }
 

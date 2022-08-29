@@ -194,7 +194,7 @@ switch($channel_constant[0]){
                         <div id="crnrstn_signin_meta00_' . $this->page_serial . '" class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ' secs] [wtime <span id="crnrstn_wtime_' . $this->page_serial . '"></span>]</div>
                         <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('5') . '</div>
     
-                        <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('BG_ELEMENT_LOGO_SIGNIN') . '</div>
+                        <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO') . '</div>
     
                         <div class="crnrstn_cb"></div>
                     </div>
@@ -213,7 +213,7 @@ switch($channel_constant[0]){
     
                                         <div class="crnrstn_err_wrap_outter_email crnrstn_err_wrap">
                                             <div class="crnrstn_err_wrap_inner_email">
-                                                <div class="crnrstn_err_wrap_email" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_PNG) . '\');">
+                                                <div class="crnrstn_err_wrap_email" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_PNG) . '\');">
                                                     <div id="crnrstn_auth_e_ERR" class="crnrstn_err_wrap_copy">Email is Required.&nbsp;&nbsp;&nbsp;</div>
                                                 </div>
                                             </div>
@@ -243,7 +243,7 @@ switch($channel_constant[0]){
                                     
                                     <div class="crnrstn_err_wrap_outter_password crnrstn_err_wrap">
                                         <div class="crnrstn_err_wrap_inner_password">
-                                            <div class="crnrstn_err_wrap_password" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('BG_ELEMENT_LOGO_SIGNIN', CRNRSTN_UI_IMG_PNG) . '\');">
+                                            <div class="crnrstn_err_wrap_password" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_PNG) . '\');">
                                                 <div id="crnrstn_auth_pwd_ERR" class="crnrstn_err_wrap_copy">Password is Required&nbsp;&nbsp;&nbsp;</div>
                                             </div>
                                         </div>
