@@ -4870,7 +4870,7 @@ class crnrstn {
                             <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -4919,7 +4919,7 @@ class crnrstn {
                     <div style="padding:0 0 5px 0; width: 100%;">
                         <div style="text-align:left;">
                             <div style="font-family: Courier New, Courier, monospace; float: left;">' . $tmp_title . '</div>
-                            <a href="#" onclick="copy_output_'. $tmp_hash .'();" style="color:#06C; text-align:right;">Copy to clipboard</a>
+                            <a href="#" onclick="copy_output_'. $tmp_hash .'(); return false;" style="color:#06C; text-align:right;">Copy to clipboard</a>
                         </div>
                     </div>
                     <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
@@ -4969,7 +4969,7 @@ class crnrstn {
                             <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -5022,7 +5022,7 @@ class crnrstn {
                             <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>

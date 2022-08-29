@@ -1745,10 +1745,23 @@ class crnrstn_logging {
                 break;
                 case CRNRSTN_LOG_FILE:
                     # $tmp_output_log_ARRAY['text']
-                    $output_profile_override_meta;
+                    //$output_profile_override_meta;
                     $oCRNRSTN_USR->error_log('error_LogTrace() action to take on profile[' . $output_profile . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_NONE);
 
                     if(isset($output_profile_override_meta)){
+
+                        $tmp_minimum_bytes_required = strlen($tmp_output_log_ARRAY['text']);
+                        if(!self::$oCRNRSTN_n->grant_permissions_fwrite($output_profile_override_meta, $tmp_minimum_bytes_required)){
+
+                            //
+                            // HOOOSTON...VE HAF PROBLEM!
+                            self::$oCRNRSTN_n->error_log('WARNING. Disk space exceeds ' . self::$oCRNRSTN_n->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                            self::$oCRNRSTN_n->print_r('WARNING. Disk space exceeds ' . self::$oCRNRSTN_n->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                            throw new Exception('WARNING. Disk space exceeds ' . self::$oCRNRSTN_n->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $output_profile_override_meta . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.');
+
+                        }
 
                         //
                         // VALIDATE FILE PATH ON FILE OPEN FOR APPEND
@@ -1790,18 +1803,18 @@ class crnrstn_logging {
 
                                         //
                                         // VALIDATE FILE PATH ON FILE OPEN FOR APPEND
-                                        if($fp = fopen($tmp_endpoint_profile_ARRAY[$i], 'a')){
-
-                                            fwrite($fp, $tmp_output_log_ARRAY['text']);
-                                            fclose($fp);
-
-                                        }else{
-
-                                            //
-                                            // HOOOSTON...VE HAF PROBLEM!
-                                            throw new Exception('Unable to locate the provided path or open/create file for writing (i.e. append) at filepath="' . $tmp_cnt_endpoint_pipe[$i] . '".');
-
-                                        }
+//                                        if($fp = fopen($tmp_endpoint_profile_ARRAY[$i], 'a')){
+//
+//                                            fwrite($fp, $tmp_output_log_ARRAY['text']);
+//                                            fclose($fp);
+//
+//                                        }else{
+//
+//                                            //
+//                                            // HOOOSTON...VE HAF PROBLEM!
+//                                            throw new Exception('Unable to locate the provided path or open/create file for writing (i.e. append) at filepath="' . $tmp_cnt_endpoint_pipe[$i] . '".');
+//
+//                                        }
 
                                     }
 
