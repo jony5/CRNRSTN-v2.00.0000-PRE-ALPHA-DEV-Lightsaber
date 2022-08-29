@@ -1001,7 +1001,7 @@ class crnrstn_http_manager {
      *
      * @param string $resource_key The resource key.
      * @return string|null|mixed The value of the header.
-     * @access   private
+     * @access  private
      */
     public function is_client_mobile($tabletIsMobile = false){
 
@@ -1120,7 +1120,7 @@ class crnrstn_http_manager {
      *
      * @param string $resource_key The resource key.
      * @return string|null|mixed The value of the header.
-     * @access   private
+     * @access  private
      */
     public function is_client_tablet($mobileIsTablet = false){
 
@@ -1280,7 +1280,7 @@ class crnrstn_http_manager {
      *
      * @param string $resource_key The resource key.
      * @return string|null|mixed The value of the header.
-     * @access   private
+     * @access  private
      */
     public function set_client_mobile_custom($target_device = NULL){
 
@@ -1331,7 +1331,7 @@ class crnrstn_http_manager {
      *
      * @param string $resource_key The resource key.
      * @return string|null|mixed The value of the header.
-     * @access   private
+     * @access  private
      */
     public function is_client_mobile_custom($target_device = NULL){
 

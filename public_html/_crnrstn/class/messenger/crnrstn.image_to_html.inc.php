@@ -354,7 +354,7 @@ class crnrstn_image_v_html_content_manager {
                     break;
                     case 'J5_WOLF_PUP_RAND':
 
-                        $tmp_img_out =  $this->J5_WOLF_PUP_RAND();
+                        $tmp_img_out = $this->J5_WOLF_PUP_RAND();
 
                         return $tmp_img_out;
 
@@ -4196,7 +4196,7 @@ class crnrstn_image_v_html_content_manager {
 
                     }else{
 
-                        return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
 
                     }
 
@@ -4248,7 +4248,7 @@ class crnrstn_image_v_html_content_manager {
 
                     }else{
 
-                        return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
 
                     }
 
@@ -4327,7 +4327,7 @@ class crnrstn_image_v_html_content_manager {
 
                     }else{
 
-                        return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
 
                     }
 
@@ -4377,7 +4377,7 @@ class crnrstn_image_v_html_content_manager {
 
                     }else{
 
-                        return '<img src="' . $tmp_str . '"  width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
 
                     }
 

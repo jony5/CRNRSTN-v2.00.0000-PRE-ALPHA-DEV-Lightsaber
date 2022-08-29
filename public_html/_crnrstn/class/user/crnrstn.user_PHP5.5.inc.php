@@ -1549,7 +1549,7 @@ class crnrstn_user{
         //$this->oCRNRSTN_ENV->init_session($this);
         //$this->oCRNRSTN_ENV->oSESSION_MGR->init_session();
 
-        error_log(__LINE__ .  ' user ' . __METHOD__ . '()  WHY AM I RUNNING? die();');
+        error_log(__LINE__ . ' user ' . __METHOD__ . '() WHY AM I RUNNING? die();');
         die();
     }
 
@@ -2009,7 +2009,7 @@ class crnrstn_user{
 
                  */
 
-                return  '<is_enabled>' . $this->tidy_boolean($this->get_resource('CRNRSTN_UI_INTERACT_ENABLED'), 'string') . '</is_enabled>
+                return '<is_enabled>' . $this->tidy_boolean($this->get_resource('CRNRSTN_UI_INTERACT_ENABLED'), 'string') . '</is_enabled>
                 <is_visible>' . $this->tidy_boolean($this->get_resource('CRNRSTN_UI_INTERACT_ISVISIBLE'), 'string') . '</is_visible>
                 <theme_configuration>
                     <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" checksum="' . $this->crcINT('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
@@ -2046,7 +2046,7 @@ class crnrstn_user{
 
         $tmp_is_jpg = false;
 
-        //$this->oCRNRSTN_ASSET_MGR  = new
+        //$this->oCRNRSTN_ASSET_MGR = new
 
         //
         // NEED TO RETURN PNG FILE PATH FROM THIS INPUT STRING (WHICH SHOULD BE TO A JPG IMAGE FILE)
@@ -2084,7 +2084,7 @@ class crnrstn_user{
 
         }
 
-        return  '';
+        return '';
 
     }
 
@@ -2218,7 +2218,7 @@ class crnrstn_user{
 
                     //
                     // BASE64 THIS PNG
-                    error_log(__LINE__ . ' user ' . __METHOD__ . '::  attempting to open image file ' . $crnrstn_png . ', ' . $this->find_filesize($crnrstn_png) . ' bytes. ');
+                    error_log(__LINE__ . ' user ' . __METHOD__ . ':: attempting to open image file ' . $crnrstn_png . ', ' . $this->find_filesize($crnrstn_png) . ' bytes. ');
                     $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to open image file ' . $crnrstn_png . ', ' . $this->find_filesize($crnrstn_png) . ' bytes. ';
                     $img_binary = fread(fopen($crnrstn_png, 'r'), $this->find_filesize($crnrstn_png));
                     $mime_content_type_png = mime_content_type($img_binary);
@@ -2428,11 +2428,6 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     $this->error_log('[SYSTEM_BASE64] UNABLE TO WRITE FILE [' . $tmp_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 }
-
-            }else{
-
-                $this->error_log('[SYSTEM_BASE64] PERFECT MATCH. base64 CONTENT FOR php FILE [' . $tmp_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                $this->error_log('[SYSTEM_BASE64] THERE IS NO NEED TO RE-WRITE base64 php FILE [' . $tmp_file_path . ']. [' . $crnrstn_image_to_process_name. ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             }
 
@@ -2835,14 +2830,14 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         $module = strtolower($module);
 
         switch($module){
-            case  'bassdrive_inject':
+            case 'bassdrive_inject':
 
                 $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_inject_bassdrive();
 
                 break;
-            case  'bassdrive_popup':
+            case 'bassdrive_popup':
 
                 $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
 
@@ -2917,7 +2912,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
 
-                error_log(__LINE__ . ' user switch(config_wordpress)  get class[' . get_class($this->oCRNRSTN_AUTH) . ']');
+                error_log(__LINE__ . ' user switch(config_wordpress) get class[' . get_class($this->oCRNRSTN_AUTH) . ']');
                 if($this->is_account_valid()){
                     error_log(__LINE__ . ' user switch(config_wordpress) is_valid return true');
 
@@ -3381,13 +3376,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }
 
-        $this->print_r('[' . $SOAP_endpoint . '][' . $WSDL_cache_ttl . '][' . $nusoap_useCURL . ']', 'SEND CLIENT REQUEST', NULL,  __LINE__, __METHOD__, __FILE__);
+        $this->print_r('[' . $SOAP_endpoint . '][' . $WSDL_cache_ttl . '][' . $nusoap_useCURL . ']', 'SEND CLIENT REQUEST', NULL, __LINE__, __METHOD__, __FILE__);
 
         //
         // INSTANTIATE SOAP CLIENT
         $this->oSoapClient = new crnrstn_soap_client_manager($this, $SOAP_endpoint, $WSDL_cache_ttl, $nusoap_useCURL);
-        $this->print_r('[' . gettype($this->oSoapClient) . '][' . get_class($this->oSoapClient) . '] [' . $SOAP_method . '][' . print_r($SOAP_request, true) . ']', 'SEND CLIENT REQUEST', NULL,  __LINE__, __METHOD__, __FILE__);
-        //$this->print_r('[' . $SOAP_method . '][' . print_r($SOAP_request, true) . ']', 'SEND CLIENT REQUEST', NULL,  __LINE__, __METHOD__, __FILE__);
+        $this->print_r('[' . gettype($this->oSoapClient) . '][' . get_class($this->oSoapClient) . '] [' . $SOAP_method . '][' . print_r($SOAP_request, true) . ']', 'SEND CLIENT REQUEST', NULL, __LINE__, __METHOD__, __FILE__);
+        //$this->print_r('[' . $SOAP_method . '][' . print_r($SOAP_request, true) . ']', 'SEND CLIENT REQUEST', NULL, __LINE__, __METHOD__, __FILE__);
 
         return $this->oSoapClient->sendRequest_SOAP($SOAP_method, $SOAP_request);
 
@@ -4345,7 +4340,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     public function is_current_environment($env_key){
 
         //
-        //  METHOD HAS BEEN MODIFIED BUT IS UNTESTED :: Friday, August 5, 2022 2013 hrs
+        // METHOD HAS BEEN MODIFIED BUT IS UNTESTED :: Friday, August 5, 2022 2013 hrs
         $tmp_env_key_crc = $this->crcINT($env_key);
 
         if($tmp_env_key_crc == $this->oCRNRSTN_ENV->env_key_crc){
@@ -4869,7 +4864,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         if(!isset($env_key)){
 
-            $env_key  = $this->oCRNRSTN_ENV->env_key;
+            $env_key = $this->oCRNRSTN_ENV->env_key;
 
         }
 
@@ -5015,7 +5010,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 if(isset($tunnel_encrypt_hidden_input_data)){
 
-                    error_log(__LINE__ . ' user enter  init_form_handling()...die();');
+                    error_log(__LINE__ . ' user enter init_form_handling()...die();');
                     die();
                     self::$form_handle_ARRAY[$crnrstn_form_handle]['tunnel_encrypt'] = $tunnel_encrypt_hidden_input_data;
 
@@ -5517,7 +5512,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }else{
 
-            //error_log(__LINE__ . '  user I need to open a new connection [' . $tmp_mysqli_serial . '] now! ...mysqli not set.');
+            //error_log(__LINE__ . ' user I need to open a new connection [' . $tmp_mysqli_serial . '] now! ...mysqli not set.');
             $this->error_log('Opening a new MYSQLi database connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             //
@@ -5660,7 +5655,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough = false, $cipher_override =  NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         return $this->oCRNRSTN_ENV->data_decrypt($data, $encryption_channel, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
@@ -5816,7 +5811,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $tmp_array_outer[] = $tmp_array;
 
-                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer,  'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_ARCH_AUTH_RUNTIME_ONLY);
+                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_ARCH_AUTH_RUNTIME_ONLY);
                 //$this->input_data_value($tmp_array_outer, 'ENCRYPT_PARAMS', NULL, 0, NULL, $this->env_key);
                 //$this->set_session_param('ENCRYPT_PARAMS', $tmp_array_outer);
 
@@ -5827,7 +5822,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $tmp_array_outer_sess[] = $tmp_array;
 
-                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer_sess,  'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_ARCH_AUTH_RUNTIME_ONLY);
+                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer_sess, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_ARCH_AUTH_RUNTIME_ONLY);
                 //$this->input_data_value($tmp_array_outer_sess, 'ENCRYPT_PARAMS', NULL, 0, NULL, $this->env_key);
                 //$this->set_session_param('ENCRYPT_PARAMS', $tmp_array_outer_sess);
 
@@ -6059,10 +6054,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                             if ($tmp_isEncrypted == 'true') {
 
-                                //error_log(__LINE__ . ' user auth  $tmp_isEncrypted is true. Decrypting CRNRSTN_INTEGRATION_PACKET=[' . $this->oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST, 'CRNRSTN_INTEGRATION_PACKET') . ']');
+                                //error_log(__LINE__ . ' user auth $tmp_isEncrypted is true. Decrypting CRNRSTN_INTEGRATION_PACKET=[' . $this->oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST, 'CRNRSTN_INTEGRATION_PACKET') . ']');
                                 $uri_passthrough = true;
                                 $tmp_output = $this->oCRNRSTN_ENV->data_decrypt($this->oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST, 'CRNRSTN_INTEGRATION_PACKET'), CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
-                                //error_log(__LINE__ . ' user auth  $tmp_isEncrypted is true. DONE Decrypting CRNRSTN_INTEGRATION_PACKET to [' . $tmp_output . ']');
+                                //error_log(__LINE__ . ' user auth $tmp_isEncrypted is true. DONE Decrypting CRNRSTN_INTEGRATION_PACKET to [' . $tmp_output . ']');
 
                                 error_log(__LINE__ . ' user CONSUME $_POST...CRNRSTN_INTEGRATION_PACKET AFTER DECRYPT.');
                                 $this->consume_form_integration_packet($tmp_output, 'POST');
@@ -6313,7 +6308,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 //
 //                            //
 //                            // IF SESSION RETURNS NOTHING, JUST RELOAD THE FORM.
-//                            //error_log(__LINE__ . ' user  SESSION RETURNS NOTHING, JUST RELOAD THE FORM.');
+//                            //error_log(__LINE__ . ' user SESSION RETURNS NOTHING, JUST RELOAD THE FORM.');
 //                            echo $this->ui_module_out('css_validator');
 //                            exit();
 //
@@ -8188,7 +8183,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         //
         // SOURCE :: https://www.php.net/manual/en/json.constants.php
         // AUTHOR :: majid4466 at gmail dot com :: https://www.php.net/manual/en/json.constants.php#119565
-        $val = json_encode($val,  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+        $val = json_encode($val, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
 
         return $val;
 
@@ -8844,7 +8839,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         $tmp_number = round($bytes, $precision);
         $tmp_number = $this->number_format_keep_precision($tmp_number);
 
-        return  $tmp_number . ' ' . $units[$pow];
+        return $tmp_number . ' ' . $units[$pow];
 
     }
 
@@ -10032,8 +10027,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             * it adds a header, "Expect: 100-continue".
             * it then sends the request head, waits for a 100 response code, then sends the content
 
-            Not all web servers support this though.  Various errors are returned depending on the
-            server.  If this happens to you, suppress the "Expect" header with this command:
+            Not all web servers support this though. Various errors are returned depending on the
+            server. If this happens to you, suppress the "Expect" header with this command:
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
             */
@@ -10185,326 +10180,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function print_r_str($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
-        if(!isset($style_theme)){
-
-            //
-            // SET DEFAULT CONSTANT
-            $style_theme = CRNRSTN_UI_PHPNIGHT;
-
-            $tmp_theme_ARRAY = $this->oCRNRSTN_ENV->return_set_bits($this->oCRNRSTN_ENV->system_style_profile_constants);
-
-            if(count($tmp_theme_ARRAY) > 0){
-
-                $style_theme = $tmp_theme_ARRAY[0];     // WE TAKE THE FIRST
-
-            }
-
-        }
-
-        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]';
-
-        if(!isset($method) || $method==''){
-
-            if(isset($file)){
-
-                $tmp_meta .= ' [file ' . $file . ']';
-
-            }
-
-        }else{
-
-            $tmp_meta .= ' [methd ' . $method . ']';
-
-        }
-
-        if(isset($line_num)){
-
-            $tmp_meta .= ' [lnum ' . $line_num . ']';
-
-        }
-
-        $tmp_print_r = print_r($expression, true);
-
-        $tmp_print_r = $this->proper_replace('\r\n', '\n', $tmp_print_r);
-        $lines = preg_split('#\r?\n#', trim($tmp_print_r));
-        $tmp_line_cnt = sizeof($lines);
-
-        $lineHTML = implode('<br />', range(1, $tmp_line_cnt + 0));
-        $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:#00FF00; border-right:1px solid #333333; background-color:#161616; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
-
-        if(isset($title) && $title != ''){
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= $title;
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }else{
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }
-
-        $tmp_hash = $this->generate_new_key(10);
-
-        switch($theme_style){
-            case CRNRSTN_UI_PHP:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-            case CRNRSTN_UI_HTML:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-            case CRNRSTN_UI_PHPNIGHT:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-            default:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-
-        }
-
-        $tmp_str_out = '<div style="background-color: #FFF; padding: 10px 20px 10px 20px;">';
-        $tmp_str_out .= $tmp_out;
-
-        $output = $this->highlightText($tmp_print_r, $theme_style);
-        $output = $this->proper_replace('<br />', '
-', $output);
-
-        if($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>'){
-
-            $output = '<span style="color: #DEDECB">&nbsp;</span>';
-
-        }
-
-        if($tmp_str_out == '<span style="color: #000"></span>'){
-
-            $tmp_str_out = '<span style="color: #000">&nbsp;</span>';
-
-        }
-
-        $tmp_str_out .= '<pre>';
-        $tmp_str_out .=  print_r($output, true);
-        $tmp_str_out .= '</pre>';
-
-        $component_crnrstn_title = $this->oCRNRSTN_ENV->return_component_branding_creative();
-        $component_crnrstn_j5_wolf_pup = '<div style="height:40px; width:100%; clear:both; display: block; overflow: hidden;"></div>
-        <div style="width:100%;">
-            <div style="position:relative; text-align:right; padding:420px 0 0 0; margin:0; width:100%; height:450px;">
-                <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
-                ' . $this->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
-                    <div style="height:0px; width:100%; clear:both; display: block; overflow: hidden;"></div>
-                </div>
-                <div style="height:0px; width:100%; clear:both; display: block; overflow: hidden;"></div>
-            </div>
-            <div style="height:0px; width:100%; clear:both; display: block; overflow: hidden;"></div>
-
-        </div>
-        <div style="height:0; width:100%; clear:both; display: block; overflow: hidden;"></div>';
-
-        $tmp_str_out .= '</code></div></div>
-        <div style="width:100%;">
-            <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
-
-            ' . $component_crnrstn_title . '
-
-            <div style="float:right; max-width:88%; max-width:82%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
-                
-            <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-        </div>
-        </div></div></div>
-        ' . $component_crnrstn_j5_wolf_pup;
-
-        $tmp_str_out .= '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-';
-
-        return $tmp_str_out;
+        return $this->oCRNRSTN->print_r_str($expression, $title, $theme_style, $line_num, $method, $file);
 
     }
 
-    public function print_r($expression,  $title = NULL, $style_theme = NULL, $line_num = NULL, $method = NULL, $file = NULL){
+    public function print_r($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
-        if(!isset($style_theme)){
-
-            //
-            // SET DEFAULT CONSTANT
-            $style_theme = CRNRSTN_UI_PHPNIGHT;
-
-            $tmp_theme_ARRAY = $this->oCRNRSTN_ENV->return_set_bits($this->oCRNRSTN_ENV->system_style_profile_constants);
-
-            if(count($tmp_theme_ARRAY) > 0){
-
-                $style_theme = $tmp_theme_ARRAY[0];     // WE TAKE THE FIRST
-
-            }
-
-        }
-
-        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]';
-
-        if(!isset($method) || $method == ''){
-
-            if(isset($file)){
-
-                $tmp_meta .= ' [file ' . $file . ']';
-
-            }
-
-        }else{
-
-            $tmp_meta .= ' [methd ' . $method . ']';
-
-        }
-
-        if(isset($line_num)){
-
-            $tmp_meta .= ' [lnum ' . $line_num . ']';
-
-        }
-
-        $tmp_print_r = print_r($expression, true);
-
-        $tmp_print_r = $this->proper_replace('\r\n', '\n', $tmp_print_r);
-        $lines = preg_split('#\r?\n#', trim($tmp_print_r));
-        $tmp_line_cnt = sizeof($lines);
-
-        $lineHTML = implode('<br />', range(1, $tmp_line_cnt + 0));
-        $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:#00FF00; border-right:1px solid #333333; background-color:#161616; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
-
-        if(isset($title)){
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= $title;
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }else{
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }
-
-        $tmp_hash = $this->generate_new_key(10);
-
-        switch($style_theme){
-            case CRNRSTN_UI_PHP:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-            case CRNRSTN_UI_HTML:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-            case CRNRSTN_UI_PHPNIGHT:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-            default:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-
-        }
-
-        echo '<div style="background-color: #FFF; padding: 10px 20px 10px 20px;">';
-        echo $tmp_out;
-
-        $output = $this->highlightText($tmp_print_r, $style_theme);
-        $output = $this->proper_replace('<br />', '
-', $output);
-
-        if($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>'){
-
-            $output = '<span style="color: #DEDECB">&nbsp;</span>';
-
-        }
-
-        if($output == '<span style="color: #000"></span>'){
-
-            $output = '<span style="color: #000">&nbsp;</span>';
-
-        }
-
-        echo '<pre>';
-        print_r($output);
-        echo '</pre>';
-
-        $component_crnrstn_title = $this->oCRNRSTN_ENV->return_component_branding_creative();
-
-        echo '</code></div></div>
-        <div style="width:100%;">
-            <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
-
-            ' . $component_crnrstn_title . '
-
-            <div style="float:right; max-width:88%; max-width:82%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
-                
-            <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-        </div>
-        </div></div></div>';
-
-        echo '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>';
+        return $this->oCRNRSTN->print_r_str($expression, $title, $theme_style, $line_num, $method, $file);
 
     }
 
@@ -11204,7 +10886,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if(!isset($tmp_image_alpha_injection)){
 
-                        $tmp_image_alpha_injection =  '<img src="' . $this->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . $tmp_dir_path . $tmp_file_name_ARRAY[0] . '" width="1180" height="250" alt="Jonathan \'J5\' Harris">';
+                        $tmp_image_alpha_injection = '<img src="' . $this->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . $tmp_dir_path . $tmp_file_name_ARRAY[0] . '" width="1180" height="250" alt="Jonathan \'J5\' Harris">';
                         $hidden_image_array_html .= '<div class="hidden jony5_lifestyle_image">' . $file_name . '</div>';
 
                     }else{
@@ -11271,7 +10953,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             $tmp_resp_output = $this->oCRNRSTN_BASSDRIVE->relay_sync_bassdrive_log();
 
-            $tmp_resp_output = '<div style="padding:20px;">oCRNRSTN_USR->refresh_bassdrive_history() --PENDING[' . $tmp_resp_output . ']--  </div>';
+            $tmp_resp_output = '<div style="padding:20px;">oCRNRSTN_USR->refresh_bassdrive_history() --PENDING[' . $tmp_resp_output . ']-- </div>';
 
         }
 
@@ -11311,7 +10993,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             $tmp_resp_output = $this->oCRNRSTN_BASSDRIVE->refresh_bassdrive_history();
 
-            return '<div style="padding:20px;">oCRNRSTN_USR->refresh_bassdrive_history() --PENDING[' . $tmp_resp_output . ']--  </div>';
+            return '<div style="padding:20px;">oCRNRSTN_USR->refresh_bassdrive_history() --PENDING[' . $tmp_resp_output . ']-- </div>';
 
         }
 
@@ -11366,7 +11048,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($tmp_original_serial_len != $key_length){
 
-                        //error_log(__LINE__ . ' crnrstn_usr ORIGINAL ' . $table_name . '.' .  $field_name . ' SERIAL LENGTH[' . $tmp_original_serial_len.'] ERROR ON LENGTH! REQUIRED LENGTH, ' . $key_length . '.');
+                        //error_log(__LINE__ . ' crnrstn_usr ORIGINAL ' . $table_name . '.' . $field_name . ' SERIAL LENGTH[' . $tmp_original_serial_len.'] ERROR ON LENGTH! REQUIRED LENGTH, ' . $key_length . '.');
                         $tmp_out_serial = $this->return_clean_primary_key($original_serial, $key_length, $key_string_chars);
 
                     }

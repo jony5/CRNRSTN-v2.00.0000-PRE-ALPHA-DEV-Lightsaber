@@ -56,7 +56,7 @@ class crnrstn {
     protected $oLogger;
     public $oCRNRSTN_ENV;
     public $oCRNRSTN_USR;
-    public $oCRNRSTN_TRM;  // TODO :: INSTANTIATION IS CURRENTLY BOUND TO THIRD PARTY SERVICE; UNBIND BEFORE USE. Thursday, August 18, 2022 @ 2134 hrs
+    public $oCRNRSTN_TRM; // TODO :: INSTANTIATION IS CURRENTLY BOUND TO THIRD PARTY SERVICE; UNBIND BEFORE USE. Thursday, August 18, 2022 @ 2134 hrs
     private static $oCRNRSTN_CONFIG_MGR;
     public $oMYSQLI_CONN_MGR;
     private static $oLog_ProfileManager;
@@ -747,8 +747,8 @@ class crnrstn {
 
             $tmp_soap = new nusoap_base();
 
-            $tmp_version_soap = $tmp_soap->title;             //'NuSOAP';
-            $tmp_version_soap .= $tmp_soap->version;          //' v0.9.5';
+            $tmp_version_soap = $tmp_soap->title;               //'NuSOAP';
+            $tmp_version_soap .= $tmp_soap->version;            //' v0.9.5';
             //$tmp_version_soap .= $tmp_soap->revision;         //' $Revision: 1.123 $';
 
             $this->input_data_value($tmp_version_soap, 'version_soap', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
@@ -2340,7 +2340,7 @@ class crnrstn {
 
             if($env_key == '' || $data_key == ''){
 
-                $this->error_log('Attempted ' . __METHOD__ . '(' . $data_key .  ') but missing required parameters. ' . $tmp_param_err_str_ARRAY['string'], __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->error_log('Attempted ' . __METHOD__ . '(' . $data_key . ') but missing required parameters. ' . $tmp_param_err_str_ARRAY['string'], __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 throw new Exception('CRNRSTN :: initialization ERROR :: define_env_resource was called but was missing parameter information and so was not able to be initialized. env_key and resourceKey are required. env_key[' . $env_key . '] resourceKey[' . $data_key . ']');
 
@@ -2354,7 +2354,7 @@ class crnrstn {
 
                 if(($tmp_env_key_crc == self::$server_env_key_crc_ARRAY[$this->config_serial_crc]) || ($env_key === CRNRSTN_RESOURCE_ALL)){
 
-                    //error_log(__LINE__ . ' crnrstn ' .  __METHOD__ . ':: input_data_value(), WHERE $data_key=' . $data_key . ' $env_key=[' . $env_key . '/' . self::$server_env_key_ARRAY[$this->config_serial_crc] . '.].');
+                    //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ':: input_data_value(), WHERE $data_key=' . $data_key . ' $env_key=[' . $env_key . '/' . self::$server_env_key_ARRAY[$this->config_serial_crc] . '.].');
                     if(!isset(self::$server_env_key_ARRAY[$this->config_serial_crc])){
 
                         $this->system_terminate('detection');
@@ -2440,7 +2440,7 @@ class crnrstn {
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 541].' . '
         <br><span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
         <br>$oCRNRSTN->detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
-        <br>// <a href="#" onclick="crnrstn_copy_detection();" style="color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD') . '.
+        <br>// <a href="#" onclick="crnrstn_copy_detection();" style="font-family:Courier New, Courier, monospace; color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD') . '.
         <br>
     </div>
     
@@ -2467,7 +2467,7 @@ class crnrstn {
                 break;
                 default:
 
-                    $tmp_serial_str_len  = 64;
+                    $tmp_serial_str_len = 64;
                     // $CRNRSTN_config_serial = '[n2X0@F2=?C8[-8ij5X6k*4k8XT}uuDQ{ZHkCr*KK5!sT%Z~cdGylAx(8WVYPb@N';
                     $tmp_serial = $this->generate_new_key($tmp_serial_str_len, -2);
                     $dom_sess_serial = $this->generate_new_key(26, '01');
@@ -2523,8 +2523,8 @@ class crnrstn {
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
-        <br>$CRNRSTN_config_serial = \'<span id="crnstn_config_serial_'  . $dom_sess_serial . '">' . $tmp_serial . '</span>\';
-        <br>// <a href="#" onclick="crnrstn_copy_serial();" style="color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
+        <br>$CRNRSTN_config_serial = \'<span id="crnstn_config_serial_' . $dom_sess_serial . '">' . $tmp_serial . '</span>\';
+        <br>// <a href="#" onclick="crnrstn_copy_serial();" style="font-family:Courier New, Courier, monospace; color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
         <br>
     </div>
     
@@ -2570,7 +2570,7 @@ class crnrstn {
 
     }
 
-    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough = false, $cipher_override =  NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         return $this->oCRNRSTN_ENV->data_decrypt($data, $encryption_channel, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
@@ -4579,10 +4579,10 @@ class crnrstn {
         }
 
         $tmp_str_out .= '<pre>';
-        $tmp_str_out .=  print_r($output, true);
+        $tmp_str_out .= print_r($output, true);
         $tmp_str_out .= '</pre>';
 
-        $component_crnrstn_title = $this->return_component_branding_creative();
+        $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
         $tmp_str_out .= '</code></div></div>
         <div style="width:100%;">
@@ -4621,7 +4621,7 @@ class crnrstn {
 
         }
 
-        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]';
+        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
 
         if(!isset($method) || $method == ''){
 
@@ -4666,47 +4666,202 @@ class crnrstn {
 
         }
 
-        $tmp_hash = $this->generate_new_key(10);
+        $tmp_hash = $this->generate_new_key(26);
 
         switch($theme_style){
             case CRNRSTN_UI_PHP:
 
                 $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+            
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:98%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                    <code>';
 
             break;
             case CRNRSTN_UI_HTML:
 
                 $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+            
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="padding:0 0 5px 0; width: 100%;">
+                        <div style="text-align:left;">
+                            <div style="font-family: Courier New, Courier, monospace; float: left;">' . $tmp_title . '</div>
+                            <a href="#" onclick="copy_output_'. $tmp_hash .'();" style="color:#06C; text-align:right;">Copy to clipboard</a>
+                        </div>
+                    </div>
+                    <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                    <code>';
 
             break;
             case CRNRSTN_UI_PHPNIGHT:
 
                 $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+            
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:98%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+
+                    <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                    <code>';
 
             break;
             default:
 
                 $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output"  style="width:100%;">
-                ' . $tmp_title . '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+            
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:98%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
                 <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
@@ -4735,11 +4890,11 @@ class crnrstn {
 
         }
 
-        echo '<pre>';
+        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="width:0; height:0; position:absolute; left:-2000px; overflow:hidden;">' . $expression . '</div><pre>';
         print_r($output);
         echo '</pre>';
 
-        $component_crnrstn_title = $this->return_component_branding_creative();
+        $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
         echo '</code></div></div>
         <div style="width:100%;">
@@ -4747,7 +4902,7 @@ class crnrstn {
 
             ' . $component_crnrstn_title . '
 
-            <div style="float:right; max-width:88%; max-width:82%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
+            <div style="float:right; max-width:85%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
                 
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
         </div>
@@ -5381,7 +5536,7 @@ class crnrstn {
         $tmp_number = round($bytes, $precision);
         $tmp_number = $this->number_format_keep_precision($tmp_number);
 
-        return  $tmp_number . ' ' . $units[$pow];
+        return $tmp_number . ' ' . $units[$pow];
 
     }
 
@@ -6074,7 +6229,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
             //
             // WE ARE AT LEAST PHP v5.2.7
-            $tmp_version_php =  PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION;
+            $tmp_version_php = PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION;
             //$this->consume_ddo_system_param($tmp_version_php, 'version_php', 0);
             self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_php, 'version_php');
 
@@ -6257,7 +6412,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         session.cookie_httponly bool
         Marks the cookie as accessible only through the HTTP protocol. This means that the cookie won't be accessible by scripting languages, such as JavaScript. This setting can effectively help to reduce identity theft through XSS attacks (although it is not supported by all browsers).
 
-        session.cookie_samesite string  (Available as of PHP 7.3.0.)
+        session.cookie_samesite string (Available as of PHP 7.3.0.)
         Allows servers to assert that a cookie ought not to be sent along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks. Note that this is not supported by all browsers. An empty value means that no SameSite cookie attribute will be set. Lax and Strict mean that the cookie will not be sent cross-domain for POST requests; Lax will sent the cookie for cross-domain GET requests, while Strict will not.
 
         session.cache_limiter string
@@ -6630,7 +6785,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     }
 
-    public function return_sticky_link($url, $meta_params_ARRAY =  NULL){
+    public function return_sticky_link($url, $meta_params_ARRAY = NULL){
 
         $tmp_array = array();
         $tmp_flag_array = array();
@@ -7054,7 +7209,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 -->
 <div style="padding:16px 2% 0 0; float:right; width:260px;">
     <div style="float:right; ">
-        ' . $this->return_component_branding_creative(true) . '
+        ' . $this->return_component_branding_creative(true, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
     </div>
 </div>
 
@@ -7101,7 +7256,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 -->
 <div style="padding:16px 2% 0 0; float:right; width:260px;">
     <div style="float:right; ">
-        ' . $this->return_component_branding_creative(true) . '
+        ' . $this->return_component_branding_creative(true, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
     </div>
 </div>
 
@@ -7185,7 +7340,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     public function strrtrim($message, $strip) {
         // break message apart by strip string
         $lines = explode($strip, $message);
-        $last  = '';
+        $last = '';
         // pop off empty strings at the end
         do {
             $last = array_pop($lines);
@@ -7365,7 +7520,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         }
 
-        //error_log(__LINE__  . ' crnrstn->' . __METHOD__ . '() [rtime ' . $this->wall_time() . ' secs] [' . print_r(self::$system_files_version_hash_ARRAY, true) . ']');
+        //error_log(__LINE__ . ' crnrstn->' . __METHOD__ . '() [rtime ' . $this->wall_time() . ' secs] [' . print_r(self::$system_files_version_hash_ARRAY, true) . ']');
 
     }
 
@@ -7778,7 +7933,7 @@ class crnrstn_config_manager {
 #  DATE :: June 3, 2022 @ 1500hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI ::
-#  DESCRIPTION ::  Support cookie, session, database and tunnel encryption layer profiles.
+#  DESCRIPTION :: Support cookie, session, database and tunnel encryption layer profiles.
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
 class crnrstn_openssl_encryption_layer_profile_manager {

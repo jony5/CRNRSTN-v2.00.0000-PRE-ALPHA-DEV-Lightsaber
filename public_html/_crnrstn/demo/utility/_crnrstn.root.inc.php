@@ -51,7 +51,7 @@ function crnrstn_root_dir_shift($dir_offset){
     $tmp_root_dir_output_ARRAY = array();
     $tmp_shift_ARRAY = explode('..', $dir_offset);
     $tmp_shift_cnt = count($tmp_shift_ARRAY);
-    $tmp_current_dir_path =  dirname( __FILE__ );
+    $tmp_current_dir_path = dirname( __FILE__ );
     $tmp_dir_ARRAY = explode(DIRECTORY_SEPARATOR, $tmp_current_dir_path);
     $tmp_dir_ARRAY = array_reverse($tmp_dir_ARRAY);
 

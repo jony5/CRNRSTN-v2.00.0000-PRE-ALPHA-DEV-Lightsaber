@@ -1,6 +1,6 @@
 <?php
 /**
-* @package CRNRSTN
+* @package CRNRSTNF
 // J5
 // Code is Poetry */
 #
@@ -131,7 +131,7 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
  *  ALL config resources are EXACTLY the same site to site...which is unlikely). Should
  *  this value change during an active session, CRNRSTN :: will need to perform a complete
  *  reset resulting in a re-execution of environmental detection and a reacquisition of
- *  all resource definitions.  This will result in a minor spike to processing overhead
+ *  all resource definitions. This will result in a minor spike to processing overhead
  *  within a sufficiently highly trafficked environment. Also, please note that ANY
  *  changes to this configuration file will result in the same...a full reset for the
  *  CRNRSTN :: environmental detection layer and resource definitions.
@@ -183,7 +183,7 @@ CRNRSTN_DEBUG_AGGREGATION_ON    // DEBUG MODE IS ON, BUT SAY NOTHING UNTIL THE E
 
 // CRNRSTN :: OPENSSL ENCRYPTION PROFILE INTEGER CONSTANT
 CRNRSTN_ENCRYPT_TUNNEL
-* * DETAILS  ::
+* * DETAILS ::
 * * TUNNEL ENCRYPTION IS USED BY CRNRSTN :: FOR POINT TO POINT COMMUNICATIONS
 * * AFFECTS ::
 * * ~ THE CRNRSTN :: FORM INTEGRATIONS HANDLER PACKET.
@@ -198,7 +198,7 @@ CRNRSTN_ENCRYPT_TUNNEL
 
 // CRNRSTN :: OPENSSL ENCRYPTION PROFILE INTEGER CONSTANT
 CRNRSTN_ENCRYPT_DATABASE
-* * DETAILS  ::
+* * DETAILS ::
 * * DATABASE ENCRYPTION IS USED BY CRNRSTN :: WHEN SENDING TO DATABASE FOR STORAGE
 * * AFFECTS ::
 * * ~ THE SYSTEM SESSION CONFIGURATION OBJECT. OUTPUT FROM THE SYSTEM CONFIG DDO FLAGGED AS AUTHORIZED FOR OUTPUT TO
@@ -414,7 +414,7 @@ http://php.net/error-reporting
 The error level constants are always available as part of the PHP core.
 ; E_ALL             - All errors and warnings (includes E_STRICT as of PHP 6.0.0)
 ; E_ERROR           - fatal run-time errors
-; E_RECOVERABLE_ERROR  - almost fatal run-time errors
+; E_RECOVERABLE_ERROR - almost fatal run-time errors
 ; E_WARNING         - run-time warnings (non-fatal errors)
 ; E_PARSE           - compile-time parse errors
 ; E_NOTICE          - run-time notices (these are warnings which often result
@@ -439,9 +439,9 @@ The error level constants are always available as part of the PHP core.
 
 ; Common Values for error reporting:
 ;   	E_ALL (Show all errors, warnings and notices including coding standards.)
-;   	E_ALL & ~E_NOTICE  (Show all errors, except for notices)
-;   	E_ALL & ~E_NOTICE & ~E_STRICT  (Show all errors, except for notices and coding standards warnings.)
-;   	E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR  (Show only errors)
+;   	E_ALL & ~E_NOTICE (Show all errors, except for notices)
+;   	E_ALL & ~E_NOTICE & ~E_STRICT (Show all errors, except for notices and coding standards warnings.)
+;   	E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (Show only errors)
 ;
 ; Default Value: E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
 ; Development Value: E_ALL
@@ -768,7 +768,7 @@ $oCRNRSTN->init_sys_comm_img_HTTP_DIR('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.1
  * * CRNRSTN_LOG_EMAIL = Send error logging through email at running server. This requires a WCR for SMTP,
  *   QMAIL, PHPMAILER, OR SENDMAIL within the running environment.
  * * CRNRSTN_LOG_EMAIL_PROXY = Send error logging through SOAP request to a proxy server endpoint (WSDL) for
- *   email send at the proxy.  This requires a WCR for SOAP integration here, and a WCR for SMTP,
+ *   email send at the proxy. This requires a WCR for SOAP integration here, and a WCR for SMTP,
  *   QMAIL, PHPMAILER, or SENDMAIL at the PROXY.
  * * CRNRSTN_LOG_FILE = Send error logging to custom file at path provided.
  * * CRNRSTN_LOG_SCREEN_TEXT = Return error logging to screen (e.g. echo...) using basic character
@@ -812,7 +812,7 @@ $oCRNRSTN->init_sys_comm_img_HTTP_DIR('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.1
  */
 $oCRNRSTN->init_logging('BLUEHOST', CRNRSTN_LOG_DEFAULT,'CRNRSTN::INTEGRATIONS');
 $oCRNRSTN->init_logging('BLUEHOST_WWW', CRNRSTN_LOG_DEFAULT,'CRNRSTN::INTEGRATIONS');
-//$oCRNRSTN->init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_EMAIL,'j5@jony5.com, c00000101@gmail.com');  //
+//$oCRNRSTN->init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_EMAIL,'j5@jony5.com, c00000101@gmail.com');
 //$oCRNRSTN->init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_EMAIL,'CRNRSTN::INTEGRATIONS');
 //$oCRNRSTN->init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_FILE, 'CRNRSTN::INTEGRATIONS');
 //$oCRNRSTN->init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_SCREEN);
