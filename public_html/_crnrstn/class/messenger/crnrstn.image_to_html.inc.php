@@ -4107,6 +4107,41 @@ class crnrstn_image_v_html_content_manager {
 
     }
 
+    private function system_base64_HTML_tidy($filename, $base64){
+
+        $tmp_str_out = $base64;
+
+        $filename = $filename . '.png';
+
+        switch($filename){
+            case 'elem_shadow_btm.png':
+            //case 'elem_shadow_btm.jpg':
+            //case 'elem_shadow_btm.jpeg':
+            //case 'elem_shadow_btm.jpg2':
+                $tmp_str_out = '';
+                $tmp_str_out .= 'background-image:url(';
+                $tmp_str_out .= $base64;
+                $tmp_str_out .= ')';
+
+            break;
+            case 'signin_frm_reflection.png':
+            //case 'signin_frm_reflection.jpg':
+            //case 'signin_frm_reflection.jpeg':
+            //case 'signin_frm_reflection.jpg2':
+
+                $tmp_str_out = '';
+                $tmp_str_out .= '<div style="width:722px; height:55px; background: url(\\\'';
+                $tmp_str_out .= $base64;
+                $tmp_str_out .= '\\\'); background-repeat: no-repeat;"></div>';
+
+            break;
+
+        }
+
+        return $tmp_str_out;
+
+    }
+
     private function return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target){
 
         try{
@@ -4146,6 +4181,8 @@ class crnrstn_image_v_html_content_manager {
                     if(isset($system_file_serial)) {
 
                         $tmp_str = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial]['base64'];
+
+                        $tmp_str = $this->system_base64_HTML_tidy($tmp_filename, $tmp_str);
 
                     }
 
@@ -4197,6 +4234,8 @@ class crnrstn_image_v_html_content_manager {
 
                         $tmp_str = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial ]['base64'];
 
+                        $tmp_str = $this->system_base64_HTML_tidy($tmp_filename, $tmp_str);
+
                     }
 
                     if(strlen($tmp_link) > 0){
@@ -4247,6 +4286,8 @@ class crnrstn_image_v_html_content_manager {
 
                         $tmp_str = self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial ]['base64'];
 
+                        $tmp_str = $this->system_base64_HTML_tidy($tmp_filename, $tmp_str);
+
                     }
 
                     //
@@ -4262,6 +4303,8 @@ class crnrstn_image_v_html_content_manager {
                     if(isset($system_file_serial)) {
 
                         $tmp_str = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial ]['base64'];
+
+                        $tmp_str = $this->system_base64_HTML_tidy($tmp_filename, $tmp_str);
 
                     }
 
@@ -4469,60 +4512,48 @@ class crnrstn_image_v_html_content_manager {
 
     private function load_system_asset($data_type_constant){
 
-        $file_path = self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['path_filename'];
+        //error_log(__LINE__ . ' img html ['.$data_type_constant.']['.self::$request_salt.'][\'path_filename\']');
 
-        if(!($tmp_base64_filemtime = @filemtime(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename']))){
+        if(isset(self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['path_filename'])){
 
-            $tmp_base64_filemtime = $this->oCRNRSTN->return_micro_time();
+            if(!$file_path = self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['path_filename']){
 
-        }
+                $this->oCRNRSTN->print_r('ERROR :: LOAD ASSET[' . print_r(self::$image_filesystem_meta_ARRAY[$data_type_constant], true).'].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-        switch($data_type_constant){
-            case CRNRSTN_UI_IMG_JPEG:
-            case CRNRSTN_UI_IMG_PNG:
+                return false;
+
+            }
+
+            if(is_file($file_path)){
+
+                if(!($tmp_base64_filemtime = @filemtime(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename']))){
+
+                    $tmp_base64_filemtime = $this->oCRNRSTN->return_micro_time();
+
+                }
+
+//                case CRNRSTN_UI_IMG_JPEG:
+//                case CRNRSTN_UI_IMG_PNG:
 
                 list($tmp_width, $tmp_height) = getimagesize($file_path);
                 self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['image_dimensions'] = $tmp_width . ' pixels in width X ' . $tmp_height . ' pixels in height.';
+                self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['mime_content_type'] = mime_content_type($file_path);
+                self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['filesize'] = $this->oCRNRSTN->format_bytes($this->oCRNRSTN->find_filesize($file_path), 5);
+                self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['filemtime'] = filemtime($file_path);
+                self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['md5'] = md5_file($file_path);
+                self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['sha1'] = sha1_file($file_path);
+                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filemtime'] = $tmp_base64_filemtime;
 
-            break;
+                self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['base64'] = $this->oCRNRSTN->encode_image($file_path);
+                //$this->oCRNRSTN->print_r('LOADED ASSET DATA [' . $data_type_constant . ']['.print_r(self::$image_filesystem_meta_ARRAY, true).'].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-        }
-
-        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['mime_content_type'] = mime_content_type($file_path);
-        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['filesize'] = $this->oCRNRSTN->format_bytes($this->oCRNRSTN->find_filesize($file_path), 5);
-        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['filemtime'] = filemtime($file_path);
-        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['md5'] = md5_file($file_path);
-        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['sha1'] = sha1_file($file_path);
-        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filemtime'] = $tmp_base64_filemtime;
-
-        $tmp_base64_prefix = '';
-        $tmp_base64_append = '';
-        if(isset(self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['BASE64_BACKGROUND_CSS_WRAPPED'])){
-
-            switch(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename']){
-                case 'elem_shadow_btm.png':
-
-                    //elem_shadow_btm.php
-                    $tmp_base64_prefix = 'background-image:url(';
-                    $tmp_base64_append = ')';
-
-                break;
-                case 'signin_frm_reflection.png':
-
-                    //signin_frm_reflection.php
-                    $tmp_base64_prefix = '<div style="width:722px; height:55px; background: url(\\\'';
-                    $tmp_base64_append = '\\\'); background-repeat: no-repeat;"></div>';
-
-                break;
+                return true;
 
             }
 
         }
 
-        self::$image_filesystem_meta_ARRAY[$data_type_constant][self::$request_salt]['base64'] = $tmp_base64_prefix . $this->oCRNRSTN->encode_image($file_path) . $tmp_base64_append;
-        //$this->oCRNRSTN->print_r('LOAD ASSET[' . $data_type_constant . ']['.print_r(self::$image_filesystem_meta_ARRAY, true).'].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
-        return true;
+        return false;
 
     }
 
@@ -4629,6 +4660,11 @@ class crnrstn_image_v_html_content_manager {
             $tmp_filepath = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'];
             $tmp_filename = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'];
 
+//            if(){
+//
+//
+//            }
+//
             //
             // NEW IMAGES WILL NOT HAVE BASE64 FILE BY DEFAULT, AND fileperms() WILL THEN THROW PHP WARNING.
             if(is_file($tmp_filepath)){
@@ -5039,14 +5075,6 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
                 self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['base64_crc'] = $this->oCRNRSTN->crcINT($tmp_str);
                 self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['arch_1.0_base64'] = $tmp_str;
 
-                $pos_bg_css = stripos($tmp_str, 'background');
-                if ($pos_bg_css !== false) {
-
-                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['BASE64_BACKGROUND_CSS_WRAPPED'] = 1;
-                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['BASE64_BACKGROUND_CSS_WRAPPED'] = 1;
-
-                }
-
             }
 
         }
@@ -5056,7 +5084,7 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
         if($this->load_system_asset(CRNRSTN_UI_IMG_PNG)){
 
             //$this->oCRNRSTN->print_r('SYSTEM LOADED PNG FILE [' . print_r(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG], true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-            $this->oCRNRSTN->error_log('System load of PNG file to check BASE64 file is complete. File: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+            //$this->oCRNRSTN->error_log('System load of PNG file to check BASE64 file is complete. File: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 
             if(!$this->valid_system_asset(CRNRSTN_UI_IMG_PNG, 'SYSTEM_BASE64')){
 
@@ -5078,7 +5106,7 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
         if($this->load_system_asset(CRNRSTN_UI_IMG_JPEG)){
 
             //$this->oCRNRSTN->print_r('SYSTEM LOADED JPEG FILE [' . print_r(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG], true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-            $this->oCRNRSTN->error_log('System load of JPEG file to check BASE64 file is complete. File: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+            //$this->oCRNRSTN->error_log('System load of JPEG file to check BASE64 file is complete. File: ' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 
             if(!$this->valid_system_asset(CRNRSTN_UI_IMG_JPEG, 'SYSTEM_BASE64')){
 
@@ -5119,23 +5147,29 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
         self::$request_salt = $this->oCRNRSTN->generate_new_key(26);
 
-        //
-        // IS THIS A SYSTEM KEY
-        $tmp_system_data_profile_ARRAY = $this->return_creative_profile($data_key);
-        if(is_array($tmp_system_data_profile_ARRAY)){
+        if(isset($data_key)){
 
-            /*
-            $tmp_ARRAY['filename'] = $tmp_filename;
-            $tmp_ARRAY['width'] = $tmp_width;
-            $tmp_ARRAY['height'] = $tmp_height;
-            $tmp_ARRAY['alt_text'] = $tmp_alt_text;
-            $tmp_ARRAY['title_text'] = $tmp_title_text;
-            $tmp_ARRAY['link'] = $tmp_link;
-            $tmp_ARRAY['target'] = $tmp_target;
+            //if(strlen($data_key) > 0){
+            //
+            // IS THIS A SYSTEM KEY
+            $tmp_system_data_profile_ARRAY = $this->return_creative_profile($data_key);
+            if(is_array($tmp_system_data_profile_ARRAY)){
 
-            */
+                /*
+                $tmp_ARRAY['filename'] = $tmp_filename;
+                $tmp_ARRAY['width'] = $tmp_width;
+                $tmp_ARRAY['height'] = $tmp_height;
+                $tmp_ARRAY['alt_text'] = $tmp_alt_text;
+                $tmp_ARRAY['title_text'] = $tmp_title_text;
+                $tmp_ARRAY['link'] = $tmp_link;
+                $tmp_ARRAY['target'] = $tmp_target;
 
-            $img_name = $tmp_system_data_profile_ARRAY['filename'];
+                */
+
+                $img_name = $tmp_system_data_profile_ARRAY['filename'];
+
+            }
+            //}
 
         }
 
@@ -5181,58 +5215,57 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
         $tmp_dir_JPEG = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['dir'];
         $tmp_dir_BASE64 = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['dir'];
 
-        if(!isset($tmp_original_file_extension_clean)){
+        $tmp_img_type_ARRAY = array('png', 'jpg', 'jpeg', 'jpg2');
+        foreach($tmp_img_type_ARRAY as $index => $img_type){
 
-            $tmp_original_file_extension_clean = 'png';
-
-        }
-
-        switch(strtolower($tmp_original_file_extension_clean)){
-            case 'png':
-
-                //
-                // CHECK PNG IS VALID FILE
-                if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_PNG, 'SOURCE')){
+            switch(strtolower($img_type)){
+                case 'png':
 
                     //
-                    // DO WE HAVE A VALID FILE?
-                    if(is_file($tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean)){
-
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_original_file_extension_clean;
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] = $tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean;
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] = $img_name . '.php';
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] = $tmp_dir_BASE64 . $img_name . '.php';
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['serial'] = $tmp_file_serial;
+                    // CHECK PNG IS VALID FILE
+                    if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_PNG, 'SOURCE')){
 
                         //
-                        // PNG IS VALID. IS THERE A MATCHING JPG?
-                        if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_JPEG, 'SOURCE')) {
+                        // DO WE HAVE A VALID FILE?
+                        if(is_file($tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean)){
+
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_original_file_extension_clean;
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] = $tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean;
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] = $img_name . '.php';
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] = $tmp_dir_BASE64 . $img_name . '.php';
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['serial'] = $tmp_file_serial;
 
                             //
-                            // DO WE HAVE A VALID FILE?
-                            if(is_file($tmp_dir_JPEG . $img_name . '.jpg')){
-
-                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] = $img_name . '.jpg';
-                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] = $tmp_dir_JPEG . $img_name . '.jpg';
-                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
+                            // PNG IS VALID. IS THERE A MATCHING JPG?
+                            if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_JPEG, 'SOURCE')) {
 
                                 //
-                                // PNG IS FILE. JPG IS FILE.
-                                if(!$this->system_base64_file_synchronized()){
+                                // DO WE HAVE A VALID FILE?
+                                if(is_file($tmp_dir_JPEG . $img_name . '.jpg')){
 
-                                    return $this->system_base64_write();
+                                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] = $img_name . '.jpg';
+                                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] = $tmp_dir_JPEG . $img_name . '.jpg';
+                                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
 
-                                }
+                                    //
+                                    // PNG IS FILE. JPG IS FILE.
+                                    if(!$this->system_base64_file_synchronized()){
 
-                            }else{
+                                        return $this->system_base64_write();
 
-                                //
-                                // ONLY PNG IS FILE
-                                //$this->oCRNRSTN->print_r('VALID PNG FILE [' . $tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-                                if(!$this->system_base64_file_synchronized()){
+                                    }
 
-                                    return $this->system_base64_write();
+                                }else{
+
+                                    //
+                                    // ONLY PNG IS FILE
+                                    //$this->oCRNRSTN->print_r('VALID PNG FILE [' . $tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                                    if(!$this->system_base64_file_synchronized()){
+
+                                        return $this->system_base64_write();
+
+                                    }
 
                                 }
 
@@ -5240,63 +5273,63 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
                         }
 
+                    }else{
+
+                        $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system PNG images directory [' . $tmp_dir_PNG . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
                     }
 
-                }else{
-
-                    $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system PNG images directory [' . $tmp_dir_PNG . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                }
-
-            break;
-            case 'jpg':
-            case 'jpeg':
-            case 'jpg2':
-
-                //
-                // JPEG
-                if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_JPEG, 'SOURCE')){
+                    break;
+                case 'jpg':
+                case 'jpeg':
+                case 'jpg2':
 
                     //
-                    // DO WE HAVE A VALID JPEG FILE NAME
-                    if(is_file($tmp_dir_JPEG . $img_name . '.' . $tmp_original_file_extension_clean)){
-
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_original_file_extension_clean;
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] = $tmp_dir_JPEG . $img_name . '.' . $tmp_original_file_extension_clean;
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] = $img_name . '.php';
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] = $tmp_dir_BASE64 . $img_name . '.php';
-                        self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['serial'] = $tmp_file_serial;
+                    // JPEG
+                    if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_JPEG, 'SOURCE')){
 
                         //
-                        // JPEG IS VALID. IS THERE A MATCHING PNG?
-                        if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_PNG, 'SOURCE')) {
+                        // DO WE HAVE A VALID JPEG FILE NAME
+                        if(is_file($tmp_dir_JPEG . $img_name . '.' . $tmp_original_file_extension_clean)){
+
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_original_file_extension_clean;
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] = $tmp_dir_JPEG . $img_name . '.' . $tmp_original_file_extension_clean;
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] = $img_name . '.php';
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] = $tmp_dir_BASE64 . $img_name . '.php';
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['serial'] = $tmp_file_serial;
 
                             //
-                            // DO WE HAVE A VALID FILE?
-                            if(is_file($tmp_dir_PNG . $img_name . '.png')){
-
-                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] = $img_name . '.png';
-                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] = $tmp_dir_PNG . $img_name . '.png';
-                                self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
+                            // JPEG IS VALID. IS THERE A MATCHING PNG?
+                            if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_PNG, 'SOURCE')) {
 
                                 //
-                                // PNG IS FILE. JPG IS FILE.
-                                if(!$this->system_base64_file_synchronized()){
+                                // DO WE HAVE A VALID FILE?
+                                if(is_file($tmp_dir_PNG . $img_name . '.png')){
 
-                                    return $this->system_base64_write();
+                                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] = $img_name . '.png';
+                                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] = $tmp_dir_PNG . $img_name . '.png';
+                                    self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
 
-                                }
+                                    //
+                                    // PNG IS FILE. JPG IS FILE.
+                                    if(!$this->system_base64_file_synchronized()){
 
-                            }else{
+                                        return $this->system_base64_write();
 
-                                //
-                                // ONLY PNG IS FILE
-                                //$this->oCRNRSTN->print_r('VALID JPEG FILE [' . $tmp_dir_JPEG . $img_name . '.jpg' . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                                    }
 
-                                if(!$this->system_base64_file_synchronized()){
+                                }else{
 
-                                    return $this->system_base64_write();
+                                    //
+                                    // ONLY PNG IS FILE
+                                    //$this->oCRNRSTN->print_r('VALID JPEG FILE [' . $tmp_dir_JPEG . $img_name . '.jpg' . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                                    if(!$this->system_base64_file_synchronized()){
+
+                                        return $this->system_base64_write();
+
+                                    }
 
                                 }
 
@@ -5304,38 +5337,38 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
                         }
 
+                    }else{
+
+                        $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system JPEG images directory [' . $tmp_dir_JPEG . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
                     }
 
-                }else{
-
-                    $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system JPEG images directory [' . $tmp_dir_JPEG . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                }
-
-            break;
-            case 'php':
-
-                //
-                // JPEG
-                if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_BASE64, 'SOURCE')){
+                    break;
+                case 'php':
 
                     //
-                    // DO WE HAVE A VALID PNG FILE NAME
-                    if(is_file($tmp_dir_BASE64 . $img_name . '.php')){
+                    // JPEG
+                    if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_BASE64, 'SOURCE')){
 
-                        //$this->oCRNRSTN->print_r('VALID FILE [' . $tmp_dir_BASE64 . $img_name . '.php].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                        //
+                        // DO WE HAVE A VALID PNG FILE NAME
+                        if(is_file($tmp_dir_BASE64 . $img_name . '.php')){
 
-                        //die();
+                            //$this->oCRNRSTN->print_r('VALID FILE [' . $tmp_dir_BASE64 . $img_name . '.php].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                            //die();
+
+                        }
+
+                    }else{
+
+                        $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system BASE64 encoded images directory [' . $tmp_dir_BASE64 . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     }
 
-                }else{
+                    break;
 
-                    $this->oCRNRSTN->error_log('CRNRSTN :: is unable to read from system BASE64 encoded images directory [' . $tmp_dir_BASE64 . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                }
-
-            break;
+            }
 
         }
 

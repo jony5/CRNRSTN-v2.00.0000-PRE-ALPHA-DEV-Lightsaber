@@ -695,6 +695,12 @@ class crnrstn {
 
     }
 
+    public function country_iso_code(){
+
+        return $this->oCRNRSTN_ENV->country_iso_code;
+
+    }
+
     public function CRNRSTN_debug_mode(){
 
         return self::$CRNRSTN_debug_mode;
@@ -768,13 +774,6 @@ class crnrstn {
     public function version_linux(){
 
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('version_linux');
-
-    }
-
-    public function country_iso_code(){
-
-        //return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('country_iso_code');
-        return $this->oCRNRSTN_USR->country_iso_code;
 
     }
 
@@ -4757,7 +4756,7 @@ class crnrstn {
     // AUTHOR :: luke at lukeoliff.com :: https://www.php.net/manual/en/function.base64-encode.php#105200
     public function encode_image($file_path, $filetype = NULL) {
 
-        $this->error_log('$file_path=[' . $file_path . '] $filetype=[' . $filetype . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        //$this->error_log('$file_path=[' . $file_path . '] $filetype=[' . $filetype . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         if(!isset($filetype)){
 

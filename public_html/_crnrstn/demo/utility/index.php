@@ -20,6 +20,7 @@ DEMO TOPICS ::
     ~ PRINT_R
     ~ FORMAT NUMBERS
         //$this->oCRNRSTN->print_r('LOAD ASSET[' . $data_type_constant . ']['.print_r(self::$image_filesystem_meta_ARRAY, true).'].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                        $this->oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
 */
 
@@ -27,8 +28,6 @@ DEMO TOPICS ::
 // FORMATTING NUMBERS WITH CRNRSTN ::
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="<?php echo $oCRNRSTN->country_iso_code(); ?>">
@@ -110,7 +109,7 @@ DEMO TOPICS ::
     echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
     ?>
 </head>
-<body style="background-image: url('./imgs/bg_rr_00.png'); background-repeat: no-repeat;">
+<body>
 
 <div id="crnrstn_curl_data_storage" style="padding:0 10px 10px 20px; width:810px;">
 

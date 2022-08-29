@@ -4608,8 +4608,11 @@ class crnrstn_http_manager {
                     return false;
 
                 }
+
             }
+
         }
+
     }
 
     public function is($key, $userAgent = null, $httpHeaders = null){

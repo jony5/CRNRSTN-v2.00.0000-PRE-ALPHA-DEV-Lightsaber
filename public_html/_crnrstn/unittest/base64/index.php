@@ -6,7 +6,15 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-$oCRNRSTN->system_base64_synchronize('j5_wolf_pup_lay_look_forward_leash');
+$oCRNRSTN->system_base64_synchronize();
+
+/*
+j5_wolf_pup
+j5_pup_top_right
+
+
+
+*/
 
 //
 // THIS WILL SYNC ALL (~120 IMAGE) BASE64 FILES WITH THE CURRENT PNG AND JPEG (~33 SECS).
@@ -17,7 +25,7 @@ $oCRNRSTN->system_base64_synchronize('j5_wolf_pup_lay_look_forward_leash');
 //$oCRNRSTN->system_base64_synchronize('elem_shadow_btm.png');
 
 //$oCRNRSTN->print_r('System image processing using the params "run" and "auth_id".', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-echo  '<div style="padding: 40px;">' . $oCRNRSTN->return_creative('SUCCESS_CHECK') . '</div>';
+//echo  '<div style="padding: 40px;">' . $oCRNRSTN->return_creative('SUCCESS_CHECK') . '</div>';
 //echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 //echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG) . '" width="100" height="100">';
 
