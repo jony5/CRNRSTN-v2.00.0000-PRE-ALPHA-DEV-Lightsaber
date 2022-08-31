@@ -141,7 +141,7 @@ $oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_unit_test_automation_freq_s
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
 <style type="text/css">
-    *                                           { font-family:Arial, Helvetica, sans-serif;}
+    *                                           {}
     .the_R_in_crnrstn                           { color:#F90000; }
     .crnrstn_activity_log                       { opacity: 0; }
     .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 0; width:800px; height:190px; overflow:scroll;}
@@ -228,7 +228,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 ?>
 </head>
 <body>
-<div id="crnrstn_curl_data_storage" style="padding:0 10px 10px 20px; width:810px;">
+<div id="crnrstn_curl_data_storage" style="font-family:Arial, Helvetica, sans-serif; padding:0 10px 10px 20px; width:810px;">
 
     <div style="font-weight: bold; font-size: 25px; padding: 10px 0 0 0;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: CURL v7.58.0</div>
     <div class="crnrstn_cb"></div>
@@ -379,7 +379,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
 <?php
 
-echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+    //echo $oCRNRSTN->framework_integrations_client_packet();
 
 ?>
 </body>

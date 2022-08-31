@@ -99,7 +99,6 @@ $social_sprite_serial = $oCRNRSTN->generate_new_key(10);
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
 
 <style type="text/css">
-    *                                           { font-family:Arial, Helvetica, sans-serif;}
     .the_R_in_crnrstn                           { color:#F90000; }
     .crnrstn_activity_log                       { opacity: 0; }
     .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 0; width:800px; height:190px; overflow:scroll;}
@@ -145,7 +144,7 @@ $social_sprite_serial = $oCRNRSTN->generate_new_key(10);
 
 </head>
 <body>
-<div id="crnrstn_openssl_data_storage" style="padding:0 10px 10px 20px; width:810px;">
+<div id="crnrstn_openssl_data_storage" style="font-family:Arial, Helvetica, sans-serif; padding:0 10px 10px 20px; width:810px;">
 
     <div style="font-weight: bold; font-size: 25px; padding: 10px 0 10px 0;">
         <div style="float: left;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: Multi-Media, Web, and Social Media Integrations</div>

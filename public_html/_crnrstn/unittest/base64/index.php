@@ -8,20 +8,20 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 //
 // SYNC CRNRSTN :: NATIVE SYSTEM BASE64
-$oCRNRSTN->system_base64_synchronize();
+//$oCRNRSTN->system_base64_synchronize();
 
-echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath, CRNRSTN_UI_IMG_BASE64, $width, $height, $alt_text, $title_text, $link, $target);
-echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);  // IMAGE NATIVE DEFAULTS (OR RESULTS FROM system_base64_integrations_file_sync())
+//echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath, CRNRSTN_UI_IMG_BASE64, $width, $height, $alt_text, $title_text, $link, $target);
+//echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);  // IMAGE NATIVE DEFAULTS (OR RESULTS FROM system_base64_integrations_file_sync())
 
 //
 // SET CUSTOM IMAGE DEFAULTS
-$oCRNRSTN->system_base64_integrations_file_sync($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+//$oCRNRSTN->system_base64_integrations_file_sync($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
 
 //
 // WALK AWAY WITH [PNG, JPEG, AND BASE64] OPTIONALLY SET TO CUSTOM IMAGE DEFAULTS
-$oCRNRSTN->system_base64_integrations_file_heal($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+//$oCRNRSTN->system_base64_integrations_file_heal($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
 
-$oCRNRSTN->system_base64_integrations_file_css_heal();
+//$oCRNRSTN->system_base64_integrations_file_css_heal();
 
 // CRNRSTN :: IMAGE OUTPUT MODE VALUES
 // CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL, CRNRSTN_UI_IMG_BASE64, CRNRSTN_UI_IMG_BASE64_PNG,
@@ -31,10 +31,10 @@ $oCRNRSTN->system_base64_integrations_file_css_heal();
 
 
 // SYSTEM IMAGE :: $oCRNRSTN->return_creative(); $oCRNRSTN->return_branding_creative();
-echo '<br><br><br>' . $oCRNRSTN->return_creative('BG_ELEMENT_REFLECTION_SIGNIN', CRNRSTN_UI_IMG_BASE64);
+echo '<br><br><br>' . $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
 // CUSTOM IMAGE :: $oCRNRSTN->return_img();
-echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);
+//echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);
 
 //
 // SYNC CUSTOM IMAGES WWW TO THE NATIVE SYSTEM BASE64
@@ -61,7 +61,7 @@ j5_pup_top_right
 //$DOCUMENT_ROOT_DIR = $oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR');
 //$oCRNRSTN->system_base64_synchronize('elem_shadow_btm.png');
 
-$oCRNRSTN->print_r('System BASE64 processing complete.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//$oCRNRSTN->print_r('System BASE64 processing complete.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 //echo  '<div style="padding: 40px;">' . $oCRNRSTN->return_creative('SUCCESS_CHECK') . '</div>';
 //echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 //echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG) . '" width="100" height="100">';
@@ -392,7 +392,7 @@ $oCRNRSTN->init_input_listener('crnrstn_image_to_encode', 'crnrstn_resource_file
 </div>
 <?php
 
-    echo $oCRNRSTN->framework_integrations_client_packet();
+    //echo $oCRNRSTN->framework_integrations_client_packet();
 
 ?>
 </body>
