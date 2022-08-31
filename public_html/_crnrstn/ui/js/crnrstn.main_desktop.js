@@ -453,7 +453,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             }else{
 
-                $('<div style="float:left; padding:5px 0 5px 3px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG WINDOW</div><div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper"><div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div></div>').prependTo($('body'));
+                $('<div id="crnrstn_activity_log_output_wrapper"><div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 3px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG WINDOW</div><div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper"><div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div></div><div id="crnrstn_activity_log_output_lnk_wrapper"><div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 30px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div><div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div></div></div>').prependTo($('body'));
 
                 switch(self.CRNRSTN_LOGGING_OUTPUT){
                     case 'DOM':
@@ -2240,6 +2240,49 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             },
             complete: function () {
+
+            }
+        });
+
+    };
+
+    CRNRSTN_JS.prototype.crnrstn_ui_hide_ssdtla_debug = function() {
+
+        //tmp_bounce_max_width = 0;
+        //tmp_bounce_max_height = 0;
+
+        $( "#crnrstn_activity_log").animate({
+            opacity: 0,
+            height: 1
+        }, {
+            duration: 1500,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            step: function( now, fx ) {
+
+            },
+            complete: function () {
+
+            }
+        });
+
+        $( "#crnrstn_activity_log_output_title").animate({
+            opacity: 0,
+            height: 1
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            step: function( now, fx ) {
+
+            },
+            complete: function () {
+
+                $('#crnrstn_activity_log_output_lnk_wrapper').html('');
 
             }
         });
