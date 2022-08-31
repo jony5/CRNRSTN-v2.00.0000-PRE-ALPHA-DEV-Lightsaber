@@ -44,7 +44,7 @@ $oCRNRSTN->add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
         .crnrstn_logo_wrapper                       { padding: 15px 0 20px 15px; }
 
         .crnrstn_activity_log                       { opacity: 0; }
-        .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 0; width:95%; height:190px; overflow:scroll;}
+        .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 0; width:96%; height:190px; overflow:scroll;}
         .crnrstn_log_output                         { width:2000px; }
         .crnrstn_log_entry                          { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; }
         .crnrstn_j5_wolf_pup_outter_wrap            { float:right; padding:420px 0 0 0; margin:0; width:100%;}
