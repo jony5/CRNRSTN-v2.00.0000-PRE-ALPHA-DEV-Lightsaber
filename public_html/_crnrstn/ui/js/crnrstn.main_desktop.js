@@ -453,7 +453,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             }else{
 
-                $('<div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper"><div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div></div>').prependTo($('body'));
+                $('<div style="float:left; padding:5px 0 5px 3px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG WINDOW</div><div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper"><div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div></div>').prependTo($('body'));
 
                 switch(self.CRNRSTN_LOGGING_OUTPUT){
                     case 'DOM':
@@ -2602,7 +2602,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         $('body').on('click', 'a[href-crnrstn_top_' + session_salt + ']', function(event) {
 
-            alert('hello world');
+            //alert('hello world');
             $("html, body").animate({ scrollTop: 0 }, "slow");
             return false;
 
