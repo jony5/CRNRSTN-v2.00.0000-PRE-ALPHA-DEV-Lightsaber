@@ -2091,62 +2091,62 @@ class crnrstn_user{
     // Fri, July 29, 2022 1207hrs
     // TAKE UP ARMS AND FIGHT, SON!
     // public function base64_asset_path_listener(){
-    public function system_link_reset_jpeg_from_png($crnrstn_png = 'I AM NOT A FILE'){
-
-        $tmp_is_png = false;
-        $tmp_is_jpg = false;
-        $crnrstn_jpg = $tmp_png_filepath = $this->oCRNRSTN_ENV->data_decrypt($crnrstn_png, CRNRSTN_ENCRYPT_TUNNEL, 'GET');
-
-        //crnrstn_resource_filecache_version
-        $tmp_filename = $this->return_http_form_integration_input_val('crnrstn_image_to_process_name');
-
-        if(strlen($tmp_filename) > 2){
-
-            if(stripos($tmp_filename, '.png') !== false || $tmp_png_filepath != ''){
-
-                //
-                // WE HAVE .PNG
-                $tmp_is_png = true;
-                $crnrstn_png = $tmp_filename;
-
-                if($tmp_png_filepath != ''){
-
-                    $crnrstn_png = $tmp_png_filepath;
-
-                }
-
-                $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. ';
-
-
-                error_log(__LINE__ . ' user ' . __METHOD__ . ':: attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. die();');
-                die();
-
-
-                //
-                // SOURCE :: https://stackoverflow.com/questions/1201798/use-php-to-convert-png-to-jpg-with-compression
-                // AUTHOR :: Daniel De LeónDaniel De León :: https://stackoverflow.com/users/980442/daniel-de-le%c3%b3n
-//                $image = imagecreatefrompng($crnrstn_png);
-//                $bg = imagecreatetruecolor(imagesx($image), imagesy($image));
-//                imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
-//                imagealphablending($bg, TRUE);
-//                imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
-//                imagedestroy($image);
-//                $quality = $this->system_setting_jpg_image_quality(); // 0 = worst / smaller file, 100 = better / bigger file
-//                imagejpeg($bg, $crnrstn_jpg . ".jpg", $quality);
-//                imagedestroy($bg);
-
-            }
-
-            if($tmp_is_jpg){
-
-
-            }
-
-        }
-
-        $tmp_file_path = $this->get_resource('DOCUMENT_ROOT') . $this->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/imgs/jpg/' . $tmp_filename;
-
-    }
+//    public function ___system_link_reset_jpeg_from_png($crnrstn_png = 'I AM NOT A FILE'){
+//
+//        $tmp_is_png = false;
+//        $tmp_is_jpg = false;
+//        $crnrstn_jpg = $tmp_png_filepath = $this->oCRNRSTN_ENV->data_decrypt($crnrstn_png, CRNRSTN_ENCRYPT_TUNNEL, 'GET');
+//
+//        //crnrstn_resource_filecache_version
+//        $tmp_filename = $this->return_http_form_integration_input_val('crnrstn_image_to_process_name');
+//
+//        if(strlen($tmp_filename) > 2){
+//
+//            if(stripos($tmp_filename, '.png') !== false || $tmp_png_filepath != ''){
+//
+//                //
+//                // WE HAVE .PNG
+//                $tmp_is_png = true;
+//                $crnrstn_png = $tmp_filename;
+//
+//                if($tmp_png_filepath != ''){
+//
+//                    $crnrstn_png = $tmp_png_filepath;
+//
+//                }
+//
+//                $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. ';
+//
+//
+//                error_log(__LINE__ . ' user ' . __METHOD__ . ':: attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. die();');
+//                die();
+//
+//
+//                //
+//                // SOURCE :: https://stackoverflow.com/questions/1201798/use-php-to-convert-png-to-jpg-with-compression
+//                // AUTHOR :: Daniel De LeónDaniel De León :: https://stackoverflow.com/users/980442/daniel-de-le%c3%b3n
+////                $image = imagecreatefrompng($crnrstn_png);
+////                $bg = imagecreatetruecolor(imagesx($image), imagesy($image));
+////                imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
+////                imagealphablending($bg, TRUE);
+////                imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+////                imagedestroy($image);
+////                $quality = $this->system_setting_jpg_image_quality(); // 0 = worst / smaller file, 100 = better / bigger file
+////                imagejpeg($bg, $crnrstn_jpg . ".jpg", $quality);
+////                imagedestroy($bg);
+//
+//            }
+//
+//            if($tmp_is_jpg){
+//
+//
+//            }
+//
+//        }
+//
+//        $tmp_file_path = $this->get_resource('DOCUMENT_ROOT') . $this->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/imgs/jpg/' . $tmp_filename;
+//
+//    }
 
     private function system_link_reset_base64_from_png($base64_encode = 'I AM NOT BASE64', $filepath = NULL, $filetype = NULL){
 
@@ -8339,9 +8339,14 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         // 0x0A (10) in ASCII) AND SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
         // (13) in ASCII) AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
         // ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+        //
+        // ALSO, CHECK OUT $char_selection=-2, AND $char_selection=-3.
+        // $char_selection=-3 IS THE NICEST(NO: QUOTES, COMMAS,...ETC.)...WITH
+        // THE MOST DISTINCT NUMBER OF CHARACTERS FOR A SERIAL, IMHO.
+        //
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
 
-        return $this->oCRNRSTN_ENV->generate_new_key($len, $char_selection);
+        return $this->oCRNRSTN->generate_new_key($len, $char_selection);
 
     }
 

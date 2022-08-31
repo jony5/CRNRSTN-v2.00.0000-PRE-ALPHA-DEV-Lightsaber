@@ -6,12 +6,49 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
+//
+// SYNC CRNRSTN :: NATIVE SYSTEM BASE64
 $oCRNRSTN->system_base64_synchronize();
+
+echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath, CRNRSTN_UI_IMG_BASE64, $width, $height, $alt_text, $title_text, $link, $target);
+echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);  // IMAGE NATIVE DEFAULTS (OR RESULTS FROM system_base64_integrations_file_sync())
+
+//
+// SET CUSTOM IMAGE DEFAULTS
+$oCRNRSTN->system_base64_integrations_file_sync($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+
+//
+// WALK AWAY WITH [PNG, JPEG, AND BASE64] OPTIONALLY SET TO CUSTOM IMAGE DEFAULTS
+$oCRNRSTN->system_base64_integrations_file_heal($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+
+$oCRNRSTN->system_base64_integrations_file_css_heal();
+
+// CRNRSTN :: IMAGE OUTPUT MODE VALUES
+// CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL, CRNRSTN_UI_IMG_BASE64, CRNRSTN_UI_IMG_BASE64_PNG,
+// CRNRSTN_UI_IMG_BASE64_JPEG, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED,
+// CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED,
+// CRNRSTN_UI_IMG_JPEG, CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED
+
+
+// SYSTEM IMAGE :: $oCRNRSTN->return_creative(); $oCRNRSTN->return_branding_creative();
+echo '<br><br><br>' . $oCRNRSTN->return_creative('BG_ELEMENT_REFLECTION_SIGNIN', CRNRSTN_UI_IMG_BASE64);
+
+// CUSTOM IMAGE :: $oCRNRSTN->return_img();
+echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);
+
+//
+// SYNC CUSTOM IMAGES WWW TO THE NATIVE SYSTEM BASE64
+//$tmp_custom_images_dir = $oCRNRSTN->get_resource('DOCUMENT_ROOT') . $oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/demo/common/imgs/j5_my_boy/_thumb/';
+//$oCRNRSTN->system_base64_integrate($tmp_custom_images_dir, 5);
+
+
+// WHAT IS THAT, SOL? THIS...IS A FILE. ...WELL, I WANNA RAISE PULSES, DON'T I?
+//$tmp_custom_images_dir = $oCRNRSTN->get_resource('DOCUMENT_ROOT') . $oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/demo/common/imgs/j5_my_boy/_thumb/2010_10_30_11.11.56_j5_octane_00.png';
+//$oCRNRSTN->system_base64_integrate($tmp_custom_images_dir, 5);
 
 /*
 j5_wolf_pup
 j5_pup_top_right
-
 
 
 */
@@ -24,7 +61,7 @@ j5_pup_top_right
 //$DOCUMENT_ROOT_DIR = $oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR');
 //$oCRNRSTN->system_base64_synchronize('elem_shadow_btm.png');
 
-//$oCRNRSTN->print_r('System image processing using the params "run" and "auth_id".', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('System BASE64 processing complete.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 //echo  '<div style="padding: 40px;">' . $oCRNRSTN->return_creative('SUCCESS_CHECK') . '</div>';
 //echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 //echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG) . '" width="100" height="100">';
@@ -355,7 +392,7 @@ $oCRNRSTN->init_input_listener('crnrstn_image_to_encode', 'crnrstn_resource_file
 </div>
 <?php
 
-    echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+    echo $oCRNRSTN->framework_integrations_client_packet();
 
 ?>
 </body>

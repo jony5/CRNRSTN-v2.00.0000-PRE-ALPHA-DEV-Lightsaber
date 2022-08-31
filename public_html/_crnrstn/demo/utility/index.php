@@ -55,9 +55,44 @@ $oCRNRSTN->add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
     </style>
 </head>
 <body>
+<div id="crnrstn_top_shell_<?php echo $oCRNRSTN->session_salt(); ?>"><a id="__crnrstn_top_<?php echo $oCRNRSTN->session_salt(); ?>"></a></div>
 <div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
 
 <?php
+
+$tmp_str = '//
+// CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
+$tmp_minimum_bytes_required = strlen($tmp_data_str_out);
+
+// TODO :: BEFORE THROWING HARD EXCEPTION, PUT A "DISK FULL WARNING BUFFER" INSIDE grant_permissions_fwrite().
+// ASK CRNRSTN :: TO GRANT PERMISSIONS FOR fwrite()
+if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
+
+    //
+    // HOOOSTON...VE HAF PROBLEM!
+    $this->oCRNRSTN->error_log(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
+
+    $this->oCRNRSTN->print_r(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+    
+    throw new Exception(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
+
+}';
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$tmp_str = '$_SESSION[\'CRNRSTN_\' . $this->oCRNRSTN->config_serial_crc][\'CRNRSTN_EXCEPTION_PREFIX\'] = __CLASS__ . \'::\' . __METHOD__ . \'() attempted to fopen \' . $tmp_filepath . \' after the write permissions to related to same were first chmod to \' . str_pad($mkdir_mode, \'4\', \'0\', STR_PAD_LEFT) . \'. An attempt to open was again made, but \';
+if($resource_file = fopen($tmp_filepath, \'w\')){
+
+    $_SESSION[\'CRNRSTN_\'. $this->oCRNRSTN->config_serial_crc][\'CRNRSTN_EXCEPTION_PREFIX\'] = \'\';
+
+    fwrite($resource_file, $tmp_data_str_out);
+    fclose($resource_file);
+
+    $this->oCRNRSTN->error_log(\'Success. System write of BASE64 file is complete. File: \' . $tmp_filename . \'.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
+
+}';
+
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
 
 $oCRNRSTN->print_r('$oCRNRSTN->print_r(\'Output content.\', \'Output title.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
@@ -65,7 +100,32 @@ $oCRNRSTN->print_r('$tmp_str = $oCRNRSTN->print_r_str(\'Output content.\', \'Out
 
 $oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', \'\', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);', '$oCRNRSTN->return_system_image()',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('echo $oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', \'\', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);', '$oCRNRSTN->return_system_image()',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$oCRNRSTN->print_r('echo $oCRNRSTN->return_youtube_embed(\'https://www.youtube.com/watch?v=NePb9UWK8Yg\', 560, 315, true);', '$oCRNRSTN->return_youtube_embed()',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$oCRNRSTN->print_r('$oCRNRSTN->get_resource(\'DOCUMENT_ROOT\')', '$oCRNRSTN->get_resource()',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+//$oCRNRSTN->system_base64_synchronize();
+//$oCRNRSTN->system_base64_synchronize('CRNRSTN_LOGO');
+$oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5_my_boy/_thumb/', 5);
+
+//
+// SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
+// GENERATION...EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
+// ASCII) AND NOT SPLITTING HAIRS BETWEEN SEQUENCE \n LINEFEED (LF or
+// 0x0A (10) in ASCII) AND SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
+// (13) in ASCII) AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
+// ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+//
+// ALSO, CHECK OUT $char_selection=-2, AND $char_selection=-3.
+// $char_selection=-3 IS THE NICEST(NO: QUOTES, COMMAS,...ETC.)...WITH
+// THE MOST DISTINCT NUMBER OF CHARACTERS FOR A SERIAL, IMHO.
+//
+// https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
+
+//return $this->oCRNRSTN->generate_new_key($len, $char_selection);
+
 
 //echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', 1000, 'http://jony5.com/', 'J5 MY BOY!', 'AWESOME!', '_blank', '', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);
 
@@ -142,8 +202,7 @@ $oCRNRSTN->print_r('$oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', 1000, \'htt
 
 <?php
 
-//echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
-//echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_INTERACT);
+    //echo $oCRNRSTN->framework_integrations_client_packet();
 
 ?>
 </body>

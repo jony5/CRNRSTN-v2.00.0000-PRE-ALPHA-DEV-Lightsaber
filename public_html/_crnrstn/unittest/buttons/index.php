@@ -619,8 +619,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
 <?php
 
-echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
-echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_INTERACT);
+    echo $oCRNRSTN->framework_integrations_client_packet();
 
 ?>
 </body>

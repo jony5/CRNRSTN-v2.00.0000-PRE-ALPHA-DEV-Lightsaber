@@ -43,7 +43,7 @@
 #
 # # C # R # N # R # S # T # N # : : # # ##
 #
-#  CLASS :: crnrstn_image_v_html_content_manager
+#  CLASS :: crnrstn_system_image_asset_manager
 #  VERSION :: 1.00.0000
 #  DATE :: October 3, 2020 @ 1211hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
@@ -52,7 +52,7 @@
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #  Ezekiel 1:5a - AND FROM THE MIDST OF IT [FIRE] THERE CAME THE LIKENESS OF FOUR LIVING CREATURES.
 #
-class crnrstn_image_v_html_content_manager {
+class crnrstn_system_image_asset_manager {
 
     protected $oLogger;
     public $oCRNRSTN;
@@ -7523,17 +7523,20 @@ class crnrstn_image_v_html_content_manager {
                 $tmp_str_out .= ')';
 
             break;
-            case 'signin_frm_reflection.png':
+            //case 'signin_frm_reflection.png':
             //case 'signin_frm_reflection.jpg':
             //case 'signin_frm_reflection.jpeg':
             //case 'signin_frm_reflection.jpg2':
-
-                $tmp_str_out = '';
-                $tmp_str_out .= '<div style="width:722px; height:55px; background: url(\\\'';
-                $tmp_str_out .= $base64;
-                $tmp_str_out .= '\\\'); background-repeat: no-repeat;"></div>';
-
-            break;
+//
+                //error_log(__LINE__ . ' img html [' . $filename . '][' . self::$image_output_mode . '][' . strlen($base64) . ']');
+                //
+                //die();
+                //$tmp_str_out = '';
+                //$tmp_str_out .= '<div style="width:722px; height:55px; background: url(\'';
+                //$tmp_str_out .= $base64;
+                //$tmp_str_out .= '\'); background-repeat: no-repeat;"></div>';
+//
+            //break;
 
         }
 
@@ -8070,11 +8073,14 @@ class crnrstn_image_v_html_content_manager {
             //
             // CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
             $tmp_minimum_bytes_required = strlen($tmp_data_str_out);
+
+            // TODO :: BEFORE THROWING HARD EXCEPTION, PUT A "DISK FULL WARNING BUFFER" INSIDE grant_permissions_fwrite().
+            // ASK CRNRSTN :: TO GRANT PERMISSIONS FOR fwrite()
             if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                $this->oCRNRSTN->error_log('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->oCRNRSTN->error_log('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
 
                 $this->oCRNRSTN->print_r('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
@@ -8082,7 +8088,7 @@ class crnrstn_image_v_html_content_manager {
 
             }
 
-            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'CRNRSTN :: has experienced permissions related error as the destination file, ' . $tmp_filename . ' (' . $tmp_current_perms . '), is NOT writable to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ', and furthermore ';
+            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to open ' . $tmp_filepath . ', but ';
             if($resource_file = fopen($tmp_filepath, 'w')){
 
                 $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
@@ -8104,14 +8110,15 @@ class crnrstn_image_v_html_content_manager {
                 $this->oCRNRSTN->error_log('Attempting to modify permissions to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ' for file write at, ' . $tmp_filepath . '. The current permissions, ' . $tmp_current_perms . ', at file for CRNRSTN :: render the file NOT to be writable.');
                 $this->oCRNRSTN->print_r('Attempting to modify permissions to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ' for file write at, ' . $tmp_filepath . '. The current permissions, ' . $tmp_current_perms . ', at file for CRNRSTN :: render the file NOT to be writable.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'CRNRSTN :: has experienced permissions related error as the destination file, ' . $tmp_filepath . ' (' . $tmp_current_perms . '), is NOT writable to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ', and furthermore ';
+                //$_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'CRNRSTN :: has experienced permissions related error as the destination file, ' . $tmp_filepath . ' (' . $tmp_current_perms . '), is NOT writable to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ', and furthermore ';
+                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to chmod ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ' the write permissions to related to ' . $tmp_filepath . ', currently [' . $tmp_current_perms . '], but ';
                 if(chmod($tmp_filepath, $mkdir_mode)){
 
                     $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 
                     //
                     // ANOTHER ATTEMPT TO WRITE AFTER MODIFICATION OF FILE PERMISSIONS
-                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'An attempt at resolving write permissions related err at the destination file, ' . $tmp_filename . ' (' . $tmp_current_perms . '), has failed. File permissions could NOT be set to ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ', and furthermore ';
+                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to fopen ' . $tmp_filepath . ' after the write permissions to related to same were first chmod to ' . str_pad($mkdir_mode, '4', '0', STR_PAD_LEFT) . '. An attempt to open was again made, but ';
                     if($resource_file = fopen($tmp_filepath, 'w')){
 
                         $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
@@ -8268,7 +8275,14 @@ class crnrstn_image_v_html_content_manager {
 
         }
 
+        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'])){
+
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'] = $this->oCRNRSTN->return_micro_time();
+
+        }
+
         $tmp_val = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_PNG'];
+
         if(!isset($tmp_val) || ($tmp_val == '')){
 
             //$this->oCRNRSTN->print_r('lastmodified_base64_PNG BEING UPDATED.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
@@ -8276,13 +8290,21 @@ class crnrstn_image_v_html_content_manager {
 
         }
 
+        if(!isset(self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'])){
+
+            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'] = $this->oCRNRSTN->return_micro_time();
+
+        }
+
         $tmp_val = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'];
+
         if(!isset($tmp_val) || ($tmp_val == '')){
 
             //$this->oCRNRSTN->print_r('lastmodified_base64_JPEG BEING UPDATED.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
             self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['lastmodified_base64_JPEG'] = $this->oCRNRSTN->return_micro_time();
 
         }
+
 
         $tmp_file_input_str  .= '/*
 ' . $tmp_ascii . '*/
@@ -8523,6 +8545,12 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
             return false;
 
         }
+
+        return true;
+
+    }
+
+    public function system_base64_integrate($dir_filepath, $img_batch_size = 5){
 
         return true;
 

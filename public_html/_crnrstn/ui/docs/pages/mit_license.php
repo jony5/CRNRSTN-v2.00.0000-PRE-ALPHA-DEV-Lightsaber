@@ -2,8 +2,8 @@
 /*
 // J5
 // Code is Poetry */
-//$channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_output_channel_constants);
-$channel_constant = $this->oCRNRSTN_USR->device_type_bit;
+//$channel_constant = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_channel_constants);
+$channel_constant = $this->oCRNRSTN->device_type_bit;
 //error_log(__LINE__ . ' mit lic ['. print_r($this->oCRNRSTN_USR->system_output_channel_constants, true).'] $channel_constant=' . print_r($channel_constant, true));
 
 switch($channel_constant){
@@ -112,15 +112,15 @@ switch($channel_constant){
 //        error_log(__LINE__ . ' [' . get_class($this->oCRNRSTN_USR) . '] crnrstn_resources_http_path=' . $this->oCRNRSTN->get_resource('crnrstn_resources_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES') . '. die();');
 //        die();
 
-        $tmp_http_root = $this->oCRNRSTN_USR->current_location();
+        $tmp_http_root = $this->oCRNRSTN->current_location();
 
         $tmp_str = '<!DOCTYPE html>
-    <html lang="en">
+    <html lang="' . $this->oCRNRSTN->country_iso_code() . '">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        ' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON') . '
-        ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI) .
-            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP) . '
+        ' . $this->oCRNRSTN->return_creative('CRNRSTN_FAVICON') . '
+        ' . $this->oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI) .
+            $this->oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP) . '
     </head>
     <body>
     <div class="crnrstn_body_wrapper">
@@ -131,20 +131,20 @@ switch($channel_constant){
                 <div class="crnrstn_env_select_component_wrapper">
                     <select name="crnrstn_host_endpoint" style="height: 15px; font-size: 11px; display:inline;">
                         <option value="0">-</option>
-                        <option value="7">Apache v' . $this->oCRNRSTN_USR->version_apache() . '</option>
-                        <option value="8">MySQLi v' . $this->oCRNRSTN_USR->version_mysqli() . '</option>
-                        <option value="9">PHP v' . $this->oCRNRSTN_USR->version_php() . '</option>
+                        <option value="7">Apache v' . $this->oCRNRSTN->version_apache() . '</option>
+                        <option value="8">MySQLi v' . $this->oCRNRSTN->version_mysqli() . '</option>
+                        <option value="9">PHP v' . $this->oCRNRSTN->version_php() . '</option>
                     </select>
                 </div>
                 <div class="crnrstn_cb"></div>
                 <div class="crnrstn_static_hdr_branding_shell">
-                    <div class="crnrstn_static_hdr_branding_copy">C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . '</div>
+                    <div class="crnrstn_static_hdr_branding_copy">C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . '</div>
                 </div>
 
             </div>
 
             <div class="crnrstn_dyn_branding_elem_wrapper signin">
-                <div class="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN_USR->return_branding_creative(true, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                <div class="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN->return_branding_creative(true, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
             </div>
 
                 <div class="crnrstn_cb_5"></div>
@@ -155,10 +155,10 @@ switch($channel_constant){
             <div id="crnrstn_signin_bdr01_' . $this->page_serial . '"  class="crnrstn_section_inner_wrapper signin">
 
                 <div class="crnrstn_signin_meta_time_stats_wrapper">
-                    <div id="crnrstn_signin_meta00_' . $this->page_serial . '" class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ' secs]</div>
-                    <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('5', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                    <div id="crnrstn_signin_meta00_' . $this->page_serial . '" class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</div>
+                    <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN->return_creative('5', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
 
-                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 250, '', '', '', '', '', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
 
                     <div class="crnrstn_cb"></div>
                 </div>
@@ -214,7 +214,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <div class="crnrstn_signin_reflection_wrapper">
             <div class="crnrstn_signin_reflection_wrapper_rel">
-                <div class="crnrstn_signin_reflection_img_shell">' . $this->oCRNRSTN_USR->return_creative('BG_ELEMENT_REFLECTION_SIGNIN', CRNRSTN_UI_IMG_BASE64) . '</div>
+                <div class="crnrstn_signin_reflection_img_shell">' . $this->oCRNRSTN->return_creative('BG_ELEMENT_REFLECTION_SIGNIN', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
             </div>
         </div>
         
@@ -226,7 +226,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <div class="crnrstn_j5_wolf_pup_outter_wrap">
             <div class="crnrstn_j5_wolf_pup_inner_wrap">
-                ' . $this->oCRNRSTN_USR->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
+                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
             </div>
         </div>
 
@@ -234,14 +234,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     </div>
     
+    ' . $this->oCRNRSTN->framework_integrations_client_packet() . '
     </body>
     </html>';
 
     break;
 
 }
-
-/*
-' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ANALYTICS) . '
-' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ENGAGEMENT) . '
-*/

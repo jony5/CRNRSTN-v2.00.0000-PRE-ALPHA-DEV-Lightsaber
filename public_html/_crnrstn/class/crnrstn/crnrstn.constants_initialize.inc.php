@@ -265,41 +265,53 @@ function crnrstn_constants_init($const_nom){
         // 7051-7300
         // 'CRNRSTN_UI_DARKNIGHT', 'CRNRSTN_UI_GREYSKYS', 'CRNRSTN_UI_DAYLIGHT', 'CRNRSTN_UI_FEATHER'
         case 'CRNRSTN_UI_PHPNIGHT':
-        case 'CRNRSTN_UI_DARKNIGHT':
 
             return (int) 7051;
 
         break;
-        case 'CRNRSTN_UI_PHP':
-        case 'CRNRSTN_UI_GREYSKYS':
+        case 'CRNRSTN_UI_DARKNIGHT':
 
             return (int) 7052;
 
         break;
-        case 'CRNRSTN_UI_HTML':
-        case 'CRNRSTN_UI_DAYLIGHT':
+        case 'CRNRSTN_UI_PHP':
 
             return (int) 7053;
 
         break;
-        case 'CRNRSTN_UI_FEATHER':
+        case 'CRNRSTN_UI_GREYSKYS':
 
             return (int) 7054;
 
         break;
-        case 'CRNRSTN_UI_DESKTOP':
+        case 'CRNRSTN_UI_HTML':
 
             return (int) 7055;
 
         break;
-        case 'CRNRSTN_UI_TABLET':
+        case 'CRNRSTN_UI_DAYLIGHT':
 
             return (int) 7056;
 
         break;
-        case 'CRNRSTN_UI_MOBILE':
+        case 'CRNRSTN_UI_FEATHER':
 
             return (int) 7057;
+
+        break;
+        case 'CRNRSTN_UI_DESKTOP':
+
+            return (int) 7058;
+
+        break;
+        case 'CRNRSTN_UI_TABLET':
+
+            return (int) 7059;
+
+        break;
+        case 'CRNRSTN_UI_MOBILE':
+
+            return (int) 7060;
 
         break;
 
@@ -320,140 +332,148 @@ function crnrstn_constants_init($const_nom){
 
         break;
         case 'CRNRSTN_UI_IMG_BASE64':
-        case 'CRNRSTN_UI_IMG_BASE64_PNG':
 
             return (int) 7303;
 
         break;
-        case 'CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED':
+        case 'CRNRSTN_UI_IMG_BASE64_PNG':
 
             return (int) 7304;
 
         break;
-        case 'CRNRSTN_UI_IMG_BASE64_JPEG':
+        case 'CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED':
 
             return (int) 7305;
 
         break;
-        case 'CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED':
-        case 'CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED':
+        case 'CRNRSTN_UI_IMG_BASE64_JPEG':
 
             return (int) 7306;
 
         break;
-        case 'CRNRSTN_UI_IMG_JPEG':
+        case 'CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED':
 
             return (int) 7307;
 
         break;
-        case 'CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED':
+        case 'CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED':
 
             return (int) 7308;
 
         break;
-        case 'CRNRSTN_UI_IMG_PNG':
+        case 'CRNRSTN_UI_IMG_JPEG':
 
             return (int) 7309;
 
         break;
-        case 'CRNRSTN_UI_IMG_PNG_HTML_WRAPPED':
+        case 'CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED':
 
             return (int) 7310;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+        case 'CRNRSTN_UI_IMG_PNG':
 
             return (int) 7311;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+        case 'CRNRSTN_UI_IMG_PNG_HTML_WRAPPED':
 
             return (int) 7312;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
 
             return (int) 7313;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_DESKTOP':
+        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
 
             return (int) 7314;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_TABLET':
+        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
 
             return (int) 7315;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_MOBILE':
+        case 'CRNRSTN_UI_JS_MAIN_DESKTOP':
 
             return (int) 7316;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
+        case 'CRNRSTN_UI_JS_MAIN_TABLET':
 
             return (int) 7317;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY':
+        case 'CRNRSTN_UI_JS_MAIN_MOBILE':
 
             return (int) 7318;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_UI':
+        case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
 
             return (int) 7319;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_MOBILE':
+        case 'CRNRSTN_UI_JS_JQUERY':
 
             return (int) 7320;
 
         break;
-        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS':
+        case 'CRNRSTN_UI_JS_JQUERY_UI':
 
             return (int) 7321;
 
         break;
-        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY':
+        case 'CRNRSTN_UI_JS_JQUERY_MOBILE':
 
             return (int) 7322;
 
         break;
-        case 'CRNRSTN_UI_TAG_ANALYTICS':
+        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS':
 
             return (int) 7323;
 
         break;
-        case 'CRNRSTN_UI_TAG_ENGAGEMENT':
+        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY':
 
             return (int) 7324;
 
         break;
-        case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
+        case 'CRNRSTN_UI_TAG_ANALYTICS':
 
             return (int) 7325;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_PREFERENCE':
+        case 'CRNRSTN_UI_TAG_ENGAGEMENT':
 
             return (int) 7326;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_YESNO':
+        case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
 
             return (int) 7327;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_NOTICE':
+        case 'CRNRSTN_UI_COOKIE_PREFERENCE':
 
             return (int) 7328;
 
         break;
-        case 'CRNRSTN_UI_INTERACT':
+        case 'CRNRSTN_UI_COOKIE_YESNO':
 
             return (int) 7329;
+
+        break;
+        case 'CRNRSTN_UI_COOKIE_NOTICE':
+
+            return (int) 7330;
+
+        break;
+        case 'CRNRSTN_UI_INTERACT':
+
+            return (int) 7331;
 
         break;
 
@@ -685,14 +705,49 @@ function crnrstn_constants_init($const_nom){
             return (int) 8080;
 
         break;
-        case 'CRNRSTN_RESOURCE_OPENSOURCE':
+        case 'CRNRSTN_RESOURCE_BASSDRIVE':
 
             return (int) 8081;
 
         break;
-        case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
+        case 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE':
 
             return (int) 8082;
+
+        break;
+        case 'CRNRSTN_RESOURCE_CSS_VALIDATOR':
+
+            return (int) 8083;
+
+        break;
+        case 'CRNRSTN_RESOURCE_DOCUMENTATION':
+
+            return (int) 8084;
+
+        break;
+        case 'CRNRSTN_RESOURCE_IMAGE':
+
+            return (int) 8085;
+
+        break;
+        case 'CRNRSTN_RESOURCE_DOCUMENT':
+
+            return (int) 8086;
+
+        break;
+        case 'CRNRSTN_RESOURCE_OPENSOURCE':
+
+            return (int) 8087;
+
+        break;
+        case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
+
+            return (int) 8088;
+
+        break;
+        case 'CRNRSTN_RESOURCE_ELECTRUM':
+
+            return (int) 8089;
 
         break;
 

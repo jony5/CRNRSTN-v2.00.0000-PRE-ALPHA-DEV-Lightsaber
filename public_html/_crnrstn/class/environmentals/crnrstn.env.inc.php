@@ -5177,85 +5177,14 @@ class crnrstn_environment {
         // 0x0A (10) in ASCII) AND SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
         // (13) in ASCII) AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
         // ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+        //
+        // ALSO, CHECK OUT $char_selection=-2, AND $char_selection=-3.
+        // $char_selection=-3 IS THE NICEST(NO: QUOTES, COMMAS,...ETC.)...WITH
+        // THE MOST DISTINCT NUMBER OF CHARACTERS FOR A SERIAL, IMHO.
+        //
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
-        $token = "";
 
-        if(isset($char_selection) && ($char_selection != -1) && ($char_selection != -2) && ($char_selection != -3)){
-
-            $codeAlphabet = $char_selection;
-
-            $max = strlen($codeAlphabet); // edited
-
-            if (function_exists('random_int')) {
-
-                for ($i = 0; $i < $len; $i++) {
-
-                    $token .= $codeAlphabet[random_int(0, $max - 1)];
-
-                }
-
-            } else {
-
-                for ($i = 0; $i < $len; $i++) {
-
-                    $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max - 1)];
-
-                }
-
-            }
-
-        }else{
-
-            $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
-            $codeAlphabet .= "0123456789";
-
-            if($char_selection == -1){
-
-                $codeAlphabet .= '{}[]:;"\'|\\+=_- )(*&^%$#@!~
-                `?/>.<   ,';
-
-            }
-
-            //
-            // ADD EXCLUSION TO -2 ABOVE WHEN CHECKING FOR $char_selection
-            if($char_selection == -2){
-
-                $codeAlphabet .= '{}[]:+=_- )(*&%$#@!~?.';
-
-            }
-
-            //
-            // ADD EXCLUSION TO -3 ABOVE WHEN CHECKING FOR $char_selection
-            if($char_selection == -3){
-
-                $codeAlphabet .= ':+=_- )(*$#@!~.';
-
-            }
-
-            $max = strlen($codeAlphabet); // edited
-
-            if (function_exists('random_int')) {
-
-                for ($i = 0; $i < $len; $i++) {
-
-                    $token .= $codeAlphabet[random_int(0, $max - 1)];
-
-                }
-
-            } else {
-
-                for ($i = 0; $i < $len; $i++) {
-
-                    $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max - 1)];
-
-                }
-
-            }
-
-        }
-
-        return $token;
+        return $this->oCRNRSTN->generate_new_key($len, $char_selection);
 
     }
 
@@ -6062,71 +5991,125 @@ class crnrstn_environment {
 
     }
 
-    public function system_base64_synchronize_batch(){
+    public function system_base64_integrate($dir_filepath, $img_batch_size){
 
-        $tmp_current_batch = $tmp_batch_size = 5;
+        $tmp_current_batch = $tmp_batch_size = $img_batch_size;
         $tmp_filtered_filename_ARRAY = array();
         $tmp_processed_filename_ARRAY = array();
 
-        $tmp_dir_path_PNG = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/png/';
-        $tmp_dir_path_JPEG = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/jpg/';
+        $tmp_request_salt = $this->oCRNRSTN->generate_new_key(26);
 
-        //$this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path_PNG, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-        $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $tmp_dir_path_PNG, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
-        $tmp_scraped_filename_PNG_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path_PNG);
+        //$this->oCRNRSTN->print_r($dir_filepath, 'system_base64_integrate processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        if(is_dir($dir_filepath)){
 
-        //$this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path_JPEG, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-        $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $tmp_dir_path_JPEG, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
-        $tmp_scraped_filename_JPEG_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path_JPEG);
+            //
+            // SOURCE - LOCAL_DIR
+            if(is_readable($dir_filepath)){
 
-        $tmp = array_pop($tmp_scraped_filename_PNG_ARRAY);
-        $tmp = array_pop($tmp_scraped_filename_PNG_ARRAY);
-        $tmp = array_pop($tmp_scraped_filename_JPEG_ARRAY);
-        $tmp = array_pop($tmp_scraped_filename_JPEG_ARRAY);
+                $this->oCRNRSTN->print_r('THIS IS A READABLE DIRECTORY: ' . $dir_filepath, 'is_readable().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-        // PNG
-        $tmp_banner_size = sizeof($tmp_scraped_filename_PNG_ARRAY);
-        for($i = 0; $i < $tmp_banner_size; $i++){
+                //
+                // SCAN DIR FOR IMAGE FILE CONTENT
 
-            $tmp_pos_png = strpos($tmp_scraped_filename_PNG_ARRAY[$i], '.png');
-            $tmp_pos_ds_store = strpos($tmp_scraped_filename_PNG_ARRAY[$i], 'DS_Store');
+                /*
+                lnum 94 :: crnrstn_asset_validator::__construct($type, $ext, $mime)
+                switch($type){
+                case 'CREATIVE':
+                $this->add_auth_mime_type('jpg','image/jpeg');
+                $this->add_auth_mime_type('jpg','image/pjpeg');
+                $this->add_auth_mime_type('jpeg','image/jpeg');
+                $this->add_auth_mime_type('jpeg','image/pjpeg');
+                $this->add_auth_mime_type('jpg2','image/jpeg');
+                $this->add_auth_mime_type('gif','image/gif');
+                $this->add_auth_mime_type('bmp','image/bmp');
+                $this->add_auth_mime_type('bmp','image/x-windows-bmp');
+                $this->add_auth_mime_type('jpe','application/rtf');
+                $this->add_auth_mime_type('jpe','image/jpeg');
+                $this->add_auth_mime_type('jpe','image/pjpeg');
+                $this->add_auth_mime_type('jpe','application/rtf');
+                $this->add_auth_mime_type('jfif','image/pipeg');
+                $this->add_auth_mime_type('tif','image/tiff');
+                $this->add_auth_mime_type('tif','image/x-tiff');
+                $this->add_auth_mime_type('tiff','application/vnd.ms-works');
+                $this->add_auth_mime_type('ico','image/x-icon');
+                $this->add_auth_mime_type('svg','image/svg+xml');
+                $this->add_auth_mime_type('pic','image/pict');
+                $this->add_auth_mime_type('pict','image/pict');
+                $this->add_auth_mime_type('png','image/png');
 
-            if(($tmp_pos_png !== false) && ($tmp_pos_ds_store === false)){
+                */
 
-                $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_PNG_ARRAY[$i];
+                $this->oCRNRSTN->print_r('Scanning Images: ' . $dir_filepath, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $dir_filepath, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                $tmp_scraped_filename_ARRAY = $this->oCRNRSTN->better_scandir($dir_filepath);
+
+//                $tmp = array_pop($tmp_scraped_filename_ARRAY);
+//                $tmp = array_pop($tmp_scraped_filename_ARRAY);
+
+                //oCRNRSTN_ASSET_MGR
+                // CUSTOM IMAGES
+                $tmp_img_cnt = sizeof($tmp_scraped_filename_ARRAY);
+                for($i = 0; $i < $tmp_img_cnt; $i++){
+
+                    $this->oCRNRSTN->print_r('FILE[' . $i . ' of ' . $tmp_img_cnt . ']: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_ASSET_MGR::is_approved_mime_type().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+//                    if($this->oCRNRSTN->oCRNRSTN_PERFORMANCE_REGULATOR->is_approved_mime_type(CRNRSTN_RESOURCE_IMAGE, $dir_filepath, $tmp_scraped_filename_ARRAY[$i])){
+//
+//                        $this->oCRNRSTN->print_r('APPROVED FILE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_PERFORMANCE_REGULATOR::is_approved_mime_type().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//                        die();
+//
+//                    }else{
+//
+//                        $this->oCRNRSTN->print_r('UNAUTHORIZED FILE TYPE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_PERFORMANCE_REGULATOR::is_approved_mime_type().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//                        die();
+//
+//                    }
+
+                }
+
+
+                return true;
 
             }else{
 
-                $tmp_skipped_filename_ARRAY[] = $tmp_scraped_filename_PNG_ARRAY[$i];
+                //
+                // HOOOSTON...VE HAF PROBLEM!
+                //$this->oCRNRSTN->error_log('CRNRSTN :: has experienced permissions related errors attempting to read from the source directory, ' . $dir_path . '.');
+                $this->oCRNRSTN->print_r('NOT READABLE DIRECTORY: ' . $dir_filepath, 'is_readable().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            }
+
+        }else{
+
+            //
+            // HOOOSTON...VE HAF PROBLEM!
+            //$this->oCRNRSTN->oCRNRSTN->error_log('CRNRSTN :: has experienced errors attempting to find the source directory, ' . $dir_path . ', within the local file system.');
+            $this->oCRNRSTN->print_r('NOT A DIRECTORY: ' . $dir_filepath, 'is_dir(). ', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            if(is_file($dir_filepath) && strlen($dir_filepath) > 0){
+
+                $this->oCRNRSTN->print_r('THIS IS A FILE: ' . $dir_filepath, 'is_file(). ', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            }else{
+
+                $this->oCRNRSTN->print_r('NOT A FILE: ' . $dir_filepath, 'is_file(). ', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             }
 
         }
 
-        // JPEG
-        $tmp_banner_size = sizeof($tmp_scraped_filename_JPEG_ARRAY);
-        for($i = 0; $i < $tmp_banner_size; $i++){
 
-            $tmp_pos_jpg = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpg');
-            $tmp_pos_jpeg = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpeg');
-            $tmp_pos_jpg2 = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpg2');
-            $tmp_pos_ds_store = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], 'DS_Store');
 
-            if((($tmp_pos_jpg !== false) || ($tmp_pos_jpeg !== false) || ($tmp_pos_jpg2 !== false)) && ($tmp_pos_ds_store === false)){
 
-                $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_JPEG_ARRAY[$i];
+        die();
 
-            }else{
 
-                $tmp_skipped_filename_ARRAY[] = $tmp_scraped_filename_JPEG_ARRAY[$i];
-
-            }
-
-        }
 
         //$this->oCRNRSTN->print_r('Images count: [' . count($tmp_filtered_filename_ARRAY) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-        $tmp_oMEDIA_CONVERTOR = new crnrstn_image_v_html_content_manager($this->oCRNRSTN);
+        $tmp_oMEDIA_CONVERTOR = new crnrstn_system_image_asset_manager($this->oCRNRSTN);
 
         foreach($tmp_filtered_filename_ARRAY as $index => $tmp_filename){
 
@@ -6157,7 +6140,130 @@ class crnrstn_environment {
                 if($tmp_current_batch < 0){
 
                     $tmp_current_batch = $tmp_batch_size;
-                    $tmp_oMEDIA_CONVERTOR = new crnrstn_image_v_html_content_manager($this->oCRNRSTN);
+                    $tmp_oMEDIA_CONVERTOR = new crnrstn_system_image_asset_manager($this->oCRNRSTN);
+
+                }
+
+                if($tmp_oMEDIA_CONVERTOR->system_base64_synchronize($tmp_filename)){
+
+                    //$this->oCRNRSTN->print_r('Processed image: [' . $tmp_filename . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $tmp_processed_filename_ARRAY[] = $tmp_filename;
+                    $tmp_flagged_filename_ARRAY[$img_name] = 1;
+
+                }
+
+            }
+
+        }
+
+        //$this->oCRNRSTN->print_r('Processed Images [skipped=' . $tmp_skipped . '] [err=' . $tmp_err_cnt . '][' . print_r($tmp_processed_filename_ARRAY, true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        return true;
+
+
+
+
+
+        return $this->oCRNRSTN_MEDIA_CONVERTOR->system_base64_integrate($dir_path, $img_batch_size);
+
+    }
+
+    public function system_base64_synchronize_batch($img_batch_size = 5){
+
+        $tmp_current_batch = $tmp_batch_size = $img_batch_size;
+        $tmp_filtered_filename_ARRAY = array();
+        $tmp_processed_filename_ARRAY = array();
+
+        $tmp_dir_path_PNG = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/png/';
+        $tmp_dir_path_JPEG = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/jpg/';
+
+        //$this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path_PNG, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $tmp_dir_path_PNG, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+        $tmp_scraped_filename_PNG_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path_PNG);
+
+        //$this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path_JPEG, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $tmp_dir_path_JPEG, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+        $tmp_scraped_filename_JPEG_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path_JPEG);
+
+//        $tmp = array_pop($tmp_scraped_filename_PNG_ARRAY);
+//        $tmp = array_pop($tmp_scraped_filename_PNG_ARRAY);
+//        $tmp = array_pop($tmp_scraped_filename_JPEG_ARRAY);
+//        $tmp = array_pop($tmp_scraped_filename_JPEG_ARRAY);
+
+        // PNG
+        $tmp_img_cnt = sizeof($tmp_scraped_filename_PNG_ARRAY);
+        for($i = 0; $i < $tmp_img_cnt; $i++){
+
+            $tmp_pos_png = strpos($tmp_scraped_filename_PNG_ARRAY[$i], '.png');
+            $tmp_pos_ds_store = strpos($tmp_scraped_filename_PNG_ARRAY[$i], 'DS_Store');
+
+            if(($tmp_pos_png !== false) && ($tmp_pos_ds_store === false)){
+
+                $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_PNG_ARRAY[$i];
+
+            }else{
+
+                $tmp_skipped_filename_ARRAY[] = $tmp_scraped_filename_PNG_ARRAY[$i];
+
+            }
+
+        }
+
+        // JPEG
+        $tmp_img_cnt = sizeof($tmp_scraped_filename_JPEG_ARRAY);
+        for($i = 0; $i < $tmp_img_cnt; $i++){
+
+            $tmp_pos_jpg = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpg');
+            $tmp_pos_jpeg = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpeg');
+            $tmp_pos_jpg2 = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpg2');
+            $tmp_pos_ds_store = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], 'DS_Store');
+
+            if((($tmp_pos_jpg !== false) || ($tmp_pos_jpeg !== false) || ($tmp_pos_jpg2 !== false)) && ($tmp_pos_ds_store === false)){
+
+                $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_JPEG_ARRAY[$i];
+
+            }else{
+
+                $tmp_skipped_filename_ARRAY[] = $tmp_scraped_filename_JPEG_ARRAY[$i];
+
+            }
+
+        }
+
+        //$this->oCRNRSTN->print_r('Images count: [' . count($tmp_filtered_filename_ARRAY) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        $tmp_oMEDIA_CONVERTOR = new crnrstn_system_image_asset_manager($this->oCRNRSTN);
+
+        foreach($tmp_filtered_filename_ARRAY as $index => $tmp_filename){
+
+            $pos_dot = stripos($tmp_filename, '.');
+            if($pos_dot !== false){
+
+                $img_name = '';
+
+                //
+                // WE HAVE POTENTIAL FILENAME DOT
+                $tmp_filename_ARRAY = explode('.', $tmp_filename);
+                $tmp_original_file_extension_clean = array_pop($tmp_filename_ARRAY);   // $tmp_filename IS NOW ARRAY RETURN
+                foreach($tmp_filename_ARRAY as $index_img_=> $val_img){
+
+                    $img_name .= $val_img . '.';
+
+                }
+
+                $img_name = $this->oCRNRSTN->strrtrim($img_name, '.');
+
+            }
+
+            if(!isset($tmp_flagged_filename_ARRAY[$img_name])){
+
+                $tmp_current_batch--;
+
+
+                if($tmp_current_batch < 0){
+
+                    $tmp_current_batch = $tmp_batch_size;
+                    $tmp_oMEDIA_CONVERTOR = new crnrstn_system_image_asset_manager($this->oCRNRSTN);
 
                 }
 

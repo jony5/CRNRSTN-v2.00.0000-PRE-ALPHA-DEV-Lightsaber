@@ -2598,6 +2598,16 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         });
 
+        var session_salt = $("#crnrstn_session_salt").html();
+
+        $('body').on('click', 'a[href-crnrstn_top_' + session_salt + ']', function(event) {
+
+            alert('hello world');
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            return false;
+
+        });
+
         //
         // CRNRSTN :: SIGN IN SUPPORT
         $('body').on('click', 'a[rel^=crnrstn_signin], area[rel^=crnrstn_signin], a[data-crnrstn_signin], area[data-crnrstn_signin]', function(event) {

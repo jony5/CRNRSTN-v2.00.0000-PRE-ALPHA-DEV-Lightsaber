@@ -154,6 +154,12 @@ class crnrstn {
     private static $char_01_index_ARRAY = array();
     private static $wheel_encoder_salt;
 
+    public $ui_content_module_integer_ARRAY = array();
+    //private static $framework_integrations_client_packet_build_flag_ARRAY = array();
+    //private static $framework_integrations_client_packet_build_flag;
+    protected $fic_packet_build_flag;
+    protected $module_build_flag_ARRAY = array();
+
     private static $CRNRSTN_debug_mode;
 
     //
@@ -176,6 +182,19 @@ class crnrstn {
         self::$config_serial = $config_serial;
         $this->config_serial_crc = $this->crcINT(self::$config_serial);
         self::$CRNRSTN_debug_mode = $CRNRSTN_debug_mode;
+
+
+        /*
+        case CRNRSTN_UI_TAG_ANALYTICS:
+        case CRNRSTN_UI_TAG_ENGAGEMENT:
+        case CRNRSTN_ELECTRUM:
+        case CRNRSTN_UI_INTERACT:
+        case CRNRSTN_UI_SOAP_DATA_TUNNEL:
+
+        */
+
+
+        //$this->ui_content_module_integer_ARRAY = array(CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT, CRNRSTN_ELECTRUM, CRNRSTN_UI_INTERACT, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_UI_INTERACT, CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
         //
         // INITIALIZE CRNRSTN :: CONFIGURATION MANAGER
@@ -202,7 +221,7 @@ class crnrstn {
 
         //
         // INSTANTIATE CRNRSTN :: SYSTEM EMAIL CONTENT HELPER CLASS
-        $this->oCRNRSTN_MEDIA_CONVERTOR = new crnrstn_image_v_html_content_manager($this);
+        $this->oCRNRSTN_MEDIA_CONVERTOR = new crnrstn_system_image_asset_manager($this);
 
         //
         // INITIALIZE ARRAY OF ENCRYPTABLE DATATYPES
@@ -219,7 +238,8 @@ class crnrstn {
 
         //
         // INITIALIZE GROUPED CONSTANTS ARRAYS
-        $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
+        $this->ui_content_module_integer_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT, CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE, CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
+        $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
         $this->system_style_profile_constants = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_HTML, CRNRSTN_UI_PHP, CRNRSTN_UI_FEATHER);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
         $this->system_output_channel_constants = array(CRNRSTN_UI_DESKTOP, CRNRSTN_UI_TABLET, CRNRSTN_UI_MOBILE);
@@ -2645,6 +2665,107 @@ class crnrstn {
 
     }
 
+    public function framework_integrations_client_packet($integer_constant = CRNRSTN_RESOURCE_ALL){
+
+        if(!isset($this->fic_packet_build_flag)){
+
+            $this->fic_packet_build_flag = 1;
+
+            $tmp_client_packet_output = '';
+            $tmp_module_build_flag_ARRAY = array();
+
+            if (isset($integer_constant)) {
+
+                /*
+                'CRNRSTN_RESOURCE_ALL', 'CRNRSTN_RESOURCE_BASSDRIVE',
+                'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', 'CRNRSTN_RESOURCE_CSS_VALIDATOR', 'CRNRSTN_RESOURCE_DOCUMENTATION',
+                'CRNRSTN_RESOURCE_IMAGE', 'CRNRSTN_RESOURCE_DOCUMENT', 'CRNRSTN_RESOURCE_OPENSOURCE',
+                'CRNRSTN_RESOURCE_NEWS_SYNDICATION'
+
+
+                $this->ui_content_module_integer_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE,
+                CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION,
+                CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM
+                CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT,
+                CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE,
+                CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
+
+
+                framework_integrations_client_packet_build_flag_ARRAY
+                module_build_flag_ARRAY
+                */
+
+                if (in_array($integer_constant, $this->ui_content_module_integer_ARRAY)) {
+
+                    if (!isset($this->module_build_flag_ARRAY[$integer_constant])) {
+
+                        $this->module_build_flag_ARRAY[$integer_constant] = 1;
+                        $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+                        return $tmp_client_packet_output;
+
+                    }
+
+                }
+
+            }
+
+//            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_TAG_ANALYTICS])){
+//
+//                $this->module_build_flag_ARRAY[CRNRSTN_UI_TAG_ANALYTICS] = 1;
+//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_TAG_ANALYTICS);
+//
+//            }
+//
+//            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_TAG_ENGAGEMENT])){
+//
+//                $this->module_build_flag_ARRAY[CRNRSTN_UI_TAG_ENGAGEMENT] = 1;
+//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_TAG_ENGAGEMENT);
+//
+//            }
+//
+//            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_ELECTRUM])){
+//
+//                $this->module_build_flag_ARRAY[CRNRSTN_ELECTRUM] = 1;
+//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_ELECTRUM);
+//
+//            }
+
+//            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+//
+//                $this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+//
+//            }
+
+//            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_INTERACT])){
+//
+//                $this->module_build_flag_ARRAY[CRNRSTN_UI_INTERACT] = 1;
+//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_INTERACT);
+//
+//            }
+
+            $tmp_flipped_bit_constants_ARRAY = $this->return_set_bits($this->ui_content_module_integer_ARRAY);
+
+//            foreach($tmp_flipped_bit_constants_ARRAY as $index => $resource_constant){
+//
+//                if(!isset($this->module_build_flag_ARRAY[$resource_constant])){
+//
+//                    $this->module_build_flag_ARRAY[$resource_constant] = 1;
+//                    $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
+//
+//                }
+//
+//            }
+
+            return $tmp_client_packet_output;
+
+        }
+
+        return '';
+
+    }
+
     public function ui_content_module_out($integer_constant, $crnrstn_form_handle = NULL){
 
         return $this->oCRNRSTN_USR->ui_content_module_out($integer_constant, $crnrstn_form_handle);
@@ -4558,10 +4679,10 @@ class crnrstn {
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:98%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -4569,6 +4690,9 @@ class crnrstn {
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                 <code>';
+
+                // https://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript
+                // onclick = "window.scrollTo(xCoord, yCoord);"
 
             break;
             case CRNRSTN_UI_HTML:
@@ -4609,10 +4733,10 @@ class crnrstn {
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:98%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -4660,10 +4784,10 @@ class crnrstn {
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:98%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -4711,10 +4835,10 @@ class crnrstn {
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:98%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -4875,10 +4999,10 @@ class crnrstn {
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:98%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -4974,10 +5098,10 @@ class crnrstn {
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:98%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -5027,10 +5151,10 @@ class crnrstn {
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:98%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
-                            <a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -5127,7 +5251,119 @@ class crnrstn {
 
     }
 
-    public function system_base64_synchronize($data_key = NULL){
+    public function system_base64_integrations_clear_content_prefix($dir_filepath){
+
+        // = $content_injection . '<img src = "">';
+        return $this->oCRNRSTN_ENV->system_base64_integrations_clear_content_prefix($dir_filepath);
+
+    }
+
+    public function system_base64_integrations_init_content_prefix($dir_filepath, $content_prefix){
+
+        // = $content_injection . '<img src = "">';
+        return $this->oCRNRSTN_ENV->system_base64_integrations_init_content_prefix($dir_filepath, $content_prefix);
+
+    }
+
+    public function system_base64_integrations_clear_content_append($dir_filepath){
+
+        // = '<img src = "">' . $content_injection;
+        return $this->oCRNRSTN_ENV->system_base64_integrations_clear_content_append($dir_filepath);
+
+    }
+
+    public function system_base64_integrations_init_content_append($dir_filepath, $content_append){
+
+        // = '<img src = "">' . $content_injection;
+        return $this->oCRNRSTN_ENV->system_base64_integrations_init_content_append($dir_filepath, $content_append);
+
+    }
+
+    public function system_base64_integrations_clear_content_injection($dir_filepath){
+
+        // = '<img src = "" ' . $content_injection . '>';
+        return $this->oCRNRSTN_ENV->system_base64_integrations_clear_content_injection($dir_filepath);
+
+    }
+
+    public function system_base64_integrations_init_content_injection($dir_filepath, $content_injection){
+
+        // = '<img src = "" ' . $content_injection . '>';
+        return $this->oCRNRSTN_ENV->system_base64_integrations_init_content_injection($dir_filepath, $content_injection);
+
+    }
+
+    //
+    // RETURN CRNRSTN :: RUNTIME SYSTEMS INTEGRATIONS CUSTOM IMAGE STRING DATA
+    public function return_img($dir_filepath, $width = '', $height = '', $alt_text = '', $title_text = '', $link = '', $target = '', $image_output_mode = NULL){
+
+        return $this->oCRNRSTN_ENV->return_img($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+
+    }
+
+    //
+    // BASE64 SYNC INDIVIDUAL IMAGE WITH CRNRSTN :: RUNTIME
+    // SYSTEMS INTEGRATIONS, AND WALK AWAY WITH PNG, JPEG,
+    // AND BASE64 EVERY TIME...NO MATTER WHAT IMAGE MIME TYPE.
+    // OPTIONALLY, SET TO CUSTOM IMAGE DEFAULTS.
+    // RETURN IMAGE HTML STRING VIA $oCRNRSTN->return_img();
+    public function system_base64_integrations_file_heal($dir_filepath, $width = '', $height = '', $alt_text = '', $title_text = '', $link = '', $target = ''){
+
+        return $this->oCRNRSTN_ENV->system_base64_integrations_file_heal($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+
+    }
+
+    //
+    // CONFIGURE CSS PROPERTIES TO BE APPLIED DIRECTLY TO
+    // AN <IMG> DOM TAG FOR AN INDIVIDUAL IMAGE [PNG,
+    // JPEG, BASE64] WITHIN THE CRNRSTN :: RUNTIME
+    // SYSTEMS INTEGRATIONS.
+    // APPLIES ONLY TO HTML WRAPPED OUTPUT DATA.
+    public function system_base64_integrations_file_css_heal($dir_filepath, $inline_style = ''){
+
+        return $this->oCRNRSTN_ENV->system_base64_integrations_file_css_heal($dir_filepath, $inline_style);
+
+    }
+
+    //
+    // CONFIGURE JS PROPERTIES TO BE APPLIED DIRECTLY TO
+    // AN <IMG> DOM TAG FOR AN INDIVIDUAL IMAGE [PNG,
+    // JPEG, BASE64] WITHIN THE CRNRSTN :: RUNTIME
+    // SYSTEMS INTEGRATIONS.
+    // APPLIES ONLY TO HTML WRAPPED OUTPUT DATA.
+    public function system_base64_integrations_file_js_heal($dir_filepath, $onclick = '', $onmouseover = '', $onmouseout = '', $onmousedown = '', $onmouseup = ''){
+
+        return $this->oCRNRSTN_ENV->system_base64_integrations_file_js_heal($dir_filepath, $onclick, $onmouseover, $onmouseout, $onmousedown, $onmouseup);
+
+    }
+
+    //
+    // BASE64 SYNC INDIVIDUAL FILE WITH CRNRSTN :: RUNTIME
+    // SYSTEMS INTEGRATIONS...OPTIONALLY, SET TO CUSTOM
+    // IMAGE DEFAULTS.
+    // RETURN IMAGE HTML STRING VIA $oCRNRSTN->return_img();
+    public function system_base64_integrations_file_sync($dir_filepath, $width = '', $height = '', $alt_text = '', $title_text = '', $link = '', $target = ''){
+
+        return $this->oCRNRSTN_ENV->system_base64_integrations_file_sync($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+
+    }
+
+    //
+    // SYNC AN ENTIRE CUSTOM IMAGES DIRECTORY WITH CRNRSTN :: RUNTIME
+    // SYSTEMS INTEGRATIONS. WILL RECURSIVELY TRAVERSE SUB-DIRECTORY
+    // STRUCTURES EXPOSING ALL APPROPRIATE IMAGE FILE TYPES TO
+    // CRNRSTN :: RUNTIME SYSTEMS INTEGRATIONS WITH OPTION TO HEAL
+    // ALL, WALKING AWAY...EVERY TIME...WITH PNG, JPEG, AND BASE64 NO
+    // MATTER WHAT IMAGE MIME TYPE.
+    public function system_base64_integrate($dir_path, $img_batch_size = 5, $heal_all_files = false){
+
+        return $this->oCRNRSTN_ENV->system_base64_integrate($dir_path, $img_batch_size);
+
+    }
+
+    //
+    // TIRE-KICK ALL CRNRSTN :: RUNTIME SYSTEMS INTEGRATIONS.
+    public function system_base64_synchronize($data_key = NULL, $img_batch_size = 5){
 
         if(isset($data_key)){
 
@@ -5137,7 +5373,7 @@ class crnrstn {
 
         }
 
-        return $this->oCRNRSTN_ENV->system_base64_synchronize_batch();
+        return $this->oCRNRSTN_ENV->system_base64_synchronize_batch($data_key, $img_batch_size);
 
     }
 
