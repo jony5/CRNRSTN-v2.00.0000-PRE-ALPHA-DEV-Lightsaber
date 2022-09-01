@@ -166,6 +166,7 @@ class crnrstn {
     // MAXIMUM PERCENTAGE OF DISK (E.G. "FILL UP TO 85% AND STOP") USAGE WHERE CRNRSTN :: WILL STILL
     // WRITE FILES. 100 *WILL* BRICK YOUR SERVER WITH LOG TO CUSTOM FILE ENABLED.
     public $max_storage_utilization = 85;
+    public $max_storage_utilization_warning = 70;
 
     private static $version_crnrstn = '2.00.0000 PRE-ALPHA-DEV (Lightsaber)';
 
@@ -2598,9 +2599,9 @@ class crnrstn {
 
     }
 
-    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
-        return $this->oCRNRSTN_ENV->data_decrypt($data, $encryption_channel, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+        return $this->oCRNRSTN_ENV->data_decrypt($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
     }
 

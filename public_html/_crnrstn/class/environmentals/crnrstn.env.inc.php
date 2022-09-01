@@ -3963,6 +3963,12 @@ class crnrstn_environment {
 
     }
 
+    public function isset_encryption($encryption_channel){
+
+        return $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->is_bit_set($encryption_channel);
+
+    }
+
     private function return_data_encrypted($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
 
         try{
@@ -4036,11 +4042,11 @@ class crnrstn_environment {
                 if(!isset($cipher_override)){
 
                     //error_log('2916 tunnelParamEncrypt - cipher from session...');
-                    $cipher = $tmp_encrypt_cipher;
+                    $encrypt_cipher = $tmp_encrypt_cipher;
 
                 }else{
 
-                    $cipher = $cipher_override;
+                    $encrypt_cipher = $cipher_override;
 
                 }
 
@@ -4070,14 +4076,17 @@ class crnrstn_environment {
 
                 }
 
+
                 #
                 # Source: http://php.net/manual/en/function.openssl-encrypt.php
                 #
-                $ivlen = openssl_cipher_iv_length($cipher);
+                $ivlen = openssl_cipher_iv_length($cipher = $encrypt_cipher);
                 $iv = openssl_random_pseudo_bytes($ivlen);
-                $ciphertext_raw = openssl_encrypt($data, $cipher, $secret_key, $options = $options_bitwise, $iv);
+                $ciphertext_raw = openssl_encrypt($data, $encrypt_cipher, $secret_key, $options = $options_bitwise, $iv);
                 $hmac = hash_hmac($hmac_algorithm, $ciphertext_raw, $secret_key, $as_binary = true);
                 $ciphertext = base64_encode($iv . $hmac . $ciphertext_raw);
+
+                //$this->oCRNRSTN->print_r('$ciphertext=[' . strlen($ciphertext) . '] $cipher=[' . $encrypt_cipher . '] $secret_key=[' . $secret_key . '] $options_bitwise=[' . $options_bitwise . '] $hmac_algorithm=[' . $hmac_algorithm . '] $data_len=[' . strlen($data) . '].', 'OpenSSL Integrations Testing',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 return $ciphertext;
 
@@ -4135,67 +4144,6 @@ class crnrstn_environment {
             return NULL;
 
         }
-
-    }
-
-    public function isset_encryption($encryption_channel){
-
-        return $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->is_bit_set($encryption_channel);
-
-    }
-
-    public function data_encrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
-
-        /*
-        CRNRSTN_ENCRYPT_TUNNEL
-        CRNRSTN_ENCRYPT_DATABASE
-        CRNRSTN_ENCRYPT_SESSION
-        CRNRSTN_ENCRYPT_COOKIE
-        CRNRSTN_ENCRYPT_SOAP
-        CRNRSTN_ENCRYPT_OERSL
-        */
-
-        try{
-
-            if(isset($data)){
-
-                //
-                // DATA TYPE MUST BE ENCRYPTABLE...AND SAFE FOR URI
-                if(in_array(gettype($data), $this->encryptableDataTypes)){
-
-                    $tmp_encrypt_val = $this->return_data_encrypted($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
-
-                    //
-                    // MAKE SAFE FOR URI PASSTHROUGH.
-                    $tmp_encrypt_val = urlencode($tmp_encrypt_val);
-
-                    return $tmp_encrypt_val;
-
-                }else{
-
-                    //
-                    // NOT ENCRYPTABLE
-                    return NULL;
-
-                }
-
-            }else{
-
-                //
-                // NOT ENCRYPTABLE
-                return NULL;
-
-            }
-
-        }catch( Exception $e ) {
-
-            //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-        }
-
-        return NULL;
 
     }
 
@@ -4259,11 +4207,11 @@ class crnrstn_environment {
                 // ENABLE CIPHER OVERRIDE :: v2.0.0
                 if(!isset($cipher_override)){
 
-                    $cipher = $tmp_encrypt_cipher;
+                    $encrypt_cipher = $tmp_encrypt_cipher;
 
                 }else{
 
-                    $cipher = $cipher_override;
+                    $encrypt_cipher = $cipher_override;
 
                 }
 
@@ -4294,30 +4242,36 @@ class crnrstn_environment {
                 // ENABLE HMAC ALG OVERRIDE :: v2.0.0
                 if(!isset($hmac_algorithm_override)){
 
-                    $hmac_algorithm = $tmp_hmac_alg;
+                    $hmac_alg = $tmp_hmac_alg;
 
                 }else{
 
-                    $hmac_algorithm = $hmac_algorithm_override;
+                    $hmac_alg = $hmac_algorithm_override;
 
                 }
+
+                //$this->oCRNRSTN->print_r('$cipher=[' . $encrypt_cipher . '] $secret_key=[' . $secret_key . '] $options_bitwise=[' . $options_bitwise . '] $hmac_algorithm=[' . $hmac_alg . '] $data_len=[' . strlen($data) . '].', 'OpenSSL Integrations Testing',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 #
                 # Source: http://php.net/manual/en/function.openssl-encrypt.php
                 #
                 $c = base64_decode($data);
-                $ivlen = openssl_cipher_iv_length($cipher);
+                $ivlen = openssl_cipher_iv_length($cipher = $encrypt_cipher);
                 $iv = substr($c, 0, $ivlen);
                 $hmac = substr($c, $ivlen, $sha2len = 32);
                 $ciphertext_raw = substr($c, $ivlen + $sha2len);
                 $original_plaintext = openssl_decrypt($ciphertext_raw, $cipher, $secret_key, $options = $options_bitwise, $iv);
-                $calcmac = hash_hmac($hmac_algorithm, $ciphertext_raw, $secret_key, $as_binary = true);
+                $calcmac = hash_hmac($hmac_alg, $ciphertext_raw, $secret_key, $as_binary = true);
 
-                if (hash_equals($hmac, $calcmac))//PHP 5.6+ timing attack safe comparison
+                if(hash_equals($hmac, $calcmac))//PHP 5.6+ timing attack safe comparison
                 {
                     return $original_plaintext;
 
                 }else{
+
+                    //$this->oCRNRSTN->print_r('die(); $cipher=[' . $encrypt_cipher . '] $secret_key=[' . $secret_key . '] $options_bitwise=[' . $options_bitwise . '] $hmac_algorithm=[' . $hmac_alg . '] $data_len=[' . strlen($data) . '].', 'OpenSSL Integrations Testing',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                    //die();
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
@@ -4366,6 +4320,8 @@ class crnrstn_environment {
                 $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
                 $this->error_log('Decryption of data aborted due to missing of parameters. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
+                die();
+
                 //
                 // NO ENCRYPTION. RETURN VAL
                 return $data;
@@ -4386,7 +4342,62 @@ class crnrstn_environment {
 
     }
 
-    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function data_encrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+
+        /*
+        CRNRSTN_ENCRYPT_TUNNEL
+        CRNRSTN_ENCRYPT_DATABASE
+        CRNRSTN_ENCRYPT_SESSION
+        CRNRSTN_ENCRYPT_COOKIE
+        CRNRSTN_ENCRYPT_SOAP
+        CRNRSTN_ENCRYPT_OERSL
+        */
+
+        try{
+
+            if(isset($data)){
+
+                //
+                // DATA TYPE MUST BE ENCRYPTABLE...AND SAFE FOR URI
+                if(in_array(gettype($data), $this->encryptableDataTypes)){
+
+                    $tmp_encrypt_val = $this->return_data_encrypted($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+
+                    //
+                    // MAKE SAFE FOR URI PASSTHROUGH.
+                    $tmp_encrypt_val = urlencode($tmp_encrypt_val);
+
+                    return $tmp_encrypt_val;
+
+                }else{
+
+                    //
+                    // NOT ENCRYPTABLE
+                    return NULL;
+
+                }
+
+            }else{
+
+                //
+                // NOT ENCRYPTABLE
+                return NULL;
+
+            }
+
+        }catch( Exception $e ) {
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+        }
+
+        return NULL;
+
+    }
+
+    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         try{
 
@@ -4396,13 +4407,9 @@ class crnrstn_environment {
 
             }else{
 
-                if($uri_passthrough == true){
-
-                    //
-                    // BACK OUT OF URL ENCODING
-                    $data = urldecode($data);
-
-                }
+                //
+                // BACK OUT OF URL ENCODING
+                $data = urldecode($data);
 
                 return $this->return_data_decrypted($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 

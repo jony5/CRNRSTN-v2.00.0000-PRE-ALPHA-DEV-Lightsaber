@@ -749,7 +749,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //var ssdtl_endpoint = document.getElementById("crnrstn_request_ajax_root").innerHTML;
         var ssdtl_endpoint = $("#crnrstn_request_ajax_root").val();
 
-
         if(ssdtl_endpoint !== undefined){
 
             //
@@ -771,11 +770,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 data: dataString,
                 dataType: "xml",
                 success: this.parse_data_tunnel_response
+
             });
 
         }
 
-        this.log_activity('[lnum 731] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) aborting AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        //this.log_activity('[lnum 778] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) aborting AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
     };
 

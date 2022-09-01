@@ -38,11 +38,18 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
     <div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
 
     <?php
+    $tmp_data = 'This is an OpenSSL encryption test. Please repeat to confirm.';
+    //$oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+    echo $tmp_data;
 
-    $oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+    $tmp_encrypted_data = $oCRNRSTN->data_encrypt($tmp_data);
+    $tmp_decrypted_output = $oCRNRSTN->data_decrypt($tmp_encrypted_data);
+
+    $oCRNRSTN->print_r('$tmp_decrypt_output=[' . $tmp_decrypted_output . '] $tmp_encrypted_data=[' . $tmp_encrypted_data . '].', 'OpenSSL Integrations Testing',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+    //$oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
     ?>
-
     <div class="crnrstn_cb_100"></div>
     <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
     <div style="width:700px;">

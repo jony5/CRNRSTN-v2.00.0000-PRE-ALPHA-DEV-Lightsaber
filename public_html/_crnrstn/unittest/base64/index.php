@@ -66,7 +66,7 @@ j5_pup_top_right
 //echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 //echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG) . '" width="100" height="100">';
 
-die();
+//die();
 
 //$oCRNRSTN->system_base64_synchronize('success_chk.png');
 //$oCRNRSTN->system_base64_synchronize('success_chk');
