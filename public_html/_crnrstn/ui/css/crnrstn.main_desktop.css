@@ -5,6 +5,28 @@
 .the_R_in_crnrstn                           { color:#F90000; }
 .crnrstn_body_wrapper                       { width:100%; text-align:center; margin:0 auto; font-family:Arial, Helvetica, sans-serif; background-color: #FFF;}
 
+/*CRNRSTN::INTEGRATION UI INTERACT MODULE :: DOCUMENTATION*/
+/*TODO :: Z-INDEX NEEDS TO COME FROM CRNRSTN :: SSDTLA*/
+.crnrstn_interact_ui_full_document_wrapper          { position: fixed; z-index: 100; top: 200px; left: 0; }
+.crnrstn_interact_ui_full_document                  { position: absolute; z-index: 101; left:0; top:150px; width: 120px;}
+
+.crnrstn_interact_ui_side_nav                       { width: 120px; max-height: 600px; position: fixed; /*z-index: 1;*/ top: 120px; left: 5px; background-color: #ebee2f; border: 1px solid #c04fd5;  overflow-x: hidden; padding: 8px 0; }
+.crnrstn_interact_ui_side_nav a                     { padding: 3px 8px 3px 7px; text-decoration: none; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #0066CC; display: block; }
+.crnrstn_interact_ui_side_nav a:hover               { color: #0066CC; }
+
+.crnrstn_interact_ui_side_nav ul                    { list-style:none; margin: 0; padding: 0;}
+
+.main {
+    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .crnrstn_interact_ui_side_nav                   { padding-top: 15px;}
+    .crnrstn_interact_ui_side_nav a                 { font-size: 18px;}
+}
+
 /*CRNRSTN::INTEGRATION UI INTERACT MODULE*/
 .crnrstn_ui_interact_wrapper                        { position:-webkit-sticky; position: sticky; bottom:5px; left:-3000px; width:0; height: 0; overflow: hidden;}
 .crnrstn_ui_interact                                { }
@@ -150,6 +172,7 @@ body.crnrstn-disable-scrolling              { overflow: hidden;}
 .crnrstn_copyright_shell a                  { text-decoration:none; color: #0066CC; text-decoration:underline;}
 
 /*LOGGING*/
+#crnrstn_activity_log_output_wrapper        { padding: 10px 15px 0 15px;}
 #crnrstn_activity_log                       { opacity: 0; }
 .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 10px; width:95%; height:190px; overflow:scroll;}
 .crnrstn_log_output                         { width:2000px; }

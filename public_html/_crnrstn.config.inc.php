@@ -405,6 +405,7 @@ $oCRNRSTN->set_timezone_default('America/New_York');
 $oCRNRSTN->set_developer_output_mode(CRNRSTN_UI_DARKNIGHT);       // CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER
 
 $oCRNRSTN->ini_set('max_execution_time', 60);
+$oCRNRSTN->ini_set('memory_limit', -1);
 //$oCRNRSTN->ini_set('memory_limit', '300M');
 
 /**

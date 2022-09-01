@@ -442,6 +442,44 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    CRNRSTN_JS.prototype.link_text_click = function(link_elem){
+
+        var tmp_link_text = link_elem.text;
+        var tmp_link_text_id = link_elem.id;
+
+        this.log_activity('[lnum 450] tmp_link_text_id=[' + tmp_link_text_id + ']. tmp_link_text=[' + tmp_link_text + '].', this.CRNRSTN_DEBUG_VERBOSE);
+
+        //
+        // SET THE LINK
+        $('#crnrstn_interact_ui_link_text_click').val(tmp_link_text_id);
+
+        this.fire_dom_state_controller();
+
+    };
+
+    CRNRSTN_JS.prototype.initialize_interact_ui_document_format = function() {
+
+        $('<div id="crnrstn_interact_ui_full_document_wrapper"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div></div>').prependTo($('body'));
+
+        $('body').animate({
+            paddingLeft: 130
+        }, {
+            duration: 500,
+            queue: false,
+            step: function( now, fx ) {
+
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $tmp_html = $('#crnrstn_ui_documentation_navigation_src').html();
+        $('#crnrstn_interact_ui_full_document').html($tmp_html);
+
+    };
+
     CRNRSTN_JS.prototype.crnrstn_init = function() {
 
         var self = this;
@@ -453,7 +491,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             }else{
 
-                $('<div id="crnrstn_activity_log_output_wrapper"><div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 3px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG WINDOW</div><div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper"><div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div></div><div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:98%; text-align: right;"><div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div><div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div></div></div>').prependTo($('body'));
+                $('<div id="crnrstn_activity_log_output_wrapper"><div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 10px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG WINDOW</div><div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper"><div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div></div><div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:98%; text-align: right;"><div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div><div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div></div></div>').prependTo($('body'));
 
                 switch(self.CRNRSTN_LOGGING_OUTPUT){
                     case 'DOM':
@@ -705,6 +743,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //var ssdtl_endpoint = document.getElementById("crnrstn_request_ajax_root").innerHTML;
         var ssdtl_endpoint = $("#crnrstn_request_ajax_root").val();
 
+
         if(ssdtl_endpoint !== undefined){
 
             //
@@ -713,10 +752,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             var form = $("#crnrstn_soap_data_tunnel_frm");
             var dataString = $(form).serialize();
+            //debugger;
 
-            this.log_activity('[lnum 717] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 718] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 719] SSDTLP Checksum = [' + $('#' + this.form_input_serialization_checksum).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 757] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 758] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 759] SSDTLP Checksum = [' + $('#' + this.form_input_serialization_checksum).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 760] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             $.ajax({
                 type: "POST",

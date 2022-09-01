@@ -717,6 +717,24 @@ class crnrstn_environment {
                 return $tmp_output;
 
             break;
+            case CRNRSTN_RESOURCE_DOCUMENTATION:
+
+                //$this->oCRNRSTN->print_r_str($integer_constant, 'ui_content_module_out $integer_constant.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                $tmp_array = $this->return_output_CRNRSTN_UI_DOCUMENTATION();
+                $tmp_output = '';
+
+                //
+                // LOAD OUTPUT
+                foreach($tmp_array as $key => $resource_content){
+
+                    $tmp_output .= $resource_content;
+
+                }
+
+                return $tmp_output;
+
+            break;
             default:
 
                 $this->error_log('The requested UI content module...honoring the provided integer constant, "' . $integer_constant . '", could not be found.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
@@ -1227,36 +1245,40 @@ class crnrstn_environment {
         ()
         */
 
+        error_log(__LINE__ . ' env running [' . __METHOD__ . '].');
+
         $tmp_oNUSOAP_BASE = $this->oCRNRSTN_USR->return_oNUSOAP_BASE();
         $this->oCRNRSTN_USR->init_form_handling('crnrstn_soap_data_tunnel_form');
 
         $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
         $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
         $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_resource_filecache_version', false);
+        $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', false);
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->oCRNRSTN_USR->return_serialized_soap_data_tunnel_session('crnrstn_session_json'), 'crnrstn_session');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', true, $_SERVER['HTTP_USER_AGENT'], 'crnrstn_soap_srvc_user_agent');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', true, $this->oCRNRSTN_USR->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
+        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', true, $this->oCRNRSTN->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', true, $this->starttime, 'crnrstn_soap_srvc_stime');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', true, $this->wall_time(), 'crnrstn_soap_srvc_rtime');
         //$this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN_USR->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
         //$this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_client_auth_key');
+        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $this->oCRNRSTN->generate_new_key(64), 'crnrstn_client_auth_key');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_crc], 'crnrstn_client_id');
 
         $tmp_str_array[] = '
-<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
         $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden">
-    <form action="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'soa/tunnel/" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data" >
+    <form action="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'soa/tunnel/?' . $this->oCRNRSTN->session_salt() . '=" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data" >
         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea>
         <button type="submit">SUBMIT</button>
-        <input type="hidden" id="crnrstn_request_ajax_root" name="crnrstn_request_ajax_root" value="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '">
+        <input type="hidden" id="crnrstn_request_ajax_root" name="crnrstn_request_ajax_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?'. $this->oCRNRSTN->session_salt().'=">
+        <input type="hidden" id="crnrstn_interact_ui_link_text_click" name="crnrstn_interact_ui_link_text_click" value="">
         <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="">
         <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="">';
 
@@ -1292,6 +1314,81 @@ class crnrstn_environment {
 
         $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT TAG MODULE OUTPUT -->
 ';
+        return $tmp_str_array;
+
+    }
+
+    private function return_output_CRNRSTN_UI_DOCUMENTATION(){
+
+        $tmp_str_array[] = '
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+';
+
+        $tmp_str_array[] = '        <script>
+        oCRNRSTN_JS.initialize_interact_ui_document_format();
+       
+        </script>
+        <div id="crnrstn_ui_documentation_navigation_src" class="crnrstn_hidden">
+            <!-- https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
+            <div class="crnrstn_interact_ui_side_nav">
+                <ul>
+                    <li><a id="crnrstn_text_lnk_' . md5('error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    
+                    <li><a id="crnrstn_text_lnk_' . md5('1error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('1return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('1return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('1get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('1print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('1print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('1return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    
+                    <li><a id="crnrstn_text_lnk_' . md5('2error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('2return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('2return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('2get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('2print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('2print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('2return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    
+                    <li><a id="crnrstn_text_lnk_' . md5('3error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('3return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('3return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('3get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('3print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('3print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('3return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    
+                    <li><a id="crnrstn_text_lnk_' . md5('4error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('4return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('4return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('4get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('4print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('4print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('4return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    
+                    <li><a id="crnrstn_text_lnk_' . md5('5error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('5return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('5return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('5get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('5print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('5print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
+                    <li><a id="crnrstn_text_lnk_' . md5('5return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
+                    
+                </ul>
+               
+            </div>
+            
+        </div>
+        ';
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: DOCUMENTATION MODULE OUTPUT -->
+';
+
         return $tmp_str_array;
 
     }

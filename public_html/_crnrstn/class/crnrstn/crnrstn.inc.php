@@ -157,7 +157,7 @@ class crnrstn {
     public $ui_content_module_integer_ARRAY = array();
     //private static $framework_integrations_client_packet_build_flag_ARRAY = array();
     //private static $framework_integrations_client_packet_build_flag;
-    protected $fic_packet_build_flag;
+    //protected $fic_packet_build_flag;
     protected $module_build_flag_ARRAY = array();
 
     private static $CRNRSTN_debug_mode;
@@ -2665,50 +2665,48 @@ class crnrstn {
 
     }
 
-    public function framework_integrations_client_packet($integer_constant = CRNRSTN_RESOURCE_ALL){
+    public function framework_integrations_client_packet($integer_constant = NULL){
 
-        if(!isset($this->fic_packet_build_flag)){
+        //$this->fic_packet_build_flag = 1;
 
-            $this->fic_packet_build_flag = 1;
+        $tmp_client_packet_output = '';
+        $tmp_module_build_flag_ARRAY = array();
 
-            $tmp_client_packet_output = '';
-            $tmp_module_build_flag_ARRAY = array();
+        if(isset($integer_constant)) {
 
-            if (isset($integer_constant)) {
-
-                /*
-                'CRNRSTN_RESOURCE_ALL', 'CRNRSTN_RESOURCE_BASSDRIVE',
-                'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', 'CRNRSTN_RESOURCE_CSS_VALIDATOR', 'CRNRSTN_RESOURCE_DOCUMENTATION',
-                'CRNRSTN_RESOURCE_IMAGE', 'CRNRSTN_RESOURCE_DOCUMENT', 'CRNRSTN_RESOURCE_OPENSOURCE',
-                'CRNRSTN_RESOURCE_NEWS_SYNDICATION'
+            /*
+            'CRNRSTN_RESOURCE_ALL', 'CRNRSTN_RESOURCE_BASSDRIVE',
+            'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', 'CRNRSTN_RESOURCE_CSS_VALIDATOR', 'CRNRSTN_RESOURCE_DOCUMENTATION',
+            'CRNRSTN_RESOURCE_IMAGE', 'CRNRSTN_RESOURCE_DOCUMENT', 'CRNRSTN_RESOURCE_OPENSOURCE',
+            'CRNRSTN_RESOURCE_NEWS_SYNDICATION'
 
 
-                $this->ui_content_module_integer_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE,
-                CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION,
-                CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM
-                CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT,
-                CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE,
-                CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
+            $this->ui_content_module_integer_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE,
+            CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION,
+            CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM
+            CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT,
+            CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE,
+            CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
 
 
-                framework_integrations_client_packet_build_flag_ARRAY
-                module_build_flag_ARRAY
-                */
+            framework_integrations_client_packet_build_flag_ARRAY
+            module_build_flag_ARRAY
+            */
 
-                if (in_array($integer_constant, $this->ui_content_module_integer_ARRAY)) {
+            if(in_array($integer_constant, $this->ui_content_module_integer_ARRAY)){
 
-                    if (!isset($this->module_build_flag_ARRAY[$integer_constant])) {
+                if (!isset($this->module_build_flag_ARRAY[$integer_constant])) {
 
-                        $this->module_build_flag_ARRAY[$integer_constant] = 1;
-                        $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+                    $this->module_build_flag_ARRAY[$integer_constant] = 1;
+                    $tmp_client_packet_output .= $this->ui_content_module_out($integer_constant);
 
-                        return $tmp_client_packet_output;
-
-                    }
+                    //return $tmp_client_packet_output;
 
                 }
 
             }
+
+        }
 
 //            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_TAG_ANALYTICS])){
 //
@@ -2731,12 +2729,12 @@ class crnrstn {
 //
 //            }
 
-//            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
-//
-//                $this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
-//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
-//
-//            }
+            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+
+                $this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+            }
 
 //            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_INTERACT])){
 //
@@ -2745,7 +2743,7 @@ class crnrstn {
 //
 //            }
 
-            $tmp_flipped_bit_constants_ARRAY = $this->return_set_bits($this->ui_content_module_integer_ARRAY);
+        $tmp_flipped_bit_constants_ARRAY = $this->return_set_bits($this->ui_content_module_integer_ARRAY);
 
 //            foreach($tmp_flipped_bit_constants_ARRAY as $index => $resource_constant){
 //
@@ -2758,11 +2756,7 @@ class crnrstn {
 //
 //            }
 
-            return $tmp_client_packet_output;
-
-        }
-
-        return '';
+        return $tmp_client_packet_output;
 
     }
 
@@ -4851,7 +4845,7 @@ class crnrstn {
 
         }
 
-        $tmp_str_out = '<div style="background-color: #FFF; padding: 10px 20px 10px 20px;">';
+        $tmp_str_out = '<div style="/*background-color: #FFF;*/ padding: 10px 20px 10px 20px;">';
         $tmp_str_out .= $tmp_out;
 
         $output = $this->highlightText($tmp_print_r, $theme_style);
@@ -4882,7 +4876,7 @@ class crnrstn {
 
             ' . $component_crnrstn_title . '
 
-            <div style="float:right; max-width:88%; max-width:82%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
+            <div style="float:right; overflow-wrap: break-word; max-width:75%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
                 
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
         </div>
@@ -5167,7 +5161,7 @@ class crnrstn {
 
         }
 
-        echo '<div style="background-color: #FFF; padding: 10px 20px 10px 20px;">';
+        echo '<div style="/*background-color: #FFF;*/ padding: 10px 20px 10px 20px;">';
         echo $tmp_out;
 
         $output = $this->highlightText($tmp_print_r, $theme_style);
@@ -5198,7 +5192,7 @@ class crnrstn {
 
             ' . $component_crnrstn_title . '
 
-            <div style="float:right; max-width:85%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
+            <div style="float:right; overflow-wrap: break-word; max-width:75%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
                 
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
         </div>
@@ -7634,7 +7628,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 </div>
 
 <div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
-    <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
+    <div style="position: absolute; width:100%; text-align: right; /*background-color: #FFF;*/ padding-top: 20px;">
         ' . $this->return_creative('J5_WOLF_PUP_RAND') . '
     </div>
 </div>
