@@ -514,6 +514,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 }
 
+                if($('#crnrstn_ui_documentation_navigation_src').length){
+
+                    self.initialize_interact_ui_document_format();
+
+                }
+
             }
 
             self.log_activity('[lnum 481] DOM READY.', self.CRNRSTN_DEBUG_VERBOSE);

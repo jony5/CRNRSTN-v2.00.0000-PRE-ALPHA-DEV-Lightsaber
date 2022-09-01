@@ -1,0 +1,66 @@
+<?php
+
+/*
+// J5
+// Code is Poetry */
+require('_crnrstn.root.inc.php');
+include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
+
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $oCRNRSTN->country_iso_code(); ?>">
+<head>
+    <title>CRNRSTN :: <?php echo $oCRNRSTN->version_crnrstn(); ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
+    <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
+        $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
+        $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
+    <style type="text/css">
+        body                                        { padding: 0;  margin: 0;}
+        .the_R_in_crnrstn                           { color:#F90000; }
+        .crnrstn_logo_wrapper                       { padding: 15px 0 20px 15px; }
+
+        .crnrstn_activity_log                       { opacity: 0; }
+        .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 0; width:96%; height:190px; overflow:scroll;}
+        .crnrstn_log_output                         { width:2000px; }
+        .crnrstn_log_entry                          { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; }
+        .crnrstn_j5_wolf_pup_outter_wrap            { float:right; padding:420px 0 0 0; margin:0; width:100%;}
+        .crnrstn_j5_wolf_pup_inner_wrap             { position: absolute; width:98%; z-index: 2; text-align: right; padding-top: 20px;}
+        .crnrstn_signin_copyright_shell             { width:578px; text-align: center; margin:0 auto; font-size: 12px; font-family: Arial, Helvetica, sans-serif; line-height: 18px; color: #333;}
+        .crnrstn_signin_copyright_shell a           { text-decoration:none; color: #0066CC; text-decoration:underline;}
+
+    </style>
+</head>
+<body>
+<div style="width:100%; padding:0; margin:0; background-color:#c10fff; color:#FFF; ">
+
+    <div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
+
+    <?php
+
+    $oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+    ?>
+
+    <div class="crnrstn_cb_100"></div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div style="width:700px;">
+        <div class="crnrstn_j5_wolf_pup_outter_wrap">
+            <div class="crnrstn_j5_wolf_pup_inner_wrap">
+                <?php
+                echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <?php
+
+    echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
+
+    ?>
+
+</div>
+</body>
+</html>

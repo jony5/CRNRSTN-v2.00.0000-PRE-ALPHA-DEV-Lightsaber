@@ -1324,11 +1324,7 @@ class crnrstn_environment {
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <script>
-        oCRNRSTN_JS.initialize_interact_ui_document_format();
-       
-        </script>
-        <div id="crnrstn_ui_documentation_navigation_src" class="crnrstn_hidden">
+        $tmp_str_array[] = '        <div id="crnrstn_ui_documentation_navigation_src" class="crnrstn_hidden">
             <!-- https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
             <div class="crnrstn_interact_ui_side_nav">
                 <ul>
