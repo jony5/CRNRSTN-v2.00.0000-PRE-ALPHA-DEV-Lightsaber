@@ -33,15 +33,13 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
     </style>
 </head>
 <body>
-<div style="width:100%; padding:0; margin:0; background-color:#c10fff; color:#FFF; ">
+<div>
 
     <div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
 
     <?php
     $tmp_data = 'This is an OpenSSL encryption test. Please repeat to confirm.';
     //$oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-    echo $tmp_data;
-
     $tmp_encrypted_data = $oCRNRSTN->data_encrypt($tmp_data);
     $tmp_decrypted_output = $oCRNRSTN->data_decrypt($tmp_encrypted_data);
 
@@ -65,7 +63,7 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
     <?php
 
     echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
-
+    //echo $oCRNRSTN->framework_integrations_client_packet();
     ?>
 
 </div>

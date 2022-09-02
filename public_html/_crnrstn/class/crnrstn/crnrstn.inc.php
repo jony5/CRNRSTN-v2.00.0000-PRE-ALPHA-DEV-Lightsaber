@@ -427,6 +427,27 @@ class crnrstn {
 
     }
 
+    public function return_http_form_action_url($root_path = NULL){
+
+        if(isset($root_path)){
+
+            //$root_path = $this->strrtrim($root_path, '/');
+            $pos_qmark = strpos($root_path,'?');
+
+            if($pos_qmark !== false){
+
+                return $root_path . '&' . $this->session_salt() . '=';
+
+            }
+
+            return $root_path . '?' . $this->session_salt() . '=';
+
+        }
+
+        return './?' . $this->session_salt() . '=';
+
+    }
+
     public function session_salt($type = 'NO_MATCH'){
 
         $type = strtoupper($type);

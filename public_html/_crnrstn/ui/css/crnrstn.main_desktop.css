@@ -2,28 +2,31 @@
 /*
 // J5
 // Code is Poetry */
-.the_R_in_crnrstn                           { color:#F90000; }
-.crnrstn_body_wrapper                       { width:100%; text-align:center; margin:0 auto; font-family:Arial, Helvetica, sans-serif; background-color: #FFF;}
+.the_R_in_crnrstn                                   { color:#F90000; }
+.crnrstn_body_wrapper                               { width:100%; text-align:center; margin:0 auto; font-family:Arial, Helvetica, sans-serif; background-color: #FFF;}
+
+/*NEED TO SET Z-INDEX THROUGH THE SSDTL FOR ADMIN ACCESS*/
+.crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: black; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80); opacity: 0.8; display: none;}
+.crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; width: 100%; z-index: 10000; text-align: center; line-height: 0; font-weight: normal; outline: none;}
 
 /*CRNRSTN::INTEGRATION UI INTERACT MODULE :: DOCUMENTATION*/
 /*TODO :: Z-INDEX NEEDS TO COME FROM CRNRSTN :: SSDTLA*/
-.crnrstn_interact_ui_full_document_wrapper          { position: fixed; z-index: 100; top: 200px; left: 0; }
-.crnrstn_interact_ui_full_document                  { position: absolute; z-index: 101; left:0; top:150px; width: 120px;}
+.crnrstn_interact_ui_full_document_wrapper          { position: fixed; z-index: 100; top: 0; left: 0; }
+.crnrstn_interact_ui_full_document_rel              { position: relative; }
+.crnrstn_interact_ui_full_document                  { position: absolute; z-index: 101; left:0; top:0; width: 315px; }
 
-.crnrstn_interact_ui_side_nav                       { width: 120px; max-height: 600px; position: fixed; /*z-index: 1;*/ top: 120px; left: 5px; background-color: #ebee2f; border: 1px solid #c04fd5;  overflow-x: hidden; padding: 8px 0; }
+/*<!-- CRNRSTN::FIXED SIDE NAVIGATION
+// SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/
+.crnrstn_interact_ui_side_nav_logo                  { position: fixed; top:200px; cursor: pointer; }
+.crnrstn_interact_ui_side_nav_logo_bar              { position:absolute; left: -1px; height: 60px; width:2px; background-color: #a0a0a0;}
+.crnrstn_interact_ui_side_nav_logo_img              { float: left; background-color: #FFF; color:#FFF; font-size:11px; font-weight:normal; padding:10px 8px 6px 10px; border-radius: 15px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #e7e7e7; cursor: pointer; }
+.crnrstn_interact_ui_side_nav                       { width:0px; max-height: 600px; position: fixed; background-color: #FFF; /*z-index: 1;*/ top: 0; left: 0; overflow-x: hidden; padding: 0; border-right: 1px solid #6885C3; }
 .crnrstn_interact_ui_side_nav a                     { padding: 3px 8px 3px 7px; text-decoration: none; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #0066CC; display: block; }
 .crnrstn_interact_ui_side_nav a:hover               { color: #0066CC; }
-
 .crnrstn_interact_ui_side_nav ul                    { list-style:none; margin: 0; padding: 0;}
 
-.main {
-    margin-left: 140px; /* Same width as the sidebar + left position in px */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
-}
-
 @media screen and (max-height: 450px) {
-    .crnrstn_interact_ui_side_nav                   { padding-top: 15px;}
+    .crnrstn_interact_ui_side_nav                   { }
     .crnrstn_interact_ui_side_nav a                 { font-size: 18px;}
 }
 

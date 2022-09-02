@@ -1318,65 +1318,54 @@ class crnrstn_environment {
 
     }
 
+    private function return_documentation_side_nav_link_ARRAY(){
+
+        $tmp_str = '';
+
+        $tmp_scraped_filename_ARRAY = $this->oCRNRSTN->better_scandir(CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/');
+
+        $tmp_img_cnt = sizeof($tmp_scraped_filename_ARRAY);
+        for($i = 0; $i < $tmp_img_cnt; $i++){
+
+            $tmp_pos_php = strpos($tmp_scraped_filename_ARRAY[$i], '.php');
+            $tmp_pos_ds_store = strpos($tmp_scraped_filename_ARRAY[$i], 'DS_Store');
+
+            if(($tmp_pos_php !== false) && ($tmp_pos_ds_store === false)){
+
+                $tmp_filename = $this->oCRNRSTN->strrtrim($tmp_scraped_filename_ARRAY[$i], '.php');
+
+                $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $tmp_filename . '" id="crnrstn_text_lnk_' . md5($tmp_filename) . '" href="#' . $tmp_filename . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;">' . $tmp_filename . '</a></li>
+';
+
+            }
+
+        }
+
+        return $tmp_str;
+
+    }
+
     private function return_output_CRNRSTN_UI_DOCUMENTATION(){
 
         $tmp_str_array[] = '
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <div id="crnrstn_ui_documentation_navigation_src" class="crnrstn_hidden">
-            <!-- https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
-            <div class="crnrstn_interact_ui_side_nav">
-                <ul>
-                    <li><a id="crnrstn_text_lnk_' . md5('error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    
-                    <li><a id="crnrstn_text_lnk_' . md5('1error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('1return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('1return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('1get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('1print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('1print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('1return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    
-                    <li><a id="crnrstn_text_lnk_' . md5('2error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('2return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('2return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('2get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('2print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('2print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('2return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    
-                    <li><a id="crnrstn_text_lnk_' . md5('3error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('3return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('3return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('3get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('3print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('3print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('3return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    
-                    <li><a id="crnrstn_text_lnk_' . md5('4error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('4return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('4return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('4get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('4print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('4print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('4return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    
-                    <li><a id="crnrstn_text_lnk_' . md5('5error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.link_text_click(this); return false;">error_log</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('5return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('5return_youtube_embed') . '" href="#return_youtube_embed" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_youtube_embed</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('5get_resource') . '" href="#get_resource" onclick="oCRNRSTN_JS.link_text_click(this); return false;">get_resource</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('5print_r') . '" href="#print_r" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('5print_r_str') . '" href="#print_r_str" onclick="oCRNRSTN_JS.link_text_click(this); return false;">print_r_str</a></li>
-                    <li><a id="crnrstn_text_lnk_' . md5('5return_system_image') . '" href="#return_system_image" onclick="oCRNRSTN_JS.link_text_click(this); return false;">return_system_image</a></li>
-                    
-                </ul>
+        $tmp_str_array[] = '        <div class="crnrstn_hidden">
+            <!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
+            <div id="crnrstn_ui_documentation_side_nav_src">
+                <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);"><div id="crnrstn_interact_ui_side_nav_logo_bar" class="crnrstn_interact_ui_side_nav_logo_bar"></div><div id="crnrstn_interact_ui_side_nav_logo_img" class="crnrstn_interact_ui_side_nav_logo_img">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div></div>
+                <div id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav">
+                    <ul>
+                        <!--<li><a id="crnrstn_text_lnk_' . md5('error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;">error_log</a></li>-->
+                        ' . $this->return_documentation_side_nav_link_ARRAY() . '
+                    </ul>                
+                    <div class="crnrstn_cb_20"></div>
+                    <div>' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                    <div class="crnrstn_cb_100"></div>
+
+               </div>
+              
                
             </div>
             

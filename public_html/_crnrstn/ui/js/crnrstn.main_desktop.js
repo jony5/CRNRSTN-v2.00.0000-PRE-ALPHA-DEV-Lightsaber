@@ -119,6 +119,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.dom_element_mouse_state_tracker_ARRAY = [];
         this.dom_element_mouse_state_lock_ARRAY = [];
         this.dom_element_mouse_state_ARRAY = [];
+        this.side_navigation_min_width = 17;
+        this.side_navigation_toggle_expand_width = 250;
         this.current_serialization_key = '';
         this.current_serialization_checksum = '';
         this.crnrstn_ui_interact_mode = 'mini_canvas';
@@ -442,41 +444,185 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.link_text_click = function(link_elem){
+    CRNRSTN_JS.prototype.link_text_click = function(page_key){
 
-        var tmp_link_text = link_elem.text;
-        var tmp_link_text_id = link_elem.id;
-
-        this.log_activity('[lnum 450] tmp_link_text_id=[' + tmp_link_text_id + ']. tmp_link_text=[' + tmp_link_text + '].', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 449] SSDTLA Sending request for data [' + page_key + '].', this.CRNRSTN_DEBUG_VERBOSE);
 
         //
         // SET THE LINK
-        $('#crnrstn_interact_ui_link_text_click').val(tmp_link_text_id);
+        $('#crnrstn_interact_ui_link_text_click').val(page_key);
 
         this.fire_dom_state_controller();
 
     };
 
-    CRNRSTN_JS.prototype.initialize_interact_ui_document_format = function() {
+    CRNRSTN_JS.prototype.initialize_interact_ui_documentation_mode = function() {
 
-        $('<div id="crnrstn_interact_ui_full_document_wrapper"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div></div>').prependTo($('body'));
+        var self = this;
+        this.$overlay = $('#crnrstn_interact_ui_full_lightbox_overlay');
+        this.$crnrstn_lightbox = $('#crnrstn_interact_ui_full_lightbox');
 
-        $('body').animate({
-            paddingLeft: 130
-        }, {
-            duration: 500,
-            queue: false,
-            step: function( now, fx ) {
+        if(!this.$overlay.length){
 
-            },
-            complete: function () {
+            $('<div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div></div></div>').prependTo($('body'));
+            self.log_activity('[lnum 468] INJECTING crnrstn_interact_ui_full_lightbox_overlay INTO DOM.', self.CRNRSTN_DEBUG_VERBOSE);
 
-            }
+        }
+
+        if($('#crnrstn_ui_documentation_side_nav_src').length){
+
+            this.interact_ui_full_documentation_navigation();
+
+            $tmp_sidenav_html = $('#crnrstn_ui_documentation_side_nav_src').html();
+            $('#crnrstn_interact_ui_full_document').html($tmp_sidenav_html);
+
+            $('#crnrstn_ui_documentation_side_nav_src').html('');
+
+            $('#crnrstn_interact_ui_side_nav').animate({
+                width: this.side_navigation_min_width
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                step: function( now, fx ) {
+
+                },
+                complete: function () {
+
+                }
+
+            });
+
+            $('body').animate({
+                marginLeft: this.side_navigation_min_width
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                step: function( now, fx ) {
+
+                },
+                complete: function () {
+
+                }
+
+            });
+
+        }
+
+        // Attach event handlers to the newly minted DOM elements
+        this.$overlay.hide().on('click', function() {
+
+            self.end();
+            return false;
 
         });
 
-        $tmp_html = $('#crnrstn_ui_documentation_navigation_src').html();
-        $('#crnrstn_interact_ui_full_document').html($tmp_html);
+    };
+
+    CRNRSTN_JS.prototype.interact_ui_full_documentation_navigation = function() {
+
+        var self = this;
+        /*
+        We use a setTimeout 0 to pause JS execution and let the rendering catch-up.
+        Why do this? If the `disableScrolling` option is set to true, a class is added to the body
+        tag that disables scrolling and hides the scrollbar. We want to make sure the scrollbar is
+        hidden before we measure the document width, as the presence of the scrollbar will affect the
+        number.
+        */
+
+        setTimeout(function() {
+
+            $('#crnrstn_interact_ui_side_nav').css('max-height', parseInt($(window).height()));
+            $('#crnrstn_interact_ui_side_nav').css('height', parseInt($(window).height()));
+
+        }, 0);
+
+    };
+
+    CRNRSTN_JS.prototype.toggle_full_overlay = function() {
+
+        //
+        // ON OR OFF?
+        if($('#crnrstn_interact_ui_full_lightbox_overlay').css('opacity') > 0){
+
+            //
+            // TURN OFF
+            this.end();
+
+        }else{
+
+            //
+            // TURN ON
+            // Position Lightbox
+            var top  = $window.scrollTop() + this.options.positionFromTop;
+            var left = $window.scrollLeft();
+
+            this.$lightbox.css({
+                top: top + 'px',
+                left: left + 'px'
+            }).fadeIn(this.options.fadeDuration);
+
+            // Disable scrolling of the page while open
+            if (this.options.disableScrolling) {
+
+                $('body').addClass('lb-disable-scrolling');
+
+            }
+
+            this.sizeOverlay();
+
+        }
+
+        //this.$overlay.fadeIn(this.options.fadeDuration);
+        //
+        // $('#crnrstn_interact_ui_full_overlay').animate({
+        //     width: 130
+        // }, {
+        //     duration: 500,
+        //     queue: false,
+        //     step: function( now, fx ) {
+        //
+        //     },
+        //     complete: function () {
+        //
+        //     }
+        //
+        // });
+        //
+        // $('#crnrstn_interact_ui_full_overlay').animate({
+        //     width: 100%,
+        //
+        // }, {
+        //     duration: 500,
+        //     queue: false,
+        //     step: function( now, fx ) {
+        //
+        //     },
+        //     complete: function () {
+        //
+        //     }
+        //
+        // });
+        //
+        //
+        // $('#crnrstn_interact_ui_full_overlay').animate({
+        //     width: 130
+        // }, {
+        //     duration: 500,
+        //     queue: false,
+        //     step: function( now, fx ) {
+        //
+        //     },
+        //     complete: function () {
+        //
+        //     }
+        //
+        // });
 
     };
 
@@ -491,7 +637,16 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             }else{
 
-                $('<div id="crnrstn_activity_log_output_wrapper"><div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 10px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG WINDOW</div><div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper"><div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div></div><div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:98%; text-align: right;"><div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div><div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div></div></div>').prependTo($('body'));
+                $('<div id="crnrstn_activity_log_output_wrapper">' +
+                    '<div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 10px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG WINDOW</div>' +
+                    '<div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper">' +
+                    '   <div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div>' +
+                    '</div>' +
+                    '<div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:98%; text-align: right;">' +
+                    '   <div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div>' +
+                    '   <div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div>' +
+                    '</div>' +
+                '</div>').prependTo($('body'));
 
                 switch(self.CRNRSTN_LOGGING_OUTPUT){
                     case 'DOM':
@@ -514,15 +669,15 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 }
 
-                if($('#crnrstn_ui_documentation_navigation_src').length){
-
-                    self.initialize_interact_ui_document_format();
-
-                }
-
             }
 
             self.log_activity('[lnum 481] DOM READY.', self.CRNRSTN_DEBUG_VERBOSE);
+
+            if($('#crnrstn_ui_documentation_side_nav_src').length){
+
+                self.initialize_interact_ui_documentation_mode();
+
+            }
 
             self.crnrstn_data_tunnel_session_init();
             self.initialize_delay_ui_sync_controllers();
@@ -749,7 +904,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //var ssdtl_endpoint = document.getElementById("crnrstn_request_ajax_root").innerHTML;
         var ssdtl_endpoint = $("#crnrstn_request_ajax_root").val();
 
-        if(ssdtl_endpoint !== undefined){
+        if(ssdtl_endpoint !== undefined && ssdtl_endpoint != ''){
 
             //
             // SERIALIZATION FOR FORM DATA AND RESPONSE HANDLING
@@ -2707,10 +2862,22 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var session_salt = $("#crnrstn_session_salt").html();
 
-        $('body').on('click', 'a[href-crnrstn_top_' + session_salt + ']', function(event) {
+        // $('body').on('click', 'a[href-crnrstn_top_' + session_salt + ']', function(event) {
+        //
+        //     //alert('hello world');
+        //     $("html, body").animate({ scrollTop: 0 }, "slow");
+        //     return false;
+        //
+        // });
 
-            //alert('hello world');
-            $("html, body").animate({ scrollTop: 0 }, "slow");
+        $('body').on('click', 'a[data-crnrstn]', 'a[rel^=crnrstn_documentation_side_nav_' + session_salt + ']', function(event) {
+
+            //alert('currentTarget=' + this.attributes.item(1).value);
+            //alert('text=' + this.text);
+            //alert('innerHTML=' + this.innerHTML);
+
+            self.link_text_click(this.text);
+
             return false;
 
         });
@@ -3914,6 +4081,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    //
+    // LINING UP TO RE-ARCH THIS INTO CRNRSTN ::
     CRNRSTN_JS.prototype.rotate_jony5_lifestyle_image = function(dom_element_alpha, dom_element_beta){
 
         var self = this;
@@ -4203,6 +4372,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    //
+    // LINING UP TO RE-ARCH THIS INTO CRNRSTN ::
     CRNRSTN_JS.prototype.extract_filename = function(str_path){
 
         //
@@ -5244,9 +5415,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
 
 
+        <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+
         */
 
-        switch(element_id){
+        switch(elem.id){
             case 'crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case':
 
                 //dom_handle_variant_element = 'menu';
@@ -5265,6 +5438,50 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case':
 
                 //dom_handle_variant_element = 'minimize';
+
+            break;
+            case 'crnrstn_interact_ui_side_nav_logo':
+
+                switch(ux_action){
+                    case 'onmouseover':
+
+                        //this.log_activity('[lnum 5434] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+                        $('#crnrstn_interact_ui_side_nav_logo_img').css('backgroundColor', '#efefef');
+                        $('#crnrstn_interact_ui_side_nav_logo_bar').css('width', parseInt('2'));
+                        $('#crnrstn_interact_ui_side_nav_logo_bar').css('backgroundColor', '#F90000');
+
+                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-radius', parseInt('15'));
+                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-top-left-radius', parseInt('0'));
+                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-bottom-left-radius', parseInt('0'));
+
+                    break;
+                    case 'onmouseout':
+
+                        //this.log_activity('[lnum 5441] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+                        $('#crnrstn_interact_ui_side_nav_logo_img').css('backgroundColor', '#FFF');
+                        $('#crnrstn_interact_ui_side_nav_logo_bar').css('width', parseInt('2'));
+                        $('#crnrstn_interact_ui_side_nav_logo_bar').css('backgroundColor', '#a0a0a0');
+
+                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-radius', parseInt('15'));
+                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-top-left-radius', parseInt('0'));
+                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-bottom-left-radius', parseInt('0'));
+
+                    break;
+                    case 'onmousedown':
+
+                    break;
+                    case 'onmouseup':
+
+                    break;
+                    case 'onclick':
+
+                        this.toggle_documentation_side_navigation();
+
+                    break;
+
+                }
 
             break;
             default:
@@ -5287,10 +5504,100 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'onmouseup':
 
-
             break;
 
         }
+
+        return true;
+
+    };
+
+    CRNRSTN_JS.prototype.string_clean_css_px_int = function(css_pixel_int_string){
+
+        var tmp_css_pixel_ARRAY = css_pixel_int_string.split('px');
+        css_pixel = tmp_css_pixel_ARRAY[0];
+
+        return css_pixel;
+
+    }
+
+    CRNRSTN_JS.prototype.toggle_documentation_side_navigation = function(){
+
+        var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
+
+        if(css_int > this.side_navigation_min_width + 5){
+
+            //
+            // CLOSE SIDE NAVIGATION
+            $('#crnrstn_interact_ui_side_nav').animate({
+                width: this.side_navigation_min_width
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
+            //var b_width = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
+
+            $('body').animate({
+                marginLeft: this.side_navigation_min_width
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
+            return true;
+
+        }
+
+
+        //
+        // EXPAND NAVIGATION
+        $('#crnrstn_interact_ui_side_nav').animate({
+            width: this.side_navigation_toggle_expand_width
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            step: function( now, fx ) {
+
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        //var b_width = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
+
+        $('body').animate({
+            marginLeft: this.side_navigation_toggle_expand_width
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
 
         return true;
 
