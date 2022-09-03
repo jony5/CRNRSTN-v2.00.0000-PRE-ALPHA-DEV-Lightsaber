@@ -182,6 +182,9 @@ class crnrstn {
         $config_serial = $CRNRSTN_config_serial . '_420.00' . filesize($config_filepath) . '.' . filemtime($config_filepath) . '.0';
 
         self::$config_serial = $config_serial;
+        //
+        // TODO :: $this->crcINT() to md5() FOR EVERYTHING BUT DATABASE CHECKSUM PRIMARY KEY
+        // DUAL-KEY INDEXING FOR SQL OPTIMIZATION. VARIABLE NAMES WILL NEED TO CHANGE!
         $this->config_serial_crc = $this->crcINT(self::$config_serial);
         self::$CRNRSTN_debug_mode = $CRNRSTN_debug_mode;
 
@@ -1797,7 +1800,7 @@ class crnrstn {
 
                 //
                 // TODO :: FOLLOW THIS ARRAY AND REPLACE IT EVERYWHERE WITH THE $oCRNRSTN_CONFIG_MGR
-                self::$system_creative_http_path_ARRAY[$this->config_serial_crc][$this->crcINT($env_key)] = $crnrstn_images_http_dir;
+                self::$system_creative_http_path_ARRAY[$this->config_serial_crc][$tmp_env_key_crc] = $crnrstn_images_http_dir;
 
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_images_http_dir, 'crnrstn_resources_http_path', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
 
@@ -1961,11 +1964,11 @@ class crnrstn {
 
 	public function add_environment($env_key, $err_reporting_profile){
 
-        $this->error_log('Environment key [' . $env_key . '] converts to checksum [' . $this->crcINT($env_key) . '] and will be referenced as such from time to time. ', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
         try{
 
             $env_key_crc = $this->crcINT($env_key);
+
+            $this->error_log('Environment key [' . $env_key . '] converts to checksum [' . $env_key_crc . '] and will be referenced as such from time to time. ', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             if(!isset($this->env_err_reporting_profile_ARRAY[$this->config_serial_crc][$env_key_crc])){
 
@@ -2001,18 +2004,23 @@ class crnrstn {
     public function init_logging($env_key, $CRNRSTN_loggingProfile = CRNRSTN_LOG_DEFAULT, $CRNRSTN_loggingMeta = NULL){
 
         //
+        // LOGGING WILL NEED TO BE REFACTORED SOON. MUCH HAS CHANGED.
+        //
+        $tmp_env_crc = $this->crcINT($env_key);
+
+        //
         // PROCESS BITWISE DATA DO THIS AFTER ENVIRONMENTAL DETECTION
         //$this->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->set($CRNRSTN_loggingProfile, true);
         //error_log(__LINE__ .' '. __METHOD__ .' crnrstn_environment to receive logging array[' . $this->crcINT($this->config_serial).'][' . $this->crcINT($env_key).']=[' . $CRNRSTN_loggingProfile . ']');
-        self::$sys_logging_profile_ARRAY[$this->config_serial_crc][$this->crcINT($env_key)][] = $CRNRSTN_loggingProfile;
+        self::$sys_logging_profile_ARRAY[$this->config_serial_crc][$tmp_env_crc][] = $CRNRSTN_loggingProfile;
 
         if(isset($CRNRSTN_loggingMeta)){
 
-            self::$sys_logging_meta_ARRAY[$this->config_serial_crc][$this->crcINT($env_key)][] = $CRNRSTN_loggingMeta;
+            self::$sys_logging_meta_ARRAY[$this->config_serial_crc][$tmp_env_crc][] = $CRNRSTN_loggingMeta;
 
         }else{
 
-            self::$sys_logging_meta_ARRAY[$this->config_serial_crc][$this->crcINT($env_key)][] = '0';
+            self::$sys_logging_meta_ARRAY[$this->config_serial_crc][$tmp_env_crc][] = '0';
 
         }
 
@@ -2840,7 +2848,7 @@ class crnrstn {
     public function output_regression_stripe_ARRAY($result_str, $result_array, $output_format = 'array'){
 
         $tmp_ARRAY = array();
-        $tmp_ARRAY['string'] = $result_str;
+        $tmp_ARRAY['string'] = md5($result_str);
         $tmp_ARRAY['index_array'] = $result_array;
 
         if($output_format != 'array'){
@@ -2871,9 +2879,8 @@ class crnrstn {
         if(isset($var0)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var0);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var0 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var0;
 
         }
 
@@ -2883,9 +2890,8 @@ class crnrstn {
         if(isset($var1)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var1);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var1 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var1;
 
         }
 
@@ -2895,9 +2901,8 @@ class crnrstn {
         if(isset($var2)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var2);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var2 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var2;
 
         }
 
@@ -2907,9 +2912,8 @@ class crnrstn {
         if(isset($var3)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var3);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var3 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var3;
 
         }
 
@@ -2919,9 +2923,8 @@ class crnrstn {
         if(isset($var4)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var4);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var4 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var4;
 
         }
 
@@ -2931,9 +2934,8 @@ class crnrstn {
         if(isset($var5)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var5);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var5 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var5;
 
         }
 
@@ -2943,9 +2945,8 @@ class crnrstn {
         if(isset($var6)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var6);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var6 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var6;
 
         }
 
@@ -2955,9 +2956,8 @@ class crnrstn {
         if(isset($var7)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var7);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var7 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var7;
 
         }
 
@@ -2967,9 +2967,8 @@ class crnrstn {
         if(isset($var8)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var8);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var8 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var8;
 
         }
 
@@ -2979,9 +2978,8 @@ class crnrstn {
         if(isset($var9)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var9);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var9 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var9;
 
         }
 
@@ -2991,9 +2989,8 @@ class crnrstn {
         if(isset($var10)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var10);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var10 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var10;
 
         }
 
@@ -3002,14 +2999,12 @@ class crnrstn {
 
         if(isset($var11)){
 
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var11);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var11 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var11;
 
         }
 
-        $tmp_array_out_ARRAY['string'] = $tmp_str_out;
+        $tmp_array_out_ARRAY['string'] = md5($tmp_str_out);
         $tmp_array_out_ARRAY['index_array'] = $tmp_array_str_unit_ARRAY;
 
         if($output_format == 'array') {
@@ -3755,7 +3750,7 @@ class crnrstn {
 
             if(isset(self::$server_env_key_crc_ARRAY[$this->config_serial_crc])){
 
-                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_crc_ARRAY[$this->config_serial_crc] == $this->crcINT($env_key)){
+                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_crc_ARRAY[$this->config_serial_crc] == $env_key_crc){
 
                     $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$encrypt_cipher', '$encrypt_secret_key', '$hmac_alg');
                     $tmp_param_err_str_ARRAY = $this->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $env_key, $encrypt_cipher, $encrypt_secret_key, $hmac_alg);
@@ -8257,9 +8252,8 @@ class crnrstn_config_manager {
         if(isset($var0)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var0);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var0 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var0;
 
         }
 
@@ -8269,9 +8263,8 @@ class crnrstn_config_manager {
         if(isset($var1)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var1);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var1 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var1;
 
         }
 
@@ -8281,9 +8274,8 @@ class crnrstn_config_manager {
         if(isset($var2)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var2);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var2 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var2;
 
         }
 
@@ -8293,9 +8285,8 @@ class crnrstn_config_manager {
         if(isset($var3)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var3);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var3 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var3;
 
         }
 
@@ -8305,9 +8296,8 @@ class crnrstn_config_manager {
         if(isset($var4)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var4);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var4 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var4;
 
         }
 
@@ -8317,9 +8307,8 @@ class crnrstn_config_manager {
         if(isset($var5)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var5);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var5 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var5;
 
         }
 
@@ -8329,9 +8318,8 @@ class crnrstn_config_manager {
         if(isset($var6)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var6);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var6 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var6;
 
         }
 
@@ -8341,9 +8329,8 @@ class crnrstn_config_manager {
         if(isset($var7)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var7);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var7 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var7;
 
         }
 
@@ -8353,9 +8340,8 @@ class crnrstn_config_manager {
         if(isset($var8)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var8);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var8 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var8;
 
         }
 
@@ -8365,9 +8351,8 @@ class crnrstn_config_manager {
         if(isset($var9)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var9);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var9 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var9;
 
         }
 
@@ -8377,9 +8362,8 @@ class crnrstn_config_manager {
         if(isset($var10)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var10);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var10 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var10;
 
         }
 
@@ -8389,13 +8373,12 @@ class crnrstn_config_manager {
         if(isset($var11)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->oCRNRSTN->crcINT($var11);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var11 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var11;
 
         }
 
-        $tmp_array_out_ARRAY['string'] = $tmp_str_out;
+        $tmp_array_out_ARRAY['string'] = md5($tmp_str_out);
         $tmp_array_out_ARRAY['index_array'] = $tmp_array_str_unit_ARRAY;
 
         if($output_format == 'array') {
