@@ -9,18 +9,18 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 //$tmp_form_serial = $oCRNRSTN->generate_new_key(5);
 //$tmp_http_root = $oCRNRSTN->current_location();
 
-$oCRNRSTN->init_form_handling('crnrstn_demo_form_example');
+$oCRNRSTN->init_form_handling('CRNRSTN:: A DEMO_FORM_EXAMPLE');
 
 //
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
 # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE
 # ENCRYPTED INITIALLY.
 # $this->oCRNRSTN_USR->init_input_listener({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
-$oCRNRSTN->init_input_listener('crnrstn_demo_form_example', 'crnrstn_demo_firstname');
-$oCRNRSTN->init_input_listener('crnrstn_demo_form_example', 'crnrstn_demo_city');
-$oCRNRSTN->init_input_listener('crnrstn_demo_form_example', 'crnrstn_demo_state');
-$oCRNRSTN->init_input_listener('crnrstn_demo_form_example', 'crnrstn_demo_zipcode');
-$oCRNRSTN->init_input_listener('crnrstn_demo_form_example', 'crnrstn_demo_email');
+//$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname');
+//$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city');
+//$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_state');
+//$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_zipcode');
+//$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email');
 
 ?>
 <!DOCTYPE html>
@@ -164,14 +164,14 @@ $oCRNRSTN->init_input_listener('crnrstn_demo_form_example', 'crnrstn_demo_email'
             </div>
             <?php
 
-            echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_demo_form_example');
+            //echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'CRNRSTN:: A DEMO_FORM_EXAMPLE');
 
             ?>
         </form>
 
         <div class="crnrstn_cb_20"></div>
 
-        <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="<?php echo $tmp_http_root; ?>&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+        <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     </div>
 

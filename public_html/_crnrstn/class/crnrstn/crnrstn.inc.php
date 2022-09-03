@@ -485,9 +485,9 @@ class crnrstn {
 
     }
 
-    public function init_form_handling($crnrstn_form_handle, $transport_protocol = 'POST', $tunnel_encrypt_hidden_input_data = NULL){
+    public function init_form_handling($crnrstn_form_handle, $transport_protocol = 'POST'){
 
-        return $this->oCRNRSTN_USR->init_form_handling($crnrstn_form_handle, $transport_protocol, $tunnel_encrypt_hidden_input_data);
+        return $this->oCRNRSTN_USR->init_form_handling($crnrstn_form_handle, $transport_protocol);
 
     }
 
@@ -726,9 +726,10 @@ class crnrstn {
 
     }
 
-    public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL){
+    public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_transport = false){
 
-        return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index);
+        //$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_transport = false)
+        return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, $env_key, $soap_transport);
 
     }
 
@@ -2642,6 +2643,35 @@ class crnrstn {
     public function get_resource_wp($data_key, $index = 0, $data_type_family = 'CRNRSTN::WP::INTEGRATIONS', $soap_transport = false){
 
         return $this->oMYSQLI_CONN_MGR->get_resource_wp($data_key, $index, $data_type_family, $soap_transport);
+
+    }
+
+    public function get_resource_submitted($input_field_name, $http_transport_protocol = 'POST'){
+
+        if(is_array($http_transport_protocol)){
+
+
+            return '';
+
+        }
+
+        $http_channel_upper = strtoupper($http_transport_protocol);
+
+        if($http_transport_protocol != 'POST'){
+
+            $http_transport_protocol = $this->string_sanitize($http_channel_upper, 'http_protocol_simple');
+
+            if($http_transport_protocol != 'GET' && $http_transport_protocol != 'POST') {
+
+                //
+                // HOOOSTON...VE HAF PROBLEM!
+                throw new Exception('CRNRSTN :: Form handling configuration error :: unable to detect transport_protocol[POST/GET] from the provided value of ' . $transport_protocol . '.');
+
+            }
+
+        }
+
+        //$input_field_name, $http_transport_protocol ['POST', 'GET']
 
     }
 
@@ -5227,6 +5257,12 @@ class crnrstn {
             $output = '<span style="color: #000">&nbsp;</span>';
 
         }
+
+        // TODO :: FIGURE OUT HOW TO PRESERVE LINE BREAKS THROUGH COPY AND PASTE
+        /*$tmp_expression_slash_n = $this->proper_replace('
+','\n', $expression);
+*/
+        //$this->string_breaks_to_slash_n($expression);
 
         echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . $expression . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
         print_r($output);

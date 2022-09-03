@@ -59,6 +59,48 @@ $oCRNRSTN->add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
 <div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
 
 <?php
+$tmp_str = 'public function retrieve_data_value($data_key, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $index = NULL, $env_key = NULL, $soap_transport = false){
+';
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::retrieve_data_value()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$tmp_str = 'if($oCRNRSTN->isset_data_key($data_key, $data_type_family){
+
+// where, public function isset_data_key($data_key, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $env_key = NULL){}
+
+}
+';
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::isset_data_key()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$tmp_str = '$http_transport_protocol = strtoupper($transport_protocol);
+$http_transport_protocol = $this->string_sanitize($http_transport_protocol, \'http_protocol_simple\');
+
+if($http_transport_protocol != \'GET\' && $http_transport_protocol != \'POST\') {
+    
+    //
+    // HOOOSTON...VE HAF PROBLEM!
+    throw new Exception(\'CRNRSTN :: Form handling configuration error :: unable to detect transport_protocol[POST/GET] from the provided value of \' . $transport_protocol . \'.\');
+
+}';
+
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_handling()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+
+$tmp_str = '$tmp_stripe_key_ARRAY = $oCRNRSTN->return_stripe_key_ARRAY(\'$env_key\', \'$encrypt_cipher\', \'$encrypt_secret_key\', \'$hmac_alg\');
+$tmp_param_err_str_ARRAY = $oCRNRSTN->return_regression_stripe_ARRAY(\'MISSING_STRING_DATA\', $tmp_stripe_key_ARRAY, $env_key, $encrypt_cipher, $encrypt_secret_key, $hmac_alg);
+
+$tmp_param_missing_str = $tmp_param_err_str_ARRAY[\'string\'];
+$tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY[\'index_array\'];
+
+if(count($tmp_param_missing_ARRAY) > 0){
+
+    $oCRNRSTN->error_log(\'Missing required \' . $data_type_title . \' encryption information to complete \' . __METHOD__ .\'. \'. $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+    throw new Exception(\'CRNRSTN :: initialization ERROR :: \' . __METHOD__ . \' was called but was missing parameter information and so encryption was not able to be initialized. Some parameters are required. \' . $tmp_param_missing_str);
+
+}';
+
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::apply_encryption_profile()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
 
 $tmp_str = '//
 // CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE

@@ -4962,63 +4962,38 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function init_form_handling($crnrstn_form_handle, $transport_protocol = 'POST', $tunnel_encrypt_hidden_input_data = NULL){
+    public function init_form_handling($crnrstn_form_handle){
 
         try {
 
-            if (!isset($crnrstn_form_handle) || !isset($transport_protocol)) {
+            $tmp_stripe_key_ARRAY = $this->oCRNRSTN->return_stripe_key_ARRAY('$crnrstn_form_handle');
+            $tmp_param_err_str_ARRAY = $this->oCRNRSTN->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $crnrstn_form_handle);
+
+            $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
+            $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
+
+            if(count($tmp_param_missing_ARRAY) > 0){
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('CRNRSTN_USR->init_form_handling() configuration error :: unable to detect form_handle or transport_protocol.');
+                throw new Exception('CRNRSTN :: Form handling configuration error ::. ' . $tmp_param_missing_str);
 
-            } else {
+            }else{
 
-                $http_transport_protocol = strtoupper($transport_protocol);
-                $http_transport_protocol = $this->string_sanitize($http_transport_protocol, 'http_protocol_simple');
+                // HOW TO GET SUBMITTED FORM FIELD DATA
+                //$this->oCRNRSTN->get_resource_submitted('input_field_name', 'POST');
+                // PREVIOUS METHOD:
+                //$this->oCRNRSTN->return_http_form_integration_input_val('input_field_name', 'POST');
+                $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . md5($crnrstn_form_handle);
+                if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
 
-                if ($http_transport_protocol != 'GET' && $http_transport_protocol != 'POST') {
-
-                    //
-                    // HOOOSTON...VE HAF PROBLEM!
-                    throw new Exception('CRNRSTN_USR->init_form_handling() configuration error :: unable to detect transport_protocol[POST/GET] from the provided value of ' . $transport_protocol . '.');
-
-                } else {
-
-                    if (isset(self::$form_handle_ARRAY[$crnrstn_form_handle])) {
-
-                        if ($http_transport_protocol != self::$form_handle_ARRAY[$crnrstn_form_handle]) {
-
-
-                            //
-                            // HOOOSTON...VE HAF PROBLEM!
-                            throw new Exception('CRNRSTN_USR->init_form_handling() configuration error :: duplicate CRNRSTN :: form handle detected upon receiving the provided value of ' . $crnrstn_form_handle . '.');
-
-                        } else {
-
-                            self::$form_handle_ARRAY[$crnrstn_form_handle] = $http_transport_protocol;
-
-                        }
-
-                    } else {
-
-                        self::$form_handle_ARRAY[$crnrstn_form_handle] = $http_transport_protocol;
-
-                    }
-
-                }
-
-                if(isset($tunnel_encrypt_hidden_input_data)){
-
-                    error_log(__LINE__ . ' user enter init_form_handling()...die();');
-                    die();
-                    self::$form_handle_ARRAY[$crnrstn_form_handle]['tunnel_encrypt'] = $tunnel_encrypt_hidden_input_data;
+                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $crnrstn_form_handle, $crnrstn_form_handle, 0, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
                 }
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -5811,7 +5786,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $tmp_array_outer[] = $tmp_array;
 
-                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_ARCH_AUTH_RUNTIME_ONLY);
+                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                 //$this->input_data_value($tmp_array_outer, 'ENCRYPT_PARAMS', NULL, 0, NULL, $this->env_key);
                 //$this->set_session_param('ENCRYPT_PARAMS', $tmp_array_outer);
 
@@ -5822,7 +5797,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $tmp_array_outer_sess[] = $tmp_array;
 
-                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer_sess, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_ARCH_AUTH_RUNTIME_ONLY);
+                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer_sess, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                 //$this->input_data_value($tmp_array_outer_sess, 'ENCRYPT_PARAMS', NULL, 0, NULL, $this->env_key);
                 //$this->set_session_param('ENCRYPT_PARAMS', $tmp_array_outer_sess);
 
