@@ -313,6 +313,8 @@ class crnrstn_environment {
                     // INITIALIZE UI INTERACT PROFILE
                     $this->init_ui_interact_profile();
 
+                    $this->oCRNRSTN->framework_integrations_client_packet(CRNRSTN_UI_SOAP_DATA_TUNNEL, true);
+
                     /*
                     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SELECTION OF
                     SESSION CHANNEL / DATA TUNNEL LAYER ARCHITECTURE

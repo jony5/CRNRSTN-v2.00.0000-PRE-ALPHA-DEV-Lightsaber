@@ -155,6 +155,7 @@ class crnrstn {
     private static $wheel_encoder_salt;
 
     public $ui_content_module_integer_ARRAY = array();
+    protected $ui_content_module_integer_spool_ARRAY = array();
     //private static $framework_integrations_client_packet_build_flag_ARRAY = array();
     //private static $framework_integrations_client_packet_build_flag;
     //protected $fic_packet_build_flag;
@@ -2687,7 +2688,15 @@ class crnrstn {
 
     }
 
-    public function framework_integrations_client_packet($integer_constant = NULL){
+    public function framework_integrations_client_packet($integer_constant = NULL, $spool_for_output = false){
+
+        if($spool_for_output){
+
+            $this->ui_content_module_integer_spool_ARRAY[] = $integer_constant;
+
+            return true;
+
+        }
 
         //$this->fic_packet_build_flag = 1;
 
@@ -2751,12 +2760,29 @@ class crnrstn {
 //
 //            }
 
-            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+//            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+//
+//                $this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+//
+//            }
 
-                $this->module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
-                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+        foreach($this->ui_content_module_integer_spool_ARRAY as $index => $int_const) {
+
+            if(in_array($int_const, $this->ui_content_module_integer_ARRAY)){
+
+                if (!isset($this->module_build_flag_ARRAY[$int_const])) {
+
+                    $this->module_build_flag_ARRAY[$int_const] = 1;
+                    $tmp_client_packet_output .= $this->ui_content_module_out($int_const);
+
+                    //return $tmp_client_packet_output;
+
+                }
 
             }
+        }
+
 
 //            if(!isset($this->module_build_flag_ARRAY[CRNRSTN_UI_INTERACT])){
 //
