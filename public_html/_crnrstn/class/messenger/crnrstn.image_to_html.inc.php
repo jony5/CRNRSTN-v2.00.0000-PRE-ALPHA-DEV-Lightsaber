@@ -7814,7 +7814,8 @@ class crnrstn_system_image_asset_manager {
 
         if(strlen($link) > 0){
 
-            if(strlen($this->oCRNRSTN->env_key) > 0 && $this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
+            if($this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
+                //if(strlen($this->oCRNRSTN->env_key) > 0 && $this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
 
                 $tmp_str = '<a href="' . $this->oCRNRSTN->return_sticky_link($link, $meta_params_ARRAY) . '" target="' . $target . '">' . $tmp_str . '</a>';
 

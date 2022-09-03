@@ -76,7 +76,7 @@ $oCRNRSTN->init_input_listener('crnrstn_demo_form_example', 'crnrstn_demo_email'
 
     <div style="padding: 0 0 0 20px;">
 
-        <div style="font-family:Arial, Helvetica, sans-serif; font-weight: bold; font-size: 25px; padding: 10px 0 0 0;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: CURL v7.58.0</div>
+        <div style="font-family:Arial, Helvetica, sans-serif; font-weight: bold; font-size: 25px; padding: 10px 0 0 0;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: Form Integrations Testing</div>
         <div class="crnrstn_cb"></div>
         <div style="font-family:Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; padding: 5px 0 0 0; color: #9a9292;">
             <?php

@@ -495,6 +495,20 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             });
 
+            $('#crnrstn_interact_ui_side_nav_logo').animate({
+                left: 18
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
             $('body').animate({
                 marginLeft: this.side_navigation_min_width
             }, {
@@ -502,9 +516,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 queue: false,
                 specialEasing: {
                     opacity: "swing"
-                },
-                step: function( now, fx ) {
-
                 },
                 complete: function () {
 
@@ -5447,26 +5458,54 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         //this.log_activity('[lnum 5434] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
-                        $('#crnrstn_interact_ui_side_nav_logo_img').css('backgroundColor', '#efefef');
-                        $('#crnrstn_interact_ui_side_nav_logo_bar').css('width', parseInt('2'));
+                        // ACTIVE MOUSEOVER (HOVER STATE)
+                        //$('#crnrstn_interact_ui_side_nav_logo_img_bg').css('backgroundColor', '#b4b4b4');   // f8f8f8
+                        $('#crnrstn_interact_ui_side_nav_logo_bar').css('width', parseInt('4'));
                         $('#crnrstn_interact_ui_side_nav_logo_bar').css('backgroundColor', '#F90000');
+                        $('#crnrstn_interact_ui_side_nav_logo').css('borderColor', '#F90000');
 
-                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-radius', parseInt('15'));
-                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-top-left-radius', parseInt('0'));
-                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-bottom-left-radius', parseInt('0'));
+                        $('#crnrstn_interact_ui_side_nav_logo_img_bg').animate({
+                            opacity: 1.0
+                        }, {
+                            duration: 100,
+                            queue: false,
+                            specialEasing: {
+                                opacity: "swing"
+                            },
+                            complete: function () {
+
+                            }
+
+                        });
+
+                        //$('#crnrstn_interact_ui_side_nav_logo').css('backgroundColor', '#FFF');
 
                     break;
                     case 'onmouseout':
 
                         //this.log_activity('[lnum 5441] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
-                        $('#crnrstn_interact_ui_side_nav_logo_img').css('backgroundColor', '#FFF');
+                        // ACTIVE MOUSEOUT (BACK TO NORMAL)
+                        //$('#crnrstn_interact_ui_side_nav_logo_img_bg').css('backgroundColor', '#FFF');
                         $('#crnrstn_interact_ui_side_nav_logo_bar').css('width', parseInt('2'));
-                        $('#crnrstn_interact_ui_side_nav_logo_bar').css('backgroundColor', '#a0a0a0');
+                        $('#crnrstn_interact_ui_side_nav_logo_bar').css('backgroundColor', '#A5B9D8');
+                        $('#crnrstn_interact_ui_side_nav_logo').css('borderColor', '#A5B9D8');
 
-                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-radius', parseInt('15'));
-                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-top-left-radius', parseInt('0'));
-                        $('#crnrstn_interact_ui_side_nav_logo_img').css('border-bottom-left-radius', parseInt('0'));
+                        $('#crnrstn_interact_ui_side_nav_logo_img_bg').animate({
+                            opacity: 0.2
+                        }, {
+                            duration: 100,
+                            queue: false,
+                            specialEasing: {
+                                opacity: "swing"
+                            },
+                            complete: function () {
+
+                            }
+
+                        });
+
+                        //$('#crnrstn_interact_ui_side_nav_logo').css('backgroundColor', 'transparent');
 
                     break;
                     case 'onmousedown':
@@ -5525,12 +5564,26 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
 
-        if(css_int > this.side_navigation_min_width + 5){
+        if(css_int > this.side_navigation_min_width + 35){
 
             //
             // CLOSE SIDE NAVIGATION
             $('#crnrstn_interact_ui_side_nav').animate({
-                width: this.side_navigation_min_width
+                width: parseInt(this.side_navigation_min_width)
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
+            $('#crnrstn_interact_ui_side_nav_logo').animate({
+                left: 18
             }, {
                 duration: 500,
                 queue: false,
@@ -5546,7 +5599,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             //var b_width = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
 
             $('body').animate({
-                marginLeft: this.side_navigation_min_width
+                marginLeft: parseInt(this.side_navigation_min_width)
             }, {
                 duration: 500,
                 queue: false,
@@ -5563,13 +5616,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         }
 
-
         //
         // EXPAND NAVIGATION
         $('#crnrstn_interact_ui_side_nav').animate({
-            width: this.side_navigation_toggle_expand_width
+            width: parseInt(this.side_navigation_toggle_expand_width)
         }, {
-            duration: 500,
+            duration: 100,
             queue: false,
             specialEasing: {
                 opacity: "swing"
@@ -5583,12 +5635,27 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         });
 
+
+        $('#crnrstn_interact_ui_side_nav_logo').animate({
+            left: parseInt(this.side_navigation_toggle_expand_width)
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
         //var b_width = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
 
         $('body').animate({
-            marginLeft: this.side_navigation_toggle_expand_width
+            marginLeft: parseInt(this.side_navigation_toggle_expand_width)
         }, {
-            duration: 500,
+            duration: 100,
             queue: false,
             specialEasing: {
                 opacity: "swing"

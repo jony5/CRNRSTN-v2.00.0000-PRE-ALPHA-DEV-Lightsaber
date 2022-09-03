@@ -17,10 +17,16 @@
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
 // SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/
-.crnrstn_interact_ui_side_nav_logo                  { position: fixed; top:200px; cursor: pointer; }
-.crnrstn_interact_ui_side_nav_logo_bar              { position:absolute; left: -1px; height: 60px; width:2px; background-color: #a0a0a0;}
-.crnrstn_interact_ui_side_nav_logo_img              { float: left; background-color: #FFF; color:#FFF; font-size:11px; font-weight:normal; padding:10px 8px 6px 10px; border-radius: 15px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #e7e7e7; cursor: pointer; }
-.crnrstn_interact_ui_side_nav                       { width:0px; max-height: 600px; position: fixed; background-color: #FFF; /*z-index: 1;*/ top: 0; left: 0; overflow-x: hidden; padding: 0; border-right: 1px solid #6885C3; }
+.crnrstn_interact_ui_side_nav_logo                  { position: fixed; top:200px; left:0; border-radius: 15px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #A5B9D8; overflow: hidden; cursor: pointer; }
+.crnrstn_interact_ui_side_nav_logo_bar_rel          { position: relative;}
+.crnrstn_interact_ui_side_nav_logo_bar              { position:absolute; z-index:9999; left: 0; height: 60px; width:2px; background-color: #A5B9D8;}
+.crnrstn_interact_ui_side_nav_logo_img_wrapper      { float: left; color:#FFF; font-size:11px; font-weight:normal; padding:0 5px 3px 0;}
+.crnrstn_interact_ui_side_nav_logo_img_rel          { position: relative;}
+.crnrstn_interact_ui_side_nav_logo_img              { position:absolute; z-index: 9999; font-size:14px; padding:8px 0 0 10px; }
+/*.crnrstn_interact_ui_side_nav_logo_img_bg           {padding:10px 8px 6px 10px; border-radius: 15px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #e7e7e7; cursor: pointer;} */
+.crnrstn_interact_ui_bg_layer                       { position:absolute; z-index: 9998; background-color: #FFF; width:100%; height:100%; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20); opacity: 0.2;}
+
+.crnrstn_interact_ui_side_nav                       { width:0; max-height: 600px; position: fixed; background-color: #FFF; /*z-index: 1;*/ top: 0; left: 0; overflow-x: hidden; padding: 0; border-right: 1px solid #A5B9D8; }
 .crnrstn_interact_ui_side_nav a                     { padding: 3px 8px 3px 7px; text-decoration: none; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #0066CC; display: block; }
 .crnrstn_interact_ui_side_nav a:hover               { color: #0066CC; }
 .crnrstn_interact_ui_side_nav ul                    { list-style:none; margin: 0; padding: 0;}
@@ -41,9 +47,9 @@
 .crnrstn_ui_interact_primary_navgroup_wrapper       { position: absolute; z-index:66; padding: 18px 0 0 16px;}
 .crnrstn_ui_interact_primary_navgroup_lnk_border    { float:left; border: 1px solid #FFF; width: 42px; height: 42px; margin-right: 1px; margin-bottom: 1px; background-color:#FFF;}
 
-.crnrstn_ui_interact_primary_nav_img_shell          { position: absolute; cursor: pointer; opacity: 0;}
+.crnrstn_ui_interact_primary_nav_img_shell          { position: absolute; cursor: pointer; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0;}
 .crnrstn_ui_interact_primary_nav_img_shell img      { border: 1px solid #A9C8F4; cursor: pointer; background-color:#FFF;}
-.crnrstn_ui_interact_active                         { z-index: 68; opacity: 1.0;}
+.crnrstn_ui_interact_active                         { z-index: 68; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0;}
 
 .crnrstn_ui_interact_content_wrapper        { position: absolute; display: none; z-index: 61; padding: 25px 0 0 25px; }
 .crnrstn_ui_interact_content_wrapper input  { text-align: left; font-size: 20px; width: 208px; height: 34px; border:2px solid #676767; background-color: #FFF;}
@@ -176,7 +182,7 @@ body.crnrstn-disable-scrolling              { overflow: hidden;}
 
 /*LOGGING*/
 #crnrstn_activity_log_output_wrapper        { padding: 10px 15px 0 15px;}
-#crnrstn_activity_log                       { opacity: 0; }
+#crnrstn_activity_log                       { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0; }
 .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 10px; width:95%; height:190px; overflow:scroll;}
 .crnrstn_log_output                         { width:2000px; }
 .crnrstn_log_entry                          { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; }

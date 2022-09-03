@@ -1351,24 +1351,41 @@ class crnrstn_environment {
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <div class="crnrstn_hidden">
+        $tmp_str_array[] = '        <div id="crnrstn_ui_documentation_side_nav_src" class="crnrstn_hidden">
             <!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
-            <div id="crnrstn_ui_documentation_side_nav_src">
-                <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);"><div id="crnrstn_interact_ui_side_nav_logo_bar" class="crnrstn_interact_ui_side_nav_logo_bar"></div><div id="crnrstn_interact_ui_side_nav_logo_img" class="crnrstn_interact_ui_side_nav_logo_img">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div></div>
-                <div id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav">
-                    <ul>
-                        <!--<li><a id="crnrstn_text_lnk_' . md5('error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;">error_log</a></li>-->
-                        ' . $this->return_documentation_side_nav_link_ARRAY() . '
-                    </ul>                
-                    <div class="crnrstn_cb_20"></div>
-                    <div>' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-                    <div class="crnrstn_cb_100"></div>
-
-               </div>
-              
-               
-            </div>
             
+            <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);">
+                
+                <div id="crnrstn_interact_ui_side_nav_logo_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div>
+
+                <div class="crnrstn_interact_ui_side_nav_logo_bar_rel">
+                    <div id="crnrstn_interact_ui_side_nav_logo_bar" class="crnrstn_interact_ui_side_nav_logo_bar"></div>
+                </div>
+                
+                <div id="crnrstn_interact_ui_side_nav_logo_img_wrapper" class="crnrstn_interact_ui_side_nav_logo_img_wrapper">
+                    
+                    <div id="crnrstn_interact_ui_side_nav_logo_img_rel" class="crnrstn_interact_ui_side_nav_logo_img_rel" style="width:80px; height:50px;">
+                    
+                        <div id="crnrstn_interact_ui_side_nav_logo_img" class="crnrstn_interact_ui_side_nav_logo_img">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                        <div class="crnrstn_cb"></div>
+
+                    </div>
+                    <div class="crnrstn_cb"></div>
+                </div>
+            <div class="crnrstn_cb"></div>
+            </div>
+           
+            <div id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav">
+                <ul>
+                    <!--<li><a id="crnrstn_text_lnk_' . md5('error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;">error_log</a></li>-->
+                    ' . $this->return_documentation_side_nav_link_ARRAY() . '
+                </ul>                
+                <div class="crnrstn_cb_20"></div>
+                <div>' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                <div class="crnrstn_cb_100"></div>
+
+           </div>
+              
         </div>
         ';
         $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: DOCUMENTATION MODULE OUTPUT -->
