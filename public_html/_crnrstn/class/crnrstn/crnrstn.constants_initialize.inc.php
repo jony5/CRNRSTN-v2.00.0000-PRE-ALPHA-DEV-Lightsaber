@@ -128,6 +128,75 @@ function crnrstn_constants_init($const_nom){
 
         break;
 
+
+        //
+        // 1000
+        // CRNRSTN_INPUT_OPTIONAL, CRNRSTN_INPUT_REQUIRED, CRNRSTN_INPUT_PASSWORD
+        // CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG, CRNRSTN_INPUT_IS_FILE_IMAGE_PNG,  CRNRSTN_INPUT_IS_FILE_IMAGE_GIF
+        // CRNRSTN_INPUT_IS_FILE_IMAGE, CRNRSTN_INPUT_IS_FILE_DOCUMENT, CRNRSTN_INPUT_IS_FILE_ZIP,
+        // CRNRSTN_INPUT_IS_EMAIL, CRNRSTN_INPUT_CHAR_RESTRICTIONS, CRNRSTN_INPUT_CHAR_LIMITS
+        case 'CRNRSTN_INPUT_OPTIONAL':
+
+            return (int) 1000;
+
+        break;
+        case 'CRNRSTN_INPUT_REQUIRED':
+
+            return (int) 1001;
+
+        break;
+        case 'CRNRSTN_INPUT_PASSWORD':
+
+            return (int) 1002;
+
+        break;
+        case 'CRNRSTN_INPUT_IS_EMAIL':
+
+            return (int) 1003;
+
+        break;
+        case 'CRNRSTN_INPUT_CHAR_RESTRICTIONS':
+
+            return (int) 1004;
+
+        break;
+        case 'CRNRSTN_INPUT_CHAR_LIMITS':
+
+            return (int) 1005;
+
+        break;
+        case 'CRNRSTN_INPUT_IS_FILE_IMAGE':
+
+            return (int) 1006;
+
+        break;
+        case 'CRNRSTN_INPUT_IS_FILE_IMAGE_PNG':
+
+            return (int) 1007;
+
+        break;
+        case 'CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG':
+
+            return (int) 1008;
+
+        break;
+        case 'CRNRSTN_INPUT_IS_FILE_IMAGE_GIF':
+
+            return (int) 1009;
+
+        break;
+        case 'CRNRSTN_INPUT_IS_FILE_DOCUMENT':
+
+            return (int) 1010;
+
+        break;
+        case 'CRNRSTN_INPUT_IS_FILE_ZIP':
+
+            return (int) 1011;
+
+        break;
+
+
         //
         // 2051
         // 'CRNRSTN_DATABASE', 'CRNRSTN_DATABASE_CONNECTION', 'CRNRSTN_DATABASE_QUERY', 'CRNRSTN_DATABASE_QUERY_SILO',
@@ -314,8 +383,6 @@ function crnrstn_constants_init($const_nom){
             return (int) 7060;
 
         break;
-
-
 
 
         //

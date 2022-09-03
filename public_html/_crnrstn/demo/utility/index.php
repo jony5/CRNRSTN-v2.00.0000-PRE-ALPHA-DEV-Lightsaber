@@ -59,6 +59,16 @@ $oCRNRSTN->add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
 <div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
 
 <?php
+$tmp_str = '$tmp_data_type_family = \'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::\' . md5($crnrstn_form_handle);
+if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
+
+    // add_system_resource($env_key, $data_key, $data_value, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, \'CRNRSTN_FORM_HANDLE\', $crnrstn_form_handle, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+    
+}';
+
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_handling()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
 $tmp_str = 'public function retrieve_data_value($data_key, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $index = NULL, $env_key = NULL, $soap_transport = false){
 ';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::retrieve_data_value()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);

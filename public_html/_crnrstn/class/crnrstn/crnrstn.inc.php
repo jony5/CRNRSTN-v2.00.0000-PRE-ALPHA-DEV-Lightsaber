@@ -491,35 +491,28 @@ class crnrstn {
 
     }
 
-    public function init_input_listener($crnrstn_form_handle = NULL, $html_dom_form_input_name = NULL, $is_required = false){
+    public function init_input_listener($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
 
-        return $this->oCRNRSTN_USR->init_input_listener($crnrstn_form_handle, $html_dom_form_input_name, $is_required);
-
-    }
-
-    public function init_hidden_input_listener($crnrstn_form_handle = NULL, $html_dom_form_input_name = NULL, $is_required = false, $default_val = NULL, $html_dom_form_input_id = NULL){
-
-        return $this->oCRNRSTN_USR->init_hidden_input_listener($crnrstn_form_handle, $html_dom_form_input_name, $is_required, $default_val, $html_dom_form_input_id);
+        return $this->oCRNRSTN_USR->init_input_listener($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
 
     }
 
-    // add_validation_redirect('crnrstn_signin_flagship', '*', '*', $err_uri, $success_uri);
-    public function add_validation_redirect($crnrstn_form_handle = NULL, $html_dom_form_input_name_pipe_delim = NULL, $validation_key_pipe_delim = NULL, $on_error_redirect_uri = NULL, $on_success_redirect_uri = NULL){
+    public function init_hidden_input_listener($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
 
-
-        return NULL;
+        return $this->oCRNRSTN_USR->init_hidden_input_listener($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
 
     }
 
-    public function form_prepopulate_input_value($crnrstn_form_handle, $html_dom_form_input_name, $force_default = false, $default_value = NULL){
+    public function add_form_submit_redirects($crnrstn_form_handle, $field_input_name = NULL, $success_redirect_url = NULL, $error_redirect_url = NULL){
 
-        return NULL;
+        return $this->oCRNRSTN_USR->add_form_submit_redirects($crnrstn_form_handle, $field_input_name, $success_redirect_url, $error_redirect_url);
 
     }
 
-    public function init_validation_message($crnrstn_form_handle, $html_dom_form_input_name, $message_key, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    //    public function init_validation_message($crnrstn_form_handle, $html_dom_form_input_name, $message_key, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    public function add_form_validation_messages($crnrstn_form_handle, $html_dom_form_input_name, $message_key, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
 
-        return $this->oCRNRSTN_USR->init_validation_message($crnrstn_form_handle, $html_dom_form_input_name, $message_key, $err_msg, $success_msg, $info_msg);
+        return $this->oCRNRSTN_USR->add_form_validation_messages($crnrstn_form_handle, $html_dom_form_input_name, $message_key, $err_msg, $success_msg, $info_msg);
 
     }
 
