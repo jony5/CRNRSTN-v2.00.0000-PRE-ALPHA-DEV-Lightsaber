@@ -181,9 +181,9 @@ body.crnrstn-disable-scrolling              { overflow: hidden;}
 .crnrstn_copyright_shell a                  { text-decoration:none; color: #0066CC; text-decoration:underline;}
 
 /*LOGGING*/
-#crnrstn_activity_log_output_wrapper        { padding: 10px 15px 0 15px;}
+#crnrstn_activity_log_output_wrapper        { padding: 10px 15px 0 5px;}
 #crnrstn_activity_log                       { filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0; }
-.crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 10px; width:95%; height:190px; overflow:scroll;}
+.crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 20px 0 10px; width:98%; height:190px; overflow:scroll;}
 .crnrstn_log_output                         { width:2000px; }
 .crnrstn_log_entry                          { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; }
 

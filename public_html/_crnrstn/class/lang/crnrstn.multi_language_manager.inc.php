@@ -2990,6 +2990,22 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'FOR_CONFIG_REFERENCE_PLEASE_SEE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                        break;
+                    default:
+
+                        //case 'en':
+                        return 'For a quick reference on environmental configuration and detection, please see the demonstration below.';
+
+                        break;
+
+                }
+
+                break;
             case 'FOR_REFERENCE_PLEASE_SEE':
 
                 switch($this->country_iso_code) {
@@ -2999,7 +3015,7 @@ class crnrstn_multi_language_manager {
                     default:
 
                         //case 'en':
-                        return 'For reference, please see:';
+                        return 'For a quick reference, please see the demonstration below.';
 
                     break;
 
@@ -3080,7 +3096,7 @@ environment within the configuration file.';
                     default:
                         //case 'en':
 
-                        return 'Please specify a configuration serial (such as what follows) in the C<span style="color:#F90000;">R</span>NRSTN :: config file.';
+                        return 'Please specify a configuration serial in the C<span style="color:#F90000;">R</span>NRSTN :: config file.';
 
                     break;
 

@@ -2605,46 +2605,24 @@ class crnrstn {
             switch($message_type){
                 case 'detection':
 
+                    /*
+                     <div style="text-align: left; padding: 5px 0 0 0; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px;">
+                        <span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->config_add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
+                        <br>$oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
+                    </div>
+                    */
+
+                    $tmp_str_in = '$oCRNRSTN->config_add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
+$oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');';
+
                     $dom_sess_serial = $this->generate_new_key(26, '01');
+                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     $this->destruct_output .= '<!doctype html>
 <html lang="' . $this->country_iso_code() . '">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
-    <script>
-
-    function crnrstn_copy_detection() {
-
-        //
-        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
-        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-        if (document.selection) { // IE
-
-            var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById("detection_config_' . $dom_sess_serial . '"));
-            range.select();
-
-        } else if (window.getSelection) {
-
-            var range = document.createRange();
-            range.selectNode(document.getElementById("detection_config_' . $dom_sess_serial . '"));
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-
-        }
-
-        //
-        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-        /* Copy the text inside the text field */
-        document.execCommand(\'copy\');
-
-        /* Alert the copied text */
-        alert("Copied the text: " + document.getElementById("detection_config_' . $dom_sess_serial . '").innerHTML);
-
-    }
-
-    </script>
 </head>
 <body>
 <div style="padding: 0 0 0 20px;">
@@ -2652,17 +2630,19 @@ class crnrstn {
     <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
-        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '<br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 541].' . '
-        <br><span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->config_add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
-        <br>$oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
-        <br>// <a href="#" onclick="crnrstn_copy_detection();" style="font-family:Courier New, Courier, monospace; color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD') . '.
-        <br>
+        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '
+        <br>// File Source: ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 541].' . '       
+        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_CONFIG_REFERENCE_PLEASE_SEE') . '
+         
     </div>
-    
+</div>
+' . $tmp_str_out . '
+
+<div style="padding: 0 0 0 20px;">
     <div style="display:block; clear:both; height:50px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
     <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
 
-    <div style="display:block; clear:both; height:5px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
+    <div style="display:block; clear:both; height:1px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
 
 </div>
@@ -2687,6 +2667,10 @@ class crnrstn {
                     $tmp_serial = $this->generate_new_key($tmp_serial_str_len, -2);
                     $dom_sess_serial = $this->generate_new_key(26, '01');
 
+                    $tmp_str_in = '$CRNRSTN_config_serial = \'' . $tmp_serial . '\';';
+
+                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
                     //
                     // MAYBE GENERATE A CONFIG SERIAL COPY-PASTE INTO CONFIG FILE PAGE WITH BASE64 CRNRSTN :: LOGO STUFF?
                     // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
@@ -2696,39 +2680,6 @@ class crnrstn {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
-    <script>
-
-    function crnrstn_copy_serial() {
-
-        //
-        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
-        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-        if (document.selection) { // IE
-
-            var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById("crnstn_config_serial_' . $dom_sess_serial . '"));
-            range.select();
-
-        } else if (window.getSelection) {
-
-            var range = document.createRange();
-            range.selectNode(document.getElementById("crnstn_config_serial_' . $dom_sess_serial . '"));
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-
-        }
-
-        //
-        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-        /* Copy the text inside the text field */
-        document.execCommand(\'copy\');
-
-        /* Alert the copied text */
-        alert("Copied the text: " + document.getElementById("crnstn_config_serial_' . $dom_sess_serial . '").innerHTML);
-
-    }
-
-    </script>
 </head>
 <body>
 <div style="padding: 0 0 0 20px;">
@@ -2737,12 +2688,16 @@ class crnrstn {
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
-        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
-        <br>$CRNRSTN_config_serial = \'<span id="crnstn_config_serial_' . $dom_sess_serial . '">' . $tmp_serial . '</span>\';
-        <br>// <a href="#" onclick="crnrstn_copy_serial();" style="font-family:Courier New, Courier, monospace; color: #0066CC;">' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the ' . $tmp_serial_str_len . ' ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
-        <br>
+        <br>// File Source: ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].
+        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . '
+        
     </div>
     
+</div>
+
+' . $tmp_str_out . '
+
+<div style="padding: 0 0 0 20px;">
     <div style="display:block; clear:both; height:50px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>
     <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
     
@@ -4793,7 +4748,7 @@ class crnrstn {
 
         }
 
-        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]';
+        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
 
         if(!isset($method) || $method == ''){
 
@@ -4826,13 +4781,13 @@ class crnrstn {
 
         if(isset($title) && $title != ''){
 
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= $title;
             $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
         }else{
 
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
             $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
@@ -4877,16 +4832,16 @@ class crnrstn {
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:98%;">
+                    <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
-                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
                             <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                 <code>';
@@ -4931,16 +4886,16 @@ class crnrstn {
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:98%;">
+                    <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
-                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
                             <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                 <code>';
@@ -4982,16 +4937,16 @@ class crnrstn {
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:98%;">
+                    <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
-                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
                             <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                 <code>';
@@ -5033,25 +4988,26 @@ class crnrstn {
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:98%;">
+                    <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
-                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:150px">
                             <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
+                <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                    <code>';
 
             break;
 
         }
 
-        $tmp_str_out = '<div style="/*background-color: #FFF;*/ padding: 10px 20px 10px 20px;">';
+        $tmp_str_out = '<div style="/*background-color: #FFF;*/ padding: 10px 10px 10px 10px;">';
         $tmp_str_out .= $tmp_out;
 
         $output = $this->highlightText($tmp_print_r, $theme_style);
@@ -5070,7 +5026,7 @@ class crnrstn {
 
         }
 
-        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0;">' . $expression . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
         $tmp_str_out .= print_r($output, true);
         $tmp_str_out .= '</pre>';
 
@@ -5082,7 +5038,7 @@ class crnrstn {
 
             ' . $component_crnrstn_title . '
 
-            <div style="float:right; overflow-wrap: break-word; max-width:75%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
+            <div style="float:right; overflow-wrap: break-word; max-width:75%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; line-height: 18px; font-size:11px;">' . $tmp_meta . '</div>
                 
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
         </div>
@@ -5146,13 +5102,13 @@ class crnrstn {
 
         if(isset($title) && $title != ''){
 
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= $title;
             $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
         }else{
 
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
             $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
@@ -5197,16 +5153,16 @@ class crnrstn {
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:98%;">
+                    <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
-                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
                             <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                    <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
                     <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                     <code>';
@@ -5248,13 +5204,18 @@ class crnrstn {
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="padding:0 0 5px 0; width: 100%;">
-                        <div style="text-align:left;">
-                            <div style="font-family: Courier New, Courier, monospace; float: left;">' . $tmp_title . '</div>
-                            <a href="#" onclick="copy_output_'. $tmp_hash .'(); return false;" style="color:#06C; text-align:right;">Copy to clipboard</a>
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                    <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+
+                    <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
                     <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                     <code>';
@@ -5296,18 +5257,18 @@ class crnrstn {
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:98%;">
+                    <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
-                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
                             <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
-                    <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
                     <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                     <code>';
@@ -5349,16 +5310,16 @@ class crnrstn {
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:98%;">
+                    <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
-                        <div style="height:15px; padding: 14px 5px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:20%;">
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
                             <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                 <code>';
@@ -5367,7 +5328,7 @@ class crnrstn {
 
         }
 
-        echo '<div style="/*background-color: #FFF;*/ padding: 10px 20px 10px 20px;">';
+        echo '<div style="/*background-color: #FFF;*/ padding: 10px 10px 10px 10px;">';
         echo $tmp_out;
 
         $output = $this->highlightText($tmp_print_r, $theme_style);
@@ -5386,13 +5347,7 @@ class crnrstn {
 
         }
 
-        // TODO :: FIGURE OUT HOW TO PRESERVE LINE BREAKS THROUGH COPY AND PASTE
-        /*$tmp_expression_slash_n = $this->proper_replace('
-','\n', $expression);
-*/
-        //$this->string_breaks_to_slash_n($expression);
-
-        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . $expression . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
+        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
         print_r($output);
         echo '</pre>';
 
@@ -5404,7 +5359,7 @@ class crnrstn {
 
             ' . $component_crnrstn_title . '
 
-            <div style="float:right; overflow-wrap: break-word; max-width:75%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
+            <div style="float:right; overflow-wrap: break-word; max-width:75%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; line-height: 18px; font-size:11px;">' . $tmp_meta . '</div>
                 
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
         </div>

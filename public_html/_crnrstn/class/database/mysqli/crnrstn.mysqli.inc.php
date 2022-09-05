@@ -319,7 +319,7 @@ class crnrstn_mysqli_conn_manager {
                     //$this->oCRNRSTN_USR->print_r('We do not have hash ' . $tmp_db_configuration_hash_salt_md5 . ' in the $tmp_config_hash_ARRAY array[' . print_r($tmp_config_hash_ARRAY, true) . '].', 'oDDO Testing', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
                     $tmp_config_hash_ARRAY[] = $tmp_db_configuration_hash_salt_md5;
 
-                    $this->config_add_system_resource($this->oCRNRSTN_USR->get_server_env(), '_CRNRSTN_DB_CNFG_HASH_ARRAY', $tmp_config_hash_ARRAY, $tmp_data_family_str, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->config_add_system_resource($this->oCRNRSTN_USR->get_server_env(), '_CRNRSTN_DB_CNFG_HASH_ARRAY', $tmp_config_hash_ARRAY, $tmp_data_type_family,CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
                 }
 
