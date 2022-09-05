@@ -140,7 +140,7 @@ class crnrstn_mysqli_conn {
 #
 class crnrstn_mysqli_conn_manager {
 	
-	public $config_serial_crc;
+	public $config_serial_hash;
 	
 	private static $db_env_ARRAY = array();
 	private static $db_host_ARRAY = array();      // $host;
@@ -175,15 +175,15 @@ class crnrstn_mysqli_conn_manager {
 
 	    $this->oCRNRSTN = $this->oCRNRSTN_USR = $oCRNRSTN;
 
-        $this->config_serial_crc = $oCRNRSTN->config_serial_crc;
+        $this->config_serial_hash = $oCRNRSTN->get_server_config_serial('hash');
 
-        //$this->oCRNRSTN->print_r('config_serial_crc=[' . $this->config_serial_crc . '] for ' . __CLASS__ . '.', NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
+        //$this->oCRNRSTN->print_r('config_serial_hash=[' . $this->config_serial_hash . '] for ' . __CLASS__ . '.', NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
 	}
 
-    public function add_data_wp($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::WP::INTEGRATIONS'){
+    public function config_add_data_wp($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::WP::INTEGRATIONS'){
 
-        $this->oCRNRSTN->add_system_resource($env_key, $data_key, $data_value, $data_type_family);
+        $this->config_add_system_resource($env_key, $data_key, $data_value, $data_type_family);
 
     }
 
@@ -245,15 +245,26 @@ class crnrstn_mysqli_conn_manager {
         // PASSING NULL FOR INDEX ALLOWS FOR N+1 PROFILES...BASICALLY ARRAY APPENDS. PASSING 0, SAYS WRITE TO INDEX 0!
         // SEE CUT OFF IN prepDatabaseConfig() FOR N+1 SUPPORT TESTING. GOT TO CIRCLE BACK AROUND FOR THAT.
 
-        // public function add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
-        $this->oCRNRSTN->add_system_resource($env_key, 'env_key',  $env_key, 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-        $this->oCRNRSTN->add_system_resource($env_key, 'host',  $host, 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-        $this->oCRNRSTN->add_system_resource($env_key, 'un', $un, 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE');
-        $this->oCRNRSTN->add_system_resource($env_key, 'pwd', $pwd, 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE');
-        $this->oCRNRSTN->add_system_resource($env_key, 'db', $db, 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE');
-        $this->oCRNRSTN->add_system_resource($env_key, 'port', $port, 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE');
+        // public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+        // public function config_add_system_resource($env_key,......);
+        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE';
+        $this->config_add_system_resource($env_key, 'env_key',  $env_key, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+        $this->config_add_system_resource($env_key, 'host',  $host, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+        $this->config_add_system_resource($env_key, 'un', $un, $tmp_data_type_family);
+        $this->config_add_system_resource($env_key, 'pwd', $pwd, $tmp_data_type_family);
+
+        $this->config_add_system_resource($env_key, 'db', $db, $tmp_data_type_family);
+        //$this->oCRNRSTN->print_r('$tmp_data_key=[db]. $tmp_data_type_family=[' . $tmp_data_type_family . ']. $db=[' . $db . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        $this->config_add_system_resource($env_key, 'port', $port, $tmp_data_type_family);
 
 	}
+
+	private function config_add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+
+        $this->oCRNRSTN->add_system_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $env_key);
+
+    }
 	
 	private function prepDatabaseConfig($host = NULL, $db = NULL, $un = NULL, $port = NULL, $pwd = NULL){
 
@@ -277,18 +288,26 @@ class crnrstn_mysqli_conn_manager {
 
             }
 
-            $tmp_data_family_str = 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE';
-            $tmp_db_profile_cnt = $this->oCRNRSTN->get_resource_count('db', $tmp_data_family_str, $this->oCRNRSTN->get_server_env());
+            $tmp_data_key = 'db';
+            $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE';
+            //$tmp_db_profile_cnt = $this->oCRNRSTN->get_resource_count($tmp_data_key, $tmp_data_family_str, $this->oCRNRSTN->get_server_env());
+            $tmp_db_profile_cnt = $this->oCRNRSTN->retrieve_data_count($tmp_data_key, $tmp_data_type_family);
+            //self::$db = $this->oCRNRSTN->get_resource('db', 0, $tmp_data_type_family);
+            self::$db = $this->oCRNRSTN->retrieve_data_value($tmp_data_key, $tmp_data_type_family);
+
+            //$this->oCRNRSTN->print_r('self::$db=[' . self::$db . ']. $tmp_data_key=[' . $tmp_data_key . ']. $tmp_data_type_family=[' . $tmp_data_type_family . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            //die();
 
             if(!$tmp_is_custom_config && $tmp_db_profile_cnt == 1){
 
                 //
                 // ONLY ONE DATABASE CONFIGURATION FOR CRNRSTN ::. NOT THE SAME AS N+1 WORDPRESS CONFIG.
-                self::$host = $this->oCRNRSTN->get_resource('host', 0, $tmp_data_family_str);
-                self::$db = $this->oCRNRSTN->get_resource('db', 0, $tmp_data_family_str);
-                self::$un = $this->oCRNRSTN->get_resource('un', 0, $tmp_data_family_str);
-                self::$pwd = $this->oCRNRSTN->get_resource('pwd', 0, $tmp_data_family_str);
-                self::$port = $this->oCRNRSTN->get_resource('port', 0, $tmp_data_family_str);
+                self::$host = $this->oCRNRSTN->get_resource('host', 0, $tmp_data_type_family);
+                self::$db = $this->oCRNRSTN->get_resource('db', 0, $tmp_data_type_family);
+                self::$un = $this->oCRNRSTN->get_resource('un', 0, $tmp_data_type_family);
+                self::$pwd = $this->oCRNRSTN->get_resource('pwd', 0, $tmp_data_type_family);
+                self::$port = $this->oCRNRSTN->get_resource('port', 0, $tmp_data_type_family);
 
                 $tmp_db_configuration_hash_salt = $this->return_dataset_nomination_prefix('string', self::$host, self::$db, self::$un, self::$pwd, self::$port);
                 $tmp_db_configuration_hash_salt_md5 = md5($tmp_db_configuration_hash_salt);
@@ -300,7 +319,7 @@ class crnrstn_mysqli_conn_manager {
                     //$this->oCRNRSTN_USR->print_r('We do not have hash ' . $tmp_db_configuration_hash_salt_md5 . ' in the $tmp_config_hash_ARRAY array[' . print_r($tmp_config_hash_ARRAY, true) . '].', 'oDDO Testing', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
                     $tmp_config_hash_ARRAY[] = $tmp_db_configuration_hash_salt_md5;
 
-                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_USR->get_server_env(), '_CRNRSTN_DB_CNFG_HASH_ARRAY', $tmp_config_hash_ARRAY, $tmp_data_family_str, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->config_add_system_resource($this->oCRNRSTN_USR->get_server_env(), '_CRNRSTN_DB_CNFG_HASH_ARRAY', $tmp_config_hash_ARRAY, $tmp_data_family_str, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
                 }
 
@@ -420,32 +439,6 @@ class crnrstn_mysqli_conn_manager {
                     return true;
 
                 }else{
-
-                    /*
-                    if($this->oCRNRSTN_USR->isset_data_key('CRNRSTN_DEVICE_DETECTED')){
-
-                    replaces
-
-                    if($this->oCRNRSTN_USR->isset_session_param('CRNRSTN_DEVICE_DETECTED')){
-
-                    ===
-
-                    $this->oCRNRSTN_USR->get_resource('un', $tmp_data_family_str);
-
-                    replaces
-
-                    $this->oCRNRSTN_USR->get_session_param('CRNRSTN_DEVICE_DETECTED')
-
-                    ===
-
-                    //oCRNRSTN->input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL){
-                    $this->oCRNRSTN_USR->input_data_value(CRNRSTN_UI_DESKTOP, 'CRNRSTN_DEVICE_DETECTED', NULL, 0);
-
-                    replaces
-
-                    //$this->oCRNRSTN_USR->set_session_param('CRNRSTN_DEVICE_DETECTED', CRNRSTN_UI_DESKTOP);
-
-                   */
 
                     //
                     // NEED TO INITIALIZE DATABASE CONFIGURATION
@@ -580,15 +573,15 @@ class crnrstn_mysqli_conn_manager {
 			// *CRNRSTN ENVIRONMENTAL DETECTION + VALUES FROM THE CONFIGURATION FILE		
 			if(!($this->oCRNRSTN_USR->isset_session_param('_CRNRSTN_DB_HOST'))){
 				
-				if(isset(self::$db_host[$this->config_serial_crc])){
+				if(isset(self::$db_host[$this->config_serial_hash])){
 
-					foreach (self::$db_host[$this->config_serial_crc][self::$appEnvKey] as $tmp_db_host => $tmp_host_array) {
+					foreach (self::$db_host[$this->config_serial_hash][self::$appEnvKey] as $tmp_db_host => $tmp_host_array) {
 
 						foreach($tmp_host_array as $tmp_db_db => $tmp_db_array){
 
 							foreach($tmp_db_array as $tmp_un => $oMYSQLI){
 
-                                error_log(__LINE__ . ' mysqli conn mgr ' . __METHOD__ . ':: [$tmp_db_db=' . $tmp_db_db . '][' . print_r(self::$db_host[$this->config_serial_crc][self::$appEnvKey], true) . '].');
+                                error_log(__LINE__ . ' mysqli conn mgr ' . __METHOD__ . ':: [$tmp_db_db=' . $tmp_db_db . '][' . print_r(self::$db_host[$this->config_serial_hash][self::$appEnvKey], true) . '].');
 
                                 //
 								// INITIALIZE/REFRESH SESSION PARAMETERS

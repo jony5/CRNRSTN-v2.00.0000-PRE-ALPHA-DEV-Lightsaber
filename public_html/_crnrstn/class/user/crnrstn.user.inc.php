@@ -77,7 +77,7 @@ class crnrstn_user{
     protected $oCRNRSTN_UX;
     private static $oCRNRSTN_CSS_VALIDATOR;
 
-    public $config_serial_crc;
+    public $config_serial_hash;
     public $account_serial;
 
     private static $oLog_ProfileManager;
@@ -110,7 +110,7 @@ class crnrstn_user{
 
     public $log_silo_profile;
     public $env_key;
-    public $env_key_crc;
+    public $env_key_hash;
     public $system_resource_constants;
     public $system_output_channel_constants;
     public $sys_notices_creative_mode;
@@ -158,10 +158,10 @@ class crnrstn_user{
         $this->oCRNRSTN_ENV = $oCRNRSTN_ENV;
 
         $this->starttime = $oCRNRSTN->starttime;
-        $this->env_key = $oCRNRSTN->env_key;
-        $this->env_key_crc = $oCRNRSTN->env_key_crc;
+        $this->env_key = $oCRNRSTN->get_server_env();
+        $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
 
-        $this->config_serial_crc = $this->oCRNRSTN_ENV->config_serial_crc;
+        $this->config_serial_hash = $this->oCRNRSTN_ENV->config_serial_hash;
         $this->response_header_attribute_ARRAY = $oCRNRSTN_ENV->response_header_attribute_ARRAY;
 
         $this->destruct_output = $oCRNRSTN_ENV->destruct_output;
@@ -952,7 +952,7 @@ class crnrstn_user{
 
     }
 //
-//    private function compile_form_integration_packet($crnrstn_form_handle, $html_form_input_name, $encryption_status = TRUE, $server_side_validation = NULL){
+//    private function compile_form_integration_packet($crnrstn_form_handle, $field_input_name, $encryption_status = TRUE, $server_side_validation = NULL){
 //
 //        //
 //        // DATA PROFILE FOR SUCCESSFUL CRNRSTN FORM CAPTURE INTEGRATION
@@ -994,7 +994,7 @@ class crnrstn_user{
 //
 //        }
 //
-//        self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['input_name'][] = $html_form_input_name;
+//        self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['input_name'][] = $field_input_name;
 //
 //        if ($encryption_status) {
 //
@@ -2115,7 +2115,7 @@ class crnrstn_user{
 //
 //                }
 //
-//                $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. ';
+//                $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. ';
 //
 //
 //                error_log(__LINE__ . ' user ' . __METHOD__ . ':: attempting to create image file ' . $crnrstn_jpg . ' from source: ' . $crnrstn_png . '. die();');
@@ -2219,7 +2219,7 @@ class crnrstn_user{
                     //
                     // BASE64 THIS PNG
                     error_log(__LINE__ . ' user ' . __METHOD__ . ':: attempting to open image file ' . $crnrstn_png . ', ' . $this->find_filesize($crnrstn_png) . ' bytes. ');
-                    $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to open image file ' . $crnrstn_png . ', ' . $this->find_filesize($crnrstn_png) . ' bytes. ';
+                    $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = 'system_link_reset_jpeg_from_png() attempting to open image file ' . $crnrstn_png . ', ' . $this->find_filesize($crnrstn_png) . ' bytes. ';
                     $img_binary = fread(fopen($crnrstn_png, 'r'), $this->find_filesize($crnrstn_png));
                     $mime_content_type_png = mime_content_type($img_binary);
                     $md5_png = md5_file($img_binary);
@@ -3109,7 +3109,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function set_CRNRSTN_as_err_handler($crnrstn_is_active = true, $error_types_profile = NULL){
+    public function set_crnrstn_as_err_handler($crnrstn_is_active = true, $error_types_profile = NULL){
 
         try{
 
@@ -3149,7 +3149,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // WE DON'T HAVE THE ENVIRONMENT, BUT DETECTION WOULD HAVE ALREADY BEEN COMPLETED.
-            //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_crc_ARRAY[$this->config_serial_crc] . '].');
+            //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
             $this->error_log('Bypassed initialization of CRNRSTN :: as error handler for environment [' . $this->crcINT($this->oCRNRSTN_ENV->env_key) . '/' . $this->oCRNRSTN_ENV->env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         } catch( Exception $e ) {
@@ -3185,8 +3185,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         return false;
                     }
 
-                    $errstr = $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] . $errstr;
-                    $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+                    $errstr = $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] . $errstr;
+                    $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 
                     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 
@@ -3215,8 +3215,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
-                    $errstr = $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] . $errstr;
-                    $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+                    $errstr = $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] . $errstr;
+                    $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 
                     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 
@@ -3405,8 +3405,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 if($pos_space === false){
 
+                    $tmp_email_pipe_delim_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $email_pipe_delim);
+
                     array_push($tmp_email_ARRAY, array(
-                        'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt(md5($email_pipe_delim), CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
+                        'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt($tmp_email_pipe_delim_hash, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                         'EMAILADDRESS' => $this->oCRNRSTN_ENV->data_encrypt($email_pipe_delim, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override)
                     ));
 
@@ -3447,9 +3449,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
+                    $tmp_email_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $tmp_email);
+
                     $tmp_lastname = rtrim($tmp_lastname, ' ');
                     array_push($tmp_email_ARRAY, array(
-                        'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt(md5($tmp_email), CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
+                        'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt($tmp_email_hash, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                         'EMAILADDRESS' => $this->oCRNRSTN_ENV->data_encrypt($tmp_email, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                         'FIRSTNAME' => $this->oCRNRSTN_ENV->data_encrypt($tmp_firstname, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                         'LASTNAME' => $this->oCRNRSTN_ENV->data_encrypt($tmp_lastname, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override)
@@ -3470,8 +3474,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     if($pos_space === false){
 
+                        $tmp_name_email_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $tmp_name_email_ARRAY[$i]);
+
                         array_push($tmp_email_ARRAY, array(
-                            'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt(md5($tmp_name_email_ARRAY[$i]), CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
+                            'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt($tmp_name_email_hash, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                             'EMAILADDRESS' => $this->oCRNRSTN_ENV->data_encrypt($tmp_name_email_ARRAY[$i], CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override)
                         ));
 
@@ -3512,9 +3518,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                         }
 
+                        $tmp_email_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $tmp_email);
+
                         $tmp_lastname = rtrim($tmp_lastname, ' ');
                         array_push($tmp_email_ARRAY, array(
-                            'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt(md5($tmp_email), CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
+                            'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt($tmp_email_hash, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                             'EMAILADDRESS' => $this->oCRNRSTN_ENV->data_encrypt($tmp_email, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                             'FIRSTNAME' => $this->oCRNRSTN_ENV->data_encrypt($tmp_firstname, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                             'LASTNAME' => $this->oCRNRSTN_ENV->data_encrypt($tmp_lastname, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override)
@@ -3579,9 +3587,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                         }
 
+                        $tmp_email_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $tmp_email);
+
                         $tmp_lastname = rtrim($tmp_lastname, ' ');
                         array_push($tmp_email_ARRAY, array(
-                            'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt(md5($tmp_email), CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
+                            'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt($tmp_email_hash, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                             'EMAILADDRESS' => $this->oCRNRSTN_ENV->data_encrypt($tmp_email, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                             'FIRSTNAME' => $this->oCRNRSTN_ENV->data_encrypt($tmp_firstname, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                             'LASTNAME' => $this->oCRNRSTN_ENV->data_encrypt($tmp_lastname, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override)
@@ -3630,9 +3640,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 }
 
+                $tmp_email_pipe_delim_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $email_pipe_delim);
+
                 $tmp_lastname = rtrim($tmp_lastname, ' ');
                 array_push($tmp_email_ARRAY, array(
-                    'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt(md5($email_pipe_delim), CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
+                    'EMAIL_PROXY_SERIAL' => $this->oCRNRSTN_ENV->data_encrypt($tmp_email_pipe_delim_hash, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                     'EMAILADDRESS' => $this->oCRNRSTN_ENV->data_encrypt($email_pipe_delim, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                     'FIRSTNAME' => $this->oCRNRSTN_ENV->data_encrypt($tmp_firstname, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override),
                     'LASTNAME' => $this->oCRNRSTN_ENV->data_encrypt($tmp_lastname, CRNRSTN_ENCRYPT_SOAP, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override)
@@ -4028,15 +4040,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function return_config_serial($output_format = 'crc'){
+    public function get_server_config_serial($output_format = 'hash'){
 
-        if($output_format === 'crc'){
+        if($output_format === 'hash'){
 
-            return $this->config_serial_crc;
+            return $this->config_serial_hash;
 
         }
 
-        return $this->oCRNRSTN_ENV->return_config_serial($output_format);
+        return $this->oCRNRSTN->get_server_config_serial($output_format);
 
     }
 
@@ -4059,7 +4071,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         switch($integer_constant){
             case CRNRSTN_UI_FORM_INTEGRATION_PACKET:
 
-                $this->init_hidden_input_listener($crnrstn_form_handle, 'CRNRSTN_FORM_HANDLE', true, $crnrstn_form_handle, 'CRNRSTN_FORM_HANDLE_' . md5($crnrstn_form_handle));
+                $tmp_clean_form_handle = 'crnstn_frm_' . hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
+
+                //     init_hidden_input_listener($crnrstn_form_handle, $field_input_name, $field_input_name = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+                $this->init_hidden_input_listener($crnrstn_form_handle, 'CRNRSTN_FORM_HANDLE', $tmp_clean_form_handle, $crnrstn_form_handle, CRNRSTN_INPUT_REQUIRED);
 
                 return $this->inject_input_serialization($crnrstn_form_handle);
 
@@ -4341,9 +4356,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         //
         // METHOD HAS BEEN MODIFIED BUT IS UNTESTED :: Friday, August 5, 2022 2013 hrs
-        $tmp_env_key_crc = $this->crcINT($env_key);
+        $tmp_env_key_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $env_key);
 
-        if($tmp_env_key_crc == $this->oCRNRSTN_ENV->env_key_crc){
+        if($tmp_env_key_hash == $this->oCRNRSTN_ENV->env_key_hash){
 
             return true;
 
@@ -4886,9 +4901,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+    public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $data_index = NULL, $env_key = NULL){
         
-        $this->oCRNRSTN->add_system_resource($env_key, $data_key, $data_value, $data_type_family, $data_auth_profile);
+        $this->oCRNRSTN->add_system_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $data_index, $env_key);
         
     }
 
@@ -4984,11 +4999,12 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 //$this->oCRNRSTN->get_resource_submitted('input_field_name', 'POST');
                 // PREVIOUS METHOD:
                 //$this->oCRNRSTN->return_http_form_integration_input_val('input_field_name', 'POST');
-                $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . md5($crnrstn_form_handle);
+                $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
+                $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash;
                 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
 
-                    // add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
-                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'CRNRSTN_FORM_HANDLE', $crnrstn_form_handle, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    // add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+                    $this->oCRNRSTN->add_system_resource('CRNRSTN_FORM_HANDLE', $crnrstn_form_handle, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                     
                 }
 
@@ -5008,7 +5024,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
     
-    public function init_input_listener($crnrstn_form_handle, $html_form_input_name, $default_value, $validation_constant_profile, $table_field_name){
+    public function init_input_listener($crnrstn_form_handle, $field_input_name, $field_input_id, $default_value, $validation_constant_profile, $table_field_name){
 
         /*
         Saturday, September 3, 2022 @ 0726 hrs
@@ -5043,8 +5059,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         try {
 
-            $tmp_stripe_key_ARRAY = $this->oCRNRSTN->return_stripe_key_ARRAY('$crnrstn_form_handle', '$html_form_input_name');
-            $tmp_param_err_str_ARRAY = $this->oCRNRSTN->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $html_form_input_name);
+            $tmp_stripe_key_ARRAY = $this->oCRNRSTN->return_stripe_key_ARRAY('$crnrstn_form_handle', '$field_input_name');
+            $tmp_param_err_str_ARRAY = $this->oCRNRSTN->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $field_input_name);
 
             $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
             $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
@@ -5057,38 +5073,76 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             }else{
 
-                $tmp_data_type_family_ROOT = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . md5($crnrstn_form_handle) . '::' . md5($html_form_input_name);
-                if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_data_type_family_ROOT)){
+                $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
+                $tmp_field_input_name_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $field_input_name);
 
-                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'FORM_INPUT_NAME', $html_form_input_name, $tmp_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_dtf_FORM_HANDLE = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_field_input_name_hash;
+                //if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
 
-                    if(isset($default_value)){
+                $tmp_data_key = 'FIELD_INPUT_NAME';
+                $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$default_value';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'DEFAULT_VALUE', $default_value, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-                    }
+                if(isset($field_input_id)){
 
-                    if(isset($table_field_name)){
+                    $tmp_data_key = 'FIELD_INPUT_ID';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$table_field_name';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'TABLE_FIELD_NAME', $table_field_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                    }
-
-                    if(isset($validation_constant_profile)){
-
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$validation_constant_profile';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'VALIDATION_CONSTANT_PROFILE', $validation_constant_profile, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                    }
-
-                    // add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
-                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $html_form_input_name, $html_form_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_str = '$field_input_id=[' . $field_input_id . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
-                //$this->compile_form_integration_packet($crnrstn_form_handle, $html_form_input_name, false, $tmp_validatation);
+                if(isset($default_value)){
+
+                    $tmp_data_key = 'DEFAULT_VALUE';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $default_value, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$default_value=[' . $default_value . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                if(isset($table_field_name)){
+
+                    $tmp_data_key = 'TABLE_FIELD_NAME';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $table_field_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$table_field_name=[' . $table_field_name . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                if(isset($validation_constant_profile)){
+
+                    $tmp_data_key = 'VALIDATION_CONSTANTS_PROFILE';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $validation_constant_profile, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$validation_constant_profile=[' . $validation_constant_profile . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                //}
+
+                //$this->compile_form_integration_packet($crnrstn_form_handle, $field_input_name, false, $tmp_validatation);
 
             }
 
@@ -5108,39 +5162,94 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function add_form_submit_redirects($crnrstn_form_handle, $field_input_name, $success_redirect_url, $error_redirect_url){
 
+        $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
+
         if(isset($field_input_name)){
 
-            $tmp_data_type_family_ROOT = 'CRNRSTN_SYSTEM_RESOURCE::FORM_REDIRECTS::' . md5($crnrstn_form_handle) . '::' . md5($field_input_name);
-            if(!$this->oCRNRSTN->isset_data_key('SUCCESS_REDIRECT', $tmp_data_type_family_ROOT) && isset($success_redirect_url)) {
+            $tmp_field_input_name_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $field_input_name);
 
-                $tmp_data_type_family = $tmp_data_type_family_ROOT . '::SUCCESS_REDIRECT';
-                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'SUCCESS_REDIRECT', $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $tmp_data_key = 'SUCCESS_REDIRECT';
+            $tmp_dtf_FORM_REDIRECTS = 'CRNRSTN_SYSTEM_RESOURCE::FORM_REDIRECTS::' . $tmp_form_handle_hash . '::' . $tmp_field_input_name_hash;
+            if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_REDIRECTS) && isset($success_redirect_url)){
+
+                //
+                // UNLESS WE WANT MULTIPLE SUCCESS REDIRECTS TO BE ASSOCIATED
+                // WITH EACH INPUT...SPOIL isset_data_key().
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_REDIRECTS, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                //$this->oCRNRSTN->add_system_resource('FORM_INPUT_FIELD_NAME', 'SUCCESS_REDIRECT', $tmp_sys_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                //$tmp_data_key = 'SUCCESS_REDIRECT';
+                $tmp_data_type_family = $tmp_dtf_FORM_REDIRECTS . '::' . $tmp_data_key;
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_redirect_url, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                $tmp_str = '$success_redirect_url=[' . $success_redirect_url . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             }
 
-            if(!$this->oCRNRSTN->isset_data_key('ERROR_REDIRECT', $tmp_data_type_family_ROOT) && isset($error_redirect_url)) {
+            $tmp_data_key = 'ERROR_REDIRECT';
+            if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_REDIRECTS) && isset($error_redirect_url)){
 
-                $tmp_data_type_family = $tmp_data_type_family_ROOT . '::ERROR_REDIRECT';
-                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'ERROR_REDIRECT', $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                //
+                // UNLESS WE WANT MULTIPLE ERROR REDIRECTS TO BE ASSOCIATED
+                // WITH EACH INPUT...SPOIL isset_data_key().
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_REDIRECTS, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                $tmp_data_key = 'ERROR_REDIRECT';
+                $tmp_data_type_family = $tmp_dtf_FORM_REDIRECTS . '::' . $tmp_data_key;
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_redirect_url, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                $tmp_str = '$error_redirect_url=[' . $error_redirect_url . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             }
 
-            return true;
+        }
+
+        $tmp_data_key = 'SUCCESS_REDIRECT';
+        $tmp_data_type_family = $tmp_dtf_FORM_REDIRECTS = 'CRNRSTN_SYSTEM_RESOURCE::FORM_REDIRECTS::' . $tmp_form_handle_hash;
+        if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_REDIRECTS) && isset($success_redirect_url)){
+
+            //
+            // UNLESS WE WANT *ALL* SUCCESS REDIRECTS TO BE ASSOCIATED
+            // WITH THIS FORM...AS WELL AS THEIR RESPECTIVE INPUTS...
+            // SPOIL isset_data_key().
+            $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+            //$tmp_data_key = 'SUCCESS_REDIRECT';
+            $tmp_data_type_family = $tmp_dtf_FORM_REDIRECTS . '::' . $tmp_data_key;
+            $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_redirect_url, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+            $tmp_str = '$success_redirect_url=[' . $success_redirect_url . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+            $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
         }
 
-        $tmp_data_type_family_ROOT = 'CRNRSTN_SYSTEM_RESOURCE::FORM_REDIRECTS::' . md5($crnrstn_form_handle);
-        if(!$this->oCRNRSTN->isset_data_key('SUCCESS_REDIRECT', $tmp_data_type_family_ROOT) && isset($success_redirect_url)) {
+        $tmp_data_key = 'ERROR_REDIRECT';
+        $tmp_data_type_family = $tmp_dtf_FORM_REDIRECTS = 'CRNRSTN_SYSTEM_RESOURCE::FORM_REDIRECTS::' . $tmp_form_handle_hash;
+        if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_REDIRECTS) && isset($success_redirect_url)) {
 
-            $tmp_data_type_family = $tmp_data_type_family_ROOT . '::SUCCESS_REDIRECT';
-            $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'SUCCESS_REDIRECT', $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            //
+            // UNLESS WE WANT *ALL* ERROR REDIRECTS TO BE ASSOCIATED
+            // WITH FORM...AS WELL AS THEIR RESPECTIVE INPUTS...
+            // SPOIL isset_data_key().
+            //$tmp_data_key = 'ERROR_REDIRECT';
+            $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
-        }
+            $tmp_data_type_family = $tmp_dtf_FORM_REDIRECTS . '::' . $tmp_data_key;
+            $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_redirect_url, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY,'');
 
-        if(!$this->oCRNRSTN->isset_data_key('ERROR_REDIRECT', $tmp_data_type_family_ROOT) && isset($error_redirect_url)) {
-
-            $tmp_data_type_family = $tmp_data_type_family_ROOT . '::ERROR_REDIRECT';
-            $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'ERROR_REDIRECT', $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $tmp_str = '$error_redirect_url=[' . $error_redirect_url . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+            $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
         }
 
@@ -5148,13 +5257,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    //$oCRNRSTN->init_hidden_input_listener($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
-    public function init_hidden_input_listener($crnrstn_form_handle, $html_form_input_name, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+    //$oCRNRSTN->init_hidden_input_listener($crnrstn_form_handle, $field_input_name, $field_input_name, $default_value, $validation_constant_profile, $table_field_name);
+    public function init_hidden_input_listener($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
 
         try {
 
-            $tmp_stripe_key_ARRAY = $this->oCRNRSTN->return_stripe_key_ARRAY('$crnrstn_form_handle', '$html_form_input_name');
-            $tmp_param_err_str_ARRAY = $this->oCRNRSTN->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $html_form_input_name);
+            $tmp_stripe_key_ARRAY = $this->oCRNRSTN->return_stripe_key_ARRAY('$crnrstn_form_handle', '$field_input_name');
+            $tmp_param_err_str_ARRAY = $this->oCRNRSTN->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $field_input_name);
 
             $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
             $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
@@ -5165,59 +5274,96 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 // HOOOSTON...VE HAF PROBLEM!
                 throw new Exception('CRNRSTN :: Form handling configuration error ::. ' . $tmp_param_missing_str);
 
-            }else{
+            }
 
-                if(!isset($html_form_input_id)){
+            if(!isset($field_input_name)){
 
-                    $html_form_input_id = 'crnrstn_input_' . $this->generate_new_key(26);
-
-                }
-
-                $tmp_data_type_family_ROOT = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . md5($crnrstn_form_handle) . '::' . md5($html_form_input_name);
-                if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_data_type_family_ROOT)){
-
-                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'FORM_INPUT_NAME', $html_form_input_name, $tmp_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                    if(isset($html_form_input_id)){
-
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$html_form_input_id';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'FORM_INPUT_ID', $html_form_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                    }
-
-                    if(isset($default_value)){
-
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$default_value';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'DEFAULT_VALUE', $default_value, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                    }
-
-                    if(isset($table_field_name)){
-
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$table_field_name';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'TABLE_FIELD_NAME', $table_field_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                    }
-
-                    if(isset($validation_constant_profile)){
-
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$validation_constant_profile';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'VALIDATION_CONSTANT_PROFILE', $validation_constant_profile, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                    }
-
-                    // add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
-                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $html_form_input_name, $html_form_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                }
-
-                //
-                // COMPILE INPUT
-                //$this->compile_form_integration_packet($crnrstn_form_handle, $html_form_input_name, false, $tmp_validatation);
-
-                return true;
+                $field_input_name = 'crnrstn_input_' . $this->generate_new_key(26);
 
             }
+
+            $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
+            $tmp_html_form_input_name_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $field_input_name);
+
+            $tmp_data_key = 'FIELD_INPUT_NAME';
+            $tmp_dtf_FORM_HANDLE = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_html_form_input_name_hash;
+            if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_HANDLE)){
+
+                // SPOIL isset_data_key()
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_HANDLE, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                if(isset($field_input_name)){
+
+                    //$tmp_data_key = 'FIELD_INPUT_NAME';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                if(isset($field_input_name)){
+
+                    $tmp_data_key = 'FIELD_INPUT_ID';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                if(isset($default_value)){
+
+                    $tmp_data_key = 'DEFAULT_VALUE';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $default_value, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$default_value=[' . $default_value . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                if(isset($table_field_name)){
+
+                    $tmp_data_key = 'TABLE_FIELD_NAME';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $table_field_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$default_value=[' . $default_value . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                if(isset($validation_constant_profile)){
+
+                    $tmp_data_key = 'VALIDATION_CONSTANT_PROFILE';
+                    $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $validation_constant_profile, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$validation_constant_profile=[' . $validation_constant_profile . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+            }
+
+            //
+            // COMPILE INPUT
+            //$this->compile_form_integration_packet($crnrstn_form_handle, $field_input_name, false, $tmp_validatation);
+
+            return true;
 
         } catch (Exception $e) {
 
@@ -5233,12 +5379,21 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function add_form_validation_messages($crnrstn_form_handle, $html_form_input_name, $html_form_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    public function add_form_validation_messages($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+
+        $tmp_str = '$crnrstn_form_handle=[' . $crnrstn_form_handle . ']. 
+$field_input_name=[' . $field_input_name . ']. 
+$field_input_id=[' . $field_input_id . ']. 
+$message_key=[' . $message_key . ']. 
+$err_msg=[' . $err_msg . ']. 
+$success_msg=[' . $success_msg . ']. 
+$info_msg=[' . $info_msg . '].';
+        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
         try {
 
-            $tmp_stripe_key_ARRAY = $this->oCRNRSTN->return_stripe_key_ARRAY('$crnrstn_form_handle', '$html_form_input_name');
-            $tmp_param_err_str_ARRAY = $this->oCRNRSTN->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $html_form_input_name);
+            $tmp_stripe_key_ARRAY = $this->oCRNRSTN->return_stripe_key_ARRAY('$crnrstn_form_handle', '$field_input_name');
+            $tmp_param_err_str_ARRAY = $this->oCRNRSTN->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $field_input_name);
 
             $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
             $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
@@ -5249,61 +5404,111 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 // HOOOSTON...VE HAF PROBLEM!
                 throw new Exception('CRNRSTN :: Form handling configuration error ::. ' . $tmp_param_missing_str);
 
-            }else{
+            }
 
-                $tmp_data_type_family_ROOT = 'CRNRSTN_SYSTEM_RESOURCE::FORM_VALIDATION::' . md5($crnrstn_form_handle) . '::' . md5($html_form_input_name);
-                if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_data_type_family_ROOT)){
+            $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
+            $tmp_html_form_input_name_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $field_input_name);
 
-                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'FORM_INPUT_NAME', $html_form_input_name, $tmp_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $tmp_data_key = 'FIELD_INPUT_NAME';
+            $tmp_dtf_FORM_INPUT_VALIDATION = 'CRNRSTN_SYSTEM_RESOURCE::FORM_INPUT_VALIDATION::' . $tmp_form_handle_hash . '::' . $tmp_html_form_input_name_hash;
+            if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_INPUT_VALIDATION)){
 
-                    if(isset($html_form_input_name)){
+                // SPOIL isset_data_key
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_INPUT_VALIDATION, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$html_form_input_name';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'FORM_INPUT_NAME', $html_form_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                if(isset($field_input_name)){
+
+                    //$tmp_data_key = 'FIELD_INPUT_NAME';
+                    $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                if(isset($field_input_id)){
+
+                    $tmp_data_key = 'FIELD_INPUT_ID';
+                    $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                    $tmp_str = '$field_input_id=[' . $field_input_id . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                }
+
+                if(isset($message_key)){
+
+                    if(strlen($message_key) > 0){
+
+                        $tmp_data_key = 'MESSAGE_KEY';
+                        $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
+                        $this->oCRNRSTN->add_system_resource($tmp_data_key, $message_key, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                        $tmp_str = '$message_key=[' . $message_key . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     }
 
-                    if(isset($html_form_input_id)){
+                }
 
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$html_form_input_id';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'FORM_INPUT_ID', $html_form_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                if(isset($err_msg)){
 
-                    }
+                    if(strlen($err_msg) > 0){
 
-                    if(isset($message_key)){
+                        $tmp_data_key = 'ERR_MESSAGE';
+                        $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
+                        $this->oCRNRSTN->add_system_resource($tmp_data_key, $err_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$message_key';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'MESSAGE_KEY', $message_key, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
-                    }
-
-                    if(isset($err_msg)){
-
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$err_msg';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'ERR_MESSAGE', $err_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                        $tmp_str = '$err_msg=[' . $err_msg . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     }
 
-                    if(isset($success_msg)){
+                }
 
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$success_msg';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'SUCCESS_MESSAGE', $success_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                if(isset($success_msg)){
+
+                    if(strlen($success_msg) > 0){
+
+                        $tmp_data_key = 'SUCCESS_MESSAGE';
+                        $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
+                        $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+                        $tmp_str = '$success_msg=[' . $success_msg . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     }
 
-                    if(isset($info_msg)){
+                }
 
-                        $tmp_data_type_family = $tmp_data_type_family_ROOT . '::$info_msg';
-                        $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, 'INFO_MESSAGE', $info_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                if(isset($info_msg)){
 
-                    }
+                    $tmp_data_key = 'INFO_MESSAGE';
+                    $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $info_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
-                    // add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
-                    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $html_form_input_name, $html_form_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_str = '$info_msg=[' . $info_msg . ']. 
+$tmp_data_key=[' . $tmp_data_key . ']. 
+$tmp_data_type_family=[' . $tmp_data_type_family . '].';
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
             }
+
+            return true;
 
         } catch (Exception $e) {
 
@@ -5321,260 +5526,57 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     private function inject_input_serialization($crnrstn_form_handle = NULL){
 
+        //
+        // ALWAYS TRUE.
         $tunnel_encrypt_hidden_input_data = true;
+        $tmp_str_out = '';
+        $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
 
-        if(isset(self::$form_handle_ARRAY[$crnrstn_form_handle]['tunnel_encrypt'])){
+        $this->oCRNRSTN->print_r($crnrstn_form_handle, '$crnrstn_form_handle.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-            $tunnel_encrypt_hidden_input_data = self::$form_handle_ARRAY[$crnrstn_form_handle]['tunnel_encrypt'];
+        //
+        // FORM HANDLE DATA
+        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash;
+        $tmp_data = $this->oCRNRSTN->get_resource('CRNRSTN_FORM_HANDLE', 0, $tmp_data_type_family);
+        $this->oCRNRSTN->print_r($tmp_data, 'CRNRSTN_FORM_HANDLE.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-        }
+        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_INPUT::' . $tmp_form_handle_hash;
+//        $this->oCRNRSTN->add_system_resource('FORM_INPUT_FIELD_NAME', 'ERROR_REDIRECT', $tmp_sys_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+//
 
-        $tmp_input_name_ARRAY = array();
-        $tmp_input_id_ARRAY = array();
-        $tmp_input_isrequired_ARRAY = array();
-        $tmp_input_value_ARRAY = array();
-        $tmp_input_success_copy_ARRAY = array();
-        $tmp_input_err_copy_ARRAY = array();
-        $tmp_input_info_copy_ARRAY = array();
+        if($this->oCRNRSTN->isset_data_key('FORM_INPUT_FIELD_NAME', $tmp_data_type_family)) {
 
-        try {
+            $this->oCRNRSTN->print_r('We have input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-            if (!is_bool($tunnel_encrypt_hidden_input_data)) {
+            //$this->oCRNRSTN->print_r('We have [' . $this->oCRNRSTN->get_resource_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family, $this->env_key) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('CRNRSTN :: Serialization configuration error :: encrypt_hidden_input_data is a required BOOLEAN parameter.');
+            $this->oCRNRSTN->print_r('We have [' . $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            $tmp_input_cnt = $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family);
+
+
+            $tmp_data_type_family_FORM_REDIRECTS_ROOT = 'CRNRSTN_SYSTEM_RESOURCE::FORM_REDIRECTS::' . $tmp_form_handle_hash;
+
+            for($i = 0; $i < $tmp_input_cnt; $i++){
+
+
+                $tmp_field_name = $this->oCRNRSTN->get_resource('FORM_INPUT_FIELD_NAME', $i, $tmp_data_type_family);
+                //$tmp_input_data_type_family = $tmp_data_type_family . '::' . $tmp_field_name;
+                $tmp_fam = $tmp_data_type_family_FORM_REDIRECTS_ROOT . '::' . $tmp_field_name;
+
+                $this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $tmp_fam . '].', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                //$this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, $i, $tmp_fam) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, 0, $tmp_fam) . '] input field data to inject.', 'oCRNRSTN->retrieve_data_value[' . $tmp_field_name . '].', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             }
 
-            if (!isset($crnrstn_form_handle)) {
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('CRNRSTN :: Serialization configuration error :: form handle is a required parameter.');
-
-            } else {
-
-                foreach (self::$form_input_hidden_ARRAY as $zeroKey => $zeroArray_val) {
-
-                    if ($zeroKey == $crnrstn_form_handle) {
-
-                        foreach ($zeroArray_val as $inputName_key => $oneArray_val) {
-
-                            //
-                            // STORE INPUT NAME
-                            $tmp_input_name_ARRAY[] = $inputName_key;
-
-                            foreach ($oneArray_val as $inputID_key => $twoArray_val) {
-                                //
-                                // STORE INPUT ID
-                                $tmp_input_id_ARRAY[] = $inputID_key;
-
-                                foreach ($twoArray_val as $inputRequired => $val) {
-                                    //
-                                    // STORE INPUT REQUIRED_STATE & DEFAULT VALUE
-                                    $tmp_input_isrequired_ARRAY[] = $inputRequired;
-                                    $tmp_input_value_ARRAY[] = $val;
-
-                                    //
-                                    // POPULATE SUCCESS/ERR STATUS NOTIFICATION META
-                                    if(isset(self::$form_input_transaction_copy_ARRAY[$zeroKey][$inputName_key])){
-
-                                        foreach(self::$form_input_transaction_copy_ARRAY[$zeroKey][$inputName_key] as $message_key => $copy_type_array){
-
-                                            foreach($copy_type_array as $copy_type => $copy_str_ARRAY) {
-
-                                                foreach ($copy_str_ARRAY as $key => $copy_str) {
-
-                                                    error_log(__LINE__ . ' user $copy_str=' . $copy_str);
-                                                    switch ($copy_type) {
-                                                        case 'SUCCESS':
-
-                                                            $tmp_input_success_copy_ARRAY[] = $copy_str;
-
-                                                        break;
-                                                        case 'ERROR':
-
-                                                            $tmp_input_err_copy_ARRAY[] = $copy_str;
-
-                                                        break;
-                                                        case 'INFO':
-
-                                                            $tmp_input_info_copy_ARRAY[] = $copy_str;
-
-                                                        break;
-
-                                                    }
-
-                                                }
-
-                                            }
-
-                                        }
-
-                                    }
-
-                                    if ($inputRequired == 'true' && $val == '') {
-
-                                        //
-                                        // HOOOSTON...VE HAF PROBLEM!
-                                        throw new Exception('CRNRSTN :: Serialization configuration error :: A default value is required for the hidden input ' . $inputName_key . ' on the form with handle ' . $zeroKey . '.');
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-                /*
-                self::$form_input_transaction_copy_ARRAY
-                self::$form_input_transaction_copy_ARRAY[$crnrstn_form_handle][$html_form_input_name][$message_key]['SUCCESS'][] = $success_msg;
-                self::$form_input_transaction_copy_ARRAY[$crnrstn_form_handle][$html_form_input_name][$message_key]['ERROR'][] = $err_msg;
-                self::$form_input_transaction_copy_ARRAY[$crnrstn_form_handle][$html_form_input_name][$message_key]['INFO'][] = $info_msg;
-                */
-
-                //
-                // BUILD OUTPUT HTML
-                $tmp_html_out = '';
-                $tmp_loop_size = sizeof($tmp_input_name_ARRAY);
-
-                if ($tunnel_encrypt_hidden_input_data) {
-
-                    //
-                    // NEED TO VERIFY TUNNEL ENCRYPTION SETTINGS OR DO NOT ENCRYPT PARAMS.
-                    $tmp_tunnelEncryptionState = $this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL);
-
-                    if (!$tmp_tunnelEncryptionState) {
-
-                        //
-                        // HOOOSTON...VE HAF PROBLEM!
-                        throw new Exception('CRNRSTN :: Serialization configuration error :: It has been requested that hidden input fields be tunnel encrypted, however the current configuration of CRNRSTN Suite :: v2.0.0 has failed to successfully execute encrypt/decrypt. Please reconfigure and try again, or pass a second parameter...FALSE...to inject_input_serialization().');
-
-                    }
-
-                    //
-                    // APPROVED TO ENCRYPT CRNRSTN FORM INTEGRATION PACKET
-                    self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['packet_encryption_status'] = 'true';
-
-                    //
-                    // READY TO BUILD OUTPUT AND SEND VIA CRNRSTN :: TUNNEL ENCRYPTION
-                    for ($i = 0; $i < $tmp_loop_size; $i++) {
-
-                        if($i == 0){
-
-                            if ($tmp_input_id_ARRAY[$i] != '{crnrstn2.0.0_nullEmpty}') {
-
-                                $tmp_html_out .= '<input type="hidden" id="' . $tmp_input_id_ARRAY[$i] . '" name="' . $tmp_input_name_ARRAY[$i] . '" value="' . $this->oCRNRSTN_ENV->data_encrypt($tmp_input_value_ARRAY[$i]) . '">';
-
-                            } else {
-
-                                $tmp_html_out .= '<input type="hidden" name="' . $tmp_input_name_ARRAY[$i] . '" value="' . $this->oCRNRSTN_ENV->data_encrypt($tmp_input_value_ARRAY[$i]) . '">';
-
-                            }
-
-                        }else{
-
-                            if ($tmp_input_id_ARRAY[$i] != '{crnrstn2.0.0_nullEmpty}') {
-
-                                $tmp_html_out .= '
-        <input type="hidden" id="' . $tmp_input_id_ARRAY[$i] . '" name="' . $tmp_input_name_ARRAY[$i] . '" value="' . $this->oCRNRSTN_ENV->data_encrypt($tmp_input_value_ARRAY[$i]) . '">';
-
-                            } else {
-
-                                $tmp_html_out .= '
-        <input type="hidden" name="' . $tmp_input_name_ARRAY[$i] . '" value="' . $this->oCRNRSTN_ENV->data_encrypt($tmp_input_value_ARRAY[$i]) . '">';
-
-                            }
-
-                        }
-
-                        if ($tmp_input_isrequired_ARRAY[$i]) {
-
-                            $tmp_validatation = 'is_required';
-
-                        } else {
-
-                            $tmp_validatation = NULL;
-
-                        }
-
-                        $this->compile_form_integration_packet($crnrstn_form_handle, $tmp_input_name_ARRAY[$i], true, $tmp_validatation);
-
-                    }
-
-                } else {
-
-                    //
-                    // NOT APPROVED TO ENCRYPT CRNRSTN FORM INTEGRATION PACKET
-                    self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['packet_encryption_status'] = 'false';
-
-                    for ($i = 0; $i < $tmp_loop_size; $i++) {
-
-                        //
-                        // NO TUNNEL ENCRYPTION IS DESIRED FOR HIDDEN INPUT DATA
-                        if($i == 0){
-
-                            if ($tmp_input_id_ARRAY[$i] != '{crnrstn2.0.0_nullEmpty}') {
-
-                                $tmp_html_out .= '<input type="hidden" id="' . $tmp_input_id_ARRAY[$i] . '" name="' . $tmp_input_name_ARRAY[$i] . '" value="' . $tmp_input_value_ARRAY[$i] . '">';
-
-                            } else {
-
-                                $tmp_html_out .= '<input type="hidden" name="' . $tmp_input_name_ARRAY[$i] . '" value="' . $tmp_input_value_ARRAY[$i] . '">';
-
-                            }
-
-                        }else{
-
-                            if ($tmp_input_id_ARRAY[$i] != '{crnrstn2.0.0_nullEmpty}') {
-
-                                $tmp_html_out .= '
-        <input type="hidden" id="' . $tmp_input_id_ARRAY[$i] . '" name="' . $tmp_input_name_ARRAY[$i] . '" value="' . $tmp_input_value_ARRAY[$i] . '">';
-
-                            } else {
-
-                                $tmp_html_out .= '
-        <input type="hidden" name="' . $tmp_input_name_ARRAY[$i] . '" value="' . $tmp_input_value_ARRAY[$i] . '">';
-
-                            }
-
-                        }
-
-                        if($tmp_input_isrequired_ARRAY[$i]) {
-
-                            $tmp_validatation = 'is_required';
-
-                        }else{
-
-                            $tmp_validatation = NULL;
-
-                        }
-
-                        $this->compile_form_integration_packet($crnrstn_form_handle, $tmp_input_name_ARRAY[$i], false, $tmp_validatation);
-
-                    }
-
-                }
-
-            }
-
-        } catch (Exception $e) {
-
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
         }
 
-        $tmp_html_out .= $this->return_form_integration_packet($crnrstn_form_handle);
+        return '<input type="hidden" name="hello_crnrstn_input_injection" id="hello_crnrstn_input_injection" value="' . $this->oCRNRSTN->data_encrypt('hello world!') . '" >';
+        //$this->compile_form_integration_packet($crnrstn_form_handle, $tmp_input_name_ARRAY[$i], true, $tmp_validatation);
+        //$tmp_html_out .= $this->return_form_integration_packet($crnrstn_form_handle);
 
-        return $tmp_html_out;
+        //return $tmp_html_out;
 
     }
 
@@ -5588,57 +5590,61 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         if (!isset($host)) {
 
-            $tmp_host_hashable = md5('{empty}');
+            $tmp_host_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), '{empty}');
 
-        } else {
+        }else{
 
-            $tmp_host_hashable = md5($host);
-
-        }
-
-        if (!isset($db)) {
-
-            $tmp_db_hashable = md5('{empty}');
-
-        } else {
-
-            $tmp_db_hashable = md5($db);
+            $tmp_host_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), $host);
 
         }
 
-        if (!isset($un)) {
+        if(!isset($db)){
 
-            $tmp_un_hashable = md5('{empty}');
+            $tmp_db_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), '{empty}');
 
-        } else {
+        }else{
 
-            $tmp_un_hashable = md5($un);
-
-        }
-
-        if (!isset($port)) {
-
-            $tmp_port_hashable = md5('{empty}');
-
-        } else {
-
-            $tmp_port_hashable = md5($port);
+            $tmp_db_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), $db);
 
         }
 
-        if (!isset($pwd)) {
+        if(!isset($un)){
 
-            $tmp_pwd_hashable = md5('{empty}');
+            $tmp_un_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), '{empty}');
 
-        } else {
+        }else{
 
-            $tmp_pwd_hashable = md5($pwd);
+            $tmp_un_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), $un);
+
+        }
+
+        if(!isset($port)){
+
+            $tmp_port_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), '{empty}');
+
+        }else{
+
+            $tmp_port_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), $port);
+
+        }
+
+        if(!isset($pwd)){
+
+            $tmp_pwd_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), '{empty}');
+
+        }else{
+
+//
+//            $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
+//            $tmp_field_input_name_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $field_input_name);
+
+            $tmp_pwd_hashable = hash($this->oCRNRSTN->system_hash_algorithm(), $pwd);
 
         }
 
         $tmp_mysqli_serial = $this->crcINT($tmp_host_hashable . $tmp_db_hashable . $tmp_un_hashable . $tmp_port_hashable . $tmp_pwd_hashable);
 
-        if (isset($this->oMySQLi_ARRAY[$tmp_mysqli_serial])){
+        if(isset($this->oMySQLi_ARRAY[$tmp_mysqli_serial])){
 
             if($this->oMySQLi_ARRAY[$tmp_mysqli_serial]->ping()){
 
@@ -5770,15 +5776,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function return_param_tunnel_encrypt_settings($data = NULL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function return_encrypt_settings($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
-        return $this->oCRNRSTN_ENV->return_param_tunnel_encrypt_settings($data, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+        return $this->oCRNRSTN_ENV->return_encrypt_settings($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
     }
 
-    public function return_param_tunnel_decrypt_settings($data = NULL, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function return_decrypt_settings($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
-        return $this->oCRNRSTN_ENV->return_param_tunnel_decrypt_settings($data, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+        return $this->oCRNRSTN_ENV->return_decrypt_settings($data, $encryption_channel, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
     }
 
@@ -5834,7 +5840,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    private function compile_form_integration_packet($crnrstn_form_handle, $html_form_input_name, $encryption_status = TRUE, $server_side_validation = NULL){
+    private function compile_form_integration_packet($crnrstn_form_handle, $field_input_name, $encryption_status = TRUE, $server_side_validation = NULL){
 
         //
         // DATA PROFILE FOR SUCCESSFUL CRNRSTN FORM CAPTURE INTEGRATION
@@ -5876,7 +5882,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }
 
-        self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['input_name'][] = $html_form_input_name;
+        self::$formIntegrationPacket_ARRAY[$crnrstn_form_handle]['input_name'][] = $field_input_name;
 
         if ($encryption_status) {
 
@@ -5943,14 +5949,14 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             $tmp_array_outer = array();
             $tmp_html_out = $this->oCRNRSTN_ENV->data_encrypt($tmp_html_out);
-            $tmp_array = $this->return_param_tunnel_encrypt_settings($tmp_html_out);
+            $tmp_array = $this->return_encrypt_settings($tmp_html_out, CRNRSTN_ENCRYPT_TUNNEL);
 
             //if(!$this->isset_session_param('ENCRYPT_PARAMS')){
             if(!$this->isset_data_key('ENCRYPT_PARAMS')){
 
                 $tmp_array_outer[] = $tmp_array;
 
-                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->add_system_resource($tmp_array_outer, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                 //$this->input_data_value($tmp_array_outer, 'ENCRYPT_PARAMS', NULL, 0, NULL, $this->env_key);
                 //$this->set_session_param('ENCRYPT_PARAMS', $tmp_array_outer);
 
@@ -5961,7 +5967,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $tmp_array_outer_sess[] = $tmp_array;
 
-                $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, $tmp_array_outer_sess, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->add_system_resource($tmp_array_outer_sess, 'ENCRYPT_PARAMS', 0, 'CRNRSTN_SYSTEM_RESOURCE::FORM_INTEGRATIONS', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                 //$this->input_data_value($tmp_array_outer_sess, 'ENCRYPT_PARAMS', NULL, 0, NULL, $this->env_key);
                 //$this->set_session_param('ENCRYPT_PARAMS', $tmp_array_outer_sess);
 
@@ -10346,92 +10352,92 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    //
-    // SOURCE :: https://www.php.net/manual/en/function.base64-encode.php
-    // AUTHOR :: luke at lukeoliff.com :: https://www.php.net/manual/en/function.base64-encode.php#105200
-    public function encode_image($crnrstn_file_to_encode, $filetype = NULL) {
-
-        //
-        // WHERE $crnrstn_file_to_encode = 'social_sprite.png' OR EVEN JUST
-        // WHERE $crnrstn_file_to_encode = 'social_sprite'
-
-        //$filename
-        $tmp_crnrstn_file_to_encode = $this->oCRNRSTN_ENV->data_decrypt($crnrstn_file_to_encode);
-        $this->error_log('CRNRSTN :: encode_image() crnrstn_file_to_encode/decrypt=[' . strlen($crnrstn_file_to_encode) . ']/[' . $tmp_crnrstn_file_to_encode . '] tmp_filetype=[' . $filetype . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-        //error_log(__LINE__ . ' user encode_image() crnrstn_file_to_base64=[' . strlen($crnrstn_file_to_base64) . '] tmp_filetype=[' . $tmp_filetype . ']');
-        //die();
-        if(!isset($filetype)){
-
-            $filetype = pathinfo($tmp_crnrstn_file_to_encode, PATHINFO_EXTENSION);
-
-        }
-
-        if(is_file($tmp_crnrstn_file_to_encode) || (is_string($tmp_crnrstn_file_to_encode) && (strlen($tmp_crnrstn_file_to_encode) > 0))){
-
-            $this->error_log('CRNRSTN :: encode_image(\'' . $tmp_crnrstn_file_to_encode . '\', \'' . $filetype . '\') WE HAVE A FILE (OR SOMETHING ACTUALLY MADE IT THROUGH CRNRSTN :: OPENSSL DECRYPTION).', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-            if(strtolower($filetype) == '.png') {
-
-                //error_log(__LINE__ . ' user encode_image() WE HAVE A FILE.');
-                //die();
-
-                $_SESSION['CRNRSTN_' . $this->crcINT($this->config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'encode_image() attempting to open ' . $tmp_crnrstn_file_to_encode . '. ';
-                $img_binary = fread(fopen($tmp_crnrstn_file_to_encode, 'r'), $this->find_filesize($tmp_crnrstn_file_to_encode));
-
-                $tmp_base64 = 'data:image/' . $filetype . ';base64,' . base64_encode($img_binary);
-
-                $this->system_link_reset_base64_from_png($tmp_base64, $this->oCRNRSTN_ENV->data_encrypt($tmp_crnrstn_file_to_encode), $filetype);
-
-                return $tmp_base64;
-
-            }
-
-            if(strtolower($filetype) == '.jpg' || strtolower($filetype) == '.jpeg') {
-
-                $this->error_log('CRNRSTN :: encode_image(' . $tmp_crnrstn_file_to_encode . ') WE HAVE A FILE.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                //error_log(__LINE__ . ' user encode_image() WE HAVE A FILE.');
-                //die();
-                $tmp_path_to_png = $this->system_filename_convert_jpg_to_png($tmp_crnrstn_file_to_encode);
-                $this->system_link_reset_jpeg_from_png($this->oCRNRSTN_ENV->data_encrypt($tmp_path_to_png));
-
-                $img_binary = fread(fopen($tmp_crnrstn_file_to_encode, 'r'), $this->find_filesize($tmp_path_to_png));
-
-                $tmp_base64 = 'data:image/' . $filetype . ';base64,' . base64_encode($img_binary);
-
-                return $tmp_base64;
-
-            }
-
-        }else{
-
-            if(!is_file($tmp_crnrstn_file_to_encode)){
-
-                $this->error_log('CRNRSTN :: encode_image(' . $filetype . ') NOT IS_FILE(' . strlen($tmp_crnrstn_file_to_encode) . ')!!', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                //error_log(__LINE__ . ' user base64_encode_image() NOT IS_FILE!!');
-
-            }else{
-
-                $this->error_log('CRNRSTN :: encode_image(' . $filetype . ') YES, IS_FILE(' . strlen($tmp_crnrstn_file_to_encode) . ')!!', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                //error_log(__LINE__ . ' user base64_encode_image() YES, IS_FILE!!');
-
-            }
-
-            if(!is_string($tmp_crnrstn_file_to_encode)){
-
-                $this->error_log('CRNRSTN :: encode_image(' . $filetype . ') NOT IS_STRING(' . strlen($tmp_crnrstn_file_to_encode) . ')!!', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                //error_log(__LINE__ . ' user base64_encode_image() NOT IS_STRING!!');
-
-            }else{
-
-                $this->error_log('CRNRSTN :: encode_image(' . $filetype . ') YES, IS_STRING(' . strlen($tmp_crnrstn_file_to_encode) . ')!!', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                //error_log(__LINE__ . ' user base64_encode_image() YES, IS_STRING!!');
-
-            }
-
-        }
-
-    }
+//    //
+//    // SOURCE :: https://www.php.net/manual/en/function.base64-encode.php
+//    // AUTHOR :: luke at lukeoliff.com :: https://www.php.net/manual/en/function.base64-encode.php#105200
+//    public function encode_image($crnrstn_file_to_encode, $filetype = NULL) {
+//
+//        //
+//        // WHERE $crnrstn_file_to_encode = 'social_sprite.png' OR EVEN JUST
+//        // WHERE $crnrstn_file_to_encode = 'social_sprite'
+//
+//        //$filename
+//        $tmp_crnrstn_file_to_encode = $this->oCRNRSTN_ENV->data_decrypt($crnrstn_file_to_encode);
+//        $this->error_log('CRNRSTN :: encode_image() crnrstn_file_to_encode/decrypt=[' . strlen($crnrstn_file_to_encode) . ']/[' . $tmp_crnrstn_file_to_encode . '] tmp_filetype=[' . $filetype . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//
+//        //error_log(__LINE__ . ' user encode_image() crnrstn_file_to_base64=[' . strlen($crnrstn_file_to_base64) . '] tmp_filetype=[' . $tmp_filetype . ']');
+//        //die();
+//        if(!isset($filetype)){
+//
+//            $filetype = pathinfo($tmp_crnrstn_file_to_encode, PATHINFO_EXTENSION);
+//
+//        }
+//
+//        if(is_file($tmp_crnrstn_file_to_encode) || (is_string($tmp_crnrstn_file_to_encode) && (strlen($tmp_crnrstn_file_to_encode) > 0))){
+//
+//            $this->error_log('CRNRSTN :: encode_image(\'' . $tmp_crnrstn_file_to_encode . '\', \'' . $filetype . '\') WE HAVE A FILE (OR SOMETHING ACTUALLY MADE IT THROUGH CRNRSTN :: OPENSSL DECRYPTION).', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//
+//            if(strtolower($filetype) == '.png') {
+//
+//                //error_log(__LINE__ . ' user encode_image() WE HAVE A FILE.');
+//                //die();
+//
+//                $_SESSION['CRNRSTN_' . $this->crcINT($this->config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'encode_image() attempting to open ' . $tmp_crnrstn_file_to_encode . '. ';
+//                $img_binary = fread(fopen($tmp_crnrstn_file_to_encode, 'r'), $this->find_filesize($tmp_crnrstn_file_to_encode));
+//
+//                $tmp_base64 = 'data:image/' . $filetype . ';base64,' . base64_encode($img_binary);
+//
+//                $this->system_link_reset_base64_from_png($tmp_base64, $this->oCRNRSTN_ENV->data_encrypt($tmp_crnrstn_file_to_encode), $filetype);
+//
+//                return $tmp_base64;
+//
+//            }
+//
+//            if(strtolower($filetype) == '.jpg' || strtolower($filetype) == '.jpeg') {
+//
+//                $this->error_log('CRNRSTN :: encode_image(' . $tmp_crnrstn_file_to_encode . ') WE HAVE A FILE.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//                //error_log(__LINE__ . ' user encode_image() WE HAVE A FILE.');
+//                //die();
+//                $tmp_path_to_png = $this->system_filename_convert_jpg_to_png($tmp_crnrstn_file_to_encode);
+//                $this->system_link_reset_jpeg_from_png($this->oCRNRSTN_ENV->data_encrypt($tmp_path_to_png));
+//
+//                $img_binary = fread(fopen($tmp_crnrstn_file_to_encode, 'r'), $this->find_filesize($tmp_path_to_png));
+//
+//                $tmp_base64 = 'data:image/' . $filetype . ';base64,' . base64_encode($img_binary);
+//
+//                return $tmp_base64;
+//
+//            }
+//
+//        }else{
+//
+//            if(!is_file($tmp_crnrstn_file_to_encode)){
+//
+//                $this->error_log('CRNRSTN :: encode_image(' . $filetype . ') NOT IS_FILE(' . strlen($tmp_crnrstn_file_to_encode) . ')!!', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//                //error_log(__LINE__ . ' user base64_encode_image() NOT IS_FILE!!');
+//
+//            }else{
+//
+//                $this->error_log('CRNRSTN :: encode_image(' . $filetype . ') YES, IS_FILE(' . strlen($tmp_crnrstn_file_to_encode) . ')!!', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//                //error_log(__LINE__ . ' user base64_encode_image() YES, IS_FILE!!');
+//
+//            }
+//
+//            if(!is_string($tmp_crnrstn_file_to_encode)){
+//
+//                $this->error_log('CRNRSTN :: encode_image(' . $filetype . ') NOT IS_STRING(' . strlen($tmp_crnrstn_file_to_encode) . ')!!', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//                //error_log(__LINE__ . ' user base64_encode_image() NOT IS_STRING!!');
+//
+//            }else{
+//
+//                $this->error_log('CRNRSTN :: encode_image(' . $filetype . ') YES, IS_STRING(' . strlen($tmp_crnrstn_file_to_encode) . ')!!', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//                //error_log(__LINE__ . ' user base64_encode_image() YES, IS_STRING!!');
+//
+//            }
+//
+//        }
+//
+//    }
 
     //
     // SOURCE :: https://www.php.net/manual/en/function.filesize.php
@@ -10687,7 +10693,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }
 
-        $this->oCRNRSTN->add_system_resource($env_key, $data_key, $data_value, $index, $data_type_family, $data_auth_profile);
+        $this->oCRNRSTN->add_system_resource($data_key, $data_value, $index, $data_type_family, $data_auth_profile, $env_key);
 
     }
 
@@ -10699,7 +10705,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL'){
 
-        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_crc, $env_key, $data_type_family);
+        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
 
         return $tmp_dataset_prefix_str . $resource_key;
 
@@ -10723,9 +10729,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var0)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var0);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var0 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var0;
 
         }
 
@@ -10735,9 +10740,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var1)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var1);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var1 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var1;
 
         }
 
@@ -10747,9 +10751,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var2)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var2);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var2 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var2;
 
         }
 
@@ -10759,9 +10762,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var3)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var3);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var3 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var3;
 
         }
 
@@ -10771,9 +10773,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var4)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var4);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var4 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var4;
 
         }
 
@@ -10783,9 +10784,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var5)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var5);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var5 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var5;
 
         }
 
@@ -10795,9 +10795,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var6)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var6);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var6 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var6;
 
         }
 
@@ -10807,9 +10806,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var7)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var7);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var7 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var7;
 
         }
 
@@ -10819,9 +10817,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var8)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var8);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var8 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var8;
 
         }
 
@@ -10831,9 +10828,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var9)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var9);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var9 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var9;
 
         }
 
@@ -10843,9 +10839,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         if(isset($var10)){
 
             $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var10);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var10 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var10;
 
         }
 
@@ -10854,14 +10849,12 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         if(isset($var11)){
 
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var11);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
+            $tmp_str_out .= $var11 . '::';
+            $tmp_array_str_unit_ARRAY[] = $var11;
 
         }
 
-        $tmp_array_out_ARRAY['string'] = $tmp_str_out;
+        $tmp_array_out_ARRAY['string'] = hash($this->oCRNRSTN->system_hash_algorithm(), $tmp_str_out);
         $tmp_array_out_ARRAY['index_array'] = $tmp_array_str_unit_ARRAY;
 
         if($output_format == 'array') {
@@ -11777,7 +11770,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 //            // SET DEFAULT CONSTANT
 //            $style_theme = CRNRSTN_UI_PHPNIGHT;
 //
-//            $tmp_theme_ARRAY = $this->oCRNRSTN_ENV->return_set_bits($this->oCRNRSTN_ENV->system_style_profile_constants);
+//            $tmp_theme_ARRAY = $this->oCRNRSTN_ENV->return_set_bits($this->oCRNRSTN_ENV->system_theme_style_constants_ARRAY);
 //
 //            if(count($tmp_theme_ARRAY) > 0){
 //
@@ -12114,7 +12107,9 @@ class crnrstn_user_auth{
          */
 
         $tmp_email = $this->oCRNRSTN_USR->get_http_resource('crnrstn_auth_e');
-        $tmp_pwd_hash = md5($this->oCRNRSTN_USR->get_http_resource('crnrstn_auth_pwd'));
+
+        $tmp_pwd_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $this->oCRNRSTN_USR->get_http_resource('crnrstn_auth_pwd'));
+
         $tmp_crnrstn_country_iso_code = $this->oCRNRSTN_USR->get_http_resource('crnrstn_country_iso_code');
         $tmp_crnrstn_php_sessionid = $this->oCRNRSTN_USR->get_http_resource('crnrstn_php_sessionid');
 

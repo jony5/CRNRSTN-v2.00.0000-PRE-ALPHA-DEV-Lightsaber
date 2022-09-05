@@ -537,10 +537,10 @@ class crnrstn_content_source_controller {
                     self::$oCRNRSTN_UI_ASSEMBLER->addPageElement(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                     break;
-                case '/suite_methods/configuration_file/set_CRNRSTN_as_err_handler/':
+                case '/suite_methods/configuration_file/set_crnrstn_as_err_handler/':
                     $tmp_categ_name = 'Configuration File';
                     $tmp_subcateg_name = 'Configuration File';            # MATCHES SECTION TITLE LINK COPY
-                    $tmp_subsubcat_name = 'set_CRNRSTN_as_err_handler()';
+                    $tmp_subsubcat_name = 'set_crnrstn_as_err_handler()';
                     self::$page_serial = self::$oCRNRSTN_UI_ASSEMBLER->initializePage('PAGE', $tmp_categ_name, $tmp_subcateg_name, $tmp_subsubcat_name);
 
                     //
@@ -612,7 +612,7 @@ class crnrstn_content_source_controller {
                     particular error level constant profile. The environment set on line 42 will keep the error 
                     handling profile applied during the initialization and configuration of 
                     C<span class="the_R">R</span>NRSTN ::...which said error handling profile was processed on line 33 of this example. ';
-                    $tmp_example_presentation_file = '/common/inc/examples/set_CRNRSTN_as_err_handler_show.php';
+                    $tmp_example_presentation_file = '/common/inc/examples/set_crnrstn_as_err_handler_show.php';
                     $tmp_example_execute_file = '';
                     self::$oCRNRSTN_UI_ASSEMBLER->addPageElement(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 

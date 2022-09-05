@@ -1743,7 +1743,7 @@ class crnrstn_wind_cloud_fire {
 
                 //
                 // EXTRACT ALL FILE PATH
-                $tmp_config_serial = $this->oCRNRSTN_USR->return_config_serial();
+                $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
                 $_SESSION['CRNRSTN_' . $this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'The CRNRSTN :: Electrum process has experienced FTP directory access related error on ' . $tmp_src_FTP_SERVER.'::' . $tmp_src_FTP_PORT.' when accessing the destination directory, ' . $tmp_src_FTP_DIR_PATH.' as ';
 
                 $tmp_serial = $FIREHOT_oEndpoint_SOURCE->return_serial();
@@ -3412,7 +3412,7 @@ class crnrstn_wind_cloud_fire {
                             // ATTEMPT TO CHANGE PERMISSIONS AND CHECK AGAIN
                             // BEFORE COMPLETELY GIVING UP
                             $tmp_current_perms = substr(decoct( fileperms($dirPath) ), 2);
-                            $tmp_config_serial = $this->oCRNRSTN_USR->return_config_serial();
+                            $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
 
                             $_SESSION['CRNRSTN_'.$this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'The CRNRSTN :: Electrum process has experienced permissions related error as the destination directory, '.$dirPath.' ('.$tmp_current_perms.'), is NOT writable to '.$mkdir_mode.', and furthermore ';
                             if(chmod($dirPath, $mkdir_mode)){
@@ -3511,7 +3511,7 @@ class crnrstn_wind_cloud_fire {
 
             $path = rtrim($path, '/');
 
-            $tmp_config_serial = $this->oCRNRSTN_USR->return_config_serial();
+            $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
 
             //
             // STORE BASE(ROOT) ENDPOINT DIRECTORY
@@ -3593,7 +3593,7 @@ class crnrstn_wind_cloud_fire {
     private function _original_ftp_list_files_recursive($ftp_stream, $path){
 
         try{
-            $tmp_config_serial = $this->oCRNRSTN_USR->return_config_serial();
+            $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
             $lines = ftp_rawlist($ftp_stream, $path);
             $_SESSION['CRNRSTN_'.$this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 

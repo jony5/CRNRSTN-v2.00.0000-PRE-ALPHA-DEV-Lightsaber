@@ -24,7 +24,7 @@ DEMO TOPICS ::
 $oCRNRSTN->set_timezone_default('America/New_York');
 $oCRNRSTN->ini_set('max_execution_time', 60);
 $oCRNRSTN->ini_set('memory_limit', '300M');
-$oCRNRSTN->add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
+$oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
 ...
 */
 
@@ -59,11 +59,70 @@ $oCRNRSTN->add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
 <div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
 
 <?php
-$tmp_str = '$tmp_data_type_family = \'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::\' . md5($crnrstn_form_handle);
+/*
+user init_input_listener
+$tmp_dtf_FORM_HANDLE = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_field_input_name_hash;
+if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
+
+
+
+
+
+
+*/
+
+$tmp_str = '$tmp_hash = hash($oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);';
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. USE OF crnrstn::system_hash_algo', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$tmp_str = '/*
+    CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
+    AUTHORIZED DATA ARCHITECTURES FOR DATA HANDLING. DSJPCR. 
+    
+    RUNTIME ONLY (R) IS THE DEFAULT FOR ALL DATA PUT INTO THE SYSTEM.
+    
+    DATA HANDLING ARCHITECTURES
+    0 :: D :: DATABASE (MySQLi Connection Required)
+    1 :: S :: SSDTL PACKET (SOAP WRAPPED PSSDTL PACKET. THE BROWSER IS A SERVER.)
+    2 :: J :: PSSDTL PACKET (OPENSSL ENCRYPTED JSON OBJECT)
+    3 :: P :: $_SERVER SESSION (PHP SESSION ARRAY SUPER GLOBAL)
+    4 :: C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)
+    5 :: R :: RUNTIME ONLY
+    
+    * COOKIE DID NOT MAKE THE LIST...BUT "C" IS ACCOUNTED FOR IN THE ABOVE!  :)
+
+    DSJPCR
+    
+    SYSTEM RESOURCE DATA HANDLING ARCHITECTURE INTEGER CONSTANTS ::
+    CRNRSTN_AUTHORIZE_RUNTIME_ONLY
+    CRNRSTN_AUTHORIZE_ALL
+    CRNRSTN_AUTHORIZE_DATABASE
+    CRNRSTN_AUTHORIZE_SSDTLA
+    CRNRSTN_AUTHORIZE_PSSDTLA
+    CRNRSTN_AUTHORIZE_SESSION
+    CRNRSTN_AUTHORIZE_COOKIE
+    CRNRSTN_AUTHORIZE_SOAP
+    CRNRSTN_AUTHORIZE_GET
+    CRNRSTN_AUTHORIZE_ISEMAIL
+    CRNRSTN_AUTHORIZE_ISPASSWORD
+   
+    Example ::
+    $oCRNRSTN->add_system_resource(\'BLUEHOST\', \'DOMAIN\', \'jony5.com\', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+    For demonstration of use, see: /_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php
+    
+*/';
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. crnrstn::', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$oCRNRSTN->print_r('$this->env_key = $oCRNRSTN->get_server_env(\'hash\');', 'crnrstn::get_server_env()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$oCRNRSTN->print_r('$this->config_serial_hash = $oCRNRSTN->get_server_config_serial(\'hash\');', 'crnrstn::get_server_config_serial()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+
+$tmp_str = '$tmp_data_key = \'CRNRSTN_FORM_HANDLE\';
+$tmp_data_type_family = \'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::\' . md5($crnrstn_form_handle);
 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
 
-    // add_system_resource($env_key, $data_key, $data_value, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
-    $this->oCRNRSTN->add_system_resource($this->oCRNRSTN_ENV->env_key, \'CRNRSTN_FORM_HANDLE\', $crnrstn_form_handle, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+    // add_system_resource($data_key, $data_value, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+    $this->oCRNRSTN->add_system_resource($tmp_data_key, \'data_value_here\', $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
     
 }';
 
@@ -72,6 +131,9 @@ $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_han
 $tmp_str = 'public function retrieve_data_value($data_key, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $index = NULL, $env_key = NULL, $soap_transport = false){
 ';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::retrieve_data_value()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+$tmp_str = '$this->oCRNRSTN->retrieve_data_count(\'FORM_INPUT_FIELD_NAME\', $tmp_data_type_family)';
+$oCRNRSTN->print_r($tmp_str, 'crnrstn::retrieve_data_count()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = 'if($oCRNRSTN->isset_data_key($data_key, $data_type_family){
 
@@ -146,7 +208,7 @@ if($resource_file = fopen($tmp_filepath, \'w\')){
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
 
-$oCRNRSTN->print_r('$oCRNRSTN->print_r(\'Output content.\', \'Output title.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$oCRNRSTN->print_r(\'Output content.\', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
 $oCRNRSTN->print_r('$tmp_str = $oCRNRSTN->print_r_str(\'Output content.\', \'Output title.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r_str()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
@@ -254,7 +316,7 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
 
 <?php
 
-    //echo $oCRNRSTN->framework_integrations_client_packet();
+    echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

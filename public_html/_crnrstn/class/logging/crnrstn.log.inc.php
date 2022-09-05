@@ -602,10 +602,10 @@ class crnrstn_logging {
 		$tmp_key = "";
 
 		//
-		//error_log('839 - CRNRSTN_CONFIG_SERIAL_CRC=' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']);
-		if(isset($_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'])){
-			$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'])]['CRNRSTN_ENV_KEY_CRC'];
-			$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'];
+		//error_log('839 - CRNRSTN_CONFIG_SERIAL_HASH=' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']);
+		if(isset($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'])){
+			$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
+			$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'];
 
 			switch($logPriority){
 				case 0:
@@ -1783,8 +1783,8 @@ class crnrstn_logging {
                         if(1 == 2){
 
 
-                            //$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'])]['CRNRSTN_ENV_KEY_CRC'];
-                            //$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'];
+                            //$tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
+                            //$tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'];
 
                             $tmp_log_profile = $oCRNRSTN_USR->return_loggingProfile();
                             $tmp_endpoint_profile = $oCRNRSTN_USR->return_endpointProfile(); //$_SESSION["CRNRSTN_".crc32($tmp_configserial)]["CRNRSTN_".$tmp_key]["_CRNRSTN_LOG_ENDPOINT"];
@@ -1924,8 +1924,8 @@ class crnrstn_logging {
 
                 }else{
 
-                    $tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'])]['CRNRSTN_ENV_KEY_CRC'];
-                    $tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'];
+                    $tmp_key = $_SESSION['CRNRSTN_'.crc32($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'])]['CRNRSTN_ENV_KEY_CRC'];
+                    $tmp_configserial = $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'];
 
                     $tmp_file_path = $_SESSION["CRNRSTN_".crc32($tmp_configserial)]["CRNRSTN_".$tmp_key]["_CRNRSTN_LOG_ENDPOINT"];
 
@@ -2085,9 +2085,9 @@ website administrator.
 
     private function wall_time(){
 
-	    if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_START_TIME'])){
+	    if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_START_TIME'])){
 
-            $this->starttime = $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_START_TIME'];
+            $this->starttime = $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_START_TIME'];
 
         }
 

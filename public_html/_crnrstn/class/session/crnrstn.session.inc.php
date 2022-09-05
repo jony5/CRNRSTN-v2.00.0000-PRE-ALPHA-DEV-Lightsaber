@@ -54,6 +54,7 @@
 class crnrstn_session_manager {
 
     protected $oLogger;
+    public $oCRNRSTN;
     public $oCRNRSTN_USR;
     public $oCRNRSTN_ENV;
 
@@ -61,7 +62,7 @@ class crnrstn_session_manager {
 
     //
     // CONFIG SERIAL AND ENV RESOURCE KEY
-	public $config_serial_crc;
+	public $config_serial_hash;
     public $env_key_crc;
 
     public $oCRNRSTN_MySQLi;
@@ -73,55 +74,24 @@ class crnrstn_session_manager {
 
 	private static $encryptableDataTypes = array();
 	
-	public function __construct($oCRNRSTN_USR){
+	public function __construct($oCRNRSTN){
+
+	    $this->oCRNRSTN = $oCRNRSTN;
+
+        //
+        // INSTANTIATE LOGGER - WILL BE OVERWRITTEN WITH oCRNRSTN_USR RECEPTION...BUT, LOGGER COULD BE USED BEFORE THEN
+        // IF EXCEPTION THROWN DURING CONFIGURATION
+        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         //
         // INITIALIZE ARRAY OF ENCRYPTABLE DATATYPES
         self::$encryptableDataTypes = array('string', 'integer', 'double', 'float', 'int');
 
-        // $oCRNRSTN_USR = $oCRNRSTN_ENV or $oCRNRSTN_USR
-        switch (get_class($oCRNRSTN_USR)){
-            case 'crnrstn_user':
-
-                $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-
-                //
-                // INSTANTIATE LOGGER - WILL BE OVERWRITTEN WITH oCRNRSTN_USR RECEPTION...BUT, LOGGER COULD BE USED BEFORE THEN
-                // IF EXCEPTION THROWN DURING CONFIGURATION
-                $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
-
-                //
-                // INITIALIZE CONFIG SERIAL FOR SESSION SERIALIZATION
-                $this->config_serial_crc = $this->oCRNRSTN_USR->config_serial_crc;
-                $this->env_key_crc =  $this->oCRNRSTN_USR->env_key_crc;
-
-                $this->oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
-                $this->mysqli = $this->oCRNRSTN_MySQLi->return_conn_object();
-
-                //$tmp_data_tunnel_session_serial = $oCRNRSTN_n->generate_new_key();
-                //$this->oCRNRSTN_SESSION_DDO = new crnrstn_decoupled_data_object($this->oCRNRSTN_USR, $tmp_data_tunnel_session_serial, 'PSSDTL_SERIAL');
-                $this->oCRNRSTN_SESSION_DDO = new crnrstn_decoupled_data_object($this->oCRNRSTN_USR);
-
-            break;
-            case 'crnrstn_environment':
-
-                $this->oCRNRSTN_ENV = $oCRNRSTN_USR;
-
-                //
-                // INSTANTIATE LOGGER - WILL BE OVERWRITTEN WITH oCRNRSTN_USR RECEPTION...BUT, LOGGER COULD BE USED BEFORE THEN
-                // IF EXCEPTION THROWN DURING CONFIGURATION
-                $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_ENV);
-
-                //
-                // INITIALIZE CONFIG SERIAL FOR SESSION SERIALIZATION
-                $this->config_serial_crc = $this->oCRNRSTN_ENV->config_serial_crc;
-                $this->env_key_crc =  $this->oCRNRSTN_ENV->env_key_crc;
-
-                $this->oCRNRSTN_SESSION_DDO = new crnrstn_decoupled_data_object($this->oCRNRSTN_ENV);
-
-            break;
-
-        }
+        //
+        // INITIALIZE CONFIG SERIAL FOR SESSION SERIALIZATION
+        $this->env_key = $this->oCRNRSTN->get_server_env();
+        $this->env_key_crc =  $this->oCRNRSTN->get_server_env('hash');
+        $this->config_serial_hash = $this->oCRNRSTN->get_server_config_serial('hash');
 
 		//
 		// Function Source ::
@@ -150,16 +120,16 @@ class crnrstn_session_manager {
         }
 
     }
-
-    public function return_session_oDDO_profile($output_channel){
-
-	    $tmp_output_str = '';
-
-        $tmp_output_str = $this->oCRNRSTN_SESSION_DDO->preach($output_channel);
-
-        return $tmp_output_str;
-
-    }
+//
+//    public function return_session_oDDO_profile($output_channel){
+//
+//	    $tmp_output_str = '';
+//
+//        $tmp_output_str = $this->oCRNRSTN_SESSION_DDO->preach($output_channel);
+//
+//        return $tmp_output_str;
+//
+//    }
 
     public function init_session(){
 
@@ -796,7 +766,7 @@ class crnrstn_session_manager {
 //
 //        //
 //        // INITIALIZE CONFIG SERIAL FOR SESSION SERIALIZATION
-//        $this->config_serial_crc = $this->oCRNRSTN_USR->config_serial_crc;
+//        $this->config_serial_hash = $this->oCRNRSTN_USR->config_serial_hash;
 //
 //    }
 
@@ -810,7 +780,7 @@ class crnrstn_session_manager {
             $tmp_val_encrypted = $this->sessionParamEncrypt($val);
             $tmp_prefixed_ddo_key = $this->oCRNRSTN_USR->return_prefixed_ddo_key($session_param_key, $this->oCRNRSTN_USR->env_key);
             $this->oCRNRSTN_SESSION_DDO->add($tmp_val_encrypted, $tmp_prefixed_ddo_key, $iterator);
-            //$this->oCRNRSTN_SESSION_DDO->add(1, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key_crc);
+            //$this->oCRNRSTN_SESSION_DDO->add(1, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key_crc);
 
 		}else{
 
@@ -822,13 +792,13 @@ class crnrstn_session_manager {
 
                 $tmp_prefixed_ddo_key = $this->oCRNRSTN_USR->return_prefixed_ddo_key($session_param_key, $this->oCRNRSTN_USR->env_key);
                 $this->oCRNRSTN_SESSION_DDO->add($tmp_val_serialized, $tmp_prefixed_ddo_key, $iterator);
-                //$this->oCRNRSTN_SESSION_DDO->add(1, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key_crc);
+                //$this->oCRNRSTN_SESSION_DDO->add(1, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key_crc);
 
             }else{
 
                 $tmp_prefixed_ddo_key = $this->oCRNRSTN_USR->return_prefixed_ddo_key($session_param_key, $this->oCRNRSTN_USR->env_key);
                 $this->oCRNRSTN_SESSION_DDO->add($val, $tmp_prefixed_ddo_key, $iterator);
-                //$this->oCRNRSTN_SESSION_DDO->add(0, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key_crc);
+                //$this->oCRNRSTN_SESSION_DDO->add(0, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key_crc);
 
             }
 
@@ -854,11 +824,11 @@ class crnrstn_session_manager {
 
 		//
 		// RETURN THE VALUE ASSIGNED TO A PARTICULAR SESSION PARAMETER
-		if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)])){
+		if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)])){
 			
 			//
 			// IF SESSION ENCRYPTION IS ENABLED, WE HAVE TO DECRYPT BEFORE WE CAN CHECK IF EMPTY
-			if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $this->crcINT($session_param_key)]>0){
+			if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $this->crcINT($session_param_key)]>0){
 
 				if(isset(self::$cacheSessionParam_ARRAY[$session_param_key])){
 
@@ -874,9 +844,9 @@ class crnrstn_session_manager {
 
 				}else{
 
-                    if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $this->crcINT($session_param_key)] == 'object'){
+                    if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $this->crcINT($session_param_key)] == 'object'){
 
-                        self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]);
+                        self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]);
 
                         if(is_object(self::$cacheSessionParam_ARRAY[$session_param_key])){
 
@@ -890,7 +860,7 @@ class crnrstn_session_manager {
 
                     }else{
 
-                        self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]));
+                        self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]));
 
                         if(self::$cacheSessionParam_ARRAY[$session_param_key]!=""){
 
@@ -910,7 +880,7 @@ class crnrstn_session_manager {
 				
 				//
 				// NO ENCRYPTION APPLIED TO PARAM. CHECK IF EMPTY.
-				if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]!=""){
+				if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]!=""){
 
 				    return true;
 
@@ -938,21 +908,21 @@ class crnrstn_session_manager {
         if(in_array($tmp_data_type, self::$encryptableDataTypes)){
 
             $tmp_val_encrypted = $this->sessionParamEncrypt($val);
-            $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($tmp_val_encrypted, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_' . $session_param_key, 0, false);
-            $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add(1, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key, 0, false);
+            $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($tmp_val_encrypted, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_' . $session_param_key, 0, false);
+            $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add(1, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key, 0, false);
 
 //            //
 //            // FOR NOW, ARE WE JUST GOING TO ALLOW SESSION STORAGE TO RUN IN PARALLEL?
 //            // WE WILL NEED IT UNTIL EITHER PSSDTLP (JSON INTEGRATION) IS COMPLETE WITH
 //            // FEEDBACK LOOP OR DATABASE...THE SAME.
 //
-//            // 'CRNRSTN_' . $this->crcINT($_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']) . 'CRNRSTN_' . $this->env_key_crc .
+//            // 'CRNRSTN_' . $this->crcINT($_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']) . 'CRNRSTN_' . $this->env_key_crc .
 //            //
 //            // CLEAR POTENTIAL CACHE TO FORCE REFRESH
 //            unset(self::$cacheSessionParam_ARRAY[$session_param_key]);
-//            $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key] = $tmp_val_encrypted;
-//            $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $session_param_key] = 1;
-//            $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $session_param_key] = $tmp_data_type;
+//            $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key] = $tmp_val_encrypted;
+//            $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $session_param_key] = 1;
+//            $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $session_param_key] = $tmp_data_type;
 
         }else{
 
@@ -961,8 +931,8 @@ class crnrstn_session_manager {
             if($tmp_data_type == 'object'){
 
                 $tmp_val_serialized = $this->sessionParamEncrypt(serialize($val));
-                $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($tmp_val_serialized, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_' . $session_param_key, 0, false);
-                $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add(1, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key,  0, false);
+                $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($tmp_val_serialized, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_' . $session_param_key, 0, false);
+                $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add(1, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key,  0, false);
 
 //                //
 //                // FOR NOW, ARE WE JUST GOING TO ALLOW SESSION STORAGE TO RUN IN PARALLEL?
@@ -973,17 +943,17 @@ class crnrstn_session_manager {
 //                // CLEAR POTENTIAL CACHE TO FORCE REFRESH
 //                unset(self::$cacheSessionParam_ARRAY[$session_param_key]);
 //                //error_log(__LINE__ . ' object serialize this $session_param_key=' . $session_param_key);
-//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key] = $tmp_val_serialized;
-//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $session_param_key] = 1;
-//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $session_param_key] = $tmp_data_type;
+//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key] = $tmp_val_serialized;
+//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $session_param_key] = 1;
+//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $session_param_key] = $tmp_data_type;
 
             }else{
 
                 error_log(__LINE__ . ' session '  . __METHOD__ . ':: ' . $tmp_data_type . ' env_key_crc=[' . $this->env_key_crc . '] ' . print_r($val, true) . '. die();');
                 //die();
 
-                $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($val, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_' . $session_param_key, 0, false);
-                $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add(0, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key, 0, false);
+                $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($val, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_' . $session_param_key, 0, false);
+                $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add(0, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_ENCRYPT_' . $session_param_key, 0, false);
 
 //                //
 //                // FOR NOW, ARE WE JUST GOING TO ALLOW SESSION STORAGE TO RUN IN PARALLEL?
@@ -994,9 +964,9 @@ class crnrstn_session_manager {
 //                //
 //                // NOT ENCRYPTABLE
 //                unset(self::$cacheSessionParam_ARRAY[$session_param_key]);
-//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key] = $val;
-//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $session_param_key] = 0;
-//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $session_param_key] = $tmp_data_type;
+//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key] = $val;
+//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $session_param_key] = 0;
+//                $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $session_param_key] = $tmp_data_type;
 
             }
 
@@ -1023,7 +993,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
                             self::$cacheSessionParam_ARRAY[$session_param_key] = $this->sessionParamDecrypt($this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $session_param_key, $soap_transport, $iterator, false));
                             return self::$cacheSessionParam_ARRAY[$session_param_key];
 
@@ -1038,7 +1008,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
                             self::$cacheSessionParam_ARRAY[$session_param_key] = $this->sessionParamDecrypt($this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $session_param_key, $soap_transport, $iterator, false));
 
                             return (integer) self::$cacheSessionParam_ARRAY[$session_param_key];
@@ -1054,7 +1024,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
                             self::$cacheSessionParam_ARRAY[$session_param_key] = $this->sessionParamDecrypt($this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $session_param_key, $soap_transport, $iterator, false));
 
                             return (int) self::$cacheSessionParam_ARRAY[$session_param_key];
@@ -1070,7 +1040,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
                             self::$cacheSessionParam_ARRAY[$session_param_key] = $this->sessionParamDecrypt($this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $session_param_key, $soap_transport, $iterator, false));
 
                             return (double) self::$cacheSessionParam_ARRAY[$session_param_key];
@@ -1086,7 +1056,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
                             self::$cacheSessionParam_ARRAY[$session_param_key] = $this->sessionParamDecrypt($this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $session_param_key, $soap_transport, $iterator, false));
 
                             return (float) self::$cacheSessionParam_ARRAY[$session_param_key];
@@ -1102,7 +1072,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            //self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
                             self::$cacheSessionParam_ARRAY[$session_param_key] = $this->sessionParamDecrypt($this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $session_param_key, $soap_transport, $iterator, false));
 
                             return (boolean) self::$cacheSessionParam_ARRAY[$session_param_key];
@@ -1118,7 +1088,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            //self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]);
+                            //self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]);
                             self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($this->sessionParamDecrypt($this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $session_param_key, $soap_transport, 0, false)));
 
                             return (object) self::$cacheSessionParam_ARRAY[$session_param_key];
@@ -1133,7 +1103,7 @@ class crnrstn_session_manager {
 
                 //
                 // NO ENCRYPTION APPLIED TO PARAM. RETURN SESSION VALUE.
-                //return $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key];
+                //return $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key];
                 return $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $session_param_key, $soap_transport, $iterator, false);
 
             }
@@ -1142,17 +1112,17 @@ class crnrstn_session_manager {
 
         }
 
-        error_log(__LINE__ . ' session ' . __METHOD__ . ' :: Well, apparently we still need $_SESSION to get a parameter (' . $session_param_key . ')! CRNRSTN_ENV_KEY_CRC=' . $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_ENV_KEY_CRC', $soap_transport) . ' returning false;');
+        error_log(__LINE__ . ' session ' . __METHOD__ . ' :: Well, apparently we still need $_SESSION to get a parameter (' . $session_param_key . ')! CRNRSTN_ENV_KEY_CRC=' . $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_ENV_KEY_CRC', $soap_transport) . ' returning false;');
         //die();
         return false;
 
         //
         // RETURN THE VALUE ASSIGNED TO A PARTICULAR SESSION PARAMETER AND ENSURE THAT THE APPROPRIATE TYPE IS CAST
-        if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key])){
+        if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key])){
 
-            if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $session_param_key] > 0){
+            if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $session_param_key] > 0){
 
-                switch($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $session_param_key]){
+                switch($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $session_param_key]){
                     case 'string':
 
                         if(isset(self::$cacheSessionParam_ARRAY[$session_param_key])){
@@ -1161,7 +1131,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
 
                             return self::$cacheSessionParam_ARRAY[$session_param_key];
 
@@ -1176,7 +1146,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
 
                             return (integer) self::$cacheSessionParam_ARRAY[$session_param_key];
 
@@ -1191,7 +1161,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
 
                             return (int) self::$cacheSessionParam_ARRAY[$session_param_key];
 
@@ -1206,7 +1176,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
 
                             return (double) self::$cacheSessionParam_ARRAY[$session_param_key];
 
@@ -1221,7 +1191,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
 
                             return (float) self::$cacheSessionParam_ARRAY[$session_param_key];
 
@@ -1236,7 +1206,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
+                            self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]));
 
                             return (boolean) self::$cacheSessionParam_ARRAY[$session_param_key];
 
@@ -1251,7 +1221,7 @@ class crnrstn_session_manager {
 
                         }else{
 
-                            self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]);
+                            self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key]);
 
                             return (object) self::$cacheSessionParam_ARRAY[$session_param_key];
 
@@ -1265,7 +1235,7 @@ class crnrstn_session_manager {
 
                 //
                 // NO ENCRYPTION APPLIED TO PARAM. RETURN SESSION VALUE.
-                return $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key];
+                return $_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $session_param_key];
 
             }
 
@@ -1285,11 +1255,11 @@ class crnrstn_session_manager {
 
         //
         // RETURN THE VALUE ASSIGNED TO A PARTICULAR SESSION PARAMETER
-        if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)])){
+        if(isset($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)])){
 
             //
             // IF SESSION ENCRYPTION IS ENABLED, WE HAVE TO DECRYPT BEFORE WE CAN CHECK IF EMPTY
-            if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $this->crcINT($session_param_key)]>0){
+            if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_ENCRYPT_' . $this->crcINT($session_param_key)]>0){
 
                 if(isset(self::$cacheSessionParam_ARRAY[$session_param_key])){
 
@@ -1305,9 +1275,9 @@ class crnrstn_session_manager {
 
                 }else{
 
-                    if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $this->crcINT($session_param_key)] == 'object'){
+                    if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_DTYPE_' . $this->crcINT($session_param_key)] == 'object'){
 
-                        self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]);
+                        self::$cacheSessionParam_ARRAY[$session_param_key] = unserialize($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]);
 
                         if(is_object(self::$cacheSessionParam_ARRAY[$session_param_key])){
 
@@ -1321,7 +1291,7 @@ class crnrstn_session_manager {
 
                     }else{
 
-                        self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]));
+                        self::$cacheSessionParam_ARRAY[$session_param_key] = trim($this->sessionParamDecrypt($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]));
 
                         if(self::$cacheSessionParam_ARRAY[$session_param_key]!=""){
 
@@ -1341,7 +1311,7 @@ class crnrstn_session_manager {
 
                 //
                 // NO ENCRYPTION APPLIED TO PARAM. CHECK IF EMPTY.
-                if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]!=""){
+                if($_SESSION['CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH']]['CRNRSTN_' . $this->env_key_crc]['CRNRSTN_' . $this->crcINT($session_param_key)]!=""){
 
                     return true;
 
@@ -1363,9 +1333,9 @@ class crnrstn_session_manager {
 
     public function getSessionKey(){
 
-        if($this->oCRNRSTN_SESSION_DDO->preach('isset', 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_ENV_KEY_CRC')){
+        if($this->oCRNRSTN_SESSION_DDO->preach('isset', 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_ENV_KEY_CRC')){
 
-            return $this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] . 'CRNRSTN_ENV_KEY_CRC');
+            return $this->oCRNRSTN_SESSION_DDO->preach('value', 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_ENV_KEY_CRC');
 
         }
 
@@ -1377,9 +1347,9 @@ class crnrstn_session_manager {
 	
 	public function setSessionIp($key, $ip){
 
-	    $this->oCRNRSTN_SESSION_DDO->add($ip,'CRNRSTN_' . $this->config_serial_crc . $this->crcINT($key));
+	    $this->oCRNRSTN_SESSION_DDO->add($ip,'CRNRSTN_' . $this->config_serial_hash . $this->crcINT($key));
 
-		$_SESSION['CRNRSTN_' . $this->config_serial_crc . $this->crcINT($key)] = $ip;
+		$_SESSION['CRNRSTN_' . $this->config_serial_hash . $this->crcINT($key)] = $ip;
 
 	}
 	

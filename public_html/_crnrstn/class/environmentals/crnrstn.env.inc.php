@@ -53,9 +53,9 @@
 #
 class crnrstn_environment {
 
-    public $config_serial_crc;
     private static $config_serial;
-    
+    public $config_serial_hash;
+
     protected $oLogger;
 
     private static $oLog_ProfileManager;
@@ -66,7 +66,8 @@ class crnrstn_environment {
     private static $system_database_table_prefix = 'crnrstn_';
 
     public $env_key;
-    public $env_key_crc;
+    public $env_key_hash;
+    protected $system_hash_algo;
 
     public $oCRNRSTN;
     public $oCRNRSTN_USR;
@@ -87,10 +88,10 @@ class crnrstn_environment {
     public $encryptableDataTypes = array();
     private static $openssl_digest_profile;
     public $system_resource_constants = array();
-    public $system_style_profile_constants = array();
+    public $system_theme_style_constants_ARRAY = array();
     public $system_output_profile_constants = array();
     public $system_output_channel_constants = array();
-    private static $creativeElementsKeys = array();
+    private static $system_creative_element_keys_ARRAY = array();
     private static $weighted_elements_keys_ARRAY = array();
     public $soap_permissions_file_path_ARRAY = array();
     public $response_header_attribute_ARRAY = array();
@@ -125,8 +126,9 @@ class crnrstn_environment {
     public function __construct($oCRNRSTN, $instanceType = NULL, $WORDPRESS_debug_mode = NULL) {
 
         $this->oCRNRSTN = $oCRNRSTN;
-        $this->env_key = $oCRNRSTN->env_key;
-        $this->env_key_crc = $oCRNRSTN->env_key_crc;
+        $this->env_key = $oCRNRSTN->get_server_env();
+        $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
+        $this->system_hash_algo = $oCRNRSTN->system_hash_algorithm();
         $this->starttime = $oCRNRSTN->starttime;
         self::$system_database_table_prefix = $oCRNRSTN->system_database_table_prefix;
         $this->sys_notices_creative_mode = $oCRNRSTN->sys_notices_creative_mode;
@@ -141,12 +143,12 @@ class crnrstn_environment {
         // INITIALIZE ENCRYPTION PROFILE
         $this->init_encrypt_profile($oCRNRSTN);
 
-        $this->system_resource_constants = $oCRNRSTN->system_resource_constants;
-        $this->system_style_profile_constants = $oCRNRSTN->system_style_profile_constants;
+        $this->system_resource_constants = $oCRNRSTN->system_resource_constants();
+        $this->system_theme_style_constants_ARRAY = $oCRNRSTN->system_theme_style_constants_ARRAY;
         $this->system_output_profile_constants = $oCRNRSTN->system_output_profile_constants;
         $this->system_output_channel_constants = $oCRNRSTN->system_output_channel_constants;
 
-        self::$creativeElementsKeys = $oCRNRSTN->creativeElementsKeys;
+        self::$system_creative_element_keys_ARRAY = $oCRNRSTN->system_creative_element_keys_ARRAY;
         self::$weighted_elements_keys_ARRAY = $oCRNRSTN->weighted_elements_keys_ARRAY;
 
         self::$lang_content_ARRAY = $oCRNRSTN->return_lang_content_ARRAY();
@@ -171,8 +173,8 @@ class crnrstn_environment {
         self::$oLog_ProfileManager = $oCRNRSTN->return_oLog_ProfileManager();
         self::$oLog_ProfileManager->sync_to_environment($oCRNRSTN, $this);
 
-        $this->config_serial_crc = $oCRNRSTN->config_serial_crc;
-        self::$config_serial = $oCRNRSTN->return_config_serial('raw');
+        $this->config_serial_hash = $oCRNRSTN->get_server_config_serial('hash');
+        self::$config_serial = $oCRNRSTN->get_server_config_serial('raw');
         $this->oCRNRSTN_MEDIA_CONVERTOR = $oCRNRSTN->oCRNRSTN_MEDIA_CONVERTOR;
 
         $this->oLogger = new crnrstn_logging(__CLASS__, $this);
@@ -186,7 +188,6 @@ class crnrstn_environment {
         $this->oHTTP_MGR = new crnrstn_http_manager($oCRNRSTN, $this);
         $this->oFINITE_EXPRESS = new finite_expression();
 
-
         // August 20, 2022 @ 0418 hrs
         // UNTIL WE GET SESSION MGMT NAILED DOWN (DATABASE, COOKIE, SSDTLA, PSSDTLA, AND SESSION) THIS WILL
         // ALWAYS EVALUATE TO TRUE. NO SESSION PINGS, YET). RUNTIME OPERATION GOES FROM 0-100 WITH NO
@@ -198,9 +199,7 @@ class crnrstn_environment {
 
                 //
                 //  DETERMINE KEY DESIGNATING THE RUNNING ENVIRONMENT, WHERE KEY = CRC32(env key)
-                $this->env_key_crc = $oCRNRSTN->get_server_env('crc');
-
-                if($this->env_key_crc == ''){
+                if($this->env_key_hash == ''){
 
                     //
                     // WE DON'T HAVE THE ENVIRONMENT DETECTED. THROW EXCEPTION.
@@ -214,13 +213,11 @@ class crnrstn_environment {
 
                 }else{
 
-                    $this->env_key = $oCRNRSTN->env_key_ARRAY[$this->config_serial_crc][$this->env_key_crc];
-
                     // TODO :: DO NOT RUN THIS AGAIN. FIGURE SOMETHING ELSE OUT.
                     // FLASH WILD CARD RESOURCES OBJECT ARRAY TO ENVIRONMENTAL CLASS OBJECT
                     //$this->initializeWildCardResource($oCRNRSTN);
 
-                    $this->oSESSION_MGR = new crnrstn_session_manager($this);
+                    //$this->oSESSION_MGR = new crnrstn_session_manager($oCRNRSTN);
 
                     $this->oCRNRSTN_IPSECURITY_MGR = clone $oCRNRSTN->oCRNRSTN_IPSECURITY_MGR;
                     unset($oCRNRSTN->oCRNRSTN_IPSECURITY_MGR);
@@ -240,7 +237,7 @@ class crnrstn_environment {
 
                     //
                     // INITIALIZE IP ADDRESS RESTRICTIONS from grantExclusiveAccess()
-                    if(isset($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
+                    if(isset($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
 
                         $this->initExclusiveAccess($oCRNRSTN);
 
@@ -248,7 +245,7 @@ class crnrstn_environment {
 
                     //
                     // INITIALIZE IP ADDRESS RESTRICTIONS from denyAccess()
-                    if(isset($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
+                    if(isset($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
 
                         $this->initDenyAccess($oCRNRSTN);
 
@@ -256,7 +253,7 @@ class crnrstn_environment {
 
                     //
                     // INITIALIZE ADMINISTRATOR ACCESS
-                    if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
+                    if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
 
                         $this->initAdminAccess($oCRNRSTN);
 
@@ -264,13 +261,13 @@ class crnrstn_environment {
 
                     //
                     // BEFORE ALLOCATING ADDITIONAL MEMORY RESOURCES, PROCESS IP AUTHENTICATION
-                    if(isset($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc]) || isset($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
+                    if(isset($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]) || isset($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
                         //error_log(__LINE__ . ' env env_key=[' . $this->env_key . ']. die();');
 
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have IP restrictions to process and apply for CRNRSTN :: config_serial_crc [' . $this->config_serial_crc . '] and environment key [' . $this->env_key_crc . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have IP restrictions to process and apply for CRNRSTN :: config_serial_hash [' . $this->config_serial_hash . '] and environment key [' . $this->env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
                         //error_log(__LINE__ . ' env env_key=[' . $this->env_key . ']. die();');
 
-                        if(!$this->oCRNRSTN_IPSECURITY_MGR->authorizeEnvAccess($this, $this->env_key_crc)){
+                        if(!$this->oCRNRSTN_IPSECURITY_MGR->authorizeEnvAccess($this, $this->env_key_hash)){
                             error_log(__LINE__ . ' env authorizeEnvAccess() DENINED ON env_key=[' . $this->env_key . ']. die();');
 
                             die();
@@ -285,7 +282,7 @@ class crnrstn_environment {
 
                     }else{
 
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('There are NO IP restrictions to process and apply for CRNRSTN :: config_serial_crc [' . $this->config_serial_crc . '] and environment key [' . $this->env_key_crc . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('There are NO IP restrictions to process and apply for CRNRSTN :: config_serial_hash [' . $this->config_serial_hash . '] and environment key [' . $this->env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     }
 
@@ -479,8 +476,11 @@ class crnrstn_environment {
 
     private function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL'){
 
+        error_log(__LINE__ . ' env ' . __METHOD__ . ' die();');
+        die();
+
         // $env_key = CRNRSTN_RESOURCE_ALL
-        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_crc, $env_key, $data_type_family);
+        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
 
         return $tmp_dataset_prefix_str . $resource_key;
 
@@ -1269,7 +1269,7 @@ class crnrstn_environment {
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
         //$this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
         $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $this->oCRNRSTN->generate_new_key(64), 'crnrstn_client_auth_key');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_crc], 'crnrstn_client_id');
+        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_hash], 'crnrstn_client_id');
 
         $tmp_str_array[] = '
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
@@ -1410,6 +1410,8 @@ class crnrstn_environment {
     }
 
     private function return_file_path_user_class(){
+
+        return CRNRSTN_ROOT . '/_crnrstn/class/user/crnrstn.user.inc.php';
 
         //
         // CLASS DEFINITION BY SUPPORTED PHP VERSION
@@ -1601,177 +1603,6 @@ class crnrstn_environment {
         $oChunkRestrictData = new crnrstn_chunk_restrictor($tmp_page_content, $max_len, $this, $encoding);
 
         return $oChunkRestrictData;
-
-    }
-
-    public function return_dataset_nomination_prefix($output_format = NULL, $var0 = NULL, $var1 = NULL, $var2 = NULL, $var3 = NULL, $var4 = NULL, $var5 = NULL, $var6 = NULL, $var7 = NULL, $var8 = NULL, $var9 = NULL, $var10 = NULL, $var11 = NULL){
-
-        $tmp_var_index_pos = 0;
-        $tmp_total_index = 0;
-
-        if(!isset($output_format)){
-
-            $output_format = 'array';
-
-        }
-
-        $tmp_str_out = '';
-        $tmp_array_str_unit_ARRAY = array();
-        $tmp_array_out_ARRAY = array();
-
-        if(isset($var0)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var0);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var1)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var1);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var2)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var2);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var3)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var3);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var4)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var4);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var5)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var5);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var6)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var6);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var7)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var7);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var8)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var8);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var9)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var9);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var10)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var10);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var11)){
-
-            $tmp_total_index++;
-            $tmp_crc = $this->crcINT($var11);
-            $tmp_str_out .= $tmp_crc . '::';
-            $tmp_array_str_unit_ARRAY[] = $tmp_crc;
-
-        }
-
-        $tmp_array_out_ARRAY['string'] = $tmp_str_out;
-        $tmp_array_out_ARRAY['index_array'] = $tmp_array_str_unit_ARRAY;
-
-        if($output_format == 'array') {
-
-            return $tmp_array_out_ARRAY;
-
-        }
-
-        //
-        // $output_format = 'string'
-        return $tmp_array_out_ARRAY['string'];
 
     }
 
@@ -2436,187 +2267,6 @@ class crnrstn_environment {
 
     }
 
-    public function is_configured($oCRNRSTN){
-
-        /*
-        CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SELECTION OF
-        SESSION CHANNEL DATA TUNNEL LAYER ARCHITECTURE
-        0 :: D :: DATABASE (MySQLi Connection)
-        1 :: S :: SSDTL PACKET (SOAP OBJECT)
-        2 :: J :: PSSDTL PACKET (JSON OBJECT)
-        3 :: P :: $_SERVER SESSION (PHP SESSION ARRAY SUPER GLOBAL)
-        4 :: C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)
-
-        DSJPC
-        */
-        
-        //
-        // INSTANTIATE SESSION MANAGER
-        $this->oSESSION_MGR = new crnrstn_session_manager($this);
-
-        //
-        // CHECK DATABASE FOR EXISTING SESSION FOR PRELOAD OF SESSION
-        if($this->oSESSION_MGR->get_session_param('crnrstn_client_auth_key')){
-
-            //
-            // NO SESSION AUTHORIZATION KEY. CREATE NEW SYSTEM SESSION.
-            $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_client_auth_key');
-            $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_crc], 'crnrstn_client_id');
-
-
-        }
-
-        error_log(__LINE__ . ' env ' . __METHOD__ . ':: STOPPED UNTIL DATABASE DRIVEN SESSION INITIALIZATION COMPLETED. die();');
-        die();
-
-        //
-        // DO WE HAVE SESSION DATA IN LINE WITH THE CONFIGURATION SERIALIZATION
-        if(isset($_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_ENV_KEY_CRC'])){
-
-            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('sessionid[' . session_id() . '] has been initialized by CRNRSTN ::. current value of CRNRSTN_ENV_KEY_CRC [' . $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_ENV_KEY_CRC'] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-            //
-            // SESSION IS SET
-            try{
-                
-                //
-                // DETERMINE KEY DESIGNATING THE RUNNING ENVIRONMENT, WHERE KEY = $this->crcINT(env key)
-//                $oCRNRSTN->setServerEnv();
-
-                $this->env_key_crc = $oCRNRSTN->get_server_env();
-
-                if($this->env_key_crc == ''){
-
-                    //
-                    // WE DON'T HAVE THE ENVIRONMENT DETECTED. THROW EXCEPTION.
-                    // HOOOSTON...VE HAF PROBLEM!
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('ERROR :: unable to detect environment on server.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                    return false;
-
-                }else{
-
-                    $this->env_key = $oCRNRSTN->env_key_ARRAY[$this->config_serial_crc][$this->env_key_crc];
-                    $this->env_key_crc = $this->crcINT($this->env_key);
-
-                    //
-                    // FLASH WILD CARD RESOURCES OBJECT ARRAY TO ENVIRONMENTAL CLASS OBJECT
-                    $this->initializeWildCardResource($oCRNRSTN);
-
-                    $this->oCRNRSTN_IPSECURITY_MGR = clone $oCRNRSTN->oCRNRSTN_IPSECURITY_MGR;
-                    unset($oCRNRSTN->oCRNRSTN_IPSECURITY_MGR);
-
-                    //
-                    // WE HAVE SELECTED ENVIRONMENT KEY. INITIALIZE. CONFIG KEY AND ENV KEY.
-                    // FLASH CONFIG KEY AND ENV KEY TO SESSION.
-                    $this->initRuntimeConfig();
-
-                    //
-                    // INITIALIZE ERROR REPORTING FOR THIS ENVIRONMENT
-                    $this->initializeErrorReporting($oCRNRSTN);
-
-                    //
-                    // INITIALIZE ENVIRONMENTAL LOGGING BEHAVIOR
-                    $this->initEnvLoggingProfile($oCRNRSTN);
-
-                    //
-                    // INITIALIZE IP ADDRESS RESTRICTIONS from grantExclusiveAccess()
-                    if(isset($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
-
-                        $this->initExclusiveAccess($oCRNRSTN);
-
-                    }
-
-                    //
-                    // INITIALIZE IP ADDRESS RESTRICTIONS from denyAccess()
-                    if(isset($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
-
-                        $this->initDenyAccess($oCRNRSTN);
-
-                    }
-
-                    //
-                    // INITIALIZE ADMINISTRATOR ACCESS
-                    if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
-
-                        $this->initAdminAccess($oCRNRSTN);
-
-                    }
-
-                    //
-                    // INITIALIZE DATABASE
-                    $this->oMYSQLI_CONN_MGR = clone $oCRNRSTN->oMYSQLI_CONN_MGR;
-                    $this->oMYSQLI_CONN_MGR->setEnvironment($this);
-
-                    //
-                    // BEFORE ALLOCATING ADDITIONAL MEMORY RESOURCES, PROCESS IP AUTHENTICATION
-                    if(isset($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc]) || isset($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
-
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have IP restrictions to process and apply for CRNRSTN :: config_serial_crc [' . $this->config_serial_crc . '] and environment key [' . $this->env_key_crc . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                        if(!$this->oCRNRSTN_IPSECURITY_MGR->authorizeEnvAccess($this, $this->env_key_crc)){
-
-                            //
-                            // WE COULD PERHAPS USE A MORE GRACEFUL WAY TO TRANSITION TO ERR...BUT THIS WORKS
-                            // THE METHOD return_server_resp_status() CONTAINS SOME CUSTOM HTML FOR OUTPUT IF YOU WANT TO TWEAK ITS DESIGN
-                            // PERHAPS SOME FUTURE RELEASE OF CRNRSTN CAN
-                            $this->return_server_resp_status(403, $this->return_CRNRSTN_ASCII_ART());
-                            exit();
-
-                        }
-
-                    }else{
-
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('There are NO IP restrictions to process and apply for CRNRSTN :: config_serial_crc [' . $this->config_serial_crc . '] and environment key [' . $this->env_key_crc . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                    }
-
-                    //
-                    // INITIALIZE SOAP AUTHORIZATION PROFILES FOR THIS ENVIRONMENT
-                    //$this->initSOAPAuthorizationProfiles();
-
-                    //
-                    // INITIALIZE WORDPRESS CONFIGURATION PROFILE(S) FOR THIS ENVIRONMENT
-                    //$this->init_wp_config($oCRNRSTN);
-
-                    //
-                    // INITIALIZE ANALYTICS CONFIGURATION PROFILE(S) FOR THIS ENVIRONMENT
-                    $this->init_analytics_config($oCRNRSTN);
-
-                    //
-                    // INITIALIZE ENGAGEMENT TRACKING CONFIGURATION PROFILE(S) FOR THIS ENVIRONMENT
-                    $this->init_engagement_config($oCRNRSTN);
-
-                    //
-                    // END OF CRNRSTN ENVIRONMENTAL CONFIG OPERATION
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('You have reached the end of the CRNRSTN :: environmental detection and configuration process. All remaining config data exists in (and will be pulled from) session[' . session_id() . '] for optimized loading experience.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                    return true;
-
-                }
-
-            } catch( Exception $e ) {
-
-                //
-                // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-                $oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-                return false;
-
-            }
-
-        }else{
-            
-            //
-            // NO SESSION SET
-            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('session[' . session_id() . '] has not been initialized with CRNRSTN :: configuration yet. process all config parameters and initialize.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-            return false;
-
-        }
-
-    }
-
 //    private function remove_previous_sess_env_detect_data($oCRNRSTN){
 //
 //        $oCRNRSTN->oLog_output_ARRAY = $this->oLog_output_ARRAY;
@@ -2627,11 +2277,11 @@ class crnrstn_environment {
 //
 //    }
 
-    public function return_config_serial($output_format){
+    public function get_server_config_serial($output_format){
 
-        if($output_format === 'crc'){
+        if($output_format === 'hash'){
 
-            return $this->config_serial_crc;
+            return $this->config_serial_hash;
 
         }
 
@@ -2798,9 +2448,9 @@ class crnrstn_environment {
 
     private function ___init_wp_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $wp_config_file_path){
+            foreach($oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $wp_config_file_path){
 
                 if(is_file($wp_config_file_path)){
 
@@ -2808,11 +2458,11 @@ class crnrstn_environment {
 
                     //
                     // EXTRACT PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($wp_config_file_path);
 
-                    $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
+                    $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
 
                 }else{
 
@@ -2824,9 +2474,9 @@ class crnrstn_environment {
 
         }else{
 
-            if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc]){
+            if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
 
-                foreach($oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc] as $key => $wp_config_file_path){
+                foreach($oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash] as $key => $wp_config_file_path){
 
                     if(is_file($wp_config_file_path)){
 
@@ -2834,11 +2484,11 @@ class crnrstn_environment {
 
                         //
                         // EXTRACT PROFILE FROM FILE
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         include_once($wp_config_file_path);
 
-                        $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
+                        $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
 
                     }else{
 
@@ -2860,9 +2510,9 @@ class crnrstn_environment {
 
     private function init_analytics_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $analytics_config_file_path){
+            foreach($oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $analytics_config_file_path){
 
                 if(is_file($analytics_config_file_path)){
 
@@ -2870,11 +2520,11 @@ class crnrstn_environment {
 
                     //
                     // EXTRACT PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($analytics_config_file_path);
 
-                    $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
+                    $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
 
                 }else{
 
@@ -2886,9 +2536,9 @@ class crnrstn_environment {
 
         }else{
 
-            if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc]){
+            if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
 
-                foreach($oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc] as $key => $analytics_config_file_path){
+                foreach($oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash] as $key => $analytics_config_file_path){
 
                     if(is_file($analytics_config_file_path)){
 
@@ -2896,11 +2546,11 @@ class crnrstn_environment {
 
                         //
                         // EXTRACT PROFILE FROM FILE
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         include_once($analytics_config_file_path);
 
-                        $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
+                        $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
 
                     }else{
 
@@ -3346,9 +2996,9 @@ class crnrstn_environment {
 
     private function init_engagement_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $engagement_config_file_path){
+            foreach($oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $engagement_config_file_path){
 
                 if(is_file($engagement_config_file_path)){
 
@@ -3356,11 +3006,11 @@ class crnrstn_environment {
 
                     //
                     // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_crc][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($engagement_config_file_path);
 
-                    $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
+                    $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
 
                 }else{
 
@@ -3372,9 +3022,9 @@ class crnrstn_environment {
 
         }else{
 
-            if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc]){
+            if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
 
-                foreach($oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc] as $key => $engagement_config_file_path){
+                foreach($oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash] as $key => $engagement_config_file_path){
 
                     if(is_file($engagement_config_file_path)){
 
@@ -3382,11 +3032,11 @@ class crnrstn_environment {
 
                         //
                         // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         include_once($engagement_config_file_path);
 
-                        $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
+                        $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
 
                     }else{
 
@@ -3408,16 +3058,16 @@ class crnrstn_environment {
 
     private function __initSOAPAuthorizationProfiles(){
 
-        if(!!$this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$this->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$this->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $soap_config_file_path){
+            foreach($this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $soap_config_file_path){
 
                 if(is_file($soap_config_file_path)){
 
                     //
                     // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$this->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                    //include_once($this->soap_permissions_file_path_ARRAY[$this->crcINT($this->config_serial_crc)][$this->env_key_crc][$key]);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    //include_once($this->soap_permissions_file_path_ARRAY[$this->crcINT($this->config_serial_hash)][$this->env_key_hash][$key]);
                     include_once($soap_config_file_path);
 
                 }else{
@@ -3430,16 +3080,16 @@ class crnrstn_environment {
 
         }else{
 
-            if(!!$this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc]){
+            if(!!$this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
 
-                foreach($this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc] as $key => $soap_config_file_path){
+                foreach($this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash] as $key => $soap_config_file_path){
 
                     if(is_file($soap_config_file_path)){
 
                         //
                         // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                        //include_once($this->soap_permissions_file_path_ARRAY[$this->config_serial_crc][$this->env_key_crc][$key]);
+                        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        //include_once($this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->env_key_hash][$key]);
                         include_once($soap_config_file_path);
 
                     }else{
@@ -3786,7 +3436,7 @@ class crnrstn_environment {
 
         //
         // DETECTED RESOURCE KEY
-        if(isset($this->env_key_crc)){
+        if(isset($this->env_key_hash)){
 
             //
             // CLEAR OUT BITS FOR NEW LOGGING PROFILE DATA
@@ -3800,8 +3450,8 @@ class crnrstn_environment {
 
             //
             // RETRIEVE LOGGING PROFILE DATA FROM CRNRSTN ::
-            self::$sys_logging_profile_ARRAY = $oCRNRSTN->return_logging_profile($this->env_key_crc);
-            self::$sys_logging_meta_ARRAY = $oCRNRSTN->return_logging_meta($this->env_key_crc);
+            self::$sys_logging_profile_ARRAY = $oCRNRSTN->return_logging_profile($this->env_key_hash);
+            self::$sys_logging_meta_ARRAY = $oCRNRSTN->return_logging_meta($this->env_key_hash);
 
             //
             // PROCESS BITWISE DATA FOR LOGGING PROFILE
@@ -3824,20 +3474,20 @@ class crnrstn_environment {
     
     private function initRuntimeConfig(){
 
-        $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($this->env_key_crc,'CRNRSTN_' . $this->config_serial_crc . 'CRNRSTN_ENV_KEY_CRC');
+        //$this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($this->env_key_hash,'CRNRSTN_' . $this->config_serial_hash . 'CRNRSTN_ENV_KEY_CRC');
 
         //
         // INITIALIZE CONFIG AND ENV KEYS.
-        #$_SESSION['CRNRSTN_CONFIG_SERIAL_CRC'] = $this->config_serial_crc;  # MOVED TO CRNRSTN __construct() @ ~line 105
-        $_SESSION['CRNRSTN_' . $this->config_serial_crc]['CRNRSTN_ENV_KEY_CRC'] = $this->env_key_crc;
-        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize session[' . session_id() . '] with CRNRSTN :: config_serial_crc [' . $this->config_serial_crc . '] and environmental resource key [' . $this->env_key_crc . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        #$_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] = $this->config_serial_hash;  # MOVED TO CRNRSTN __construct() @ ~line 105
+        //$_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_ENV_KEY_CRC'] = $this->env_key_hash;
+        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize session[' . session_id() . '] with CRNRSTN :: config_serial_hash [' . $this->config_serial_hash . '] and environmental resource key [' . $this->env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
         
     }
     
     private function initializeErrorReporting($oCRNRSTN){
 
-        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize server error_reporting() to [' . $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_crc][$this->env_key_crc] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-        error_reporting((int) $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_crc][$this->env_key_crc]);
+        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize server error_reporting() to [' . $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        error_reporting((int) $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
 
     }
 
@@ -3845,21 +3495,21 @@ class crnrstn_environment {
         
         //
         // PROCESS IP ADDRESS ACCESS AND RESTRICTION FOR SELECTED ENVIRONMENT
-        if(is_file($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
+        if(is_file($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
             
             //
             // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for exclusive access IP restrictions at [' . $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-            include_once($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc]);
+            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for exclusive access IP restrictions at [' . $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            include_once($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
             
         }else{
             
             //
             // DO WE HAVE ANY IP DATA TO PROCESS
-            if($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc] != ''){
+            if($oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] != ''){
 
-                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Process grant exclusive access IP[' . $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc] . '] for this connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                $this->oCRNRSTN_IPSECURITY_MGR->grantAccessWKey($this->env_key_crc, $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc]);
+                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Process grant exclusive access IP[' . $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '] for this connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->oCRNRSTN_IPSECURITY_MGR->grantAccessWKey($this->env_key_hash, $oCRNRSTN->grant_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
 
             }else{
 
@@ -3873,19 +3523,19 @@ class crnrstn_environment {
     
     private function initDenyAccess($oCRNRSTN){
 
-        if(is_file($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc])){
+        if(is_file($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
             
             //
             // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for deny access IP restrictions at [' . $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-            include_once($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc]);
+            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for deny access IP restrictions at [' . $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            include_once($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
                 
         }else{
 
-            if($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc] != ""){
+            if($oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] != ""){
 
-                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Process deny access IP[' . $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc] . '] for this connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                $this->oCRNRSTN_IPSECURITY_MGR->denyAccessWKey($this->env_key_crc, $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_crc][$this->env_key_crc]);
+                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Process deny access IP[' . $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '] for this connection.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->oCRNRSTN_IPSECURITY_MGR->denyAccessWKey($this->env_key_hash, $oCRNRSTN->deny_accessIP_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
 
             }else{
                 
@@ -3899,17 +3549,17 @@ class crnrstn_environment {
 
     private function initAdminAccess($oCRNRSTN){
 
-        $tmp_cnt = sizeof($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc]['email']);
+        $tmp_cnt = sizeof($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['email']);
 
         for($i = 0; $i < $tmp_cnt; $i++){
 
-            $tmp_email = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc]['email'][$i];
-            $tmp_pwdhash = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc]['pwdhash'][$i];
-            $tmp_ttl = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc]['ttl'][$i];
+            $tmp_email = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['email'][$i];
+            $tmp_pwdhash = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['pwdhash'][$i];
+            $tmp_ttl = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['ttl'][$i];
 
-            if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc]['max_login_attempts'][$i])){
+            if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['max_login_attempts'][$i])){
 
-                $this->max_login_attempts = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc]['max_login_attempts'][$i];
+                $this->max_login_attempts = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['max_login_attempts'][$i];
 
             }else{
 
@@ -3917,9 +3567,9 @@ class crnrstn_environment {
 
             }
 
-            if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc]['seconds_inactive'][$i])){
+            if(isset($oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['seconds_inactive'][$i])){
 
-                $this->max_seconds_inactive = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_crc][$this->env_key_crc]['seconds_inactive'][$i];
+                $this->max_seconds_inactive = $oCRNRSTN->add_admin_creds_ARRAY[$this->config_serial_hash][$this->env_key_hash]['seconds_inactive'][$i];
 
             }else{
 
@@ -3963,11 +3613,11 @@ class crnrstn_environment {
 
     }
     
-    public function return_env_key_crc(){
+    public function return_env_key_hash(){
         
         //
         // RETURN RESOURCE KEY FOR DETECTED ENVIRONMENT
-        return $this->env_key_crc;
+        return $this->env_key_hash;
 
     }
 
@@ -4435,19 +4085,66 @@ class crnrstn_environment {
 
     }
 
-    public function return_param_tunnel_encrypt_settings($val, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
+    public function return_encrypt_settings($val, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         $tmp_settings_array = array();
         $tmp_settings_array['raw data length'] = strlen($val);
 
-        if(isset($cipher_override) || $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true)){
+        switch($encryption_channel){
+            case CRNRSTN_ENCRYPT_TUNNEL:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_DATABASE:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::DATABASE_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_SESSION:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SESSION_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_COOKIE:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::COOKIE_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_SOAP:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SOAP_ENCRYPTION';
+
+                break;
+            case CRNRSTN_ENCRYPT_OERSL:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::OERSL_ENCRYPTION';
+
+            break;
+            default:
+                //
+                // CRNRSTN_ENCRYPT_TUNNEL
+
+                //
+                // RETRIEVE DATA
+                // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                $this->error_log('Unknown encryption channel constant provided to ' . __METHOD__ .'. Tunnel encryption profile has been applied.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            break;
+
+        }
+
+        $tmp_encrypt_cipher = $this->oCRNRSTN->get_resource('encrypt_cipher', 0, $data_type_family);
+
+        if(isset($cipher_override) || $tmp_encrypt_cipher != ''){
 
             //
             // RETRIEVE DATA FROM SESSION DDO
-            $tmp_encrypt_cipher = $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true);
-            $tmp_encrypt_secret_key = $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->return_prefixed_ddo_key('encrypt_secret_key', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true);
-            $tmp_encrypt_options = $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->return_prefixed_ddo_key('encrypt_options', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true);
-            $tmp_hmac_alg = $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->return_prefixed_ddo_key('hmac_alg', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true);
+
+            $tmp_encrypt_secret_key = $this->oCRNRSTN->get_resource('encrypt_secret_key', 0, $data_type_family);
+            $tmp_encrypt_options = $this->oCRNRSTN->get_resource('encrypt_options', 0, $data_type_family);
+            $tmp_hmac_alg = $this->oCRNRSTN->get_resource('hmac_alg', 0, $data_type_family);
 
             //
             // ENABLE CIPHER OVERRIDE :: v2.0.0
@@ -4531,7 +4228,7 @@ class crnrstn_environment {
 
     }
 
-    public function return_param_tunnel_decrypt_settings($data, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
+    public function return_decrypt_settings($data, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         try{
 
@@ -4545,15 +4242,11 @@ class crnrstn_environment {
 
             }else{
 
-                if($uri_passthrough == true){
+                //
+                // BACK OUT OF URL ENCODING
+                $data = urldecode($data);
 
-                    //
-                    // BACK OUT OF URL ENCODING
-                    $data = urldecode($data);
-
-                }
-
-                return $this->tunnel_param_decrypt_settings($data, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+                return $this->decrypt_settings($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
             }
 
@@ -4579,19 +4272,65 @@ class crnrstn_environment {
     // - $encrypt_profile_array['hmac_algorithm']
     // - $encrypt_profile_array['digest']
     // - $encrypt_profile_array['results']  ...SUCCESS" or "hash_equals FAIL :: ERROR"
-    public function tunnel_param_decrypt_settings($val, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
+    public function decrypt_settings($val, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
 
         $encrypt_profile_array = array();
         $encrypt_profile_array['raw data length'] = strlen($val);
 
-        if(isset($cipher_override) || $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true)){
+        switch($encryption_channel){
+            case CRNRSTN_ENCRYPT_TUNNEL:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_DATABASE:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::DATABASE_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_SESSION:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SESSION_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_COOKIE:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::COOKIE_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_SOAP:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SOAP_ENCRYPTION';
+
+            break;
+            case CRNRSTN_ENCRYPT_OERSL:
+
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::OERSL_ENCRYPTION';
+
+            break;
+            default:
+                //
+                // CRNRSTN_ENCRYPT_TUNNEL
+
+                //
+                // RETRIEVE DATA
+                // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                $this->error_log('Unknown encryption channel constant provided to ' . __METHOD__ .'. Tunnel encryption profile has been applied.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            break;
+
+        }
+
+        $tmp_encrypt_cipher = $this->oCRNRSTN->get_resource('encrypt_cipher', 0, $data_type_family);
+
+        if(isset($cipher_override) || $tmp_encrypt_cipher != ''){
 
             //
-            // RETRIEVE DATA FROM SESSION DDO
-            $tmp_encrypt_cipher = $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true);
-            $tmp_encrypt_secret_key = $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->return_prefixed_ddo_key('encrypt_secret_key', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true);
-            $tmp_encrypt_options = $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->return_prefixed_ddo_key('encrypt_options', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true);
-            $tmp_hmac_alg = $this->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->return_prefixed_ddo_key('hmac_alg', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION'), true);
+            // RETRIEVE DATA FROM SESSION CONFIG MANAGER
+            $tmp_encrypt_secret_key = $this->oCRNRSTN->get_resource('encrypt_secret_key', 0, $data_type_family);
+            $tmp_encrypt_options = $this->oCRNRSTN->get_resource('encrypt_options', 0, $data_type_family);
+            $tmp_hmac_alg = $this->oCRNRSTN->get_resource('hmac_alg', 0, $data_type_family);
 
             //
             // ENABLE CIPHER OVERRIDE :: v2.0.0
@@ -4695,15 +4434,15 @@ class crnrstn_environment {
 
         $env_key = $this->env_key;
 
-        if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_crc][$this->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)]){
 
-            $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_crc][$this->crcINT(CRNRSTN_RESOURCE_ALL)];
+            $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)];
 
         }else{
 
-            if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_crc][$this->env_key_crc]){
+            if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->env_key_hash]){
 
-                $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_crc][$this->env_key_crc];
+                $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->env_key_hash];
 
             }
 
@@ -4717,11 +4456,11 @@ class crnrstn_environment {
 
                 //
                 // INITIALIZE WILDCARD RESOURCES
-                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Storing initialized Wild Card Resources at [' . $this->wildCardResource_filePath . '] in memory for this environment [' . $this->env_key_crc . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Storing initialized Wild Card Resources at [' . $this->wildCardResource_filePath . '] in memory for this environment [' . $this->env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 include_once($this->wildCardResource_filePath);
 
-                $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
+                $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $oWildCardResource_ARRAY;
 
             }else{
 
@@ -4747,9 +4486,9 @@ class crnrstn_environment {
 
     public function augmentWCR_array($oWCR){
 
-        $tmp_array = $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL];
+        $tmp_array = $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL];
         $tmp_array[$oWCR->return_resource_key()] = $oWCR;
-        $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL] = $tmp_array;
+        $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL] = $tmp_array;
 
     }
     
@@ -4908,9 +4647,9 @@ class crnrstn_environment {
             // CHECK FOR EXISTENCE OF PARAMETER WITHIN WILD CARD RESOURCE
             if(isset($wildCardKey)){
 
-                if(isset($this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL])) {
+                if(isset($this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL])) {
 
-                    $tmp_oWCR_ARRAY = $this->oWildCardResource_ARRAY[$this->config_serial_crc][CRNRSTN_LOG_ALL];
+                    $tmp_oWCR_ARRAY = $this->oWildCardResource_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL];
 
                     foreach($tmp_oWCR_ARRAY as $key => $oWCR){
 
@@ -5704,7 +5443,7 @@ class crnrstn_environment {
             // SET A DEFAULT
             $theme_style = CRNRSTN_UI_PHPNIGHT;
 
-            $theme_style_ARRAY = $this->return_set_bits($this->system_style_profile_constants);
+            $theme_style_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
 
             if(count($theme_style_ARRAY) > 0){
 
@@ -5861,7 +5600,7 @@ class crnrstn_environment {
             // SET DEFAULT CONSTANT
             $style_theme = CRNRSTN_UI_PHPNIGHT;
 
-            $tmp_theme_ARRAY = $this->return_set_bits($this->system_style_profile_constants);
+            $tmp_theme_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
 
             if(count($tmp_theme_ARRAY) > 0){
 
@@ -7842,13 +7581,13 @@ class crnrstn_wildcard_resource {
     public function add_attribute($attribute_key, $attribute_value){
 
         //self::$oCRNRSTN_n->oLog_output_ARRAY[] = self::$oCRNRSTN_n->error_log('Adding ->' . $attribute_key . '<- data attribute to the ' . $this->resource_key . ' wild card resource for the ' . $this->env_key . ' environment.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-        $env_key_crc = self::$oCRNRSTN_n->crcINT($this->resource_key);
+        $env_key_hash = self::$oCRNRSTN_n->crcINT($this->resource_key);
         $attribute_key_crc = self::$oCRNRSTN_n->crcINT($attribute_key);
 
         $this->oDataTransportLayer->add($attribute_value, $attribute_key);
-        $this->attribute_key_ARRAY[$env_key_crc][$attribute_key_crc] = $attribute_value;
+        $this->attribute_key_ARRAY[$env_key_hash][$attribute_key_crc] = $attribute_value;
         //error_log(__LINE__ . ' env add_attribute name[' . $attribute_key . '|' . self::$oCRNRSTN_n->crcINT($attribute_key) . '] val[' . print_r($attribute_value, true) . ']');
-        $this->attribute_set_flag_ARRAY[$env_key_crc][$attribute_key_crc] = 1;
+        $this->attribute_set_flag_ARRAY[$env_key_hash][$attribute_key_crc] = 1;
 
     }
 
@@ -7914,11 +7653,11 @@ class crnrstn_wildcard_resource {
 
             /*
 
-            $env_key_crc = self::$oCRNRSTN_n->crcINT($this->resource_key);
+            $env_key_hash = self::$oCRNRSTN_n->crcINT($this->resource_key);
             $attribute_key_crc = self::$oCRNRSTN_n->crcINT($attribute_key);
 
             $this->oDataTransportLayer->add($attribute_value, $attribute_key);
-            $this->attribute_key_ARRAY[$env_key_crc][$attribute_key_crc] = $attribute_value;
+            $this->attribute_key_ARRAY[$env_key_hash][$attribute_key_crc] = $attribute_value;
              * */
 
             //if(isset($this->attribute_key_ARRAY[$tmp_wc_key_crc][$attribute_key_crc])){
@@ -8197,10 +7936,9 @@ class crnrstn_decoupled_data_object {
 
     public function count($data_key){
 
-        //$this->oCRNRSTN->env_key;
-//        error_log(__LINE__ . ' env ' . __METHOD__ . ' env_key=[' . $this->oCRNRSTN->env_key . ']');
-//        die();
-        if(strlen($this->oCRNRSTN->env_key) > 0){
+        if(strlen($this->oCRNRSTN->get_server_env()) > 0){
+
+            //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. . $this->data_value_ARRAY=[' . print_r($this->data_value_ARRAY, true) . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', 'Output title.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             $tmp_cnt = sizeof($this->data_value_ARRAY[$data_key]);
 
@@ -8283,7 +8021,7 @@ class crnrstn_decoupled_data_object {
 
                         $tmp_str_out .= '
                         {
-                            "CHECKSUM" : ' . $this->oCRNRSTN_USR->crcINT($tmp_attribute_key . md5($this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator]) . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator]) . '",
+                            "HASH" : ' . hash($this->oCRNRSTN->system_hash_algorithm(), $tmp_attribute_key . md5($this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator]) . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator]) . '",
                             "KEY" : "' . $this->oCRNRSTN_USR->return_json_value($tmp_attribute_key) . '",
                             "LENGTH" : "' . $tmp_val_len . '",
                             "TYPE" : "' . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator] . '",
@@ -10132,7 +9870,7 @@ class crnrstn_logging_oprofile_manager {
 
     protected $env_key;
     protected $resource_key;
-    protected $config_serial_crc;
+    protected $config_serial_hash;
 
     protected $oLog_profiles_ARRAY = array();
     protected $log_profiles_ARRAY = array();
@@ -10144,12 +9882,12 @@ class crnrstn_logging_oprofile_manager {
     public function __construct($sys_logging_profile_pack, $oCRNRSTN) {
 
         /*
-        $sys_logging_profile_pack['sys_logging_profile_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_crc)][self::$resource_key];
-        $sys_logging_profile_pack['sys_logging_meta_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_crc)][self::$resource_key];
-        $sys_logging_profile_pack['sys_logging_wcr_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_crc)][CRNRSTN_LOG_ALL];
+        $sys_logging_profile_pack['sys_logging_profile_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][self::$resource_key];
+        $sys_logging_profile_pack['sys_logging_meta_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][self::$resource_key];
+        $sys_logging_profile_pack['sys_logging_wcr_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][CRNRSTN_LOG_ALL];
         */
 
-        $this->config_serial_crc = $oCRNRSTN->config_serial_crc;
+        $this->config_serial_hash = $oCRNRSTN->get_server_config_serial('hash');
 
         $this->oWildCardResource_ARRAY = $oCRNRSTN->oWildCardResource_ARRAY;
 
@@ -10372,7 +10110,7 @@ class crnrstn_logging_oprofile_manager {
     private function is_WCR_key($sys_logging_wcr_ARRAY, $str){
 
         //if(isset($this->oWildCardResource_ARRAY)){
-        // error_log('2448 env - is_WCR_key() TEST NEW !!ARRAY FORK AGAINST ARRAY sizeof>0, where sizeof='.sizeof($this->oWildCardResource_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_crc)]));
+        // error_log('2448 env - is_WCR_key() TEST NEW !!ARRAY FORK AGAINST ARRAY sizeof>0, where sizeof='.sizeof($this->oWildCardResource_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)]));
 
         //
         // SOURCE :: https://www.php.net/manual/en/language.types.boolean.php
@@ -10500,9 +10238,9 @@ class crnrstn_logging_oprofile_manager {
 
         /*
         init_profile_pack_ARRAY ::
-        $init_profile_pack['sys_logging_profile_ARRAY'] = self::$sys_logging_profile_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_crc)][CRNRSTN_LOG_ALL];
-        $init_profile_pack['sys_logging_meta_ARRAY'] = self::$sys_logging_meta_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_crc)][CRNRSTN_LOG_ALL];
-        $init_profile_pack['sys_logging_wcr_ARRAY'] = $this->oWildCardResource_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_crc)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_profile_ARRAY'] = self::$sys_logging_profile_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_meta_ARRAY'] = self::$sys_logging_meta_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_wcr_ARRAY'] = $this->oWildCardResource_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][CRNRSTN_LOG_ALL];
         */
 
         if(isset($init_profile_pack['sys_logging_meta_ARRAY'])){
@@ -10738,7 +10476,7 @@ class crnrstn_logging_oprofile_manager {
 
         foreach($this->log_profiles_ARRAY as $key => $profile){
 
-            $tmp_oLoggingProfile = new crnrstn_logging_oprofile($profile, $this->config_serial_crc, $this->profile_endpoint_criteria_ARRAY, $oCRNRSTN);
+            $tmp_oLoggingProfile = new crnrstn_logging_oprofile($profile, $this->config_serial_hash, $this->profile_endpoint_criteria_ARRAY, $oCRNRSTN);
 
             $this->oLog_profiles_ARRAY[] = $tmp_oLoggingProfile;
 
@@ -10751,7 +10489,7 @@ class crnrstn_logging_oprofile_manager {
 
         foreach($this->log_profiles_ARRAY as $key => $profile){
 
-            $tmp_oLoggingProfile = new crnrstn_logging_oprofile($profile, $this->config_serial_crc, $oCRNRSTN);
+            $tmp_oLoggingProfile = new crnrstn_logging_oprofile($profile, $this->config_serial_hash, $oCRNRSTN);
 
             switch($profile){
                 case 'DEFAULT':
@@ -10863,7 +10601,7 @@ class crnrstn_logging_oprofile{
     public $isValid = false;
 
     protected $resource_key;
-    protected $config_serial_crc;
+    protected $config_serial_hash;
 
     protected $profile_endpoint_criteria_ARRAY = array();
     protected $profile_endpoint_data_ARRAY = array();
@@ -10874,7 +10612,7 @@ class crnrstn_logging_oprofile{
     protected $tmp_mail_protocol_options_ARRAY = array('SENDMAIL', 'MAIL', 'QMAIL', 'SMTP');
     protected $tmp_mail_protocol_options_cnt = 4;
 
-    public function __construct($logging_profile, $config_serial_crc, $profile_endpoint_criteria_ARRAY, $oCRNRSTN){
+    public function __construct($logging_profile, $config_serial_hash, $profile_endpoint_criteria_ARRAY, $oCRNRSTN){
 
         /**
          TODO :: EXPIRE WCR DRIVEN CONTENT WITH ANY MODIFICATION OF THE SAME TO FORCE REFRESH
@@ -10888,7 +10626,7 @@ class crnrstn_logging_oprofile{
         $this->profile_endpoint_criteria_ARRAY = $profile_endpoint_criteria_ARRAY;
         $this->logging_profile = $logging_profile;
         //$this->resource_key = $resource_key;
-        $this->config_serial_crc = $config_serial_crc;
+        $this->config_serial_hash = $config_serial_hash;
 
         //$this->active_by_default($logging_profile);
 
@@ -12772,12 +12510,12 @@ class crnrstn_logging_oprofile{
                         // ATTEMPT TO CHANGE PERMISSIONS AND CHECK AGAIN
                         // BEFORE COMPLETELY GIVING UP
                         $tmp_current_perms = substr(decoct( fileperms($dir_path) ), 2);
-                        $tmp_config_serial_crc = self::$oCRNRSTN_n->config_serial_crc;
+                        $tmp_config_serial_hash = self::$oCRNRSTN_n->config_serial_hash;
 
-                        $_SESSION['CRNRSTN_' . $tmp_config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = 'CRNRSTN :: has experienced permissions related error as the destination directory, ' . $dir_path . ' (' . $tmp_current_perms . '), is NOT writable to ' . $mkdir_mode . ', and furthermore ';
+                        $_SESSION['CRNRSTN_' . $tmp_config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = 'CRNRSTN :: has experienced permissions related error as the destination directory, ' . $dir_path . ' (' . $tmp_current_perms . '), is NOT writable to ' . $mkdir_mode . ', and furthermore ';
                         if(chmod($dir_path, $mkdir_mode)){
 
-                            $_SESSION['CRNRSTN_'. $tmp_config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+                            $_SESSION['CRNRSTN_'. $tmp_config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = '';
                             return true;
 
                         }else{
@@ -13736,14 +13474,14 @@ class crnrstn_soap_services_authorization_manager{
 
         $this->serial = self::$oCRNRSTN_ENV->generate_new_key(50);
 
-        $tmp_resource_key = self::$oCRNRSTN_ENV->return_env_key_crc();
+        $tmp_resource_key = self::$oCRNRSTN_ENV->return_env_key_hash();
 
         if(self::$oCRNRSTN_ENV->crcINT($env_key) == $tmp_resource_key){
 
             $this->resource_key = $tmp_resource_key;
             $this->ISACTIVE = true;
 
-            $this->soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $SOAP_AuthKey;
+            $this->soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $SOAP_AuthKey;
 
             self::$oCRNRSTN_ENV->update_SOAP_services_oAuth($this);
 
@@ -13783,7 +13521,7 @@ class crnrstn_soap_services_authorization_manager{
 
     public function sync_IP_denyAccess($ip){
 
-        $this->ip_auth_denial_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $ip;
+        $this->ip_auth_denial_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $ip;
 
         self::$oCRNRSTN_ENV->update_SOAP_services_oAuth($this);
 
@@ -13791,7 +13529,7 @@ class crnrstn_soap_services_authorization_manager{
 
     public function sync_IP_exclusiveAccess($ip){
 
-        $this->ip_auth_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $ip;
+        $this->ip_auth_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $ip;
 
         self::$oCRNRSTN_ENV->update_SOAP_services_oAuth($this);
 
@@ -13801,13 +13539,13 @@ class crnrstn_soap_services_authorization_manager{
 
 //        foreach($soap_services_resource_access_ARRAY as $key => $resource){
 //
-//            $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $resource;
+//            $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $resource;
 //
 //        }
 //
 //        foreach($soap_services_resource_denyaccess_ARRAY as $key => $resource){
 //
-//            $this->soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $resource;
+//            $this->soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $resource;
 //
 //        }
 
@@ -13841,8 +13579,8 @@ class crnrstn_soap_services_authorization_manager{
             //$this->oCRNRSTN_BITFLIP_MGR->set($integer_constant, true);
 
             // REMOVE WHEN DONE
-//          $this->soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $tmp_clean_profile;
-//          $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = trim($tmp_resource_access_profile_ARRAY[$i]);
+//          $this->soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $tmp_clean_profile;
+//          $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = trim($tmp_resource_access_profile_ARRAY[$i]);
 
 //
 //            $tmp_resource_access_profile_ARRAY = explode('|', $authorized_resource_pipe);
@@ -13864,11 +13602,11 @@ class crnrstn_soap_services_authorization_manager{
 //                    $tmp_clean_silo_negation = self::$oCRNRSTN_ENV->proper_replace('~', '', $tmp_resource_access_profile_ARRAY[$i]);
 //                    $tmp_clean_profile = trim($tmp_clean_silo_negation);
 //
-//                    error_log(__LINE__ . ' env - negation of resource ' . $tmp_clean_profile . ' added [' . self::$oCRNRSTN_ENV->config_serial_crc . '][' . $this->resource_key . '][' . $this->serial . '].');
+//                    error_log(__LINE__ . ' env - negation of resource ' . $tmp_clean_profile . ' added [' . self::$oCRNRSTN_ENV->config_serial_hash . '][' . $this->resource_key . '][' . $this->serial . '].');
 //
 //                } else {
 //
-//                    $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = trim($tmp_resource_access_profile_ARRAY[$i]);
+//                    $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = trim($tmp_resource_access_profile_ARRAY[$i]);
 //
 //                }
 //
@@ -13883,7 +13621,7 @@ class crnrstn_soap_services_authorization_manager{
 //                        $tmp_clean_profile = trim($tmp_clean_silo_negation);
 //                        $tmp_deny_array[] = $tmp_clean_profile;
 //
-//                        error_log(__LINE__ . ' env - negation of resource ' . $tmp_clean_profile . ' added [' . self::$oCRNRSTN_ENV->config_serial_crc . '][' . $this->resource_key . '][' . $this->serial . '].');
+//                        error_log(__LINE__ . ' env - negation of resource ' . $tmp_clean_profile . ' added [' . self::$oCRNRSTN_ENV->config_serial_hash . '][' . $this->resource_key . '][' . $this->serial . '].');
 //
 //                    } else {
 //
@@ -13944,7 +13682,7 @@ class crnrstn_soap_services_authorization_manager{
 
         if($this->ISACTIVE) {
 
-            $this->ip_auth_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $ip;
+            $this->ip_auth_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $ip;
 
             if(isset($this->services_authorization_group_key)){
 
@@ -13965,7 +13703,7 @@ class crnrstn_soap_services_authorization_manager{
 
         if($this->ISACTIVE) {
 
-            $this->ip_auth_denial_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $ip;
+            $this->ip_auth_denial_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $ip;
 
             if(isset($this->services_authorization_group_key)){
 
@@ -14057,13 +13795,13 @@ class crnrstn_soap_services_client_manager{
 
             $this->serial = self::$oCRNRSTN_ENV->generate_new_key(50);
 
-            if(self::$oCRNRSTN_ENV->crcINT($env_key) == self::$oCRNRSTN_ENV->return_env_key_crc()){
+            if(self::$oCRNRSTN_ENV->crcINT($env_key) == self::$oCRNRSTN_ENV->return_env_key_hash()){
 
-                $this->resource_key = self::$oCRNRSTN_ENV->return_env_key_crc();
+                $this->resource_key = self::$oCRNRSTN_ENV->return_env_key_hash();
                 $this->ISACTIVE = true;
 
-                $this->soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $username;
-                $this->soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = md5($password);
+                $this->soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $username;
+                $this->soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = md5($password);
 
                 self::$oCRNRSTN_ENV->update_SOAP_services_oClient($this);
 
@@ -14137,13 +13875,13 @@ class crnrstn_soap_services_client_manager{
 
     public function return_username(){
 
-        return $this->soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][0];
+        return $this->soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][0];
 
     }
 
     public function return_password(){
 
-        return $this->soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][0];
+        return $this->soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][0];
 
     }
 
@@ -14151,13 +13889,13 @@ class crnrstn_soap_services_client_manager{
 
 //        foreach($soap_services_resource_access_ARRAY as $key => $resource){
 //
-//            $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $resource;
+//            $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $resource;
 //
 //        }
 //
 //        foreach($soap_services_resource_denyaccess_ARRAY as $key => $resource){
 //
-//            $this->soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $resource;
+//            $this->soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $resource;
 //
 //        }
 
@@ -14183,13 +13921,13 @@ class crnrstn_soap_services_client_manager{
 
         foreach($soap_services_method_deactivate_ARRAY as $key => $method){
 
-            $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $method;
+            $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $method;
 
         }
 
         foreach($soap_services_method_activate_ARRAY as $key => $method){
 
-            $this->soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $method;
+            $this->soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $method;
 
         }
 
@@ -14201,7 +13939,7 @@ class crnrstn_soap_services_client_manager{
 
         foreach($soap_services_method_deactivate_ARRAY as $key => $method){
 
-            $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $method;
+            $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $method;
 
         }
 
@@ -14211,7 +13949,7 @@ class crnrstn_soap_services_client_manager{
 
     public function sync_IP_denyAccess($ip){
 
-        $this->ip_auth_denial_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $ip;
+        $this->ip_auth_denial_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $ip;
 
         self::$oCRNRSTN_ENV->update_SOAP_services_oClient($this);
 
@@ -14219,7 +13957,7 @@ class crnrstn_soap_services_client_manager{
 
     public function sync_IP_exclusiveAccess($ip){
 
-        $this->ip_auth_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $ip;
+        $this->ip_auth_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $ip;
 
         self::$oCRNRSTN_ENV->update_SOAP_services_oClient($this);
 
@@ -14251,11 +13989,11 @@ class crnrstn_soap_services_client_manager{
 //                    // STRIP ~ AND TRIM
 //                    $tmp_clean_silo_negation = self::$oCRNRSTN_ENV->proper_replace('~', '', $tmp_resource_access_profile_ARRAY[$i]);
 //                    $tmp_clean_profile = trim($tmp_clean_silo_negation);
-//                    $this->soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $tmp_clean_profile;
+//                    $this->soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $tmp_clean_profile;
 //
 //                } else {
 //
-//                    $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $tmp_resource_access_profile_ARRAY[$i];
+//                    $this->soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $tmp_resource_access_profile_ARRAY[$i];
 //
 //                }
 //
@@ -14343,11 +14081,11 @@ class crnrstn_soap_services_client_manager{
 
                     $tmp_clean_method_negation = self::$oCRNRSTN_ENV->proper_replace('~', '', $tmp_method_access_profile_ARRAY[$i]);
                     $tmp_clean_method_negation = trim($tmp_clean_method_negation);
-                    $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $tmp_clean_method_negation;
+                    $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $tmp_clean_method_negation;
 
                 }else{
 
-                    $this->soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $tmp_method_access_profile_ARRAY[$i];
+                    $this->soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $tmp_method_access_profile_ARRAY[$i];
 
                 }
 
@@ -14398,11 +14136,11 @@ class crnrstn_soap_services_client_manager{
 
                     $tmp_clean_method_negation = self::$oCRNRSTN_ENV->proper_replace('~', '', $tmp_method_access_profile_ARRAY[$i]);
                     $tmp_clean_method_negation = trim($tmp_clean_method_negation);
-                    $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $tmp_clean_method_negation;
+                    $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $tmp_clean_method_negation;
 
                 }else{
 
-                    $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $tmp_method_access_profile_ARRAY[$i];
+                    $this->soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $tmp_method_access_profile_ARRAY[$i];
 
                 }
 
@@ -14443,7 +14181,7 @@ class crnrstn_soap_services_client_manager{
 
         if($this->ISACTIVE){
 
-            $this->ip_auth_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $ip;
+            $this->ip_auth_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $ip;
 
             if(isset($this->services_client_group_key)){
 
@@ -14464,7 +14202,7 @@ class crnrstn_soap_services_client_manager{
 
         if($this->ISACTIVE){
 
-            $this->ip_auth_denial_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][$this->resource_key][$this->serial][] = $ip;
+            $this->ip_auth_denial_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $ip;
 
             if(isset($this->services_client_group_key)){
 
@@ -14534,7 +14272,7 @@ class crnrstn_soap_services_access_manager{
 
     public function __construct($env_key, $CRNRSTN_NUSOAP_SVC_debugMode, $oCRNRSTN_ENV){
 
-        if($oCRNRSTN_ENV->crcINT($env_key) == $oCRNRSTN_ENV->return_env_key_crc()){
+        if($oCRNRSTN_ENV->crcINT($env_key) == $oCRNRSTN_ENV->return_env_key_hash()){
 
             self::$oCRNRSTN_ENV = $oCRNRSTN_ENV;
 
@@ -14595,7 +14333,7 @@ class crnrstn_soap_services_access_manager{
 
                 //$tmp_requested_resources_ARRAY = explode('|', $CRNRSTN_SOAP_SVC_REQUESTED_RESOURCES);
 
-                if((in_array(CRNRSTN_RESOURCE_ALL, $tmp_return_soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial])) || (in_array(CRNRSTN_RESOURCE_ALL, $tmp_return_soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial]))){
+                if((in_array(CRNRSTN_RESOURCE_ALL, $tmp_return_soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial])) || (in_array(CRNRSTN_RESOURCE_ALL, $tmp_return_soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial]))){
 
                     //
                     // WILDCARD AUTH KEY PROVIDED. ANY AUTH KEY (INCLUDING NULL) IS ACCEPTABLE.
@@ -14603,9 +14341,9 @@ class crnrstn_soap_services_access_manager{
 
                 }
 
-                if(isset($tmp_return_soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial])){
+                if(isset($tmp_return_soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial])){
 
-                    foreach ($tmp_return_soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial] as $key0 => $auth_key) {
+                    foreach ($tmp_return_soap_services_auth_key_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial] as $key0 => $auth_key) {
 
                         //error_log(__LINE__ . ' env - [' . $auth_key . ']==[' . $CRNRSTN_SOAP_SVC_AUTH_KEY . ']');
                         if($auth_key == $CRNRSTN_SOAP_SVC_AUTH_KEY || $wildcard_honor){
@@ -14616,10 +14354,10 @@ class crnrstn_soap_services_access_manager{
 //
 //                            //
 //                            // DENY ACCESS
-//                            if(isset($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial])){
+//                            if(isset($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial])){
 //
-//                                //error_log(__LINE__ . ' SERVER env - we have tmp_return_soap_services_resource_denyaccess_ARRAY data[' . sizeof($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial]) . '].');
-//                                foreach($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()] as $key1 => $SOAP_resource){
+//                                //error_log(__LINE__ . ' SERVER env - we have tmp_return_soap_services_resource_denyaccess_ARRAY data[' . sizeof($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial]) . '].');
+//                                foreach($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()] as $key1 => $SOAP_resource){
 //
 //                                    //error_log(__LINE__ . ' SERVER env - looking to honor denial of ' . $SOAP_resource . ', if requested.');
 //
@@ -14654,7 +14392,7 @@ class crnrstn_soap_services_access_manager{
 //                          error_log(__LINE__ . ' env '. print_r($tmp_soap_auth_resource_ARRAY, true));
 //                          die();
 
-                            if(isset($tmp_return_soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial])){
+                            if(isset($tmp_return_soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial])){
 
                                 // $CRNRSTN_SOAP_SVC_REQUESTED_RESOURCES is the new $tmp_requested_resources_ARRAY.
                                 // HOW MANY CONSTANTS YOU HOLDING??
@@ -14664,7 +14402,7 @@ class crnrstn_soap_services_access_manager{
                                     error_log(__LINE__ . ' env - $resource_req=' . $resource_req);
                                     $tmp_SOAP_resource = false;
 
-                                    foreach($tmp_return_soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial] as $key1 => $SOAP_resource){
+                                    foreach($tmp_return_soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial] as $key1 => $SOAP_resource){
                                         error_log(__LINE__ . ' env - $SOAP_resource=' . print_r($SOAP_resource, true));
 
                                         if($SOAP_resource == $resource_req){
@@ -14703,9 +14441,9 @@ class crnrstn_soap_services_access_manager{
 
                     //
                     // CHECK IP ACCESS - DENY
-                    if(isset($tmp_return_soap_services_IP_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial])){
+                    if(isset($tmp_return_soap_services_IP_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial])){
 
-                        foreach($tmp_return_soap_services_IP_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial] as $key1 => $ip){
+                        foreach($tmp_return_soap_services_IP_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial] as $key1 => $ip){
 
                             error_log(__LINE__ . ' SERVER env - checking denyIPAccess() on ' . $ip);
                             if(self::$oCRNRSTN_ENV->oCRNRSTN_IPSECURITY_MGR->denyIPAccess($ip)){
@@ -14727,9 +14465,9 @@ class crnrstn_soap_services_access_manager{
 
                     //
                     // CHECK IP ACCESS - EXCLUSIVE ACCESS
-                    if(isset($tmp_return_soap_services_IP_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial])){
+                    if(isset($tmp_return_soap_services_IP_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial])){
 
-                        foreach($tmp_return_soap_services_IP_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oAuth->serial] as $key => $ip){
+                        foreach($tmp_return_soap_services_IP_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oAuth->serial] as $key => $ip){
 
                             //if(is_array($ip)){
 
@@ -14822,20 +14560,20 @@ class crnrstn_soap_services_access_manager{
 
                 $tmp_requested_resources_ARRAY = explode('|', $CRNRSTN_SOAP_SVC_REQUESTED_RESOURCES);
 
-                if(isset($tmp_return_soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial])){
+                if(isset($tmp_return_soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial])){
 
-                    foreach ($tmp_return_soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial] as $key0 => $username) {
+                    foreach ($tmp_return_soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial] as $key0 => $username) {
 
                         self::$oCRNRSTN_ENV->print_r('[' . $username . '][' . $USERNAME . ']', 'SERVER (env) :: isAuthorized_oClient', NULL, __LINE__, __METHOD__, __FILE__);
                         if($username == $USERNAME){
 
-                            if(self::$oCRNRSTN_ENV->validate_pwd_hash_login($tmp_return_soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial][$key0], $PASSWORD)){
+                            if(self::$oCRNRSTN_ENV->validate_pwd_hash_login($tmp_return_soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial][$key0], $PASSWORD)){
 
-                                error_log(__LINE__ . ' SERVER env - CRNRSTN :: SOAP SERVICES CLIENT LOGIN VALID. [' . $USERNAME . '][' . $PASSWORD . '][' . $tmp_return_soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial][$key0] . ']');
+                                error_log(__LINE__ . ' SERVER env - CRNRSTN :: SOAP SERVICES CLIENT LOGIN VALID. [' . $USERNAME . '][' . $PASSWORD . '][' . $tmp_return_soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial][$key0] . ']');
 
                             }else{
 
-                                error_log(__LINE__ . ' SERVER env - CRNRSTN :: SOAP SERVICES CLIENT LOGIN INVALID. [' . $USERNAME . '][' . $PASSWORD . '][' . $tmp_return_soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial][$key0] . ']');
+                                error_log(__LINE__ . ' SERVER env - CRNRSTN :: SOAP SERVICES CLIENT LOGIN INVALID. [' . $USERNAME . '][' . $PASSWORD . '][' . $tmp_return_soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial][$key0] . ']');
 
                             }
 
@@ -14846,10 +14584,10 @@ class crnrstn_soap_services_access_manager{
 
                             //
                             // DENY ACCESS
-                            if(isset($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial])){
+                            if(isset($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial])){
 
-                                error_log(__LINE__ . ' SERVER env - we have tmp_return_soap_services_resource_denyaccess_ARRAY data[' . sizeof($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial]) . '].');
-                                foreach($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()] as $key1 => $SOAP_resource){
+                                error_log(__LINE__ . ' SERVER env - we have tmp_return_soap_services_resource_denyaccess_ARRAY data[' . sizeof($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial]) . '].');
+                                foreach($tmp_return_soap_services_resource_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()] as $key1 => $SOAP_resource){
 
                                     error_log(__LINE__ . ' SERVER env - looking to honor denial of ' . $SOAP_resource . ', if requested.');
 
@@ -14870,14 +14608,14 @@ class crnrstn_soap_services_access_manager{
 
                                 $tmp_SOAP_resource = true;
 
-                                if(isset($tmp_return_soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial])){
+                                if(isset($tmp_return_soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial])){
 
                                     foreach($tmp_requested_resources_ARRAY as $key2 => $resource_req){
 
                                         error_log(__LINE__ . ' env make false[' . $resource_req . ']');
                                         $tmp_SOAP_resource = false;
 
-                                        foreach($tmp_return_soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial] as $key1 => $SOAP_resource){
+                                        foreach($tmp_return_soap_services_resource_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial] as $key1 => $SOAP_resource){
 
                                             error_log(__LINE__ . ' env make true if[' . $resource_req . ']==[' . $SOAP_resource . ']');
 
@@ -14915,9 +14653,9 @@ class crnrstn_soap_services_access_manager{
 
                                 $tmp_SOAP_resource = true;
 
-                                if(isset($tmp_return_soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial])){
+                                if(isset($tmp_return_soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial])){
 
-                                    if(sizeof($tmp_return_soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial]) > 0){
+                                    if(sizeof($tmp_return_soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial]) > 0){
 
                                         $tmp_req_methods_ARRAY = explode('|', $CRNRSTN_SOAP_SVC_METHOD_REQUESTED);
 
@@ -14926,7 +14664,7 @@ class crnrstn_soap_services_access_manager{
 
                                             $tmp_SOAP_resource = false;
 
-                                            foreach($tmp_return_soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial] as $key1 => $SOAP_resource){
+                                            foreach($tmp_return_soap_services_method_activate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial] as $key1 => $SOAP_resource){
                                                 error_log(__LINE__ . ' env make true if[' . $method_req . ']==[' . $SOAP_resource . ']');
 
                                                 if($SOAP_resource == $method_req){
@@ -14965,9 +14703,9 @@ class crnrstn_soap_services_access_manager{
 
                                 $tmp_SOAP_resource = true;
 
-                                if(isset($tmp_return_soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial])){
+                                if(isset($tmp_return_soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial])){
 
-                                    if(sizeof($tmp_return_soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial]) > 0){
+                                    if(sizeof($tmp_return_soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial]) > 0){
 
                                         $tmp_req_methods_ARRAY = explode('|', $CRNRSTN_SOAP_SVC_METHOD_REQUESTED);
 
@@ -14975,7 +14713,7 @@ class crnrstn_soap_services_access_manager{
 
                                             $tmp_SOAP_resource = false;
 
-                                            foreach($tmp_return_soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial] as $key1 => $SOAP_resource){
+                                            foreach($tmp_return_soap_services_method_deactivate_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial] as $key1 => $SOAP_resource){
 
                                                 if($SOAP_resource == $method_req){
 
@@ -15018,9 +14756,9 @@ class crnrstn_soap_services_access_manager{
 
                     //
                     // CHECK IP ACCESS - DENY
-                    if(isset($tmp_return_soap_services_IP_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial])){
+                    if(isset($tmp_return_soap_services_IP_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial])){
 
-                        foreach($tmp_return_soap_services_IP_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial] as $key => $ip){
+                        foreach($tmp_return_soap_services_IP_denyaccess_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial] as $key => $ip){
 
                             error_log(__LINE__ . ' SERVER env checking denyIPAccess() on ' . $ip);
                             if(self::$oCRNRSTN_ENV->oCRNRSTN_IPSECURITY_MGR->denyIPAccess($ip)){
@@ -15042,9 +14780,9 @@ class crnrstn_soap_services_access_manager{
 
                     //
                     // CHECK IP ACCESS - EXCLUSIVE ACCESS
-                    if(isset($tmp_return_soap_services_IP_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial])){
+                    if(isset($tmp_return_soap_services_IP_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial])){
 
-                        foreach($tmp_return_soap_services_IP_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_crc][self::$oCRNRSTN_ENV->return_env_key_crc()][$SOAP_oClient->serial] as $key => $ip){
+                        foreach($tmp_return_soap_services_IP_access_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][self::$oCRNRSTN_ENV->return_env_key_hash()][$SOAP_oClient->serial] as $key => $ip){
 
                             //error_log(__LINE__ . ' SERVER env checking exclusiveAccess() on ' . $ip);
                             if(self::$oCRNRSTN_ENV->oCRNRSTN_IPSECURITY_MGR->exclusiveAccess($ip)){

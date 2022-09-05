@@ -3,7 +3,7 @@
 // J5
 // Code is Poetry */
 //$channel_constant = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_channel_constants);
-$channel_constant = $this->oCRNRSTN->device_type_bit;
+$channel_constant = $this->oCRNRSTN->device_type_bit();
 //error_log(__LINE__ . ' mit lic ['. print_r($this->oCRNRSTN_USR->system_output_channel_constants, true).'] $channel_constant=' . print_r($channel_constant, true));
 
 switch($channel_constant){

@@ -2155,7 +2155,7 @@ class crnrstn_fire_ftp_manager {
                         // JUST VERIFY THAT YOU CAN READ.
                         $oLightning_ftp_conn =  $this->lightning_FTP_conn_ARRAY[$endpoint_id];
                         $tmp_ftp_conn = $oLightning_ftp_conn->return_ftp_stream();
-                        $tmp_config_serial = $this->oCRNRSTN_USR->return_config_serial();
+                        $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
 
                         $_SESSION['CRNRSTN_' . $this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'The CRNRSTN :: Electrum process has experienced permissions related error as the ' . $tmp_FTP_SERVER_WCR.' SOURCE FTP directory, ' . $tmp_FTP_DIR_PATH_WCR.', is NOT readable by ftp_nlist() ';
                         $endpoint_contents = ftp_nlist($tmp_ftp_conn, $tmp_FTP_DIR_PATH_WCR);
