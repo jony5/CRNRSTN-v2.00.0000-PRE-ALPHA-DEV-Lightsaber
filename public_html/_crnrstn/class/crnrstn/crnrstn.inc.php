@@ -784,6 +784,12 @@ class crnrstn {
 
     public function country_iso_code(){
 
+        if(!is_object($this->oCRNRSTN_USR)){
+
+            return 'en';
+
+        }
+
         return $this->oCRNRSTN_USR->country_iso_code;
 
     }
@@ -2767,7 +2773,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function get_resource_submitted($input_field_name, $http_transport_protocol = 'POST'){
 
         if(is_array($http_transport_protocol)){
-
 
             return '';
 
@@ -6165,11 +6170,19 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         } else if ($theme_style == CRNRSTN_UI_PHPNIGHT)                        // [EDIT] CRNRSTN :: v2.00.0000 :: J5 :: April 13, 2021 2004 hrs
         {
-            ini_set('highlight.comment', '#FC0');
-            ini_set('highlight.default', '#DEDECB');
-            ini_set('highlight.html', '#808080');
-            ini_set('highlight.keyword', '#8FE28F; font-weight: normal');
-            ini_set('highlight.string', '#F66');
+            // ORIGINAL
+            //ini_set('highlight.comment', '#FC0');
+            //ini_set('highlight.default', '#DEDECB');
+            //ini_set('highlight.html', '#808080');
+            //ini_set('highlight.keyword', '#8FE28F; font-weight: normal');
+            //ini_set('highlight.string', '#F66');
+
+
+            ini_set('highlight.comment', '#7EC3E6');
+            ini_set('highlight.default', '#9876AA');
+            ini_set('highlight.html', '#EBEBEB');#ED864A
+            ini_set('highlight.keyword', '#ED864A; font-weight: normal');
+            ini_set('highlight.string', '#54B33E');
 
         }
 
