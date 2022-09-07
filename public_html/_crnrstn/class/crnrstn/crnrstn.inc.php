@@ -4794,11 +4794,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 //
                 // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
                 // NOTHING COULD BE DARKER. NOTHING.
-                $tmp_meta_ARRAY['highlight.comment'] = '#006498';
-                $tmp_meta_ARRAY['highlight.default'] = '#9E9D9F';
-                $tmp_meta_ARRAY['highlight.html'] = '#8C8C8C';
-                $tmp_meta_ARRAY['highlight.keyword'] = '#CB733F; font-weight: normal';
-                $tmp_meta_ARRAY['highlight.string'] = '#216D10';
+                $tmp_meta_ARRAY['highlight.comment'] = '#006498; text-shadow: 1px 1px 2px #535353, 0 0 1em #535353, 0 0 0.2em #535353;';
+                $tmp_meta_ARRAY['highlight.default'] = '#9E9D9F; text-shadow: 1px 1px 2px #535353, 0 0 1em #535353, 0 0 0.2em #535353;';
+                $tmp_meta_ARRAY['highlight.html'] = '#8C8C8C; text-shadow: 1px 1px 2px #535353, 0 0 1em #535353, 0 0 0.2em #535353;';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#CB733F; font-weight: normal; text-shadow: 1px 1px 2px #535353, 0 0 1em #535353, 0 0 0.2em #535353;';
+                $tmp_meta_ARRAY['highlight.string'] = '#216D10; text-shadow: 1px 1px 2px #04050A, 0 0 1em #535353, 0 0 0.2em #535353;';
 
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#04050A';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
@@ -6093,7 +6093,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 //
                 // NOTHING COULD BE DARKER. NOTHING.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
