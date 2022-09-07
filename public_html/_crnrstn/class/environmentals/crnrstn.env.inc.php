@@ -207,8 +207,10 @@ class crnrstn_environment {
                     //throw new Exception('CRNRSTN :: environmental configuration error :: unable to detect environment on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ').');
                     $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('CRNRSTN :: environmental configuration error :: unable to detect environment on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ').', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                    error_log(__LINE__ . ' env ' . __METHOD__ . ' going out on 503.');
-                    $this->return_server_resp_status(503, $this->return_CRNRSTN_ASCII_ART());
+                    $this->oCRNRSTN->system_terminate('detection');
+
+                    //error_log(__LINE__ . ' env ' . __METHOD__ . ' going out on 503.');
+                    //$this->return_server_resp_status(503, $this->return_CRNRSTN_ASCII_ART());
                     exit();
 
                 }else{
@@ -7960,6 +7962,19 @@ class crnrstn_decoupled_data_object {
 
         //error_log(__LINE__ . ' env ddo->' . __METHOD__ . ':: $index=' . $index . ' $data_attribute=' . $data_attribute  . '. $data_key=' . $data_key . '.');
         //error_log(__LINE__ . ' env ddo->' . __METHOD__ . ':: $this->data_value_ARRAY=' . print_r($this->data_value_ARRAY, true) . '.');
+        //error_log(__LINE__ . ' env ddo $data_attribute=[' . $data_attribute . ']. $data_key=[' . $data_key . ']. $soap_transport=[' . $soap_transport . ']. $index=[' . $index . '].');
+
+//        if($data_key == 'ac7971ddce7e6720466d7fb07d03cdf6fd017a508d87ac7132d7d5d11a34f077db'){
+//
+//            $this->oCRNRSTN->print_r('$data_value=[' . $data_value . ']. $data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//            $tmp_array = array();
+//            $tmp_array[] = '12345';
+//            $tmp = strlen($tmp_array);
+//
+//            die();
+//
+//        }
 
         if(!isset($data_key)){
 
@@ -8075,6 +8090,12 @@ class crnrstn_decoupled_data_object {
 
                 //}
 
+                //if($data_key == '6780e3fb74e6d79e416ede7df352e02400fe55271e3959ba0996cb47b525cac8db'){
+
+                    //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    //error_log(__LINE__ . ' env DDO::' . __METHOD__ . '() $data_key=[' . $data_key . ']. $index=[' . $index . '].');
+                //}
+
                 if(isset($this->data_value_ARRAY[$data_key][$index])){
 
                     switch($this->data_type_ARRAY[$data_key][$index]){
@@ -8183,6 +8204,19 @@ class crnrstn_decoupled_data_object {
     }
 
     public function add($data_value, $data_key = NULL, $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+
+//
+//        if($data_key == 'ac7971ddce7e6720466d7fb07d03cdf6fd017a508d87ac7132d7d5d11a34f077db'){
+//
+//            $this->oCRNRSTN->print_r('$data_value=[' . $data_value . ']. $data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//            $tmp_array = array();
+//            $tmp_array[] = '12345';
+//            $tmp = strlen($tmp_array);
+//
+//            die();
+//
+//        }
 
         if(!isset($data_key)){
 

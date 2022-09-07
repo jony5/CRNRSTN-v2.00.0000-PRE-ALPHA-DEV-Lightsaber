@@ -332,7 +332,8 @@ function crnrstn_constants_init($const_nom){
 
         //
         // 7051-7300
-        // 'CRNRSTN_UI_DARKNIGHT', 'CRNRSTN_UI_GREYSKYS', 'CRNRSTN_UI_DAYLIGHT', 'CRNRSTN_UI_FEATHER'
+        // CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS,
+        // CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER
         case 'CRNRSTN_UI_PHPNIGHT':
 
             return (int) 7051;

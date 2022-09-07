@@ -70,8 +70,10 @@ class crnrstn_ui_tunnel_response_manager {
         // INSTANTIATE LOGGER
         $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
 
-        $this->oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
-        $this->mysqli = $this->oCRNRSTN_MySQLi->return_conn_object();
+        //
+        // DOES NOT HOOK INTO LIGHTSABER CORRECTLY.
+        //$this->oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
+        //$this->mysqli = $this->oCRNRSTN_MySQLi->return_conn_object();
 
         // HOLD OFF ON THIS FOR A SEC. NEED TO DECOUPLE THIRD PARTY DEPENDENCY FROM
         // PRIMARY PAGE LOAD SEQUENCE.

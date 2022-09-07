@@ -246,7 +246,7 @@ class crnrstn {
         $this->system_data_profile_constants_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME_ONLY, CRNRSTN_AUTHORIZE_ALL, CRNRSTN_AUTHORIZE_DATABASE, CRNRSTN_AUTHORIZE_SSDTLA, CRNRSTN_AUTHORIZE_PSSDTLA, CRNRSTN_AUTHORIZE_SESSION, CRNRSTN_AUTHORIZE_COOKIE, CRNRSTN_AUTHORIZE_SOAP, CRNRSTN_AUTHORIZE_GET);
         $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT, CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE, CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
         $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
-        $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_HTML, CRNRSTN_UI_PHP, CRNRSTN_UI_FEATHER);
+        $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
         $this->system_output_channel_constants = array(CRNRSTN_UI_DESKTOP, CRNRSTN_UI_TABLET, CRNRSTN_UI_MOBILE);
         $this->system_creative_element_keys_ARRAY = array('CRNRSTN ::', 'LINUX_PENGUIN', 'REDHAT_LOGO', 'APACHE_FEATHER', 'APACHE_POWER_VERSION', 'CRNRSTN_R', '5', 'MYSQL_DOLPHIN', 'PHP_ELLIPSE', 'POW_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
@@ -278,6 +278,8 @@ class crnrstn {
         if(strlen($CRNRSTN_config_serial) < 1){
 
             $this->system_terminate();
+
+            exit();
 
         }
 
@@ -2130,6 +2132,22 @@ class crnrstn {
 
     public function config_add_database($env_key, $host_or_creds_path, $un = NULL, $pwd = NULL, $db = NULL, $port = NULL){
 
+        //
+        // WE SHOULD HAVE THIS VALUE BY NOW. IF EMPTY, HOOOSTON...VE HAF PROBLEM!
+        if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == ''){
+
+            $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with CRNRSTN :: config serial CRC [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            //
+            // HOOOSTON...VE HAF PROBLEM!
+            //throw new Exception('CRNRSTN :: Initialization Error :: Environmental detection failed to match a sufficient number of $_SERVER parameters to the servers configuration and therefore DID NOT successfully initialize CRNRSTN :: on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ')');
+
+            $this->system_terminate('detection');
+
+            exit();
+
+        }
+
 		//
 		// HANDLE PATH TO DATABASE CONFIG FILE (E.G. ONLY 2 PARAMS PROVIDED)
 		if($db == NULL){
@@ -2427,6 +2445,8 @@ class crnrstn {
 
     public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $soap_transport = false){
 
+        //$this->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $soap_transport=[' . $soap_transport . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
         // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_transport = false){
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $soap_transport);
 
@@ -2479,7 +2499,7 @@ class crnrstn {
 
         if(($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)) {
 
-
+            //$this->print_r('$env_key=[' . $env_key . ']. $host=[' . $host . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
             $this->oMYSQLI_CONN_MGR->add_connection($env_key, $host, $un, $pwd, $db, $port);
 
         }
@@ -2518,6 +2538,8 @@ class crnrstn {
                     if(!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
 
                         $this->system_terminate('detection');
+
+                        exit();
 
                     }
 
@@ -2580,6 +2602,8 @@ class crnrstn {
 
                         $this->system_terminate('detection');
 
+                        exit();
+
                     }
 
                     if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
@@ -2602,7 +2626,7 @@ class crnrstn {
 
     }
 
-    private function system_terminate($message_type = 'config_serial'){
+    public function system_terminate($message_type = 'config_serial'){
 
         if(!isset(self::$system_termination_flag_ARRAY[$message_type])){
 
@@ -3917,7 +3941,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('CRNRSTN :: Initialization Error :: Environmental detection failed to match a sufficient number of $_SERVER parameters to the servers configuration and therefore DID NOT successfully initialize CRNRSTN :: on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ')');
+                //throw new Exception('CRNRSTN :: Initialization Error :: Environmental detection failed to match a sufficient number of $_SERVER parameters to the servers configuration and therefore DID NOT successfully initialize CRNRSTN :: on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ')');
+
+                $this->system_terminate('detection');
+
+                exit();
 
             }
 
@@ -4735,7 +4763,180 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    private function return_theme_style_profile_meta_ARRAY($theme_style){
+
+        $tmp_meta_ARRAY = array();
+
+        switch($theme_style){
+            case  CRNRSTN_UI_PHPNIGHT:
+
+                //
+                // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+                $tmp_meta_ARRAY['highlight.comment'] = '#7EC3E6';
+                $tmp_meta_ARRAY['highlight.default'] = '#9876AA';
+                $tmp_meta_ARRAY['highlight.html'] = '#EBEBEB';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#ED864A; font-weight: normal';
+                $tmp_meta_ARRAY['highlight.string'] = '#54B33E';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = '#131314';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#9E9E9E';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#833131';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#00D500';
+
+            break;
+            case  CRNRSTN_UI_DARKNIGHT:
+
+                //
+                // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
+                // NOTHING COULD BE DARKER. NOTHING.
+                $tmp_meta_ARRAY['highlight.comment'] = '#006498';
+                $tmp_meta_ARRAY['highlight.default'] = '#9E9D9F';
+                $tmp_meta_ARRAY['highlight.html'] = '#8C8C8C';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#CB733F; font-weight: normal';
+                $tmp_meta_ARRAY['highlight.string'] = '#216D10';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = '#04050A';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#717171';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#4B4444';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#111';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#1A6F1A';
+
+            break;
+            case  CRNRSTN_UI_PHP:
+
+                //
+                // ALL ABOUT THE BUSINESS.
+                $tmp_meta_ARRAY['highlight.comment'] = '#008000';
+                $tmp_meta_ARRAY['highlight.default'] = '#191A31';
+                $tmp_meta_ARRAY['highlight.html'] = '#808080';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#00B; font-weight: normal';
+                $tmp_meta_ARRAY['highlight.string'] = '#D00';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F2F2F2';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#C2C7DF';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#2C2C2C';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#787CAF';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#EEE8E8';
+
+            break;
+            case  CRNRSTN_UI_GREYSKYS:
+
+                //
+                // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
+                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+                $tmp_meta_ARRAY['highlight.comment'] = '#D4762D';
+                $tmp_meta_ARRAY['highlight.default'] = '#939393';
+                $tmp_meta_ARRAY['highlight.html'] = '#C8C8C8';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#212121; font-weight: normal';
+                $tmp_meta_ARRAY['highlight.string'] = '#421414';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F5F5F5';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#C3C3C3';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#333';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#A5A5A5';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#E8E8E8';
+
+            break;
+            case  CRNRSTN_UI_HTML:
+
+                //
+                // BE LIGHT AND HAPPY
+                $tmp_meta_ARRAY['highlight.comment'] = '#169B2B';
+                $tmp_meta_ARRAY['highlight.default'] = '#B72620';
+                $tmp_meta_ARRAY['highlight.html'] = '#666';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#C08E1A; font-weight: normal;';
+                $tmp_meta_ARRAY['highlight.string'] = '#2020BD';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F3F0F0';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#80A0DD';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#333';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#3F6EC9';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#F3F0F0';
+
+            break;
+            case  CRNRSTN_UI_DAYLIGHT:
+
+                //
+                // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+                $tmp_meta_ARRAY['highlight.comment'] = '#5AC86C';
+                $tmp_meta_ARRAY['highlight.default'] = '#CC6762';
+                $tmp_meta_ARRAY['highlight.html'] = '#666';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#C08E1A; font-weight: normal;';
+                $tmp_meta_ARRAY['highlight.string'] = '#5F5FD0';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F7F5F5';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#80A0DD';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#5F5FD0';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#809FDB';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#F3F0F0';
+
+            break;
+            case  CRNRSTN_UI_FEATHER:
+
+                //
+                // LIGHTER THAN DAYLIGHT
+                $tmp_meta_ARRAY['highlight.comment'] = '#7CD38B';
+                $tmp_meta_ARRAY['highlight.default'] = '#D78783';
+                $tmp_meta_ARRAY['highlight.html'] = '#868686';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#CDA54A; font-weight: normal;';
+                $tmp_meta_ARRAY['highlight.string'] = '#8080DA';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = '#FFF';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#ECEFF2';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#D6D6F0';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
+
+            break;
+
+        }
+
+        return $tmp_meta_ARRAY;
+
+    }
+
     public function print_r_str($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
+
+        /*
+        WHERE $theme_style =
+        CRNRSTN_UI_PHPNIGHT                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+        CRNRSTN_UI_DARKNIGHT                // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
+        CRNRSTN_UI_PHP                      // ALL ABOUT THE BUSINESS.
+        CRNRSTN_UI_GREYSKYS                 // ALONE AND SAD WITH A NICE CUP OF COFFEE.
+        CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY
+        CRNRSTN_UI_DAYLIGHT                 // LIKE HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+        CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT
+
+        */
 
         if(!isset($theme_style)){
 
@@ -4752,6 +4953,19 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             }
 
         }
+
+        $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
+
+        /*
+        $tmp_meta_ARRAY['stage.canvas.background-color'] = '';
+        $tmp_meta_ARRAY['stage.canvas.border-color'] = '';
+        $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+        $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#833131';
+        $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+        $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
+        $tmp_meta_ARRAY['stage.lnum.css.color'] = '#00d500';
+
+        */
 
         $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
 
@@ -4782,26 +4996,253 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_line_cnt = sizeof($lines);
 
         $lineHTML = implode('<br />', range(1, $tmp_line_cnt + 0));
-        $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:#00FF00; border-right:1px solid #333333; background-color:#161616; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
-        if(isset($title) && $title != ''){
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= $title;
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }else{
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }
-
-        $tmp_hash = $this->generate_new_key(10);
+        $tmp_hash = $this->generate_new_key(42, '01');
 
         switch($theme_style){
+            case CRNRSTN_UI_GREYSKYS:
+
+                //
+                // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
+                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0;overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="position:relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
+
+                break;
+            case CRNRSTN_UI_DAYLIGHT:
+
+                //
+                // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:'.$tmp_meta_ARRAY['stage.canvas.background-color'].'; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
+
+                break;
+            case CRNRSTN_UI_FEATHER:
+
+                //
+                // LIGHTER THAN DAYLIGHT.
+
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
+
+                break;
             case CRNRSTN_UI_PHP:
+
+                //
+                // WE MEAN BUSINESS.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
 
                 $tmp_out = '
                 <script>
@@ -4846,10 +5287,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
+                <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
 
                 // https://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript
                 // onclick = "window.scrollTo(xCoord, yCoord);"
@@ -4857,6 +5301,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             break;
             case CRNRSTN_UI_HTML:
 
+                //
+                // BE LIGHT AND HAPPY.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
                 $tmp_out = '
                 <script>
                 function copy_output_'. $tmp_hash .'() {
@@ -4900,14 +5362,36 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
+                
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
             case CRNRSTN_UI_PHPNIGHT:
 
+                //
+                // REPLICATION OF IDE THEME OF THE LEAD DEVELOPER OF LIGHTSABER. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
                 $tmp_out = '
                 <script>
                 function copy_output_'. $tmp_hash .'() {
@@ -4951,13 +5435,37 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                        <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                        
+                            <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
+            case CRNRSTN_UI_DARKNIGHT:
             default:
+
+                //
+                // NOTHING COULD BE DARKER. NOTHING.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
 
                 $tmp_out = '
                 <script>
@@ -5002,17 +5510,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                    <code>';
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
 
         }
 
-        $tmp_str_out = '<div style="/*background-color: #FFF;*/ padding: 10px 10px 10px 10px;">';
+        $tmp_str_out = '<div style="padding: 10px 10px 10px 10px;">';
         $tmp_str_out .= $tmp_out;
 
         $output = $this->highlightText($tmp_print_r, $theme_style);
@@ -5037,7 +5549,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
-        $tmp_str_out .= '</code></div></div>
+        $tmp_str_out .= '</code></div></div></div>
         <div style="width:100%;">
             <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
 
@@ -5058,6 +5570,20 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function print_r($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
+        /*
+        WHERE $theme_style =
+        CRNRSTN_UI_PHPNIGHT                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+        CRNRSTN_UI_DARKNIGHT                // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
+        CRNRSTN_UI_PHP                      // ALL ABOUT THE BUSINESS.
+        CRNRSTN_UI_GREYSKYS                 // ALONE AND SAD WITH A NICE CUP OF COFFEE.
+        CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY
+        CRNRSTN_UI_DAYLIGHT                 // LIKE HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+        CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT
+
+        */
+
+        //
+        // TAKE ANY VALUE(GARBAGE==DEFAULT THEME). ...OR LOOK FOR A FLIPPED BIT.
         if(!isset($theme_style)){
 
             //
@@ -5068,11 +5594,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             if(count($theme_style_ARRAY) > 0){
 
-                $theme_style = $theme_style_ARRAY[0];   // FIRST MATCH
+                $theme_style = $theme_style_ARRAY[0];   // TAKE FIRST FLIPPED BIT
 
             }
 
         }
+
+        $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
+
+        /*
+        $tmp_meta_ARRAY['stage.canvas.background-color'] = '';
+        $tmp_meta_ARRAY['stage.canvas.border-color'] = '';
+        $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+        $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#833131';
+        $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+        $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
+        $tmp_meta_ARRAY['stage.lnum.css.color'] = '#00d500';
+
+        */
 
         $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
 
@@ -5102,27 +5641,32 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $lines = preg_split('#\r?\n#', trim($tmp_print_r));
         $tmp_line_cnt = sizeof($lines);
 
-        $lineHTML = implode('<br />', range(1, $tmp_line_cnt+0));
-        $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:#00FF00; border-right:1px solid #333333; background-color:#161616; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+        $lineHTML = implode('<br />', range(1, $tmp_line_cnt + 0));
 
-        if(isset($title) && $title != ''){
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= $title;
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }else{
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }
-
-        $tmp_hash = $this->generate_new_key(26);
+        $tmp_hash = $this->generate_new_key(42, '01');
 
         switch($theme_style){
-            case CRNRSTN_UI_PHP:
+            case CRNRSTN_UI_GREYSKYS:
+
+                //
+                // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
+                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
 
                 $tmp_out = '
                 <script>
@@ -5163,18 +5707,259 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
                         <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0;overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="position:relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
+
+            break;
+            case CRNRSTN_UI_DAYLIGHT:
+
+                //
+                // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:'.$tmp_meta_ARRAY['stage.canvas.background-color'].'; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
+
+            break;
+            case CRNRSTN_UI_FEATHER:
+
+                //
+                // LIGHTER THAN DAYLIGHT.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
+
+            break;
+            case CRNRSTN_UI_PHP:
+
+                //
+                // WE MEAN BUSINESS.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_'. $tmp_hash .'() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
                             <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                    <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
-                    <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                    <code>';
+                    <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
 
             break;
             case CRNRSTN_UI_HTML:
 
+                //
+                // BE LIGHT AND HAPPY.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
                 $tmp_out = '
                 <script>
                 function copy_output_'. $tmp_hash .'() {
@@ -5211,23 +5996,44 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
                         </div>
                         <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
-                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
-                    <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
-                    <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                    <code>';
+                    <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
 
             break;
             case CRNRSTN_UI_PHPNIGHT:
 
+                //
+                // REPLICATION OF IDE THEME OF THE LEAD DEVELOPER OF LIGHTSABER. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
                 $tmp_out = '
                 <script>
                 function copy_output_'. $tmp_hash .'() {
@@ -5264,22 +6070,44 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
                         </div>
                         <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
-                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
-                    <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
+                    <div style="padding: 5px 10px 20px 10px;">
+                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
-                    <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                    <code>';
+                    <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
 
             break;
+            case CRNRSTN_UI_DARKNIGHT:
             default:
+
+                //
+                // NOTHING COULD BE DARKER. NOTHING.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
 
                 $tmp_out = '
                 <script>
@@ -5311,29 +6139,34 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
                     document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
-
+            
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
                     <div style="width:100%;">
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
                         </div>
                         <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
-                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                <div style="padding: 5px 10px 20px 10px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; overflow:scroll; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
 
         }
 
-        echo '<div style="/*background-color: #FFF;*/ padding: 10px 10px 10px 10px;">';
+        echo '<div style="padding: 10px 10px 10px 10px;">';
         echo $tmp_out;
 
         $output = $this->highlightText($tmp_print_r, $theme_style);
@@ -5356,9 +6189,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         print_r($output);
         echo '</pre>';
 
+        //$tmp_cb_str = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>';
+
         $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
-        echo '</code></div></div>
+        echo '</code></div></div></div>
         <div style="width:100%;">
             <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
 
@@ -5371,6 +6206,47 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         </div></div></div>';
 
         echo '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+    }
+
+    public function return_constant_profile_ARRAY($int_constant = NULL){
+
+        $tmp_ARRAY = array();
+
+        if(!isset($int_constant)){
+
+            //$tmp_page_theme_nom = 'CRNRSTN_UI_DARKNIGHT';
+            $int_constant = CRNRSTN_UI_DARKNIGHT;
+
+        }
+
+        $int_constant = (int) $int_constant;
+
+        if(!is_integer($int_constant)){
+
+            //$this->print_r('[' . var_dump($int_constant) . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string_ARRAY($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            //
+            // CAN WE CAST THE STRING TO INT CONST?
+            $int_constant = (int) crnrstn_constants_init($int_constant);
+            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string_ARRAY($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+        }
+
+        if(is_integer($int_constant)){
+
+            $tmp_ARRAY['INTEGER'] = $int_constant;
+            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string_ARRAY($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            //die();
+            $tmp_ARRAY['STRING'] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string_ARRAY($int_constant);
+            //$tmp_ARRAY['DESCRIPTION'] =  '';
+            //$tmp_ARRAY['DEPENDENT_METHODS_ARRAY'] = array();      // UPDATES DOCUMENTATION
+            //$tmp_ARRAY['DATA_FAMILY_TYPE'] = '';                  // UPDATES DOCUMENTATION
+
+        }
+
+        return $tmp_ARRAY;
 
     }
 
@@ -6149,40 +7025,29 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     //
     // SOURCE :: https://www.php.net/manual/en/function.highlight-string.php
     // AUTHOR :: stanislav dot eckert at vizson dot de :: https://www.php.net/manual/en/function.highlight-string.php#118550
-    public function highlightText($text, $theme_style = NULL)   // [EDIT] CRNRSTN v2.00.0000 FOR CRNRSTN_UI_PHPNIGHT :: J5
-    {
+    public function highlightText($text, $theme_style = NULL){
 
-        if ($theme_style == CRNRSTN_UI_PHP) {
+        $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
 
-            ini_set('highlight.comment', '#008000');
-            ini_set('highlight.default', '#000');
-            ini_set('highlight.html', '#808080');
-            ini_set('highlight.keyword', '#00B; font-weight: bold');
-            ini_set('highlight.string', '#D00');
+        switch($theme_style){
+            case CRNRSTN_UI_PHP:
+            case CRNRSTN_UI_HTML:
+            case CRNRSTN_UI_DARKNIGHT:
+            case CRNRSTN_UI_DAYLIGHT:
+            case CRNRSTN_UI_FEATHER:
+            case CRNRSTN_UI_GREYSKYS:
+            default:
 
-        } else if ($theme_style == CRNRSTN_UI_HTML) {
+                //
+                // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
+                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+                ini_set('highlight.comment', $tmp_meta_ARRAY['highlight.comment']);
+                ini_set('highlight.default', $tmp_meta_ARRAY['highlight.default']);
+                ini_set('highlight.html', $tmp_meta_ARRAY['highlight.html']);
+                ini_set('highlight.keyword', $tmp_meta_ARRAY['highlight.keyword']);
+                ini_set('highlight.string', $tmp_meta_ARRAY['highlight.string']);
 
-            ini_set('highlight.comment', 'green');
-            ini_set('highlight.default', '#C00');
-            ini_set('highlight.html', '#000');
-            ini_set('highlight.keyword', 'black; font-weight: bold');
-            ini_set('highlight.string', '#00F');
-
-        } else if ($theme_style == CRNRSTN_UI_PHPNIGHT)                        // [EDIT] CRNRSTN :: v2.00.0000 :: J5 :: April 13, 2021 2004 hrs
-        {
-            // ORIGINAL
-            //ini_set('highlight.comment', '#FC0');
-            //ini_set('highlight.default', '#DEDECB');
-            //ini_set('highlight.html', '#808080');
-            //ini_set('highlight.keyword', '#8FE28F; font-weight: normal');
-            //ini_set('highlight.string', '#F66');
-
-
-            ini_set('highlight.comment', '#7EC3E6');
-            ini_set('highlight.default', '#9876AA');
-            ini_set('highlight.html', '#EBEBEB');#ED864A
-            ini_set('highlight.keyword', '#ED864A; font-weight: normal');
-            ini_set('highlight.string', '#54B33E');
+            break;
 
         }
 

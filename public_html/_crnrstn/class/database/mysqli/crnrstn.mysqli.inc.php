@@ -262,6 +262,8 @@ class crnrstn_mysqli_conn_manager {
 
 	private function config_add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
 
+	    //$this->oCRNRSTN->print_r('$env_key=[' . $env_key . ']. $data_key=[' . $data_key . ']. $data_type_family=[' . $data_type_family . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
         $this->oCRNRSTN->add_system_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $env_key);
 
     }
@@ -292,12 +294,12 @@ class crnrstn_mysqli_conn_manager {
             $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE';
             //$tmp_db_profile_cnt = $this->oCRNRSTN->get_resource_count($tmp_data_key, $tmp_data_family_str, $this->oCRNRSTN->get_server_env());
             $tmp_db_profile_cnt = $this->oCRNRSTN->retrieve_data_count($tmp_data_key, $tmp_data_type_family);
-            //self::$db = $this->oCRNRSTN->get_resource('db', 0, $tmp_data_type_family);
-            self::$db = $this->oCRNRSTN->retrieve_data_value($tmp_data_key, $tmp_data_type_family);
+            self::$db = $this->oCRNRSTN->get_resource('db', 0, $tmp_data_type_family);
+            //self::$db = $this->oCRNRSTN->retrieve_data_value($tmp_data_key, $tmp_data_type_family);
 
-            //$this->oCRNRSTN->print_r('self::$db=[' . self::$db . ']. $tmp_data_key=[' . $tmp_data_key . ']. $tmp_data_type_family=[' . $tmp_data_type_family . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->print_r('self::$db=[' . self::$db . ']. $tmp_data_key=[' . $tmp_data_key . ']. $tmp_data_type_family=[' . $tmp_data_type_family . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-            //die();
+            die();
 
             if(!$tmp_is_custom_config && $tmp_db_profile_cnt == 1){
 
@@ -309,6 +311,9 @@ class crnrstn_mysqli_conn_manager {
                 self::$pwd = $this->oCRNRSTN->get_resource('pwd', 0, $tmp_data_type_family);
                 self::$port = $this->oCRNRSTN->get_resource('port', 0, $tmp_data_type_family);
 
+                $this->oCRNRSTN->print_r('self::$db=[' . self::$db . ']. $tmp_data_key=[' . $tmp_data_key . ']. $tmp_data_type_family=[' . $tmp_data_type_family . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                die();
                 $tmp_db_configuration_hash_salt = $this->return_dataset_nomination_prefix('string', self::$host, self::$db, self::$un, self::$pwd, self::$port);
                 $tmp_db_configuration_hash_salt_md5 = md5($tmp_db_configuration_hash_salt);
 

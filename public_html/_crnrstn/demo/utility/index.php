@@ -6,6 +6,34 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
+$tmp_theme_style = $_GET['style'];
+if(!isset($tmp_theme_style)){
+
+    $tmp_theme_style = CRNRSTN_UI_DAYLIGHT;
+
+}
+
+$tmp_theme_style_ARRAY = $oCRNRSTN->return_constant_profile_ARRAY($tmp_theme_style);
+$tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
+$tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
+
+$tmp_lnk_str = '';
+//$tmp_active_profile_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
+
+foreach($oCRNRSTN->system_theme_style_constants_ARRAY as $index => $int_const){
+
+    // $int_const CAN EVEN BE A STRING REPRESENTATION OF THE CONSTANT.
+    $tmp_ARRAY = $oCRNRSTN->return_constant_profile_ARRAY($int_const);
+
+    $tmp_integer = $tmp_ARRAY['INTEGER'];
+    $tmp_nom = $tmp_ARRAY['STRING'];
+
+    $tmp_serial = $oCRNRSTN->generate_new_key(50, '01');
+    $tmp_lnk_str .= '<a href="' . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') .'_crnrstn/demo/utility/?style=' . $tmp_integer . '&serial=' . $tmp_serial . '" target="_self" style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; text-decoration:none;">' . $tmp_nom . '</a><br>';
+
+}
+
+
 /*
 DEMO TOPICS ::
 - DATA STORAGE AND RETRIEVAL
@@ -71,8 +99,11 @@ if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
 
 */
 
+echo '<div style="font-size:25px; padding: 0 0 20px 20px; font-family:Courier New, Courier, monospace; font-weight: bold;">' . $tmp_theme_style_nom  . '</div>';
+echo '<div style="padding: 0 0 0 20px;">' .  $tmp_lnk_str .'</div>';
+
 $tmp_str = '$tmp_hash = hash($oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);';
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. USE OF crnrstn::system_hash_algo', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. USE OF crnrstn::system_hash_algo', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '/*
     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
@@ -110,11 +141,11 @@ $tmp_str = '/*
     For demonstration of use, see: /_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php
     
 */';
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. crnrstn::', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. crnrstn::', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$this->env_key = $oCRNRSTN->get_server_env(\'hash\');', 'crnrstn::get_server_env()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$this->env_key = $oCRNRSTN->get_server_env(\'hash\');', 'crnrstn::get_server_env()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$this->config_serial_hash = $oCRNRSTN->get_server_config_serial(\'hash\');', 'crnrstn::get_server_config_serial()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$this->config_serial_hash = $oCRNRSTN->get_server_config_serial(\'hash\');', 'crnrstn::get_server_config_serial()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 
 $tmp_str = '$tmp_data_key = \'CRNRSTN_FORM_HANDLE\';
@@ -126,14 +157,14 @@ if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)
     
 }';
 
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_handling()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_handling()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = 'public function retrieve_data_value($data_key, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $index = NULL, $env_key = NULL, $soap_transport = false){
 ';
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::retrieve_data_value()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::retrieve_data_value()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '$this->oCRNRSTN->retrieve_data_count(\'FORM_INPUT_FIELD_NAME\', $tmp_data_type_family)';
-$oCRNRSTN->print_r($tmp_str, 'crnrstn::retrieve_data_count()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'crnrstn::retrieve_data_count()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = 'if($oCRNRSTN->isset_data_key($data_key, $data_type_family){
 
@@ -141,7 +172,7 @@ $tmp_str = 'if($oCRNRSTN->isset_data_key($data_key, $data_type_family){
 
 }
 ';
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::isset_data_key()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::isset_data_key()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '$http_transport_protocol = strtoupper($transport_protocol);
 $http_transport_protocol = $this->string_sanitize($http_transport_protocol, \'http_protocol_simple\');
@@ -154,7 +185,7 @@ if($http_transport_protocol != \'GET\' && $http_transport_protocol != \'POST\') 
 
 }';
 
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_handling()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_handling()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 
 $tmp_str = '$tmp_stripe_key_ARRAY = $oCRNRSTN->return_stripe_key_ARRAY(\'$env_key\', \'$encrypt_cipher\', \'$encrypt_secret_key\', \'$hmac_alg\');
@@ -171,7 +202,7 @@ if(count($tmp_param_missing_ARRAY) > 0){
 
 }';
 
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::apply_encryption_profile()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::apply_encryption_profile()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 
 $tmp_str = '//
@@ -186,12 +217,12 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
     // HOOOSTON...VE HAF PROBLEM!
     $this->oCRNRSTN->error_log(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
 
-    $this->oCRNRSTN->print_r(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+    $this->oCRNRSTN->print_r(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
     
     throw new Exception(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
 
 }';
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '$_SESSION[\'CRNRSTN_\' . $this->oCRNRSTN->config_serial_crc][\'CRNRSTN_EXCEPTION_PREFIX\'] = __CLASS__ . \'::\' . __METHOD__ . \'() attempted to fopen \' . $tmp_filepath . \' after the write permissions to related to same were first chmod to \' . str_pad($mkdir_mode, \'4\', \'0\', STR_PAD_LEFT) . \'. An attempt to open was again made, but \';
 if($resource_file = fopen($tmp_filepath, \'w\')){
@@ -205,20 +236,20 @@ if($resource_file = fopen($tmp_filepath, \'w\')){
 
 }';
 
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 
-$oCRNRSTN->print_r('$oCRNRSTN->print_r(\'Output content.\', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$oCRNRSTN->print_r(\'Output content.\', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$tmp_str = $oCRNRSTN->print_r_str(\'Output content.\', \'Output title.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r_str()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$tmp_str = $oCRNRSTN->print_r_str(\'Output content.\', \'Output title.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r_str()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('echo $oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', \'\', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);', '$oCRNRSTN->return_system_image()',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('echo $oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', \'\', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);', '$oCRNRSTN->return_system_image()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('echo $oCRNRSTN->return_youtube_embed(\'https://www.youtube.com/watch?v=NePb9UWK8Yg\', 560, 315, true);', '$oCRNRSTN->return_youtube_embed()',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('echo $oCRNRSTN->return_youtube_embed(\'https://www.youtube.com/watch?v=NePb9UWK8Yg\', 560, 315, true);', '$oCRNRSTN->return_youtube_embed()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$oCRNRSTN->get_resource(\'DOCUMENT_ROOT\')', '$oCRNRSTN->get_resource()',CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$oCRNRSTN->get_resource(\'DOCUMENT_ROOT\')', '$oCRNRSTN->get_resource()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 //$oCRNRSTN->system_base64_synchronize();
 //$oCRNRSTN->system_base64_synchronize('CRNRSTN_LOGO');

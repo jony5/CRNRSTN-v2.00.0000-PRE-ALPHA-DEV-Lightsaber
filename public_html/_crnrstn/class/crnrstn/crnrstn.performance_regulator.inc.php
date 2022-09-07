@@ -589,6 +589,733 @@ class crnrstn_performance_regulator{
 
     }
 
+    public function return_constants_string_ARRAY($int_constant){
+
+        $tmp_str_out = '';
+
+        switch($int_constant){
+            case CRNRSTN_DEBUG_OFF:
+
+                $tmp_str_out = 'CRNRSTN_DEBUG_OFF';
+
+            break;
+            case CRNRSTN_DEBUG_NATIVE_ERR_LOG:
+
+                $tmp_str_out = 'CRNRSTN_DEBUG_NATIVE_ERR_LOG';
+
+            break;
+            case CRNRSTN_DEBUG_AGGREGATION_ON:
+
+                $tmp_str_out = 'CRNRSTN_DEBUG_AGGREGATION_ON';
+
+            break;
+            case CRNRSTN_LOG_NONE:
+
+                $tmp_str_out = 'CRNRSTN_LOG_NONE';
+
+            break;
+            case CRNRSTN_LOG_ALL:
+
+                $tmp_str_out = 'CRNRSTN_LOG_ALL';
+
+            break;
+            case CRNRSTN_AUTHORIZED_ACCOUNT:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZED_ACCOUNT';
+
+            break;
+            case CRNRSTN_INTEGER_LENGTH:
+
+                $tmp_str_out = 'CRNRSTN_INTEGER_LENGTH';
+
+            break;
+            case CRNRSTN_SETTINGS_APACHE:
+
+                $tmp_str_out = 'CRNRSTN_SETTINGS_APACHE';
+
+            break;
+            case CRNRSTN_SETTINGS_MYSQLI:
+
+                $tmp_str_out = 'CRNRSTN_SETTINGS_MYSQLI';
+
+            break;
+            case CRNRSTN_SETTINGS_PHP:
+
+                $tmp_str_out = 'CRNRSTN_SETTINGS_PHP';
+
+            break;
+            case CRNRSTN_SETTINGS_CRNRSTN:
+
+                $tmp_str_out = 'CRNRSTN_SETTINGS_CRNRSTN';
+
+            break;
+            case CRNRSTN_SETTINGS_WORDPRESS:
+
+                $tmp_str_out = 'CRNRSTN_SETTINGS_WORDPRESS';
+
+            break;
+            case CRNRSTN_SETTINGS_CLIENT:
+
+                $tmp_str_out = 'CRNRSTN_SETTINGS_CLIENT';
+
+            break;
+            case CRNRSTN_INPUT_OPTIONAL:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_OPTIONAL';
+
+            break;
+            case CRNRSTN_INPUT_REQUIRED:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_REQUIRED';
+
+            break;
+            case CRNRSTN_INPUT_PASSWORD:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_PASSWORD';
+
+            break;
+            case CRNRSTN_INPUT_IS_EMAIL:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_IS_EMAIL';
+
+            break;
+            case CRNRSTN_INPUT_CHAR_RESTRICTIONS:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_CHAR_RESTRICTIONS';
+
+            break;
+            case CRNRSTN_INPUT_CHAR_LIMITS:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_CHAR_LIMITS';
+
+            break;
+            case CRNRSTN_INPUT_IS_FILE_IMAGE:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_IMAGE';
+
+            break;
+            case CRNRSTN_INPUT_IS_FILE_IMAGE_PNG:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_IMAGE_PNG';
+
+            break;
+            case CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG';
+
+            break;
+            case CRNRSTN_INPUT_IS_FILE_IMAGE_GIF:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_IMAGE_GIF';
+
+            break;
+            case CRNRSTN_INPUT_IS_FILE_DOCUMENT:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_DOCUMENT';
+
+            break;
+            case CRNRSTN_INPUT_IS_FILE_ZIP:
+
+                $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_ZIP';
+
+            break;
+            case CRNRSTN_DATABASE:
+
+                $tmp_str_out = 'CRNRSTN_DATABASE';
+
+            break;
+            case CRNRSTN_DATABASE_CONNECTION:
+
+                $tmp_str_out = 'CRNRSTN_DATABASE_CONNECTION';
+
+            break;
+            case CRNRSTN_DATABASE_QUERY:
+
+                $tmp_str_out = 'CRNRSTN_DATABASE_QUERY';
+
+            break;
+            case CRNRSTN_DATABASE_QUERY_SILO:
+
+                $tmp_str_out = 'CRNRSTN_DATABASE_QUERY_SILO';
+
+            break;
+            case CRNRSTN_DATABASE_QUERY_DYNAMIC:
+
+                $tmp_str_out = 'CRNRSTN_DATABASE_QUERY_DYNAMIC';
+
+            break;
+            case CRNRSTN_DATABASE_RESULT:
+
+                $tmp_str_out = 'CRNRSTN_DATABASE_RESULT';
+
+            break;
+            case CRNRSTN_GABRIEL:
+
+                $tmp_str_out = 'CRNRSTN_GABRIEL';
+
+            break;
+            case CRNRSTN_SMTP_AUTHENTICATION:
+
+                $tmp_str_out = 'CRNRSTN_SMTP_AUTHENTICATION';
+
+            break;
+            case CRNRSTN_EMAIL_CRNRSTN_SOURCE:
+
+                $tmp_str_out = 'CRNRSTN_EMAIL_CRNRSTN_SOURCE';
+
+            break;
+            case CRNRSTN_EMAIL_USER_SOURCE:
+
+                $tmp_str_out = 'CRNRSTN_EMAIL_USER_SOURCE';
+
+            break;
+            case CRNRSTN_ELECTRUM:
+
+                $tmp_str_out = 'CRNRSTN_ELECTRUM';
+
+            break;
+            case CRNRSTN_ELECTRUM_THREAD:
+
+                $tmp_str_out = 'CRNRSTN_ELECTRUM_THREAD';
+
+            break;
+            case CRNRSTN_ELECTRUM_COMM:
+
+                $tmp_str_out = 'CRNRSTN_ELECTRUM_COMM';
+
+            break;
+            case CRNRSTN_ELECTRUM_FTP:
+
+                $tmp_str_out = 'CRNRSTN_ELECTRUM_FTP';
+
+            break;
+            case CRNRSTN_ELECTRUM_LOCALDIR:
+
+                $tmp_str_out = 'CRNRSTN_ELECTRUM_LOCALDIR';
+
+            break;
+            case CRNRSTN_FILE_MANAGEMENT:
+
+                $tmp_str_out = 'CRNRSTN_FILE_MANAGEMENT';
+
+            break;
+            case CRNRSTN_SOAP:
+
+                $tmp_str_out = 'CRNRSTN_SOAP';
+
+            break;
+            case CRNRSTN_SOAP_SERVER:
+
+                $tmp_str_out = 'CRNRSTN_SOAP_SERVER';
+
+            break;
+            case CRNRSTN_SOAP_CLIENT:
+
+                $tmp_str_out = 'CRNRSTN_SOAP_CLIENTCRNRSTN_SOAP_CLIENT';
+
+            break;
+            case CRNRSTN_PROXY_KINGS_HIGHWAY:
+
+                $tmp_str_out = 'CRNRSTN_PROXY_KINGS_HIGHWAY';
+
+            break;
+            case CRNRSTN_PROXY_EMAIL:
+
+                $tmp_str_out = 'CRNRSTN_PROXY_EMAIL';
+
+            break;
+            case CRNRSTN_PROXY_ELECTRUM:
+
+                $tmp_str_out = 'CRNRSTN_PROXY_ELECTRUM';
+
+            break;
+            case CRNRSTN_PROXY_AUTHENTICATE:
+
+                $tmp_str_out = 'CRNRSTN_PROXY_AUTHENTICATE';
+
+            break;
+            case CRNRSTN_UI_PHPNIGHT:
+
+                $tmp_str_out = 'CRNRSTN_UI_PHPNIGHT';
+
+            break;
+            case CRNRSTN_UI_DARKNIGHT:
+
+                $tmp_str_out = 'CRNRSTN_UI_DARKNIGHT';
+
+            break;
+            case CRNRSTN_UI_PHP:
+
+                $tmp_str_out = 'CRNRSTN_UI_PHP';
+
+            break;
+            case CRNRSTN_UI_GREYSKYS:
+
+                $tmp_str_out = 'CRNRSTN_UI_GREYSKYS';
+
+            break;
+            case CRNRSTN_UI_HTML:
+
+                $tmp_str_out = 'CRNRSTN_UI_HTML';
+
+            break;
+            case CRNRSTN_UI_DAYLIGHT:
+
+                $tmp_str_out = 'CRNRSTN_UI_DAYLIGHT';
+
+            break;
+            case CRNRSTN_UI_FEATHER:
+
+                $tmp_str_out = 'CRNRSTN_UI_FEATHER';
+
+            break;
+            case CRNRSTN_UI_DESKTOP:
+
+                $tmp_str_out = 'CRNRSTN_UI_DESKTOP';
+
+            break;
+            case CRNRSTN_UI_TABLET:
+
+                $tmp_str_out = 'CRNRSTN_UI_TABLET';
+
+            break;
+            case CRNRSTN_UI_MOBILE:
+
+                $tmp_str_out = 'CRNRSTN_UI_MOBILE';
+
+            break;
+            case CRNRSTN_UI_SOAP_DATA_TUNNEL:
+
+                $tmp_str_out = 'CRNRSTN_UI_SOAP_DATA_TUNNEL';
+
+            break;
+            case CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL';
+
+            break;
+            case CRNRSTN_UI_IMG_BASE64:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64';
+
+            break;
+            case CRNRSTN_UI_IMG_BASE64_PNG:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_PNG';
+
+            break;
+            case CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED';
+
+            break;
+            case CRNRSTN_UI_IMG_BASE64_JPEG:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_JPEG';
+
+            break;
+            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED';
+
+            break;
+            case CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED';
+
+            break;
+            case CRNRSTN_UI_IMG_JPEG:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_JPEG';
+
+            break;
+            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED';
+
+            break;
+            case CRNRSTN_UI_IMG_PNG:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_PNG';
+
+            break;
+            case CRNRSTN_UI_IMG_PNG_HTML_WRAPPED:
+
+                $tmp_str_out = 'CRNRSTN_UI_IMG_PNG_HTML_WRAPPED';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_DESKTOP:
+
+                $tmp_str_out = 'CRNRSTN_UI_CSS_MAIN_DESKTOP';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_TABLET:
+
+                $tmp_str_out = 'CRNRSTN_UI_CSS_MAIN_TABLET';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_MOBILE:
+
+                $tmp_str_out = 'CRNRSTN_UI_CSS_MAIN_MOBILE';
+
+            break;
+            case CRNRSTN_UI_JS_MAIN_DESKTOP:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_MAIN_DESKTOP';
+
+            break;
+            case CRNRSTN_UI_JS_MAIN_TABLET:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_MAIN_TABLET';
+
+            break;
+            case CRNRSTN_UI_JS_MAIN_MOBILE:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_MAIN_MOBILE';
+
+            break;
+            case CRNRSTN_UI_JS_JQUERY_1_11_1:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_1_11_1';
+
+            break;
+            case CRNRSTN_UI_JS_JQUERY:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY';
+
+            break;
+            case CRNRSTN_UI_JS_JQUERY_UI:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_UI';
+
+            break;
+            case CRNRSTN_UI_JS_JQUERY_MOBILE:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_MOBILE';
+
+            break;
+            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS';
+
+            break;
+            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY';
+
+            break;
+            case CRNRSTN_UI_TAG_ANALYTICS:
+
+                $tmp_str_out = 'CRNRSTN_UI_TAG_ANALYTICS';
+
+            break;
+            case CRNRSTN_UI_TAG_ENGAGEMENT:
+
+                $tmp_str_out = 'CRNRSTN_UI_TAG_ENGAGEMENT';
+
+            break;
+            case CRNRSTN_UI_FORM_INTEGRATION_PACKET:
+
+                $tmp_str_out = 'CRNRSTN_UI_FORM_INTEGRATION_PACKET';
+
+            break;
+            case CRNRSTN_UI_COOKIE_PREFERENCE:
+
+                $tmp_str_out = 'CRNRSTN_UI_COOKIE_PREFERENCE';
+
+            break;
+            case CRNRSTN_UI_COOKIE_YESNO:
+
+                $tmp_str_out = 'CRNRSTN_UI_COOKIE_YESNO';
+
+            break;
+            case CRNRSTN_UI_COOKIE_NOTICE:
+
+                $tmp_str_out = 'CRNRSTN_UI_COOKIE_NOTICE';
+
+            break;
+            case CRNRSTN_UI_INTERACT:
+
+                $tmp_str_out = 'CRNRSTN_UI_INTERACT';
+
+            break;
+            case CRNRSTN_ASSET_MODE_BASE64:
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MODE_BASE64';
+
+            break;
+            case CRNRSTN_ASSET_MODE_PNG:
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MODE_PNG';
+
+            break;
+            case CRNRSTN_ASSET_MODE_JPEG:
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MODE_JPEG';
+
+            break;
+            case CRNRSTN_LOG_EMAIL:
+
+                $tmp_str_out = 'CRNRSTN_LOG_EMAIL';
+
+            break;
+            case CRNRSTN_LOG_EMAIL_PROXY:
+
+                $tmp_str_out = 'CRNRSTN_LOG_EMAIL_PROXY';
+
+            break;
+            case CRNRSTN_LOG_FILE:
+
+                $tmp_str_out = 'CRNRSTN_LOG_FILE';
+
+            break;
+            case CRNRSTN_LOG_FILE_PROXY:
+
+                $tmp_str_out = 'CRNRSTN_LOG_FILE_PROXY';
+
+            break;
+            case CRNRSTN_LOG_FILE_FTP:
+
+                $tmp_str_out = 'CRNRSTN_LOG_FILE_FTP';
+
+            break;
+            case CRNRSTN_LOG_SCREEN_TEXT:
+
+                $tmp_str_out = 'CRNRSTN_LOG_SCREEN_TEXT';
+
+            break;
+            case CRNRSTN_LOG_SCREEN:
+
+                $tmp_str_out = 'CRNRSTN_LOG_SCREEN';
+
+            break;
+            case CRNRSTN_LOG_SCREEN_HTML:
+
+                $tmp_str_out = 'CRNRSTN_LOG_SCREEN_HTML';
+
+            break;
+            case CRNRSTN_LOG_SCREEN_HTML_HIDDEN:
+
+                $tmp_str_out = 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN';
+
+            break;
+            case CRNRSTN_LOG_DEFAULT:
+
+                $tmp_str_out = 'CRNRSTN_LOG_DEFAULT';
+
+            break;
+            case CRNRSTN_LOG_DEFAULT_PROXY:
+
+                $tmp_str_out = 'CRNRSTN_LOG_DEFAULT_PROXY';
+
+            break;
+            case CRNRSTN_LOG_ELECTRUM:
+
+                $tmp_str_out = 'CRNRSTN_LOG_ELECTRUM';
+
+            break;
+            case CRNRSTN_AUTHORIZE_RUNTIME_ONLY:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY';
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_ALL';
+
+            break;
+            case CRNRSTN_AUTHORIZE_DATABASE:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_DATABASE';
+
+            break;
+            case CRNRSTN_AUTHORIZE_SSDTLA:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_SSDTLA';
+
+            break;
+            case CRNRSTN_AUTHORIZE_PSSDTLA:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_PSSDTLA';
+
+            break;
+            case CRNRSTN_AUTHORIZE_SESSION:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_SESSION';
+
+            break;
+            case CRNRSTN_AUTHORIZE_COOKIE:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_COOKIE';
+
+            break;
+            case CRNRSTN_AUTHORIZE_SOAP:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_SOAP';
+
+            break;
+            case CRNRSTN_AUTHORIZE_GET:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_GET';
+
+            break;
+            case CRNRSTN_AUTHORIZE_ISEMAIL:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_ISEMAIL';
+
+            break;
+            case CRNRSTN_AUTHORIZE_ISPASSWORD:
+
+                $tmp_str_out = 'CRNRSTN_AUTHORIZE_ISPASSWORD';
+
+            break;
+            case CRNRSTN_ENCRYPT_TUNNEL:
+
+                $tmp_str_out = 'CRNRSTN_ENCRYPT_TUNNEL';
+
+            break;
+            case CRNRSTN_ENCRYPT_DATABASE:
+
+                $tmp_str_out = 'CRNRSTN_ENCRYPT_DATABASE';
+
+            break;
+            case CRNRSTN_ENCRYPT_SESSION:
+
+                $tmp_str_out = 'CRNRSTN_ENCRYPT_SESSION';
+
+            break;
+            case CRNRSTN_ENCRYPT_COOKIE:
+
+                $tmp_str_out = 'CRNRSTN_ENCRYPT_COOKIE';
+
+            break;
+            case CRNRSTN_ENCRYPT_SOAP:
+
+                $tmp_str_out = 'CRNRSTN_ENCRYPT_SOAP';
+
+            break;
+            case CRNRSTN_ENCRYPT_OERSL:
+
+                $tmp_str_out = 'CRNRSTN_ENCRYPT_OERSL';
+
+            break;
+            case CRNRSTN_RESOURCE_ALL:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_ALL';
+
+            break;
+            case CRNRSTN_RESOURCE_BASSDRIVE:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_BASSDRIVE';
+
+            break;
+            case CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE';
+
+            break;
+            case CRNRSTN_RESOURCE_CSS_VALIDATOR:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_CSS_VALIDATOR';
+
+            break;
+            case CRNRSTN_RESOURCE_DOCUMENTATION:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_DOCUMENTATION';
+
+            break;
+            case CRNRSTN_RESOURCE_IMAGE:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_IMAGE';
+
+            break;
+            case CRNRSTN_RESOURCE_DOCUMENT:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_DOCUMENT';
+
+            break;
+            case CRNRSTN_RESOURCE_OPENSOURCE:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_OPENSOURCE';
+
+            break;
+            case CRNRSTN_RESOURCE_NEWS_SYNDICATION:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_NEWS_SYNDICATION';
+
+            break;
+            case CRNRSTN_RESOURCE_ELECTRUM:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_ELECTRUM';
+
+            break;
+            case CRNRSTN_BARNEY:
+
+                $tmp_str_out = 'CRNRSTN_BARNEY';
+
+            break;
+            case CRNRSTN_BARNEY_DATABASE:
+
+                $tmp_str_out = 'CRNRSTN_BARNEY_DATABASE';
+
+            break;
+            case CRNRSTN_BARNEY_FILE:
+
+                $tmp_str_out = 'CRNRSTN_BARNEY_FILE';
+
+            break;
+            case CRNRSTN_BARNEY_FTP:
+
+                $tmp_str_out = 'CRNRSTN_BARNEY_FTP';
+
+            break;
+            case CRNRSTN_BARNEY_ELECTRUM:
+
+                $tmp_str_out = 'CRNRSTN_BARNEY_ELECTRUM';
+
+            break;
+            case CRNRSTN_BARNEY_GABRIEL:
+
+                $tmp_str_out = 'CRNRSTN_BARNEY_GABRIEL';
+
+            break;
+            case CRNRSTN_BARNEY_DISK:
+
+                $tmp_str_out = 'CRNRSTN_BARNEY_DISK';
+
+            break;
+            case CRNRSTN_PERFORMANCE_MONITOR:
+
+                $tmp_str_out = 'CRNRSTN_PERFORMANCE_MONITOR';
+
+            break;
+            case CRNRSTN_WORDPRESS_DEBUG:
+
+                $tmp_str_out = 'CRNRSTN_WORDPRESS_DEBUG';
+
+            break;
+            case CRNRSTN_IP_SECURITY:
+
+                $tmp_str_out = 'CRNRSTN_IP_SECURITY';
+
+            break;
+            case CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE:
+
+                $tmp_str_out = 'CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE';
+
+            break;
+            default:
+
+                $this->oCRNRSTN->error_log('MISSING STRING DATA ERROR: The integer constant [] needs string representation in the system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            break;
+
+        }
+
+        return $tmp_str_out;
+
+    }
+
     public function __destruct() {
 
 
