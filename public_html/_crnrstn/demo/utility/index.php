@@ -90,7 +90,6 @@ if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
 */
 
 echo '<div style="font-size:25px; padding: 0 0 20px 20px; font-family:Arial, Helvetica, sans-serif; font-weight: bold;">Theme: <span style="font-weight: normal;">' . $tmp_theme_style_nom  . '</span></div>';
-echo '<div style="padding: 0 0 0 20px;">' .  $tmp_lnk_str .'</div>';
 
 $tmp_str = '<!DOCTYPE html>
 <html lang="en">
