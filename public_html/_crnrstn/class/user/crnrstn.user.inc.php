@@ -1661,34 +1661,34 @@ class crnrstn_user{
                 case 'alpha_testing':
 
                     $this->form_serialize_new('crnrstn_soap_data_tunnel_frm');
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_data', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_data', true);
 
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_soap_action', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_wsdl', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_content_length', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_soap_action', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_wsdl', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_content_length', true);
 
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_user_agent', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_host', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_user_agent', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_host', true);
 
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_stime', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_rtime', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_wethrbug', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_bassdrive_stats', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_bassdrive_show', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_truth_timer', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_desktop', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_tablet', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_mobile', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_transport_protocol_version', true);
-                    $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_encoding', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_stime', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_rtime', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_wethrbug', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_bassdrive_stats', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_bassdrive_show', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_truth_timer', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_desktop', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_tablet', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_mobile', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_transport_protocol_version', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_encoding', true);
 
-                    $this->init_hidden_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_data', true, $tmp_crnrstn_soap_data_tunnel_output, 'crnrstn_soap_data_tunnel_data');
-                    $this->init_hidden_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_soap_action', true, 'urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl#returnCRNRSTN_UI_GLOBAL_SYNC', 'crnrstn_soap_data_tunnel_soap_action');
-                    $this->init_hidden_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_content_type', true, 'text/xml; charset=' . $this->oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_data_tunnel_content_type');
-                    $this->init_hidden_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_content_length', true, $tmp_content_length, 'crnrstn_soap_data_tunnel_content_length');
-                    $this->init_hidden_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_user_agent', true, $tmp_user_agent, 'crnrstn_soap_data_tunnel_user_agent');
-                    $this->init_hidden_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_host', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_data_tunnel_host');
-                    $this->init_hidden_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_host', true, $this->oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_data_tunnel_encoding');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_data', true, $tmp_crnrstn_soap_data_tunnel_output, 'crnrstn_soap_data_tunnel_data');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_soap_action', true, 'urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl#returnCRNRSTN_UI_GLOBAL_SYNC', 'crnrstn_soap_data_tunnel_soap_action');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_content_type', true, 'text/xml; charset=' . $this->oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_data_tunnel_content_type');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_content_length', true, $tmp_content_length, 'crnrstn_soap_data_tunnel_content_length');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_user_agent', true, $tmp_user_agent, 'crnrstn_soap_data_tunnel_user_agent');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_host', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_data_tunnel_host');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_host', true, $this->oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_data_tunnel_encoding');
 
                     $tmp_html = '<form action="' . $this->crnrstn_resources_http_path . 'soa/tunnel/" method="post" id="crnrstn_ssdtl_frm" name="crnrstn_ssdtl_frm" enctype="multipart/form-data">
 <div style="padding-bottom: 20px;"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">' . $tmp_crnrstn_soap_data_tunnel_output . '</textarea></div>
@@ -4073,8 +4073,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $tmp_clean_form_handle = 'crnstn_frm_' . hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
 
-                //     init_hidden_input_listener($crnrstn_form_handle, $field_input_name, $field_input_name = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
-                $this->init_hidden_input_listener($crnrstn_form_handle, 'CRNRSTN_FORM_HANDLE', $tmp_clean_form_handle, $crnrstn_form_handle, CRNRSTN_INPUT_REQUIRED);
+                //     form_hidden_input_add($crnrstn_form_handle, $field_input_name, $field_input_name = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+                $this->form_hidden_input_add($crnrstn_form_handle, 'CRNRSTN_FORM_HANDLE', $tmp_clean_form_handle, $crnrstn_form_handle, CRNRSTN_INPUT_REQUIRED);
 
                 return $this->inject_input_serialization($crnrstn_form_handle);
 
@@ -5024,7 +5024,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
     
-    public function init_input_listener($crnrstn_form_handle, $field_input_name, $field_input_id, $default_value, $validation_constant_profile, $table_field_name){
+    public function form_input_add($crnrstn_form_handle, $field_input_name, $field_input_id, $default_value, $validation_constant_profile, $table_field_name){
 
         /*
         Saturday, September 3, 2022 @ 0726 hrs
@@ -5160,9 +5160,11 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    public function form_response_add($crnrstn_form_handle, $field_input_name, $success_redirect_url, $error_redirect_url){
+    public function form_response_add($crnrstn_form_handle, $field_input_name, $success_response_data, $success_response_type, $error_response_data, $error_response_type){
 
         /*
+        WHERE $success_response_type=
+        WHERE $error_response_type=
         CRNRSTN_HTTP_REDIRECT
         CRNRSTN_HTTPS_REDIRECT
         CRNRSTN_HTTP_DATA_RETURN     // UGC RESPONSE HEADER DATA???
@@ -5275,8 +5277,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    //$oCRNRSTN->init_hidden_input_listener($crnrstn_form_handle, $field_input_name, $field_input_name, $default_value, $validation_constant_profile, $table_field_name);
-    public function init_hidden_input_listener($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+    //$oCRNRSTN->form_hidden_input_add($crnrstn_form_handle, $field_input_name, $field_input_name, $default_value, $validation_constant_profile, $table_field_name);
+    public function form_hidden_input_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
 
         try {
 
@@ -5397,7 +5399,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    public function form_input_messages_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    public function form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
 
         $tmp_str = '$crnrstn_form_handle=[' . $crnrstn_form_handle . ']. 
 $field_input_name=[' . $field_input_name . ']. 

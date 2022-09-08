@@ -2778,24 +2778,24 @@ class crnrstn_ui_tunnel_response_manager {
 
         $this->oCRNRSTN_USR->form_serialize_new('crnrstn_soap_data_tunnel_form');
 
-        $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
-        $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
-        $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_session', false);
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', false);
 
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->return_serialized_soap_data_tunnel_session('jony5.com'), 'crnrstn_session');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', true, $_SERVER['HTTP_USER_AGENT'], 'crnrstn_soap_srvc_user_agent');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', true, $this->oCRNRSTN_USR->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', true, $this->oCRNRSTN_USR->starttime, 'crnrstn_soap_srvc_stime');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', true, $this->oCRNRSTN_USR->wall_time(), 'crnrstn_soap_srvc_rtime');
-        //$this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN_USR->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
-        //$this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $tmp_client_id, 'crnrstn_client_id');
-        $this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $tmp_client_auth_key, 'crnrstn_client_auth_key');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->return_serialized_soap_data_tunnel_session('jony5.com'), 'crnrstn_session');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', true, $_SERVER['HTTP_USER_AGENT'], 'crnrstn_soap_srvc_user_agent');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', true, $this->oCRNRSTN_USR->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', true, $this->oCRNRSTN_USR->starttime, 'crnrstn_soap_srvc_stime');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', true, $this->oCRNRSTN_USR->wall_time(), 'crnrstn_soap_srvc_rtime');
+        //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN_USR->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
+        //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $tmp_client_id, 'crnrstn_client_id');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $tmp_client_auth_key, 'crnrstn_client_auth_key');
 
         $tmp_str_out = '<form action="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'soa/tunnel/" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
             <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">SOAP_DATA_TUNNEL_LAYER_PACKET</textarea>

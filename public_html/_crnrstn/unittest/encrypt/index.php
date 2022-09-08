@@ -165,16 +165,16 @@ $tmp_http_root = $oCRNRSTN->current_location();
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
 # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE
 # ENCRYPTED INITIALLY.
-# $this->oCRNRSTN_USR->init_input_listener({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_cipher', true);
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_algorithm', true);
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_secret_key');
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_options', true);
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_raw_data');
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_refresh_secret_key');
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_enable_unit_test_automation');
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_unit_test_automation_freq_secs');
-$oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_profile_randomization');
+# $this->oCRNRSTN_USR->form_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_cipher', true);
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_algorithm', true);
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_secret_key');
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_options', true);
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_raw_data');
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_refresh_secret_key');
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_enable_unit_test_automation');
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_unit_test_automation_freq_secs');
+$oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_profile_randomization');
 
 $tmp_array = $oCRNRSTN->openssl_get_cipher_methods();
 foreach ($tmp_array as $key1 => $data1) {
@@ -213,7 +213,7 @@ foreach ($tmp_array as $key1 => $data1) {
 
     }
 
-    $oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_cipher_' . $data1 . '_chkbx');
+    $oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_cipher_' . $data1 . '_chkbx');
 
 }
 
@@ -255,7 +255,7 @@ foreach ($tmp_array as $key1 => $data1) {
 
     }
 
-    $oCRNRSTN->init_input_listener('openssl_mysql_storage_performance', 'crnrstn_openssl_algorithm_' . $data1 . '_chkbx');
+    $oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_algorithm_' . $data1 . '_chkbx');
 
 }
 

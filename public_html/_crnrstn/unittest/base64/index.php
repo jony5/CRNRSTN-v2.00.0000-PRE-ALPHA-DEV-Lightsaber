@@ -104,9 +104,9 @@ if($oCRNRSTN->initialize_crnrstn_svc_http(true, false)) {
 
 }
 
-$oCRNRSTN->init_input_listener('crnrstn_image_to_encode', 'crnrstn_resource_filecache_version_php', false);
-$oCRNRSTN->init_input_listener('crnrstn_image_to_encode', 'crnrstn_resource_filecache_version_png', false);
-$oCRNRSTN->init_input_listener('crnrstn_image_to_encode', 'crnrstn_resource_filecache_version_jpg', false);
+$oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache_version_php', false);
+$oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache_version_png', false);
+$oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache_version_jpg', false);
 
 ?>
 <!DOCTYPE html>

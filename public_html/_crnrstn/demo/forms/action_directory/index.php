@@ -37,18 +37,18 @@ CRNRSTN_SERVER_RESPONSE_CODE
 
 
 $oCRNRSTN->form_response_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname', $tmp_http_root . '?crnrstn_demo_firstname_success=true', $tmp_http_root . '?crnrstn_demo_firstname_err=true', CRNRSTN_HTTP_REDIRECT);
-$oCRNRSTN->form_response_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', NULL, $tmp_http_root . '?success=true', $tmp_http_root . '?err=true');
+$oCRNRSTN->form_response_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', NULL, $tmp_http_root . '?success=true', $tmp_http_root . '?err=true', CRNRSTN_HTTP_REDIRECT);
 
 //
 // VALIDATION ERROR MESSAGES
 //form_serialize_new
 //form_integration_html_packet_output
 //form_response_add
-//form_input_messages_add
-//function form_input_messages_add($crnrstn_form_handle, $field_input_name, $html_form_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
-$oCRNRSTN->form_input_messages_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname','crnrstn_demo_firstname', '', 'Firstname is required.', 'Firstname approved.', 'Fistname can have numbers.');
-$oCRNRSTN->form_input_messages_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city','crnrstn_demo_city', '', 'City is required.', 'City approved.', 'City can be abbreviated.');
-$oCRNRSTN->form_input_messages_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email', 'crnrstn_demo_email', 'MISSING_DATA-EMAIL');
+//form_input_feedback_copy_add
+//function form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $html_form_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname','crnrstn_demo_firstname', '', 'Firstname is required.', 'Firstname approved.', 'Fistname can have numbers.');
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city','crnrstn_demo_city', '', 'City is required.', 'City approved.', 'City can be abbreviated.');
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email', 'crnrstn_demo_email', 'MISSING_DATA-EMAIL');
 
 //
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
@@ -57,18 +57,25 @@ $oCRNRSTN->form_input_messages_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_dem
 //form_serialize_new
 //form_integration_html_packet_output
 //form_response_add
-//form_input_messages_add
-//init_input_listener
-//    public function init_input_listener($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
-$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname', 'crnrstn_demo_firstname', 'DEFAULT-FNAME-DATA, HERE', CRNRSTN_INPUT_REQUIRED, 'CUST_TABLE_MEOW_FNAME');
-$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city', 'crnrstn_demo_city', 'Atlanta', CRNRSTN_INPUT_REQUIRED);
-$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_state', 'crnrstn_demo_state');
-$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_zipcode', 'crnrstn_demo_zipcode');
-$oCRNRSTN->init_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email', 'crnrstn_demo_email', NULL, CRNRSTN_INPUT_IS_EMAIL);
+//form_input_feedback_copy_add
+//form_input_add
+//    public function form_input_add($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+$oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname', 'crnrstn_demo_firstname', 'DEFAULT-FNAME-DATA, HERE', CRNRSTN_INPUT_REQUIRED, 'CUST_TABLE_MEOW_FNAME');
+$oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city', 'crnrstn_demo_city', 'Atlanta', CRNRSTN_INPUT_REQUIRED);
+$oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_state', 'crnrstn_demo_state');
+$oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_zipcode', 'crnrstn_demo_zipcode');
+$oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email', 'crnrstn_demo_email', NULL, CRNRSTN_INPUT_IS_EMAIL);
 
-//$oCRNRSTN->init_hidden_input_listener($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
-$oCRNRSTN->init_hidden_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidden_demo_account_number', 'crnrstn_hidden_demo_account_number', $oCRNRSTN->data_encrypt('1234567890.0987654321'), CRNRSTN_INPUT_REQUIRED);
-$oCRNRSTN->init_hidden_input_listener('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidden_demo_account_access', 'crnrstn_hidden_demo_account_access', $oCRNRSTN->data_encrypt('ANONYMOUS'), CRNRSTN_INPUT_REQUIRED);
+//form_serialize_new
+//form_integration_html_packet_output
+//form_response_add
+//form_input_feedback_copy_add
+//form_input_add
+//form_hidden_input_add
+//
+//$oCRNRSTN->form_hidden_input_add($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
+$oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidden_demo_account_number', 'crnrstn_hidden_demo_account_number', $oCRNRSTN->data_encrypt('1234567890.0987654321'), CRNRSTN_INPUT_REQUIRED);
+$oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidden_demo_account_access', 'crnrstn_hidden_demo_account_access', $oCRNRSTN->data_encrypt('ANONYMOUS'), CRNRSTN_INPUT_REQUIRED);
 
 ?>
 <!DOCTYPE html>

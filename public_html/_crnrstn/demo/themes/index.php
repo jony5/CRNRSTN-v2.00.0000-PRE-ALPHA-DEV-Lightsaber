@@ -88,7 +88,7 @@ $oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
 
 <?php
 /*
-user init_input_listener
+user form_input_add
 $tmp_dtf_FORM_HANDLE = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_field_input_name_hash;
 if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
 

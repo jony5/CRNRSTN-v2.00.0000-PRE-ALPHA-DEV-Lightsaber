@@ -503,20 +503,21 @@ class crnrstn {
 
     }
 
-    public function init_input_listener($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+    public function form_input_add($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
 
-        return $this->oCRNRSTN_USR->init_input_listener($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
-
-    }
-
-    public function init_hidden_input_listener($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
-
-        return $this->oCRNRSTN_USR->init_hidden_input_listener($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
+        return $this->oCRNRSTN_USR->form_input_add($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
 
     }
 
-    public function form_response_add($crnrstn_form_handle, $field_input_name = NULL, $success_redirect_url = NULL, $error_redirect_url = NULL){
+    public function form_hidden_input_add($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+
+        return $this->oCRNRSTN_USR->form_hidden_input_add($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
+
+    }
+
+    public function form_response_add($crnrstn_form_handle, $field_input_name = NULL, $success_response_data = NULL, $success_response_type = NULL, $error_response_data = NULL, $error_response_type = NULL){
         /*
+        WHERE $response_type=
         CRNRSTN_HTTP_REDIRECT
         CRNRSTN_HTTPS_REDIRECT
         CRNRSTN_HTTP_DATA_RETURN     // UGC RESPONSE HEADER DATA???
@@ -534,13 +535,13 @@ class crnrstn {
 
         */
 
-        return $this->oCRNRSTN_USR->form_response_add($crnrstn_form_handle, $field_input_name, $success_redirect_url, $error_redirect_url);
+        return $this->oCRNRSTN_USR->form_response_add($crnrstn_form_handle, $field_input_name, $success_response_data, $success_response_type, $error_response_data, $error_response_type);
 
     }
 
-    public function form_input_messages_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    public function form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
 
-        return $this->oCRNRSTN_USR->form_input_messages_add($crnrstn_form_handle, $field_input_name, $field_input_id, $message_key, $err_msg, $success_msg, $info_msg);
+        return $this->oCRNRSTN_USR->form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id, $message_key, $err_msg, $success_msg, $info_msg);
 
     }
 
@@ -5125,7 +5126,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_hash = $this->generate_new_key(42, '01');
 
-        $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
         if(isset($title) && $title != ''){
 
@@ -5186,13 +5187,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             </div>
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
-            <div style="padding: 5px 10px 20px 10px;">
-                <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; box-shadow: 2px 3px 3px #BFBFBF; border: 3px solid #FFF; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="position: relative; width:100%; overflow:scroll;">
-        
-                    <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                    <code>';
+            <div style="/*padding: 5px 10px 20px 10px;*/">
+                <div style="box-shadow: 2px 3px 3px #bfbfbf;">
+                <div style="border: 3px solid #FFF;">
+                <div style="margin:3px 6px 0 0;">
+                    <div style="' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    
+                    <div style="width:100%; overflow:scroll;">
+                
+                        <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
 
         $tmp_str_out = '<div style="padding: 10px 10px 10px 10px;">';
         $tmp_str_out .= $tmp_out;
@@ -5219,7 +5224,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
-        $tmp_str_out .= '</code></div></div></div>
+        $tmp_str_out .= '</code></div></div></div></div></div></div>
         <div style="width:100%;">
             <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
 
@@ -5309,7 +5314,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //
         // NOTHING COULD BE DARKER. NOTHING.
-        $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
         if(isset($title) && $title != ''){
 
@@ -5370,14 +5375,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             </div>
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
-            <div style="padding: 5px 10px 20px 10px;">
-                <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; box-shadow: 2px 3px 3px #bfbfbf; border: 3px solid #FFF; overflow-y:hidden; font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div>
-                <div style="position: relative; width:100%; overflow:scroll;">
-            
-                    <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                    <code>';
+            <div style="/*padding: 5px 10px 20px 10px;*/">
+                <div style="box-shadow: 2px 3px 3px #bfbfbf;">
+                <div style="border: 3px solid #FFF;">
+                <div style="margin:3px 6px 0 0;">
+                    <div style="' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    
+                    <div style="width:100%; overflow:scroll;">
+                
+                        <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
 
         echo '<div style="padding: 10px 10px 10px 10px;">';
         echo $tmp_out;
@@ -5406,7 +5414,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
-        echo '</code></div></div></div></div>
+        echo '</code></div></div></div></div></div></div>
         <div style="width:100%;">
             <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
 

@@ -62,7 +62,7 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
             <input type="hidden" name="crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt . '" value="' .  $tmp_crnrstn_curl_uri_endpoint . '">';
 
-            $oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
+            $oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
 
             $tmp_batch_preview_cnt++;
 
@@ -76,7 +76,7 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
                     <input type="hidden" name="crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt . '" value="' .  $tmp_crnrstn_curl_uri_endpoint . '">';
 
-                    $oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
+                    $oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
 
                     $tmp_batch_preview_cnt++;
 
@@ -86,7 +86,7 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
         }
 
-        $oCRNRSTN->init_hidden_input_listener('curl', 'crnrstn_curl_batch_count', true, $tmp_batch_preview_cnt);
+        $oCRNRSTN->form_hidden_input_add('curl', 'crnrstn_curl_batch_count', true, $tmp_batch_preview_cnt);
 
         if($tmp_crnrstn_curl_enable_unit_test_automation == "automation_on"){
 
@@ -123,12 +123,12 @@ $tmp_http_root = $oCRNRSTN->current_location();
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
 # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE
 # ENCRYPTED INITIALLY.
-# $this->oCRNRSTN_USR->init_input_listener({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
-$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_uri_endpoint');
-$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_batch_save');
-$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_batch_count');
-$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_enable_unit_test_automation');
-$oCRNRSTN->init_input_listener('curl', 'crnrstn_curl_unit_test_automation_freq_secs');
+# $this->oCRNRSTN_USR->form_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
+$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_uri_endpoint');
+$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_save');
+$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_count');
+$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_enable_unit_test_automation');
+$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_unit_test_automation_freq_secs');
 
 ?>
 <!DOCTYPE html>

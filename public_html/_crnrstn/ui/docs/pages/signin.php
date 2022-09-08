@@ -19,9 +19,9 @@ $tmp_form_serial = $this->oCRNRSTN_USR->generate_new_key(5);
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
 # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE
 # ENCRYPTED INITIALLY.
-# $this->oCRNRSTN_USR->init_input_listener({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
-$this->oCRNRSTN_USR->init_input_listener('crnrstn_signin_flagship', 'crnrstn_auth_e', true);
-$this->oCRNRSTN_USR->init_input_listener('crnrstn_signin_flagship', 'crnrstn_auth_pwd', true);
+# $this->oCRNRSTN_USR->form_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
+$this->oCRNRSTN_USR->form_input_add('crnrstn_signin_flagship', 'crnrstn_auth_e', true);
+$this->oCRNRSTN_USR->form_input_add('crnrstn_signin_flagship', 'crnrstn_auth_pwd', true);
 
 $err_uri = 'l=e';
 $success_uri = 'l=s';
@@ -35,9 +35,9 @@ $this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship', 'crnrstn
 //
 // THESE FIELDS ARE HIDDEN INPUT FIELDS. WE CAN TUNNEL
 // ENCRYPT THE DATA GOING HERE.
-# $this->oCRNRSTN_USR->init_hidden_input_listener({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}, {IS_REQUIRED}, {DEFAULT_VALUE <-notrequired}, {HTML_DOM_FORM_INPUT_ID <-notrequired});
-$this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_signin_flagship', 'crnrstn_country_iso_code', true, $this->oCRNRSTN_USR->country_iso_code, 'crnrstn_country_iso_code');
-$this->oCRNRSTN_USR->init_hidden_input_listener('crnrstn_signin_flagship', 'crnrstn_php_sessionid', true, session_id(), 'crnrstn_php_sessionid');
+# $this->oCRNRSTN_USR->form_hidden_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}, {IS_REQUIRED}, {DEFAULT_VALUE <-notrequired}, {HTML_DOM_FORM_INPUT_ID <-notrequired});
+$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_signin_flagship', 'crnrstn_country_iso_code', true, $this->oCRNRSTN_USR->country_iso_code, 'crnrstn_country_iso_code');
+$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_signin_flagship', 'crnrstn_php_sessionid', true, session_id(), 'crnrstn_php_sessionid');
 
 $channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_output_channel_constants);
 
