@@ -5118,7 +5118,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_out = '
+        $tmp_out = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
         <script>
         function copy_output_' . $tmp_hash . '() {
     
@@ -5302,7 +5302,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_out = '
+        $tmp_out = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
         <script>
         function copy_output_' . $tmp_hash . '() {
     
