@@ -6,33 +6,23 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-$tmp_theme_style = $_GET['style'];
-if(!isset($tmp_theme_style)){
+$tmp_selection = rand(0, count($oCRNRSTN->system_theme_style_constants_ARRAY) - 1);
 
-    $tmp_theme_style = CRNRSTN_UI_DAYLIGHT;
-
-}
-
-$tmp_theme_style_ARRAY = $oCRNRSTN->return_constant_profile_ARRAY($tmp_theme_style);
-$tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
-$tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
-
-$tmp_lnk_str = '';
-//$tmp_active_profile_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
-
+$tmp_theme_style = NULL;
 foreach($oCRNRSTN->system_theme_style_constants_ARRAY as $index => $int_const){
 
-    // $int_const CAN EVEN BE A STRING REPRESENTATION OF THE CONSTANT.
-    $tmp_ARRAY = $oCRNRSTN->return_constant_profile_ARRAY($int_const);
+    if($tmp_selection == $index){
 
-    $tmp_integer = $tmp_ARRAY['INTEGER'];
-    $tmp_nom = $tmp_ARRAY['STRING'];
+        $tmp_theme_style = $int_const;
 
-    $tmp_serial = $oCRNRSTN->generate_new_key(50, '01');
-    $tmp_lnk_str .= '<a href="' . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') .'_crnrstn/demo/utility/?style=' . $tmp_integer . '&serial=' . $tmp_serial . '" target="_self" style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; text-decoration:none;">' . $tmp_nom . '</a><br>';
+        $tmp_theme_style_ARRAY = $oCRNRSTN->return_constant_profile_ARRAY($tmp_theme_style);
+        $tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
+        $tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
 
+        break 1;
+
+    }
 }
-
 
 /*
 DEMO TOPICS ::
@@ -99,7 +89,7 @@ if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
 
 */
 
-echo '<div style="font-size:25px; padding: 0 0 20px 20px; font-family:Courier New, Courier, monospace; font-weight: bold;">' . $tmp_theme_style_nom  . '</div>';
+echo '<div style="font-size:25px; padding: 0 0 20px 20px; font-family:Arial, Helvetica, sans-serif; font-weight: bold;">Theme: <span style="font-weight: normal;">' . $tmp_theme_style_nom  . '</span></div>';
 echo '<div style="padding: 0 0 0 20px;">' .  $tmp_lnk_str .'</div>';
 
 $tmp_str = '<!DOCTYPE html>
@@ -263,7 +253,7 @@ $oCRNRSTN->print_r('echo $oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', 1000, 
 
 $oCRNRSTN->print_r('echo $oCRNRSTN->return_youtube_embed(\'https://www.youtube.com/watch?v=NePb9UWK8Yg\', 560, 315, true);', '$oCRNRSTN->return_youtube_embed()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$oCRNRSTN->get_resource(\'DOCUMENT_ROOT\')', '$oCRNRSTN->get_resource()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$oCRNRSTN->get_resource(\'DOCUMENT_ROOT\')', '$oCRNRSTN->get_resource()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 //$oCRNRSTN->system_base64_synchronize();
 //$oCRNRSTN->system_base64_synchronize('CRNRSTN_LOGO');
