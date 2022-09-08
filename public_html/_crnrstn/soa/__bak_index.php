@@ -1418,7 +1418,7 @@ if(!$oCRNRSTN_ENV->oHTTP_MGR->issetHTTP($_GET)){
 	if($oCRNRSTN_ENV->oCRNRSTN_IPSECURITY_MGR->exclusiveAccess('184.173.96.66,50.87.249.11,172.16.110.130,172.16.*')){
 		$server->service(file_get_contents('php://input'));
 	}else{
-		$oCRNRSTN_ENV->return_server_resp_status(403);
+		$oCRNRSTN_ENV->return_server_response_code(403);
 	}
 }else{
 	$server->service(file_get_contents('php://input'));

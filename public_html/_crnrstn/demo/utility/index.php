@@ -160,7 +160,7 @@ if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)
     
 }';
 
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_handling()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::form_serialize_new()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = 'public function retrieve_data_value($data_key, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $index = NULL, $env_key = NULL, $soap_transport = false){
 ';
@@ -188,7 +188,7 @@ if($http_transport_protocol != \'GET\' && $http_transport_protocol != \'POST\') 
 
 }';
 
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::init_form_handling()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::form_serialize_new()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 
 $tmp_str = '$tmp_stripe_key_ARRAY = $oCRNRSTN->return_stripe_key_ARRAY(\'$env_key\', \'$encrypt_cipher\', \'$encrypt_secret_key\', \'$hmac_alg\');

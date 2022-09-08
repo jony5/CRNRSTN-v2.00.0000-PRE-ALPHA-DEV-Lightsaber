@@ -497,9 +497,9 @@ class crnrstn {
 
     }
 
-    public function init_form_handling($crnrstn_form_handle, $transport_protocol = 'POST'){
+    public function form_serialize_new($crnrstn_form_handle, $transport_protocol = 'POST'){
 
-        return $this->oCRNRSTN_USR->init_form_handling($crnrstn_form_handle, $transport_protocol);
+        return $this->oCRNRSTN_USR->form_serialize_new($crnrstn_form_handle, $transport_protocol);
 
     }
 
@@ -515,15 +515,32 @@ class crnrstn {
 
     }
 
-    public function add_form_submit_redirects($crnrstn_form_handle, $field_input_name = NULL, $success_redirect_url = NULL, $error_redirect_url = NULL){
+    public function form_response_add($crnrstn_form_handle, $field_input_name = NULL, $success_redirect_url = NULL, $error_redirect_url = NULL){
+        /*
+        CRNRSTN_HTTP_REDIRECT
+        CRNRSTN_HTTPS_REDIRECT
+        CRNRSTN_HTTP_DATA_RETURN     // UGC RESPONSE HEADER DATA???
+        CRNRSTN_HTTPS_DATA_RETURN    // UGC RESPONSE HEADER DATA???
+        CRNRSTN_JSON_RETURN
+        CRNRSTN_XML_RETURN
+        CRNRSTN_SOAP_RETURN
+        CRNRSTN_HTML_TEXT_RETURN
+        CRNRSTN_DOCUMENT_FILE_RETURN
+        CRNRSTN_SERVER_RESPONSE_CODE
 
-        return $this->oCRNRSTN_USR->add_form_submit_redirects($crnrstn_form_handle, $field_input_name, $success_redirect_url, $error_redirect_url);
+        'CRNRSTN_HTTP_REDIRECT', 'CRNRSTN_HTTPS_REDIRECT', 'CRNRSTN_HTTP_DATA_RETURN',
+        'CRNRSTN_HTTPS_DATA_RETURN', 'CRNRSTN_JSON_RETURN', 'CRNRSTN_XML_RETURN', 'CRNRSTN_SOAP_RETURN',
+        'CRNRSTN_HTML_TEXT_RETURN', 'CRNRSTN_DOCUMENT_FILE_RETURN', 'CRNRSTN_SERVER_RESPONSE_CODE'
+
+        */
+
+        return $this->oCRNRSTN_USR->form_response_add($crnrstn_form_handle, $field_input_name, $success_redirect_url, $error_redirect_url);
 
     }
 
-    public function add_form_validation_messages($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    public function form_input_messages_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
 
-        return $this->oCRNRSTN_USR->add_form_validation_messages($crnrstn_form_handle, $field_input_name, $field_input_id, $message_key, $err_msg, $success_msg, $info_msg);
+        return $this->oCRNRSTN_USR->form_input_messages_add($crnrstn_form_handle, $field_input_name, $field_input_id, $message_key, $err_msg, $success_msg, $info_msg);
 
     }
 
@@ -2956,6 +2973,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function form_integration_html_packet_output($crnrstn_form_handle){
+
+        return $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, $crnrstn_form_handle);
+
+    }
+
     public function output_regression_stripe_ARRAY($result_str, $result_array, $output_format = 'array'){
 
         $tmp_ARRAY = array();
@@ -5164,7 +5187,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
             <div style="padding: 5px 10px 20px 10px;">
-                <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; box-shadow: 2px 3px 3px #BFBFBF; border: 3px solid #FFF; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
                 <div style="position: relative; width:100%; overflow:scroll;">
         
@@ -5348,8 +5371,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
             <div style="padding: 5px 10px 20px 10px;">
-                <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; box-shadow: 2px 3px 3px #bfbfbf; border: 3px solid #FFF; overflow-y:hidden; font-size:14px;">
                 ' . $tmp_linecnt_html_out . '
+                <div>
                 <div style="position: relative; width:100%; overflow:scroll;">
             
                     <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
@@ -5382,7 +5406,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
-        echo '</code></div></div></div>
+        echo '</code></div></div></div></div>
         <div style="width:100%;">
             <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
 
@@ -7804,7 +7828,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     }
 
-    public function return_server_resp_status($error_code, $crnrstn_html_burn = NULL){
+    public function return_server_response_code($response_code, $crnrstn_html_burn = NULL){
 
         //
         // Source: http://php.net/manual/en/function.http-response-code.php
@@ -7819,12 +7843,12 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             script to handle requests for missing files (using the ErrorDocument directive),
             you may want to make sure that your script generates the proper status code.
             */
-            header($_SERVER['SERVER_PROTOCOL'] . ' ' . $error_code . ' ' . $http_status_codes[$error_code]);
+            header($_SERVER['SERVER_PROTOCOL'] . ' ' . $response_code . ' ' . $http_status_codes[$response_code]);
             exit();
 
         }
 
-        header($_SERVER['SERVER_PROTOCOL'] . ' ' . $error_code . ' ' . $http_status_codes[$error_code]);
+        header($_SERVER['SERVER_PROTOCOL'] . ' ' . $response_code . ' ' . $http_status_codes[$response_code]);
 
         //
         // THO WE HAVE SINCE MIGRATED TO BITWISE, I AM LEAVING THIS SWITCH AS IS...FOR FUTURE WHITE LABELING INTEGRATIONS.
@@ -7837,7 +7861,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 <head>
     <meta charset="utf-8" />
     ' . $this->return_creative('CRNRSTN_FAVICON') . '
-    <title>' . $error_code . ' ' . $http_status_codes[$error_code] . '</title>
+    <title>' . $response_code . ' ' . $http_status_codes[$response_code] . '</title>
 </head>
 <body style="background-color: #FFF; width:100%; text-align: left; margin:0px auto;">
 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-bottom: 2px solid #F90000;"></div>
@@ -7850,7 +7874,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 </div>
 
-<div style="padding:100px 0 300px 100px; float:left; font-family:arial; font-weight:bold; font-size:11px;">' . $error_code . ' ' . $http_status_codes[$error_code] . '</div>
+<div style="padding:100px 0 300px 100px; float:left; font-family:arial; font-weight:bold; font-size:11px;">' . $response_code . ' ' . $http_status_codes[$response_code] . '</div>
 <!--
 <div style="position:absolute; padding:200px 0 0 10px; float:left;"><pre>
 
@@ -7884,7 +7908,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>' . $error_code . ' ' . $http_status_codes[$error_code] . '</title>
+    <title>' . $response_code . ' ' . $http_status_codes[$response_code] . '</title>
 </head>
 <body style="background-color: #FFF; text-align: left; margin:0px auto; border: 0; padding:0; margin:0; font-family:Arial, Helvetica, sans-serif; ">
 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-bottom: 2px solid #F90000;"></div>
@@ -7897,7 +7921,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 </div>
 
-<div style="padding:100px 0 300px 100px; float:left; font-family:arial; font-weight:bold; font-size:11px;">' . $error_code . ' ' . $http_status_codes[$error_code] . '</div>
+<div style="padding:100px 0 300px 100px; float:left; font-family:arial; font-weight:bold; font-size:11px;">' . $response_code . ' ' . $http_status_codes[$response_code] . '</div>
 <!--
 <div style="position:absolute; padding:200px 0 0 10px; float:left;"><pre>
 

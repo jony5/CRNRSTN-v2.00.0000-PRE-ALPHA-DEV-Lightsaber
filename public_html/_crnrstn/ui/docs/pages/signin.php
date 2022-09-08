@@ -12,7 +12,7 @@ error_log(__LINE__ . ' signin PAGE LOAD CALLED....');
 # PARAMETERS FOR WHICH CRNRSTN SHOULD BE LISTENING.
 # $this->oCRNRSTN_USR->initializeFormHandling({CRNRSTN_FORM_HANDLE}, {TUNNEL_PROTOCOL});
 
-$this->oCRNRSTN_USR->init_form_handling('crnrstn_signin_flagship');
+$this->oCRNRSTN_USR->form_serialize_new('crnrstn_signin_flagship');
 $tmp_form_serial = $this->oCRNRSTN_USR->generate_new_key(5);
 
 //

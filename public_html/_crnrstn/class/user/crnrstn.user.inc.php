@@ -810,7 +810,7 @@ class crnrstn_user{
 
             //}else{
 
-            //    $oCRNRSTN_USR->return_server_resp_status(403);
+            //    $oCRNRSTN_USR->return_server_response_code(403);
 
             //}
 
@@ -1660,7 +1660,7 @@ class crnrstn_user{
             switch($output_type){
                 case 'alpha_testing':
 
-                    $this->init_form_handling('crnrstn_soap_data_tunnel_frm');
+                    $this->form_serialize_new('crnrstn_soap_data_tunnel_frm');
                     $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_data', true);
 
                     $this->init_input_listener('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_soap_action', true);
@@ -4977,7 +4977,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function init_form_handling($crnrstn_form_handle){
+    public function form_serialize_new($crnrstn_form_handle){
 
         try {
 
@@ -5160,7 +5160,25 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    public function add_form_submit_redirects($crnrstn_form_handle, $field_input_name, $success_redirect_url, $error_redirect_url){
+    public function form_response_add($crnrstn_form_handle, $field_input_name, $success_redirect_url, $error_redirect_url){
+
+        /*
+        CRNRSTN_HTTP_REDIRECT
+        CRNRSTN_HTTPS_REDIRECT
+        CRNRSTN_HTTP_DATA_RETURN     // UGC RESPONSE HEADER DATA???
+        CRNRSTN_HTTPS_DATA_RETURN    // UGC RESPONSE HEADER DATA???
+        CRNRSTN_JSON_RETURN
+        CRNRSTN_XML_RETURN
+        CRNRSTN_SOAP_RETURN
+        CRNRSTN_HTML_TEXT_RETURN
+        CRNRSTN_DOCUMENT_FILE_RETURN
+        CRNRSTN_SERVER_RESPONSE_CODE
+
+        'CRNRSTN_HTTP_REDIRECT', 'CRNRSTN_HTTPS_REDIRECT', 'CRNRSTN_HTTP_DATA_RETURN',
+        'CRNRSTN_HTTPS_DATA_RETURN', 'CRNRSTN_JSON_RETURN', 'CRNRSTN_XML_RETURN', 'CRNRSTN_SOAP_RETURN',
+        'CRNRSTN_HTML_TEXT_RETURN', 'CRNRSTN_DOCUMENT_FILE_RETURN', 'CRNRSTN_SERVER_RESPONSE_CODE'
+
+        */
 
         $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
 
@@ -5379,7 +5397,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    public function add_form_validation_messages($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    public function form_input_messages_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
 
         $tmp_str = '$crnrstn_form_handle=[' . $crnrstn_form_handle . ']. 
 $field_input_name=[' . $field_input_name . ']. 
@@ -10245,11 +10263,11 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    public function return_server_resp_status($status_code){
+    public function return_server_response_code($status_code){
 
         $tmp_burn = $this->return_CRNRSTN_ASCII_ART();
 
-        return $this->oCRNRSTN_ENV->return_server_resp_status($status_code, $tmp_burn);
+        return $this->oCRNRSTN_ENV->return_server_response_code($status_code, $tmp_burn);
 
     }
 

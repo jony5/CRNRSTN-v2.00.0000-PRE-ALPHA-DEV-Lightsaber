@@ -94,7 +94,7 @@ class crnrstn_results_paginator{
                     //$tmp_form_input = 'crnrstn_' . $this->oCRNRSTN_USR->crcINT('pagination_sensation_cell_selection');
                     $tmp_form_input = $this->get_pagination_variable_name($tmp_pagination_serial);
 
-                    $this->oCRNRSTN_USR->init_form_handling($tmp_form_serial);
+                    $this->oCRNRSTN_USR->form_serialize_new($tmp_form_serial);
                     error_log('69 paginator - listen for paginate @ [' . $tmp_form_serial.'][' . $tmp_form_input.']');
                     $this->oCRNRSTN_USR->init_input_listener($tmp_form_serial, $tmp_form_input, true);
                     #$this->oCRNRSTN_USR->inject_input_serialization($tmp_form_serial);
@@ -235,7 +235,7 @@ class crnrstn_results_paginator{
                 $tmp_form_serial = 'crnrstn_' . $this->oCRNRSTN_USR->crcINT('pagination_sensation_form_' . $tmp_pagination_serial);
                 $tmp_form_input = $this->get_pagination_variable_name($tmp_pagination_serial);
 
-                $this->oCRNRSTN_USR->init_form_handling($tmp_form_serial);
+                $this->oCRNRSTN_USR->form_serialize_new($tmp_form_serial);
                 //error_log('69 paginator - listen for paginate @ [' . $tmp_form_serial.'][' . $tmp_form_input.']');
                 $this->oCRNRSTN_USR->init_input_listener($tmp_form_serial, $tmp_form_input, true);
                 #$this->oCRNRSTN_USR->inject_input_serialization($tmp_form_serial);

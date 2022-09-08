@@ -142,6 +142,6 @@ if($oCRNRSTN_USR->initialize_crnrstn_svc_http(false, true)) {
 
     //
     // FORM INTEGRATION ONLY OR UNAUTHORIZED
-    $oCRNRSTN_USR->return_server_resp_status(503);
+    $oCRNRSTN_USR->return_server_response_code(503);
 
 }

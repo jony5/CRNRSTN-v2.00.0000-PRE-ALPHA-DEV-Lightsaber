@@ -833,6 +833,57 @@ function crnrstn_constants_init($const_nom){
             return (int) 8089;
 
         break;
+        case 'CRNRSTN_HTTP_REDIRECT':
+
+            return (int) 8090;
+
+        break;
+        case 'CRNRSTN_HTTPS_REDIRECT':
+
+            return (int) 8091;
+
+        break;
+        case 'CRNRSTN_HTTP_DATA_RETURN':
+
+            return (int) 8092;
+
+        break;
+        case 'CRNRSTN_HTTPS_DATA_RETURN':
+
+            return (int) 8093;
+
+        break;
+        case 'CRNRSTN_JSON_RETURN':
+
+            return (int) 8094;
+
+        break;
+        case 'CRNRSTN_XML_RETURN':
+
+            return (int) 8095;
+
+        break;
+        case 'CRNRSTN_SOAP_RETURN':
+
+            return (int) 8096;
+
+        break;
+        case 'CRNRSTN_HTML_TEXT_RETURN':
+
+            return (int) 8097;
+
+        break;
+        case 'CRNRSTN_DOCUMENT_FILE_RETURN':
+
+            return (int) 8098;
+
+        break;
+        case 'CRNRSTN_SERVER_RESPONSE_CODE':
+
+            return (int) 8099;
+
+        break;
+
 
         //
         // 9051

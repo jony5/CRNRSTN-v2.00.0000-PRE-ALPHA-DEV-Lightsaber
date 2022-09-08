@@ -115,7 +115,7 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
 }
 
-$oCRNRSTN->init_form_handling('curl');
+$oCRNRSTN->form_serialize_new('curl');
 $tmp_form_serial = $oCRNRSTN->generate_new_key(5);
 $tmp_http_root = $oCRNRSTN->current_location();
 

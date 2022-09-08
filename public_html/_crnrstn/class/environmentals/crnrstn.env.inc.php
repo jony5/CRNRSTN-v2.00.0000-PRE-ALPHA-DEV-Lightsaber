@@ -210,7 +210,7 @@ class crnrstn_environment {
                     $this->oCRNRSTN->system_terminate('detection');
 
                     //error_log(__LINE__ . ' env ' . __METHOD__ . ' going out on 503.');
-                    //$this->return_server_resp_status(503, $this->return_CRNRSTN_ASCII_ART());
+                    //$this->return_server_response_code(503, $this->return_CRNRSTN_ASCII_ART());
                     exit();
 
                 }else{
@@ -275,9 +275,9 @@ class crnrstn_environment {
                             die();
                             //
                             // WE COULD PERHAPS USE A MORE GRACEFUL WAY TO TRANSITION TO ERR...BUT THIS WORKS
-                            // THE METHOD return_server_resp_status() CONTAINS SOME CUSTOM HTML FOR OUTPUT IF YOU WANT TO TWEAK ITS DESIGN
+                            // THE METHOD return_server_response_code() CONTAINS SOME CUSTOM HTML FOR OUTPUT IF YOU WANT TO TWEAK ITS DESIGN
                             // PERHAPS SOME FUTURE RELEASE OF CRNRSTN CAN
-                            $this->return_server_resp_status(403, $this->return_CRNRSTN_ASCII_ART());
+                            $this->return_server_response_code(403, $this->return_CRNRSTN_ASCII_ART());
                             exit();
 
                         }
@@ -1252,7 +1252,7 @@ class crnrstn_environment {
         error_log(__LINE__ . ' env running [' . __METHOD__ . '].');
 
         $tmp_oNUSOAP_BASE = $this->oCRNRSTN_USR->return_oNUSOAP_BASE();
-        $this->oCRNRSTN_USR->init_form_handling('crnrstn_soap_data_tunnel_form');
+        $this->oCRNRSTN_USR->form_serialize_new('crnrstn_soap_data_tunnel_form');
 
         $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
         $this->oCRNRSTN_USR->init_input_listener('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
@@ -4494,7 +4494,7 @@ class crnrstn_environment {
 
     }
     
-    public function return_server_resp_status($error_code, $crnrstn_html_burn = NULL){
+    public function return_server_response_code($error_code, $crnrstn_html_burn = NULL){
 
         //
         // Source: http://php.net/manual/en/function.http-response-code.php
