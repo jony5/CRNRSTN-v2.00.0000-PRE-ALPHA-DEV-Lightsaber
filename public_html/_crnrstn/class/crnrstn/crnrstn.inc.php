@@ -4828,7 +4828,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000'; //9E9E9E
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
                 $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
-                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#7C796B';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#0C8800';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
@@ -6163,7 +6163,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
                     document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
-            
+
                 }
                 </script>
                 <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
@@ -6171,8 +6171,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
                             <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
                         </div>
-                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:150px">
-                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
@@ -6182,7 +6182,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
                         ' . $tmp_linecnt_html_out . '
                         <div style="position: relative; width:100%; overflow:scroll;">
-                
+                    
                             <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                             <code>';
 
