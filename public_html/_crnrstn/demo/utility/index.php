@@ -102,6 +102,20 @@ if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
 echo '<div style="font-size:25px; padding: 0 0 20px 20px; font-family:Courier New, Courier, monospace; font-weight: bold;">' . $tmp_theme_style_nom  . '</div>';
 echo '<div style="padding: 0 0 0 20px;">' .  $tmp_lnk_str .'</div>';
 
+$tmp_str = '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CRNRSTN ::</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p>hello HTML!</p>
+</body>
+</html>';
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: HTML SNIPPET TEST.', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+
+
+
 $tmp_str = '$tmp_hash = hash($oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. USE OF crnrstn::system_hash_algo', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 

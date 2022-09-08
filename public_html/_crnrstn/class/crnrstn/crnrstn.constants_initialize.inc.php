@@ -369,19 +369,34 @@ function crnrstn_constants_init($const_nom){
             return (int) 7057;
 
         break;
-        case 'CRNRSTN_UI_DESKTOP':
+        case 'CRNRSTN_UI_GLASS_LIGHT_COPY':
 
             return (int) 7058;
 
         break;
-        case 'CRNRSTN_UI_TABLET':
+        case 'CRNRSTN_UI_GLASS_DARK_COPY':
 
             return (int) 7059;
 
         break;
-        case 'CRNRSTN_UI_MOBILE':
+        case 'CRNRSTN_UI_TERMINAL':
 
             return (int) 7060;
+
+        break;
+        case 'CRNRSTN_UI_DESKTOP':
+
+            return (int) 7061;
+
+        break;
+        case 'CRNRSTN_UI_TABLET':
+
+            return (int) 7062;
+
+        break;
+        case 'CRNRSTN_UI_MOBILE':
+
+            return (int) 7063;
 
         break;
 

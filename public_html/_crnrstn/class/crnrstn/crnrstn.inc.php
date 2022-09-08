@@ -246,7 +246,7 @@ class crnrstn {
         $this->system_data_profile_constants_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME_ONLY, CRNRSTN_AUTHORIZE_ALL, CRNRSTN_AUTHORIZE_DATABASE, CRNRSTN_AUTHORIZE_SSDTLA, CRNRSTN_AUTHORIZE_PSSDTLA, CRNRSTN_AUTHORIZE_SESSION, CRNRSTN_AUTHORIZE_COOKIE, CRNRSTN_AUTHORIZE_SOAP, CRNRSTN_AUTHORIZE_GET);
         $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT, CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE, CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
         $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
-        $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER);
+        $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_TERMINAL);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
         $this->system_output_channel_constants = array(CRNRSTN_UI_DESKTOP, CRNRSTN_UI_TABLET, CRNRSTN_UI_MOBILE);
         $this->system_creative_element_keys_ARRAY = array('CRNRSTN ::', 'LINUX_PENGUIN', 'REDHAT_LOGO', 'APACHE_FEATHER', 'APACHE_POWER_VERSION', 'CRNRSTN_R', '5', 'MYSQL_DOLPHIN', 'PHP_ELLIPSE', 'POW_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
@@ -4768,7 +4768,75 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_meta_ARRAY = array();
 
         switch($theme_style){
-            case  CRNRSTN_UI_PHPNIGHT:
+            case CRNRSTN_UI_GLASS_LIGHT_COPY:
+
+                $tmp_meta_ARRAY['highlight.comment'] = '#7CD38B';
+                $tmp_meta_ARRAY['highlight.default'] = '#D78783';
+                $tmp_meta_ARRAY['highlight.html'] = '#868686';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#CDA54A; font-weight: normal;';
+                $tmp_meta_ARRAY['highlight.string'] = '#8080DA';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = 'transparent';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#ECEFF2';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#D6D6F0';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
+
+            break;
+            case CRNRSTN_UI_GLASS_DARK_COPY:
+
+                $tmp_meta_ARRAY['highlight.comment'] = '#008000';
+                $tmp_meta_ARRAY['highlight.default'] = '#191A31';
+                $tmp_meta_ARRAY['highlight.html'] = '#808080';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#00B; font-weight: normal';
+                $tmp_meta_ARRAY['highlight.string'] = '#D00';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = 'transparent';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#ECEFF2';
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#D6D6F0';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
+
+            break;
+            case CRNRSTN_UI_TERMINAL:
+
+                //
+                // HARDCORE
+                $tmp_meta_ARRAY['highlight.comment'] = '#257129';
+                $tmp_meta_ARRAY['highlight.default'] = '#41DB3C';
+                $tmp_meta_ARRAY['highlight.html'] = '#EBEBEB';
+                $tmp_meta_ARRAY['highlight.keyword'] = '#19EE28; font-weight: bold';
+                $tmp_meta_ARRAY['highlight.string'] = '#54B33E';
+
+                $tmp_meta_ARRAY['stage.canvas.background-color'] = '#131314';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000'; //9E9E9E
+                $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#0C8800';
+                $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
+                $tmp_meta_ARRAY['stage.lnum.css.color'] = '#1FA61F';
+
+            break;
+            case CRNRSTN_UI_PHPNIGHT:
 
                 //
                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
@@ -4779,9 +4847,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['highlight.string'] = '#54B33E';
 
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#131314';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
                 $tmp_meta_ARRAY['stage.canvas.border-color'] = '#9E9E9E';
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#833131';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
@@ -4801,9 +4872,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['highlight.string'] = '#216D10';
 
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#04050A';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
-                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#717171';
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000';  //717171
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#4B4444';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
@@ -4822,9 +4896,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['highlight.string'] = '#D00';
 
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F2F2F2';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
                 $tmp_meta_ARRAY['stage.canvas.border-color'] = '#C2C7DF';
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#2C2C2C';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
@@ -4844,9 +4921,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['highlight.string'] = '#421414';
 
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F5F5F5';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
                 $tmp_meta_ARRAY['stage.canvas.border-color'] = '#C3C3C3';
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#333';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
@@ -4865,9 +4945,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['highlight.string'] = '#2020BD';
 
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F3F0F0';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
                 $tmp_meta_ARRAY['stage.canvas.border-color'] = '#80A0DD';
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#333';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
@@ -4886,9 +4969,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['highlight.string'] = '#5F5FD0';
 
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F7F5F5';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
                 $tmp_meta_ARRAY['stage.canvas.border-color'] = '#80A0DD';
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#5F5FD0';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
@@ -4907,9 +4993,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['highlight.string'] = '#8080DA';
 
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#FFF';
+                $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
                 $tmp_meta_ARRAY['stage.canvas.border-color'] = '#ECEFF2';
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+                $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+                $tmp_meta_ARRAY['stage.content.highlight-color'] = '#493e13';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#D6D6F0';
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
@@ -4935,6 +5024,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY
         CRNRSTN_UI_DAYLIGHT                 // LIKE HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
         CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT
+        CRNRSTN_UI_GLASS_LIGHT_COPY
+        CRNRSTN_UI_GLASS_DARK_COPY
+        CRNRSTN_UI_TERMINAL                 // HARDCORE
 
         */
 
@@ -5000,13 +5092,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_hash = $this->generate_new_key(42, '01');
 
         switch($theme_style){
-            case CRNRSTN_UI_GREYSKYS:
+            case CRNRSTN_UI_GLASS_LIGHT_COPY:
 
-                //
-                // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
-                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
-
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -5024,7 +5112,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -5051,80 +5139,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
-
-                }
-                </script>
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:100%;">
-                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
-                        </div>
-                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
-                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
-                        </div>
-                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-                    </div>
-                    <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0;overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position:relative; width:100%; overflow:scroll;">
-                    
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
-
-                break;
-            case CRNRSTN_UI_DAYLIGHT:
-
-                //
-                // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
-
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
-
-                if(isset($title) && $title != ''){
-
-                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                    $tmp_title .= $title;
-                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-                }else{
-
-                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-                }
-
-                $tmp_out = '
-                <script>
-                function copy_output_'. $tmp_hash .'() {
-            
-                    //
-                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
-                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-                    if (document.selection) { // IE
-            
-                        var range = document.body.createTextRange();
-                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
-                        range.select();
-            
-                    } else if (window.getSelection) {
-            
-                        var range = document.createRange();
-                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
-                        window.getSelection().removeAllRanges();
-                        window.getSelection().addRange(range);
-            
-                    }
-            
-                    //
-                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-                    /* Copy the text inside the text field */
-                    document.execCommand(\'copy\');
-                    
-                    /* Alert the copied text */
-                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
 
                 }
                 </script>
@@ -5139,244 +5154,20 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-
+    
                     <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:'.$tmp_meta_ARRAY['stage.canvas.background-color'].'; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position: relative; width:100%; overflow:scroll;">
-                    
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
-
-                break;
-            case CRNRSTN_UI_FEATHER:
-
-                //
-                // LIGHTER THAN DAYLIGHT.
-
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
-
-                if(isset($title) && $title != ''){
-
-                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                    $tmp_title .= $title;
-                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-                }else{
-
-                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-                }
-
-                $tmp_out = '
-                <script>
-                function copy_output_'. $tmp_hash .'() {
-            
-                    //
-                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
-                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-                    if (document.selection) { // IE
-            
-                        var range = document.body.createTextRange();
-                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
-                        range.select();
-            
-                    } else if (window.getSelection) {
-            
-                        var range = document.createRange();
-                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
-                        window.getSelection().removeAllRanges();
-                        window.getSelection().addRange(range);
-            
-                    }
-            
-                    //
-                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-                    /* Copy the text inside the text field */
-                    document.execCommand(\'copy\');
-                    
-                    /* Alert the copied text */
-                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
-
-                }
-                </script>
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:100%;">
-                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
-                        </div>
-                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
-                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
-                        </div>
-                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-                    </div>
-                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-
-                    <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position: relative; width:100%; overflow:scroll;">
-                    
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
-
-                break;
-            case CRNRSTN_UI_PHP:
-
-                //
-                // WE MEAN BUSINESS.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
-
-                if(isset($title) && $title != ''){
-
-                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                    $tmp_title .= $title;
-                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-                }else{
-
-                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-                }
-
-                $tmp_out = '
-                <script>
-                function copy_output_'. $tmp_hash .'() {
-            
-                    //
-                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
-                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-                    if (document.selection) { // IE
-            
-                        var range = document.body.createTextRange();
-                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
-                        range.select();
-            
-                    } else if (window.getSelection) {
-            
-                        var range = document.createRange();
-                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
-                        window.getSelection().removeAllRanges();
-                        window.getSelection().addRange(range);
-            
-                    }
-            
-                    //
-                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-                    /* Copy the text inside the text field */
-                    document.execCommand(\'copy\');
-                    
-                    /* Alert the copied text */
-                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
-
-                }
-                </script>
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:100%;">
-                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
-                        </div>
-                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
-                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
-                        </div>
-                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-                    </div>
-                <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position: relative; width:100%; overflow:scroll;">
-                    
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
-
-                // https://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript
-                // onclick = "window.scrollTo(xCoord, yCoord);"
-
-            break;
-            case CRNRSTN_UI_HTML:
-
-                //
-                // BE LIGHT AND HAPPY.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
-
-                if(isset($title) && $title != ''){
-
-                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                    $tmp_title .= $title;
-                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-                }else{
-
-                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-                }
-
-                $tmp_out = '
-                <script>
-                function copy_output_'. $tmp_hash .'() {
-            
-                    //
-                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
-                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-                    if (document.selection) { // IE
-            
-                        var range = document.body.createTextRange();
-                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
-                        range.select();
-            
-                    } else if (window.getSelection) {
-            
-                        var range = document.createRange();
-                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
-                        window.getSelection().removeAllRanges();
-                        window.getSelection().addRange(range);
-            
-                    }
-            
-                    //
-                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
-                    /* Copy the text inside the text field */
-                    document.execCommand(\'copy\');
-                    
-                    /* Alert the copied text */
-                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
-
-                }
-                </script>
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                    <div style="width:100%;">
-                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
-                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
-                        </div>
-                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
-                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
-                        </div>
-                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-                    </div>
-                
-                    <div style="padding: 5px 10px 20px 10px;">
-                        <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
                         ' . $tmp_linecnt_html_out . '
                         <div style="position: relative; width:100%; overflow:scroll;">
                     
-                            <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                             <code>';
 
-            break;
-            case CRNRSTN_UI_PHPNIGHT:
 
-                //
-                // REPLICATION OF IDE THEME OF THE LEAD DEVELOPER OF LIGHTSABER. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+            break;
+            case CRNRSTN_UI_GLASS_DARK_COPY:
+
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -5394,7 +5185,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -5421,7 +5212,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
 
                 }
                 </script>
@@ -5437,21 +5228,23 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
     
-                        <div style="padding: 5px 10px 20px 10px;">
-                        <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
                         ' . $tmp_linecnt_html_out . '
                         <div style="position: relative; width:100%; overflow:scroll;">
-                        
-                            <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                    
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                             <code>';
 
+                // https://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript
+                // onclick = "window.scrollTo(xCoord, yCoord);"
+
             break;
-            case CRNRSTN_UI_DARKNIGHT:
-            default:
+            case CRNRSTN_UI_TERMINAL:
 
                 //
-                // NOTHING COULD BE DARKER. NOTHING.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                // HARDCORE
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -5469,7 +5262,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -5496,7 +5289,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
             
                 }
                 </script>
@@ -5513,11 +5306,534 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
     
                     <div style="padding: 5px 10px 20px 10px;">
-                        <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+            break;
+            case CRNRSTN_UI_GREYSKYS:
+
+                //
+                // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
+                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
                         ' . $tmp_linecnt_html_out . '
                         <div style="position: relative; width:100%; overflow:scroll;">
                     
-                            <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+            break;
+            case CRNRSTN_UI_DAYLIGHT:
+
+                //
+                // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+            break;
+            case CRNRSTN_UI_FEATHER:
+
+                //
+                // LIGHTER THAN DAYLIGHT.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+            break;
+            case CRNRSTN_UI_PHP:
+
+                //
+                // WE MEAN BUSINESS.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+                // https://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript
+                // onclick = "window.scrollTo(xCoord, yCoord);"
+
+            break;
+            case CRNRSTN_UI_HTML:
+
+                //
+                // BE LIGHT AND HAPPY.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+            break;
+            case CRNRSTN_UI_PHPNIGHT:
+
+                //
+                // REPLICATION OF IDE THEME OF THE LEAD DEVELOPER OF LIGHTSABER. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+            break;
+            case CRNRSTN_UI_DARKNIGHT:
+            default:
+
+                //
+                // NOTHING COULD BE DARKER. NOTHING.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+            
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:150px">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                             <code>';
 
             break;
@@ -5579,6 +5895,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY
         CRNRSTN_UI_DAYLIGHT                 // LIKE HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
         CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT
+        CRNRSTN_UI_GLASS_LIGHT_COPY
+        CRNRSTN_UI_GLASS_DARK_COPY
+        CRNRSTN_UI_TERMINAL                 // HARDCORE
 
         */
 
@@ -5646,13 +5965,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_hash = $this->generate_new_key(42, '01');
 
         switch($theme_style){
-            case CRNRSTN_UI_GREYSKYS:
+            case CRNRSTN_UI_GLASS_LIGHT_COPY:
 
-                //
-                // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
-                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
-
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -5670,7 +5985,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -5697,7 +6012,232 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+
+            break;
+            case CRNRSTN_UI_GLASS_DARK_COPY:
+
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:220px;">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                    
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+                // https://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript
+                // onclick = "window.scrollTo(xCoord, yCoord);"
+
+            break;
+            case CRNRSTN_UI_TERMINAL:
+
+                //
+                // HARDCORE
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
+            
+                }
+                </script>
+                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+                    <div style="width:100%;">
+                        <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: left; width:70%;">
+                            <a href="#" onclick="$(window).scrollTop();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</a>
+                        </div>
+                        <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:150px">
+                            <a href="#" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash .'();" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                        </div>
+                        <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+                    </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
+                    <div style="padding: 5px 10px 20px 10px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
+                
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
+
+            break;
+            case CRNRSTN_UI_GREYSKYS:
+
+                //
+                // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
+                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+
+                if(isset($title) && $title != ''){
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= $title;
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }else{
+
+                    $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 14px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                    $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                    $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+                }
+
+                $tmp_out = '
+                <script>
+                function copy_output_' . $tmp_hash . '() {
+            
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+                    // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+                    if (document.selection) { // IE
+            
+                        var range = document.body.createTextRange();
+                        range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        range.select();
+            
+                    } else if (window.getSelection) {
+            
+                        var range = document.createRange();
+                        range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+            
+                    }
+            
+                    //
+                    // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+                    /* Copy the text inside the text field */
+                    document.execCommand(\'copy\');
+                    
+                    /* Alert the copied text */
+                    //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
 
                 }
                 </script>
@@ -5711,20 +6251,22 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
+                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
                     <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0;overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position:relative; width:100%; overflow:scroll;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
                     
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
             case CRNRSTN_UI_DAYLIGHT:
 
                 //
                 // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -5742,7 +6284,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -5769,7 +6311,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
 
                 }
                 </script>
@@ -5784,21 +6326,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-
+    
                     <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:'.$tmp_meta_ARRAY['stage.canvas.background-color'].'; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position: relative; width:100%; overflow:scroll;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
                     
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
             case CRNRSTN_UI_FEATHER:
 
                 //
                 // LIGHTER THAN DAYLIGHT.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -5816,7 +6358,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -5843,7 +6385,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
 
                 }
                 </script>
@@ -5858,21 +6400,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-
+    
                     <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position: relative; width:100%; overflow:scroll;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
                     
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
             case CRNRSTN_UI_PHP:
 
                 //
                 // WE MEAN BUSINESS.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -5890,7 +6432,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -5917,7 +6459,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
 
                 }
                 </script>
@@ -5931,20 +6473,22 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
+                   <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
                     <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position: relative; width:100%; overflow:scroll;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
                     
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
             case CRNRSTN_UI_HTML:
 
                 //
                 // BE LIGHT AND HAPPY.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -5962,7 +6506,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -5989,7 +6533,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
 
                 }
                 </script>
@@ -6003,22 +6547,22 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         </div>
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
-                    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-
+                   <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+    
                     <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position: relative; width:100%; overflow:scroll;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
                     
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
             case CRNRSTN_UI_PHPNIGHT:
 
                 //
                 // REPLICATION OF IDE THEME OF THE LEAD DEVELOPER OF LIGHTSABER. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
-                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 8000; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
+                $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
 
                 if(isset($title) && $title != ''){
 
@@ -6036,7 +6580,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -6063,7 +6607,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
             
                 }
                 </script>
@@ -6078,14 +6622,14 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-
+    
                     <div style="padding: 5px 10px 20px 10px;">
-                    <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
-                    ' . $tmp_linecnt_html_out . '
-                    <div style="position: relative; width:100%; overflow:scroll;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        ' . $tmp_linecnt_html_out . '
+                        <div style="position: relative; width:100%; overflow:scroll;">
                     
-                        <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                        <code>';
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <code>';
 
             break;
             case CRNRSTN_UI_DARKNIGHT:
@@ -6111,7 +6655,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_out = '
                 <script>
-                function copy_output_'. $tmp_hash .'() {
+                function copy_output_' . $tmp_hash . '() {
             
                     //
                     // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
@@ -6138,7 +6682,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     
                     /* Alert the copied text */
                     //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "#493e13";
+                    document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
             
                 }
                 </script>
@@ -6153,13 +6697,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
                     </div>
                     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-
+    
                     <div style="padding: 5px 10px 20px 10px;">
-                        <div style="position:relative; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
+                        <div style="position:relative; ' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0px; margin:0; overflow-y:hidden; font-size:14px;">
                         ' . $tmp_linecnt_html_out . '
                         <div style="position: relative; width:100%; overflow:scroll;">
                     
-                            <div style="width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                            <div style="' . $tmp_meta_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                             <code>';
 
             break;
@@ -7030,6 +7574,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
 
         switch($theme_style){
+            case CRNRSTN_UI_GLASS_DARK_COPY:
+            case CRNRSTN_UI_GLASS_LIGHT_COPY:
+            case CRNRSTN_UI_TERMINAL:
             case CRNRSTN_UI_PHP:
             case CRNRSTN_UI_HTML:
             case CRNRSTN_UI_DARKNIGHT:

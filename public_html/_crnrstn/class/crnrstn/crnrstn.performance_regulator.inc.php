@@ -869,6 +869,21 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_UI_FEATHER';
 
             break;
+            case CRNRSTN_UI_GLASS_LIGHT_COPY:
+
+                $tmp_str_out = 'CRNRSTN_UI_GLASS_LIGHT_COPY';
+
+            break;
+            case CRNRSTN_UI_GLASS_DARK_COPY:
+
+                $tmp_str_out = 'CRNRSTN_UI_GLASS_DARK_COPY';
+
+            break;
+            case CRNRSTN_UI_TERMINAL:
+
+                $tmp_str_out = 'CRNRSTN_UI_TERMINAL';
+
+            break;
             case CRNRSTN_UI_DESKTOP:
 
                 $tmp_str_out = 'CRNRSTN_UI_DESKTOP';
