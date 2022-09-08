@@ -1547,7 +1547,7 @@ class crnrstn_content_source_controller {
                 case '/suite_methods/basic_functionality/highlighttext/':
                     $tmp_categ_name = 'Basic Functionality';
                     $tmp_subcateg_name = 'Basic Functionality';            # MATCHES SECTION TITLE LINK COPY
-                    $tmp_subsubcat_name = 'highlightText()';
+                    $tmp_subsubcat_name = 'highlight_text()';
                     self::$page_serial = self::$oCRNRSTN_UI_ASSEMBLER->initializePage('PAGE', $tmp_categ_name, $tmp_subcateg_name, $tmp_subsubcat_name);
 
                     //

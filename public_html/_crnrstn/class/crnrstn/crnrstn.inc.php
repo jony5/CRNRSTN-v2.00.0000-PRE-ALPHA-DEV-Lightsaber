@@ -4762,14 +4762,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         return $tmp_array;
 
     }
+    
+    //public function 
 
     private function return_theme_style_profile_meta_ARRAY($theme_style){
 
         $tmp_meta_ARRAY = array();
 
+        $tmp_theme_style_ARRAY = $this->return_constant_profile_ARRAY($theme_style);
+        $tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
+        $tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
+
+        $tmp_meta_ARRAY['name'] = $tmp_theme_style_nom;
+        $tmp_meta_ARRAY['integer'] = $tmp_theme_style_int;
+
         switch($theme_style){
             case CRNRSTN_UI_GLASS_LIGHT_COPY:
 
+                // CONCEPT WORK IN PROGRESS
                 $tmp_meta_ARRAY['highlight.comment'] = '#7CD38B';
                 $tmp_meta_ARRAY['highlight.default'] = '#D78783';
                 $tmp_meta_ARRAY['highlight.html'] = '#868686';
@@ -4792,6 +4802,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             break;
             case CRNRSTN_UI_GLASS_DARK_COPY:
 
+                // CONCEPT WORK IN PROGRESS
                 $tmp_meta_ARRAY['highlight.comment'] = '#008000';
                 $tmp_meta_ARRAY['highlight.default'] = '#191A31';
                 $tmp_meta_ARRAY['highlight.html'] = '#808080';
@@ -4815,7 +4826,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             case CRNRSTN_UI_TERMINAL:
 
                 //
-                // HARDCORE
+                // HARDCORE.
                 $tmp_meta_ARRAY['highlight.comment'] = '#257129';
                 $tmp_meta_ARRAY['highlight.default'] = '#41DB3C';
                 $tmp_meta_ARRAY['highlight.html'] = '#EBEBEB';
@@ -5020,13 +5031,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         CRNRSTN_UI_PHPNIGHT                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
         CRNRSTN_UI_DARKNIGHT                // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
         CRNRSTN_UI_PHP                      // ALL ABOUT THE BUSINESS.
-        CRNRSTN_UI_GREYSKYS                 // ALONE AND SAD WITH A NICE CUP OF COFFEE.
-        CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY
-        CRNRSTN_UI_DAYLIGHT                 // LIKE HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
-        CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT
+        CRNRSTN_UI_GREYSKYS                 // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+        CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY.
+        CRNRSTN_UI_DAYLIGHT                 // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+        CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT.
         CRNRSTN_UI_GLASS_LIGHT_COPY
         CRNRSTN_UI_GLASS_DARK_COPY
-        CRNRSTN_UI_TERMINAL                 // HARDCORE
+        CRNRSTN_UI_TERMINAL                 // HARDCORE.
 
         */
 
@@ -5163,7 +5174,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_str_out = '<div style="padding: 10px 10px 10px 10px;">';
         $tmp_str_out .= $tmp_out;
 
-        $output = $this->highlightText($tmp_print_r, $theme_style);
+        $output = $this->highlight_text($tmp_print_r, $theme_style);
         $output = $this->proper_replace('<br />', '
 ', $output);
 
@@ -5211,13 +5222,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         CRNRSTN_UI_PHPNIGHT                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
         CRNRSTN_UI_DARKNIGHT                // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
         CRNRSTN_UI_PHP                      // ALL ABOUT THE BUSINESS.
-        CRNRSTN_UI_GREYSKYS                 // ALONE AND SAD WITH A NICE CUP OF COFFEE.
-        CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY
-        CRNRSTN_UI_DAYLIGHT                 // LIKE HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
-        CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT
+        CRNRSTN_UI_GREYSKYS                 // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+        CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY.
+        CRNRSTN_UI_DAYLIGHT                 // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+        CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT.
         CRNRSTN_UI_GLASS_LIGHT_COPY
         CRNRSTN_UI_GLASS_DARK_COPY
-        CRNRSTN_UI_TERMINAL                 // HARDCORE
+        CRNRSTN_UI_TERMINAL                 // HARDCORE.
 
         */
 
@@ -5347,7 +5358,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         echo '<div style="padding: 10px 10px 10px 10px;">';
         echo $tmp_out;
 
-        $output = $this->highlightText($tmp_print_r, $theme_style);
+        $output = $this->highlight_text($tmp_print_r, $theme_style);
         $output = $this->proper_replace('<br />', '
 ', $output);
 
@@ -5402,22 +5413,22 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         if(!is_integer($int_constant)){
 
-            //$this->print_r('[' . var_dump($int_constant) . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string_ARRAY($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$this->print_r('[' . var_dump($int_constant) . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             //
             // CAN WE CAST THE STRING TO INT CONST?
             $int_constant = (int) crnrstn_constants_init($int_constant);
-            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string_ARRAY($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
         }
 
         if(is_integer($int_constant)){
 
             $tmp_ARRAY['INTEGER'] = $int_constant;
-            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string_ARRAY($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             //die();
-            $tmp_ARRAY['STRING'] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string_ARRAY($int_constant);
+            $tmp_ARRAY['STRING'] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant);
             //$tmp_ARRAY['DESCRIPTION'] =  '';
             //$tmp_ARRAY['DEPENDENT_METHODS_ARRAY'] = array();      // UPDATES DOCUMENTATION
             //$tmp_ARRAY['DATA_FAMILY_TYPE'] = '';                  // UPDATES DOCUMENTATION
@@ -6203,7 +6214,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     //
     // SOURCE :: https://www.php.net/manual/en/function.highlight-string.php
     // AUTHOR :: stanislav dot eckert at vizson dot de :: https://www.php.net/manual/en/function.highlight-string.php#118550
-    public function highlightText($text, $theme_style = NULL){
+    public function highlight_text($text, $theme_style = NULL){
 
         $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
 

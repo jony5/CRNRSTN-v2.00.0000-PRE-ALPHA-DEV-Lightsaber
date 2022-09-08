@@ -5553,7 +5553,7 @@ class crnrstn_environment {
         $tmp_str_out = '<div style="background-color: #FFF; padding: 10px 20px 10px 20px;">';
         $tmp_str_out .= $tmp_out;
 
-        $output = $this->highlightText($tmp_print_r, $theme_style);
+        $output = $this->highlight_text($tmp_print_r, $theme_style);
         $output = $this->proper_replace('<br />', '
 ', $output);
 
@@ -5710,7 +5710,7 @@ class crnrstn_environment {
         echo '<div style="background-color: #FFF; padding: 10px 20px 10px 20px;">';
         echo $tmp_out;
 
-        $output = $this->highlightText($tmp_print_r, $style_theme);
+        $output = $this->highlight_text($tmp_print_r, $style_theme);
         $output = $this->proper_replace('<br />', '
 ', $output);
 
@@ -6752,48 +6752,9 @@ class crnrstn_environment {
     //
     // SOURCE :: https://www.php.net/manual/en/function.highlight-string.php
     // AUTHOR :: stanislav dot eckert at vizson dot de :: https://www.php.net/manual/en/function.highlight-string.php#118550
-    public function highlightText($text, $style_theme = CRNRSTN_UI_PHPNIGHT)   // [EDIT] CRNRSTN v2.0.0 FOR PHPNIGHT :: J5
-    {
-        $style_theme = trim(strtolower($style_theme));              // [EDIT] CRNRSTN v2.0.0 :: J5
+    public function highlight_text($text, $theme_style = CRNRSTN_UI_PHPNIGHT){
 
-        if($style_theme == CRNRSTN_UI_PHP){
-
-            ini_set('highlight.comment', '#008000');
-            ini_set('highlight.default', '#000');
-            ini_set('highlight.html', '#808080');
-            ini_set('highlight.keyword', '#00B; font-weight: bold');
-            ini_set('highlight.string', '#D00');
-
-        }else if($style_theme == CRNRSTN_UI_HTML){
-
-            ini_set('highlight.comment', 'green');
-            ini_set('highlight.default', '#C00');
-            ini_set('highlight.html', '#000');
-            ini_set('highlight.keyword', 'black; font-weight: bold');
-            ini_set('highlight.string', '#00F');
-
-        }else if($style_theme == CRNRSTN_UI_PHPNIGHT)                        // [EDIT] CRNRSTN v2.0.0 :: J5
-        {
-            ini_set('highlight.comment', '#FC0');
-            ini_set('highlight.default', '#DEDECB');
-            ini_set('highlight.html', '#808080');
-            ini_set('highlight.keyword', '#8FE28F; font-weight: normal');
-            ini_set('highlight.string', '#F66');
-
-        }
-        // ...
-
-        $text = trim($text);
-        $text = highlight_string("<?php " . $text, true);  // highlight_string() requires opening PHP tag or otherwise it will not colorize the text
-        $text = trim($text);
-        $text = preg_replace("|^\\<code\\>\\<span style\\=\"color\\: #[a-fA-F0-9]{0,6}\"\\>|", '', $text, 1);  // remove prefix
-        $text = preg_replace("|\\</code\\>\$|", "", $text, 1);  // remove suffix 1
-        $text = trim($text);  // remove line breaks
-        $text = preg_replace("|\\</span\\>\$|", "", $text, 1);  // remove suffix 2
-        $text = trim($text);  // remove line breaks
-        $text = preg_replace("|^(\\<span style\\=\"color\\: #[a-fA-F0-9]{0,6}\"\\>)(&lt;\\?php&nbsp;)(.*?)(\\</span\\>)|", "\$1\$3\$4", $text);  // remove custom added "<?php "
-
-        return $text;
+        return $this->oCRNRSTN->highlight_text($text, $theme_style);
 
     }
 

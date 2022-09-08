@@ -5186,7 +5186,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                 $tmp_str = '$success_redirect_url=[' . $success_redirect_url . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
             }
 
@@ -5205,7 +5205,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                 $tmp_str = '$error_redirect_url=[' . $error_redirect_url . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
             }
 
@@ -5228,7 +5228,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
             $tmp_str = '$success_redirect_url=[' . $success_redirect_url . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-            $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
         }
 
@@ -5249,7 +5249,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
             $tmp_str = '$error_redirect_url=[' . $error_redirect_url . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-            $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
         }
 
@@ -5301,7 +5301,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5314,7 +5314,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5327,7 +5327,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$default_value=[' . $default_value . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5340,7 +5340,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$default_value=[' . $default_value . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5353,7 +5353,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$validation_constant_profile=[' . $validation_constant_profile . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5388,7 +5388,7 @@ $message_key=[' . $message_key . '].
 $err_msg=[' . $err_msg . ']. 
 $success_msg=[' . $success_msg . ']. 
 $info_msg=[' . $info_msg . '].';
-        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
         try {
 
@@ -5425,7 +5425,7 @@ $info_msg=[' . $info_msg . '].';
                     $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5438,7 +5438,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$field_input_id=[' . $field_input_id . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5453,7 +5453,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                         $tmp_str = '$message_key=[' . $message_key . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     }
 
@@ -5470,7 +5470,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                         $tmp_str = '$err_msg=[' . $err_msg . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     }
 
@@ -5487,7 +5487,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                         $tmp_str = '$success_msg=[' . $success_msg . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                        $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     }
 
@@ -5502,7 +5502,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$info_msg=[' . $info_msg . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5532,13 +5532,13 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
         $tmp_str_out = '';
         $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
 
-        $this->oCRNRSTN->print_r($crnrstn_form_handle, '$crnrstn_form_handle.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->print_r($crnrstn_form_handle, '$crnrstn_form_handle.', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
         //
         // FORM HANDLE DATA
         $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash;
         $tmp_data = $this->oCRNRSTN->get_resource('CRNRSTN_FORM_HANDLE', 0, $tmp_data_type_family);
-        $this->oCRNRSTN->print_r($tmp_data, 'CRNRSTN_FORM_HANDLE.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->print_r($tmp_data, 'CRNRSTN_FORM_HANDLE.', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
         $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_INPUT::' . $tmp_form_handle_hash;
 //        $this->oCRNRSTN->add_system_resource('FORM_INPUT_FIELD_NAME', 'ERROR_REDIRECT', $tmp_sys_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
@@ -5546,11 +5546,11 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
         if($this->oCRNRSTN->isset_data_key('FORM_INPUT_FIELD_NAME', $tmp_data_type_family)) {
 
-            $this->oCRNRSTN->print_r('We have input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->print_r('We have input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
-            //$this->oCRNRSTN->print_r('We have [' . $this->oCRNRSTN->get_resource_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family, $this->env_key) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$this->oCRNRSTN->print_r('We have [' . $this->oCRNRSTN->get_resource_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family, $this->env_key) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
-            $this->oCRNRSTN->print_r('We have [' . $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->print_r('We have [' . $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
             $tmp_input_cnt = $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family);
 
@@ -5564,9 +5564,9 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                 //$tmp_input_data_type_family = $tmp_data_type_family . '::' . $tmp_field_name;
                 $tmp_fam = $tmp_data_type_family_FORM_REDIRECTS_ROOT . '::' . $tmp_field_name;
 
-                $this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $tmp_fam . '].', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-                //$this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, $i, $tmp_fam) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-                $this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, 0, $tmp_fam) . '] input field data to inject.', 'oCRNRSTN->retrieve_data_value[' . $tmp_field_name . '].', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $tmp_fam . '].', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
+                //$this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, $i, $tmp_fam) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, 0, $tmp_fam) . '] input field data to inject.', 'oCRNRSTN->retrieve_data_value[' . $tmp_field_name . '].', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
             }
 
@@ -8538,47 +8538,9 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
     //
     // SOURCE :: https://www.php.net/manual/en/function.highlight-string.php
     // AUTHOR :: stanislav dot eckert at vizson dot de :: https://www.php.net/manual/en/function.highlight-string.php#118550
-    public function highlightText($text, $theme_style = CRNRSTN_UI_PHPNIGHT)   // [EDIT] CRNRSTN :: v2.0.0 FOR PHPNIGHT :: J5
-    {
+    public function highlight_text($text, $theme_style = CRNRSTN_UI_PHPNIGHT){
 
-        if($theme_style == CRNRSTN_UI_PHP){
-
-            ini_set('highlight.comment', '#008000');
-            ini_set('highlight.default', '#000');
-            ini_set('highlight.html', '#808080');
-            ini_set('highlight.keyword', '#00B; font-weight: bold');
-            ini_set('highlight.string', '#D00');
-
-        }else if($theme_style == CRNRSTN_UI_HTML){
-
-            ini_set('highlight.comment', 'green');
-            ini_set('highlight.default', '#C00');
-            ini_set('highlight.html', '#000');
-            ini_set('highlight.keyword', 'black; font-weight: bold');
-            ini_set('highlight.string', '#00F');
-
-        }else if($theme_style == CRNRSTN_UI_PHPNIGHT)                        // [EDIT] CRNRSTN :: v2.0.0 :: J5
-        {
-            ini_set('highlight.comment', '#FC0');
-            ini_set('highlight.default', '#DEDECB');
-            ini_set('highlight.html', '#808080');
-            ini_set('highlight.keyword', '#8FE28F; font-weight: normal');
-            ini_set('highlight.string', '#F66');
-
-        }
-        // ...
-
-        $text = trim($text);
-        $text = highlight_string("<?php " . $text, true);  // highlight_string() requires opening PHP tag or otherwise it will not colorize the text
-        $text = trim($text);
-        $text = preg_replace("|^\\<code\\>\\<span style\\=\"color\\: #[a-fA-F0-9]{0,6}\"\\>|", '', $text, 1);  // remove prefix
-        $text = preg_replace("|\\</code\\>\$|", '', $text, 1);  // remove suffix 1
-        $text = trim($text);  // remove line breaks
-        $text = preg_replace("|\\</span\\>\$|", '', $text, 1);  // remove suffix 2
-        $text = trim($text);  // remove line breaks
-        $text = preg_replace("|^(\\<span style\\=\"color\\: #[a-fA-F0-9]{0,6}\"\\>)(&lt;\\?php&nbsp;)(.*?)(\\</span\\>)|", "\$1\$3\$4", $text);  // remove custom added "<?php "
-
-        return $text;
+        return $this->oCRNRSTN->highlight_text($text, $theme_style);
 
     }
 
