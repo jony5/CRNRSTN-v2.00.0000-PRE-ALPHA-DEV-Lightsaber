@@ -2646,7 +2646,7 @@ class crnrstn {
 $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');';
 
                     $dom_sess_serial = $this->generate_new_key(26, '01');
-                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     $this->destruct_output .= '<!doctype html>
 <html lang="' . $this->country_iso_code() . '">
@@ -2699,7 +2699,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     $tmp_str_in = '$CRNRSTN_config_serial = \'' . $tmp_serial . '\';';
 
-                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
 
                     //
                     // MAYBE GENERATE A CONFIG SERIAL COPY-PASTE INTO CONFIG FILE PAGE WITH BASE64 CRNRSTN :: LOGO STUFF?
