@@ -227,16 +227,18 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
 
     <?php
 
+    //
+    // TESTING -1 TO PREMATURELY DUMP ANY DESTRUCTOR STRING OUTPUT DATA HERE (WELL INSIDE THE <HTML> TAGS).
+    // NO CONSTANT CRNRSTN_RESOURCE_DESTRUCTOR, YET.
     echo $oCRNRSTN->framework_integrations_client_packet(-1);
 
     ?>
 
     <div style="width:700px;">
-
         <div class="crnrstn_j5_wolf_pup_outter_wrap">
-
             <div class="crnrstn_j5_wolf_pup_inner_wrap">
                 <?php
+
                 echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
 
                 ?>
