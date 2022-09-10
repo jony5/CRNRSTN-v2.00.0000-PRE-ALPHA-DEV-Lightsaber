@@ -140,7 +140,7 @@ $tmp_str = '/*
     CRNRSTN_AUTHORIZE_ISPASSWORD
    
     Example ::
-    $oCRNRSTN->add_system_resource(\'BLUEHOST\', \'DOMAIN\', \'jony5.com\', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+    $oCRNRSTN->config_add_system_resource(\'BLUEHOST\', \'ROOT_PATH_CLIENT_HTTP\', \'http://jony5.com/\', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
     For demonstration of use, see: /_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php
     
 */';
