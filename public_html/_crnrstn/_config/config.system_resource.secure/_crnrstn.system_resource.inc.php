@@ -2,7 +2,6 @@
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('BLUEHOST', 'DOMAIN', 'jony5.com', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 $this->config_add_system_resource('BLUEHOST', 'DOCUMENT_ROOT_DIR', '', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 $this->config_add_system_resource('BLUEHOST', 'ROOT_PATH_CLIENT_HTTP', 'http://jony5.com/');
 $this->config_add_system_resource('BLUEHOST', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
@@ -20,7 +19,6 @@ $this->config_add_system_resource('BLUEHOST', 'SSL_ENABLED', false);
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('BLUEHOST_WWW', 'DOMAIN', 'www.jony5.com');
 $this->config_add_system_resource('BLUEHOST_WWW', 'DOCUMENT_ROOT_DIR', '');
 $this->config_add_system_resource('BLUEHOST_WWW', 'ROOT_PATH_CLIENT_HTTP', 'http://www.jony5.com/');
 $this->config_add_system_resource('BLUEHOST_WWW', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
@@ -38,7 +36,6 @@ $this->config_add_system_resource('BLUEHOST_WWW', 'SSL_ENABLED', false);
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'DOMAIN', '172.16.225.128');
 $this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'DOCUMENT_ROOT_DIR', '/jony5');
 $this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP', 'http://172.16.225.128/');
 $this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP_DIR', 'jony5/');
@@ -56,7 +53,6 @@ $this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'SSL_ENABLED', false);
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'DOMAIN', '172.16.225.139');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'DOCUMENT_ROOT_DIR', '/lightsaber.crnrstn.evifweb.com');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP', 'http://172.16.225.139/');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP_DIR', 'lightsaber.crnrstn.evifweb.com/');
