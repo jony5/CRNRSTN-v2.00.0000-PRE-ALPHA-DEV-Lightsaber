@@ -5,11 +5,12 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
+$oCRNRSTN->set_ui_theme_style(CRNRSTN_UI_RANDOM);
+
 //
 //$tmp_form_serial = $oCRNRSTN->generate_new_key(5);
 //$tmp_http_root = $oCRNRSTN->current_location();
 //form_serialize_new
-$oCRNRSTN->form_serialize_new('CRNRSTN:: A DEMO_FORM_EXAMPLE');
 $tmp_http_root = $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR');
 
 //
@@ -35,7 +36,6 @@ CRNRSTN_SERVER_RESPONSE_CODE
 
 */
 
-
 $oCRNRSTN->form_response_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname', $tmp_http_root . '?crnrstn_demo_firstname_success=true', $tmp_http_root . '?crnrstn_demo_firstname_err=true', CRNRSTN_HTTP_REDIRECT);
 $oCRNRSTN->form_response_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', NULL, $tmp_http_root . '?success=true', $tmp_http_root . '?err=true', CRNRSTN_HTTP_REDIRECT);
 
@@ -46,9 +46,9 @@ $oCRNRSTN->form_response_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', NULL, $tmp_http_ro
 //form_response_add
 //form_input_feedback_copy_add
 //function form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $html_form_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
-$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname','crnrstn_demo_firstname', '', 'Firstname is required.', 'Firstname approved.', 'Fistname can have numbers.');
-$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city','crnrstn_demo_city', '', 'City is required.', 'City approved.', 'City can be abbreviated.');
-$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email', 'crnrstn_demo_email', 'MISSING_DATA-EMAIL');
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname','crnrstn_demo_firstname', 'Firstname is required.', 'Firstname approved.', 'Fistname can have numbers.');
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city','crnrstn_demo_city', 'City is required.', 'City approved.', 'City can be abbreviated.');
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email', 'crnrstn_demo_email');
 
 //
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK

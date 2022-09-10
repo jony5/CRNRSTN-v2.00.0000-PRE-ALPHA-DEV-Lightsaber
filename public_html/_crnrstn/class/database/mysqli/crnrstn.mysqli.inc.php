@@ -429,7 +429,7 @@ class crnrstn_mysqli_conn_manager {
             //}
 
             $tmp_db_configuration_hash_salt = $this->return_dataset_nomination_prefix('string', self::$host , self::$db , self::$un , self::$port, self::$pwd);
-            $tmp_db_configuration_hash_salt_md5 = md5($tmp_db_configuration_hash_salt);
+            $tmp_db_configuration_hash_salt_md5 = $this->oCRNRSTN->hash($tmp_db_configuration_hash_salt, 'md5');
 
             //
             // IF HASHED INPUT PARAMETERS MATCH WHAT HAS BEEN STORED IN SESSION, PREPARATION IS COMPLETE.
@@ -1278,21 +1278,6 @@ class crnrstn_mysqli_conn_manager {
         //
         // $output_format = 'string'
         return $tmp_array_out_ARRAY['str_out'];
-
-    }
-
-//	public function setEnvironment($oCRNRSTN_ENV){
-//
-//		//
-//		// SET ENVIRONMENT FOR DATABASE CONNECTION MANAGEMENT
-//		self::$appEnvKey = $oCRNRSTN_ENV->oSESSION_MGR->getSessionKey();
-//
-//	}
-
-    private function crcINT($value){
-
-        $value = crc32($value);
-        return sprintf("%u", $value);
 
     }
 

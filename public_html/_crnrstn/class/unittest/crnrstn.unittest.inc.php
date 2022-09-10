@@ -203,15 +203,15 @@ class crnrstn_unit_test_manager {
 
                 //
                 // GET START TIME
-                $this->runtime_ARRAY[$unit_test_profile][md5($uri)] = $this->oCRNRSTN_USR->monitoring_delta_time_for($serial);
+                $this->runtime_ARRAY[$unit_test_profile][$this->oCRNRSTN_USR->hash($uri, 'md5')] = $this->oCRNRSTN_USR->monitoring_delta_time_for($serial);
 
                 //
                 // EXECUTE TEST AND STORE RESULT
-                $this->result_ARRAY[$unit_test_profile][md5($uri)] = $this->oCRNRSTN_USR->get_url_content($uri);
+                $this->result_ARRAY[$unit_test_profile][$this->oCRNRSTN_USR->hash($uri, 'md5')] = $this->oCRNRSTN_USR->get_url_content($uri);
 
                 //
                 // GET END TIME
-                $this->runtime_ARRAY[$unit_test_profile][md5($uri)] = $this->oCRNRSTN_USR->monitoring_delta_time_for($serial);
+                $this->runtime_ARRAY[$unit_test_profile][$this->oCRNRSTN_USR->hash($uri, 'md5')] = $this->oCRNRSTN_USR->monitoring_delta_time_for($serial);
 
             }
 
@@ -402,7 +402,7 @@ class crnrstn_unit_test_manager {
                     // $param_2 = $tmp_crnrstn_curl_batch_count
 
                     //$tmp_serial = $this->oCRNRSTN_USR->generate_new_key(64, -2);
-                    $tmp_serial = md5($param_1);
+                    $tmp_serial = $this->oCRNRSTN_USR->hash($param_1, 'md5');
                     $this->unit_test_serialization_ARRAY[$unit_test_profile][] = $tmp_serial;
 
                     $this->unit_test_profile_ARRAY[$tmp_serial] = $unit_test_profile;

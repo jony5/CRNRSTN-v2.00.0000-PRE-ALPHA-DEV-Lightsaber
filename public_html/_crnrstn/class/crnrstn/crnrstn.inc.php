@@ -81,6 +81,7 @@ class crnrstn {
     private static $config_serial;
     protected $env_key_hash;
     protected $config_serial_hash;
+    public $total_bytes_hashed = 0;
 
     public $os_bit_size;
     public $process_id;
@@ -132,6 +133,7 @@ class crnrstn {
     protected $system_ui_module_constants_spool_ARRAY = array();
     protected $system_data_profile_constants_ARRAY = array();
     public $system_theme_style_constants_ARRAY = array();
+    protected $current_theme_style_ARRAY = array();
     public $system_output_profile_constants = array();
     public $system_output_channel_constants = array();
     public $system_database_table_prefix = 'crnrstn_';
@@ -157,7 +159,6 @@ class crnrstn {
     private static $char_01_ARRAY = array();
     private static $char_01_index_ARRAY = array();
     private static $wheel_encoder_salt;
-
 
     /*
     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
@@ -196,8 +197,8 @@ class crnrstn {
         $config_serial = $CRNRSTN_config_serial . '_420.00' . filesize($config_filepath) . '.' . filemtime($config_filepath) . '.0';
 
         self::$config_serial = $config_serial;
-        $this->config_serial_hash = hash($this->system_hash_algo, self::$config_serial);
-        
+        $this->config_serial_hash = $this->hash(self::$config_serial);
+
         self::$CRNRSTN_debug_mode = $CRNRSTN_debug_mode;
 
         //$this->system_ui_module_constants_ARRAY = array(CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT, CRNRSTN_ELECTRUM, CRNRSTN_UI_INTERACT, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_UI_INTERACT, CRNRSTN_UI_SOAP_DATA_TUNNEL);
@@ -275,7 +276,7 @@ class crnrstn {
 
         //
         // THIS COULD BE DEVELOPED A BIT MORE. SUFFICIENT FOR SUCH A LOW LEVEL ERR THOUGH
-        if(strlen($CRNRSTN_config_serial) < 1){
+        if (strlen($CRNRSTN_config_serial) < 1) {
 
             $this->system_terminate();
 
@@ -367,7 +368,7 @@ class crnrstn {
 
         try {
 
-            if(!array_key_exists('SERVER_ADDR', $_SERVER)){
+            if (!array_key_exists('SERVER_ADDR', $_SERVER)) {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -376,7 +377,7 @@ class crnrstn {
 
                 throw new Exception('CRNRSTN :: initialization error :: $_SERVER[] super global has not been initialized. If calling this program via script, try using cURL (/usr/bin/curl). SERVER_NAME(SERVER_ADDR)-> ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ').');
 
-            }else{
+            } else {
 
                 //
                 // TODO :: REARCHITECT THIS INTO CRNRSTN :: ADMINISTRATOR SETTINGS CONFIGURATION AND MANAGEMENT
@@ -412,7 +413,7 @@ class crnrstn {
 
             }
 
-        }catch (Exception $e){
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
@@ -436,12 +437,12 @@ class crnrstn {
 
     public function return_http_form_action_url($root_path = NULL){
 
-        if(isset($root_path)){
+        if (isset($root_path)) {
 
             //$root_path = $this->strrtrim($root_path, '/');
-            $pos_qmark = strpos($root_path,'?');
+            $pos_qmark = strpos($root_path, '?');
 
-            if($pos_qmark !== false){
+            if ($pos_qmark !== false) {
 
                 return $root_path . '&' . $this->session_salt() . '=';
 
@@ -465,7 +466,7 @@ class crnrstn {
 
         $type = strtoupper($type);
 
-        switch($type){
+        switch ($type) {
             case 'GET':
 
 //                if($oCRNRSTN->isset_http_param('run', $_GET)){
@@ -539,9 +540,9 @@ class crnrstn {
 
     }
 
-    public function form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    public function form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
 
-        return $this->oCRNRSTN_USR->form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id, $message_key, $err_msg, $success_msg, $info_msg);
+        return $this->oCRNRSTN_USR->form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id, $err_msg, $success_msg, $info_msg);
 
     }
 
@@ -565,7 +566,7 @@ class crnrstn {
 
     public function isset_http_param($param, $transport_protocol = 'POST'){
 
-        if(is_array($transport_protocol)){
+        if (is_array($transport_protocol)) {
 
             if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($transport_protocol, $param)) {
 
@@ -589,7 +590,7 @@ class crnrstn {
 
                     if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST, $param)) {
 
-                            return true;
+                        return true;
 
                     } else {
 
@@ -603,7 +604,7 @@ class crnrstn {
                     // $_GET
                     if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_GET, $param)) {
 
-                            return true;
+                        return true;
 
                     } else {
 
@@ -628,7 +629,7 @@ class crnrstn {
         //
         // WE WILL STILL TAKE $_POST, $_GET, etc...ONLY NEED THIS FOR HTTP AT THE MOMENT.
         // IF SENDING STRING, ONLY THINGS LIKE 'POST', '$_POST', OR 'GET'...etc...WILL WORK. NOT 'FILE'. NOT 'SESSION'...
-        if(is_array($transport_protocol)){
+        if (is_array($transport_protocol)) {
 
             return $this->oCRNRSTN_ENV->issetHTTP($transport_protocol);
 
@@ -643,7 +644,7 @@ class crnrstn {
 
     public function extract_data_HTTP($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
 
-        if(is_array($transport_protocol)){
+        if (is_array($transport_protocol)) {
 
             //
             // CAMEL-CASED METHOD NAMES ARE OG CRNRSTN :: v1.0.0.
@@ -734,12 +735,12 @@ class crnrstn {
 
     public function is_configured(){
 
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
             //
             // CALL THIS METHOD ANYTIME. ALSO, config_detect_environment() WILL EITHER RETURN FALSE OR
             // THE DETECTED ENV KEY.
-            if(!isset($this->oCRNRSTN_USR)){
+            if (!isset($this->oCRNRSTN_USR)) {
 
                 //$this->oCRNRSTN_ENV = new crnrstn_environment($this, 'session_initialization_ping');
                 $this->oCRNRSTN_ENV = new crnrstn_environment($this);
@@ -804,7 +805,7 @@ class crnrstn {
 
     public function country_iso_code(){
 
-        if(!is_object($this->oCRNRSTN_USR)){
+        if (!is_object($this->oCRNRSTN_USR)) {
 
             return 'en';
 
@@ -856,7 +857,7 @@ class crnrstn {
 
         //error_log(__LINE__ . ' crnstn $tmp_version_soap=' . $tmp_version_soap);
         //die();
-        if($tmp_version_soap == $this->session_salt() || $tmp_version_soap == ''){
+        if ($tmp_version_soap == $this->session_salt() || $tmp_version_soap == '') {
 
             $tmp_soap = new nusoap_base();
 
@@ -920,15 +921,15 @@ class crnrstn {
         // 'POW_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
         $output_ratio_ARRAY = array(6, 10, 6, 8, 5, 3, 1, 7, 7, 7, 5, 5, 5, 3);
 
-        for($i = 0; $i < $cnt; $i++){
+        for ($i = 0; $i < $cnt; $i++) {
 
-            if(!isset($output_ratio_ARRAY[$i])){
+            if (!isset($output_ratio_ARRAY[$i])) {
 
                 $output_ratio_ARRAY[$i] = 1;
 
             }
 
-            for($ii = 0; $ii < $output_ratio_ARRAY[$i]; $ii++){
+            for ($ii = 0; $ii < $output_ratio_ARRAY[$i]; $ii++) {
 
                 $this->weighted_elements_keys_ARRAY[] = $this->system_creative_element_keys_ARRAY[$i];
 
@@ -970,11 +971,11 @@ class crnrstn {
 
     private function initialize_os(){
 
-        if(stristr(PHP_OS, 'win')){
+        if (stristr(PHP_OS, 'win')) {
 
             $this->operating_system = 'WIN';
 
-        }else{
+        } else {
 
             $this->operating_system = strtoupper(PHP_OS);
 
@@ -993,11 +994,11 @@ class crnrstn {
     /**
      * @param OpenSSL version identifier as hex value $openssl_version_number
      */
-    private function get_openssl_version_number($patch_as_number = false, $openssl_version_number = null) {
+    private function get_openssl_version_number($patch_as_number = false, $openssl_version_number = null){
 
         if (is_null($openssl_version_number)) $openssl_version_number = OPENSSL_VERSION_NUMBER;
 
-        $openssl_numeric_identifier = str_pad((string)dechex($openssl_version_number),8,'0',STR_PAD_LEFT);
+        $openssl_numeric_identifier = str_pad((string)dechex($openssl_version_number), 8, '0', STR_PAD_LEFT);
 
         $openssl_version_parsed = array();
         $preg = '/(?<major>[[:xdigit:]])(?<minor>[[:xdigit:]][[:xdigit:]])(?<fix>[[:xdigit:]][[:xdigit:]])';
@@ -1020,9 +1021,9 @@ class crnrstn {
 
                 $openssl_version .= $alphabet[intval($openssl_version_parsed['patch'][0])]; // ideal for text comparison
 
-            }else{
+            } else {
 
-                $openssl_version .= '.'.intval($openssl_version_parsed['patch'][0]); // ideal for version_compare
+                $openssl_version .= '.' . intval($openssl_version_parsed['patch'][0]); // ideal for version_compare
 
             }
 
@@ -1040,7 +1041,7 @@ class crnrstn {
         $ps = shell_exec('ps ' . $ps_opt . 'p ' . $pid);
         $ps = explode('\n', $ps);
 
-        if(count($ps) < 2){
+        if (count($ps) < 2) {
 
             $this->error_log('We attempted to acquire PID information via shell_exec(), but the PID ' . $pid . ' doesn\'t seem to exist.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
             //trigger_error('PID ' . $pid . ' doesn't exists', E_USER_WARNING);
@@ -1049,14 +1050,14 @@ class crnrstn {
 
         }
 
-        foreach($ps as $key => $val){
+        foreach ($ps as $key => $val) {
 
             //error_log(__LINE__ . ' ' . __METHOD__ . ' [' . $key . ']' . $ps[$key]);
             $ps[$key] = explode(' ', $ps[$key]);
 
         }
 
-        foreach($ps[0] as $key => $val){
+        foreach ($ps[0] as $key => $val) {
 
             // error_log(__LINE__ . ' ' . __METHOD__ . ' $key[' . $key . ']' . ' $val[' . $val . '] ' . $ps[1][$key]);
             $pidinfo[$val] = $ps[1][$key];
@@ -1065,7 +1066,7 @@ class crnrstn {
 
         }
 
-        if(is_array($ps[1])){
+        if (is_array($ps[1])) {
 
             //error_log(__LINE__ . ' ' . __METHOD__ . ' $val[' . $val . '] ' . $pidinfo[$val]);
             $pidinfo[$val] .= ' ' . implode(' ', $ps[1]);
@@ -1078,7 +1079,7 @@ class crnrstn {
 
     public function initialize_integer_length(){
 
-        $tmp_os_bit_size = (int) $this->oCRNRSTN_BITFLIP_MGR->os_bit_size;
+        $tmp_os_bit_size = (int)$this->oCRNRSTN_BITFLIP_MGR->os_bit_size;
 
         $this->os_bit_size = $tmp_os_bit_size;
 
@@ -1086,7 +1087,7 @@ class crnrstn {
 
     private function initialize_config_manager(){
 
-        foreach($_SERVER as $data_key => $data_value){
+        foreach ($_SERVER as $data_key => $data_value) {
 
             // WE DON'T HAVE ENV KEY HERE. DO WE USE CRNRSTN_RESOURCE_ALL?
             // input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL)
@@ -1099,7 +1100,7 @@ class crnrstn {
 
     }
 
-	private function initialize_bitwise(){
+    private function initialize_bitwise(){
 
         /*
         NOTES (3/8/2021 0609hrs) ::
@@ -1137,7 +1138,7 @@ class crnrstn {
         $tmp_output_str = '';
         $tmp_output_str_len = 0;
 
-        if(isset($background_noise)){
+        if (isset($background_noise)) {
 
             $background_noise = strtoupper($background_noise);
 
@@ -1149,13 +1150,13 @@ class crnrstn {
         // BUILD STRING OF 0/1 USING $code_controller
         $tmp_code_controller_char_ARRAY = str_split($code_controller);
 
-        foreach($tmp_code_controller_char_ARRAY as $index => $controller_char){
+        foreach ($tmp_code_controller_char_ARRAY as $index => $controller_char) {
 
             $tmp_output_str_len++;
             $tmp_output_str .= self::$char_01_ARRAY[$controller_char];
             $tmp_encoder_position_ARRAY[] = self::$char_01_index_ARRAY[$controller_char];
 
-            if($tmp_output_str_len >= $output_length){
+            if ($tmp_output_str_len >= $output_length) {
 
                 return $tmp_output_str;
 
@@ -1166,15 +1167,15 @@ class crnrstn {
         //
         // DO WE HAVE THE LENGTH?
         $tmp_delta = $output_length - strlen($tmp_output_str);
-        if($tmp_delta > 0){
+        if ($tmp_delta > 0) {
 
-            if(!isset($background_noise)){
+            if (!isset($background_noise)) {
 
                 $background_noise = strtoupper($this->generate_new_key(40));
 
             }
 
-            if(strlen($background_noise) < count(self::$char_01_ARRAY)){
+            if (strlen($background_noise) < count(self::$char_01_ARRAY)) {
 
                 $background_noise .= strtoupper($this->generate_new_key(40));
 
@@ -1187,7 +1188,7 @@ class crnrstn {
         //
         // USING CODE CONTROLLER CHARACTER INDEX POSITIONS AS KEY, CONCATENATE MATCHES WITH
         // BACKGROUND NOISE TO FILL ANY REMAINING LENGTH
-        foreach($tmp_encoder_position_ARRAY as $index => $position){
+        foreach ($tmp_encoder_position_ARRAY as $index => $position) {
 
             $tmp_output_str .= self::$char_01_ARRAY[$tmp_noise_ARRAY[$position]];
 
@@ -1195,7 +1196,7 @@ class crnrstn {
 
         $tmp_padd_char_cnt = $output_length - strlen($tmp_output_str);
 
-        if($tmp_padd_char_cnt > 0){
+        if ($tmp_padd_char_cnt > 0) {
 
             $tmp_output_str .= $this->generate_new_key($tmp_padd_char_cnt, '01');
 
@@ -1222,7 +1223,7 @@ class crnrstn {
         $int_str_01 = 0;
         $char_count = 0;
         $tmp_int = rand(0, 100);
-        if($tmp_int > 50){
+        if ($tmp_int > 50) {
 
             $int_str_01 = 1;
 
@@ -1233,17 +1234,17 @@ class crnrstn {
         // SOURCE :: https://www.php.net/manual/en/function.range.php
         // SOURCE :: https://stackoverflow.com/questions/431912/way-to-get-all-alphabetic-chars-in-an-array-in-php
         // AUTHOR :: PEZ :: https://stackoverflow.com/users/44639/pez
-        foreach(range('A', 'Z') as $letter) {
+        foreach (range('A', 'Z') as $letter) {
 
             self::$char_01_ARRAY[$letter] = $int_str_01;
             self::$char_01_index_ARRAY[$letter] = $char_count;
             $char_count++;
 
-            if($int_str_01 === 0){
+            if ($int_str_01 === 0) {
 
                 $int_str_01 = 1;
 
-            }else{
+            } else {
 
                 $int_str_01 = 0;
 
@@ -1253,17 +1254,17 @@ class crnrstn {
 
         //
         // LOAD NUMBERS
-        foreach(range(0, 9) as $letter) {
+        foreach (range(0, 9) as $letter) {
 
             self::$char_01_ARRAY[$letter] = $int_str_01;
             self::$char_01_index_ARRAY[$letter] = $char_count;
             $char_count++;
 
-            if($int_str_01 === 0){
+            if ($int_str_01 === 0) {
 
                 $int_str_01 = 1;
 
-            }else{
+            } else {
 
                 $int_str_01 = 0;
 
@@ -1284,9 +1285,9 @@ class crnrstn {
 
     }
 
-	public function set_developer_output_mode($theme_style = CRNRSTN_UI_PHPNIGHT){
+    public function set_ui_theme_style($theme_style = CRNRSTN_UI_PHPNIGHT, $index = NULL){
 
-        self::$oCRNRSTN_CONFIG_MGR->input_data_value($theme_style, 'developer_output_mode');
+        self::$oCRNRSTN_CONFIG_MGR->input_data_value($theme_style, 'developer_output_mode', NULL, $index);
 
         //
         // FLAG - STATE IS OFF
@@ -1299,9 +1300,11 @@ class crnrstn {
 
         $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($theme_style, true);
 
+        //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' $theme_style=[' . $theme_style . ']');
+
     }
 
-	public function return_oLog_ProfileManager(){
+    public function return_oLog_ProfileManager(){
 
         return self::$oLog_ProfileManager;
 
@@ -1309,13 +1312,13 @@ class crnrstn {
 
     public function hello_world($type, $is_bastard = true){
 
-        try{
+        try {
 
-            if($is_bastard){
+            if ($is_bastard) {
 
-                $str = 'Hello World.';  // bastard dialect
+                $str = 'Hello World.'; // bastard dialect
 
-            }else{
+            } else {
 
                 $str = 'Good morrow, fellow subjects of the Crown.';
 
@@ -1324,7 +1327,7 @@ class crnrstn {
             error_log(__LINE__ . ' ' . get_class() . ' exception! ' . $str);
             throw new Exception('CRNRSTN :: v' . self::$version_crnrstn . ' :: ' . $str . ' This is an exception handling test from ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ').');
 
-        } catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1337,27 +1340,27 @@ class crnrstn {
 
     public function initSOAP_WSDL_connectionProfile($SOAP_endpoint, $WSDL_cache_ttl, $nusoap_useCURL){
 
-        $this->WSDL_cache_ttl_ARRAY[$this->crcINT($SOAP_endpoint)] = $WSDL_cache_ttl;
-        $this->nusoap_useCURL_ARRAY[$this->crcINT($SOAP_endpoint)] = $nusoap_useCURL;
+        $this->WSDL_cache_ttl_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $WSDL_cache_ttl;
+        $this->nusoap_useCURL_ARRAY[$this->hash($SOAP_endpoint, 'crcc32')] = $nusoap_useCURL;
 
     }
 
     public function initSOAP_tunnelEncryptProfile($SOAP_endpoint, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
 
-        $this->secret_key_override_ARRAY[$this->crcINT($SOAP_endpoint)] = $secret_key_override;
-        $this->cipher_override_ARRAY[$this->crcINT($SOAP_endpoint)] = $cipher_override;
-        $this->hmac_algorithm_override_ARRAY[$this->crcINT($SOAP_endpoint)] = $hmac_algorithm_override;
-        $this->options_bitwise_override_ARRAY[$this->crcINT($SOAP_endpoint)] = $options_bitwise_override;
+        $this->secret_key_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $secret_key_override;
+        $this->cipher_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $cipher_override;
+        $this->hmac_algorithm_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $hmac_algorithm_override;
+        $this->options_bitwise_override_ARRAY[$this->hash($SOAP_endpoint, 'crc32')] = $options_bitwise_override;
 
     }
 
     public function SOAP_isset_soap_client(){
 
-        if(isset($this->oSoapClient)){
+        if (isset($this->oSoapClient)) {
 
             return $this->oSoapClient->isset_soap_client();
 
-        }else{
+        } else {
 
             return false;
 
@@ -1367,13 +1370,13 @@ class crnrstn {
 
     public function SOAP_return_client_request(){
 
-        try{
+        try {
 
-            if(isset($this->oSoapClient)){
+            if (isset($this->oSoapClient)) {
 
                 return $this->oSoapClient->returnClientRequest();
 
-            }else{
+            } else {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -1381,7 +1384,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1397,13 +1400,13 @@ class crnrstn {
 
     public function SOAP_return_client_response(){
 
-        try{
+        try {
 
-            if(isset($this->oSoapClient)){
+            if (isset($this->oSoapClient)) {
 
                 return $this->oSoapClient->returnClientResponse();
 
-            }else{
+            } else {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -1411,7 +1414,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1427,13 +1430,13 @@ class crnrstn {
 
     public function SOAP_return_result(){
 
-        try{
+        try {
 
-            if(isset($this->oSoapClient)){
+            if (isset($this->oSoapClient)) {
 
                 return $this->oSoapClient->returnResult();
 
-            }else{
+            } else {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -1441,7 +1444,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1457,13 +1460,13 @@ class crnrstn {
 
     public function SOAP_return_client_get_debug(){
 
-        try{
+        try {
 
-            if(isset($this->oSoapClient)){
+            if (isset($this->oSoapClient)) {
 
                 return $this->oSoapClient->returnClientGetDebug();
 
-            }else{
+            } else {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -1471,7 +1474,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1487,13 +1490,13 @@ class crnrstn {
 
     public function SOAP_return_error(){
 
-        try{
+        try {
 
-            if(isset($this->oSoapClient)){
+            if (isset($this->oSoapClient)) {
 
                 return $this->oSoapClient->returnError();
 
-            }else{
+            } else {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -1501,7 +1504,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1525,7 +1528,7 @@ class crnrstn {
 
         $tmp_array = array();
 
-        if(isset(self::$sys_logging_profile_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL])){
+        if (isset(self::$sys_logging_profile_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL])) {
 
             //
             // PARALLEL STORAGE IN USE BY ENVIRONMENTAL CLASS OBJECT
@@ -1550,13 +1553,13 @@ class crnrstn {
 
     public function config_add_wordpress($env_key, $crnrstn_wp_config_file_path){
 
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == hash($this->system_hash_algo, $env_key)) {
+            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
 
-                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_wp_config_file_path, 'crnrstn_wp_config_file_path',NULL,NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_wp_config_file_path, 'crnrstn_wp_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
-                if(is_file($crnrstn_wp_config_file_path)){
+                if (is_file($crnrstn_wp_config_file_path)) {
 
                     //
                     // EXTRACT PROFILE FROM FILE
@@ -1564,7 +1567,7 @@ class crnrstn {
 
                     include_once($crnrstn_wp_config_file_path);
 
-                }else{
+                } else {
 
                     $this->error_log('Unable to initialize data supporting WordPress integrations with CRNRSTN :: [' . $env_key . ']. Not a file: [' . $crnrstn_wp_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -1578,11 +1581,11 @@ class crnrstn {
 
     public function config_add_analytics_seo($env_key, $crnrstn_analytics_config_file_path){
 
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == hash($this->system_hash_algo, $env_key)) {
+            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
 
-                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_analytics_config_file_path, 'crnrstn_analytics_config_file_path',NULL,NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_analytics_config_file_path, 'crnrstn_analytics_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
             }
 
@@ -1592,11 +1595,11 @@ class crnrstn {
 
     public function config_add_engagement_tag_seo($env_key, $crnrstn_engagement_config_file_path){
 
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == hash($this->system_hash_algo, $env_key)) {
+            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
 
-                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_engagement_config_file_path, 'crnrstn_engagement_config_file_path',NULL,NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_engagement_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
             }
 
@@ -1606,13 +1609,13 @@ class crnrstn {
 
     public function config_init_encryption($env_key, $crnrstn_openssl_config_file_path){
 
-        try{
+        try {
 
-            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-                if(is_file($crnrstn_openssl_config_file_path)){
+                if (is_file($crnrstn_openssl_config_file_path)) {
 
-                    if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == hash($this->system_hash_algo, $env_key)){
+                    if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
 
                         //
                         // ACQUIRE FILE VERSIONING CHECKSUM
@@ -1627,7 +1630,7 @@ class crnrstn {
 
                     }
 
-                }else{
+                } else {
 
                     //
                     // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
@@ -1642,7 +1645,7 @@ class crnrstn {
             //throw new Exception('Unable to process system resource for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
             $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_openssl_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-        } catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1658,11 +1661,11 @@ class crnrstn {
 
     public function config_define_system_resources($env_key, $crnrstn_resource_config_file_path){
 
-        try{
+        try {
 
-            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-                if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == hash($this->system_hash_algo, $env_key))) {
+                if ($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))) {
 
                     if (is_file($crnrstn_resource_config_file_path)) {
 
@@ -1693,7 +1696,7 @@ class crnrstn {
 
             }
 
-        } catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1724,11 +1727,11 @@ class crnrstn {
 
     public function return_tmp(){
 
-        if(isset(self::$crnrstn_tmp_dir)){
+        if (isset(self::$crnrstn_tmp_dir)) {
 
             return self::$crnrstn_tmp_dir;
 
-        }else{
+        } else {
 
             return false;
 
@@ -1760,7 +1763,7 @@ class crnrstn {
 
     public function save_wildcard_resource($oWildCardResource){
 
-       $this->augmentWCR_array($oWildCardResource);
+        $this->augmentWCR_array($oWildCardResource);
 
     }
 
@@ -1775,21 +1778,21 @@ class crnrstn {
 
     public function return_m_start_time(){
 
-	    return self::$m_starttime;
+        return self::$m_starttime;
 
     }
 
-	public function returnSystemCreative($env_key){
+    public function returnSystemCreative($env_key){
 
         //
         // TODO :: THIS FUNCTIONALITY SHOULD BE ADAPTED FOR WHITE LABEL FOR ALL SYSTEM NOTIFICATIONS.
-        try{
+        try {
 
-            if(isset(self::$system_creative_http_path_ARRAY[$this->config_serial_hash][$env_key])){
+            if (isset(self::$system_creative_http_path_ARRAY[$this->config_serial_hash][$env_key])) {
 
                 return self::$system_creative_http_path_ARRAY[$this->config_serial_hash][$env_key];
 
-            }else{
+            } else {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -1797,7 +1800,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
@@ -1809,7 +1812,7 @@ class crnrstn {
 
     }
 
-	public function config_init_images_transport_mode($system_asset_mode = CRNRSTN_ASSET_MODE_BASE64){
+    public function config_init_images_transport_mode($system_asset_mode = CRNRSTN_ASSET_MODE_BASE64){
 
         //
         // TODO :: CHECK THAT IF THIS METHOD IS RUN TO UPDATE MODE,...NEED TO CLEAR OUT ALL OTHER FLIPPED BITS FIRST.
@@ -1824,9 +1827,9 @@ class crnrstn {
 
     public function config_init_images_http_dir($env_key, $crnrstn_images_http_dir){
 
-        $tmp_env_key_hash = hash($this->system_hash_algo, $env_key);
+        $tmp_env_key_hash = $this->hash($env_key);
 
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
             if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash) {
 
@@ -1838,7 +1841,7 @@ class crnrstn {
 
                     $slashChar = '/';
 
-                }else{
+                } else {
 
                     $slashChar = '\\';
 
@@ -1867,32 +1870,32 @@ class crnrstn {
 
     }
 
-	public function set_crnrstn_as_err_handler($env_key, $crnrstn_is_active = true, $error_types_profile = NULL){
+    public function set_crnrstn_as_err_handler($env_key, $crnrstn_is_active = true, $error_types_profile = NULL){
 
-        $tmp_env_key_hash = hash($this->system_hash_algo, $env_key);
+        $tmp_env_key_hash = $this->hash($env_key);
 //	    $this->crnrstn_as_error_handler_ARRAY[$this->config_serial_hash][$tmp_env_key_hash] = $crnrstn_is_active;
 //	    $this->crnrstn_as_error_handler_constants_ARRAY[$this->config_serial_hash][$tmp_env_key_hash] = $error_types_profile;
 
-        try{
+        try {
 
-            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash) {
+                if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash) {
 
                     self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_is_active, 'is_active_CRNRSTN_as_err_handler', NULL, NULL, NULL, $env_key);
                     self::$oCRNRSTN_CONFIG_MGR->input_data_value($error_types_profile, 'profile_CRNRSTN_as_err_handler', NULL, NULL, NULL, $env_key);
 
-                    if($crnrstn_is_active){
+                    if ($crnrstn_is_active) {
 
                         $this->error_log('Resetting error handling at this server to the PHP defaults.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
                         restore_error_handler();
 
-                        if(isset($error_types_profile)) {
+                        if (isset($error_types_profile)) {
 
                             $this->error_log('Initializing CRNRSTN :: to handle errors at this server per a custom error level constants reporting profile represented as an aggregate by the integer value, ' . $error_types_profile . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
                             $this->apply_CRNRSTN_asErrorHandler($error_types_profile);
 
-                        }else{
+                        } else {
 
                             $this->error_log('Initializing CRNRSTN :: to handle errors at this server per the default PHP error level constants reporting profile. For PHP 5.3 or later, the default is E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
                             $this->apply_CRNRSTN_asErrorHandler($error_types_profile);
@@ -1917,7 +1920,7 @@ class crnrstn {
             //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
             $this->error_log('Bypassed initialization of CRNRSTN :: as error handler for environment [' . $tmp_env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-        } catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -1935,15 +1938,15 @@ class crnrstn {
 
     private function apply_CRNRSTN_asErrorHandler($error_types_profile = NULL){
 
-        if(isset($error_types_profile)){
+        if (isset($error_types_profile)) {
 
             //
             // SOURCE :: https://stackoverflow.com/questions/1241728/can-i-try-catch-a-warning
             // AUTHOR :: https://stackoverflow.com/users/117260/philippe-gerber
             // SET TO THE USER DEFINED ERROR HANDLER
-            $old_error_handler = set_error_handler(function($errno, $errstr, $errfile, $errline, $errcontext) {
+            $old_error_handler = set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext) {
 
-                try{
+                try {
 
                     // error was suppressed with the @-operator
                     if (0 === error_reporting()) {
@@ -1965,16 +1968,16 @@ class crnrstn {
 
                 }
 
-            }, (int) $error_types_profile);
+            }, (int)$error_types_profile);
 
-        }else{
+        } else {
 
-            $old_error_handler = set_error_handler(function($errno, $errstr, $errfile, $errline, $errcontext){
+            $old_error_handler = set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext) {
 
-                try{
+                try {
 
                     // error was suppressed with the @-operator
-                    if(0 === error_reporting()){
+                    if (0 === error_reporting()) {
 
                         return false;
 
@@ -2003,7 +2006,7 @@ class crnrstn {
 
     }
 
-	public function add_wildcards($env_key, $filepathWildCardResource){
+    public function add_wildcards($env_key, $filepathWildCardResource){
 
         $this->wildCardResource_filePath_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $filepathWildCardResource;
 
@@ -2011,15 +2014,15 @@ class crnrstn {
 
     }
 
-	public function config_add_environment($env_key, $err_reporting_profile){
+    public function config_add_environment($env_key, $err_reporting_profile){
 
-        try{
+        try {
 
-            $env_key_hash = hash($this->system_hash_algo, $env_key);
+            $env_key_hash = $this->hash($env_key);
 
             $this->error_log('Environment key [' . $env_key . '] converts to checksum [' . $env_key_hash . '] and will be referenced as such from time to time. ', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-            if(!isset($this->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$env_key_hash])){
+            if (!isset($this->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$env_key_hash])) {
 
                 $this->env_key_ARRAY[$this->config_serial_hash][$env_key_hash] = $env_key;
                 $this->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$env_key_hash] = $err_reporting_profile;
@@ -2028,7 +2031,7 @@ class crnrstn {
 
                 $this->error_log('Storing environment [' . $env_key . '|' . $env_key_hash . '] in memory.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-            }else{
+            } else {
 
                 //
                 // THIS KEY HAS ALREADY BEEN INITIALIZED
@@ -2037,7 +2040,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -2045,16 +2048,15 @@ class crnrstn {
 
         }
 
-		return true;
+        return true;
 
-	}
+    }
 
     public function config_init_logging($env_key, $CRNRSTN_loggingProfile = CRNRSTN_LOG_DEFAULT, $CRNRSTN_loggingMeta = NULL){
 
         //
         // LOGGING WILL NEED TO BE REFACTORED SOON. MUCH HAS CHANGED.
-        //
-        $tmp_env_hash = hash($this->system_hash_algo, $env_key);
+        $tmp_env_hash = $this->hash($env_key);
 
         //
         // PROCESS BITWISE DATA DO THIS AFTER ENVIRONMENTAL DETECTION
@@ -2062,11 +2064,11 @@ class crnrstn {
         //error_log(__LINE__ .' '. __METHOD__ .' crnrstn_environment to receive logging array[' . $this->crcINT($this->config_serial).'][' . $this->crcINT($env_key).']=[' . $CRNRSTN_loggingProfile . ']');
         self::$sys_logging_profile_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $CRNRSTN_loggingProfile;
 
-        if(isset($CRNRSTN_loggingMeta)){
+        if (isset($CRNRSTN_loggingMeta)) {
 
             self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $CRNRSTN_loggingMeta;
 
-        }else{
+        } else {
 
             self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = '0';
 
@@ -2091,38 +2093,38 @@ class crnrstn {
         return self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$env_key];
 
     }
-	
-	public function config_grant_exclusive_access($env_key, $ipOrFile){
 
-		$this->grant_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ipOrFile;
+    public function config_grant_exclusive_access($env_key, $ipOrFile){
 
-		$this->error_log('storing grant_exclusive_access IP profile [' . $ipOrFile . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        $this->grant_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ipOrFile;
 
-		return true;
+        $this->error_log('storing grant_exclusive_access IP profile [' . $ipOrFile . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-	}
-	
-	public function config_deny_access($env_key, $ipOrFile){
+        return true;
+
+    }
+
+    public function config_deny_access($env_key, $ipOrFile){
 
         $this->deny_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ipOrFile;
 
         $this->error_log('storing deny_access IP profile [' . $ipOrFile . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-		return true;
+        return true;
 
-	}
+    }
 
-    public function returnDbType($type_id=0){
+    public function returnDbType($type_id = 0){
 
-        try{
+        try {
 
             $databaseExtensionTypes = array(0 => 'MySQLi', 1 => 'MySQL', 2 => 'PostGreSQL', 3 => 'SYBASE', 4 => 'IBM-DB2', 5 => 'Oracle Database', 6 => 'MSSQL');
 
-            if(isset($databaseExtensionTypes[$type_id])){
+            if (isset($databaseExtensionTypes[$type_id])) {
 
                 return $databaseExtensionTypes[$type_id];
 
-            }else{
+            } else {
 
                 $this->error_log('ERROR :: returnDbType() is being called with reference to a value(' . $type_id . ') that is outside permissible range of [0-6].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -2130,7 +2132,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -2152,9 +2154,9 @@ class crnrstn {
 
         //
         // WE SHOULD HAVE THIS VALUE BY NOW. IF EMPTY, HOOOSTON...VE HAF PROBLEM!
-        if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == ''){
+        if (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == '') {
 
-            $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with CRNRSTN :: config serial CRC [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with CRNRSTN :: config serial hash [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             //
             // HOOOSTON...VE HAF PROBLEM!
@@ -2166,15 +2168,15 @@ class crnrstn {
 
         }
 
-		//
-		// HANDLE PATH TO DATABASE CONFIG FILE (E.G. ONLY 2 PARAMS PROVIDED)
-		if($db == NULL){
+        //
+        // HANDLE PATH TO DATABASE CONFIG FILE (E.G. ONLY 2 PARAMS PROVIDED)
+        if ($db == NULL) {
 
-            try{
+            try {
 
-                if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+                if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-                    if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == hash($this->system_hash_algo, $env_key)) {
+                    if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
 
                         if (is_file($host_or_creds_path)) {
 
@@ -2205,7 +2207,7 @@ class crnrstn {
 
                 }
 
-            } catch( Exception $e ) {
+            } catch (Exception $e) {
 
                 //
                 // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -2217,29 +2219,29 @@ class crnrstn {
 
             }
 
-		}else{
-			
-			//
-			// SEND DATABASE CONFIGURATION PARAMETERS TO THE CONNECTION MANAGER
+        } else {
+
+            //
+            // SEND DATABASE CONFIGURATION PARAMETERS TO THE CONNECTION MANAGER
             $this->error_log('Sending [' . $env_key . '] database profile information to the CRNRSTN :: MySQLi database connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-			$this->oMYSQLI_CONN_MGR->add_connection($env_key, $host_or_creds_path, $un, $pwd, $db, $port);
+            $this->oMYSQLI_CONN_MGR->add_connection($env_key, $host_or_creds_path, $un, $pwd, $db, $port);
 
-		}
-		
-		return true;
+        }
 
-	}
+        return true;
 
-	private function config_add_data_wp($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::WP_00::INTEGRATIONS'){
+    }
 
-        try{
+    private function config_add_data_wp($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::WP_00::INTEGRATIONS'){
 
-            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+        try {
 
-                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == hash($this->system_hash_algo, $env_key)) {
+            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-                    $this->error_log('Sending ' . $data_key . ' WordPress profile information for ['. $env_key . '] to the CRNRSTN :: MySQLi database connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
+
+                    $this->error_log('Sending ' . $data_key . ' WordPress profile information for [' . $env_key . '] to the CRNRSTN :: MySQLi database connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     $this->oMYSQLI_CONN_MGR->config_add_data_wp($env_key, $data_key, $data_value, $data_type_family);
 
@@ -2247,7 +2249,7 @@ class crnrstn {
 
             }
 
-        } catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -2262,17 +2264,17 @@ class crnrstn {
 
     }
 
-	public function config_add_administration($env_key, $email_or_creds_path, $pwd = NULL, $ttl = 120, $max_login_attempts = 10){
+    public function config_add_administration($env_key, $email_or_creds_path, $pwd = NULL, $ttl = 120, $max_login_attempts = 10){
 
         //
         // HANDLE PATH TO DATABASE CONFIG FILE (E.G. ONLY 2 PARAMS PROVIDED)
-        if($pwd == NULL){
+        if ($pwd == NULL) {
 
-            try{
+            try {
 
-                if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+                if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-                    if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == hash($this->system_hash_algo, $env_key)){
+                    if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
 
                         if (is_file($email_or_creds_path)) {
 
@@ -2303,7 +2305,7 @@ class crnrstn {
 
                 }
 
-            } catch( Exception $e ) {
+            } catch (Exception $e) {
 
                 //
                 // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -2315,7 +2317,7 @@ class crnrstn {
 
             }
 
-        }else{
+        } else {
 
             //
             // STORE ADMINISTRATOR CONFIGURATION PARAMETERS
@@ -2356,20 +2358,20 @@ class crnrstn {
 
     public function config_detect_environment($env_key = CRNRSTN_RESOURCE_ALL, $data_key = NULL, $value = NULL, $required_server_matches = 1){
 
-        if(!isset(self::$env_select_ARRAY[$this->config_serial_hash])){
+        if (!isset(self::$env_select_ARRAY[$this->config_serial_hash])) {
 
-            if($required_server_matches < 0){
+            if ($required_server_matches < 0) {
 
                 $required_server_matches = 0;
 
             }
 
-            $env_key_hash = hash($this->system_hash_algo, $env_key);
+            $env_key_hash = $this->hash($env_key);
 
             //
             // FOR FASTEST DISCOVERY, RUN ENVIRONMENTAL DETECTION AHEAD OF INITIALIZATION OF AS MANY RESOURCE
             // DEFINITIONS AS ARCHITECTURALLY POSSIBLE...IF WE DON'T SNAG THE ENV CONFIG FROM THE SSDTLA, FIRST!
-            if($this->detectServerEnv($env_key_hash, $data_key, $value, $required_server_matches)){
+            if ($this->detectServerEnv($env_key_hash, $data_key, $value, $required_server_matches)) {
 
                 $this->env_key = $env_key;
                 $this->env_key_hash = $env_key_hash;
@@ -2400,11 +2402,11 @@ class crnrstn {
 
     }
 
-    private function detectServerEnv($env_key_hash, $data_key, $value, $required_server_matches) {
+    private function detectServerEnv($env_key_hash, $data_key, $value, $required_server_matches){
 
         //
         // CHECK THE ENVIRONMENTAL DETECTION KEYS FOR MATCHES AGAINST THE SERVER CONFIGURATION
-        if(array_key_exists($data_key, $_SERVER)){
+        if (array_key_exists($data_key, $_SERVER)) {
 
             $this->error_log('We have a SERVER param [' . $data_key . '] to check value [' . $value . '] for match against actual SERVER[].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -2412,7 +2414,7 @@ class crnrstn {
 
             return $this->isServerKeyMatch($env_key_hash, $data_key, $value, $required_server_matches);
 
-        }else{
+        } else {
 
             return false;
 
@@ -2425,7 +2427,7 @@ class crnrstn {
         //
         // RUN VALUE COMPARISON FOR INCOMING VALUE AND DATA FROM THE SERVERS' SUPER GLOBAL VARIABLE ARRAY
         //error_log(__LINE__ . ' crnrstn SERVER match [' . $data_key . '/' . $_SERVER[$data_key] . '] with value [' . $value . ']');
-        if($value == $_SERVER[$data_key]){
+        if ($value == $_SERVER[$data_key]) {
 
             $this->error_log('SERVER match found for key [' . $data_key . '] with value [' . $value . '] Increment detection count [' . self::$env_detect_ARRAY[$this->config_serial_hash][$env_key_hash] . '] for environment [' . $env_key_hash . ']. Need [' . $required_server_matches . '] matches to detect environment (if 0, then must process all config data).', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
             //error_log(__LINE__ . ' crnrstn SERVER match found for key [' . $data_key . '] with value [' . $value . '] Increment detection count [' . self::$env_detect_ARRAY[$this->config_serial_hash][$env_key_hash] . ' of ' . $required_server_matches . '] for environment [' . $env_key_hash . '].');
@@ -2439,7 +2441,7 @@ class crnrstn {
 
         //
         // FIRST $ENV TO REACH $envDetectRequiredCnt...YOU KNOW YOU HAVE QUALIFIED MATCH.
-        if(self::$env_detect_ARRAY[$this->config_serial_hash][$env_key_hash] >= $required_server_matches){
+        if (self::$env_detect_ARRAY[$this->config_serial_hash][$env_key_hash] >= $required_server_matches) {
 
             //
             // WE HAVE AN ENVIRONMENTAL DEFINITION WITH A SUFFICIENT NUMBER OF SUCCESSFUL MATCHES TO THE RUNNING ENVIRONMENT
@@ -2451,7 +2453,7 @@ class crnrstn {
 
             return true;
 
-        }else{
+        } else {
 
             //
             // EVIDENCE OF A MATCH...STILL NOT SUFFICIENT
@@ -2491,9 +2493,9 @@ class crnrstn {
 
     public function isset_data_key($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $env_key = NULL){
 
-        if(!isset($env_key)){
+        if (!isset($env_key)) {
 
-            if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
+            if (isset(self::$server_env_key_ARRAY[$this->config_serial_hash])) {
 
                 $env_key = self::$server_env_key_ARRAY[$this->config_serial_hash];
 
@@ -2513,9 +2515,9 @@ class crnrstn {
 
     private function config_add_database_connection($env_key, $host, $un, $pwd, $db, $port = NULL){
 
-        $tmp_env_key_hash = hash($this->system_hash_algo, $env_key);
+        $tmp_env_key_hash = $this->hash($env_key);
 
-        if(($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)) {
+        if (($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)) {
 
             //$this->print_r('$env_key=[' . $env_key . ']. $host=[' . $host . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
             $this->oMYSQLI_CONN_MGR->add_connection($env_key, $host, $un, $pwd, $db, $port);
@@ -2526,7 +2528,7 @@ class crnrstn {
 
     private function config_add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
 
-        try{
+        try {
 
             $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$data_key');
             $tmp_param_err_str_ARRAY = $this->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $env_key, $data_key);
@@ -2534,26 +2536,26 @@ class crnrstn {
             $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
             $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
 
-            $tmp_env_key_hash = hash($this->system_hash_algo, $env_key);
+            $tmp_env_key_hash = $this->hash($env_key);
 
-            if(count($tmp_param_missing_ARRAY) > 0){
+            if (count($tmp_param_missing_ARRAY) > 0) {
 
                 $this->error_log('Attempted ' . __METHOD__ . '(' . $data_key . ') but missing required parameters. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 throw new Exception('CRNRSTN :: initialization ERROR :: define_env_resource was called but was missing parameter information and so was not able to be initialized. env_key and resourceKey are required. env_key[' . $env_key . '] resourceKey[' . $data_key . ']');
 
-            }else{
+            } else {
 
-                if($env_key === '*'){
+                if ($env_key === '*') {
 
                     $env_key = CRNRSTN_RESOURCE_ALL;
 
                 }
 
-                if(($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)){
+                if (($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)) {
 
                     //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ':: input_data_value(), WHERE $data_key=' . $data_key . ' $env_key=[' . $env_key . '/' . self::$server_env_key_ARRAY[$this->config_serial_hash] . '.].');
-                    if(!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
+                    if (!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])) {
 
                         $this->system_terminate('detection');
 
@@ -2561,7 +2563,7 @@ class crnrstn {
 
                     }
 
-                    if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
+                    if (isset(self::$server_env_key_ARRAY[$this->config_serial_hash])) {
 
                         $this->input_data_value($data_value, $data_key, $data_type_family, NULL, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash]);
 
@@ -2571,7 +2573,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -2583,9 +2585,9 @@ class crnrstn {
 
     public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $data_index = NULL, $env_key = NULL){
 
-        try{
+        try {
 
-            if(!isset($env_key)){
+            if (!isset($env_key)) {
 
                 $env_key = $this->get_server_env();
 
@@ -2597,26 +2599,26 @@ class crnrstn {
             $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
             $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
 
-            $tmp_env_key_hash = hash($this->system_hash_algo, $env_key);
+            $tmp_env_key_hash = $this->hash($env_key);
 
-            if(count($tmp_param_missing_ARRAY) > 0){
+            if (count($tmp_param_missing_ARRAY) > 0) {
 
                 $this->error_log('Attempted ' . __METHOD__ . '(' . $data_key . ') but missing required parameters. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 throw new Exception('CRNRSTN :: initialization ERROR :: define_env_resource was called but was missing parameter information and so was not able to be initialized. env_key and resourceKey are required. env_key[' . $env_key . '] resourceKey[' . $data_key . ']');
 
-            }else{
+            } else {
 
-                if($env_key === '*'){
+                if ($env_key === '*') {
 
                     $env_key = CRNRSTN_RESOURCE_ALL;
 
                 }
 
-                if(($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)){
+                if (($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)) {
 
                     //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ':: input_data_value(), WHERE $data_key=' . $data_key . ' $env_key=[' . $env_key . '/' . self::$server_env_key_ARRAY[$this->config_serial_hash] . '.].');
-                    if(!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
+                    if (!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])) {
 
                         $this->system_terminate('detection');
 
@@ -2624,7 +2626,7 @@ class crnrstn {
 
                     }
 
-                    if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
+                    if (isset(self::$server_env_key_ARRAY[$this->config_serial_hash])) {
 
                         $this->input_data_value($data_value, $data_key, $data_type_family, $data_index, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash]);
 
@@ -2634,7 +2636,7 @@ class crnrstn {
 
             }
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -2646,11 +2648,11 @@ class crnrstn {
 
     public function system_terminate($message_type = 'config_serial'){
 
-        if(!isset(self::$system_termination_flag_ARRAY[$message_type])){
+        if (!isset(self::$system_termination_flag_ARRAY[$message_type])) {
 
             self::$system_termination_flag_ARRAY[$message_type] = 1;
 
-            switch($message_type){
+            switch ($message_type) {
                 case 'detection':
 
                     /*
@@ -2664,7 +2666,7 @@ class crnrstn {
 $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');';
 
                     $dom_sess_serial = $this->generate_new_key(26, '01');
-                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
 
                     $this->destruct_output .= '<!doctype html>
 <html lang="' . $this->country_iso_code() . '">
@@ -2691,7 +2693,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
 
     <div style="display:block; clear:both; height:1px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->current_theme_style_ARRAY['NAME'] .']</div>
 
 </div>
 
@@ -2707,7 +2709,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
                     error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.');
 
-                break;
+                    break;
                 default:
 
                     $tmp_serial_str_len = 64;
@@ -2717,7 +2719,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     $tmp_str_in = '$CRNRSTN_config_serial = \'' . $tmp_serial . '\';';
 
-                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
 
                     //
                     // MAYBE GENERATE A CONFIG SERIAL COPY-PASTE INTO CONFIG FILE PAGE WITH BASE64 CRNRSTN :: LOGO STUFF?
@@ -2750,7 +2752,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
     
     <div style="display:block; clear:both; height:5px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() .' secs]</div>
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->current_theme_style_ARRAY['NAME'] .']</div>
 
 </div>
 
@@ -2768,7 +2770,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     exit();
 
-                break;
+                    break;
 
             }
 
@@ -2814,7 +2816,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function get_resource_submitted($input_field_name, $http_transport_protocol = 'POST'){
 
-        if(is_array($http_transport_protocol)){
+        if (is_array($http_transport_protocol)) {
 
             return '';
 
@@ -2822,15 +2824,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $http_channel_upper = strtoupper($http_transport_protocol);
 
-        if($http_transport_protocol != 'POST'){
+        if ($http_transport_protocol != 'POST') {
 
             $http_transport_protocol = $this->string_sanitize($http_channel_upper, 'http_protocol_simple');
 
-            if($http_transport_protocol != 'GET' && $http_transport_protocol != 'POST') {
+            if ($http_transport_protocol != 'GET' && $http_transport_protocol != 'POST') {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('CRNRSTN :: Form handling configuration error :: unable to detect transport_protocol[POST/GET] from the provided value of ' . $transport_protocol . '.');
+                throw new Exception('CRNRSTN :: Form handling configuration error :: unable to detect transport_protocol[POST/GET] from the provided value of ' . $http_transport_protocol . '.');
 
             }
 
@@ -2850,7 +2852,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function framework_integrations_client_packet($integer_constant = NULL, $spool_for_output = false){
 
-        if($spool_for_output){
+        if ($spool_for_output) {
 
             $this->system_ui_module_constants_spool_ARRAY[] = $integer_constant;
 
@@ -2863,7 +2865,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_client_packet_output = '';
         $tmp_ficp_module_build_flag_ARRAY = array();
 
-        if(isset($integer_constant)) {
+        if (isset($integer_constant)) {
 
             /*
             'CRNRSTN_RESOURCE_ALL', 'CRNRSTN_RESOURCE_BASSDRIVE',
@@ -2884,7 +2886,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             ficp_module_build_flag_ARRAY
             */
 
-            if(in_array($integer_constant, $this->system_ui_module_constants_ARRAY)){
+            if (in_array($integer_constant, $this->system_ui_module_constants_ARRAY)) {
 
                 if (!isset($this->ficp_module_build_flag_ARRAY[$integer_constant])) {
 
@@ -2927,9 +2929,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //            }
 
-        foreach($this->system_ui_module_constants_spool_ARRAY as $index => $int_const) {
+        foreach ($this->system_ui_module_constants_spool_ARRAY as $index => $int_const) {
 
-            if(in_array($int_const, $this->system_ui_module_constants_ARRAY)){
+            if (in_array($int_const, $this->system_ui_module_constants_ARRAY)) {
 
                 if (!isset($this->ficp_module_build_flag_ARRAY[$int_const])) {
 
@@ -2983,10 +2985,10 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function output_regression_stripe_ARRAY($result_str, $result_array, $output_format = 'array'){
 
         $tmp_ARRAY = array();
-        $tmp_ARRAY['string'] = hash($this->system_hash_algo, $result_str);
+        $tmp_ARRAY['string'] = $this->hash($result_str);
         $tmp_ARRAY['index_array'] = $result_array;
 
-        if($output_format != 'array'){
+        if ($output_format != 'array') {
 
             return $tmp_ARRAY['string'];
 
@@ -3001,7 +3003,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_var_index_pos = 0;
         $tmp_total_index = 0;
 
-        if(!isset($output_format)){
+        if (!isset($output_format)) {
 
             $output_format = 'array';
 
@@ -3011,7 +3013,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_array_str_unit_ARRAY = array();
         $tmp_array_out_ARRAY = array();
 
-        if(isset($var0)){
+        if (isset($var0)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var0 . '::';
@@ -3020,9 +3022,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var1)){
+        if (isset($var1)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var1 . '::';
@@ -3031,9 +3033,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var2)){
+        if (isset($var2)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var2 . '::';
@@ -3042,9 +3044,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var3)){
+        if (isset($var3)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var3 . '::';
@@ -3053,9 +3055,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var4)){
+        if (isset($var4)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var4 . '::';
@@ -3064,9 +3066,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var5)){
+        if (isset($var5)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var5 . '::';
@@ -3075,9 +3077,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var6)){
+        if (isset($var6)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var6 . '::';
@@ -3086,9 +3088,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var7)){
+        if (isset($var7)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var7 . '::';
@@ -3097,9 +3099,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var8)){
+        if (isset($var8)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var8 . '::';
@@ -3108,9 +3110,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var9)){
+        if (isset($var9)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var9 . '::';
@@ -3119,9 +3121,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var10)){
+        if (isset($var10)) {
 
             $tmp_total_index++;
             $tmp_str_out .= $var10 . '::';
@@ -3130,19 +3132,19 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+        if ($tmp_var_index_pos > $tmp_total_index) return $this->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
 
-        if(isset($var11)){
+        if (isset($var11)) {
 
             $tmp_str_out .= $var11 . '::';
             $tmp_array_str_unit_ARRAY[] = $var11;
 
         }
 
-        $tmp_array_out_ARRAY['string'] = hash($this->system_hash_algo, $tmp_str_out);
+        $tmp_array_out_ARRAY['string'] = $this->hash($tmp_str_out);
         $tmp_array_out_ARRAY['index_array'] = $tmp_array_str_unit_ARRAY;
 
-        if($output_format == 'array') {
+        if ($output_format == 'array') {
 
             return $tmp_array_out_ARRAY;
 
@@ -3156,7 +3158,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL){
 
-        error_log(__LINE__  . ' crnrstn::' . __METHOD__ . '(' . $data_key . '); WHO CALLS ME? WHAT ABOUT add_system_resource()? NEED TO TIDY UP DATA INPUT. NEVER $env_key...ALWAYS self::$server_env_key_ARRAY[$this->config_serial_hash];.');
+        //error_log(__LINE__ . ' crnrstn::' . __METHOD__ . '(' . $data_key . '); WHO CALLS ME? WHAT ABOUT add_system_resource()? NEED TO TIDY UP DATA INPUT. NEVER $env_key...ALWAYS self::$server_env_key_ARRAY[$this->config_serial_hash];.');
         self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, $env_key);
 
     }
@@ -3168,103 +3170,103 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_str_ARRAY[] = $var_0;
 
         $key_count++;
-        if(isset($var_1)){
+        if (isset($var_1)) {
 
             $tmp_str_ARRAY[] = $var_1;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_2)){
+        if (isset($var_2)) {
 
             $tmp_str_ARRAY[] = $var_2;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_3)){
+        if (isset($var_3)) {
 
             $tmp_str_ARRAY[] = $var_3;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_4)){
+        if (isset($var_4)) {
 
             $tmp_str_ARRAY[] = $var_4;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_5)){
+        if (isset($var_5)) {
 
             $tmp_str_ARRAY[] = $var_5;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_6)){
+        if (isset($var_6)) {
 
             $tmp_str_ARRAY[] = $var_6;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_7)){
+        if (isset($var_7)) {
 
             $tmp_str_ARRAY[] = $var_7;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_8)){
+        if (isset($var_8)) {
 
             $tmp_str_ARRAY[] = $var_8;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_9)){
+        if (isset($var_9)) {
 
             $tmp_str_ARRAY[] = $var_9;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_10)){
+        if (isset($var_10)) {
 
             $tmp_str_ARRAY[] = $var_10;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         $key_count++;
-        if(isset($var_11)){
+        if (isset($var_11)) {
 
             $tmp_str_ARRAY[] = $var_11;
 
         }
 
-        if($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
+        if ($key_count > sizeof($tmp_str_ARRAY)) return $tmp_str_ARRAY;
 
         return $tmp_str_ARRAY;
 
@@ -3277,26 +3279,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_str_out = '';
         $tmp_array_out_ARRAY = array();
 
-        switch($operation_type){
+        switch ($operation_type) {
             case 'HAS_STRING_DATA':
 
-                if(isset($var_0)){
+                if (isset($var_0)) {
 
-                    if(strlen($var_0) > 0){
-
-                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
-                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                    }
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(isset($var_1)){
-
-                    if(strlen($var_1) > 0){
+                    if (strlen($var_0) > 0) {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3306,25 +3294,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_2)){
+                if (isset($var_1)) {
 
-                    if(strlen($var_2) > 0){
-
-                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
-                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                    }
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(isset($var_3)){
-
-                    if(strlen($var_3) > 0){
+                    if (strlen($var_1) > 0) {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3334,25 +3308,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_4)){
+                if (isset($var_2)) {
 
-                    if(strlen($var_4) > 0){
-
-                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
-                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                    }
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(isset($var_5)){
-
-                    if(strlen($var_5) > 0){
+                    if (strlen($var_2) > 0) {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3362,25 +3322,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_6)){
+                if (isset($var_3)) {
 
-                    if(strlen($var_6) > 0){
-
-                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
-                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                    }
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(isset($var_7)){
-
-                    if(strlen($var_7) > 0){
+                    if (strlen($var_3) > 0) {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3390,25 +3336,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_8)){
+                if (isset($var_4)) {
 
-                    if(strlen($var_8) > 0){
-
-                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
-                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                    }
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(isset($var_9)){
-
-                    if(strlen($var_9) > 0){
+                    if (strlen($var_4) > 0) {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3418,11 +3350,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_10)){
+                if (isset($var_5)) {
 
-                    if(strlen($var_10) > 0){
+                    if (strlen($var_5) > 0) {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3432,11 +3364,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_11)){
+                if (isset($var_6)) {
 
-                    if(strlen($var_11) > 0){
+                    if (strlen($var_6) > 0) {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3445,129 +3377,199 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 }
 
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-            break;
+                if (isset($var_7)) {
+
+                    if (strlen($var_7) > 0) {
+
+                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
+                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                    }
+
+                }
+
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                if (isset($var_8)) {
+
+                    if (strlen($var_8) > 0) {
+
+                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
+                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                    }
+
+                }
+
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                if (isset($var_9)) {
+
+                    if (strlen($var_9) > 0) {
+
+                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
+                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                    }
+
+                }
+
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                if (isset($var_10)) {
+
+                    if (strlen($var_10) > 0) {
+
+                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
+                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                    }
+
+                }
+
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                if (isset($var_11)) {
+
+                    if (strlen($var_11) > 0) {
+
+                        $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is not an empty string. ';
+                        $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                    }
+
+                }
+
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                break;
             case 'MISSING_STRING_DATA':
 
-                if(isset($var_0)){
+                if (isset($var_0)) {
 
-                    if($var_0 == ''){
+                    if ($var_0 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
 
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_1)){
+                if (isset($var_1)) {
 
-                    if($var_1 == ''){
+                    if ($var_1 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
 
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_2)){
+                if (isset($var_2)) {
 
-                    if($var_2 == ''){
+                    if ($var_2 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
 
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_3)){
+                if (isset($var_3)) {
 
-                    if($var_3 == ''){
+                    if ($var_3 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
 
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_4)){
+                if (isset($var_4)) {
 
-                    if($var_4 == ''){
+                    if ($var_4 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
 
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_5)){
+                if (isset($var_5)) {
 
-                    if($var_5 == ''){
+                    if ($var_5 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
 
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_6)){
+                if (isset($var_6)) {
 
-                    if($var_6 == ''){
+                    if ($var_6 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3575,18 +3577,18 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_7)){
+                if (isset($var_7)) {
 
-                    if($var_7 == ''){
+                    if ($var_7 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3594,18 +3596,18 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_8)){
+                if (isset($var_8)) {
 
-                    if($var_8 == ''){
+                    if ($var_8 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3613,68 +3615,68 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_9)){
+                if (isset($var_9)) {
 
-                    if($var_9 == ''){
+                    if ($var_9 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
 
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_10)){
+                if (isset($var_10)) {
 
-                    if($var_10 == ''){
+                    if ($var_10 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
 
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(isset($var_11)){
+                if (isset($var_11)) {
 
-                    if($var_11 == ''){
+                    if ($var_11 == '') {
 
                         $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is empty. ';
                         $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                 }
 
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-            break;
+                break;
             default:
 
                 // $operation_type = 'IS_NULL'
                 // CHECK FOR IS NULL
-                if(!isset($var_0)){
+                if (!isset($var_0)) {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3682,19 +3684,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(!isset($var_1)){
-
-                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
-                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(!isset($var_2)){
+                if (!isset($var_1)) {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3702,19 +3694,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(!isset($var_3)){
-
-                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
-                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(!isset($var_4)){
+                if (!isset($var_2)) {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3722,19 +3704,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(!isset($var_5)){
-
-                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
-                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(!isset($var_6)){
+                if (!isset($var_3)) {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3742,19 +3714,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(!isset($var_7)){
-
-                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
-                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(!isset($var_8)){
+                if (!isset($var_4)) {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3762,19 +3724,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(!isset($var_9)){
-
-                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
-                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
-
-                }
-
-                $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
-
-                if(!isset($var_10)){
+                if (!isset($var_5)) {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
@@ -3782,18 +3734,68 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
                 $tmp_var_index_pos++;
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-                if(!isset($var_11)){
+                if (!isset($var_6)) {
 
                     $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
                     $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
 
                 }
 
-                if($tmp_var_index_pos >= $tmp_total_index) break 1;
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
 
-            break;
+                if (!isset($var_7)) {
+
+                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
+                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                }
+
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                if (!isset($var_8)) {
+
+                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
+                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                }
+
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                if (!isset($var_9)) {
+
+                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
+                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                }
+
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                if (!isset($var_10)) {
+
+                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
+                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                }
+
+                $tmp_var_index_pos++;
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                if (!isset($var_11)) {
+
+                    $tmp_str_out .= $data_key_ARRAY[$tmp_var_index_pos] . ' is null. ';
+                    $tmp_array_out_ARRAY[] = $data_key_ARRAY[$tmp_var_index_pos];
+
+                }
+
+                if ($tmp_var_index_pos >= $tmp_total_index) break 1;
+
+                break;
 
         }
 
@@ -3876,17 +3878,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     private function apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY){
 
-        try{
+        try {
 
             $data_type_family = $tmp_data_profile_ARRAY['data_type_family'];
             $data_type_title = $tmp_data_profile_ARRAY['data_type_title'];
             $encryption_channel = $tmp_data_profile_ARRAY['data_type_encryption_channel'];
 
-            $env_key_hash = hash($this->system_hash_algo, $env_key);
+            $env_key_hash = $this->hash($env_key);
 
-            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash){
+                if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash) {
 
                     $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$encrypt_cipher', '$encrypt_secret_key', '$hmac_alg');
                     $tmp_param_err_str_ARRAY = $this->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $env_key, $encrypt_cipher, $encrypt_secret_key, $hmac_alg);
@@ -3894,18 +3896,18 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
                     $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
 
-                    if(count($tmp_param_missing_ARRAY) > 0){
+                    if (count($tmp_param_missing_ARRAY) > 0) {
 
-                        $this->error_log('Missing required ' . $data_type_title . ' encryption information to complete ' . __METHOD__ .'. '. $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->error_log('Missing required ' . $data_type_title . ' encryption information to complete ' . __METHOD__ . '. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         throw new Exception('CRNRSTN :: initialization ERROR :: ' . __METHOD__ . ' was called but was missing parameter information and so ' . $data_type_title . ' encryption was not able to be initialized. Some parameters are required. ' . $tmp_param_missing_str);
 
-                    }else{
+                    } else {
 
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher', $data_type_family,NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value(openssl_digest($encrypt_secret_key, self::$openssl_preferred_digest, true), 'encrypt_secret_key', $data_type_family,NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_options, 'encrypt_options', $data_type_family,NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($hmac_alg, 'hmac_alg', $data_type_family,NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value(openssl_digest($encrypt_secret_key, self::$openssl_preferred_digest, true), 'encrypt_secret_key', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_options, 'encrypt_options', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($hmac_alg, 'hmac_alg', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
                         $this->oCRNRSTN_BITFLIP_MGR->toggle_bit($encryption_channel, true);
                         $this->error_log($data_type_title . ' encryption initialized for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
@@ -3923,31 +3925,31 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
             $this->error_log('Bypassed processing encryption initialized for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
-			return false;
+            return false;
 
-	    }
+        }
 
-	}
+    }
 
-	public function get_server_env($output_format = 'raw'){
+    public function get_server_env($output_format = 'raw'){
 
-        try{
+        try {
 
             //
             // DID WE DETERMINE ENVIRONMENT KEY THROUGH INITIALIZATION OF CRNRSTN? IF SO, THIS PARAMETER WILL BE SET. JUST USE IT.
-            if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] != '') {
+            if (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] != '') {
 
                 // Monday, August 22, 2022 @ 0231 hrs
                 // WE SUCCESSFULLY DETECTED THE ENVIRONMENT, PEOPLE. WOO-HOO. POP BOTTLES.
                 //$this->error_log('Detected server environment [' . self::$server_env_key_ARRAY[$this->config_serial_hash] . '] returned from private static array.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                if($output_format == 'hash'){
+                if ($output_format == 'hash') {
 
                     return self::$server_env_key_hash_ARRAY[$this->config_serial_hash];
 
@@ -3956,12 +3958,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 return self::$server_env_key_ARRAY[$this->config_serial_hash];
 
             }
-				
+
             //
             // WE SHOULD HAVE THIS VALUE BY NOW. IF EMPTY, HOOOSTON...VE HAF PROBLEM!
-            if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == ''){
+            if (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == '') {
 
-                $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with CRNRSTN :: config serial CRC [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -3977,7 +3979,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             return self::$server_env_key_ARRAY[$this->config_serial_hash];
 
-        }catch(Exception $e){
+        }catch (Exception $e){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -3989,11 +3991,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-	}
+    }
 
     public function get_server_config_serial($output_format = 'raw'){
 
-        if($output_format === 'hash'){
+        if ($output_format === 'hash') {
 
             return $this->config_serial_hash;
 
@@ -4007,7 +4009,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $timediff = $this->microtime_float() - $this->starttime;
 
-        return substr($timediff,0,-8);
+        return substr($timediff, 0, -8);
 
     }
 
@@ -4032,16 +4034,16 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
      */
     private function microtime_float(){
 
-	    //list($usec, $sec) = explode(' ', microtime());
-	    //return ((float)$usec + (float)$sec);
+        //list($usec, $sec) = explode(' ', microtime());
+        //return ((float)$usec + (float)$sec);
 
-        if(function_exists('gettimeofday')){
+        if (function_exists('gettimeofday')) {
 
             $tod = gettimeofday();
             $sec = $tod['sec'];
             $usec = $tod['usec'];
 
-        }else{
+        } else {
 
             $sec = time();
             $usec = 0;
@@ -4050,7 +4052,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         return $sec . '.' . sprintf('%06d', $usec);
 
-	}
+    }
 
     public function return_micro_time(){
 
@@ -4081,7 +4083,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
         $token = "";
 
-        if(isset($char_selection) && ($char_selection != -1) && ($char_selection != -2) && ($char_selection != -3)){
+        if (isset($char_selection) && ($char_selection != -1) && ($char_selection != -2) && ($char_selection != -3)) {
 
             $codeAlphabet = $char_selection;
 
@@ -4105,13 +4107,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             }
 
-        }else{
+        } else {
 
             $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
             $codeAlphabet .= "0123456789";
 
-            if($char_selection == -1){
+            if ($char_selection == -1) {
 
                 $codeAlphabet .= "{}[]:;\"\'|\\+=_- )(*&^%$#@!~
                 `?/>.<,   '";
@@ -4120,7 +4122,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // ADDED EXCLUSION TO -2 ABOVE WHEN CHECKING FOR $char_selection
-            if($char_selection == -2){
+            if ($char_selection == -2) {
 
                 $codeAlphabet .= "{}[]:+=_- )(*&%$#@!~?.";
 
@@ -4128,7 +4130,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // ADDED EXCLUSION TO -3 ABOVE WHEN CHECKING FOR $char_selection
-            if($char_selection == -3){
+            if ($char_selection == -3) {
 
                 $codeAlphabet .= ":+=_- )(*$#@!~.";
 
@@ -4169,9 +4171,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         if ($range < 1) return $min; // not so random...
 
         $log = ceil(log($range, 2));
-        $bytes = (int) ($log / 8) + 1; // length in bytes
-        $bits = (int) $log + 1; // length in bits
-        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        $bytes = (int)($log / 8) + 1; // length in bytes
+        $bits = (int)$log + 1; // length in bits
+        $filter = (int)(1 << $bits) - 1; // set all lower bits to 1
 
         do {
 
@@ -4192,7 +4194,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function monitoringDeltaTimeFor($watchKey, $decimal = 8){
 
-        if(!isset(self::$m_starttime[$watchKey])){
+        if (!isset(self::$m_starttime[$watchKey])) {
 
             self::$m_starttime[$watchKey] = $this->microtime_float();
 
@@ -4200,17 +4202,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             $len = $decimal * -1;
 
-            return substr($timediff,0, $len);
+            return substr($timediff, 0, $len);
 
             //return 0.0;
 
-        }else{
+        } else {
 
             $timediff = $this->microtime_float() - self::$m_starttime[$watchKey];
 
             $len = $decimal * -1;
 
-            return substr($timediff,0, $len);
+            return substr($timediff, 0, $len);
 
             //return substr($timediff,0,-8);
 
@@ -4221,17 +4223,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function return_pretty_delta_time($delta_secs, $microsecs = 0, $mode = 'ELAPSED_VERBOSE'){
 
         $microsecs = '0.' . $microsecs;
-        switch($mode){
+        switch ($mode) {
             case 'ELAPSED':
 
                 $tmp_output = $this->elapsed($delta_secs, $microsecs);
 
-            break;
+                break;
             case 'ELAPSED_VERBOSE':
 
                 $tmp_output = $this->elapsed_verbose($delta_secs, $microsecs);
 
-            break;
+                break;
 
         }
 
@@ -4243,7 +4245,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     private function elapsed_from_current($secs){
 
         $ts = time();
-        $delta_secs = $ts-$secs;
+        $delta_secs = $ts - $secs;
 
         $bit = array(
             self::$lang_content_ARRAY['Y'] => $delta_secs / 31556926 % 12,
@@ -4258,27 +4260,27 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         // LET'S CONFIRM LANG OPERATION
         //error_log("(146) Y->" . self::$lang_content_ARRAY['Y']);      // shows 1...not y...
 
-        foreach($bit as $k => $v){
+        foreach ($bit as $k => $v) {
 
-            if($v > 0){
+            if ($v > 0) {
 
                 //
                 // PUT IN CURFEW FOR TIME GRANULARITY
-                if($k == self::$lang_content_ARRAY['Y'] || $k == self::$lang_content_ARRAY['W'] || ($k == self::$lang_content_ARRAY['D'] && $v > 1)){
+                if ($k == self::$lang_content_ARRAY['Y'] || $k == self::$lang_content_ARRAY['W'] || ($k == self::$lang_content_ARRAY['D'] && $v > 1)) {
 
                     //
                     // RETURN DEFAULT DATE FORMAT
-                    if(isset($format_override)){
+                    if (isset($format_override)) {
 
                         return date($format_override, $secs);
 
-                    }else{
+                    } else {
 
                         return date('m.d.Y @ H:i:s', $secs);
 
                     }
 
-                }else{
+                } else {
 
                     $ret[] = $v . $k;
 
@@ -4288,17 +4290,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        if(!isset($ret)){
+        if (!isset($ret)) {
 
             $ret[] = 'just now.';
 
-        }else{
+        } else {
 
-            if(sizeof($ret) == 0){
+            if (sizeof($ret) == 0) {
 
                 $ret[] = 'just now.';
 
-            }else{
+            } else {
 
                 $ret[] = self::$lang_content_ARRAY['AGO'];
 
@@ -4325,26 +4327,26 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         // LET'S CONFIRM LANG OPERATION
         //error_log("(146) Y->" . self::$lang_content_ARRAY['Y']);      // shows 1...not y...
 
-        foreach($bit as $k => $v){
+        foreach ($bit as $k => $v) {
 
-            if($v > 0){
+            if ($v > 0) {
                 //
                 // PUT IN CURFEW FOR TIME GRANULARITY
-                if($k == self::$lang_content_ARRAY['Y'] || $k == self::$lang_content_ARRAY['W'] || ($k == self::$lang_content_ARRAY['D'] && $v > 1)){
+                if ($k == self::$lang_content_ARRAY['Y'] || $k == self::$lang_content_ARRAY['W'] || ($k == self::$lang_content_ARRAY['D'] && $v > 1)) {
 
                     //
                     // RETURN DEFAULT DATE FORMAT
-                    if(isset($format_override)){
+                    if (isset($format_override)) {
 
                         return date($format_override, $delta_secs);
 
-                    }else{
+                    } else {
 
                         return date('m.d.Y @ H:i:s', $delta_secs);
-                        
+
                     }
 
-                }else{
+                } else {
 
                     $ret[] = $v . $k;
 
@@ -4354,17 +4356,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        if(!isset($ret)){
+        if (!isset($ret)) {
 
             $ret[] = 'just now.';
 
-        }else{
+        } else {
 
-            if(sizeof($ret) == 0){
+            if (sizeof($ret) == 0) {
 
                 $ret[] = 'just now.';
 
-            }else{
+            } else {
 
                 $ret[] = self::$lang_content_ARRAY['AGO'];
 
@@ -4388,42 +4390,42 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         //
         // WE NEED TO APPROACH THIS DIFFERENTLY TO ALLOW FOR PLURAL
         $bit = array(
-            '0'        => $delta_secs / 31556926 % 12,
-            '1'        => $delta_secs / 604800 % 52,
-            '2'        => $delta_secs / 86400 % 7,
-            '3'        => $delta_secs / 3600 % 24,
-            '4'        => $delta_secs / 60 % 60,
-            '5'        => ($delta_secs % 60) + $microsecs
+            '0' => $delta_secs / 31556926 % 12,
+            '1' => $delta_secs / 604800 % 52,
+            '2' => $delta_secs / 86400 % 7,
+            '3' => $delta_secs / 3600 % 24,
+            '4' => $delta_secs / 60 % 60,
+            '5' => ($delta_secs % 60) + $microsecs
         );
 
         $bit_singular = array(
-            '0'     => ' '.self::$lang_content_ARRAY['YEAR'],
-            '1'     => ' '.self::$lang_content_ARRAY['WEEK'],
-            '2'     => ' '.self::$lang_content_ARRAY['DAY'],
-            '3'     => ' '.self::$lang_content_ARRAY['HOUR'],
-            '4'     => ' '.self::$lang_content_ARRAY['MINUTE'],
-            '5'     => ' '.self::$lang_content_ARRAY['SECOND']
+            '0' => ' ' . self::$lang_content_ARRAY['YEAR'],
+            '1' => ' ' . self::$lang_content_ARRAY['WEEK'],
+            '2' => ' ' . self::$lang_content_ARRAY['DAY'],
+            '3' => ' ' . self::$lang_content_ARRAY['HOUR'],
+            '4' => ' ' . self::$lang_content_ARRAY['MINUTE'],
+            '5' => ' ' . self::$lang_content_ARRAY['SECOND']
         );
 
         $bit_plural = array(
-            '0'     => ' '.self::$lang_content_ARRAY['YEARS'],
-            '1'     => ' '.self::$lang_content_ARRAY['WEEKS'],
-            '2'     => ' '.self::$lang_content_ARRAY['DAYS'],
-            '3'     => ' '.self::$lang_content_ARRAY['HOURS'],
-            '4'     => ' '.self::$lang_content_ARRAY['MINUTES'],
-            '5'     => ' '.self::$lang_content_ARRAY['SECONDS']
+            '0' => ' ' . self::$lang_content_ARRAY['YEARS'],
+            '1' => ' ' . self::$lang_content_ARRAY['WEEKS'],
+            '2' => ' ' . self::$lang_content_ARRAY['DAYS'],
+            '3' => ' ' . self::$lang_content_ARRAY['HOURS'],
+            '4' => ' ' . self::$lang_content_ARRAY['MINUTES'],
+            '5' => ' ' . self::$lang_content_ARRAY['SECONDS']
         );
 
-        foreach($bit as $k => $v){
+        foreach ($bit as $k => $v) {
 
-            if($v > 1){
+            if ($v > 1) {
 
                 $ret[] = $v . $bit_plural[$k];
                 //error_log('finite (194) test ->' . $bit_plural[$k]);
 
-            }else{
+            } else {
 
-                if($v == 1){
+                if ($v == 1) {
 
                     $ret[] = $v . $bit_singular[$k];
                     //error_log('finite (200) test ->' . $bit_singular[$k]);
@@ -4439,7 +4441,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //            if($v == 1)$ret[] = $v . $k;
 //        }
 
-        if(isset($ret)){
+        if (isset($ret)) {
 
             array_splice($ret, count($ret) - 1, 0, self::$lang_content_ARRAY['AND']);
 
@@ -4447,7 +4449,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             $tmp_output = ltrim($tmp_output, 'and');
 
-        }else{
+        } else {
 
             $tmp_output = $this->wall_time();
 
@@ -4462,7 +4464,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     private function elapsed_verbose_from_current($secs){
 
         $ts = time();
-        $delta_secs = $ts-$secs;
+        $delta_secs = $ts - $secs;
 
         //
         // THIS SHOULD BE EXPOSED TO THE LANGUAGE ENGINE OF THE EVIFWEB CLIENT EXTRANET. NOT HARD CODED ENGLISH....OH MY. WHAT A REQUIREMENT THIS IS.
@@ -4473,42 +4475,42 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         //
         // WE NEED TO APPROACH THIS DIFFERENTLY TO ALLOW FOR PLURAL
         $bit = array(
-            '0'        => $delta_secs / 31556926 % 12,
-            '1'        => $delta_secs / 604800 % 52,
-            '2'        => $delta_secs / 86400 % 7,
-            '3'        => $delta_secs / 3600 % 24,
-            '4'        => $delta_secs / 60 % 60,
-            '5'        => $delta_secs % 60
+            '0' => $delta_secs / 31556926 % 12,
+            '1' => $delta_secs / 604800 % 52,
+            '2' => $delta_secs / 86400 % 7,
+            '3' => $delta_secs / 3600 % 24,
+            '4' => $delta_secs / 60 % 60,
+            '5' => $delta_secs % 60
         );
 
         $bit_singular = array(
-            '0'     => ' '.self::$lang_content_ARRAY['YEAR'],
-            '1'     => ' '.self::$lang_content_ARRAY['WEEK'],
-            '2'     => ' '.self::$lang_content_ARRAY['DAY'],
-            '3'     => ' '.self::$lang_content_ARRAY['HOUR'],
-            '4'     => ' '.self::$lang_content_ARRAY['MINUTE'],
-            '5'     => ' '.self::$lang_content_ARRAY['SECOND']
+            '0' => ' ' . self::$lang_content_ARRAY['YEAR'],
+            '1' => ' ' . self::$lang_content_ARRAY['WEEK'],
+            '2' => ' ' . self::$lang_content_ARRAY['DAY'],
+            '3' => ' ' . self::$lang_content_ARRAY['HOUR'],
+            '4' => ' ' . self::$lang_content_ARRAY['MINUTE'],
+            '5' => ' ' . self::$lang_content_ARRAY['SECOND']
         );
 
         $bit_plural = array(
-            '0'     => ' '.self::$lang_content_ARRAY['YEARS'],
-            '1'     => ' '.self::$lang_content_ARRAY['WEEKS'],
-            '2'     => ' '.self::$lang_content_ARRAY['DAYS'],
-            '3'     => ' '.self::$lang_content_ARRAY['HOURS'],
-            '4'     => ' '.self::$lang_content_ARRAY['MINUTES'],
-            '5'     => ' '.self::$lang_content_ARRAY['SECONDS']
+            '0' => ' ' . self::$lang_content_ARRAY['YEARS'],
+            '1' => ' ' . self::$lang_content_ARRAY['WEEKS'],
+            '2' => ' ' . self::$lang_content_ARRAY['DAYS'],
+            '3' => ' ' . self::$lang_content_ARRAY['HOURS'],
+            '4' => ' ' . self::$lang_content_ARRAY['MINUTES'],
+            '5' => ' ' . self::$lang_content_ARRAY['SECONDS']
         );
 
-        foreach($bit as $k => $v){
+        foreach ($bit as $k => $v) {
 
-            if($v > 1){
+            if ($v > 1) {
 
                 $ret[] = $v . $bit_plural[$k];
                 //error_log('finite (194) test ->' . $bit_plural[$k]);
 
-            }else{
+            } else {
 
-                if($v == 1){
+                if ($v == 1) {
 
                     $ret[] = $v . $bit_singular[$k];
                     //error_log('finite (200) test ->' . $bit_singular[$k]);
@@ -4568,7 +4570,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_err_trace_str = $this->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString());
 
-        if(strlen($tmp_err_trace_str) > 0){
+        if (strlen($tmp_err_trace_str) > 0) {
 
             $this->error_log('PHP native exception output log trace received ::' . $tmp_err_trace_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -4582,26 +4584,26 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function return_PHP_exception_trace_pretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
 
-        switch($format){
+        switch ($format) {
             case 'HTML':
 
                 $exception_obj_trace_str = $this->proper_replace('\n', '<br>', $exception_obj_trace_str);
                 $exception_obj_trace_str = $this->proper_replace('
 ', '<br>', $exception_obj_trace_str);
 
-            break;
+                break;
             case 'TEXT':
 
                 $exception_obj_trace_str = $this->proper_replace('\n', '
 ', $exception_obj_trace_str);
 
-            break;
+                break;
             default:
 
                 //
                 // DO NOTHING :: STRAIGHT UNPROCESSED PHP NATIVE OUT
 
-            break;
+                break;
 
         }
 
@@ -4613,118 +4615,118 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_output_format = trim(strtoupper($format));
 
-        if($tmp_output_format == 'HTML'){
+        if ($tmp_output_format == 'HTML') {
 
             //<span>LOG_EMERG</span><span>:: system is unusable.</span>
 
-            switch($logPriority){
+            switch ($logPriority) {
                 case 0:
 
                     $tmp_priority_const = 'LOG_EMERG';
                     $tmp_priority_msg = ':: system is unusable. ';
 
-                break;
+                    break;
                 case 1:
 
                     $tmp_priority_const = 'LOG_ALERT';
                     $tmp_priority_msg = ':: action must be taken immediately.';
 
-                break;
+                    break;
                 case 2:
 
                     $tmp_priority_const = 'LOG_CRIT';
                     $tmp_priority_msg = ':: critical conditions encountered.';
 
-                break;
+                    break;
                 case 3:
 
                     $tmp_priority_const = 'LOG_ERR';
                     $tmp_priority_msg = ':: error conditions encountered.';
 
-                break;
+                    break;
                 case 4:
 
                     $tmp_priority_const = 'LOG_WARNING';
                     $tmp_priority_msg = ':: warning conditions encountered.';
 
-                break;
+                    break;
                 case 5:
 
                     $tmp_priority_const = 'LOG_NOTICE';
                     $tmp_priority_msg = ':: normal, but significant, condition encountered.';
 
-                break;
+                    break;
                 case 6:
 
                     $tmp_priority_const = 'LOG_INFO';
                     $tmp_priority_msg = ':: informational message. ';
 
-                break;
+                    break;
                 case 7:
 
                     $tmp_priority_const = 'LOG_DEBUG';
                     $tmp_priority_msg = ':: debug-level message. ';
 
-                break;
+                    break;
                 default:
 
                     $tmp_priority_const = 'UNKNOWN';
                     $tmp_priority_msg = '';
 
-                break;
+                    break;
 
             }
 
             $tmp_priority = '<span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; text-align:left; color:#F90000; font-weight: bold;">' . $tmp_priority_const . '</span>&nbsp;<span style="font-family:Arial, Helvetica, sans-serif; font-size:15px; text-align:left; color:#000; font-weight: bold;">' . $tmp_priority_msg . '</span>';
 
-        }else{
+        } else {
 
-            switch($logPriority){
+            switch ($logPriority) {
                 case 0:
 
                     $tmp_priority = 'LOG_EMERG :: system is unusable. ';
 
-                break;
+                    break;
                 case 1:
 
                     $tmp_priority = 'LOG_ALERT :: action must be taken immediately';
 
-                break;
+                    break;
                 case 2:
 
                     $tmp_priority = 'LOG_CRIT :: critical conditions encountered';
 
-                break;
+                    break;
                 case 3:
 
                     $tmp_priority = 'LOG_ERR :: error conditions encountered';
 
-                break;
+                    break;
                 case 4:
 
                     $tmp_priority = 'LOG_WARNING :: warning conditions encountered';
 
-                break;
+                    break;
                 case 5:
 
                     $tmp_priority = 'LOG_NOTICE :: normal, but significant, condition encountered';
 
-                break;
+                    break;
                 case 6:
 
                     $tmp_priority = 'LOG_INFO :: informational message';
 
-                break;
+                    break;
                 case 7:
 
                     $tmp_priority = 'LOG_DEBUG :: debug-level message';
 
-                break;
+                    break;
                 default:
 
                     $tmp_priority = 'UNKNOWN';
 
-                break;
+                    break;
 
             }
 
@@ -4752,7 +4754,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_oLog = $this->oLogger->error_log($str, $line_num, $method, $file, $log_silo_key, $this);
 
-        if(is_object($tmp_oLog)){
+        if (is_object($tmp_oLog)) {
 
             $this->oLog_output_ARRAY[] = $tmp_oLog;
 
@@ -4773,9 +4775,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_array = array();
 
-        foreach($constants_int_ARRAY as $key => $int_constant){
+        foreach ($constants_int_ARRAY as $key => $int_constant) {
 
-            if($this->oCRNRSTN_BITFLIP_MGR->is_bit_set($int_constant)){
+            if ($this->oCRNRSTN_BITFLIP_MGR->is_bit_set($int_constant)) {
 
                 $tmp_array[] = $int_constant;
 
@@ -4786,8 +4788,29 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         return $tmp_array;
 
     }
-    
-    //public function 
+
+    private function return_random_theme_style(){
+
+        $tmp_selection = rand(0, count($this->system_theme_style_constants_ARRAY) - 1);
+
+        $tmp_theme_style = NULL;
+        foreach($this->system_theme_style_constants_ARRAY as $index => $tmp_theme_style){
+
+            if($tmp_selection == $index){
+
+                $tmp_theme_style_ARRAY = $this->return_constant_profile_ARRAY($tmp_theme_style);
+                //$tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
+                $tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
+
+                return $tmp_theme_style_int;
+
+                break 1;
+
+            }
+
+        }
+
+    }
 
     private function return_theme_style_profile_meta_ARRAY($theme_style){
 
@@ -4797,13 +4820,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
         $tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
 
-        $tmp_meta_ARRAY['name'] = $tmp_theme_style_nom;
-        $tmp_meta_ARRAY['integer'] = $tmp_theme_style_int;
+        $this->current_theme_style_ARRAY['NAME'] = $tmp_meta_ARRAY['NAME'] = $tmp_theme_style_nom;
+        $this->current_theme_style_ARRAY['INTEGER'] = $tmp_meta_ARRAY['INTEGER'] = $tmp_theme_style_int;
 
         switch($theme_style){
             case CRNRSTN_UI_GLASS_LIGHT_COPY:
 
-                // CONCEPT WORK IN PROGRESS
+                // CONCEPT WORK IN PROGRESS.
                 $tmp_meta_ARRAY['highlight.comment'] = '#7CD38B';
                 $tmp_meta_ARRAY['highlight.default'] = '#D78783';
                 $tmp_meta_ARRAY['highlight.html'] = '#868686';
@@ -4826,7 +4849,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             break;
             case CRNRSTN_UI_GLASS_DARK_COPY:
 
-                // CONCEPT WORK IN PROGRESS
+                // CONCEPT WORK IN PROGRESS.
                 $tmp_meta_ARRAY['highlight.comment'] = '#008000';
                 $tmp_meta_ARRAY['highlight.default'] = '#191A31';
                 $tmp_meta_ARRAY['highlight.html'] = '#808080';
@@ -4860,7 +4883,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#131314';
                 $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
-                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000'; //9E9E9E
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000';
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
                 $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.content.highlight-color'] = '#073F0B';
@@ -4895,7 +4918,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#00D500';
 
             break;
-            case  CRNRSTN_UI_DARKNIGHT:
+            case CRNRSTN_UI_DARKNIGHT:
 
                 //
                 // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
@@ -4909,7 +4932,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.canvas.background-color'] = '#04050A';
                 $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
-                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000';  //717171
+                $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000';
                 $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
                 $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
                 $tmp_meta_ARRAY['stage.content.highlight-color'] = '#052E08';
@@ -4920,7 +4943,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#1A6F1A';
 
             break;
-            case  CRNRSTN_UI_PHP:
+            case CRNRSTN_UI_PHP:
 
                 //
                 // ALL ABOUT THE BUSINESS.
@@ -4944,7 +4967,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#EEE8E8';
 
             break;
-            case  CRNRSTN_UI_GREYSKYS:
+            case CRNRSTN_UI_GREYSKYS:
 
                 //
                 // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
@@ -4969,10 +4992,10 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#E8E8E8';
 
             break;
-            case  CRNRSTN_UI_HTML:
+            case CRNRSTN_UI_HTML:
 
                 //
-                // BE LIGHT AND HAPPY
+                // BE LIGHT AND HAPPY.
                 $tmp_meta_ARRAY['highlight.comment'] = '#169B2B';
                 $tmp_meta_ARRAY['highlight.default'] = '#B72620';
                 $tmp_meta_ARRAY['highlight.html'] = '#666';
@@ -4993,7 +5016,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#F3F0F0';
 
             break;
-            case  CRNRSTN_UI_DAYLIGHT:
+            case CRNRSTN_UI_DAYLIGHT:
 
                 //
                 // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
@@ -5017,10 +5040,10 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#F3F0F0';
 
             break;
-            case  CRNRSTN_UI_FEATHER:
+            case CRNRSTN_UI_FEATHER:
 
                 //
-                // LIGHTER THAN DAYLIGHT
+                // LIGHTER THAN DAYLIGHT.
                 $tmp_meta_ARRAY['highlight.comment'] = '#7CD38B';
                 $tmp_meta_ARRAY['highlight.default'] = '#D78783';
                 $tmp_meta_ARRAY['highlight.html'] = '#868686';
@@ -5065,6 +5088,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         */
 
+        //
+        // TAKE ANY VALUE(GARBAGE==DEFAULT THEME). ...OR LOOK FOR A FLIPPED BIT.
         if(!isset($theme_style)){
 
             //
@@ -5072,45 +5097,45 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $theme_style = CRNRSTN_UI_PHPNIGHT;
 
             $theme_style_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
+            //error_log(__LINE__ . ' crnrstn $theme_style_ARRAY=[' . print_r($theme_style_ARRAY, true) . '].');
 
-            if(count($theme_style_ARRAY) > 0){
+            $tmp_cnt_set_bits = count($theme_style_ARRAY);
+            if($tmp_cnt_set_bits > 0){
 
-                $theme_style = $theme_style_ARRAY[0];   // FIRST MATCH
+                $theme_style = $theme_style_ARRAY[$tmp_cnt_set_bits - 1];   // TAKE LAST FLIPPED BIT.
 
             }
+
+
+        }
+
+        //
+        // FOR FUN.
+        if($theme_style == CRNRSTN_UI_RANDOM){
+
+            $theme_style = $this->return_random_theme_style();
 
         }
 
         $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
 
-        /*
-        $tmp_meta_ARRAY['stage.canvas.background-color'] = '';
-        $tmp_meta_ARRAY['stage.canvas.border-color'] = '';
-        $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
-        $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#833131';
-        $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
-        $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
-        $tmp_meta_ARRAY['stage.lnum.css.color'] = '#00d500';
-
-        */
-
         $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
 
-        if(!isset($method) || $method == ''){
+        if (!isset($method) || $method == '') {
 
-            if(isset($file)){
+            if (isset($file)) {
 
                 $tmp_meta .= ' [file ' . $file . ']';
 
             }
 
-        }else{
+        } else {
 
             $tmp_meta .= ' [methd ' . $method . ']';
 
         }
 
-        if(isset($line_num)){
+        if (isset($line_num)) {
 
             $tmp_meta .= ' [lnum ' . $line_num . ']';
 
@@ -5128,13 +5153,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
-        if(isset($title) && $title != ''){
+        if (isset($title) && $title != '') {
 
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= $title;
             $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
-        }else{
+        } else {
 
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
@@ -5149,7 +5174,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             //
             // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
             // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-            if (document.selection) { // IE
+            if(document.selection){ // IE
     
                 var range = document.body.createTextRange();
                 range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
@@ -5187,7 +5212,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             </div>
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
-            <div style="/*padding: 5px 10px 20px 10px;*/">
+            <div>
                 <div style="box-shadow: 2px 3px 3px #bfbfbf;">
                 <div style="border: 3px solid #FFF;">
                 <div style="margin:3px 6px 0 0;">
@@ -5206,19 +5231,19 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $output = $this->proper_replace('<br />', '
 ', $output);
 
-        if($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>'){
+        if ($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>') {
 
             $output = '<span style="color: #DEDECB">&nbsp;</span>';
 
         }
 
-        if($tmp_str_out == '<span style="color: #000"></span>'){
+        if ($tmp_str_out == '<span style="color: #000"></span>') {
 
             $tmp_str_out = '<span style="color: #000">&nbsp;</span>';
 
         }
 
-        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
         $tmp_str_out .= print_r($output, true);
         $tmp_str_out .= '</pre>';
 
@@ -5269,12 +5294,22 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $theme_style = CRNRSTN_UI_PHPNIGHT;
 
             $theme_style_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
+            //error_log(__LINE__ . ' crnrstn $theme_style_ARRAY=[' . print_r($theme_style_ARRAY, true) . '].');
 
-            if(count($theme_style_ARRAY) > 0){
+            $tmp_cnt_set_bits = count($theme_style_ARRAY);
+            if($tmp_cnt_set_bits > 0){
 
-                $theme_style = $theme_style_ARRAY[0];   // TAKE FIRST FLIPPED BIT
+                $theme_style = $theme_style_ARRAY[$tmp_cnt_set_bits - 1];   // TAKE LAST FLIPPED BIT.
 
             }
+
+        }
+
+        //
+        // FOR FUN.
+        if($theme_style == CRNRSTN_UI_RANDOM){
+
+            $theme_style = $this->return_random_theme_style();
 
         }
 
@@ -5282,21 +5317,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
 
-        if(!isset($method) || $method == ''){
+        if (!isset($method) || $method == '') {
 
-            if(isset($file)){
+            if (isset($file)) {
 
                 $tmp_meta .= ' [file ' . $file . ']';
 
             }
 
-        }else{
+        } else {
 
             $tmp_meta .= ' [methd ' . $method . ']';
 
         }
 
-        if(isset($line_num)){
+        if (isset($line_num)) {
 
             $tmp_meta .= ' [lnum ' . $line_num . ']';
 
@@ -5316,13 +5351,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         // NOTHING COULD BE DARKER. NOTHING.
         $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
-        if(isset($title) && $title != ''){
+        if (isset($title) && $title != '') {
 
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= $title;
             $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
-        }else{
+        } else {
 
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
@@ -5394,13 +5429,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $output = $this->proper_replace('<br />', '
 ', $output);
 
-        if($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>'){
+        if ($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>') {
 
             $output = '<span style="color: #DEDECB">&nbsp;</span>';
 
         }
 
-        if($output == '<span style="color: #000"></span>'){
+        if ($output == '<span style="color: #000"></span>') {
 
             $output = '<span style="color: #000">&nbsp;</span>';
 
@@ -5434,34 +5469,34 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_ARRAY = array();
 
-        if(!isset($int_constant)){
+        if(!isset($int_constant)) {
 
             //$tmp_page_theme_nom = 'CRNRSTN_UI_DARKNIGHT';
             $int_constant = CRNRSTN_UI_DARKNIGHT;
 
         }
 
-        $int_constant = (int) $int_constant;
+        $int_constant = (int)$int_constant;
 
-        if(!is_integer($int_constant)){
+        if (!is_integer($int_constant)) {
 
             //$this->print_r('[' . var_dump($int_constant) . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             //
             // CAN WE CAST THE STRING TO INT CONST?
-            $int_constant = (int) crnrstn_constants_init($int_constant);
+            $int_constant = (int)crnrstn_constants_init($int_constant);
             //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
         }
 
-        if(is_integer($int_constant)){
+        if (is_integer($int_constant)) {
 
             $tmp_ARRAY['INTEGER'] = $int_constant;
             //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             //die();
             $tmp_ARRAY['STRING'] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant);
-            //$tmp_ARRAY['DESCRIPTION'] =  '';
+            //$tmp_ARRAY['DESCRIPTION'] = '';
             //$tmp_ARRAY['DEPENDENT_METHODS_ARRAY'] = array();      // UPDATES DOCUMENTATION
             //$tmp_ARRAY['DATA_FAMILY_TYPE'] = '';                  // UPDATES DOCUMENTATION
 
@@ -5474,17 +5509,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     //
     // SOURCE :: https://www.php.net/manual/en/function.base64-encode.php
     // AUTHOR :: luke at lukeoliff.com :: https://www.php.net/manual/en/function.base64-encode.php#105200
-    public function encode_image($file_path, $filetype = NULL) {
+    public function encode_image($file_path, $filetype = NULL){
 
         //$this->error_log('$file_path=[' . $file_path . '] $filetype=[' . $filetype . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-        if(!isset($filetype)){
+        if (!isset($filetype)) {
 
             $filetype = pathinfo($file_path, PATHINFO_EXTENSION);
 
         }
 
-        if(is_file($file_path) || (is_string($file_path) && (strlen($file_path) > 0))){
+        if (is_file($file_path) || (is_string($file_path) && (strlen($file_path) > 0))) {
 
             $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempting to open ' . $file_path . '. ';
 
@@ -5494,15 +5529,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             return $tmp_base64;
 
-        }else{
+        } else {
 
-            if(!is_file($file_path)){
+            if (!is_file($file_path)) {
 
                 $this->error_log('Error when attempting to encode an image of type [' . $filetype . ']. Not a file [' . $file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             }
 
-            if(!is_string($file_path)){
+            if (!is_string($file_path)) {
 
                 $this->error_log('Error when attempting to encode an image of type [' . $filetype . ']. Filepath is not string data [' . $file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -5628,7 +5663,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     // TIRE-KICK ALL CRNRSTN :: RUNTIME SYSTEMS INTEGRATIONS.
     public function system_base64_synchronize($data_key = NULL, $img_batch_size = 5){
 
-        if(isset($data_key)){
+        if (isset($data_key)) {
 
             //
             // REVIEW BASE64 SITUATION FOR DATA KEY. MAKE ANY NECESSARY ADJUSTMENTS.
@@ -5651,12 +5686,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     // AUTHOR :: C0nw0nk :: https://www.php.net/manual/en/function.filesize.php#119435
     public function find_filesize($file){
 
-        if(substr(PHP_OS, 0, 3) == 'WIN'){
+        if (substr(PHP_OS, 0, 3) == 'WIN') {
 
             exec('for %I in ("' . $file . '") do @echo %~zI', $output);
             $return = $output[0];
 
-        }else{
+        } else {
 
             $return = filesize($file);
 
@@ -5680,9 +5715,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_ratio_cnt = sizeof($output_ratio_ARRAY);
 
-        for($i = 0; $i < $tmp_ratio_cnt; $i++){
+        for ($i = 0; $i < $tmp_ratio_cnt; $i++) {
 
-            for($ii = 0; $ii < $output_ratio_ARRAY[$i]; $ii++){
+            for ($ii = 0; $ii < $output_ratio_ARRAY[$i]; $ii++) {
 
                 $tmp_weighted_elements_keys_ARRAY[] = $this->system_creative_element_keys_ARRAY[$i];
 
@@ -5696,26 +5731,26 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . '[' . $tmp_int . '][' . $tmp_weighted_elements_keys_ARRAY[$tmp_int] . ']');
 
-        if($strip_formatting){
+        if ($strip_formatting) {
 
-            if($tmp_weighted_elements_keys_ARRAY[$tmp_int] == 'CRNRSTN ::'){
+            if ($tmp_weighted_elements_keys_ARRAY[$tmp_int] == 'CRNRSTN ::') {
 
                 $creative = '<div style="padding:4px 0 5px 5px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">C<span style="color:#F00;">R</span>NRSTN :: v' . self::$version_crnrstn . '</div>';
 
-            }else{
+            } else {
 
                 error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' [img=' . $tmp_weighted_elements_keys_ARRAY[$tmp_int] . '][$output_mode=' . $output_mode . '].');
                 $creative = '<span style="font-family: Courier New, Courier, monospace; font-size:11px;">' . $this->return_creative($tmp_weighted_elements_keys_ARRAY[$tmp_int], $output_mode) . '</span>';
 
             }
 
-        }else{
+        } else {
 
-            if($tmp_weighted_elements_keys_ARRAY[$tmp_int] == 'CRNRSTN ::'){
+            if ($tmp_weighted_elements_keys_ARRAY[$tmp_int] == 'CRNRSTN ::') {
 
                 $creative = '<div style="float:left; padding:4px 0 5px 5px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">C<span style="color:#F00;">R</span>NRSTN :: v' . self::$version_crnrstn . '</div>';
 
-            }else{
+            } else {
 
 //                error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' [img=' . $tmp_weighted_elements_keys_ARRAY[$tmp_int] . '][$output_mode=' . $output_mode . '].');
 //                error_log(__LINE__ . ' crnrstn [' . print_r($tmp_weighted_elements_keys_ARRAY[$tmp_int], true).'][' . $output_mode . '].');
@@ -5800,21 +5835,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     private function break_piped_str_to_array($piped_str, $method_as_string = NULL, $trim_method_as_string = NULL){
 
-        try{
+        try {
 
             $tmp_array = array();
 
             $tmp_array_from_pipe_ARRAY = explode('|', $piped_str);
 
-            foreach($tmp_array_from_pipe_ARRAY as $key => $value){
+            foreach ($tmp_array_from_pipe_ARRAY as $key => $value) {
 
-                if(isset($method_as_string)){
+                if (isset($method_as_string)) {
 
                     $value = $this->run_method_against_content($method_as_string, $value);
 
                 }
 
-                if(isset($trim_method_as_string)){
+                if (isset($trim_method_as_string)) {
 
                     $value = $this->run_method_against_content($trim_method_as_string, $value);
 
@@ -5827,7 +5862,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             return $tmp_array;
 
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -5845,37 +5880,37 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $method_as_string = $this->proper_replace(')', '', $method_as_string);
         $method_as_string = $this->proper_replace(' ', '', $method_as_string);
 
-        try{
+        try {
 
-            switch($method_as_string){
+            switch ($method_as_string) {
                 case 'strtoupper':
 
                     $value = strtoupper($value);
 
-                break;
+                    break;
                 case 'strtolower':
 
                     $value = strtolower($value);
 
-                break;
+                    break;
                 case 'trim':
 
                     $value = trim($value);
 
-                break;
+                    break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('CRNRSTN :: has not been configured to support the native PHP method, ' . $method_as_string);
 
-                break;
+                    break;
 
             }
 
             return $value;
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -5905,17 +5940,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function tidy_boolean($val){
 
-        if(is_bool($val) === true){
+        if (is_bool($val) === true) {
 
             return $val;
 
-        }else{
+        } else {
 
-            if(!isset($val)){
+            if (!isset($val)) {
 
                 return false;
 
-            }else{
+            } else {
 
                 return $this->boolean_conversion($val);
 
@@ -5966,11 +6001,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     //
                     // PREP POST @ SITUATION
-                    for($i = 0; $i < $tmp_post_at_len; $i++){
+                    for ($i = 0; $i < $tmp_post_at_len; $i++) {
 
-                        if(!$last_dot_flag){
+                        if (!$last_dot_flag) {
 
-                            if($tmp_post_at_str_rev_ARRAY[$i] == '.'){
+                            if ($tmp_post_at_str_rev_ARRAY[$i] == '.') {
 
                                 $last_dot_flag = true;
 
@@ -5978,7 +6013,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                             $tmp_new_post_at_ARRAY[] = $tmp_post_at_str_rev_ARRAY[$i];
 
-                            if($last_dot_flag){
+                            if ($last_dot_flag) {
 
                                 $i = $tmp_post_at_len + 420;
                                 $tmp_new_post_at_ARRAY = array_reverse($tmp_new_post_at_ARRAY);
@@ -5990,15 +6025,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     }
 
                     $tmp_str_len = sizeof($tmp_str_ARRAY);
-                    for($i = 0; $i < $tmp_str_len; $i++){
+                    for ($i = 0; $i < $tmp_str_len; $i++) {
 
-                        if($i == 0){
+                        if ($i == 0) {
 
                             $clean_str .= $tmp_str_ARRAY[$i] . '*****';
 
-                        }else{
+                        } else {
 
-                            if($tmp_str_ARRAY[$i] == '@'){
+                            if ($tmp_str_ARRAY[$i] == '@') {
 
                                 $at_flag = true;
                                 $tmp_plus_one = $i + 1;
@@ -6012,7 +6047,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     return $clean_str;
 
-                break;
+                    break;
                 case 'http_protocol_simple':
 
                     $patterns[0] = '_';
@@ -6022,14 +6057,14 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $replacements[1] = '';
                     $replacements[2] = '';
 
-                break;
+                    break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('Unable to determine string sanitization algorithm [' . $type . '] for the content[' . $str . '].');
 
-                break;
+                    break;
 
             }
 
@@ -6089,27 +6124,27 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     // RETURN HTTP/S PATH OF CURRENT SCRIPT
     public function current_location(){
 
-        if(isset($_SERVER['HTTPS'])){
+        if (isset($_SERVER['HTTPS'])) {
 
-            if($_SERVER['HTTPS'] && ($_SERVER['HTTPS'] != 'off')){
+            if ($_SERVER['HTTPS'] && ($_SERVER['HTTPS'] != 'off')) {
 
-                self::$requestProtocol='https://';
+                self::$requestProtocol = 'https://';
 
-            }else{
+            } else {
 
-                if(isset($_SERVER['HTTP_X_FORWARDED_PROTO'])){
+                if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
 
-                    if( !empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ){
+                    if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
 
                         self::$requestProtocol = 'https://';
 
-                    }else{
+                    } else {
 
                         self::$requestProtocol = 'http://';
 
                     }
 
-                }else{
+                } else {
 
                     self::$requestProtocol = 'http://';
 
@@ -6117,7 +6152,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             }
 
-        }else{
+        } else {
 
             self::$requestProtocol = 'http://';
 
@@ -6131,47 +6166,47 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $system = trim(strtoupper($system));
 
-        switch($system){
+        switch ($system) {
             case 'LINUX':
 
                 return $this->version_linux();
 
-            break;
+                break;
             case 'APACHE':
 
                 return 'Apache v' . $this->version_apache();
 
-            break;
+                break;
             case 'MYSQLI':
 
                 return 'MySQLi v' . $this->version_mysqli();
 
-            break;
+                break;
             case 'PHP':
 
                 return 'php v' . $this->version_php();
 
-            break;
+                break;
             case 'SOAP':
 
                 return $this->version_soap();
 
-            break;
+                break;
             case 'OPENSSL':
 
                 return 'OpenSSL v' . $this->version_openssl();
 
-            break;
+                break;
             case 'CRNRSTN':
 
                 return 'CRNRSTN :: v' . $this->version_crnrstn();
 
-            break;
+                break;
             default:
 
                 return 'UNKNOWN[' . $system . '] :: v[x].[y].[z]';
 
-            break;
+                break;
 
         }
 
@@ -6180,7 +6215,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     //
     // SOURCE :: https://stackoverflow.com/questions/2510434/format-bytes-to-kilobytes-megabytes-gigabytes
     // AUTHOR :: Leo :: https://stackoverflow.com/users/227532/leo
-    public function format_bytes($bytes, $precision = 2, $SI_output = false) {
+    public function format_bytes($bytes, $precision = 2, $SI_output = false){
 
         //
         // CRNRSTN v2.0.0 :: MODS
@@ -6190,13 +6225,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         // SEE COMMENT BY DEVATOR [https://stackoverflow.com/users/659731/devator] JUST
         // BENEATH THE METHOD [format_bytes()] AUTHOR'S RESPONSE AT SOURCE LINK. THIS IS MY
         // IMPETUS TO INCLUDE THE ABOVE LINKS TO ADDITIONAL MATERIAL FROM WIKIPEDIA.
-        if($SI_output){
+        if ($SI_output) {
 
             // SI :: metric prefix
             $units = array('bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
             $units_power = 1000;
 
-        }else{
+        } else {
 
             // IEC :: ISO 80000 or IEC 80000
             $units = array('bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
@@ -6219,21 +6254,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function number_format_keep_precision($number, $dec_places = 0, $dec_point = '.', $thou_separate = ','){
 
-        if($dec_places > 0){
+        if ($dec_places > 0) {
 
             return number_format($number, $dec_places, $dec_point, $thou_separate);
 
-        }else{
+        } else {
 
             //
             // SOURCE :: https://www.php.net/manual/en/function.number-format.php
             // AUTHOR :: stm555 at hotmail dot com :: https://www.php.net/manual/en/function.number-format.php#52311
             $broken_number = explode($dec_point, $number);
-            if(isset($broken_number[1])){
+            if (isset($broken_number[1])) {
 
                 return number_format($broken_number[0], 0, $dec_point, $thou_separate) . $dec_point . $broken_number[1];
 
-            }else{
+            } else {
 
                 return number_format($broken_number[0], 0, $dec_point, $thou_separate);
 
@@ -6250,7 +6285,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
 
-        switch($theme_style){
+        switch ($theme_style) {
             case CRNRSTN_UI_GLASS_DARK_COPY:
             case CRNRSTN_UI_GLASS_LIGHT_COPY:
             case CRNRSTN_UI_TERMINAL:
@@ -6271,7 +6306,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 ini_set('highlight.keyword', $tmp_meta_ARRAY['highlight.keyword']);
                 ini_set('highlight.string', $tmp_meta_ARRAY['highlight.string']);
 
-            break;
+                break;
 
         }
 
@@ -6294,9 +6329,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     // AUTHOR :: kungla at gmail dot com :: http://php.net/manual/en/function.mkdir.php#68207
     public function mkdir_r($dirName, $mode = 777){
 
-        try{
+        try {
 
-            $mode = octdec(str_pad($mode,4,'0',STR_PAD_LEFT));
+            $mode = octdec(str_pad($mode, 4, '0', STR_PAD_LEFT));
             $mode = (int)$mode;
 
             $dirs = explode('/', $dirName);
@@ -6308,7 +6343,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 if (!is_dir($dir) && strlen($dir) > 0) {
 
-                    if(!mkdir($dir, $mode)){
+                    if (!mkdir($dir, $mode)) {
 
                         $error = error_get_last();
 
@@ -6324,7 +6359,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             return true;
 
-        }catch( Exception $e ) {
+        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -6336,7 +6371,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function crcINT($value){
+    private function crcINT($value){
 
         $value = crc32($value);
         return sprintf('%u', $value);
@@ -6346,7 +6381,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     //
     // SOURCE :: https://www.php.net/manual/en/function.str-split.php
     // AUTHOR :: qeremy [atta] gmail [dotta] com :: https://www.php.net/manual/en/function.str-split.php#113274
-    public function str_split_unicode($str, $length = 1) {
+    public function str_split_unicode($str, $length = 1){
 
         $tmp = preg_split('~~u', $str, -1, PREG_SPLIT_NO_EMPTY);
 
@@ -6356,7 +6391,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             foreach ($chunks as $i => $chunk) {
 
-                $chunks[$i] = join('', (array) $chunk);
+                $chunks[$i] = join('', (array)$chunk);
 
             }
 
@@ -6383,7 +6418,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         //$tmp_stats_dest_path = $oElectrum_STATS->return_destination_stats_path($oEndpoint_serial_SOURCE, $oEndpoint_serial_DESTINATION);
         //self::$oCRNRSTN_USR->error_log('oWheel :: Run ftp_mksubdirs=>[ftp_root_dir_path=' . $ftp_root_dir_path.'][tmp_mksubdir_destination_path=' . $tmp_mksubdir_destination_path.']', __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
-        if(is_dir($file_source_path)){
+        if (is_dir($file_source_path)) {
 
             //self::$oCRNRSTN_USR->error_log('oWheel :: Run ftp_mksubdirs=>[source_filepath=' . $file_source_path.']', __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
             error_log(__LINE__ . ' ' . __METHOD__ . ' crnrstn die().');
@@ -6392,15 +6427,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             $continue_process = true;
 
-        }else{
+        } else {
 
             error_log(__LINE__ . ' ' . __METHOD__ . ' crnrstn die().');
             die();
-            if(isset($SOURCE_filePath_ORIGINAL)){
+            if (isset($SOURCE_filePath_ORIGINAL)) {
 
                 $SOURCE_filepath_for_DESTINATION = $SOURCE_filePath_ORIGINAL;
 
-            }else{
+            } else {
 
                 $SOURCE_filepath_for_DESTINATION = $file_source_path;
 
@@ -6411,27 +6446,27 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $tmp_split_ARRAY = explode($tmp_slashChar, $tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH']);
             $tmp_split_cnt = sizeof($tmp_split_ARRAY);
 
-            $tmp_dir_split_ARRAY = explode($tmp_split_ARRAY[$tmp_split_cnt-2], $tmp_stats_DESTINATION_ARRAY['DESTINATION_FILEPATH']);
+            $tmp_dir_split_ARRAY = explode($tmp_split_ARRAY[$tmp_split_cnt - 2], $tmp_stats_DESTINATION_ARRAY['DESTINATION_FILEPATH']);
 
             $tmp_dir_sect_ARRAY = explode($tmp_slashChar, $tmp_dir_split_ARRAY[1]);
             $tmp_sect_cnt = sizeof($tmp_dir_sect_ARRAY);
 
             #$tmp_dir_sect_ARRAY[$tmp_sect_cnt-2] = wethrbug
-            $tmp_dest_file_section_ARRAY = explode($tmp_dir_sect_ARRAY[$tmp_sect_cnt-2], $SOURCE_filepath_for_DESTINATION);
+            $tmp_dest_file_section_ARRAY = explode($tmp_dir_sect_ARRAY[$tmp_sect_cnt - 2], $SOURCE_filepath_for_DESTINATION);
 
             # [tmp_dir_split_ARRAY[1]=/a_custom_folder_name/20201013_16-52-26/wethrbug/
             $tmp_sect_array = explode($tmp_slashChar, $tmp_dir_split_ARRAY[1]);
             $tmp_cnt = sizeof($tmp_sect_array);
 
-            $tmp_cut_dir = $tmp_sect_array[$tmp_cnt-2];
+            $tmp_cut_dir = $tmp_sect_array[$tmp_cnt - 2];
 
             $tmp_source_sect_ARRAY = explode($tmp_cut_dir, $file_source_path);
             //$tmp_dir = dirname($tmp_source_sect_ARRAY[1]);
 
-            $tmp_file_dest = rtrim($tmp_dir_split_ARRAY[1], $tmp_slashChar).$tmp_dest_file_section_ARRAY[1];
+            $tmp_file_dest = rtrim($tmp_dir_split_ARRAY[1], $tmp_slashChar) . $tmp_dest_file_section_ARRAY[1];
             $tmp_file_cap = basename($tmp_file_dest);
 
-            $tmp_file_dirpath_final = rtrim($tmp_file_dest,$tmp_file_cap);
+            $tmp_file_dirpath_final = rtrim($tmp_file_dest, $tmp_file_cap);
             $tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH'] = rtrim($tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH'], $tmp_slashChar);
             //$tmp_dfile = $tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH'].$SOURCE_filepath_for_DESTINATION;
             $tmp_dfile = $tmp_stats_dest_path;
@@ -6443,52 +6478,52 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //self::$oCRNRSTN_USR->error_log('oWheel :: EXPLODE [' . $tmp_stats_DESTINATION_ARRAY['DESTINATION_FILEPATH'].'] ON ' . $tmp_dfile_sect_cnt, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
-            $tmp_dfile_bi_path_ARRAY = explode($tmp_dfile_array[$tmp_dfile_sect_cnt-2], $SOURCE_filepath_for_DESTINATION);
+            $tmp_dfile_bi_path_ARRAY = explode($tmp_dfile_array[$tmp_dfile_sect_cnt - 2], $SOURCE_filepath_for_DESTINATION);
 
             $tmp_dfile .= $tmp_dfile_bi_path_ARRAY[1];
             //self::$oCRNRSTN_USR->error_log('oWheel :: Run ftp_mksubdirs=> [DESTINATION_FILEPATH]=' . $tmp_stats_DESTINATION_ARRAY['DESTINATION_FILEPATH'].' | [FTP_DIR_PATH]=' . $tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH']. ' on tmp_split_ARRAY[tmp_split_cnt-2]=' . $tmp_split_ARRAY[$tmp_split_cnt-2], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
             //self::$oCRNRSTN_USR->error_log('oWheel :: Run ftp_mksubdirs @ ' . $tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH'].' for =>[' . $tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH'].$tmp_file_dirpath_final, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
-            if($this->ftp_mksubdirs($ftp_stream_target, $tmp_slashChar, $tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH'].$tmp_file_dirpath_final)){
+            if ($this->ftp_mksubdirs($ftp_stream_target, $tmp_slashChar, $tmp_stats_DESTINATION_ARRAY['FTP_DIR_PATH'] . $tmp_file_dirpath_final)) {
 
                 //self::$oCRNRSTN_USR->error_log('oWheel :: ftp_mksubdirs SUCCESS', __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
-            }else{
+            } else {
 
                 $error = error_get_last();
 
                 //
                 // WE USE FTP_CHDIR TO SEE IF WE NEED TO CALL FTP_MKDIR. IT IS OK (OR EXPECTED) TO GET FTP_CHDIR ERRORS HERE.
-                $pos_ignore_err = strpos($error['message'],'ftp_chdir()');
-                if($pos_ignore_err===false){
+                $pos_ignore_err = strpos($error['message'], 'ftp_chdir()');
+                if ($pos_ignore_err === false) {
 
                     self::$oCRNRSTN_USR->error_log('oWheel :: ftp_mksubdirs ERROR :: ' . $error['message'], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
                 }
             }
 
-            if(substr($tmp_dfile, -1) == $tmp_slashChar){
+            if (substr($tmp_dfile, -1) == $tmp_slashChar) {
 
-                $tmp_dfile = rtrim($tmp_dfile, $tmp_slashChar).$tmp_slashChar;
+                $tmp_dfile = rtrim($tmp_dfile, $tmp_slashChar) . $tmp_slashChar;
                 $tmp_dfile_fname = basename($SOURCE_filepath_for_DESTINATION);
-                $tmp_dfile = $tmp_dfile.$tmp_dfile_fname;
+                $tmp_dfile = $tmp_dfile . $tmp_dfile_fname;
 
             }
 
             //self::$oCRNRSTN_USR->error_log('oWheel :: SEE [' . $SOURCE_filepath_for_DESTINATION.']. Now run ftp_put LOCAL FILE=>[' . $SOURCE_filepath_for_DESTINATION.'] to DEST FILE=>[' . $tmp_dfile . ']', __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
-            if(ftp_put($ftp_stream_target, $tmp_dfile, $SOURCE_filepath_for_DESTINATION, FTP_BINARY)) {
+            if (ftp_put($ftp_stream_target, $tmp_dfile, $SOURCE_filepath_for_DESTINATION, FTP_BINARY)) {
 
                 $continue_process = true;
                 //self::$oCRNRSTN_USR->error_log('oWheel FF - 2/2 (or DF 1 of 1) :: Successfully uploaded LOCAL FILE=>[' . $SOURCE_filepath_for_DESTINATION.'] to DEST FILE=>[' . $tmp_dfile . ']', __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
-            }else{
+            } else {
 
                 $error = error_get_last();
-                self::$oCRNRSTN_USR->error_log('oWheel FF - 2/2 (or DF 1 of 1) :: ERROR uploading LOCAL FILE=>[' . $SOURCE_filepath_for_DESTINATION.'] to DEST FILE=>[' . $tmp_dfile . '] :: ' . $error['message'], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
+                self::$oCRNRSTN_USR->error_log('oWheel FF - 2/2 (or DF 1 of 1) :: ERROR uploading LOCAL FILE=>[' . $SOURCE_filepath_for_DESTINATION . '] to DEST FILE=>[' . $tmp_dfile . '] :: ' . $error['message'], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
                 $this->is_error_on_transfer = true;
-                $this->error_on_transfer_message = $error['message'].' <= Error experienced while pushing local file [' . $SOURCE_filepath_for_DESTINATION.'] to FTP destination[{FTP_OR_LOCAL_DETAIL}] as file=>[' . $tmp_dfile . '].';
+                $this->error_on_transfer_message = $error['message'] . ' <= Error experienced while pushing local file [' . $SOURCE_filepath_for_DESTINATION . '] to FTP destination[{FTP_OR_LOCAL_DETAIL}] as file=>[' . $tmp_dfile . '].';
 
             }
 
@@ -6640,7 +6675,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 -->        
 ';
 
-        $tmp_crnrstnART[3]= ' ######  <span style="color:#F90000;">########</span>  ##    ## ########   ######  ######## ##    ##     ##   ##  
+        $tmp_crnrstnART[3] = ' ######  <span style="color:#F90000;">########</span>  ##    ## ########   ######  ######## ##    ##     ##   ##  
 ##    ## <span style="color:#F90000;">##     ##</span> ###   ## ##     ## ##    ##    ##    ###   ##    #### #### 
 ##       <span style="color:#F90000;">##     ##</span> ####  ## ##     ## ##          ##    ####  ##     ##   ##  
 ##       <span style="color:#F90000;">########</span>  ## ## ## ########   ######     ##    ## ## ##              
@@ -6753,7 +6788,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 ';
 
 
-        $tmp_crnrstnART[-2]=' _______  <span style="color:#F90000;">______</span>    __    _  ______    _______  _______  __    _    ___   ___  
+        $tmp_crnrstnART[-2] = ' _______  <span style="color:#F90000;">______</span>    __    _  ______    _______  _______  __    _    ___   ___  
 |       |<span style="color:#F90000;">|    _ |</span>  |  |  | ||    _ |  |       ||       ||  |  | |  |   | |   | 
 |       |<span style="color:#F90000;">|   | ||</span>  |   |_| ||   | ||  |  _____||_     _||   |_| |  |___| |___| 
 |       |<span style="color:#F90000;">|   |_||_</span> |       ||   |_||_ | |_____   |   |  |       |   ___   ___  
@@ -6775,7 +6810,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 ';
 
 
-        $tmp_crnrstnART[-3]='
+        $tmp_crnrstnART[-3] = '
 <span style="color:#F90000;">        (        )  (    (               )</span>         
 <span style="color:#F90000;">   (    )\ )  ( /(  )\ ) )\ )  *   )  ( /(</span>         
 <span style="color:#F90000;">   )\  (()/(  )\())(()/((()/(` )  /(  )\())</span>        
@@ -6798,7 +6833,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 -->      
 ';
 
-        $tmp_crnrstnART[-4]='
+        $tmp_crnrstnART[-4] = '
     _______   <span style="color:#F90000;">.-------.</span>    ,---.   .--..-------.       .-\'\'\'-. ,---------. ,---.   .--.          _ _    _ _
    /   __  \  <span style="color:#F90000;">|  _ _   \</span>   |    \  |  ||  _ _   \     / _     \\           \|    \  |  |         ( ` )  ( ` )
   | ,_/  \__) <span style="color:#F90000;">| ( \' )  |</span>   |  ,  \ |  || ( \' )  |    (`\' )/`--\' `--.  ,---\'|  ,  \ |  |        (_{;}_)(_{;}_) 
@@ -6823,7 +6858,7 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 ';
 
 
-        $tmp_crnrstnART[-5]='
+        $tmp_crnrstnART[-5] = '
    _____ <span style="color:#F90000;">_____</span>  _   _ _____   _____ _______ _   _       
   / ____<span style="color:#F90000;">|   __ \</span>| \ | |  __ \ / ____|__   __| \ | |  _ _ 
  | |    <span style="color:#F90000;">|  |__) |</span>  \| | |__) | (___    | |  |  \| | (_|_)
@@ -6844,11 +6879,11 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 -->      
 ';
 
-        if(!isset($index)){
+        if (!isset($index)) {
 
-            return $tmp_crnrstnART[rand (-5, 4)];
+            return $tmp_crnrstnART[rand(-5, 4)];
 
-        }else{
+        } else {
 
             return $tmp_crnrstnART[$index];
 
@@ -6869,13 +6904,13 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             $tmp_array = str_split($version[2]);
             $tmp_size = sizeof($tmp_array);
 
-            for($i = 0; $i < $tmp_size; $i++){
+            for ($i = 0; $i < $tmp_size; $i++) {
 
-                if(is_numeric($tmp_array[$i])){
+                if (is_numeric($tmp_array[$i])) {
 
                     $patch .= $tmp_array[$i];
 
-                }else{
+                } else {
 
                     $i = $tmp_size + 1;
 
@@ -6883,17 +6918,17 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
             }
 
-            if(strlen($patch) > 0){
+            if (strlen($patch) > 0) {
 
-                define('PHP_RELEASE_VERSION', (int) $patch);
+                define('PHP_RELEASE_VERSION', (int)$patch);
 
-            }else{
+            } else {
 
                 define('PHP_RELEASE_VERSION', 0);
 
             }
 
-            define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + (int) $patch));
+            define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + (int)$patch));
             define('PHP_MAJOR_VERSION', $version[0]);
             define('PHP_MINOR_VERSION', $version[1]);
             //define('PHP_RELEASE_VERSION', $version[2]);
@@ -6902,7 +6937,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             //$this->consume_ddo_system_param($tmp_version_php, 'version_php', 0);
             self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_php, 'version_php');
 
-        }else{
+        } else {
 
             //
             // WE ARE AT LEAST PHP v5.2.7
@@ -7171,13 +7206,13 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     /**
      * @param OpenSSL version identifier as hex value $openssl_version_number
      */
-    private function initialize_openssl_profile($patch_as_number = false, $openssl_version_number = null) {
+    private function initialize_openssl_profile($patch_as_number = false, $openssl_version_number = null){
 
         if (is_null($openssl_version_number)) $openssl_version_number = OPENSSL_VERSION_NUMBER;
 
         //$this->error_log('openssl_version_number ::' . $openssl_version_number, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
         //error_log('[lnum 3993] [crnrstn] openssl_version_number ::' . $openssl_version_number);
-        $openssl_numeric_identifier = str_pad((string)dechex($openssl_version_number),8,'0',STR_PAD_LEFT);
+        $openssl_numeric_identifier = str_pad((string)dechex($openssl_version_number), 8, '0', STR_PAD_LEFT);
         //error_log('[lnum 3995] [crnrstn] openssl_numeric_identifier ::' . $openssl_numeric_identifier);
 
         $openssl_version_parsed = array();
@@ -7200,11 +7235,11 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
                 //error_log('[lnum 4097] [crnrstn] openssl_version ::' . $openssl_version . ' + ' . $alphabet[intval($openssl_version_parsed['patch'][0])]);
                 $openssl_version .= $alphabet[intval($openssl_version_parsed['patch'][0])]; // ideal for text comparison
 
-            }else{
+            } else {
 
                 $tmp_val = intval($openssl_version_parsed['patch'][0]);
 
-                if($tmp_val != 0){
+                if ($tmp_val != 0) {
 
                     //error_log('[lnum 4106] [crnrstn] openssl_version ::' . $openssl_version . ' + ' . intval($openssl_version_parsed['patch'][0]));
                     $openssl_version .= '.' . intval($openssl_version_parsed['patch'][0]); // ideal for version_compare
@@ -7318,11 +7353,11 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         $tmp_sys_digests_methods_ARRAY = openssl_get_md_methods();
         $tmp_found_digest_match = false;
 
-        foreach(self::$openssl_preferred_digest_ARRAY as $index_pref_digest => $pref_digest_method){
+        foreach (self::$openssl_preferred_digest_ARRAY as $index_pref_digest => $pref_digest_method) {
 
-            foreach($tmp_sys_digests_methods_ARRAY as $index_sys_digest => $sys_digest_method){
+            foreach ($tmp_sys_digests_methods_ARRAY as $index_sys_digest => $sys_digest_method) {
 
-                if(strtolower($sys_digest_method) == strtolower($pref_digest_method)){
+                if (strtolower($sys_digest_method) == strtolower($pref_digest_method)) {
 
                     $this->error_log('The selected preferred OpenSSL digest is [' . $sys_digest_method . '][PREF=' . $index_pref_digest . '/SYS=' . $index_sys_digest . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -7338,16 +7373,16 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         }
 
-        if(!$tmp_found_digest_match){
+        if (!$tmp_found_digest_match) {
 
             $tmp_digests_and_aliases = openssl_get_md_methods(true);
             $tmp_digest_aliases_ARRAY = array_diff($tmp_digests_and_aliases, $tmp_sys_digests_methods_ARRAY);
 
-            foreach($tmp_digest_aliases_ARRAY as $index_sys_digest => $sys_digest_method){
+            foreach ($tmp_digest_aliases_ARRAY as $index_sys_digest => $sys_digest_method) {
 
-                foreach(self::$openssl_preferred_digest_ARRAY as $index_pref_digest => $pref_digest_method){
+                foreach (self::$openssl_preferred_digest_ARRAY as $index_pref_digest => $pref_digest_method) {
 
-                    if(strtoupper($sys_digest_method) == strtoupper($pref_digest_method)){
+                    if (strtoupper($sys_digest_method) == strtoupper($pref_digest_method)) {
 
                         $this->error_log('The selected preferred OpenSSL digest (via alias) is [' . $sys_digest_method . '][PREF=' . $index_pref_digest . '/SYS=' . $index_sys_digest . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -7396,14 +7431,14 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         //
         // POWERED BY APACHE IMAGE DRIVER
         //$this->version_apache_sysimg = (double) $version[0] . '.' . $version[1];
-        if(isset($version[1])){ 
+        if (isset($version[1])) {
 
-            $tmp_version_apache_sysimg = (double) $version[0] . '.' . $version[1];
+            $tmp_version_apache_sysimg = (double)$version[0] . '.' . $version[1];
             self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_apache_sysimg, 'version_apache_sysimg');
 
-        }else{
+        } else {
 
-            $tmp_version_apache_sysimg = (double) $version[0];
+            $tmp_version_apache_sysimg = (double)$version[0];
             self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_apache_sysimg, 'version_apache_sysimg');
         }
 
@@ -7411,13 +7446,13 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         $tmp_array = str_split($version[2]);
         $tmp_size = sizeof($tmp_array);
 
-        for($i = 0; $i < $tmp_size; $i++){
+        for ($i = 0; $i < $tmp_size; $i++) {
 
-            if(is_numeric($tmp_array[$i])){
+            if (is_numeric($tmp_array[$i])) {
 
                 $patch .= $tmp_array[$i];
 
-            }else{
+            } else {
 
                 $i = $tmp_size + 1;
 
@@ -7425,12 +7460,12 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         }
 
-        if(strlen($patch) > 0){
+        if (strlen($patch) > 0) {
 
             $tmp_version_apache = $version[0] . '.' . $version[1] . '.' . $patch;
             self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_apache, 'version_apache');
 
-        }else{
+        } else {
 
             $tmp_version_apache = $version[0] . '.' . $version[1];
             self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_apache, 'version_apache');
@@ -7478,13 +7513,13 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         $tmp_flag_array['crnrstn_l'] = 1;
         $tmp_flag_array['crnrstn_r'] = 1;
 
-        if(isset($meta_params_ARRAY)){
+        if (isset($meta_params_ARRAY)) {
 
-            if(is_array($meta_params_ARRAY)){
+            if (is_array($meta_params_ARRAY)) {
 
-                foreach($meta_params_ARRAY as $key => $value){
+                foreach ($meta_params_ARRAY as $key => $value) {
 
-                    if(!isset($tmp_flag_array[$key])){
+                    if (!isset($tmp_flag_array[$key])) {
 
                         $tmp_flag_array[$key] = 1;
 
@@ -7494,11 +7529,11 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
                 }
 
-            }else{
+            } else {
 
-                if(is_string($meta_params_ARRAY)){
+                if (is_string($meta_params_ARRAY)) {
 
-                    if(!isset($tmp_flag_array['crnrstn_m'])){
+                    if (!isset($tmp_flag_array['crnrstn_m'])) {
 
                         $tmp_flag_array['crnrstn_m'] = 1;
 
@@ -7564,19 +7599,19 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         $tmp_uri_ARRAY = array();
 
-        if(isset($tmp_url_parse_array['scheme'])){
+        if (isset($tmp_url_parse_array['scheme'])) {
 
             $tmp_scheme = $tmp_url_parse_array['scheme'];
 
         }
 
-        if(isset($tmp_url_parse_array['host'])){
+        if (isset($tmp_url_parse_array['host'])) {
 
             $tmp_host = $tmp_url_parse_array['host'];
 
         }
 
-        if(isset($tmp_url_parse_array['path'])){
+        if (isset($tmp_url_parse_array['path'])) {
 
             $tmp_path = $tmp_url_parse_array['path'];
 
@@ -7586,13 +7621,13 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //error_log(__LINE__ . ' user $tmp_url_parse_array=' . print_r($tmp_url_parse_array, true));
 
-        if(isset($tmp_url_parse_array['query'])){
+        if (isset($tmp_url_parse_array['query'])) {
 
             parse_str($tmp_url_parse_array['query'], $params_ARRAY);
 
             $tmp_uri_ARRAY['param'] = $params_ARRAY;
 
-        }else{
+        } else {
 
             $params_ARRAY = array();
             $tmp_uri_ARRAY['param'] = $params_ARRAY;
@@ -7607,11 +7642,11 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //error_log(__LINE__ . ' user append_url_param=' . print_r($param_ARRAY, true));
 
-        if($this->isSSL()){
+        if ($this->isSSL()) {
 
             $tmp_lnk = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-        }else{
+        } else {
 
             $tmp_lnk = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
@@ -7636,22 +7671,22 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //
         // ADD ANY *NEW* URL PARAMS
-        foreach($param_ARRAY as $key => $value){
+        foreach ($param_ARRAY as $key => $value) {
 
             //if(!isset($tmp_flag_param_ARRAY[$this->return_param_name($value)]) && ($key != 'crnrstn_encrypt_tunnel')){
-            if($this->return_param_name($value) != 'crnrstn_encrypt_tunnel'){
+            if ($this->return_param_name($value) != 'crnrstn_encrypt_tunnel') {
 
                 $tmp_flag_param_ARRAY[$this->return_param_name($value)] = 1;
 
                 $tmp_return_str .= $param_concatenator . $this->url_param_append($value, $tunnel_encrypt);
 
-                if($tunnel_encrypt){
+                if ($tunnel_encrypt) {
 
                     $tmp_encrypted_params_pipe .= $key . '|';
 
                 }
 
-                if($param_concatenator == '?'){
+                if ($param_concatenator == '?') {
 
                     $param_concatenator = '&';
 
@@ -7661,24 +7696,24 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         }
 
-        if(isset($no_encrypt_param_ARRAY) && $include_no_encrypt == true){
+        if (isset($no_encrypt_param_ARRAY) && $include_no_encrypt == true) {
 
-            foreach($no_encrypt_param_ARRAY as $key => $value){
+            foreach ($no_encrypt_param_ARRAY as $key => $value) {
 
                 //if(!isset($tmp_flag_param_ARRAY[$this->return_param_name($value)]) && ($key != 'crnrstn_encrypt_tunnel')){
-                if($this->return_param_name($value) != 'crnrstn_encrypt_tunnel'){
+                if ($this->return_param_name($value) != 'crnrstn_encrypt_tunnel') {
 
                     $tmp_flag_param_ARRAY[$this->return_param_name($value)] = 1;
 
                     $tmp_return_str .= $param_concatenator . $this->url_param_append($value, false);
 
-                    if($tunnel_encrypt){
+                    if ($tunnel_encrypt) {
 
                         $tmp_encrypted_params_pipe .= $key . '|';
 
                     }
 
-                    if($param_concatenator == '?'){
+                    if ($param_concatenator == '?') {
 
                         $param_concatenator = '&';
 
@@ -7692,11 +7727,11 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //
         // KEEP ALL ORIGINAL URL PARAMS
-        foreach($tmp_lnk_explode_ARRAY['param'] as $key00 => $value00){
+        foreach ($tmp_lnk_explode_ARRAY['param'] as $key00 => $value00) {
 
-            if(!isset($tmp_flag_param_ARRAY[$key00]) && ($key00 != 'crnrstn_encrypt_tunnel')){
+            if (!isset($tmp_flag_param_ARRAY[$key00]) && ($key00 != 'crnrstn_encrypt_tunnel')) {
 
-                if(isset($no_encrypt_param_ARRAY) && $include_no_encrypt == false){
+                if (isset($no_encrypt_param_ARRAY) && $include_no_encrypt == false) {
 
                     $tmp_spoiled = false;
 
@@ -7710,19 +7745,19 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
                     }
 
-                    if(!$tmp_spoiled){
+                    if (!$tmp_spoiled) {
 
                         $tmp_flag_param_ARRAY[$key00] = 1;
 
                         $tmp_return_str .= $param_concatenator . $this->url_param_append($key00 . '=' . $value00, $tunnel_encrypt);
 
-                        if($tunnel_encrypt){
+                        if ($tunnel_encrypt) {
 
                             $tmp_encrypted_params_pipe .= $key00 . '|';
 
                         }
 
-                        if($param_concatenator == '?'){
+                        if ($param_concatenator == '?') {
 
                             $param_concatenator = '&';
 
@@ -7730,19 +7765,19 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
                     }
 
-                }else{
+                } else {
 
                     $tmp_flag_param_ARRAY[$key00] = 1;
 
                     $tmp_return_str .= $param_concatenator . $this->url_param_append($key00 . '=' . $value00, $tunnel_encrypt);
 
-                    if($tunnel_encrypt){
+                    if ($tunnel_encrypt) {
 
                         $tmp_encrypted_params_pipe .= $key00 . '|';
 
                     }
 
-                    if($param_concatenator == '?'){
+                    if ($param_concatenator == '?') {
 
                         $param_concatenator = '&';
 
@@ -7754,9 +7789,9 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         }
 
-        if(isset($no_encrypt_param_ARRAY)){
+        if (isset($no_encrypt_param_ARRAY)) {
 
-            foreach($no_encrypt_param_ARRAY as $key => $value00){
+            foreach ($no_encrypt_param_ARRAY as $key => $value00) {
 
                 $tmp_flag_param_ARRAY[$this->return_param_name($value00)] = 1;
 
@@ -7766,7 +7801,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         }
 
-        if($tunnel_encrypt){
+        if ($tunnel_encrypt) {
 
             $tmp_return_str .= $param_concatenator . 'crnrstn_encrypt_tunnel=' . urlencode($this->data_encrypt($tmp_encrypted_params_pipe));
 
@@ -7778,7 +7813,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     private function url_param_append($param_str, $tunnel_encrypt){
 
-        if($tunnel_encrypt){
+        if ($tunnel_encrypt) {
 
             $tmp_str = '';
             $tmp_array = explode('=', $param_str);
@@ -7786,21 +7821,21 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             $tmp_str .= $tmp_array[0];
             $tmp_str .= '=';
 
-            if(isset($tmp_array[1])){
+            if (isset($tmp_array[1])) {
 
                 //
                 // EXCLUDE crnrstn_m FROM ENCRYPTION FOR LINK IDENTIFICATION WITHIN ANALYTICS
-                if($tmp_array[0] != 'crnrstn_m'){
+                if ($tmp_array[0] != 'crnrstn_m') {
 
                     $tmp_str .= urlencode($this->data_encrypt($tmp_array[1]));
 
-                }else{
+                } else {
 
                     $tmp_str .= $tmp_array[1];
 
                 }
 
-            }else{
+            } else {
 
                 $tmp_str .= $this->data_encrypt('');
 
@@ -7808,7 +7843,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
             return $tmp_str;
 
-        }else{
+        } else {
 
             $tmp_str = '';
             $tmp_array = explode('=', $param_str);
@@ -7816,7 +7851,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             $tmp_str .= $tmp_array[0];
             $tmp_str .= '=';
 
-            if(isset($tmp_array[1])){
+            if (isset($tmp_array[1])) {
 
                 $tmp_str .= urlencode($tmp_array[1]);
 
@@ -7843,7 +7878,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         // Source of source: Wikipedia "List_of_HTTP_status_codes"
         $http_status_codes = array(100 => 'Continue', 101 => 'Switching Protocols', 102 => 'Processing', 200 => 'OK', 201 => 'Created', 202 => 'Accepted', 203 => 'Non-Authoritative Information', 204 => 'No Content', 205 => 'Reset Content', 206 => 'Partial Content', 207 => 'Multi-Status', 300 => 'Multiple Choices', 301 => 'Moved Permanently', 302 => 'Found', 303 => 'See Other', 304 => 'Not Modified', 305 => 'Use Proxy', 306 => '(Unused)', 307 => 'Temporary Redirect', 308 => 'Permanent Redirect', 400 => 'Bad Request', 401 => 'Unauthorized', 402 => 'Payment Required', 403 => 'Forbidden', 404 => 'Not Found', 405 => 'Method Not Allowed', 406 => 'Not Acceptable', 407 => 'Proxy Authentication Required', 408 => 'Request Timeout', 409 => 'Conflict', 410 => 'Gone', 411 => 'Length Required', 412 => 'Precondition Failed', 413 => 'Request Entity Too Large', 414 => 'Request-URI Too Long', 415 => 'Unsupported Media Type', 416 => 'Requested Range Not Satisfiable', 417 => 'Expectation Failed', 418 => 'I\'m a teapot', 419 => 'Authentication Timeout', 420 => 'Enhance Your Calm', 422 => 'Unprocessable Entity', 423 => 'Locked', 424 => 'Failed Dependency', 424 => 'Method Failure', 425 => 'Unordered Collection', 426 => 'Upgrade Required', 428 => 'Precondition Required', 429 => 'Too Many Requests', 431 => 'Request Header Fields Too Large', 444 => 'No Response', 449 => 'Retry With', 450 => 'Blocked by Windows Parental Controls', 451 => 'Unavailable For Legal Reasons', 494 => 'Request Header Too Large', 495 => 'Cert Error', 496 => 'No Cert', 497 => 'HTTP to HTTPS', 499 => 'Client Closed Request', 500 => 'Internal Server Error', 501 => 'Not Implemented', 502 => 'Bad Gateway', 503 => 'Service Unavailable', 504 => 'Gateway Timeout', 505 => 'HTTP Version Not Supported', 506 => 'Variant Also Negotiates', 507 => 'Insufficient Storage', 508 => 'Loop Detected', 509 => 'Bandwidth Limit Exceeded', 510 => 'Not Extended', 511 => 'Network Authentication Required', 598 => 'Network read timeout error', 599 => 'Network connect timeout error');
 
-        if(!isset($crnrstn_html_burn)){
+        if (!isset($crnrstn_html_burn)) {
             /*
             There are two special-case header calls. The first is a header that starts with
             the string "HTTP/" (case is not significant), which will be used to figure out the
@@ -7860,7 +7895,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //
         // THO WE HAVE SINCE MIGRATED TO BITWISE, I AM LEAVING THIS SWITCH AS IS...FOR FUTURE WHITE LABELING INTEGRATIONS.
-        switch($this->sys_notices_creative_mode){
+        switch ($this->sys_notices_creative_mode) {
             case 'ALL_IMAGE':
             case 'ALL_IMAGE_LOGO_OFF':
 
@@ -7878,7 +7913,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 <div style=\'width:96%; margin:0 0 0 0; padding:6px 2% 0 2%; color:#FFF; font-family:"trebuchet MS", Verdana, sans-serif;background-color:#BEBEBE; height:30px; line-height: 28px;\'><h1 style="font-size: 30px; overflow: hidden; height:23px; padding-top:7px; margin-top: 0;">Server Error</h1></div>
 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-top: 2px solid #FFF;"></div>
 
-<div style="height:5px; '.$this->return_creative('BG_ELEMENT_RESPONSE_CODE', CRNRSTN_UI_IMG_BASE64).' background-repeat: repeat-x;">
+<div style="height:5px; ' . $this->return_creative('BG_ELEMENT_RESPONSE_CODE', CRNRSTN_UI_IMG_BASE64) . ' background-repeat: repeat-x;">
     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 </div>
 
@@ -7925,7 +7960,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 <div style=\'width:96%; margin:0 0 0 0; padding:6px 2% 0 2%; color:#FFF; font-family:"trebuchet MS", Verdana, sans-serif;background-color:#BEBEBE; height:30px; line-height: 28px;\'><h1 style="font-size: 30px; overflow: hidden; height:23px; padding-top:7px; margin-top: 0;">Server Error</h1></div>
 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-top: 2px solid #FFF;"></div>
 
-<div style="height:5px; '.$this->return_creative('BG_ELEMENT_RESPONSE_CODE', CRNRSTN_UI_IMG_BASE64).' background-repeat: repeat-x;">
+<div style="height:5px; ' . $this->return_creative('BG_ELEMENT_RESPONSE_CODE', CRNRSTN_UI_IMG_BASE64) . ' background-repeat: repeat-x;">
     <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 </div>
 
@@ -7969,14 +8004,42 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     // AUTHOR :: https://stackoverflow.com/users/887067/saeven
     public function isSSL(){
 
-        if(!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] != 'off'))
+        if (!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] != 'off'))
 
             return true;
 
-        if(!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+        if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
             return true;
 
         return false;
+
+    }
+
+    public function hash($data, $algorithm = NULL){
+
+        $this->total_bytes_hashed += strlen($data);
+
+        if(!isset($algorithm)){
+
+            $algorithm = $this->system_hash_algo;
+
+        }
+
+        switch($algorithm){
+            case 'crc32':
+
+                $tmp_hash_val = $this->crcINT($data);
+
+            break;
+            default:
+
+                $tmp_hash_val = hash($algorithm, $data);
+
+            break;
+
+        }
+
+        return $tmp_hash_val;
 
     }
 
@@ -8131,7 +8194,6 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     }
 
-
     //
     // SOURCE :: https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified
     // AUTHOR :: Giacomo1968 :: https://stackoverflow.com/users/117259/giacomo1968
@@ -8198,8 +8260,15 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         if(isset($this->oLogger)){
 
             $this->output_agg_destruct_str();
+//            $tmp_bytes_stored = 0;
+//
+//            if(isset(self::$oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->total_bytes_storedv)){
+//
+//                $tmp_bytes_stored = self::$oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->total_bytes_stored;
+//
+//            }
 
-            $this->oLog_output_ARRAY[] = $this->error_log('goodbye crnrstn :: ' . __CLASS__ . '::' . __METHOD__ . ' called. [rtime ' . $this->wall_time() . ' secs]', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
+            $this->oLog_output_ARRAY[] = $this->error_log('goodbye crnrstn :: ' . __CLASS__ . '::' . __METHOD__ . ' called. [rtime ' . $this->wall_time() . ' secs][bytes_stored ' . $this->format_bytes(self::$oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->return_total_bytes_stored(), 5) . '][bytes_hashed ' . $this->format_bytes($this->total_bytes_hashed, 5) . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
 
         }
 
@@ -8229,6 +8298,8 @@ class crnrstn_config_manager {
     
     public $config_serial_hash;
     protected $system_hash_algo;
+
+    public $total_bytes_stored = 0;
 
     public function __construct($oCRNRSTN) {
 
@@ -8425,7 +8496,7 @@ class crnrstn_config_manager {
     public function output_regression_stripe_ARRAY($result_str, $result_array, $output_format = 'array'){
 
         $tmp_ARRAY = array();
-        $tmp_ARRAY['string'] = hash($this->system_hash_algo, $result_str);
+        $tmp_ARRAY['string'] = $this->oCRNRSTN->hash($result_str);
         $tmp_ARRAY['index_array'] = $result_array;
 
         if($output_format != 'array'){
@@ -8582,7 +8653,7 @@ class crnrstn_config_manager {
 
         }
 
-        $tmp_array_out_ARRAY['string'] = hash($this->system_hash_algo, $tmp_str_out);
+        $tmp_array_out_ARRAY['string'] = $this->hash($tmp_str_out);
         $tmp_array_out_ARRAY['index_array'] = $tmp_array_str_unit_ARRAY;
 
         if($output_format == 'array') {
@@ -8602,7 +8673,6 @@ class crnrstn_config_manager {
     }
 
 }
-
 
 # # C # R # N # R # S # T # N # : : # # ##
 #
@@ -8712,13 +8782,13 @@ class crnrstn_bitflip_manager {
 
     public function return_serialized_bit_value($bitwise_object_array_index_serial, $integer_constant){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($bitwise_object_array_index_serial))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($bitwise_object_array_index_serial, 'md5'))])){
 
             return false;
 
         }else{
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($bitwise_object_array_index_serial))];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($bitwise_object_array_index_serial, 'md5'))];
 
             $tmp_val = $this->return_bit_value($integer_constant);
 
@@ -8738,7 +8808,7 @@ class crnrstn_bitflip_manager {
 
     public function serialized_is_bit_set($const_nom, $integer_const){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
 
             return false;
 
@@ -8746,7 +8816,7 @@ class crnrstn_bitflip_manager {
 
             //error_log(__LINE__ .' '. __METHOD__ .' we think the array[' . $const_nom . '] index holds a oCRNRSTN_BITMASK object.');
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
 
             //return $oCRNRSTN_BITMASK->read(constant($integer_const));
             return $oCRNRSTN_BITMASK->read($integer_const);
@@ -8759,7 +8829,7 @@ class crnrstn_bitflip_manager {
 
         $tmp_str = '';
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
 
             return false;
 
@@ -8767,7 +8837,7 @@ class crnrstn_bitflip_manager {
 
             //error_log(__LINE__ .' '. __METHOD__ .' we think the array['.$const_nom.'] index holds a oCRNRSTN_BITMASK object.');
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
 
             $tmp_str = $oCRNRSTN_BITMASK->stringout();
 
@@ -8779,22 +8849,22 @@ class crnrstn_bitflip_manager {
 
     public function serialized_bit_stringin($const_nom, $bits_stringin){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
 
             //
             // SOURCE :: https://www.php.net/manual/en/language.operators.bitwise.php
             // AUTHOR :: icy at digitalitcc dot com :: https://www.php.net/manual/en/language.operators.bitwise.php#50299
             $oCRNRSTN_BITMASK = new crnrstn_bitmask();
 
-            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))] = $oCRNRSTN_BITMASK;
+            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
 
         $oCRNRSTN_BITMASK->stringin($bits_stringin);
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         return true;
 
@@ -8802,19 +8872,19 @@ class crnrstn_bitflip_manager {
 
     public function initialize_serialized_bit($const_nom, $integer_const, $default_state = true){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
 
             //
             // SOURCE :: https://www.php.net/manual/en/language.operators.bitwise.php
             // AUTHOR :: icy at digitalitcc dot com :: https://www.php.net/manual/en/language.operators.bitwise.php#50299
             $oCRNRSTN_BITMASK = new crnrstn_bitmask();
 
-            //error_log(__LINE__ .' '. __METHOD__ .' NEW bitmask object flipping['.$integer_const.'] to array index, '.strtoupper(md5($const_nom)));
-            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))] = $oCRNRSTN_BITMASK;
+            //error_log(__LINE__ .' '. __METHOD__ .' NEW bitmask object flipping['.$integer_const.'] to array index, '.strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5')));
+            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
 
         //
         // WILL BASICALLY RETURN AN INT++ FOR EACH UNIQUE CONSTANT PROVIDED.
@@ -8838,9 +8908,9 @@ class crnrstn_bitflip_manager {
 
         }
 
-        //error_log(__LINE__ .' '. __METHOD__ .' we put back into the array['.strtoupper(md5($const_nom)).']...a oCRNRSTN_BITMASK object.');
+        //error_log(__LINE__ .' '. __METHOD__ .' we put back into the array['.strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5')).']...a oCRNRSTN_BITMASK object.');
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         return $tmp_val;
 
@@ -8898,13 +8968,13 @@ class crnrstn_bitflip_manager {
 
     public function toggle_serialized_bit($const_nom, $integer_constant, $target_state = NULL){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
 
             return false;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
 
         if(is_bool($target_state)){
 
@@ -8940,7 +9010,7 @@ class crnrstn_bitflip_manager {
 
         }
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper(md5($const_nom))] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         return $oCRNRSTN_BITMASK->read($integer_constant);
 

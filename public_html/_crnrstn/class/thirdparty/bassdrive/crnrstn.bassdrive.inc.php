@@ -718,9 +718,9 @@ class crnrstn_bassdrive_stream_manager {
                                 `LISTENER_COUNT_PERCENTAGE` = "' . $mysqli->real_escape_string($tmp_listenerCountPercentage) . '",
                                 `AUDIO_FORMAT` = "' . $mysqli->real_escape_string($tmp_audioFormat) . '",
                                 `TITLE` = "' . $mysqli->real_escape_string($tmp_title) . '",
-                                `TITLE_CHECKSUM_MD5` = UNHEX(\'' . md5($tmp_title) . '\'),
+                                `TITLE_CHECKSUM_MD5` = UNHEX(\'' . $this->oCRNRSTN_USR->hash($tmp_title, 'md5') . '\'),
                                 `STREAM_KEY` = "' . $mysqli->real_escape_string($tmp_STREAM_KEY) . '",
-                                `STREAM_KEY_MD5` = UNHEX(\'' . md5($tmp_STREAM_KEY) . '\'),
+                                `STREAM_KEY_MD5` = UNHEX(\'' . $this->oCRNRSTN_USR->hash($tmp_STREAM_KEY, 'md5') . '\'),
                                 `IS_REPLAY` = ' . $tmp_IS_REPLAY . ',
                                 `STATS_TOTAL_CONNECTIONS` = "' . $mysqli->real_escape_string($tmp_connections_ARRAY['total']) . '",
                                 `STATS_TOTAL_CAPACITY` = "' . $mysqli->real_escape_string($tmp_capacity_ARRAY['total']) . '",
@@ -1336,9 +1336,9 @@ class crnrstn_bassdrive_stream_manager {
                                     "' . $mysqli->real_escape_string($tmp_listenerCountPercentage) . '",
                                     "' . $mysqli->real_escape_string($tmp_audioFormat) . '",
                                     "' . $mysqli->real_escape_string($tmp_title) . '",
-                                    UNHEX(\'' . md5($tmp_title) . '\'),
+                                    UNHEX(\'' . $this->oCRNRSTN_USR->hash($tmp_title, 'md5') . '\'),
                                     "' . $mysqli->real_escape_string($tmp_STREAM_KEY) . '",
-                                    UNHEX(\'' . md5($tmp_STREAM_KEY) . '\'),
+                                    UNHEX(\'' . $this->oCRNRSTN_USR->hash($tmp_STREAM_KEY, 'md5') . '\'),
                                     ' . $tmp_IS_REPLAY . ',
                                     "' . $mysqli->real_escape_string($tmp_connections_ARRAY['total']) . '",
                                     "' . $mysqli->real_escape_string($tmp_capacity_ARRAY['total']) . '",
@@ -2249,9 +2249,9 @@ class crnrstn_bassdrive_stream_manager {
                                     "' . $mysqli->real_escape_string($tmp_listenerCountPercentage) . '",
                                     "' . $mysqli->real_escape_string($tmp_audioFormat) . '",
                                     "' . $mysqli->real_escape_string($tmp_title) . '",
-                                    UNHEX(\'' . md5($tmp_title) . '\'),
+                                    UNHEX(\'' . $this->oCRNRSTN_USR->hash($tmp_title, 'md5') . '\'),
                                     "' . $mysqli->real_escape_string($tmp_STREAM_KEY) . '",
-                                    UNHEX(\'' . md5($tmp_STREAM_KEY) . '\'),
+                                    UNHEX(\'' . $this->oCRNRSTN_USR->hash($tmp_STREAM_KEY, 'md5') . '\'),
                                     ' . $tmp_IS_REPLAY . ',
                                     "' . $mysqli->real_escape_string($tmp_connections_ARRAY['total']) . '",
                                     "' . $mysqli->real_escape_string($tmp_capacity_ARRAY['total']) . '",
@@ -3438,7 +3438,7 @@ class crnrstn_bassdrive_stream_relay_manager {
     private function load_stream_relays($oJSON){
 
         $oJSON = json_decode($oJSON, TRUE);
-        self::$stream_relay_ojson_serial = md5(print_r($oJSON, true));
+        self::$stream_relay_ojson_serial = $this->oCRNRSTN_USR->hash(print_r($oJSON, true), 'md5');
 
         $raw_json_nowplaying = $oJSON['nowplaying'];
         $tmp_cnt_nowplaying = count($raw_json_nowplaying);

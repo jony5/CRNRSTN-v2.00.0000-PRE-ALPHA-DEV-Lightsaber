@@ -122,7 +122,7 @@ class crnrstn_living_streams_comm {
 
             //
             // CREATE HTML DOM KEY. CAN ALSO SERVE AS STREAM DOM ID
-            $this->stream_html_dom_key = "LVNGSTRM".$pos."_".crc32($this->return_attribute_data('STREAM_ID'));
+            $this->stream_html_dom_key = "LVNGSTRM".$pos."_".$this->hash($this->return_attribute_data('STREAM_ID'));
 
             //
             // NOW THAT WE HAVE ALL THE DATA. SOME META PROCESSING
@@ -198,7 +198,7 @@ class crnrstn_living_streams_comm {
     }
 
     public function mark_selected($stream_id){
-        $tmp_id = $this->data_attribute_ARRAY[crc32('STREAM_ID')];
+        $tmp_id = $this->data_attribute_ARRAY[$this->hash('STREAM_ID')];
         if($stream_id==$tmp_id){
             error_log("stream (149) i am selected [".$stream_id."]");
             $this->is_selected=true;
@@ -222,9 +222,9 @@ class crnrstn_living_streams_comm {
     public function return_attribute_data($field){
         try{
 
-            if(isset($this->data_attribute_ARRAY[crc32($field)])){
+            if(isset($this->data_attribute_ARRAY[$this->hash($field)])){
 
-                return $this->data_attribute_ARRAY[crc32($field)];
+                return $this->data_attribute_ARRAY[$this->hash($field)];
             }else{
 
                 //
@@ -258,7 +258,7 @@ class crnrstn_living_streams_comm {
 
     private function injest_data_element($field,$value){
         #error_log("stream (132) injest_data_element() field->".$field."|val->".$value);
-        $this->data_attribute_ARRAY[crc32($field)] = $value;
+        $this->data_attribute_ARRAY[$this->hash($field)] = $value;
     }
 
 
@@ -320,7 +320,7 @@ class crnrstn_stream_manager {
 
     public function init_order_depth($stream_id){
 
-        $tmp_order0_key = crc32($stream_id);
+        $tmp_order0_key = $this->hash($stream_id);
 
         self::$stream_depth_monitor_ARRAY[$tmp_order0_key] = 0;
 
@@ -1028,7 +1028,7 @@ class crnrstn_stream_manager {
             }else{
                 #error_log("stream (839) html_elem_ARRAY data[".$key."] [".$val."]");
                 if(!isset($this->tmp_output_flag_ARRAY[$key])){
-                    //error_log("stream (853) output key[".$key."] crc[".crc32($val)."] len[".strlen($val)."]");
+                    //error_log("stream (853) output key[".$key."] crc[".$this->hash($val)."] len[".strlen($val)."]");
                     $this->tmp_output_flag_ARRAY[$key] = 1;
                     $tmp_HTML .= $val;
                     //error_log("stream (983) process non-recursive...".$val);
@@ -1117,7 +1117,7 @@ class crnrstn_stream_manager {
                             }else{
                                 #error_log("stream (839) html_elem_ARRAY data[".$key1."] [".$val1."]");
                                 if(!isset($tmp_output_flag_ARRAY[$key1])) {
-                                    error_log("stream (863) output key[" . $key1 . "] crc[" . crc32($val1) . "] len[" . strlen($val1) . "] count->" . substr_count($val1, 'Reply here no file attach'));
+                                    error_log("stream (863) output key[" . $key1 . "] crc[" . $this->hash($val1) . "] len[" . strlen($val1) . "] count->" . substr_count($val1, 'Reply here no file attach'));
                                     $tmp_output_flag_ARRAY[$key1] = 1;
                                     $tmp_HTML .= $val1;
                                 }
@@ -1128,7 +1128,7 @@ class crnrstn_stream_manager {
                     }else{
                         #error_log("stream (839) html_elem_ARRAY data[".$key."] [".$val."]");
                         if(!isset($tmp_output_flag_ARRAY[$key])){
-                            error_log("stream (936) output key[".$key."] crc[".crc32($val)."] len[".strlen($val)."] count->".substr_count($val, 'Reply here no file attach'));
+                            error_log("stream (936) output key[".$key."] crc[".$this->hash($val)."] len[".strlen($val)."] count->".substr_count($val, 'Reply here no file attach'));
                             $tmp_output_flag_ARRAY[$key] = 1;
                             $tmp_HTML .= $val;
                         }
@@ -1138,7 +1138,7 @@ class crnrstn_stream_manager {
 
 
             }else{
-                #error_log("stream (879) output key[x] crc[".crc32($val)."] len[".strlen($val)."] count->".substr_count($val, 'Reply here no file attach'));
+                #error_log("stream (879) output key[x] crc[".$this->hash($val)."] len[".strlen($val)."] count->".substr_count($val, 'Reply here no file attach'));
                 $tmp_HTML .= $html_elem_ARRAY[$i];
             }
         }

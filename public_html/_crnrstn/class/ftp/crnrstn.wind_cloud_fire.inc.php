@@ -1738,7 +1738,7 @@ class crnrstn_wind_cloud_fire {
                 $tmp_src_FTP_PORT = $FIREHOT_oEndpoint_SOURCE->return_FTP_PORT();
                 $tmp_src_FTP_DIR_PATH = $FIREHOT_oEndpoint_SOURCE->return_FTP_DIR_PATH();
 
-                $tmp_endpoint_id = md5($tmp_src_FTP_SERVER.$tmp_src_FTP_USERNAME.$tmp_src_FTP_PASSWORD.$tmp_src_FTP_PORT);
+                $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_src_FTP_SERVER.$tmp_src_FTP_USERNAME.$tmp_src_FTP_PASSWORD.$tmp_src_FTP_PORT, 'md5');
                 $this->oCRNRSTN_USR->error_log('****** SOURCE ENDPOINT = FTP[' . $tmp_src_FTP_SERVER.'][' . $tmp_src_FTP_DIR_PATH.'] ******', __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
                 //
@@ -2201,7 +2201,7 @@ class crnrstn_wind_cloud_fire {
             $tmp_MKDIR_MODE = $mkdir_permissons_mode;
             $tmp_DIR_PATH = $dirPath;
 
-            $tmp_endpoint_id = md5($tmp_DIR_PATH);
+            $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_DIR_PATH, 'md5');
             $tmp_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(100);
 
             if($this->ready_for_preload($tmp_endpoint_id) || $this->preload_endpoint_validation_fail[$tmp_endpoint_id]){
@@ -2319,7 +2319,7 @@ class crnrstn_wind_cloud_fire {
             $tmp_MKDIR_MODE = $mkdir_permissons_mode;
             $tmp_DIR_PATH = $dirPath;
 
-            $tmp_endpoint_id = md5($tmp_DIR_PATH);
+            $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_DIR_PATH, 'md5');
             $tmp_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(100);
 
             if($this->ready_for_preload($tmp_endpoint_id) || $this->preload_endpoint_validation_fail[$tmp_endpoint_id]){
@@ -2438,7 +2438,7 @@ class crnrstn_wind_cloud_fire {
             $tmp_MKDIR_MODE = NULL;
             $tmp_DIR_PATH = $dirPath;
 
-            $tmp_endpoint_id = md5($tmp_DIR_PATH);
+            $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_DIR_PATH, 'md5');
             $tmp_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(100);
 
             if($this->ready_for_preload($tmp_endpoint_id) || $this->preload_endpoint_validation_fail[$tmp_endpoint_id]){
@@ -2550,7 +2550,7 @@ class crnrstn_wind_cloud_fire {
             $tmp_DIR_PATH = $this->oCRNRSTN_USR->get_resource('LOCAL_DIR_PATH', $WildCardResource_key);
             $tmp_MKDIR_MODE = $this->oCRNRSTN_USR->get_resource('LOCAL_MKDIR_MODE', $WildCardResource_key);
 
-            $tmp_endpoint_id = md5($tmp_DIR_PATH);
+            $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_DIR_PATH, 'md5');
             $tmp_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(100);
 
             if($this->ready_for_preload($tmp_endpoint_id) || $this->preload_endpoint_validation_fail[$tmp_endpoint_id]){
@@ -2667,7 +2667,7 @@ class crnrstn_wind_cloud_fire {
             $tmp_DIR_PATH = $this->oCRNRSTN_USR->get_resource('LOCAL_DIR_PATH', $WildCardResource_key);
             $tmp_MKDIR_MODE = $this->oCRNRSTN_USR->get_resource('LOCAL_MKDIR_MODE', $WildCardResource_key);
 
-            $tmp_endpoint_id = md5($tmp_DIR_PATH);
+            $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_DIR_PATH, 'md5');
             $tmp_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(100);
 
             if($this->ready_for_preload($tmp_endpoint_id) || $this->preload_endpoint_validation_fail[$tmp_endpoint_id]){
@@ -2784,7 +2784,7 @@ class crnrstn_wind_cloud_fire {
             $tmp_MKDIR_MODE = NULL;
             $tmp_DIR_PATH = $this->oCRNRSTN_USR->get_resource('LOCAL_DIR_PATH', $WildCardResource_key);
 
-            $tmp_endpoint_id = md5($tmp_DIR_PATH);
+            $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_DIR_PATH, 'md5');
             $tmp_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(100);
 
             if($this->ready_for_preload($tmp_endpoint_id) || $this->preload_endpoint_validation_fail[$tmp_endpoint_id]){
@@ -2909,7 +2909,7 @@ class crnrstn_wind_cloud_fire {
             $tmp_FTP_PORT = $this->oCRNRSTN_USR->get_resource('FTP_PORT', $WildCardResource_key);
             $tmp_FTP_DIR_PATH = $this->oCRNRSTN_USR->get_resource('FTP_DIR_PATH', $WildCardResource_key);
 
-            $tmp_endpoint_id = md5($tmp_FTP_SERVER.$tmp_FTP_USERNAME.$tmp_FTP_PASSWORD.$tmp_FTP_PORT);
+            $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_FTP_SERVER.$tmp_FTP_USERNAME.$tmp_FTP_PASSWORD.$tmp_FTP_PORT, 'md5');
             $tmp_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(100);
 
             $this->oCRNRSTN_USR->error_log('CRNRSTN :: Electrum process checking FTP [' . $tmp_FTP_SERVER . '][' . $tmp_FTP_USERNAME . '][' . $tmp_FTP_PORT . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
@@ -2999,7 +2999,7 @@ class crnrstn_wind_cloud_fire {
             $tmp_FTP_PORT = $this->oCRNRSTN_USR->get_resource('FTP_PORT', $WildCardResource_key);
             $tmp_FTP_DIR_PATH = $this->oCRNRSTN_USR->get_resource('FTP_DIR_PATH', $WildCardResource_key);
 
-            $tmp_endpoint_id = md5($tmp_FTP_SERVER.$tmp_FTP_USERNAME.$tmp_FTP_PASSWORD.$tmp_FTP_PORT);
+            $tmp_endpoint_id = $this->oCRNRSTN->hash($tmp_FTP_SERVER.$tmp_FTP_USERNAME.$tmp_FTP_PASSWORD.$tmp_FTP_PORT, 'md5');
             $tmp_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(100);
 
             $this->oCRNRSTN_USR->error_log('CRNRSTN :: Electrum process checking FTP [' . $tmp_FTP_SERVER . '][' . $tmp_FTP_USERNAME . '][' . $tmp_FTP_PORT . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);

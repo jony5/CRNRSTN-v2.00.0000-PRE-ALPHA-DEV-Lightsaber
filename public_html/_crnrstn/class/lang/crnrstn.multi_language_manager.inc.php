@@ -2947,9 +2947,9 @@ class crnrstn_multi_language_manager {
 
             }
 
-            if(!isset($tmp_lang_flag[md5($tmp_base)][md5($tmp_region)][md5($tmp_weight)])){
+            if(!isset($tmp_lang_flag[$this->oCRNRSTN->hash($tmp_base, 'md5')][$this->oCRNRSTN->hash($tmp_region, 'md5')][$this->oCRNRSTN->hash($tmp_weight, 'md5')])){
 
-                if($tmp_region == '' && $tmp_weight == '' && isset($tmp_lang_flag[md5($tmp_base)])){
+                if($tmp_region == '' && $tmp_weight == '' && isset($tmp_lang_flag[$this->oCRNRSTN->hash($tmp_base, 'md5')])){
 
 
                 }else{
@@ -2959,7 +2959,7 @@ class crnrstn_multi_language_manager {
 
                 }
 
-                $tmp_lang_flag[md5($tmp_base)][md5($tmp_region)][md5($tmp_weight)] = 1;
+                $tmp_lang_flag[$this->oCRNRSTN->hash($tmp_base, 'md5')][$this->oCRNRSTN->hash($tmp_region, 'md5')][$this->oCRNRSTN->hash($tmp_weight, 'md5')] = 1;
 
             }
 
@@ -2995,13 +2995,13 @@ class crnrstn_multi_language_manager {
                 switch($this->country_iso_code) {
                     case 'es':
 
-                        break;
+                    break;
                     default:
 
                         //case 'en':
                         return 'For a quick reference on environmental configuration and detection, please see the demonstration below.';
 
-                        break;
+                    break;
 
                 }
 

@@ -409,7 +409,7 @@ class crnrstn_chunk_restrictor {
 
         $this->oLogger = new crnrstn_logging(__CLASS__, self::$oCRNRSTN_ENV);
 
-        $this->chunk_hash = md5($page_content);
+        $this->chunk_hash = self::$oCRNRSTN_ENV->hash($page_content);
         $this->raw_content = $page_content;
         $this->encoding = $encoding;
         $this->content_mbstring_length = mb_strlen($this->raw_content, $encoding);

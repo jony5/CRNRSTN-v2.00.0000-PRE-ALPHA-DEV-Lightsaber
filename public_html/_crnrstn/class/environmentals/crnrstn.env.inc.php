@@ -68,6 +68,7 @@ class crnrstn_environment {
     public $env_key;
     public $env_key_hash;
     protected $system_hash_algo;
+    public $total_bytes_encrypted = 0;
 
     public $oCRNRSTN;
     public $oCRNRSTN_USR;
@@ -198,7 +199,7 @@ class crnrstn_environment {
             try{
 
                 //
-                //  DETERMINE KEY DESIGNATING THE RUNNING ENVIRONMENT, WHERE KEY = CRC32(env key)
+                //  DETERMINE KEY DESIGNATING THE RUNNING ENVIRONMENT, WHERE KEY = hash(env key)
                 if($this->env_key_hash == ''){
 
                     //
@@ -1238,12 +1239,12 @@ class crnrstn_environment {
 
         /*
         <theme_configuration>
-            <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" checksum="' . $this->crcINT('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
-            <mini_canvas left="84%" width="100" height="70" checksum="' . $this->crcINT('10070') . '"></mini_canvas>
-            <signin_canvas width="260" height="305" checksum="' . $this->crcINT('260305') . '"></signin_canvas>
-            <main_canvas width="1080" height="760" checksum="' . $this->crcINT('1080760') . '"></main_canvas>
-            <eula_canvas width="700" height="400" checksum="' . $this->crcINT('700400') . '"></eula_canvas>
-            <mit_license_canvas width="500" height="400" checksum="' . $this->crcINT('500400') . '"></mit_license_canvas>
+            <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" checksum="' . $this->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
+            <mini_canvas left="84%" width="100" height="70" hash="' . $this->hash('10070') . '"></mini_canvas>
+            <signin_canvas width="260" height="305" checksum="' . $this->hash('260305') . '"></signin_canvas>
+            <main_canvas width="1080" height="760" checksum="' . $this->hash('1080760') . '"></main_canvas>
+            <eula_canvas width="700" height="400" checksum="' . $this->hash('700400') . '"></eula_canvas>
+            <mit_license_canvas width="500" height="400" checksum="' . $this->hash('500400') . '"></mit_license_canvas>
         </theme_configuration>
 
         ()
@@ -1251,13 +1252,11 @@ class crnrstn_environment {
 
         error_log(__LINE__ . ' env running [' . __METHOD__ . '].');
 
-        $tmp_oNUSOAP_BASE = $this->oCRNRSTN_USR->return_oNUSOAP_BASE();
-        $this->oCRNRSTN_USR->form_serialize_new('crnrstn_soap_data_tunnel_form');
-
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_resource_filecache_version', false);
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', false);
+        //$tmp_oNUSOAP_BASE = $this->oCRNRSTN_USR->return_oNUSOAP_BASE();
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', 'crnrstn_request_serialization_key', '',CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_hash', 'crnrstn_request_serialization_hash', '', CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_resource_filecache_version', 'crnrstn_resource_filecache_version');
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', 'crnrstn_interact_ui_link_text_click');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->oCRNRSTN_USR->return_serialized_soap_data_tunnel_session('crnrstn_session_json'), 'crnrstn_session');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
@@ -1338,7 +1337,7 @@ class crnrstn_environment {
 
                 $tmp_filename = $this->oCRNRSTN->strrtrim($tmp_scraped_filename_ARRAY[$i], '.php');
 
-                $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $tmp_filename . '" id="crnrstn_text_lnk_' . md5($tmp_filename) . '" href="#' . $tmp_filename . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;">' . $tmp_filename . '</a></li>
+                $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $tmp_filename . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($tmp_filename, 'md5') . '" href="#' . $tmp_filename . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $tmp_filename . '">' . $tmp_filename . '</a></li>
 ';
 
             }
@@ -1381,7 +1380,7 @@ class crnrstn_environment {
            
             <div id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav">
                 <ul>
-                    <!--<li><a id="crnrstn_text_lnk_' . md5('error_log') . '" href="#error_log" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;">error_log</a></li>-->
+                    <!--<li><a id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash('error_log', 'md5') . '" href="#error_log" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;">error_log</a></li>-->
                     ' . $this->return_documentation_side_nav_link_ARRAY() . '
                 </ul>                
                 <div class="crnrstn_cb_20"></div>
@@ -2450,9 +2449,9 @@ class crnrstn_environment {
 
     private function ___init_wp_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $wp_config_file_path){
+            foreach($oCRNRSTN->wp_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $wp_config_file_path){
 
                 if(is_file($wp_config_file_path)){
 
@@ -2460,7 +2459,7 @@ class crnrstn_environment {
 
                     //
                     // EXTRACT PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of WordPress profiles authorized to connect to CRNRSTN :: [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($wp_config_file_path);
 
@@ -2512,9 +2511,9 @@ class crnrstn_environment {
 
     private function init_analytics_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $analytics_config_file_path){
+            foreach($oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $analytics_config_file_path){
 
                 if(is_file($analytics_config_file_path)){
 
@@ -2522,7 +2521,7 @@ class crnrstn_environment {
 
                     //
                     // EXTRACT PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of analytics SEO profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->analytics_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($analytics_config_file_path);
 
@@ -2715,7 +2714,7 @@ class crnrstn_environment {
         $PROGRAM_KEY = '"PROGRAM_KEY" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . ',';
         $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . ',';
 
-        $CANVAS_PROFILE_CHECKSUM = '"CANVAS_PROFILE_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
+        $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
         $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN_USR->return_json_value($this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT')) . '",';
         $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
         $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
@@ -2835,7 +2834,7 @@ class crnrstn_environment {
                             ' . $PROGRAM_KEY . '
                             ' . $DEVICE_TYPE_CHANNEL . '
                             ' . $CANVAS_PROFILE_CONTENT . '
-                            ' . $CANVAS_PROFILE_CHECKSUM . '
+                            ' . $CANVAS_PROFILE_HASH . '
                             ' . $CANVAS_PROFILE_LOCK . '
                             ' . $CANVAS_PROFILE_LOCK_TTL . '
                             ' . $CANVAS_PROFILE_LOCK_ISACTIVE . '
@@ -2938,12 +2937,12 @@ class crnrstn_environment {
         /*
 
         <theme_configuration>
-        <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" checksum="' . $this->crcINT('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
-        <mini_canvas left="84%" width="100" height="70" checksum="' . $this->crcINT('10070') . '"></mini_canvas>
-        <signin_canvas width="260" height="305" checksum="' . $this->crcINT('260305') . '"></signin_canvas>
-        <main_canvas width="1080" height="760" checksum="' . $this->crcINT('1080760') . '"></main_canvas>
-        <eula_canvas width="700" height="400" checksum="' . $this->crcINT('700400') . '"></eula_canvas>
-        <mit_license_canvas width="500" height="400" checksum="' . $this->crcINT('500400') . '"></mit_license_canvas>
+        <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" checksum="' . $this->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
+        <mini_canvas left="84%" width="100" height="70" checksum="' . $this->hash('10070') . '"></mini_canvas>
+        <signin_canvas width="260" height="305" checksum="' . $this->hash('260305') . '"></signin_canvas>
+        <main_canvas width="1080" height="760" checksum="' . $this->hash('1080760') . '"></main_canvas>
+        <eula_canvas width="700" height="400" checksum="' . $this->hash('700400') . '"></eula_canvas>
+        <mit_license_canvas width="500" height="400" checksum="' . $this->hash('500400') . '"></mit_license_canvas>
         </theme_configuration>
 
         TODO :: NEED TO PASS DYNAMIC ID="crnrstn_xxxx" TO THE oCRNRSTN_USR FOR XML RETURN.
@@ -2998,9 +2997,9 @@ class crnrstn_environment {
 
     private function init_engagement_config($oCRNRSTN){
 
-        if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $engagement_config_file_path){
+            foreach($oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)] as $key => $engagement_config_file_path){
 
                 if(is_file($engagement_config_file_path)){
 
@@ -3008,7 +3007,7 @@ class crnrstn_environment {
 
                     //
                     // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of engagement tag profiles from the CRNRSTN :: configuration file [' . $oCRNRSTN->engagement_config_file_path_ARRAY[$this->config_serial_hash][$oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     include_once($engagement_config_file_path);
 
@@ -3060,16 +3059,16 @@ class crnrstn_environment {
 
     private function __initSOAPAuthorizationProfiles(){
 
-        if(!!$this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            foreach($this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)] as $key => $soap_config_file_path){
+            foreach($this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->hash(CRNRSTN_RESOURCE_ALL)] as $key => $soap_config_file_path){
 
                 if(is_file($soap_config_file_path)){
 
                     //
                     // EXTRACT ACCESS-BY-IP AUTHORIZATION PROFILE FROM FILE
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                    //include_once($this->soap_permissions_file_path_ARRAY[$this->crcINT($this->config_serial_hash)][$this->env_key_hash][$key]);
+                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('We have a file to include and process for the initialization of endpoint profiles authorized to connect to the CRNRSTN :: SOAP Services layer [' . $this->soap_permissions_file_path_ARRAY[$this->config_serial_hash][$this->hash(CRNRSTN_RESOURCE_ALL)][$key] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    //include_once($this->soap_permissions_file_path_ARRAY[$this->hash($this->config_serial_hash)][$this->env_key_hash][$key]);
                     include_once($soap_config_file_path);
 
                 }else{
@@ -3185,7 +3184,7 @@ class crnrstn_environment {
     public function update_SOAP_services_oAuth_soap_encryption_config($origin_oAuth_serial, $services_authorization_group_key, $encryptCipher, $encryptSecretKey, $hmac_alg, $encryptOptions){
 
         $tmp_array = array();
-        $encryptSecretKey = md5($encryptSecretKey);
+        $encryptSecretKey = $this->hash($encryptSecretKey, 'md5');
 
         foreach($this->oSOAP_services_oAuth_manager as $serial => $SOAP_oAuth) {
 
@@ -3211,7 +3210,7 @@ class crnrstn_environment {
 
         $tmp_array = array();
 
-        $encryptSecretKey = md5($encryptSecretKey);
+        $encryptSecretKey = $this->hash($encryptSecretKey, 'md5');
 
         foreach($this->oSOAP_services_oClient_manager as $serial => $SOAP_oClient) {
 
@@ -3623,6 +3622,12 @@ class crnrstn_environment {
 
     }
 
+    public function hash($data, $algorithm = NULL){
+
+        return $this->oCRNRSTN->hash($data, $algorithm);
+
+    }
+
     public function isset_encryption($encryption_channel){
 
         return $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->is_bit_set($encryption_channel);
@@ -3632,6 +3637,8 @@ class crnrstn_environment {
     private function return_data_encrypted($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
 
         try{
+
+            $this->total_bytes_encrypted += strlen($data);
 
             switch($encryption_channel){
                 case CRNRSTN_ENCRYPT_TUNNEL:
@@ -4436,9 +4443,9 @@ class crnrstn_environment {
 
         $env_key = $this->env_key;
 
-        if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)]){
+        if(!!$oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)]){
 
-            $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->crcINT(CRNRSTN_RESOURCE_ALL)];
+            $this->wildCardResource_filePath = $oCRNRSTN->wildCardResource_filePath_ARRAY[$this->config_serial_hash][$this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL)];
 
         }else{
 
@@ -5439,312 +5446,13 @@ class crnrstn_environment {
 
     public function print_r_str($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
-        if(!isset($theme_style)){
-
-            //
-            // SET A DEFAULT
-            $theme_style = CRNRSTN_UI_PHPNIGHT;
-
-            $theme_style_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
-
-            if(count($theme_style_ARRAY) > 0){
-
-                $theme_style = $theme_style_ARRAY[0];   // FIRST MATCH
-
-            }
-
-        }
-
-        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]';
-
-        if(!isset($method) || $method == ''){
-
-            if(isset($file)){
-
-                $tmp_meta .= ' [file ' . $file . ']';
-
-            }
-
-        }else{
-
-            $tmp_meta .= ' [methd ' . $method . ']';
-
-        }
-
-        if(isset($line_num)){
-
-            $tmp_meta .= ' [lnum ' . $line_num . ']';
-
-        }
-
-        $tmp_print_r = print_r($expression, true);
-
-        $tmp_print_r = $this->proper_replace('\r\n', '\n', $tmp_print_r);
-        $lines = preg_split('#\r?\n#', trim($tmp_print_r));
-        $tmp_line_cnt = sizeof($lines);
-
-        $lineHTML = implode('<br />', range(1, $tmp_line_cnt + 0));
-        $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:#00FF00; border-right:1px solid #333333; background-color:#161616; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
-
-        if(isset($title) && $title != ''){
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= $title;
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }else{
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }
-
-        $tmp_hash = $this->generate_new_key(10);
-
-        switch($theme_style){
-            case CRNRSTN_UI_PHP:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-            break;
-            case CRNRSTN_UI_HTML:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-            break;
-            case CRNRSTN_UI_PHPNIGHT:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-            break;
-            default:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-            break;
-
-        }
-
-        $tmp_str_out = '<div style="background-color: #FFF; padding: 10px 20px 10px 20px;">';
-        $tmp_str_out .= $tmp_out;
-
-        $output = $this->highlight_text($tmp_print_r, $theme_style);
-        $output = $this->proper_replace('<br />', '
-', $output);
-
-        if($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>'){
-
-            $output = '<span style="color: #DEDECB">&nbsp;</span>';
-
-        }
-
-        if($tmp_str_out == '<span style="color: #000"></span>'){
-
-            $tmp_str_out = '<span style="color: #000">&nbsp;</span>';
-
-        }
-
-        $tmp_str_out .= '<pre>';
-        $tmp_str_out .= print_r($output, true);
-        $tmp_str_out .= '</pre>';
-
-        $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
-
-        $tmp_str_out .= '</code></div></div>
-        <div style="width:100%;">
-            <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
-
-            ' . $component_crnrstn_title . '
-
-            <div style="float:right; max-width:82%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
-                
-            <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-        </div>
-        </div></div></div>';
-
-        $tmp_str_out .= '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-';
-
-        return $tmp_str_out;
+        return $this->oCRNRSTN->print_r_str($expression, $title, $theme_style, $line_num, $method, $file);
 
     }
 
-    public function print_r($expression, $title = NULL, $style_theme = NULL, $line_num = NULL, $method = NULL, $file = NULL){
+    public function print_r($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
-        if(!isset($style_theme)){
-
-            //
-            // SET DEFAULT CONSTANT
-            $style_theme = CRNRSTN_UI_PHPNIGHT;
-
-            $tmp_theme_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
-
-            if(count($tmp_theme_ARRAY) > 0){
-
-                $style_theme = $tmp_theme_ARRAY[0];     // WE TAKE THE FIRST
-
-            }
-
-        }
-
-        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]';
-
-        if(!isset($method) || $method == ''){
-
-            if(isset($file)){
-
-                $tmp_meta .= ' [file ' . $file . ']';
-
-            }
-
-        }else{
-
-            $tmp_meta .= ' [methd ' . $method . ']';
-
-        }
-
-        if(isset($line_num)){
-
-            $tmp_meta .= ' [lnum ' . $line_num . ']';
-
-        }
-
-        $tmp_print_r = print_r($expression, true);
-
-        $tmp_print_r = $this->proper_replace('\r\n', '\n', $tmp_print_r);
-        $lines = preg_split('#\r?\n#', trim($tmp_print_r));
-        $tmp_line_cnt = sizeof($lines);
-
-        $lineHTML = implode('<br />', range(1, $tmp_line_cnt+0));
-        $tmp_linecnt_html_out = '<div style="line-height:20px; position:absolute; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:#00FF00; border-right:1px solid #333333; background-color:#161616; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div>';
-
-        if(isset($title) && $title != ''){
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= $title;
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }else{
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 30px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        }
-
-        $tmp_hash = $this->generate_new_key(10);
-
-        switch($style_theme){
-            case CRNRSTN_UI_PHP:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#CCC; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#CCC; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-            break;
-            case CRNRSTN_UI_HTML:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#FFF; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#FFF; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-            break;
-            case CRNRSTN_UI_PHPNIGHT:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#000; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#000; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-            break;
-            default:
-
-                $tmp_out = '
-                <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
-                ' . $tmp_title . '
-                <div style="padding: 5px 30px 20px 25px;"><div style="position:relative; background-color:#E6E6E6; color:#DEDECB; width:100%; padding:0px; margin:0; border:3px solid #CC9900; height:350px; overflow:scroll; /*overflow-y:hidden;*/ font-size:14px;">
-                ' . $tmp_linecnt_html_out . '
-                <div style="background-color:#E6E6E6; color:#DEDECB; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
-                <code>';
-
-                break;
-
-        }
-
-        echo '<div style="background-color: #FFF; padding: 10px 20px 10px 20px;">';
-        echo $tmp_out;
-
-        $output = $this->highlight_text($tmp_print_r, $style_theme);
-        $output = $this->proper_replace('<br />', '
-', $output);
-
-        if($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>'){
-
-            $output = '<span style="color: #DEDECB">&nbsp;</span>';
-
-        }
-
-        if($output == '<span style="color: #000"></span>'){
-
-            $output = '<span style="color: #000">&nbsp;</span>';
-
-        }
-
-        echo '<pre>';
-        print_r($output);
-        echo '</pre>';
-
-        $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
-
-        echo '</code></div></div>
-        <div style="width:100%;">
-            <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
-
-            ' . $component_crnrstn_title . '
-
-            <div style="float:right; max-width:88%; max-width:82%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:11px;">' . $tmp_meta . '</div>
-                
-            <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-        </div>
-        </div></div></div>';
-
-        echo '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>';
+        return $this->oCRNRSTN->print_r($expression, $title, $theme_style, $line_num, $method, $file);
 
     }
 
@@ -6758,13 +6466,6 @@ class crnrstn_environment {
 
     }
 
-    public function crcINT($value){
-
-        $value = crc32($value);
-        return sprintf('%u', $value);
-
-    }
-
     //
     // SOURCE :: https://www.php.net/manual/en/function.str-split.php
     // AUTHOR :: qeremy [atta] gmail [dotta] com :: https://www.php.net/manual/en/function.str-split.php#113274
@@ -7264,7 +6965,7 @@ class crnrstn_environment {
 
     public function __destruct() {
 
-        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('goodbye crnrstn :: ' . __CLASS__ . '::' . __METHOD__ . ' called. [rtime ' . $this->wall_time() . ' secs]', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
+        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('goodbye crnrstn :: ' . __CLASS__ . '::' . __METHOD__ . ' called. [rtime ' . $this->wall_time() . ' secs][bytes_encrypted ' . $this->oCRNRSTN->format_bytes($this->total_bytes_encrypted, 5) . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
 
     }
 
@@ -7306,7 +7007,7 @@ class crnrstn_administrative_account {
         $this->max_seconds_inactive = $max_seconds_inactive;
         $this->session_ip_address = $this->oCRNRSTN_n->oCRNRSTN_IPSECURITY_MGR->clientIpAddress();
 
-        $this->serial = md5(trim(strtolower($email)));
+        $this->serial = $this->oCRNRSTN_n->hash(trim(strtolower($email)), 'md5');
 
         $this->oCRNRSTN_n->oLog_output_ARRAY[] = $this->oCRNRSTN_n->error_log('Instantiating an administrative account with email=' . $this->oCRNRSTN_n->string_sanitize($this->email, 'email_private') . ' for the ' . $this->oCRNRSTN_n->env_key . ' environment.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -7544,8 +7245,8 @@ class crnrstn_wildcard_resource {
     public function add_attribute($attribute_key, $attribute_value){
 
         //self::$oCRNRSTN_n->oLog_output_ARRAY[] = self::$oCRNRSTN_n->error_log('Adding ->' . $attribute_key . '<- data attribute to the ' . $this->resource_key . ' wild card resource for the ' . $this->env_key . ' environment.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-        $env_key_hash = self::$oCRNRSTN_n->crcINT($this->resource_key);
-        $attribute_key_crc = self::$oCRNRSTN_n->crcINT($attribute_key);
+        $env_key_hash = self::$oCRNRSTN_n->hash($this->resource_key);
+        $attribute_key_crc = self::$oCRNRSTN_n->hash($attribute_key);
 
         $this->oDataTransportLayer->add($attribute_value, $attribute_key);
         $this->attribute_key_ARRAY[$env_key_hash][$attribute_key_crc] = $attribute_value;
@@ -7556,8 +7257,8 @@ class crnrstn_wildcard_resource {
 
     public function isset_WCR($WCR_key, $attribute_key){
 
-        $tmp_wc_key_crc = self::$oCRNRSTN_n->crcINT($WCR_key);
-        $attribute_key_crc = self::$oCRNRSTN_n->crcINT($attribute_key);
+        $tmp_wc_key_crc = self::$oCRNRSTN_n->hash($WCR_key);
+        $attribute_key_crc = self::$oCRNRSTN_n->hash($attribute_key);
 
         if(isset($this->attribute_set_flag_ARRAY[$tmp_wc_key_crc][$attribute_key_crc])){
 
@@ -7577,8 +7278,8 @@ class crnrstn_wildcard_resource {
         //
         // THROWING AN EXCEPTION HERE CAN CAUSE ETERNAL LOOP.
         //try{
-        $tmp_wc_key_crc = self::$oCRNRSTN_n->crcINT($wildCardKey);
-        $attribute_key_crc = self::$oCRNRSTN_n->crcINT($attribute_key);
+        $tmp_wc_key_crc = self::$oCRNRSTN_n->hash($wildCardKey);
+        $attribute_key_crc = self::$oCRNRSTN_n->hash($attribute_key);
 
         if($soap_transport){
 
@@ -7616,8 +7317,8 @@ class crnrstn_wildcard_resource {
 
             /*
 
-            $env_key_hash = self::$oCRNRSTN_n->crcINT($this->resource_key);
-            $attribute_key_crc = self::$oCRNRSTN_n->crcINT($attribute_key);
+            $env_key_hash = self::$oCRNRSTN_n->hash($this->resource_key);
+            $attribute_key_crc = self::$oCRNRSTN_n->hash($attribute_key);
 
             $this->oDataTransportLayer->add($attribute_value, $attribute_key);
             $this->attribute_key_ARRAY[$env_key_hash][$attribute_key_crc] = $attribute_value;
@@ -7658,8 +7359,8 @@ class crnrstn_wildcard_resource {
         // THROWING AN EXCEPTION HERE CAN CAUSE ETERNAL LOOP.
         //try{
 
-        $tmp_wc_key_crc = self::$oCRNRSTN_n->crcINT($wildCardKey);
-        $attribute_key_crc = self::$oCRNRSTN_n->crcINT($attribute_key);
+        $tmp_wc_key_crc = self::$oCRNRSTN_n->hash($wildCardKey);
+        $attribute_key_crc = self::$oCRNRSTN_n->hash($attribute_key);
 
         if(isset($this->attribute_key_ARRAY[$tmp_wc_key_crc][$attribute_key_crc])){
 
@@ -7715,6 +7416,7 @@ class crnrstn_decoupled_data_object {
     public $data_flag_ARRAY = array();
     protected $data_type_lock;
     protected $data_type;
+    protected $total_bytes_stored = 0;
 
     public $soap_encrypt_cipher;
     public $soap_encrypt_secret_key;
@@ -7897,6 +7599,12 @@ class crnrstn_decoupled_data_object {
 
     }
 
+    public function return_total_bytes_stored(){
+
+        return $this->total_bytes_stored;
+
+    }
+
     public function count($data_key){
 
         if(strlen($this->oCRNRSTN->get_server_env()) > 0){
@@ -7997,7 +7705,7 @@ class crnrstn_decoupled_data_object {
 
                         $tmp_str_out .= '
                         {
-                            "HASH" : ' . hash($this->oCRNRSTN->system_hash_algorithm(), $tmp_attribute_key . md5($this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator]) . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator]) . '",
+                            "HASH" : ' . $this->oCRNRSTN->hash($tmp_attribute_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator], 'md5') . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator], 'md5') . '",
                             "KEY" : "' . $this->oCRNRSTN_USR->return_json_value($tmp_attribute_key) . '",
                             "LENGTH" : "' . $tmp_val_len . '",
                             "TYPE" : "' . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator] . '",
@@ -8178,6 +7886,12 @@ class crnrstn_decoupled_data_object {
 //            die();
 //
 //        }
+
+        if(is_string($data_value)){
+
+            $this->total_bytes_stored += strlen($data_value);
+
+        }
 
         if(!isset($data_key)){
 
@@ -8627,7 +8341,7 @@ class crnrstn_decoupled_data_object {
 
                 if(isset($this->oCRNRSTN_USR)){
 
-                    $this->soap_encrypt_secret_key = md5($this->oCRNRSTN_USR->get_resource('CRNRSTN_SOAP_SVC_ENCRYPTION_KEY', 'CRNRSTN::INTEGRATIONS'));
+                    $this->soap_encrypt_secret_key = $this->oCRNRSTN->hash($this->oCRNRSTN_USR->get_resource('CRNRSTN_SOAP_SVC_ENCRYPTION_KEY', 'CRNRSTN::INTEGRATIONS'), 'md5');
                     $tmp_SOAP_ENCRYPT_HMAC_ALG = $tmp_SOAP_ENCRYPT_HMAC_ALG_resp;
                     $tmp_SOAP_ENCRYPT_OPTIONS = $tmp_SOAP_ENCRYPT_OPTIONS_resp;
 
@@ -8639,7 +8353,7 @@ class crnrstn_decoupled_data_object {
                             'CRNRSTN_PACKET_IS_ENCRYPTED' => 'TRUE',
                             'CRNRSTN_SOAP_SVC_AUTH_KEY' => $this->oCRNRSTN_USR->data_encrypt($this->oCRNRSTN_USR->get_resource('CRNRSTN_SOAP_SVC_AUTH_KEY', 'CRNRSTN::INTEGRATIONS'), CRNRSTN_ENCRYPT_SOAP , $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
                             'CRNRSTN_SOAP_SVC_USERNAME' => $this->oCRNRSTN_USR->data_encrypt($this->oCRNRSTN_USR->get_resource('CRNRSTN_SOAP_SVC_USERNAME', 'CRNRSTN::INTEGRATIONS'), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
-                            'CRNRSTN_SOAP_SVC_PASSWORD' => $this->oCRNRSTN_USR->data_encrypt($this->oCRNRSTN_USR->create_pwd_hash_for_storage(md5($this->preach('value', 'CRNRSTN_SOAP_SVC_PASSWORD'))), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
+                            'CRNRSTN_SOAP_SVC_PASSWORD' => $this->oCRNRSTN_USR->data_encrypt($this->oCRNRSTN_USR->create_pwd_hash_for_storage($this->oCRNRSTN->hash($this->preach('value', 'CRNRSTN_SOAP_SVC_PASSWORD'), 'md5')), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
                             'oCRNRSTN_SOAP_SVC_REQUESTED_RESOURCES' => $tmp_requested_resources_SOAP_OBJECT,
                             'CRNRSTN_SOAP_SVC_METHOD_REQUESTED' => $this->oCRNRSTN_USR->data_encrypt('mayItakeTheKingsHighway', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
                             'CRNRSTN_SOAP_ACTION_TYPE' => $this->oCRNRSTN_USR->data_encrypt('EXCEPTION_NOTIFICATION', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
@@ -8650,7 +8364,7 @@ class crnrstn_decoupled_data_object {
 
                 }else{
 
-                    $this->soap_encrypt_secret_key = md5($this->oCRNRSTN->get_resource('CRNRSTN_SOAP_SVC_ENCRYPTION_KEY', 'CRNRSTN::INTEGRATIONS'));
+                    $this->soap_encrypt_secret_key = $this->oCRNRSTN->hash($this->oCRNRSTN->get_resource('CRNRSTN_SOAP_SVC_ENCRYPTION_KEY', 'CRNRSTN::INTEGRATIONS'), 'md5');
                     $tmp_SOAP_ENCRYPT_HMAC_ALG = $tmp_SOAP_ENCRYPT_HMAC_ALG_resp;
                     $tmp_SOAP_ENCRYPT_OPTIONS = $tmp_SOAP_ENCRYPT_OPTIONS_resp;
                     //error_log(__LINE__ .' env ddo - mayItakeTheKingsHighway ENCRYPT-A USERNAME ['.$tmp_SOAP_ENCRYPT_CIPHER.']['.$this->soap_encrypt_secret_key.']['.$tmp_SOAP_ENCRYPT_HMAC_ALG.']['.$tmp_SOAP_ENCRYPT_OPTIONS.']');
@@ -8663,7 +8377,7 @@ class crnrstn_decoupled_data_object {
                             'CRNRSTN_PACKET_IS_ENCRYPTED' => 'TRUE',
                             'CRNRSTN_SOAP_SVC_AUTH_KEY' => $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->get_resource('CRNRSTN_SOAP_SVC_AUTH_KEY', 'CRNRSTN::INTEGRATIONS'), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
                             'CRNRSTN_SOAP_SVC_USERNAME' => $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->get_resource('CRNRSTN_SOAP_SVC_USERNAME', 'CRNRSTN::INTEGRATIONS'), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
-                            'CRNRSTN_SOAP_SVC_PASSWORD' => $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->create_pwd_hash_for_storage(md5($this->preach('value', 'CRNRSTN_SOAP_SVC_PASSWORD'))), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
+                            'CRNRSTN_SOAP_SVC_PASSWORD' => $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->create_pwd_hash_for_storage($this->oCRNRSTN->hash($this->preach('value', 'CRNRSTN_SOAP_SVC_PASSWORD'), 'md5')), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
                             'oCRNRSTN_SOAP_SVC_REQUESTED_RESOURCES' => $tmp_requested_resources_SOAP_OBJECT,
                             'CRNRSTN_SOAP_SVC_METHOD_REQUESTED' => $this->oCRNRSTN->data_encrypt('mayItakeTheKingsHighway', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
                             'CRNRSTN_SOAP_ACTION_TYPE' => $this->oCRNRSTN->data_encrypt('EXCEPTION_NOTIFICATION', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $this->soap_encrypt_secret_key, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp),
@@ -8682,7 +8396,7 @@ class crnrstn_decoupled_data_object {
             case 'takeTheKingsHighway':
 
                 $tmp_SOAP_ENCRYPT_CIPHER = $this->soap_encrypt_cipher;
-                $tmp_SOAP_ENCRYPT_SECRET_KEY = md5($this->preach('value', 'CRNRSTN_SOAP_SVC_ENCRYPTION_KEY'));
+                $tmp_SOAP_ENCRYPT_SECRET_KEY = $this->oCRNRSTN->hash($this->preach('value', 'CRNRSTN_SOAP_SVC_ENCRYPTION_KEY'), 'md5');
                 $tmp_SOAP_ENCRYPT_HMAC_ALG = $this->soap_encrypt_hmac_alg;
                 $tmp_SOAP_ENCRYPT_OPTIONS = $this->soap_encrypt_options;
 
@@ -8743,7 +8457,7 @@ class crnrstn_decoupled_data_object {
                     //
                     // IF CLIENT HAS NO PERSONAL SECRET KEY...ATTEMPT TO FALL BACK ON ENVIRONMENT SECRET KEY.
                     $tmp_SOAP_ENCRYPT_CIPHER_resp = $this->soap_encrypt_cipher;
-                    $tmp_SOAP_ENCRYPT_SECRET_KEY_resp = md5($this->preach('value', 'CRNRSTN_SOAP_SVC_ENCRYPTION_KEY'));
+                    $tmp_SOAP_ENCRYPT_SECRET_KEY_resp = $this->oCRNRSTN->hash($this->preach('value', 'CRNRSTN_SOAP_SVC_ENCRYPTION_KEY'), 'md5');
                     $tmp_SOAP_ENCRYPT_HMAC_ALG_resp = $this->soap_encrypt_hmac_alg;
                     $tmp_SOAP_ENCRYPT_OPTIONS_resp = $this->soap_encrypt_options;
 
@@ -8790,7 +8504,7 @@ class crnrstn_decoupled_data_object {
 
                         if($this->preach('isset', 'CRNRSTN_SOAP_SVC_PASSWORD')){
 
-                            $SOAP_request['oKingsHighwayNotification']['CRNRSTN_SOAP_SVC_PASSWORD'] = $this->oCRNRSTN_USR->data_encrypt($this->oCRNRSTN_USR->create_pwd_hash_for_storage(md5($this->preach('value', 'CRNRSTN_SOAP_SVC_PASSWORD', true))), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            $SOAP_request['oKingsHighwayNotification']['CRNRSTN_SOAP_SVC_PASSWORD'] = $this->oCRNRSTN_USR->data_encrypt($this->oCRNRSTN_USR->create_pwd_hash_for_storage($this->oCRNRSTN->hash($this->preach('value', 'CRNRSTN_SOAP_SVC_PASSWORD', true), 'md5')), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
 
                         }
 
@@ -8991,7 +8705,7 @@ class crnrstn_decoupled_data_object {
 
                         if($this->preach('isset', 'CRNRSTN_SOAP_SVC_PASSWORD')){
 
-                            $SOAP_request['oKingsHighwayNotification']['CRNRSTN_SOAP_SVC_PASSWORD'] = $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->create_pwd_hash_for_storage(md5($this->preach('value', 'CRNRSTN_SOAP_SVC_PASSWORD', true))), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
+                            $SOAP_request['oKingsHighwayNotification']['CRNRSTN_SOAP_SVC_PASSWORD'] = $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->create_pwd_hash_for_storage($this->oCRNRSTN->hash($this->preach('value', 'CRNRSTN_SOAP_SVC_PASSWORD', true), 'md5')), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
 
                         }
 
@@ -9232,7 +8946,7 @@ class crnrstn_decoupled_data_object {
                         // 'oRECIPIENT' => array( 'name' => 'oRECIPIENT', 'type' => 'tns:oEmailArray'),
                         if($this->preach('isset', 'RECIPIENT_EMAIL', $i)){
 
-                            $tmp_md5_email = md5($this->preach('value', 'RECIPIENT_EMAIL', true, $i));
+                            $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'RECIPIENT_EMAIL', true, $i), 'md5');
                             $SOAP_request['oKingsHighwayNotification']['oRECIPIENT'][$i]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN_USR->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                             $SOAP_request['oKingsHighwayNotification']['oRECIPIENT'][$i]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN_USR->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                             $SOAP_request['oKingsHighwayNotification']['oRECIPIENT'][$i]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN_USR->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9254,7 +8968,7 @@ class crnrstn_decoupled_data_object {
 
                             for($ii = 0; $ii < $tmp_cnt; $ii++){
 
-                                $tmp_md5_email = md5($this->preach('value', 'FROM_EMAIL', true, $ii));
+                                $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'FROM_EMAIL', true, $ii), 'md5');
                                 $SOAP_request['oKingsHighwayNotification']['oSENDER'][$ii]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN_USR->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oSENDER'][$ii]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN_USR->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oSENDER'][$ii]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN_USR->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9278,7 +8992,7 @@ class crnrstn_decoupled_data_object {
 
                             for($ii = 0; $ii < $tmp_cnt; $ii++){
 
-                                $tmp_md5_email = md5($this->preach('value', 'REPLYTO_EMAIL', true, $ii));
+                                $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'REPLYTO_EMAIL', true, $ii), 'md5');
                                 $SOAP_request['oKingsHighwayNotification']['oREPLYTO'][$ii]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN_USR->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oREPLYTO'][$ii]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN_USR->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oREPLYTO'][$ii]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN_USR->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9302,7 +9016,7 @@ class crnrstn_decoupled_data_object {
 
                             for($ii = 0; $ii < $tmp_cnt; $ii++){
 
-                                $tmp_md5_email = md5($this->preach('value', 'CC_EMAIL', true, $ii));
+                                $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'CC_EMAIL', true, $ii), 'md5');
                                 $SOAP_request['oKingsHighwayNotification']['oCC'][$ii]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN_USR->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oCC'][$ii]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN_USR->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oCC'][$ii]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN_USR->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9326,7 +9040,7 @@ class crnrstn_decoupled_data_object {
 
                             for($ii = 0; $ii < $tmp_cnt; $ii++){
 
-                                $tmp_md5_email = md5($this->preach('value', 'BCC_EMAIL', true, $ii));
+                                $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'BCC_EMAIL', true, $ii), 'md5');
                                 $SOAP_request['oKingsHighwayNotification']['oBCC'][$ii]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN_USR->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oBCC'][$ii]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN_USR->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oBCC'][$ii]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN_USR->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9385,7 +9099,7 @@ class crnrstn_decoupled_data_object {
                         // 'oRECIPIENT' => array( 'name' => 'oRECIPIENT', 'type' => 'tns:oEmailArray' ),
                         if($this->preach('isset', 'RECIPIENT_EMAIL', $i)){
 
-                            $tmp_md5_email = md5($this->preach('value', 'RECIPIENT_EMAIL', true, $i));
+                            $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'RECIPIENT_EMAIL', true, $i), 'md5');
                             $SOAP_request['oKingsHighwayNotification']['oRECIPIENT'][$i]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                             $SOAP_request['oKingsHighwayNotification']['oRECIPIENT'][$i]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                             $SOAP_request['oKingsHighwayNotification']['oRECIPIENT'][$i]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9407,7 +9121,7 @@ class crnrstn_decoupled_data_object {
 
                             for($ii = 0; $ii < $tmp_cnt; $ii++){
 
-                                $tmp_md5_email = md5($this->preach('value', 'FROM_EMAIL', true, $ii));
+                                $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'FROM_EMAIL', true, $ii), 'md5');
                                 $SOAP_request['oKingsHighwayNotification']['oSENDER'][$ii]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oSENDER'][$ii]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oSENDER'][$ii]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9431,7 +9145,7 @@ class crnrstn_decoupled_data_object {
 
                             for($ii = 0; $ii < $tmp_cnt; $ii++){
 
-                                $tmp_md5_email = md5($this->preach('value', 'REPLYTO_EMAIL', true, $ii));
+                                $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'REPLYTO_EMAIL', true, $ii), 'md5');
                                 $SOAP_request['oKingsHighwayNotification']['oREPLYTO'][$ii]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oREPLYTO'][$ii]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oREPLYTO'][$ii]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9455,7 +9169,7 @@ class crnrstn_decoupled_data_object {
 
                             for($ii = 0; $ii < $tmp_cnt; $ii++){
 
-                                $tmp_md5_email = md5($this->preach('value', 'CC_EMAIL', true, $ii));
+                                $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'CC_EMAIL', true, $ii), 'md5');
                                 $SOAP_request['oKingsHighwayNotification']['oCC'][$ii]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oCC'][$ii]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oCC'][$ii]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9479,7 +9193,7 @@ class crnrstn_decoupled_data_object {
 
                             for($ii = 0; $ii < $tmp_cnt; $ii++){
 
-                                $tmp_md5_email = md5($this->preach('value', 'BCC_EMAIL', true, $ii));
+                                $tmp_md5_email = $this->oCRNRSTN->hash($this->preach('value', 'BCC_EMAIL', true, $ii), 'md5');
                                 $SOAP_request['oKingsHighwayNotification']['oBCC'][$ii]['EMAIL_PROXY_SERIAL']['CONTENT'] = $this->oCRNRSTN->data_encrypt($tmp_md5_email, CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oBCC'][$ii]['EMAIL_PROXY_SERIAL']['LENGTH'] = $this->oCRNRSTN->data_encrypt(strlen($tmp_md5_email), CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
                                 $SOAP_request['oKingsHighwayNotification']['oBCC'][$ii]['EMAIL_PROXY_SERIAL']['TYPE'] = $this->oCRNRSTN->data_encrypt('string', CRNRSTN_ENCRYPT_SOAP, $tmp_SOAP_ENCRYPT_CIPHER_resp, $tmp_SOAP_ENCRYPT_SECRET_KEY_resp, $tmp_SOAP_ENCRYPT_HMAC_ALG_resp, $tmp_SOAP_ENCRYPT_OPTIONS_resp);
@@ -9877,9 +9591,9 @@ class crnrstn_logging_oprofile_manager {
     public function __construct($sys_logging_profile_pack, $oCRNRSTN) {
 
         /*
-        $sys_logging_profile_pack['sys_logging_profile_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][self::$resource_key];
-        $sys_logging_profile_pack['sys_logging_meta_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][self::$resource_key];
-        $sys_logging_profile_pack['sys_logging_wcr_ARRAY'] = ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][CRNRSTN_LOG_ALL];
+        $sys_logging_profile_pack['sys_logging_profile_ARRAY'] = ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][self::$resource_key];
+        $sys_logging_profile_pack['sys_logging_meta_ARRAY'] = ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][self::$resource_key];
+        $sys_logging_profile_pack['sys_logging_wcr_ARRAY'] = ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][CRNRSTN_LOG_ALL];
         */
 
         $this->config_serial_hash = $oCRNRSTN->get_server_config_serial('hash');
@@ -10105,7 +9819,7 @@ class crnrstn_logging_oprofile_manager {
     private function is_WCR_key($sys_logging_wcr_ARRAY, $str){
 
         //if(isset($this->oWildCardResource_ARRAY)){
-        // error_log('2448 env - is_WCR_key() TEST NEW !!ARRAY FORK AGAINST ARRAY sizeof>0, where sizeof='.sizeof($this->oWildCardResource_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)]));
+        // error_log('2448 env - is_WCR_key() TEST NEW !!ARRAY FORK AGAINST ARRAY sizeof>0, where sizeof='.sizeof($this->oWildCardResource_ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)]));
 
         //
         // SOURCE :: https://www.php.net/manual/en/language.types.boolean.php
@@ -10233,9 +9947,9 @@ class crnrstn_logging_oprofile_manager {
 
         /*
         init_profile_pack_ARRAY ::
-        $init_profile_pack['sys_logging_profile_ARRAY'] = self::$sys_logging_profile_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][CRNRSTN_LOG_ALL];
-        $init_profile_pack['sys_logging_meta_ARRAY'] = self::$sys_logging_meta_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][CRNRSTN_LOG_ALL];
-        $init_profile_pack['sys_logging_wcr_ARRAY'] = $this->oWildCardResource_ARRAY[self::$oCRNRSTN_n->crcINT($this->config_serial_hash)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_profile_ARRAY'] = self::$sys_logging_profile_ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_meta_ARRAY'] = self::$sys_logging_meta_ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][CRNRSTN_LOG_ALL];
+        $init_profile_pack['sys_logging_wcr_ARRAY'] = $this->oWildCardResource_ARRAY[self::$oCRNRSTN_n->hash($this->config_serial_hash)][CRNRSTN_LOG_ALL];
         */
 
         if(isset($init_profile_pack['sys_logging_meta_ARRAY'])){
@@ -13471,7 +13185,7 @@ class crnrstn_soap_services_authorization_manager{
 
         $tmp_resource_key = self::$oCRNRSTN_ENV->return_env_key_hash();
 
-        if(self::$oCRNRSTN_ENV->crcINT($env_key) == $tmp_resource_key){
+        if(self::$oCRNRSTN_ENV->hash($env_key) == $tmp_resource_key){
 
             $this->resource_key = $tmp_resource_key;
             $this->ISACTIVE = true;
@@ -13790,13 +13504,13 @@ class crnrstn_soap_services_client_manager{
 
             $this->serial = self::$oCRNRSTN_ENV->generate_new_key(50);
 
-            if(self::$oCRNRSTN_ENV->crcINT($env_key) == self::$oCRNRSTN_ENV->return_env_key_hash()){
+            if(self::$oCRNRSTN_ENV->hash($env_key) == self::$oCRNRSTN_ENV->return_env_key_hash()){
 
                 $this->resource_key = self::$oCRNRSTN_ENV->return_env_key_hash();
                 $this->ISACTIVE = true;
 
                 $this->soap_services_username_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $username;
-                $this->soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = md5($password);
+                $this->soap_services_password_ARRAY[self::$oCRNRSTN_ENV->config_serial_hash][$this->resource_key][$this->serial][] = $this->oCRNRSTN->hash($password, 'md5');
 
                 self::$oCRNRSTN_ENV->update_SOAP_services_oClient($this);
 
@@ -14267,7 +13981,7 @@ class crnrstn_soap_services_access_manager{
 
     public function __construct($env_key, $CRNRSTN_NUSOAP_SVC_debugMode, $oCRNRSTN_ENV){
 
-        if($oCRNRSTN_ENV->crcINT($env_key) == $oCRNRSTN_ENV->return_env_key_hash()){
+        if($oCRNRSTN_ENV->hash($env_key) == $oCRNRSTN_ENV->return_env_key_hash()){
 
             self::$oCRNRSTN_ENV = $oCRNRSTN_ENV;
 
@@ -14855,7 +14569,7 @@ class crnrstn_soap_services_access_manager{
 
     public function init_soap_encryption_config($env_key, $encryptCipher, $encryptSecretKey, $hmac_alg, $encryptOptions){
 
-        $encryptSecretKey = md5($encryptSecretKey);
+        $encryptSecretKey = $this->oCRNRSTN->hash($encryptSecretKey, 'md5');
 
         if($this->ISACTIVE){
 

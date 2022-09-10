@@ -1470,12 +1470,12 @@ class crnrstn_session_manager {
 
 	}
 
-    public function crcINT($value){
-
-        $value = crc32($value);
-        return sprintf("%u", $value);
-
-    }
+//    public function crcINT($value){
+//
+//        $value = crc32($value);
+//        return sprintf("%u", $value);
+//
+//    }
 
 	public function __destruct() {
 

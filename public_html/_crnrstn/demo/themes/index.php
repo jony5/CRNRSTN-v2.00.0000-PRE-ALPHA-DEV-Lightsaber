@@ -116,7 +116,7 @@ $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: HTML SNIPPET TEST.', $tmp_theme_style_i
 
 
 
-$tmp_str = '$tmp_hash = hash($oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);';
+$tmp_str = '$tmp_hash = $oCRNRSTN->hash($crnrstn_form_handle);';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. USE OF crnrstn::system_hash_algo', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '/*

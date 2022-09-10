@@ -1975,7 +1975,7 @@ class crnrstn_ui_tunnel_response_manager {
         $PROGRAM_KEY = '"PROGRAM_KEY" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . ',';
         $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . ',';
 
-        $CANVAS_PROFILE_CHECKSUM = '"CANVAS_PROFILE_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
+        $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
         $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN_USR->return_json_value($this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT')) . '",';
         $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
         $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
@@ -2091,7 +2091,7 @@ class crnrstn_ui_tunnel_response_manager {
                             ' . $PROGRAM_KEY . '
                             ' . $DEVICE_TYPE_CHANNEL . '
                             ' . $CANVAS_PROFILE_CONTENT . '
-                            ' . $CANVAS_PROFILE_CHECKSUM . '
+                            ' . $CANVAS_PROFILE_HASH . '
                             ' . $CANVAS_PROFILE_LOCK . '
                             ' . $CANVAS_PROFILE_LOCK_TTL . '
                             ' . $CANVAS_PROFILE_LOCK_ISACTIVE . '
@@ -2303,7 +2303,7 @@ class crnrstn_ui_tunnel_response_manager {
 //        $PROGRAM_KEY = '"PROGRAM_KEY" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . ',';
 //        $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . ',';
 //
-//        $CANVAS_PROFILE_CHECKSUM = '"CANVAS_PROFILE_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
+//        $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
 //        $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT') . '",';
 //        $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
 //        $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
@@ -2416,7 +2416,7 @@ class crnrstn_ui_tunnel_response_manager {
 //                            ' . $CHECKSUM_PROFILE_ID . '
 //                            ' . $PROGRAM_KEY . '
 //                            ' . $DEVICE_TYPE_CHANNEL . '
-//                            ' . $CANVAS_PROFILE_CHECKSUM . '
+//                            ' . $CANVAS_PROFILE_HASH . '
 //                            ' . $CANVAS_PROFILE_CONTENT . '
 //                            ' . $CANVAS_PROFILE_LOCK . '
 //                            ' . $CANVAS_PROFILE_LOCK_TTL . '
