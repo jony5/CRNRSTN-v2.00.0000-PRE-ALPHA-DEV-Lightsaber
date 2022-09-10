@@ -1262,7 +1262,7 @@ class crnrstn_content_generator {
                 <code>';
 
         //$tmp_html_output .= highlight_file($filepath,true);
-        $tmp_html_output .= $this->oCRNRSTN_USR->highlightCode($filepath);
+        $tmp_html_output .= $this->oCRNRSTN_USR->highlight_text($filepath);
 
         $tmp_html_output .= '</code>
             </div>';

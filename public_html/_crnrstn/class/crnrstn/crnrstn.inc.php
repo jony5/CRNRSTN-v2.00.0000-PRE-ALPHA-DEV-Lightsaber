@@ -247,7 +247,7 @@ class crnrstn {
         $this->system_data_profile_constants_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME_ONLY, CRNRSTN_AUTHORIZE_ALL, CRNRSTN_AUTHORIZE_DATABASE, CRNRSTN_AUTHORIZE_SSDTLA, CRNRSTN_AUTHORIZE_PSSDTLA, CRNRSTN_AUTHORIZE_SESSION, CRNRSTN_AUTHORIZE_COOKIE, CRNRSTN_AUTHORIZE_SOAP, CRNRSTN_AUTHORIZE_GET);
         $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT, CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE, CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
         $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
-        $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_TERMINAL);
+        $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_TERMINAL, CRNRSTN_UI_RANDOM);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
         $this->system_output_channel_constants = array(CRNRSTN_UI_DESKTOP, CRNRSTN_UI_TABLET, CRNRSTN_UI_MOBILE);
         $this->system_creative_element_keys_ARRAY = array('CRNRSTN ::', 'LINUX_PENGUIN', 'REDHAT_LOGO', 'APACHE_FEATHER', 'APACHE_POWER_VERSION', 'CRNRSTN_R', '5', 'MYSQL_DOLPHIN', 'PHP_ELLIPSE', 'POW_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
@@ -4792,16 +4792,23 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     private function return_random_theme_style(){
 
         $tmp_selection = rand(0, count($this->system_theme_style_constants_ARRAY) - 1);
+        //error_log(__LINE__ . ' crnrstn rand tmp_selection=[' . $tmp_selection . '].');
 
-        $tmp_theme_style = NULL;
         foreach($this->system_theme_style_constants_ARRAY as $index => $tmp_theme_style){
 
-            if($tmp_selection == $index){
+            if(($tmp_selection == $index)){
+
+                if($tmp_theme_style == CRNRSTN_UI_RANDOM){
+
+                    $tmp_theme_style = CRNRSTN_UI_DARKNIGHT;
+
+                }
 
                 $tmp_theme_style_ARRAY = $this->return_constant_profile_ARRAY($tmp_theme_style);
                 //$tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
                 $tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
 
+                //error_log(__LINE__ . ' crnrstn NOT RANDOM == [' . $tmp_theme_style_ARRAY['STRING'] . '].');
                 return $tmp_theme_style_int;
 
                 break 1;
@@ -4822,6 +4829,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $this->current_theme_style_ARRAY['NAME'] = $tmp_meta_ARRAY['NAME'] = $tmp_theme_style_nom;
         $this->current_theme_style_ARRAY['INTEGER'] = $tmp_meta_ARRAY['INTEGER'] = $tmp_theme_style_int;
+
+        //error_log(__LINE__ . ' crnrstn $tmp_theme_style_int=[' . $tmp_theme_style_int . ']. $tmp_theme_style_nom=[' . $tmp_theme_style_nom . '].');
 
         switch($theme_style){
             case CRNRSTN_UI_GLASS_LIGHT_COPY:
@@ -4941,6 +4950,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#111';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#1A6F1A';
+
 
             break;
             case CRNRSTN_UI_PHP:
@@ -5106,7 +5116,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             }
 
-
         }
 
         //
@@ -5243,7 +5252,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '">';
         $tmp_str_out .= print_r($output, true);
         $tmp_str_out .= '</pre>';
 
@@ -5441,7 +5450,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '">';
+        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '">';
         print_r($output);
         echo '</pre>';
 
@@ -5465,44 +5474,46 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_constant_profile_ARRAY($int_constant = NULL){
+    public function return_constant_profile_ARRAY($int_constant){
 
-        $tmp_ARRAY = array();
+        if(isset($int_constant)){
 
-        if(!isset($int_constant)) {
+            $tmp_ARRAY = array();
 
-            //$tmp_page_theme_nom = 'CRNRSTN_UI_DARKNIGHT';
-            $int_constant = CRNRSTN_UI_DARKNIGHT;
-
-        }
-
-        $int_constant = (int)$int_constant;
-
-        if (!is_integer($int_constant)) {
-
-            //$this->print_r('[' . var_dump($int_constant) . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
-            //
-            // CAN WE CAST THE STRING TO INT CONST?
-            $int_constant = (int)crnrstn_constants_init($int_constant);
-            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
-        }
-
-        if (is_integer($int_constant)) {
-
-            $tmp_ARRAY['INTEGER'] = $int_constant;
-            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$int_constant = CRNRSTN_UI_DARKNIGHT;
 
             //die();
-            $tmp_ARRAY['STRING'] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant);
-            //$tmp_ARRAY['DESCRIPTION'] = '';
-            //$tmp_ARRAY['DEPENDENT_METHODS_ARRAY'] = array();      // UPDATES DOCUMENTATION
-            //$tmp_ARRAY['DATA_FAMILY_TYPE'] = '';                  // UPDATES DOCUMENTATION
+            $int_constant = (int) $int_constant;
+
+            if(!is_integer($int_constant)){
+
+                //$this->print_r('[' . var_dump($int_constant) . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                //
+                // CAN WE CAST THE STRING TO INT CONST?
+                $int_constant = (int)crnrstn_constants_init($int_constant);
+                //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+            }
+
+            if(is_integer($int_constant)){
+
+                $tmp_ARRAY['INTEGER'] = $int_constant;
+                //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                //die();
+                $tmp_ARRAY['STRING'] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant);
+                //$tmp_ARRAY['DESCRIPTION'] = '';
+                //$tmp_ARRAY['DEPENDENT_METHODS_ARRAY'] = array();      // UPDATES DOCUMENTATION
+                //$tmp_ARRAY['DATA_FAMILY_TYPE'] = '';                  // UPDATES DOCUMENTATION
+
+            }
+
+            return $tmp_ARRAY;
 
         }
 
-        return $tmp_ARRAY;
+        return false;
 
     }
 
@@ -6295,6 +6306,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             case CRNRSTN_UI_DAYLIGHT:
             case CRNRSTN_UI_FEATHER:
             case CRNRSTN_UI_GREYSKYS:
+            case CRNRSTN_UI_RANDOM:
             default:
 
                 //
@@ -6306,7 +6318,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 ini_set('highlight.keyword', $tmp_meta_ARRAY['highlight.keyword']);
                 ini_set('highlight.string', $tmp_meta_ARRAY['highlight.string']);
 
-                break;
+            break;
 
         }
 

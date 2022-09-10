@@ -5094,7 +5094,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
                 if(isset($field_input_id)){
 
@@ -5105,7 +5105,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$field_input_id=[' . $field_input_id . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5118,7 +5118,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$default_value=[' . $default_value . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5131,7 +5131,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$table_field_name=[' . $table_field_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -5144,7 +5144,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$validation_constant_profile=[' . $validation_constant_profile . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
                 }
 
@@ -8597,48 +8597,6 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    //
-    // METHOD DERIVED FROM CODE WRITTEN BY stanislav dot eckert at vizson dot de ON PHP.NET
-    public function highlightCode($filepath, $theme_style = CRNRSTN_UI_PHPNIGHT){
-        
-        if($theme_style == CRNRSTN_UI_PHP){
-
-            ini_set('highlight.comment', '#008000');
-            ini_set('highlight.default', '#000000');
-            ini_set('highlight.html', '#808080');
-            ini_set('highlight.keyword', '#0000BB; font-weight: bold');
-            ini_set('highlight.string', '#DD0000');
-
-        }else if($theme_style == CRNRSTN_UI_HTML){
-
-            ini_set('highlight.comment', 'green');
-            ini_set('highlight.default', '#CC0000');
-            ini_set('highlight.html', '#000000');
-            ini_set('highlight.keyword', 'black; font-weight: bold');
-            ini_set('highlight.string', '#0000FF');
-        }else if($theme_style == CRNRSTN_UI_PHPNIGHT)                        // [EDIT] CRNRSTN v2.0.0 :: J5
-        {
-            ini_set('highlight.comment', '#FFCC00');
-            ini_set('highlight.default', '#DEDECB');
-            ini_set('highlight.html', '#808080');
-            ini_set('highlight.keyword', '#8FE28F; font-weight: normal');
-            ini_set('highlight.string', '#FF6666');
-        }
-        // ...
-
-        $text = highlight_file($filepath, true);
-        $text = trim($text);
-        $text = preg_replace("|^\\<code\\>\\<span style\\=\"color\\: #[a-fA-F0-9]{0,6}\"\\>|", '', $text, 1);  // remove prefix
-        $text = preg_replace("|\\</code\\>\$|", '', $text, 1);  // remove suffix 1
-        $text = trim($text);  // remove line breaks
-        $text = preg_replace("|\\</span\\>\$|", '', $text, 1);  // remove suffix 2
-        $text = trim($text);  // remove line breaks
-        $text = preg_replace("|^(\\<span style\\=\"color\\: #[a-fA-F0-9]{0,6}\"\\>)(&lt;\\?php&nbsp;)(.*?)(\\</span\\>)|", "\$1\$3\$4", $text);  // remove custom added "<?php "
-
-        return $text;
-
-    }
-
     public function current_location(){
 
         return $this->oCRNRSTN_ENV->current_location();
@@ -10351,7 +10309,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     public function print_r($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
-        return $this->oCRNRSTN->print_r_str($expression, $title, $theme_style, $line_num, $method, $file);
+        return $this->oCRNRSTN->print_r($expression, $title, $theme_style, $line_num, $method, $file);
 
     }
 
