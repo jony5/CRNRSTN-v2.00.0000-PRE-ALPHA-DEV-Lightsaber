@@ -5,7 +5,8 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-$oCRNRSTN->set_ui_theme_style(CRNRSTN_UI_RANDOM);
+$tmp_theme = $oCRNRSTN->return_random_theme_style();
+$oCRNRSTN->set_ui_theme_style($tmp_theme);
 
 //
 //$tmp_form_serial = $oCRNRSTN->generate_new_key(5);
@@ -215,8 +216,6 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
 
             echo $oCRNRSTN->form_integration_html_packet_output('CRNRSTN:: A DEMO_FORM_EXAMPLE');
 
-            //echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'CRNRSTN:: A DEMO_FORM_EXAMPLE');
-
             ?>
         </form>
 
@@ -225,6 +224,12 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
         <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     </div>
+
+    <?php
+
+    echo $oCRNRSTN->framework_integrations_client_packet(-1);
+
+    ?>
 
     <div style="width:700px;">
 

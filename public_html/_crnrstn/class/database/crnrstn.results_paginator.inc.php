@@ -97,7 +97,7 @@ class crnrstn_results_paginator{
                     $this->oCRNRSTN_USR->form_serialize_new($tmp_form_serial);
                     error_log('69 paginator - listen for paginate @ [' . $tmp_form_serial.'][' . $tmp_form_input.']');
                     $this->oCRNRSTN_USR->form_input_add($tmp_form_serial, $tmp_form_input, true);
-                    #$this->oCRNRSTN_USR->inject_input_serialization($tmp_form_serial);
+                    #$this->oCRNRSTN_USR->return_serialized_input_fields($tmp_form_serial);
 
                     $tmp_endpoint = $this->return_pagination_endpoint();
                     $tmp_transport_protocol = $this->return_pagination_protocol();
@@ -238,7 +238,7 @@ class crnrstn_results_paginator{
                 $this->oCRNRSTN_USR->form_serialize_new($tmp_form_serial);
                 //error_log('69 paginator - listen for paginate @ [' . $tmp_form_serial.'][' . $tmp_form_input.']');
                 $this->oCRNRSTN_USR->form_input_add($tmp_form_serial, $tmp_form_input, true);
-                #$this->oCRNRSTN_USR->inject_input_serialization($tmp_form_serial);
+                #$this->oCRNRSTN_USR->return_serialized_input_fields($tmp_form_serial);
 
                 $tmp_endpoint = $this->return_pagination_endpoint();
                 $tmp_transport_protocol = $this->return_pagination_protocol();

@@ -2668,6 +2668,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $dom_sess_serial = $this->generate_new_key(26, '01');
                     $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
 
+                    // FYI,...COULD ALSO CALL: $this->spool_destruct_output($str);
                     $this->destruct_output .= '<!doctype html>
 <html lang="' . $this->country_iso_code() . '">
 <head>
@@ -2725,6 +2726,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     // MAYBE GENERATE A CONFIG SERIAL COPY-PASTE INTO CONFIG FILE PAGE WITH BASE64 CRNRSTN :: LOGO STUFF?
                     // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
                     // TEMPLATE FOR SOMETHING ADMIN-NEWY-ISH BACK TO "HERE" FOR CONSISTENCY.
+                    // FYI,...COULD ALSO CALL: $this->spool_destruct_output($str);
                     $this->destruct_output .= '<!doctype html>
 <html lang="' . $this->country_iso_code() . '">
 <head>
@@ -2852,7 +2854,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function framework_integrations_client_packet($integer_constant = NULL, $spool_for_output = false){
 
-        if ($spool_for_output) {
+        if($spool_for_output){
 
             $this->system_ui_module_constants_spool_ARRAY[] = $integer_constant;
 
@@ -2863,9 +2865,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         //$this->fic_packet_build_flag = 1;
 
         $tmp_client_packet_output = '';
-        $tmp_ficp_module_build_flag_ARRAY = array();
 
-        if (isset($integer_constant)) {
+        if(isset($integer_constant)){
 
             /*
             'CRNRSTN_RESOURCE_ALL', 'CRNRSTN_RESOURCE_BASSDRIVE',
@@ -2886,14 +2887,28 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             ficp_module_build_flag_ARRAY
             */
 
-            if (in_array($integer_constant, $this->system_ui_module_constants_ARRAY)) {
+            if(in_array($integer_constant, $this->system_ui_module_constants_ARRAY)){
 
-                if (!isset($this->ficp_module_build_flag_ARRAY[$integer_constant])) {
+                if(!isset($this->ficp_module_build_flag_ARRAY[$integer_constant])){
 
                     $this->ficp_module_build_flag_ARRAY[$integer_constant] = 1;
                     $tmp_client_packet_output .= $this->ui_content_module_out($integer_constant);
 
                     //return $tmp_client_packet_output;
+
+                }
+
+            }
+
+            //
+            // CONSIDERING SETTING UP INTEGER CONSTANT CRNRSTN_DESTRUCT_OUTPUT IN LEU OF -1
+            if($integer_constant == -1){
+
+                if($this->destruct_output != ''){
+
+                    $tmp_client_packet_output .= $this->destruct_output;
+
+                    $this->destruct_output = '';
 
                 }
 
@@ -4789,7 +4804,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    private function return_random_theme_style(){
+    public function return_random_theme_style(){
 
         $tmp_selection = rand(0, count($this->system_theme_style_constants_ARRAY) - 1);
         //error_log(__LINE__ . ' crnrstn rand tmp_selection=[' . $tmp_selection . '].');
@@ -8239,6 +8254,12 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         return ($ret) ? $ret : false;
 
     } // better_scandir
+
+    public function spool_destruct_output($str){
+
+        $this->destruct_output .= $str;
+
+    }
 
     private function output_agg_destruct_str(){
 

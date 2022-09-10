@@ -4076,7 +4076,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 //     form_hidden_input_add($crnrstn_form_handle, $field_input_name, $field_input_name = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
                 $this->form_hidden_input_add($crnrstn_form_handle, 'CRNRSTN_FORM_HANDLE', $tmp_clean_form_handle, $crnrstn_form_handle, CRNRSTN_INPUT_REQUIRED);
 
-                return $this->inject_input_serialization($crnrstn_form_handle);
+                return $this->return_serialized_input_fields($crnrstn_form_handle);
 
             break;
             default:
@@ -5364,7 +5364,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__));
 
                 }
 
@@ -5377,7 +5377,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__));
 
                 }
 
@@ -5390,7 +5390,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$default_value=[' . $default_value . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__));
 
                 }
 
@@ -5403,7 +5403,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$default_value=[' . $default_value . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__));
 
                 }
 
@@ -5416,7 +5416,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     $tmp_str = '$validation_constant_profile=[' . $validation_constant_profile . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                    $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__));
 
                 }
 
@@ -5577,21 +5577,19 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    private function inject_input_serialization($crnrstn_form_handle = NULL){
+    private function return_serialized_input_fields($crnrstn_form_handle){
 
-        //
-        // ALWAYS TRUE.
-        $tunnel_encrypt_hidden_input_data = true;
-        $tmp_str_out = '';
         $tmp_form_handle_hash = $this->hash($crnrstn_form_handle);
+        $tmp_html_out = '';
 
-        $this->oCRNRSTN->print_r($crnrstn_form_handle, '$crnrstn_form_handle.', NULL, __LINE__, __METHOD__, __FILE__);
+        //$this->destruct_output
+        $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($crnrstn_form_handle, '$crnrstn_form_handle.', NULL, __LINE__, __METHOD__, __FILE__));
 
         //
         // FORM HANDLE DATA
         $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash;
         $tmp_data = $this->oCRNRSTN->get_resource('CRNRSTN_FORM_HANDLE', 0, $tmp_data_type_family);
-        $this->oCRNRSTN->print_r($tmp_data, 'CRNRSTN_FORM_HANDLE.', NULL, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($tmp_data, 'CRNRSTN_FORM_HANDLE.', NULL, __LINE__, __METHOD__, __FILE__));
 
         $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_INPUT::' . $tmp_form_handle_hash;
 //        $this->oCRNRSTN->add_system_resource('FORM_INPUT_FIELD_NAME', 'ERROR_REDIRECT', $tmp_sys_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
@@ -5599,11 +5597,11 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
         if($this->oCRNRSTN->isset_data_key('FORM_INPUT_FIELD_NAME', $tmp_data_type_family)) {
 
-            $this->oCRNRSTN->print_r('We have input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('We have input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__));
 
-            //$this->oCRNRSTN->print_r('We have [' . $this->oCRNRSTN->get_resource_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family, $this->env_key) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__);
+            //$this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('We have [' . $this->oCRNRSTN->get_resource_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family, $this->env_key) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__));
 
-            $this->oCRNRSTN->print_r('We have [' . $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('We have [' . $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__));
 
             $tmp_input_cnt = $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family);
 
@@ -5617,19 +5615,19 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                 //$tmp_input_data_type_family = $tmp_data_type_family . '::' . $tmp_field_name;
                 $tmp_fam = $tmp_data_type_family_FORM_REDIRECTS_ROOT . '::' . $tmp_field_name;
 
-                $this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $tmp_fam . '].', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('BUILD HTML OUTPUT FOR INPUT::[' . $tmp_fam . '].', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__));
                 //$this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, $i, $tmp_fam) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__);
-                $this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, 0, $tmp_fam) . '] input field data to inject.', 'oCRNRSTN->retrieve_data_value[' . $tmp_field_name . '].', NULL, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, 0, $tmp_fam) . '] input field data to inject.', 'oCRNRSTN->retrieve_data_value[' . $tmp_field_name . '].', NULL, __LINE__, __METHOD__, __FILE__));
 
             }
 
         }
 
-        return '<input type="hidden" name="hello_crnrstn_input_injection" id="hello_crnrstn_input_injection" value="' . $this->oCRNRSTN->data_encrypt('hello world!') . '" >';
+        $tmp_html_out .= '<input type="hidden" name="hello_crnrstn_input_injection" id="hello_crnrstn_input_injection" value="' . $this->oCRNRSTN->data_encrypt('hello world!') . '" >';
         //$this->compile_form_integration_packet($crnrstn_form_handle, $tmp_input_name_ARRAY[$i], true, $tmp_validatation);
         //$tmp_html_out .= $this->return_form_integration_packet($crnrstn_form_handle);
 
-        //return $tmp_html_out;
+        return $tmp_html_out;
 
     }
 
