@@ -162,6 +162,7 @@ class crnrstn {
 
     public $data_packet_ttl_default;
     public $crnrstn_data_packet_data_key_index_ARRAY = array();
+    public $crnrstn_data_packet_spoiler_ARRAY = array();
 
     /*
     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
@@ -507,9 +508,9 @@ class crnrstn {
 
     }
 
-    public function form_integrations_data_return($crnrstn_form_handle, $data_key_hash, $index = 0){
+    public function form_integrations_data_return($crnrstn_form_handle){
 
-        return self::$oCRNRSTN_CONFIG_MGR->form_integrations_data_return($crnrstn_form_handle, $data_key_hash, $index);
+        return self::$oCRNRSTN_CONFIG_MGR->form_integrations_data_return($crnrstn_form_handle);
 
     }
 
@@ -555,9 +556,9 @@ class crnrstn {
 
     }
 
-    public function form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+    public function form_input_feedback_copy_add($crnrstn_form_handle, $validation_constant_profile, $field_input_name, $field_input_id = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
 
-        return $this->oCRNRSTN_USR->form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $field_input_id, $err_msg, $success_msg, $info_msg);
+        return $this->oCRNRSTN_USR->form_input_feedback_copy_add($crnrstn_form_handle, $validation_constant_profile, $field_input_name, $field_input_id, $err_msg, $success_msg, $info_msg);
 
     }
 
@@ -8599,17 +8600,17 @@ class crnrstn_config_manager {
 
     }
 
-    public function form_integrations_data_return($data_key_hash, $data_auth_request, $index){
+    public function form_integrations_data_return($data_key_hash){
 
-        error_log(__LINE__  . ' ccm ' . __METHOD__ . ' $data_key_hash=[' . print_r($data_key_hash, true) . '].');
+        //error_log(__LINE__  . ' ccm ' . __METHOD__ . ' $data_key_hash=[' . print_r($data_key_hash, true) . '].');
 
         if(is_array($data_key_hash)){
 
-            return $this->oCRNRSTN_CONFIG_DDO->preach('pssdtl_packet', $data_key_hash[0], $data_auth_request, $index);
+            return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $data_key_hash[0], CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
 
         }
 
-        return $this->oCRNRSTN_CONFIG_DDO->preach('pssdtl_packet', $data_key_hash, $data_auth_request, $index);
+        return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $data_key_hash,CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
 
     }
 

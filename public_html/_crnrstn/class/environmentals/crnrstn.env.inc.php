@@ -7681,7 +7681,7 @@ class crnrstn_decoupled_data_object {
                 $line_wrap = $tmp_line_wrap_cnt = 3;
 
                 $tmp_crnrstn_data_packet_out = '"crnrstn_data_packet" : [
-                        ';
+    ';
                 $tmp_data_packet_parameter_out = '"crnrstn_data_packet_parameters" : [
                         ';
 
@@ -7689,16 +7689,32 @@ class crnrstn_decoupled_data_object {
 
                 foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY as $fihp_index => $fihp_data_key){
 
-                    $tmp_str .= $this->preach('pssdtl_packet', $fihp_data_key, $data_auth_request);
+                    if(is_array($fihp_data_key)){
+
+                        foreach($fihp_data_key as $tmp_fihp_index => $fihp_data_key_str){
+
+                            $tmp_str .= $this->preach('pssdtl_packet', $fihp_data_key_str, $data_auth_request);
+
+                        }
+
+                    }else{
+
+                        error_log(__LINE__ . ' ddo env ' . __METHOD__ . ' crnrstn_data_packet_data_key_index IS A STRING.');
+                        $tmp_str .= $this->preach('pssdtl_packet', $fihp_data_key, $data_auth_request);
+
+                    }
 
                 }
 
                 $tmp_str = $this->oCRNRSTN->strrtrim($tmp_str, ',');
 
                 $tmp_close = '
-                ]';
+    ]';
 
-                return $tmp_crnrstn_data_packet_out . $tmp_data_packet_parameter_out . $tmp_str . $tmp_close . $tmp_close;
+                $tmp_close .= '
+]';
+
+                return $tmp_crnrstn_data_packet_out . $tmp_data_packet_parameter_out . $tmp_str . $tmp_close;
 
             break;
             case 'pssdtl_packet';
@@ -7736,18 +7752,18 @@ class crnrstn_decoupled_data_object {
                     // A CRNRSTN :: DATA PACKET IS AN ENCRYPTED JSON OBJECT WRAPPED IN A SOAP OBJECT. FUCK YEAH! JSON!
                     // CRNRSTN :: DATA PACKET IS A THING NOW.
 
-                    error_log(__LINE__ . ' ddo packet $data_key=[' . $data_key . ']. $index=[' . $index . ']. ttl_profile_ARRAY=[' . print_r($this->ttl_profile_ARRAY[$data_key], true) . '].');
-                    error_log(__LINE__ . ' ddo packet TYPE=[' . $this->data_type_ARRAY[$data_key][$index] . '] BYTES=[' . $tmp_val_len . '] TTL=[' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index]) . '] AUTH_PROFILE=[' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key][$index]) . ']');
+                    error_log(__LINE__ . ' ddo packet $data_key=[' . print_r($data_key, true) . ']. $index=[' . $index . ']. ttl_profile_ARRAY=[' . print_r($this->ttl_profile_ARRAY[$data_key], true) . '].');
+                    //error_log(__LINE__ . ' ddo packet TYPE=[' . $this->data_type_ARRAY[$data_key][$index] . '] BYTES=[' . $tmp_val_len . '] TTL=[' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index]) . '] AUTH_PROFILE=[' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key][$index]) . ']');
                     $tmp_str_out .= '
-                    {
-                        "HASH" : "' . $this->oCRNRSTN->hash($data_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key][$index], 'md5') . $this->data_type_ARRAY[$data_key][$index], 'md5') . '",
-                        "BYTES" : "' . $tmp_val_len . '",
-                        "KEY" : "' . $this->oCRNRSTN->return_clean_json_string($data_key) . '",
-                        "TYPE" : "' . $this->data_type_ARRAY[$data_key][$index] . '",
-                        "VALUE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . ',
-                        "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index]) . ',
-                        "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key][$index]) . '
-                    },';
+        {
+            "HASH" : "' . $this->oCRNRSTN->hash($data_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key][$index], 'md5') . $this->data_type_ARRAY[$data_key][$index], 'md5') . '",
+            "BYTES" : "' . $tmp_val_len . '",
+            "KEY" : "' . $this->oCRNRSTN->return_clean_json_string($data_key) . '",
+            "TYPE" : "' . $this->data_type_ARRAY[$data_key][$index] . '",
+            "VALUE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . ',
+            "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index]) . ',
+            "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key][$index]) . '
+        },';
 
                     error_log(__LINE__ . ' ddo type=[' . $this->data_type_ARRAY[$data_key][$index] . '].');
 

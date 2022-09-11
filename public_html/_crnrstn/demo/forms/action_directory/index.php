@@ -47,9 +47,9 @@ $oCRNRSTN->form_response_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', NULL, $tmp_http_ro
 //form_response_add
 //form_input_feedback_copy_add
 //function form_input_feedback_copy_add($crnrstn_form_handle, $field_input_name, $html_form_input_id = NULL, $message_key = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
-$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_firstname','crnrstn_demo_firstname', 'Firstname is required.', 'Firstname approved.', 'Fistname can have numbers.');
-$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city','crnrstn_demo_city', 'City is required.', 'City approved.', 'City can be abbreviated.');
-$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email', 'crnrstn_demo_email');
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', CRNRSTN_INPUT_REQUIRED, 'crnrstn_demo_firstname','crnrstn_demo_firstname', 'Firstname is required.', 'Firstname approved.', 'Fistname can have numbers.');
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', CRNRSTN_INPUT_REQUIRED, 'crnrstn_demo_city','crnrstn_demo_city', 'City is required.', 'City approved.', 'City can be abbreviated.');
+$oCRNRSTN->form_input_feedback_copy_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', CRNRSTN_INPUT_IS_EMAIL, 'crnrstn_demo_email', 'crnrstn_demo_email');
 
 //
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
