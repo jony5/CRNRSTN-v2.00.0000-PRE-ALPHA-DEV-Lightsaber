@@ -7627,7 +7627,7 @@ class crnrstn_decoupled_data_object {
 
     }
 
-    public function preach($data_attribute = 'value', $data_key = NULL, $soap_transport = false, $index = 0){
+    public function preach($data_attribute = 'value', $data_key = NULL, $data_auth_request = CRNRSTN_OUTPUT_RUNTIME, $index = 0){
 
         //error_log(__LINE__ . ' env ddo->' . __METHOD__ . ':: $index=' . $index . ' $data_attribute=' . $data_attribute  . '. $data_key=' . $data_key . '.');
         //error_log(__LINE__ . ' env ddo->' . __METHOD__ . ':: $this->data_value_ARRAY=' . print_r($this->data_value_ARRAY, true) . '.');
@@ -7644,6 +7644,16 @@ class crnrstn_decoupled_data_object {
 //            die();
 //
 //        }
+
+        if(isset($this->data_auth_profile_ARRAY[$data_key][$index])){
+
+            if(!$this->oCRNRSTN->isset_auth_profile($data_auth_request, $this->data_auth_profile_ARRAY[$data_key][$index])){
+
+                return $this->oCRNRSTN->session_salt();
+
+            }
+
+        }
 
         if(!isset($data_key)){
 
@@ -7786,26 +7796,26 @@ class crnrstn_decoupled_data_object {
                         break;
                         case 'bool':
 
-                            if($soap_transport){
+                            if($data_auth_request == CRNRSTN_OUTPUT_SOAP){
 
                                 return $this->data_value_ARRAY[$data_key][$index];
 
                             }else{
 
-                                return $this->boolean_conversion($this->data_value_ARRAY[$data_key][$index]);
+                                return $this->oCRNRSTN->boolean_conversion($this->data_value_ARRAY[$data_key][$index]);
 
                             }
 
                         break;
                         case 'boolean':
 
-                            if($soap_transport){
+                            if($data_auth_request == CRNRSTN_OUTPUT_SOAP){
 
                                 return $this->data_value_ARRAY[$data_key][$index];
 
                             }else{
 
-                                return $this->boolean_conversion($this->data_value_ARRAY[$data_key][$index]);
+                                return $this->oCRNRSTN->boolean_conversion($this->data_value_ARRAY[$data_key][$index]);
 
                             }
 

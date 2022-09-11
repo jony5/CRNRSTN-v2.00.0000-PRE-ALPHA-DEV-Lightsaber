@@ -697,59 +697,123 @@ function crnrstn_constants_init($const_nom){
 
         //
         // ARCHITCTURE PERMISSIONS FLAGS FOR CRNRSTN :: STORED DATA
-        case 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY':
+
+        /*
+        'CRNRSTN_OUTPUT_RUNTIME', 'CRNRSTN_OUTPUT_ALL', 'CRNRSTN_OUTPUT_DATABASE', 'CRNRSTN_OUTPUT_SSDTLA',
+        'CRNRSTN_OUTPUT_PSSDTLA', 'CRNRSTN_OUTPUT_SESSION', 'CRNRSTN_OUTPUT_COOKIE', 'CRNRSTN_OUTPUT_SOAP',
+        'CRNRSTN_OUTPUT_GET', 'CRNRSTN_OUTPUT_ISEMAIL', 'CRNRSTN_OUTPUT_ISPASSWORD', 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY',
+        'CRNRSTN_AUTHORIZE_ALL', 'CRNRSTN_AUTHORIZE_DATABASE', 'CRNRSTN_AUTHORIZE_SSDTLA', 'CRNRSTN_AUTHORIZE_PSSDTLA',
+        'CRNRSTN_AUTHORIZE_SESSION', 'CRNRSTN_AUTHORIZE_COOKIE','CRNRSTN_AUTHORIZE_SOAP', 'CRNRSTN_AUTHORIZE_GET',
+        'CRNRSTN_AUTHORIZE_ISEMAIL','CRNRSTN_AUTHORIZE_ISPASSWORD'
+        */
+        case 'CRNRSTN_OUTPUT_RUNTIME':
 
             return (int) 8063;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_ALL':
+        case 'CRNRSTN_OUTPUT_ALL':
 
             return (int) 8064;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_DATABASE':
+        case 'CRNRSTN_OUTPUT_DATABASE':
 
             return (int) 8065;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_SSDTLA':
+        case 'CRNRSTN_OUTPUT_SSDTLA':
 
             return (int) 8066;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_PSSDTLA':
+        case 'CRNRSTN_OUTPUT_PSSDTLA':
 
             return (int) 8067;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_SESSION':
+        case 'CRNRSTN_OUTPUT_SESSION':
 
             return (int) 8068;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_COOKIE':
+        case 'CRNRSTN_OUTPUT_COOKIE':
 
             return (int) 8069;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_SOAP':
+        case 'CRNRSTN_OUTPUT_SOAP':
 
             return (int) 8070;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_GET':
+        case 'CRNRSTN_OUTPUT_GET':
 
             return (int) 8071;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_ISEMAIL':
+        case 'CRNRSTN_OUTPUT_ISEMAIL':
 
             return (int) 8072;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_ISPASSWORD':
+        case 'CRNRSTN_OUTPUT_ISPASSWORD':
 
             return (int) 8073;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_ALL':
+
+            return (int) 8074;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_DATABASE':
+
+            return (int) 8075;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_SSDTLA':
+
+            return (int) 8076;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_PSSDTLA':
+
+            return (int) 8077;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_SESSION':
+
+            return (int) 8078;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_COOKIE':
+
+            return (int) 8079;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_SOAP':
+
+            return (int) 8080;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_GET':
+
+            return (int) 8081;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY':
+
+            return (int) 8082;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_ISEMAIL':
+
+            return (int) 8083;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_ISPASSWORD':
+
+            return (int) 8084;
 
         break;
 
@@ -757,32 +821,32 @@ function crnrstn_constants_init($const_nom){
         // CRNRSTN :: ENCRYPTION PROFILES
         case 'CRNRSTN_ENCRYPT_TUNNEL':
 
-            return (int) 8074;
+            return (int) 8185;
 
         break;
         case 'CRNRSTN_ENCRYPT_DATABASE':
 
-            return (int) 8075;
+            return (int) 8186;
 
         break;
         case 'CRNRSTN_ENCRYPT_SESSION':
 
-            return (int) 8076;
+            return (int) 8187;
 
         break;
         case 'CRNRSTN_ENCRYPT_COOKIE':
 
-            return (int) 8077;
+            return (int) 8188;
 
         break;
         case 'CRNRSTN_ENCRYPT_SOAP':
 
-            return (int) 8078;
+            return (int) 8189;
 
         break;
         case 'CRNRSTN_ENCRYPT_OERSL':
 
-            return (int) 8079;
+            return (int) 8190;
 
         break;
 
@@ -790,102 +854,102 @@ function crnrstn_constants_init($const_nom){
         // RESOURCE PERMISSIONS FLAGS FOR CRNRSTN :: RESOURCES
         case 'CRNRSTN_RESOURCE_ALL':
 
-            return (int) 8080;
+            return (int) 8590;
 
         break;
         case 'CRNRSTN_RESOURCE_BASSDRIVE':
 
-            return (int) 8081;
+            return (int) 8591;
 
         break;
         case 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE':
 
-            return (int) 8082;
+            return (int) 8592;
 
         break;
         case 'CRNRSTN_RESOURCE_CSS_VALIDATOR':
 
-            return (int) 8083;
+            return (int) 8593;
 
         break;
         case 'CRNRSTN_RESOURCE_DOCUMENTATION':
 
-            return (int) 8084;
+            return (int) 8594;
 
         break;
         case 'CRNRSTN_RESOURCE_IMAGE':
 
-            return (int) 8085;
+            return (int) 8595;
 
         break;
         case 'CRNRSTN_RESOURCE_DOCUMENT':
 
-            return (int) 8086;
+            return (int) 8596;
 
         break;
         case 'CRNRSTN_RESOURCE_OPENSOURCE':
 
-            return (int) 8087;
+            return (int) 8597;
 
         break;
         case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
 
-            return (int) 8088;
+            return (int) 8598;
 
         break;
         case 'CRNRSTN_RESOURCE_ELECTRUM':
 
-            return (int) 8089;
+            return (int) 8599;
 
         break;
         case 'CRNRSTN_HTTP_REDIRECT':
 
-            return (int) 8090;
+            return (int) 8600;
 
         break;
         case 'CRNRSTN_HTTPS_REDIRECT':
 
-            return (int) 8091;
+            return (int) 8601;
 
         break;
         case 'CRNRSTN_HTTP_DATA_RETURN':
 
-            return (int) 8092;
+            return (int) 8602;
 
         break;
         case 'CRNRSTN_HTTPS_DATA_RETURN':
 
-            return (int) 8093;
+            return (int) 8603;
 
         break;
         case 'CRNRSTN_JSON_RETURN':
 
-            return (int) 8094;
+            return (int) 8604;
 
         break;
         case 'CRNRSTN_XML_RETURN':
 
-            return (int) 8095;
+            return (int) 8605;
 
         break;
         case 'CRNRSTN_SOAP_RETURN':
 
-            return (int) 8096;
+            return (int) 8606;
 
         break;
         case 'CRNRSTN_HTML_TEXT_RETURN':
 
-            return (int) 8097;
+            return (int) 8607;
 
         break;
         case 'CRNRSTN_DOCUMENT_FILE_RETURN':
 
-            return (int) 8098;
+            return (int) 8608;
 
         break;
         case 'CRNRSTN_SERVER_RESPONSE_CODE':
 
-            return (int) 8099;
+            return (int) 8609;
 
         break;
 

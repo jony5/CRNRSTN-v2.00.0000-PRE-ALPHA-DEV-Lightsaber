@@ -462,6 +462,12 @@ class crnrstn {
 
     }
 
+    public function isset_auth_profile(){
+
+        return true;
+
+    }
+
     public function session_salt($type = 'NO_MATCH'){
 
         $type = strtoupper($type);
@@ -8388,7 +8394,8 @@ class crnrstn_config_manager {
     private function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL'){
 
         $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
-        return $tmp_dataset_prefix_str . $resource_key;
+        //return $tmp_dataset_prefix_str . $resource_key;
+        return $tmp_dataset_prefix_str . '::' . $resource_key;
 
     }
 
@@ -8449,9 +8456,9 @@ class crnrstn_config_manager {
 
             // error_log(__LINE__ . ' '. __METHOD__ . ' [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].');
             // $this->oCRNRSTN->print_r(' crnrstn config '. __METHOD__ . ' [' . $data_key . '(strlen=' . strlen($data_key) . ')][' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', 'CRNRSTN :: CONFIGURATION TEST',NULL, __LINE__,__METHOD__,__FILE__);
-            //$this->oCRNRSTN->error_log('Receiving [' . $env_key . '] input: ' . $data_key . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             $this->oCRNRSTN_CONFIG_DDO->add($data_val, $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $index, $data_auth_profile);
+            $this->oCRNRSTN->error_log('Received $data_val=[' . $data_val . ']. $data_key=[' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . ']. $data_auth_profile=[' . $data_auth_profile . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             //
             // HOOOSTON...VE HAF PROBLEM!
