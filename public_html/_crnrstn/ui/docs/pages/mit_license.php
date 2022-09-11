@@ -171,7 +171,7 @@ $tmp_str_out .= \'
     "KEY" : "\' . $this->oCRNRSTN->return_clean_json_string($tmp_attribute_key) . \'",
     "LENGTH" : "\' . $tmp_val_len . \'",
     "TYPE" : "\' . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator] . \'",
-    "VALUE" : \' . $this->oCRNRSTN->clean_json_string($tmp_val) . \',
+    "VALUE" : \' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . \',
     "TTL" : \'$this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index])\',
     "AUTH_PROFILE" : \' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . \'
 },\';
@@ -188,6 +188,7 @@ WHERE $data_auth_request =
 \'CRNRSTN_OUTPUT_GET\', 
 \'CRNRSTN_OUTPUT_ISEMAIL\', 
 \'CRNRSTN_OUTPUT_ISPASSWORD\', 
+\'CRNRSTN_OUTPUT_FORM_INTEGRATIONS\'
 
 WHERE $data_auth_profile = 
 \'CRNRSTN_AUTHORIZE_RUNTIME_ONLY\',

@@ -5003,8 +5003,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
 
                     // add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
-                    $this->oCRNRSTN->add_system_resource('CRNRSTN_FORM_HANDLE', $crnrstn_form_handle, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-                    
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource('CRNRSTN_FORM_HANDLE', $crnrstn_form_handle, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$crnrstn_form_handle][] = $tmp_data_key_hashed;
+
                 }
 
             }
@@ -5088,7 +5089,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $tmp_data_key = 'FIELD_INPUT_NAME';
                 $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                 $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5099,7 +5101,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'FIELD_INPUT_ID';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$field_input_id=[' . $field_input_id . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5112,7 +5115,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'DEFAULT_VALUE';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $default_value, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $default_value, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$default_value=[' . $default_value . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5125,7 +5129,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'TABLE_FIELD_NAME';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $table_field_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed =  $this->oCRNRSTN->add_system_resource($tmp_data_key, $table_field_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$table_field_name=[' . $table_field_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5138,7 +5143,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'VALIDATION_CONSTANTS_PROFILE';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $validation_constant_profile, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $validation_constant_profile, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$validation_constant_profile=[' . $validation_constant_profile . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5209,17 +5215,19 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                 //
                 // UNLESS WE WANT MULTIPLE SUCCESS REDIRECTS TO BE ASSOCIATED
                 // WITH EACH INPUT...SPOIL isset_data_key().
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_RESPONSE, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_RESPONSE, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
                 //$this->oCRNRSTN->add_system_resource('FORM_INPUT_FIELD_NAME', 'SUCCESS_REDIRECT', $tmp_sys_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
                 //$tmp_data_key = 'SUCCESS_REDIRECT';
                 $tmp_data_type_family = $tmp_dtf_FORM_RESPONSE . '::' . $tmp_data_key;
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_response_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_response_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                 $tmp_data_key = 'SUCCESS_RESPONSE_TYPE';
                 $tmp_data_type_family = $tmp_dtf_FORM_RESPONSE . '::' . $tmp_data_key;
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_response_type, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_response_type, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                 $tmp_str = '$success_response_data=[' . $success_response_data . ']. 
 $success_response_type=[' . $success_response_type . '].
@@ -5235,15 +5243,18 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                 //
                 // UNLESS WE WANT MULTIPLE ERROR REDIRECTS TO BE ASSOCIATED
                 // WITH EACH INPUT...SPOIL isset_data_key().
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_RESPONSE, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_RESPONSE, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                 //$tmp_data_key = 'ERROR_RESPONSE';
                 $tmp_data_type_family = $tmp_dtf_FORM_RESPONSE . '::' . $tmp_data_key;
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_response_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_response_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                 $tmp_data_key = 'ERROR_RESPONSE_TYPE';
                 $tmp_data_type_family = $tmp_dtf_FORM_RESPONSE . '::' . $tmp_data_key;
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_response_type, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_response_type, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                 $tmp_str = '$error_response_data=[' . $error_response_data . ']. 
 $error_response_type=[' . $error_response_type . '].
@@ -5263,15 +5274,18 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
             // UNLESS WE WANT *ALL* SUCCESS RESPONSE TO BE ASSOCIATED
             // WITH THIS FORM...AS WELL AS THEIR RESPECTIVE INPUTS...
             // SPOIL isset_data_key().
-            $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
             //$tmp_data_key = 'SUCCESS_RESPONSE';
             $tmp_data_type_family = $tmp_dtf_FORM_RESPONSE . '::' . $tmp_data_key;
-            $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_response_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_response_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
             $tmp_data_key = 'SUCCESS_RESPONSE_TYPE';
             $tmp_data_type_family = $tmp_dtf_FORM_RESPONSE . '::' . $tmp_data_key;
-            $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_response_type, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_response_type, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
             $tmp_str = '$success_response_data=[' . $success_response_data . ']. 
 $success_response_type=[' . $success_response_type . ']. 
@@ -5290,14 +5304,17 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
             // WITH FORM...AS WELL AS THEIR RESPECTIVE INPUTS...
             // SPOIL isset_data_key().
             //$tmp_data_key = 'ERROR_RESPONSE';
-            $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
             $tmp_data_type_family = $tmp_dtf_FORM_RESPONSE . '::' . $tmp_data_key;
-            $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_response_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY,'');
+            $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_response_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY,'');
+            $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
             $tmp_data_key = 'ERROR_RESPONSE_TYPE';
             $tmp_data_type_family = $tmp_dtf_FORM_RESPONSE . '::' . $tmp_data_key;
-            $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_response_type, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $error_response_type, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+            $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
             $tmp_str = '$error_response_data=[' . $error_response_data . '].
 $error_response_type=[' . $error_response_type . ']. 
@@ -5352,13 +5369,15 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
             if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_HANDLE)){
 
                 // SPOIL isset_data_key()
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_HANDLE, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_HANDLE, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                 if(isset($field_input_name)){
 
                     //$tmp_data_key = 'FIELD_INPUT_NAME';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5371,7 +5390,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'FIELD_INPUT_ID';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5384,7 +5404,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'DEFAULT_VALUE';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $default_value, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $default_value, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$default_value=[' . $default_value . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5397,7 +5418,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'TABLE_FIELD_NAME';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $table_field_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $table_field_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$default_value=[' . $default_value . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5410,7 +5432,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'VALIDATION_CONSTANT_PROFILE';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $validation_constant_profile, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $validation_constant_profile, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$validation_constant_profile=[' . $validation_constant_profile . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5483,13 +5506,15 @@ $info_msg=[' . $info_msg . '].';
             if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_INPUT_VALIDATION)){
 
                 // SPOIL isset_data_key
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_INPUT_VALIDATION, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, 1, $tmp_dtf_FORM_INPUT_VALIDATION, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                 if(isset($field_input_name)){
 
                     //$tmp_data_key = 'FIELD_INPUT_NAME';
                     $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$field_input_name=[' . $field_input_name . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5502,7 +5527,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'FIELD_INPUT_ID';
                     $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$field_input_id=[' . $field_input_id . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5517,7 +5543,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                         $tmp_data_key = 'ERR_MESSAGE';
                         $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
-                        $this->oCRNRSTN->add_system_resource($tmp_data_key, $err_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                        $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $err_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                        $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                         $tmp_str = '$err_msg=[' . $err_msg . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5534,7 +5561,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                         $tmp_data_key = 'SUCCESS_MESSAGE';
                         $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
-                        $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                        $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $success_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                        $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                         $tmp_str = '$success_msg=[' . $success_msg . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5549,7 +5577,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                     $tmp_data_key = 'INFO_MESSAGE';
                     $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
-                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $info_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $tmp_data_key_hashed = $this->oCRNRSTN->add_system_resource($tmp_data_key, $info_msg, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][] = $tmp_data_key_hashed;
 
                     $tmp_str = '$info_msg=[' . $info_msg . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
@@ -5577,6 +5606,26 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
     }
 
     private function return_serialized_input_fields($crnrstn_form_handle){
+
+        $tmp_str = '';
+
+        $tmp_form_handle_hash = $this->oCRNRSTN->hash($crnrstn_form_handle);
+        foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash] as $index => $data_key_hash){
+
+            $tmp_data = $this->oCRNRSTN->form_integrations_data_return($data_key_hash, CRNRSTN_OUTPUT_FORM_INTEGRATIONS , 0);
+
+            if($tmp_data != $this->oCRNRSTN->session_salt()){
+
+                $tmp_str .= $tmp_data;
+
+            }
+
+            //$tmp_str .= $this->oCRNRSTN->oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $data_key_hash, CRNRSTN_OUTPUT_PSSDTLA, $index = 0);
+
+        }
+
+        return $tmp_str;
+
 
         $tmp_form_handle_hash = $this->hash($crnrstn_form_handle);
         $tmp_html_out = '';

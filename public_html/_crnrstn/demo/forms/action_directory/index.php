@@ -213,7 +213,7 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
             </div>
             <?php
 
-            echo $oCRNRSTN->form_integration_html_packet_output('CRNRSTN:: A DEMO_FORM_EXAMPLE');
+            //echo $oCRNRSTN->form_integration_html_packet_output('CRNRSTN:: A DEMO_FORM_EXAMPLE');
 
             ?>
         </form>
@@ -230,6 +230,9 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
     // TESTING -1 TO PREMATURELY DUMP ANY DESTRUCTOR STRING OUTPUT DATA HERE (WELL INSIDE THE <HTML> TAGS).
     // NO CONSTANT CRNRSTN_RESOURCE_DESTRUCTOR, YET.
     echo $oCRNRSTN->framework_integrations_client_packet(-1);
+
+    //echo $oCRNRSTN->form_integration_html_packet_output('CRNRSTN:: A DEMO_FORM_EXAMPLE');
+    $oCRNRSTN->print_r($oCRNRSTN->form_integration_html_packet_output('CRNRSTN:: A DEMO_FORM_EXAMPLE'), NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
     ?>
 

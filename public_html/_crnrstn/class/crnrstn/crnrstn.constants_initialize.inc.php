@@ -761,59 +761,64 @@ function crnrstn_constants_init($const_nom){
             return (int) 8073;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_ALL':
+        case 'CRNRSTN_OUTPUT_FORM_INTEGRATIONS':
 
-            return (int) 8074;
+            return (int) 8067;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_DATABASE':
+        case 'CRNRSTN_AUTHORIZE_ALL':
 
             return (int) 8075;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_SSDTLA':
+        case 'CRNRSTN_AUTHORIZE_DATABASE':
 
             return (int) 8076;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_PSSDTLA':
+        case 'CRNRSTN_AUTHORIZE_SSDTLA':
 
             return (int) 8077;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_SESSION':
+        case 'CRNRSTN_AUTHORIZE_PSSDTLA':
 
             return (int) 8078;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_COOKIE':
+        case 'CRNRSTN_AUTHORIZE_SESSION':
 
             return (int) 8079;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_SOAP':
+        case 'CRNRSTN_AUTHORIZE_COOKIE':
 
             return (int) 8080;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_GET':
+        case 'CRNRSTN_AUTHORIZE_SOAP':
 
             return (int) 8081;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY':
+        case 'CRNRSTN_AUTHORIZE_GET':
 
             return (int) 8082;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_ISEMAIL':
+        case 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY':
 
             return (int) 8083;
 
         break;
-        case 'CRNRSTN_AUTHORIZE_ISPASSWORD':
+        case 'CRNRSTN_AUTHORIZE_ISEMAIL':
 
             return (int) 8084;
+
+        break;
+        case 'CRNRSTN_AUTHORIZE_ISPASSWORD':
+
+            return (int) 8085;
 
         break;
 

@@ -161,6 +161,7 @@ class crnrstn {
     private static $wheel_encoder_salt;
 
     public $data_packet_ttl_default;
+    public $crnrstn_data_packet_data_key_index_ARRAY = array();
 
     /*
     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
@@ -503,6 +504,12 @@ class crnrstn {
     public function sticky_uri_listener(){
 
         return $this->oCRNRSTN_USR->sticky_uri_listener();
+
+    }
+
+    public function form_integrations_data_return($crnrstn_form_handle, $data_key_hash, $index = 0){
+
+        return self::$oCRNRSTN_CONFIG_MGR->form_integrations_data_return($crnrstn_form_handle, $data_key_hash, $index);
 
     }
 
@@ -2471,12 +2478,12 @@ class crnrstn {
 
     }
 
-    public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $soap_transport = false){
+    public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
 
         //$this->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $soap_transport=[' . $soap_transport . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
         // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_transport = false){
-        return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $soap_transport);
+        return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $data_auth_request);
 
         // was here ->  return $this->oCRNRSTN_USR->get_resource($data_key, $index, $data_type_family, $soap_transport);   //<--  previous call
         //                  return $this->oCRNRSTN_ENV->retrieve_data_value($data_key, $index, $data_type_family, $this->env_key, $soap_transport);
@@ -2634,15 +2641,17 @@ class crnrstn {
 
                     }
 
-                    if (isset(self::$server_env_key_ARRAY[$this->config_serial_hash])) {
+                    if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
 
-                        $this->input_data_value($data_value, $data_key, $data_type_family, $data_index, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash], $default_ttl);
+                        return $this->input_data_value($data_value, $data_key, $data_type_family, $data_index, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash], $default_ttl);;
 
                     }
 
                 }
 
             }
+
+            return $this->session_salt();
 
         } catch (Exception $e) {
 
@@ -3182,7 +3191,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL, $default_ttl = 60){
 
         //error_log(__LINE__ . ' crnrstn::' . __METHOD__ . '(' . $data_key . '); WHO CALLS ME? WHAT ABOUT add_system_resource()? NEED TO TIDY UP DATA INPUT. NEVER $env_key...ALWAYS self::$server_env_key_ARRAY[$this->config_serial_hash];.');
-        self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, $env_key, $default_ttl);
+        return self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, $env_key, $default_ttl);
 
     }
 
@@ -4605,7 +4614,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function clean_json_string(){
+    public function return_clean_json_string($val){
 
         /*
          * https://www.php.net/manual/en/json.constants.php
@@ -5493,6 +5502,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta .= ' [file ' . $file . ']';
 
             }
+
 
         } else {
 
@@ -8423,7 +8433,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             }
 
             $this->oLog_output_ARRAY[] = $this->error_log('Process ' . __CLASS__ . '::__destruct initiated output of error log trace data.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
-            error_log('Process ' . __CLASS__ . '::__destruct initiated output of error log trace data.');
+            error_log(__LINE__ . ' Process ' . __CLASS__ . '::__destruct initiated output of error log trace data.');
             //$this->print_r($this->destruct_output, 'C<span style="color:#F90000;">R</span>NRSTN Debug Mode 2 :: Error Log Trace Debug Output ::', $style_theme, __LINE__, __METHOD__, __FILE__);
             //print_r('<div style="height:10px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>');
             print_r($this->destruct_output);
@@ -8565,9 +8575,9 @@ class crnrstn_config_manager {
 
             // error_log(__LINE__ . ' '. __METHOD__ . ' [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].');
             // $this->oCRNRSTN->print_r(' crnrstn config '. __METHOD__ . ' [' . $data_key . '(strlen=' . strlen($data_key) . ')][' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', 'CRNRSTN :: CONFIGURATION TEST',NULL, __LINE__,__METHOD__,__FILE__);
-
-            $this->oCRNRSTN_CONFIG_DDO->add($data_val, $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $index, $data_auth_profile, $default_ttl);
             $this->oCRNRSTN->error_log('Received $data_val=[' . $data_val . ']. $data_key=[' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . ']. $data_auth_profile=[' . $data_auth_profile . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            return $this->oCRNRSTN_CONFIG_DDO->add($data_val, $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $index, $data_auth_profile, $default_ttl);
 
             //
             // HOOOSTON...VE HAF PROBLEM!
@@ -8589,7 +8599,21 @@ class crnrstn_config_manager {
 
     }
 
-    public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_transport = false){
+    public function form_integrations_data_return($data_key_hash, $data_auth_request, $index){
+
+        error_log(__LINE__  . ' ccm ' . __METHOD__ . ' $data_key_hash=[' . print_r($data_key_hash, true) . '].');
+
+        if(is_array($data_key_hash)){
+
+            return $this->oCRNRSTN_CONFIG_DDO->preach('pssdtl_packet', $data_key_hash[0], $data_auth_request, $index);
+
+        }
+
+        return $this->oCRNRSTN_CONFIG_DDO->preach('pssdtl_packet', $data_key_hash, $data_auth_request, $index);
+
+    }
+
+    public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
 
         //
         // ESTABLISH AND RETURN MYSQLI CONNECTION
@@ -8607,11 +8631,11 @@ class crnrstn_config_manager {
 
             }
 
-            $tmp_return_data_spec_a = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $soap_transport, $index);
+            $tmp_return_data_spec_a = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $data_auth_request, $index);
 
             if($tmp_return_data_spec_a == $this->oCRNRSTN->session_salt()){
 
-                $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, CRNRSTN_RESOURCE_ALL, $data_type_family), $soap_transport, $index);
+                $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, CRNRSTN_RESOURCE_ALL, $data_type_family), $data_auth_request, $index);
 
                 if($tmp_return_data_spec_b != $this->oCRNRSTN->session_salt()){
 
