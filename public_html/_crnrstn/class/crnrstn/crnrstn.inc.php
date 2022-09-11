@@ -8278,10 +8278,9 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             }
 
             $this->oLog_output_ARRAY[] = $this->error_log('Process ' . __CLASS__ . '::__destruct initiated output of error log trace data.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
-
-
+            error_log('Process ' . __CLASS__ . '::__destruct initiated output of error log trace data.');
             //$this->print_r($this->destruct_output, 'C<span style="color:#F90000;">R</span>NRSTN Debug Mode 2 :: Error Log Trace Debug Output ::', $style_theme, __LINE__, __METHOD__, __FILE__);
-            print_r('<div style="height:10px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>');
+            //print_r('<div style="height:10px; width:100%; clear:both; display: block; overflow: hidden;">&nbsp;</div>');
             print_r($this->destruct_output);
 
         }

@@ -24,8 +24,7 @@ switch($channel_constant){
          * */
         $tmp_str = 'hello tablet world!';
         if(1==2) {
-            ?>
-            <!DOCTYPE html>
+            ?><!DOCTYPE html>
             <html lang="en">
             <head>
                 <?php
@@ -123,6 +122,31 @@ switch($channel_constant){
             $this->oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP) . '
     </head>
     <body>
+<!--
+/*
+CRNRSTN :: DDO DATA TRANSLATION OBJECT (JSON)
+USED BY PSSDTLP (SSDTL), FIHP, COOKIES, SESSION, DATABASE, CRNRSTN_JS
+//
+// Sunday, September 11, 2022 0230 hrs.
+// WE WILL WRAP THE PSSDTL WITH THE SSDTL. SO SOAP-WRAPPED PSSDTLP IS #WINNING.
+// A CRNRSTN :: DATA PACKET IS AN ENCRYPTED JSON OBJECT WRAPPED IN A SOAP OBJECT. FUCK YEAH! JSON!
+// CRNRSTN :: DATA PACKET IS A THING NOW.
+
+$this->oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->preach(\'crnrstn_data_packet\', $data_key = NULL, $soap_transport = false, $index = 0){
+
+$tmp_str_out .= \'
+{
+    "HASH" : \' . $this->oCRNRSTN->hash($tmp_attribute_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator], \'md5\') . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator], \'md5\') . \'",
+    "KEY" : "\' . $this->oCRNRSTN_USR->return_json_value($tmp_attribute_key) . \'",
+    "LENGTH" : "\' . $tmp_val_len . \'",
+    "TYPE" : "\' . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator] . \'",
+    "VALUE" : \' . $this->oCRNRSTN_USR->return_json_value($tmp_val) . \'
+},\';
+
+
+*/
+-->
+
     <div class="crnrstn_body_wrapper">
 
         <div class="crnrstn_dyn_signin_hdr_branding_shell">

@@ -7225,7 +7225,7 @@ class crnrstn_wildcard_resource {
         if(get_class($oCRNRSTN) != 'crnrstn'){
 
             $this->env_key = self::$oCRNRSTN_n->env_key;
-            //error_log('1476 ['.get_class($oCRNRSTN).']['.$this->env_key.'] - '. __CLASS__);
+            //error_log('1476 [' .  get_class($oCRNRSTN).']['.$this->env_key .  '] - '. __CLASS__);
 
         }
 
@@ -7652,6 +7652,7 @@ class crnrstn_decoupled_data_object {
         }
 
         switch($data_attribute){
+            case 'crnrstn_data_packet':
             case 'pssdtl_packet';
 
                 $tmp_count = 0;
@@ -7696,6 +7697,11 @@ class crnrstn_decoupled_data_object {
                         // Friday, August 5, 2022 2241 hrs
                         // IF WE'RE TALKING SSDTLP, THEN WE NEED TO FUCK WITH SOAP
                         // OBJECTS NOW (YEAH, FUCK JSON!)...WHICH I AM NOT...AT THE MOMENT.
+                        //
+                        // Sunday, September 11, 2022 0230 hrs.
+                        // WE WILL WRAP THE PSSDTL WITH THE SSDTL. SO SOAP-WRAPPED PSSDTLP IS #WINNING.
+                        // A CRNRSTN :: DATA PACKET IS AN ENCRYPTED JSON OBJECT WRAPPED IN A SOAP OBJECT. FUCK YEAH! JSON!
+                        // CRNRSTN :: DATA PACKET IS A THING NOW.
 //                        if(isset($this->data_value_ARRAY['SSDTLP'][$tmp_attribute_key][$tmp_iterator])){
 //
 //                            $tmp_val = $this->data_value_ARRAY['SSDTLP'][$tmp_attribute_key][$tmp_iterator];
