@@ -172,7 +172,7 @@ $tmp_str_out .= \'
     "LENGTH" : "\' . $tmp_val_len . \'",
     "TYPE" : "\' . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator] . \'",
     "VALUE" : \' . $this->oCRNRSTN->clean_json_string($tmp_val) . \',
-    "TTL" : \' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . \',
+    "TTL" : \'$this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index])\',
     "AUTH_PROFILE" : \' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . \'
 },\';
 

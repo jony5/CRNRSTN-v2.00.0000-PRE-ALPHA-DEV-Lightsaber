@@ -4273,7 +4273,6 @@ class crnrstn_communications_css_standard{
         # SHOULD BE A UNIQUE HANDLE TO THE FORM PROFILE. IT DETERMINES WHAT POTENTIAL POST/GET
         # PARAMETERS FOR WHICH CRNRSTN :: SHOULD BE LISTENING.
         # $oCRNRSTN_USR->form_serialize_new({CRNRSTN_FORM_HANDLE}, {TUNNEL_PROTOCOL});
-        $this->oCRNRSTN_USR->form_serialize_new('crnrstn_validate_css');
 
         //
         // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK

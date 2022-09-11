@@ -7410,6 +7410,7 @@ class crnrstn_decoupled_data_object {
     public $oCRNRSTN;
     public $oCRNRSTN_USR;
 
+    public $ttl_profile_ARRAY = array();
     public $data_auth_profile_ARRAY = array();
     public $data_value_ARRAY = array();
     public $data_type_ARRAY = array();
@@ -7721,11 +7722,13 @@ class crnrstn_decoupled_data_object {
 
                         $tmp_str_out .= '
                         {
-                            "HASH" : ' . $this->oCRNRSTN->hash($tmp_attribute_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator], 'md5') . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator], 'md5') . '",
-                            "KEY" : "' . $this->oCRNRSTN->return_json_value($tmp_attribute_key) . '",
+                            "HASH" : "' . $this->oCRNRSTN->hash($tmp_attribute_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator], 'md5') . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator], 'md5') . '",
+                            "KEY" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_attribute_key) . '",
                             "LENGTH" : "' . $tmp_val_len . '",
                             "TYPE" : "' . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator] . '",
-                            "VALUE" : ' . $this->oCRNRSTN->return_json_value($tmp_val) . '
+                            "VALUE" : ' . $this->oCRNRSTN->clean_json_string($tmp_val) . ',
+                            "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$tmp_attribute_key][$tmp_iterator]) . ',
+                            "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$tmp_attribute_key][$tmp_iterator]) . '
                         },';
 
                     }
@@ -7888,9 +7891,8 @@ class crnrstn_decoupled_data_object {
 
     }
 
-    public function add($data_value, $data_key = NULL, $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+    public function add($data_value, $data_key = NULL, $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
 
-//
 //        if($data_key == 'ac7971ddce7e6720466d7fb07d03cdf6fd017a508d87ac7132d7d5d11a34f077db'){
 //
 //            $this->oCRNRSTN->print_r('$data_value=[' . $data_value . ']. $data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
@@ -7922,6 +7924,7 @@ class crnrstn_decoupled_data_object {
             if(isset($index)){
 
                 $data_type = strtolower(gettype($data_value));
+                $this->ttl_profile_ARRAY[$data_key][$index] = $default_ttl;
                 $this->data_auth_profile_ARRAY[$data_key][$index] = $data_auth_profile;
                 $this->data_type_ARRAY[$data_key][$index] = $data_type;
                 $this->data_flag_ARRAY[$data_key][$index] = 1;
@@ -7930,6 +7933,7 @@ class crnrstn_decoupled_data_object {
 
                 $data_type = strtolower(gettype($data_value));
                 $this->data_auth_profile_ARRAY[$data_key][] = $data_auth_profile;
+                $this->ttl_profile_ARRAY[$data_key][$index] = $default_ttl;
                 $this->data_type_ARRAY[$data_key][] = $data_type;
                 $this->data_flag_ARRAY[$data_key][] = 1;
 
@@ -7943,6 +7947,7 @@ class crnrstn_decoupled_data_object {
 
                 $data_type = $this->data_type;
                 $this->data_auth_profile_ARRAY[$data_key][$index] = $data_auth_profile;
+                $this->ttl_profile_ARRAY[$data_key][$index] = $default_ttl;
                 $this->data_type_ARRAY[$data_key][$index] = $data_type;
                 $this->data_flag_ARRAY[$data_key][$index] = 1;
 
@@ -7950,6 +7955,7 @@ class crnrstn_decoupled_data_object {
 
                 $data_type = $this->data_type;
                 $this->data_auth_profile_ARRAY[$data_key][] = $data_auth_profile;
+                $this->ttl_profile_ARRAY[$data_key][$index] = $default_ttl;
                 $this->data_type_ARRAY[$data_key][] = $data_type;
                 $this->data_flag_ARRAY[$data_key][] = 1;
 

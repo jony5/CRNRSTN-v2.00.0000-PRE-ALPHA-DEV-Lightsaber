@@ -2,7 +2,7 @@
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('BLUEHOST', 'DOCUMENT_ROOT_DIR', '', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+$this->config_add_system_resource('BLUEHOST', 'DOCUMENT_ROOT_DIR', '', CRNRSTN_AUTHORIZE_RUNTIME_ONLY, 60);
 $this->config_add_system_resource('BLUEHOST', 'ROOT_PATH_CLIENT_HTTP', 'http://jony5.com/');
 $this->config_add_system_resource('BLUEHOST', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
 $this->config_add_system_resource('BLUEHOST', 'BANNER_IMAGES_HTTP_DIR_DESKTOP', 'common/imgs/lifestyle_banner/desktop/');

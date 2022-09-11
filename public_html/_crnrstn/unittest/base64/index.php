@@ -84,7 +84,6 @@ j5_pup_top_right
 //
 //}
 
-$oCRNRSTN->form_serialize_new('crnrstn_image_to_encode');
 
 if($oCRNRSTN->initialize_crnrstn_svc_http(true, false)) {
 

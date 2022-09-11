@@ -1660,7 +1660,6 @@ class crnrstn_user{
             switch($output_type){
                 case 'alpha_testing':
 
-                    $this->form_serialize_new('crnrstn_soap_data_tunnel_frm');
                     $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_data', true);
 
                     $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_soap_action', true);

@@ -160,6 +160,8 @@ class crnrstn {
     private static $char_01_index_ARRAY = array();
     private static $wheel_encoder_salt;
 
+    public $data_packet_ttl_default;
+
     /*
     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
     AUTHORIZED DATA ARCHITECTURES (CHANNEL). DSJPCR.
@@ -2532,7 +2534,7 @@ class crnrstn {
 
     }
 
-    private function config_add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+    private function config_add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
 
         try {
 
@@ -2544,13 +2546,13 @@ class crnrstn {
 
             $tmp_env_key_hash = $this->hash($env_key);
 
-            if (count($tmp_param_missing_ARRAY) > 0) {
+            if(count($tmp_param_missing_ARRAY) > 0){
 
                 $this->error_log('Attempted ' . __METHOD__ . '(' . $data_key . ') but missing required parameters. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 throw new Exception('CRNRSTN :: initialization ERROR :: define_env_resource was called but was missing parameter information and so was not able to be initialized. env_key and resourceKey are required. env_key[' . $env_key . '] resourceKey[' . $data_key . ']');
 
-            } else {
+            }else{
 
                 if ($env_key === '*') {
 
@@ -2571,7 +2573,7 @@ class crnrstn {
 
                     if (isset(self::$server_env_key_ARRAY[$this->config_serial_hash])) {
 
-                        $this->input_data_value($data_value, $data_key, $data_type_family, NULL, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash]);
+                        $this->input_data_value($data_value, $data_key, $data_type_family, NULL, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash], $default_ttl);
 
                     }
 
@@ -2589,7 +2591,7 @@ class crnrstn {
 
     }
 
-    public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $data_index = NULL, $env_key = NULL){
+    public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $data_index = NULL, $env_key = NULL, $default_ttl = 60){
 
         try {
 
@@ -2634,7 +2636,7 @@ class crnrstn {
 
                     if (isset(self::$server_env_key_ARRAY[$this->config_serial_hash])) {
 
-                        $this->input_data_value($data_value, $data_key, $data_type_family, $data_index, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash]);
+                        $this->input_data_value($data_value, $data_key, $data_type_family, $data_index, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash], $default_ttl);
 
                     }
 
@@ -3177,10 +3179,10 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL){
+    public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL, $default_ttl = 60){
 
         //error_log(__LINE__ . ' crnrstn::' . __METHOD__ . '(' . $data_key . '); WHO CALLS ME? WHAT ABOUT add_system_resource()? NEED TO TIDY UP DATA INPUT. NEVER $env_key...ALWAYS self::$server_env_key_ARRAY[$this->config_serial_hash];.');
-        self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, $env_key);
+        self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, $env_key, $default_ttl);
 
     }
 
@@ -4906,6 +4908,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
 
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
             break;
             case CRNRSTN_UI_GLASS_DARK_COPY:
 
@@ -4928,6 +4937,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
+
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
             break;
             case CRNRSTN_UI_TERMINAL:
@@ -4953,6 +4969,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#1FA61F';
 
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
             break;
             case CRNRSTN_UI_PHPNIGHT:
 
@@ -4976,6 +4999,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#00D500';
+
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
             break;
             case CRNRSTN_UI_DARKNIGHT:
@@ -5002,6 +5032,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#111';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#1A6F1A';
 
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
             break;
             case CRNRSTN_UI_PHP:
@@ -5026,6 +5062,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#787CAF';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#EEE8E8';
+
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
             break;
             case CRNRSTN_UI_GREYSKYS:
@@ -5052,6 +5095,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#A5A5A5';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#E8E8E8';
 
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
             break;
             case CRNRSTN_UI_HTML:
 
@@ -5075,6 +5125,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#3F6EC9';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#F3F0F0';
+
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
             break;
             case CRNRSTN_UI_DAYLIGHT:
@@ -5100,6 +5157,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#809FDB';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#F3F0F0';
 
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
             break;
             case CRNRSTN_UI_FEATHER:
 
@@ -5124,7 +5188,16 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
                 $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
 
-            break;
+                // * offset-x | offset-y | blur-radius | spread-radius | color */
+                // <div style="box-shadow: 2px 3px 3px 0 #bfbfbf;">
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+                $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+                break;
 
         }
 
@@ -5178,6 +5251,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
+
+        $tmp_box_shadow_cnt = count($tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x']);
+        $tmp_box_shadow_str = '';
+
+        for($i = 0; $i < $tmp_box_shadow_cnt; $i++){
+
+            $tmp_00 = $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][$i];
+            $tmp_01 = $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][$i];
+            $tmp_02 = $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][$i];
+            $tmp_03 = $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][$i];
+            $tmp_04 = $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][$i];
+            $tmp_05 = $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][$i];
+
+            $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' '  . $tmp_02 . ' '  . $tmp_03 . ' '  . $tmp_04 . ' '  . $tmp_05 . ', ';
+
+        }
+
+        $tmp_box_shadow_str = $this->strrtrim($tmp_box_shadow_str, ', ');
 
         $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
 
@@ -5273,7 +5364,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
             <div>
-                <div style="box-shadow: 2px 3px 3px #bfbfbf;">
+                <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
                 <div style="border: 3px solid #FFF;">
                 <div style="margin:3px 6px 0 0;">
                     <div style="' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
@@ -5375,6 +5466,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_meta_ARRAY = $this->return_theme_style_profile_meta_ARRAY($theme_style);
 
+        $tmp_box_shadow_cnt = count($tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x']);
+        $tmp_box_shadow_str = '';
+
+        for($i = 0; $i < $tmp_box_shadow_cnt; $i++){
+
+            $tmp_00 = $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][$i];
+            $tmp_01 = $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][$i];
+            $tmp_02 = $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][$i];
+            $tmp_03 = $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][$i];
+            $tmp_04 = $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][$i];
+            $tmp_05 = $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][$i];
+
+            $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' '  . $tmp_02 . ' '  . $tmp_03 . ' '  . $tmp_04 . ' '  . $tmp_05 . ', ';
+
+        }
+
+        $tmp_box_shadow_str = $this->strrtrim($tmp_box_shadow_str, ', ');
+
         $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
 
         if (!isset($method) || $method == '') {
@@ -5470,8 +5579,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             </div>
             <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
 
-            <div style="/*padding: 5px 10px 20px 10px;*/">
-                <div style="box-shadow: 2px 3px 3px #bfbfbf;">
+            <div>
+                <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
                 <div style="border: 3px solid #FFF;">
                 <div style="margin:3px 6px 0 0;">
                     <div style="' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
@@ -8438,7 +8547,7 @@ class crnrstn_config_manager {
 
     }
 
-    public function input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL){
+    public function input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL, $default_ttl = 60){
 
         try{
 
@@ -8457,7 +8566,7 @@ class crnrstn_config_manager {
             // error_log(__LINE__ . ' '. __METHOD__ . ' [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].');
             // $this->oCRNRSTN->print_r(' crnrstn config '. __METHOD__ . ' [' . $data_key . '(strlen=' . strlen($data_key) . ')][' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', 'CRNRSTN :: CONFIGURATION TEST',NULL, __LINE__,__METHOD__,__FILE__);
 
-            $this->oCRNRSTN_CONFIG_DDO->add($data_val, $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $index, $data_auth_profile);
+            $this->oCRNRSTN_CONFIG_DDO->add($data_val, $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $index, $data_auth_profile, $default_ttl);
             $this->oCRNRSTN->error_log('Received $data_val=[' . $data_val . ']. $data_key=[' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . ']. $data_auth_profile=[' . $data_auth_profile . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             //

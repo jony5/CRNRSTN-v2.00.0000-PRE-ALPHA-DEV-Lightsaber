@@ -6,7 +6,12 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-$tmp_theme_style = $_GET['style'];
+if(isset($_GET['style'])){
+
+    $tmp_theme_style = $_GET['style'];
+
+}
+
 if(!isset($tmp_theme_style)){
 
     $tmp_theme_style = CRNRSTN_UI_DAYLIGHT;

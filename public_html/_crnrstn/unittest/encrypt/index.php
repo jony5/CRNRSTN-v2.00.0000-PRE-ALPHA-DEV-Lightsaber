@@ -157,7 +157,6 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
 }
 
-$oCRNRSTN->form_serialize_new('openssl_mysql_storage_performance');
 $tmp_form_serial = $oCRNRSTN->generate_new_key(5);
 $tmp_http_root = $oCRNRSTN->current_location();
 

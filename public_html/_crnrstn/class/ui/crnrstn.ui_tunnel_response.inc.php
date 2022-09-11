@@ -2776,8 +2776,6 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
         $tmp_client_auth_key = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_auth_key');
 
-        $this->oCRNRSTN_USR->form_serialize_new('crnrstn_soap_data_tunnel_form');
-
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', false);
