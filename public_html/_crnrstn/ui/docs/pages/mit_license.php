@@ -137,10 +137,12 @@ $this->oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->preach(\'crnrstn_data_packet\',
 $tmp_str_out .= \'
 {
     "HASH" : \' . $this->oCRNRSTN->hash($tmp_attribute_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$tmp_attribute_key][$tmp_iterator], \'md5\') . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator], \'md5\') . \'",
-    "KEY" : "\' . $this->oCRNRSTN_USR->return_json_value($tmp_attribute_key) . \'",
+    "KEY" : "\' . $this->oCRNRSTN->return_clean_json_string($tmp_attribute_key) . \'",
     "LENGTH" : "\' . $tmp_val_len . \'",
     "TYPE" : "\' . $this->data_type_ARRAY[$tmp_attribute_key][$tmp_iterator] . \'",
-    "VALUE" : \' . $this->oCRNRSTN_USR->return_json_value($tmp_val) . \'
+    "VALUE" : \' . $this->oCRNRSTN->clean_json_string($tmp_val) . \',
+    "TTL" : \' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . \',
+    "AUTH_PROFILE" : \' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . \'
 },\';
 
 

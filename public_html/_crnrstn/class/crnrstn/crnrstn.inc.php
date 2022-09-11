@@ -4597,6 +4597,36 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function clean_json_string(){
+
+        /*
+         * https://www.php.net/manual/en/json.constants.php
+         *
+        JSON_OBJECT_AS_ARRAY (int)
+        Decodes JSON objects as PHP array. This option can be added automatically by calling
+        json_decode() with the second parameter equal to true.
+
+        json_encode('' , JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+
+        JSON_UNESCAPED_UNICODE
+        Encode multibyte Unicode characters literally (default is to escape as \uXXXX).
+
+        JSON_UNESCAPED_SLASHES
+        Don't escape /.
+
+        JSON_NUMERIC_CHECK
+        Encodes numeric strings as numbers.
+        */
+
+        //
+        // SOURCE :: https://www.php.net/manual/en/json.constants.php
+        // AUTHOR :: majid4466 at gmail dot com :: https://www.php.net/manual/en/json.constants.php#119565
+        $val = json_encode($val, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+
+        return $val;
+
+    }
+
     public function return_PHP_exception_trace_pretty($exception_obj_trace_str, $format = 'ERROR_LOG'){
 
         switch ($format) {

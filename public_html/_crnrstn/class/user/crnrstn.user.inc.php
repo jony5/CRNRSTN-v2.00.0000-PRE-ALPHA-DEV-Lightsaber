@@ -8355,33 +8355,9 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     }
 
-    public function return_json_value($val){
+    public function return_clean_json_string($val){
 
-        /*
-         * https://www.php.net/manual/en/json.constants.php
-         *
-        JSON_OBJECT_AS_ARRAY (int)
-        Decodes JSON objects as PHP array. This option can be added automatically by calling
-        json_decode() with the second parameter equal to true.
-
-        json_encode('' , JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
-
-        JSON_UNESCAPED_UNICODE
-        Encode multibyte Unicode characters literally (default is to escape as \uXXXX).
-
-        JSON_UNESCAPED_SLASHES
-        Don't escape /.
-
-        JSON_NUMERIC_CHECK
-        Encodes numeric strings as numbers.
-        */
-
-        //
-        // SOURCE :: https://www.php.net/manual/en/json.constants.php
-        // AUTHOR :: majid4466 at gmail dot com :: https://www.php.net/manual/en/json.constants.php#119565
-        $val = json_encode($val, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
-
-        return $val;
+        return $this->oCRNRSTN->return_clean_json_string($val);
 
     }
 
@@ -8405,7 +8381,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                         //
                         // SOURCE :: https://www.php.net/manual/en/json.constants.php
                         // AUTHOR :: majid4466 at gmail dot com :: https://www.php.net/manual/en/json.constants.php#119565
-                        $db_resp_out = $this->return_json_value($db_resp_out);
+                        $db_resp_out = $this->return_clean_json_string($db_resp_out);
 
                         return $db_resp_out;
 
