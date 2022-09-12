@@ -1277,7 +1277,7 @@ class crnrstn_environment {
 ';
 
         $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden">
-    <form action="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'soa/tunnel/?' . $this->oCRNRSTN->session_salt() . '=" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data" >
+    <form action="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'soa/tunnel/?' . $this->oCRNRSTN->session_salt() . '=" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea>
         <button type="submit">SUBMIT</button>
         <input type="hidden" id="crnrstn_request_ajax_root" name="crnrstn_request_ajax_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?'. $this->oCRNRSTN->session_salt().'=">
@@ -7628,15 +7628,33 @@ class crnrstn_decoupled_data_object {
 
     }
 
-    public function ttutu(){
+    private function concat_fihp_data_index($data_key_hashed){
 
-        foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY as $index => $data_key_hash){
+        //
+        // KEY FORMAT IJJIOJCCECCEEICMEIM0CEC0MEWCEK0::DATA
+        if(is_array($data_key_hashed)){
 
-            $tmp_str .= $this->oCRNRSTN->oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $data_key_hash, CRNRSTN_OUTPUT_PSSDTLA, $index = 0);
+            $tmp_key_chunk_ARRAY = explode('::', $data_key_hashed[0]);
+            $tmp_value = $this->preach('value', $data_key_hashed[0]);
+
+        }else{
+
+            $tmp_key_chunk_ARRAY = explode('::', $data_key_hashed);
+            $tmp_value = $this->preach('value', $data_key_hashed);
 
         }
 
+        $tmp_cnt = count($tmp_key_chunk_ARRAY);
+        $tmp_cnt--;
 
+        //
+        // TODO :: NEED TO SERIALIZE INDEX ARRAY BY THE FORM HANDLE...OR SOMETHING...
+        // THIS WILL BE A PAGE WIDE INDEX FOR ALL FORMS, OTHERWISE.
+        if($tmp_key_chunk_ARRAY[$tmp_cnt] == 'FIELD_INPUT_NAME'){
+
+            $this->oCRNRSTN->form_integrations_data_index_ARRAY[] = $tmp_value;
+
+        }
 
     }
 
@@ -7705,14 +7723,27 @@ class crnrstn_decoupled_data_object {
 
                         foreach($fihp_data_key as $tmp_fihp_index => $fihp_data_key_str){
 
-                            $tmp_str .= $this->preach('pssdtl_packet', $fihp_data_key_str, $data_auth_request);
+                            $tmp_data =  $this->preach('pssdtl_packet', $fihp_data_key_str, $data_auth_request);
+                            if($tmp_data != $this->oCRNRSTN->session_salt()){
+
+                                $tmp_str .= $tmp_data;
+                                $this->concat_fihp_data_index($fihp_data_key_str);
+
+                            }
 
                         }
 
                     }else{
 
                         error_log(__LINE__ . ' ddo env ' . __METHOD__ . ' crnrstn_data_packet_data_key_index IS A STRING.');
-                        $tmp_str .= $this->preach('pssdtl_packet', $fihp_data_key, $data_auth_request);
+                        $tmp_data = $this->preach('pssdtl_packet', $fihp_data_key, $data_auth_request);
+
+                        if($tmp_data != $this->oCRNRSTN->session_salt()){
+
+                            $tmp_str .= $tmp_data;
+                            $this->concat_fihp_data_index($fihp_data_key);
+
+                        }
 
                     }
 

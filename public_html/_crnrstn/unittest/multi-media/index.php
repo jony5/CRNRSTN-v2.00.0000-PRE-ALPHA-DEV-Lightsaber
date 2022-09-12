@@ -201,7 +201,7 @@ $social_sprite_serial = $oCRNRSTN->generate_new_key(10);
 
 <?php
 
-//echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

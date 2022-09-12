@@ -74,7 +74,7 @@ $oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
 </head>
 <body>
 <div id="crnrstn_top_shell_<?php echo $oCRNRSTN->session_salt(); ?>"><a id="__crnrstn_top_<?php echo $oCRNRSTN->session_salt(); ?>"></a></div>
-<div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" ></div>
+<div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>"></div>
 
 <?php
 /*

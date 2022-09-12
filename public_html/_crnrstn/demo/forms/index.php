@@ -26,11 +26,7 @@ DEMO TOPICS ::
 //
 // FORMATTING NUMBERS WITH CRNRSTN ::
 
-?>
-
-
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="<?php echo $oCRNRSTN->country_iso_code(); ?>">
 <head>
     <title>CRNRSTN :: <?php echo $oCRNRSTN->version_crnrstn(); ?></title>
@@ -107,10 +103,10 @@ DEMO TOPICS ::
 
     </style>
     <?php
-    echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
+    //echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
     ?>
 </head>
-<body style="background-image: url('./imgs/bg_rr_00.png'); background-repeat: no-repeat;">
+<body style="color: #FFF; background-image: url('<?php echo $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR'); ?>_crnrstn/unittest/buttons/imgs/bg_rr_00.png'); background-repeat: no-repeat;">
 
 <div id="crnrstn_curl_data_storage" style="padding:0 10px 10px 20px; width:810px;">
 
@@ -128,12 +124,12 @@ DEMO TOPICS ::
     </div>
     <div class="crnrstn_cb_50"></div>
     <div style="border: 5px solid #F100DB; background-color: #FFF; width:100%; padding: 0 0 20px 0;">
-        <div style="padding: 10px 20px 10px 20px;">
+        <div style="color:#3b3b3b; padding: 10px 20px 10px 20px;">
             <?php
 
-            //echo '<img src="' . $oCRNRSTN->return_creative('MYSQL_DOLPHIN', CRNRSTN_UI_IMG_BASE64) .'" height="100" >';
+            //echo '<img src="' . $oCRNRSTN->return_creative('MYSQL_DOLPHIN', CRNRSTN_UI_IMG_BASE64) .'" height="100">';
 
-            echo '<div style="float: right;"><img src="' . $oCRNRSTN->return_creative('REDHAT_LOGO', CRNRSTN_UI_IMG_BASE64) . '" width="103" ></div><div class="crnrstn_cb_10" style="border-bottom: 2px solid #dbdbdb;"></div>';
+            echo '<div style="float: right;"><img src="' . $oCRNRSTN->return_creative('REDHAT_LOGO', CRNRSTN_UI_IMG_BASE64) . '" width="103"></div><div class="crnrstn_cb_10" style="border-bottom: 2px solid #dbdbdb;"></div>';
             echo '<div class="crnrstn_cb_30"></div>';
 
             echo '<div style="font-weight: bold; font-size: 20px;">Web ::</div><div class="crnrstn_cb"></div>';
@@ -155,128 +151,18 @@ DEMO TOPICS ::
     </div>
     <div class="crnrstn_cb_10"></div>
     <div style="text-align:left; background-color: #04050A; border: 3px solid #9F9393; width: 780px; height: 379px; overflow: scroll; padding: 15px 20px 15px 20px;">
+<?php
 
-        <div class="crnrstn_log_entry">Private key encrypted data:</div>
-        <div class="crnrstn_log_entry" style="width: 758px; overflow: scroll;">
-            <div style="width: 800px;"><?php echo $encrypted_data_private; ?></div>
-        </div>
-        <div class="crnrstn_cb_15"></div>
+        $tmp_ID = $oCRNRSTN->generate_new_key(100, '01');
 
-        <div class="crnrstn_log_entry">Public key encrypted data:</div>
-        <div class="crnrstn_log_entry" style="width: 758px; overflow: scroll;">
-            <div style="width: 800px;"><?php echo $encrypted_data_public; ?></div>
-        </div>
-        <div class="crnrstn_cb_15"></div>
-
-        <div class="crnrstn_log_entry"><?php echo nl2br($private_key_pem_PRIVATE); ?></div>
-        <div class="crnrstn_cb_15"></div>
-
-        <div class="crnrstn_log_entry"><?php echo nl2br($public_key_pem_PRIVATE); ?></div>
-        <div class="crnrstn_cb_15"></div>
-
-        <div class="crnrstn_log_entry"><?php echo nl2br($private_key_pem_PUBLIC); ?></div>
-        <div class="crnrstn_cb_15"></div>
-
-        <div class="crnrstn_log_entry"><?php echo nl2br($public_key_pem_PUBLIC); ?></div>
-        <div class="crnrstn_cb_15"></div>
-
-        <div class="crnrstn_log_entry">Private key decrypted data:</div>
-        <div class="crnrstn_log_entry"><?php echo $decrypted_data_private; ?></div>
-
-        <div class="crnrstn_cb_15"></div>
-        <div class="crnrstn_log_entry">Public key decrypted data:</div>
-        <div class="crnrstn_log_entry"><?php echo $decrypted_data_public; ?></div>
-
-        <div class="crnrstn_cb_15"></div>
-        <div class="crnrstn_log_entry">Key details:</div>
-        <?php
-
-        foreach ($tmp_details_ARRAY as $index => $val){
-
-            echo '<div class="crnrstn_log_entry">';
-            echo print_r($index, true);
-            echo '::</div>';
-
-            if(is_array($val)){
-
-                foreach ($val as $index2 => $val2){
-
-                    echo '<div class="crnrstn_log_entry">--';
-                    echo print_r($index2, true);
-                    echo '</div>';
-
-                    if($index2  === 'n'){
-
-                        echo '<div class="crnrstn_log_entry">[Modulus (HEXADECIMAL)]</div>';
-                        echo '<div class="crnrstn_log_entry">' . $val2 . '<br>---<br>' . print_r(bin2hex($val2), true) . '</div>';
-
-                        //echo '<div class="crnrstn_log_entry">' . print_r(bin2hex($val2), true) . '</div><div class="crnrstn_cb_10"></div>';
-                        //echo '<div class="crnrstn_log_entry">' . print_r(sprintf("%02x",ord(fgetc($val2)))) . '</div><div class="crnrstn_cb_10"></div>';
-                        //echo '<div class="crnrstn_log_entry">' . print_r(sprintf("%02X", bin2hex($val2))) . '</div><div class="crnrstn_cb_10"></div>';
-
-                        echo '<div class="crnrstn_cb_10"></div>';
-
-                    }else{
-
-                        echo '<div class="crnrstn_log_entry">';
-                        echo print_r($val2, true);
-                        echo '</div><div class="crnrstn_cb_10"></div>';
-
-                    }
-
-                }
-
-            }else{
-
-                echo '<div class="crnrstn_log_entry">';
-                echo print_r(nl2br($val), true);
-                echo '</div>';
-
-            }
-
-            echo '<div class="crnrstn_cb_5"></div>';
-
-        }
-
-        //
-        // GET AND/OR CLEAR ANY OPENSSL ERR
-        openssl_error_return($openssl_err_queue_ARRAY,__LINE__, '--END');
-
-        echo openssl_error_string_return($openssl_err_queue_ARRAY);
-
-        // LJHigh
-        // 2875768619
-        $tmp_SOCIAL_ID = $oCRNRSTN->generate_new_key(64);
+        echo '<div class="crnrstn_cb_10"></div>';
+        echo '<div class="crnrstn_log_entry">';
+        echo $tmp_ID;
+        echo '</div>';
 
         echo '<div class="crnrstn_cb_10"></div>';
         echo '<div class="crnrstn_log_entry">';
         echo $oCRNRSTN->return_micro_time();
-        echo '</div>';
-
-        echo '<div class="crnrstn_cb_10"></div>';
-        echo '<div class="crnrstn_log_entry">SOCIAL_ID 0 [' . $tmp_SOCIAL_ID . '][<input type="checkbox" style="width: 20px;">]';
-        echo '</div>';
-
-        echo '<div class="crnrstn_cb_10"></div>';
-        echo '<div class="crnrstn_log_entry">SOCIAL_ID_CRC 0 [' . $oCRNRSTN->crcINT($tmp_SOCIAL_ID) . ']';
-        echo '</div>';
-
-        $tmp_SOCIAL_ID = $oCRNRSTN->generate_new_key(64);
-
-        echo '<div class="crnrstn_cb_10"></div>';
-        echo '<div class="crnrstn_log_entry">SOCIAL_ID 1 [' . $tmp_SOCIAL_ID . '][<input type="checkbox" style="width: 20px;">]';
-        echo '</div>';
-
-        echo '<div class="crnrstn_cb_10"></div>';
-        echo '<div class="crnrstn_log_entry">SOCIAL_ID_CRC 1 [' . $oCRNRSTN->crcINT($tmp_SOCIAL_ID) . ']';
-        echo '</div>';
-
-        echo '<div class="crnrstn_cb_10"></div>';
-        echo '<div class="crnrstn_log_entry">SOCIAL_MEDIA_KEY :: [profile][1300][' . $oCRNRSTN->crcINT('profile') . ']';
-        echo '</div>';
-
-        echo '<div class="crnrstn_cb_10"></div>';
-        echo '<div class="crnrstn_log_entry">SOCIAL_MEDIA_KEY :: [archives][1400][' . $oCRNRSTN->crcINT('archives') . ']';
         echo '</div>';
 
         ?>
@@ -293,13 +179,13 @@ DEMO TOPICS ::
     ?>
 </form>
 
-<div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="<?php echo $tmp_http_root; ?>&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+<div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
 <div style="width:700px;">
     <div class="crnrstn_j5_wolf_pup_outter_wrap">
         <div class="crnrstn_j5_wolf_pup_inner_wrap">
             <?php
-            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND');
+            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
             ?>
         </div>
     </div>
@@ -307,8 +193,7 @@ DEMO TOPICS ::
 
 <?php
 
-echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
-echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_INTERACT);
+echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

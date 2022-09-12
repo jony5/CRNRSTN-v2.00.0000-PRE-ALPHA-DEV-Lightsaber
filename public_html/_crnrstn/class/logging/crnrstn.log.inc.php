@@ -2023,8 +2023,8 @@ website administrator.
 
 ';
 
-		$this->emailDataElements['headers']  = "From: System Notice < crnrstn_noreply@".$_SERVER['SERVER_NAME']." >\n";
-		$this->emailDataElements['headers'] .= "X-Sender: System Notice < crnrstn_noreply@".$_SERVER['SERVER_NAME']." >\n";
+		$this->emailDataElements['headers']  = "From: System Notice < crnrstn_noreply@".$_SERVER['SERVER_NAME'].">\n";
+		$this->emailDataElements['headers'] .= "X-Sender: System Notice < crnrstn_noreply@".$_SERVER['SERVER_NAME'].">\n";
 		$this->emailDataElements['headers'] .= 'X-Mailer: PHP/' . phpversion();
 		$this->emailDataElements['headers'] .= "X-Priority: 1\n"; // Urgent message!
 		$this->emailDataElements['headers'] .= "Return-Path: crnrstn_noreply@".$_SERVER['SERVER_NAME']."\n";

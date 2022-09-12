@@ -951,7 +951,7 @@ class crnrstn_stream_manager {
                     <div class="stream_owner">by <a href="'.self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP').self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'account/dashboard/?uid=' . $oLIVING_STREAM->return_attribute_data('USER_ID').'">' . $oDB_RESP->retrieve_data_by_id($tmp_response_serial, 'USERS', $oLIVING_STREAM->return_attribute_data('USER_ID'), 'FIRSTNAME_BLOB').' ' . $oDB_RESP->retrieve_data_by_id($tmp_response_serial, 'USERS', $oLIVING_STREAM->return_attribute_data('USER_ID'), 'LASTNAME_BLOB').'</a></div>
                     <div class="stream_stamp_reply_wrapper">
                         <div class="stream_timestamp">' .self::$oUserEnvironment->oFINITE_EXPRESS->incarnate('ELAPSED', $tmp_elem_ts, $tmp_format_override). '</div>
-                        <div class="stream_reply">' . $tmp_feeder_cnt.' <a href="#'.self::$replyFormHTML_ID.'" data-rel="popup" data-position-to="window" onclick="evifweb_stream_reply_iframe_populate(\''.self::$oUserEnvironment->data_encrypt($oLIVING_STREAM->return_attribute_data('STREAM_ID')).'\',\'IFRAME_'.self::$replyFormHTML_ID.'\');" >Reply</a></div>
+                        <div class="stream_reply">' . $tmp_feeder_cnt.' <a href="#'.self::$replyFormHTML_ID.'" data-rel="popup" data-position-to="window" onclick="evifweb_stream_reply_iframe_populate(\''.self::$oUserEnvironment->data_encrypt($oLIVING_STREAM->return_attribute_data('STREAM_ID')).'\',\'IFRAME_'.self::$replyFormHTML_ID.'\');">Reply</a></div>
                        
                     </div>
                     <div class="cb_5"></div>
@@ -1554,10 +1554,10 @@ class crnrstn_stream_manager {
 
             return '<div class="cb"></div>
                                                         
-                            <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="stream_edit_lnk" >edit</a>
+                            <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="stream_edit_lnk">edit</a>
                             <div data-role="popup" id="popupMenu" data-theme="a" class="ui-content">
                                 <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-                                <form action="#" method="post" name="edit_stream" id="edit_stream"  enctype="multipart/form-data" >
+                                <form action="#" method="post" name="edit_stream" id="edit_stream"  enctype="multipart/form-data">
                                     <label for="stream">Reply to stream</label>
                                     <textarea cols="40" rows="3" name="stream" id="stream"></textarea>
                                     <p style="padding-top: 0; margin-top: 0;"><a href="#" id="open-popup_mention" class="clickable-area" style="text-decoration:none; text-underline:none;">@mention</a></p>

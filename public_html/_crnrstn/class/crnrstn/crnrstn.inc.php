@@ -163,6 +163,7 @@ class crnrstn {
     public $data_packet_ttl_default;
     public $crnrstn_data_packet_data_key_index_ARRAY = array();
     public $crnrstn_data_packet_spoiler_ARRAY = array();
+    public $form_integrations_data_index_ARRAY = array();
 
     /*
     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
@@ -505,6 +506,34 @@ class crnrstn {
     public function sticky_uri_listener(){
 
         return $this->oCRNRSTN_USR->sticky_uri_listener();
+
+    }
+
+    public function form_integrations_data_index($crnrstn_form_handle_hash, $output_type = 'string'){
+
+        $tmp_str_out = '';
+        $tmp_ARRAY = array();
+
+        //
+        // THIS SHOULD BE FORM SERIALIZED...OK FOR NOW...I GUESS. TRYING TO
+        // GET TO DOCUMENTATION. Sunday, September 11, 2022 @ 2233 hrs
+        //foreach($this->form_integrations_data_index_ARRAY[$crnrstn_form_handle_hash] as $index => $data_key){
+        foreach($this->form_integrations_data_index_ARRAY as $index => $data_key){
+
+            $tmp_str_out .= $data_key . '|::|';
+            $tmp_ARRAY[] = $data_key;
+
+        }
+
+        $tmp_str_out = $this->strrtrim($tmp_str_out, '|::|');
+
+        if($output_type == 'string'){
+
+            return $tmp_str_out;
+
+        }
+
+        return $tmp_ARRAY;
 
     }
 
@@ -2696,7 +2725,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 <body>
 <div style="padding: 0 0 0 20px;">
 
-    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '"></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '
@@ -2754,7 +2783,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 <body>
 <div style="padding: 0 0 0 20px;">
 
-    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '" ></div>
+    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '"></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
@@ -2790,7 +2819,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     exit();
 
-                    break;
+                break;
 
             }
 

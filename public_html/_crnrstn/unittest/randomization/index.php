@@ -1,5 +1,11 @@
 <?php
 
+/*
+// J5
+// Code is Poetry */
+require('_crnrstn.root.inc.php');
+include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
+
 //print_r(gd_info());
 
 header("Content-type: image/png");
@@ -35,3 +41,5 @@ for($i=0; $i < 100000; $i++) {
 
 imagepng($img);
 imagedestroy($img);
+
+$this->error_log('Image generation complete for randomization test.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);

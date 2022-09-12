@@ -331,7 +331,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
     </div>
     <div class="crnrstn_cb_15"></div>
 
-    <form action="#" method="post" name="openssl_mysql_storage_performance" id="openssl_mysql_storage_performance"  enctype="multipart/form-data" >
+    <form action="#" method="post" name="openssl_mysql_storage_performance" id="openssl_mysql_storage_performance"  enctype="multipart/form-data">
 
         <div style="width:100%;">
             <div style="float: left; width: 200px;">
@@ -609,7 +609,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
 
     <div class="crnrstn_cb_20"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="<?php echo $tmp_http_root; ?>&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">
@@ -624,7 +624,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
 
 <?php
 
-    //echo $oCRNRSTN->framework_integrations_client_packet();
+echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

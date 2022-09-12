@@ -391,7 +391,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 </div>
 <?php
 
-    //echo $oCRNRSTN->framework_integrations_client_packet();
+echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

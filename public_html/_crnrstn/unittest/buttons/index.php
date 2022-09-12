@@ -468,9 +468,9 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
         <div style="padding: 10px 20px 10px 20px;">
         <?php
 
-        //echo '<img src="' . $oCRNRSTN->return_creative('MYSQL_DOLPHIN', CRNRSTN_UI_IMG_BASE64) .'" height="100" >';
+        //echo '<img src="' . $oCRNRSTN->return_creative('MYSQL_DOLPHIN', CRNRSTN_UI_IMG_BASE64) .'" height="100">';
 
-        echo '<div style="float: right;"><img src="' . $oCRNRSTN->return_creative('REDHAT_LOGO', CRNRSTN_UI_IMG_BASE64) . '" width="103" ></div><div class="crnrstn_cb_10" style="border-bottom: 2px solid #dbdbdb;"></div>';
+        echo '<div style="float: right;"><img src="' . $oCRNRSTN->return_creative('REDHAT_LOGO', CRNRSTN_UI_IMG_BASE64) . '" width="103"></div><div class="crnrstn_cb_10" style="border-bottom: 2px solid #dbdbdb;"></div>';
         echo '<div class="crnrstn_cb_30"></div>';
 
         echo '<div style="font-weight: bold; font-size: 20px;">Web ::</div><div class="crnrstn_cb"></div>';
@@ -604,7 +604,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
     <div class="crnrstn_cb_200"></div>
     <div class="crnrstn_cb_200"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="<?php echo $tmp_http_root; ?>&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">
@@ -618,7 +618,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
 <?php
 
-    //echo $oCRNRSTN->framework_integrations_client_packet();
+echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

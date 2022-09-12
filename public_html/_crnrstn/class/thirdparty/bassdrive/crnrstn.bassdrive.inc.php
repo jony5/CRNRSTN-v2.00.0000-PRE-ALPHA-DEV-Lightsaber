@@ -4110,7 +4110,7 @@ class bassdrive_integration_data {
             $tmp_bassdrive_stats_out = '<div style="height:15px; overflow:hidden;">
                 <div class="bassdrive_stats_copy_elem" style="padding-left: 0px;">*</div>
                 <div class="bassdrive_stats_copy_elem" id="crnrstn_curr_total_connections" style="padding-left:2px;">'.number_format($tmp_connections).'</div>
-                <div class="bassdrive_stats_copy_elem" >connections (</div>
+                <div class="bassdrive_stats_copy_elem">connections (</div>
                 <div id="crnrstn_curr_total_capacity" class="bassdrive_stats_copy_elem" style="padding-left:0px;">'.number_format($tmp_capacity).'</div>
                 <div id="curr_total_capacity" class="bassdrive_stats_copy_elem">max conn.) are</div>
             </div>
@@ -4573,7 +4573,7 @@ class bassdrive_integration_data {
 
                         if(strlen($stream_meta_ARRAY[$channel]) > 5){
 
-                            return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="bassdrive_load_history(\''.$stream_meta_ARRAY[$channel].'\'); return false;" ><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->social_sprite_serial .'" width="165" height="80" /></div></div>';
+                            return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="bassdrive_load_history(\''.$stream_meta_ARRAY[$channel].'\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->social_sprite_serial .'" width="165" height="80" /></div></div>';
 
                             //return '<div class="bassdrive_social_link ' . $channel . '" onclick="bassdrive_load_history(\''.$stream_meta_ARRAY[$channel].'\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->social_sprite_serial .')"></div>';
 

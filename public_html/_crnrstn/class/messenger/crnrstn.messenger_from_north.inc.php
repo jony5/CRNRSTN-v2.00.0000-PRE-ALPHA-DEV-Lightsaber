@@ -10078,7 +10078,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                     
                                     <td style="width:19px; height:19px;"><div style="width:19px; height:19px; overflow:hidden; border-left: 24px solid #FFF; border-right: 15px solid #FFF; line-height:10px;">'.$tmp_icon_img.'</div></td>
 
-                                    <td style="width:320px;" >
+                                    <td style="width:320px;">
                                         <div style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 13px; font-weight: normal; border-top: 1px solid #FFF;  \'><a href="'.$tmp_array[0].'" target="_blank" style=\'font-family:"Courier New", Courier, monospace; font-size: 17px; text-decoration:none; font-weight: normal; color: #6885C3; text-decoration:underline; \'>'.htmlentities($css_str_pattern).'</a></div>
                                     </td>
                                     </tr>
@@ -10360,7 +10360,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                             <tr>
                                                 <td style="width:19px; height:19px;"><div style="width:19px; height:19px; overflow:hidden; border-left: 24px solid #FFF; border-right: 15px solid #FFF; line-height:10px;">'.$tmp_icon_img.'</div></td>
             
-                                                <td style="width:320px;" >
+                                                <td style="width:320px;">
                                                     <div style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 14px; font-weight: normal; border-top: 1px solid #FFF;  \'>'.htmlentities($client_nomination).'</div>
                                                 </td>
                                                 </tr>

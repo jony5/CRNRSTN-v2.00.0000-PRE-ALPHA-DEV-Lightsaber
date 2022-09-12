@@ -5569,7 +5569,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                         $tmp_str = '$err_msg=[' . $err_msg . ']. 
 $tmp_data_key=[' . $tmp_data_key . ']. 
 $tmp_data_type_family=[' . $tmp_data_type_family . '].';
-                        $this->oCRNRSTN->print_r($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+
+                        $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($tmp_str, NULL, NULL, __LINE__, __METHOD__, __FILE__));
 
                     }
 
@@ -5627,73 +5628,35 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
     private function return_serialized_input_fields($crnrstn_form_handle){
 
-        $tmp_str = '';
-
-        $tmp_form_handle_hash = $this->oCRNRSTN->hash($crnrstn_form_handle);
-        //foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash] as $index => $data_key_hash){
-
-            $tmp_data = $this->oCRNRSTN->form_integrations_data_return($tmp_form_handle_hash);
-
-            if($tmp_data != $this->oCRNRSTN->session_salt()){
-
-                $tmp_str .= $tmp_data;
-
-            }
-
-            //$tmp_str .= $this->oCRNRSTN->oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $data_key_hash, CRNRSTN_OUTPUT_PSSDTLA, $index = 0);
-
-        //}
-
-        return $tmp_str;
-
-
-        $tmp_form_handle_hash = $this->hash($crnrstn_form_handle);
         $tmp_html_out = '';
 
-        //$this->destruct_output
-        $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($crnrstn_form_handle, '$crnrstn_form_handle.', NULL, __LINE__, __METHOD__, __FILE__));
+        $tmp_form_handle_hash = $this->oCRNRSTN->hash($crnrstn_form_handle);
 
-        //
-        // FORM HANDLE DATA
-        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash;
-        $tmp_data = $this->oCRNRSTN->get_resource('CRNRSTN_FORM_HANDLE', 0, $tmp_data_type_family);
-        $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str($tmp_data, 'CRNRSTN_FORM_HANDLE.', NULL, __LINE__, __METHOD__, __FILE__));
+        $tmp_pssdtlp_data = $this->oCRNRSTN->form_integrations_data_return($tmp_form_handle_hash);
 
-        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_INPUT::' . $tmp_form_handle_hash;
-//        $this->oCRNRSTN->add_system_resource('FORM_INPUT_FIELD_NAME', 'ERROR_REDIRECT', $tmp_sys_data_type_family_ROOT, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-//
+        $tmp_pssdtlp_data_encrypted = $this->oCRNRSTN->data_encrypt($tmp_pssdtlp_data);
 
-        if($this->oCRNRSTN->isset_data_key('FORM_INPUT_FIELD_NAME', $tmp_data_type_family)) {
+        $tmp_pssdtlp_index_str = $this->oCRNRSTN->form_integrations_data_index($tmp_form_handle_hash, 'string');
 
-            $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('We have input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__));
-
-            //$this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('We have [' . $this->oCRNRSTN->get_resource_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family, $this->env_key) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__));
-
-            $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('We have [' . $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__));
-
-            $tmp_input_cnt = $this->oCRNRSTN->retrieve_data_count('FORM_INPUT_FIELD_NAME', $tmp_data_type_family);
+        /*
+        CRNRSTN :: DATA PACKET META (PSSDTLP)
+        <input type="hidden" name="crnrstn_pssdtlp_clear_text_bytes" id="crnrstn_pssdtlp_clear_text_bytes" value="">
+        <input type="hidden" name="crnrstn_pssdtlp_encrypted_bytes" id="crnrstn_pssdtlp_encrypted_bytes" value="">
+        <input type="hidden" name="crnrstn_pssdtlp_hash" id="crnrstn_pssdtlp_hash" value="">
 
 
-            $tmp_data_type_family_FORM_REDIRECTS_ROOT = 'CRNRSTN_SYSTEM_RESOURCE::FORM_REDIRECTS::' . $tmp_form_handle_hash;
-
-            for($i = 0; $i < $tmp_input_cnt; $i++){
-
-
-                $tmp_field_name = $this->oCRNRSTN->get_resource('FORM_INPUT_FIELD_NAME', $i, $tmp_data_type_family);
-                //$tmp_input_data_type_family = $tmp_data_type_family . '::' . $tmp_field_name;
-                $tmp_fam = $tmp_data_type_family_FORM_REDIRECTS_ROOT . '::' . $tmp_field_name;
-
-                $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('BUILD HTML OUTPUT FOR INPUT::[' . $tmp_fam . '].', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__));
-                //$this->oCRNRSTN->print_r('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, $i, $tmp_fam) . '] input field data to inject.', 'FORM_INPUT_FIELD_NAME.', NULL, __LINE__, __METHOD__, __FILE__);
-                $this->oCRNRSTN->spool_destruct_output($this->oCRNRSTN->print_r_str('BUILD HTML OUTPUT FOR INPUT::[' . $this->oCRNRSTN->get_resource($tmp_field_name, 0, $tmp_fam) . '] input field data to inject.', 'oCRNRSTN->retrieve_data_value[' . $tmp_field_name . '].', NULL, __LINE__, __METHOD__, __FILE__));
-
-            }
-
-        }
-
-        $tmp_html_out .= '<input type="hidden" name="hello_crnrstn_input_injection" id="hello_crnrstn_input_injection" value="' . $this->oCRNRSTN->data_encrypt('hello world!') . '" >';
-        //$this->compile_form_integration_packet($crnrstn_form_handle, $tmp_input_name_ARRAY[$i], true, $tmp_validatation);
-        //$tmp_html_out .= $this->return_form_integration_packet($crnrstn_form_handle);
+         */
+        $tmp_html_out  .= '<input type="hidden" name="crnrstn_session_salt" value="' . $this->oCRNRSTN->session_salt(). '">
+';
+        $tmp_html_out  .= '<input type="hidden" name="crnrstn_pssdtlp_clear_text_size" id="crnrstn_pssdtlp_clear_text_size" value="' . strlen($tmp_pssdtlp_data) . '">
+';
+        $tmp_html_out  .= '<input type="hidden" name="crnrstn_pssdtlp_encrypted_size" id="crnrstn_pssdtlp_encrypted_size" value="' . strlen($tmp_pssdtlp_data_encrypted) . '">
+';
+        $tmp_html_out  .= '<input type="hidden" name="crnrstn_pssdtlp_hash" id="crnrstn_pssdtlp_hash" value="' . $this->oCRNRSTN->hash($tmp_pssdtlp_data) . '">
+';
+        $tmp_html_out  .= '<input type="hidden" name="crnrstn_pssdtlp_index" id="crnrstn_pssdtlp_index" value="' . $tmp_pssdtlp_index_str . '">
+';
+        $tmp_html_out  .= '<input type="hidden" name="crnrstn_pssdtlp" id="crnrstn_pssdtlp" value="' . $tmp_pssdtlp_data_encrypted . '">';
 
         return $tmp_html_out;
 
