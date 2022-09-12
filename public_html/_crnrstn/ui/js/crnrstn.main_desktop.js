@@ -464,7 +464,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(!this.$overlay.length){
 
-            $('<div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div></div></div>').prependTo($('body'));
+            $('<div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div>').prependTo($('body'));
             self.log_activity('[lnum 468] INJECTING crnrstn_interact_ui_full_lightbox_overlay INTO DOM.', self.CRNRSTN_DEBUG_VERBOSE);
 
         }
@@ -930,14 +930,31 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             this.log_activity('[lnum 930] SSDTLP Checksum = [' + $('#' + this.form_input_serialization_checksum).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
             this.log_activity('[lnum 931] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
-            $.ajax({
-                type: "POST",
-                url: ssdtl_endpoint,
-                data: dataString,
-                dataType: "xml",
-                success: this.parse_data_tunnel_response
+            if($('#crnrstn_interact_ui_link_text_click').val() != ''){
 
-            });
+                //
+                // THIS IS SO BAD! LOL.
+                $.ajax({
+                    type: "POST",
+                    url: ssdtl_endpoint,
+                    data: dataString,
+                    dataType: "html",
+                    success: this.parse_data_tunnel_response
+
+                });
+
+            }else{
+
+                $.ajax({
+                    type: "POST",
+                    url: ssdtl_endpoint,
+                    data: dataString,
+                    dataType: "xml",
+                    success: this.parse_data_tunnel_response
+
+                });
+
+            }
 
         }
 
@@ -947,8 +964,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.parse_data_tunnel_response = function(response_data) {
 
-        var packet_dl_bytes = response_data.documentElement.innerHTML.length;
-
+        //var packet_dl_bytes = response_data.documentElement.innerHTML.length;
+        var packet_dl_bytes = response_data.length;
         oCRNRSTN_JS.log_activity('[lnum 739] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         oCRNRSTN_JS.receive_data_tunnel_response(response_data);
@@ -2825,56 +2842,81 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.receive_data_tunnel_response = function(response_data) {
 
+        //alert($('#crnrstn_interact_ui_link_text_click').val());
+
+        //alert(response_data);
+
         if(response_data != null){
 
-            if($('#crnrstn_interact_ui_link_text_click').html() != ''){
+            if($('#crnrstn_interact_ui_link_text_click').val() != ''){
 
                 //
                 // I HATE TO DO IT THIS WAY...BUT WE JUST NEED TO GET DOCUMENTATION GOING. CAN RETURN TO
                 // REFACTOR ALL THIS, AND WILL HAVE MUCH BETTER COPY-PASTE-DOCUMENTATION WHEN THAT CAN HAPPEN.
-                var tmp_docs_page = $('#crnrstn_interact_ui_link_text_click').html();
+                var tmp_docs_page = $('#crnrstn_interact_ui_link_text_click').val();
 
                 //
                 // CLEAR OUT PAGE NAME TO AVOID REDUNDANT AJAX CALLS.
-                $('#crnrstn_interact_ui_link_text_click').html('');
+                //alert($('#crnrstn_interact_ui_link_text_click').val());
+                //$('#crnrstn_interact_ui_link_text_click').val('');
 
-                $('#crnrstn_interact_ui_full_document').html($tmp_sidenav_html);
+                //$('#crnrstn_interact_ui_full_document').html($tmp_sidenav_html);
 
-                if(!$('#crnrstn_documentation_dyn_shell').length){
+                if($('#crnrstn_documentation_dyn_shell').length){
 
-                    var oCRNRSTN_DOCS_DOM_ELEM = document.createElement('div');
+                    //var oCRNRSTN_DOCS_DOM_ELEM = document.createElement('div');
 
-                    oCRNRSTN_DOCS_DOM_ELEM.setAttribute('class', 'crnrstn_documentation_dyn_shell');
-                    oCRNRSTN_DOCS_DOM_ELEM.setAttribute('id', 'crnrstn_documentation_dyn_shell');
+                    //oCRNRSTN_DOCS_DOM_ELEM.setAttribute('class', 'crnrstn_documentation_dyn_shell');
+                    //oCRNRSTN_DOCS_DOM_ELEM.setAttribute('id', 'crnrstn_documentation_dyn_shell');
 
-                    $("#crnrstn_interact_ui_full_document").prependTo(oCRNRSTN_DOCS_DOM_ELEM);
+                    //$("#crnrstn_interact_ui_full_document").appendTo(oCRNRSTN_DOCS_DOM_ELEM);
+                    //$("#crnrstn_documentation_dyn_shell").prependTo($('body'));
+                    //oCRNRSTN_DOCS_DOM_ELEM.prependTo();
 
-                    alert(response_data.innerText);
-                    oCRNRSTN_DOCS_DOM_ELEM.html(response_data.innerText);
+                    //alert(response_data);
+                    //$("#crnrstn_documentation_dyn_shell").html(response_data);
+                    //document.getElementById("crnrstn_documentation_dyn_shell").innerHTML = response_data;
 
-                }else{
-
-                    $("#crnrstn_documentation_dyn_shell").html(response_data.text);
+                    //$("#crnrstn_documentation_dyn_shell").html(response_data);
+                    //document.getElementById("crnrstn_documentation_dyn_shell").innerHTML = response_data;
+                    $("#crnrstn_documentation_dyn_shell").html(response_data);
 
                 }
 
+                $('#crnrstn_documentation_dyn_shell').animate({
+                    width: '90%',
+                    height: '100%'
+                }, {
+                    duration: 500,
+                    queue: false,
+                    step: function( now, fx ) {
+
+                    },
+                    complete: function () {
+
+                        $("#crnrstn_documentation_dyn_shell").html(response_data);
+
+                    }
+
+                });
+
             }else{
 
+                //var NODE_crnrstn_client_response = response_data.getElementsByTagName('crnrstn_client_response');
 
-                var NODE_crnrstn_client_response = response_data.getElementsByTagName('crnrstn_client_response');
-
-                if(NODE_crnrstn_client_response.length > 0){
+                if(response_data.length > 0){
+                //if(NODE_crnrstn_client_response.length > 0){
 
                     //
                     // CONSUME XML RESPONSE DATA
-                    this.consume_data_tunnel_response(response_data, 'XML');
+                    //this.consume_data_tunnel_response(response_data, 'XML');
 
                     //
                     // SYNC CLIENT STATE TO THE FRESH XML
-                    tmp_data_signature_request_key = this.return_data_tunnel_xml_data('data_signature_request_key');
-                    tmp_data_signature_request_checksum = this.return_data_tunnel_xml_data('data_signature_request_checksum');
+                    //tmp_data_signature_request_key = this.return_data_tunnel_xml_data('data_signature_request_key');
+                    //tmp_data_signature_request_checksum = this.return_data_tunnel_xml_data('data_signature_request_checksum');
 
-                    this.refresh_ui_state(tmp_data_signature_request_key, tmp_data_signature_request_checksum);
+                    //this.refresh_ui_state(tmp_data_signature_request_key, tmp_data_signature_request_checksum);
 
                 }
 
