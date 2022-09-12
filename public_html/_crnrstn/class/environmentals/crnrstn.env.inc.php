@@ -1355,6 +1355,7 @@ class crnrstn_environment {
 
             $tmp_pos_php = strpos($tmp_scraped_filename_ARRAY[$i], '.php');
             $tmp_pos_ds_store = strpos($tmp_scraped_filename_ARRAY[$i], 'DS_Store');
+            //$tmp_pos_indexphp = strpos($tmp_scraped_filename_ARRAY[$i], 'index.php');
 
             if(($tmp_pos_php !== false) && ($tmp_pos_ds_store === false)){
 

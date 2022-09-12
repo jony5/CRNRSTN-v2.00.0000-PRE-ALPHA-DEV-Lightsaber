@@ -464,7 +464,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(!this.$overlay.length){
 
-            $('<div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div>').prependTo($('body'));
+            $('<div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div>').prependTo($('body'));
             self.log_activity('[lnum 468] INJECTING crnrstn_interact_ui_full_lightbox_overlay INTO DOM.', self.CRNRSTN_DEBUG_VERBOSE);
 
         }
@@ -2681,7 +2681,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 this.ui_sync_controller_thread_delay_ARRAY[action_id] = delay_ttl;
 
-                this.log_activity('[lnum 2394] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_UI);
+                this.log_activity('[lnum 2684] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_UI);
 
             break;
             case 'stop':
@@ -2691,18 +2691,18 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'cancel':
 
-                this.log_activity('[lnum 2404] UI sync controller has cancelled [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 2694] UI sync controller has cancelled [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'sleep':
 
-                this.log_activity('[lnum 2409] UI sync controller has put [' + action_id + '] to sleep.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 2699] UI sync controller has put [' + action_id + '] to sleep.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'silence_is_golden':
 
                 //this.update_thread_count(action_id, 1, scheduler_invoked);
-                this.log_activity('[lnum 2415] UI sync controller has scheduled [' + action_id + '] to run silently in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 2705] UI sync controller has scheduled [' + action_id + '] to run silently in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
 
@@ -2725,7 +2725,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             if(!(image_uri in self.jony5_lifestyle_banner_index_ARRAY)){
 
                 var tmp_str = self.extract_filename(image_uri);
-                self.log_activity('[lnum 2438] STORING STATIC BANNER DOM DATA [' + tmp_str + '].', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                self.log_activity('[lnum 2728] STORING STATIC BANNER DOM DATA [' + tmp_str + '].', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 self.jony5_lifestyle_banner_index_ARRAY[image_uri] = 1;
                 self.jony5_lifestyle_banner_images_ARRAY.push(image_uri);
@@ -2745,7 +2745,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var tmp_str = this.extract_filename(tmp_next_image);
         var tmp_zindex_alpha = $("#jony5_banner_lifestyle_alpha").css('zIndex');
-        this.log_activity('[lnum 2458] STATIC DOM LOAD [' + tmp_str + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#jony5_banner_lifestyle_alpha').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 2748] STATIC DOM LOAD [' + tmp_str + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#jony5_banner_lifestyle_alpha').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         //
         // SELECT AN IMAGE AND LOAD IT INTO THE LOWEST Z-INDEX DOM ELEMENT
@@ -2883,11 +2883,34 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 }
 
-                $('#crnrstn_documentation_dyn_shell').animate({
-                    width: '90%',
-                    height: '100%'
+                var $window = $(window);
+                var top  = $window.scrollTop() - 8;   // + this.options.positionFromTop
+                var left = $window.scrollLeft();
+
+                this.size_element('crnrstn_documentation_dyn_shell_bg');
+                this.size_element('crnrstn_documentation_dyn_shell');
+
+                $('#crnrstn_documentation_dyn_shell_bg').animate({
+                    top: top + 'px',
+                    left: left + 'px',
+                    opacity: 0.8
                 }, {
-                    duration: 500,
+                    duration: 1000,
+                    queue: false,
+                    step: function( now, fx ) {
+
+                    },
+                    complete: function () {
+
+                    }
+
+                });
+
+                $('#crnrstn_documentation_dyn_shell').animate({
+                    top: top + 'px',
+                    left: left + 'px'
+                }, {
+                    duration: 1000,
                     queue: false,
                     step: function( now, fx ) {
 
@@ -2926,6 +2949,58 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         }
 
     };
+
+    CRNRSTN_JS.prototype.size_element = function(dom_elem_id) {
+
+        switch(dom_elem_id){
+            case 'crnrstn_documentation_dyn_shell_bg':
+
+                var self = this;
+
+                self.$dom_elem_bg = $("#"+ dom_elem_id);
+
+                /*
+                We use a setTimeout 0 to pause JS execution and let the rendering catch-up.
+                Why do this? If the `disableScrolling` option is set to true, a class is added to the body
+                tag that disables scrolling and hides the scrollbar. We want to make sure the scrollbar is
+                hidden before we measure the document width, as the presence of the scrollbar will affect the
+                number.
+                */
+
+                setTimeout(function() {
+
+                    self.$dom_elem_bg
+                        .width($(document).width())
+                        .height($(document).height());
+
+                }, 0);
+
+            break;
+            case 'crnrstn_documentation_dyn_shell':
+
+                var self = this;
+
+                self.$dom_elem = $("#"+ dom_elem_id);
+
+                setTimeout(function() {
+
+                    self.$dom_elem
+                        .width($(document).width())
+                        .height($(document).height());
+
+                }, 0);
+
+            break;
+            default:
+
+                this.log_activity('[lnum 2993] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+
+            break;
+
+        }
+
+    };
+
 
     // CRNRSTN_JS.prototype.process_data_tunnel_response = function(oItemNode) {
     //
