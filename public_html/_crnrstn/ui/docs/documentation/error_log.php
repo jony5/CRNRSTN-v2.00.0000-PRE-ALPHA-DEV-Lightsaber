@@ -11,8 +11,6 @@ Korean Jindo, German Shepherd and Timber Wolf.
 <div class="crnrstn_cb_20"></div>
 When I worked at agency, J5 accompanied me to the office on occasion as well 
 as to local parks, coffee shops, neighborhood bars and even the occasional house 
-party.When I worked at agency, J5 accompanied me to the office on occasion as 
-well as to local parks, coffee shops, neighborhood bars and even the occasional 
-house party.</div></div>
+party.</div></div>
 
 ';
