@@ -187,7 +187,7 @@ class crnrstn_content_generator {
                 // MOBILE EXPERIENCE
                 // PROCESS FOR SEARCH RESULTS
                 // ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
-                if($this->oCRNRSTN_USR->initialize_crnrstn_svc_http()) {
+                if($this->oCRNRSTN_USR->http_data_services_initialize()) {
 
                     if($this->oCRNRSTN_USR->isset_crnrstn_svc_http() || $this->oCRNRSTN_USR->isset_crnrstn_svc_http('GET')) {
 
@@ -197,14 +197,14 @@ class crnrstn_content_generator {
 
                         if($this->oCRNRSTN_USR->isset_http_superglobal('GET')){
 
-                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED', 'POST');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST'));
+                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet_ENCRYPTED', 'POST');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet', 'POST'));
                             //error_log('154 gen - encode=>packet=' . $tmp_ipacket);
 
                         }else{
 
-                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET'));
+                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet_ENCRYPTED');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet'));
                             //error_log('160 gen - packet=' . $tmp_ipacket);
                         }
 
@@ -492,7 +492,7 @@ class crnrstn_content_generator {
                 // DESKTOP EXPERIENCE
                 // PROCESS FOR SEARCH RESULTS
                 // ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
-                if($this->oCRNRSTN_USR->initialize_crnrstn_svc_http()) {
+                if($this->oCRNRSTN_USR->http_data_services_initialize()) {
 
                     if($this->oCRNRSTN_USR->isset_crnrstn_svc_http() || $this->oCRNRSTN_USR->isset_crnrstn_svc_http('GET')) {
 
@@ -502,14 +502,14 @@ class crnrstn_content_generator {
 
                         if($this->oCRNRSTN_USR->isset_http_superglobal('POST')){
 
-                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED', 'POST');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST'));
+                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet_ENCRYPTED', 'POST');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet', 'POST'));
                             //error_log('154 gen - encode=>packet=' . $tmp_ipacket);
 
                         }else{
 
-                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET_ENCRYPTED');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET'));
+                            $tmp_encrypt = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet_ENCRYPTED');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet'));
                             //error_log('160 gen - packet=' . $tmp_ipacket);
                         }
 

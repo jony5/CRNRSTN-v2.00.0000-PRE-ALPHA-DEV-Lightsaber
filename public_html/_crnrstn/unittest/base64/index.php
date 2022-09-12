@@ -85,7 +85,7 @@ j5_pup_top_right
 //}
 
 
-if($oCRNRSTN->initialize_crnrstn_svc_http(true, false)) {
+if($oCRNRSTN->http_data_services_initialize(true, false)) {
 
     $oCRNRSTN->error_log('System is initialized to received form data.]', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 

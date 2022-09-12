@@ -122,7 +122,7 @@ $tmp_http_root = $oCRNRSTN->current_location();
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
 # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE
 # ENCRYPTED INITIALLY.
-# $this->oCRNRSTN_USR->form_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
+# $this->oCRNRSTN_USR->form_input_add({crnrstn_pssdtl_packet}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
 $oCRNRSTN->form_input_add('curl', 'crnrstn_curl_uri_endpoint');
 $oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_save');
 $oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_count');

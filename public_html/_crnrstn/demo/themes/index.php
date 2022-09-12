@@ -167,7 +167,7 @@ $oCRNRSTN->print_r('$this->env_key = $oCRNRSTN->get_server_env(\'hash\');', 'crn
 $oCRNRSTN->print_r('$this->config_serial_hash = $oCRNRSTN->get_server_config_serial(\'hash\');', 'crnrstn::get_server_config_serial()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 
-$tmp_str = '$tmp_data_key = \'CRNRSTN_FORM_HANDLE\';
+$tmp_str = '$tmp_data_key = \'crnrstn_pssdtl_packet\';
 $tmp_data_type_family = \'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::\' . md5($crnrstn_form_handle);
 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
 

@@ -57,25 +57,25 @@ $oCRNRSTN_USR->readfile_chunked($tmp_filename_xml);
 die();
 
 $oCRNRSTN_USR->is_soap_data_tunnel_endpoint(true);
-$raw_CRNRSTN_INTEGRATION_PACKET = $oCRNRSTN_USR->extract_data_HTTP('CRNRSTN_INTEGRATION_PACKET', 'POST');
+$raw_crnrstn_pssdtl_packet = $oCRNRSTN_USR->extract_data_HTTP('crnrstn_pssdtl_packet', 'POST');
 
-if($tmp_decrypted_data = $oCRNRSTN_USR->data_decrypt($raw_CRNRSTN_INTEGRATION_PACKET)){
+if($tmp_decrypted_data = $oCRNRSTN_USR->data_decrypt($raw_crnrstn_pssdtl_packet)){
 
-    $oCRNRSTN_USR->print_r('DECRYPTED CRNRSTN_INTEGRATION_PACKET=' . $tmp_decrypted_data, NULL, __LINE__, __METHOD__, __FILE__);
+    $oCRNRSTN_USR->print_r('DECRYPTED crnrstn_pssdtl_packet=' . $tmp_decrypted_data, NULL, __LINE__, __METHOD__, __FILE__);
 
     error_log(__LINE__ . ' tunnel die() $tmp_decrypted_data success...'. print_r($tmp_decrypted_data, true));
     die();
 
 }else{
 
-    error_log(__LINE__ . ' tunnel die() $tmp_decrypted_data error...' . print_r($raw_CRNRSTN_INTEGRATION_PACKET, true));
+    error_log(__LINE__ . ' tunnel die() $tmp_decrypted_data error...' . print_r($raw_crnrstn_pssdtl_packet, true));
     die();
 
 }
 
 //
 // CRNRSTN :: TO HANDLE HTTP DATA
-if($oCRNRSTN_USR->initialize_crnrstn_svc_http(false, true)) {
+if($oCRNRSTN_USR->http_data_services_initialize(false, true)) {
 
     //die();
     if ($oCRNRSTN_USR->isset_crnrstn_svc_http()) {

@@ -4272,19 +4272,19 @@ class crnrstn_communications_css_standard{
         // ID THE FORM FOR ALL PARAMS TO BE ASSOCIATED.
         # SHOULD BE A UNIQUE HANDLE TO THE FORM PROFILE. IT DETERMINES WHAT POTENTIAL POST/GET
         # PARAMETERS FOR WHICH CRNRSTN :: SHOULD BE LISTENING.
-        # $oCRNRSTN_USR->form_serialize_new({CRNRSTN_FORM_HANDLE}, {TUNNEL_PROTOCOL});
+        # $oCRNRSTN_USR->form_serialize_new({crnrstn_pssdtl_packet}, {TUNNEL_PROTOCOL});
 
         //
         // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
         # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE ENCRYPTED INITIALLY.
-        # $oCRNRSTN_USR->form_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
+        # $oCRNRSTN_USR->form_input_add({crnrstn_pssdtl_packet}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
         $this->oCRNRSTN_USR->form_input_add('crnrstn_validate_css', 'ugc_html', true);
 
         $this->oCRNRSTN_USR->init_validation_message('crnrstn_validate_css','ugc_html', 'Content is required.');
 
         //
         // THESE FIELDS ARE HIDDEN INPUT FIELDS. WE CAN TUNNEL ENCRYPT THE DATA GOING HERE.
-        # $oCRNRSTN_USR->form_hidden_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}, {IS_REQUIRED}, {DEFAULT_VALUE <-notrequired}, {HTML_DOM_FORM_INPUT_ID <-notrequired});
+        # $oCRNRSTN_USR->form_hidden_input_add({crnrstn_pssdtl_packet}, {HTML_DOM_FORM_INPUT_NAME}, {IS_REQUIRED}, {DEFAULT_VALUE <-notrequired}, {HTML_DOM_FORM_INPUT_ID <-notrequired});
         //$oCRNRSTN_USR->form_hidden_input_add('crnrstn_validate_css', 'crnrstn_country_iso_code', true, 'EN', 'crnrstn_country_iso_code');
         //$oCRNRSTN_USR->form_hidden_input_add('crnrstn_validate_css', 'crnrstn_php_sessionid', true, session_id(), 'crnrstn_php_sessionid');
         $crnrstn_css_validator_output = '

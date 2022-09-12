@@ -84,6 +84,18 @@ class crnrstn_ui_html_manager {
 
 	}
 
+	public function out_ui_html_doc_documentation(){
+
+        $tmp_str = '';
+
+        $filepath = '/_crnrstn/ui/docs/documentation/index.php';
+
+        include(CRNRSTN_ROOT . $filepath);
+
+        return $tmp_str;
+
+    }
+
     public function out_ui_html_doc_mit_license(){
 
         $tmp_str = '';

@@ -165,6 +165,8 @@ class crnrstn {
     public $crnrstn_data_packet_spoiler_ARRAY = array();
     public $form_integrations_data_index_ARRAY = array();
 
+    public $page_request_id = '';
+
     /*
     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
     AUTHORIZED DATA ARCHITECTURES (CHANNEL). DSJPCR.
@@ -499,7 +501,7 @@ class crnrstn {
 
     public function client_request_listen(){
 
-        return $this->oCRNRSTN_USR->client_request_listen();
+        return $this->oCRNRSTN_ENV->client_request_listen();
 
     }
 
@@ -603,15 +605,15 @@ class crnrstn {
 
     }
 
-    public function initialize_crnrstn_svc_http($user_auth_check = false, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function http_data_services_initialize(){
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->initialize_crnrstn_svc_http($user_auth_check = false, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL);
+        return $this->oCRNRSTN_ENV->http_data_services_initialize();
 
     }
 
     public function isset_http_param($param, $transport_protocol = 'POST'){
 
-        if (is_array($transport_protocol)) {
+        if(is_array($transport_protocol)) {
 
             if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($transport_protocol, $param)) {
 
@@ -754,9 +756,15 @@ class crnrstn {
 
     }
 
+    public function consume_form_integration_packet(){
+
+        return $this->oCRNRSTN_ENV->consume_form_integration_packet();
+
+    }
+
     public function isset_crnrstn_svc_http(){
 
-        return $this->oCRNRSTN_USR->isset_crnrstn_svc_http();
+        return $this->oCRNRSTN_ENV->isset_crnrstn_svc_http();
 
     }
 
@@ -774,7 +782,7 @@ class crnrstn {
 
     public function return_http_form_integration_input_val($getpost_input_name, $transport_protocol = NULL){
 
-        return $this->oCRNRSTN_USR->return_http_form_integration_input_val($getpost_input_name, $transport_protocol);
+        return $this->oCRNRSTN_ENV->return_http_form_integration_input_val($getpost_input_name, $transport_protocol);
 
     }
 
@@ -2984,12 +2992,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //            }
 
-//            if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
-//
-//                $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
-//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
-//
-//            }
+
+            if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+
+                $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+            }
 
         foreach ($this->system_ui_module_constants_spool_ARRAY as $index => $int_const) {
 
@@ -6130,6 +6139,72 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
     }
+
+    public function get_http_resource($param_name, $transport_protocol = NULL){
+
+        if (!isset($transport_protocol)) {
+
+            $tmp_variables_order = $this->ini_get('variables_order');
+            $tmp_vo_ARRAY = str_split($tmp_variables_order);
+
+            foreach($tmp_vo_ARRAY as $key => $value) {
+
+                switch ($value) {
+                    case 'G':
+
+                        if (isset(self::$http_param_handle_ARRAY['GET'][$param_name])) {
+
+                            return self::$http_param_handle_ARRAY['GET'][$param_name];
+
+                        }
+
+                    break;
+                    case 'P':
+
+                        if (isset(self::$http_param_handle_ARRAY['POST'][$param_name])) {
+
+                            return self::$http_param_handle_ARRAY['POST'][$param_name];
+
+                        }
+
+                    break;
+
+                }
+
+            }
+
+        } else {
+
+            $http_protocol = strtoupper($transport_protocol);
+            $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+
+            switch ($http_protocol) {
+                case 'POST':
+                case 'GET':
+
+                    if (isset(self::$http_param_handle_ARRAY[$http_protocol][$param_name])) {
+
+                        return self::$http_param_handle_ARRAY[$http_protocol][$param_name];
+
+                    }
+
+                    break;
+                default:
+
+                    //
+                    // HOOOSTON...VE HAF PROBLEM!
+                    $this->error_log('Unable to determine HTTP protocol from provided value of [' . $transport_protocol . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    break;
+
+            }
+
+        }
+
+        return NULL;
+
+    }
+
 
     public function ini_get($ini_setting){
 

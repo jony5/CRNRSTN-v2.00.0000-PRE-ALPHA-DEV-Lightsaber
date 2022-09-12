@@ -75,6 +75,8 @@ class crnrstn_http_manager {
 
     public $customClientDevice = array();
 
+    public $form_integration_isset_ARRAY = array();
+
     public function __construct($oCRNRSTN, $oCRNRSTN_ENV) {
 
         $this->oCRNRSTN = $oCRNRSTN;
@@ -444,12 +446,12 @@ class crnrstn_http_manager {
 
     }
 
-    public function initialize_crnrstn_svc_http($user_auth_check = false, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function http_data_services_initialize($user_auth_check = false, $uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
         $tmp_has_getpost_data = false;
 
         //
-        // ESTABLISH SEQUENCE TO CHECK FOR CRNRSTN_INTEGRATION_PACKET
+        // ESTABLISH SEQUENCE TO CHECK FOR crnrstn_pssdtl_packet
         $tmp_variables_order = $this->oCRNRSTN->ini_get('variables_order');
         $tmp_vo_ARRAY = str_split($tmp_variables_order);
 
@@ -468,32 +470,32 @@ class crnrstn_http_manager {
 
                     //
                     // DO WE HAVE GET DATA?
-                    if ($this->issetHTTP($_GET)) {
-                        error_log(__LINE__ . ' user CHECKING FOR PRESENCE OF $_GET...CRNRSTN_INTEGRATION_PACKET');
+                    if($this->issetHTTP($_GET)) {
+                        error_log(__LINE__ . ' http CHECKING FOR PRESENCE OF $_GET...crnrstn_pssdtl_packet');
 
                         //
                         // CHECK FOR PRESENCE OF FORM INTEGRATION PACKET DATA
-                        if ($this->issetParam($_GET, 'CRNRSTN_INTEGRATION_PACKET')) {
+                        if ($this->issetParam($_GET, 'crnrstn_pssdtl_packet')) {
 
-                            //error_log('4418 user - process CRNRSTN_INTEGRATION_PACKET @ _GET');
+                            //error_log('4418 user - process crnrstn_pssdtl_packet @ _GET');
                             $tmp_has_getpost_data = true;
 
-                            $tmp_isEncrypted = '';
-                            if ($this->issetParam($_GET, 'CRNRSTN_INTEGRATION_PACKET_ENCRYPTED')) {
+                            $tmp_is_encrypted = '';
+                            if ($this->issetParam($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED')) {
 
-                                $tmp_isEncrypted = strtolower($this->extractData($_GET, 'CRNRSTN_INTEGRATION_PACKET_ENCRYPTED'));
+                                $tmp_is_encrypted = strtolower($this->extractData($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED'));
 
                             }
 
-                            if ($tmp_isEncrypted == 'true') {
+                            if ($tmp_is_encrypted == 'true') {
 
-                                //error_log('4429 user - decrypt CRNRSTN_INTEGRATION_PACKET @ _GET');
-                                $this->oCRNRSTN_USR->consume_form_integration_packet($this->oCRNRSTN->data_decrypt($this->extractData($_GET, 'CRNRSTN_INTEGRATION_PACKET'), CRNRSTN_ENCRYPT_TUNNEL, false, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override), 'GET');
+                                //error_log('4429 user - decrypt crnrstn_pssdtl_packet @ _GET');
+                                $this->consume_form_integration_packet($this->oCRNRSTN->data_decrypt($this->extractData($_GET, 'crnrstn_pssdtl_packet'), CRNRSTN_ENCRYPT_TUNNEL, false, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override), 'GET');
 
                             } else {
 
-                                //error_log('4434 user - decrypt CRNRSTN_INTEGRATION_PACKET @ _GET');
-                                $this->oCRNRSTN_USR->consume_form_integration_packet($this->extractData($_GET, 'CRNRSTN_INTEGRATION_PACKET'), 'GET');
+                                //error_log('4434 user - decrypt crnrstn_pssdtl_packet @ _GET');
+                                $this->consume_form_integration_packet($this->extractData($_GET, 'crnrstn_pssdtl_packet'), 'GET');
 
                             }
 
@@ -501,39 +503,43 @@ class crnrstn_http_manager {
 
                     }
 
-                    break;
+                break;
                 case 'P':
 
                     if ($this->issetHTTP($_POST)) {
-                        error_log(__LINE__ . ' user CHECKING FOR PRESENCE OF $_POST...CRNRSTN_INTEGRATION_PACKET');
+                        error_log(__LINE__ . ' http CHECKING FOR PRESENCE OF $_POST...crnrstn_pssdtl_packet');
 
                         //
-                        // CHECK FOR PRESENCE OF FORM INTEGRATION PACKET DATA
-                        if ($this->issetParam($_POST, 'CRNRSTN_INTEGRATION_PACKET')) {
+                        // CHECK FOR PRESENCE OF PSSDTL PACKET DATA
+                        if($this->issetParam($_POST, 'crnrstn_pssdtl_packet')){
+
+
+                            return '<strong>hello world!</strong>';
 
                             $tmp_has_getpost_data = true;
 
-                            $tmp_isEncrypted = '';
-                            if ($this->issetParam($_POST, 'CRNRSTN_INTEGRATION_PACKET_ENCRYPTED')) {
+                            $tmp_is_encrypted = 'true';
+//                            if ($this->issetParam($_POST, 'CRNRSTN_INTEGRATION_PACKET_ENCRYPTED')) {
+//
+//                                $tmp_is_encrypted = strtolower($this->extractData($_POST, 'crnrstn_pssdtl_packet_ENCRYPTED'));
+//
+//                            }
 
-                                $tmp_isEncrypted = strtolower($this->extractData($_POST, 'CRNRSTN_INTEGRATION_PACKET_ENCRYPTED'));
+                            if($tmp_is_encrypted == 'true'){
 
-                            }
-
-                            if ($tmp_isEncrypted == 'true') {
-
-                                //error_log(__LINE__ . ' user auth  $tmp_isEncrypted is true. Decrypting CRNRSTN_INTEGRATION_PACKET=[' . $this->oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST, 'CRNRSTN_INTEGRATION_PACKET') . ']');
+                                //error_log(__LINE__ . ' user auth  $tmp_is_encrypted is true. Decrypting crnrstn_pssdtl_packet=[' . $this->extractData($_POST, 'crnrstn_pssdtl_packet') . ']');
                                 $uri_passthrough = true;
-                                $tmp_output = $this->oCRNRSTN->data_decrypt($this->extractData($_POST, 'CRNRSTN_INTEGRATION_PACKET'), CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
-                                //error_log(__LINE__ . ' user auth  $tmp_isEncrypted is true. DONE Decrypting CRNRSTN_INTEGRATION_PACKET to [' . $tmp_output . ']');
+                                $tmp_output = $this->oCRNRSTN->data_decrypt($this->extractData($_POST, 'crnrstn_pssdtl_packet'), CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+                                //error_log(__LINE__ . ' http auth  $tmp_is_encrypted is true. DONE Decrypting crnrstn_pssdtl_packet to [' . $tmp_output . '][' . $this->extractData($_POST, 'crnrstn_pssdtl_packet') . '].');
+                                error_log(__LINE__ . ' http crnrstn_pssdtl_packet (decrypted) = [' . $tmp_output . '].');
 
-                                error_log(__LINE__ . ' user CONSUME $_POST...CRNRSTN_INTEGRATION_PACKET AFTER DECRYPT.');
-                                $this->oCRNRSTN_USR->consume_form_integration_packet($tmp_output, 'POST');
+                                error_log(__LINE__ . ' http CONSUME $_POST...crnrstn_pssdtl_packet AFTER DECRYPT.');
+                                $this->consume_form_integration_packet($tmp_output, 'POST');
 
                             } else {
 
-                                error_log(__LINE__ . ' user CONSUME $_POST...CRNRSTN_INTEGRATION_PACKET...AND NO DECRYPT.');
-                                $this->oCRNRSTN_USR->consume_form_integration_packet($this->extractData($_POST, 'CRNRSTN_INTEGRATION_PACKET'), 'POST');
+                                error_log(__LINE__ . ' user CONSUME $_POST...crnrstn_pssdtl_packet...AND NO DECRYPT.');
+                                $this->consume_form_integration_packet($this->extractData($_POST, 'crnrstn_pssdtl_packet'), 'POST');
 
                             }
 
@@ -642,11 +648,11 @@ class crnrstn_http_manager {
 
             //
             // IS THERE A FORM POST FROM CRNRSTN :: TO PROCESS?
-            if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST, 'CRNRSTN_INTEGRATION_PACKET')) {
+            if ($this->issetParam($_POST, 'crnrstn_pssdtl_packet')) {
 
                 $tmp_has_getpost_data = true;
 
-                $tmp_form_handle = $this->oCRNRSTN_ENV->oHTTP_MGR->extractData($_POST, 'CRNRSTN_FORM_HANDLE', true);
+                $tmp_form_handle = $this->extractData($_POST, 'crnrstn_pssdtl_packet', true);
 
                 error_log(__LINE__ . ' user $tmp_form_handle=' . $tmp_form_handle);
                 $this->oCRNRSTN_VSC->return_client_response($tmp_form_handle);
@@ -761,9 +767,9 @@ class crnrstn_http_manager {
 //
 //                //
 //                // WE CHECK GET (FROM THE GATE KEEPER FOR THE SPACE BETWEEN)
-//                if($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_GET, 'crnrstn_l')){
+//                if($this->issetParam($_GET, 'crnrstn_l')){
 //
-//                    if($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_GET, 'crnrstn_css_rtime')){
+//                    if($this->issetParam($_GET, 'crnrstn_css_rtime')){
 //
 //                        $tmp_output_html = $this->get_session_param('CRNRSTN_CSS_VALIDATION_RESP');
 //
@@ -791,6 +797,613 @@ class crnrstn_http_manager {
         }
 
         return $tmp_has_getpost_data;
+
+    }
+
+    public function consume_form_integration_packet($data, $transport_protocol = NULL){
+
+        try {
+
+            //
+            // CHECK INTEGRITY OF DATA
+            if(strlen($data) < 1){
+
+                //
+                // HOOOSTON...VE HAF PROBLEM!
+                throw new Exception('Received ' . $transport_protocol . ' data is NULL or decryption of data has failed.');
+
+            }
+
+            //
+            // PARSE OUT ALL INPUT PARAMETERS.
+            //$this->oCRNRSTN->print_r('[' . print_r($data, true) . '].', NULL, NULL, __LINE__, __METHOD__, __FILE__);
+
+            $tmp_decrypted_data = $this->oCRNRSTN->data_decrypt($data);
+
+            //$this->oCRNRSTN->print_r('[' . print_r($tmp_decrypted_data, true) . '].', NULL, NULL, __LINE__, __METHOD__, __FILE__);
+
+
+        } catch (Exception $e) {
+
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+        }
+
+        return NULL;
+
+    }
+
+    public function client_request_listen(){
+
+        $tmp_html = '';
+
+        // TODO :: TURN THIS BACK ON.
+        // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER
+        //$this->soap_data_tunnel_output = $this->SOAP_client_request_listener();
+
+        //
+        // CRNRSTN :: PSEUDO-SOAP-SERVICES DATA TUNNEL LAYER (SOFT SSDTL)
+        $tmp_html = $this->PSEUDO_SOAP_client_request_listener('AJAX_PSSDT_LAYER_POST');
+
+        //error_log(__LINE__ . ' http $tmp_html=[' . $tmp_html . ']');
+
+        //
+        // IF SESSION HAS BEEN INITIALIZED WITH oUSER_AUTH OBJECT, SYNC WITH SESSION AT THIS TIME.
+        //$this->crnrstn_session_load();
+
+        //
+        // CRNRSTN :: CONSOLE DASHBOARD PORTAL ENTRY POINT
+        //$tmp_html = $this->user_request_listener();
+        if(is_string($tmp_html) && strlen($tmp_html) > 0){
+
+            return $tmp_html;
+
+        }
+
+        //
+        // STICKY LINK CHECK
+        if($tmp_html = $this->oCRNRSTN->sticky_uri_listener()){
+
+            $this->oCRNRSTN->proper_response_return($tmp_html, NULL, 'RESPONSE_STICKY');
+
+        }
+
+        //
+        // SOAP SERVER INITIALIZATION PING - CRNRSTN :: SOAP SERVICES LAYER
+        //if($result = $this->initProxyCommListener()){
+        //if($SOAP_response = $this->SOAP_service_listen()){
+        //    echo $SOAP_response;
+        //    die();
+        //
+        //}
+
+        return NULL;
+
+    }
+
+    private function PSEUDO_SOAP_client_request_listener($output_type){
+
+        //
+        // CRNRSTN :: PSSDTL R&D SUPPORTING AJAX FORM POST WHICH WILL ULTIMATELY ROLL INTO CRNRSTN :: SSDTLA TECH
+        $tmp_html = '';
+
+        switch($output_type){
+            case 'AJAX_PSSDT_LAYER_POST':
+
+                if($this->receive_form_integration_packet()) {
+
+                    error_log(__LINE__ . ' http AJAX_PSSDT_LAYER_POST receive_form_integration_packet');
+
+                    if($this->isvalid_data_validation_check()) {
+
+                        error_log(__LINE__ . ' AJAX_PSSDT_LAYER_POST isvalid_data_validation_check');
+
+                        //
+                        // CHECK FOR PSSDTLP. WILL NEED TO MAKE ADJUSTMENTS FOR SSDTLA.
+                        //$tmp_crnrstn_session = $this->return_http_form_integration_input_val('crnrstn_session');
+                        $tmp_crnrstn_pssdtl_packet = $this->return_http_form_integration_input_val('crnrstn_pssdtl_packet');
+                        $tmp_crnrstn_interact_ui_link_text_click = $this->return_http_form_integration_input_val('crnrstn_interact_ui_link_text_click');
+
+                        //error_log('1853 user AJAX_PSSDT_LAYER_POST LENGTH OF $tmp_crnrstn_session=[' . strlen($tmp_crnrstn_session) . ']');
+                        //die();
+
+                        $tmp_crnrstn_pssdtl_packet_ojson = json_decode($tmp_crnrstn_pssdtl_packet, TRUE);
+                        $raw_json_pssdtl_packet_elements = $tmp_crnrstn_pssdtl_packet_ojson['crnrstn_data_packet'][0]['crnrstn_data_packet_ddo_elements'];
+
+                        //
+                        // A QUICK AND DIRTY SHORT CUT TO DOCUMENTATION BUILT ON TOP OF
+                        // A STILL-UNDER-CONSTRUCTION SSDTL SITUATION. SORRY. BUT WITH
+                        // DOCUMENTATION INCOMING,...SHOULD BE ABLE TO MAKE BETTER AND
+                        // MORE CONSISTENT (COPY-PASTE!!) PROGRESS (AND TIDY ALL THIS UP).
+                        // Monday, September 12, 2022 @ 0239 hrs
+                        if(isset($_POST['crnrstn_interact_ui_link_text_click'])){
+
+                            if($this->oCRNRSTN->page_request_id = $_POST['crnrstn_interact_ui_link_text_click']){
+
+                                //
+                                // CLEAR DESTRUCTOR OUTPUT HERE FOR NOW.
+                                $this->oCRNRSTN->destruct_output = '';
+
+                                header('Content-Type: text/html; charset=UTF-8');
+                                header('Cache-Control: no-store');
+                                header('Access-Control-Allow-Origin: *');
+
+                                return $this->oCRNRSTN_USR->ui_module_out('documentation');
+
+                            }
+
+                        }
+
+                        if(count($raw_json_pssdtl_packet_elements[0]) > 0){
+
+                            //
+                            // CRNRSTN :: PSSDTL DRIVEN SESSION INITIALIZATION
+                            //$this->init_session();
+
+                            header('Content-Type: application/xml; charset=iso-8859-1');
+                            header('Cache-Control: no-store');
+                            header('Access-Control-Allow-Origin: *');
+                            //return $this->oCRNRSTN_TRM->soap_data_tunnel_layer_response();
+                            return 'hello page response....';
+
+                        }
+
+                        error_log(__LINE__ . ' http AJAX_PSSDT_LAYER_POST no return. $tmp_crnrstn_session_ojson=[' . print_r($tmp_crnrstn_pssdtl_packet_ojson, true) . '] $raw_json_ui_sync_controller_threads=[' . print_r($raw_json_pssdtl_packet_elements, true) . ']');
+
+                    }else{
+
+                        error_log(__LINE__. ' http AJAX_PSSDT_LAYER_POST NOT isvalid_data_validation_check');
+
+                    }
+
+                }else{
+
+                    //error_log('1878 AJAX_PSSDT_LAYER_POST NOT receive_form_integration_packet');
+
+                }
+
+                break;
+
+        }
+
+        return $tmp_html;
+
+    }
+
+    public function SOAP_client_request_listener($output_type = 'print_r'){
+
+        $output_type = strtolower($output_type);
+
+        //
+        // IF SOAP CLIENT IS INITIALIZED
+        if($this->SOAP_isset_soap_client()){
+
+            $this->oNUSOAP_BASE = new nusoap_base();
+
+            $tmp_version_soap = $this->oNUSOAP_BASE->title;             //'NuSOAP';
+            $tmp_version_soap .= $this->oNUSOAP_BASE->version;          //' v0.9.5';
+            $tmp_version_soap .= $this->oNUSOAP_BASE->revision;         //' $Revision: 1.123 $';
+
+            $this->oCRNRSTN->input_data_value($tmp_version_soap, 'version_soap', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
+            //$this->consume_ddo_system_param($tmp_version_soap, 'version_soap');
+            //self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_soap, 'version_soap');
+
+            $tmp_revision_soap = $this->proper_replace('Revision:','', $this->oNUSOAP_BASE->revision);
+            $tmp_revision_soap .= $this->proper_replace('$','', $tmp_revision_soap);
+            $tmp_revision_soap .= trim($tmp_revision_soap);
+
+            $tmp_user_agent = 'User-Agent: ' . $this->oNUSOAP_BASE->title . '/' . $this->oNUSOAP_BASE->version . ' (' . $tmp_revision_soap . ') CRNRSTN :: v' . $this->version_crnrstn();
+
+            //
+            // TEXTAREA OUTPUT IN FORM WITH SUBMIT BUTTON
+            $tmp_crnrstn_soap_data_tunnel_output = $this->SOAP_return_client_request();
+            $tmp_content_length = strlen($tmp_crnrstn_soap_data_tunnel_output);
+            $tmp_content_length = 'Content-Length: ' . $tmp_content_length;
+
+            $tmp_config_wsdl = $this->get_resource('WSDL_URI', 'CRNRSTN::INTEGRATIONS');
+
+            if(!(strlen($tmp_config_wsdl) > 0)){
+
+                //
+                // TODO :: TAKE CARE OF THIS.
+                // SOMETHING FOR NOW
+                //$tmp_config_wsdl = 'http://jony5.com/_crnrstn/soa/?wsdl';
+                $tmp_config_wsdl = $this->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_crnrstn/soa/?wsdl';
+
+            }
+
+            switch($output_type){
+                case 'alpha_testing':
+
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_data', true);
+
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_soap_action', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_wsdl', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_content_length', true);
+
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_user_agent', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_layer_host', true);
+
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_stime', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_rtime', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_wethrbug', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_bassdrive_stats', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_bassdrive_show', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_truth_timer', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_desktop', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_tablet', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_ttl_banner_rotate_mobile', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_transport_protocol_version', true);
+                    $this->form_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_srvc_encoding', true);
+
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_data', true, $tmp_crnrstn_soap_data_tunnel_output, 'crnrstn_soap_data_tunnel_data');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_soap_action', true, 'urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl#returnCRNRSTN_UI_GLOBAL_SYNC', 'crnrstn_soap_data_tunnel_soap_action');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_content_type', true, 'text/xml; charset=' . $this->oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_data_tunnel_content_type');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_content_length', true, $tmp_content_length, 'crnrstn_soap_data_tunnel_content_length');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_user_agent', true, $tmp_user_agent, 'crnrstn_soap_data_tunnel_user_agent');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_host', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_data_tunnel_host');
+                    $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_host', true, $this->oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_data_tunnel_encoding');
+
+                    $tmp_html = '<form action="' . $this->crnrstn_resources_http_path . 'soa/tunnel/" method="post" id="crnrstn_ssdtl_frm" name="crnrstn_ssdtl_frm" enctype="multipart/form-data">
+<div style="padding-bottom: 20px;"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">' . $tmp_crnrstn_soap_data_tunnel_output . '</textarea></div>
+<button type="submit" style="width:150px; height:30px; text-align: center; font-weight: bold;">SUBMIT</button>
+<input type="hidden" name="crnrstn_soap_srvc_soap_action" value="urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl#returnCRNRSTN_UI_GLOBAL_SYNC">
+<input type="hidden" name="crnrstn_soap_srvc_layer_wsdl" value="' . $tmp_config_wsdl . '">
+<input type="hidden" name="crnrstn_soap_srvc_content_length" value="' . $tmp_content_length . '">
+<input type="hidden" name="crnrstn_soap_srvc_layer_user_agent" value="' . $tmp_user_agent . '">
+<input type="hidden" name="crnrstn_soap_srvc_layer_host" value="' . $_SERVER['SERVER_ADDR'] . '">
+
+<input type="hidden" name="crnrstn_soap_srvc_stime" value="' . $this->starttime . '">
+<input type="hidden" name="crnrstn_soap_srvc_rtime" value="' . $this->wall_time() . '">
+
+<input type="hidden" name="crnrstn_soap_srvc_ttl_wethrbug" value="110">
+<input type="hidden" name="crnrstn_soap_srvc_ttl_bassdrive_stats" value="20">
+<input type="hidden" name="crnrstn_soap_srvc_ttl_bassdrive_show" value="45">
+<input type="hidden" name="crnrstn_soap_srvc_ttl_truth_timer" value="30">
+<input type="hidden" name="crnrstn_soap_srvc_ttl_banner_rotate_desktop" value="15">
+<input type="hidden" name="crnrstn_soap_srvc_ttl_banner_rotate_tablet" value="7">
+<input type="hidden" name="crnrstn_soap_srvc_ttl_banner_rotate_mobile" value="7">
+<input type="hidden" name="crnrstn_soap_srvc_device_type" value="">
+<input type="hidden" name="crnrstn_soap_srvc_transport_protocol_version" value="' . $this->version_soap() . '">
+<input type="hidden" name="crnrstn_soap_srvc_encoding" value="' . $this->oNUSOAP_BASE->soap_defencoding . '">
+<input type="hidden" name="crnrstn_soap_srvc_response_format" value="soap-SOAP, soap;q=0.9, xml;0.7, json;0.1, csv;0, carrier_pigeon;-0.9">
+
+' . $this->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_soap_data_tunnel_frm') . '
+</form>
+<pre class="debug_output">' . $this->return_CRNRSTN_ASCII_ART(0) . '</pre>
+';
+
+                    break;
+
+                // case 'json':
+                // case 'xml':
+                default:
+
+                    //
+                    // print_r
+                    $tmp_crnrstn_soap_data_tunnel_output = $this->print_r_str($this->SOAP_return_client_request());
+
+                    break;
+
+            }
+
+            return $tmp_html;
+
+        }
+
+        return '';
+
+    }
+
+    /*
+
+    <input type="hidden" id="crnrstn_ui_interact_canvas_checksum" name="crnrstn_ui_interact_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_ui_interact_mini_canvas_checksum" name="crnrstn_ui_interact_mini_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_ui_interact_signin_canvas_checksum" name="crnrstn_ui_interact_signin_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_ui_interact_main_canvas_checksum" name="crnrstn_ui_interact_main_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_ui_interact_eula_canvas_checksum" name="crnrstn_ui_interact_eula_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_ui_interact_mit_license_canvas_checksum" name="crnrstn_ui_interact_mit_license_canvas_checksum" value="">
+
+    $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
+    $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT') . '",';
+    $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
+    $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
+    $CANVAS_PROFILE_LOCK_ISACTIVE = '"CANVAS_PROFILE_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_ISACTIVE') . '",';
+
+    $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM = '"CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM') . '",';
+    $CANVAS_PROFILES_DIMENSION_POSITION_CONTENT = '"CANVAS_PROFILES_DIMENSION_POSITION_CONTENT" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CONTENT') . '",';
+    $CANVAS_PROFILES_DIMENSION_POSITION_LOCK = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK') . '",';
+    $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL') . '",';
+    $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE') . '",';
+
+    */
+
+    public function return_http_form_integration_input_val($getpost_input_name, $transport_protocol = NULL){
+
+        try {
+
+            if(!isset($transport_protocol)){
+
+
+                //
+                // AUTO DETECTION CHECKING POST FIRST.
+                if (isset(self::$http_param_handle_ARRAY['POST'][$getpost_input_name])) {
+
+                    return self::$http_param_handle_ARRAY['POST'][$getpost_input_name];
+
+                } else {
+
+                    if (isset(self::$http_param_handle_ARRAY['GET'][$getpost_input_name])) {
+
+                        return self::$http_param_handle_ARRAY['GET'][$getpost_input_name];
+
+                    } else {
+
+                        //error_log(__LINE__ . ' user - NO DATA IN ' . $getpost_input_name);
+                        return NULL;
+
+                    }
+                }
+
+            } else {
+
+                $http_protocol = strtoupper($transport_protocol);
+                $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+
+                switch ($http_protocol) {
+                    case 'POST':
+                    case 'GET':
+
+                        if (isset(self::$http_param_handle_ARRAY[$http_protocol][$getpost_input_name])) {
+
+                            return self::$http_param_handle_ARRAY[$http_protocol][$getpost_input_name];
+
+                        } else {
+
+                            //error_log(__LINE__ . ' - NO ' . $http_protocol . ' DATA IN ' . $getpost_input_name);
+                            return NULL;
+
+                        }
+
+                        break;
+                    default:
+
+                        //
+                        // HOOOSTON...VE HAF PROBLEM!
+                        throw new Exception('Unable to determine HTTP protocol from provided value of [' . $transport_protocol . '].');
+
+                        break;
+
+                }
+
+            }
+
+        } catch (Exception $e) {
+
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+    }
+
+    public function receive_form_integration_packet($uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL){
+
+        $tmp_has_getpost_data = false;
+
+        //
+        // DO WE HAVE POST DATA?
+        if($this->issetHTTP($_POST)){
+
+            //
+            // CHECK FOR PRESENCE OF FORM INTEGRATION PACKET DATA
+            if($this->issetParam($_POST, 'crnrstn_pssdtl_packet')){
+
+                $this->form_integration_isset_ARRAY['POST'] = true;
+                $tmp_has_getpost_data = true;
+
+                $tmp_is_encrypted = '';
+                if($this->issetParam($_POST, 'crnrstn_pssdtl_packet_ENCRYPTED')){
+
+                    $tmp_is_encrypted = strtolower($this->extractData($_POST, 'crnrstn_pssdtl_packet_ENCRYPTED'));
+
+                }
+
+                if($tmp_is_encrypted == 'true'){
+
+                    $uri_passthrough = true;
+                    $this->consume_form_integration_packet($this->oCRNRSTN->data_decrypt($this->extractData($_POST, 'crnrstn_pssdtl_packet'), CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough, $cipher_override, $secret_key_override), 'POST');
+
+                }else{
+
+                    $this->consume_form_integration_packet($this->extractData($_POST, 'crnrstn_pssdtl_packet'), 'POST');
+
+                }
+
+            }
+
+            //
+            // DO WE HAVE GET DATA?
+            if($this->issetHTTP($_GET)){
+
+                //
+                // CHECK FOR PRESENCE OF FORM INTEGRATION PACKET DATA
+                if($this->issetParam($_GET, 'crnrstn_pssdtl_packet')){
+
+                    $this->form_integration_isset_ARRAY['GET'] = true;
+                    $tmp_has_getpost_data = true;
+
+                    $tmp_is_encrypted = '';
+                    if($this->issetParam($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED')){
+
+                        $tmp_is_encrypted = strtolower($this->extractData($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED'));
+
+                    }
+
+                    if($tmp_is_encrypted == 'true'){
+
+                        $this->consume_form_integration_packet($this->oCRNRSTN->data_decrypt($this->extractData($_GET, 'crnrstn_pssdtl_packet'), CRNRSTN_ENCRYPT_TUNNEL, false, $cipher_override, $secret_key_override), 'GET');
+
+                    }else{
+
+                        $this->consume_form_integration_packet($this->extractData($_GET, 'crnrstn_pssdtl_packet'), 'GET');
+
+                    }
+
+                }
+
+            }
+
+        }else{
+
+            //
+            // DO WE HAVE GET DATA?
+            if($this->issetHTTP($_GET)){
+
+                //
+                // CHECK FOR PRESENCE OF FORM INTEGRATION PACKET DATA
+                if($this->issetParam($_GET, 'crnrstn_pssdtl_packet')){
+
+                    //error_log('4418 user - process crnrstn_pssdtl_packet @ _GET');
+                    $tmp_has_getpost_data = true;
+
+                    $tmp_is_encrypted = '';
+                    if($this->issetParam($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED')){
+
+                        $tmp_is_encrypted = strtolower($this->extractData($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED'));
+
+                    }
+
+                    if($tmp_is_encrypted == 'true'){
+
+                        //error_log('4429 user - decrypt crnrstn_pssdtl_packet @ _GET');
+
+                        $this->consume_form_integration_packet($this->oCRNRSTN->data_decrypt($this->extractData($_GET, 'crnrstn_pssdtl_packet'), CRNRSTN_ENCRYPT_TUNNEL, false, $cipher_override, $secret_key_override), 'GET');
+
+                    } else {
+
+                        //error_log('4434 user - decrypt crnrstn_pssdtl_packet @ _GET');
+
+                        $this->consume_form_integration_packet($this->extractData($_GET, 'crnrstn_pssdtl_packet'), 'GET');
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return $tmp_has_getpost_data;
+
+    }
+
+    public function isvalid_data_validation_check($transport_protocol = 'POST'){
+
+        $http_protocol = strtoupper($transport_protocol);
+        $http_protocol = $this->oCRNRSTN->string_sanitize($http_protocol, 'http_protocol_simple');
+
+        if(isset($this->form_integration_isset_ARRAY[$http_protocol])){
+
+            return $this->form_integration_isset_ARRAY[$http_protocol];
+
+        }else{
+
+            return NULL;
+
+        }
+
+    }
+
+    public function isset_crnrstn_svc_http(){
+
+        $tmp_is_valid = false;
+
+        $tmp_variables_order = $this->oCRNRSTN->ini_get('variables_order');
+        $tmp_vo_ARRAY = str_split($tmp_variables_order);
+
+        foreach($tmp_vo_ARRAY as $key => $value) {
+
+            switch ($value) {
+                case 'G':
+
+                    if(isset($this->form_integration_isset_ARRAY['GET'])){
+
+                        $tmp_is_valid = true;
+
+                        if(!$this->form_integration_isset_ARRAY['GET']){
+
+                            return $this->form_integration_isset_ARRAY['GET'];
+
+                        }
+
+                    }
+
+                break;
+                case 'P':
+
+                    if(isset($this->form_integration_isset_ARRAY['POST'])){
+
+                        $tmp_is_valid = true;
+
+                        if(!$this->form_integration_isset_ARRAY['POST']){
+
+                            return $this->form_integration_isset_ARRAY['POST'];
+
+                        }
+
+                    }
+
+                break;
+
+            }
+
+            return $tmp_is_valid;
+
+        }
+
+    }
+
+    public function __return_err_data_validation_check($transport_protocol = 'POST'){
+
+        $tmp_array = array();
+
+        $tmp_is_valid = false;
+
+        $tmp_variables_order = $this->ini_get('variables_order');
+        $tmp_vo_ARRAY = str_split($tmp_variables_order);
+
+        foreach($tmp_vo_ARRAY as $key => $value) {
+
+            switch ($value) {
+                case 'G':
+
+                    if (isset(self::$formIntegrationErr_ARRAY['GET'])) {
+
+                        $tmp_array[] = self::$formIntegrationErr_ARRAY['GET'];
+                        $tmp_array[] = self::$formIntegrationIcon_ARRAY['GET'];
+
+                    }
+
+                    break;
+                case 'P':
+
+                    if (isset(self::$formIntegrationErr_ARRAY['POST'])) {
+
+                        $tmp_array[] = self::$formIntegrationErr_ARRAY['POST'];
+                        $tmp_array[] = self::$formIntegrationIcon_ARRAY['POST'];
+
+                    }
+
+                    break;
+
+            }
+
+            return $tmp_array;
+
+        }
 
     }
 
@@ -870,7 +1483,7 @@ class crnrstn_http_manager {
 
                     //
                     // NEED TO CHECK FOR EXISTENCE OF PARAM NAME IN THIS PIPE STRING FOR DECRYPT AUTHORIZATION
-                    $tmp_decrypt_pipe = $this->oCRNRSTN_USR->data_decrypt($requestMethod['crnrstn_encrypt_tunnel'], CRNRSTN_ENCRYPT_TUNNEL, true);
+                    $tmp_decrypt_pipe = $this->oCRNRSTN->data_decrypt($requestMethod['crnrstn_encrypt_tunnel']);
                     $tmp_array = explode('|', $tmp_decrypt_pipe);
 
                     foreach($tmp_array as $key => $param_nom){
@@ -878,7 +1491,7 @@ class crnrstn_http_manager {
                         //error_log(__LINE__ .' http mgr check $name[' . $name . '] ||  $param_nom=' . $param_nom.' val=' . $requestMethod[$name]);
                         if($param_nom == $name){
 
-                            return $this->oCRNRSTN_USR->data_decrypt($requestMethod[$name], CRNRSTN_ENCRYPT_TUNNEL, true);
+                            return $this->oCRNRSTN->data_decrypt($requestMethod[$name]);
 
                         }
 
@@ -888,8 +1501,8 @@ class crnrstn_http_manager {
 
                     if($tunnel_encrypted){
 
-                        //error_log(__LINE__ . ' http RUN data_decrypt['.urldecode($requestMethod[$name]).'][' . $this->oCRNRSTN_USR->data_decrypt(urldecode($requestMethod[$name])).']');
-                        return $this->oCRNRSTN_USR->data_decrypt($requestMethod[$name], CRNRSTN_ENCRYPT_TUNNEL, true);
+                        //error_log(__LINE__ . ' http RUN data_decrypt['.urldecode($requestMethod[$name]).'][' . $this->oCRNRSTN->data_decrypt(urldecode($requestMethod[$name])).']');
+                        return $this->oCRNRSTN->data_decrypt($requestMethod[$name]);
 
                     }else{
 
@@ -905,7 +1518,7 @@ class crnrstn_http_manager {
             // RETURN POST DATA
             if($tunnel_encrypted){
 
-                return $this->oCRNRSTN_USR->data_decrypt(trim($requestMethod[$name]), CRNRSTN_ENCRYPT_TUNNEL, true);
+                return $this->oCRNRSTN->data_decrypt(trim($requestMethod[$name]));
 
             }else{
 
@@ -918,6 +1531,7 @@ class crnrstn_http_manager {
 			return "";
 
 		}
+
 	}
 	
 	public function getHeaders ($returnType = 'array'){

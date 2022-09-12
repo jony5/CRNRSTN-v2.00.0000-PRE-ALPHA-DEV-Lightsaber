@@ -925,10 +925,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             var dataString = $(form).serialize();
             //debugger;
 
-            this.log_activity('[lnum 757] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 758] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 759] SSDTLP Checksum = [' + $('#' + this.form_input_serialization_checksum).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 760] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 928] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 929] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 930] SSDTLP Checksum = [' + $('#' + this.form_input_serialization_checksum).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 931] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             $.ajax({
                 type: "POST",
@@ -2827,22 +2827,59 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(response_data != null){
 
-            var NODE_crnrstn_client_response = response_data.getElementsByTagName('crnrstn_client_response');
-
-            if(NODE_crnrstn_client_response.length > 0){
+            if($('#crnrstn_interact_ui_link_text_click').html() != ''){
 
                 //
-                // CONSUME XML RESPONSE DATA
-                this.consume_data_tunnel_response(response_data, 'XML');
+                // I HATE TO DO IT THIS WAY...BUT WE JUST NEED TO GET DOCUMENTATION GOING. CAN RETURN TO
+                // REFACTOR ALL THIS, AND WILL HAVE MUCH BETTER COPY-PASTE-DOCUMENTATION WHEN THAT CAN HAPPEN.
+                var tmp_docs_page = $('#crnrstn_interact_ui_link_text_click').html();
 
                 //
-                // SYNC CLIENT STATE TO THE FRESH XML
-                tmp_data_signature_request_key = this.return_data_tunnel_xml_data('data_signature_request_key');
-                tmp_data_signature_request_checksum = this.return_data_tunnel_xml_data('data_signature_request_checksum');
+                // CLEAR OUT PAGE NAME TO AVOID REDUNDANT AJAX CALLS.
+                $('#crnrstn_interact_ui_link_text_click').html('');
 
-                this.refresh_ui_state(tmp_data_signature_request_key, tmp_data_signature_request_checksum);
+                $('#crnrstn_interact_ui_full_document').html($tmp_sidenav_html);
+
+                if(!$('#crnrstn_documentation_dyn_shell').length){
+
+                    var oCRNRSTN_DOCS_DOM_ELEM = document.createElement('div');
+
+                    oCRNRSTN_DOCS_DOM_ELEM.setAttribute('class', 'crnrstn_documentation_dyn_shell');
+                    oCRNRSTN_DOCS_DOM_ELEM.setAttribute('id', 'crnrstn_documentation_dyn_shell');
+
+                    $("#crnrstn_interact_ui_full_document").prependTo(oCRNRSTN_DOCS_DOM_ELEM);
+
+                    alert(response_data.innerText);
+                    oCRNRSTN_DOCS_DOM_ELEM.html(response_data.innerText);
+
+                }else{
+
+                    $("#crnrstn_documentation_dyn_shell").html(response_data.text);
+
+                }
+
+            }else{
+
+
+                var NODE_crnrstn_client_response = response_data.getElementsByTagName('crnrstn_client_response');
+
+                if(NODE_crnrstn_client_response.length > 0){
+
+                    //
+                    // CONSUME XML RESPONSE DATA
+                    this.consume_data_tunnel_response(response_data, 'XML');
+
+                    //
+                    // SYNC CLIENT STATE TO THE FRESH XML
+                    tmp_data_signature_request_key = this.return_data_tunnel_xml_data('data_signature_request_key');
+                    tmp_data_signature_request_checksum = this.return_data_tunnel_xml_data('data_signature_request_checksum');
+
+                    this.refresh_ui_state(tmp_data_signature_request_key, tmp_data_signature_request_checksum);
+
+                }
 
             }
+
 
         }
 

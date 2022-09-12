@@ -10,7 +10,7 @@ error_log(__LINE__ . ' signin PAGE LOAD CALLED....');
 // ID THE FORM FOR ALL PARAMS TO BE ASSOCIATED.
 # SHOULD BE A UNIQUE HANDLE TO THE FORM PROFILE. IT DETERMINES WHAT POTENTIAL POST/GET
 # PARAMETERS FOR WHICH CRNRSTN SHOULD BE LISTENING.
-# $this->oCRNRSTN_USR->initializeFormHandling({CRNRSTN_FORM_HANDLE}, {TUNNEL_PROTOCOL});
+# $this->oCRNRSTN_USR->initializeFormHandling({crnrstn_pssdtl_packet}, {TUNNEL_PROTOCOL});
 
 $tmp_form_serial = $this->oCRNRSTN_USR->generate_new_key(5);
 
@@ -18,7 +18,7 @@ $tmp_form_serial = $this->oCRNRSTN_USR->generate_new_key(5);
 // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
 # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE
 # ENCRYPTED INITIALLY.
-# $this->oCRNRSTN_USR->form_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
+# $this->oCRNRSTN_USR->form_input_add({crnrstn_pssdtl_packet}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
 $this->oCRNRSTN_USR->form_input_add('crnrstn_signin_flagship', 'crnrstn_auth_e', true);
 $this->oCRNRSTN_USR->form_input_add('crnrstn_signin_flagship', 'crnrstn_auth_pwd', true);
 
@@ -34,7 +34,7 @@ $this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship', 'crnrstn
 //
 // THESE FIELDS ARE HIDDEN INPUT FIELDS. WE CAN TUNNEL
 // ENCRYPT THE DATA GOING HERE.
-# $this->oCRNRSTN_USR->form_hidden_input_add({CRNRSTN_FORM_HANDLE}, {HTML_DOM_FORM_INPUT_NAME}, {IS_REQUIRED}, {DEFAULT_VALUE <-notrequired}, {HTML_DOM_FORM_INPUT_ID <-notrequired});
+# $this->oCRNRSTN_USR->form_hidden_input_add({crnrstn_pssdtl_packet}, {HTML_DOM_FORM_INPUT_NAME}, {IS_REQUIRED}, {DEFAULT_VALUE <-notrequired}, {HTML_DOM_FORM_INPUT_ID <-notrequired});
 $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_signin_flagship', 'crnrstn_country_iso_code', true, $this->oCRNRSTN_USR->country_iso_code, 'crnrstn_country_iso_code');
 $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_signin_flagship', 'crnrstn_php_sessionid', true, session_id(), 'crnrstn_php_sessionid');
 

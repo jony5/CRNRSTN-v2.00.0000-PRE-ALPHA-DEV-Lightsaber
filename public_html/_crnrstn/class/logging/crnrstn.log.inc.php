@@ -337,9 +337,9 @@ class crnrstn_logging {
                 $init_profile_pack_ARRAY['sys_logging_profile_ARRAY'] = $oCRNRSTN_ENV->return_sys_logging_profile();
                 $init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $oCRNRSTN_ENV->return_sys_logging_meta();
 
-                if(isset($oCRNRSTN_n->oWildCardResource_ARRAY[$oCRNRSTN_n->crcINT($oCRNRSTN_n->config_serial_crc)])){
+                if(isset($oCRNRSTN_n->oWildCardResource_ARRAY[$oCRNRSTN_n->hash($oCRNRSTN_n->get_server_config_serial())])){
 
-                    $init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_ENV->oWildCardResource_ARRAY[$oCRNRSTN_ENV->crcINT($oCRNRSTN_ENV->config_serial)][CRNRSTN_LOG_ALL];
+                    $init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_ENV->oWildCardResource_ARRAY[$oCRNRSTN_ENV->hash($oCRNRSTN_ENV->get_server_config_serial())][CRNRSTN_LOG_ALL];
 
                 }
 
@@ -357,9 +357,9 @@ class crnrstn_logging {
                 $init_profile_pack_ARRAY['sys_logging_meta_ARRAY'] = $oCRNRSTN_n->return_sys_logging_meta();
                 //$init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_n->oWildCardResource_ARRAY[$oCRNRSTN_n->crcINT($oCRNRSTN_n->config_serial_crc)][CRNRSTN_LOG_ALL];
 
-                if(isset($oCRNRSTN_n->oWildCardResource_ARRAY[$oCRNRSTN_n->crcINT($oCRNRSTN_n->config_serial_crc)])){
+                if(isset($oCRNRSTN_n->oWildCardResource_ARRAY[$oCRNRSTN_n->hash($oCRNRSTN_n->get_server_config_serial())])){
 
-                    $init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_n->oWildCardResource_ARRAY[$oCRNRSTN_n->crcINT($oCRNRSTN_n->config_serial_crc)][CRNRSTN_LOG_ALL];
+                    $init_profile_pack_ARRAY['sys_logging_wcr_ARRAY'] = $oCRNRSTN_n->oWildCardResource_ARRAY[$oCRNRSTN_n->hash($oCRNRSTN_n->get_server_config_serial())][CRNRSTN_LOG_ALL];
 
                 }
 

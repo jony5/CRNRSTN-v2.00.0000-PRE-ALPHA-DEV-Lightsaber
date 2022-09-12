@@ -77,7 +77,6 @@ class crnrstn_environment {
     public $oCRNRSTN_IPSECURITY_MGR;
     public $oSESSION_MGR;
     public $oCOOKIE_MGR;
-
     public $oHTTP_MGR;
     public $oFINITE_EXPRESS;
     public $oCRNRSTN_LANG_MGR;
@@ -506,6 +505,30 @@ class crnrstn_environment {
     public function get_lang_copy($message_key){
 
         return $this->oCRNRSTN_LANG_MGR->get_lang_copy($message_key);
+
+    }
+
+    public function http_data_services_initialize(){
+
+        return $this->oHTTP_MGR->http_data_services_initialize();
+
+    }
+
+    public function consume_form_integration_packet(){
+
+        return $this->oHTTP_MGR->consume_form_integration_packet();
+
+    }
+
+    public function client_request_listen(){
+
+        return $this->oHTTP_MGR->client_request_listen();
+
+    }
+
+    public function isset_crnrstn_svc_http(){
+
+        return $this->oHTTP_MGR->isset_crnrstn_svc_http();
 
     }
 
@@ -2278,15 +2301,9 @@ class crnrstn_environment {
 //
 //    }
 
-    public function get_server_config_serial($output_format){
+    public function get_server_config_serial($output_format = 'raw'){
 
-        if($output_format === 'hash'){
-
-            return $this->config_serial_hash;
-
-        }
-
-        return self::$config_serial;
+        return $this->oCRNRSTN->get_server_config_serial($output_format);
 
     }
 
@@ -2571,6 +2588,12 @@ class crnrstn_environment {
 
     }
 
+    public function return_http_form_integration_input_val($getpost_input_name, $transport_protocol = NULL){
+
+        return $this->oHTTP_MGR->return_http_form_integration_input_val($getpost_input_name, $transport_protocol);
+
+    }
+
     public function return_serialized_soap_data_tunnel_session($packet_type = 'crnrstn_session_json'){
 
         /*
@@ -2616,7 +2639,7 @@ class crnrstn_environment {
 
                 error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
 
-                $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
+                $tmp_client_id = $this->return_http_form_integration_input_val('crnrstn_client_id');
                 $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN_USR->return_query_date_time_stamp());
 
                 // crnrstn_sessions TABLE DATA
@@ -2635,7 +2658,7 @@ class crnrstn_environment {
 
             error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
 
-            $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
+            $tmp_client_id = $this->return_http_form_integration_input_val('crnrstn_client_id');
             $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN_USR->return_query_date_time_stamp());
 
             // crnrstn_sessions TABLE DATA
@@ -2772,7 +2795,7 @@ class crnrstn_environment {
         switch($packet_type){
             case 'crnrstn_session_json':
 
-                //$tmp_crnrstn_session = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_session');
+                //$tmp_crnrstn_session = $this->return_http_form_integration_input_val('crnrstn_session');
                 /*
 
                 12/18/2021 1311 hrs
@@ -8008,7 +8031,7 @@ class crnrstn_decoupled_data_object {
 
 //        if($data_key == 'ac7971ddce7e6720466d7fb07d03cdf6fd017a508d87ac7132d7d5d11a34f077db'){
 //
-//            $this->oCRNRSTN->print_r('$data_value=[' . $data_value . ']. $data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//            $this->oCRNRSTN->print_r('$data_value=[' . $data_value . ']. $data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, NULL, __LINE__, __METHOD__, __FILE__);
 //
 //            $tmp_array = array();
 //            $tmp_array[] = '12345';
