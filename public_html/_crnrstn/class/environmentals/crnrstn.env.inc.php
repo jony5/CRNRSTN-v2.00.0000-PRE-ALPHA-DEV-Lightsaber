@@ -7658,11 +7658,27 @@ class crnrstn_decoupled_data_object {
 //
 //        }
 
-        if(isset($this->data_auth_profile_ARRAY[$data_key][$index])){
+        if(is_array($data_key)){
 
-            if(!$this->oCRNRSTN->isset_auth_profile($data_auth_request, $this->data_auth_profile_ARRAY[$data_key][$index])){
+            if(isset($this->data_auth_profile_ARRAY[$data_key[0]][$index])){
 
-                return $this->oCRNRSTN->session_salt();
+                if(!$this->oCRNRSTN->isset_auth_profile($data_auth_request, $this->data_auth_profile_ARRAY[$data_key[0]][$index])){
+
+                    return $this->oCRNRSTN->session_salt();
+
+                }
+
+            }
+
+        }else{
+
+            if(isset($this->data_auth_profile_ARRAY[$data_key][$index])){
+
+                if(!$this->oCRNRSTN->isset_auth_profile($data_auth_request, $this->data_auth_profile_ARRAY[$data_key][$index])){
+
+                    return $this->oCRNRSTN->session_salt();
+
+                }
 
             }
 
@@ -7716,6 +7732,8 @@ class crnrstn_decoupled_data_object {
             case 'pssdtl_packet';
 
                 $tmp_str_out = '';
+                $tmp_val = '';
+                $tmp_val_len = 0;
 
 //                $tmp_count = 0;
 //                $tmp_meta_str_out = '';
@@ -7766,7 +7784,6 @@ class crnrstn_decoupled_data_object {
 
                     }else{
 
-
                         // WE DO NOT PASS DATA VALUE (OR SENSITIVE META ABOUT VALUE) TO CLIENT...IF ANYTHING SAVE PSSDTLP.
                         // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
                         if(isset($this->data_value_ARRAY[$data_key][$index])){
@@ -7775,6 +7792,25 @@ class crnrstn_decoupled_data_object {
                             $tmp_val_len = strlen($tmp_val);
 
                         }
+
+                        if(!isset($this->data_value_ARRAY[$data_key][$index])){
+
+                            // TODO :: GET THESE ISSET CHECKS OUT OF HERE. WE ARE MISSING A USE CASE.
+                            //error_log(__LINE__ . ' ddo env data_value_ARRAY not set.');
+                            $this->data_value_ARRAY[$data_key][$index] = '';
+                            $this->ttl_profile_ARRAY[$data_key][$index] = 60;
+                            $this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_OUTPUT_FORM_INTEGRATIONS;
+
+                        }
+
+                        if(!isset($this->data_type_ARRAY[$data_key][$index])){
+
+                            //error_log(__LINE__ . ' ddo env data_type_ARRAY not set.');
+                            $this->data_type_ARRAY[$data_key][$index] = 'string';
+
+                        }
+
+                        //error_log(__LINE__.  ' ddo env $data_key=[' . $data_key . ']. $tmp_val_len=[' . $tmp_val_len . ']. $index=[' . $index . '].');
                         $tmp_str_out .= '
         {
             "HASH" : "' . $this->oCRNRSTN->hash($data_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key][$index], 'md5') . $this->data_type_ARRAY[$data_key][$index], 'md5') . '",
@@ -7785,7 +7821,6 @@ class crnrstn_decoupled_data_object {
             "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index]) . ',
             "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key][$index]) . '
         },';
-
 
                     }
 
