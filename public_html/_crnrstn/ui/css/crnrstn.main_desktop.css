@@ -15,8 +15,8 @@
 .crnrstn_interact_ui_full_document_rel              { position: relative; }
 .crnrstn_interact_ui_full_document                  { position: absolute; z-index: 101; left:0; top:0; width: 315px; }
 
-.crnrstn_documentation_dyn_shell_bg                 { position: absolute; z-index: 3; background-color: #003eff; left:0; top:0; width: 0; height: 0; overflow: hidden;}
-.crnrstn_documentation_dyn_shell                    { position: absolute; z-index: 4; left:0; top:0; width: 0; height: 0; overflow: hidden;}
+.crnrstn_documentation_dyn_shell_bg                 { position: absolute; z-index: 3; background-color: #003eff; left:0; top:-8px; width: 0; height: 0; overflow: hidden;}
+.crnrstn_documentation_dyn_shell                    { position: absolute; z-index: 4; left:0; top:-8px; width: 0; height: 0; overflow: hidden;}
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
 // SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/
