@@ -7677,13 +7677,9 @@ class crnrstn_decoupled_data_object {
         switch($data_attribute){
             case 'crnrstn_data_packet':
 
-                $tmp_count = 0;
-                $line_wrap = $tmp_line_wrap_cnt = 3;
-
                 $tmp_crnrstn_data_packet_out = '"crnrstn_data_packet" : [
     ';
-                $tmp_data_packet_parameter_out = '"crnrstn_data_packet_ddo_elements" : [
-                        ';
+                $tmp_data_packet_parameter_out = '"crnrstn_data_packet_ddo_elements" : [';
 
                 $tmp_str = '';
 
@@ -7733,15 +7729,6 @@ class crnrstn_decoupled_data_object {
 
 
 
-                    // WE DO NOT PASS DATA VALUE (OR SENSITIVE META ABOUT VALUE) TO CLIENT...IF ANYTHING SAVE PSSDTLP.
-                    // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
-                    if(isset($this->data_value_ARRAY[$data_key][$index])){
-
-                        $tmp_val = $this->data_value_ARRAY[$data_key][$index];
-                        $tmp_val_len = strlen($tmp_val);
-
-                    }
-
                     //
                     // Friday, August 5, 2022 2241 hrs
                     // IF WE'RE TALKING SSDTLP, THEN WE NEED TO FUCK WITH SOAP
@@ -7752,9 +7739,43 @@ class crnrstn_decoupled_data_object {
                     // A CRNRSTN :: DATA PACKET IS AN ENCRYPTED JSON OBJECT WRAPPED IN A SOAP OBJECT. FUCK YEAH! JSON!
                     // CRNRSTN :: DATA PACKET IS A THING NOW.
 
-                    error_log(__LINE__ . ' ddo packet $data_key=[' . print_r($data_key, true) . ']. $index=[' . $index . ']. ttl_profile_ARRAY=[' . print_r($this->ttl_profile_ARRAY[$data_key], true) . '].');
+                    //error_log(__LINE__ . ' ddo packet $data_key=[' . print_r($data_key, true) . ']. $index=[' . $index . ']. ttl_profile_ARRAY=[' . print_r($this->ttl_profile_ARRAY[$data_key], true) . '].');
                     //error_log(__LINE__ . ' ddo packet TYPE=[' . $this->data_type_ARRAY[$data_key][$index] . '] BYTES=[' . $tmp_val_len . '] TTL=[' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index]) . '] AUTH_PROFILE=[' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key][$index]) . ']');
-                    $tmp_str_out .= '
+
+                    if(is_array($data_key)){
+
+                        // WE DO NOT PASS DATA VALUE (OR SENSITIVE META ABOUT VALUE) TO CLIENT...IF ANYTHING SAVE PSSDTLP.
+                        // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
+                        if(isset($this->data_value_ARRAY[$data_key[0]][$index])){
+
+                            $tmp_val = $this->data_value_ARRAY[$data_key[0]][$index];
+                            $tmp_val_len = strlen($tmp_val);
+
+                        }
+
+                        $tmp_str_out .= '
+        {
+            "HASH" : "' . $this->oCRNRSTN->hash($data_key[0] . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key[0]][$index], 'md5') . $this->data_type_ARRAY[$data_key[0]][$index], 'md5') . '",
+            "BYTES" : "' . $tmp_val_len . '",
+            "KEY" : "' . $this->oCRNRSTN->return_clean_json_string($data_key[0]) . '",
+            "TYPE" : "' . $this->data_type_ARRAY[$data_key[0]][$index] . '",
+            "VALUE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . ',
+            "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key[0]][$index]) . ',
+            "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key[0]][$index]) . '
+        },';
+
+                    }else{
+
+
+                        // WE DO NOT PASS DATA VALUE (OR SENSITIVE META ABOUT VALUE) TO CLIENT...IF ANYTHING SAVE PSSDTLP.
+                        // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
+                        if(isset($this->data_value_ARRAY[$data_key][$index])){
+
+                            $tmp_val = $this->data_value_ARRAY[$data_key][$index];
+                            $tmp_val_len = strlen($tmp_val);
+
+                        }
+                        $tmp_str_out .= '
         {
             "HASH" : "' . $this->oCRNRSTN->hash($data_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key][$index], 'md5') . $this->data_type_ARRAY[$data_key][$index], 'md5') . '",
             "BYTES" : "' . $tmp_val_len . '",
@@ -7765,7 +7786,10 @@ class crnrstn_decoupled_data_object {
             "AUTH_PROFILE" : ' . $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key][$index]) . '
         },';
 
-                    error_log(__LINE__ . ' ddo type=[' . $this->data_type_ARRAY[$data_key][$index] . '].');
+
+                    }
+
+                    //error_log(__LINE__ . ' ddo type=[' . $this->data_type_ARRAY[$data_key][$index] . '].');
 
                 return $tmp_str_out;
 
