@@ -929,7 +929,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             this.log_activity('[lnum 928] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
             this.log_activity('[lnum 929] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
             this.log_activity('[lnum 930] SSDTLP Checksum = [' + $('#' + this.form_input_serialization_checksum).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 931] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+
+            if($('#crnrstn_interact_ui_link_text_click').val() != ''){
+
+                this.log_activity('[lnum 931] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+
+            }
 
             if($('#crnrstn_interact_ui_link_text_click').val() != ''){
 
