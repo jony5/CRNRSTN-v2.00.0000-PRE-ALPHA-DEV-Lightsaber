@@ -538,6 +538,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     CRNRSTN_JS.prototype.interact_ui_full_documentation_navigation = function() {
 
         var self = this;
+
         /*
         We use a setTimeout 0 to pause JS execution and let the rendering catch-up.
         Why do this? If the `disableScrolling` option is set to true, a class is added to the body

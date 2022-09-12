@@ -8498,11 +8498,14 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         /****************************************************************************/
         // Sort the files array.
-        if ($sorting_order == SCANDIR_SORT_ASCENDING) {
-            asort($files, SORT_NUMERIC);
-        }
-        else {
+        if($sorting_order == SCANDIR_SORT_ASCENDING){
+
+            asort($files, SORT_STRING);
+
+        }else{
+
             arsort($files, SORT_NUMERIC);
+
         }
 
         /****************************************************************************/
