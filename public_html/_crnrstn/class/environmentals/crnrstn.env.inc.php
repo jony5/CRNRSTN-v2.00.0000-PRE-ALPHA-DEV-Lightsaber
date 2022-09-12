@@ -7682,7 +7682,7 @@ class crnrstn_decoupled_data_object {
 
                 $tmp_crnrstn_data_packet_out = '"crnrstn_data_packet" : [
     ';
-                $tmp_data_packet_parameter_out = '"crnrstn_data_packet_parameters" : [
+                $tmp_data_packet_parameter_out = '"crnrstn_data_packet_ddo_elements" : [
                         ';
 
                 $tmp_str = '';
