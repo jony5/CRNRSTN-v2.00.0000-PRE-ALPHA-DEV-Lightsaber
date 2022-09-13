@@ -1280,6 +1280,8 @@ class crnrstn_environment {
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_hash', 'crnrstn_request_serialization_hash', '', CRNRSTN_INPUT_REQUIRED);
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_resource_filecache_version', 'crnrstn_resource_filecache_version');
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', 'crnrstn_interact_ui_link_text_click');
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_loadbar_progress', 'crnrstn_interact_ui_loadbar_progress');
+
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->oCRNRSTN_USR->return_serialized_soap_data_tunnel_session('crnrstn_session_json'), 'crnrstn_session');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
@@ -1305,11 +1307,13 @@ class crnrstn_environment {
         <button type="submit">SUBMIT</button>
         <input type="hidden" id="crnrstn_request_ajax_root" name="crnrstn_request_ajax_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?'. $this->oCRNRSTN->session_salt().'=">
         <input type="hidden" id="crnrstn_interact_ui_link_text_click" name="crnrstn_interact_ui_link_text_click" value="">
+        <input type="hidden" id="crnrstn_interact_ui_loadbar_progress" name="crnrstn_interact_ui_loadbar_progress" value="">
         <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="">
         <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="">';
 
          $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_soap_data_tunnel_form') . '
     </form>
+    <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR') . '</div>
 </div>';
 
         $tmp_str_array[] = '<!-- END ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL MODULE OUTPUT -->
@@ -1347,24 +1351,16 @@ class crnrstn_environment {
     private function return_documentation_side_nav_link_ARRAY(){
 
         $tmp_str = '';
+        $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/';
 
-        $tmp_scraped_filename_ARRAY = $this->oCRNRSTN->better_scandir(CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/');
+        $scanned_directory_ARRAY = array_diff(scandir($directory), array('..', '.', 'index.php'));
 
-        $tmp_img_cnt = sizeof($tmp_scraped_filename_ARRAY);
-        for($i = 0; $i < $tmp_img_cnt; $i++){
+        $tmp_cnt = sizeof($scanned_directory_ARRAY);
+        foreach($scanned_directory_ARRAY as $index => $dir_resource){
 
-            $tmp_pos_php = strpos($tmp_scraped_filename_ARRAY[$i], '.php');
-            $tmp_pos_ds_store = strpos($tmp_scraped_filename_ARRAY[$i], 'DS_Store');
-            $tmp_pos_indexphp = strpos($tmp_scraped_filename_ARRAY[$i], 'index.php');
-
-            if(($tmp_pos_php !== false) && ($tmp_pos_ds_store === false) && ($tmp_pos_indexphp === false)){
-
-                $tmp_filename = $this->oCRNRSTN->strrtrim($tmp_scraped_filename_ARRAY[$i], '.php');
-
-                $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $tmp_filename . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($tmp_filename, 'md5') . '" href="#' . $tmp_filename . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $tmp_filename . '">' . $tmp_filename . '</a></li>
+            $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $dir_resource . '">' . $dir_resource . '</a></li>
 ';
 
-            }
 
         }
 

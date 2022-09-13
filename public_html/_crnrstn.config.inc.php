@@ -984,7 +984,11 @@ if(!$oCRNRSTN->is_configured()){
 }
 
 $CRNRSTN_LISTENER_RESPONSE = $oCRNRSTN->client_request_listen();
+
 if(strlen($CRNRSTN_LISTENER_RESPONSE) > 0){
+
+    //sleep(2);
+    //error_log(__LINE__ . ' config $CRNRSTN_LISTENER_RESPONSE =[' . $CRNRSTN_LISTENER_RESPONSE . '].');
 
     //
     // THE SPACE BETWEEN.

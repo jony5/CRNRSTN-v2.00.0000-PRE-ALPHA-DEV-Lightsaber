@@ -893,11 +893,11 @@ class crnrstn_http_manager {
 
                 if($this->receive_form_integration_packet()) {
 
-                    error_log(__LINE__ . ' http AJAX_PSSDT_LAYER_POST receive_form_integration_packet');
+                    //error_log(__LINE__ . ' http AJAX_PSSDT_LAYER_POST receive_form_integration_packet');
 
                     if($this->isvalid_data_validation_check()) {
 
-                        error_log(__LINE__ . ' AJAX_PSSDT_LAYER_POST isvalid_data_validation_check');
+                        //error_log(__LINE__ . ' AJAX_PSSDT_LAYER_POST isvalid_data_validation_check');
 
                         //
                         // CHECK FOR PSSDTLP. WILL NEED TO MAKE ADJUSTMENTS FOR SSDTLA.

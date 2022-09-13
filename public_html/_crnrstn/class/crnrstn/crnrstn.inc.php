@@ -6107,24 +6107,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     $value = strtoupper($value);
 
-                    break;
+                break;
                 case 'strtolower':
 
                     $value = strtolower($value);
 
-                    break;
+                break;
                 case 'trim':
 
                     $value = trim($value);
 
-                    break;
+                break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('CRNRSTN :: has not been configured to support the native PHP method, ' . $method_as_string);
 
-                    break;
+                break;
 
             }
 
@@ -6333,7 +6333,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     return $clean_str;
 
-                    break;
+                break;
                 case 'http_protocol_simple':
 
                     $patterns[0] = '_';
@@ -6343,7 +6343,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $replacements[1] = '';
                     $replacements[2] = '';
 
-                    break;
+                break;
                 default:
 
                     //
@@ -6457,42 +6457,42 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 return $this->version_linux();
 
-                break;
+            break;
             case 'APACHE':
 
                 return 'Apache v' . $this->version_apache();
 
-                break;
+            break;
             case 'MYSQLI':
 
                 return 'MySQLi v' . $this->version_mysqli();
 
-                break;
+            break;
             case 'PHP':
 
                 return 'php v' . $this->version_php();
 
-                break;
+            break;
             case 'SOAP':
 
                 return $this->version_soap();
 
-                break;
+            break;
             case 'OPENSSL':
 
                 return 'OpenSSL v' . $this->version_openssl();
 
-                break;
+            break;
             case 'CRNRSTN':
 
                 return 'CRNRSTN :: v' . $this->version_crnrstn();
 
-                break;
+            break;
             default:
 
                 return 'UNKNOWN[' . $system . '] :: v[x].[y].[z]';
 
-                break;
+            break;
 
         }
 
@@ -8489,11 +8489,16 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         /****************************************************************************/
         // Roll through the scandir values.
         $files = array();
-        foreach (scandir($dir, $sorting_order) as $file) {
-            if ($file[0] === '.') {
+        foreach(scandir($dir, $sorting_order) as $file){
+
+            if($file[0] === '.'){
+
                 continue;
+
             }
+
             $files[$file] = filemtime($dir . '/' . $file);
+
         } // foreach
 
         /****************************************************************************/

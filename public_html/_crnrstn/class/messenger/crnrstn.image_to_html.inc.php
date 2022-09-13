@@ -100,6 +100,11 @@ class crnrstn_system_image_asset_manager {
         self::$image_output_mode = $image_output_mode;
 
         switch($creative_element_key){
+            case 'UI_PAGELOAD_INDICATOR':
+
+                return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
             case 'SOCIAL_ARCHIVES':
 
                 return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -635,6 +640,11 @@ class crnrstn_system_image_asset_manager {
                 //error_log(__LINE__ .' image_output_mode=' . $image_output_mode.' ,creative_element_key=' . $creative_element_key);
 
                 switch($creative_element_key){
+                    case 'UI_PAGELOAD_INDICATOR':
+
+                        return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'SOCIAL_ARCHIVES':
 
                         return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1120,6 +1130,11 @@ class crnrstn_system_image_asset_manager {
             case 'ALL_IMAGE_LOGO_OFF':
 
                 switch($creative_element_key){
+                    case 'UI_PAGELOAD_INDICATOR':
+
+                        return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'SOCIAL_ARCHIVES':
 
                         return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1479,6 +1494,11 @@ class crnrstn_system_image_asset_manager {
             case 'ALL_HTML_LOGO_OFF':
 
                 switch($creative_element_key){
+                    case 'UI_PAGELOAD_INDICATOR':
+
+                        return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'SOCIAL_ARCHIVES':
 
                         return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1832,6 +1852,11 @@ class crnrstn_system_image_asset_manager {
             default:
                 // case 'ALL_HTML':
                 switch($creative_element_key){
+                    case 'UI_PAGELOAD_INDICATOR':
+
+                        return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'SOCIAL_ARCHIVES':
 
                         return $this->SOCIAL_ARCHIVES($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -2228,6 +2253,61 @@ class crnrstn_system_image_asset_manager {
             break;
 
         }
+
+    }
+
+    private function UI_PAGELOAD_INDICATOR($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+
+        # # # # # # # #
+        // USE NO EXTENSION.
+        //_crnrstn/ui/imgs/png/element_page_load_indicator.png
+        $tmp_filename = 'element_page_load_indicator';
+        $tmp_width = 17;
+        $tmp_height = 3000;
+        $tmp_alt_text = '';
+        $tmp_title_text = '';
+        $tmp_link = '';
+        $tmp_target = '';
+        # # # # # # # #
+        # # # # # # # #
+
+        if($height_override != ''){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if($link_override != ''){
+
+            if($target_override != ''){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if($alt_override != ''){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if($title_override != ''){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if($width_override != ''){
+
+            $tmp_width = $width_override;
+
+        }
+
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -8089,7 +8169,7 @@ class crnrstn_system_image_asset_manager {
 
             }
 
-            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to open ' . $tmp_filepath . ', but ';
+            $_SESSION['CRNRSTN_' . $this->oCRNRSTN->get_server_config_serial('hash')]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to open ' . $tmp_filepath . ', but ';
             if($resource_file = fopen($tmp_filepath, 'w')){
 
                 $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';

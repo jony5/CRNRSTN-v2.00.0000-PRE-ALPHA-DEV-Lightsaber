@@ -6,6 +6,9 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
+echo '[lnum ' . __LINE__ . ']  die();';
+die();
+
 //
 // INITIALIZATION
 $tmp_received_POST_data = false;

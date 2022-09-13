@@ -454,6 +454,93 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         this.fire_dom_state_controller();
 
+        //
+        // BEGIN UI PAGE LOAD VISUALIZATION EXPERIENCE
+        //crnrstn_ui_element_load_indicator_shell
+        $('#crnrstn_interact_ui_page_load_progress').val('');
+        this.start_page_request_visualization();
+
+    };
+
+    CRNRSTN_JS.prototype.start_page_request_visualization = function(){
+
+        $('#crnrstn_ui_element_load_indicator').animate({
+            top: 0
+        }, {
+            duration: 0,
+            queue: false,
+            specialEasing: {
+                left: "linear"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        //
+        // PSSDTL DRIVEN PAGE LOAD VISUALIZATION
+        this.size_element_y('crnrstn_ui_element_load_indicator_shell');
+
+        // EXPAND THE WINDOW TO MAX.
+        $('#crnrstn_ui_element_load_indicator_shell').animate({
+            width: 10
+        }, {
+            duration: 250,
+            queue: false,
+            specialEasing: {
+                width: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        var tmp_height = $('#crnrstn_ui_element_load_indicator_shell').height();
+
+        tmp_height = tmp_height - 100;
+
+        $('#crnrstn_ui_element_load_indicator').animate({
+            top: tmp_height
+        }, {
+            duration: 5000,
+            queue: false,
+            specialEasing: {
+                left: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+    };
+
+    CRNRSTN_JS.prototype.initialize_page_request_visualization = function(){
+
+        if($('#crnrstn_ui_element_load_indicator').length){
+
+            $('#crnrstn_ui_element_load_indicator').animate({
+                top: 0
+            }, {
+                duration: 0,
+                queue: false,
+                specialEasing: {
+                    left: "linear"
+                },
+                complete: function () {
+
+                }
+
+            });
+
+            //
+            // PSSDTL DRIVEN PAGE LOAD VISUALIZATION
+            this.size_element_y('crnrstn_ui_element_load_indicator_shell');
+
+        }
+
     };
 
     CRNRSTN_JS.prototype.initialize_interact_ui_documentation_mode = function() {
@@ -464,8 +551,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(!this.$overlay.length){
 
-            $('<div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div>').prependTo($('body'));
-            self.log_activity('[lnum 468] INJECTING crnrstn_interact_ui_full_lightbox_overlay INTO DOM.', self.CRNRSTN_DEBUG_VERBOSE);
+            $('<div id="crnrstn_interact_ui_full_doc_header_wrapper_rel" class="crnrstn_interact_ui_full_doc_header_wrapper_rel"><div class="crnrstn_cb"></div><div id="crnrstn_interact_ui_full_doc_header_wrapper" class="crnrstn_interact_ui_full_doc_header_wrapper"><div id="crnrstn_interact_ui_full_doc_close_wrapper_rel" class="crnrstn_interact_ui_full_doc_close_wrapper_rel"><div id="crnrstn_interact_ui_full_doc_close_wrapper" class="crnrstn_interact_ui_full_doc_close_wrapper"><div id="crnrstn_interact_ui_full_doc_close" class="crnrstn_interact_ui_full_doc_close" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);"  onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);"  onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);"></div></div></div><div class="crnrstn_cb"></div></div></div><div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper" class="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_ui_element_load_indicator_shell_rel" class="crnrstn_ui_element_load_indicator_shell_rel"><div id="crnrstn_ui_element_load_indicator_shell" class="crnrstn_ui_element_load_indicator_shell"><div id="crnrstn_ui_element_load_indicator_bg_rel" class="crnrstn_ui_element_load_indicator_bg_rel"><div id="crnrstn_ui_element_load_indicator_bg" class="crnrstn_ui_element_load_indicator_bg"></div></div><div id="crnrstn_ui_element_load_indicator_rel" class="crnrstn_ui_element_load_indicator_rel"><div id="crnrstn_ui_element_load_indicator" class="crnrstn_ui_element_load_indicator"></div></div></div></div><div id="crnrstn_documentation_dyn_shell_rel" class="crnrstn_documentation_dyn_shell_rel"><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div></div>').prependTo($('body'));
+
+            self.log_activity('[lnum 556] INJECTING crnrstn_interact_ui_full_lightbox_overlay INTO DOM.', self.CRNRSTN_DEBUG_VERBOSE);
 
         }
 
@@ -509,6 +597,34 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             });
 
+            $('#crnrstn_ui_element_load_indicator_shell').animate({
+                marginLeft: this.side_navigation_min_width
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
+            $('#crnrstn_documentation_dyn_shell_rel').animate({
+                marginLeft: this.side_navigation_min_width
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
             $('body').animate({
                 marginLeft: this.side_navigation_min_width
             }, {
@@ -532,6 +648,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             return false;
 
         });
+
+        $("#crnrstn_ui_element_load_indicator").html($("#crnrstn_interact_ui_loadbar_IMAGE_CACHE").html());
 
     };
 
@@ -702,6 +820,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             self.enable();
             self.build();
+
+            self.initialize_page_request_visualization();
 
         });
 
@@ -973,6 +1093,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //var packet_dl_bytes = response_data.documentElement.innerHTML.length;
         var packet_dl_bytes = response_data.length;
         oCRNRSTN_JS.log_activity('[lnum 739] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+        $('#crnrstn_ui_element_load_indicator').stop();
+
+        var page_load_progress = $('#crnrstn_ui_element_load_indicator').css('top');
+        $('#crnrstn_interact_ui_loadbar_progress').val(page_load_progress);
+        //$('#crnrstn_interact_ui_pageload_stoptime').val(page_load_progress);
 
         oCRNRSTN_JS.receive_data_tunnel_response(response_data);
 
@@ -2861,6 +2987,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 // REFACTOR ALL THIS, AND WILL HAVE MUCH BETTER COPY-PASTE-DOCUMENTATION WHEN THAT CAN HAPPEN.
                 var tmp_docs_page = $('#crnrstn_interact_ui_link_text_click').val();
 
+                if(tmp_docs_page.length > 1){
+
+                    $("#crnrstn_interact_ui_full_doc_close").html('X');
+
+                }
+
                 //
                 // CLEAR OUT PAGE NAME TO AVOID REDUNDANT AJAX CALLS.
                 //alert($('#crnrstn_interact_ui_link_text_click').val());
@@ -2925,6 +3057,21 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         $("#crnrstn_documentation_dyn_shell").html(response_data);
 
+
+                    }
+
+                });
+
+                $('#crnrstn_ui_element_load_indicator_shell').animate({
+                    width: 3
+                }, {
+                    duration: 250,
+                    queue: false,
+                    specialEasing: {
+                        left: "swing"
+                    },
+                    complete: function () {
+
                     }
 
                 });
@@ -2951,6 +3098,33 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             }
 
+
+        }
+
+    };
+
+    CRNRSTN_JS.prototype.size_element_y = function(dom_elem_id) {
+
+        switch(dom_elem_id){
+            case 'crnrstn_ui_element_load_indicator_shell':
+
+                var self = this;
+
+                self.$dom_elem_bg = $("#"+ dom_elem_id);
+
+                setTimeout(function() {
+
+                    self.$dom_elem_bg
+                        .height($(document).height());
+
+                }, 0);
+
+            break;
+            default:
+
+                this.log_activity('[lnum 3025] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+
+            break;
 
         }
 
@@ -5569,7 +5743,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     CRNRSTN_JS.prototype.crnrstn_ui_interact_ux = function(ux_action, elem){
 
         /*
-
+close_docs_fullscreen
         <div id="crnrstn_ui_interact_primary_nav_menu" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
 
             <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_inactive.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
@@ -5591,6 +5765,44 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         */
 
         switch(elem.id){
+            case 'crnrstn_interact_ui_full_doc_close':
+
+                //onclick
+                //this.toggle_documentation_side_navigation();
+
+                switch(ux_action){
+                    case 'onmouseover':
+
+                        //this.log_activity('[lnum 5434] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+                        // ACTIVE MOUSEOVER (HOVER STATE)
+                        $('#' + elem.id).css('color', '#F90000');
+
+
+                    break;
+                    case 'onmouseout':
+
+                        //this.log_activity('[lnum 5441] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+                        // ACTIVE MOUSEOUT (BACK TO NORMAL)
+                        $('#' + elem.id).css('color', '#F6F6F6');
+
+                    break;
+                    case 'onmousedown':
+
+                    break;
+                    case 'onmouseup':
+
+                    break;
+                    case 'onclick':
+
+                        this.close_full_screen_documentation();
+
+                    break;
+
+                }
+
+            break;
             case 'crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case':
 
                 //dom_handle_variant_element = 'menu';
@@ -5720,6 +5932,44 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     }
 
+    CRNRSTN_JS.prototype.close_full_screen_documentation = function() {
+        // crnrstn_interact_ui_full_doc_close
+        // crnrstn_interact_ui_full_doc_header_wrapper
+        // crnrstn_documentation_dyn_shell
+
+        //$('#crnrstn_interact_ui_full_doc_header_wrapper').html('');
+        $('#crnrstn_interact_ui_full_doc_close').html('');
+
+        // UNDO this.size_element('crnrstn_documentation_dyn_shell_bg');
+        $('#crnrstn_documentation_dyn_shell_bg').animate({
+            width: 0,
+            height: 0
+        }, {
+            duration: 0,
+            queue: false,
+            complete: function () {
+
+            }
+
+        });
+
+        // UNDO this.size_element('crnrstn_documentation_dyn_shell');
+        $('#crnrstn_documentation_dyn_shell').animate({
+            width: 0,
+            height: 0
+        }, {
+            duration: 0,
+            queue: false,
+            complete: function () {
+
+                $('#crnrstn_documentation_dyn_shell').html('');
+
+            }
+
+        });
+
+    }
+
     CRNRSTN_JS.prototype.toggle_documentation_side_navigation = function(){
 
         var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
@@ -5757,6 +6007,33 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             });
 
             //var b_width = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
+            $('#crnrstn_ui_element_load_indicator_shell').animate({
+                marginLeft: parseInt(this.side_navigation_min_width)
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
+            $('#crnrstn_documentation_dyn_shell_rel').animate({
+                marginLeft: parseInt(this.side_navigation_min_width)
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
 
             $('body').animate({
                 marginLeft: parseInt(this.side_navigation_min_width)
@@ -5811,6 +6088,33 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         });
 
         //var b_width = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
+        $('#crnrstn_ui_element_load_indicator_shell').animate({
+            marginLeft: parseInt(this.side_navigation_toggle_expand_width)
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_documentation_dyn_shell_rel').animate({
+            marginLeft: parseInt(this.side_navigation_toggle_expand_width)
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
 
         $('body').animate({
             marginLeft: parseInt(this.side_navigation_toggle_expand_width)

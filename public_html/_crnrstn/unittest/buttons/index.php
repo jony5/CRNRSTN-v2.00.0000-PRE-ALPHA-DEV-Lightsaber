@@ -6,6 +6,9 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
+echo '[lnum ' . __LINE__ . ']  die();';
+die();
+
 function openssl_error_return(&$err_array, $lnum, $err_key){
 
     while($tmp_openssl_err_msg = openssl_error_string())
