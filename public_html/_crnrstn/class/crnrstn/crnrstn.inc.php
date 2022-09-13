@@ -2733,7 +2733,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 <body>
 <div style="padding: 0 0 0 20px;">
 
-    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '"></div>
+    <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '"></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '
@@ -2791,7 +2791,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 <body>
 <div style="padding: 0 0 0 20px;">
 
-    <div style="padding: 0 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '"></div>
+    <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '"></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
