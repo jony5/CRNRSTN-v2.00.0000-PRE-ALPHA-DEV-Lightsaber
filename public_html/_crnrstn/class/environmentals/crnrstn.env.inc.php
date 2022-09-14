@@ -1370,9 +1370,13 @@ class crnrstn_environment {
         $tmp_str = '';
         $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/';
 
-        $scanned_directory_ARRAY = array_diff(scandir($directory), array('..', '.', 'index.php'));
+        $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
 
-        $tmp_cnt = sizeof($scanned_directory_ARRAY);
+        //
+        // SOURCE :: https://www.php.net/manual/en/function.scandir.php
+        // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
+        $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
+
         foreach($scanned_directory_ARRAY as $index => $dir_resource){
 
             $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $dir_resource . '">' . $dir_resource . '</a></li>

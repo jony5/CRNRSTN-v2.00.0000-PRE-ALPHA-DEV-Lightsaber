@@ -1226,9 +1226,8 @@ class crnrstn {
 
         $tmp_noise_ARRAY = str_split($background_noise);
 
-        // GUARANTEE OVERFLOW OF OUTPUT LENGTH.
-        $tmp_out_len = $output_length;
-        for($i = strlen($tmp_output_str); $i < $tmp_out_len; $i++){
+        // GUARANTEE OVERFLOW OF OUTPUT LENGTH BY REPETITION OF NOISE FILL PATTERN.
+        for($i = strlen($tmp_output_str); $i < $output_length; $i++){
 
             //
             // USING CODE CONTROLLER CHARACTER INDEX POSITIONS AS KEY, CONCATENATE MATCHES WITH
@@ -8488,12 +8487,36 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     //
     // SOURCE :: https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified
     // AUTHOR :: Giacomo1968 :: https://stackoverflow.com/users/117259/giacomo1968
-    public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING) {
+    public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descnding_arsort = false) {
+
+        /*
+        https://www.php.net/manual/en/function.scandir.php
+
+        WHERE $sorting_order =
+        SCANDIR_SORT_ASCENDING
+        SCANDIR_SORT_DESCENDING
+        SCANDIR_SORT_NONE
+
+        By default, the sorted order is alphabetical in ascending order. If the
+        optional sorting_order is set to SCANDIR_SORT_DESCENDING, then the sort order
+        is alphabetical in descending order. If it is set to SCANDIR_SORT_NONE
+        then the result is unsorted.
+
+        WHERE $secondary_asort =
+        SORT_REGULAR - compare items normally; the details are described in the comparison operators section
+        SORT_NUMERIC - compare items numerically
+        SORT_STRING - compare items as strings
+        SORT_LOCALE_STRING - compare items as strings, based on the current locale. It uses the locale, which can be changed using setlocale()
+        SORT_NATURAL - compare items as strings using "natural ordering" like natsort()
+        SORT_FLAG_CASE - can be combined (bitwise OR) with SORT_STRING or SORT_NATURAL to sort strings case-insensitively
+
+        */
 
         /****************************************************************************/
         // Roll through the scandir values.
         $files = array();
-        foreach(scandir($dir, $sorting_order) as $file){
+        $tmp_ARRAY = scandir($dir, $sorting_order);
+        foreach($tmp_ARRAY as $file){
 
             if($file[0] === '.'){
 
@@ -8501,21 +8524,47 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
             }
 
-            $files[$file] = filemtime($dir . '/' . $file);
+            //$files[$file] = filemtime($dir . '/' . $file);
+            $files[$file] = $file;
 
         } // foreach
 
+//        error_log(__LINE__ . ' $files=[' . print_r($files, true) . '].');
+        //die();
         /****************************************************************************/
         // Sort the files array.
-        if($sorting_order == SCANDIR_SORT_ASCENDING){
+        if($descnding_arsort){
 
-            asort($files, SORT_STRING);
+            if(isset($secondary_asort)){
+
+                arsort($files, $secondary_asort);
+
+            }else{
+
+                arsort($files, SORT_STRING);
+
+            }
 
         }else{
 
-            arsort($files, SORT_NUMERIC);
+            if($sorting_order == SCANDIR_SORT_ASCENDING){
+
+                asort($files, SORT_STRING);
+
+            }else{
+
+                if(isset($secondary_asort)){
+
+                    asort($files, $secondary_asort);
+
+                }
+
+            }
 
         }
+
+//        error_log(__LINE__ . ' $sorting_order=[' . $sorting_order . ']. $files=[' . print_r($files, true) . '].');
+//        die();
 
         /****************************************************************************/
         // Set the final return value.
