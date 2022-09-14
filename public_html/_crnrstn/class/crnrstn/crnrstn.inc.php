@@ -505,12 +505,6 @@ class crnrstn {
 
     }
 
-    public function sticky_uri_listener(){
-
-        return $this->oCRNRSTN_USR->sticky_uri_listener();
-
-    }
-
     public function form_integrations_data_index($crnrstn_form_handle_hash, $output_type = 'string'){
 
         $tmp_str_out = '';
@@ -2926,7 +2920,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             /*
             'CRNRSTN_RESOURCE_ALL', 'CRNRSTN_RESOURCE_BASSDRIVE',
             'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', 'CRNRSTN_RESOURCE_CSS_VALIDATOR', 'CRNRSTN_RESOURCE_DOCUMENTATION',
-            'CRNRSTN_RESOURCE_IMAGE', 'CRNRSTN_RESOURCE_DOCUMENT', 'CRNRSTN_RESOURCE_OPENSOURCE',
+            'CRNRSTN_RESOURCE_FOOTER', 'CRNRSTN_RESOURCE_IMAGE', 'CRNRSTN_RESOURCE_DOCUMENT', 'CRNRSTN_RESOURCE_OPENSOURCE',
             'CRNRSTN_RESOURCE_NEWS_SYNDICATION'
 
 
@@ -2993,12 +2987,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //            }
 
 
-            if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+        if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
 
-                $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
-                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+            $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+            $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
-            }
+        }
 
         foreach ($this->system_ui_module_constants_spool_ARRAY as $index => $int_const) {
 
@@ -3014,6 +3008,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 }
 
             }
+        }
+
+        if(isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_RESOURCE_DOCUMENTATION]) && !isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER])){
+
+            $this->ficp_module_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER] = 1;
+            $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_RESOURCE_FOOTER);
+
         }
 
 
@@ -7790,13 +7791,20 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     }
 
+    public function proper_response_return($response = NULL, $header_options_array = NULL, $crnrstn_response_profile_key = NULL){
+
+        return $this->oCRNRSTN_ENV->proper_response_return($response, $header_options_array, $crnrstn_response_profile_key);
+
+
+        }
+
     public function return_sticky_link($url, $meta_params_ARRAY = NULL){
 
         $tmp_array = array();
         $tmp_flag_array = array();
 
         $tmp_array[] = 'crnrstn_l=crnrstn';
-        $tmp_array[] = 'crnrstn_r=' . urlencode($this->data_encrypt($url));
+        $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
         $tmp_flag_array['crnrstn_l'] = 1;
         $tmp_flag_array['crnrstn_r'] = 1;
 

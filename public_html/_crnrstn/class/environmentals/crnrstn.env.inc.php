@@ -763,6 +763,22 @@ class crnrstn_environment {
                 return $tmp_output;
 
             break;
+            case CRNRSTN_RESOURCE_FOOTER:
+
+                $tmp_array = $this->return_output_CRNRSTN_UI_SYSTEM_FOOTER();
+                $tmp_output = '';
+
+                //
+                // LOAD OUTPUT
+                foreach($tmp_array as $key => $resource_content){
+
+                    $tmp_output .= $resource_content;
+
+                }
+
+                return $tmp_output;
+
+            break;
             default:
 
                 $this->error_log('The requested UI content module...honoring the provided integer constant, "' . $integer_constant . '", could not be found.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
@@ -802,6 +818,7 @@ class crnrstn_environment {
                 case CRNRSTN_ASSET_MODE_PNG:
                 case CRNRSTN_ASSET_MODE_JPEG:
 
+                    // # # # # # # # # # # # # # # # # # # # # # # # # # #
                     $tmp_str_array[] = '
 <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' UI JS + CSS MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
@@ -818,7 +835,7 @@ class crnrstn_environment {
                             $tmp_str_array[] = '<!-- ' . $this->oCRNRSTN_USR->proper_version() . ' :: DESKTOP JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 <script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/crnrstn.main_desktop.js?v=420.00.' . $tmp_cache_ver . '"></script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_MAIN_TABLET:
 
                             $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
@@ -830,7 +847,7 @@ class crnrstn_environment {
                             $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 <script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/crnrstn.main_tablet.js?v=420.00.' . $tmp_cache_ver . '"></script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_MAIN_MOBILE:
 
                             $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
@@ -842,7 +859,7 @@ class crnrstn_environment {
                             $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 <script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/crnrstn.main_mobi.js?v=420.00.' . $tmp_cache_ver . '"></script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_JQUERY:
 
                             $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js');
@@ -894,7 +911,7 @@ class crnrstn_environment {
 <script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js?v=420.00.' . $tmp_cache_verD . '"></script>
 ';
 
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
                             $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
@@ -909,7 +926,7 @@ class crnrstn_environment {
 <script type="application/javascript" src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.min.js?v=420.00.' . $tmp_cache_verB . '"></script>
 ';
 
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
 
                             $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
@@ -923,7 +940,7 @@ class crnrstn_environment {
 <script type="application/javascript" src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox.min.js?v=420.00.' . $tmp_cache_verB . '"></script>
 ';
 
-                            break;
+                        break;
 
                     }
 
@@ -947,7 +964,7 @@ class crnrstn_environment {
 // --> 
 </script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_MAIN_TABLET:
 
                             $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' --><script> //<!--
@@ -955,7 +972,7 @@ class crnrstn_environment {
 // --> 
 </script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_MAIN_MOBILE:
 
                             $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' --><script> //<!--
@@ -964,7 +981,7 @@ class crnrstn_environment {
 </script>
 ';
 
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_JQUERY:
 
                             $tmp_str_array[] = '<!-- jquery 3.6.0 --><script> //<!--
@@ -972,7 +989,7 @@ class crnrstn_environment {
 // --> 
 </script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_JQUERY_UI:
 
                             $tmp_str_array[] = '<!-- jquery ui 1.12.1 --><style>
@@ -984,7 +1001,7 @@ class crnrstn_environment {
 // --> 
 </script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_JQUERY_MOBILE:
 
                             $tmp_str_array[] = '<!-- jquery.mobile 1.4.5 CSS --><style>
@@ -1008,7 +1025,7 @@ class crnrstn_environment {
 // --> 
 </script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
                             $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS --><style>
@@ -1021,7 +1038,7 @@ class crnrstn_environment {
 // --> 
 </script>
 ';
-                            break;
+                        break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
 
                             $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS --><style>
@@ -1033,7 +1050,7 @@ class crnrstn_environment {
 // --> 
 </script>
 ';
-                            break;
+                        break;
 
                     }
 
@@ -1361,15 +1378,61 @@ class crnrstn_environment {
             $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $dir_resource . '">' . $dir_resource . '</a></li>
 ';
 
-
         }
 
         return $tmp_str;
 
     }
 
+    private function return_output_CRNRSTN_UI_SYSTEM_FOOTER(){
+
+        // # # # # # # # # # # # # # # # # # # # # # # # # # #
+        $tmp_str_array[] = '
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: SYSTEM FOOTER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+';
+
+        $tmp_str_array[] = '        <div id="crnrstn_ui_system_footer_src" class="crnrstn_hidden">
+            <div class="crnrstn_ui_system_footer_wrapper">
+
+                <div class="crnrstn_ui_system_footer_rel">
+            
+
+                    <div id="crnrstn_ui_system_footer" class="crnrstn_ui_system_footer">
+                        
+                            <div class="crnrstn_ui_system_footer_content">
+                                <div class="crnrstn_cb_10"></div>
+                                <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('5', 20, '', '', '', '', 20, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                <div class="crnrstn_ui_system_footer_mit">MIT license</div>
+                                <div class="crnrstn_ui_system_footer_download"><a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') .'" target="_blank">download</a></div>
+                                
+                                <div class="crnrstn_ui_system_footer_stats_wrapper">
+                                    <div class="crnrstn_ui_system_footer_stat">[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs]</div>
+                                </div>
+                                
+                                <div class="crnrstn_cb"></div>
+                                
+                            </div>
+                        
+                        <div class="crnrstn_cb"></div>
+                        
+                   </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div id="crnrstn_ui_mit_license_shell" class="crnrstn_ui_mit_license_shell"></div>
+        <div id="crnrstn_ui_system_footer_shell" class="crnrstn_ui_system_footer_shell"></div>
+        ';
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: SYSTEM FOOTER MODULE OUTPUT -->
+';
+
+        return $tmp_str_array;
+
+    }
+
     private function return_output_CRNRSTN_UI_DOCUMENTATION(){
 
+        // # # # # # # # # # # # # # # # # # # # # # # # # # #
         $tmp_str_array[] = '
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
@@ -1405,6 +1468,7 @@ class crnrstn_environment {
                 </ul>                
                 <div class="crnrstn_cb_20"></div>
                 <div>' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                
                 <div class="crnrstn_cb_100"></div>
 
            </div>
@@ -4451,6 +4515,12 @@ class crnrstn_environment {
 
     }
 
+    public function proper_response_return($response, $header_options_array, $crnrstn_response_profile_key){
+
+        return $this->oHTTP_MGR->proper_response_return($response, $header_options_array, $crnrstn_response_profile_key);
+
+    }
+
     private function define_wildcard_resource($key){
 
         $oWildCardResource = new crnrstn_wildcard_resource($key, $this);
@@ -6569,7 +6639,7 @@ class crnrstn_environment {
         $tmp_flag_array = array();
 
         $tmp_array[] = 'crnrstn_l=crnrstn';
-        $tmp_array[] = 'crnrstn_r=' . urlencode($this->data_encrypt($url));
+        $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
         $tmp_flag_array['crnrstn_l'] = 1;
         $tmp_flag_array['crnrstn_r'] = 1;
 

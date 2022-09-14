@@ -76,12 +76,15 @@ class crnrstn_http_manager {
     public $customClientDevice = array();
 
     public $form_integration_isset_ARRAY = array();
+    public $response_header_attribute_ARRAY = array();
 
     public function __construct($oCRNRSTN, $oCRNRSTN_ENV) {
 
         $this->oCRNRSTN = $oCRNRSTN;
         $this->oCRNRSTN_ENV = $oCRNRSTN_ENV;
         $this->oCRNRSTN_USR = $oCRNRSTN_ENV->return_oCRNRSTN_USR();
+
+        $this->response_header_attribute_ARRAY = $oCRNRSTN_ENV->response_header_attribute_ARRAY;
 
         self::$relevant_header_fields_ARRAY = array('Accept', 'Accept-Charset', 'Accept-Datetime', 'Accept-Encoding', 'Accept-Language',
         'Authorization', 'Cache-Control', 'Connection', 'Content-Encoding', 'Content-Length', 'Content-MD5', 'Content-Type', 'Cookie',
@@ -863,9 +866,9 @@ class crnrstn_http_manager {
 
         //
         // STICKY LINK CHECK
-        if($tmp_html = $this->oCRNRSTN->sticky_uri_listener()){
+        if($tmp_html = $this->sticky_uri_listener()){
 
-            $this->oCRNRSTN->proper_response_return($tmp_html, NULL, 'RESPONSE_STICKY');
+            $this->proper_response_return($tmp_html, NULL, 'RESPONSE_STICKY');
 
         }
 
@@ -879,6 +882,335 @@ class crnrstn_http_manager {
         //}
 
         return NULL;
+
+    }
+
+    public function sticky_uri_listener(){
+
+        /*
+        $tmp_param_array[] = 'crnrstn_bst=true';
+        $tmp_param_array[] = 'crnrstn_smk=' . $channel_key;
+        $tmp_param_array[] = 'crnrstn_sid=' . $social_id;
+        $tmp_param_array[] = 'crnrstn_sk=' . $stream_key;
+
+        http://172.16.225.139/lightsaber.crnrstn.evifweb.com/_crnrstn/demo/forms/action_directory/action/
+        ?crnrstn_l=aafVctw3qrv8BlqVErqslZz9gud0cHqEjBpzh5lnXhxchWLMRilJ4rF22C5On78WDe47AUb29Q%253D%253D
+        &crnrstn_r=FYkKPONbbS3CeB2LS9CcqaR6P7WeeNiwb5rmsAxsPGmeQlRtcZNb%252BRsgFZup06wesRmU%252FC8RXqLP1Gi3edToi46So6IiaH41z5H1GA5b3%252B%252FffUMGvqKLKwC43Z%252Fmu%252Bn89xKa0GnXSpUM%252BPUoDttyfV7zBXSFc%252FyrQ2NzdJ0OjT0MP4Pc1HeXyHWydt9Z1GuQnvLp39p4CuNVD%252FbLONTaJG6sxnGZRxS9vqxf14vsT%252B5X2rQo5JFoNBgf06xb6sHF%252BD7xioTJ2RV%252FU552yLTvXmbsXIKhOJdC
+        &crnrstn_encrypt_tunnel=D%252BvHGBUGgLXvw3IM2dkeJMn9z3sG2yffZ2vGmj8kHvSwtXrxV8UC%252BkI2h%252FpSwQ4tPS9BbA%253D%253D
+        */
+
+        if($this->issetParam($_GET,'crnrstn_bst')){
+
+            $tmp_tracking_status = $this->oCRNRSTN_ENV->data_decrypt($this->extractData($_GET,'crnrstn_bst', true), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_social_media_key = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_smk'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_social_id = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_sid'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_stream_key = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_sk'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_r'), CRNRSTN_ENCRYPT_TUNNEL, true);
+
+            //error_log(__LINE__ . ' user sticky[' . $tmp_tracking_status . '][' . $this->oCRNRSTN_ENV->data_decrypt(urldecode($tmp_uri), CRNRSTN_ENCRYPT_TUNNEL, true) . '][' . $tmp_social_media_key . '][' . $tmp_social_id . '][' . $tmp_stream_key . ']');
+
+            $this->oCRNRSTN_TRM->log_stream_social_clickthrough_reporting($this->oCRNRSTN_ENV->data_decrypt(urldecode($tmp_uri), CRNRSTN_ENCRYPT_TUNNEL, true), $tmp_social_media_key, $tmp_social_id, $tmp_stream_key);
+
+        }
+
+        //
+        // CHECK FOR INITIALIZATION OF STICKY LINK VAR
+        if($this->issetParam($_GET, 'crnrstn_r')){
+
+            // $tmp_uri = html_entity_decode($this->extract_data_HTTP('crnrstn_r'));
+            $tmp_uri = $this->extractData($_GET, 'crnrstn_r', true);
+
+            error_log(__LINE__.  ' http ' . __METHOD__ . ' $tmp_uri=[' . $tmp_uri . '].');
+
+            die();
+            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt(urldecode($tmp_uri), CRNRSTN_ENCRYPT_TUNNEL, true);
+
+            $tmp_redirect_html = '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="refresh" content="0; url=' . $tmp_uri . '" />
+    <style>
+        p               { padding:10px 0 0 20px; font-size: 18px;}
+    </style>
+</head>
+<body>
+<p><a href="' . $tmp_uri . '" target="_self" style="color:#0066CC;">Click here</a>, if you are not redirected immediately.</p>
+<!-- 
+
+      ___           ___           ___           ___           ___                         ___              
+     /\__\         /\  \         /\  \         /\  \         /\__\                       /\  \             
+    /:/  /        /::\  \        \:\  \       /::\  \       /:/ _/_         ___          \:\  \            
+   /:/  /        /:/\:\__\        \:\  \     /:/\:\__\     /:/ /\  \       /\__\          \:\  \        ___           ___           
+  /:/  /  ___   /:/ /:/  /    _____\:\  \   /:/ /:/  /    /:/ /::\  \     /:/  /      _____\:\  \      /\__\         /\  \          
+ /:/__/  /\__\ /:/_/:/__/___ /::::::::\__\ /:/_/:/__/___ /:/_/:/\:\__\   /:/__/      /::::::::\__\     :/__/         :/__/
+ \:\  \ /:/  / \:\/:::::/  / \:\~~\~~\/__/ \:\/:::::/  / \:\/:/ /:/  /  /::\  \      \:\~~\~~\/__/         
+  \:\  /:/  /   \::/~~/~~~~   \:\  \        \::/~~/~~~~   \::/ /:/  /  /:/\:\  \      \:\  \            ___           ___         
+   \:\/:/  /     \:\~~\        \:\  \        \:\~~\        \/_/:/  /   \/__\:\  \      \:\  \          /\__\         /\  \    
+    \::/  /       \:\__\        \:\__\        \:\__\         /:/  /         \:\__\      \:\__\         :/__/         :/__/
+     \/__/         \/__/         \/__/         \/__/         \/__/           \/__/       \/__/      
+	 
+
+
+-->
+</body>
+</html>';
+
+            return $tmp_redirect_html;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    public function proper_response_return($response = NULL, $header_options_array = NULL, $crnrstn_response_profile_key = NULL){
+
+        $tmp_curr_headers_ARRAY = headers_list();
+        $tmp_crnrstn_signature_headers_ARRAY = $this->return_signature_headers();
+
+        //
+        // ENSURE ALL SIGNATURE HEADERS ARE IN PLACE AND CONTINUE
+        $this->aggregate_parse_header_array($tmp_curr_headers_ARRAY);
+        $this->aggregate_parse_header_array($tmp_crnrstn_signature_headers_ARRAY);
+
+        //
+        // RESPONSE HEADER CONSTRUCTION
+        if(isset($header_options_array)){
+
+            /*
+            TAKE CURRENT HEADERS...
+                - FORCE INJECT SIGNATURE HEADERS
+                    - FORCE INJECT ANY PROVISIONAL HEADERS
+
+            */
+
+            //
+            // USE PROVISIONAL HEADERS (APPLY THEM AT THE END FOR OVERWRITE PROTECTION)
+            $this->aggregate_parse_header_array($header_options_array);
+
+        }
+
+        if(isset($crnrstn_response_profile_key)){
+
+            switch($crnrstn_response_profile_key){
+                case 'RESPONSE_STICKY':
+
+                    $tmp_array = array();
+                    $tmp_array[] = 'Cache-Control: max-age=0';
+                    $tmp_array[] = 'X-Frame-Options: SAMEORIGIN';
+                    $this->aggregate_parse_header_array($tmp_array);
+
+                    $this->apply_headers();
+                    echo $response;
+                    exit;
+
+                break;
+                case 'REDIRECT_SANS_POST':
+
+                    // PERMANENT = 301
+                    // TEMPORARY = 307
+                    // header("Location: /foo.php", true, 307); // THE BOOL == "ALLOW DUPLICATE HEADER ENTRIES"...WHICH MAY BE FASTER.
+
+                    $this->apply_headers();
+                    header("Location: $response", true, 307);
+                    exit;
+
+                break;
+                case 'POST_REDIRECT':
+
+                    // PERMANENT = 301
+                    // TEMPORARY = 307
+                    // header("Location: /foo.php", true, 307); // THE BOOL == "ALLOW DUPLICATE HEADER ENTRIES"...WHICH MAY BE FASTER.
+
+                    $tmp_array = array();
+                    $tmp_array[] = 'Cache-Control: max-age=0';
+                    $tmp_array[] = 'X-Frame-Options: SAMEORIGIN';
+                    $this->aggregate_parse_header_array($tmp_array);
+
+                    $this->apply_headers();
+                    header("Location: $response", true, 303);
+                    exit;
+
+                break;
+                case 'RESPONSE_SANS_POST':
+                default:
+
+                    //
+                    // BASIC PAGE RESPONSE RETURN
+
+                    $this->apply_headers();
+                    return $response;
+
+                break;
+
+            }
+
+        }else{
+
+            $this->apply_headers();
+            return $response;
+
+        }
+
+        #####
+        // SOURCE :: https://www.php.net/manual/en/function.header.php#78470
+        // AUTHOR :: Dylan at WeDefy dot com :: https://www.php.net/manual/en/function.header.php#78470
+        // The HTTP status code changes the way browsers and robots handle redirects, so if you are using
+        // header(Location:) it's a good idea to set the status code at the same time. Browsers typically
+        // re-request a 307 page every time, cache a 302 page for the session, and cache a 301 page for
+        // longer, or even indefinitely. Search engines typically transfer "page rank" to the new location
+        // for 301 redirects, but not for 302, 303 or 307. If the status code is not specified,
+        // header('Location:') defaults to 302.
+        //
+        //        // 307 Temporary Redirect
+        //        header("Location: /foo.php", true, 307); // THE BOOL == "ALLOW DUPLICATE HEADER ENTRIES"...WHICH MAY BE FASTER.
+        #####
+
+        #####
+        // SOURCE :: https://www.php.net/manual/en/function.header.php
+        // AUTHOR :: nospam at nospam dot com :: https://www.php.net/manual/en/function.header.php#119014
+        //        // Response codes behaviors when using
+        //        header('Location: /target.php', true, $code) to forward user to another page:
+        //
+        //        $code = 301;
+        //        // Use when the old page has been "permanently moved and any future requests should be
+        //           sent to the target page instead. PageRank may be transferred."
+        //
+        //        $code = 302; (default)
+        //        // "Temporary redirect so page is only cached if indicated by a Cache-Control or
+        //           Expires header field."
+        //
+        //        $code = 303;
+        //        // "This method exists primarily to allow the output of a POST-activated script to
+        //           redirect the user agent to a selected resource. The new URI is not a substitute
+        //           reference for the originally requested resource and is not cached."
+        //
+        //        $code = 307;
+        //        // Beware that when used after a form is submitted using POST, it would carry over the
+        //           posted values to the next page, such if target.php contains a form processing script,
+        //           it will process the submitted info again!
+        //
+        //        // In other words, use 301 if permanent, 302 if temporary, and 303 if a results page
+        //           from a submitted form.
+        //        // Maybe use 307 if a form processing script has moved.
+        #####
+
+        #####
+        //        /* Redirect to a different page in the current directory that was requested */
+        //        $host  = $_SERVER['HTTP_HOST'];
+        //        $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        //        $extra = 'mypage.php';
+        //        header("Location: http://$host$uri/$extra");
+        //        exit;
+        #####
+
+        #####
+        //        // We'll be outputting a PDF
+        //        header('Content-Type: application/pdf');
+        //
+        //        // It will be called downloaded.pdf
+        //        header('Content-Disposition: attachment; filename="downloaded.pdf"');
+        //
+        //        // The PDF source is in original.pdf
+        //        readfile('original.pdf');
+        #####
+
+    }
+
+    private function aggregate_parse_header_array($header_array, $overwrite_existing = true){
+
+        foreach($header_array as $key0 => $header_elem){
+
+            $tmp_attribute_value = '';
+            $tmp_array = explode(':', $header_elem);
+
+            foreach($tmp_array as $key1 => $str){
+
+                if($key1 == 0){
+
+                    $tmp_attribute_name = $str;
+
+                }else{
+
+                    if($tmp_attribute_value != ''){
+
+                        $tmp_attribute_value .= ':' . $str;
+
+                    }else{
+
+                        $tmp_attribute_value .= $str;
+
+                    }
+
+                }
+
+            }
+
+            //
+            // BRING HEADER SITUATION INTO CRNRSTN ::
+            if(isset($tmp_array[0])){
+
+                $this->add_header_attribute($tmp_attribute_name, $tmp_attribute_value, $overwrite_existing);
+
+            }
+
+        }
+
+    }
+
+    private function apply_headers(){
+
+        foreach($this->response_header_attribute_ARRAY['header'] as $key => $headers_attribute){
+
+            if($this->response_header_attribute_ARRAY['overwrite_existing'][$key] == 1){
+
+                header($headers_attribute);
+
+            }else{
+
+                header($headers_attribute, false);
+
+            }
+
+        }
+
+    }
+
+    private function add_header_attribute($name, $value, $overwrite_existing = false){
+
+        $this->response_header_attribute_ARRAY['header'][] = $name . ': ' . $value;
+
+        if($overwrite_existing){
+
+            $this->response_header_attribute_ARRAY['overwrite_existing'][] = 1;
+
+        }else{
+
+            $this->response_header_attribute_ARRAY['overwrite_existing'][] = 0;
+
+        }
+
+        $this->response_header_attribute_ARRAY['log'] .= $name . ', ';
+
+    }
+
+    private function return_signature_headers(){
+
+        $tmp_date = date('D, M j Y G:i:s T', strtotime('now'));
+        $tmp_date_expire = date('D, M j Y G:i:s T', strtotime('- 42 seconds'));
+        $tmp_date_lastmod = date('D, M j Y G:i:s T', strtotime('- 420 seconds'));
+
+        $tmp_array = array();
+        $tmp_array[] = 'Content-Language: ' . $this->oCRNRSTN->country_iso_code();
+        $tmp_array[] = 'Content-Type: text/html; charset=UTF-8';
+        $tmp_array[] = 'Date: ' . $tmp_date;
+        $tmp_array[] = 'Expires: ' . $tmp_date_expire;
+        $tmp_array[] = 'Last-Modified: ' . $tmp_date_lastmod;
+        $tmp_array[] = 'X-Powered-By: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+
+        return $tmp_array;
 
     }
 

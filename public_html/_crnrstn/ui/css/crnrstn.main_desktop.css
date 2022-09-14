@@ -54,7 +54,26 @@
     .crnrstn_interact_ui_side_nav a                 { font-size: 18px;}
 }
 
-/*CRNRSTN::INTEGRATION UI INTERACT MODULE*/
+/*CRNRSTN::INTEGRATION UI INTERACT MODULE :: SYSTEM FOOTER*/
+.crnrstn_ui_system_footer_shell                     { /*position:-webkit-sticky; position: sticky; bottom:5px;*/}
+
+.crnrstn_ui_system_footer_wrapper                   { position: absolute; z-index:9999;}
+.crnrstn_ui_system_footer_rel                       { position: relative;}
+.crnrstn_ui_system_footer                           { position: absolute; border-top: 1px solid #A5B9D8; height: 45px; background-color: #FFF; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333;}
+
+.crnrstn_ui_system_footer_content_wrapper           {}
+.crnrstn_ui_system_footer_content                   { float: left; padding: 0 10px 0 10px; }
+
+.crnrstn_ui_system_footer_5                         { float: left; padding: 0 10px 0 10px; }
+.crnrstn_ui_system_footer_mit                       { float: left; padding: 3px 10px 0 10px; }
+.crnrstn_ui_system_footer_mit a                     { text-decoration: none; color: #0066CC;}
+.crnrstn_ui_system_footer_download                  { float: left; padding: 3px 10px 0 10px; }
+.crnrstn_ui_system_footer_download a                { text-decoration: none; color: #0066CC;}
+.crnrstn_ui_system_footer_stats_wrapper             { float: left; padding: 3px 20px 0 20px; }
+.crnrstn_ui_system_footer_stat                      { float: left; }
+.crnrstn_ui_mit_license_shell                       { position: absolute; z-index: 9999; width:0; height: 0; overflow: hidden; }
+
+/*CRNRSTN::INTEGRATION UI INTERACT MODULE :: MESSENGER*/
 .crnrstn_ui_interact_wrapper                        { position:-webkit-sticky; position: sticky; bottom:5px; left:-3000px; width:0; height: 0; overflow: hidden;}
 .crnrstn_ui_interact                                { }
 .crnrstn_ui_interact_bg_border                      { position: absolute; z-index: 55; }
