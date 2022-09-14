@@ -1214,17 +1214,11 @@ class crnrstn {
         //
         // DO WE HAVE THE LENGTH?
         $tmp_delta = $output_length - strlen($tmp_output_str);
-        if ($tmp_delta > 0) {
+        if($tmp_delta > 0){
 
             if (!isset($background_noise)) {
 
-                $background_noise = strtoupper($this->generate_new_key(40));
-
-            }
-
-            if (strlen($background_noise) < count(self::$char_01_ARRAY)) {
-
-                $background_noise .= strtoupper($this->generate_new_key(40));
+                $background_noise = strtoupper($this->generate_new_key(40 + count(self::$char_01_ARRAY)));
 
             }
 
@@ -1232,20 +1226,22 @@ class crnrstn {
 
         $tmp_noise_ARRAY = str_split($background_noise);
 
-        //
-        // USING CODE CONTROLLER CHARACTER INDEX POSITIONS AS KEY, CONCATENATE MATCHES WITH
-        // BACKGROUND NOISE TO FILL ANY REMAINING LENGTH
-        foreach ($tmp_encoder_position_ARRAY as $index => $position) {
+        // GUARANTEE OVERFLOW OF OUTPUT LENGTH.
+        $tmp_out_len = $output_length;
+        for($i = strlen($tmp_output_str); $i < $tmp_out_len; $i++){
 
-            $tmp_output_str .= self::$char_01_ARRAY[$tmp_noise_ARRAY[$position]];
+            //
+            // USING CODE CONTROLLER CHARACTER INDEX POSITIONS AS KEY, CONCATENATE MATCHES WITH
+            // BACKGROUND NOISE TO FILL ANY REMAINING LENGTH
+            foreach($tmp_encoder_position_ARRAY as $index => $position){
 
-        }
+                $tmp_output_str .= self::$char_01_ARRAY[$tmp_noise_ARRAY[$position]];
 
-        $tmp_padd_char_cnt = $output_length - strlen($tmp_output_str);
+                $i++;
 
-        if ($tmp_padd_char_cnt > 0) {
+                if($i > $output_length) break 1;
 
-            $tmp_output_str .= $this->generate_new_key($tmp_padd_char_cnt, '01');
+            }
 
         }
 
