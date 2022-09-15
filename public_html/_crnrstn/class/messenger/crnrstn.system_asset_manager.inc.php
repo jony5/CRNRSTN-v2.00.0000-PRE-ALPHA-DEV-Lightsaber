@@ -8252,7 +8252,7 @@ class crnrstn_system_image_asset_manager {
             $_SESSION['CRNRSTN_' . $this->oCRNRSTN->get_server_config_serial('hash')]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to open ' . $tmp_filepath . ', but ';
             if($resource_file = fopen($tmp_filepath, 'w')){
 
-                $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+                $_SESSION['CRNRSTN_'. $this->oCRNRSTN->get_server_config_serial('hash')]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 
                 fwrite($resource_file, $tmp_data_str_out);
                 fclose($resource_file);
