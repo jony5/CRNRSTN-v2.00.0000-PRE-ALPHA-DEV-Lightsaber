@@ -1462,6 +1462,7 @@ class crnrstn_environment {
 
     private function return_output_CRNRSTN_UI_DOCUMENTATION(){
 
+        //echo $oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS');
         // # # # # # # # # # # # # # # # # # # # # # # # # # #
         $tmp_str_array[] = '
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
