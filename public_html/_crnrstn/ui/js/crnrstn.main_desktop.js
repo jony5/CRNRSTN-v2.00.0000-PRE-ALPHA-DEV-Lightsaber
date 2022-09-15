@@ -631,7 +631,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             $('body').animate({
                 marginLeft: this.side_navigation_min_width,
-                paddingLeft: 10
+                paddingLeft: parseInt(this.side_navigation_min_width)
             }, {
                 duration: 500,
                 queue: false,
@@ -6240,7 +6240,7 @@ close_docs_fullscreen
 
             $('body').animate({
                 marginLeft: parseInt(this.side_navigation_min_width),
-                paddingLeft: 10
+                paddingLeft: parseInt(this.side_navigation_min_width)
             }, {
                 duration: 500,
                 queue: false,
@@ -6323,7 +6323,7 @@ close_docs_fullscreen
 
         $('body').animate({
             marginLeft: parseInt(this.side_navigation_toggle_expand_width),
-            paddingLeft: 10
+            paddingLeft: parseInt(this.side_navigation_min_width)
         }, {
             duration: 100,
             queue: false,
