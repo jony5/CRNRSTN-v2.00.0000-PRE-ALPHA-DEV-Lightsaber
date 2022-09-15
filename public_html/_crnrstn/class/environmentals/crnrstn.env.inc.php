@@ -1423,6 +1423,8 @@ class crnrstn_environment {
                     <div id="crnrstn_ui_system_footer" class="crnrstn_ui_system_footer">
                         
                             <div class="crnrstn_ui_system_footer_content">
+                                <div id="crnrstn_ui_system_footer_stache" class="crnrstn_ui_system_footer_stache">' . $this->oCRNRSTN->return_system_image('STACHE', 17, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+
                                 <div id="crnrstn_ui_system_footer_mit" class="crnrstn_ui_system_footer_mit">MIT license</div>
                                 <div id="crnrstn_ui_system_footer_download" class="crnrstn_ui_system_footer_download"><a style="font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px;" href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') .'" target="_blank">download</a></div>
                                 
@@ -1433,7 +1435,7 @@ class crnrstn_environment {
                                     <div id="crnrstn_ui_system_footer_stat_meta" class="crnrstn_ui_system_footer_stat"></div>
                                 </div>
                                         
-                                <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('5', 20, '', '', '', '', 20, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('5', 20, NULL, NULL, NULL, NULL, 20, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
 
                                 <div class="crnrstn_cb"></div>
                                 
@@ -1495,7 +1497,7 @@ class crnrstn_environment {
                     ' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK() . '
                 </ul>                
                 <div class="crnrstn_cb_20"></div>
-                <div>' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                <div class="crnrstn_interact_ui_side_nav_5">' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
                 
                 <div class="crnrstn_cb_100"></div>
 

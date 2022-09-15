@@ -95,11 +95,16 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    public function return_system_image($creative_element_key, $height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '', $image_output_mode = NULL){
+    public function return_system_image($creative_element_key, $height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL, $image_output_mode = NULL){
 
         self::$image_output_mode = $image_output_mode;
 
         switch($creative_element_key){
+            case 'STACHE':
+
+                return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
             case 'UI_PAGELOAD_INDICATOR':
 
                 return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -590,7 +595,7 @@ class crnrstn_system_image_asset_manager {
 
     public function return_creative($creative_element_key, $image_output_mode = NULL, $creative_mode = NULL){
 
-        $height_override = $link_override = $alt_override = $title_override = $target_override = $width_override = '';
+        $height_override = $link_override = $alt_override = $title_override = $target_override = $width_override = NULL;
 
         if(!isset($image_output_mode)){
 
@@ -640,6 +645,11 @@ class crnrstn_system_image_asset_manager {
                 //error_log(__LINE__ .' image_output_mode=' . $image_output_mode.' ,creative_element_key=' . $creative_element_key);
 
                 switch($creative_element_key){
+                    case 'STACHE':
+
+                        return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'UI_PAGELOAD_INDICATOR':
 
                         return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1130,6 +1140,11 @@ class crnrstn_system_image_asset_manager {
             case 'ALL_IMAGE_LOGO_OFF':
 
                 switch($creative_element_key){
+                    case 'STACHE':
+
+                        return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'UI_PAGELOAD_INDICATOR':
 
                         return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1494,6 +1509,11 @@ class crnrstn_system_image_asset_manager {
             case 'ALL_HTML_LOGO_OFF':
 
                 switch($creative_element_key){
+                    case 'STACHE':
+
+                        return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'UI_PAGELOAD_INDICATOR':
 
                         return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1852,6 +1872,11 @@ class crnrstn_system_image_asset_manager {
             default:
                 // case 'ALL_HTML':
                 switch($creative_element_key){
+                    case 'STACHE':
+
+                        return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'UI_PAGELOAD_INDICATOR':
 
                         return $this->UI_PAGELOAD_INDICATOR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -2256,7 +2281,62 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function UI_PAGELOAD_INDICATOR($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function STACHE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
+
+        # # # # # # # #
+        // USE NO EXTENSION.
+        //_crnrstn/ui/imgs/png/stache.png
+        $tmp_filename = 'stache';
+        $tmp_width = 68;
+        $tmp_height = 22;
+        $tmp_alt_text = 'stache';
+        $tmp_title_text = 'stache';
+        $tmp_link = 'http://jony5.com';
+        $tmp_target = '_blank';
+        # # # # # # # #
+        # # # # # # # #
+
+        if(($height_override !== NULL) || ($height_override === '')){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if(($link_override !== NULL) || ($link_override === '')){
+
+            if(($target_override !== NULL) || ($target_override === '')){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if(($alt_override !== NULL) || ($alt_override === '')){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if(($title_override !== NULL) || ($title_override === '')){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if(($width_override !== NULL) || ($width_override === '')){
+
+            $tmp_width = $width_override;
+
+        }
+
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
+
+    }
+
+    private function UI_PAGELOAD_INDICATOR($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -2271,15 +2351,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2289,19 +2369,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2311,7 +2391,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_ARCHIVES($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_ARCHIVES($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_archives.png
         // USE NO EXTENSION.
@@ -2325,38 +2405,38 @@ class crnrstn_system_image_asset_manager {
         $tmp_target = '';
         # # # # # # # #
         # # # # # # # #
-        
-        if($height_override != ''){
+
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
-            
-            if($target_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
+
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
             }
-            
+
             $tmp_link = $link_override;
-            
+
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
-            
+
         }
-        
-        if($title_override != ''){
+
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2366,7 +2446,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_BANDCAMP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_BANDCAMP($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_bandcamp.png
         // USE NO EXTENSION.
@@ -2381,15 +2461,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2399,19 +2479,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2421,7 +2501,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_BASSDRIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_BASSDRIVE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_bassdrive.png
         // USE NO EXTENSION.
@@ -2436,15 +2516,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2454,19 +2534,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2476,7 +2556,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_BEATPORT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_BEATPORT($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_beatport.png
         // USE NO EXTENSION.
@@ -2491,15 +2571,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2509,19 +2589,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2531,7 +2611,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_DISCOGS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_DISCOGS($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_discogs.png
         // USE NO EXTENSION.
@@ -2546,15 +2626,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2564,19 +2644,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2586,7 +2666,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_FACEBOOK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_FACEBOOK($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_facebook.png
         // USE NO EXTENSION.
@@ -2601,15 +2681,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2619,19 +2699,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2641,7 +2721,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_HISTORY($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_HISTORY($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_history.png
         // USE NO EXTENSION.
@@ -2656,15 +2736,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2674,19 +2754,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2696,7 +2776,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_INSTAGRAM($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_INSTAGRAM($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_instagram.png
         // USE NO EXTENSION.
@@ -2711,15 +2791,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2729,19 +2809,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2751,7 +2831,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_JSON($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_JSON($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_json.png
         // USE NO EXTENSION.
@@ -2766,15 +2846,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2784,19 +2864,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2806,7 +2886,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_LINKEDIN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_LINKEDIN($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_linkedin.png
         // USE NO EXTENSION.
@@ -2821,15 +2901,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2839,19 +2919,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2861,7 +2941,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_MIXCLOUD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_MIXCLOUD($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_mixcloud.png
         // USE NO EXTENSION.
@@ -2876,15 +2956,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2894,19 +2974,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2916,7 +2996,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_PAYPAL($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_PAYPAL($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_paypal.png
         // USE NO EXTENSION.
@@ -2931,15 +3011,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -2949,19 +3029,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -2971,7 +3051,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_ROLLDABEATS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_ROLLDABEATS($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_rolldabeats.png
         // USE NO EXTENSION.
@@ -2986,15 +3066,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3004,19 +3084,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3026,7 +3106,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_SOUNDCLOUD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_SOUNDCLOUD($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_soundcloud.png
         // USE NO EXTENSION.
@@ -3041,15 +3121,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3059,19 +3139,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3081,7 +3161,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_SPOTIFY($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_SPOTIFY($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_spotify.png
         // USE NO EXTENSION.
@@ -3096,15 +3176,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3114,19 +3194,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3136,7 +3216,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_TWITTER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_TWITTER($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_twitter.png
         // USE NO EXTENSION.
@@ -3151,15 +3231,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3169,19 +3249,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3191,7 +3271,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_WWW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_WWW($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_www.png
         // USE NO EXTENSION.
@@ -3206,15 +3286,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3224,19 +3304,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3246,7 +3326,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_YOUTUBE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_YOUTUBE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_youtube.png
         // USE NO EXTENSION.
@@ -3261,15 +3341,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3279,19 +3359,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3301,7 +3381,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SOCIAL_SPRITE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SOCIAL_SPRITE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=social_sprite.png
         // USE NO EXTENSION.
@@ -3316,15 +3396,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3334,19 +3414,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3356,7 +3436,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function TRANSPARENT_1X1($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function TRANSPARENT_1X1($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=x.png
         // USE NO EXTENSION.
@@ -3371,15 +3451,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3389,19 +3469,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3411,7 +3491,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_CLOSE_X($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_CLOSE_X($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_close_x.png
         // USE NO EXTENSION.
@@ -3425,15 +3505,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3443,19 +3523,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3465,7 +3545,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_CLOSE_X_CLICK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_CLOSE_X_CLICK($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_close_x_click.png
         // USE NO EXTENSION.
@@ -3479,15 +3559,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3497,19 +3577,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3519,7 +3599,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_CLOSE_X_HOVER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_CLOSE_X_HOVER($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_close_x_hvr.png
         // USE NO EXTENSION.
@@ -3533,15 +3613,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3551,19 +3631,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3573,7 +3653,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_close_x_inactive.png
         // USE NO EXTENSION.
@@ -3587,15 +3667,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3605,19 +3685,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3627,7 +3707,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_fs_expand.png
         // USE NO EXTENSION.
@@ -3641,15 +3721,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3659,19 +3739,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3681,7 +3761,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_fs_expand_click.png
         // USE NO EXTENSION.
@@ -3695,15 +3775,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3713,19 +3793,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3735,7 +3815,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_fs_expand_hvr.png
         // USE NO EXTENSION.
@@ -3749,15 +3829,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3767,19 +3847,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3789,7 +3869,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_fs_expand_inactive.png
         // USE NO EXTENSION.
@@ -3803,15 +3883,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3821,19 +3901,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3843,7 +3923,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MENU($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MENU($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_menu.png
         // USE NO EXTENSION.
@@ -3857,15 +3937,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3875,19 +3955,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -3897,7 +3977,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MENU_CLICK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MENU_CLICK($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_menu_click.png
         // USE NO EXTENSION.
@@ -3911,15 +3991,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3929,29 +4009,29 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
         }
-
+        
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MENU_HOVER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MENU_HOVER($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_menu_hvr.png
         // USE NO EXTENSION.
@@ -3965,15 +4045,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -3983,19 +4063,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4005,7 +4085,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MENU_INACTIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MENU_INACTIVE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_menu_inactive.png
         // USE NO EXTENSION.
@@ -4019,15 +4099,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4037,29 +4117,29 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
         }
-
+        
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize.png
         // USE NO EXTENSION.
@@ -4073,15 +4153,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4091,19 +4171,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4113,7 +4193,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_CLICK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_CLICK($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_click.png
         // USE NO EXTENSION.
@@ -4127,15 +4207,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4145,19 +4225,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4167,7 +4247,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_HOVER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_HOVER($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_hvr.png
         // USE NO EXTENSION.
@@ -4181,15 +4261,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4199,19 +4279,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4221,7 +4301,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_inactive.png
         // USE NO EXTENSION.
@@ -4235,15 +4315,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4253,19 +4333,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4275,7 +4355,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_fivedev.png
         // USE NO EXTENSION.
@@ -4289,15 +4369,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4307,19 +4387,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4329,7 +4409,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=primary_nav_seriesblue00_120x120_minimize_fivedev_sm.png
         // USE NO EXTENSION.
@@ -4343,15 +4423,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4361,19 +4441,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4383,7 +4463,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.139/alpha.jony5.com/?crnrstn_to_base64=crnrstn_message_bubbles_seriesblue00.png
         // USE NO EXTENSION.
@@ -4397,15 +4477,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4415,19 +4495,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4437,7 +4517,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function MESSAGE_CONVERSATION_BUBBLE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function MESSAGE_CONVERSATION_BUBBLE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # # http://172.16.225.128/jony5/?crnrstn_to_base64=crnrstn_message_bubbles_seriesblue00.png
         // USE NO EXTENSION.
@@ -4451,15 +4531,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4469,19 +4549,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4491,7 +4571,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function FIVE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function FIVE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4506,15 +4586,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4524,19 +4604,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4546,7 +4626,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SUCCESS_CHECK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SUCCESS_CHECK($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4561,15 +4641,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4579,19 +4659,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4601,7 +4681,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function ERR_X($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function ERR_X($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4616,15 +4696,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4634,19 +4714,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4656,7 +4736,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function CRNRSTN_LOGO($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function CRNRSTN_LOGO($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4671,15 +4751,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4689,29 +4769,29 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
         }
-
+        
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function CRNRSTN_R_LG($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function CRNRSTN_R_LG($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4726,15 +4806,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4744,29 +4824,29 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
         }
-
+        
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function CRNRSTN_R_MD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function CRNRSTN_R_MD($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4781,15 +4861,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4799,29 +4879,29 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
         }
-
+        
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function CRNRSTN_R_SM($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function CRNRSTN_R_SM($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4836,15 +4916,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4854,19 +4934,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4876,7 +4956,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function R_PLUS_WALL($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function R_PLUS_WALL($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4891,15 +4971,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4909,29 +4989,29 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
         }
-
+        
         return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
-    private function BG_SHADOW_RESPONSE_CODE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function BG_SHADOW_RESPONSE_CODE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -4946,15 +5026,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -4964,19 +5044,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -4986,7 +5066,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function PHP_ELLIPSE($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function PHP_ELLIPSE($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5001,15 +5081,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5019,19 +5099,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5041,7 +5121,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function POW_BY_PHP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function POW_BY_PHP($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5056,15 +5136,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5074,19 +5154,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5096,7 +5176,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function ZEND_LOGO($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function ZEND_LOGO($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5111,15 +5191,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5129,19 +5209,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5151,7 +5231,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function ZEND_FRAMEWORK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function ZEND_FRAMEWORK($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5166,15 +5246,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5184,19 +5264,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5206,7 +5286,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function ZEND_FRAMEWORK_3($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function ZEND_FRAMEWORK_3($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5221,15 +5301,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5239,19 +5319,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5261,7 +5341,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function LINUX_PENGUIN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function LINUX_PENGUIN($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5276,15 +5356,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5294,19 +5374,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5316,7 +5396,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function MYSQL_DOLPHIN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function MYSQL_DOLPHIN($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5342,15 +5422,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5360,19 +5440,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5382,7 +5462,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function REDHAT_HAT_LOGO($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function REDHAT_HAT_LOGO($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5397,15 +5477,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5415,19 +5495,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5437,7 +5517,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function REDHAT_LOGO($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function REDHAT_LOGO($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5452,15 +5532,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5470,19 +5550,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5492,7 +5572,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function APACHE_FEATHER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function APACHE_FEATHER($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5518,15 +5598,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5536,19 +5616,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5558,34 +5638,34 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function APACHE_POWER_VERSION($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function APACHE_POWER_VERSION($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         $version = $this->oCRNRSTN->version_apache_sysimg();
 
         switch($version){
             case 2.4:
 
-                return $this->APACHE_POWER_2_4($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->APACHE_POWER_2_4($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 2.2:
 
-                return $this->APACHE_POWER_2_2($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->APACHE_POWER_2_2($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 2.0:
 
-                return $this->APACHE_POWER_2_0($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->APACHE_POWER_2_0($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 1.3:
 
-                return $this->APACHE_POWER_1_3($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->APACHE_POWER_1_3($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             default:
 
-                return $this->APACHE_POWER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->APACHE_POWER($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
 
@@ -5593,7 +5673,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function APACHE_POWER_2_4($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function APACHE_POWER_2_4($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5619,15 +5699,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5637,19 +5717,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5659,7 +5739,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function APACHE_POWER_2_2($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function APACHE_POWER_2_2($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5685,15 +5765,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5703,19 +5783,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5725,7 +5805,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function APACHE_POWER_2_0($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function APACHE_POWER_2_0($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5751,15 +5831,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5769,19 +5849,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5791,7 +5871,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function APACHE_POWER_1_3($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function APACHE_POWER_1_3($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5817,15 +5897,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5835,19 +5915,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5857,7 +5937,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function APACHE_POWER($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function APACHE_POWER($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5874,15 +5954,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5892,19 +5972,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5914,7 +5994,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function BG_ELEMENT_REFLECTION_SIGNIN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function BG_ELEMENT_REFLECTION_SIGNIN($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5929,15 +6009,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -5947,19 +6027,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -5969,7 +6049,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function DOT_GREEN($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function DOT_GREEN($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -5984,15 +6064,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6002,19 +6082,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6024,7 +6104,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function DOT_RED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function DOT_RED($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6039,15 +6119,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6057,19 +6137,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6079,7 +6159,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function DOT_OFF($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function DOT_OFF($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6094,15 +6174,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6112,19 +6192,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6134,7 +6214,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function NOTICE_TRI_ALERT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function NOTICE_TRI_ALERT($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6149,15 +6229,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6167,19 +6247,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6189,7 +6269,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function SEARCH_MAGNIFY_GLASS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function SEARCH_MAGNIFY_GLASS($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6204,15 +6284,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6222,19 +6302,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6244,7 +6324,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function ICON_EMAIL_INBOX_REFLECT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function ICON_EMAIL_INBOX_REFLECT($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6259,15 +6339,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6277,19 +6357,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6299,7 +6379,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_RAND($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_RAND($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         $tmp_array = array('J5_WOLF_PUP', 'J5_WOLF_PUP_LAY_00', 'J5_WOLF_PUP_LAY_01', 'J5_WOLF_PUP_LAY_02',
             'J5_WOLF_PUP_LAY_LOOK_AWAY', 'J5_WOLF_PUP_LAY_LOOK_FORWARD', 'J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH',
@@ -6316,114 +6396,114 @@ class crnrstn_system_image_asset_manager {
         switch($tmp_array[$tmp_int]){
             case 'J5_WOLF_PUP':
 
-                return $this->J5_WOLF_PUP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_LAY_00':
 
-                return $this->J5_WOLF_PUP_LAY_00($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_LAY_00($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_LAY_01':
 
-                return $this->J5_WOLF_PUP_LAY_01($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_LAY_01($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_LAY_02':
 
-                return $this->J5_WOLF_PUP_LAY_02($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_LAY_02($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_LAY_LOOK_AWAY':
 
-                return $this->J5_WOLF_PUP_LAY_LOOK_AWAY($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_LAY_LOOK_AWAY($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_LAY_LOOK_FORWARD':
 
-                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH':
 
-                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_LEASH_EYES_CLOSED':
 
-                return $this->J5_WOLF_PUP_LEASH_EYES_CLOSED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_LEASH_EYES_CLOSED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_LIL_5_PTS':
 
-                return $this->J5_WOLF_PUP_LIL_5_PTS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_LIL_5_PTS($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_EYES_CLOSED':
 
-                return $this->J5_WOLF_PUP_SIT_EYES_CLOSED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_EYES_CLOSED($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_FORWARD':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_FORWARD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_LOOK_FORWARD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHT_UP':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_UP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHT_UP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW':
 
-                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_STAND_LOOK_RIGHT':
 
-                return $this->J5_WOLF_PUP_STAND_LOOK_RIGHT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_STAND_LOOK_RIGHT($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_STAND_LOOK_UP':
 
-                return $this->J5_WOLF_PUP_STAND_LOOK_UP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_STAND_LOOK_UP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             case 'J5_WOLF_PUP_WALK':
 
-                return $this->J5_WOLF_PUP_WALK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP_WALK($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
             default:
 
                 //
                 //J5_WOLF_PUP
-                return $this->J5_WOLF_PUP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = '');
+                return $this->J5_WOLF_PUP($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
 
             break;
 
@@ -6431,7 +6511,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6446,15 +6526,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6464,19 +6544,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6486,7 +6566,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_LAY_00($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_LAY_00($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6501,15 +6581,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6519,19 +6599,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6541,7 +6621,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_LAY_01($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_LAY_01($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6556,15 +6636,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6574,19 +6654,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6596,7 +6676,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_LAY_02($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_LAY_02($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6611,15 +6691,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6629,19 +6709,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6651,7 +6731,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_LAY_LOOK_AWAY($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_LAY_LOOK_AWAY($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6666,15 +6746,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6684,19 +6764,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6706,7 +6786,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_LAY_LOOK_FORWARD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_LAY_LOOK_FORWARD($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6721,15 +6801,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6739,19 +6819,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6761,7 +6841,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6776,15 +6856,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6794,19 +6874,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6816,7 +6896,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_LEASH_EYES_CLOSED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_LEASH_EYES_CLOSED($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6831,15 +6911,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6849,19 +6929,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6871,7 +6951,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_LIL_5_PTS($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_LIL_5_PTS($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6886,15 +6966,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6904,19 +6984,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6926,7 +7006,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_EYES_CLOSED($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_EYES_CLOSED($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6941,15 +7021,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -6959,19 +7039,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -6981,7 +7061,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_FORWARD($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_LOOK_FORWARD($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -6996,15 +7076,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7014,19 +7094,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7036,7 +7116,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7051,15 +7131,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7069,19 +7149,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7091,7 +7171,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7106,15 +7186,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7124,19 +7204,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7146,7 +7226,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7161,15 +7241,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7179,19 +7259,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7201,7 +7281,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7216,15 +7296,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7234,19 +7314,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7256,7 +7336,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7271,15 +7351,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7289,19 +7369,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7311,7 +7391,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_UP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHT_UP($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7326,15 +7406,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7344,19 +7424,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7366,7 +7446,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7381,15 +7461,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7399,19 +7479,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7421,7 +7501,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_STAND_LOOK_RIGHT($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_STAND_LOOK_RIGHT($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7436,15 +7516,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7454,19 +7534,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7476,7 +7556,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_STAND_LOOK_UP($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_STAND_LOOK_UP($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7491,15 +7571,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7509,19 +7589,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7531,7 +7611,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function J5_WOLF_PUP_WALK($height_override = '', $link_override = '', $alt_override = '', $title_override = '', $target_override = '', $width_override = ''){
+    private function J5_WOLF_PUP_WALK($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
 
         # # # # # # # #
         // USE NO EXTENSION.
@@ -7546,15 +7626,15 @@ class crnrstn_system_image_asset_manager {
         # # # # # # # #
         # # # # # # # #
 
-        if($height_override != ''){
+        if(($height_override !== NULL) || ($height_override === '')){
 
             $tmp_height = $height_override;
 
         }
 
-        if($link_override != ''){
+        if(($link_override !== NULL) || ($link_override === '')){
 
-            if($target_override != ''){
+            if(($target_override !== NULL) || ($target_override === '')){
 
                 $tmp_target = $target_override;
 
@@ -7564,19 +7644,19 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if($alt_override != ''){
+        if(($alt_override !== NULL) || ($alt_override === '')){
 
             $tmp_alt_text = $alt_override;
 
         }
 
-        if($title_override != ''){
+        if(($title_override !== NULL) || ($title_override === '')){
 
             $tmp_title_text = $title_override;
 
         }
 
-        if($width_override != ''){
+        if(($width_override !== NULL) || ($width_override === '')){
 
             $tmp_width = $width_override;
 
@@ -7877,7 +7957,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function return_linked_ui_element($str, $link, $target, $width = '', $height = '', $alt = '', $title = '', $meta_params_ARRAY = array()){
+    private function return_linked_ui_element($str, $link, $target, $width = NULL, $height = NULL, $alt = NULL, $title = NULL, $meta_params_ARRAY = array()){
 
         $width = $this->html_img_dom_return($width, 'WIDTH');
         $height = $this->html_img_dom_return($height, 'HEIGHT');

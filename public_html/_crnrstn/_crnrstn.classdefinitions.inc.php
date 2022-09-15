@@ -88,7 +88,7 @@ require(CRNRSTN_ROOT . '/_crnrstn/class/database/crnrstn.results_paginator.inc.p
 require(CRNRSTN_ROOT . '/_crnrstn/class/session/crnrstn.redirect_controller.inc.php');			// REDIRECT CONTROLLER
 require(CRNRSTN_ROOT . '/_crnrstn/_config/config.database.sql/crnrstn.db_sql_silo.inc.php');    // A QUERY SILO
 require(CRNRSTN_ROOT . '/_crnrstn/class/messenger/crnrstn.messenger_from_north.inc.php');       // MESSENGER FROM THE FURTHEST REACHES OF THE NORTH
-require(CRNRSTN_ROOT . '/_crnrstn/class/messenger/crnrstn.image_to_html.inc.php');              // MESSENGER HELPER CLASS - RICH MEDIA CONTENT PROVIDER
+require(CRNRSTN_ROOT . '/_crnrstn/class/messenger/crnrstn.system_asset_manager.inc.php');       // SYSTEM ASSET MANAGER
 require(CRNRSTN_ROOT . '/_crnrstn/class/ftp/crnrstn.lightning_ftp_manager.inc.php');            // FIRE_FTP CONNECTION MANAGER
 require(CRNRSTN_ROOT . '/_crnrstn/class/ftp/crnrstn.wind_cloud_fire.inc.php');                  // ELECTRUM :: Ezekiel 1:4
 require(CRNRSTN_ROOT . '/_crnrstn/class/thirdparty/bassdrive/crnrstn.bassdrive.inc.php');       // BASSDRIVE.COM INTEGRATIONS

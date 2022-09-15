@@ -3312,7 +3312,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 setTimeout(function() {
 
                     self.$dom_sys_ftr
-                        .width($(document).width());
+                        .width($(window).width());
 
                 }, 0);
 

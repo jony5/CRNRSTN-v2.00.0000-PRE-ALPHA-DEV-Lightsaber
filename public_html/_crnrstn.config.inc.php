@@ -138,7 +138,7 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
  *
  * @var string
  */
-$CRNRSTN_config_serial = 'ozxbG1C%oBqcWg4CdTFA9A*#N$w6ONev %K~8xKXkg(3%$c6_O59T+fw_iDcpJzl';
+$CRNRSTN_config_serial = '';
 
 /**
  * $CRNRSTN_log_silo_profile

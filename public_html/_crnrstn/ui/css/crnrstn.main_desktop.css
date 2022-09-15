@@ -17,13 +17,15 @@
 .crnrstn_ui_system_footer                           { position: absolute; z-index:9999; border-top: 1px solid #A5B9D8; height: 100px; background-color: #FFF; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; }
 
 .crnrstn_ui_system_footer_content_wrapper           {}
-.crnrstn_ui_system_footer_content                   { float: left; width: 99%; padding: 10px 10px 0 10px; }
+.crnrstn_ui_system_footer_content                   { float: left; width: 100%; padding: 10px 0 0 0;}
 
-.crnrstn_ui_system_footer_5                         { float: right; padding: 0 27px 0 10px; }
+.crnrstn_ui_system_footer_stache                    { float: left; padding: 0 27px 0 20px; }
 .crnrstn_ui_system_footer_mit                       { float: left; padding: 1px 10px 0 10px; }
-.crnrstn_ui_system_footer_mit a                     { text-decoration: none; color: #0066CC;}
+.crnrstn_ui_system_footer_mit a                     { text-decoration: none; color: #0066CC; }
 .crnrstn_ui_system_footer_download                  { float: left; padding: 1px 10px 0 10px; }
-.crnrstn_ui_system_footer_download a                { text-decoration: none; color: #0066CC;}
+.crnrstn_ui_system_footer_download a                { text-decoration: none; color: #0066CC; }
+
+.crnrstn_ui_system_footer_5                         { float: right; padding: 0 27px 0 0; }
 .crnrstn_ui_system_footer_stats_wrapper             { float: left; padding: 1px 20px 0 20px; }
 .crnrstn_ui_system_footer_stat                      { float: left; padding: 0 10px 0 0; }
 .crnrstn_ui_mit_license_shell                       { position: absolute; z-index: 9999; width:0; height: 0; overflow: hidden; }
@@ -67,6 +69,7 @@
 .crnrstn_interact_ui_side_nav a                     { padding: 3px 8px 3px 7px; text-decoration: none; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #0066CC; display: block; }
 .crnrstn_interact_ui_side_nav a:hover               { color: #0066CC; }
 .crnrstn_interact_ui_side_nav ul                    { list-style:none; margin: 0; padding: 0;}
+.crnrstn_interact_ui_side_nav_5                     { padding:0 0 0 5px;}
 
 @media screen and (max-height: 450px) {
     .crnrstn_interact_ui_side_nav                   { }

@@ -262,7 +262,7 @@ class crnrstn {
         $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_TERMINAL, CRNRSTN_UI_RANDOM);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
         $this->system_output_channel_constants = array(CRNRSTN_UI_DESKTOP, CRNRSTN_UI_TABLET, CRNRSTN_UI_MOBILE);
-        $this->system_creative_element_keys_ARRAY = array('CRNRSTN ::', 'LINUX_PENGUIN', 'REDHAT_LOGO', 'APACHE_FEATHER', 'APACHE_POWER_VERSION', 'CRNRSTN_R', '5', 'MYSQL_DOLPHIN', 'PHP_ELLIPSE', 'POW_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
+        $this->system_creative_element_keys_ARRAY = array('STACHE', 'CRNRSTN ::', 'LINUX_PENGUIN', 'REDHAT_LOGO', 'APACHE_FEATHER', 'APACHE_POWER_VERSION', 'CRNRSTN_R', '5', 'MYSQL_DOLPHIN', 'PHP_ELLIPSE', 'POW_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
         $this->generate_weighted_elements_keys(count($this->system_creative_element_keys_ARRAY));
 
         //
@@ -971,7 +971,7 @@ class crnrstn {
         // array('CRNRSTN ::', 'LINUX_PENGUIN', 'REDHAT_LOGO', 'APACHE_POWER_VERSION', 'APACHE_FEATHER'
         // 'CRNRSTN_R', '5','MYSQL_DOLPHIN', 'PHP_ELLIPSE',
         // 'POW_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
-        $output_ratio_ARRAY = array(6, 10, 6, 8, 5, 3, 1, 7, 7, 7, 5, 5, 5, 3);
+        $output_ratio_ARRAY = array(8, 6, 10, 6, 8, 5, 3, 1, 7, 7, 7, 5, 5, 5, 3);
 
         for ($i = 0; $i < $cnt; $i++) {
 
@@ -1255,7 +1255,7 @@ class crnrstn {
 
     private function encode_wheel_integrations(){
 
-        $tmp_salt_tail = $this->return_encoder_wheel_output(self::$wheel_encoder_salt, $this->generate_new_key(128), 10);
+        $tmp_salt_tail = $this->return_encoder_wheel_output(self::$wheel_encoder_salt, $this->hash($this->get_server_config_serial()), 10);
         self::$crnrstn_session_salt = 'crnrstn_' . $tmp_salt_tail;
 
     }
@@ -6018,7 +6018,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_weighted_elements_keys_ARRAY = array();
 
-        $output_ratio_ARRAY = array(6, 10, 6, 8, 5, 3, 1, 7, 7, 7, 5, 5, 5, 3);
+        $output_ratio_ARRAY = array(8, 6, 10, 6, 8, 5, 3, 1, 7, 7, 7, 5, 5, 5, 3);
 
         $tmp_ratio_cnt = sizeof($output_ratio_ARRAY);
 
@@ -6461,7 +6461,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_system_image($creative_element_key, $height = '', $hyperlink = '', $alt = '', $title = '', $target = '', $width = '', $image_output_mode = NULL){
+    public function return_system_image($creative_element_key, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $width = NULL, $image_output_mode = NULL){
 
         return $this->oCRNRSTN_MEDIA_CONVERTOR->return_system_image($creative_element_key, $height, $hyperlink, $alt, $title, $target, $width, $image_output_mode);
 
