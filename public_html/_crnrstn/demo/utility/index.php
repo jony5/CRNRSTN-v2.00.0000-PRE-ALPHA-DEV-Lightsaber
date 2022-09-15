@@ -226,10 +226,10 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 }';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$tmp_str = '$_SESSION[\'CRNRSTN_\' . $this->oCRNRSTN->config_serial_crc][\'CRNRSTN_EXCEPTION_PREFIX\'] = __CLASS__ . \'::\' . __METHOD__ . \'() attempted to fopen \' . $tmp_filepath . \' after the write permissions to related to same were first chmod to \' . str_pad($mkdir_mode, \'4\', \'0\', STR_PAD_LEFT) . \'. An attempt to open was again made, but \';
+$tmp_str = '$_SESSION[\'CRNRSTN_\' . $this->oCRNRSTN->get_server_config_serial(\'hash\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = __CLASS__ . \'::\' . __METHOD__ . \'() attempted to fopen \' . $tmp_filepath . \' after the write permissions to related to same were first chmod to \' . str_pad($mkdir_mode, \'4\', \'0\', STR_PAD_LEFT) . \'. An attempt to open was again made, but \';
 if($resource_file = fopen($tmp_filepath, \'w\')){
 
-    $_SESSION[\'CRNRSTN_\'. $this->oCRNRSTN->config_serial_crc][\'CRNRSTN_EXCEPTION_PREFIX\'] = \'\';
+    $_SESSION[\'CRNRSTN_\'. $this->oCRNRSTN->get_server_config_serial(\'hash\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = \'\';
 
     fwrite($resource_file, $tmp_data_str_out);
     fclose($resource_file);

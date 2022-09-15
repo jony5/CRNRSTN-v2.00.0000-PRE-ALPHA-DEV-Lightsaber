@@ -2,9 +2,7 @@
 /*
 // J5
 // Code is Poetry */
-
-//echo '<h1>Hello documentation!</h1>';
-error_log(__CLASS__ . ' DOCUMENTATION ERROR_LOG PHP. [' . __METHOD__ . '][' . __FILE__ . ']');
+error_log(__CLASS__ . '::[' . __LINE__ . '] DOCUMENTATION ERROR_LOG PHP. [' . __METHOD__ . '][' . __FILE__ . '].');
 
 /*
 <div id="crnrstn_ui_element_load_indicator_shell_rel">
