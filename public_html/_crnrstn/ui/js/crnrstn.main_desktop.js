@@ -3407,6 +3407,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             self.interact_ui_refresh_state_docs_bg = 'ENABLED';
             self.link_text_click(this.text);
 
+            $('#crnrstn_ui_element_load_indicator').stop();
+
             return false;
 
         });
@@ -6337,7 +6339,7 @@ close_docs_fullscreen
         });
 
         $('#crnrstn_ui_system_footer_wrapper').animate({
-            bottom: 50
+            bottom: 57
         }, {
             duration: 1000,
             queue: false,
