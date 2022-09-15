@@ -1396,23 +1396,25 @@ class crnrstn_environment {
 ';
 
         $tmp_str_array[] = '        <div id="crnrstn_ui_system_footer_src" class="crnrstn_hidden">
-            <div class="crnrstn_ui_system_footer_wrapper">
+            <div id="crnrstn_ui_system_footer_wrapper" class="crnrstn_ui_system_footer_wrapper">
 
                 <div class="crnrstn_ui_system_footer_rel">
             
-
                     <div id="crnrstn_ui_system_footer" class="crnrstn_ui_system_footer">
                         
                             <div class="crnrstn_ui_system_footer_content">
-                                <div class="crnrstn_cb_10"></div>
-                                <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('5', 20, '', '', '', '', 20, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-                                <div class="crnrstn_ui_system_footer_mit">MIT license</div>
-                                <div class="crnrstn_ui_system_footer_download"><a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') .'" target="_blank">download</a></div>
+                                <div id="crnrstn_ui_system_footer_mit" class="crnrstn_ui_system_footer_mit">MIT license</div>
+                                <div id="crnrstn_ui_system_footer_download" class="crnrstn_ui_system_footer_download"><a style="font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px;" href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') .'" target="_blank">download</a></div>
                                 
                                 <div class="crnrstn_ui_system_footer_stats_wrapper">
-                                    <div class="crnrstn_ui_system_footer_stat">[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs]</div>
+                                    <div id="crnrstn_ui_system_footer_stat_stime" class="crnrstn_ui_system_footer_stat">[' . $this->oCRNRSTN->return_micro_time() . ']</div>
+                                    <div id="crnrstn_ui_system_footer_stat_rtime" class="crnrstn_ui_system_footer_stat">[rtime ' . $this->wall_time() . ' secs]</div>
+                                    <div id="crnrstn_ui_system_footer_stat_wtime" class="crnrstn_ui_system_footer_stat">[wtime ' . $this->wall_time() . ' secs]</div>
+                                    <div id="crnrstn_ui_system_footer_stat_meta" class="crnrstn_ui_system_footer_stat"></div>
                                 </div>
-                                
+                                        
+                                <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('5', 20, '', '', '', '', 20, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+
                                 <div class="crnrstn_cb"></div>
                                 
                             </div>
@@ -1422,7 +1424,9 @@ class crnrstn_environment {
                    </div>
                    
                 </div>
-            </div>
+                
+            </div class="crnrstn_ui_system_footer_wrapper">
+            
         </div>
         <div id="crnrstn_ui_mit_license_shell" class="crnrstn_ui_mit_license_shell"></div>
         <div id="crnrstn_ui_system_footer_shell" class="crnrstn_ui_system_footer_shell"></div>

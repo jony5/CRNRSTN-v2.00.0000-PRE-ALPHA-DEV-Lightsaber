@@ -121,6 +121,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.dom_element_mouse_state_ARRAY = [];
         this.side_navigation_min_width = 17;
         this.side_navigation_toggle_expand_width = 250;
+        this.docs_page_css_top = -420;
+        this.interact_ui_refresh_state_system_footer = 'SLEEPING';
+        this.interact_ui_refresh_state_docs_bg = 'SLEEPING';
+        this.docs_page_css_left = 0;
         this.current_serialization_key = '';
         this.current_serialization_checksum = '';
         this.crnrstn_ui_interact_mode = 'mini_canvas';
@@ -626,7 +630,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             });
 
             $('body').animate({
-                marginLeft: this.side_navigation_min_width
+                marginLeft: this.side_navigation_min_width,
+                paddingLeft: 10
             }, {
                 duration: 500,
                 queue: false,
@@ -671,7 +676,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             this.size_element('crnrstn_ui_system_footer');
 
             // $('#crnrstn_ui_system_footer').animate({
-            //     height: 25
+            //     fontsize: 25
             // }, {
             //     duration: 500,
             //     queue: false,
@@ -692,7 +697,38 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             });
 
+            //
+            // CSS STYLES
+            this.initialize_system_footer_css('crnrstn_ui_system_footer_mit');
+            this.initialize_system_footer_css('crnrstn_ui_system_footer_download');
+            this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_stime');
+            this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_rtime');
+            this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_wtime');
+            this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_meta');
+
+            //this.$crnrstn_ui_system_footer      = $('#crnrstn_ui_system_footer');
+            //this.$ui_system_footer_stat = this.$crnrstn_ui_system_footer.find('.crnrstn_ui_system_footer_stat');
+            // this.$ui_system_footer_stat.on('load', function() {
+            //
+            //     self.$ui_system_footer_stat.css('fontFamily', 'Courier New, Courier, monospace');
+            //     self.$ui_system_footer_stat.css('fontSize', '12px');
+            //     self.$ui_system_footer_stat.css('lineHeight', '20px');
+            //     self.$ui_system_footer_stat.css('color', '#333');
+            //
+            //     return false;
+            //
+            // });
+
         }
+
+    };
+
+    CRNRSTN_JS.prototype.initialize_system_footer_css = function(elem_id) {
+
+        $('#' + elem_id).css('fontFamily', 'Courier New, Courier, monospace');
+        $('#' + elem_id).css('fontSize', '12px');
+        $('#' + elem_id).css('lineHeight', '20px');
+        $('#' + elem_id).css('color', '#333');
 
     };
 
@@ -1013,6 +1049,41 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         // PROCESS UI STATE UPDATES
         this.execute_ui_sync_controller();
 
+        //
+        // UI DOM COMPONENT STAGE REFRESH
+        this.refresh_stage_anchored_dom_component_css();
+
+        if($('#crnrstn_ui_system_footer_stat_wtime').length){
+
+            var curr_date_obj = new Date();
+
+            $('#crnrstn_ui_system_footer_stat_wtime').html('[wtime' + this.return_log_date_string(curr_date_obj, 'sys_rtime') + ']');
+
+        }
+
+    };
+
+    CRNRSTN_JS.prototype.refresh_stage_anchored_dom_component_css = function() {
+
+        if(this.interact_ui_refresh_state_docs_bg === 'ENABLED'){
+
+            this.size_element('crnrstn_documentation_dyn_shell_bg');
+            this.size_element('crnrstn_documentation_dyn_shell');
+
+        }
+
+        if(this.interact_ui_refresh_state_system_footer === 'ENABLED'){
+
+            this.size_element('crnrstn_ui_system_footer');
+
+        }
+
+        // if(this.interact_ui_refresh_state_docs_bg === 'ENABLED'){
+        //
+        //     this.size_element('crnrstn_documentation_dyn_shell');
+        //
+        // }
+
     };
 
     CRNRSTN_JS.prototype.execute_ui_sync_controller = function() {
@@ -1136,7 +1207,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     url: ssdtl_endpoint,
                     data: dataString,
                     dataType: "html",
-                    success: this.parse_data_tunnel_response
+                    success: this.parse_data_tunnel_response_html
 
                 });
 
@@ -1156,6 +1227,22 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         }
 
         //this.log_activity('[lnum 1158] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) aborting AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+
+    };
+
+    CRNRSTN_JS.prototype.parse_data_tunnel_response_html = function(response_data) {
+
+        //var packet_dl_bytes = response_data.documentElement.innerHTML.length;
+        var packet_dl_bytes = response_data.length;
+        oCRNRSTN_JS.log_activity('[lnum 1166] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+        $('#crnrstn_ui_element_load_indicator').stop();
+
+        var page_load_progress = $('#crnrstn_ui_element_load_indicator').css('top');
+        $('#crnrstn_interact_ui_loadbar_progress').val(page_load_progress);
+        //$('#crnrstn_interact_ui_pageload_stoptime').val(page_load_progress);
+
+        oCRNRSTN_JS.receive_data_tunnel_response(response_data);
 
     };
 
@@ -3092,16 +3179,21 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 }
 
-                var $window = $(window);
-                var top  = $window.scrollTop() - 8;   // + this.options.positionFromTop
-                var left = $window.scrollLeft();
+                if((this.docs_page_css_top < -420) || (this.docs_page_css_top === -420)){
 
-                this.size_element('crnrstn_documentation_dyn_shell_bg');
-                this.size_element('crnrstn_documentation_dyn_shell');
+                    var $window = $(window);
+                    this.docs_page_css_top = -8; // $window.scrollTop() - 8;
+                    this.docs_page_css_left = $window.scrollLeft();
+
+                    this.size_element('crnrstn_documentation_dyn_shell_bg');
+                    this.size_element('crnrstn_documentation_dyn_shell');
+                    this.size_element('crnrstn_ui_system_footer');
+
+                }
 
                 $('#crnrstn_documentation_dyn_shell_bg').animate({
-                    top: top + 'px',
-                    left: left + 'px',
+                    top: this.docs_page_css_top + 'px',
+                    left: this.docs_page_css_left + 'px',
                     opacity: 0.8
                 }, {
                     duration: 1000,
@@ -3116,8 +3208,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 });
 
                 $('#crnrstn_documentation_dyn_shell').animate({
-                    top: top + 'px',
-                    left: left + 'px'
+                    top: this.docs_page_css_top + 'px',
+                    left: this.docs_page_css_left + 'px'
                 }, {
                     duration: 1000,
                     queue: false,
@@ -3127,7 +3219,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     complete: function () {
 
                         $("#crnrstn_documentation_dyn_shell").html(response_data);
-
 
                     }
 
@@ -3313,7 +3404,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             //alert('currentTarget=' + this.attributes.item(1).value);
             //alert('text=' + this.text);
             //alert('innerHTML=' + this.innerHTML);
-
+            self.interact_ui_refresh_state_docs_bg = 'ENABLED';
             self.link_text_click(this.text);
 
             return false;
@@ -6030,6 +6121,8 @@ close_docs_fullscreen
         // crnrstn_interact_ui_full_doc_header_wrapper
         // crnrstn_documentation_dyn_shell
 
+        this.interact_ui_refresh_state_docs_bg = 'SLEEPING';
+
         //$('#crnrstn_interact_ui_full_doc_header_wrapper').html('');
         $('#crnrstn_interact_ui_full_doc_close').html('');
 
@@ -6065,12 +6158,29 @@ close_docs_fullscreen
 
     CRNRSTN_JS.prototype.toggle_documentation_side_navigation = function(){
 
+        var self = this;
         var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
 
         if(css_int > this.side_navigation_min_width + 35){
 
             //
             // CLOSE SIDE NAVIGATION
+            $('#crnrstn_ui_system_footer_wrapper').animate({
+                bottom: 0
+            }, {
+                duration: 1000,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
+
+                    self.interact_ui_refresh_state_system_footer = 'SLEEPING';
+
+                }
+
+            });
+
             $('#crnrstn_interact_ui_side_nav').animate({
                 width: parseInt(this.side_navigation_min_width)
             }, {
@@ -6129,7 +6239,8 @@ close_docs_fullscreen
             });
 
             $('body').animate({
-                marginLeft: parseInt(this.side_navigation_min_width)
+                marginLeft: parseInt(this.side_navigation_min_width),
+                paddingLeft: 10
             }, {
                 duration: 500,
                 queue: false,
@@ -6148,6 +6259,8 @@ close_docs_fullscreen
 
         //
         // EXPAND NAVIGATION
+        self.interact_ui_refresh_state_system_footer = 'ENABLED';
+
         $('#crnrstn_interact_ui_side_nav').animate({
             width: parseInt(this.side_navigation_toggle_expand_width)
         }, {
@@ -6164,7 +6277,6 @@ close_docs_fullscreen
             }
 
         });
-
 
         $('#crnrstn_interact_ui_side_nav_logo').animate({
             left: parseInt(this.side_navigation_toggle_expand_width)
@@ -6210,9 +6322,24 @@ close_docs_fullscreen
         });
 
         $('body').animate({
-            marginLeft: parseInt(this.side_navigation_toggle_expand_width)
+            marginLeft: parseInt(this.side_navigation_toggle_expand_width),
+            paddingLeft: 10
         }, {
             duration: 100,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_ui_system_footer_wrapper').animate({
+            bottom: 50
+        }, {
+            duration: 1000,
             queue: false,
             specialEasing: {
                 opacity: "swing"

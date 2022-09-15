@@ -9,6 +9,25 @@
 .crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: black; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80); opacity: 0.8; display: none;}
 .crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; width: 100%; z-index: 10000; text-align: center; line-height: 0; font-weight: normal; outline: none;}
 
+/*CRNRSTN::INTEGRATION UI INTERACT MODULE :: SYSTEM FOOTER*/
+.crnrstn_ui_system_footer_shell                     { /*position:-webkit-sticky; position: sticky; bottom:5px;*/}
+
+.crnrstn_ui_system_footer_wrapper                   { position: fixed; z-index: 100; bottom:0; left: 0; }
+.crnrstn_ui_system_footer_rel                       { position: relative;}
+.crnrstn_ui_system_footer                           { position: absolute; z-index:9999; border-top: 1px solid #A5B9D8; height: 100px; background-color: #FFF; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; }
+
+.crnrstn_ui_system_footer_content_wrapper           {}
+.crnrstn_ui_system_footer_content                   { float: left; width: 99%; padding: 10px 10px 0 10px; }
+
+.crnrstn_ui_system_footer_5                         { float: right; padding: 0 27px 0 10px; }
+.crnrstn_ui_system_footer_mit                       { float: left; padding: 1px 10px 0 10px; }
+.crnrstn_ui_system_footer_mit a                     { text-decoration: none; color: #0066CC;}
+.crnrstn_ui_system_footer_download                  { float: left; padding: 1px 10px 0 10px; }
+.crnrstn_ui_system_footer_download a                { text-decoration: none; color: #0066CC;}
+.crnrstn_ui_system_footer_stats_wrapper             { float: left; padding: 1px 20px 0 20px; }
+.crnrstn_ui_system_footer_stat                      { float: left; padding: 0 10px 0 0; }
+.crnrstn_ui_mit_license_shell                       { position: absolute; z-index: 9999; width:0; height: 0; overflow: hidden; }
+
 /*CRNRSTN::INTEGRATION UI INTERACT MODULE :: DOCUMENTATION*/
 /*TODO :: Z-INDEX NEEDS TO COME FROM CRNRSTN :: SSDTLA*/
 .crnrstn_interact_ui_full_document_wrapper          { position: fixed; z-index: 100; top: 0; left: 0; }
@@ -18,9 +37,9 @@
 .crnrstn_interact_ui_full_doc_header_wrapper_rel    { position: relative; width:100%;}
 .crnrstn_interact_ui_full_doc_header_wrapper        { position: absolute; z-index: 150; top:-10px; width:99%; height:65px; /*background-color: #FFF; box-shadow: 3px 2px 2px black;*/ }
 
-.crnrstn_interact_ui_full_doc_close_wrapper_rel     { float: right; padding: 0 50px 0 0;}
+.crnrstn_interact_ui_full_doc_close_wrapper_rel     { padding: 0 50px 0 0;}
 .crnrstn_interact_ui_full_doc_close_wrapper         { position: relative; cursor: pointer;}
-.crnrstn_interact_ui_full_doc_close                 { position: absolute;left:0; top:0; padding:10px 80px 0 0; font-family: Arial, Helvetica, sans-serif; font-size: 50px; line-height: 60px; font-weight: normal; color: #f6f6f6;}
+.crnrstn_interact_ui_full_doc_close                 { position: fixed; z-index: 100; left:95%; top:0; padding:10px 80px 0 0; font-family: Arial, Helvetica, sans-serif; font-size: 50px; line-height: 60px; font-weight: normal; color: #f6f6f6;}
 
 .crnrstn_documentation_dyn_shell_rel                { position:relative;}
 .crnrstn_documentation_dyn_shell_bg                 { background-color: #003eff; left:0; top:-8px; width: 0; height: 0; overflow: hidden;}
@@ -53,25 +72,6 @@
     .crnrstn_interact_ui_side_nav                   { }
     .crnrstn_interact_ui_side_nav a                 { font-size: 18px;}
 }
-
-/*CRNRSTN::INTEGRATION UI INTERACT MODULE :: SYSTEM FOOTER*/
-.crnrstn_ui_system_footer_shell                     { /*position:-webkit-sticky; position: sticky; bottom:5px;*/}
-
-.crnrstn_ui_system_footer_wrapper                   { position: absolute; z-index:9999;}
-.crnrstn_ui_system_footer_rel                       { position: relative;}
-.crnrstn_ui_system_footer                           { position: absolute; border-top: 1px solid #A5B9D8; height: 45px; background-color: #FFF; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333;}
-
-.crnrstn_ui_system_footer_content_wrapper           {}
-.crnrstn_ui_system_footer_content                   { float: left; padding: 0 10px 0 10px; }
-
-.crnrstn_ui_system_footer_5                         { float: left; padding: 0 10px 0 10px; }
-.crnrstn_ui_system_footer_mit                       { float: left; padding: 3px 10px 0 10px; }
-.crnrstn_ui_system_footer_mit a                     { text-decoration: none; color: #0066CC;}
-.crnrstn_ui_system_footer_download                  { float: left; padding: 3px 10px 0 10px; }
-.crnrstn_ui_system_footer_download a                { text-decoration: none; color: #0066CC;}
-.crnrstn_ui_system_footer_stats_wrapper             { float: left; padding: 3px 20px 0 20px; }
-.crnrstn_ui_system_footer_stat                      { float: left; }
-.crnrstn_ui_mit_license_shell                       { position: absolute; z-index: 9999; width:0; height: 0; overflow: hidden; }
 
 /*CRNRSTN::INTEGRATION UI INTERACT MODULE :: MESSENGER*/
 .crnrstn_ui_interact_wrapper                        { position:-webkit-sticky; position: sticky; bottom:5px; left:-3000px; width:0; height: 0; overflow: hidden;}
