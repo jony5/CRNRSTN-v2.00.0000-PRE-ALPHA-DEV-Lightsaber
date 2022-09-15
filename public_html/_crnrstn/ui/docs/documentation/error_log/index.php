@@ -35,8 +35,7 @@ error_log(__CLASS__ . ' DOCUMENTATION ERROR_LOG PHP. [' . __METHOD__ . '][' . __
 .crnrstn_ui_element_load_indicator_rel	        { position:relative;}
 .crnrstn_ui_element_load_indicator              { position:absolute; width:100px; height:3000px;}
 
- * */
-
+*/
 
 $tmp_str = '<!DOCTYPE html>
 <html lang="en">

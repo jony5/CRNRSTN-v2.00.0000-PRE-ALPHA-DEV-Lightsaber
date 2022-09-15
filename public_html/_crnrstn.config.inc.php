@@ -138,7 +138,7 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
  *
  * @var string
  */
-$CRNRSTN_config_serial = '';
+$CRNRSTN_config_serial = 'ozxbG1C%oBqcWg4CdTFA9A*#N$w6ONev %K~8xKXkg(3%$c6_O59T+fw_iDcpJzl';
 
 /**
  * $CRNRSTN_log_silo_profile
@@ -548,7 +548,7 @@ $oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
 // ENVIRONMENTAL DETECTION
 $oCRNRSTN->config_detect_environment('BLUEHOST', 'SERVER_NAME', 'jony5.com');
 $oCRNRSTN->config_detect_environment('BLUEHOST_WWW', 'SERVER_NAME', 'www.jony5.com');
-$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.129', 1);
+$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139', 1);
 
 //
 // ENVIRONMENTAL DETECTION DEMONSTRATION OF REQUIRING MORE THAN ONE (1) $_SERVER[] MATCH TO

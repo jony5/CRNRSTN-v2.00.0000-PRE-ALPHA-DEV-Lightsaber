@@ -58,15 +58,15 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
         //
         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
-        $tmp_crnrstn_openssl_cipher = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_cipher');
-        $tmp_crnrstn_openssl_algorithm = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_algorithm');
-        $tmp_crnrstn_openssl_secret_key = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_secret_key');
-        $tmp_crnrstn_openssl_options = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_options');
-        $tmp_crnrstn_openssl_raw_data = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_raw_data');
-        $tmp_crnrstn_openssl_refresh_secret_key = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_refresh_secret_key');
-        $tmp_crnrstn_openssl_enable_unit_test_automation = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_enable_unit_test_automation');
-        $tmp_crnrstn_openssl_unit_test_automation_freq_secs = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_unit_test_automation_freq_secs');
-        $tmp_crnrstn_openssl_profile_randomization = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_profile_randomization');
+        $tmp_crnrstn_openssl_cipher = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_cipher');
+        $tmp_crnrstn_openssl_algorithm = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_algorithm');
+        $tmp_crnrstn_openssl_secret_key = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_secret_key');
+        $tmp_crnrstn_openssl_options = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_options');
+        $tmp_crnrstn_openssl_raw_data = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_raw_data');
+        $tmp_crnrstn_openssl_refresh_secret_key = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_refresh_secret_key');
+        $tmp_crnrstn_openssl_enable_unit_test_automation = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_enable_unit_test_automation');
+        $tmp_crnrstn_openssl_unit_test_automation_freq_secs = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_unit_test_automation_freq_secs');
+        $tmp_crnrstn_openssl_profile_randomization = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_profile_randomization');
 
         if($tmp_crnrstn_openssl_refresh_secret_key == "regenerate_key"){
 
@@ -187,7 +187,7 @@ foreach ($tmp_array as $key1 => $data1) {
     if($tmp_received_POST_data){
 
         $tmp_checked_dom_flag = '';
-        $tmp_chx_val = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_cipher_' . $data1 . '_chkbx');
+        $tmp_chx_val = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_cipher_' . $data1 . '_chkbx');
 
         if(strlen($tmp_chx_val) > 0){
 
@@ -229,7 +229,7 @@ foreach ($tmp_array as $key1 => $data1) {
     if($tmp_received_POST_data){
 
         $tmp_checked_dom_flag = '';
-        $tmp_chx_val = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_openssl_algorithm_' . $data1 . '_chkbx');
+        $tmp_chx_val = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_algorithm_' . $data1 . '_chkbx');
 
         if(strlen($tmp_chx_val) > 0){
 

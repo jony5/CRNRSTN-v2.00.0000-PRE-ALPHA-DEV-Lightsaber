@@ -334,7 +334,7 @@ class crnrstn_session_manager {
 
             if ($this->oCRNRSTN_USR->isvalid_data_validation_check()) {
 
-                $tmp_crnrstn_session = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_session');
+                $tmp_crnrstn_session = $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_session');
 
                 // This function (json_decode) only works with UTF-8 encoded strings.
                 $tmp_crnrstn_session_ojson = json_decode($tmp_crnrstn_session, TRUE, 6);
@@ -345,7 +345,7 @@ class crnrstn_session_manager {
                 //die();
 
                 $tmp_client_id_HOST = $tmp_crnrstn_session_ojson['oCRNRSTN_SESSION'][0]['CLIENT_ID'];
-                $tmp_client_id_EDGE = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
+                $tmp_client_id_EDGE = $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_client_id');
 
                 if(strlen($tmp_client_id_HOST) < 128){
 
@@ -366,11 +366,11 @@ class crnrstn_session_manager {
                 }
 
                 $this->consume_session_meta('crnrstn_client_id', $tmp_client_id);
-                $this->consume_session_meta('crnrstn_client_auth_key', $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_auth_key'));
-                $this->consume_session_meta('crnrstn_soap_srvc_rtime', $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_rtime'));
-                $this->consume_session_meta('crnrstn_soap_srvc_stime', $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_stime'));
+                $this->consume_session_meta('crnrstn_client_auth_key', $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_client_auth_key'));
+                $this->consume_session_meta('crnrstn_soap_srvc_rtime', $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_soap_srvc_rtime'));
+                $this->consume_session_meta('crnrstn_soap_srvc_stime', $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_soap_srvc_stime'));
 
-                $tmp_crnrstn_soap_srvc_client_ip = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_client_ip');
+                $tmp_crnrstn_soap_srvc_client_ip = $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_soap_srvc_client_ip');
                 $tmp_pssdtl_CLIENT_IP = $tmp_crnrstn_session_ojson['oCRNRSTN_SESSION'][0]['CLIENT_IP'];
 
                 if(strlen($tmp_pssdtl_CLIENT_IP) > 0){
@@ -391,11 +391,11 @@ class crnrstn_session_manager {
 
                 }
 
-                $this->consume_session_meta('crnrstn_soap_srvc_user_agent', $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_user_agent'));
-                $this->consume_session_meta('crnrstn_soap_srvc_ttl', $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_ttl'));
-                $this->consume_session_meta('crnrstn_soap_srvc_form_serial', $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_form_serial'));
-                $this->consume_session_meta('crnrstn_request_serialization_key', $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_request_serialization_key'));;
-                $this->consume_session_meta('crnrstn_request_serialization_checksum', $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_request_serialization_checksum'));
+                $this->consume_session_meta('crnrstn_soap_srvc_user_agent', $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_soap_srvc_user_agent'));
+                $this->consume_session_meta('crnrstn_soap_srvc_ttl', $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_soap_srvc_ttl'));
+                $this->consume_session_meta('crnrstn_soap_srvc_form_serial', $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_soap_srvc_form_serial'));
+                $this->consume_session_meta('crnrstn_request_serialization_key', $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_request_serialization_key'));;
+                $this->consume_session_meta('crnrstn_request_serialization_checksum', $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_request_serialization_checksum'));
 
                 // = = = = = = = =
                 // = = = = = = = =
@@ -404,7 +404,7 @@ class crnrstn_session_manager {
                 // $tmp_client_id_HOST                  $tmp_client_id_EDGE
 
                 $tmp_crnrstn_php_sessionid_HOST = $tmp_crnrstn_session_ojson['oCRNRSTN_SESSION'][0]['SESSION_ID'];
-                $tmp_crnrstn_php_sessionid_EDGE = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_php_sessionid');
+                $tmp_crnrstn_php_sessionid_EDGE = $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_php_sessionid');
 
                 if(strlen($tmp_crnrstn_php_sessionid_HOST) == 26){
 
@@ -422,7 +422,7 @@ class crnrstn_session_manager {
 
                 }
 
-                $tmp_crnrstn_server_ip_EDGE = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_server_ip');
+                $tmp_crnrstn_server_ip_EDGE = $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_soap_srvc_server_ip');
                 $tmp_crnrstn_server_ip_HOST = $tmp_crnrstn_session_ojson['oCRNRSTN_SESSION'][0]['SERVER_IP'];
 
                 if(strlen($tmp_crnrstn_server_ip_EDGE) < 8){
@@ -449,7 +449,7 @@ class crnrstn_session_manager {
                 $tmp_pssdtl_SESSION_ID_DATECREATED = $tmp_crnrstn_session_ojson['oCRNRSTN_SESSION'][0]['SESSION_ID_DATECREATED'];
                 $this->consume_session_meta('crnrstn_soap_srvc_timestamp_HOST', $tmp_pssdtl_SESSION_ID_DATECREATED);
 
-                $tmp_crnrstn_soap_srvc_timestamp = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_timestamp');
+                $tmp_crnrstn_soap_srvc_timestamp = $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_soap_srvc_timestamp');
                 $this->consume_session_meta('crnrstn_soap_srvc_timestamp_EDGE', $tmp_crnrstn_soap_srvc_timestamp);
 
                 $tmp_len = count($tmp_crnrstn_session_ojson['oCRNRSTN_SESSION'][0]['STATUS_REPORT']);
@@ -540,7 +540,7 @@ class crnrstn_session_manager {
                 $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
                 $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
 
-                $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->oCRNRSTN_USR->return_serialized_soap_data_tunnel_session('jony5.com'), 'crnrstn_session');
+                $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->oCRNRSTN_USR->return_crnrstn_data_packet('jony5.com'), 'crnrstn_session');
                 $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
                 $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
                 $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');

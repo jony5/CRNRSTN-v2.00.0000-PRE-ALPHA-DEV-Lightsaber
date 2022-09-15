@@ -9,11 +9,10 @@ $tmp_str = '<div style="text-align: left; padding: 40px;"><span style="text-alig
 switch($this->oCRNRSTN->page_request_id){
     case 'error_log':
 
-        include($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/docs/documentation/error_log/index.php');
+        include($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/docs/documentation/' . $this->oCRNRSTN->page_request_id . '/index.php');
 
     break;
 
 }
-
 
 

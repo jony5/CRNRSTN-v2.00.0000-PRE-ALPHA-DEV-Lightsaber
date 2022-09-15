@@ -180,6 +180,7 @@ class crnrstn {
     5 :: R :: RUNTIME ONLY
 
     DSJPCR
+
     */
     protected $ficp_module_build_flag_ARRAY = array();
 
@@ -213,6 +214,10 @@ class crnrstn {
         //
         // INITIALIZE CRNRSTN :: CONFIGURATION MANAGER
         self::$oCRNRSTN_CONFIG_MGR = new crnrstn_config_manager($this);
+
+        //
+        // INSTANTIATE TRANSACTION RESPONSE MANAGER
+        $this->oCRNRSTN_TRM = new crnrstn_ui_tunnel_response_manager($this);
 
         //
         // TODO :: MAKE THIS WINDOWS COMPATIBLE
@@ -533,9 +538,9 @@ class crnrstn {
 
     }
 
-    public function form_integrations_data_return($crnrstn_form_handle){
+    public function crnrstn_data_packet_return($crnrstn_form_handle){
 
-        return self::$oCRNRSTN_CONFIG_MGR->form_integrations_data_return($crnrstn_form_handle);
+        return self::$oCRNRSTN_CONFIG_MGR->crnrstn_data_packet_return($crnrstn_form_handle);
 
     }
 
@@ -774,9 +779,9 @@ class crnrstn {
 
     }
 
-    public function return_http_form_integration_input_val($getpost_input_name, $transport_protocol = NULL){
+    public function form_return_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
-        return $this->oCRNRSTN_ENV->return_http_form_integration_input_val($getpost_input_name, $transport_protocol);
+        return $this->oCRNRSTN_ENV->form_return_submitted_value($getpost_input_name, $transport_protocol);
 
     }
 
@@ -1250,7 +1255,7 @@ class crnrstn {
 
     private function encode_wheel_integrations(){
 
-        $tmp_salt_tail = $this->return_encoder_wheel_output(self::$wheel_encoder_salt, $this->generate_new_key(128));
+        $tmp_salt_tail = $this->return_encoder_wheel_output(self::$wheel_encoder_salt, $this->generate_new_key(128), 10);
         self::$crnrstn_session_salt = 'crnrstn_' . $tmp_salt_tail;
 
     }
@@ -2981,14 +2986,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //            }
 
-
-        if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
-
-            $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
-            $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
-
-        }
-
         foreach ($this->system_ui_module_constants_spool_ARRAY as $index => $int_const) {
 
             if (in_array($int_const, $this->system_ui_module_constants_ARRAY)) {
@@ -3020,8 +3017,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //            }
 
-        $tmp_flipped_bit_constants_ARRAY = $this->return_set_bits($this->system_ui_module_constants_ARRAY);
-
+//        $tmp_flipped_bit_constants_ARRAY = $this->return_set_bits($this->system_ui_module_constants_ARRAY);
+//
 //            foreach($tmp_flipped_bit_constants_ARRAY as $index => $resource_constant){
 //
 //                if(!isset($this->ficp_module_build_flag_ARRAY[$resource_constant])){
@@ -3033,7 +3030,35 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //            }
 
+        if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+
+            $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+            $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+        }
+
         return $tmp_client_packet_output;
+
+    }
+
+    public function return_crnrstn_data_packet($packet_type = CRNRSTN_OUTPUT_RUNTIME){
+
+        switch($packet_type){
+            case CRNRSTN_OUTPUT_SSDTLA:
+
+                //
+                // SOAP ENCAPSULATION OF THE PSSDTLP HAS NOT YET BEEN IMPLEMENTED.
+                return $this->session_salt();
+
+            break;
+            case CRNRSTN_OUTPUT_PSSDTLA:
+            default:
+
+                return $this->data_encrypt($this->oCRNRSTN_TRM->return_crnrstn_data_packet_json($packet_type));
+
+            break;
+
+        }
 
     }
 
@@ -4124,6 +4149,14 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function return_micro_time(){
 
         return $this->oLogger->returnMicroTime();
+
+    }
+
+    public function return_query_date_time_stamp(){
+
+        //$ts = date("Y-m-d H:i:s", time());
+
+        return date("Y-m-d H:i:s", time());
 
     }
 
@@ -5897,6 +5930,64 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function return_database_value($result_set_key, $fieldname, $pos = 0, $json_out = false){
+
+        try {
+
+            return 'DATABASE COMPONENT NOT YET ENGAGED.';
+
+            $oCRNRSTN_MySQLi = $this->oCRNRSTN_QPM->return_MySQLi($result_set_key);
+
+            if (is_object($oCRNRSTN_MySQLi)) {
+
+                $result_handle = $this->oCRNRSTN_QPM->return_resultHandle($result_set_key);
+                $batch_key = $this->oCRNRSTN_QPM->return_batchKey($result_set_key);
+
+                if (isset($result_handle) && isset($batch_key) && isset($result_set_key) && isset($fieldname)) {
+
+                    if($json_out){
+
+                        $db_resp_out = $this->oCRNRSTN_DATABASE->return_database_value($oCRNRSTN_MySQLi, $result_handle, $batch_key, $result_set_key, $fieldname, $pos);
+
+                        //
+                        // SOURCE :: https://www.php.net/manual/en/json.constants.php
+                        // AUTHOR :: majid4466 at gmail dot com :: https://www.php.net/manual/en/json.constants.php#119565
+                        $db_resp_out = $this->return_clean_json_string($db_resp_out);
+
+                        return $db_resp_out;
+
+                    }else{
+
+                        return $this->oCRNRSTN_DATABASE->return_database_value($oCRNRSTN_MySQLi, $result_handle, $batch_key, $result_set_key, $fieldname, $pos);
+
+                    }
+
+                } else {
+
+                    //
+                    // HOOOSTON...VE HAF PROBLEM!
+                    throw new Exception('Unable to return the requested MySQL data due to missing param(s)...result handle[' . $result_handle . '], batch key[' . $batch_key . '], result_set_key[' . $result_set_key . '] and/or the desired database field name[' . $fieldname . '].');
+
+                }
+
+            } else {
+
+                //
+                // HOOOSTON...VE HAF PROBLEM!
+                throw new Exception('Unable to return the database connection associated with the result set key [' . $result_set_key . '].');
+
+            }
+
+        } catch (Exception $e) {
+
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+    }
+
     //
     // SOURCE :: https://www.php.net/manual/en/function.filesize.php
     // AUTHOR :: C0nw0nk :: https://www.php.net/manual/en/function.filesize.php#119435
@@ -6201,6 +6292,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function isset_query_result_set_key(){
+
+        return false;
+
+    }
 
     public function ini_get($ini_setting){
 
@@ -8765,7 +8861,7 @@ class crnrstn_config_manager {
 
     }
 
-    public function form_integrations_data_return($data_key_hash){
+    public function crnrstn_data_packet_return($data_key_hash){
 
         //error_log(__LINE__  . ' ccm ' . __METHOD__ . ' $data_key_hash=[' . print_r($data_key_hash, true) . '].');
 

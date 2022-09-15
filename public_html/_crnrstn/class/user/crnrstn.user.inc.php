@@ -215,10 +215,6 @@ class crnrstn_user{
         // INSTANTIATE UX MANAGER
         $this->oCRNRSTN_UX = new crnrstn_ux_manager($this);
 
-        //
-        // INSTANTIATE TRANSACTION RESPONSE MANAGER
-        $this->oCRNRSTN_TRM = new crnrstn_ui_tunnel_response_manager($this);
-
     }
 
     public function return_openssl_digest_method(){
@@ -1188,276 +1184,6 @@ class crnrstn_user{
         die();
     }
 
-    public function return_ui_interact_canvas_profile_checksum($type = 'CANVAS_PROFILE_HASH'){
-
-        switch($type){
-            case 'CANVAS_PROFILE_CONTENT':
-
-                $tmp_config_str = '';
-
-                $tmp_config_str .= $this->return_ui_interact_profile('CANVAS_PROFILE_CONTENT');
-
-                return $tmp_config_str;
-
-            break;
-            case 'CANVAS_PROFILE_LOCK':
-
-                $tmp_config_str = 0;
-
-                return $tmp_config_str;
-
-            break;
-            case 'CANVAS_PROFILE_LOCK_TTL':
-
-                $tmp_config_str = 60;
-
-                return $tmp_config_str;
-
-            break;
-            case 'CANVAS_PROFILE_LOCK_ISACTIVE':
-
-                $tmp_config_str = 0;
-
-                return $tmp_config_str;
-
-            break;
-            case 'CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM':
-
-                $tmp_config_str = '';
-                $tmp_config_str .= $this->return_ui_interact_profile('CANVAS_DIMENSIONS_AND_POSITIONS');
-
-                return $this->hash($tmp_config_str);
-
-                /*
-
-                <theme_configuration>
-
-                    $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM
-
-                        <mini_canvas left="84%" width="100" height="70" checksum="' . $this->hash('10070') . '"></mini_canvas>
-                        <signin_canvas width="260" height="305" checksum="' . $this->hash('260305') . '"></signin_canvas>
-                        <main_canvas width="1080" height="760" checksum="' . $this->hash('1080760') . '"></main_canvas>
-                        <eula_canvas width="700" height="400" checksum="' . $this->hash('700400') . '"></eula_canvas>
-                        <mit_license_canvas width="500" height="400" checksum="' . $this->hash('500400') . '"></mit_license_canvas>
-
-                </theme_configuration>
-
-                */
-
-            break;
-            case 'CANVAS_PROFILES_DIMENSION_POSITION_CONTENT':
-
-                $tmp_config_str = '';
-
-                $tmp_config_str .= $this->return_ui_interact_profile('CANVAS_DIMENSIONS_AND_POSITIONS');
-
-                return $tmp_config_str;
-
-            break;
-            case 'CANVAS_PROFILES_DIMENSION_POSITION_LOCK':
-
-                $tmp_config_str = 0;
-
-                return $tmp_config_str;
-
-            break;
-            case 'CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL':
-
-                $tmp_config_str = 60;
-
-                return $tmp_config_str;
-
-            break;
-            case 'CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE':
-
-                $tmp_config_str = 0;
-
-                return $tmp_config_str;
-
-            break;
-            default:
-                // CANVAS_PROFILE_HASH
-
-                $tmp_config_str = '';
-
-                //UI_INTERACT_CANVAS_Z_INDEX
-                $tmp_config_str .= $this->return_ui_interact_profile('Z_INDEX');
-                $tmp_config_str .= $this->return_ui_interact_profile('WINDOW_EDGE_PADDING');
-                $tmp_config_str .= $this->return_ui_interact_profile('OUTLINE_BORDER_EDGE_LINE_WIDTH');
-                $tmp_config_str .= $this->return_ui_interact_profile('OUTLINE_BORDER_EDGE_LINE_STYLE');
-                $tmp_config_str .= $this->return_ui_interact_profile('OUTLINE_BORDER_EDGE_LINE_COLOR');
-                $tmp_config_str .= $this->return_ui_interact_profile('BORDER_WIDTH');
-                $tmp_config_str .= $this->return_ui_interact_profile('BORDER_COLOR');
-                $tmp_config_str .= $this->return_ui_interact_profile('BORDER_OPACITY');
-                $tmp_config_str .= $this->return_ui_interact_profile('BACKGROUND_COLOR');
-                $tmp_config_str .= $this->return_ui_interact_profile('BACKGROUND_OPACITY');
-                $tmp_config_str .= $this->return_ui_interact_profile('INNER_CONTENT_EDGE_PADDING');
-
-                return $this->hash($tmp_config_str);
-
-                /*
-
-                06/25/2022 @ 1914 hrs
-                $CANVAS_PROFILE_HASH
-                    <canvas
-                        z_index="60"
-                        window_edge_padding="20"
-                        outline_border_edge_line_width="2"
-                        outline_border_edge_line_style="solid"
-                        outline_border_edge_line_color="#767676"
-                        border_width="10"
-                        border_color="#FFF"
-                        border_opacity="0.3"
-                        background_color="#FFF"
-                        background_opacity="1"
-                        inner_content_edge_padding="25"
-                        hash="' . $this->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
-
-                */
-
-            break;
-
-        }
-
-    }
-
-    public function return_ui_interact_profile($config_profile_key = 'FULL'){
-
-        /*
-        <state_synchronization_data>
-            <crnrstn_ui_interact_profile>
-                ' . $tmp_CRNRSTN_UI_INTERACT . '
-            </crnrstn_ui_interact_profile>
-        </state_synchronization_data>
-
-        .crnrstn_ui_interact_wrapper                    { position:-webkit-sticky; position: sticky; bottom:5px; z-index: 60; width: 100px; left: 84%; height: 70px; padding: 0 0 20px 0; left:-3000px; width:0; height: 0; overflow: hidden;}
-        .crnrstn_ui_interact                            { }
-        .crnrstn_ui_interact_bg_border                  { position: absolute; width:100px; height: 70px; border: 2px solid #767676; background-color: #FFF; opacity: 0.3; }
-        .crnrstn_ui_interact_bg_solid                   { position: absolute; width: 85px; height:46px; background-color: #FFF; opacity: 1; margin: 8px; padding: 11px 0 0 2px; cursor:pointer; }
-
-        .crnrstn_ui_interact_content_wrapper            { position: absolute; display: none; z-index: 61; padding: 25px 0 0 25px; }
-        .crnrstn_ui_interact_content_wrapper input      { text-align: left; font-size: 20px; width: 208px; height: 34px; border:2px solid #676767; background-color: #FFF;}
-        .crnrstn_ui_interact_signin_frm_lbl             { text-align: left; font-size: 20px;}
-        .crnrstn_ui_interact_signin_frm_chkbx_eula      { float: left; width: 16px;}
-        .crnrstn_ui_interact_signin_frm_lbl_eula        { float: left; width: 80px; font-size: 18px; padding:7px 0 0 0; cursor: pointer;}
-        .crnrstn_ui_interact_signin_frm_lbl_eula a      { text-decoration: none; color: #0066CC; text-decoration: underline;}
-        .crnrstn_ui_interact_frm_submit                 { width: 115px; height: 37px; background-color: #FFF; border: 2px solid #5C98EB; cursor:pointer; }
-        .crnrstn_ui_interact_signin_frm_btn_submit      { text-align: left; font-size: 20px; color: #5C98EB; font-weight: bold; padding: 7px 0 0 17px; cursor:pointer;}
-
-        <![CDATA[           ]]>
-        */
-
-        switch($config_profile_key){
-            case 'CANVAS_DIMENSIONS_AND_POSITIONS':
-
-                $tmp_content_str = '<mini_canvas left="84%" width="118" height="179" checksum="' . $this->hash('84%118179') . '"></mini_canvas>
-                <signin_canvas width="260" height="305" checksum="' . $this->hash('260305') . '"></signin_canvas>
-                <main_canvas width="1080" height="760" checksum="' . $this->hash('1080760') . '"></main_canvas>
-                <eula_canvas width="700" height="400" checksum="' . $this->hash('700400') . '"></eula_canvas>
-                <mit_license_canvas width="500" height="400" checksum="' . $this->hash('500400') . '"></mit_license_canvas>';
-
-                return $tmp_content_str;
-
-            break;
-            case 'Z_INDEX':
-
-                return '60';
-
-            break;
-            case 'WINDOW_EDGE_PADDING':
-
-                return '20';
-
-            break;
-            case 'OUTLINE_BORDER_EDGE_LINE_WIDTH':
-
-                return '1';
-
-            break;
-            case 'OUTLINE_BORDER_EDGE_LINE_STYLE':
-
-                return 'solid';
-
-            break;
-            case 'OUTLINE_BORDER_EDGE_LINE_COLOR':
-
-                return '#FFF';
-
-            break;
-            case 'BORDER_WIDTH':
-
-                return '10';
-
-            break;
-            case 'BORDER_COLOR':
-
-                return '#FFF';
-
-            break;
-            case 'BORDER_OPACITY':
-
-                return '0.3';
-
-            break;
-            case 'BACKGROUND_COLOR':
-
-                return '#FFF';
-
-            break;
-            case 'BACKGROUND_OPACITY':
-
-                return '1';
-
-            break;
-            case 'INNER_CONTENT_EDGE_PADDING':
-
-                return '25';
-
-            break;
-            default:
-                // FULL
-
-                /*
-                this.ui_interact_input_id_ARRAY = ['crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case',
-                    'crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case',
-                    'crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case',
-                    'crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case'];
-
-                this.ui_interact_input_type_ARRAY = ['menu',
-                    'close_x',
-                    'fs_expand',
-                    'minimize'];
-
-                See oENV->return_output_CRNRSTN_UI_INTERACT() for HTML generation of content.
-                The following will be XML output to client.
-
-                 */
-
-                return '<is_enabled>' . $this->tidy_boolean($this->get_resource('CRNRSTN_UI_INTERACT_ENABLED'), 'string') . '</is_enabled>
-                <is_visible>' . $this->tidy_boolean($this->get_resource('CRNRSTN_UI_INTERACT_ISVISIBLE'), 'string') . '</is_visible>
-                <theme_configuration>
-                    <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" hash="' . $this->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
-                    <mini_canvas left="84%" width="118" height="179" hash="' . $this->hash('118179') . '"></mini_canvas>
-                    <signin_canvas width="260" height="305" hash="' . $this->hash('260305') . '"></signin_canvas>
-                    <main_canvas width="1080" height="760" hash="' . $this->hash('1080760') . '"></main_canvas>
-                    <eula_canvas width="700" height="400" hash="' . $this->hash('700400') . '"></eula_canvas>
-                    <mit_license_canvas width="500" height="400" hash="' . $this->hash('500400') . '"></mit_license_canvas>
-                </theme_configuration>
-                <navigation>
-                    <primary>
-                        <nav_link dom_elem_id="crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case" dom_elem_class="crnrstn_ui_interact_primary_nav_img_shell">menu</nav_link>
-                        <nav_link dom_elem_id="crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case" dom_elem_class="crnrstn_ui_interact_primary_nav_img_shell">close_x</nav_link>
-                        <nav_link dom_elem_id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case" dom_elem_class="crnrstn_ui_interact_primary_nav_img_shell">fs_expand</nav_link>
-                        <nav_link dom_elem_id="crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case" dom_elem_class="crnrstn_ui_interact_primary_nav_img_shell">minimize</nav_link>
-                    </primary>
-                </navigation>';
-
-            break;
-
-        }
-
-    }
-
     private function system_setting_jpg_image_quality(){
 
         //
@@ -1522,7 +1248,7 @@ class crnrstn_user{
 //        $crnrstn_jpg = $tmp_png_filepath = $this->oCRNRSTN_ENV->data_decrypt($crnrstn_png, CRNRSTN_ENCRYPT_TUNNEL, 'GET');
 //
 //        //crnrstn_resource_filecache_version
-//        $tmp_filename = $this->return_http_form_integration_input_val('crnrstn_image_to_process_name');
+//        $tmp_filename = $this->form_return_submitted_value('crnrstn_image_to_process_name');
 //
 //        if(strlen($tmp_filename) > 2){
 //
@@ -1572,9 +1298,9 @@ class crnrstn_user{
 //
 //    }
 
-    public function return_http_form_integration_input_val($getpost_input_name, $transport_protocol = NULL){
+    public function form_return_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
-        return $this->oCRNRSTN_ENV->return_http_form_integration_input_val($getpost_input_name, $transport_protocol);
+        return $this->oCRNRSTN_ENV->form_return_submitted_value($getpost_input_name, $transport_protocol);
 
     }
 
@@ -1583,7 +1309,7 @@ class crnrstn_user{
         $file_extension_jpg = $file_extension_png = $tmp_filetype = $filetype;
 
         $tmp_crnrstn_png = $this->oCRNRSTN_ENV->data_decrypt($filepath);
-        $tmp_filename_POST = $this->return_http_form_integration_input_val('crnrstn_image_to_process_name');
+        $tmp_filename_POST = $this->form_return_submitted_value('crnrstn_image_to_process_name');
         $this->error_log('CRNRSTN :: system_link_reset_base64_from_png() WE HAVE A FILE OR SOMETHING ACTUALLY MADE IT THROUGH CRNRSTN :: OPENSSL DECRYPTION.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
         $this->error_log('CRNRSTN :: system_link_reset_base64_from_png[Input Type:' . $filetype . '. base64_len(' . strlen($base64_encode) . ')' . $tmp_crnrstn_png . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -4230,13 +3956,6 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function return_serialized_soap_data_tunnel_session($packet_type){
-
-        error_log(__LINE__.  ' user *bypass* [' . __METHOD__ . ']');
-        //return $this->oCRNRSTN_TRM->return_serialized_soap_data_tunnel_session($packet_type);
-
-    }
-
     public function return_soap_data_tunnel_session_ttl(){
 
         return $this->soap_data_transport_packet_ttl;
@@ -4366,7 +4085,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 // HOW TO GET SUBMITTED FORM FIELD DATA
                 //$this->oCRNRSTN->get_resource_submitted('input_field_name', 'POST');
                 // PREVIOUS METHOD:
-                //$this->oCRNRSTN->return_http_form_integration_input_val('input_field_name', 'POST');
+                //$this->oCRNRSTN->form_return_submitted_value('input_field_name', 'POST');
                 $tmp_form_handle_hash = $this->hash($crnrstn_form_handle);
                 $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash;
                 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
@@ -5001,7 +4720,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
         $tmp_form_handle_hash = $this->oCRNRSTN->hash($crnrstn_form_handle);
 
-        $tmp_pssdtlp_data = $this->oCRNRSTN->form_integrations_data_return($tmp_form_handle_hash);
+        $tmp_pssdtlp_data = $this->oCRNRSTN->crnrstn_data_packet_return($tmp_form_handle_hash);
 
         $tmp_pssdtlp_data_encrypted = $this->oCRNRSTN->data_encrypt($tmp_pssdtlp_data);
 
@@ -5987,7 +5706,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
         //$ts = date("Y-m-d H:i:s", time());
 
-        return date("Y-m-d H:i:s", time());
+        return $this->oCRNRSTN->return_query_date_time_stamp();
 
     }
 
@@ -6714,6 +6433,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
     }
 
     public function isset_query_result_set_key($result_set_key){
+
+        return false;
 
         return $this->oCRNRSTN_QPM->isset_query_result_set_key($result_set_key);
 

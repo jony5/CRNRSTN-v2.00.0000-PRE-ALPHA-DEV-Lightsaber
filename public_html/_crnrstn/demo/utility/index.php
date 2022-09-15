@@ -162,8 +162,7 @@ if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)
 
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::form_serialize_new()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$tmp_str = 'public function retrieve_data_value($data_key, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $index = NULL, $env_key = NULL, $soap_transport = false){
-';
+$tmp_str = '$oCRNRSTN->get_resource($data_key, $index = NULL, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME);';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::retrieve_data_value()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '$this->oCRNRSTN->retrieve_data_count(\'FORM_INPUT_FIELD_NAME\', $tmp_data_type_family)';

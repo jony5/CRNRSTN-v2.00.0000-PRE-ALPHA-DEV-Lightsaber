@@ -61,9 +61,6 @@ class crnrstn_http_manager {
     public $oCRNRSTN_ENV;
     public $oCRNRSTN_USR;
 
-	private static $postHttpData;
-	private static $getHttpData;
-
 	private static $relevant_header_fields_ARRAY = array();
 
     public $client_header_field_data_ARRAY = array();
@@ -1233,9 +1230,9 @@ class crnrstn_http_manager {
 
                         //
                         // CHECK FOR PSSDTLP. WILL NEED TO MAKE ADJUSTMENTS FOR SSDTLA.
-                        //$tmp_crnrstn_session = $this->return_http_form_integration_input_val('crnrstn_session');
-                        $tmp_crnrstn_pssdtl_packet = $this->return_http_form_integration_input_val('crnrstn_pssdtl_packet');
-                        $tmp_crnrstn_interact_ui_link_text_click = $this->return_http_form_integration_input_val('crnrstn_interact_ui_link_text_click');
+                        //$tmp_crnrstn_session = $this->form_return_submitted_value('crnrstn_session');
+                        $tmp_crnrstn_pssdtl_packet = $this->form_return_submitted_value('crnrstn_pssdtl_packet');
+                        $tmp_crnrstn_interact_ui_link_text_click = $this->form_return_submitted_value('crnrstn_interact_ui_link_text_click');
 
                         //error_log('1853 user AJAX_PSSDT_LAYER_POST LENGTH OF $tmp_crnrstn_session=[' . strlen($tmp_crnrstn_session) . ']');
                         //die();
@@ -1451,12 +1448,11 @@ class crnrstn_http_manager {
 
     */
 
-    public function return_http_form_integration_input_val($getpost_input_name, $transport_protocol = NULL){
+    public function form_return_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
         try {
 
             if(!isset($transport_protocol)){
-
 
                 //
                 // AUTO DETECTION CHECKING POST FIRST.

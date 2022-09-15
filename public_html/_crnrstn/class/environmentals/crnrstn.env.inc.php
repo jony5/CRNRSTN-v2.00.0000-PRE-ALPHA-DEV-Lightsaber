@@ -1299,16 +1299,18 @@ class crnrstn_environment {
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', 'crnrstn_interact_ui_link_text_click');
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_loadbar_progress', 'crnrstn_interact_ui_loadbar_progress');
 
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->oCRNRSTN_USR->return_serialized_soap_data_tunnel_session('crnrstn_session_json'), 'crnrstn_session');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', true, $_SERVER['HTTP_USER_AGENT'], 'crnrstn_soap_srvc_user_agent');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', true, $this->oCRNRSTN->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', true, $this->starttime, 'crnrstn_soap_srvc_stime');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', true, $this->wall_time(), 'crnrstn_soap_srvc_rtime');
-        //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN_USR->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_active_nav_links', 'crnrstn_interact_ui_active_nav_links');
+        
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_data_packet', 'crnrstn_data_packet', $this->oCRNRSTN->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA));
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', 'crnrstn_soap_srvc_form_serial', $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', 'crnrstn_soap_srvc_timestamp', $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', 'crnrstn_soap_srvc_ttl', $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', 'crnrstn_soap_srvc_user_agent', $_SERVER['HTTP_USER_AGENT'], CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', 'crnrstn_soap_srvc_server_ip', $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', 'crnrstn_soap_srvc_client_ip', $this->oCRNRSTN->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', 'crnrstn_soap_srvc_stime', $this->starttime, 'crnrstn_soap_srvc_stime');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', 'crnrstn_soap_srvc_rtime', $this->wall_time(), 'crnrstn_soap_srvc_rtime');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version','crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN_USR->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
         //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $this->oCRNRSTN->generate_new_key(64), 'crnrstn_client_auth_key');
@@ -1325,6 +1327,7 @@ class crnrstn_environment {
         <input type="hidden" id="crnrstn_request_ajax_root" name="crnrstn_request_ajax_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?'. $this->oCRNRSTN->session_salt().'=">
         <input type="hidden" id="crnrstn_interact_ui_link_text_click" name="crnrstn_interact_ui_link_text_click" value="">
         <input type="hidden" id="crnrstn_interact_ui_loadbar_progress" name="crnrstn_interact_ui_loadbar_progress" value="">
+        <input type="hidden" id="crnrstn_interact_ui_active_nav_links" name="crnrstn_interact_ui_active_nav_links" value="">
         <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="">
         <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="">';
 
@@ -1365,22 +1368,39 @@ class crnrstn_environment {
 
     }
 
-    private function return_documentation_side_nav_link_ARRAY(){
+    private function return_output_CRNRSTN_UI_DOCS_NAV_LINK(){
 
         $tmp_str = '';
         $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/';
 
-        $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
+        $tmp_data_key = 'crnrstn_ui_navigation';
+        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::INTERACT_UI::' . $this->hash($tmp_data_key);
+        if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_data_type_family)){
 
-        //
-        // SOURCE :: https://www.php.net/manual/en/function.scandir.php
-        // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
-        $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
+            $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
 
-        foreach($scanned_directory_ARRAY as $index => $dir_resource){
+            //
+            // SOURCE :: https://www.php.net/manual/en/function.scandir.php
+            // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
+            $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
 
-            $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $dir_resource . '">' . $dir_resource . '</a></li>
+            foreach($scanned_directory_ARRAY as $index => $dir_resource){
+
+                $tmp_data_key = 'CRNRSTN_NAV_LINK';
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
+
+                $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $dir_resource . '">' . $dir_resource . '</a></li>
 ';
+
+            }
+
+            $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
+            $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
+
+        }else{
+
+            $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
+            $tmp_str = $this->oCRNRSTN->get_resource($tmp_data_key, 0, $tmp_data_type_family);
 
         }
 
@@ -1472,7 +1492,7 @@ class crnrstn_environment {
             <div id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav">
                 <ul>
                     <!--<li><a id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash('error_log', 'md5') . '" href="#error_log" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;">error_log</a></li>-->
-                    ' . $this->return_documentation_side_nav_link_ARRAY() . '
+                    ' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK() . '
                 </ul>                
                 <div class="crnrstn_cb_20"></div>
                 <div>' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
@@ -2657,13 +2677,13 @@ class crnrstn_environment {
 
     }
 
-    public function return_http_form_integration_input_val($getpost_input_name, $transport_protocol = NULL){
+    public function form_return_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
-        return $this->oHTTP_MGR->return_http_form_integration_input_val($getpost_input_name, $transport_protocol);
+        return $this->oHTTP_MGR->form_return_submitted_value($getpost_input_name, $transport_protocol);
 
     }
 
-    public function return_serialized_soap_data_tunnel_session($packet_type = 'crnrstn_session_json'){
+    public function return_crnrstn_data_packet($packet_type = CRNRSTN_OUTPUT_RUNTIME){
 
         /*
         crnrstn_session
@@ -2686,9 +2706,10 @@ class crnrstn_environment {
         DATECREATED             timestamp default _CURRENT_TIMESTAMP
         */
 
-        if($this->oCRNRSTN_USR->isset_query_result_set_key('CRNRSTN_SESSION_DATA')){
+        //if($this->oCRNRSTN_USR->isset_query_result_set_key('CRNRSTN_SESSION_DATA')){
+        if(1 == 1){
 
-            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS SET! die();');
+            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA ' . __METHOD__ . ' die();');
             die();
             $tmp_session_count = $this->oCRNRSTN_USR->return_record_count('CRNRSTN_SESSION_DATA');
 
@@ -2708,8 +2729,8 @@ class crnrstn_environment {
 
                 error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
 
-                $tmp_client_id = $this->return_http_form_integration_input_val('crnrstn_client_id');
-                $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN_USR->return_query_date_time_stamp());
+                $tmp_client_id = $this->form_return_submitted_value('crnrstn_client_id');
+                $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
 
                 // crnrstn_sessions TABLE DATA
                 $tmp_client_ip = $this->oCRNRSTN_USR->return_client_ip();
@@ -2727,8 +2748,8 @@ class crnrstn_environment {
 
             error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
 
-            $tmp_client_id = $this->return_http_form_integration_input_val('crnrstn_client_id');
-            $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN_USR->return_query_date_time_stamp());
+            $tmp_client_id = $this->form_return_submitted_value('crnrstn_client_id');
+            $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
 
             // crnrstn_sessions TABLE DATA
             $tmp_client_ip = $this->oCRNRSTN_USR->return_client_ip();
@@ -2864,7 +2885,7 @@ class crnrstn_environment {
         switch($packet_type){
             case 'crnrstn_session_json':
 
-                //$tmp_crnrstn_session = $this->return_http_form_integration_input_val('crnrstn_session');
+                //$tmp_crnrstn_session = $this->form_return_submitted_value('crnrstn_session');
                 /*
 
                 12/18/2021 1311 hrs
@@ -3015,7 +3036,7 @@ class crnrstn_environment {
         // INITIALIZE CRNRSTN :: SOAP SERVICES DATA TUNNEL LAYER PACKET - DSJPC
         // NOTE: DATABASE DATA STORAGE FORMAT WILL SHADOW USE OF S01 AND P02
         // ON A SESSION TO SESSION BASIS.
-        $tmp_pssdtl_session_packet = $this->return_serialized_soap_data_tunnel_session('crnrstn_session_json');
+        $tmp_pssdtl_session_packet = $this->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA);
 
         error_log(__LINE__ . ' env ' . __METHOD__ . ' $tmp_pssdtl_session_packet::[' . $tmp_pssdtl_session_packet . '] die();');
 
@@ -7873,8 +7894,6 @@ class crnrstn_decoupled_data_object {
 //                        ';
 //                $tmp_str_out .= '"crnrstn_system_configuration_parameter" : [
 //                        ';
-
-
 
                     //
                     // Friday, August 5, 2022 2241 hrs

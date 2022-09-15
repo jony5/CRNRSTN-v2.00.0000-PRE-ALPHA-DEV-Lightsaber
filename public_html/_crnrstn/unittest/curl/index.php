@@ -41,12 +41,12 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
         //
         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
-        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_uri_endpoint');
-        $tmp_crnrstn_curl_batch_save = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_batch_save');
-        $tmp_crnrstn_curl_batch_count = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_batch_count');
+        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_uri_endpoint');
+        $tmp_crnrstn_curl_batch_save = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_batch_save');
+        $tmp_crnrstn_curl_batch_count = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_batch_count');
 
-        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_enable_unit_test_automation');
-        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_unit_test_automation_freq_secs');
+        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_enable_unit_test_automation');
+        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_unit_test_automation_freq_secs');
 
         if(strlen($tmp_crnrstn_curl_uri_endpoint) > 0){
 
@@ -73,7 +73,7 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
                 for($i = 0; $i < $tmp_crnrstn_curl_batch_count; $i++){
 
-                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->return_http_form_integration_input_val('crnrstn_curl_batch_uri_' . $i);
+                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_batch_uri_' . $i);
 
                     $tmp_crnrstn_curl_batch_preview .= '<div class="crnrstn_log_entry">[rtime ' . $oCRNRSTN_UNITTEST_MGR->rtime('curl', md5($tmp_crnrstn_curl_uri_endpoint)).'] ' .  $tmp_crnrstn_curl_uri_endpoint . '</div>
 

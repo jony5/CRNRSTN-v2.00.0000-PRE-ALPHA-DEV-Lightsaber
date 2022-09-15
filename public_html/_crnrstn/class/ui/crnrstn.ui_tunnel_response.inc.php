@@ -61,14 +61,13 @@ class crnrstn_ui_tunnel_response_manager {
     public $mysqli;
     public $oCRNRSTN_MySQLi;
 
-    public function __construct($oCRNRSTN_USR) {
+    public function __construct($oCRNRSTN) {
 
-        //$this->oCRNRSTN = $oCRNRSTN;
-        $this->oCRNRSTN_USR = $oCRNRSTN_USR;
+        $this->oCRNRSTN = $oCRNRSTN;
 
         //
         // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
+        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         //
         // DOES NOT HOOK INTO LIGHTSABER CORRECTLY.
@@ -189,16 +188,16 @@ class crnrstn_ui_tunnel_response_manager {
         // PROCESS ALL QUERY TO CONNECTION(S)
         $this->oCRNRSTN_USR->process_query();
 
-        $tmp_IS_REPLAY = $this->oCRNRSTN_USR->return_database_value('RELAY_ACTIVE_META', 'IS_REPLAY');
+        $tmp_IS_REPLAY = $this->oCRNRSTN->return_database_value('RELAY_ACTIVE_META', 'IS_REPLAY');
 
         $tmp_RELAY_SOCIAL_DATA_count = $this->oCRNRSTN_USR->return_record_count('REPORTING_RELAY_SOCIAL_DATA');
 
         if($tmp_RELAY_SOCIAL_DATA_count > 0){
 
-            $tmp_click_count = $this->oCRNRSTN_USR->return_database_value('REPORTING_RELAY_SOCIAL_DATA', 'CLICKTHROUGH_COUNT');
+            $tmp_click_count = $this->oCRNRSTN->return_database_value('REPORTING_RELAY_SOCIAL_DATA', 'CLICKTHROUGH_COUNT');
             $tmp_click_count = ($tmp_click_count * 1) + 1;
 
-            $ts = $this->oCRNRSTN_USR->return_query_date_time_stamp();
+            $ts = $this->oCRNRSTN->return_query_date_time_stamp();
             $tmp_query = 'UPDATE `crnrstn_stream_relay_social`
             SET
             `CLICKTHROUGH_COUNT` = ' . $tmp_click_count . ',
@@ -213,7 +212,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         }
 
-        $tmp_RELAY_REPORTING_SHARD_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_META_LOOKUP_DATA', 'RELAY_REPORTING_SHARD_ID');
+        $tmp_RELAY_REPORTING_SHARD_ID = $this->oCRNRSTN->return_database_value('RELAY_META_LOOKUP_DATA', 'RELAY_REPORTING_SHARD_ID');
 
         $tmp_query = 'SELECT `crnrstn_stream_relay_reporting_shards`.`RELAY_REPORTING_SHARD_ID`,
             `crnrstn_stream_relay_reporting_shards`.`TABLE_STRING_PATTERN`,
@@ -232,9 +231,9 @@ class crnrstn_ui_tunnel_response_manager {
         $this->oCRNRSTN_USR->process_query();
 
         $tmp_REPORTING_LOG_ID = $this->oCRNRSTN_USR->generate_new_key(100);
-        $tmp_TABLE_STRING_PATTERN = $this->oCRNRSTN_USR->return_database_value('SHARD_PATTERN_DATA', 'TABLE_STRING_PATTERN');
+        $tmp_TABLE_STRING_PATTERN = $this->oCRNRSTN->return_database_value('SHARD_PATTERN_DATA', 'TABLE_STRING_PATTERN');
 
-        $ts = $this->oCRNRSTN_USR->return_query_date_time_stamp();
+        $ts = $this->oCRNRSTN->return_query_date_time_stamp();
         $tmp_query = 'INSERT INTO `crnrstn_stream_social_click_reporting_log_' . $tmp_TABLE_STRING_PATTERN . '`
         (`REPORTING_LOG_ID`,
         `STREAM_KEY`,
@@ -259,7 +258,7 @@ class crnrstn_ui_tunnel_response_manager {
         "' . $this->mysqli->real_escape_string($social_media_key) . '",
         ' . $this->oCRNRSTN_USR->crcINT($social_media_key) . ',
         "' . $this->mysqli->real_escape_string($url) . '",
-        INET_ATON("' . $this->oCRNRSTN_USR->return_client_ip() . '"),
+        INET_ATON("' . $this->oCRNRSTN->return_client_ip() . '"),
         INET_ATON("' . $_SERVER['SERVER_ADDR'] . '"),
         "' . session_id() . '",
         "' . $_SERVER['HTTP_REFERER'] . '",
@@ -270,7 +269,7 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_result_set_key = $this->oCRNRSTN_USR->load_query_profile('BASSDRIVE_REPORTING', '!jesus_is_my_dear_lord!', '', __LINE__, __METHOD__);
         $this->oCRNRSTN_USR->add_database_query($tmp_result_set_key, $tmp_query);
         
-        $ts = $this->oCRNRSTN_USR->return_query_date_time_stamp();
+        $ts = $this->oCRNRSTN->return_query_date_time_stamp();
         $tmp_query = 'INSERT INTO `crnrstn_global_click_reporting_log`
         (`REPORTING_LOG_ID`,
         `STREAM_KEY`,
@@ -295,7 +294,7 @@ class crnrstn_ui_tunnel_response_manager {
         "' . $this->mysqli->real_escape_string($social_media_key) . '",
         ' . $this->oCRNRSTN_USR->crcINT($social_media_key) . ',
         "' . $this->mysqli->real_escape_string($url) . '",
-        INET_ATON("' . $this->oCRNRSTN_USR->return_client_ip() . '"),
+        INET_ATON("' . $this->oCRNRSTN->return_client_ip() . '"),
         INET_ATON("' . $_SERVER['SERVER_ADDR'] . '"),
         "' . session_id() . '",
         "' . $_SERVER['HTTP_REFERER'] . '",
@@ -326,10 +325,10 @@ class crnrstn_ui_tunnel_response_manager {
 
                 $image_index = rand(0, $tmp_LIFESTYLE_IMAGES_DATA_cnt);
 
-                $tmp_IMAGE_FILENAME = $this->oCRNRSTN_USR->return_database_value('LIFESTYLE_IMAGES_DATA', 'IMAGE_FILENAME_DESKTOP', $image_index);
-                $tmp_IMAGE_MD5_DESKTOP = $this->oCRNRSTN_USR->return_database_value('LIFESTYLE_IMAGES_DATA', 'IMAGE_MD5_DESKTOP', $image_index);
-                $tmp_IMAGE_SHA1_DESKTOP = $this->oCRNRSTN_USR->return_database_value('LIFESTYLE_IMAGES_DATA', 'IMAGE_SHA1_DESKTOP', $image_index);
-                $tmp_IMAGE_FILESIZE_DESKTOP_BYTES = $this->oCRNRSTN_USR->return_database_value('LIFESTYLE_IMAGES_DATA', 'IMAGE_FILESIZE_DESKTOP', $image_index);
+                $tmp_IMAGE_FILENAME = $this->oCRNRSTN->return_database_value('LIFESTYLE_IMAGES_DATA', 'IMAGE_FILENAME_DESKTOP', $image_index);
+                $tmp_IMAGE_MD5_DESKTOP = $this->oCRNRSTN->return_database_value('LIFESTYLE_IMAGES_DATA', 'IMAGE_MD5_DESKTOP', $image_index);
+                $tmp_IMAGE_SHA1_DESKTOP = $this->oCRNRSTN->return_database_value('LIFESTYLE_IMAGES_DATA', 'IMAGE_SHA1_DESKTOP', $image_index);
+                $tmp_IMAGE_FILESIZE_DESKTOP_BYTES = $this->oCRNRSTN->return_database_value('LIFESTYLE_IMAGES_DATA', 'IMAGE_FILESIZE_DESKTOP', $image_index);
 
                 $tmp_IMAGE_FILESIZE_DESKTOP = $this->oCRNRSTN_USR->format_bytes($tmp_IMAGE_FILESIZE_DESKTOP_BYTES, 4);
 
@@ -359,8 +358,8 @@ class crnrstn_ui_tunnel_response_manager {
 
             for($i = 0; $i < $tmp_RELAY_RECENT_DATA; $i++){
 
-                $tmp_RELAY_TIMESTAMP = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'RELAY_TIMESTAMP', $i);
-                $tmp_BASSDRIVE_LOG_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'BASSDRIVE_LOG_ID', $i);
+                $tmp_RELAY_TIMESTAMP = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'RELAY_TIMESTAMP', $i);
+                $tmp_BASSDRIVE_LOG_ID = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'BASSDRIVE_LOG_ID', $i);
 
                 $tmp_STATS_TOTAL = array();
                 $tmp_STATS_TOTAL_UNIQUE = array();
@@ -369,43 +368,43 @@ class crnrstn_ui_tunnel_response_manager {
                 $tmp_STATS_AACPLUS = array();
                 $tmp_STATS_RANDOM = array();
 
-                $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_CONNECTIONS', $i);
-                $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_CAPACITY', $i);
-                $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_BANDWIDTH', $i);
-                $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_CONNECTIONS', $i);
+                $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_CAPACITY', $i);
+                $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_BANDWIDTH', $i);
+                $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_UNIQUE_CONNECTIONS', $i);
-                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_UNIQUE_CAPACITY', $i);
-                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH', $i);
-                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_UNIQUE_CONNECTIONS', $i);
+                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_UNIQUE_CAPACITY', $i);
+                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH', $i);
+                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_BITRATE', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_BITRATE_FORMAT', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_CONNECTIONS', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_CAPACITY', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_BANDWIDTH', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_BITRATE', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_BITRATE_FORMAT', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_CONNECTIONS', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_CAPACITY', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_BANDWIDTH', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_PREMIUM_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_BITRATE', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_BITRATE_FORMAT', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_CONNECTIONS', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_CAPACITY', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_BANDWIDTH', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_BITRATE', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_BITRATE_FORMAT', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_CONNECTIONS', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_CAPACITY', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_BANDWIDTH', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_MIDGRADE_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_BITRATE', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_BITRATE_FORMAT', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_CONNECTIONS', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_CAPACITY', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_BANDWIDTH', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_BITRATE', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_BITRATE_FORMAT', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_CONNECTIONS', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_CAPACITY', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_BANDWIDTH', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_AAC_PLUS_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BITRATE', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BITRATE_FORMAT', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_CONNECTIONS', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_CAPACITY', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BANDWIDTH', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BITRATE', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BITRATE_FORMAT', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_CONNECTIONS', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_CAPACITY', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BANDWIDTH', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT', $i);
 
                 $tmp_output_relay_recent_stats .= '
                 <connection_stat timestamp="' . $tmp_RELAY_TIMESTAMP . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '">
@@ -462,8 +461,8 @@ class crnrstn_ui_tunnel_response_manager {
 
             for($i = 0; $i < $tmp_RELAY_HISTORICAL_DATA; $i++){
 
-                $tmp_RELAY_TIMESTAMP = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'RELAY_TIMESTAMP', $i);
-                $tmp_BASSDRIVE_LOG_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'BASSDRIVE_LOG_ID', $i);
+                $tmp_RELAY_TIMESTAMP = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'RELAY_TIMESTAMP', $i);
+                $tmp_BASSDRIVE_LOG_ID = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'BASSDRIVE_LOG_ID', $i);
 
                 $tmp_STATS_TOTAL = array();
                 $tmp_STATS_TOTAL_UNIQUE = array();
@@ -472,43 +471,43 @@ class crnrstn_ui_tunnel_response_manager {
                 $tmp_STATS_AACPLUS = array();
                 $tmp_STATS_RANDOM = array();
 
-                $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_CONNECTIONS', $i);
-                $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_CAPACITY', $i);
-                $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_BANDWIDTH', $i);
-                $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_CONNECTIONS', $i);
+                $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_CAPACITY', $i);
+                $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_BANDWIDTH', $i);
+                $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_UNIQUE_CONNECTIONS', $i);
-                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_UNIQUE_CAPACITY', $i);
-                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH', $i);
-                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_UNIQUE_CONNECTIONS', $i);
+                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_UNIQUE_CAPACITY', $i);
+                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH', $i);
+                $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_BITRATE', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_BITRATE_FORMAT', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_CONNECTIONS', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_CAPACITY', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_BANDWIDTH', $i);
-                $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_BITRATE', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_BITRATE_FORMAT', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_CONNECTIONS', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_CAPACITY', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_BANDWIDTH', $i);
+                $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_PREMIUM_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_BITRATE', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_BITRATE_FORMAT', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_CONNECTIONS', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_CAPACITY', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_BANDWIDTH', $i);
-                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_BITRATE', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_BITRATE_FORMAT', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_CONNECTIONS', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_CAPACITY', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_BANDWIDTH', $i);
+                $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_MIDGRADE_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_BITRATE', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_BITRATE_FORMAT', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_CONNECTIONS', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_CAPACITY', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_BANDWIDTH', $i);
-                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_BITRATE', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_BITRATE_FORMAT', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_CONNECTIONS', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_CAPACITY', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_BANDWIDTH', $i);
+                $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_AAC_PLUS_BANDWIDTH_FORMAT', $i);
 
-                $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BITRATE', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BITRATE_FORMAT', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_CONNECTIONS', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_CAPACITY', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BANDWIDTH', $i);
-                $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BITRATE', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BITRATE_FORMAT', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_CONNECTIONS', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_CAPACITY', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BANDWIDTH', $i);
+                $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT', $i);
 
                 $tmp_output_relay_historical_stats .= '<connection_stat timestamp="' . $tmp_RELAY_TIMESTAMP . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '">
                     <stream_stat type="total">
@@ -561,13 +560,13 @@ class crnrstn_ui_tunnel_response_manager {
 
         for($i = 0; $i < $tmp_RELAY_CURRENT_DATA; $i++){
 
-            $tmp_STREAM_URL = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STREAM_URL', $i);
-            $tmp_streamURLios = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STREAM_URL_IOS', $i);
-            $tmp_BITRATE = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'BITRATE', $i);
-            $tmp_AUDIO_FORMAT = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'AUDIO_FORMAT', $i);
-            $tmp_LISTENER_COUNT = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'LISTENER_COUNT', $i);
-            $tmp_LISTENER_COUNT_PERCENTAGE = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'LISTENER_COUNT_PERCENTAGE', $i);
-            //$tmp_IS_REPLAY = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'IS_REPLAY', $i);
+            $tmp_STREAM_URL = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STREAM_URL', $i);
+            $tmp_streamURLios = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STREAM_URL_IOS', $i);
+            $tmp_BITRATE = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'BITRATE', $i);
+            $tmp_AUDIO_FORMAT = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'AUDIO_FORMAT', $i);
+            $tmp_LISTENER_COUNT = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'LISTENER_COUNT', $i);
+            $tmp_LISTENER_COUNT_PERCENTAGE = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'LISTENER_COUNT_PERCENTAGE', $i);
+            //$tmp_IS_REPLAY = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'IS_REPLAY', $i);
 
             $tmp_output_relay .= '<stream url="' . $tmp_STREAM_URL . '" url_ios="' . $tmp_streamURLios . '">
                         <bitrate>' . $tmp_BITRATE . '</bitrate>
@@ -590,8 +589,8 @@ class crnrstn_ui_tunnel_response_manager {
 
         }
 
-        $tmp_DATEMODIFIED = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'DATEMODIFIED');
-        $tmp_BASSDRIVE_LOG_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'BASSDRIVE_LOG_ID');
+        $tmp_DATEMODIFIED = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'DATEMODIFIED');
+        $tmp_BASSDRIVE_LOG_ID = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'BASSDRIVE_LOG_ID');
 
         $tmp_STATS_TOTAL = array();
         $tmp_STATS_TOTAL_UNIQUE = array();
@@ -600,43 +599,43 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_STATS_AACPLUS = array();
         $tmp_STATS_RANDOM = array();
 
-        $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_CONNECTIONS');
-        $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_CAPACITY');
-        $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_BANDWIDTH');
-        $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_BANDWIDTH_FORMAT');
+        $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_CONNECTIONS');
+        $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_CAPACITY');
+        $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_BANDWIDTH');
+        $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_BANDWIDTH_FORMAT');
 
-        $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_UNIQUE_CONNECTIONS');
-        $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_UNIQUE_CAPACITY');
-        $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH');
-        $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT');
+        $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_UNIQUE_CONNECTIONS');
+        $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_UNIQUE_CAPACITY');
+        $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH');
+        $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT');
 
-        $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_BITRATE');
-        $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_BITRATE_FORMAT');
-        $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_CONNECTIONS');
-        $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_CAPACITY');
-        $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_BANDWIDTH');
-        $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_BANDWIDTH_FORMAT');
+        $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_BITRATE');
+        $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_BITRATE_FORMAT');
+        $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_CONNECTIONS');
+        $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_CAPACITY');
+        $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_BANDWIDTH');
+        $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_PREMIUM_BANDWIDTH_FORMAT');
 
-        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_BITRATE');
-        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_BITRATE_FORMAT');
-        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_CONNECTIONS');
-        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_CAPACITY');
-        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_BANDWIDTH');
-        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_BANDWIDTH_FORMAT');
+        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_BITRATE');
+        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_BITRATE_FORMAT');
+        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_CONNECTIONS');
+        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_CAPACITY');
+        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_BANDWIDTH');
+        $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_MIDGRADE_BANDWIDTH_FORMAT');
 
-        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_BITRATE');
-        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_BITRATE_FORMAT');
-        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_CONNECTIONS');
-        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_CAPACITY');
-        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_BANDWIDTH');
-        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_BANDWIDTH_FORMAT');
+        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_BITRATE');
+        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_BITRATE_FORMAT');
+        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_CONNECTIONS');
+        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_CAPACITY');
+        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_BANDWIDTH');
+        $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_AAC_PLUS_BANDWIDTH_FORMAT');
 
-        $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BITRATE');
-        $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BITRATE_FORMAT');
-        $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_CONNECTIONS');
-        $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_CAPACITY');
-        $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BANDWIDTH');
-        $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT');
+        $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BITRATE');
+        $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BITRATE_FORMAT');
+        $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_CONNECTIONS');
+        $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_CAPACITY');
+        $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BANDWIDTH');
+        $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT');
 
         $tmp_output_relay_current_stats = '             <connection_stat timestamp="' . $tmp_DATEMODIFIED . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '">
                             <stream_stat type="total">
@@ -880,9 +879,9 @@ class crnrstn_ui_tunnel_response_manager {
 
         for($i = 0; $i < $tmp_RELAY_META_LOOKUP_DATA_count; $i++){
 
-            $tmp_SOCIAL_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_SOCIAL_DATA', 'SOCIAL_ID', $i);
-            $tmp_SOCIAL_MEDIA_KEY = $this->oCRNRSTN_USR->return_database_value('RELAY_SOCIAL_DATA', 'SOCIAL_MEDIA_KEY', $i);
-            $tmp_CLICKTHROUGH_URL = $this->oCRNRSTN_USR->return_database_value('RELAY_SOCIAL_DATA', 'CLICKTHROUGH_URL', $i);
+            $tmp_SOCIAL_ID = $this->oCRNRSTN->return_database_value('RELAY_SOCIAL_DATA', 'SOCIAL_ID', $i);
+            $tmp_SOCIAL_MEDIA_KEY = $this->oCRNRSTN->return_database_value('RELAY_SOCIAL_DATA', 'SOCIAL_MEDIA_KEY', $i);
+            $tmp_CLICKTHROUGH_URL = $this->oCRNRSTN->return_database_value('RELAY_SOCIAL_DATA', 'CLICKTHROUGH_URL', $i);
 
             //error_log(__LINE__ . ' ui trm [' . $tmp_SOCIAL_MEDIA_KEY . '][' . $tmp_CLICKTHROUGH_URL . ']');
 
@@ -934,10 +933,10 @@ class crnrstn_ui_tunnel_response_manager {
 
     private function return_stats_html($checksum_stable_output = false){
 
-        $tmp_connections = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_CONNECTIONS');
-        $tmp_capacity = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_CAPACITY');
-        $tmp_bandwidth = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_BANDWIDTH');
-        $tmp_bandwidthFormat = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_BANDWIDTH_FORMAT');
+        $tmp_connections = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_CONNECTIONS');
+        $tmp_capacity = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_CAPACITY');
+        $tmp_bandwidth = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_BANDWIDTH');
+        $tmp_bandwidthFormat = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_TOTAL_BANDWIDTH_FORMAT');
 
         if($checksum_stable_output){
 
@@ -973,17 +972,17 @@ class crnrstn_ui_tunnel_response_manager {
     private function return_show_locale_html($show_title_ARRAY){
 
         $tmp_html = '<div id="broadcast_nation_wrapper">
-                        <div id="nation_colors_wrapper" class="nation_colors_wrapper"><div style="padding-right:8px;"><img src="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_FILENAME') . '" width="' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_WIDTH') . '" height="' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_HEIGHT') . '" title="' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'STREAM_COLORS_KEY') . '" alt="' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'STREAM_COLORS_KEY') . '"></div></div>
+                        <div id="nation_colors_wrapper" class="nation_colors_wrapper"><div style="padding-right:8px;"><img src="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_FILENAME') . '" width="' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_WIDTH') . '" height="' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_HEIGHT') . '" title="' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'STREAM_COLORS_KEY') . '" alt="' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'STREAM_COLORS_KEY') . '"></div></div>
                         <div id="bassdrive_broadcast_scroller_wrapper">
                             <div id="bassdrive_broadcast_scroller_dyn_wrapper"></div>
                             <div class="cb"></div>
                         </div>
                         <div class="hidden">
-                            <div id="bassdrive_broadcast_nation_thumb_width">' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_WIDTH') . '</div>
+                            <div id="bassdrive_broadcast_nation_thumb_width">' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_WIDTH') . '</div>
                             <div id="broadcast_show_original_title">' . $show_title_ARRAY['title'] . '</div>
-                            <div id="broadcast_locale">' . $this->oCRNRSTN_USR->return_database_value('RELAY_LOCALE_DATA', 'LOCALE_COPY') . '</div>
-                            <div id="broadcast_nation_img">' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_FILENAME') . '</div>
-                            <div id="broadcast_nation_title">' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'STREAM_COLORS_KEY') . '</div>
+                            <div id="broadcast_locale">' . $this->oCRNRSTN->return_database_value('RELAY_LOCALE_DATA', 'LOCALE_COPY') . '</div>
+                            <div id="broadcast_nation_img">' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_FILENAME') . '</div>
+                            <div id="broadcast_nation_title">' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'STREAM_COLORS_KEY') . '</div>
                             <div id="broadcast_is_LIVE">' . $show_title_ARRAY['is_live'] . '</div>
                             <div id="component_tech_integration_driver">SERVER</div>
                         </div>
@@ -1440,25 +1439,25 @@ class crnrstn_ui_tunnel_response_manager {
             case 'stream_title':
 
                 //error_log(__LINE__ . ' ui trans $element_type=[' . $element_type . ']');
-                return $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT');
+                return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT');
 
             break;
             case 'stream_social':
 
                 //error_log(__LINE__ . ' ui trans $element_type=[' . $element_type . ']');
-                return $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT');
+                return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT');
 
             break;
             case 'stream_colors':
 
                 //error_log(__LINE__ . ' ui trans $element_type=[' . $element_type . ']');
-                return $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT');
+                return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT');
 
             break;
             case 'stream_stats':
 
                 //error_log(__LINE__ . ' ui trans $element_type=[' . $element_type . ']');
-                return $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT');
+                return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT');
 
             break;
 
@@ -1586,11 +1585,11 @@ class crnrstn_ui_tunnel_response_manager {
         // PROCESS ALL QUERY TO CONNECTION(S)
         $this->oCRNRSTN_USR->process_query();
 
-        $tmp_STREAM_KEY = $this->oCRNRSTN_USR->return_database_value('RELAY_META_LOOKUP_DATA', 'STREAM_KEY');
-        $tmp_RELAY_REPORTING_SHARD_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_META_LOOKUP_DATA', 'RELAY_REPORTING_SHARD_ID');
-        $tmp_LOCALE_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_META_LOOKUP_DATA', 'LOCALE_ID');
-        $tmp_COLORS_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_META_LOOKUP_DATA', 'COLORS_ID');
-        $tmp_STREAM_COLORS_KEY = $this->oCRNRSTN_USR->return_database_value('RELAY_META_LOOKUP_DATA', 'STREAM_COLORS_KEY');
+        $tmp_STREAM_KEY = $this->oCRNRSTN->return_database_value('RELAY_META_LOOKUP_DATA', 'STREAM_KEY');
+        $tmp_RELAY_REPORTING_SHARD_ID = $this->oCRNRSTN->return_database_value('RELAY_META_LOOKUP_DATA', 'RELAY_REPORTING_SHARD_ID');
+        $tmp_LOCALE_ID = $this->oCRNRSTN->return_database_value('RELAY_META_LOOKUP_DATA', 'LOCALE_ID');
+        $tmp_COLORS_ID = $this->oCRNRSTN->return_database_value('RELAY_META_LOOKUP_DATA', 'COLORS_ID');
+        $tmp_STREAM_COLORS_KEY = $this->oCRNRSTN->return_database_value('RELAY_META_LOOKUP_DATA', 'STREAM_COLORS_KEY');
 
         $tmp_query = 'SELECT `crnrstn_stream_relay_social`.`SOCIAL_ID`,
             `crnrstn_stream_relay_social`.`STREAM_KEY`,
@@ -1713,8 +1712,8 @@ class crnrstn_ui_tunnel_response_manager {
         }
 
 
-        $tmp_DATEMODIFIED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED');
-        $tmp_CONTENT_CHECKSUM_TTL = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL');
+        $tmp_DATEMODIFIED = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED');
+        $tmp_CONTENT_CHECKSUM_TTL = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL');
 
         $tmp_ttl_standard = strtotime('-' . $tmp_CONTENT_CHECKSUM_TTL .' seconds');
         $tmp_content_freshness = strtotime($tmp_DATEMODIFIED);
@@ -1735,9 +1734,9 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // RELAY_HISTORICAL_DATA
-        $tmp_IS_REPLAY = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'IS_REPLAY');
-        $tmp_STREAM_KEY = $this->oCRNRSTN_USR->return_database_value('RELAY_META_LOOKUP_DATA', 'STREAM_KEY');
-        $tmp_TABLE_STRING_PATTERN = $this->oCRNRSTN_USR->return_database_value('SHARD_PATTERN_DATA', 'TABLE_STRING_PATTERN');
+        $tmp_IS_REPLAY = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'IS_REPLAY');
+        $tmp_STREAM_KEY = $this->oCRNRSTN->return_database_value('RELAY_META_LOOKUP_DATA', 'STREAM_KEY');
+        $tmp_TABLE_STRING_PATTERN = $this->oCRNRSTN->return_database_value('SHARD_PATTERN_DATA', 'TABLE_STRING_PATTERN');
 
         $tmp_query = 'SELECT DISTINCT `crnrstn_stream_relay_reporting_log_' . $tmp_TABLE_STRING_PATTERN . '`.`BASSDRIVE_LOG_ID`,
             `crnrstn_stream_relay_reporting_log_' . $tmp_TABLE_STRING_PATTERN . '`.`RELAY_TIMESTAMP`,
@@ -1833,7 +1832,328 @@ class crnrstn_ui_tunnel_response_manager {
 
     }
 
-    public function return_serialized_soap_data_tunnel_session($packet_type){
+    public function return_crnrstn_data_packet_json($packet_type = CRNRSTN_OUTPUT_RUNTIME){
+
+        if($this->oCRNRSTN->isset_query_result_set_key('CRNRSTN_SESSION_DATA')){
+
+            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS SET!');
+            $tmp_session_count = $this->oCRNRSTN_USR->return_record_count('CRNRSTN_SESSION_DATA');
+
+            if($tmp_session_count > 0){
+
+                // crnrstn_sessions TABLE DATA
+                $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
+                $tmp_session_id = session_id();
+                $tmp_SESSION_ID = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'SESSION_ID', 0, true);
+                $tmp_SERVER_IP = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'SERVER_IP', 0, true);
+                $tmp_CLIENT_ID = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_ID', 0, true);
+                $tmp_CLIENT_IP = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_IP', 0, true);
+                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'DATEMODIFIED', 0, true);
+                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'DATECREATED', 0, true);
+
+            }else{
+
+                error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
+
+                $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
+                $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
+
+                // crnrstn_sessions TABLE DATA
+                $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
+                $tmp_session_id = session_id();
+                $tmp_SESSION_ID = $tmp_session_id;
+                $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
+                $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
+                $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
+                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED =  $ts_json;
+                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
+
+            }
+
+        }else{
+
+            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
+
+            //http_data_services_initialize
+
+            $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
+            $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
+
+            // crnrstn_sessions TABLE DATA
+            $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
+            $tmp_session_id = session_id();
+            $tmp_SESSION_ID = $tmp_session_id;
+            $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
+            $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
+            $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
+            $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $ts_json;
+            $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
+
+        }
+
+        error_log(__LINE__ . ' ui trans $tmp_SESSION_ID=' . $tmp_SESSION_ID);
+
+        if($tmp_client_ip != $tmp_CLIENT_IP && strlen($tmp_CLIENT_IP) > 0){
+
+            //
+            // SOFT ALERT SINCE NO USER AUTHENTICATED EXPERIENCE
+            $tmp_STATUS_TARGET_ELEMENT = 'null';
+            $tmp_STATUS = '200';
+            $tmp_STATUS_CODE = '418';
+            $tmp_STATUS_MESSAGE = 'I\'m a teapot';
+            $tmp_ERROR_CODE = '2227';
+            $tmp_ERROR_MESSAGE = 'The client IP address has straight deviated from the CRNRSTN :: PSEUDO-SOAP
+                    -SERVICES Data Tunnel Layer session initialization profile. No immediate action needs 
+                    to be taken at this time . ';
+
+        }else{
+
+            if($tmp_session_id != $tmp_SESSION_ID && strlen($tmp_SESSION_ID) > 0){
+
+                //
+                // SOFT ALERT SINCE NO USER AUTHENTICATED EXPERIENCE
+                $tmp_STATUS_TARGET_ELEMENT = 'null';
+                $tmp_STATUS = '200';
+                $tmp_STATUS_CODE = '418';
+                $tmp_STATUS_MESSAGE = 'I\'m a teapot';
+                $tmp_ERROR_CODE = '2228';
+                $tmp_ERROR_MESSAGE = 'The SESSION profile of the CRNRSTN :: PSEUDO-SOAP-SERVICES 
+                    Data Tunnel Layer Packet has straight deviated from the server process currently running the 
+                    PSSDTL profile[' . $tmp_session_id . '][' . $tmp_SESSION_ID.']. No immediate action needs to be taken at this time.';
+
+            }else{
+
+                $tmp_STATUS_TARGET_ELEMENT = 'null';
+                $tmp_STATUS = '200';
+                $tmp_STATUS_CODE = '420';
+                $tmp_STATUS_MESSAGE = 'Enhance Your Calm';
+                $tmp_ERROR_CODE = '0';
+                $tmp_ERROR_MESSAGE = '0';
+
+            }
+
+        }
+
+        /*
+
+        ' . $CANVAS_PROFILE_CONTENT . '
+        ' . $CANVAS_PROFILE_LOCK . '
+        ' . $CANVAS_PROFILE_LOCK_TTL . '
+        ' . $CANVAS_PROFILE_LOCK_ISACTIVE . '
+
+        ' . $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM . '
+        ' . $CANVAS_PROFILES_DIMENSION_POSITION_CONTENT . '
+
+        ' . $CANVAS_PROFILES_DIMENSION_POSITION_LOCK . '
+        ' . $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL . '
+        ' . $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE . '
+
+        */
+
+        // crnrstn_jony5_content_version_checksums TABLE DATA
+        $CHECKSUM_PROFILE_ID = '"CHECKSUM_PROFILE_ID" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CHECKSUM_PROFILE_ID', 0, true) . ',';
+        $PROGRAM_KEY = '"PROGRAM_KEY" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . ',';
+        $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . ',';
+
+        $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->return_ui_interact_canvas_profile_checksum() . '",';
+        $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN->return_clean_json_string($this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT')) . '",';
+        $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
+        $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
+        $CANVAS_PROFILE_LOCK_ISACTIVE = '"CANVAS_PROFILE_LOCK_ISACTIVE" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_ISACTIVE') . '",';
+
+        $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM = '"CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM') . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_CONTENT = '"CANVAS_PROFILES_DIMENSION_POSITION_CONTENT" : "' . $this->oCRNRSTN->return_clean_json_string($this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CONTENT')) . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK') . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL') . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE') . '",';
+
+        $CONTENT_CHECKSUM_TTL = '"CONTENT_CHECKSUM_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL', 0, true) . '",';
+        $TITLE_CHECKSUM = '"TITLE_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM', 0, true) . '",';
+        $TITLE_CONTENT = '"TITLE_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT', 0, true)) . ',';
+        $TITLE_CONTENT_LOCK = '"TITLE_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK', 0, true) . '",';
+        $TITLE_CONTENT_LOCK_TTL = '"TITLE_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_TTL', 0, true) . '",';
+        $TITLE_CONTENT_LOCK_ISACTIVE = '"TITLE_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $SOCIAL_CHECKSUM = '"SOCIAL_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM', 0, true) . '",';
+        $SOCIAL_CONTENT = '"SOCIAL_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT', 0, true)) . ',';
+        $SOCIAL_CONTENT_LOCK = '"SOCIAL_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK', 0, true) . '",';
+        $SOCIAL_CONTENT_LOCK_TTL = '"SOCIAL_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_TTL', 0, true) . '",';
+        $SOCIAL_CONTENT_LOCK_ISACTIVE = '"SOCIAL_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $COLORS_CHECKSUM = '"COLORS_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM', 0, true) . '",';
+        $COLORS_CONTENT = '"COLORS_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT', 0, true)) . ',';
+        $COLORS_CONTENT_LOCK = '"COLORS_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK', 0, true) . '",';
+        $COLORS_CONTENT_LOCK_TTL = '"COLORS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_TTL', 0, true) . '",';
+        $COLORS_CONTENT_LOCK_ISACTIVE = '"COLORS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $STATS_CHECKSUM = '"STATS_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM', 0, true) . '",';
+        $STATS_CONTENT = '"STATS_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT', 0, true)) . ',';
+        $STATS_CONTENT_LOCK = '"STATS_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK', 0, true) . '",';
+        $STATS_CONTENT_LOCK_TTL = '"STATS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_TTL', 0, true) . '",';
+        $STATS_CONTENT_LOCK_ISACTIVE = '"STATS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $RELAY_CHECKSUM = '"RELAY_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CHECKSUM', 0, true) . '",';
+        $RELAY_CONTENT = '"RELAY_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT', 0, true)) . ',';
+        $RELAY_CONTENT_LOCK = '"RELAY_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK', 0, true) . '",';
+        $RELAY_CONTENT_LOCK_TTL = '"RELAY_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_TTL', 0, true) . '",';
+        $RELAY_CONTENT_LOCK_ISACTIVE = '"RELAY_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $REPORTING_CHECKSUM = '"REPORTING_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CHECKSUM', 0, true) . '",';
+        $REPORTING_CONTENT = '"REPORTING_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT', 0, true)) . ',';
+        $REPORTING_CONTENT_LOCK = '"REPORTING_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK', 0, true) . '",';
+        $REPORTING_CONTENT_LOCK_TTL = '"REPORTING_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_TTL', 0, true) . '",';
+        $REPORTING_CONTENT_LOCK_ISACTIVE = '"REPORTING_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $WILDCARD_CHECKSUM = '"WILDCARD_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CHECKSUM', 0, true) . '",';
+        $WILDCARD_CONTENT = '"WILDCARD_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT', 0, true)) . ',';
+        $WILDCARD_CONTENT_LOCK = '"WILDCARD_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK', 0, true) . '",';
+        $WILDCARD_CONTENT_LOCK_TTL = '"WILDCARD_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_TTL', 0, true) . '",';
+        $WILDCARD_CONTENT_LOCK_ISACTIVE = '"WILDCARD_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATEMODIFIED = '"DATEMODIFIED" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED', 0, true) . ',';
+        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATECREATED = '"DATECREATED" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATECREATED', 0, true) . ',';
+
+        //
+        // THEORETICALLY, ALL THE DATA STORED WITHIN THE CRNRSTN :: CONFIG MANAGER
+        // AUTH'D FOR CRNRSTN_OUTPUT_PSSDTLA WOULD NEED TO BE OUTPUTTED HERE.
+        $tmp_CRNRSTN_SYSTEM_CONFIGURATION = $this->oCRNRSTN->crnrstn_data_packet_return($packet_type);
+
+        $tmp_json_data = '';
+
+        switch($packet_type){
+            case CRNRSTN_OUTPUT_RUNTIME:
+            case CRNRSTN_OUTPUT_SOAP:
+            case CRNRSTN_OUTPUT_COOKIE:
+            case CRNRSTN_OUTPUT_DATABASE:
+            case CRNRSTN_OUTPUT_GET:
+            case CRNRSTN_OUTPUT_SSDTLA:
+            case CRNRSTN_OUTPUT_ALL:
+            case CRNRSTN_OUTPUT_SESSION:
+            case CRNRSTN_OUTPUT_FORM_INTEGRATIONS:
+            case CRNRSTN_OUTPUT_PSSDTLA:
+
+                //$tmp_crnrstn_session = $this->oCRNRSTN->form_return_submitted_value('crnrstn_session');
+                /*
+
+                12/18/2021 1311 hrs
+                THANK YOU FOR YOUR SERVICES.
+
+                $tmp_json_data = '{
+                                   "ui_sync_controller_threads" : [
+                                        {
+                                        ' . $TITLE_CHECKSUM . '
+                                        ' . $SOCIAL_CHECKSUM . '
+                                        ' . $COLORS_CHECKSUM . '
+                                        ' . $STATS_CHECKSUM . '
+                                        "jony5_lifestyle_banner_checksum" : "8/16/2021 0345 :: Miss you, J5...my boy!"
+                                        }
+                                   ]
+                                }';
+
+                */
+
+                // DO WE EVEN NEED THE xxxxx_CONTENT DATA HERE SINCE THIS ENCRYPTED
+                // PACKET WILL NOT BE USED BY THE BROWSER?
+                $tmp_json_data = '{
+                    "oCRNRSTN_SESSION" : [{
+                        "SESSION_ID" : "' . $tmp_SESSION_ID . '",
+                        "CLIENT_ID" : "' . $tmp_CLIENT_ID . '",
+                        "CLIENT_IP" : "' . $tmp_CLIENT_IP . '", 
+                        "SERVER_IP" : ' . $tmp_SERVER_IP . ',
+                        "EDGE_SERVER_IP" : ' . $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']) . ',
+                        "SESSION_ID_DATEMODIFIED" : ' . $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED . ',
+                        "SESSION_ID_DATECREATED" : ' . $tmp_CRNRSTN_SESSION_DATA_DATECREATED . ',
+                        "STATUS_REPORT" : [{
+                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
+                            "STATUS_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_CODE) . '",
+                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                            },{
+                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
+                            "STATUS_CODE" : "1234567890",
+                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                            },{
+                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
+                            "STATUS_CODE" : "0987654321",
+                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                            }],
+                        "UI_SYNC_CONTROLLER_THREADS" : [{
+                            ' . $CHECKSUM_PROFILE_ID . '
+                            ' . $PROGRAM_KEY . '
+                            ' . $DEVICE_TYPE_CHANNEL . '
+                            ' . $CANVAS_PROFILE_CONTENT . '
+                            ' . $CANVAS_PROFILE_HASH . '
+                            ' . $CANVAS_PROFILE_LOCK . '
+                            ' . $CANVAS_PROFILE_LOCK_TTL . '
+                            ' . $CANVAS_PROFILE_LOCK_ISACTIVE . '
+                            ' . $CANVAS_PROFILES_DIMENSION_POSITION_CONTENT . '
+                            ' . $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM . '
+                            ' . $CANVAS_PROFILES_DIMENSION_POSITION_LOCK . '
+                            ' . $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL . '
+                            ' . $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE . '
+                            ' . $CONTENT_CHECKSUM_TTL . '
+                            ' . $TITLE_CONTENT . '
+                            ' . $TITLE_CHECKSUM . '
+                            ' . $TITLE_CONTENT_LOCK . '
+                            ' . $TITLE_CONTENT_LOCK_TTL . '
+                            ' . $TITLE_CONTENT_LOCK_ISACTIVE . '
+                            ' . $SOCIAL_CONTENT . '
+                            ' . $SOCIAL_CHECKSUM . '
+                            ' . $SOCIAL_CONTENT_LOCK . '
+                            ' . $SOCIAL_CONTENT_LOCK_TTL . '
+                            ' . $SOCIAL_CONTENT_LOCK_ISACTIVE . '
+                            ' . $COLORS_CONTENT . '
+                            ' . $COLORS_CHECKSUM . '
+                            ' . $COLORS_CONTENT_LOCK . '
+                            ' . $COLORS_CONTENT_LOCK_TTL . '
+                            ' . $COLORS_CONTENT_LOCK_ISACTIVE . '
+                            ' . $STATS_CONTENT . '
+                            ' . $STATS_CHECKSUM . '
+                            ' . $STATS_CONTENT_LOCK . '
+                            ' . $STATS_CONTENT_LOCK_TTL . '
+                            ' . $STATS_CONTENT_LOCK_ISACTIVE . '
+                            ' . $RELAY_CONTENT . '
+                            ' . $RELAY_CHECKSUM . '
+                            ' . $RELAY_CONTENT_LOCK . '
+                            ' . $RELAY_CONTENT_LOCK_TTL . '
+                            ' . $RELAY_CONTENT_LOCK_ISACTIVE . '
+                            ' . $REPORTING_CONTENT . '
+                            ' . $REPORTING_CHECKSUM . '
+                            ' . $REPORTING_CONTENT_LOCK . '
+                            ' . $REPORTING_CONTENT_LOCK_TTL . '
+                            ' . $REPORTING_CONTENT_LOCK_ISACTIVE . '
+                            ' . $WILDCARD_CONTENT . '
+                            ' . $WILDCARD_CHECKSUM . '
+                            ' . $WILDCARD_CONTENT_LOCK . '
+                            ' . $WILDCARD_CONTENT_LOCK_TTL . '
+                            ' . $WILDCARD_CONTENT_LOCK_ISACTIVE . '
+                            ' . $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATEMODIFIED . '
+                            ' . $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATECREATED . '                                      
+                             "jony5_lifestyle_banner_checksum" : "8/16/2021 0345 :: Miss you, J5...my boy!"
+                             
+                        }],
+                        "ENVIRONMENTAL_CONFIGURATION" : [{
+                            ' . $tmp_CRNRSTN_SYSTEM_CONFIGURATION . '                                      
+                             "jony5_lifestyle_banner_checksum" : "8/16/2021 0345 :: Miss you, J5...my boy!"
+                             
+                        }]
+                        
+                    }]
+             
+                }';
+
+                break;
+
+        }
+
+        return $tmp_json_data;
+
+        return $tmp_pssdtl_packet_out;
+
+    }
+
+    public function ____return_crnrstn_data_packet($packet_type){
 
         /*
         crnrstn_session
@@ -1864,29 +2184,29 @@ class crnrstn_ui_tunnel_response_manager {
             if($tmp_session_count > 0){
 
                 // crnrstn_sessions TABLE DATA
-                $tmp_client_ip = $this->oCRNRSTN_USR->return_client_ip();
+                $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
                 $tmp_session_id = session_id();
-                $tmp_SESSION_ID = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'SESSION_ID', 0, true);
-                $tmp_SERVER_IP = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'SERVER_IP', 0, true);
-                $tmp_CLIENT_ID = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_ID', 0, true);
-                $tmp_CLIENT_IP = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_IP', 0, true);
-                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'DATEMODIFIED', 0, true);
-                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'DATECREATED', 0, true);
+                $tmp_SESSION_ID = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'SESSION_ID', 0, true);
+                $tmp_SERVER_IP = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'SERVER_IP', 0, true);
+                $tmp_CLIENT_ID = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_ID', 0, true);
+                $tmp_CLIENT_IP = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_IP', 0, true);
+                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'DATEMODIFIED', 0, true);
+                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'DATECREATED', 0, true);
 
             }else{
 
                 error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
 
-                $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
-                $ts_json = $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_query_date_time_stamp());
+                $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
+                $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
 
                 // crnrstn_sessions TABLE DATA
-                $tmp_client_ip = $this->oCRNRSTN_USR->return_client_ip();
+                $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
                 $tmp_session_id = session_id();
                 $tmp_SESSION_ID = $tmp_session_id;
-                $tmp_SERVER_IP = $this->oCRNRSTN_USR->return_clean_json_string($_SERVER['SERVER_ADDR']);
-                $tmp_CLIENT_ID = $this->oCRNRSTN_USR->return_clean_json_string($tmp_client_id);
-                $tmp_CLIENT_IP = $this->oCRNRSTN_USR->return_client_ip();
+                $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
+                $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
+                $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
                 $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED =  $ts_json;
                 $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
 
@@ -1896,16 +2216,16 @@ class crnrstn_ui_tunnel_response_manager {
 
             error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
 
-            $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
-            $ts_json = $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_query_date_time_stamp());
+            $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
+            $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
 
             // crnrstn_sessions TABLE DATA
-            $tmp_client_ip = $this->oCRNRSTN_USR->return_client_ip();
+            $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
             $tmp_session_id = session_id();
             $tmp_SESSION_ID = $tmp_session_id;
-            $tmp_SERVER_IP = $this->oCRNRSTN_USR->return_clean_json_string($_SERVER['SERVER_ADDR']);
-            $tmp_CLIENT_ID = $this->oCRNRSTN_USR->return_clean_json_string($tmp_client_id);
-            $tmp_CLIENT_IP = $this->oCRNRSTN_USR->return_client_ip();
+            $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
+            $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
+            $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
             $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $ts_json;
             $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
 
@@ -1971,69 +2291,69 @@ class crnrstn_ui_tunnel_response_manager {
          * */
 
         // crnrstn_jony5_content_version_checksums TABLE DATA
-        $CHECKSUM_PROFILE_ID = '"CHECKSUM_PROFILE_ID" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CHECKSUM_PROFILE_ID', 0, true) . ',';
-        $PROGRAM_KEY = '"PROGRAM_KEY" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . ',';
-        $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . ',';
+        $CHECKSUM_PROFILE_ID = '"CHECKSUM_PROFILE_ID" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CHECKSUM_PROFILE_ID', 0, true) . ',';
+        $PROGRAM_KEY = '"PROGRAM_KEY" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . ',';
+        $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . ',';
 
-        $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
-        $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT')) . '",';
-        $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
-        $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
-        $CANVAS_PROFILE_LOCK_ISACTIVE = '"CANVAS_PROFILE_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_ISACTIVE') . '",';
+        $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->return_ui_interact_canvas_profile_checksum() . '",';
+        $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN->return_clean_json_string($this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT')) . '",';
+        $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
+        $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
+        $CANVAS_PROFILE_LOCK_ISACTIVE = '"CANVAS_PROFILE_LOCK_ISACTIVE" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_ISACTIVE') . '",';
 
-        $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM = '"CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM') . '",';
-        $CANVAS_PROFILES_DIMENSION_POSITION_CONTENT = '"CANVAS_PROFILES_DIMENSION_POSITION_CONTENT" : "' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CONTENT')) . '",';
-        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK') . '",';
-        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL') . '",';
-        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE') . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM = '"CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM') . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_CONTENT = '"CANVAS_PROFILES_DIMENSION_POSITION_CONTENT" : "' . $this->oCRNRSTN->return_clean_json_string($this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CONTENT')) . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK') . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL') . '",';
+        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE') . '",';
 
-        $CONTENT_CHECKSUM_TTL = '"CONTENT_CHECKSUM_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL', 0, true) . '",';
-        $TITLE_CHECKSUM = '"TITLE_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM', 0, true) . '",';
-        $TITLE_CONTENT = '"TITLE_CONTENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT', 0, true)) . ',';
-        $TITLE_CONTENT_LOCK = '"TITLE_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK', 0, true) . '",';
-        $TITLE_CONTENT_LOCK_TTL = '"TITLE_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_TTL', 0, true) . '",';
-        $TITLE_CONTENT_LOCK_ISACTIVE = '"TITLE_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-        $SOCIAL_CHECKSUM = '"SOCIAL_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM', 0, true) . '",';
-        $SOCIAL_CONTENT = '"SOCIAL_CONTENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT', 0, true)) . ',';
-        $SOCIAL_CONTENT_LOCK = '"SOCIAL_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK', 0, true) . '",';
-        $SOCIAL_CONTENT_LOCK_TTL = '"SOCIAL_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_TTL', 0, true) . '",';
-        $SOCIAL_CONTENT_LOCK_ISACTIVE = '"SOCIAL_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-        $COLORS_CHECKSUM = '"COLORS_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM', 0, true) . '",';
-        $COLORS_CONTENT = '"COLORS_CONTENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT', 0, true)) . ',';
-        $COLORS_CONTENT_LOCK = '"COLORS_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK', 0, true) . '",';
-        $COLORS_CONTENT_LOCK_TTL = '"COLORS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_TTL', 0, true) . '",';
-        $COLORS_CONTENT_LOCK_ISACTIVE = '"COLORS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-        $STATS_CHECKSUM = '"STATS_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM', 0, true) . '",';
-        $STATS_CONTENT = '"STATS_CONTENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT', 0, true)) . ',';
-        $STATS_CONTENT_LOCK = '"STATS_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK', 0, true) . '",';
-        $STATS_CONTENT_LOCK_TTL = '"STATS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_TTL', 0, true) . '",';
-        $STATS_CONTENT_LOCK_ISACTIVE = '"STATS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-        $RELAY_CHECKSUM = '"RELAY_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CHECKSUM', 0, true) . '",';
-        $RELAY_CONTENT = '"RELAY_CONTENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT', 0, true)) . ',';
-        $RELAY_CONTENT_LOCK = '"RELAY_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK', 0, true) . '",';
-        $RELAY_CONTENT_LOCK_TTL = '"RELAY_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_TTL', 0, true) . '",';
-        $RELAY_CONTENT_LOCK_ISACTIVE = '"RELAY_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-        $REPORTING_CHECKSUM = '"REPORTING_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CHECKSUM', 0, true) . '",';
-        $REPORTING_CONTENT = '"REPORTING_CONTENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT', 0, true)) . ',';
-        $REPORTING_CONTENT_LOCK = '"REPORTING_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK', 0, true) . '",';
-        $REPORTING_CONTENT_LOCK_TTL = '"REPORTING_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_TTL', 0, true) . '",';
-        $REPORTING_CONTENT_LOCK_ISACTIVE = '"REPORTING_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-        $WILDCARD_CHECKSUM = '"WILDCARD_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CHECKSUM', 0, true) . '",';
-        $WILDCARD_CONTENT = '"WILDCARD_CONTENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT', 0, true)) . ',';
-        $WILDCARD_CONTENT_LOCK = '"WILDCARD_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK', 0, true) . '",';
-        $WILDCARD_CONTENT_LOCK_TTL = '"WILDCARD_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_TTL', 0, true) . '",';
-        $WILDCARD_CONTENT_LOCK_ISACTIVE = '"WILDCARD_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATEMODIFIED = '"DATEMODIFIED" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED', 0, true) . ',';
-        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATECREATED = '"DATECREATED" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATECREATED', 0, true) . ',';
+        $CONTENT_CHECKSUM_TTL = '"CONTENT_CHECKSUM_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL', 0, true) . '",';
+        $TITLE_CHECKSUM = '"TITLE_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM', 0, true) . '",';
+        $TITLE_CONTENT = '"TITLE_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT', 0, true)) . ',';
+        $TITLE_CONTENT_LOCK = '"TITLE_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK', 0, true) . '",';
+        $TITLE_CONTENT_LOCK_TTL = '"TITLE_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_TTL', 0, true) . '",';
+        $TITLE_CONTENT_LOCK_ISACTIVE = '"TITLE_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $SOCIAL_CHECKSUM = '"SOCIAL_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM', 0, true) . '",';
+        $SOCIAL_CONTENT = '"SOCIAL_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT', 0, true)) . ',';
+        $SOCIAL_CONTENT_LOCK = '"SOCIAL_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK', 0, true) . '",';
+        $SOCIAL_CONTENT_LOCK_TTL = '"SOCIAL_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_TTL', 0, true) . '",';
+        $SOCIAL_CONTENT_LOCK_ISACTIVE = '"SOCIAL_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $COLORS_CHECKSUM = '"COLORS_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM', 0, true) . '",';
+        $COLORS_CONTENT = '"COLORS_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT', 0, true)) . ',';
+        $COLORS_CONTENT_LOCK = '"COLORS_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK', 0, true) . '",';
+        $COLORS_CONTENT_LOCK_TTL = '"COLORS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_TTL', 0, true) . '",';
+        $COLORS_CONTENT_LOCK_ISACTIVE = '"COLORS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $STATS_CHECKSUM = '"STATS_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM', 0, true) . '",';
+        $STATS_CONTENT = '"STATS_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT', 0, true)) . ',';
+        $STATS_CONTENT_LOCK = '"STATS_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK', 0, true) . '",';
+        $STATS_CONTENT_LOCK_TTL = '"STATS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_TTL', 0, true) . '",';
+        $STATS_CONTENT_LOCK_ISACTIVE = '"STATS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $RELAY_CHECKSUM = '"RELAY_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CHECKSUM', 0, true) . '",';
+        $RELAY_CONTENT = '"RELAY_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT', 0, true)) . ',';
+        $RELAY_CONTENT_LOCK = '"RELAY_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK', 0, true) . '",';
+        $RELAY_CONTENT_LOCK_TTL = '"RELAY_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_TTL', 0, true) . '",';
+        $RELAY_CONTENT_LOCK_ISACTIVE = '"RELAY_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $REPORTING_CHECKSUM = '"REPORTING_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CHECKSUM', 0, true) . '",';
+        $REPORTING_CONTENT = '"REPORTING_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT', 0, true)) . ',';
+        $REPORTING_CONTENT_LOCK = '"REPORTING_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK', 0, true) . '",';
+        $REPORTING_CONTENT_LOCK_TTL = '"REPORTING_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_TTL', 0, true) . '",';
+        $REPORTING_CONTENT_LOCK_ISACTIVE = '"REPORTING_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $WILDCARD_CHECKSUM = '"WILDCARD_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CHECKSUM', 0, true) . '",';
+        $WILDCARD_CONTENT = '"WILDCARD_CONTENT" : ' . $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT', 0, true)) . ',';
+        $WILDCARD_CONTENT_LOCK = '"WILDCARD_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK', 0, true) . '",';
+        $WILDCARD_CONTENT_LOCK_TTL = '"WILDCARD_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_TTL', 0, true) . '",';
+        $WILDCARD_CONTENT_LOCK_ISACTIVE = '"WILDCARD_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATEMODIFIED = '"DATEMODIFIED" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED', 0, true) . ',';
+        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATECREATED = '"DATECREATED" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATECREATED', 0, true) . ',';
 
-        $tmp_CRNRSTN_ENVIRONMENTAL_RESOURCE_CONFIGURATION = $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->return_session_oDDO_profile('pssdtl');
+        $tmp_CRNRSTN_SYSTEM_CONFIGURATION = $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->return_session_oDDO_profile('pssdtl');
 
         $tmp_json_data = '';
 
         switch($packet_type){
             case 'jony5.com':
 
-                //$tmp_crnrstn_session = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_session');
+                //$tmp_crnrstn_session = $this->oCRNRSTN->form_return_submitted_value('crnrstn_session');
                 /*
 
                 12/18/2021 1311 hrs
@@ -2061,30 +2381,30 @@ class crnrstn_ui_tunnel_response_manager {
                         "CLIENT_ID" : "' . $tmp_CLIENT_ID . '",
                         "CLIENT_IP" : "' . $tmp_CLIENT_IP . '", 
                         "SERVER_IP" : ' . $tmp_SERVER_IP . ',
-                        "EDGE_SERVER_IP" : ' . $this->oCRNRSTN_USR->return_clean_json_string($_SERVER['SERVER_ADDR']) . ',
+                        "EDGE_SERVER_IP" : ' . $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']) . ',
                         "SESSION_ID_DATEMODIFIED" : ' . $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED . ',
                         "SESSION_ID_DATECREATED" : ' . $tmp_CRNRSTN_SESSION_DATA_DATECREATED . ',
                         "STATUS_REPORT" : [{
-                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
-                            "STATUS" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS) . '",
-                            "STATUS_CODE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_CODE) . '",
-                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
-                            "ERROR_CODE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_CODE) . '",
-                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
+                            "STATUS_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_CODE) . '",
+                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
                             },{
-                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
-                            "STATUS" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS) . '",
+                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
                             "STATUS_CODE" : "1234567890",
-                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
-                            "ERROR_CODE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_CODE) . '",
-                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
                             },{
-                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
-                            "STATUS" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS) . '",
+                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
                             "STATUS_CODE" : "0987654321",
-                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
-                            "ERROR_CODE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_CODE) . '",
-                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
                             }],
                         "UI_SYNC_CONTROLLER_THREADS" : [{
                             ' . $CHECKSUM_PROFILE_ID . '
@@ -2142,7 +2462,7 @@ class crnrstn_ui_tunnel_response_manager {
                              
                         }],
                         "ENVIRONMENTAL_CONFIGURATION" : [{
-                            ' . $tmp_CRNRSTN_ENVIRONMENTAL_RESOURCE_CONFIGURATION . '                                      
+                            ' . $tmp_CRNRSTN_SYSTEM_CONFIGURATION . '                                      
                              "jony5_lifestyle_banner_checksum" : "8/16/2021 0345 :: Miss you, J5...my boy!"
                              
                         }]
@@ -2159,9 +2479,8 @@ class crnrstn_ui_tunnel_response_manager {
 
     }
 
-
 //
-//    public function return_serialized_soap_data_tunnel_session($packet_type){
+//    public function return_crnrstn_data_packet($packet_type){
 //
 //        /*
 //        crnrstn_session
@@ -2192,29 +2511,29 @@ class crnrstn_ui_tunnel_response_manager {
 //            if($tmp_session_count > 0){
 //
 //                // crnrstn_sessions TABLE DATA
-//                $tmp_client_ip = $this->oCRNRSTN_USR->return_client_ip();
+//                $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
 //                $tmp_session_id = session_id();
-//                $tmp_SESSION_ID = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'SESSION_ID', 0, true);
-//                $tmp_SERVER_IP = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'SERVER_IP', 0, true);
-//                $tmp_CLIENT_ID = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_ID', 0, true);
-//                $tmp_CLIENT_IP = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_IP', 0, true);
-//                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'DATEMODIFIED', 0, true);
-//                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_SESSION_DATA', 'DATECREATED', 0, true);
+//                $tmp_SESSION_ID = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'SESSION_ID', 0, true);
+//                $tmp_SERVER_IP = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'SERVER_IP', 0, true);
+//                $tmp_CLIENT_ID = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_ID', 0, true);
+//                $tmp_CLIENT_IP = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_IP', 0, true);
+//                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'DATEMODIFIED', 0, true);
+//                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'DATECREATED', 0, true);
 //
 //            }else{
 //
 //                error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
 //
-//                $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
-//                $ts_json = $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_query_date_time_stamp());
+//                $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
+//                $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
 //
 //                // crnrstn_sessions TABLE DATA
-//                $tmp_client_ip = $this->oCRNRSTN_USR->return_client_ip();
+//                $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
 //                $tmp_session_id = session_id();
 //                $tmp_SESSION_ID = $tmp_session_id;
-//                $tmp_SERVER_IP = $this->oCRNRSTN_USR->return_clean_json_string($_SERVER['SERVER_ADDR']);
-//                $tmp_CLIENT_ID = $this->oCRNRSTN_USR->return_clean_json_string($tmp_client_id);
-//                $tmp_CLIENT_IP = $this->oCRNRSTN_USR->return_client_ip();
+//                $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
+//                $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
+//                $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
 //                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED =  $ts_json;
 //                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
 //
@@ -2224,16 +2543,16 @@ class crnrstn_ui_tunnel_response_manager {
 //
 //            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
 //
-//            $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
-//            $ts_json = $this->oCRNRSTN_USR->return_clean_json_string($this->oCRNRSTN_USR->return_query_date_time_stamp());
+//            $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
+//            $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
 //
 //            // crnrstn_sessions TABLE DATA
-//            $tmp_client_ip = $this->oCRNRSTN_USR->return_client_ip();
+//            $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
 //            $tmp_session_id = session_id();
 //            $tmp_SESSION_ID = $tmp_session_id;
-//            $tmp_SERVER_IP = $this->oCRNRSTN_USR->return_clean_json_string($_SERVER['SERVER_ADDR']);
-//            $tmp_CLIENT_ID = $this->oCRNRSTN_USR->return_clean_json_string($tmp_client_id);
-//            $tmp_CLIENT_IP = $this->oCRNRSTN_USR->return_client_ip();
+//            $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
+//            $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
+//            $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
 //            $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $ts_json;
 //            $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
 //
@@ -2299,67 +2618,67 @@ class crnrstn_ui_tunnel_response_manager {
 //         * */
 //
 //        // crnrstn_jony5_content_version_checksums TABLE DATA
-//        $CHECKSUM_PROFILE_ID = '"CHECKSUM_PROFILE_ID" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CHECKSUM_PROFILE_ID', 0, true) . ',';
-//        $PROGRAM_KEY = '"PROGRAM_KEY" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . ',';
-//        $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . ',';
+//        $CHECKSUM_PROFILE_ID = '"CHECKSUM_PROFILE_ID" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CHECKSUM_PROFILE_ID', 0, true) . ',';
+//        $PROGRAM_KEY = '"PROGRAM_KEY" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . ',';
+//        $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . ',';
 //
-//        $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
-//        $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT') . '",';
-//        $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
-//        $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
-//        $CANVAS_PROFILE_LOCK_ISACTIVE = '"CANVAS_PROFILE_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_ISACTIVE') . '",';
+//        $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->return_ui_interact_canvas_profile_checksum() . '",';
+//        $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT') . '",';
+//        $CANVAS_PROFILE_LOCK = '"CANVAS_PROFILE_LOCK" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK') . '",';
+//        $CANVAS_PROFILE_LOCK_TTL = '"CANVAS_PROFILE_LOCK_TTL" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_TTL') . '",';
+//        $CANVAS_PROFILE_LOCK_ISACTIVE = '"CANVAS_PROFILE_LOCK_ISACTIVE" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_LOCK_ISACTIVE') . '",';
 //
-//        $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM = '"CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM') . '",';
-//        $CANVAS_PROFILES_DIMENSION_POSITION_CONTENT = '"CANVAS_PROFILES_DIMENSION_POSITION_CONTENT" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CONTENT') . '",';
-//        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK') . '",';
-//        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL') . '",';
-//        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE') . '",';
+//        $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM = '"CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM') . '",';
+//        $CANVAS_PROFILES_DIMENSION_POSITION_CONTENT = '"CANVAS_PROFILES_DIMENSION_POSITION_CONTENT" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_CONTENT') . '",';
+//        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK') . '",';
+//        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL') . '",';
+//        $CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE = '"CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE" : "' . $this->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE') . '",';
 //
-//        $CONTENT_CHECKSUM_TTL = '"CONTENT_CHECKSUM_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL', 0, true) . '",';
-//        $TITLE_CHECKSUM = '"TITLE_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM', 0, true) . '",';
-//        $TITLE_CONTENT = '"TITLE_CONTENT" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT', 0, true) . ',';
-//        $TITLE_CONTENT_LOCK = '"TITLE_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK', 0, true) . '",';
-//        $TITLE_CONTENT_LOCK_TTL = '"TITLE_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_TTL', 0, true) . '",';
-//        $TITLE_CONTENT_LOCK_ISACTIVE = '"TITLE_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-//        $SOCIAL_CHECKSUM = '"SOCIAL_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM', 0, true) . '",';
-//        $SOCIAL_CONTENT = '"SOCIAL_CONTENT" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT', 0, true) . ',';
-//        $SOCIAL_CONTENT_LOCK = '"SOCIAL_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK', 0, true) . '",';
-//        $SOCIAL_CONTENT_LOCK_TTL = '"SOCIAL_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_TTL', 0, true) . '",';
-//        $SOCIAL_CONTENT_LOCK_ISACTIVE = '"SOCIAL_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-//        $COLORS_CHECKSUM = '"COLORS_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM', 0, true) . '",';
-//        $COLORS_CONTENT = '"COLORS_CONTENT" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT', 0, true) . ',';
-//        $COLORS_CONTENT_LOCK = '"COLORS_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK', 0, true) . '",';
-//        $COLORS_CONTENT_LOCK_TTL = '"COLORS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_TTL', 0, true) . '",';
-//        $COLORS_CONTENT_LOCK_ISACTIVE = '"COLORS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-//        $STATS_CHECKSUM = '"STATS_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM', 0, true) . '",';
-//        $STATS_CONTENT = '"STATS_CONTENT" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT', 0, true) . ',';
-//        $STATS_CONTENT_LOCK = '"STATS_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK', 0, true) . '",';
-//        $STATS_CONTENT_LOCK_TTL = '"STATS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_TTL', 0, true) . '",';
-//        $STATS_CONTENT_LOCK_ISACTIVE = '"STATS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-//        $RELAY_CHECKSUM = '"RELAY_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CHECKSUM', 0, true) . '",';
-//        $RELAY_CONTENT = '"RELAY_CONTENT" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT', 0, true) . ',';
-//        $RELAY_CONTENT_LOCK = '"RELAY_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK', 0, true) . '",';
-//        $RELAY_CONTENT_LOCK_TTL = '"RELAY_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_TTL', 0, true) . '",';
-//        $RELAY_CONTENT_LOCK_ISACTIVE = '"RELAY_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-//        $REPORTING_CHECKSUM = '"REPORTING_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CHECKSUM', 0, true) . '",';
-//        $REPORTING_CONTENT = '"REPORTING_CONTENT" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT', 0, true) . ',';
-//        $REPORTING_CONTENT_LOCK = '"REPORTING_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK', 0, true) . '",';
-//        $REPORTING_CONTENT_LOCK_TTL = '"REPORTING_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_TTL', 0, true) . '",';
-//        $REPORTING_CONTENT_LOCK_ISACTIVE = '"REPORTING_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-//        $WILDCARD_CHECKSUM = '"WILDCARD_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CHECKSUM', 0, true) . '",';
-//        $WILDCARD_CONTENT = '"WILDCARD_CONTENT" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT', 0, true) . ',';
-//        $WILDCARD_CONTENT_LOCK = '"WILDCARD_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK', 0, true) . '",';
-//        $WILDCARD_CONTENT_LOCK_TTL = '"WILDCARD_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_TTL', 0, true) . '",';
-//        $WILDCARD_CONTENT_LOCK_ISACTIVE = '"WILDCARD_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-//        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATEMODIFIED = '"DATEMODIFIED" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED', 0, true) . ',';
-//        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATECREATED = '"DATECREATED" : ' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATECREATED', 0, true) . ',';
+//        $CONTENT_CHECKSUM_TTL = '"CONTENT_CHECKSUM_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL', 0, true) . '",';
+//        $TITLE_CHECKSUM = '"TITLE_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM', 0, true) . '",';
+//        $TITLE_CONTENT = '"TITLE_CONTENT" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT', 0, true) . ',';
+//        $TITLE_CONTENT_LOCK = '"TITLE_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK', 0, true) . '",';
+//        $TITLE_CONTENT_LOCK_TTL = '"TITLE_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_TTL', 0, true) . '",';
+//        $TITLE_CONTENT_LOCK_ISACTIVE = '"TITLE_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+//        $SOCIAL_CHECKSUM = '"SOCIAL_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM', 0, true) . '",';
+//        $SOCIAL_CONTENT = '"SOCIAL_CONTENT" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT', 0, true) . ',';
+//        $SOCIAL_CONTENT_LOCK = '"SOCIAL_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK', 0, true) . '",';
+//        $SOCIAL_CONTENT_LOCK_TTL = '"SOCIAL_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_TTL', 0, true) . '",';
+//        $SOCIAL_CONTENT_LOCK_ISACTIVE = '"SOCIAL_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+//        $COLORS_CHECKSUM = '"COLORS_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM', 0, true) . '",';
+//        $COLORS_CONTENT = '"COLORS_CONTENT" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT', 0, true) . ',';
+//        $COLORS_CONTENT_LOCK = '"COLORS_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK', 0, true) . '",';
+//        $COLORS_CONTENT_LOCK_TTL = '"COLORS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_TTL', 0, true) . '",';
+//        $COLORS_CONTENT_LOCK_ISACTIVE = '"COLORS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+//        $STATS_CHECKSUM = '"STATS_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM', 0, true) . '",';
+//        $STATS_CONTENT = '"STATS_CONTENT" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT', 0, true) . ',';
+//        $STATS_CONTENT_LOCK = '"STATS_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK', 0, true) . '",';
+//        $STATS_CONTENT_LOCK_TTL = '"STATS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_TTL', 0, true) . '",';
+//        $STATS_CONTENT_LOCK_ISACTIVE = '"STATS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+//        $RELAY_CHECKSUM = '"RELAY_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CHECKSUM', 0, true) . '",';
+//        $RELAY_CONTENT = '"RELAY_CONTENT" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT', 0, true) . ',';
+//        $RELAY_CONTENT_LOCK = '"RELAY_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK', 0, true) . '",';
+//        $RELAY_CONTENT_LOCK_TTL = '"RELAY_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_TTL', 0, true) . '",';
+//        $RELAY_CONTENT_LOCK_ISACTIVE = '"RELAY_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+//        $REPORTING_CHECKSUM = '"REPORTING_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CHECKSUM', 0, true) . '",';
+//        $REPORTING_CONTENT = '"REPORTING_CONTENT" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT', 0, true) . ',';
+//        $REPORTING_CONTENT_LOCK = '"REPORTING_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK', 0, true) . '",';
+//        $REPORTING_CONTENT_LOCK_TTL = '"REPORTING_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_TTL', 0, true) . '",';
+//        $REPORTING_CONTENT_LOCK_ISACTIVE = '"REPORTING_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+//        $WILDCARD_CHECKSUM = '"WILDCARD_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CHECKSUM', 0, true) . '",';
+//        $WILDCARD_CONTENT = '"WILDCARD_CONTENT" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT', 0, true) . ',';
+//        $WILDCARD_CONTENT_LOCK = '"WILDCARD_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK', 0, true) . '",';
+//        $WILDCARD_CONTENT_LOCK_TTL = '"WILDCARD_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_TTL', 0, true) . '",';
+//        $WILDCARD_CONTENT_LOCK_ISACTIVE = '"WILDCARD_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+//        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATEMODIFIED = '"DATEMODIFIED" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED', 0, true) . ',';
+//        $tmp_CRNRSTN_CACHE_CHECKSUM_TTL_DATA_DATECREATED = '"DATECREATED" : ' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATECREATED', 0, true) . ',';
 //
 //        $tmp_json_data = '';
 //
 //        switch($packet_type){
 //            case 'jony5.com':
 //
-//                //$tmp_crnrstn_session = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_session');
+//                //$tmp_crnrstn_session = $this->oCRNRSTN->form_return_submitted_value('crnrstn_session');
 //                /*
 //
 //                12/18/2021 1311 hrs
@@ -2387,30 +2706,30 @@ class crnrstn_ui_tunnel_response_manager {
 //                        "CLIENT_ID" : "' . $tmp_CLIENT_ID . '",
 //                        "CLIENT_IP" : "' . $tmp_CLIENT_IP . '",
 //                        "SERVER_IP" : ' . $tmp_SERVER_IP . ',
-//                        "EDGE_SERVER_IP" : ' . $this->oCRNRSTN_USR->return_clean_json_string($_SERVER['SERVER_ADDR']) . ',
+//                        "EDGE_SERVER_IP" : ' . $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']) . ',
 //                        "SESSION_ID_DATEMODIFIED" : ' . $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED . ',
 //                        "SESSION_ID_DATECREATED" : ' . $tmp_CRNRSTN_SESSION_DATA_DATECREATED . ',
 //                        "STATUS_REPORT" : [{
-//                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
-//                            "STATUS" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS) . '",
-//                            "STATUS_CODE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_CODE) . '",
-//                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
-//                            "ERROR_CODE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_CODE) . '",
-//                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+//                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+//                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
+//                            "STATUS_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_CODE) . '",
+//                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+//                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+//                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
 //                            },{
-//                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
-//                            "STATUS" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS) . '",
+//                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+//                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
 //                            "STATUS_CODE" : "1234567890",
-//                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
-//                            "ERROR_CODE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_CODE) . '",
-//                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+//                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+//                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+//                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
 //                            },{
-//                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
-//                            "STATUS" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS) . '",
+//                            "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+//                            "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
 //                            "STATUS_CODE" : "0987654321",
-//                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
-//                            "ERROR_CODE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_CODE) . '",
-//                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+//                            "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+//                            "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+//                            "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
 //                            }],
 //                        "UI_SYNC_CONTROLLER_THREADS" : [{
 //                            ' . $CHECKSUM_PROFILE_ID . '
@@ -2655,8 +2974,8 @@ class crnrstn_ui_tunnel_response_manager {
         // PROCESS ALL QUERY TO CONNECTION(S)
         $this->oCRNRSTN_USR->process_query();
 
-        $tmp_DATEMODIFIED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED');
-        $tmp_CONTENT_CHECKSUM_TTL = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL');
+        $tmp_DATEMODIFIED = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED');
+        $tmp_CONTENT_CHECKSUM_TTL = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL');
 
         $tmp_ttl_standard = strtotime('-' . $tmp_CONTENT_CHECKSUM_TTL .' seconds');
         $tmp_content_freshness = strtotime($tmp_DATEMODIFIED);
@@ -2681,8 +3000,8 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // BUILD FRESH CONTENT AND GET FRESH CHECKSUMS FROM LATEST PRODUCTION DATA
-        $tmp_STREAM_KEY = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STREAM_KEY');
-        $tmp_TITLE = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'TITLE');
+        $tmp_STREAM_KEY = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STREAM_KEY');
+        $tmp_TITLE = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'TITLE');
 
         $tmp_show_title_ARRAY = $this->return_show_title_html($tmp_TITLE);
         $tmp_TITLE_CONTENT = $tmp_show_title_ARRAY['title'];
@@ -2698,10 +3017,10 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // GET CACHED CHECKSUMS AND COMPARE FOR DELTA DISCOVERY
-        $tmp_TITLE_CHECKSUM_CACHED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM');
-        $tmp_SOCIAL_CHECKSUM_CACHED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM');
-        $tmp_COLORS_CHECKSUM_CACHED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM');
-        $tmp_STATS_CHECKSUM_CACHED = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM');
+        $tmp_TITLE_CHECKSUM_CACHED = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM');
+        $tmp_SOCIAL_CHECKSUM_CACHED = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM');
+        $tmp_COLORS_CHECKSUM_CACHED = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM');
+        $tmp_STATS_CHECKSUM_CACHED = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM');
 
         $tmp_query_TITLE_CHECKSUM = '';
         $tmp_query_SOCIAL_CHECKSUM = '';
@@ -2746,7 +3065,7 @@ class crnrstn_ui_tunnel_response_manager {
         case 'bassdrive_stream_relays_checksum': // TABLE THIS FOR LATER
         */
 
-        $ts = $this->oCRNRSTN_USR->return_query_date_time_stamp();
+        $ts = $this->oCRNRSTN->return_query_date_time_stamp();
         $tmp_query = 'UPDATE `crnrstn_jony5_content_version_checksums`
         SET 
         ' . $tmp_query_TITLE_CHECKSUM . '
@@ -2765,45 +3084,319 @@ class crnrstn_ui_tunnel_response_manager {
 
     }
 
+
+
+    public function return_ui_interact_canvas_profile_checksum($type = 'CANVAS_PROFILE_HASH'){
+
+        switch($type){
+            case 'CANVAS_PROFILE_CONTENT':
+
+                $tmp_config_str = '';
+
+                $tmp_config_str .= $this->return_ui_interact_profile('CANVAS_PROFILE_CONTENT');
+
+                return $tmp_config_str;
+
+            break;
+            case 'CANVAS_PROFILE_LOCK':
+
+                $tmp_config_str = 0;
+
+                return $tmp_config_str;
+
+            break;
+            case 'CANVAS_PROFILE_LOCK_TTL':
+
+                $tmp_config_str = 60;
+
+                return $tmp_config_str;
+
+            break;
+            case 'CANVAS_PROFILE_LOCK_ISACTIVE':
+
+                $tmp_config_str = 0;
+
+                return $tmp_config_str;
+
+            break;
+            case 'CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM':
+
+                $tmp_config_str = '';
+                $tmp_config_str .= $this->return_ui_interact_profile('CANVAS_DIMENSIONS_AND_POSITIONS');
+
+                return $this->oCRNRSTN->hash($tmp_config_str);
+
+                /*
+
+                <theme_configuration>
+
+                    $CANVAS_PROFILES_DIMENSION_POSITION_CHECKSUM
+
+                        <mini_canvas left="84%" width="100" height="70" checksum="' . $this->oCRNRSTN->hash('10070') . '"></mini_canvas>
+                        <signin_canvas width="260" height="305" checksum="' . $this->oCRNRSTN->hash('260305') . '"></signin_canvas>
+                        <main_canvas width="1080" height="760" checksum="' . $this->oCRNRSTN->hash('1080760') . '"></main_canvas>
+                        <eula_canvas width="700" height="400" checksum="' . $this->oCRNRSTN->hash('700400') . '"></eula_canvas>
+                        <mit_license_canvas width="500" height="400" checksum="' . $this->oCRNRSTN->hash('500400') . '"></mit_license_canvas>
+
+                </theme_configuration>
+
+                */
+
+            break;
+            case 'CANVAS_PROFILES_DIMENSION_POSITION_CONTENT':
+
+                $tmp_config_str = '';
+
+                $tmp_config_str .= $this->return_ui_interact_profile('CANVAS_DIMENSIONS_AND_POSITIONS');
+
+                return $tmp_config_str;
+
+            break;
+            case 'CANVAS_PROFILES_DIMENSION_POSITION_LOCK':
+
+                $tmp_config_str = 0;
+
+                return $tmp_config_str;
+
+            break;
+            case 'CANVAS_PROFILES_DIMENSION_POSITION_LOCK_TTL':
+
+                $tmp_config_str = 60;
+
+                return $tmp_config_str;
+
+            break;
+            case 'CANVAS_PROFILES_DIMENSION_POSITION_LOCK_ISACTIVE':
+
+                $tmp_config_str = 0;
+
+                return $tmp_config_str;
+
+            break;
+            default:
+                // CANVAS_PROFILE_HASH
+
+                $tmp_config_str = '';
+
+                //UI_INTERACT_CANVAS_Z_INDEX
+                $tmp_config_str .= $this->return_ui_interact_profile('Z_INDEX');
+                $tmp_config_str .= $this->return_ui_interact_profile('WINDOW_EDGE_PADDING');
+                $tmp_config_str .= $this->return_ui_interact_profile('OUTLINE_BORDER_EDGE_LINE_WIDTH');
+                $tmp_config_str .= $this->return_ui_interact_profile('OUTLINE_BORDER_EDGE_LINE_STYLE');
+                $tmp_config_str .= $this->return_ui_interact_profile('OUTLINE_BORDER_EDGE_LINE_COLOR');
+                $tmp_config_str .= $this->return_ui_interact_profile('BORDER_WIDTH');
+                $tmp_config_str .= $this->return_ui_interact_profile('BORDER_COLOR');
+                $tmp_config_str .= $this->return_ui_interact_profile('BORDER_OPACITY');
+                $tmp_config_str .= $this->return_ui_interact_profile('BACKGROUND_COLOR');
+                $tmp_config_str .= $this->return_ui_interact_profile('BACKGROUND_OPACITY');
+                $tmp_config_str .= $this->return_ui_interact_profile('INNER_CONTENT_EDGE_PADDING');
+
+                return $this->oCRNRSTN->hash($tmp_config_str);
+
+                /*
+
+                06/25/2022 @ 1914 hrs
+                $CANVAS_PROFILE_HASH
+                    <canvas
+                        z_index="60"
+                        window_edge_padding="20"
+                        outline_border_edge_line_width="2"
+                        outline_border_edge_line_style="solid"
+                        outline_border_edge_line_color="#767676"
+                        border_width="10"
+                        border_color="#FFF"
+                        border_opacity="0.3"
+                        background_color="#FFF"
+                        background_opacity="1"
+                        inner_content_edge_padding="25"
+                        hash="' . $this->oCRNRSTN->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
+
+                */
+
+            break;
+
+        }
+
+    }
+
+    public function return_ui_interact_profile($config_profile_key = 'FULL'){
+
+        /*
+        <state_synchronization_data>
+            <crnrstn_ui_interact_profile>
+                ' . $tmp_CRNRSTN_UI_INTERACT . '
+            </crnrstn_ui_interact_profile>
+        </state_synchronization_data>
+
+        .crnrstn_ui_interact_wrapper                    { position:-webkit-sticky; position: sticky; bottom:5px; z-index: 60; width: 100px; left: 84%; height: 70px; padding: 0 0 20px 0; left:-3000px; width:0; height: 0; overflow: hidden;}
+        .crnrstn_ui_interact                            { }
+        .crnrstn_ui_interact_bg_border                  { position: absolute; width:100px; height: 70px; border: 2px solid #767676; background-color: #FFF; opacity: 0.3; }
+        .crnrstn_ui_interact_bg_solid                   { position: absolute; width: 85px; height:46px; background-color: #FFF; opacity: 1; margin: 8px; padding: 11px 0 0 2px; cursor:pointer; }
+
+        .crnrstn_ui_interact_content_wrapper            { position: absolute; display: none; z-index: 61; padding: 25px 0 0 25px; }
+        .crnrstn_ui_interact_content_wrapper input      { text-align: left; font-size: 20px; width: 208px; height: 34px; border:2px solid #676767; background-color: #FFF;}
+        .crnrstn_ui_interact_signin_frm_lbl             { text-align: left; font-size: 20px;}
+        .crnrstn_ui_interact_signin_frm_chkbx_eula      { float: left; width: 16px;}
+        .crnrstn_ui_interact_signin_frm_lbl_eula        { float: left; width: 80px; font-size: 18px; padding:7px 0 0 0; cursor: pointer;}
+        .crnrstn_ui_interact_signin_frm_lbl_eula a      { text-decoration: none; color: #0066CC; text-decoration: underline;}
+        .crnrstn_ui_interact_frm_submit                 { width: 115px; height: 37px; background-color: #FFF; border: 2px solid #5C98EB; cursor:pointer; }
+        .crnrstn_ui_interact_signin_frm_btn_submit      { text-align: left; font-size: 20px; color: #5C98EB; font-weight: bold; padding: 7px 0 0 17px; cursor:pointer;}
+
+        <![CDATA[           ]]>
+        */
+
+        switch($config_profile_key){
+            case 'CANVAS_DIMENSIONS_AND_POSITIONS':
+
+                $tmp_content_str = '<mini_canvas left="84%" width="118" height="179" checksum="' . $this->oCRNRSTN->hash('84%118179') . '"></mini_canvas>
+                <signin_canvas width="260" height="305" checksum="' . $this->oCRNRSTN->hash('260305') . '"></signin_canvas>
+                <main_canvas width="1080" height="760" checksum="' . $this->oCRNRSTN->hash('1080760') . '"></main_canvas>
+                <eula_canvas width="700" height="400" checksum="' . $this->oCRNRSTN->hash('700400') . '"></eula_canvas>
+                <mit_license_canvas width="500" height="400" checksum="' . $this->oCRNRSTN->hash('500400') . '"></mit_license_canvas>';
+
+                return $tmp_content_str;
+
+            break;
+            case 'Z_INDEX':
+
+                return '60';
+
+            break;
+            case 'WINDOW_EDGE_PADDING':
+
+                return '20';
+
+            break;
+            case 'OUTLINE_BORDER_EDGE_LINE_WIDTH':
+
+                return '1';
+
+            break;
+            case 'OUTLINE_BORDER_EDGE_LINE_STYLE':
+
+                return 'solid';
+
+            break;
+            case 'OUTLINE_BORDER_EDGE_LINE_COLOR':
+
+                return '#FFF';
+
+            break;
+            case 'BORDER_WIDTH':
+
+                return '10';
+
+            break;
+            case 'BORDER_COLOR':
+
+                return '#FFF';
+
+            break;
+            case 'BORDER_OPACITY':
+
+                return '0.3';
+
+            break;
+            case 'BACKGROUND_COLOR':
+
+                return '#FFF';
+
+            break;
+            case 'BACKGROUND_OPACITY':
+
+                return '1';
+
+            break;
+            case 'INNER_CONTENT_EDGE_PADDING':
+
+                return '25';
+
+            break;
+            default:
+                // FULL
+
+                /*
+                this.ui_interact_input_id_ARRAY = ['crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case',
+                    'crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case',
+                    'crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case',
+                    'crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case'];
+
+                this.ui_interact_input_type_ARRAY = ['menu',
+                    'close_x',
+                    'fs_expand',
+                    'minimize'];
+
+                See oENV->return_output_CRNRSTN_UI_INTERACT() for HTML generation of content.
+                The following will be XML output to client.
+
+                */
+
+                return '<is_enabled>' . $this->oCRNRSTN->tidy_boolean($this->oCRNRSTN->get_resource('CRNRSTN_UI_INTERACT_ENABLED'), 'string') . '</is_enabled>
+                <is_visible>' . $this->oCRNRSTN->tidy_boolean($this->oCRNRSTN->get_resource('CRNRSTN_UI_INTERACT_ISVISIBLE'), 'string') . '</is_visible>
+                <theme_configuration>
+                    <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" hash="' . $this->oCRNRSTN->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
+                    <mini_canvas left="84%" width="118" height="179" hash="' . $this->oCRNRSTN->hash('118179') . '"></mini_canvas>
+                    <signin_canvas width="260" height="305" hash="' . $this->oCRNRSTN->hash('260305') . '"></signin_canvas>
+                    <main_canvas width="1080" height="760" hash="' . $this->oCRNRSTN->hash('1080760') . '"></main_canvas>
+                    <eula_canvas width="700" height="400" hash="' . $this->oCRNRSTN->hash('700400') . '"></eula_canvas>
+                    <mit_license_canvas width="500" height="400" hash="' . $this->oCRNRSTN->hash('500400') . '"></mit_license_canvas>
+                </theme_configuration>
+                <navigation>
+                    <primary>
+                        <nav_link dom_elem_id="crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case" dom_elem_class="crnrstn_ui_interact_primary_nav_img_shell">menu</nav_link>
+                        <nav_link dom_elem_id="crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case" dom_elem_class="crnrstn_ui_interact_primary_nav_img_shell">close_x</nav_link>
+                        <nav_link dom_elem_id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case" dom_elem_class="crnrstn_ui_interact_primary_nav_img_shell">fs_expand</nav_link>
+                        <nav_link dom_elem_id="crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case" dom_elem_class="crnrstn_ui_interact_primary_nav_img_shell">minimize</nav_link>
+                    </primary>
+                </navigation>';
+
+            break;
+
+        }
+
+    }
+
     //
     // SOAP DATA TUNNEL LAYER FORM INTEGRATION PACKET GENERATION WITH FRESH CONTENT CHECKSUMS
-    public function return_sdtl_fih_encrypted_packet(){
+    public function return_crnrstn_data_packet($data_auth_profile){
 
-        $tmp_oNUSOAP_BASE = $this->oCRNRSTN_USR->return_oNUSOAP_BASE();
+        return $this->oCRNRSTN->return_crnrstn_data_packet($data_auth_profile);
 
-        $tmp_request_serialization_key = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_request_serialization_key');
-        $tmp_request_serialization_checksum = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_request_serialization_checksum');
-        $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
-        $tmp_client_auth_key = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_auth_key');
-
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', false);
-
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->return_serialized_soap_data_tunnel_session('jony5.com'), 'crnrstn_session');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', true, $_SERVER['HTTP_USER_AGENT'], 'crnrstn_soap_srvc_user_agent');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', true, $this->oCRNRSTN_USR->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', true, $this->oCRNRSTN_USR->starttime, 'crnrstn_soap_srvc_stime');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', true, $this->oCRNRSTN_USR->wall_time(), 'crnrstn_soap_srvc_rtime');
-        //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN_USR->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
-        //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $tmp_client_id, 'crnrstn_client_id');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $tmp_client_auth_key, 'crnrstn_client_auth_key');
-
-        $tmp_str_out = '<form action="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'soa/tunnel/" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
-            <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">SOAP_DATA_TUNNEL_LAYER_PACKET</textarea>
-            <button type="submit">SUBMIT</button>
-            <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="' . $tmp_request_serialization_key . '">
-            <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="' . $tmp_request_serialization_checksum . '">'.
-            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_soap_data_tunnel_form').'
-        </form>';
-
-        return $tmp_str_out;
+//        $tmp_oNUSOAP_BASE = $this->oCRNRSTN_USR->return_oNUSOAP_BASE();
+//
+//        $tmp_request_serialization_key = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_key');
+//        $tmp_request_serialization_checksum = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_checksum');
+//        $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
+//        $tmp_client_auth_key = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_auth_key');
+//
+//        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', true);
+//        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_checksum', true);
+//        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', false);
+//
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA));
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', true, $_SERVER['HTTP_USER_AGENT'], 'crnrstn_soap_srvc_user_agent');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', true, $this->oCRNRSTN->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', true, $this->oCRNRSTN_USR->starttime, 'crnrstn_soap_srvc_stime');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', true, $this->oCRNRSTN_USR->wall_time(), 'crnrstn_soap_srvc_rtime');
+//        //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN_USR->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
+//        //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $tmp_client_id, 'crnrstn_client_id');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $tmp_client_auth_key, 'crnrstn_client_auth_key');
+//
+//        $tmp_str_out = '<form action="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'soa/tunnel/" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
+//            <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">SOAP_DATA_TUNNEL_LAYER_PACKET</textarea>
+//            <button type="submit">SUBMIT</button>
+//            <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="' . $tmp_request_serialization_key . '">
+//            <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="' . $tmp_request_serialization_checksum . '">'.
+//            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_soap_data_tunnel_form').'
+//        </form>';
+//
+//        return $tmp_str_out;
 
     }
 
@@ -2817,8 +3410,8 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_ARRAY['TITLE_HTML'] = '0';
         $tmp_ARRAY['SOCIAL_HTML'] = '0';
         $tmp_ARRAY['COLORS_HTML'] = '0';
-        //$tmp_crnrstn_php_sessionid = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_php_sessionid');
-        $tmp_crnrstn_session = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_session');
+        //$tmp_crnrstn_php_sessionid = $this->oCRNRSTN->form_return_submitted_value('crnrstn_php_sessionid');
+        $tmp_crnrstn_session = $this->oCRNRSTN->form_return_submitted_value('crnrstn_data_packet');
 
         $tmp_crnrstn_session_ojson = json_decode($tmp_crnrstn_session, TRUE);
 
@@ -2832,60 +3425,60 @@ class crnrstn_ui_tunnel_response_manager {
 
         /*
          "oCRNRSTN_SESSION" : [{
-                    "SESSION_ID" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_SESSION_ID) . '",
-                    "CLIENT_ID" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_CLIENT_ID) . '",
-                    "CLIENT_IP" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_CLIENT_IP) .'",
-                    "SERVER_IP" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_SERVER_IP) .'",
-                    "EDGE_SERVER_IP" : "' . $this->oCRNRSTN_USR->return_clean_json_string($_SERVER['SERVER_ADDR']) .'",
-                    "SESSION_ID_DATEMODIFIED" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED) . '",
-                    "SESSION_ID_DATECREATED" : "' . $this->oCRNRSTN_USR->return_clean_json_string($tmp_CRNRSTN_SESSION_DATA_DATECREATED) . '",
+                    "SESSION_ID" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_SESSION_ID) . '",
+                    "CLIENT_ID" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_CLIENT_ID) . '",
+                    "CLIENT_IP" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_CLIENT_IP) .'",
+                    "SERVER_IP" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_SERVER_IP) .'",
+                    "EDGE_SERVER_IP" : "' . $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']) .'",
+                    "SESSION_ID_DATEMODIFIED" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED) . '",
+                    "SESSION_ID_DATECREATED" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_CRNRSTN_SESSION_DATA_DATECREATED) . '",
                     "STATUS" : "' . $this->oCRNRSTN_USR->return_json_value($tmp_STATUS) . '",
                     "STATUS_CODE" : "' . $this->oCRNRSTN_USR->return_json_value($tmp_STATUS_CODE) . '",
                     "STATUS_MESSAGE" : "' . $this->oCRNRSTN_USR->return_json_value($tmp_STATUS_MESSAGE) . '",
                     "ERROR_CODE" : "' . $this->oCRNRSTN_USR->return_json_value($tmp_ERROR_CODE) . '",
                     "ERROR_MESSAGE" : "' . $this->oCRNRSTN_USR->return_json_value($tmp_ERROR_MESSAGE) . '",
                     "UI_SYNC_CONTROLLER_THREADS" : [{
-                                $CHECKSUM_PROFILE_ID = '"CHECKSUM_PROFILE_ID" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CHECKSUM_PROFILE_ID', 0, true) . '",';
-                                $PROGRAM_KEY = '"PROGRAM_KEY" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . '",';
-                                $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . '",';
-                                $CONTENT_CHECKSUM_TTL = '"CONTENT_CHECKSUM_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL', 0, true) . '",';
-                                $TITLE_CHECKSUM = '"TITLE_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM', 0, true) . '",';
-                                $TITLE_CONTENT = '"TITLE_CONTENT" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT', 0, true) . '",';
-                                $TITLE_CONTENT_LOCK = '"TITLE_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK', 0, true) . '",';
-                                $TITLE_CONTENT_LOCK_TTL = '"TITLE_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_TTL', 0, true) . '",';
-                                $TITLE_CONTENT_LOCK_ISACTIVE = '"TITLE_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-                                $SOCIAL_CHECKSUM = '"SOCIAL_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM', 0, true) . '",';
-                                $SOCIAL_CONTENT = '"SOCIAL_CONTENT" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT', 0, true) . '",';
-                                $SOCIAL_CONTENT_LOCK = '"SOCIAL_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK', 0, true) . '",';
-                                $SOCIAL_CONTENT_LOCK_TTL = '"SOCIAL_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_TTL', 0, true) . '",';
-                                $SOCIAL_CONTENT_LOCK_ISACTIVE = '"SOCIAL_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-                                $COLORS_CHECKSUM = '"COLORS_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM', 0, true) . '",';
-                                $COLORS_CONTENT = '"COLORS_CONTENT" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT', 0, true) . '",';
-                                $COLORS_CONTENT_LOCK = '"COLORS_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK', 0, true) . '",';
-                                $COLORS_CONTENT_LOCK_TTL = '"COLORS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_TTL', 0, true) . '",';
-                                $COLORS_CONTENT_LOCK_ISACTIVE = '"COLORS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-                                $STATS_CHECKSUM = '"STATS_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM', 0, true) . '",';
-                                $STATS_CONTENT = '"STATS_CONTENT" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT', 0, true) . '",';
-                                $STATS_CONTENT_LOCK = '"STATS_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK', 0, true) . '",';
-                                $STATS_CONTENT_LOCK_TTL = '"STATS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_TTL', 0, true) . '",';
-                                $STATS_CONTENT_LOCK_ISACTIVE = '"STATS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-                                $RELAY_CHECKSUM = '"RELAY_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CHECKSUM', 0, true) . '",';
-                                $RELAY_CONTENT = '"RELAY_CONTENT" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT', 0, true) . '",';
-                                $RELAY_CONTENT_LOCK = '"RELAY_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK', 0, true) . '",';
-                                $RELAY_CONTENT_LOCK_TTL = '"RELAY_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_TTL', 0, true) . '",';
-                                $RELAY_CONTENT_LOCK_ISACTIVE = '"RELAY_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-                                $REPORTING_CHECKSUM = '"REPORTING_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CHECKSUM', 0, true) . '",';
-                                $REPORTING_CONTENT = '"REPORTING_CONTENT" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT', 0, true) . '",';
-                                $REPORTING_CONTENT_LOCK = '"REPORTING_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK', 0, true) . '",';
-                                $REPORTING_CONTENT_LOCK_TTL = '"REPORTING_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_TTL', 0, true) . '",';
-                                $REPORTING_CONTENT_LOCK_ISACTIVE = '"REPORTING_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-                                $WILDCARD_CHECKSUM = '"WILDCARD_CHECKSUM" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CHECKSUM', 0, true) . '",';
-                                $WILDCARD_CONTENT = '"WILDCARD_CONTENT" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT', 0, true) . '",';
-                                $WILDCARD_CONTENT_LOCK = '"WILDCARD_CONTENT_LOCK" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK', 0, true) . '",';
-                                $WILDCARD_CONTENT_LOCK_TTL = '"WILDCARD_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_TTL', 0, true) . '",';
-                                $WILDCARD_CONTENT_LOCK_ISACTIVE = '"WILDCARD_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
-                                $tmp_CACHE_CHECKSUM_TTL_DATA_DATEMODIFIED = '"DATEMODIFIED" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED', 0, true) . '",';
-                                $tmp_CACHE_CHECKSUM_TTL_DATA_DATECREATED = '"DATECREATED" : "' . $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATECREATED', 0, true) . '",';
+                                $CHECKSUM_PROFILE_ID = '"CHECKSUM_PROFILE_ID" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CHECKSUM_PROFILE_ID', 0, true) . '",';
+                                $PROGRAM_KEY = '"PROGRAM_KEY" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'PROGRAM_KEY', 0, true) . '",';
+                                $DEVICE_TYPE_CHANNEL = '"DEVICE_TYPE_CHANNEL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DEVICE_TYPE_CHANNEL', 0, true) . '",';
+                                $CONTENT_CHECKSUM_TTL = '"CONTENT_CHECKSUM_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'CONTENT_CHECKSUM_TTL', 0, true) . '",';
+                                $TITLE_CHECKSUM = '"TITLE_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM', 0, true) . '",';
+                                $TITLE_CONTENT = '"TITLE_CONTENT" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT', 0, true) . '",';
+                                $TITLE_CONTENT_LOCK = '"TITLE_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK', 0, true) . '",';
+                                $TITLE_CONTENT_LOCK_TTL = '"TITLE_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_TTL', 0, true) . '",';
+                                $TITLE_CONTENT_LOCK_ISACTIVE = '"TITLE_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+                                $SOCIAL_CHECKSUM = '"SOCIAL_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM', 0, true) . '",';
+                                $SOCIAL_CONTENT = '"SOCIAL_CONTENT" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT', 0, true) . '",';
+                                $SOCIAL_CONTENT_LOCK = '"SOCIAL_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK', 0, true) . '",';
+                                $SOCIAL_CONTENT_LOCK_TTL = '"SOCIAL_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_TTL', 0, true) . '",';
+                                $SOCIAL_CONTENT_LOCK_ISACTIVE = '"SOCIAL_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+                                $COLORS_CHECKSUM = '"COLORS_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM', 0, true) . '",';
+                                $COLORS_CONTENT = '"COLORS_CONTENT" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT', 0, true) . '",';
+                                $COLORS_CONTENT_LOCK = '"COLORS_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK', 0, true) . '",';
+                                $COLORS_CONTENT_LOCK_TTL = '"COLORS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_TTL', 0, true) . '",';
+                                $COLORS_CONTENT_LOCK_ISACTIVE = '"COLORS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+                                $STATS_CHECKSUM = '"STATS_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM', 0, true) . '",';
+                                $STATS_CONTENT = '"STATS_CONTENT" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT', 0, true) . '",';
+                                $STATS_CONTENT_LOCK = '"STATS_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK', 0, true) . '",';
+                                $STATS_CONTENT_LOCK_TTL = '"STATS_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_TTL', 0, true) . '",';
+                                $STATS_CONTENT_LOCK_ISACTIVE = '"STATS_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+                                $RELAY_CHECKSUM = '"RELAY_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CHECKSUM', 0, true) . '",';
+                                $RELAY_CONTENT = '"RELAY_CONTENT" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT', 0, true) . '",';
+                                $RELAY_CONTENT_LOCK = '"RELAY_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK', 0, true) . '",';
+                                $RELAY_CONTENT_LOCK_TTL = '"RELAY_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_TTL', 0, true) . '",';
+                                $RELAY_CONTENT_LOCK_ISACTIVE = '"RELAY_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'RELAY_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+                                $REPORTING_CHECKSUM = '"REPORTING_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CHECKSUM', 0, true) . '",';
+                                $REPORTING_CONTENT = '"REPORTING_CONTENT" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT', 0, true) . '",';
+                                $REPORTING_CONTENT_LOCK = '"REPORTING_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK', 0, true) . '",';
+                                $REPORTING_CONTENT_LOCK_TTL = '"REPORTING_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_TTL', 0, true) . '",';
+                                $REPORTING_CONTENT_LOCK_ISACTIVE = '"REPORTING_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'REPORTING_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+                                $WILDCARD_CHECKSUM = '"WILDCARD_CHECKSUM" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CHECKSUM', 0, true) . '",';
+                                $WILDCARD_CONTENT = '"WILDCARD_CONTENT" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT', 0, true) . '",';
+                                $WILDCARD_CONTENT_LOCK = '"WILDCARD_CONTENT_LOCK" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK', 0, true) . '",';
+                                $WILDCARD_CONTENT_LOCK_TTL = '"WILDCARD_CONTENT_LOCK_TTL" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_TTL', 0, true) . '",';
+                                $WILDCARD_CONTENT_LOCK_ISACTIVE = '"WILDCARD_CONTENT_LOCK_ISACTIVE" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'WILDCARD_CONTENT_LOCK_ISACTIVE', 0, true) . '",';
+                                $tmp_CACHE_CHECKSUM_TTL_DATA_DATEMODIFIED = '"DATEMODIFIED" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATEMODIFIED', 0, true) . '",';
+                                $tmp_CACHE_CHECKSUM_TTL_DATA_DATECREATED = '"DATECREATED" : "' . $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'DATECREATED', 0, true) . '",';
 
          * */
 
@@ -2897,13 +3490,13 @@ class crnrstn_ui_tunnel_response_manager {
             switch($content_id){
                 case 'bassdrive_title_checksum':
 
-                    $tmp_TITLE_CHECKSUM = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM');
+                    $tmp_TITLE_CHECKSUM = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CHECKSUM');
 
                     if($tmp_TITLE_CHECKSUM != $checksum){
 
                         error_log(__LINE__ . ' ui trans *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
                         $tmp_send_it = true;
-                        $tmp_TITLE_CONTENT = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT');
+                        $tmp_TITLE_CONTENT = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT');
 
                     }else{
 
@@ -2914,13 +3507,13 @@ class crnrstn_ui_tunnel_response_manager {
                 break;
                 case 'bassdrive_social_checksum':
 
-                    $tmp_SOCIAL_CHECKSUM = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM');
+                    $tmp_SOCIAL_CHECKSUM = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CHECKSUM');
 
                     if($tmp_SOCIAL_CHECKSUM != $checksum){
 
                         error_log(__LINE__ . ' ui trans *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
                         $tmp_send_it = true;
-                        $tmp_SOCIAL_CONTENT = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT');
+                        $tmp_SOCIAL_CONTENT = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT');
 
                     }else{
 
@@ -2931,13 +3524,13 @@ class crnrstn_ui_tunnel_response_manager {
                 break;
                 case 'bassdrive_locale_checksum':
 
-                    $tmp_COLORS_CHECKSUM = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM');
+                    $tmp_COLORS_CHECKSUM = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CHECKSUM');
 
                     if($tmp_COLORS_CHECKSUM != $checksum){
 
                         error_log(__LINE__ . ' ui trans *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
                         $tmp_send_it = true;
-                        $tmp_COLORS_CONTENT = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT');
+                        $tmp_COLORS_CONTENT = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT');
 
                     }else{
 
@@ -2948,7 +3541,7 @@ class crnrstn_ui_tunnel_response_manager {
                 break;
                 case 'bassdrive_stats_checksum':
 
-                    $tmp_STATS_CHECKSUM = $this->oCRNRSTN_USR->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM');
+                    $tmp_STATS_CHECKSUM = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CHECKSUM');
 
                     if($tmp_STATS_CHECKSUM != $checksum){
 
@@ -2967,7 +3560,7 @@ class crnrstn_ui_tunnel_response_manager {
 
             if($output_format == 'array'){
 
-                $tmp_ARRAY['SSDTL_FIHP'] = $this->return_sdtl_fih_encrypted_packet();
+                $tmp_ARRAY['SSDTL_FIHP'] = $this->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA);
                 $tmp_ARRAY['TITLE_HTML'] = $tmp_TITLE_CONTENT;
                 $tmp_ARRAY['SOCIAL_HTML'] = $tmp_SOCIAL_CONTENT;
                 $tmp_ARRAY['COLORS_HTML'] = $tmp_COLORS_CONTENT;
@@ -2976,7 +3569,7 @@ class crnrstn_ui_tunnel_response_manager {
 
             }else{
 
-                return $this->return_sdtl_fih_encrypted_packet();
+                return $this->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA);
 
             }
 
@@ -3029,9 +3622,9 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_is_error_code = '0';
         $tmp_is_error_message = '0';
 
-        $tmp_crnrstn_soap_srvc_client_ip = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_soap_srvc_client_ip');
+        $tmp_crnrstn_soap_srvc_client_ip = $this->oCRNRSTN->form_return_submitted_value('crnrstn_soap_srvc_client_ip');
 
-        if($tmp_crnrstn_soap_srvc_client_ip != $this->oCRNRSTN_USR->return_client_ip()){
+        if($tmp_crnrstn_soap_srvc_client_ip != $this->oCRNRSTN->return_client_ip()){
 
             //
             // SOFT ALERT SINCE NO USER AUTHENTICATED EXPERIENCE
@@ -3059,7 +3652,7 @@ class crnrstn_ui_tunnel_response_manager {
     public function soap_data_tunnel_layer_response(){
 
         $tmp_xml_response = '';
-        //$tmp_crnrstn_session = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_session');
+        //$tmp_crnrstn_session = $this->oCRNRSTN->form_return_submitted_value('crnrstn_session');
 
         //
         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
@@ -3069,11 +3662,11 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_request_authorization_key = $this->oCRNRSTN_USR->generate_new_key(128);
         $tmp_device_type_bit = $this->oCRNRSTN_USR->device_type_bit;
 
-        $tmp_request_serialization_key = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_request_serialization_key');
-        $tmp_request_serialization_checksum = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_request_serialization_checksum');
+        $tmp_request_serialization_key = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_key');
+        $tmp_request_serialization_checksum = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_checksum');
 
-        $tmp_client_id = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_id');
-        $tmp_client_auth_key = $this->oCRNRSTN_USR->return_http_form_integration_input_val('crnrstn_client_auth_key');
+        $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
+        $tmp_client_auth_key = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_auth_key');
 
         $tmp_CRNRSTN_UI_INTERACT = $this->oCRNRSTN_USR->return_ui_interact_profile();
 
@@ -3116,18 +3709,18 @@ class crnrstn_ui_tunnel_response_manager {
 
         }
 
-        $tmp_BASSDRIVE_LOG_ID = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'BASSDRIVE_LOG_ID');
-        $tmp_STREAM_KEY = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'STREAM_KEY');
+        $tmp_BASSDRIVE_LOG_ID = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'BASSDRIVE_LOG_ID');
+        $tmp_STREAM_KEY = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STREAM_KEY');
 
         //
         // CAUTION :: $tmp_TITLE_DATA IS NEEDED FOR BUILDING SOME META CONTENT (SEE $tmp_show_title_ARRAY[IS_LIVE]),
         // BUT IT (AND A FEW OTHERS) DOES/DO NOT UPDATE WITH CACHE CHANGE, SO IT MAY BE INCORRECT FOR FIRST REQUEST
         // AFTER CHANGE IN THAT CONTENT...I.E. BASSDRIVE SHOW TRANSITIONS.
-        $tmp_TITLE_DATA = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'TITLE');
+        $tmp_TITLE_DATA = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'TITLE');
         $tmp_title = '<title ttl="45"><![CDATA[' . $tmp_TITLE_DATA . ']]></title>';
 
-        //$tmp_DATEMODIFIED = $this->oCRNRSTN_USR->return_database_value('BASSDRIVE_LOG_DATA', 'DATEMODIFIED');
-        $tmp_DATEMODIFIED = $this->oCRNRSTN_USR->return_database_value('RELAY_CURRENT_DATA', 'DATEMODIFIED');
+        //$tmp_DATEMODIFIED = $this->oCRNRSTN->return_database_value('BASSDRIVE_LOG_DATA', 'DATEMODIFIED');
+        $tmp_DATEMODIFIED = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'DATEMODIFIED');
 
         $tmp_show_title_ARRAY = $this->return_show_title_html($tmp_TITLE_DATA);
         $tmp_bassdrive_situation_ARRAY = $this->return_bassdrive_situation_ARRAY(3);
@@ -3136,8 +3729,8 @@ class crnrstn_ui_tunnel_response_manager {
 
         $tmp_social_endpoint = $this->return_show_social_html($tmp_STREAM_KEY, $tmp_TITLE_DATA, 'true');
 
-        $tmp_locale_city_state = '<locale_city_province ttl="45"><![CDATA[' . $this->oCRNRSTN_USR->return_database_value('RELAY_LOCALE_DATA', 'LOCALE_COPY') . ']]></locale_city_province>';
-        $tmp_locale_nation = '<locale_nation ttl="45" url="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_FILENAME') . '">' . $this->oCRNRSTN_USR->return_database_value('RELAY_COLORS_DATA', 'STREAM_COLORS_KEY') . '</locale_nation>';
+        $tmp_locale_city_state = '<locale_city_province ttl="45"><![CDATA[' . $this->oCRNRSTN->return_database_value('RELAY_LOCALE_DATA', 'LOCALE_COPY') . ']]></locale_city_province>';
+        $tmp_locale_nation = '<locale_nation ttl="45" url="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'COLORS_IMG_FILENAME') . '">' . $this->oCRNRSTN->return_database_value('RELAY_COLORS_DATA', 'STREAM_COLORS_KEY') . '</locale_nation>';
 
         $tmp_STREAM_RELAY_ARRAY = $this->return_stream_relay();
         $tmp_STREAM_RELAY_RECENT_ARRAY = $this->return_stream_relay_recent();
@@ -3168,7 +3761,7 @@ class crnrstn_ui_tunnel_response_manager {
             <client_auth_key>' . $tmp_client_auth_key. '</client_auth_key>
             <server_name>' . $_SERVER['SERVER_NAME'] . '</server_name>
             <server_ip_address>' . $_SERVER['SERVER_ADDR'] . '</server_ip_address>
-            <client_ip_address>' . $this->oCRNRSTN_USR->return_client_ip() . '</client_ip_address>
+            <client_ip_address>' . $this->oCRNRSTN->return_client_ip() . '</client_ip_address>
             <response_status>
                 ' . $tmp_status_report . '
             </response_status>
