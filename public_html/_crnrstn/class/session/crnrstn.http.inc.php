@@ -506,40 +506,63 @@ class crnrstn_http_manager {
                 break;
                 case 'P':
 
-                    if ($this->issetHTTP($_POST)) {
-                        error_log(__LINE__ . ' http CHECKING FOR PRESENCE OF $_POST...crnrstn_pssdtl_packet');
+                    if($this->issetHTTP($_POST)){
+
+                        /*
+                        'crnrstn_xhr_root', 'crnrstn_xhr_root');
+                        'crnrstn_request_serialization_key', 'crnrstn_request_serialization_key', '',CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_request_serialization_hash', 'crnrstn_request_serialization_hash', '', CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_interact_ui_link_text_click', 'crnrstn_interact_ui_link_text_click');
+                        'crnrstn_interact_ui_loadbar_progress', 'crnrstn_interact_ui_loadbar_progress');
+                        'crnrstn_interact_ui_active_nav_links', 'crnrstn_interact_ui_active_nav_links');
+                        'crnrstn_pssdtl_packet', 'crnrstn_pssdtl_packet', $this->oCRNRSTN->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA), CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_ssdtla_form_serial', 'crnrstn_ssdtla_form_serial', $this->oCRNRSTN_USR->generate_new_key(64), CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_ssdtla_timestamp', 'crnrstn_ssdtla_timestamp', $this->oCRNRSTN_USR->return_micro_time());
+                        'crnrstn_ssdtl_packet_ttl', 'crnrstn_ssdtl_packet_ttl', $this->oCRNRSTN_USR->return_ssdtl_packet_ttl(), CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_client_user_agent', 'crnrstn_client_user_agent', $_SERVER['HTTP_USER_AGENT'], CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_soap_service_server_ip', 'crnrstn_soap_service_server_ip', $_SERVER['SERVER_ADDR'], CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_soap_service_client_ip', 'crnrstn_soap_service_client_ip', $this->oCRNRSTN->return_client_ip(), CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_soap_service_stime', 'crnrstn_soap_service_stime', $this->starttime);
+                        'crnrstn_soap_service_rtime', 'crnrstn_soap_service_rtime', $this->wall_time());
+                        'crnrstn_soap_service_framework_version','crnrstn_soap_service_framework_version',$this->oCRNRSTN_USR->proper_version('SOAP'));
+                        'crnrstn_soap_service_encoding', 'crnrstn_soap_service_encoding', $this->oCRNRSTN->soap_defencoding());
+                        'crnrstn_session_client_auth_key', 'crnrstn_session_client_auth_key', $this->oCRNRSTN->session_client_auth_key, CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_session_client_id', 'crnrstn_session_client_id', $this->oCRNRSTN->session_client_id, CRNRSTN_INPUT_REQUIRED);
+                        'crnrstn_php_sessionid', 'crnrstn_php_sessionid', session_id(), CRNRSTN_INPUT_REQUIRED);
+
+                        */
 
                         //
-                        // CHECK FOR PRESENCE OF PSSDTL PACKET DATA
+                        // CRNRSTN :: WILL ONLY PROCESS DATA SENT THROUGH CRNRSTN ::
                         if($this->issetParam($_POST, 'crnrstn_pssdtl_packet')){
 
+                            error_log(__LINE__ . ' http [' . __METHOD__ . ']. crnrstn_pssdtl_packet len=['. print_r(strlen($_POST['crnrstn_pssdtl_packet']), true) .  '].');
 
-                            return '<strong>hello world!</strong>';
+                            $tmp_crnrstn_pssdtl_packet = $this->oCRNRSTN->data_decrypt($_POST['crnrstn_pssdtl_packet']);
+                            $tmp_crnrstn_pssdtl_packet_ojson = json_decode($tmp_crnrstn_pssdtl_packet, true);
+                            foreach($tmp_crnrstn_pssdtl_packet_ojson['crnrstn_data_packet'][0]['crnrstn_data_packet_ddo_elements'] as $index => $node){
 
-                            $tmp_has_getpost_data = true;
+                                $this->oCRNRSTN->print_r($node, 'CRNRSTN :: DECOUPLED DATA OBJECT ELEMENT :: CLIENT FORM SUBMISSION.', NULL, __LINE__, __METHOD__, __FILE__);
 
-                            $tmp_is_encrypted = 'true';
-//                            if ($this->issetParam($_POST, 'CRNRSTN_INTEGRATION_PACKET_ENCRYPTED')) {
-//
-//                                $tmp_is_encrypted = strtolower($this->extractData($_POST, 'crnrstn_pssdtl_packet_ENCRYPTED'));
-//
-//                            }
+                                /*
+                                Array
+                                (
+                                    [HASH] => 0a389b1122a6ac551a685ec72e3f9815
+                                    [BYTES] => 17
+                                    [KEY] => 6bf11b80ff9a878569005fa567cff252b2907bee73c0edd670a53147d07189a2::FIELD_INPUT_NAME
+                                    [TYPE] => string
+                                    [VALUE] => crnrstn_demo_city
+                                    [TTL] => 60
+                                    [AUTH_PROFILE] => 8083
+                                )
 
-                            if($tmp_is_encrypted == 'true'){
+                                */
 
-                                //error_log(__LINE__ . ' user auth  $tmp_is_encrypted is true. Decrypting crnrstn_pssdtl_packet=[' . $this->extractData($_POST, 'crnrstn_pssdtl_packet') . ']');
-                                $uri_passthrough = true;
-                                $tmp_output = $this->oCRNRSTN->data_decrypt($this->extractData($_POST, 'crnrstn_pssdtl_packet'), CRNRSTN_ENCRYPT_TUNNEL, $uri_passthrough, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
-                                //error_log(__LINE__ . ' http auth  $tmp_is_encrypted is true. DONE Decrypting crnrstn_pssdtl_packet to [' . $tmp_output . '][' . $this->extractData($_POST, 'crnrstn_pssdtl_packet') . '].');
-                                error_log(__LINE__ . ' http crnrstn_pssdtl_packet (decrypted) = [' . $tmp_output . '].');
 
-                                error_log(__LINE__ . ' http CONSUME $_POST...crnrstn_pssdtl_packet AFTER DECRYPT.');
-                                $this->consume_form_integration_packet($tmp_output, 'POST');
 
-                            } else {
+                                //$this->oCRNRSTN->add_system_resource($tmp_data_key, 'data_value_here', $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
-                                error_log(__LINE__ . ' user CONSUME $_POST...crnrstn_pssdtl_packet...AND NO DECRYPT.');
-                                $this->consume_form_integration_packet($this->extractData($_POST, 'crnrstn_pssdtl_packet'), 'POST');
+
 
                             }
 
@@ -547,7 +570,7 @@ class crnrstn_http_manager {
 
                     }
 
-                    break;
+                break;
 
             }
 
@@ -564,8 +587,8 @@ class crnrstn_http_manager {
 //                break;
 //                case 'crnrstn_validate_css':
 //
-//                    if ($this->isset_crnrstn_svc_http('POST')) {
-//                        error_log(__LINE__ . ' user POST CSS isset_crnrstn_svc_http = TRUE');
+//                    if ($this->isset_crnrstn_services_http('POST')) {
+//                        error_log(__LINE__ . ' user POST CSS isset_crnrstn_services_http = TRUE');
 //
 //                        //
 //                        // VALIDATE CSS
@@ -686,8 +709,8 @@ class crnrstn_http_manager {
 //                    case 'crnrstn_validate_css':
 ////                        error_log(__LINE__ . ' user POST CSS PROCESS = TRUE');
 ////
-////                        if ($this->isset_crnrstn_svc_http('POST')) {
-////                            error_log(__LINE__ . ' user POST CSS isset_crnrstn_svc_http = TRUE');
+////                        if ($this->isset_crnrstn_services_http('POST')) {
+////                            error_log(__LINE__ . ' user POST CSS isset_crnrstn_services_http = TRUE');
 ////
 ////                            //
 ////                            // VALIDATE CSS
@@ -862,12 +885,16 @@ class crnrstn_http_manager {
         }
 
         //
-        // STICKY LINK CHECK
+        // STICKY LINK
         if($tmp_html = $this->sticky_uri_listener()){
 
             $this->proper_response_return($tmp_html, NULL, 'RESPONSE_STICKY');
 
         }
+
+        //
+        // DATA PROCESSING
+        $this->http_data_services_initialize();
 
         //
         // SOAP SERVER INITIALIZATION PING - CRNRSTN :: SOAP SERVICES LAYER
@@ -1240,6 +1267,9 @@ class crnrstn_http_manager {
                         $tmp_crnrstn_pssdtl_packet_ojson = json_decode($tmp_crnrstn_pssdtl_packet, TRUE);
                         $raw_json_pssdtl_packet_elements = $tmp_crnrstn_pssdtl_packet_ojson['crnrstn_data_packet'][0]['crnrstn_data_packet_ddo_elements'];
 
+                        $tmp_print_out = $this->oCRNRSTN->print_r_str($tmp_crnrstn_pssdtl_packet_ojson, 'PSSDTL PACKET.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+
                         //
                         // A QUICK AND DIRTY SHORT CUT TO DOCUMENTATION BUILT ON TOP OF
                         // A STILL-UNDER-CONSTRUCTION SSDTL SITUATION. SORRY. BUT WITH
@@ -1252,7 +1282,9 @@ class crnrstn_http_manager {
 
                                 //
                                 // CLEAR DESTRUCTOR OUTPUT HERE FOR NOW.
-                                $this->oCRNRSTN->destruct_output = '';
+                                //$this->oCRNRSTN->destruct_output = '';
+                                //$this->oCRNRSTN->destruct_output = $tmp_print_out;
+
 
                                 header('Content-Type: text/html; charset=UTF-8');
                                 header('Cache-Control: no-store');
@@ -1315,6 +1347,7 @@ class crnrstn_http_manager {
             $tmp_version_soap .= $this->oNUSOAP_BASE->revision;         //' $Revision: 1.123 $';
 
             $this->oCRNRSTN->input_data_value($tmp_version_soap, 'version_soap', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
+            $this->oCRNRSTN->input_data_value($this->oNUSOAP_BASE->soap_defencoding, 'soap_defencoding', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
             //$this->consume_ddo_system_param($tmp_version_soap, 'version_soap');
             //self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_soap, 'version_soap');
 
@@ -1332,6 +1365,7 @@ class crnrstn_http_manager {
 
             $tmp_config_wsdl = $this->get_resource('WSDL_URI', 'CRNRSTN::INTEGRATIONS');
 
+            error_log(__LINE__  . ' http get_resource() call for WSDL_URI=[' . $tmp_config_wsdl . '].');
             if(!(strlen($tmp_config_wsdl) > 0)){
 
                 //
@@ -1645,7 +1679,7 @@ class crnrstn_http_manager {
 
     }
 
-    public function isset_crnrstn_svc_http(){
+    public function isset_crnrstn_services_http(){
 
         $tmp_is_valid = false;
 

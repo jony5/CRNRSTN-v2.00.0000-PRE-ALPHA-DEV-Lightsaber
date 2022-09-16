@@ -237,7 +237,7 @@ class crnrstn_view_state_controller {
             break;
             case 'crnrstn_validate_css':
 
-                //if ($this->oCRNRSTN_USR->isset_crnrstn_svc_http('POST')) {
+                //if ($this->oCRNRSTN_USR->isset_crnrstn_services_http('POST')) {
 
                     $tmp_array = array();
 
@@ -700,8 +700,8 @@ class crnrstn_view_state_controller {
                         case 'crnrstn_validate_css':
     //                        error_log(__LINE__ . ' user POST CSS PROCESS = TRUE');
     //
-    //                        if ($this->isset_crnrstn_svc_http('POST')) {
-    //                            error_log(__LINE__ . ' user POST CSS isset_crnrstn_svc_http = TRUE');
+    //                        if ($this->isset_crnrstn_services_http('POST')) {
+    //                            error_log(__LINE__ . ' user POST CSS isset_crnrstn_services_http = TRUE');
     //
     //                            //
     //                            // VALIDATE CSS

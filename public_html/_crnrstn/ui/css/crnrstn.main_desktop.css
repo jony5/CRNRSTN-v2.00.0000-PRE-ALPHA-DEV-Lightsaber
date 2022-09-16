@@ -19,7 +19,7 @@
 .crnrstn_ui_system_footer_content_wrapper           {}
 .crnrstn_ui_system_footer_content                   { float: left; width: 100%; padding: 10px 0 0 0;}
 
-.crnrstn_ui_system_footer_stache                    { float: left; padding: 0 27px 0 20px; }
+.crnrstn_ui_system_footer_stache                    { float: left; padding: 3px 27px 0 20px; }
 .crnrstn_ui_system_footer_mit                       { float: left; padding: 1px 10px 0 10px; }
 .crnrstn_ui_system_footer_mit a                     { text-decoration: none; color: #0066CC; }
 .crnrstn_ui_system_footer_download                  { float: left; padding: 1px 10px 0 10px; }

@@ -2287,8 +2287,8 @@ class crnrstn_system_image_asset_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/png/stache.png
         $tmp_filename = 'stache';
-        $tmp_width = 68;
-        $tmp_height = 22;
+        $tmp_width = 93;
+        $tmp_height = 30;
         $tmp_alt_text = 'stache';
         $tmp_title_text = 'stache';
         $tmp_link = 'http://jony5.com';
@@ -6275,7 +6275,7 @@ class crnrstn_system_image_asset_manager {
         // USE NO EXTENSION.
         //_crnrstn/ui/imgs/jpg/mag_glass_search.jpg
         $tmp_filename = 'mag_glass_search';
-        $tmp_width = 14;
+        $tmp_width = '';
         $tmp_height = 14;
         $tmp_alt_text = 'Search';
         $tmp_title_text = 'Search';

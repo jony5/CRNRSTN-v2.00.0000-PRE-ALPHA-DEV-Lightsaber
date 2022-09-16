@@ -78,7 +78,7 @@ if($tmp_decrypted_data = $oCRNRSTN_USR->data_decrypt($raw_crnrstn_pssdtl_packet)
 if($oCRNRSTN_USR->http_data_services_initialize(false, true)) {
 
     //die();
-    if ($oCRNRSTN_USR->isset_crnrstn_svc_http()) {
+    if ($oCRNRSTN_USR->isset_crnrstn_services_http()) {
 
         //
         // REMAIN STILL WHILE YOUR LIFE IS EXTRACTED

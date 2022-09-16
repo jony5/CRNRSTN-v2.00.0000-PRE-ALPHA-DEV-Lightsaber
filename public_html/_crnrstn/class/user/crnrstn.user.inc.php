@@ -84,7 +84,7 @@ class crnrstn_user{
 
     public $cache_ttl_default = 80;
     public $useCURL_default = true;
-    protected $soap_data_transport_packet_ttl = 35;
+    protected $ssdtl_packet_ttl = -1;
     protected $secret_key_override_ARRAY = array();
     protected $cipher_override_ARRAY = array();
     protected $hmac_algorithm_override_ARRAY = array();
@@ -1597,7 +1597,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         // ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
         if($this->http_data_services_initialize(true, false)) {
 
-            if($this->isset_crnrstn_svc_http()){
+            if($this->isset_crnrstn_services_http()){
 
                 //
                 // LOGIN SUCCESS PATHWAY
@@ -3956,9 +3956,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function return_soap_data_tunnel_session_ttl(){
+    public function return_ssdtl_packet_ttl(){
 
-        return $this->soap_data_transport_packet_ttl;
+        return $this->ssdtl_packet_ttl;
 
     }
     
@@ -4459,7 +4459,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
             $tmp_form_handle_hash = $this->hash($crnrstn_form_handle);
             $tmp_html_form_input_name_hash = $this->hash($field_input_name);
 
-            $tmp_data_key = 'FIELD_INPUT_NAME';
+            $tmp_data_key = 'FIELD_HIDDEN_INPUT_NAME';
             $tmp_dtf_FORM_HANDLE = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_html_form_input_name_hash;
             //if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_dtf_FORM_HANDLE)){
             if(!isset($this->oCRNRSTN->crnrstn_data_packet_spoiler_ARRAY[$tmp_form_handle_hash][$tmp_dtf_FORM_HANDLE.$tmp_data_key])){
@@ -4484,7 +4484,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
 
                 if(isset($field_input_name)){
 
-                    $tmp_data_key = 'FIELD_INPUT_ID';
+                    $tmp_data_key = 'FIELD_HIDDEN_INPUT_ID';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
                     $tmp_serialized_data_key = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                     $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$tmp_data_type_family] = $tmp_serialized_data_key;
@@ -4721,6 +4721,8 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
         $tmp_form_handle_hash = $this->oCRNRSTN->hash($crnrstn_form_handle);
 
         $tmp_pssdtlp_data = $this->oCRNRSTN->crnrstn_data_packet_return($tmp_form_handle_hash);
+
+        $tmp_hidden_input_html = $this->oCRNRSTN->crnrstn_data_packet_hidden_input_return($tmp_form_handle_hash);
 
         $tmp_pssdtlp_data_encrypted = $this->oCRNRSTN->data_encrypt($tmp_pssdtlp_data);
 
@@ -9183,6 +9185,7 @@ $tmp_data_type_family=[' . $tmp_data_type_family . '].';
                     //$tmp_revision_soap .= trim($tmp_revision_soap);
                     //$this->version_soap .= ' ' . $tmp_revision_soap;
                     $this->oCRNRSTN->input_data_value($tmp_version_soap, 'version_soap', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
+                    $this->oCRNRSTN->input_data_value($this->oNUSOAP_BASE->soap_defencoding, 'soap_defencoding', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
 
                     //$this->consume_ddo_system_param($tmp_version_soap, 'version_soap');
                     //self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_soap, 'version_soap');

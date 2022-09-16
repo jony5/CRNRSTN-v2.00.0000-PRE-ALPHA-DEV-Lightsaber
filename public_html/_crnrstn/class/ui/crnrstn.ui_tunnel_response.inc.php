@@ -309,7 +309,7 @@ class crnrstn_ui_tunnel_response_manager {
         // PROCESS ALL QUERY TO CONNECTION(S)
         $this->oCRNRSTN_USR->process_query();
 
-        //error_log(__LINE__ . ' ui trans click reporting log to [`crnrstn_stream_social_click_reporting_log_' . $tmp_TABLE_STRING_PATTERN . '`]');
+        //error_log(__LINE__ . ' ui tunnel click reporting log to [`crnrstn_stream_social_click_reporting_log_' . $tmp_TABLE_STRING_PATTERN . '`]');
 
     }
 
@@ -1438,25 +1438,25 @@ class crnrstn_ui_tunnel_response_manager {
         switch($element_type){
             case 'stream_title':
 
-                //error_log(__LINE__ . ' ui trans $element_type=[' . $element_type . ']');
+                //error_log(__LINE__ . ' ui tunnel $element_type=[' . $element_type . ']');
                 return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT');
 
             break;
             case 'stream_social':
 
-                //error_log(__LINE__ . ' ui trans $element_type=[' . $element_type . ']');
+                //error_log(__LINE__ . ' ui tunnel $element_type=[' . $element_type . ']');
                 return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT');
 
             break;
             case 'stream_colors':
 
-                //error_log(__LINE__ . ' ui trans $element_type=[' . $element_type . ']');
+                //error_log(__LINE__ . ' ui tunnel $element_type=[' . $element_type . ']');
                 return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT');
 
             break;
             case 'stream_stats':
 
-                //error_log(__LINE__ . ' ui trans $element_type=[' . $element_type . ']');
+                //error_log(__LINE__ . ' ui tunnel $element_type=[' . $element_type . ']');
                 return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT');
 
             break;
@@ -1832,66 +1832,25 @@ class crnrstn_ui_tunnel_response_manager {
 
     }
 
-    public function return_crnrstn_data_packet_json($packet_type = CRNRSTN_OUTPUT_RUNTIME){
+    public function return_crnrstn_data_packet_json($output_type = CRNRSTN_OUTPUT_RUNTIME){
 
-        if($this->oCRNRSTN->isset_query_result_set_key('CRNRSTN_SESSION_DATA')){
+        //http_data_services_initialize
 
-            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS SET!');
-            $tmp_session_count = $this->oCRNRSTN_USR->return_record_count('CRNRSTN_SESSION_DATA');
+        //if(no session data to honor...)
+        $tmp_client_ip = $this->oCRNRSTN->return_client_ip();                   // TAKE THIS FROM SESSION IF PRESENT
+        $tmp_session_id = session_id();                                         // TAKE THIS FROM SESSION IF PRESENT
 
-            if($tmp_session_count > 0){
+        //
+        // GENERATE PSSDTL JSON PACKET FOR OUTPUT.
+        $tmp_timestamp_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
+        $tmp_CLIENT_AUTH_KEY = $this->oCRNRSTN->session_client_auth_key;
+        $tmp_SESSION_ID = session_id();
+        $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
+        $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->session_client_id);
+        $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
+        $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $tmp_timestamp_json;
+        $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $tmp_timestamp_json;
 
-                // crnrstn_sessions TABLE DATA
-                $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
-                $tmp_session_id = session_id();
-                $tmp_SESSION_ID = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'SESSION_ID', 0, true);
-                $tmp_SERVER_IP = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'SERVER_IP', 0, true);
-                $tmp_CLIENT_ID = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_ID', 0, true);
-                $tmp_CLIENT_IP = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'CLIENT_IP', 0, true);
-                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'DATEMODIFIED', 0, true);
-                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $this->oCRNRSTN->return_database_value('CRNRSTN_SESSION_DATA', 'DATECREATED', 0, true);
-
-            }else{
-
-                error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
-
-                $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
-                $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
-
-                // crnrstn_sessions TABLE DATA
-                $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
-                $tmp_session_id = session_id();
-                $tmp_SESSION_ID = $tmp_session_id;
-                $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
-                $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
-                $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
-                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED =  $ts_json;
-                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
-
-            }
-
-        }else{
-
-            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
-
-            //http_data_services_initialize
-
-            $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
-            $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
-
-            // crnrstn_sessions TABLE DATA
-            $tmp_client_ip = $this->oCRNRSTN->return_client_ip();
-            $tmp_session_id = session_id();
-            $tmp_SESSION_ID = $tmp_session_id;
-            $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
-            $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
-            $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
-            $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $ts_json;
-            $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
-
-        }
-
-        error_log(__LINE__ . ' ui trans $tmp_SESSION_ID=' . $tmp_SESSION_ID);
 
         if($tmp_client_ip != $tmp_CLIENT_IP && strlen($tmp_CLIENT_IP) > 0){
 
@@ -2009,11 +1968,11 @@ class crnrstn_ui_tunnel_response_manager {
         //
         // THEORETICALLY, ALL THE DATA STORED WITHIN THE CRNRSTN :: CONFIG MANAGER
         // AUTH'D FOR CRNRSTN_OUTPUT_PSSDTLA WOULD NEED TO BE OUTPUTTED HERE.
-        $tmp_CRNRSTN_SYSTEM_CONFIGURATION = $this->oCRNRSTN->crnrstn_data_packet_return($packet_type);
+        $tmp_CRNRSTN_SYSTEM_CONFIGURATION = $this->oCRNRSTN->crnrstn_data_packet_return($output_type);
 
         $tmp_json_data = '';
 
-        switch($packet_type){
+        switch($output_type){
             case CRNRSTN_OUTPUT_RUNTIME:
             case CRNRSTN_OUTPUT_SOAP:
             case CRNRSTN_OUTPUT_COOKIE:
@@ -2050,6 +2009,7 @@ class crnrstn_ui_tunnel_response_manager {
                 $tmp_json_data = '{
                     "oCRNRSTN_SESSION" : [{
                         "SESSION_ID" : "' . $tmp_SESSION_ID . '",
+                        "CLIENT_AUTH_KEY" : "' . $tmp_CLIENT_AUTH_KEY . '",
                         "CLIENT_ID" : "' . $tmp_CLIENT_ID . '",
                         "CLIENT_IP" : "' . $tmp_CLIENT_IP . '", 
                         "SERVER_IP" : ' . $tmp_SERVER_IP . ',
@@ -2178,7 +2138,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         if($this->oCRNRSTN_USR->isset_query_result_set_key('CRNRSTN_SESSION_DATA')){
 
-            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS SET!');
+            error_log(__LINE__ . ' ui tunnel CRNRSTN_SESSION_DATA isset_query_result_set IS SET!');
             $tmp_session_count = $this->oCRNRSTN_USR->return_record_count('CRNRSTN_SESSION_DATA');
 
             if($tmp_session_count > 0){
@@ -2195,7 +2155,7 @@ class crnrstn_ui_tunnel_response_manager {
 
             }else{
 
-                error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
+                error_log(__LINE__ . ' ui tunnel CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
 
                 $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
                 $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
@@ -2214,7 +2174,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         }else{
 
-            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
+            error_log(__LINE__ . ' ui tunnel CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
 
             $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
             $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
@@ -2231,7 +2191,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         }
 
-        error_log(__LINE__ . ' ui trans $tmp_SESSION_ID=' . $tmp_SESSION_ID);
+        error_log(__LINE__ . ' ui tunnel $tmp_SESSION_ID=' . $tmp_SESSION_ID);
 
         if($tmp_client_ip != $tmp_CLIENT_IP && strlen($tmp_CLIENT_IP) > 0){
 
@@ -2505,7 +2465,7 @@ class crnrstn_ui_tunnel_response_manager {
 //
 //        if($this->oCRNRSTN_USR->isset_query_result_set_key('CRNRSTN_SESSION_DATA')){
 //
-//            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS SET!');
+//            error_log(__LINE__ . ' ui tunnel CRNRSTN_SESSION_DATA isset_query_result_set IS SET!');
 //            $tmp_session_count = $this->oCRNRSTN_USR->return_record_count('CRNRSTN_SESSION_DATA');
 //
 //            if($tmp_session_count > 0){
@@ -2522,7 +2482,7 @@ class crnrstn_ui_tunnel_response_manager {
 //
 //            }else{
 //
-//                error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
+//                error_log(__LINE__ . ' ui tunnel CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
 //
 //                $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
 //                $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
@@ -2541,7 +2501,7 @@ class crnrstn_ui_tunnel_response_manager {
 //
 //        }else{
 //
-//            error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
+//            error_log(__LINE__ . ' ui tunnel CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
 //
 //            $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
 //            $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
@@ -2558,7 +2518,7 @@ class crnrstn_ui_tunnel_response_manager {
 //
 //        }
 //
-//        error_log(__LINE__ . ' ui trans $tmp_SESSION_ID=' . $tmp_SESSION_ID);
+//        error_log(__LINE__ . ' ui tunnel $tmp_SESSION_ID=' . $tmp_SESSION_ID);
 //
 //        if($tmp_client_ip != $tmp_CLIENT_IP && strlen($tmp_CLIENT_IP) > 0){
 //
@@ -3376,7 +3336,7 @@ class crnrstn_ui_tunnel_response_manager {
 //        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session', true, $this->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA));
 //        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
 //        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
-//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
+//        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN_USR->return_ssdtl_packet_ttl(), 'crnrstn_soap_srvc_ttl');
 //        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', true, $_SERVER['HTTP_USER_AGENT'], 'crnrstn_soap_srvc_user_agent');
 //        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
 //        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', true, $this->oCRNRSTN->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
@@ -3416,12 +3376,12 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_crnrstn_session_ojson = json_decode($tmp_crnrstn_session, TRUE);
 
         //echo 'Last error: ', json_last_error_msg(), PHP_EOL, PHP_EOL;
-        error_log(__LINE__ . ' ui trans $tmp_crnrstn_session_ojson=[' . print_r($tmp_crnrstn_session_ojson, true) . ']');
+        error_log(__LINE__ . ' ui tunnel $tmp_crnrstn_session_ojson=[' . print_r($tmp_crnrstn_session_ojson, true) . ']');
         //die();
         $raw_json_ui_sync_controller_threads = $tmp_crnrstn_session_ojson['oCRNRSTN_SESSION'][0]['UI_SYNC_CONTROLLER_THREADS'];
         //$raw_json_ui_sync_controller_threads = $tmp_content_serialization['UI_SYNC_CONTROLLER_THREADS'];
 
-        //error_log(__LINE__ . ' ui trans $raw_json_ui_sync_controller_threads='.print_r($raw_json_ui_sync_controller_threads, true));
+        //error_log(__LINE__ . ' ui tunnel $raw_json_ui_sync_controller_threads='.print_r($raw_json_ui_sync_controller_threads, true));
 
         /*
          "oCRNRSTN_SESSION" : [{
@@ -3494,7 +3454,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                     if($tmp_TITLE_CHECKSUM != $checksum){
 
-                        error_log(__LINE__ . ' ui trans *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
+                        error_log(__LINE__ . ' ui tunnel *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
                         $tmp_send_it = true;
                         $tmp_TITLE_CONTENT = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT');
 
@@ -3511,7 +3471,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                     if($tmp_SOCIAL_CHECKSUM != $checksum){
 
-                        error_log(__LINE__ . ' ui trans *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
+                        error_log(__LINE__ . ' ui tunnel *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
                         $tmp_send_it = true;
                         $tmp_SOCIAL_CONTENT = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT');
 
@@ -3528,7 +3488,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                     if($tmp_COLORS_CHECKSUM != $checksum){
 
-                        error_log(__LINE__ . ' ui trans *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
+                        error_log(__LINE__ . ' ui tunnel *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
                         $tmp_send_it = true;
                         $tmp_COLORS_CONTENT = $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT');
 
@@ -3545,7 +3505,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                     if($tmp_STATS_CHECKSUM != $checksum){
 
-                        error_log(__LINE__ . ' ui trans *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
+                        error_log(__LINE__ . ' ui tunnel *** ON ACCOUNT OF [' . $content_id . '] SEND IT!!');
                         $tmp_send_it = true;
 
                     }

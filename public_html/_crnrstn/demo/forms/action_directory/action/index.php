@@ -17,7 +17,7 @@ $tmp_data = '';
 // CHECK TO SEE IF CRNRSTN FORM SUBMISSION (GET/POST) IS SET
 if($oCRNRSTN->http_data_services_initialize()){
 
-    if($oCRNRSTN->isset_crnrstn_svc_http()){
+    if($oCRNRSTN->isset_crnrstn_services_http()){
 
         echo '<div style="display:block; clear:both; height:50px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;">&nbsp;</div>';
         echo '<div style="font-weight:bold; font-family: Courier New, Courier, monospace; font-size: 18px; color: #6474db;">crnrstn_pssdtl_packet=[' . $tmp_data. ']</div>';

@@ -89,7 +89,7 @@ if($oCRNRSTN->http_data_services_initialize(true, false)) {
 
     $oCRNRSTN->error_log('System is initialized to received form data.]', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-    if($oCRNRSTN->isset_crnrstn_svc_http()) {
+    if($oCRNRSTN->isset_crnrstn_services_http()) {
 
         $oCRNRSTN->error_log('CRNRSTN :: POST DATA PACKET HAS BEEN RECEIVED.]', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 

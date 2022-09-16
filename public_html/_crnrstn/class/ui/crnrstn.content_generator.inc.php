@@ -189,7 +189,7 @@ class crnrstn_content_generator {
                 // ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
                 if($this->oCRNRSTN_USR->http_data_services_initialize()) {
 
-                    if($this->oCRNRSTN_USR->isset_crnrstn_svc_http() || $this->oCRNRSTN_USR->isset_crnrstn_svc_http('GET')) {
+                    if($this->oCRNRSTN_USR->isset_crnrstn_services_http() || $this->oCRNRSTN_USR->isset_crnrstn_services_http('GET')) {
 
                         //
                         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
@@ -494,7 +494,7 @@ class crnrstn_content_generator {
                 // ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
                 if($this->oCRNRSTN_USR->http_data_services_initialize()) {
 
-                    if($this->oCRNRSTN_USR->isset_crnrstn_svc_http() || $this->oCRNRSTN_USR->isset_crnrstn_svc_http('GET')) {
+                    if($this->oCRNRSTN_USR->isset_crnrstn_services_http() || $this->oCRNRSTN_USR->isset_crnrstn_services_http('GET')) {
 
                         //
                         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY

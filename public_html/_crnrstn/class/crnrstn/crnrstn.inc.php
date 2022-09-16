@@ -65,6 +65,7 @@ class crnrstn {
     public $oCRNRSTN_PERFORMANCE_REGULATOR;
     public $oCRNRSTN_ASSET_MGR;
     public $oCRNRSTN_LANG_MGR;
+    public $oCRNRSTN_DATA_TUNNEL_MGR;
 
     //
     // THIS CAN BE MORE ROBUST (A PRETTY HTML DOCUMENT), BUT WE SHOULD HANDLE SOAP
@@ -82,6 +83,8 @@ class crnrstn {
     protected $env_key_hash;
     protected $config_serial_hash;
     public $total_bytes_hashed = 0;
+
+    public $session_client_id;
 
     public $os_bit_size;
     public $process_id;
@@ -215,6 +218,8 @@ class crnrstn {
         // INITIALIZE CRNRSTN :: CONFIGURATION MANAGER
         self::$oCRNRSTN_CONFIG_MGR = new crnrstn_config_manager($this);
 
+        $this->oCRNRSTN_DATA_TUNNEL_MGR = new crnrstn_data_tunnel_services_manager($this);
+
         //
         // INSTANTIATE TRANSACTION RESPONSE MANAGER
         $this->oCRNRSTN_TRM = new crnrstn_ui_tunnel_response_manager($this);
@@ -320,8 +325,6 @@ class crnrstn {
 
         $_SESSION['CRNRSTN_ENV_KEY_' . $this->config_serial_hash] = $env_key;
 
-        $tmp_salt = $this->generate_new_key(128, '01');
-        $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_hash] = $tmp_salt;
 
         //
         // SPECIAL USE
@@ -544,6 +547,12 @@ class crnrstn {
 
     }
 
+    public function crnrstn_data_packet_hidden_input_return($crnrstn_form_handle){
+
+        return self::$oCRNRSTN_CONFIG_MGR->crnrstn_data_packet_hidden_input_return($crnrstn_form_handle);
+
+    }
+
     public function form_serialize_new($crnrstn_form_handle, $transport_protocol = 'POST'){
 
         return $this->oCRNRSTN_USR->form_serialize_new($crnrstn_form_handle, $transport_protocol);
@@ -606,7 +615,7 @@ class crnrstn {
 
     public function http_data_services_initialize(){
 
-        return $this->oCRNRSTN_ENV->http_data_services_initialize();
+        $this->oCRNRSTN_ENV->oHTTP_MGR->http_data_services_initialize();
 
     }
 
@@ -761,9 +770,9 @@ class crnrstn {
 
     }
 
-    public function isset_crnrstn_svc_http(){
+    public function isset_crnrstn_services_http(){
 
-        return $this->oCRNRSTN_ENV->isset_crnrstn_svc_http();
+        return $this->oCRNRSTN_ENV->isset_crnrstn_services_http();
 
     }
 
@@ -909,7 +918,7 @@ class crnrstn {
 
         //error_log(__LINE__ . ' crnstn $tmp_version_soap=' . $tmp_version_soap);
         //die();
-        if ($tmp_version_soap == $this->session_salt() || $tmp_version_soap == '') {
+        if($tmp_version_soap == $this->session_salt() || $tmp_version_soap == '') {
 
             $tmp_soap = new nusoap_base();
 
@@ -917,11 +926,37 @@ class crnrstn {
             $tmp_version_soap .= $tmp_soap->version;            //' v0.9.5';
             //$tmp_version_soap .= $tmp_soap->revision;         //' $Revision: 1.123 $';
 
+            $tmp_soap_defencoding = $tmp_soap->soap_defencoding;
+
             $this->input_data_value($tmp_version_soap, 'version_soap', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
+            $this->input_data_value($tmp_soap_defencoding, 'soap_defencoding', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
 
         }
 
         return $tmp_version_soap;
+
+    }
+
+    public function soap_defencoding(){
+
+        $tmp_soap_defencoding = self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('soap_defencoding');
+
+        if($tmp_soap_defencoding == $this->session_salt() || $tmp_soap_defencoding == '') {
+
+            $tmp_soap = new nusoap_base();
+
+            $tmp_version_soap = $tmp_soap->title;               //'NuSOAP';
+            $tmp_version_soap .= $tmp_soap->version;            //' v0.9.5';
+            //$tmp_version_soap .= $tmp_soap->revision;         //' $Revision: 1.123 $';
+
+            $tmp_soap_defencoding = $tmp_soap->soap_defencoding;
+
+            $this->input_data_value($tmp_version_soap, 'version_soap', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
+            $this->input_data_value($tmp_soap_defencoding, 'soap_defencoding', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
+
+        }
+
+        return $tmp_soap_defencoding;
 
     }
 
@@ -2418,7 +2453,7 @@ class crnrstn {
             //
             // FOR FASTEST DISCOVERY, RUN ENVIRONMENTAL DETECTION AHEAD OF INITIALIZATION OF AS MANY RESOURCE
             // DEFINITIONS AS ARCHITECTURALLY POSSIBLE...IF WE DON'T SNAG THE ENV CONFIG FROM THE SSDTLA, FIRST!
-            if ($this->detectServerEnv($env_key_hash, $data_key, $value, $required_server_matches)) {
+            if($this->detectServerEnv($env_key_hash, $data_key, $value, $required_server_matches)){
 
                 $this->env_key = $env_key;
                 $this->env_key_hash = $env_key_hash;
@@ -2427,13 +2462,10 @@ class crnrstn {
 
                 $_SESSION['CRNRSTN_ENV_KEY_' . $this->config_serial_hash] = $env_key;
 
-                $tmp_salt = $this->generate_new_key(128, '01');
-                $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_hash] = $tmp_salt;
-
-                $tmp_salt = $this->generate_new_key(128);
+                $this->session_client_id = $this->generate_new_key(128, '01');
+                $this->session_client_auth_key = $this->generate_new_key(64);
 
                 $this->encode_wheel_integrations();
-//                $this->generate_alpha_shift_key($tmp_salt,true);
 
                 $this->error_log('Environmental detection complete. Setting application server app key for CRNRSTN :: config serial [' . $this->config_serial_hash . '] to [' . $env_key_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -5471,7 +5503,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '">';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '">';
         $tmp_str_out .= print_r($output, true);
         $tmp_str_out .= '</pre>';
 
@@ -5688,7 +5720,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br($expression) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '">';
+        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression,true)) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '">';
         print_r($output);
         echo '</pre>';
 
@@ -8858,6 +8890,18 @@ class crnrstn_config_manager {
         }
 
         return true;
+
+    }
+
+    public function crnrstn_data_packet_hidden_input_return($data_key_hash){
+
+        if(is_array($data_key_hash)){
+
+            return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet_hidden_inputs', $data_key_hash[0], CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
+
+        }
+
+        return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet_hidden_inputs', $data_key_hash,CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
 
     }
 

@@ -508,12 +508,6 @@ class crnrstn_environment {
 
     }
 
-    public function http_data_services_initialize(){
-
-        return $this->oHTTP_MGR->http_data_services_initialize();
-
-    }
-
     public function consume_form_integration_packet(){
 
         return $this->oHTTP_MGR->consume_form_integration_packet();
@@ -526,9 +520,9 @@ class crnrstn_environment {
 
     }
 
-    public function isset_crnrstn_svc_http(){
+    public function isset_crnrstn_services_http(){
 
-        return $this->oHTTP_MGR->isset_crnrstn_svc_http();
+        return $this->oHTTP_MGR->isset_crnrstn_services_http();
 
     }
 
@@ -1292,51 +1286,47 @@ class crnrstn_environment {
 
         error_log(__LINE__ . ' env running [' . __METHOD__ . '].');
 
-        //$tmp_oNUSOAP_BASE = $this->oCRNRSTN_USR->return_oNUSOAP_BASE();
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', 'crnrstn_request_serialization_key', '',CRNRSTN_INPUT_REQUIRED);
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_hash', 'crnrstn_request_serialization_hash', '', CRNRSTN_INPUT_REQUIRED);
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_resource_filecache_version', 'crnrstn_resource_filecache_version');
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', 'crnrstn_interact_ui_link_text_click');
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_loadbar_progress', 'crnrstn_interact_ui_loadbar_progress');
+        $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_xhr_root', 'crnrstn_xhr_root');
 
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', 'crnrstn_interact_ui_link_text_click');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_loadbar_progress', 'crnrstn_interact_ui_loadbar_progress');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_key', 'crnrstn_request_serialization_key', '',CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_serialization_hash', 'crnrstn_request_serialization_hash', '', CRNRSTN_INPUT_REQUIRED);
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_active_nav_links', 'crnrstn_interact_ui_active_nav_links');
-        
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_data_packet', 'crnrstn_data_packet', $this->oCRNRSTN->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA));
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', 'crnrstn_soap_srvc_form_serial', $this->oCRNRSTN_USR->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', 'crnrstn_soap_srvc_timestamp', $this->oCRNRSTN_USR->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', 'crnrstn_soap_srvc_ttl', $this->oCRNRSTN_USR->return_soap_data_tunnel_session_ttl(), 'crnrstn_soap_srvc_ttl');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', 'crnrstn_soap_srvc_user_agent', $_SERVER['HTTP_USER_AGENT'], CRNRSTN_INPUT_REQUIRED);
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', 'crnrstn_soap_srvc_server_ip', $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_client_ip', 'crnrstn_soap_srvc_client_ip', $this->oCRNRSTN->return_client_ip(), 'crnrstn_soap_srvc_client_ip');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', 'crnrstn_soap_srvc_stime', $this->starttime, 'crnrstn_soap_srvc_stime');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', 'crnrstn_soap_srvc_rtime', $this->wall_time(), 'crnrstn_soap_srvc_rtime');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version','crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN_USR->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
-        //$this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_auth_key', true, $this->oCRNRSTN->generate_new_key(64), 'crnrstn_client_auth_key');
-        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_id', true, $_SESSION['CRNRSTN_CLIENT_ID_' . $this->config_serial_hash], 'crnrstn_client_id');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_pssdtl_packet', 'crnrstn_pssdtl_packet', $this->oCRNRSTN->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA), CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_ssdtla_form_serial', 'crnrstn_ssdtla_form_serial', $this->oCRNRSTN_USR->generate_new_key(64), CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_ssdtla_timestamp', 'crnrstn_ssdtla_timestamp', $this->oCRNRSTN_USR->return_micro_time());
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_ssdtl_packet_ttl', 'crnrstn_ssdtl_packet_ttl', $this->oCRNRSTN_USR->return_ssdtl_packet_ttl(), CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_client_user_agent', 'crnrstn_client_user_agent', $_SERVER['HTTP_USER_AGENT'], CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_service_server_ip', 'crnrstn_soap_service_server_ip', $_SERVER['SERVER_ADDR'], CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_service_client_ip', 'crnrstn_soap_service_client_ip', $this->oCRNRSTN->return_client_ip(), CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_service_stime', 'crnrstn_soap_service_stime', $this->starttime);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_service_rtime', 'crnrstn_soap_service_rtime', $this->wall_time());
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_service_framework_version','crnrstn_soap_service_framework_version',$this->oCRNRSTN_USR->proper_version('SOAP'));
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_service_encoding', 'crnrstn_soap_service_encoding', $this->oCRNRSTN->soap_defencoding());
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session_client_auth_key', 'crnrstn_session_client_auth_key', $this->oCRNRSTN->session_client_auth_key, CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session_client_id', 'crnrstn_session_client_id', $this->oCRNRSTN->session_client_id, CRNRSTN_INPUT_REQUIRED);
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', 'crnrstn_php_sessionid', session_id(), CRNRSTN_INPUT_REQUIRED);
 
         $tmp_str_array[] = '
-<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
         $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden">
     <form action="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'soa/tunnel/?' . $this->oCRNRSTN->session_salt() . '=" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea>
         <button type="submit">SUBMIT</button>
-        <input type="hidden" id="crnrstn_request_ajax_root" name="crnrstn_request_ajax_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?'. $this->oCRNRSTN->session_salt().'=">
+        <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?'. $this->oCRNRSTN->session_salt().'=">
         <input type="hidden" id="crnrstn_interact_ui_link_text_click" name="crnrstn_interact_ui_link_text_click" value="">
         <input type="hidden" id="crnrstn_interact_ui_loadbar_progress" name="crnrstn_interact_ui_loadbar_progress" value="">
-        <input type="hidden" id="crnrstn_interact_ui_active_nav_links" name="crnrstn_interact_ui_active_nav_links" value="">
-        <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="">
-        <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="">';
+        ';
 
          $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_soap_data_tunnel_form') . '
     </form>
     <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR') . '</div>
 </div>';
 
-        $tmp_str_array[] = '<!-- END ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL MODULE OUTPUT -->
+        $tmp_str_array[] = '<!-- END ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT -->
 ';
         return $tmp_str_array;
 
@@ -7774,7 +7764,7 @@ class crnrstn_decoupled_data_object {
         // THIS WILL BE A PAGE WIDE INDEX FOR ALL FORMS, OTHERWISE.
         if($tmp_key_chunk_ARRAY[$tmp_cnt] == 'FIELD_INPUT_NAME'){
 
-            $this->oCRNRSTN->form_integrations_data_index_ARRAY[] = $tmp_value;
+            //$this->oCRNRSTN->form_integrations_data_index_ARRAY[] = $tmp_value;
 
         }
 
@@ -7831,9 +7821,50 @@ class crnrstn_decoupled_data_object {
         }
 
         switch($data_attribute){
+            case 'crnrstn_data_packet_hidden_inputs':
+
+                $tmp_str = '';
+
+                foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY as $fihp_index => $fihp_data_key){
+
+                    if(is_array($fihp_data_key)){
+
+                        foreach($fihp_data_key as $tmp_fihp_index => $fihp_data_key_str){
+
+                            $tmp_data = $this->preach('pssdtl_packet_input', $fihp_data_key_str, $data_auth_request);
+                            if($tmp_data != $this->oCRNRSTN->session_salt()){
+
+                                //error_log(__LINE__ . ' ddo env ' . __METHOD__ . ' pssdtl_packet_input=[' . $tmp_data . ']');
+
+                                $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->received_ddo_packet_data($tmp_data, 'pssdtl_packet_input');
+
+                            }
+
+                        }
+
+                    }else{
+
+                        $tmp_data = $this->preach('pssdtl_packet_input', $fihp_data_key, $data_auth_request);
+
+                        if($tmp_data != $this->oCRNRSTN->session_salt()){
+
+                            error_log(__LINE__ . ' ddo env ' . __METHOD__ . ' pssdtl_packet_input=[' . $tmp_data . ']');
+
+                            $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->received_ddo_packet_element($tmp_data);
+
+                        }
+
+                    }
+
+                }
+
+                return $tmp_str;
+
+            break;
             case 'crnrstn_data_packet':
 
-                $tmp_crnrstn_data_packet_out = '"crnrstn_data_packet" : [
+                $tmp_crnrstn_data_packet_out = '{
+"crnrstn_data_packet" : [ {
     ';
                 $tmp_data_packet_parameter_out = '"crnrstn_data_packet_ddo_elements" : [';
 
@@ -7877,9 +7908,77 @@ class crnrstn_decoupled_data_object {
     ]';
 
                 $tmp_close .= '
-]';
+}]}';
 
                 return $tmp_crnrstn_data_packet_out . $tmp_data_packet_parameter_out . $tmp_str . $tmp_close;
+
+            break;
+            case 'pssdtl_packet_input';
+
+                $tmp_ARRAY = array();
+                $tmp_str_out = '';
+                $tmp_val = '';
+                $tmp_val_len = 0;
+
+                if(is_array($data_key)){
+
+                    // WE DO NOT PASS DATA VALUE (OR SENSITIVE META ABOUT VALUE) TO CLIENT...IF ANYTHING SAVE PSSDTLP.
+                    // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
+                    if(isset($this->data_value_ARRAY[$data_key[0]][$index])){
+
+                        $tmp_val = $this->data_value_ARRAY[$data_key[0]][$index];
+                        $tmp_val_len = strlen($tmp_val);
+
+                    }
+
+                    $tmp_ARRAY['HASH'] = $this->oCRNRSTN->hash($data_key[0] . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key[0]][$index], 'md5') . $this->data_type_ARRAY[$data_key[0]][$index], 'md5');
+                    $tmp_ARRAY['BYTES'] = $tmp_val_len;
+                    $tmp_ARRAY['KEY'] = $this->oCRNRSTN->return_clean_json_string($data_key[0]);
+                    $tmp_ARRAY['TYPE'] = $this->data_type_ARRAY[$data_key[0]][$index];
+                    $tmp_ARRAY['VALUE'] = $this->oCRNRSTN->return_clean_json_string($tmp_val);
+                    $tmp_ARRAY['TTL'] = $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key[0]][$index]);
+                    $tmp_ARRAY['AUTH_PROFILE'] = $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key[0]][$index]);
+
+                }else{
+
+                    // WE DO NOT PASS DATA VALUE (OR SENSITIVE META ABOUT VALUE) TO CLIENT...IF ANYTHING SAVE PSSDTLP.
+                    // AND I IMAGINE THE SAME KIND OF RULES WOULD APPLY TO SSDTLP
+                    if(isset($this->data_value_ARRAY[$data_key][$index])){
+
+                        $tmp_val = $this->data_value_ARRAY[$data_key][$index];
+                        $tmp_val_len = strlen($tmp_val);
+
+                    }
+
+                    if(!isset($this->data_value_ARRAY[$data_key][$index])){
+
+                        // TODO :: GET THESE ISSET CHECKS OUT OF HERE. WE ARE MISSING A USE CASE.
+                        //error_log(__LINE__ . ' ddo env data_value_ARRAY not set.');
+                        $this->data_value_ARRAY[$data_key][$index] = '';
+                        $this->ttl_profile_ARRAY[$data_key][$index] = 60;
+                        $this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_OUTPUT_FORM_INTEGRATIONS;
+
+                    }
+
+                    if(!isset($this->data_type_ARRAY[$data_key][$index])){
+
+                        //error_log(__LINE__ . ' ddo env data_type_ARRAY not set.');
+                        $this->data_type_ARRAY[$data_key][$index] = 'string';
+
+                    }
+
+                    $tmp_ARRAY['HASH'] = $this->oCRNRSTN->hash($data_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key][$index], 'md5') . $this->data_type_ARRAY[$data_key][$index], 'md5');
+                    $tmp_ARRAY['BYTES'] = $tmp_val_len;
+                    $tmp_ARRAY['KEY'] = $this->oCRNRSTN->return_clean_json_string($data_key);
+                    $tmp_ARRAY['TYPE'] = $this->data_type_ARRAY[$data_key][$index];
+                    $tmp_ARRAY['VALUE'] = $this->oCRNRSTN->return_clean_json_string($tmp_val);
+                    $tmp_ARRAY['TTL'] = $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index]);
+                    $tmp_ARRAY['AUTH_PROFILE'] = $this->oCRNRSTN->return_clean_json_string($this->data_auth_profile_ARRAY[$data_key][$index]);
+
+                }
+
+
+                return $tmp_ARRAY;
 
             break;
             case 'pssdtl_packet';
@@ -7925,8 +8024,8 @@ class crnrstn_decoupled_data_object {
                         $tmp_str_out .= '
         {
             "HASH" : "' . $this->oCRNRSTN->hash($data_key[0] . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key[0]][$index], 'md5') . $this->data_type_ARRAY[$data_key[0]][$index], 'md5') . '",
-            "BYTES" : "' . $tmp_val_len . '",
-            "KEY" : "' . $this->oCRNRSTN->return_clean_json_string($data_key[0]) . '",
+            "BYTES" : ' . $tmp_val_len . ',
+            "KEY" : ' . $this->oCRNRSTN->return_clean_json_string($data_key[0]) . ',
             "TYPE" : "' . $this->data_type_ARRAY[$data_key[0]][$index] . '",
             "VALUE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . ',
             "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key[0]][$index]) . ',
@@ -7965,8 +8064,8 @@ class crnrstn_decoupled_data_object {
                         $tmp_str_out .= '
         {
             "HASH" : "' . $this->oCRNRSTN->hash($data_key . $this->oCRNRSTN->hash($this->data_value_ARRAY[$data_key][$index], 'md5') . $this->data_type_ARRAY[$data_key][$index], 'md5') . '",
-            "BYTES" : "' . $tmp_val_len . '",
-            "KEY" : "' . $this->oCRNRSTN->return_clean_json_string($data_key) . '",
+            "BYTES" : ' . $tmp_val_len . ',
+            "KEY" : ' . $this->oCRNRSTN->return_clean_json_string($data_key) . ',
             "TYPE" : "' . $this->data_type_ARRAY[$data_key][$index] . '",
             "VALUE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_val) . ',
             "TTL" : ' . $this->oCRNRSTN->return_clean_json_string($this->ttl_profile_ARRAY[$data_key][$index]) . ',
