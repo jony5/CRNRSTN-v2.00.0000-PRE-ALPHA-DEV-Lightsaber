@@ -5754,7 +5754,7 @@ class crnrstn_environment {
 
             //
             // HOOOSTON...VE HAF PROBLEM!
-            //$this->oCRNRSTN->oCRNRSTN->error_log('CRNRSTN :: has experienced errors attempting to find the source directory, ' . $dir_path . ', within the local file system.');
+            //$this->oCRNRSTN->error_log('CRNRSTN :: has experienced errors attempting to find the source directory, ' . $dir_path . ', within the local file system.');
             $this->oCRNRSTN->print_r('NOT A DIRECTORY: ' . $dir_filepath, 'is_dir(). ', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
             if(is_file($dir_filepath) && strlen($dir_filepath) > 0){
@@ -5769,12 +5769,7 @@ class crnrstn_environment {
 
         }
 
-
-
-
         die();
-
-
 
         //$this->oCRNRSTN->print_r('Images count: [' . count($tmp_filtered_filename_ARRAY) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
@@ -6033,7 +6028,7 @@ class crnrstn_environment {
                     $replacements[2] = '';
                     $replacements[3] = '';
 
-                    break;
+                break;
                 case 'email_private':
                     $tmp_new_post_at_ARRAY = array();
                     $clean_str = '';
