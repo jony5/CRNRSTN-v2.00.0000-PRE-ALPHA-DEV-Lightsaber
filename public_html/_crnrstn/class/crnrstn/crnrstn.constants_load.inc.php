@@ -238,7 +238,9 @@ if(isset($crnrstn_initialize_bits)){
     @define('CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY', (int) crnrstn_constants_init('CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY'));
     @define('CRNRSTN_UI_TAG_ANALYTICS', (int) crnrstn_constants_init('CRNRSTN_UI_TAG_ANALYTICS'));
     @define('CRNRSTN_UI_TAG_ENGAGEMENT', (int) crnrstn_constants_init('CRNRSTN_UI_TAG_ENGAGEMENT'));
+
     @define('CRNRSTN_UI_FORM_INTEGRATION_PACKET', (int) crnrstn_constants_init('CRNRSTN_UI_FORM_INTEGRATION_PACKET'));
+
     @define('CRNRSTN_UI_COOKIE_PREFERENCE', (int) crnrstn_constants_init('CRNRSTN_UI_COOKIE_PREFERENCE'));
     @define('CRNRSTN_UI_COOKIE_YESNO', (int) crnrstn_constants_init('CRNRSTN_UI_COOKIE_YESNO'));
     @define('CRNRSTN_UI_COOKIE_NOTICE', (int) crnrstn_constants_init('CRNRSTN_UI_COOKIE_NOTICE'));
@@ -251,7 +253,9 @@ if(isset($crnrstn_initialize_bits)){
     @define('CRNRSTN_OUTPUT_ALL', (int) crnrstn_constants_init('CRNRSTN_OUTPUT_ALL'));
     @define('CRNRSTN_OUTPUT_DATABASE', (int) crnrstn_constants_init('CRNRSTN_OUTPUT_DATABASE'));
     @define('CRNRSTN_OUTPUT_SSDTLA', (int) crnrstn_constants_init('CRNRSTN_OUTPUT_SSDTLA'));
+
     @define('CRNRSTN_OUTPUT_PSSDTLA', (int) crnrstn_constants_init('CRNRSTN_OUTPUT_PSSDTLA'));
+
     @define('CRNRSTN_OUTPUT_SESSION', (int) crnrstn_constants_init('CRNRSTN_OUTPUT_SESSION'));
     @define('CRNRSTN_OUTPUT_COOKIE', (int) crnrstn_constants_init('CRNRSTN_OUTPUT_COOKIE'));
     @define('CRNRSTN_OUTPUT_SOAP', (int) crnrstn_constants_init('CRNRSTN_OUTPUT_SOAP'));

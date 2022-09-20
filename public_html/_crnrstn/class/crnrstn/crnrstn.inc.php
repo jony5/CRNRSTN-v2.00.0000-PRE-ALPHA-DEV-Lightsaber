@@ -162,6 +162,7 @@ class crnrstn {
     private static $char_01_ARRAY = array();
     private static $char_01_index_ARRAY = array();
     private static $wheel_encoder_salt;
+    public $salt_str_length = 64;
 
     public $data_packet_ttl_default;
     public $crnrstn_data_packet_data_key_index_ARRAY = array();
@@ -483,6 +484,14 @@ class crnrstn {
 
     }
 
+    public function salt($length = NULL, $chars = NULL){
+
+        $length = $this->salt_str_length;
+
+        return $this->generate_new_key($length, $chars);
+
+    }
+
     public function session_salt($type = 'NO_MATCH'){
 
         $type = strtoupper($type);
@@ -518,38 +527,47 @@ class crnrstn {
         $tmp_str_out = '';
         $tmp_ARRAY = array();
 
+        //$this->print_r($this->form_integrations_data_index_ARRAY, $crnrstn_form_handle_hash, NULL, __LINE__, __METHOD__, __FILE__);
+
         //
         // THIS SHOULD BE FORM SERIALIZED...OK FOR NOW...I GUESS. TRYING TO
         // GET TO DOCUMENTATION. Sunday, September 11, 2022 @ 2233 hrs
         //foreach($this->form_integrations_data_index_ARRAY[$crnrstn_form_handle_hash] as $index => $data_key){
-        foreach($this->form_integrations_data_index_ARRAY as $index => $data_key){
+        error_log(__LINE__ . ' crnrstn [' . print_r($this->form_integrations_data_index_ARRAY, true) . '].');
+        if(isset($this->form_integrations_data_index_ARRAY[$crnrstn_form_handle_hash])){
 
-            $tmp_str_out .= $data_key . '|::|';
-            $tmp_ARRAY[] = $data_key;
+            foreach($this->form_integrations_data_index_ARRAY[$crnrstn_form_handle_hash] as $index => $data_key){
+
+                $tmp_str_out .= $data_key . '|::|';
+                $tmp_ARRAY[] = $data_key;
+
+            }
+
+            $tmp_str_out = $this->strrtrim($tmp_str_out, '|::|');
+
+            if($output_type == 'string'){
+
+                return $tmp_str_out;
+
+            }
+
+            return $tmp_ARRAY;
 
         }
 
-        $tmp_str_out = $this->strrtrim($tmp_str_out, '|::|');
-
-        if($output_type == 'string'){
-
-            return $tmp_str_out;
-
-        }
-
-        return $tmp_ARRAY;
+        return false;
 
     }
 
-    public function crnrstn_data_packet_return($crnrstn_form_handle){
+    public function crnrstn_data_packet_return($output_channel_constant){
 
-        return self::$oCRNRSTN_CONFIG_MGR->crnrstn_data_packet_return($crnrstn_form_handle);
+        return self::$oCRNRSTN_CONFIG_MGR->crnrstn_data_packet_return($output_channel_constant);
 
     }
 
-    public function crnrstn_data_packet_hidden_input_return($crnrstn_form_handle){
+    public function crnrstn_data_packet_hidden_input_return($channel_constant, $crnrstn_form_handle){
 
-        return self::$oCRNRSTN_CONFIG_MGR->crnrstn_data_packet_hidden_input_return($crnrstn_form_handle);
+        return self::$oCRNRSTN_CONFIG_MGR->crnrstn_data_packet_hidden_input_return($channel_constant, $crnrstn_form_handle);
 
     }
 
@@ -559,15 +577,15 @@ class crnrstn {
 
     }
 
-    public function form_input_add($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+    public function form_input_add($crnrstn_form_handle = NULL, $field_input_name = NULL, $field_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
 
-        return $this->oCRNRSTN_USR->form_input_add($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
+        return $this->oCRNRSTN_USR->form_input_add($crnrstn_form_handle, $field_input_name, $field_input_id, $default_value, $validation_constant_profile, $table_field_name);
 
     }
 
-    public function form_hidden_input_add($crnrstn_form_handle = NULL, $html_form_input_name = NULL, $html_form_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+    public function form_hidden_input_add($crnrstn_form_handle = NULL, $field_input_name = NULL, $field_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL, $encrypt_data = true){
 
-        return $this->oCRNRSTN_USR->form_hidden_input_add($crnrstn_form_handle, $html_form_input_name, $html_form_input_id, $default_value, $validation_constant_profile, $table_field_name);
+        return $this->oCRNRSTN_USR->form_hidden_input_add($crnrstn_form_handle, $field_input_name, $field_input_id, $default_value, $validation_constant_profile, $table_field_name, $encrypt_data);
 
     }
 
@@ -598,6 +616,12 @@ class crnrstn {
     public function form_input_feedback_copy_add($crnrstn_form_handle, $validation_constant_profile, $field_input_name, $field_input_id = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
 
         return $this->oCRNRSTN_USR->form_input_feedback_copy_add($crnrstn_form_handle, $validation_constant_profile, $field_input_name, $field_input_id, $err_msg, $success_msg, $info_msg);
+
+    }
+
+    public function form_get_resource($crnrstn_form_handle, $input_name){
+
+        return $this->oCRNRSTN_DATA_TUNNEL_MGR->form_get_resource($crnrstn_form_handle, $input_name);
 
     }
 
@@ -731,7 +755,7 @@ class crnrstn {
 
                     }
 
-                    break;
+                break;
                 default:
 
                     //
@@ -751,10 +775,11 @@ class crnrstn {
 
                     }
 
-                    break;
+                break;
+
             }
 
-        } catch (Exception $e) {
+        }catch (Exception $e){
 
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -1258,7 +1283,7 @@ class crnrstn {
 
             if (!isset($background_noise)) {
 
-                $background_noise = strtoupper($this->generate_new_key(40 + count(self::$char_01_ARRAY)));
+                $background_noise = strtoupper($this->salt(40 + count(self::$char_01_ARRAY)));
 
             }
 
@@ -2462,8 +2487,8 @@ class crnrstn {
 
                 $_SESSION['CRNRSTN_ENV_KEY_' . $this->config_serial_hash] = $env_key;
 
-                $this->session_client_id = $this->generate_new_key(128, '01');
-                $this->session_client_auth_key = $this->generate_new_key(64);
+                $this->session_client_id = $this->salt(128, '01');
+                $this->session_client_auth_key = $this->salt();
 
                 $this->encode_wheel_integrations();
 
@@ -2736,17 +2761,9 @@ class crnrstn {
             switch ($message_type) {
                 case 'detection':
 
-                    /*
-                     <div style="text-align: left; padding: 5px 0 0 0; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px;">
-                        <span id="detection_config_' . $dom_sess_serial . '">$oCRNRSTN->config_add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
-                        <br>$oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');</span>
-                    </div>
-                    */
-
                     $tmp_str_in = '$oCRNRSTN->config_add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
 $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');';
 
-                    $dom_sess_serial = $this->generate_new_key(26, '01');
                     $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
 
                     // FYI,...COULD ALSO CALL: $this->spool_destruct_output($str);
@@ -2763,7 +2780,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '
-        <br>// File Source: ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 541].' . '       
+        <br>// File Source: ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 548].' . '       
         <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_CONFIG_REFERENCE_PLEASE_SEE') . '
          
     </div>
@@ -2794,11 +2811,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     break;
                 default:
 
-                    $tmp_serial_str_len = 64;
                     // $CRNRSTN_config_serial = '[n2X0@F2=?C8[-8ij5X6k*4k8XT}uuDQ{ZHkCr*KK5!sT%Z~cdGylAx(8WVYPb@N';
-                    $tmp_serial = $this->generate_new_key($tmp_serial_str_len, -2);
-                    $dom_sess_serial = $this->generate_new_key(26, '01');
-
+                    $tmp_serial = $this->salt(NULL, -2);
                     $tmp_str_in = '$CRNRSTN_config_serial = \'' . $tmp_serial . '\';';
 
                     $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
@@ -5409,7 +5423,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $lineHTML = implode('<br />', range(1, $tmp_line_cnt + 0));
 
-        $tmp_hash = $this->generate_new_key(42, '01');
+        $tmp_hash = $this->salt(42, '01');
 
         $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
@@ -5624,7 +5638,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $lineHTML = implode('<br />', range(1, $tmp_line_cnt + 0));
 
-        $tmp_hash = $this->generate_new_key(42, '01');
+        $tmp_hash = $this->salt(42, '01');
 
         //
         // NOTHING COULD BE DARKER. NOTHING.
@@ -8794,7 +8808,7 @@ class crnrstn_config_manager {
         // INSTANTIATE LOGGER
         $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
-        $this->oCRNRSTN_CONFIG_DDO = new crnrstn_decoupled_data_object($this->oCRNRSTN, $this->oCRNRSTN->generate_new_key(100, '01'),'CRNRSTN_SYSTEM_SERIALIZED_DDO');
+        $this->oCRNRSTN_CONFIG_DDO = new crnrstn_decoupled_data_object($this->oCRNRSTN, $this->oCRNRSTN->salt(100, '01'),'CRNRSTN_SYSTEM_SERIALIZED_DDO');
 
     }
 
@@ -8893,29 +8907,37 @@ class crnrstn_config_manager {
 
     }
 
-    public function crnrstn_data_packet_hidden_input_return($data_key_hash){
+    public function crnrstn_data_packet_hidden_input_return($channel_constant, $crnrstn_form_handle){
 
-        if(is_array($data_key_hash)){
+        error_log(__LINE__ . '  crnrstn $channel_constant=[' . $channel_constant . ']. $crnrstn_form_handle=[' . $crnrstn_form_handle . '].');
+        if(is_array($crnrstn_form_handle)){
 
-            return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet_hidden_inputs', $data_key_hash[0], CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
+            $this->oCRNRSTN_CONFIG_DDO->set_data_output_channel($channel_constant, $crnrstn_form_handle[0]);
+            return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet_hidden_input_html', $crnrstn_form_handle[0], $channel_constant);
 
         }
 
-        return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet_hidden_inputs', $data_key_hash,CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
+        //
+        // I SUSPECT THAT THIS WILL NO LONGER RUN DUE TO NEWER SERIALIZATION REQUIREMENTS
+        $this->oCRNRSTN_CONFIG_DDO->set_data_output_channel($channel_constant, $crnrstn_form_handle);
+        return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet_hidden_input_html', $crnrstn_form_handle, $channel_constant);
 
     }
 
-    public function crnrstn_data_packet_return($data_key_hash){
+    public function crnrstn_data_packet_return($output_channel_constant){
 
-        //error_log(__LINE__  . ' ccm ' . __METHOD__ . ' $data_key_hash=[' . print_r($data_key_hash, true) . '].');
+        error_log(__LINE__  . ' ccm ' . __METHOD__ . ' $output_channel_constant=[' . print_r($output_channel_constant, true) . '].');
+        //$this->oCRNRSTN->print_r(print_r($output_channel_constant, true), NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
-        if(is_array($data_key_hash)){
+        if(is_array($output_channel_constant)){
 
-            return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $data_key_hash[0], CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
+            return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $output_channel_constant[0], CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
 
         }
 
-        return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $data_key_hash,CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
+        //
+        // I SUSPECT THAT THIS WILL NO LONGER RUN DUE TO NEWER SERIALIZATION REQUIREMENTS
+        return $this->oCRNRSTN_CONFIG_DDO->preach('crnrstn_data_packet', $output_channel_constant,CRNRSTN_OUTPUT_FORM_INTEGRATIONS);
 
     }
 

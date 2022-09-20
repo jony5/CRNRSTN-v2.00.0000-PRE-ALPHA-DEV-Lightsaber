@@ -1832,7 +1832,7 @@ class crnrstn_ui_tunnel_response_manager {
 
     }
 
-    public function return_crnrstn_data_packet_json($output_type = CRNRSTN_OUTPUT_RUNTIME){
+    public function return_crnrstn_data_packet_json($output_channel_constant = CRNRSTN_OUTPUT_RUNTIME){
 
         //http_data_services_initialize
 
@@ -1968,11 +1968,11 @@ class crnrstn_ui_tunnel_response_manager {
         //
         // THEORETICALLY, ALL THE DATA STORED WITHIN THE CRNRSTN :: CONFIG MANAGER
         // AUTH'D FOR CRNRSTN_OUTPUT_PSSDTLA WOULD NEED TO BE OUTPUTTED HERE.
-        $tmp_CRNRSTN_SYSTEM_CONFIGURATION = $this->oCRNRSTN->crnrstn_data_packet_return($output_type);
+        $tmp_CRNRSTN_SYSTEM_CONFIGURATION = $this->oCRNRSTN->crnrstn_data_packet_return($output_channel_constant);
 
         $tmp_json_data = '';
 
-        switch($output_type){
+        switch($output_channel_constant){
             case CRNRSTN_OUTPUT_RUNTIME:
             case CRNRSTN_OUTPUT_SOAP:
             case CRNRSTN_OUTPUT_COOKIE:
@@ -3325,7 +3325,7 @@ class crnrstn_ui_tunnel_response_manager {
 //        $tmp_oNUSOAP_BASE = $this->oCRNRSTN_USR->return_oNUSOAP_BASE();
 //
 //        $tmp_request_serialization_key = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_key');
-//        $tmp_request_serialization_checksum = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_checksum');
+//        $tmp_request_serialization_hash = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_checksum');
 //        $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
 //        $tmp_client_auth_key = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_auth_key');
 //
@@ -3352,7 +3352,7 @@ class crnrstn_ui_tunnel_response_manager {
 //            <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">SOAP_DATA_TUNNEL_LAYER_PACKET</textarea>
 //            <button type="submit">SUBMIT</button>
 //            <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="' . $tmp_request_serialization_key . '">
-//            <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="' . $tmp_request_serialization_checksum . '">'.
+//            <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="' . $tmp_request_serialization_hash . '">'.
 //            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_soap_data_tunnel_form').'
 //        </form>';
 //
@@ -3360,13 +3360,13 @@ class crnrstn_ui_tunnel_response_manager {
 
     }
 
-    private function return_ssdtl_form_integrations_packet($output_format = 'ssdtl_fihp'){
+    private function return_ssdtl_form_integrations_packet($output_format = 'ssdtl_fip'){
 
         //
         // PSEUDO SOAP DATA TUNNEL LAYER CLIENT CHECKSUM DATA
         $tmp_send_it = false;
         $tmp_ARRAY = array();
-        $tmp_ARRAY['SSDTL_FIHP'] = '0';
+        $tmp_ARRAY['SSDTL_FIP'] = '0';
         $tmp_ARRAY['TITLE_HTML'] = '0';
         $tmp_ARRAY['SOCIAL_HTML'] = '0';
         $tmp_ARRAY['COLORS_HTML'] = '0';
@@ -3520,7 +3520,7 @@ class crnrstn_ui_tunnel_response_manager {
 
             if($output_format == 'array'){
 
-                $tmp_ARRAY['SSDTL_FIHP'] = $this->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA);
+                $tmp_ARRAY['SSDTL_FIP'] = $this->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA);
                 $tmp_ARRAY['TITLE_HTML'] = $tmp_TITLE_CONTENT;
                 $tmp_ARRAY['SOCIAL_HTML'] = $tmp_SOCIAL_CONTENT;
                 $tmp_ARRAY['COLORS_HTML'] = $tmp_COLORS_CONTENT;
@@ -3623,7 +3623,7 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_device_type_bit = $this->oCRNRSTN_USR->device_type_bit;
 
         $tmp_request_serialization_key = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_key');
-        $tmp_request_serialization_checksum = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_checksum');
+        $tmp_request_serialization_hash = $this->oCRNRSTN->form_return_submitted_value('crnrstn_request_serialization_checksum');
 
         $tmp_client_id = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_id');
         $tmp_client_auth_key = $this->oCRNRSTN->form_return_submitted_value('crnrstn_client_auth_key');
@@ -3634,7 +3634,7 @@ class crnrstn_ui_tunnel_response_manager {
         // GENERATE NEW PSEUDO SOAP DATA TUNNEL LAYER PACKET IF ANY PACKET DATA (I.E. CHECKSUMS) CHANGED AND
         // SEND ANY DATA HAVING DELTA TO CLIENT
         $tmp_ssdtl_ARRAY = $this->return_ssdtl_form_integrations_packet('array');
-        $tmp_SOAP_DATA_TUNNEL_PACKET = $tmp_ssdtl_ARRAY['SSDTL_FIHP'];
+        $tmp_SOAP_DATA_TUNNEL_PACKET = $tmp_ssdtl_ARRAY['SSDTL_FIP'];
         $tmp_SSDTL_TITLE_CONTENT = $tmp_ssdtl_ARRAY['TITLE_HTML'];
         $tmp_SSDTL_SOCIAL_CONTENT = $tmp_ssdtl_ARRAY['SOCIAL_HTML'];
         $tmp_SSDTL_COLORS_CONTENT = $tmp_ssdtl_ARRAY['COLORS_HTML'];
@@ -3704,8 +3704,8 @@ class crnrstn_ui_tunnel_response_manager {
 <crnrstn_client_response>
     <client_response timestamp="' . $this->oCRNRSTN_USR->return_micro_time() . '">
         <data_signature>
-            <request_key><![CDATA[' . $tmp_request_serialization_key . ']]></request_key>
-            <request_checksum><![CDATA[' . $tmp_request_serialization_checksum . ']]></request_checksum>
+            <request_serial><![CDATA[' . $tmp_request_serialization_key . ']]></request_serial>
+            <request_hash><![CDATA[' . $tmp_request_serialization_hash . ']]></request_hash>
             <jesus_christ_is_lord source="Philippians 2:9-11">TRUE</jesus_christ_is_lord>
             <satan_is_a_liar source="Genesis 3:4">TRUE</satan_is_a_liar>
         </data_signature>

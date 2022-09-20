@@ -92,6 +92,17 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     //function Lightbox(options) {
     function CRNRSTN_JS(options) {
 
+        this.system_hash_algo = 'md5';
+        this.md5_IE_32bit_shift_enabled = false;
+        this.hex_chr = '0123456789abcdef'.split('');
+
+        if(this.md5('hello') !== '5d41402abc4b2a76b9719d911017c592'){
+
+            // WILL BE JUST A SHY BIT SLOWER...
+            this.md5_IE_32bit_shift_enabled = true;
+
+        }
+
         this.album = [];
         this.currentImageIndex = void 0;
 
@@ -115,7 +126,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.crnrstn_debug_mode = this.CRNRSTN_DEBUG_LIFESTYLE_BANNER;
 
         this.form_input_serialization_key = 'crnrstn_request_serialization_key';
-        this.form_input_serialization_checksum = 'crnrstn_request_serialization_checksum';
+        this.form_input_serialization_hash = 'crnrstn_request_serialization_hash';
         this.dom_element_mouse_state_tracker_ARRAY = [];
         this.dom_element_mouse_state_lock_ARRAY = [];
         this.dom_element_mouse_state_ARRAY = [];
@@ -126,7 +137,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.interact_ui_refresh_state_docs_bg = 'SLEEPING';
         this.docs_page_css_left = 0;
         this.current_serialization_key = '';
-        this.current_serialization_checksum = '';
+        this.current_serialization_hash = '';
         this.crnrstn_ui_interact_mode = 'mini_canvas';
         this.data_tunnel_ttl_monitor_isactive = false;
         this.ttl_tunnel_monitor_seconds = 0;
@@ -136,7 +147,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.transaction_thread_count_ARRAY = [];
 
         /*
-
         <input type="hidden" id="crnrstn_ui_interact_canvas_checksum" name="crnrstn_ui_interact_canvas_checksum" value="">
         <input type="hidden" id="crnrstn_ui_interact_mini_canvas_checksum" name="crnrstn_ui_interact_mini_canvas_checksum" value="">
         <input type="hidden" id="crnrstn_ui_interact_signin_canvas_checksum" name="crnrstn_ui_interact_signin_canvas_checksum" value="">
@@ -557,7 +567,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             $('<div id="crnrstn_interact_ui_full_doc_header_wrapper_rel" class="crnrstn_interact_ui_full_doc_header_wrapper_rel"><div class="crnrstn_cb"></div><div id="crnrstn_interact_ui_full_doc_header_wrapper" class="crnrstn_interact_ui_full_doc_header_wrapper"><div id="crnrstn_interact_ui_full_doc_close_wrapper_rel" class="crnrstn_interact_ui_full_doc_close_wrapper_rel"><div id="crnrstn_interact_ui_full_doc_close_wrapper" class="crnrstn_interact_ui_full_doc_close_wrapper"><div id="crnrstn_interact_ui_full_doc_close" class="crnrstn_interact_ui_full_doc_close" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);"  onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);"  onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);"></div></div></div><div class="crnrstn_cb"></div></div></div><div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper" class="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_ui_element_load_indicator_shell_rel" class="crnrstn_ui_element_load_indicator_shell_rel"><div id="crnrstn_ui_element_load_indicator_shell" class="crnrstn_ui_element_load_indicator_shell"><div id="crnrstn_ui_element_load_indicator_bg_rel" class="crnrstn_ui_element_load_indicator_bg_rel"><div id="crnrstn_ui_element_load_indicator_bg" class="crnrstn_ui_element_load_indicator_bg"></div></div><div id="crnrstn_ui_element_load_indicator_rel" class="crnrstn_ui_element_load_indicator_rel"><div id="crnrstn_ui_element_load_indicator" class="crnrstn_ui_element_load_indicator"></div></div></div></div><div id="crnrstn_documentation_dyn_shell_rel" class="crnrstn_documentation_dyn_shell_rel"><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div></div>').prependTo($('body'));
 
-            self.log_activity('[lnum 560] INJECTING crnrstn_interact_ui_full_lightbox_overlay INTO DOM.', self.CRNRSTN_DEBUG_VERBOSE);
+            self.log_activity('[lnum 570] Initializing CRNRSTN :: INTERACT UI within the DOM.', self.CRNRSTN_DEBUG_VERBOSE);
 
         }
 
@@ -1190,7 +1200,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             this.log_activity('[lnum 1191] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
             this.log_activity('[lnum 1192] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 1193] SSDTLP Checksum = [' + $('#' + this.form_input_serialization_checksum).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 1193] SSDTLP ' + this.system_hash_algo + ' Hash = [' + $('#' + this.form_input_serialization_hash).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             if($('#crnrstn_interact_ui_link_text_click').val() != ''){
 
@@ -1234,7 +1244,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         //var packet_dl_bytes = response_data.documentElement.innerHTML.length;
         var packet_dl_bytes = response_data.length;
-        oCRNRSTN_JS.log_activity('[lnum 1237] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        oCRNRSTN_JS.log_activity('[lnum 1247] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         $('#crnrstn_ui_element_load_indicator').stop();
 
@@ -2041,8 +2051,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                             this.log_activity('Extracting [data_signature] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
-                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_key', 'request_key', '' , true, i);
-                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_checksum', 'request_checksum', '' , true, i);
+                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_serial', 'request_serial', '' , true, i);
+                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_hash', 'request_hash', '' , true, i);
                             this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_bool', 'jesus_christ_is_lord', '' , true, i);
                             this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_vv', 'jesus_christ_is_lord', 'source' , true, i);
                             this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_bool', 'satan_is_a_liar', '' , true, i);
@@ -2452,13 +2462,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         }
 
         this.current_serialization_key = request_serial;
-        this.current_serialization_checksum = this.return_hash(request_serial);
+        this.current_serialization_hash = this.hash(request_serial);
 
         $('#' + this.form_input_serialization_key).val(this.current_serialization_key);
-        $('#' + this.form_input_serialization_checksum).val(this.current_serialization_checksum);
+        $('#' + this.form_input_serialization_hash).val(this.current_serialization_hash);
 
 
-        $('#' + this.form_input_serialization_checksum).val(this.current_serialization_checksum);
+        $('#' + this.form_input_serialization_hash).val(this.current_serialization_hash);
 
         /*
         <input type="hidden" id="crnrstn_ui_interact_canvas_checksum" name="crnrstn_ui_interact_canvas_checksum" value="">
@@ -2473,7 +2483,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.authorize_transaction = function(request_key, request_checksum, max_concurrent = 1, redundancy_ok = false, expire_checksum_hold_ttl = null) {
+    CRNRSTN_JS.prototype.authorize_transaction = function(request_serial, request_hash, max_concurrent = 1, redundancy_ok = false, expire_checksum_hold_ttl = null) {
 
         tmp_transaction_is_authorized = true;
         tmp_active_count = this.active_transaction_count();
@@ -2488,8 +2498,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         }else{
 
-            var tmp_checksum = this.return_hash(request_key);
-            if((this.current_serialization_key == request_key) && (this.current_serialization_checksum == request_checksum) && (tmp_checksum == request_checksum)){
+            if((this.current_serialization_key == request_serial) && (this.current_serialization_hash == request_hash) && (this.hash(request_serial) == request_hash)){
 
                 if(tmp_active_count >= max_concurrent){
 
@@ -2507,7 +2516,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(tmp_transaction_is_authorized){
 
-            this.active_transaction_checksum = this.form_input_serialization_checksum;
+            this.active_transaction_checksum = this.form_input_serialization_hash;
 
         }
 
@@ -3097,11 +3106,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.refresh_ui_state = function(request_key, request_checksum) {
+    CRNRSTN_JS.prototype.refresh_ui_state = function(request_serial, request_hash) {
 
         //
         // START UI REFRESH TRANSACTION. HERE, ONLY ONE (1) AT ANY GIVEN TIME, PLEASE.
-        if(this.authorize_transaction(request_key, request_checksum, 1)) {
+        if(this.authorize_transaction(request_serial, request_hash, 1)) {
 
             //alert('WE GOOD!');
             this.ttl_tunnel_monitor_seconds = 0;
@@ -3132,11 +3141,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.receive_data_tunnel_response = function(response_data) {
 
-        //alert($('#crnrstn_interact_ui_link_text_click').val());
-
-        //alert(response_data);
-
-        if(response_data != null){
+        if(response_data.length > 0){
 
             if($('#crnrstn_interact_ui_link_text_click').val() != ''){
 
@@ -3148,34 +3153,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(tmp_docs_page.length > 1){
 
                     $("#crnrstn_interact_ui_full_doc_close").html('X');
-
-                }
-
-                //
-                // CLEAR OUT PAGE NAME TO AVOID REDUNDANT AJAX CALLS.
-                //alert($('#crnrstn_interact_ui_link_text_click').val());
-                //$('#crnrstn_interact_ui_link_text_click').val('');
-
-                //$('#crnrstn_interact_ui_full_document').html($tmp_sidenav_html);
-
-                if($('#crnrstn_documentation_dyn_shell').length){
-
-                    //var oCRNRSTN_DOCS_DOM_ELEM = document.createElement('div');
-
-                    //oCRNRSTN_DOCS_DOM_ELEM.setAttribute('class', 'crnrstn_documentation_dyn_shell');
-                    //oCRNRSTN_DOCS_DOM_ELEM.setAttribute('id', 'crnrstn_documentation_dyn_shell');
-
-                    //$("#crnrstn_interact_ui_full_document").appendTo(oCRNRSTN_DOCS_DOM_ELEM);
-                    //$("#crnrstn_documentation_dyn_shell").prependTo($('body'));
-                    //oCRNRSTN_DOCS_DOM_ELEM.prependTo();
-
-                    //alert(response_data);
-                    //$("#crnrstn_documentation_dyn_shell").html(response_data);
-                    //document.getElementById("crnrstn_documentation_dyn_shell").innerHTML = response_data;
-
-                    //$("#crnrstn_documentation_dyn_shell").html(response_data);
-                    //document.getElementById("crnrstn_documentation_dyn_shell").innerHTML = response_data;
-                    $("#crnrstn_documentation_dyn_shell").html(response_data);
 
                 }
 
@@ -3218,7 +3195,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     },
                     complete: function () {
 
-                        $("#crnrstn_documentation_dyn_shell").html(response_data);
+                        //$("#crnrstn_documentation_dyn_shell").html(response_data);
+
+                        if($('#crnrstn_documentation_dyn_shell').length){
+
+                            $("#crnrstn_documentation_dyn_shell").html(response_data);
+                            $('#crnrstn_interact_ui_link_text_click').val('');
+
+                        }
 
                     }
 
@@ -3251,10 +3235,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                     //
                     // SYNC CLIENT STATE TO THE FRESH XML
-                    //tmp_data_signature_request_key = this.return_data_tunnel_xml_data('data_signature_request_key');
-                    //tmp_data_signature_request_checksum = this.return_data_tunnel_xml_data('data_signature_request_checksum');
+                    //tmp_data_signature_request_serial = this.return_data_tunnel_xml_data('data_signature_request_serial');
+                    //tmp_data_signature_request_hash = this.return_data_tunnel_xml_data('data_signature_request_hash');
 
-                    //this.refresh_ui_state(tmp_data_signature_request_key, tmp_data_signature_request_checksum);
+                    //this.refresh_ui_state(tmp_data_signature_request_serial, tmp_data_signature_request_hash);
 
                 }
 
@@ -4546,9 +4530,220 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     };
 
     //
+    // SOURCE :: http://www.myersdaily.org/joseph/javascript/md5.js
+    // SOURCE :: https://stackoverflow.com/questions/1655769/fastest-md5-implementation-in-javascript
+    // AUTHOR :: Matt Baker :: https://stackoverflow.com/users/190938/matt-baker
+    // AUTHOR :: Joseph Myers :: https://www.myersdaily.org/joseph/
+    CRNRSTN_JS.prototype.md5cycle = function(x, k){
+        //function md5cycle(x, k) {
+        var a = x[0], b = x[1], c = x[2], d = x[3];
+
+        a = this.ff(a, b, c, d, k[0], 7, -680876936);
+        d = this.ff(d, a, b, c, k[1], 12, -389564586);
+        c = this.ff(c, d, a, b, k[2], 17,  606105819);
+        b = this.ff(b, c, d, a, k[3], 22, -1044525330);
+        a = this.ff(a, b, c, d, k[4], 7, -176418897);
+        d = this.ff(d, a, b, c, k[5], 12,  1200080426);
+        c = this.ff(c, d, a, b, k[6], 17, -1473231341);
+        b = this.ff(b, c, d, a, k[7], 22, -45705983);
+        a = this.ff(a, b, c, d, k[8], 7,  1770035416);
+        d = this.ff(d, a, b, c, k[9], 12, -1958414417);
+        c = this.ff(c, d, a, b, k[10], 17, -42063);
+        b = this.ff(b, c, d, a, k[11], 22, -1990404162);
+        a = this.ff(a, b, c, d, k[12], 7,  1804603682);
+        d = this.ff(d, a, b, c, k[13], 12, -40341101);
+        c = this.ff(c, d, a, b, k[14], 17, -1502002290);
+        b = this.ff(b, c, d, a, k[15], 22,  1236535329);
+
+        a = this.gg(a, b, c, d, k[1], 5, -165796510);
+        d = this.gg(d, a, b, c, k[6], 9, -1069501632);
+        c = this.gg(c, d, a, b, k[11], 14,  643717713);
+        b = this.gg(b, c, d, a, k[0], 20, -373897302);
+        a = this.gg(a, b, c, d, k[5], 5, -701558691);
+        d = this.gg(d, a, b, c, k[10], 9,  38016083);
+        c = this.gg(c, d, a, b, k[15], 14, -660478335);
+        b = this.gg(b, c, d, a, k[4], 20, -405537848);
+        a = this.gg(a, b, c, d, k[9], 5,  568446438);
+        d = this.gg(d, a, b, c, k[14], 9, -1019803690);
+        c = this.gg(c, d, a, b, k[3], 14, -187363961);
+        b = this.gg(b, c, d, a, k[8], 20,  1163531501);
+        a = this.gg(a, b, c, d, k[13], 5, -1444681467);
+        d = this.gg(d, a, b, c, k[2], 9, -51403784);
+        c = this.gg(c, d, a, b, k[7], 14,  1735328473);
+        b = this.gg(b, c, d, a, k[12], 20, -1926607734);
+
+        a = this.hh(a, b, c, d, k[5], 4, -378558);
+        d = this.hh(d, a, b, c, k[8], 11, -2022574463);
+        c = this.hh(c, d, a, b, k[11], 16,  1839030562);
+        b = this.hh(b, c, d, a, k[14], 23, -35309556);
+        a = this.hh(a, b, c, d, k[1], 4, -1530992060);
+        d = this.hh(d, a, b, c, k[4], 11,  1272893353);
+        c = this.hh(c, d, a, b, k[7], 16, -155497632);
+        b = this.hh(b, c, d, a, k[10], 23, -1094730640);
+        a = this.hh(a, b, c, d, k[13], 4,  681279174);
+        d = this.hh(d, a, b, c, k[0], 11, -358537222);
+        c = this.hh(c, d, a, b, k[3], 16, -722521979);
+        b = this.hh(b, c, d, a, k[6], 23,  76029189);
+        a = this.hh(a, b, c, d, k[9], 4, -640364487);
+        d = this.hh(d, a, b, c, k[12], 11, -421815835);
+        c = this.hh(c, d, a, b, k[15], 16,  530742520);
+        b = this.hh(b, c, d, a, k[2], 23, -995338651);
+
+        a = this.ii(a, b, c, d, k[0], 6, -198630844);
+        d = this.ii(d, a, b, c, k[7], 10,  1126891415);
+        c = this.ii(c, d, a, b, k[14], 15, -1416354905);
+        b = this.ii(b, c, d, a, k[5], 21, -57434055);
+        a = this.ii(a, b, c, d, k[12], 6,  1700485571);
+        d = this.ii(d, a, b, c, k[3], 10, -1894986606);
+        c = this.ii(c, d, a, b, k[10], 15, -1051523);
+        b = this.ii(b, c, d, a, k[1], 21, -2054922799);
+        a = this.ii(a, b, c, d, k[8], 6,  1873313359);
+        d = this.ii(d, a, b, c, k[15], 10, -30611744);
+        c = this.ii(c, d, a, b, k[6], 15, -1560198380);
+        b = this.ii(b, c, d, a, k[13], 21,  1309151649);
+        a = this.ii(a, b, c, d, k[4], 6, -145523070);
+        d = this.ii(d, a, b, c, k[11], 10, -1120210379);
+        c = this.ii(c, d, a, b, k[2], 15,  718787259);
+        b = this.ii(b, c, d, a, k[9], 21, -343485551);
+
+        x[0] = this.add32(a, x[0]);
+        x[1] = this.add32(b, x[1]);
+        x[2] = this.add32(c, x[2]);
+        x[3] = this.add32(d, x[3]);
+
+    }
+
+    CRNRSTN_JS.prototype.cmn = function(q, a, b, x, s, t){
+        //function cmn(q, a, b, x, s, t) {
+        a = this.add32(this.add32(a, q), this.add32(x, t));
+        return this.add32((a << s) | (a >>> (32 - s)), b);
+    }
+
+    CRNRSTN_JS.prototype.ff = function(a, b, c, d, x, s, t){
+        //function ff(a, b, c, d, x, s, t) {
+        return this.cmn((b & c) | ((~b) & d), a, b, x, s, t);
+    }
+
+    CRNRSTN_JS.prototype.gg = function(a, b, c, d, x, s, t){
+        //function gg(a, b, c, d, x, s, t) {
+        return this.cmn((b & d) | (c & (~d)), a, b, x, s, t);
+    }
+
+    CRNRSTN_JS.prototype.hh = function(a, b, c, d, x, s, t){
+        //function hh(a, b, c, d, x, s, t) {
+        return this.cmn(b ^ c ^ d, a, b, x, s, t);
+    }
+
+    CRNRSTN_JS.prototype.ii = function(a, b, c, d, x, s, t){
+        //function ii(a, b, c, d, x, s, t) {
+        return this.cmn(c ^ (b | (~d)), a, b, x, s, t);
+    }
+
+    CRNRSTN_JS.prototype.md51 = function(s){
+        //function md51(s) {
+        txt = '';
+        var n = s.length,
+            state = [1732584193, -271733879, -1732584194, 271733878], i;
+        for (i=64; i<=s.length; i+=64) {
+            this.md5cycle(state, this.md5blk(s.substring(i-64, i)));
+        }
+        s = s.substring(i-64);
+        var tail = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0];
+        for (i=0; i<s.length; i++)
+            tail[i>>2] |= s.charCodeAt(i) << ((i%4) << 3);
+        tail[i>>2] |= 0x80 << ((i%4) << 3);
+        if (i > 55) {
+            this.md5cycle(state, tail);
+            for (i=0; i<16; i++) tail[i] = 0;
+        }
+        tail[14] = n*8;
+        this.md5cycle(state, tail);
+        return state;
+    }
+
+    /* there needs to be support for Unicode here,
+     * unless we pretend that we can redefine the MD-5
+     * algorithm for multi-byte characters (perhaps
+     * by adding every four 16-bit characters and
+     * shortening the sum to 32 bits). Otherwise
+     * I suggest performing MD-5 as if every character
+     * was two bytes--e.g., 0040 0025 = @%--but then
+     * how will an ordinary MD-5 sum be matched?
+     * There is no way to standardize text to something
+     * like UTF-8 before transformation; speed cost is
+     * utterly prohibitive. The JavaScript standard
+     * itself needs to look at this: it should start
+     * providing access to strings as preformed UTF-8
+     * 8-bit unsigned value arrays.
+     */
+    CRNRSTN_JS.prototype.md5blk = function(s){
+        //function md5blk(s) { /* I figured global was faster.   */
+        var md5blks = [], i; /* Andy King said do it this way. */
+        for (i=0; i<64; i+=4) {
+            md5blks[i>>2] = s.charCodeAt(i)
+                + (s.charCodeAt(i+1) << 8)
+                + (s.charCodeAt(i+2) << 16)
+                + (s.charCodeAt(i+3) << 24);
+        }
+        return md5blks;
+    }
+
+    CRNRSTN_JS.prototype.rhex = function(n){
+        //function rhex(n){
+        var s = '', j = 0;
+        for(; j<4; j++)
+            s += this.hex_chr[(n >> (j * 8 + 4)) & 0x0F]
+                + this.hex_chr[(n >> (j * 8)) & 0x0F];
+        return s;
+    }
+
+    CRNRSTN_JS.prototype.hex = function(x){
+        //function hex(x) {
+        for (var i=0; i<x.length; i++)
+            x[i] = this.rhex(x[i]);
+        return x.join('');
+    }
+
+    CRNRSTN_JS.prototype.md5 = function(s){
+        //function md5(s) {
+
+        return this.hex(this.md51(s));
+
+    }
+
+    CRNRSTN_JS.prototype.add32 = function(x, y){
+        //function add32(a, b) {
+
+        if(this.md5_IE_32bit_shift_enabled){
+
+            var lsw = (x & 0xFFFF) + (y & 0xFFFF),
+                msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+            return (msw << 16) | (lsw & 0xFFFF);
+
+        }
+
+        /* this return is much faster,
+        so if possible we use it. Some IEs
+        are the only ones I know of that
+        need the idiotic second function,
+        generated by an if clause.  */
+        return (x + y) & 0xFFFFFFFF;
+
+    }
+
+    //
+    // if (this.md5('hello') != '5d41402abc4b2a76b9719d911017c592') {
+    //     function add32(x, y) {
+    //         var lsw = (x & 0xFFFF) + (y & 0xFFFF),
+    //             msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+    //         return (msw << 16) | (lsw & 0xFFFF);
+    //     }
+    // }
+
+    //
     // SOURCE :: https://stackoverflow.com/questions/16153479/jquery-checksum
     // AUTHOR :: Siva Charan :: https://stackoverflow.com/users/500725/siva-charan
-    CRNRSTN_JS.prototype.return_hash = function(str = null){
+    CRNRSTN_JS.prototype.return_checksum = function(str = null){
 
         var hash = 0, i, char;
 
@@ -4563,13 +4758,43 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         for(let i = 0; i < str.length; i++) {
             char = str.charCodeAt(i);
-            hash = ((hash<<5)-hash)+char;
+            hash = ((hash<<5) - hash) + char;
             hash = hash & hash; // Convert to 32bit integer
         }
 
         return hash;
 
     };
+
+    CRNRSTN_JS.prototype.hash = function(data, algorithm = ''){
+
+        var hash_return = '';
+        //this.total_bytes_hashed += data.length;
+
+        if(!(algorithm.length > 0)){
+
+            algorithm = this.system_hash_algo;
+
+        }
+
+        switch(algorithm){
+            case 'checksum':
+
+                hash_return = this.return_checksum(data);
+
+            break;
+            default:
+
+                // MD5
+                hash_return = this.md5(data);
+
+            break;
+
+        }
+
+        return hash_return;
+
+    }
 
     //
     // SOURCE :: https://codepen.io/kachibito/pen/PjqrEE

@@ -56,6 +56,10 @@ class crnrstn_data_tunnel_services_manager{
     protected $oLogger;
     public $oCRNRSTN;
 
+    protected $pssdtl_packet_hash;
+    protected $crnrstn_pssdtl_http_tunneled_data_ARRAY = array();
+    protected $pssdtl_packet_profile_ARRAY = array();
+
     public function __construct($oCRNRSTN){
 
         $this->oCRNRSTN = $oCRNRSTN;
@@ -66,17 +70,220 @@ class crnrstn_data_tunnel_services_manager{
 
     }
 
-    public function received_ddo_packet_data($data, $data_key){
+    public function http_data_services_validation(){
 
-        switch($data_key){
-            case 'pssdtl_packet_input':
+        /*
+        form_input_add()
+        FIELD_INPUT_NAME
+        FIELD_INPUT_ID
+        DEFAULT_VALUE
+        TABLE_FIELD_NAME
+        VALIDATION_CONSTANTS_PROFILE
+
+        form_hidden_input_add()
+        FIELD_HIDDEN_INPUT_NAME
+        FIELD_HIDDEN_INPUT_ID
+        DEFAULT_VALUE
+        TABLE_FIELD_NAME
+        VALIDATION_CONSTANT_PROFILE
+        IS_ENCRYPTED
+
+        form_input_feedback_copy_add()
+        VALIDATION_PROFILE
+        FIELD_INPUT_NAME
+        FIELD_INPUT_ID
+        ERR_MESSAGE
+        SUCCESS_MESSAGE
+        INFO_MESSAGE
+
+        form_response_add()
+        ###CRNRSTN_SYSTEM_RESOURCE::FORM_INPUT_RESPONSE::
+        SUCCESS_RESPONSE
+        SUCCESS_RESPONSE_TYPE
+        ERROR_RESPONSE
+        ERROR_RESPONSE_TYPE
+
+        ###CRNRSTN_SYSTEM_RESOURCE::FORM_RESPONSE::
+        SUCCESS_RESPONSE
+        SUCCESS_RESPONSE_TYPE
+        ERROR_RESPONSE
+        ERROR_RESPONSE_TYPE
+
+        */
 
 
 
+        foreach($this->crnrstn_pssdtl_http_tunneled_data_ARRAY as $index => $data){
+
+            error_log(__LINE__ . ' dtsm [' . __METHOD__ . '][' . sizeof($this->crnrstn_pssdtl_http_tunneled_data_ARRAY) . '].');
+            die();
+
+        }
+
+
+    }
+
+    public function http_data_services_initialize($var_parse_channel){
+
+        switch($var_parse_channel){
+            case 'G':
+
+                $tmp_crnrstn_pssdtl_packet = $this->oCRNRSTN->data_decrypt($_GET['crnrstn_pssdtl_packet']);
+
+            break;
+            default:
+
+                $tmp_crnrstn_pssdtl_packet = $this->oCRNRSTN->data_decrypt($_POST['crnrstn_pssdtl_packet']);
 
             break;
 
         }
+
+        //
+        // PACKET HASH FOR VERIFICATION OF PACKET INTEGRITY. SAME VALUE SHOULD BE INSIDE THE ENCRYPTED PACKET.
+        $this->pssdtl_packet_hash = $this->oCRNRSTN->hash($tmp_crnrstn_pssdtl_packet);
+
+        //
+        // EXTRACT DATA FROM HTTP
+        $tmp_crnrstn_pssdtl_packet_ojson = json_decode($tmp_crnrstn_pssdtl_packet, true);
+
+        if(isset($tmp_crnrstn_pssdtl_packet_ojson['crnrstn_data_packet'][0]['crnrstn_data_packet_ddo_elements'])){
+
+            foreach($tmp_crnrstn_pssdtl_packet_ojson['crnrstn_data_packet'][0]['crnrstn_data_packet_ddo_elements'] as $index => $node){
+                /*
+                Array
+                (
+                    [HASH] => 0a389b1122a6ac551a685ec72e3f9815
+                    [BYTES] => 17
+                    [KEY] => 6bf11b80ff9a878569005fa567cff252b2907bee73c0edd670a53147d07189a2::FIELD_INPUT_NAME
+                    [TYPE] => string
+                    [VALUE] => crnrstn_demo_city
+                    [TTL] => 60
+                    [AUTH_PROFILE] => 8083
+                )
+
+                */
+
+                //$this->oCRNRSTN->print_r($node, 'CRNRSTN :: DECOUPLED DATA OBJECT ELEMENT :: CLIENT FORM SUBMISSION.', NULL, __LINE__, __METHOD__, __FILE__);
+                //error_log(__LINE__ . ' http [' . __METHOD__ . ']. $node=['. print_r($node, true) .  '].');
+
+                if(!$this->receive_fip_data($node)){
+
+                    error_log(__LINE__ . ' dtsm::' . __METHOD__ . '() ERROR on PSSDTLP NODE[' . print_r($node, true) . '].');
+
+                    /*
+                    pssdtl_packet_profile_ARRAY['STATUS_REPORT'][][]
+
+                    "STATUS_REPORT" : [{
+                                "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                                "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
+                                "STATUS_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_CODE) . '",
+                                "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                                "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                                "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                                },{
+                                "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                                "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
+                                "STATUS_CODE" : "1234567890",
+                                "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                                "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                                "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                                },{
+                                "STATUS_TARGET_ELEMENT" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_TARGET_ELEMENT) . ',
+                                "STATUS" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS) . '",
+                                "STATUS_CODE" : "0987654321",
+                                "STATUS_MESSAGE" : ' . $this->oCRNRSTN->return_clean_json_string($tmp_STATUS_MESSAGE) . ',
+                                "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
+                                "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
+                                }],
+                    */
+
+                }
+
+                //$this->oCRNRSTN->add_system_resource($tmp_data_key, 'data_value_here', $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+
+            }
+
+        }
+
+        return true;
+
+    }
+
+    public function return_hidden_input_html($crnrstn_form_handle, $data_auth_profile){
+        /*
+        case CRNRSTN_UI_FORM_INTEGRATION_PACKET: USER FACING
+        case CRNRSTN_OUTPUT_PSSDTLA:
+        case CRNRSTN_OUTPUT_FORM_INTEGRATIONS:
+
+        */
+
+        $tmp_str = '';
+
+        switch($data_auth_profile){
+            case CRNRSTN_OUTPUT_FORM_INTEGRATIONS:
+
+                // HTML
+                $tmp_str = '
+        <input type="hidden" name="crnrstn_request_serialization_key" id="crnrstn_request_serialization_key" value="">
+        <input type="hidden" name="crnrstn_request_serialization_hash" id="crnrstn_request_serialization_hash" value="">
+        <input type="hidden" name="crnrstn_interact_ui_link_text_click" id="crnrstn_interact_ui_link_text_click" value="">
+        <input type="hidden" name="crnrstn_interact_ui_loadbar_progress" id="crnrstn_interact_ui_loadbar_progress" value="">';
+                //$this->oCRNRSTN->print_r($tmp_str, $crnrstn_form_handle, NULL, __LINE__, __METHOD__, __FILE__);
+                error_log(__LINE__  . ' dtsm ' . __METHOD__ . ' [' . print_r($tmp_str, true) . '].');
+
+            break;
+            case CRNRSTN_OUTPUT_PSSDTLA:
+            case CRNRSTN_OUTPUT_SSDTLA:
+
+                // JSON
+                error_log('why am i running for JSON{} out? [lnum ' . __LINE__ . '][class ' . __CLASS__ . '][method ' . __METHOD__ . '] die();');
+                die();
+
+            break;
+
+        }
+
+        return $tmp_str;
+
+    }
+
+    public function receive_fip_data($data_ARRAY, $data_attribute = 'crnrstn_pssdtl_packet', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
+
+        // WHERE $data_ARRAY=
+        //$data_ARRAY['HASH'];
+        //$data_ARRAY['BYTES'];
+        //$data_ARRAY['KEY'];
+        //$data_ARRAY['TYPE'];
+        //$data_ARRAY['VALUE'];
+        //$data_ARRAY['TTL'];
+        //$data_ARRAY['AUTH_PROFILE'];
+
+        switch($data_attribute){
+            case 'crnrstn_data_packet_hidden_input_html':
+            case 'crnrstn_pssdtl_packet':
+
+                //$this->oCRNRSTN->print_r($data_ARRAY, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+                $this->crnrstn_pssdtl_http_tunneled_data_ARRAY[$this->pssdtl_packet_hash] = $data_ARRAY;
+
+                return true;
+
+            break;
+            default:
+
+                error_log(__LINE__  . ' dtsm UNKNOWN $data_attribute VALUE [' . $data_attribute . ']. die();');
+                die();
+
+            break;
+
+        }
+
+    }
+
+    public function form_get_resource($crnrstn_form_handle, $input_name){
+
+
+        return '';
 
     }
 
