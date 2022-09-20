@@ -484,7 +484,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             duration: 0,
             queue: false,
             specialEasing: {
-                left: "linear"
+                top: "linear"
             },
             complete: function () {
 
@@ -515,13 +515,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         tmp_height = tmp_height - 100;
 
+        //alert(tmp_height);
         $('#crnrstn_ui_element_load_indicator').animate({
             top: tmp_height
         }, {
             duration: 5000,
             queue: false,
             specialEasing: {
-                left: "swing"
+                top: "swing"
             },
             complete: function () {
 
@@ -541,7 +542,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 duration: 0,
                 queue: false,
                 specialEasing: {
-                    left: "linear"
+                    top: "linear"
                 },
                 complete: function () {
 
@@ -586,7 +587,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    width: "swing"
                 },
                 step: function( now, fx ) {
 
@@ -603,7 +604,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    left: "swing"
                 },
                 complete: function () {
 
@@ -617,7 +618,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    marginLeft: "swing"
                 },
                 complete: function () {
 
@@ -631,7 +632,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    marginLeft: "swing"
                 },
                 complete: function () {
 
@@ -646,7 +647,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    marginLeft: "swing"
                 },
                 complete: function () {
 
@@ -2802,7 +2803,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     duration: 500,
                     queue: false,
                     specialEasing: {
-                        opacity: "swing"
+                        height: "swing"
                     },
                     step: function( now, fx ) {
 
@@ -3188,7 +3189,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     top: this.docs_page_css_top + 'px',
                     left: this.docs_page_css_left + 'px'
                 }, {
-                    duration: 1000,
+                    duration: 100,
                     queue: false,
                     step: function( now, fx ) {
 
@@ -3214,7 +3215,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     duration: 250,
                     queue: false,
                     specialEasing: {
-                        left: "swing"
+                        width: "swing"
                     },
                     complete: function () {
 
@@ -3385,13 +3386,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         $('body').on('click', 'a[data-crnrstn]', 'a[rel^=crnrstn_documentation_side_nav_' + session_salt + ']', function(event) {
 
+            $('#crnrstn_ui_element_load_indicator').stop();
             //alert('currentTarget=' + this.attributes.item(1).value);
             //alert('text=' + this.text);
             //alert('innerHTML=' + this.innerHTML);
             self.interact_ui_refresh_state_docs_bg = 'ENABLED';
             self.link_text_click(this.text);
 
-            $('#crnrstn_ui_element_load_indicator').stop();
+
 
             return false;
 
@@ -5768,7 +5770,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             duration: 250,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                height: "swing"
             },
             step: function( now, fx ) {
 
@@ -5785,7 +5787,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             duration: 250,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                height: "swing"
             },
             step: function( now, fx ) {
 
@@ -5804,7 +5806,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             duration: 250,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                height: "swing"
             },
             step: function( now, fx ) {
 
@@ -5820,7 +5822,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     duration: 250,
                     queue: false,
                     specialEasing: {
-                        opacity: "swing"
+                        height: "swing"
                     },
                     step: function( now, fx ) {
 
@@ -5837,7 +5839,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     duration: 150,
                     queue: false,
                     specialEasing: {
-                        opacity: "swing"
+                        height: "swing"
                     },
                     step: function( now, fx ) {
 
@@ -5877,7 +5879,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             duration: 250,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                height: "swing"
             },
             step: function( now, fx ) {
 
@@ -5894,7 +5896,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             duration: 250,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                height: "swing"
             },
             step: function( now, fx ) {
 
@@ -5911,7 +5913,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             duration: 250,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                height: "swing"
             },
             step: function( now, fx ) {
 
@@ -5930,7 +5932,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             duration: 250,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                height: "swing"
             },
             step: function( now, fx ) {
 
@@ -5946,7 +5948,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     duration: 150,
                     queue: false,
                     specialEasing: {
-                        opacity: "swing"
+                        height: "swing"
                     },
                     step: function( now, fx ) {
 
@@ -5963,7 +5965,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     duration: 150,
                     queue: false,
                     specialEasing: {
-                        opacity: "swing"
+                        height: "swing"
                     },
                     step: function( now, fx ) {
 
@@ -5980,7 +5982,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     duration: 150,
                     queue: false,
                     specialEasing: {
-                        opacity: "swing"
+                        height: "swing"
                     },
                     step: function( now, fx ) {
 
@@ -5999,7 +6001,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     duration: 150,
                     queue: false,
                     specialEasing: {
-                        opacity: "swing"
+                        height: "swing"
                     },
                     step: function( now, fx ) {
 
@@ -6398,7 +6400,7 @@ close_docs_fullscreen
                 duration: 1000,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    bottom: "swing"
                 },
                 complete: function () {
 
@@ -6414,7 +6416,7 @@ close_docs_fullscreen
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    width: "swing"
                 },
                 complete: function () {
 
@@ -6428,7 +6430,7 @@ close_docs_fullscreen
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    left: "swing"
                 },
                 complete: function () {
 
@@ -6443,7 +6445,7 @@ close_docs_fullscreen
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    marginLeft: "swing"
                 },
                 complete: function () {
 
@@ -6457,7 +6459,7 @@ close_docs_fullscreen
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    marginLeft: "swing"
                 },
                 complete: function () {
 
@@ -6472,7 +6474,7 @@ close_docs_fullscreen
                 duration: 500,
                 queue: false,
                 specialEasing: {
-                    opacity: "swing"
+                    marginLeft: "swing"
                 },
                 complete: function () {
 
@@ -6494,7 +6496,7 @@ close_docs_fullscreen
             duration: 100,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                width: "swing"
             },
             step: function( now, fx ) {
 
@@ -6511,7 +6513,7 @@ close_docs_fullscreen
             duration: 100,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                left: "swing"
             },
             complete: function () {
 
@@ -6526,7 +6528,7 @@ close_docs_fullscreen
             duration: 100,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                marginLeft: "swing"
             },
             complete: function () {
 
@@ -6540,7 +6542,7 @@ close_docs_fullscreen
             duration: 500,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                marginLeft: "swing"
             },
             complete: function () {
 
@@ -6555,7 +6557,7 @@ close_docs_fullscreen
             duration: 100,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                marginLeft: "swing"
             },
             complete: function () {
 
@@ -6569,7 +6571,7 @@ close_docs_fullscreen
             duration: 1000,
             queue: false,
             specialEasing: {
-                opacity: "swing"
+                bottom: "swing"
             },
             complete: function () {
 
