@@ -1311,7 +1311,7 @@ class crnrstn_environment {
 ';
 
         $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden">
-    <form action="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'soa/tunnel/?' . $this->oCRNRSTN->session_salt() . '=" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
+    <form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea>
         <button type="submit">SUBMIT</button>
         <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '">       
