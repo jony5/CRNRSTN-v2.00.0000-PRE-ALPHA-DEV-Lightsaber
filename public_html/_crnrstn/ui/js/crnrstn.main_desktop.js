@@ -612,6 +612,20 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             });
 
+            $('#crnrstn_interact_ui_side_nav_search').animate({
+                left: 18
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    left: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
             $('#crnrstn_ui_element_load_indicator_shell').animate({
                 marginLeft: this.side_navigation_min_width
             }, {
@@ -6191,7 +6205,6 @@ close_docs_fullscreen
                         // ACTIVE MOUSEOVER (HOVER STATE)
                         $('#' + elem.id).css('color', '#F90000');
 
-
                     break;
                     case 'onmouseout':
 
@@ -6236,13 +6249,137 @@ close_docs_fullscreen
                 //dom_handle_variant_element = 'minimize';
 
             break;
+            case 'crnrstn_interact_ui_side_nav_search':
+
+                switch(ux_action){
+                    case 'onmouseover':
+
+                        if(this.dom_element_mouse_state_ARRAY[elem.id] != 'MOUSEOVER' && this.dom_element_mouse_state_ARRAY[elem.id] != 'TRANSITIONING'){
+
+                            this.dom_element_mouse_state_ARRAY[elem.id] = 'TRANSITIONING';
+
+                            //
+                            // ACTIVE MOUSEOVER (HOVER STATE)
+                            $('#crnrstn_interact_ui_side_nav_search_bar').css('width', parseInt('4'));
+                            $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#F90000');
+                            $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#F90000');
+
+                            $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
+                                opacity: 1.0
+                            }, {
+                                duration: 100,
+                                queue: false,
+                                specialEasing: {
+                                    opacity: "swing"
+                                },
+                                complete: function () {
+
+                                }
+
+                            });
+
+                            this.search_glass_mouseover();
+
+                        }
+
+                    break;
+                    case 'onmouseout':
+
+                        if(this.dom_element_mouse_state_ARRAY[elem.id] == 'MOUSEOVER'){
+
+                            this.dom_element_mouse_state_ARRAY[elem.id] = 'TRANSITIONING';
+
+                            //
+                            // ACTIVE MOUSEOVER (HOVER STATE)
+                            $('#crnrstn_interact_ui_side_nav_search_bar').css('width', parseInt('2'));
+                            $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#A5B9D8');
+                            $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#A5B9D8');
+
+                            $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
+                                opacity: 0.2
+                            }, {
+                                duration: 100,
+                                queue: false,
+                                specialEasing: {
+                                    opacity: "swing"
+                                },
+                                complete: function () {
+
+                                }
+
+                            });
+
+                            this.search_glass_mouseout();
+
+                        }
+
+                        //
+                        // //
+                        // // ACTIVE MOUSEOUT (BACK TO NORMAL)
+                        // //$('#crnrstn_interact_ui_side_nav_search_img_bg').css('backgroundColor', '#FFF');
+                        // $('#crnrstn_interact_ui_side_nav_search_bar').css('width', parseInt('2'));
+                        // $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#A5B9D8');
+                        // $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#A5B9D8');
+                        //
+                        // $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
+                        //     opacity: 0.2
+                        // }, {
+                        //     duration: 100,
+                        //     queue: false,
+                        //     specialEasing: {
+                        //         opacity: "swing"
+                        //     },
+                        //     complete: function () {
+                        //
+                        //     }
+                        //
+                        // });
+
+                        // var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('width'));
+                        // var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('height'));
+                        //
+                        // tmp_width = tmp_width / 2;
+                        // tmp_height = tmp_height / 2;
+                        //
+                        // $('#crnrstn_interact_ui_side_nav_search').animate({
+                        //     height: tmp_height,
+                        //     width: tmp_width
+                        // }, {
+                        //     duration: 500,
+                        //     queue: false,
+                        //     specialEasing: {
+                        //         opacity: "swing"
+                        //     },
+                        //     complete: function () {
+                        //
+                        //     }
+                        //
+                        // });
+
+                        //$('#crnrstn_interact_ui_side_nav_logo').css('backgroundColor', 'transparent');
+
+                    break;
+                    case 'onmousedown':
+
+                    break;
+                    case 'onmouseup':
+
+                    break;
+                    case 'onclick':
+
+                        //this.toggle_documentation_side_navigation();
+
+                    break;
+
+                }
+
+            break;
             case 'crnrstn_interact_ui_side_nav_logo':
 
                 switch(ux_action){
                     case 'onmouseover':
 
-                        //this.log_activity('[lnum 6244] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
-
+                        //
                         // ACTIVE MOUSEOVER (HOVER STATE)
                         //$('#crnrstn_interact_ui_side_nav_logo_img_bg').css('backgroundColor', '#b4b4b4');   // f8f8f8
                         $('#crnrstn_interact_ui_side_nav_logo_bar').css('width', parseInt('4'));
@@ -6268,8 +6405,7 @@ close_docs_fullscreen
                     break;
                     case 'onmouseout':
 
-                        //this.log_activity('[lnum 6271] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
-
+                        //
                         // ACTIVE MOUSEOUT (BACK TO NORMAL)
                         //$('#crnrstn_interact_ui_side_nav_logo_img_bg').css('backgroundColor', '#FFF');
                         $('#crnrstn_interact_ui_side_nav_logo_bar').css('width', parseInt('2'));
@@ -6333,6 +6469,218 @@ close_docs_fullscreen
         }
 
         return true;
+
+    };
+
+    CRNRSTN_JS.prototype.search_glass_mouseover = function(){
+
+        /*
+        crnrstn_interact_ui_side_nav_search
+        crnrstn_interact_ui_side_nav_search_img
+        crnrstn_interact_ui_side_nav_search_bar
+
+        */
+
+        var self = this;
+
+        $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#F90000');
+        $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#F90000');
+
+        $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
+            opacity: 1
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('width'));
+        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('height'));
+
+        tmp_width = (tmp_width * 1) + 25;
+        tmp_height = (tmp_height * 1) + 30;
+
+        $('#crnrstn_interact_ui_side_nav_search').animate({
+            height: tmp_height,
+            width: tmp_width
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                height: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_img img').css('width'));
+        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_img img').css('height'));
+
+        tmp_width = (tmp_width * 1) + 25;
+        tmp_height = (tmp_height * 1) + 25;
+
+        $('#crnrstn_interact_ui_side_nav_search_img img').animate({
+            height: tmp_height,
+            width: tmp_width
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                height: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_interact_ui_side_nav_search_img').animate({
+            paddingTop: 5
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                paddingTop: "swing"
+            },
+            complete: function () {
+
+                self.dom_element_mouse_state_ARRAY['crnrstn_interact_ui_side_nav_search'] = 'MOUSEOVER';
+
+            }
+
+        });
+
+        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_bar').css('height'));
+
+        tmp_height = (tmp_height * 1) + 30;
+
+        $('#crnrstn_interact_ui_side_nav_search_bar').animate({
+            height: tmp_height
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                height: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+    };
+
+    CRNRSTN_JS.prototype.search_glass_mouseout = function() {
+
+        /*
+        crnrstn_interact_ui_side_nav_search
+        crnrstn_interact_ui_side_nav_search_img
+        crnrstn_interact_ui_side_nav_search_bar
+
+        */
+
+        var self = this;
+
+        $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#A5B9D8');
+        $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#A5B9D8');
+
+        $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
+            opacity: 0.2
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('width'));
+        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('height'));
+
+        tmp_width = (tmp_width * 1) - 25;
+        tmp_height = (tmp_height * 1) - 30;
+
+        $('#crnrstn_interact_ui_side_nav_search').animate({
+            height: tmp_height,
+            width: tmp_width
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                height: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_img img').css('width'));
+        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_img img').css('height'));
+
+        tmp_width = (tmp_width * 1) - 25;
+        tmp_height = (tmp_height * 1) - 25;
+
+        $('#crnrstn_interact_ui_side_nav_search_img img').animate({
+            height: tmp_height,
+            width: tmp_width
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                height: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_interact_ui_side_nav_search_img').animate({
+            paddingTop: 3
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                paddingTop: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_bar').css('height'));
+
+        tmp_height = (tmp_height * 1) - 30;
+
+        $('#crnrstn_interact_ui_side_nav_search_bar').animate({
+            height: tmp_height
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                height: "swing"
+            },
+            complete: function () {
+
+                self.dom_element_mouse_state_ARRAY['crnrstn_interact_ui_side_nav_search'] = 'MOUSEOUT';
+
+            }
+
+        });
 
     };
 
@@ -6438,6 +6786,20 @@ close_docs_fullscreen
 
             });
 
+            $('#crnrstn_interact_ui_side_nav_search').animate({
+                left: 18
+            }, {
+                duration: 500,
+                queue: false,
+                specialEasing: {
+                    left: "swing"
+                },
+                complete: function () {
+
+                }
+
+            });
+
             //var b_width = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
             $('#crnrstn_ui_element_load_indicator_shell').animate({
                 marginLeft: parseInt(this.side_navigation_min_width)
@@ -6508,6 +6870,20 @@ close_docs_fullscreen
         });
 
         $('#crnrstn_interact_ui_side_nav_logo').animate({
+            left: parseInt(this.side_navigation_toggle_expand_width)
+        }, {
+            duration: 100,
+            queue: false,
+            specialEasing: {
+                left: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_interact_ui_side_nav_search').animate({
             left: parseInt(this.side_navigation_toggle_expand_width)
         }, {
             duration: 100,

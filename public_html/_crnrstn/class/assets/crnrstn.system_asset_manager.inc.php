@@ -7756,7 +7756,7 @@ class crnrstn_system_image_asset_manager {
 
                     }else{
 
-                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '">';
 
                     }
 
@@ -7808,7 +7808,7 @@ class crnrstn_system_image_asset_manager {
 
                     }else{
 
-                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '">';
 
                     }
 
@@ -7887,7 +7887,7 @@ class crnrstn_system_image_asset_manager {
 
                     }else{
 
-                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '">';
 
                     }
 
@@ -7937,7 +7937,7 @@ class crnrstn_system_image_asset_manager {
 
                     }else{
 
-                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '" style="border:0;">';
+                        return '<img src="' . $tmp_str . '" width="' . $tmp_width . '" height="' . $tmp_height . '" alt="' . $tmp_alt_text . '" title="' . $tmp_title_text . '">';
 
                     }
 

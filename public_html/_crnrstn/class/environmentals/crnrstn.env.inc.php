@@ -1455,8 +1455,32 @@ class crnrstn_environment {
 ';
 
         $tmp_str_array[] = '        <div id="crnrstn_ui_documentation_side_nav_src" class="crnrstn_hidden">
-            <!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
-            
+        <!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
+        ';
+
+        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_side_nav_search" class="crnrstn_interact_ui_side_nav_search" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);">
+                
+                <div id="crnrstn_interact_ui_side_nav_search_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div>
+
+                <div class="crnrstn_interact_ui_side_nav_search_bar_rel">
+                    <div id="crnrstn_interact_ui_side_nav_search_bar" class="crnrstn_interact_ui_side_nav_search_bar"></div>
+                </div>
+                
+                <div id="crnrstn_interact_ui_side_nav_search_img_wrapper" class="crnrstn_interact_ui_side_nav_v_img_wrapper">
+                    
+                    <div id="crnrstn_interact_ui_side_nav_search_img_rel" class="crnrstn_interact_ui_side_nav_search_img_rel" style="width:35px; height:26px;">
+                    
+                        <div id="crnrstn_interact_ui_side_nav_search_img" class="crnrstn_interact_ui_side_nav_search_img">' . $this->oCRNRSTN->return_system_image('SEARCH_MAGNIFY_GLASS', 20, NULL, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                        <div class="crnrstn_cb"></div>
+
+                    </div>
+                    <div class="crnrstn_cb"></div>
+                    
+                </div>
+                <div class="crnrstn_cb"></div>
+                
+            </div>
+           
             <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);">
                 
                 <div id="crnrstn_interact_ui_side_nav_logo_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div>

@@ -37,7 +37,7 @@
 .crnrstn_interact_ui_full_document                  { position: absolute; z-index: 101; left:0; top:0; width: 315px; }
 
 .crnrstn_interact_ui_full_doc_header_wrapper_rel    { position: relative; width:100%;}
-.crnrstn_interact_ui_full_doc_header_wrapper        { position: absolute; z-index: 150; top:-10px; width:99%; height:65px; /*background-color: #FFF; box-shadow: 3px 2px 2px black;*/ }
+.crnrstn_interact_ui_full_doc_header_wrapper        { position: absolute; z-index: 20; top:-10px; width:99%; height:65px; /*background-color: #FFF; box-shadow: 3px 2px 2px black;*/ }
 
 .crnrstn_interact_ui_full_doc_close_wrapper_rel     { padding: 0 50px 0 0;}
 .crnrstn_interact_ui_full_doc_close_wrapper         { position: relative; cursor: pointer;}
@@ -56,6 +56,13 @@
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
 // SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/
+.crnrstn_interact_ui_side_nav_search                { position: fixed; top:260px; left:0; border-radius: 10px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #A5B9D8; overflow: hidden; cursor: pointer; }
+.crnrstn_interact_ui_side_nav_search_bar_rel        { position: relative;}
+.crnrstn_interact_ui_side_nav_search_bar            { position:absolute; z-index: 9999; left: 0; height: 40px; width:2px; background-color: #A5B9D8;}
+.crnrstn_interact_ui_side_nav_search_img_wrapper    { float: left; color:#FFF; font-size:11px; font-weight:normal; padding:0 5px 3px 0;}
+.crnrstn_interact_ui_side_nav_search_img_rel        { position: relative;}
+.crnrstn_interact_ui_side_nav_search_img            { position:absolute; z-index: 9999; font-size:14px; padding:3px 0 0 5px; }
+
 .crnrstn_interact_ui_side_nav_logo                  { position: fixed; top:200px; left:0; border-radius: 15px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #A5B9D8; overflow: hidden; cursor: pointer; }
 .crnrstn_interact_ui_side_nav_logo_bar_rel          { position: relative;}
 .crnrstn_interact_ui_side_nav_logo_bar              { position:absolute; z-index:9999; left: 0; height: 60px; width:2px; background-color: #A5B9D8;}
