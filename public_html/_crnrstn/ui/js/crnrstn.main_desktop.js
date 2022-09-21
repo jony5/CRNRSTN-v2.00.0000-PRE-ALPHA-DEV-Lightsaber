@@ -3168,6 +3168,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(tmp_docs_page.length > 1){
 
                     $("#crnrstn_interact_ui_full_doc_close").html('X');
+                    // alert('X=' + $("#crnrstn_interact_ui_full_doc_close").css('zIndex'));
+                    // alert('bg blue=' + $("#crnrstn_documentation_dyn_shell_bg").css('zIndex'));
 
                 }
 

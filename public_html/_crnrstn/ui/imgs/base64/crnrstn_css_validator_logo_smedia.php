@@ -71,7 +71,6 @@ DATE :: Sunday, Jul 31, 2022 @ 0949 hrs ::
 -->      
 */
 
-
 $system_file_serial = '0111000111101010111111110110100101000011100000010001100111011111';
 
 switch(self::$image_output_mode){
