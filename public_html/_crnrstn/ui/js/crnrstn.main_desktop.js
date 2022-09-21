@@ -898,7 +898,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     '<div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper">' +
                     '   <div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div>' +
                     '</div>' +
-                    '<div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:98%; text-align: right;">' +
+                    '<div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:98%; text-align: right; line-height: 20px;">' +
                     '   <div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div>' +
                     '   <div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div>' +
                     '</div>' +
