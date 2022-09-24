@@ -119,7 +119,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.CRNRSTN_DEBUG_BASSDRIVE = 420;
         this.CRNRSTN_DEBUG_CONTROLS = 500;
 
-        this.CRNRSTN_UI_MOUSE = [];
+        this.CRNRSTN_UI_MOUSE = {
+            X: 0,
+            Y: 0
+        };
+
         this.CRNRSTN_UI_ELEM_AT_MOUSE = [];
 
         this.baseline_z_index = 60;
@@ -461,23 +465,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.refresh_mouse_coord_meta = function(){
-
-        /*
-        this.CRNRSTN_UI_MOUSE;
-        this.CRNRSTN_UI_ELEM_AT_MOUSE = [];
-
-        */
-
-        this.CRNRSTN_UI_MOUSE = CRNRSTN_UI_MOUSE;
-        if (!this.CRNRSTN_UI_MOUSE) {
-            // We haven't seen any movement yet
-            return null;
-
-        }
-
-    };
-
     CRNRSTN_JS.prototype.link_text_click = function(page_key){
 
         this.log_activity('[lnum 463] SSDTLA Sending request for data [' + page_key + '].', this.CRNRSTN_DEBUG_VERBOSE);
@@ -586,7 +573,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(!this.$overlay.length){
 
-            $('<div id="crnrstn_interact_ui_full_doc_header_wrapper_rel" class="crnrstn_interact_ui_full_doc_header_wrapper_rel"><div class="crnrstn_cb"></div><div id="crnrstn_interact_ui_full_doc_header_wrapper" class="crnrstn_interact_ui_full_doc_header_wrapper"><div id="crnrstn_interact_ui_full_doc_close_wrapper_rel" class="crnrstn_interact_ui_full_doc_close_wrapper_rel"><div id="crnrstn_interact_ui_full_doc_close_wrapper" class="crnrstn_interact_ui_full_doc_close_wrapper"><div id="crnrstn_interact_ui_full_doc_close" class="crnrstn_interact_ui_full_doc_close" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);"  onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);"  onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);"></div></div></div><div class="crnrstn_cb"></div></div></div><div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper" class="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_ui_element_load_indicator_shell_rel" class="crnrstn_ui_element_load_indicator_shell_rel"><div id="crnrstn_ui_element_load_indicator_shell" class="crnrstn_ui_element_load_indicator_shell"><div id="crnrstn_ui_element_load_indicator_bg_rel" class="crnrstn_ui_element_load_indicator_bg_rel"><div id="crnrstn_ui_element_load_indicator_bg" class="crnrstn_ui_element_load_indicator_bg"></div></div><div id="crnrstn_ui_element_load_indicator_rel" class="crnrstn_ui_element_load_indicator_rel"><div id="crnrstn_ui_element_load_indicator" class="crnrstn_ui_element_load_indicator"></div></div></div></div><div id="crnrstn_documentation_dyn_shell_rel" class="crnrstn_documentation_dyn_shell_rel"><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div></div>').prependTo($('body'));
+            $('<div id="crnrstn_interact_ui_full_doc_header_wrapper_rel" class="crnrstn_interact_ui_full_doc_header_wrapper_rel"><div class="crnrstn_cb"></div><div id="crnrstn_interact_ui_full_doc_header_wrapper" class="crnrstn_interact_ui_full_doc_header_wrapper"><div id="crnrstn_interact_ui_full_doc_close_wrapper_rel" class="crnrstn_interact_ui_full_doc_close_wrapper_rel"><div id="crnrstn_interact_ui_full_doc_close_wrapper" class="crnrstn_interact_ui_full_doc_close_wrapper"><div id="crnrstn_interact_ui_full_doc_close" class="crnrstn_interact_ui_full_doc_close" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);"></div></div></div><div class="crnrstn_cb"></div></div></div><div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper" class="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_ui_element_load_indicator_shell_rel" class="crnrstn_ui_element_load_indicator_shell_rel"><div id="crnrstn_ui_element_load_indicator_shell" class="crnrstn_ui_element_load_indicator_shell"><div id="crnrstn_ui_element_load_indicator_bg_rel" class="crnrstn_ui_element_load_indicator_bg_rel"><div id="crnrstn_ui_element_load_indicator_bg" class="crnrstn_ui_element_load_indicator_bg"></div></div><div id="crnrstn_ui_element_load_indicator_rel" class="crnrstn_ui_element_load_indicator_rel"><div id="crnrstn_ui_element_load_indicator" class="crnrstn_ui_element_load_indicator"></div></div></div></div><div id="crnrstn_documentation_dyn_shell_rel" class="crnrstn_documentation_dyn_shell_rel"><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div></div>').prependTo($('body'));
 
             self.log_activity('[lnum 571] Initializing CRNRSTN :: INTERACT UI within the DOM.', self.CRNRSTN_DEBUG_VERBOSE);
 
@@ -835,7 +822,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             //
             // TURN ON
             // Position Lightbox
-            var top  = $window.scrollTop() + this.options.positionFromTop;
+            var top = $window.scrollTop() + this.options.positionFromTop;
             var left = $window.scrollLeft();
 
             this.$lightbox.css({
@@ -981,6 +968,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    //
+    // SOURCE :: https://stackoverflow.com/questions/8813051/determine-which-element-the-mouse-pointer-is-on-top-of-in-javascript
+    // AUTHOR :: herrlich10 :: https://stackoverflow.com/users/2003079/herrlich10
     CRNRSTN_JS.prototype.crnrstn_get_all_elements_from_point = function(x, y) {
 
         var elements = [];
@@ -1115,10 +1105,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.client_rtime_pretty = hour_copy + min_copy + secs_copy;
 
         //
-        // REFESH MOUSE META
-        this.crnrstn_interact_ui_refresh_mouse_meta();
-
-        //
         // PROCESS TTL
         this.process_data_tunnel_ttl();
 
@@ -1142,6 +1128,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.refresh_stage_anchored_dom_component_css = function() {
 
+        var search_mouse_out_listen = true;
+        var search_listen_str = 'crnrstn_interact_ui_side_nav_search';
+
         if(this.interact_ui_refresh_state_docs_bg === 'ENABLED'){
 
             this.size_element('crnrstn_documentation_dyn_shell_bg');
@@ -1155,21 +1144,27 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         }
 
-        //this.log_activity('[lnum 940] MOUSE LOCATION[' + this.crnrstn_get_all_elements_from_point(e.clientX, e.clientY) + '].', this.CRNRSTN_DEBUG_VERBOSE);
-        this.refresh_mouse_coord_meta();
-
-        this.CRNRSTN_UI_ELEM_AT_MOUSE_ARRAY = this.crnrstn_get_all_elements_from_point(this.CRNRSTN_UI_MOUSE.X, this.CRNRSTN_UI_MOUSE.Y);
-        var tmp_elem_cnt = this.CRNRSTN_UI_ELEM_AT_MOUSE_ARRAY.length;
+        this.CRNRSTN_UI_ELEM_AT_MOUSE = this.crnrstn_get_all_elements_from_point(this.CRNRSTN_UI_MOUSE.X, this.CRNRSTN_UI_MOUSE.Y);
+        var tmp_elem_cnt = this.CRNRSTN_UI_ELEM_AT_MOUSE.length;
 
         for(let i = 0; i < tmp_elem_cnt; i++){
 
-            this.log_activity('[lnum 1170] MOUSE LOCATION ELEM[' + this.CRNRSTN_UI_ELEM_AT_MOUSE_ARRAY[i] + '][' + i + '].', this.CRNRSTN_DEBUG_VERBOSE);
+            var tmp_elemid = this.CRNRSTN_UI_ELEM_AT_MOUSE[i].id;
+            if(tmp_elemid.length > 0){
 
-            // if(this.interact_ui_refresh_state_docs_bg === 'ENABLED'){
-            //
-            //     this.size_element('crnrstn_documentation_dyn_shell');
-            //
-            // }
+                if(this.CRNRSTN_UI_ELEM_AT_MOUSE[i].id === search_listen_str){
+
+                    search_mouse_out_listen = false;
+
+                }
+
+            }
+
+        }
+
+        if(search_mouse_out_listen){
+
+            this.search_glass_mouseout();
 
         }
 
@@ -4422,14 +4417,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'day_mth':
                 // 29
                 // this.client_day_mth_en_ARRAY = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh',
-                // 'eigth', 'ninth', 'tenth',  'eleventh', 'twelfth', 'thirtenth', '', '',  '', '', '', '', '',  '',
-                // '', '', '', '',  '', '', '', '', '',  '', '', '',
-                // '', '',  '', '', '', '', '',  '', '', '', '', '',  '', '', '', '', '',  '', '', ''];
+                // 'eigth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirtenth', '', '', '', '', '', '', '', '',
+                // '', '', '', '', '', '', '', '', '', '', '', '',
+                // '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
                 // this.client_day_mth_en_ARRAY = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th',
-                // '8th', '9th', '10th',  '11th', '12th', '13th', '', '',  '', '', '', '', '',  '',
-                // '', '', '', '',  '', '', '', '', '',  '', '', '',
-                // '', '',  '', '', '', '', '',  '', '', '', '', '',  '', '', '', '', '',  '', '', ''];
+                // '8th', '9th', '10th', '11th', '12th', '13th', '', '', '', '', '', '', '', '',
+                // '', '', '', '', '', '', '', '', '', '', '', '',
+                // '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
                 day = date_obj.getDate();
 
@@ -4617,75 +4612,75 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     // AUTHOR :: Matt Baker :: https://stackoverflow.com/users/190938/matt-baker
     // AUTHOR :: Joseph Myers :: https://www.myersdaily.org/joseph/
     CRNRSTN_JS.prototype.md5cycle = function(x, k){
-        //function md5cycle(x, k) {
+
         var a = x[0], b = x[1], c = x[2], d = x[3];
 
         a = this.ff(a, b, c, d, k[0], 7, -680876936);
         d = this.ff(d, a, b, c, k[1], 12, -389564586);
-        c = this.ff(c, d, a, b, k[2], 17,  606105819);
+        c = this.ff(c, d, a, b, k[2], 17, 606105819);
         b = this.ff(b, c, d, a, k[3], 22, -1044525330);
         a = this.ff(a, b, c, d, k[4], 7, -176418897);
-        d = this.ff(d, a, b, c, k[5], 12,  1200080426);
+        d = this.ff(d, a, b, c, k[5], 12, 1200080426);
         c = this.ff(c, d, a, b, k[6], 17, -1473231341);
         b = this.ff(b, c, d, a, k[7], 22, -45705983);
-        a = this.ff(a, b, c, d, k[8], 7,  1770035416);
+        a = this.ff(a, b, c, d, k[8], 7, 1770035416);
         d = this.ff(d, a, b, c, k[9], 12, -1958414417);
         c = this.ff(c, d, a, b, k[10], 17, -42063);
         b = this.ff(b, c, d, a, k[11], 22, -1990404162);
-        a = this.ff(a, b, c, d, k[12], 7,  1804603682);
+        a = this.ff(a, b, c, d, k[12], 7, 1804603682);
         d = this.ff(d, a, b, c, k[13], 12, -40341101);
         c = this.ff(c, d, a, b, k[14], 17, -1502002290);
-        b = this.ff(b, c, d, a, k[15], 22,  1236535329);
+        b = this.ff(b, c, d, a, k[15], 22, 1236535329);
 
         a = this.gg(a, b, c, d, k[1], 5, -165796510);
         d = this.gg(d, a, b, c, k[6], 9, -1069501632);
-        c = this.gg(c, d, a, b, k[11], 14,  643717713);
+        c = this.gg(c, d, a, b, k[11], 14, 643717713);
         b = this.gg(b, c, d, a, k[0], 20, -373897302);
         a = this.gg(a, b, c, d, k[5], 5, -701558691);
-        d = this.gg(d, a, b, c, k[10], 9,  38016083);
+        d = this.gg(d, a, b, c, k[10], 9, 38016083);
         c = this.gg(c, d, a, b, k[15], 14, -660478335);
         b = this.gg(b, c, d, a, k[4], 20, -405537848);
-        a = this.gg(a, b, c, d, k[9], 5,  568446438);
+        a = this.gg(a, b, c, d, k[9], 5, 568446438);
         d = this.gg(d, a, b, c, k[14], 9, -1019803690);
         c = this.gg(c, d, a, b, k[3], 14, -187363961);
-        b = this.gg(b, c, d, a, k[8], 20,  1163531501);
+        b = this.gg(b, c, d, a, k[8], 20, 1163531501);
         a = this.gg(a, b, c, d, k[13], 5, -1444681467);
         d = this.gg(d, a, b, c, k[2], 9, -51403784);
-        c = this.gg(c, d, a, b, k[7], 14,  1735328473);
+        c = this.gg(c, d, a, b, k[7], 14, 1735328473);
         b = this.gg(b, c, d, a, k[12], 20, -1926607734);
 
         a = this.hh(a, b, c, d, k[5], 4, -378558);
         d = this.hh(d, a, b, c, k[8], 11, -2022574463);
-        c = this.hh(c, d, a, b, k[11], 16,  1839030562);
+        c = this.hh(c, d, a, b, k[11], 16, 1839030562);
         b = this.hh(b, c, d, a, k[14], 23, -35309556);
         a = this.hh(a, b, c, d, k[1], 4, -1530992060);
-        d = this.hh(d, a, b, c, k[4], 11,  1272893353);
+        d = this.hh(d, a, b, c, k[4], 11, 1272893353);
         c = this.hh(c, d, a, b, k[7], 16, -155497632);
         b = this.hh(b, c, d, a, k[10], 23, -1094730640);
-        a = this.hh(a, b, c, d, k[13], 4,  681279174);
+        a = this.hh(a, b, c, d, k[13], 4, 681279174);
         d = this.hh(d, a, b, c, k[0], 11, -358537222);
         c = this.hh(c, d, a, b, k[3], 16, -722521979);
-        b = this.hh(b, c, d, a, k[6], 23,  76029189);
+        b = this.hh(b, c, d, a, k[6], 23, 76029189);
         a = this.hh(a, b, c, d, k[9], 4, -640364487);
         d = this.hh(d, a, b, c, k[12], 11, -421815835);
-        c = this.hh(c, d, a, b, k[15], 16,  530742520);
+        c = this.hh(c, d, a, b, k[15], 16, 530742520);
         b = this.hh(b, c, d, a, k[2], 23, -995338651);
 
         a = this.ii(a, b, c, d, k[0], 6, -198630844);
-        d = this.ii(d, a, b, c, k[7], 10,  1126891415);
+        d = this.ii(d, a, b, c, k[7], 10, 1126891415);
         c = this.ii(c, d, a, b, k[14], 15, -1416354905);
         b = this.ii(b, c, d, a, k[5], 21, -57434055);
-        a = this.ii(a, b, c, d, k[12], 6,  1700485571);
+        a = this.ii(a, b, c, d, k[12], 6, 1700485571);
         d = this.ii(d, a, b, c, k[3], 10, -1894986606);
         c = this.ii(c, d, a, b, k[10], 15, -1051523);
         b = this.ii(b, c, d, a, k[1], 21, -2054922799);
-        a = this.ii(a, b, c, d, k[8], 6,  1873313359);
+        a = this.ii(a, b, c, d, k[8], 6, 1873313359);
         d = this.ii(d, a, b, c, k[15], 10, -30611744);
         c = this.ii(c, d, a, b, k[6], 15, -1560198380);
-        b = this.ii(b, c, d, a, k[13], 21,  1309151649);
+        b = this.ii(b, c, d, a, k[13], 21, 1309151649);
         a = this.ii(a, b, c, d, k[4], 6, -145523070);
         d = this.ii(d, a, b, c, k[11], 10, -1120210379);
-        c = this.ii(c, d, a, b, k[2], 15,  718787259);
+        c = this.ii(c, d, a, b, k[2], 15, 718787259);
         b = this.ii(b, c, d, a, k[9], 21, -343485551);
 
         x[0] = this.add32(a, x[0]);
@@ -4696,110 +4691,136 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     }
 
     CRNRSTN_JS.prototype.cmn = function(q, a, b, x, s, t){
-        //function cmn(q, a, b, x, s, t) {
+
         a = this.add32(this.add32(a, q), this.add32(x, t));
+
         return this.add32((a << s) | (a >>> (32 - s)), b);
+
     }
 
     CRNRSTN_JS.prototype.ff = function(a, b, c, d, x, s, t){
-        //function ff(a, b, c, d, x, s, t) {
+
         return this.cmn((b & c) | ((~b) & d), a, b, x, s, t);
+
     }
 
     CRNRSTN_JS.prototype.gg = function(a, b, c, d, x, s, t){
-        //function gg(a, b, c, d, x, s, t) {
+
         return this.cmn((b & d) | (c & (~d)), a, b, x, s, t);
+
     }
 
     CRNRSTN_JS.prototype.hh = function(a, b, c, d, x, s, t){
-        //function hh(a, b, c, d, x, s, t) {
+
         return this.cmn(b ^ c ^ d, a, b, x, s, t);
+
     }
 
     CRNRSTN_JS.prototype.ii = function(a, b, c, d, x, s, t){
-        //function ii(a, b, c, d, x, s, t) {
+
         return this.cmn(c ^ (b | (~d)), a, b, x, s, t);
+
     }
 
     CRNRSTN_JS.prototype.md51 = function(s){
-        //function md51(s) {
+
         txt = '';
         var n = s.length,
             state = [1732584193, -271733879, -1732584194, 271733878], i;
-        for (i=64; i<=s.length; i+=64) {
-            this.md5cycle(state, this.md5blk(s.substring(i-64, i)));
+
+        for(i = 64; i <= s.length; i += 64){
+
+            this.md5cycle(state, this.md5blk(s.substring(i - 64, i)));
+
         }
-        s = s.substring(i-64);
+
+        s = s.substring(i - 64);
         var tail = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0];
-        for (i=0; i<s.length; i++)
+
+        for(i = 0; i < s.length; i++)
             tail[i>>2] |= s.charCodeAt(i) << ((i%4) << 3);
         tail[i>>2] |= 0x80 << ((i%4) << 3);
-        if (i > 55) {
+
+        if(i > 55){
             this.md5cycle(state, tail);
-            for (i=0; i<16; i++) tail[i] = 0;
+            for(i = 0; i < 16; i++) tail[i] = 0;
+
         }
+
         tail[14] = n*8;
         this.md5cycle(state, tail);
+
         return state;
+
     }
 
     /* there needs to be support for Unicode here,
-     * unless we pretend that we can redefine the MD-5
-     * algorithm for multi-byte characters (perhaps
-     * by adding every four 16-bit characters and
-     * shortening the sum to 32 bits). Otherwise
-     * I suggest performing MD-5 as if every character
-     * was two bytes--e.g., 0040 0025 = @%--but then
-     * how will an ordinary MD-5 sum be matched?
-     * There is no way to standardize text to something
-     * like UTF-8 before transformation; speed cost is
-     * utterly prohibitive. The JavaScript standard
-     * itself needs to look at this: it should start
-     * providing access to strings as preformed UTF-8
-     * 8-bit unsigned value arrays.
-     */
+    * unless we pretend that we can redefine the MD-5
+    * algorithm for multi-byte characters (perhaps
+    * by adding every four 16-bit characters and
+    * shortening the sum to 32 bits). Otherwise
+    * I suggest performing MD-5 as if every character
+    * was two bytes--e.g., 0040 0025 = @%--but then
+    * how will an ordinary MD-5 sum be matched?
+    * There is no way to standardize text to something
+    * like UTF-8 before transformation; speed cost is
+    * utterly prohibitive. The JavaScript standard
+    * itself needs to look at this: it should start
+    * providing access to strings as preformed UTF-8
+    * 8-bit unsigned value arrays.
+
+    */
     CRNRSTN_JS.prototype.md5blk = function(s){
-        //function md5blk(s) { /* I figured global was faster.   */
+
         var md5blks = [], i; /* Andy King said do it this way. */
-        for (i=0; i<64; i+=4) {
+
+        for(i = 0; i < 64; i += 4) {
+
             md5blks[i>>2] = s.charCodeAt(i)
                 + (s.charCodeAt(i+1) << 8)
                 + (s.charCodeAt(i+2) << 16)
                 + (s.charCodeAt(i+3) << 24);
+
         }
+
         return md5blks;
+
     }
 
     CRNRSTN_JS.prototype.rhex = function(n){
-        //function rhex(n){
+
         var s = '', j = 0;
+
         for(; j<4; j++)
             s += this.hex_chr[(n >> (j * 8 + 4)) & 0x0F]
                 + this.hex_chr[(n >> (j * 8)) & 0x0F];
+
         return s;
+
     }
 
     CRNRSTN_JS.prototype.hex = function(x){
-        //function hex(x) {
+
         for (var i=0; i<x.length; i++)
             x[i] = this.rhex(x[i]);
+
         return x.join('');
+
     }
 
     CRNRSTN_JS.prototype.md5 = function(s){
-        //function md5(s) {
 
         return this.hex(this.md51(s));
 
     }
 
     CRNRSTN_JS.prototype.add32 = function(x, y){
-        //function add32(a, b) {
 
         if(this.md5_IE_32bit_shift_enabled){
 
             var lsw = (x & 0xFFFF) + (y & 0xFFFF),
                 msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+
             return (msw << 16) | (lsw & 0xFFFF);
 
         }
@@ -4808,19 +4829,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         so if possible we use it. Some IEs
         are the only ones I know of that
         need the idiotic second function,
-        generated by an if clause.  */
+        generated by an if clause.
+
+        */
         return (x + y) & 0xFFFFFFFF;
 
     }
-
-    //
-    // if (this.md5('hello') != '5d41402abc4b2a76b9719d911017c592') {
-    //     function add32(x, y) {
-    //         var lsw = (x & 0xFFFF) + (y & 0xFFFF),
-    //             msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-    //         return (msw << 16) | (lsw & 0xFFFF);
-    //     }
-    // }
 
     //
     // SOURCE :: https://stackoverflow.com/questions/16153479/jquery-checksum
@@ -6351,78 +6365,7 @@ close_docs_fullscreen
                     break;
                     case 'onmouseout':
 
-                        if(this.dom_element_mouse_state_ARRAY[elem.id] == 'MOUSEOVER'){
-
-                            this.dom_element_mouse_state_ARRAY[elem.id] = 'TRANSITIONING';
-
-                            //
-                            // ACTIVE MOUSEOVER (HOVER STATE)
-                            $('#crnrstn_interact_ui_side_nav_search_bar').css('width', parseInt('2'));
-                            $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#A5B9D8');
-                            $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#A5B9D8');
-
-                            $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
-                                opacity: 0.2
-                            }, {
-                                duration: 100,
-                                queue: false,
-                                specialEasing: {
-                                    opacity: "swing"
-                                },
-                                complete: function () {
-
-                                }
-
-                            });
-
-                            this.search_glass_mouseout();
-
-                        }
-
-                        //
-                        // //
-                        // // ACTIVE MOUSEOUT (BACK TO NORMAL)
-                        // //$('#crnrstn_interact_ui_side_nav_search_img_bg').css('backgroundColor', '#FFF');
-                        // $('#crnrstn_interact_ui_side_nav_search_bar').css('width', parseInt('2'));
-                        // $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#A5B9D8');
-                        // $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#A5B9D8');
-                        //
-                        // $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
-                        //     opacity: 0.2
-                        // }, {
-                        //     duration: 100,
-                        //     queue: false,
-                        //     specialEasing: {
-                        //         opacity: "swing"
-                        //     },
-                        //     complete: function () {
-                        //
-                        //     }
-                        //
-                        // });
-
-                        // var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('width'));
-                        // var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('height'));
-                        //
-                        // tmp_width = tmp_width / 2;
-                        // tmp_height = tmp_height / 2;
-                        //
-                        // $('#crnrstn_interact_ui_side_nav_search').animate({
-                        //     height: tmp_height,
-                        //     width: tmp_width
-                        // }, {
-                        //     duration: 500,
-                        //     queue: false,
-                        //     specialEasing: {
-                        //         opacity: "swing"
-                        //     },
-                        //     complete: function () {
-                        //
-                        //     }
-                        //
-                        // });
-
-                        //$('#crnrstn_interact_ui_side_nav_logo').css('backgroundColor', 'transparent');
+                        this.search_glass_mouseout();
 
                     break;
                     case 'onmousedown':
@@ -6647,106 +6590,134 @@ close_docs_fullscreen
     CRNRSTN_JS.prototype.search_glass_mouseout = function() {
 
         /*
-        crnrstn_interact_ui_side_nav_search
+        *** crnrstn_interact_ui_side_nav_search
         crnrstn_interact_ui_side_nav_search_img
         crnrstn_interact_ui_side_nav_search_bar
 
         */
 
-        var self = this;
+        var mouse_state_index = 'crnrstn_interact_ui_side_nav_search';
 
-        $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#A5B9D8');
-        $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#A5B9D8');
+        if(this.dom_element_mouse_state_ARRAY[mouse_state_index] == 'MOUSEOVER') {
 
-        $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
-            opacity: 0.2
-        }, {
-            duration: 100,
-            queue: false,
-            specialEasing: {
-                opacity: "swing"
-            },
-            complete: function () {
+            this.dom_element_mouse_state_ARRAY[mouse_state_index] = 'TRANSITIONING';
 
-            }
+            var self = this;
 
-        });
+            //
+            // INACTIVE MOUSEOUT
+            $('#crnrstn_interact_ui_side_nav_search_bar').css('width', parseInt('2'));
+            $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#A5B9D8');
+            $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#A5B9D8');
 
-        var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('width'));
-        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('height'));
+            $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
+                opacity: 0.2
+            }, {
+                duration: 100,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
 
-        tmp_width = (tmp_width * 1) - 25;
-        tmp_height = (tmp_height * 1) - 30;
+                }
 
-        $('#crnrstn_interact_ui_side_nav_search').animate({
-            height: tmp_height,
-            width: tmp_width
-        }, {
-            duration: 100,
-            queue: false,
-            specialEasing: {
-                height: "swing"
-            },
-            complete: function () {
+            });
 
-            }
+            $('#crnrstn_interact_ui_side_nav_search_bar').css('backgroundColor', '#A5B9D8');
+            $('#crnrstn_interact_ui_side_nav_search').css('borderColor', '#A5B9D8');
 
-        });
+            $('#crnrstn_interact_ui_side_nav_search_img_bg').animate({
+                opacity: 0.2
+            }, {
+                duration: 100,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                complete: function () {
 
-        var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_img img').css('width'));
-        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_img img').css('height'));
+                }
 
-        tmp_width = (tmp_width * 1) - 25;
-        tmp_height = (tmp_height * 1) - 25;
+            });
 
-        $('#crnrstn_interact_ui_side_nav_search_img img').animate({
-            height: tmp_height,
-            width: tmp_width
-        }, {
-            duration: 100,
-            queue: false,
-            specialEasing: {
-                height: "swing"
-            },
-            complete: function () {
+            var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('width'));
+            var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search').css('height'));
 
-            }
+            tmp_width = (tmp_width * 1) - 25;
+            tmp_height = (tmp_height * 1) - 30;
 
-        });
+            $('#crnrstn_interact_ui_side_nav_search').animate({
+                height: tmp_height,
+                width: tmp_width
+            }, {
+                duration: 100,
+                queue: false,
+                specialEasing: {
+                    height: "swing"
+                },
+                complete: function () {
 
-        $('#crnrstn_interact_ui_side_nav_search_img').animate({
-            paddingTop: 3
-        }, {
-            duration: 100,
-            queue: false,
-            specialEasing: {
-                paddingTop: "swing"
-            },
-            complete: function () {
+                }
 
-            }
+            });
 
-        });
+            var tmp_width = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_img img').css('width'));
+            var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_img img').css('height'));
 
-        var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_bar').css('height'));
+            tmp_width = (tmp_width * 1) - 25;
+            tmp_height = (tmp_height * 1) - 25;
 
-        tmp_height = (tmp_height * 1) - 30;
+            $('#crnrstn_interact_ui_side_nav_search_img img').animate({
+                height: tmp_height,
+                width: tmp_width
+            }, {
+                duration: 100,
+                queue: false,
+                specialEasing: {
+                    height: "swing"
+                },
+                complete: function () {
 
-        $('#crnrstn_interact_ui_side_nav_search_bar').animate({
-            height: tmp_height
-        }, {
-            duration: 100,
-            queue: false,
-            specialEasing: {
-                height: "swing"
-            },
-            complete: function () {
+                }
 
-                self.dom_element_mouse_state_ARRAY['crnrstn_interact_ui_side_nav_search'] = 'MOUSEOUT';
+            });
 
-            }
+            $('#crnrstn_interact_ui_side_nav_search_img').animate({
+                paddingTop: 3
+            }, {
+                duration: 100,
+                queue: false,
+                specialEasing: {
+                    paddingTop: "swing"
+                },
+                complete: function () {
 
-        });
+                }
+
+            });
+
+            var tmp_height = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav_search_bar').css('height'));
+
+            tmp_height = (tmp_height * 1) - 30;
+
+            $('#crnrstn_interact_ui_side_nav_search_bar').animate({
+                height: tmp_height
+            }, {
+                duration: 100,
+                queue: false,
+                specialEasing: {
+                    height: "swing"
+                },
+                complete: function () {
+
+                    self.dom_element_mouse_state_ARRAY[mouse_state_index] = 'MOUSEOUT';
+
+                }
+
+            });
+
+        }
 
     };
 
@@ -7301,13 +7272,16 @@ window.setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentTo
     } : vCallback, nDelay);
 };
 
+//
+// SOURCE :: https://stackoverflow.com/questions/7790725/javascript-track-mouse-position
+// AUTHOR :: T.J. Crowder :: https://stackoverflow.com/users/157247/t-j-crowder
 (function() {
-    document.onmousemove = crnrstn_interact_ui_mouse_meta;
 
-    function crnrstn_interact_ui_mouse_meta(event) {
+    var self = this;
+    document.onmousemove = crnrstn_interact_ui_mouse_input;
+
+    function crnrstn_interact_ui_mouse_input(event) {
         var eventDoc, doc, body;
-        var self = this;
-
         event = event || window.event; // IE-ism
 
         // If pageX/Y aren't available and clientX/Y are,
@@ -7326,30 +7300,10 @@ window.setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentTo
                 (doc && doc.clientTop  || body && body.clientTop  || 0 );
         }
 
-        CRNRSTN_UI_MOUSE = {
+        self.oCRNRSTN_JS.CRNRSTN_UI_MOUSE = {
             X: event.pageX,
             Y: event.pageY
         };
-
-        // Use event.pageX / event.pageY here
-
-    }
-
-    function crnrstn_interact_ui_refresh_mouse_meta() {
-
-        if(){
-
-            this.CRNRSTN_UI_MOUSE = CRNRSTN_UI_MOUSE;
-
-        }
-        // if(!this.CRNRSTN_UI_MOUSE){
-        //     // We haven't seen any movement yet
-        // }
-        // else {
-        //     // Use pos.x and pos.y
-        // }
-
-        crnrstn_interact_ui_refresh_mouse_meta();
 
     }
 
@@ -7357,7 +7311,6 @@ window.setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentTo
 
 (function crnrstn_rtime_timer_interval(){
     setInterval(function() {
-        // Your logic here
         this.oCRNRSTN_JS.crnrstn_rtime_timer_cycle();
         }, 1000);
 })();

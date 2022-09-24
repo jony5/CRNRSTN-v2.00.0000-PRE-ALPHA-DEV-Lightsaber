@@ -138,7 +138,7 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
  *
  * @var string
  */
-$CRNRSTN_config_serial = 'ozxbG1C%oBqcWg4CdTFA9A*#N$w6ONev %K~8xKXkg(3%$c6_O59T+fw_iDcpJzl';
+$CRNRSTN_config_serial = '';
 
 /**
  * $CRNRSTN_log_silo_profile
@@ -713,8 +713,8 @@ $oCRNRSTN->config_init_images_transport_mode(CRNRSTN_ASSET_MODE_PNG);
  * build image URI in support of, e.g., the HTML versions of system email messages. On that note the
  * text versions are available for all system notifications, and HTML can be 'turned off' if desired.
  */
-$oCRNRSTN->config_init_images_http_dir('BLUEHOST_JONY5', 'http://jony5.com/_crnrstn/');
-$oCRNRSTN->config_init_images_http_dir('BLUEHOST_EVIFWEB', 'http://www.jony5.com/_crnrstn/');
+$oCRNRSTN->config_init_images_http_dir('BLUEHOST_JONY5', 'http://lightsaber.crnrstn.jony5.com/_crnrstn/');
+$oCRNRSTN->config_init_images_http_dir('BLUEHOST_EVIFWEB', 'http://lightsaber.crnrstn.evifweb.com/_crnrstn/');
 $oCRNRSTN->config_init_images_http_dir('LOCALHOST_MACBOOKPRO', 'http://172.16.225.128/jony5/_crnrstn/');
 $oCRNRSTN->config_init_images_http_dir('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/_crnrstn/');
 //http://172.16.225.139/lightsaber.crnrstn.evifweb.com/_crnrstn/

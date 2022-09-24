@@ -3,7 +3,7 @@
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
 $this->config_add_system_resource('BLUEHOST_JONY5', 'DOCUMENT_ROOT_DIR', '', CRNRSTN_AUTHORIZE_RUNTIME_ONLY, 60);
-$this->config_add_system_resource('BLUEHOST_JONY5', 'ROOT_PATH_CLIENT_HTTP', 'http://jony5.com/');
+$this->config_add_system_resource('BLUEHOST_JONY5', 'ROOT_PATH_CLIENT_HTTP', 'http://lightsaber.crnrstn.jony5.com/');
 $this->config_add_system_resource('BLUEHOST_JONY5', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
 $this->config_add_system_resource('BLUEHOST_JONY5', 'BANNER_IMAGES_HTTP_DIR_DESKTOP', 'common/imgs/lifestyle_banner/desktop/');
 $this->config_add_system_resource('BLUEHOST_JONY5', 'BANNER_IMAGES_HTTP_DIR_TABLET', 'common/imgs/lifestyle_banner/tablet/');
@@ -20,12 +20,11 @@ $this->config_add_system_resource('BLUEHOST_JONY5', 'SSL_ENABLED', false);
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'DOCUMENT_ROOT_DIR', '');
-$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP', 'http://www.jony5.com/');
+$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP', 'http://lightsaber.crnrstn.evifweb.com/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BANNER_IMAGES_HTTP_DIR_DESKTOP', 'common/imgs/lifestyle_banner/desktop/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BANNER_IMAGES_HTTP_DIR_TABLET', 'common/imgs/lifestyle_banner/tablet/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BANNER_IMAGES_HTTP_DIR_MOBILE', 'common/imgs/lifestyle_banner/mobile/');
-$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'WSDL_URI_MGMT', 'http://services.crnrstn.jony5.com/soa/crnrstnmgmt/1.0.0/wsdl/index.php?wsdl');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'WSDL_URI', 'http://services.crnrstn.jony5.com/soa/crnrstn/1.0.0/wsdl/index.php?wsdl');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'WETHRBUG_APP', 'http://wethrbug.jony5.com/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BASSDRIVE_INTEGRATE', true);
