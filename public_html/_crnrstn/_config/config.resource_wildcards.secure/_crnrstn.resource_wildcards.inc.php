@@ -5,7 +5,7 @@
 # RELEVANT RESOURCE WILDCARDS
 
 switch($this->env_key){
-    case 'BLUEHOST':
+    case 'BLUEHOST_JONY5':
         # # # # #
         ### NEW WILD CARD RESOURCE
         $oWCR = $this->define_wildcard_resource('CRNRSTN::INTEGRATIONS');
@@ -76,7 +76,7 @@ switch($this->env_key){
         $oWildCardResource_ARRAY[$oWCR->return_resource_key()] = $oWCR;
 
     break;
-    case 'BLUEHOST_WWW':
+    case 'BLUEHOST_EVIFWEB':
         # # # # #
         ### NEW WILD CARD RESOURCE
         $oWCR = $this->define_wildcard_resource('CRNRSTN::INTEGRATIONS');

@@ -5,7 +5,7 @@
 # RELEVANT RESOURCE WILDCARDS
 
 switch($this->env_key){
-    case 'BLUEHOST':
+    case 'BLUEHOST_JONY5':
     case 'BLUEHOST_GITHUB':
 
         # # # # #

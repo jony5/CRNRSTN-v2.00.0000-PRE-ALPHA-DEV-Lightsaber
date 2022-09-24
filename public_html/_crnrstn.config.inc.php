@@ -138,7 +138,7 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
  *
  * @var string
  */
-$CRNRSTN_config_serial = '';
+$CRNRSTN_config_serial = 'ozxbG1C%oBqcWg4CdTFA9A*#N$w6ONev %K~8xKXkg(3%$c6_O59T+fw_iDcpJzl';
 
 /**
  * $CRNRSTN_log_silo_profile
@@ -474,8 +474,8 @@ The error level constants are always available as part of the PHP core.
  * The above example will expose all errors, warnings and notices (including coding standards) to the
  * environment represented to CRNRSTN :: within this configuration file + includes by the env_key 'LOCALHOST'.
  */
-$oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
-$oCRNRSTN->config_add_environment('BLUEHOST_WWW', E_ALL & ~E_NOTICE & ~E_STRICT);
+$oCRNRSTN->config_add_environment('BLUEHOST_JONY5', E_ALL & ~E_NOTICE & ~E_STRICT);
+$oCRNRSTN->config_add_environment('BLUEHOST_EVIFWEB', E_ALL & ~E_NOTICE & ~E_STRICT);
 $oCRNRSTN->config_add_environment('LOCALHOST_MACBOOKPRO', E_ALL);
 $oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
 
@@ -545,8 +545,8 @@ $oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
 
 //
 // ENVIRONMENTAL DETECTION
-$oCRNRSTN->config_detect_environment('BLUEHOST', 'SERVER_NAME', 'jony5.com');
-$oCRNRSTN->config_detect_environment('BLUEHOST_WWW', 'SERVER_NAME', 'www.jony5.com');
+$oCRNRSTN->config_detect_environment('BLUEHOST_JONY5', 'SERVER_NAME', 'lightsaber.crnrstn.jony5.com');
+$oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsaber.crnrstn.evifweb.com');
 $oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139', 1);
 
 //
@@ -662,8 +662,8 @@ $oCRNRSTN->config_add_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/
  * The above gives E_NOTICE, E_STRICT, AND E_DEPRECATED throws to native PHP for handling. All else
  * will go through CRNRSTN :: and can be sent as CRNRSTN :: system EMAIL notification if desired.
  */
-$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST',true);
-$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_WWW',true);
+$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_JONY5',true);
+$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_EVIFWEB',true);
 $oCRNRSTN->set_crnrstn_as_err_handler('LOCALHOST_MACBOOKPRO',false);
 $oCRNRSTN->set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO',true);
 
@@ -713,8 +713,8 @@ $oCRNRSTN->config_init_images_transport_mode(CRNRSTN_ASSET_MODE_PNG);
  * build image URI in support of, e.g., the HTML versions of system email messages. On that note the
  * text versions are available for all system notifications, and HTML can be 'turned off' if desired.
  */
-$oCRNRSTN->config_init_images_http_dir('BLUEHOST', 'http://jony5.com/_crnrstn/');
-$oCRNRSTN->config_init_images_http_dir('BLUEHOST_WWW', 'http://www.jony5.com/_crnrstn/');
+$oCRNRSTN->config_init_images_http_dir('BLUEHOST_JONY5', 'http://jony5.com/_crnrstn/');
+$oCRNRSTN->config_init_images_http_dir('BLUEHOST_EVIFWEB', 'http://www.jony5.com/_crnrstn/');
 $oCRNRSTN->config_init_images_http_dir('LOCALHOST_MACBOOKPRO', 'http://172.16.225.128/jony5/_crnrstn/');
 $oCRNRSTN->config_init_images_http_dir('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/_crnrstn/');
 //http://172.16.225.139/lightsaber.crnrstn.evifweb.com/_crnrstn/
@@ -817,8 +817,8 @@ $oCRNRSTN->config_init_images_http_dir('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.
  * Example ::
  * $oCRNRSTN->config_init_logging('BLUEHOST', CRNRSTN_LOG_SCREEN & CRNRSTN_LOG_DEFAULT & CRNRSTN_LOG_FILE_FTP & CRNRSTN_LOG_SCREEN,'email01@email.com,email02@email.com||/var/log/_dev_debug_output/custom_error.log|','CRNRSTN::INTEGRATIONS|||');
  */
-$oCRNRSTN->config_init_logging('BLUEHOST', CRNRSTN_LOG_DEFAULT,'CRNRSTN::INTEGRATIONS');
-$oCRNRSTN->config_init_logging('BLUEHOST_WWW', CRNRSTN_LOG_DEFAULT,'CRNRSTN::INTEGRATIONS');
+$oCRNRSTN->config_init_logging('BLUEHOST_JONY5', CRNRSTN_LOG_DEFAULT,'CRNRSTN::INTEGRATIONS');
+$oCRNRSTN->config_init_logging('BLUEHOST_EVIFWEB', CRNRSTN_LOG_DEFAULT,'CRNRSTN::INTEGRATIONS');
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_EMAIL,'j5@jony5.com, c00000101@gmail.com');
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_EMAIL,'CRNRSTN::INTEGRATIONS');
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_FILE, 'CRNRSTN::INTEGRATIONS');

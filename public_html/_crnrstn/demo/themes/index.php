@@ -57,7 +57,7 @@ DEMO TOPICS ::
 $oCRNRSTN->set_timezone_default('America/New_York');
 $oCRNRSTN->ini_set('max_execution_time', 60);
 $oCRNRSTN->ini_set('memory_limit', '300M');
-$oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
+$oCRNRSTN->config_add_environment('BLUEHOST_JONY5', E_ALL & ~E_NOTICE & ~E_STRICT);
 ...
 */
 

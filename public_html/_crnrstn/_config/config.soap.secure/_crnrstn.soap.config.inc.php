@@ -3,8 +3,8 @@
 // INITIALIZE RESOURCE AUTHORIZATION PROFILE FOR CRNRSTN :: SOAP SERVICES LAYER
 
 $CRNRSTN_NUSOAP_SVC_debugMode = false;
-$oSOAP_access_manager = new crnrstn_soap_services_access_manager('BLUEHOST', $CRNRSTN_NUSOAP_SVC_debugMode, $this);
-$oSOAP_access_manager->init_soap_encryption_config('BLUEHOST', 'AES-192-OFB', 'u34#rejciuHdl;a#2hf8(7^2h@mf|}wnBskt7yHdn3&*@$j1wXz5', 'sha256', OPENSSL_RAW_DATA);
+$oSOAP_access_manager = new crnrstn_soap_services_access_manager('BLUEHOST_JONY5', $CRNRSTN_NUSOAP_SVC_debugMode, $this);
+$oSOAP_access_manager->init_soap_encryption_config('BLUEHOST_JONY5', 'AES-192-OFB', 'u34#rejciuHdl;a#2hf8(7^2h@mf|}wnBskt7yHdn3&*@$j1wXz5', 'sha256', OPENSSL_RAW_DATA);
 
 $oSOAP_access_manager = new crnrstn_soap_services_access_manager('BLUEHOST_GITHUB', $CRNRSTN_NUSOAP_SVC_debugMode, $this);
 $oSOAP_access_manager->init_soap_encryption_config('BLUEHOST_GITHUB', 'AES-192-OFB', 'u34#rejciuHdl;a#2dwqdwqdhf8(7^2h@mf|}wnBskt7yHdn3&*@$j1wXz5', 'sha256', OPENSSL_RAW_DATA);
@@ -21,14 +21,14 @@ $oSOAP_access_manager->init_soap_encryption_config('LOCALHOST_CHAD_MACBOOKPRO', 
 //case 'LOCALHOST_MACBOOKPRO':
 //
 // CREATE AND CONFIGURE SINGLE/GROUP ACCESS AUTHORIZATION KEY(S)
-$oAuth_single = $oSOAP_access_manager->generate_SOAPAuthKey('BLUEHOST', '12345678987ftygyugyugg676t@5');
+$oAuth_single = $oSOAP_access_manager->generate_SOAPAuthKey('BLUEHOST_JONY5', '12345678987ftygyugyugg676t@5');
 $oAuth_single->update_permissions(CRNRSTN_RESOURCE_OPENSOURCE);
 //$oAuth_single->IP_exclusiveAccess($_SERVER['SERVER_ADDR']);
 //$oAuth_single->IP_exclusiveAccess('111.111.110.*');
 //$oAuth_single->IP_denyAccess('111.111.111.112');
 $oAuth_single->override_soap_encryption_config('AES-256-CTR', 'this-Is-the_soap-3ncrypti0n-key-for_an_outsider', 'ripemd256', OPENSSL_RAW_DATA);
 
-$oAuth_single = $oSOAP_access_manager->generate_SOAPAuthKey('BLUEHOST_WWW', '12345678987ftygyugyugg676t@5');
+$oAuth_single = $oSOAP_access_manager->generate_SOAPAuthKey('BLUEHOST_EVIFWEB', '12345678987ftygyugyugg676t@5');
 $oAuth_single->update_permissions(CRNRSTN_RESOURCE_OPENSOURCE);
 //$oAuth_single->IP_exclusiveAccess($_SERVER['SERVER_ADDR']);
 //$oAuth_single->IP_exclusiveAccess('111.111.110.*');

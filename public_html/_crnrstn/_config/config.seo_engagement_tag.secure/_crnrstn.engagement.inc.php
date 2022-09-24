@@ -5,8 +5,8 @@
 # RELEVANT RESOURCE WILDCARDS
 
 switch($this->env_key){
-    case 'BLUEHOST':
-    case 'BLUEHOST_WWW':
+    case 'BLUEHOST_JONY5':
+    case 'BLUEHOST_EVIFWEB':
 
         # # # # #
         ### NEW WILD CARD RESOURCE

@@ -119,6 +119,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.CRNRSTN_DEBUG_BASSDRIVE = 420;
         this.CRNRSTN_DEBUG_CONTROLS = 500;
 
+        this.CRNRSTN_UI_MOUSE = [];
+        this.CRNRSTN_UI_ELEM_AT_MOUSE = [];
+
         this.baseline_z_index = 60;
 
         //
@@ -453,6 +456,23 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 }
 
             break;
+
+        }
+
+    };
+
+    CRNRSTN_JS.prototype.refresh_mouse_coord_meta = function(){
+
+        /*
+        this.CRNRSTN_UI_MOUSE;
+        this.CRNRSTN_UI_ELEM_AT_MOUSE = [];
+
+        */
+
+        this.CRNRSTN_UI_MOUSE = CRNRSTN_UI_MOUSE;
+        if (!this.CRNRSTN_UI_MOUSE) {
+            // We haven't seen any movement yet
+            return null;
 
         }
 
@@ -925,6 +945,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 }
 
+
+
             }
 
             self.log_activity('[lnum 916] DOM READY.', self.CRNRSTN_DEBUG_VERBOSE);
@@ -956,6 +978,32 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             self.initialize_page_request_visualization();
 
         });
+
+    };
+
+    CRNRSTN_JS.prototype.crnrstn_get_all_elements_from_point = function(x, y) {
+
+        var elements = [];
+        var display = [];
+        var item = document.elementFromPoint(x, y);
+
+        while(item && item !== document.body && item !== window && item !== document && item !== document.documentElement){
+
+            elements.push(item);
+            display.push(item.style.display);
+            item.style.display = "none";
+            item = document.elementFromPoint(x, y);
+
+        }
+
+        // restore display property
+        for(var i = 0; i < elements.length; i++){
+
+            elements[i].style.display = display[i];
+
+        }
+
+        return elements;
 
     };
 
@@ -1067,6 +1115,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.client_rtime_pretty = hour_copy + min_copy + secs_copy;
 
         //
+        // REFESH MOUSE META
+        this.crnrstn_interact_ui_refresh_mouse_meta();
+
+        //
         // PROCESS TTL
         this.process_data_tunnel_ttl();
 
@@ -1103,11 +1155,23 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         }
 
-        // if(this.interact_ui_refresh_state_docs_bg === 'ENABLED'){
-        //
-        //     this.size_element('crnrstn_documentation_dyn_shell');
-        //
-        // }
+        //this.log_activity('[lnum 940] MOUSE LOCATION[' + this.crnrstn_get_all_elements_from_point(e.clientX, e.clientY) + '].', this.CRNRSTN_DEBUG_VERBOSE);
+        this.refresh_mouse_coord_meta();
+
+        this.CRNRSTN_UI_ELEM_AT_MOUSE_ARRAY = this.crnrstn_get_all_elements_from_point(this.CRNRSTN_UI_MOUSE.X, this.CRNRSTN_UI_MOUSE.Y);
+        var tmp_elem_cnt = this.CRNRSTN_UI_ELEM_AT_MOUSE_ARRAY.length;
+
+        for(let i = 0; i < tmp_elem_cnt; i++){
+
+            this.log_activity('[lnum 1170] MOUSE LOCATION ELEM[' + this.CRNRSTN_UI_ELEM_AT_MOUSE_ARRAY[i] + '][' + i + '].', this.CRNRSTN_DEBUG_VERBOSE);
+
+            // if(this.interact_ui_refresh_state_docs_bg === 'ENABLED'){
+            //
+            //     this.size_element('crnrstn_documentation_dyn_shell');
+            //
+            // }
+
+        }
 
     };
 
@@ -7236,6 +7300,60 @@ window.setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentTo
         vCallback.apply(oThis, aArgs);
     } : vCallback, nDelay);
 };
+
+(function() {
+    document.onmousemove = crnrstn_interact_ui_mouse_meta;
+
+    function crnrstn_interact_ui_mouse_meta(event) {
+        var eventDoc, doc, body;
+        var self = this;
+
+        event = event || window.event; // IE-ism
+
+        // If pageX/Y aren't available and clientX/Y are,
+        // calculate pageX/Y - logic taken from jQuery.
+        // (This is to support old IE)
+        if (event.pageX == null && event.clientX != null) {
+            eventDoc = (event.target && event.target.ownerDocument) || document;
+            doc = eventDoc.documentElement;
+            body = eventDoc.body;
+
+            event.pageX = event.clientX +
+                (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+                (doc && doc.clientLeft || body && body.clientLeft || 0);
+            event.pageY = event.clientY +
+                (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+                (doc && doc.clientTop  || body && body.clientTop  || 0 );
+        }
+
+        CRNRSTN_UI_MOUSE = {
+            X: event.pageX,
+            Y: event.pageY
+        };
+
+        // Use event.pageX / event.pageY here
+
+    }
+
+    function crnrstn_interact_ui_refresh_mouse_meta() {
+
+        if(){
+
+            this.CRNRSTN_UI_MOUSE = CRNRSTN_UI_MOUSE;
+
+        }
+        // if(!this.CRNRSTN_UI_MOUSE){
+        //     // We haven't seen any movement yet
+        // }
+        // else {
+        //     // Use pos.x and pos.y
+        // }
+
+        crnrstn_interact_ui_refresh_mouse_meta();
+
+    }
+
+})();
 
 (function crnrstn_rtime_timer_interval(){
     setInterval(function() {

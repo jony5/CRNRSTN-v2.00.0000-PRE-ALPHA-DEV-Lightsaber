@@ -4,19 +4,19 @@
 # # # # #
 ### NEW WORDPRESS CONFIG
 ### CRNRSTN :: WORDPRESS INTEGRATIONS
-//$this->config_add_data_wp('BLUEHOST', 'DB_NAME', 'jony5_prod123', 'MY 2nd most Favorite of WORDPRESS Blog!');
-$this->config_add_data_wp('BLUEHOST', 'DB_NAME', 'jony5_prod123', 'CRNRSTN::WP_00::INTEGRATIONS');
-$this->config_add_data_wp('BLUEHOST', 'DB_USER', 'jony5_prod123');
-$this->config_add_data_wp('BLUEHOST', 'DB_PASSWORD', 'password123456789');
-$this->config_add_data_wp('BLUEHOST', 'DB_HOST', 'localhost');
+//$this->config_add_data_wp('BLUEHOST_JONY5', 'DB_NAME', 'jony5_prod123', 'MY 2nd most Favorite of WORDPRESS Blog!');
+$this->config_add_data_wp('BLUEHOST_JONY5', 'DB_NAME', 'jony5_prod123', 'CRNRSTN::WP_00::INTEGRATIONS');
+$this->config_add_data_wp('BLUEHOST_JONY5', 'DB_USER', 'jony5_prod123');
+$this->config_add_data_wp('BLUEHOST_JONY5', 'DB_PASSWORD', 'password123456789');
+$this->config_add_data_wp('BLUEHOST_JONY5', 'DB_HOST', 'localhost');
 
 # # # # #
 ### NEW WORDPRESS CONFIG
 ### CRNRSTN :: WORDPRESS INTEGRATIONS
-$this->config_add_data_wp('BLUEHOST_WWW', 'DB_NAME', 'jony5_prod123');
-$this->config_add_data_wp('BLUEHOST_WWW', 'DB_USER', 'jony5_prod123');
-$this->config_add_data_wp('BLUEHOST_WWW', 'DB_PASSWORD', 'password123456789');
-$this->config_add_data_wp('BLUEHOST_WWW', 'DB_HOST', 'localhost');
+$this->config_add_data_wp('BLUEHOST_EVIFWEB', 'DB_NAME', 'jony5_prod123');
+$this->config_add_data_wp('BLUEHOST_EVIFWEB', 'DB_USER', 'jony5_prod123');
+$this->config_add_data_wp('BLUEHOST_EVIFWEB', 'DB_PASSWORD', 'password123456789');
+$this->config_add_data_wp('BLUEHOST_EVIFWEB', 'DB_HOST', 'localhost');
 
 # # # # #
 ### NEW WORDPRESS CONFIG
