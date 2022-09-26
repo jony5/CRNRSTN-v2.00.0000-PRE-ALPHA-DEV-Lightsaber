@@ -481,6 +481,46 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         $('#crnrstn_interact_ui_page_load_progress').val('');
         this.start_page_request_visualization();
 
+        //
+        // I HATE TO DO IT THIS WAY...BUT WE JUST NEED TO GET DOCUMENTATION GOING. CAN RETURN TO
+        // REFACTOR ALL THIS, AND WILL HAVE MUCH BETTER COPY-PASTE-DOCUMENTATION WHEN THAT CAN HAPPEN.
+        var tmp_docs_page = $('#crnrstn_interact_ui_link_text_click').val();
+
+        if(tmp_docs_page.length > 1){
+
+            $("#crnrstn_interact_ui_full_doc_close").html('X');
+
+        }
+
+        if((this.docs_page_css_top < -420) || (this.docs_page_css_top === -420)){
+
+            var $window = $(window);
+            this.docs_page_css_top = -8; // $window.scrollTop() - 8;
+            this.docs_page_css_left = $window.scrollLeft();
+
+            this.size_element('crnrstn_documentation_dyn_shell_bg');
+            this.size_element('crnrstn_documentation_dyn_shell');
+            this.size_element('crnrstn_ui_system_footer');
+
+        }
+
+        $('#crnrstn_documentation_dyn_shell_bg').animate({
+            top: this.docs_page_css_top + 'px',
+            left: this.docs_page_css_left + 'px',
+            opacity: 0.8
+        }, {
+            duration: 1000,
+            queue: false,
+            step: function( now, fx ) {
+
+            },
+            complete: function () {
+
+            }
+
+        });
+
+
     };
 
     CRNRSTN_JS.prototype.start_page_request_visualization = function(){
@@ -1104,8 +1144,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(this.interact_ui_refresh_state_docs_bg === 'ENABLED'){
 
-            //this.size_element('crnrstn_documentation_dyn_shell_bg');
-            //this.size_element('crnrstn_documentation_dyn_shell');
+            this.size_element('crnrstn_documentation_dyn_shell_bg');
+            this.size_element('crnrstn_documentation_dyn_shell');
 
         }
 
@@ -3199,64 +3239,43 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             if($('#crnrstn_interact_ui_link_text_click').val() != ''){
 
-                //
-                // I HATE TO DO IT THIS WAY...BUT WE JUST NEED TO GET DOCUMENTATION GOING. CAN RETURN TO
-                // REFACTOR ALL THIS, AND WILL HAVE MUCH BETTER COPY-PASTE-DOCUMENTATION WHEN THAT CAN HAPPEN.
-                var tmp_docs_page = $('#crnrstn_interact_ui_link_text_click').val();
-
-                if(tmp_docs_page.length > 1){
-
-                    $("#crnrstn_interact_ui_full_doc_close").html('X');
-                    // alert('X=' + $("#crnrstn_interact_ui_full_doc_close").css('zIndex'));
-                    // alert('bg blue=' + $("#crnrstn_documentation_dyn_shell_bg").css('zIndex'));
-
-                }
-
-                if((this.docs_page_css_top < -420) || (this.docs_page_css_top === -420)){
-
-                    var $window = $(window);
-                    this.docs_page_css_top = -8; // $window.scrollTop() - 8;
-                    this.docs_page_css_left = $window.scrollLeft();
-
-                    this.size_element('crnrstn_documentation_dyn_shell_bg');
-                    this.size_element('crnrstn_documentation_dyn_shell');
-                    this.size_element('crnrstn_ui_system_footer');
-
-                }
-
-                $('#crnrstn_documentation_dyn_shell_bg').animate({
-                    top: this.docs_page_css_top + 'px',
-                    left: this.docs_page_css_left + 'px',
-                    opacity: 0.8
-                }, {
-                    duration: 1000,
-                    queue: false,
-                    step: function( now, fx ) {
-
-                    },
-                    complete: function () {
-
-                    }
-
-                });
-
                 $('#crnrstn_documentation_dyn_shell').animate({
                     top: this.docs_page_css_top + 'px',
                     left: this.docs_page_css_left + 'px'
                 }, {
                     duration: 100,
                     queue: false,
-                    step: function( now, fx ) {
-
-                    },
                     complete: function () {
-
-                        //$("#crnrstn_documentation_dyn_shell").html(response_data);
 
                         if($('#crnrstn_documentation_dyn_shell').length){
 
-                            $("#crnrstn_documentation_dyn_shell").html(response_data);
-                            $('#crnrstn_interact_ui_link_text_click').val('');
+                            $('#crnrstn_documentation_dyn_shell').animate({
+                                opacity: 0
+                            }, {
+                                duration: 0,
+                                queue: false,
+                                complete: function () {
+
+                                    $("#crnrstn_documentation_dyn_shell").html(response_data);
+                                    $('#crnrstn_interact_ui_link_text_click').val('');
+
+                                    $('#crnrstn_documentation_dyn_shell').animate({
+                                        opacity: 1.0
+                                    }, {
+                                        duration: 500,
+                                        queue: false,
+                                        specialEasing: {
+                                            opacity: "swing"
+                                        },
+                                        complete: function () {
+
+                                        }
+
+                                    });
+
+                                }
+
+                            });
 
                         }
 
@@ -6752,6 +6771,8 @@ close_docs_fullscreen
     }
 
     CRNRSTN_JS.prototype.close_full_screen_documentation = function() {
+
+        //
         // crnrstn_interact_ui_full_doc_close
         // crnrstn_interact_ui_full_doc_header_wrapper
         // crnrstn_documentation_dyn_shell
@@ -6761,33 +6782,65 @@ close_docs_fullscreen
         //$('#crnrstn_interact_ui_full_doc_header_wrapper').html('');
         $('#crnrstn_interact_ui_full_doc_close').html('');
 
-        // UNDO this.size_element('crnrstn_documentation_dyn_shell_bg');
+
         $('#crnrstn_documentation_dyn_shell_bg').animate({
-            width: 0,
-            height: 0
+            opacity: 0
         }, {
-            duration: 0,
+            duration: 500,
             queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
             complete: function () {
+
+                // UNDO this.size_element('crnrstn_documentation_dyn_shell_bg');
+                $('#crnrstn_documentation_dyn_shell_bg').animate({
+                    width: 0,
+                    height: 0
+                }, {
+                    duration: 0,
+                    queue: false,
+                    complete: function () {
+
+                    }
+
+                });
 
             }
 
         });
 
-        // UNDO this.size_element('crnrstn_documentation_dyn_shell');
+
         $('#crnrstn_documentation_dyn_shell').animate({
-            width: 0,
-            height: 0
+            opacity: 0
         }, {
-            duration: 0,
+            duration: 500,
             queue: false,
+            specialEasing: {
+                opacity: "swing"
+            },
             complete: function () {
 
-                $('#crnrstn_documentation_dyn_shell').html('');
+                // UNDO this.size_element('crnrstn_documentation_dyn_shell');
+                $('#crnrstn_documentation_dyn_shell').animate({
+                    width: 0,
+                    height: 0
+                }, {
+                    duration: 0,
+                    queue: false,
+                    complete: function () {
+
+                        //$('#crnrstn_documentation_dyn_shell').html('');
+
+                    }
+
+                });
 
             }
 
         });
+
+
 
     }
 
