@@ -119,12 +119,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.CRNRSTN_DEBUG_BASSDRIVE = 420;
         this.CRNRSTN_DEBUG_CONTROLS = 500;
 
-        this.CRNRSTN_UI_MOUSE = {
+        this.CRNRSTN_INTERACT_UI_MOUSE = {
             X: 0,
             Y: 0
         };
 
-        this.CRNRSTN_UI_ELEM_AT_MOUSE = [];
+        this.CRNRSTN_INTERACT_UI_ELEM_AT_MOUSE = [];
 
         this.baseline_z_index = 60;
 
@@ -1123,12 +1123,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //
         // SOURCE :: https://stackoverflow.com/questions/8813051/determine-which-element-the-mouse-pointer-is-on-top-of-in-javascript
         // AUTHOR :: Reid :: https://stackoverflow.com/users/882445/reid
-        this.CRNRSTN_UI_ELEM_AT_MOUSE = document.elementsFromPoint(this.CRNRSTN_UI_MOUSE.X, this.CRNRSTN_UI_MOUSE.Y);
-        var tmp_elem_cnt = this.CRNRSTN_UI_ELEM_AT_MOUSE.length;
+        this.CRNRSTN_INTERACT_UI_ELEM_AT_MOUSE = document.elementsFromPoint(this.CRNRSTN_INTERACT_UI_MOUSE.X, this.CRNRSTN_INTERACT_UI_MOUSE.Y);
+        var tmp_elem_cnt = this.CRNRSTN_INTERACT_UI_ELEM_AT_MOUSE.length;
 
         for(let i = 0; i < tmp_elem_cnt; i++){
 
-            var tmp_elemid = this.CRNRSTN_UI_ELEM_AT_MOUSE[i].id;
+            var tmp_elemid = this.CRNRSTN_INTERACT_UI_ELEM_AT_MOUSE[i].id;
             if(tmp_elemid.length > 0){
 
                 if(this.stripos(tmp_elemid, search_listen_str)){
@@ -7321,7 +7321,7 @@ window.setInterval = function (vCallback, nDelay /*, argumentToPass1, argumentTo
                 (doc && doc.clientTop || body && body.clientTop || 0 );
         }
 
-        self.oCRNRSTN_JS.CRNRSTN_UI_MOUSE = {
+        self.oCRNRSTN_JS.CRNRSTN_INTERACT_UI_MOUSE = {
             X: event.pageX,
             Y: event.pageY
         };
