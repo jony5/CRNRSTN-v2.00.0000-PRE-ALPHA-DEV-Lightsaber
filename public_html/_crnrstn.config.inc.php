@@ -598,12 +598,12 @@ $oCRNRSTN->config_add_database(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_
 //
 // INITIALIZATION OF ENCRYPTION PROFILES :: CRNRSTN ::
 // ADVANCED CONFIGURATION PARAMETERS
-$oCRNRSTN->config_init_encryption(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.encryption.secure/_crnrstn.encryption.inc.php');
+$oCRNRSTN->config_include_encryption(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.encryption.secure/_crnrstn.encryption.inc.php');
 
 //
 // INITIALIZATION OF SYSTEM RESOURCES :: CRNRSTN ::
 // ADVANCED CONFIGURATION PARAMETERS
-$oCRNRSTN->config_define_system_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php');
+$oCRNRSTN->config_include_system_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php');
 
 //
 // INITIALIZE WORDPRESS
@@ -629,7 +629,7 @@ $oCRNRSTN->config_define_system_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '
  * $oCRNRSTN->add_wordpress('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//_crnrstn//_config//config.wp.secure//_crnrstn.wp_config.inc.php');
  *
  */
-$oCRNRSTN->config_add_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php');
+$oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php');
 
 /**
  * $oCRNRSTN->set_crnrstn_as_err_handler()
@@ -907,82 +907,83 @@ $oCRNRSTN->config_init_logging('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_LOG_DEFAULT)
 $oCRNRSTN->config_deny_access('LOCALHOST_MACBOOKTERMINAL','172.16.110.1');
 #$oCRNRSTN->config_deny_access('LOCALHOST_PC','127.0.0.10, 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5');
 
+//
+// THIS SHOULD BE CHANGING ONCE SESSION IS SUPPORTED.
 $oCRNRSTN->is_configured();
-//if(!$oCRNRSTN->is_configured()){
 
-    //
-    // TODO :: MACHINE SOAP ACCOUNT AUTH IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2022 @ 0320 hrs
-    // INITIALIZE CRNRSTN :: SOAP SERVICES LAYER RESOURCE ACCESS
-    //$oCRNRSTN->config_add_soap(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.soap.secure/_crnrstn.soap.config.inc.php');
+//
+// TODO :: MACHINE SOAP ACCOUNT AUTH IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2022 @ 0320 hrs
+// INITIALIZE CRNRSTN :: SOAP SERVICES LAYER RESOURCE ACCESS
+//$oCRNRSTN->config_add_soap(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.soap.secure/_crnrstn.soap.config.inc.php');
 
-    //
-    // INITIALIZE ADMINISTRATION FOR EACH ENVIRONMENT. 2 WAYS TO USE THIS METHOD.
-    /**
-     * $oCRNRSTN->add_administration()
-     *
-     * DESCRIPTION :: Add administrative credentials for each environment in-line at this location or provide a path to
-     *  the remote specification of the same within the file _crnrstn.admin.config.inc.php. Any in-line administration
-     *  auth creds will be processed before looking for the add_administration() credentials include file.
-     *
-     * @param   string $env_key is a custom user-defined value representing a specific environment
-     * within which this application will be running and which key will be used throughout this
-     * configuration file + any CRNRSTN :: resource includes in order to align the necessary
-     * functionality and resources to said environment.
-     *
-     * @param   string $email_or_creds_path serves a dual purpose of containing either the Administrator email
-     * address (which said email address would be followed by another...at this point...no longer
-     * optional...parameter $pwd) or a path to a administrative credentials include file
-     * called _crnrstn.admin.config.inc.php within the CRNRSTN :: distro.
-     **
-     * @param   string $pwd contains the password for the user name associated with this database connection.
-     *
-     * @param   integer $ttl contains the number of seconds for authentication timeout due to session inactivity for
-     * the admin login. This value can be overridden with a new configuration by the Admin within the application
-     * after logging into CRNRSTN ::.
-     **
-     * NOTE :: A demo Administration authorization credentials include file ships with CRNRSTN ::, and can be found at:
-     * /_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php
-     *
-     * Example using the CRNRSTN :: include file ::
-     * $oCRNRSTN->add_administration('CYEXX_SOLUTIONS', '/home/jony5/crnrstn.v2.jony5.com/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-     *
-     * Example of in-line Administration credentials specification ::
-     * $oCRNRSTN->add_administration('LOCALHOST_PC', 'j5@jony5.com', 'hello-admin-pa55w0rd!', 120);
-     */
-    //$oCRNRSTN->set_max_login_attempts(CRNRSTN_RESOURCE_ALL, 10);
-    //$oCRNRSTN->set_timeout_user_inactive(CRNRSTN_RESOURCE_ALL, 900);
-    $oCRNRSTN->config_add_administration(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
+//
+// INITIALIZE ADMINISTRATION FOR EACH ENVIRONMENT. 2 WAYS TO USE THIS METHOD.
+/**
+ * $oCRNRSTN->add_administration()
+ *
+ * DESCRIPTION :: Add administrative credentials for each environment in-line at this location or provide a path to
+ *  the remote specification of the same within the file _crnrstn.admin.config.inc.php. Any in-line administration
+ *  auth creds will be processed before looking for the add_administration() credentials include file.
+ *
+ * @param   string $env_key is a custom user-defined value representing a specific environment
+ * within which this application will be running and which key will be used throughout this
+ * configuration file + any CRNRSTN :: resource includes in order to align the necessary
+ * functionality and resources to said environment.
+ *
+ * @param   string $email_or_creds_path serves a dual purpose of containing either the Administrator email
+ * address (which said email address would be followed by another...at this point...no longer
+ * optional...parameter $pwd) or a path to a administrative credentials include file
+ * called _crnrstn.admin.config.inc.php within the CRNRSTN :: distro.
+ **
+ * @param   string $pwd contains the password for the user name associated with this database connection.
+ *
+ * @param   integer $ttl contains the number of seconds for authentication timeout due to session inactivity for
+ * the admin login. This value can be overridden with a new configuration by the Admin within the application
+ * after logging into CRNRSTN ::.
+ **
+ * NOTE :: A demo Administration authorization credentials include file ships with CRNRSTN ::, and can be found at:
+ * /_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php
+ *
+ * Example using the CRNRSTN :: include file ::
+ * $oCRNRSTN->add_administration('CYEXX_SOLUTIONS', '/home/jony5/crnrstn.v2.jony5.com/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
+ *
+ * Example of in-line Administration credentials specification ::
+ * $oCRNRSTN->add_administration('LOCALHOST_PC', 'j5@jony5.com', 'hello-admin-pa55w0rd!', 120);
+ */
+//$oCRNRSTN->set_max_login_attempts(CRNRSTN_RESOURCE_ALL, 10);
+//$oCRNRSTN->set_timeout_user_inactive(CRNRSTN_RESOURCE_ALL, 900);
+$oCRNRSTN->config_add_administration(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
 
-    //
-    // CONFIGURE PER ENVIRONMENT
-    //$oCRNRSTN->set_max_login_attempts('BLUEHOST', 10);
-    //$oCRNRSTN->set_max_login_attempts('BLUEHOST_GITHUB', 10);
-    //$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKTERMINAL', 10);
-    //$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKTERMINAL_8', 10);
-    //$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKPRO', 10);
-    //$oCRNRSTN->set_timeout_user_inactive('BLUEHOST', 900);
-    //$oCRNRSTN->set_timeout_user_inactive('BLUEHOST_GITHUB', 900);
-    //$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKTERMINAL', 900);
-    //$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKTERMINAL_8', 900);
-    //$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKPRO', 900);
-    //$oCRNRSTN->add_administration('BLUEHOST', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-    //$oCRNRSTN->add_administration('BLUEHOST_GITHUB', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-    //$oCRNRSTN->add_administration('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-    //$oCRNRSTN->add_administration('LOCALHOST_MACBOOKTERMINAL_8', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-    //$oCRNRSTN->add_administration('LOCALHOST_MACBOOKPRO', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
+//
+// CONFIGURE PER ENVIRONMENT
+//$oCRNRSTN->set_max_login_attempts('BLUEHOST', 10);
+//$oCRNRSTN->set_max_login_attempts('BLUEHOST_GITHUB', 10);
+//$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKTERMINAL', 10);
+//$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKTERMINAL_8', 10);
+//$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKPRO', 10);
+//$oCRNRSTN->set_timeout_user_inactive('BLUEHOST', 900);
+//$oCRNRSTN->set_timeout_user_inactive('BLUEHOST_GITHUB', 900);
+//$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKTERMINAL', 900);
+//$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKTERMINAL_8', 900);
+//$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKPRO', 900);
+//$oCRNRSTN->add_administration('BLUEHOST', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
+//$oCRNRSTN->add_administration('BLUEHOST_GITHUB', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
+//$oCRNRSTN->add_administration('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
+//$oCRNRSTN->add_administration('LOCALHOST_MACBOOKTERMINAL_8', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
+//$oCRNRSTN->add_administration('LOCALHOST_MACBOOKPRO', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
 
-    // TODO :: ANALYTICS IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2020 @ 0322 hrs
-    // INITIALIZATION OF THIRD PARTY WEB REPORTING AND ANALYTICS
-    // TAG PROFILES :: CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
-    $oCRNRSTN->config_include_seo_analytics(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_analytics.secure/_crnrstn.analytics.inc.php');
+//
+// INITIALIZATION OF THIRD PARTY WEB REPORTING AND ANALYTICS
+// TAG PROFILES :: CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
+$oCRNRSTN->config_include_seo_analytics(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_analytics.secure/_crnrstn.analytics.inc.php');
 
-    // TODO :: ENGAGEMENT IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2020 @ 0322 hrs
-    // INITIALIZATION OF THIRD PARTY ENGAGEMENT TAG PROFILES ::
-    // CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
-    $oCRNRSTN->config_include_seo_engagement(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_engagement.secure/_crnrstn.engagement.inc.php');
+//
+// INITIALIZATION OF THIRD PARTY ENGAGEMENT TAG PROFILES ::
+// CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
+$oCRNRSTN->config_include_seo_engagement(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_engagement.secure/_crnrstn.engagement.inc.php');
 
-//}
-
+//
+// LISTEN HERE.
 $CRNRSTN_LISTENER_RESPONSE = $oCRNRSTN->client_request_listen();
 
 if(strlen($CRNRSTN_LISTENER_RESPONSE) > 0){

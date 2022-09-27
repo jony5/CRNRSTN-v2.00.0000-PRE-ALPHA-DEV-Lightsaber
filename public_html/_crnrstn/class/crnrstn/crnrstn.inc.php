@@ -1658,15 +1658,15 @@ class crnrstn {
 
     }
 
-    public function config_add_wordpress($env_key, $crnrstn_wp_config_file_path){
+    public function config_include_wordpress($env_key, $crnrstn_wp_config_file_path){
 
-        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
+            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_wp_config_file_path, 'crnrstn_wp_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
-                if (is_file($crnrstn_wp_config_file_path)) {
+                if(is_file($crnrstn_wp_config_file_path)){
 
                     //
                     // EXTRACT PROFILE FROM FILE
@@ -1674,7 +1674,7 @@ class crnrstn {
 
                     include_once($crnrstn_wp_config_file_path);
 
-                } else {
+                }else{
 
                     $this->error_log('Unable to initialize data supporting WordPress integrations with CRNRSTN :: [' . $env_key . ']. Not a file: [' . $crnrstn_wp_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -1756,15 +1756,15 @@ class crnrstn {
 
     }
 
-    public function config_init_encryption($env_key, $crnrstn_openssl_config_file_path){
+    public function config_include_encryption($env_key, $crnrstn_openssl_config_file_path){
 
         try {
 
-            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-                if (is_file($crnrstn_openssl_config_file_path)) {
+                if(is_file($crnrstn_openssl_config_file_path)){
 
-                    if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
+                    if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                         //
                         // ACQUIRE FILE VERSIONING CHECKSUM
@@ -1808,15 +1808,15 @@ class crnrstn {
 
     }
 
-    public function config_define_system_resources($env_key, $crnrstn_resource_config_file_path){
+    public function config_include_system_resources($env_key, $crnrstn_resource_config_file_path){
 
         try {
 
-            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-                if ($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))) {
+                if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
-                    if (is_file($crnrstn_resource_config_file_path)) {
+                    if(is_file($crnrstn_resource_config_file_path)){
 
                         //
                         // ACQUIRE FILE VERSIONING CHECKSUM
@@ -1829,7 +1829,7 @@ class crnrstn {
 
                         include_once($crnrstn_resource_config_file_path);
 
-                    } else {
+                    }else{
 
                         //
                         // WE COULD NOT FIND THE CONFIGURATION FILE
