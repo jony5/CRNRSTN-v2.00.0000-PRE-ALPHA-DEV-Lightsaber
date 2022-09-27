@@ -96,7 +96,10 @@ $oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_city', 
 $oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_state', 'crnrstn_demo_state');
 $oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_zipcode', 'crnrstn_demo_zipcode');
 $oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email', 'crnrstn_demo_email', NULL, CRNRSTN_INPUT_IS_EMAIL);
+$oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_mult_file_upload', 'crnrstn_demo_mult_file_upload');
+$oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_file_upload', 'crnrstn_demo_file_upload');
 
+//
 //form_serialize_new
 //form_integration_html_packet_output
 //form_response_add
@@ -105,8 +108,8 @@ $oCRNRSTN->form_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_demo_email',
 //form_hidden_input_add
 //
 //$oCRNRSTN->form_hidden_input_add($crnrstn_form_handle, $field_input_name, $field_input_id, $default_value, $validation_constant_profile, $table_field_name);
-$oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidden_demo_account_number', 'crnrstn_hidden_demo_account_number', $oCRNRSTN->data_encrypt('1234567890.0987654321'), CRNRSTN_INPUT_REQUIRED);
-$oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidden_demo_account_access', 'crnrstn_hidden_demo_account_access', $oCRNRSTN->data_encrypt('ANONYMOUS'), CRNRSTN_INPUT_REQUIRED);
+$oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidden_demo_account_number', 'crnrstn_hidden_demo_account_number', '1234567890.0987654321', CRNRSTN_INPUT_REQUIRED);
+$oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidden_demo_account_access', 'crnrstn_hidden_demo_account_access', 'ANONYMOUS', CRNRSTN_INPUT_REQUIRED);
 
 ?>
 <!DOCTYPE html>
@@ -219,6 +222,26 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
                     <div class="crnrstn_field_input_title">Email:</div>
                     <div class="crnrstn_cb"></div>
                     <div><input type="text" name="crnrstn_demo_email" style="width:500px;" value="" placeholder="enter email"></div>
+                    <div class="crnrstn_cb"></div>
+                </div>
+                <div class="crnrstn_cb_20"></div>
+            </div>
+
+            <div class="crnrstn_field_input_wrapper">
+                <div style="width:100%;">
+                    <div class="crnrstn_field_input_title">Upload Multiple Files:</div>
+                    <div class="crnrstn_cb"></div>
+                    <div><input id='crnrstn_demo_mult_file_upload' name="crnrstn_demo_mult_file_upload[]" type="file" placeholder="browse to files" style="width:500px;" multiple="multiple" /></div>
+                    <div class="crnrstn_cb"></div>
+                </div>
+                <div class="crnrstn_cb_20"></div>
+            </div>
+
+            <div class="crnrstn_field_input_wrapper">
+                <div style="width:100%;">
+                    <div class="crnrstn_field_input_title">Upload File:</div>
+                    <div class="crnrstn_cb"></div>
+                    <div><input id='crnrstn_demo_file_upload' name="crnrstn_demo_file_upload" type="file" placeholder="file upload" style="width:500px;" /></div>
                     <div class="crnrstn_cb"></div>
                 </div>
                 <div class="crnrstn_cb_20"></div>

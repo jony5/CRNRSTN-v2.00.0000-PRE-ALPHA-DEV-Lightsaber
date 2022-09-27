@@ -533,10 +533,10 @@ class crnrstn {
         // THIS SHOULD BE FORM SERIALIZED...OK FOR NOW...I GUESS. TRYING TO
         // GET TO DOCUMENTATION. Sunday, September 11, 2022 @ 2233 hrs
         //foreach($this->form_integrations_data_index_ARRAY[$crnrstn_form_handle_hash] as $index => $data_key){
-        error_log(__LINE__ . ' crnrstn [' . print_r($this->form_integrations_data_index_ARRAY, true) . '].');
-        if(isset($this->form_integrations_data_index_ARRAY[$crnrstn_form_handle_hash])){
+        //error_log(__LINE__ . ' crnrstn [' . print_r($this->form_integrations_data_index_ARRAY, true) . '].');
+        if(isset($this->form_integrations_data_index_ARRAY[CRNRSTN_UI_FORM_INTEGRATION_PACKET])){
 
-            foreach($this->form_integrations_data_index_ARRAY[$crnrstn_form_handle_hash] as $index => $data_key){
+            foreach($this->form_integrations_data_index_ARRAY[CRNRSTN_UI_FORM_INTEGRATION_PACKET] as $index => $data_key){
 
                 $tmp_str_out .= $data_key . '|::|';
                 $tmp_ARRAY[] = $data_key;
@@ -821,7 +821,7 @@ class crnrstn {
 
     public function is_configured(){
 
-        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
             //
             // CALL THIS METHOD ANYTIME. ALSO, config_detect_environment() WILL EITHER RETURN FALSE OR
@@ -1688,11 +1688,32 @@ class crnrstn {
 
     public function config_add_analytics_seo($env_key, $crnrstn_analytics_config_file_path){
 
-        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
+            self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_analytics_config_file_path, 'crnrstn_analytics_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
-                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_analytics_config_file_path, 'crnrstn_analytics_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+            if(is_file($crnrstn_analytics_config_file_path)){
+
+                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
+
+                    //
+                    // ACQUIRE FILE VERSIONING CHECKSUM
+                    $tmp_file_md5 = md5_file($crnrstn_analytics_config_file_path);
+                    self::$system_files_version_hash_ARRAY[$crnrstn_analytics_config_file_path] = $tmp_file_md5;
+
+                    //
+                    // EXTRACT RESOURCE CONFIGURATION FROM FILE
+                    $this->error_log('Including and evaluating file [' . $crnrstn_analytics_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    include_once($crnrstn_analytics_config_file_path);
+
+                }
+
+            }else{
+
+                //
+                // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
+                $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_analytics_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             }
 
@@ -1702,11 +1723,32 @@ class crnrstn {
 
     public function config_add_engagement_tag_seo($env_key, $crnrstn_engagement_config_file_path){
 
-        if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)) {
+            self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_engagement_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
-                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_engagement_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+            if(is_file($crnrstn_engagement_config_file_path)){
+
+                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
+
+                    //
+                    // ACQUIRE FILE VERSIONING CHECKSUM
+                    $tmp_file_md5 = md5_file($crnrstn_engagement_config_file_path);
+                    self::$system_files_version_hash_ARRAY[$crnrstn_engagement_config_file_path] = $tmp_file_md5;
+
+                    //
+                    // EXTRACT RESOURCE CONFIGURATION FROM FILE
+                    $this->error_log('Including and evaluating file [' . $crnrstn_engagement_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    include_once($crnrstn_engagement_config_file_path);
+
+                }
+
+            }else{
+
+                //
+                // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
+                $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_engagement_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             }
 
@@ -3063,18 +3105,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //            }
 
-//        $tmp_flipped_bit_constants_ARRAY = $this->return_set_bits($this->system_ui_module_constants_ARRAY);
-//
-//            foreach($tmp_flipped_bit_constants_ARRAY as $index => $resource_constant){
-//
-//                if(!isset($this->ficp_module_build_flag_ARRAY[$resource_constant])){
-//
-//                    $this->ficp_module_build_flag_ARRAY[$resource_constant] = 1;
-//                    $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
-//
-//                }
-//
-//            }
+        $tmp_flipped_bit_constants_ARRAY = $this->return_set_bits($this->system_ui_module_constants_ARRAY);
+
+        foreach($tmp_flipped_bit_constants_ARRAY as $index => $resource_constant){
+
+            if(!isset($this->ficp_module_build_flag_ARRAY[$resource_constant])){
+
+                $this->ficp_module_build_flag_ARRAY[$resource_constant] = 1;
+                $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
+
+                error_log(__LINE__ . ' crnrstn NEEDED! [' . $resource_constant . ']. [' . $tmp_client_packet_output . '].');
+
+            }else{
+
+                error_log(__LINE__ . ' crnrstn NOT NEEDED[' . $resource_constant . '].');
+
+            }
+
+        }
 
         if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
 
@@ -3942,6 +3990,270 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_final_out_ARRAY['index_array'] = $tmp_array_out_ARRAY;
 
         return $tmp_final_out_ARRAY;
+
+    }
+
+    public function return_module_content_seo_analytics($data_key = NULL){
+
+        $tmp_str_out = '';
+        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SEO_ANALYTICS';
+
+        if(isset($data_key)){
+
+            //
+            // RETURN A SPECIFIC PROFILE
+            return $this->get_resource($data_key, 0, $data_type_family);
+
+        }
+
+        //
+        // RETURN ALL ENABLED PROFILES
+        $tmp_profile_key = 'CRNRSTN::SYSTEM::ANALYTICS';
+        $tmp_profile_cnt = self::$oCRNRSTN_CONFIG_MGR->system_profile_return_count($tmp_profile_key);
+
+        //error_log(__LINE__ . ' crnrstn $tmp_profile_cnt=[' . $tmp_profile_cnt . '].');
+
+        for($i = 0; $i < $tmp_profile_cnt; $i++){
+
+            $tmp_data_key = self::$oCRNRSTN_CONFIG_MGR->system_profile_return_data_key($tmp_profile_key, $i);
+
+            $tmp_str_out .= $this->get_resource($tmp_data_key, 0, $data_type_family);
+            //error_log(__LINE__ . ' crnrstn $tmp_str_out=[' . $tmp_str_out . '].');
+
+        }
+
+        return $tmp_str_out;
+
+    }
+
+    public function return_module_content_seo_engagement($data_key = NULL){
+
+        $tmp_str_out = '';
+        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SEO_ENGAGEMENT';
+
+        if(isset($data_key)){
+
+            //
+            // RETURN A SPECIFIC PROFILE
+            return $this->get_resource($data_key, 0, $data_type_family);
+
+        }
+
+        //
+        // RETURN ALL ENABLED PROFILES
+        $tmp_profile_key = 'CRNRSTN::SYSTEM::ENGAGEMENT';
+        $tmp_profile_cnt = self::$oCRNRSTN_CONFIG_MGR->system_profile_return_count($tmp_profile_key);
+        //error_log(__LINE__ . ' crnrstn $tmp_profile_cnt=[' . $tmp_profile_cnt . '].');
+
+        for($i = 0; $i < $tmp_profile_cnt; $i++){
+
+            $tmp_data_key = self::$oCRNRSTN_CONFIG_MGR->system_profile_return_data_key($tmp_profile_key, $i);
+
+            $tmp_str_out .= $this->get_resource($tmp_data_key, 0, $data_type_family);
+            //error_log(__LINE__ . ' crnrstn $tmp_str_out=[' . $tmp_str_out . '].');
+
+        }
+
+        return $tmp_str_out;
+
+    }
+
+    private function config_add_seo_analytics($env_key, $data_key, $data_value, $is_enabled = true){
+
+        try {
+
+            $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SEO_ANALYTICS';
+            $data_type_title = 'CRNRSTN :: ANALYTICS';
+            $env_key_hash = $this->hash($env_key);
+
+            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash){
+
+                    $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$data_key', '$data_value');
+                    $tmp_param_err_str_ARRAY = $this->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $env_key, $data_key, $data_value);
+
+                    $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
+                    $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
+
+                    if(count($tmp_param_missing_ARRAY) > 0){
+
+                        $this->error_log('Missing required ' . $data_type_title . ' seo analytics profile information to complete ' . __METHOD__ . '. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        throw new Exception('CRNRSTN :: initialization ERROR :: ' . __METHOD__ . ' was called but was missing parameter information, and so ' . $data_type_title . ' profile was not able to be initialized. Some parameters are required. ' . $tmp_param_missing_str);
+
+                    }else{
+
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($is_enabled, $data_key . '::' . 'ANALYTICS_ENABLED', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+
+                        if($is_enabled){
+
+                            error_log(__LINE__ . ' crnrstn IS ENABLED [' . $data_key . '::' . 'ANALYTICS_ENABLED].');
+
+                            self::$oCRNRSTN_CONFIG_MGR->system_profile_map_data_key('CRNRSTN::SYSTEM::ANALYTICS', $data_key);
+                            $this->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_UI_TAG_ANALYTICS, true);
+
+                            error_log(__LINE__ . ' crnrstn TOGGLE ME [' . CRNRSTN_UI_TAG_ANALYTICS . '].');
+
+                        }
+
+                        $this->error_log($data_type_title . ' seo analytics initialized for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        return true;
+
+                    }
+
+                }
+
+            }
+
+            //
+            // WE DON'T HAVE THE ENVIRONMENT, BUT DETECTION WOULD HAVE ALREADY BEEN COMPLETED.
+            //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
+            $this->error_log('Bypassed processing analytics for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+        }catch (Exception $e){
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+    }
+
+    private function config_add_seo_engagemnent($env_key, $data_key, $data_value, $is_enabled = true){
+
+        try {
+
+            $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SEO_ENGAGEMENT';
+            $data_type_title = 'CRNRSTN :: ENGAGEMENT';
+            $env_key_hash = $this->hash($env_key);
+
+            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+                if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash) {
+
+                    $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$data_key', '$data_value');
+                    $tmp_param_err_str_ARRAY = $this->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $env_key, $data_key, $data_value);
+
+                    $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
+                    $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
+
+                    if(count($tmp_param_missing_ARRAY) > 0){
+
+                        $this->error_log('Missing required ' . $data_type_title . ' seo engagement profile information to complete ' . __METHOD__ . '. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        throw new Exception('CRNRSTN :: initialization ERROR :: ' . __METHOD__ . ' was called but was missing parameter information, and so ' . $data_type_title . ' profile was not able to be initialized. Some parameters are required. ' . $tmp_param_missing_str);
+
+                    }else{
+
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($is_enabled, $data_key . '::' . 'ENGAGEMENT_ENABLED', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+
+                        if($is_enabled){
+
+                            error_log(__LINE__ . ' crnrstn IS ENABLED [' . $data_key . '::' . 'ANALYTICS_ENABLED].');
+
+                            self::$oCRNRSTN_CONFIG_MGR->system_profile_map_data_key('CRNRSTN::SYSTEM::ENGAGEMENT', $data_key);
+
+                            $this->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_UI_TAG_ENGAGEMENT, true);
+
+                            error_log(__LINE__ . ' crnrstn TOGGLE ME [' . CRNRSTN_UI_TAG_ENGAGEMENT . '].');
+
+                        }
+
+                        $this->error_log($data_type_title . ' seo engagement initialized for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        return true;
+
+                    }
+
+                }
+
+            }
+
+            //
+            // WE DON'T HAVE THE ENVIRONMENT, BUT DETECTION WOULD HAVE ALREADY BEEN COMPLETED.
+            //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
+            $this->error_log('Bypassed processing analytics for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+        }catch (Exception $e){
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+    }
+
+    public function _____config_add_seo_engagemnent($env_key, $data_key, $data_value, $is_enabled = true){
+
+        $tmp_data_profile_ARRAY = array();
+
+
+        try {
+
+            $data_type_family = $tmp_data_profile_ARRAY['data_type_family'];
+            $data_type_title = $tmp_data_profile_ARRAY['data_type_title'];
+            $encryption_channel = $tmp_data_profile_ARRAY['data_type_encryption_channel'];
+
+            $env_key_hash = $this->hash($env_key);
+
+            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+
+                if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash) {
+
+                    $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$encrypt_cipher', '$encrypt_secret_key', '$hmac_alg');
+                    $tmp_param_err_str_ARRAY = $this->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $env_key, $encrypt_cipher, $encrypt_secret_key, $hmac_alg);
+
+                    $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
+                    $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
+
+                    if (count($tmp_param_missing_ARRAY) > 0) {
+
+                        $this->error_log('Missing required ' . $data_type_title . ' encryption information to complete ' . __METHOD__ . '. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        throw new Exception('CRNRSTN :: initialization ERROR :: ' . __METHOD__ . ' was called but was missing parameter information and so ' . $data_type_title . ' encryption was not able to be initialized. Some parameters are required. ' . $tmp_param_missing_str);
+
+                    } else {
+
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value(openssl_digest($encrypt_secret_key, self::$openssl_preferred_digest, true), 'encrypt_secret_key', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_options, 'encrypt_options', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($hmac_alg, 'hmac_alg', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+
+                        $this->oCRNRSTN_BITFLIP_MGR->toggle_bit($encryption_channel, true);
+                        $this->error_log($data_type_title . ' encryption initialized for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        return true;
+
+                    }
+
+                }
+
+            }
+
+            //
+            // WE DON'T HAVE THE ENVIRONMENT, BUT DETECTION WOULD HAVE ALREADY BEEN COMPLETED.
+            //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
+            $this->error_log('Bypassed processing encryption initialized for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+        } catch (Exception $e) {
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
 
     }
 
@@ -4953,7 +5265,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         foreach ($constants_int_ARRAY as $key => $int_constant) {
 
-            if ($this->oCRNRSTN_BITFLIP_MGR->is_bit_set($int_constant)) {
+            if($this->oCRNRSTN_BITFLIP_MGR->is_bit_set($int_constant)){
 
                 $tmp_array[] = $int_constant;
 
@@ -8790,6 +9102,7 @@ class crnrstn_config_manager {
 
     public $oCRNRSTN_CONFIG_DDO;
     private static $system_data_profile_constants_ARRAY = array();
+    protected $system_profile_data_key_map_ARRAY = array();
     
     public $config_serial_hash;
     protected $system_hash_algo;
@@ -8809,6 +9122,26 @@ class crnrstn_config_manager {
         $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         $this->oCRNRSTN_CONFIG_DDO = new crnrstn_decoupled_data_object($this->oCRNRSTN, $this->oCRNRSTN->salt(100, '01'),'CRNRSTN_SYSTEM_SERIALIZED_DDO');
+
+    }
+
+    public function system_profile_return_count($profile_key){
+
+        return count($this->system_profile_data_key_map_ARRAY[$profile_key]);
+
+    }
+
+    public function system_profile_map_data_key($profile_key, $data_key){
+
+        $this->system_profile_data_key_map_ARRAY[$profile_key][] = $data_key;
+
+        return true;
+
+    }
+
+    public function system_profile_return_data_key($profile_key, $index = 0){
+
+        return $this->system_profile_data_key_map_ARRAY[$profile_key][$index];
 
     }
 
@@ -9456,6 +9789,8 @@ class crnrstn_bitflip_manager {
 
             if(is_bool($target_state)){
 
+                $this->oCRNRSTN_BITWISE->toggle($integer_constant);
+
                 if($target_state == true){
 
                     if(!($this->oCRNRSTN_BITWISE->read($integer_constant))){
@@ -9463,8 +9798,6 @@ class crnrstn_bitflip_manager {
                         //
                         // FLIP TO 1
                         $this->oCRNRSTN_BITWISE->toggle($integer_constant);
-
-                        return $this->toggle_bit($integer_constant);
 
                     }
 

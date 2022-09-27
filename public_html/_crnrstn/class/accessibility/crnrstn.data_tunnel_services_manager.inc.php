@@ -74,15 +74,15 @@ class crnrstn_data_tunnel_services_manager{
 
         /*
         form_input_add()
-        FIELD_INPUT_NAME
-        FIELD_INPUT_ID
+        CRNRSTN_FIELD_INPUT_NAME
+        CRNRSTN_FIELD_INPUT_ID
         DEFAULT_VALUE
         TABLE_FIELD_NAME
         VALIDATION_CONSTANTS_PROFILE
 
         form_hidden_input_add()
-        FIELD_HIDDEN_INPUT_NAME
-        FIELD_HIDDEN_INPUT_ID
+        CRNRSTN_FIELD_HIDDEN_INPUT_NAME
+        CRNRSTN_FIELD_HIDDEN_INPUT_ID
         DEFAULT_VALUE
         TABLE_FIELD_NAME
         VALIDATION_CONSTANT_PROFILE
@@ -90,8 +90,8 @@ class crnrstn_data_tunnel_services_manager{
 
         form_input_feedback_copy_add()
         VALIDATION_PROFILE
-        FIELD_INPUT_NAME
-        FIELD_INPUT_ID
+        CRNRSTN_FIELD_INPUT_NAME
+        CRNRSTN_FIELD_INPUT_ID
         ERR_MESSAGE
         SUCCESS_MESSAGE
         INFO_MESSAGE
@@ -111,15 +111,12 @@ class crnrstn_data_tunnel_services_manager{
 
         */
 
-
-
         foreach($this->crnrstn_pssdtl_http_tunneled_data_ARRAY as $index => $data){
 
             error_log(__LINE__ . ' dtsm [' . __METHOD__ . '][' . sizeof($this->crnrstn_pssdtl_http_tunneled_data_ARRAY) . '].');
             die();
 
         }
-
 
     }
 
@@ -155,7 +152,7 @@ class crnrstn_data_tunnel_services_manager{
                 (
                     [HASH] => 0a389b1122a6ac551a685ec72e3f9815
                     [BYTES] => 17
-                    [KEY] => 6bf11b80ff9a878569005fa567cff252b2907bee73c0edd670a53147d07189a2::FIELD_INPUT_NAME
+                    [KEY] => 6bf11b80ff9a878569005fa567cff252b2907bee73c0edd670a53147d07189a2::CRNRSTN_FIELD_INPUT_NAME
                     [TYPE] => string
                     [VALUE] => crnrstn_demo_city
                     [TTL] => 60
@@ -167,7 +164,7 @@ class crnrstn_data_tunnel_services_manager{
                 //$this->oCRNRSTN->print_r($node, 'CRNRSTN :: DECOUPLED DATA OBJECT ELEMENT :: CLIENT FORM SUBMISSION.', NULL, __LINE__, __METHOD__, __FILE__);
                 //error_log(__LINE__ . ' http [' . __METHOD__ . ']. $node=['. print_r($node, true) .  '].');
 
-                if(!$this->receive_fip_data($node)){
+                if(!$this->receive_packet_data($node)){
 
                     error_log(__LINE__ . ' dtsm::' . __METHOD__ . '() ERROR on PSSDTLP NODE[' . print_r($node, true) . '].');
 
@@ -196,6 +193,7 @@ class crnrstn_data_tunnel_services_manager{
                                 "ERROR_CODE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_CODE) . '",
                                 "ERROR_MESSAGE" : "' . $this->oCRNRSTN->return_clean_json_string($tmp_ERROR_MESSAGE) . '"
                                 }],
+
                     */
 
                 }
@@ -221,9 +219,18 @@ class crnrstn_data_tunnel_services_manager{
         $tmp_str = '';
 
         switch($data_auth_profile){
-            case CRNRSTN_OUTPUT_FORM_INTEGRATIONS:
+            case CRNRSTN_UI_FORM_INTEGRATION_PACKET:
 
-                // HTML
+                //
+                // HIDDEN INPUT HTML INJECTION :: CUSTOM FORM
+                $tmp_str = '
+        <input type="hidden" name="crnrstn_request_serialization_key_XXXXXXXXXX" id="crnrstn_request_serialization_key_XXXXXXXXXX" value="">';
+
+            break;
+            case CRNRSTN_OUTPUT_SSDTLA:
+
+                //
+                // HIDDEN INPUT HTML INJECTION :: CRNRSTN :: SSDTL
                 $tmp_str = '
         <input type="hidden" name="crnrstn_request_serialization_key" id="crnrstn_request_serialization_key" value="">
         <input type="hidden" name="crnrstn_request_serialization_hash" id="crnrstn_request_serialization_hash" value="">
@@ -234,10 +241,15 @@ class crnrstn_data_tunnel_services_manager{
 
             break;
             case CRNRSTN_OUTPUT_PSSDTLA:
-            case CRNRSTN_OUTPUT_SSDTLA:
 
                 // JSON
                 error_log('why am i running for JSON{} out? [lnum ' . __LINE__ . '][class ' . __CLASS__ . '][method ' . __METHOD__ . '] die();');
+                die();
+
+            break;
+            default:
+
+                error_log('why am i running for UNKNOWN data_auth_profile CONSTANT[' . $data_auth_profile . ']? [lnum ' . __LINE__ . '][class ' . __CLASS__ . '][method ' . __METHOD__ . '] die();');
                 die();
 
             break;
@@ -248,7 +260,7 @@ class crnrstn_data_tunnel_services_manager{
 
     }
 
-    public function receive_fip_data($data_ARRAY, $data_attribute = 'crnrstn_pssdtl_packet', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
+    public function receive_packet_data($data_ARRAY, $data_attribute = 'crnrstn_pssdtl_packet', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
 
         // WHERE $data_ARRAY=
         //$data_ARRAY['HASH'];
@@ -263,8 +275,11 @@ class crnrstn_data_tunnel_services_manager{
             case 'crnrstn_data_packet_hidden_input_html':
             case 'crnrstn_pssdtl_packet':
 
-                //$this->oCRNRSTN->print_r($data_ARRAY, NULL, NULL, __LINE__, __METHOD__, __FILE__);
-                $this->crnrstn_pssdtl_http_tunneled_data_ARRAY[$this->pssdtl_packet_hash] = $data_ARRAY;
+                //$this->oCRNRSTN->print_r($data_ARRAY, $data_attribute . ' pssdtl_packet_hash=[' . $this->pssdtl_packet_hash . ']', NULL, __LINE__, __METHOD__, __FILE__);
+                $this->crnrstn_pssdtl_http_tunneled_data_ARRAY[$this->pssdtl_packet_hash][] = $data_ARRAY;
+
+                //
+                // HUH? ARRAY STORAGE?? COULD NOT THE DATA BE PROCESSED HERE?
 
                 return true;
 
@@ -292,3 +307,6 @@ class crnrstn_data_tunnel_services_manager{
     }
 
 }
+
+
+

@@ -3164,7 +3164,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         switch($channel_constant){
             case CRNRSTN_UI_FORM_INTEGRATION_PACKET:
-//            case CRNRSTN_OUTPUT_PSSDTLA:
+            case CRNRSTN_OUTPUT_SSDTLA:
             case CRNRSTN_OUTPUT_FORM_INTEGRATIONS:
 
                 $this->form_input_add($crnrstn_form_handle, 'crnrstn_session_salt', NULL, NULL, CRNRSTN_INPUT_REQUIRED);
@@ -4184,7 +4184,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 $tmp_dtf_FORM_HANDLE = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_field_input_name_hash;
                 //if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
 
-                $tmp_data_key = 'FIELD_INPUT_NAME';
+                $tmp_data_key = 'CRNRSTN_FIELD_INPUT_NAME';
                 $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
                 $tmp_serialized_data_key = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                 $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$tmp_data_type_family] = $tmp_serialized_data_key;
@@ -4196,7 +4196,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 if(isset($field_input_id)){
 
-                    $tmp_data_key = 'FIELD_INPUT_ID';
+                    $tmp_data_key = 'CRNRSTN_FIELD_INPUT_ID';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE  . '::' . $tmp_data_key;
                     $tmp_serialized_data_key = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                     $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$tmp_data_type_family] = $tmp_serialized_data_key;
@@ -4451,7 +4451,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             $tmp_form_handle_hash = $this->hash($crnrstn_form_handle);
             $tmp_html_form_input_name_hash = $this->hash($field_input_name);
 
-            $tmp_data_key = 'FIELD_HIDDEN_INPUT_NAME';
+            $tmp_data_key = 'CRNRSTN_FIELD_HIDDEN_INPUT_NAME';
             $tmp_dtf_FORM_HANDLE = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_html_form_input_name_hash;
 
             if(!isset($this->oCRNRSTN->crnrstn_data_packet_spoiler_ARRAY[$tmp_form_handle_hash][$tmp_dtf_FORM_HANDLE.$tmp_data_key])){
@@ -4462,7 +4462,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 if(isset($field_input_name)){
 
-                    $tmp_data_key = 'FIELD_HIDDEN_INPUT_NAME';
+                    $tmp_data_key = 'CRNRSTN_FIELD_HIDDEN_INPUT_NAME';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
                     $tmp_serialized_data_key = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                     $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$tmp_data_type_family] = $tmp_serialized_data_key;
@@ -4476,7 +4476,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 if(isset($field_input_id)){
 
-                    $tmp_data_key = 'FIELD_HIDDEN_INPUT_ID';
+                    $tmp_data_key = 'CRNRSTN_FIELD_HIDDEN_INPUT_ID';
                     $tmp_data_type_family = $tmp_dtf_FORM_HANDLE . '::' . $tmp_data_key;
                     $tmp_serialized_data_key = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                     $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$tmp_data_type_family] = $tmp_serialized_data_key;
@@ -4593,7 +4593,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             $tmp_form_handle_hash = $this->hash($crnrstn_form_handle);
 
-            $tmp_data_key = 'FIELD_INPUT_NAME';
+            $tmp_data_key = 'CRNRSTN_FIELD_INPUT_NAME';
             $tmp_dtf_FORM_INPUT_VALIDATION = 'CRNRSTN_SYSTEM_RESOURCE::FORM_INPUT_VALIDATION::' . $tmp_form_handle_hash . '::' . $tmp_data_key;
 
             if(!isset($this->oCRNRSTN->crnrstn_data_packet_spoiler_ARRAY[$tmp_form_handle_hash][$tmp_dtf_FORM_INPUT_VALIDATION])){
@@ -4614,7 +4614,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 if(isset($field_input_name)){
 
-                    $tmp_data_key = 'FIELD_INPUT_NAME';
+                    $tmp_data_key = 'CRNRSTN_FIELD_INPUT_NAME';
                     $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
                     $tmp_serialized_data_key = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_name, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                     $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$tmp_data_type_family] = $tmp_serialized_data_key;
@@ -4628,7 +4628,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 if(isset($field_input_id)){
 
-                    $tmp_data_key = 'FIELD_INPUT_ID';
+                    $tmp_data_key = 'CRNRSTN_FIELD_INPUT_ID';
                     $tmp_data_type_family = $tmp_dtf_FORM_INPUT_VALIDATION . '::' . $tmp_data_key;
                     $tmp_serialized_data_key = $this->oCRNRSTN->add_system_resource($tmp_data_key, $field_input_id, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                     $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$tmp_data_type_family] = $tmp_serialized_data_key;
@@ -4728,8 +4728,13 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         $tmp_html_out .= $this->oCRNRSTN->crnrstn_data_packet_hidden_input_return($channel_constant, $tmp_form_handle_hash) . '
 ';
         $tmp_pssdtlp_index_str = $this->oCRNRSTN->form_integrations_data_index($tmp_form_handle_hash, 'string');
-        $tmp_html_out  .= '        <input type="hidden" name="crnrstn_pssdtlp_index" value="' . $tmp_pssdtlp_index_str . '">
+
+        if($channel_constant === CRNRSTN_OUTPUT_SSDTLA){
+
+            $tmp_html_out  .= '        <input type="hidden" name="crnrstn_pssdtlp_index" value="' . $tmp_pssdtlp_index_str . '">
 ';
+        }
+
         //$this->oCRNRSTN->print_r($tmp_html_out, NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
         //error_log(__LINE__  . ' user ' . __METHOD__ . ' [' . print_r($tmp_html_out, true) . '].');

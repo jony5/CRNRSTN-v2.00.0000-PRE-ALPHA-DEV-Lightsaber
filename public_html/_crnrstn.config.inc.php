@@ -550,7 +550,7 @@ $oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsa
 $oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.129', 1);
 
 //
-// ENVIRONMENTAL DETECTION DEMONSTRATION OF REQUIRING MORE THAN ONE (1) $_SERVER[] MATCH TO
+// ENVIRONMENTAL DETECTION DEMONSTRATION OF CASE REQUIRING MORE THAN ONE (1) $_SERVER[] MATCH TO
 // POSITIVELY DETECT THE RUNNING ENVIRONMENT
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_NAME', '172.16.225.128', 5);
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_ADDR', '172.16.225.128', 5);
@@ -907,12 +907,13 @@ $oCRNRSTN->config_init_logging('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_LOG_DEFAULT)
 $oCRNRSTN->config_deny_access('LOCALHOST_MACBOOKTERMINAL','172.16.110.1');
 #$oCRNRSTN->config_deny_access('LOCALHOST_PC','127.0.0.10, 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5');
 
-if(!$oCRNRSTN->is_configured()){
+$oCRNRSTN->is_configured();
+//if(!$oCRNRSTN->is_configured()){
 
     //
     // TODO :: MACHINE SOAP ACCOUNT AUTH IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2022 @ 0320 hrs
     // INITIALIZE CRNRSTN :: SOAP SERVICES LAYER RESOURCE ACCESS
-    $oCRNRSTN->config_add_soap(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.soap.secure/_crnrstn.soap.config.inc.php');
+    //$oCRNRSTN->config_add_soap(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.soap.secure/_crnrstn.soap.config.inc.php');
 
     //
     // INITIALIZE ADMINISTRATION FOR EACH ENVIRONMENT. 2 WAYS TO USE THIS METHOD.
@@ -973,14 +974,14 @@ if(!$oCRNRSTN->is_configured()){
     // TODO :: ANALYTICS IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2020 @ 0322 hrs
     // INITIALIZATION OF THIRD PARTY WEB REPORTING AND ANALYTICS
     // TAG PROFILES :: CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
-    $oCRNRSTN->config_add_analytics_seo(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_analytics.secure/_crnrstn.analyics.inc.php');
+    $oCRNRSTN->config_add_analytics_seo(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_analytics.secure/_crnrstn.analytics.inc.php');
 
     // TODO :: ENGAGEMENT IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2020 @ 0322 hrs
     // INITIALIZATION OF THIRD PARTY ENGAGEMENT TAG PROFILES ::
     // CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
     $oCRNRSTN->config_add_engagement_tag_seo(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_engagement_tag.secure/_crnrstn.engagement.inc.php');
 
-}
+//}
 
 $CRNRSTN_LISTENER_RESPONSE = $oCRNRSTN->client_request_listen();
 

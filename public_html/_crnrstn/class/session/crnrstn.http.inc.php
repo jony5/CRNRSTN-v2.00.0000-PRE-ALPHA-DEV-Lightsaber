@@ -627,10 +627,8 @@ class crnrstn_http_manager {
         //$this->soap_data_tunnel_output = $this->SOAP_client_request_listener();
 
         //
-        // CRNRSTN :: PSEUDO-SOAP-SERVICES DATA TUNNEL LAYER DATA PROCESSING AND RESPONSE RETURN
+        // CRNRSTN :: PSEUDO-SOAP-SERVICES DATA TUNNEL LAYER DATA PROCESSING, VALIDATION, AND RESPONSE RETURN
         $this->http_data_services_initialize();
-
-        $this->http_data_services_validate();
 
         $tmp_html = $this->http_data_services_response();
 

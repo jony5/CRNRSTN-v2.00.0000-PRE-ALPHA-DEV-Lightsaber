@@ -1317,7 +1317,7 @@ class crnrstn_environment {
         <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '">       
 ';
 
-         $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_FORM_INTEGRATIONS, 'crnrstn_soap_data_tunnel_form') . '    </form>
+         $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '    </form>
     <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR') . '</div>
 </div>';
 
@@ -1332,7 +1332,8 @@ class crnrstn_environment {
         $tmp_str_array[] = '
 <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ANALYTICS SEO MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
-        $tmp_str_array[] = $this->getEnvParam('CRNRSTN_ANALYTICS_SEO_HTML','CRNRSTN::ANALYTICS::INTEGRATIONS');
+
+        $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_analytics();
 
         $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ANALYTICS SEO MODULE OUTPUT -->
 ';
@@ -1345,7 +1346,7 @@ class crnrstn_environment {
         $tmp_str_array[] = '
 <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT TAG MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
-        $tmp_str_array[] = $this->getEnvParam('CRNRSTN_ENGAGEMENT_TAG_HTML','CRNRSTN::ENGAGEMENT::INTEGRATIONS');
+        $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_engagement();
 
         $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT TAG MODULE OUTPUT -->
 ';
@@ -7755,7 +7756,7 @@ class crnrstn_decoupled_data_object {
 
     }
 
-    private function concat_fip_data_index($data_key, $data_key_hashed){
+    private function concat_packet_data_index($data_key, $data_key_hashed){
 
         //
         // KEY FORMAT IJJIOJCCECCEEICMEIM0CEC0MEWCEK0::DATA
@@ -7778,10 +7779,10 @@ class crnrstn_decoupled_data_object {
         // TODO :: NEED TO SERIALIZE INDEX ARRAY BY THE FORM HANDLE...OR SOMETHING...
         // THIS WILL BE A PAGE WIDE INDEX FOR ALL FORMS, OTHERWISE.
         //error_log(__LINE__ . ' env ddo $tmp_cnt=[' . $tmp_cnt . '] $tmp_key_chunk_ARRAY=[' . print_r($tmp_key_chunk_ARRAY[$tmp_cnt], true) . '].');
-        if(($tmp_key_chunk_ARRAY[$tmp_cnt] == 'FIELD_INPUT_NAME') || ($tmp_key_chunk_ARRAY[$tmp_cnt] == 'FIELD_HIDDEN_INPUT_NAME')){
+        if(($tmp_key_chunk_ARRAY[$tmp_cnt] == 'CRNRSTN_FIELD_INPUT_NAME') || ($tmp_key_chunk_ARRAY[$tmp_cnt] == 'CRNRSTN_FIELD_HIDDEN_INPUT_NAME')){
 
-        //    error_log(__LINE__ . ' env ddo $tmp_value=[' . $tmp_value . '].');
-            $this->oCRNRSTN->form_integrations_data_index_ARRAY[$data_key] = $tmp_value;
+            //error_log(__LINE__ . ' env ddo $tmp_value=[' . $tmp_value . '].');
+            $this->oCRNRSTN->form_integrations_data_index_ARRAY[$data_key][] = $tmp_value;
 
         }
 
@@ -7852,17 +7853,17 @@ class crnrstn_decoupled_data_object {
         switch($data_attribute){
             case 'crnrstn_data_packet_hidden_input_html':
 
-                foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY as $fip_index => $fip_data_key){
+                foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY as $packet_index => $packet_data_key){
 
-                    if(is_array($fip_data_key)){
+                    if(is_array($packet_data_key)){
 
-                        foreach($fip_data_key as $tmp_fip_index => $fip_data_key_str){
+                        foreach($packet_data_key as $tmp_fip_index => $packet_data_key_str){
 
-                            $tmp_data_ARRAY = $this->preach('pssdtl_packet_data_array', $fip_data_key_str, $data_auth_request);
+                            $tmp_data_ARRAY = $this->preach('pssdtl_packet_data_array', $packet_data_key_str, $data_auth_request);
                             if($tmp_data_ARRAY != $this->oCRNRSTN->session_salt()){
 
                                 //error_log(__LINE__ . ' ddo env ' . __METHOD__ . ' $tmp_data=[' . print_r($tmp_data_ARRAY, true) . '].  $tmp_data=[' . print_r($data_attribute, true) . '].  $tmp_data=[' . print_r($data_auth_request, true) . '].');
-                                $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->receive_fip_data($tmp_data_ARRAY, $data_attribute, $data_auth_request);
+                                $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->receive_packet_data($tmp_data_ARRAY, $data_attribute, $data_auth_request);
 
                             }
 
@@ -7872,11 +7873,11 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // I SUSPECT THAT THIS WILL NO LONGER RUN DUE TO NEWER SERIALIZATION REQUIREMENTS
-                        $tmp_data_ARRAY = $this->preach('pssdtl_packet_data_array', $fip_data_key, $data_auth_request);
+                        $tmp_data_ARRAY = $this->preach('pssdtl_packet_data_array', $packet_data_key, $data_auth_request);
 
                         if($tmp_data_ARRAY != $this->oCRNRSTN->session_salt()){
 
-                            $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->receive_fip_data($tmp_data_ARRAY, $data_attribute, $data_auth_request);
+                            $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->receive_packet_data($tmp_data_ARRAY, $data_attribute, $data_auth_request);
 
                         }
 
@@ -7897,19 +7898,19 @@ class crnrstn_decoupled_data_object {
 
                 $tmp_str = '';
 
-                foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY as $fip_index => $fip_data_key){
+                foreach($this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY as $packet_index => $packet_data_key){
 
                     //
                     // POSSIBLY ALWAYS ARRAY, NOW.
-                    if(is_array($fip_data_key)){
+                    if(is_array($packet_data_key)){
 
-                        foreach($fip_data_key as $tmp_fip_index => $fip_data_key_str){
+                        foreach($packet_data_key as $tmp_fip_index => $packet_data_key_str){
 
-                            $tmp_data =  $this->preach('pssdtl_packet', $fip_data_key_str, $data_auth_request);
+                            $tmp_data =  $this->preach('pssdtl_packet', $packet_data_key_str, $data_auth_request);
                             if($tmp_data != $this->oCRNRSTN->session_salt()){
 
                                 $tmp_str .= $tmp_data;
-                                $this->concat_fip_data_index($data_key, $fip_data_key_str);
+                                $this->concat_packet_data_index($data_key, $packet_data_key_str);
 
                             }
 
@@ -7918,12 +7919,12 @@ class crnrstn_decoupled_data_object {
                     }else{
 
                         error_log(__LINE__ . ' ddo env ' . __METHOD__ . ' crnrstn_data_packet_data_key_index IS A STRING.');
-                        $tmp_data = $this->preach('pssdtl_packet', $fip_data_key, $data_auth_request);
+                        $tmp_data = $this->preach('pssdtl_packet', $packet_data_key, $data_auth_request);
 
                         if($tmp_data != $this->oCRNRSTN->session_salt()){
 
                             $tmp_str .= $tmp_data;
-                            $this->concat_fip_data_index($data_key, $fip_data_key);
+                            $this->concat_packet_data_index($data_key, $packet_data_key);
 
                         }
 
@@ -7990,7 +7991,8 @@ class crnrstn_decoupled_data_object {
                         //error_log(__LINE__ . ' ddo env data_value_ARRAY not set.');
                         $this->data_value_ARRAY[$data_key][$index] = '';
                         $this->ttl_profile_ARRAY[$data_key][$index] = 60;
-                        $this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_OUTPUT_FORM_INTEGRATIONS;
+                        //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_OUTPUT_FORM_INTEGRATIONS;
+                        $this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_OUTPUT_SSDTLA;
 
                     }
 
@@ -8084,7 +8086,8 @@ class crnrstn_decoupled_data_object {
                             //error_log(__LINE__ . ' ddo env data_value_ARRAY not set.');
                             $this->data_value_ARRAY[$data_key][$index] = '';
                             $this->ttl_profile_ARRAY[$data_key][$index] = 60;
-                            $this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_OUTPUT_FORM_INTEGRATIONS;
+                            //$this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_OUTPUT_FORM_INTEGRATIONS;
+                            $this->data_auth_profile_ARRAY[$data_key][$index] = CRNRSTN_OUTPUT_SSDTLA;
 
                         }
 

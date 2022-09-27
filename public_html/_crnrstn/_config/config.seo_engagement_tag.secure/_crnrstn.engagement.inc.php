@@ -1,19 +1,5 @@
 <?php
-# # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # #
-# BEGIN INITIALIZATION OF ENVIRONMENTALLY
-# RELEVANT RESOURCE WILDCARDS
-
-switch($this->env_key){
-    case 'BLUEHOST_JONY5':
-    case 'BLUEHOST_EVIFWEB':
-
-        # # # # #
-        ### NEW WILD CARD RESOURCE
-        $oWCR = $this->define_wildcard_resource('CRNRSTN::ENGAGEMENT::INTEGRATIONS');
-
-
-    $tmp_str = '<!-- Global site tag :: EXAMPLE -->
+$tmp_str_JONY5 = $tmp_str_EVIFWEB = $tmp_str_CHAD_MACBOOKPRO = $tmp_str_MACBOOKPRO = '<!-- Global ENGAGEMENT tag :: EXAMPLE -->
 <script>
 
     //
@@ -24,47 +10,17 @@ switch($this->env_key){
 	
 </script>';
 
-        //
-        // CRNRSTN :: ENGAGEMENT INTEGRATIONS
-        $oWCR->add_attribute('CRNRSTN_ENGAGEMENT_TAG_HTML', $tmp_str);
-
-        $oWildCardResource_ARRAY[$oWCR->return_resource_key()] = $oWCR;
-
-    break;
-    case 'LOCALHOST_MACBOOKPRO':
-    case 'LOCALHOST_CHAD_MACBOOKPRO':
-
-        # # # # #
-        ### NEW WILD CARD RESOURCE
-        $oWCR = $this->define_wildcard_resource('CRNRSTN::ENGAGEMENT::INTEGRATIONS');
-
-        $tmp_str = '<!-- LOCALHOST ONLY :: Global site tag :: EXAMPLE -->
+$tmp_str_JONY5_TEST = '<!-- Global ENGAGEMENT tag - **TEST**  -->
 <script>
+HELLO TEST
+</script>
+';
 
-    //
-	// USER ENGAGEMENT TRACKING TAG JS CODE :: HERE
-	//
-	// E.G. GOOGLE PLACEMENT TAG.
-	// https://support.google.com/campaignmanager/answer/2826636?hl=enI
-	
-</script>';
-
-        //
-        // CRNRSTN :: ENGAGEMENT INTEGRATIONS
-        $oWCR->add_attribute('CRNRSTN_ENGAGEMENT_TAG_HTML', $tmp_str);
-
-        $oWildCardResource_ARRAY[$oWCR->return_resource_key()] = $oWCR;
-
-    break;
-    case 'LOCALHOST_PC':
-
-    break;
-    default:
-
-        //
-        // HOOOSTON...VE HAF PROBLEM!
-        throw new Exception('An unknown...and hence unhandled...environmental reference key,"' . $this->env_key . '", has been provided for this environment. WordPress cannot be initialized by CRNRSTN :: without an acknowledged key.');
-
-    break;
-
-}
+//
+// INITIALIZE ANALYTICS PROFILE(S) FOR EACH ENVIRONMENT.
+// $this->config_add_seo_engagemnent([environment-key], [data-key], [3rd-party-html-injection-string], [enabled-by-default]=true);
+$this->config_add_seo_engagemnent('BLUEHOST_JONY5', 'DEMO_ENGAGEMENT', $tmp_str_JONY5);
+$this->config_add_seo_engagemnent('BLUEHOST_EVIFWEB', 'DEMO_ENGAGEMENT', $tmp_str_EVIFWEB);
+$this->config_add_seo_engagemnent('LOCALHOST_CHAD_MACBOOKPRO', 'DEMO_ENGAGEMENT_TEST', $tmp_str_JONY5_TEST, false);
+$this->config_add_seo_engagemnent('LOCALHOST_CHAD_MACBOOKPRO', 'DEMO_ENGAGEMENT', $tmp_str_CHAD_MACBOOKPRO);
+$this->config_add_seo_engagemnent('LOCALHOST_MACBOOKPRO', 'DEMO_ENGAGEMENT', $tmp_str_MACBOOKPRO);
