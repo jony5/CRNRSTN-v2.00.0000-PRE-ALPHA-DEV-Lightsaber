@@ -3114,11 +3114,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $this->ficp_module_build_flag_ARRAY[$resource_constant] = 1;
                 $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
 
-                error_log(__LINE__ . ' crnrstn NEEDED! [' . $resource_constant . ']. [' . $tmp_client_packet_output . '].');
-
-            }else{
-
-                error_log(__LINE__ . ' crnrstn NOT NEEDED[' . $resource_constant . '].');
+                //error_log(__LINE__ . ' crnrstn NEEDED! [' . $resource_constant . ']. [' . $tmp_client_packet_output . '].');
 
             }
 
@@ -4089,12 +4085,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                         if($is_enabled){
 
-                            error_log(__LINE__ . ' crnrstn IS ENABLED [' . $data_key . '::' . 'ANALYTICS_ENABLED].');
+                            //error_log(__LINE__ . ' crnrstn IS ENABLED [' . $data_key . '::' . 'ANALYTICS_ENABLED].');
 
                             self::$oCRNRSTN_CONFIG_MGR->system_profile_map_data_key('CRNRSTN::SYSTEM::ANALYTICS', $data_key);
                             $this->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_UI_TAG_ANALYTICS, true);
 
-                            error_log(__LINE__ . ' crnrstn TOGGLE ME [' . CRNRSTN_UI_TAG_ANALYTICS . '].');
+                            //error_log(__LINE__ . ' crnrstn TOGGLE ME [' . CRNRSTN_UI_TAG_ANALYTICS . '].');
 
                         }
 
@@ -4156,13 +4152,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                         if($is_enabled){
 
-                            error_log(__LINE__ . ' crnrstn IS ENABLED [' . $data_key . '::' . 'ANALYTICS_ENABLED].');
+                            //error_log(__LINE__ . ' crnrstn IS ENABLED [' . $data_key . '::' . 'ANALYTICS_ENABLED].');
 
                             self::$oCRNRSTN_CONFIG_MGR->system_profile_map_data_key('CRNRSTN::SYSTEM::ENGAGEMENT', $data_key);
 
                             $this->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_UI_TAG_ENGAGEMENT, true);
 
-                            error_log(__LINE__ . ' crnrstn TOGGLE ME [' . CRNRSTN_UI_TAG_ENGAGEMENT . '].');
+                            //error_log(__LINE__ . ' crnrstn TOGGLE ME [' . CRNRSTN_UI_TAG_ENGAGEMENT . '].');
 
                         }
 
@@ -4182,70 +4178,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $this->error_log('Bypassed processing analytics for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         }catch (Exception $e){
-
-            //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
-        }
-
-    }
-
-    public function _____config_add_seo_engagemnent($env_key, $data_key, $data_value, $is_enabled = true){
-
-        $tmp_data_profile_ARRAY = array();
-
-
-        try {
-
-            $data_type_family = $tmp_data_profile_ARRAY['data_type_family'];
-            $data_type_title = $tmp_data_profile_ARRAY['data_type_title'];
-            $encryption_channel = $tmp_data_profile_ARRAY['data_type_encryption_channel'];
-
-            $env_key_hash = $this->hash($env_key);
-
-            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
-
-                if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash) {
-
-                    $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$encrypt_cipher', '$encrypt_secret_key', '$hmac_alg');
-                    $tmp_param_err_str_ARRAY = $this->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $env_key, $encrypt_cipher, $encrypt_secret_key, $hmac_alg);
-
-                    $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
-                    $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
-
-                    if (count($tmp_param_missing_ARRAY) > 0) {
-
-                        $this->error_log('Missing required ' . $data_type_title . ' encryption information to complete ' . __METHOD__ . '. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                        throw new Exception('CRNRSTN :: initialization ERROR :: ' . __METHOD__ . ' was called but was missing parameter information and so ' . $data_type_title . ' encryption was not able to be initialized. Some parameters are required. ' . $tmp_param_missing_str);
-
-                    } else {
-
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value(openssl_digest($encrypt_secret_key, self::$openssl_preferred_digest, true), 'encrypt_secret_key', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_options, 'encrypt_options', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($hmac_alg, 'hmac_alg', $data_type_family, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-
-                        $this->oCRNRSTN_BITFLIP_MGR->toggle_bit($encryption_channel, true);
-                        $this->error_log($data_type_title . ' encryption initialized for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                        return true;
-
-                    }
-
-                }
-
-            }
-
-            //
-            // WE DON'T HAVE THE ENVIRONMENT, BUT DETECTION WOULD HAVE ALREADY BEEN COMPLETED.
-            //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
-            $this->error_log('Bypassed processing encryption initialized for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-        } catch (Exception $e) {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -8252,18 +8184,20 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         $tmp_array = array();
         $tmp_flag_array = array();
 
-        $tmp_array[] = 'crnrstn_l=crnrstn';
+        $tmp_array[] = $this->session_salt() . '=lnk';
         $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
-        $tmp_flag_array['crnrstn_l'] = 1;
+        $tmp_flag_array[$this->session_salt()] = 1;
         $tmp_flag_array['crnrstn_r'] = 1;
 
-        if (isset($meta_params_ARRAY)) {
+        if(isset($meta_params_ARRAY)){
 
-            if (is_array($meta_params_ARRAY)) {
+            if(is_array($meta_params_ARRAY)){
 
-                foreach ($meta_params_ARRAY as $key => $value) {
+                foreach($meta_params_ARRAY as $key => $value){
 
-                    if (!isset($tmp_flag_array[$key])) {
+                    //
+                    // TO AVOID RECURSION
+                    if(!isset($tmp_flag_array[$key])){
 
                         $tmp_flag_array[$key] = 1;
 
@@ -8273,11 +8207,13 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
                 }
 
-            } else {
+            }else{
 
-                if (is_string($meta_params_ARRAY)) {
+                if(is_string($meta_params_ARRAY)){
 
-                    if (!isset($tmp_flag_array['crnrstn_m'])) {
+                    //
+                    // TO AVOID RECURSION
+                    if(!isset($tmp_flag_array['crnrstn_m'])){
 
                         $tmp_flag_array['crnrstn_m'] = 1;
 
@@ -8386,7 +8322,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //error_log(__LINE__ . ' user append_url_param=' . print_r($param_ARRAY, true));
 
-        if ($this->isSSL()) {
+        if($this->isSSL()){
 
             $tmp_lnk = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
@@ -8415,10 +8351,10 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //
         // ADD ANY *NEW* URL PARAMS
-        foreach ($param_ARRAY as $key => $value) {
+        foreach($param_ARRAY as $key => $value){
 
             //if(!isset($tmp_flag_param_ARRAY[$this->return_param_name($value)]) && ($key != 'crnrstn_encrypt_tunnel')){
-            if ($this->return_param_name($value) != 'crnrstn_encrypt_tunnel') {
+            if($this->return_param_name($value) != 'crnrstn_encrypt_tunnel'){
 
                 $tmp_flag_param_ARRAY[$this->return_param_name($value)] = 1;
 
@@ -8440,18 +8376,18 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         }
 
-        if (isset($no_encrypt_param_ARRAY) && $include_no_encrypt == true) {
+        if(isset($no_encrypt_param_ARRAY) && $include_no_encrypt == true){
 
-            foreach ($no_encrypt_param_ARRAY as $key => $value) {
+            foreach($no_encrypt_param_ARRAY as $key => $value){
 
                 //if(!isset($tmp_flag_param_ARRAY[$this->return_param_name($value)]) && ($key != 'crnrstn_encrypt_tunnel')){
-                if ($this->return_param_name($value) != 'crnrstn_encrypt_tunnel') {
+                if($this->return_param_name($value) != 'crnrstn_encrypt_tunnel'){
 
                     $tmp_flag_param_ARRAY[$this->return_param_name($value)] = 1;
 
                     $tmp_return_str .= $param_concatenator . $this->url_param_append($value, false);
 
-                    if ($tunnel_encrypt) {
+                    if ($tunnel_encrypt){
 
                         $tmp_encrypted_params_pipe .= $key . '|';
 
@@ -8471,7 +8407,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //
         // KEEP ALL ORIGINAL URL PARAMS
-        foreach ($tmp_lnk_explode_ARRAY['param'] as $key00 => $value00) {
+        foreach($tmp_lnk_explode_ARRAY['param'] as $key00 => $value00){
 
             if (!isset($tmp_flag_param_ARRAY[$key00]) && ($key00 != 'crnrstn_encrypt_tunnel')) {
 
@@ -8545,7 +8481,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         }
 
-        if ($tunnel_encrypt) {
+        if($tunnel_encrypt){
 
             $tmp_return_str .= $param_concatenator . 'crnrstn_encrypt_tunnel=' . urlencode($this->data_encrypt($tmp_encrypted_params_pipe));
 

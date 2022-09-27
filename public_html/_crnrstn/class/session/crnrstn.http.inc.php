@@ -695,10 +695,7 @@ class crnrstn_http_manager {
             // $tmp_uri = html_entity_decode($this->extract_data_HTTP('crnrstn_r'));
             $tmp_uri = $this->extractData($_GET, 'crnrstn_r', true);
 
-            error_log(__LINE__.  ' http ' . __METHOD__ . ' $tmp_uri=[' . $tmp_uri . '].');
-
-            die();
-            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt(urldecode($tmp_uri), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($tmp_uri);
 
             $tmp_redirect_html = '<!DOCTYPE html>
 <html lang="en">
