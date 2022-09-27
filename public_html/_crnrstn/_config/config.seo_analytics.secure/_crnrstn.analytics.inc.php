@@ -1,5 +1,9 @@
 <?php
 
+//
+// INITIALIZATION OF THIRD PARTY ANALYTICS TAG PROFILES ::
+// CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
+
 $tmp_str_JONY5 = '<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WQEX5QE9Y"></script>
 <script>
@@ -24,7 +28,7 @@ $tmp_str_EVIFWEB = '<!-- Google tag (gtag.js) -->
 
 $tmp_str_JONY5_TEST = $tmp_str_CHAD_MACBOOKPRO = $tmp_str_MACBOOKPRO = '<!-- Global site tag - **config_add_seo_analytics TEST**  -->
 <script>
-HELLO TEST
+// HELLO TEST
 </script>
 ';
 
