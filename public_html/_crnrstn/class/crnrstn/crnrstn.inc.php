@@ -1686,7 +1686,7 @@ class crnrstn {
 
     }
 
-    public function config_add_analytics_seo($env_key, $crnrstn_analytics_config_file_path){
+    public function config_include_seo_analytics($env_key, $crnrstn_analytics_config_file_path){
 
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
@@ -1721,7 +1721,7 @@ class crnrstn {
 
     }
 
-    public function config_add_engagement_tag_seo($env_key, $crnrstn_engagement_config_file_path){
+    public function config_include_seo_engagement($env_key, $crnrstn_engagement_config_file_path){
 
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
