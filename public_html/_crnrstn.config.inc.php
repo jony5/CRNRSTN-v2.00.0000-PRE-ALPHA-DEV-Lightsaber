@@ -979,7 +979,7 @@ $oCRNRSTN->is_configured();
     // TODO :: ENGAGEMENT IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2020 @ 0322 hrs
     // INITIALIZATION OF THIRD PARTY ENGAGEMENT TAG PROFILES ::
     // CRNRSTN :: ADVANCED CONFIGURATION PARAMETERS
-    $oCRNRSTN->config_include_seo_engagement(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_engagement_tag.secure/_crnrstn.engagement.inc.php');
+    $oCRNRSTN->config_include_seo_engagement(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_engagement.secure/_crnrstn.engagement.inc.php');
 
 //}
 
