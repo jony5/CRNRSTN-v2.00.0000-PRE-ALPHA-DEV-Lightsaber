@@ -145,7 +145,7 @@ class crnrstn_ui_html_manager {
         if(strlen($tmp_module_page_key) > 0){
 
             $tmp_html_out = '
-            <div style="text-align: left; padding: 40px; color: #FFF;">
+            <div style="text-align: left; padding: 40px;">
                 <span style=" font-size: 45px; font-family: Arial, Helvetica, sans-serif; color:#FEFEFE; "><br>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</span>
                 <div class="crnrstn_cb_20"></div>
                 <span style="text-align:left; font-size: 20px; font-family: Arial, Helvetica, sans-serif; color:#FEFEFE; ">CONTENT PENDING</span>
