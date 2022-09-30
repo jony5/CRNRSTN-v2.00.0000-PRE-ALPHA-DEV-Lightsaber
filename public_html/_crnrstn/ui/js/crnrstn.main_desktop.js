@@ -1100,7 +1100,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         // CHECK PAGE LOAD TTL
         if(this.ttl_age_seconds > this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] && this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] != -1){
 
-            this.log_activity('[lnum 1103] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - PAGE LOAD TTL (' + this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl']  + ' secs).', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 1103] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - PAGE LOAD TTL (' + this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] + ' secs).', this.CRNRSTN_DEBUG_VERBOSE);
             this.fire_dom_state_controller();
 
             this.data_tunnel_ttl_monitor_isactive = false;
@@ -1242,7 +1242,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.get_xml_response_node_data = function(response_data, xml_nom, node_attribute_nom) {
+    CRNRSTN_JS.prototype.get_xml_response_node_data = function(response_data, xml_nom, node_attribute_nom){
 
         var tmp_data = '';
 
@@ -3106,7 +3106,7 @@ interact_ui_animation_sequence = function(module_key){
 
                 this.ui_sync_controller_thread_delay_ARRAY[action_id] = delay_ttl;
 
-                this.log_activity('[lnum 3109] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_UI);
+                this.log_activity('[lnum 3109] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'stop':
@@ -4214,7 +4214,7 @@ interact_ui_animation_sequence = function(module_key){
 
         switch(type){
             case 'sys_rtime':
-                //  0.434234 secs
+                // 0.434234 secs
                 // 1 min 5.434234 secs
                 // 1 hr 3 mins 15.434234 secs
 
@@ -4245,7 +4245,7 @@ interact_ui_animation_sequence = function(module_key){
 
                 if (hour > 0) {
 
-                    hour_copy =  " " + hour + " hr";
+                    hour_copy = " " + hour + " hr";
 
                     if (hour > 1) {
 
@@ -4259,7 +4259,7 @@ interact_ui_animation_sequence = function(module_key){
 
                 if (mins > 0) {
 
-                    min_copy =  " " + mins + " min";
+                    min_copy = " " + mins + " min";
 
                     if (mins > 1) {
 
@@ -6858,8 +6858,6 @@ close_docs_fullscreen
 
         });
 
-
-
     }
 
     CRNRSTN_JS.prototype.toggle_documentation_side_navigation = function(){
@@ -7118,7 +7116,7 @@ close_docs_fullscreen
             break;
             default:
 
-                this.log_activity('[lnum 7121] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 7119] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -7133,11 +7131,11 @@ close_docs_fullscreen
 
         var dom_handle_element = dom_handle_root + dom_handle_variant_element;
 
-        this.log_activity('[lnum 7136] element_id_split_ARRAY[0]=' + element_id_split_ARRAY[0] + '] element_id_split_ARRAY[1]=' + element_id_split_ARRAY[1] + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 7134] element_id_split_ARRAY[0]=' + element_id_split_ARRAY[0] + '] element_id_split_ARRAY[1]=' + element_id_split_ARRAY[1] + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         if(this.dom_element_mouse_state_lock_ARRAY[dom_handle_element] === 'undefined'){
 
-            alert('[lnum 7140] dom_element_mouse_state_lock_ARRAY is undefined at ' + dom_handle_element + ' for ' + element_id + '.');
+            alert('[lnum 7138] dom_element_mouse_state_lock_ARRAY is undefined at ' + dom_handle_element + ' for ' + element_id + '.');
 
         }else{
 
@@ -7148,9 +7146,9 @@ close_docs_fullscreen
 
                         this.dom_element_mouse_state_tracker_ARRAY[dom_handle_variant_element] = '_hvr';
                         this.dom_element_mouse_state_lock_ARRAY[dom_handle_element] = 'ON';
-                        this.log_activity('[lnum 7151] [ACTION=onmouseover on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7149] [ACTION=onmouseover on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
-                        this.log_activity('[lnum 7153] LOCK ON FOR [' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7151] LOCK ON FOR [' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         dom_handle_postfix = '_hvr';
 
@@ -7195,7 +7193,7 @@ close_docs_fullscreen
                         this.dom_element_mouse_state_tracker_ARRAY[dom_handle_variant_element] = '';
                         this.dom_element_mouse_state_ARRAY[dom_handle_element] = 'ON';
 
-                        this.log_activity('[lnum 7198] [ACTION=onmouseout on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7196] [ACTION=onmouseout on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         this.primary_ui_interact_nav_state_shift(dom_handle_root, dom_handle_variant_element, dom_handle_postfix);
 
@@ -7233,7 +7231,7 @@ close_docs_fullscreen
                 //
                 // FIRE TRANSITION TO TARGET IMAGE WITHIN ACTIVE ELEMENT
                 var target_dom_handle = dom_handle_root + dom_handle_variant_element + dom_handle_postfix;
-                this.log_activity('[lnum 7236] [ACTION=' + ux_action + '] [target_dom_handle=' + target_dom_handle + '] CRNRSTN :: INTERACT UI (UX) ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 7234] [ACTION=' + ux_action + '] [target_dom_handle=' + target_dom_handle + '] CRNRSTN :: INTERACT UI (UX) ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             }
 

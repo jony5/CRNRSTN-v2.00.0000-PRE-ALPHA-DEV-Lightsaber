@@ -1,6 +1,6 @@
 <?php
 /**
-* @package CRNRSTNF
+* @package CRNRSTN
 // J5
 // Code is Poetry */
 #

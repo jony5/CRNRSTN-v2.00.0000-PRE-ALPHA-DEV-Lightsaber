@@ -125,7 +125,7 @@ class crnrstn_http_manager {
 	    // low level multi-language integrations into CRNRSTN :: which key off of HTTP
 	    // header Accept-language datum.
 	    //
-	    // "Also, my rug was stolen."  - the dude
+	    // "Also, my rug was stolen." - the dude
 	    //
 	    // Also, my driver's license was just taken and on a day that I spent over $200
 	    // for both me and J5, my boy, at Ruth's Chris Steakhouse. The Lord Spirit gives
@@ -1563,7 +1563,7 @@ class crnrstn_http_manager {
 			    //
                 // string
 
-			    $tmp_str =  '';
+			    $tmp_str = '';
 
 				$tmp_http_headers = getallheaders();
 

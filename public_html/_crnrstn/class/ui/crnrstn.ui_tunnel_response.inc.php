@@ -182,7 +182,7 @@ class crnrstn_ui_tunnel_response_manager {
         // 2) IF THE KEY IS PRESENT, RETURN THE CONTENT IF HASH IS DIFFERENT.
         foreach($tmp_module_ARRAY as $index => $module_nom){
 
-            $tmp_post_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data($module_nom .  '_HASH');
+            $tmp_post_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data($module_nom . '_HASH');
             $tmp_module_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->retrieve_interact_ui_module_hash($module_nom);
 
             if(($module_nom == 'crnrstn_interact_ui_documentation_content_src') || ($module_nom == 'crnrstn_interact_ui_mit_license_src')){
@@ -605,7 +605,7 @@ class crnrstn_ui_tunnel_response_manager {
                 $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
                 $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
                 $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
-                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED =  $ts_json;
+                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $ts_json;
                 $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
 
             }
@@ -932,7 +932,7 @@ class crnrstn_ui_tunnel_response_manager {
 //                $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
 //                $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($tmp_client_id);
 //                $tmp_CLIENT_IP = $this->oCRNRSTN->return_client_ip();
-//                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED =  $ts_json;
+//                $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $ts_json;
 //                $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $ts_json;
 //
 //            }

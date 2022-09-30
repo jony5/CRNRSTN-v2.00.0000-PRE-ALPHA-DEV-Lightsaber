@@ -1197,10 +1197,10 @@ class crnrstn_environment {
         <button type="submit">SUBMIT</button>
         <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '">
         <input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '">
-        <input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">     
+        <input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">
 ' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
 
-         $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '    </form>
+         $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form>
     <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR') . '</div>
     <div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div>
 </div>';
@@ -3658,7 +3658,6 @@ class crnrstn_environment {
                     $hmac_algorithm = $hmac_algorithm_override;
 
                 }
-
 
                 #
                 # Source: http://php.net/manual/en/function.openssl-encrypt.php
