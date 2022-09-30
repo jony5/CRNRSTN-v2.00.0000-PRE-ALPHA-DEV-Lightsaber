@@ -57,17 +57,18 @@ class crnrstn_ui_content_assembler {
 
 	private static $page_path;
 
-	public function __construct($oCRNRSTN_USR) {
+	public function __construct($oCRNRSTN) {
 
-        $this->oCRNRSTN_USR = $oCRNRSTN_USR;
+        $this->oCRNRSTN = $oCRNRSTN;
 
 		// 
 		// INSTANTIATE LOGGER
-		$this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
+		$this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         $tmp_page_path = $_SERVER['SCRIPT_NAME'];
         $tmp_page_path = str_replace("index.php", "", $tmp_page_path);
-        $tmp_page_path = str_replace($this->oCRNRSTN_USR->crnrstn_resources_http_path, "", $tmp_page_path);
+        $tmp_page_path = str_replace($this->oCRNRSTN->crnrstn_resources_http_path(), "", $tmp_page_path);
+
         self::$page_path = $tmp_page_path;
 
 	}
@@ -76,7 +77,7 @@ class crnrstn_ui_content_assembler {
 
         //
         // INSTANTIATE DOCUMENTATION CONTENT MANAGER
-        self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN_USR, $this, self::$page_path);
+        self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, self::$page_path);
 
     }
 

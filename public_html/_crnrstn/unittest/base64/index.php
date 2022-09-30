@@ -93,7 +93,7 @@ if($oCRNRSTN->http_data_services_initialize(true, false)) {
 
         $oCRNRSTN->error_log('CRNRSTN :: POST DATA PACKET HAS BEEN RECEIVED.]', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-        $oCRNRSTN->error_log('CRNRSTN :: checking base64 on [' . $oCRNRSTN->form_return_submitted_value('crnrstn_image_to_process_name') . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        $oCRNRSTN->error_log('CRNRSTN :: checking base64 on [' . $oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name') . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
     }else{
 
@@ -184,8 +184,8 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
     <div class="crnrstn_cb_20"></div>
     <div style="padding:0 0 5px 0; width: 523px; text-align: center; margin: 0 auto;">
         <div style="text-align: right; font-family: Arial, Helvetica, sans-serif;">
-            <a href="#" onclick="<?php echo $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?' . $oCRNRSTN->get_resource('CRNRSTN_SYSTEM_DATA_GET') . '=' . $oCRNRSTN->data_encrypt($oCRNRSTN->form_return_submitted_value('crnrstn_image_to_process_name')); ?>" style="color: #06C; float: left;">Refresh base64</a>
-            <a href="#" onclick="<?php echo $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?' . $oCRNRSTN->get_resource('CRNRSTN_SYSTEM_DATA_GET') . '=' . $oCRNRSTN->data_encrypt($oCRNRSTN->form_return_submitted_value('crnrstn_image_to_process_name')); ?>" style="color: #06C; float: left; padding: 0 0 0 20px;">Refresh jpg</a>
+            <a href="#" onclick="<?php echo $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?' . $oCRNRSTN->get_resource('CRNRSTN_SYSTEM_DATA_GET') . '=' . $oCRNRSTN->data_encrypt($oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name')); ?>" style="color: #06C; float: left;">Refresh base64</a>
+            <a href="#" onclick="<?php echo $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '?' . $oCRNRSTN->get_resource('CRNRSTN_SYSTEM_DATA_GET') . '=' . $oCRNRSTN->data_encrypt($oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name')); ?>" style="color: #06C; float: left; padding: 0 0 0 20px;">Refresh jpg</a>
             <a href="#" onclick="copy_base64_output();" style="color: #06C; text-align: right;">Copy to clipboard</a>
         </div>
     </div>
@@ -214,7 +214,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 
 //                    if($oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
 //
-//                        $tmp_filename = $oCRNRSTN->form_return_submitted_value('crnrstn_image_to_process_name');
+//                        $tmp_filename = $oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name');
 //
 //                        if(strlen($tmp_filename) > 0){
 //
@@ -247,7 +247,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
             <?php echo $oCRNRSTN->return_branding_creative(false, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED); ?>
         </div>
         <div style="float: right;">
-            <span style="text-align: right; font-family: Arial, Helvetica, sans-serif;"><?php echo $oCRNRSTN->form_return_submitted_value('crnrstn_image_to_process_name'); ?></span>
+            <span style="text-align: right; font-family: Arial, Helvetica, sans-serif;"><?php echo $oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name'); ?></span>
         </div>
         <div class="crnrstn_cb"></div>
     </div>
@@ -268,7 +268,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 
         echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_image_to_encode');
 
-        if($tmp_filename = $oCRNRSTN->form_return_submitted_value('crnrstn_image_to_process_name')){
+        if($tmp_filename = $oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name')){
 
             $tmp_str_array = array();
             $tmp_found_img_ping_type = false;

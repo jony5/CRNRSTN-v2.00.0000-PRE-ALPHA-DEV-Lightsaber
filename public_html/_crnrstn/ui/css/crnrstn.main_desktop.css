@@ -9,7 +9,7 @@
 .crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: black; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80); opacity: 0.8; display: none;}
 .crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; width: 100%; z-index: 10000; text-align: center; line-height: 0; font-weight: normal; outline: none;}
 
-/*CRNRSTN::INTEGRATION UI INTERACT MODULE :: SYSTEM FOOTER*/
+/*CRNRSTN::INTEGRATION INTERACT UI MODULE :: SYSTEM FOOTER*/
 .crnrstn_ui_system_footer_shell                     { /*position:-webkit-sticky; position: sticky; bottom:5px;*/}
 
 .crnrstn_ui_system_footer_wrapper                   { position: fixed; z-index: 100; bottom:0; left: 0; }
@@ -30,7 +30,7 @@
 .crnrstn_ui_system_footer_stat                      { float: left; padding: 0 10px 0 0; }
 .crnrstn_ui_mit_license_shell                       { position: absolute; z-index: 9999; width:0; height: 0; overflow: hidden; }
 
-/*CRNRSTN::INTEGRATION UI INTERACT MODULE :: DOCUMENTATION*/
+/*CRNRSTN::INTEGRATION INTERACT UI MODULE :: DOCUMENTATION*/
 /*TODO :: Z-INDEX NEEDS TO COME FROM CRNRSTN :: SSDTLA*/
 .crnrstn_interact_ui_full_document_wrapper          { position: fixed; z-index: 100; top: 0; left: 0; }
 .crnrstn_interact_ui_full_document_rel              { position: relative; }
@@ -83,29 +83,29 @@
     .crnrstn_interact_ui_side_nav a                 { font-size: 18px;}
 }
 
-/*CRNRSTN::INTEGRATION UI INTERACT MODULE :: MESSENGER*/
-.crnrstn_ui_interact_wrapper                        { position:-webkit-sticky; position: sticky; bottom:5px; left:-3000px; width:0; height: 0; overflow: hidden;}
-.crnrstn_ui_interact                                { }
-.crnrstn_ui_interact_bg_border                      { position: absolute; z-index: 55; }
-.crnrstn_ui_interact_bg_border_edge                 { position: absolute; z-index: 56; background-color: transparent;}
-.crnrstn_ui_interact_bg_solid                       { cursor:pointer; border: 1px solid #A9C8F4;}
-.crnrstn_ui_interact_bg_solid img                   { margin-left: 4px; }
-.crnrstn_ui_interact_primary_nav_glass_case         { position: absolute; z-index:70; cursor: pointer;}
-.crnrstn_ui_interact_primary_navgroup_wrapper       { position: absolute; z-index:66; padding: 18px 0 0 16px;}
-.crnrstn_ui_interact_primary_navgroup_lnk_border    { float:left; border: 1px solid #FFF; width: 42px; height: 42px; margin-right: 1px; margin-bottom: 1px; background-color:#FFF;}
+/*CRNRSTN::INTEGRATION INTERACT UI MODULE :: MESSENGER*/
+.crnrstn_interact_ui_wrapper                        { position:-webkit-sticky; position: sticky; bottom:5px; left:-3000px; width:0; height: 0; overflow: hidden;}
+.crnrstn_interact_ui                                { }
+.crnrstn_interact_ui_bg_border                      { position: absolute; z-index: 55; }
+.crnrstn_interact_ui_bg_border_edge                 { position: absolute; z-index: 56; background-color: transparent;}
+.crnrstn_interact_ui_bg_solid                       { cursor:pointer; border: 1px solid #A9C8F4;}
+.crnrstn_interact_ui_bg_solid img                   { margin-left: 4px; }
+.crnrstn_interact_ui_primary_nav_glass_case         { position: absolute; z-index:70; cursor: pointer;}
+.crnrstn_interact_ui_primary_navgroup_wrapper       { position: absolute; z-index:66; padding: 18px 0 0 16px;}
+.crnrstn_interact_ui_primary_navgroup_lnk_border    { float:left; border: 1px solid #FFF; width: 42px; height: 42px; margin-right: 1px; margin-bottom: 1px; background-color:#FFF;}
 
-.crnrstn_ui_interact_primary_nav_img_shell          { position: absolute; cursor: pointer; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0;}
-.crnrstn_ui_interact_primary_nav_img_shell img      { border: 1px solid #A9C8F4; cursor: pointer; background-color:#FFF;}
-.crnrstn_ui_interact_active                         { z-index: 68; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0;}
+.crnrstn_interact_ui_primary_nav_img_shell          { position: absolute; cursor: pointer; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0;}
+.crnrstn_interact_ui_primary_nav_img_shell img      { border: 1px solid #A9C8F4; cursor: pointer; background-color:#FFF;}
+.crnrstn_interact_ui_active                         { z-index: 68; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0;}
 
-.crnrstn_ui_interact_content_wrapper        { position: absolute; display: none; z-index: 61; padding: 25px 0 0 25px; }
-.crnrstn_ui_interact_content_wrapper input  { text-align: left; font-size: 20px; width: 208px; height: 34px; border:2px solid #676767; background-color: #FFF;}
-.crnrstn_ui_interact_signin_frm_lbl         { text-align: left; font-size: 20px;}
-.crnrstn_ui_interact_signin_frm_chkbx_eula  { float: left; width: 16px;}
-.crnrstn_ui_interact_signin_frm_lbl_eula    { float: left; width: 80px; font-size: 18px; padding:7px 0 0 0; cursor: pointer;}
-.crnrstn_ui_interact_signin_frm_lbl_eula a  { text-decoration: none; color: #0066CC; text-decoration: underline;}
-.crnrstn_ui_interact_frm_submit             { width: 115px; height: 37px; background-color: #FFF; border: 2px solid #5C98EB; cursor:pointer; }
-.crnrstn_ui_interact_signin_frm_btn_submit  { text-align: left; font-size: 20px; color: #5C98EB; font-weight: bold; padding: 7px 0 0 17px; cursor:pointer;}
+.crnrstn_interact_ui_content_wrapper        { position: absolute; display: none; z-index: 61; padding: 25px 0 0 25px; }
+.crnrstn_interact_ui_content_wrapper input  { text-align: left; font-size: 20px; width: 208px; height: 34px; border:2px solid #676767; background-color: #FFF;}
+.crnrstn_interact_ui_signin_frm_lbl         { text-align: left; font-size: 20px;}
+.crnrstn_interact_ui_signin_frm_chkbx_eula  { float: left; width: 16px;}
+.crnrstn_interact_ui_signin_frm_lbl_eula    { float: left; width: 80px; font-size: 18px; padding:7px 0 0 0; cursor: pointer;}
+.crnrstn_interact_ui_signin_frm_lbl_eula a  { text-decoration: none; color: #0066CC; text-decoration: underline;}
+.crnrstn_interact_ui_frm_submit             { width: 115px; height: 37px; background-color: #FFF; border: 2px solid #5C98EB; cursor:pointer; }
+.crnrstn_interact_ui_signin_frm_btn_submit  { text-align: left; font-size: 20px; color: #5C98EB; font-weight: bold; padding: 7px 0 0 17px; cursor:pointer;}
 
 /*HEAD SECTION::SIGNIN FORM*/
 .crnrstn_dyn_signin_hdr_branding_shell      { width:578px; height:45px; text-align: center; margin:0 auto; padding-top: 10px;}

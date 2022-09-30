@@ -74,6 +74,8 @@ class crnrstn_http_manager {
 
     public $form_integration_isset_ARRAY = array();
     public $response_header_attribute_ARRAY = array();
+    
+    public $crnrstn_ssdtla_enabled = false;
 
     public function __construct($oCRNRSTN, $oCRNRSTN_ENV) {
 
@@ -448,27 +450,13 @@ class crnrstn_http_manager {
 
     public function http_data_services_response(){
 
-        if(isset($_POST['crnrstn_interact_ui_link_text_click'])){
+        //
+        // TOO[sic] SIMPLE...BUT GOOD FOR PROOF OF CONCEPT
+        if($this->crnrstn_ssdtla_enabled){
 
-            if($this->oCRNRSTN->page_request_id = $_POST['crnrstn_interact_ui_link_text_click']){
-
-                //
-                // CLEAR DESTRUCTOR OUTPUT HERE FOR NOW.
-                //$this->oCRNRSTN->destruct_output = '';
-                //$this->oCRNRSTN->destruct_output = $tmp_print_out;
-
-
-                header('Content-Type: text/html; charset=UTF-8');
-                header('Cache-Control: no-store');
-                header('Access-Control-Allow-Origin: *');
-
-                return $this->oCRNRSTN_USR->ui_module_out('documentation');
-
-            }
+            return $this->proper_response_return($this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_request_response());
 
         }
-
-        return '';
 
     }
 
@@ -510,8 +498,9 @@ class crnrstn_http_manager {
                         // ...THERE WILL STILL BE SUPPORT FOR DIRECT HTTP POST/GET ACCESS.
                         if($this->issetParam($_GET, 'crnrstn_pssdtl_packet')){
 
-                            $tmp_has_getpost_data = true;
-                            return $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->http_data_services_initialize($var_parse_channel);
+                            $this->form_integration_isset_ARRAY['GET'] = true;
+                            $this->crnrstn_ssdtla_enabled = true;
+                            $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->http_data_services_initialize($var_parse_channel);
 
                         }
 
@@ -551,8 +540,8 @@ class crnrstn_http_manager {
                         // ...THERE WILL STILL BE SUPPORT FOR DIRECT HTTP POST/GET ACCESS.
                         if($this->issetParam($_POST, 'crnrstn_pssdtl_packet')){
 
-                            error_log(__LINE__ . ' http [' . __METHOD__ . ']. crnrstn_pssdtl_packet len=[' . print_r(strlen($_POST['crnrstn_pssdtl_packet']), true) .  '].');
-                            $tmp_has_getpost_data = true;
+                            $this->form_integration_isset_ARRAY['POST'] = true;
+                            $this->crnrstn_ssdtla_enabled = true;
                             $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->http_data_services_initialize($var_parse_channel);
 
                         }
@@ -569,20 +558,20 @@ class crnrstn_http_manager {
         // BOOLEAN INDICATION OF A REQUEST FROM THE GATE-KEEPER/BEAN-COUNTER FOR THE SPACE BETWEEN
         // https://www.youtube.com/watch?v=YvzWRzTh7jg
         // TITLE :: The Space Between
-        if($tmp_has_getpost_data){
+        if($this->crnrstn_ssdtla_enabled){
 
             $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->http_data_services_validation();
 
             if($user_auth_check){
 
-                $this->oCRNRSTN_VSC = new crnrstn_view_state_controller($this);
-                $this->oCRNRSTN_VSC->return_client_response();
+                //$this->oCRNRSTN_VSC = new crnrstn_view_state_controller($this);
+                //$this->oCRNRSTN_VSC->return_client_response();
 
             }
 
         }
 
-        return $tmp_has_getpost_data;
+        return $this->crnrstn_ssdtla_enabled;
 
     }
 
@@ -630,22 +619,22 @@ class crnrstn_http_manager {
         // CRNRSTN :: PSEUDO-SOAP-SERVICES DATA TUNNEL LAYER DATA PROCESSING, VALIDATION, AND RESPONSE RETURN
         $this->http_data_services_initialize();
 
-        $tmp_html = $this->http_data_services_response();
+        $tmp_str_out = $this->http_data_services_response();
 
         //
         // CRNRSTN :: CONSOLE DASHBOARD PORTAL ENTRY POINT
         //$tmp_html = $this->user_request_listener();
-        if(is_string($tmp_html) && strlen($tmp_html) > 0){
+        if(is_string($tmp_str_out) && strlen($tmp_str_out) > 0){
 
-            return $tmp_html;
+            return $tmp_str_out;
 
         }
 
         //
         // STICKY LINK
-        if($tmp_html = $this->sticky_uri_listener()){
+        if($tmp_str_out = $this->sticky_uri_listener()){
 
-            $this->proper_response_return($tmp_html, NULL, 'RESPONSE_STICKY');
+            $this->proper_response_return($tmp_str_out, NULL, 'RESPONSE_STICKY');
 
         }
 
@@ -692,7 +681,6 @@ class crnrstn_http_manager {
         // CHECK FOR INITIALIZATION OF STICKY LINK VAR
         if($this->issetParam($_GET, 'crnrstn_r')){
 
-            // $tmp_uri = html_entity_decode($this->extract_data_HTTP('crnrstn_r'));
             $tmp_uri = $this->extractData($_GET, 'crnrstn_r', true);
 
             $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($tmp_uri);
@@ -1115,12 +1103,12 @@ class crnrstn_http_manager {
 
     /*
 
-    <input type="hidden" id="crnrstn_ui_interact_canvas_checksum" name="crnrstn_ui_interact_canvas_checksum" value="">
-    <input type="hidden" id="crnrstn_ui_interact_mini_canvas_checksum" name="crnrstn_ui_interact_mini_canvas_checksum" value="">
-    <input type="hidden" id="crnrstn_ui_interact_signin_canvas_checksum" name="crnrstn_ui_interact_signin_canvas_checksum" value="">
-    <input type="hidden" id="crnrstn_ui_interact_main_canvas_checksum" name="crnrstn_ui_interact_main_canvas_checksum" value="">
-    <input type="hidden" id="crnrstn_ui_interact_eula_canvas_checksum" name="crnrstn_ui_interact_eula_canvas_checksum" value="">
-    <input type="hidden" id="crnrstn_ui_interact_mit_license_canvas_checksum" name="crnrstn_ui_interact_mit_license_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_interact_ui_canvas_checksum" name="crnrstn_interact_ui_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_interact_ui_mini_canvas_checksum" name="crnrstn_interact_ui_mini_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_interact_ui_signin_canvas_checksum" name="crnrstn_interact_ui_signin_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_interact_ui_main_canvas_checksum" name="crnrstn_interact_ui_main_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_interact_ui_eula_canvas_checksum" name="crnrstn_interact_ui_eula_canvas_checksum" value="">
+    <input type="hidden" id="crnrstn_interact_ui_mit_license_canvas_checksum" name="crnrstn_interact_ui_mit_license_canvas_checksum" value="">
 
     $CANVAS_PROFILE_HASH = '"CANVAS_PROFILE_HASH" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum() . '",';
     $CANVAS_PROFILE_CONTENT = '"CANVAS_PROFILE_CONTENT" : "' . $this->oCRNRSTN_USR->return_ui_interact_canvas_profile_checksum('CANVAS_PROFILE_CONTENT') . '",';
@@ -1136,7 +1124,7 @@ class crnrstn_http_manager {
 
     */
 
-    public function form_return_submitted_value($getpost_input_name, $transport_protocol = NULL){
+    public function return_form_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
         try {
 
@@ -1144,15 +1132,15 @@ class crnrstn_http_manager {
 
                 //
                 // AUTO DETECTION CHECKING POST FIRST.
-                if (isset(self::$http_param_handle_ARRAY['POST'][$getpost_input_name])) {
+                if(isset($_POST[$getpost_input_name])){
 
-                    return self::$http_param_handle_ARRAY['POST'][$getpost_input_name];
+                    return $_POST[$getpost_input_name];
 
-                } else {
+                }else{
 
-                    if (isset(self::$http_param_handle_ARRAY['GET'][$getpost_input_name])) {
+                    if(isset($_GET[$getpost_input_name])){
 
-                        return self::$http_param_handle_ARRAY['GET'][$getpost_input_name];
+                        return $_GET[$getpost_input_name];
 
                     } else {
 
@@ -1160,36 +1148,48 @@ class crnrstn_http_manager {
                         return NULL;
 
                     }
+
                 }
 
-            } else {
+            }else{
 
                 $http_protocol = strtoupper($transport_protocol);
                 $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
 
-                switch ($http_protocol) {
+                switch($http_protocol){
                     case 'POST':
-                    case 'GET':
 
-                        if (isset(self::$http_param_handle_ARRAY[$http_protocol][$getpost_input_name])) {
+                        if(isset($_POST[$getpost_input_name])) {
 
-                            return self::$http_param_handle_ARRAY[$http_protocol][$getpost_input_name];
+                            return $_POST[$getpost_input_name];
 
                         } else {
 
-                            //error_log(__LINE__ . ' - NO ' . $http_protocol . ' DATA IN ' . $getpost_input_name);
                             return NULL;
 
                         }
 
-                        break;
+                    break;
+                    case 'GET':
+
+                        if(isset($_GET[$getpost_input_name])) {
+
+                            return $_GET[$getpost_input_name];
+
+                        } else {
+
+                            return NULL;
+
+                        }
+
+                    break;
                     default:
 
                         //
                         // HOOOSTON...VE HAF PROBLEM!
                         throw new Exception('Unable to determine HTTP protocol from provided value of [' . $transport_protocol . '].');
 
-                        break;
+                    break;
 
                 }
 
@@ -1197,7 +1197,7 @@ class crnrstn_http_manager {
 
         } catch (Exception $e) {
 
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -1207,7 +1207,7 @@ class crnrstn_http_manager {
 
     public function receive_form_integration_packet($uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL){
 
-        $tmp_has_getpost_data = false;
+        $this->crnrstn_ssdtla_enabled = false;
 
         //
         // DO WE HAVE POST DATA?
@@ -1218,7 +1218,7 @@ class crnrstn_http_manager {
             if($this->issetParam($_POST, 'crnrstn_pssdtl_packet')){
 
                 $this->form_integration_isset_ARRAY['POST'] = true;
-                $tmp_has_getpost_data = true;
+                $this->crnrstn_ssdtla_enabled = true;
 
                 $tmp_is_encrypted = '';
                 if($this->issetParam($_POST, 'crnrstn_pssdtl_packet_ENCRYPTED')){
@@ -1249,7 +1249,7 @@ class crnrstn_http_manager {
                 if($this->issetParam($_GET, 'crnrstn_pssdtl_packet')){
 
                     $this->form_integration_isset_ARRAY['GET'] = true;
-                    $tmp_has_getpost_data = true;
+                    $this->crnrstn_ssdtla_enabled = true;
 
                     $tmp_is_encrypted = '';
                     if($this->issetParam($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED')){
@@ -1283,7 +1283,7 @@ class crnrstn_http_manager {
                 if($this->issetParam($_GET, 'crnrstn_pssdtl_packet')){
 
                     //error_log('4418 user - process crnrstn_pssdtl_packet @ _GET');
-                    $tmp_has_getpost_data = true;
+                    $this->crnrstn_ssdtla_enabled = true;
 
                     $tmp_is_encrypted = '';
                     if($this->issetParam($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED')){
@@ -1312,7 +1312,7 @@ class crnrstn_http_manager {
 
         }
 
-        return $tmp_has_getpost_data;
+        return $this->crnrstn_ssdtla_enabled;
 
     }
 

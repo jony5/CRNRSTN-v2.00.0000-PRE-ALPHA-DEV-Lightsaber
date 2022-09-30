@@ -2969,21 +2969,21 @@ class crnrstn_multi_language_manager {
 
     }
 
-//	public function initialize_oCRNRSTN($oCRNRSTN){
-//
-//        $this->oCRNRSTN = $oCRNRSTN;
-//
-//        $this->country_iso_code = $this->oCRNRSTN->country_iso_code;
-//
-//        $header_language_attribute = $this->oCRNRSTN->return_client_header_value('Accept-Language');
-//
-//        $this->consume_accept_language_data($header_language_attribute);
-//
-//        //
-//        // INSTANTIATE LOGGER
-//        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
-//
-//    }
+	public function initialize_oCRNRSTN($oCRNRSTN){
+
+        $this->oCRNRSTN = $oCRNRSTN;
+
+        $this->country_iso_code = $this->oCRNRSTN->country_iso_code();
+
+        $header_language_attribute = $this->oCRNRSTN->return_client_header_value('Accept-Language');
+
+        $this->consume_accept_language_data($header_language_attribute);
+
+        //
+        // INSTANTIATE LOGGER
+        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
+
+    }
 
 	public function get_lang_copy($message_key){
 

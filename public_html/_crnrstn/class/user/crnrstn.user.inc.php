@@ -1248,7 +1248,7 @@ class crnrstn_user{
 //        $crnrstn_jpg = $tmp_png_filepath = $this->oCRNRSTN_ENV->data_decrypt($crnrstn_png, CRNRSTN_ENCRYPT_TUNNEL, 'GET');
 //
 //        //crnrstn_resource_filecache_version
-//        $tmp_filename = $this->form_return_submitted_value('crnrstn_image_to_process_name');
+//        $tmp_filename = $this->return_form_submitted_value('crnrstn_image_to_process_name');
 //
 //        if(strlen($tmp_filename) > 2){
 //
@@ -1298,9 +1298,9 @@ class crnrstn_user{
 //
 //    }
 
-    public function form_return_submitted_value($getpost_input_name, $transport_protocol = NULL){
+    public function return_form_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
-        return $this->oCRNRSTN_ENV->form_return_submitted_value($getpost_input_name, $transport_protocol);
+        return $this->oCRNRSTN_ENV->return_form_submitted_value($getpost_input_name, $transport_protocol);
 
     }
 
@@ -1309,7 +1309,7 @@ class crnrstn_user{
         $file_extension_jpg = $file_extension_png = $tmp_filetype = $filetype;
 
         $tmp_crnrstn_png = $this->oCRNRSTN_ENV->data_decrypt($filepath);
-        $tmp_filename_POST = $this->form_return_submitted_value('crnrstn_image_to_process_name');
+        $tmp_filename_POST = $this->return_form_submitted_value('crnrstn_image_to_process_name');
         $this->error_log('CRNRSTN :: system_link_reset_base64_from_png() WE HAVE A FILE OR SOMETHING ACTUALLY MADE IT THROUGH CRNRSTN :: OPENSSL DECRYPTION.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
         $this->error_log('CRNRSTN :: system_link_reset_base64_from_png[Input Type:' . $filetype . '. base64_len(' . strlen($base64_encode) . ')' . $tmp_crnrstn_png . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
@@ -1990,21 +1990,21 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 //$this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_documentation();
 
             break;
             case 'bassdrive_inject':
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_inject_bassdrive();
 
             break;
             case 'bassdrive_popup':
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_bassdrive_popup();
 
@@ -2013,7 +2013,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin();
 
@@ -2022,7 +2022,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin_m();
 
@@ -2031,7 +2031,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 //$this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_mit_license();
 
@@ -2040,7 +2040,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_css_validator();
 
@@ -2049,7 +2049,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_css_validator_profile();
 
@@ -2058,7 +2058,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 if($this->is_account_valid()){
 
@@ -2075,7 +2075,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
 
                 error_log(__LINE__ . ' user switch(config_wordpress) get class[' . get_class($this->oCRNRSTN_AUTH) . ']');
                 if($this->is_account_valid()){
@@ -4094,7 +4094,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 // HOW TO GET SUBMITTED FORM FIELD DATA
                 //$this->oCRNRSTN->get_resource_submitted('input_field_name', 'POST');
                 // PREVIOUS METHOD:
-                //$this->oCRNRSTN->form_return_submitted_value('input_field_name', 'POST');
+                //$this->oCRNRSTN->return_form_submitted_value('input_field_name', 'POST');
                 $tmp_form_handle_hash = $this->hash($crnrstn_form_handle);
                 $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash;
                 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){

@@ -169,8 +169,6 @@ class crnrstn {
     public $crnrstn_data_packet_spoiler_ARRAY = array();
     public $form_integrations_data_index_ARRAY = array();
 
-    public $page_request_id = '';
-
     /*
     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SPECIFICATION OF
     AUTHORIZED DATA ARCHITECTURES (CHANNEL). DSJPCR.
@@ -667,7 +665,7 @@ class crnrstn {
             switch ($http_protocol) {
                 case 'POST':
 
-                    if ($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST, $param)) {
+                    if($this->oCRNRSTN_ENV->oHTTP_MGR->issetParam($_POST, $param)){
 
                         return true;
 
@@ -813,9 +811,9 @@ class crnrstn {
 
     }
 
-    public function form_return_submitted_value($getpost_input_name, $transport_protocol = NULL){
+    public function return_form_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
-        return $this->oCRNRSTN_ENV->form_return_submitted_value($getpost_input_name, $transport_protocol);
+        return $this->oCRNRSTN_ENV->return_form_submitted_value($getpost_input_name, $transport_protocol);
 
     }
 
@@ -874,6 +872,12 @@ class crnrstn {
     public function device_type_bit(){
 
         return $this->oCRNRSTN_USR->device_type_bit;
+
+    }
+
+    public function device_type(){
+
+        return $this->oCRNRSTN_USR->device_type;
 
     }
 
@@ -4442,11 +4446,32 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function pretty_elapsed_time(){
+
+        $tmp_runtime = $this->wall_time();
+        $tmp_microsecs_explode = explode(".", $tmp_runtime);
+
+        return $this->return_pretty_delta_time($tmp_runtime, $tmp_microsecs_explode[1], 'ELAPSED_VERBOSE');
+
+    }
+
     public function return_query_date_time_stamp(){
 
         //$ts = date("Y-m-d H:i:s", time());
 
         return date("Y-m-d H:i:s", time());
+
+    }
+
+    public function return_client_header_value($header_attribute, $index = 0){
+
+        return $this->oCRNRSTN_ENV->return_client_header_value($header_attribute, $index);
+
+    }
+
+    public function return_crnrstn_language_manager($header_language_attribute = null){
+
+        return $this->oCRNRSTN_ENV->return_crnrstn_language_manager($this, $header_language_attribute);
 
     }
 
@@ -5184,7 +5209,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    private function return_set_bits($constants_int_ARRAY){
+    public function return_set_bits($constants_int_ARRAY){
 
         //$this->oCRNRSTN_BITWISE->set($integer_constant);
         //$this->oCRNRSTN_BITWISE->toggle($integer_constant);
@@ -6220,6 +6245,18 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function return_record_count($query_key){
+
+        return 0;
+
+    }
+
+    public function isset_query_result_set_key(){
+
+        return false;
+
+    }
+
     public function return_database_value($result_set_key, $fieldname, $pos = 0, $json_out = false){
 
         try {
@@ -6579,12 +6616,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         return NULL;
-
-    }
-
-    public function isset_query_result_set_key(){
-
-        return false;
 
     }
 
@@ -9178,7 +9209,7 @@ class crnrstn_config_manager {
 
     public function crnrstn_data_packet_hidden_input_return($channel_constant, $crnrstn_form_handle){
 
-        error_log(__LINE__ . '  crnrstn $channel_constant=[' . $channel_constant . ']. $crnrstn_form_handle=[' . $crnrstn_form_handle . '].');
+        //error_log(__LINE__ . '  crnrstn $channel_constant=[' . $channel_constant . ']. $crnrstn_form_handle=[' . $crnrstn_form_handle . '].');
         if(is_array($crnrstn_form_handle)){
 
             $this->oCRNRSTN_CONFIG_DDO->set_data_output_channel($channel_constant, $crnrstn_form_handle[0]);
@@ -9195,7 +9226,7 @@ class crnrstn_config_manager {
 
     public function crnrstn_data_packet_return($output_channel_constant){
 
-        error_log(__LINE__  . ' ccm ' . __METHOD__ . ' $output_channel_constant=[' . print_r($output_channel_constant, true) . '].');
+        //error_log(__LINE__  . ' ccm ' . __METHOD__ . ' $output_channel_constant=[' . print_r($output_channel_constant, true) . '].');
         //$this->oCRNRSTN->print_r(print_r($output_channel_constant, true), NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
         if(is_array($output_channel_constant)){

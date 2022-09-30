@@ -424,7 +424,7 @@ class crnrstn_unit_test_manager {
 
                                 $this->unit_test_profile_ARRAY[$tmp_serial] = $unit_test_profile;
 
-                                self::$curl_raw_data_ARRAY[$unit_test_profile][$tmp_serial] = $this->oCRNRSTN_USR->form_return_submitted_value('crnrstn_curl_batch_uri_' . $i);
+                                self::$curl_raw_data_ARRAY[$unit_test_profile][$tmp_serial] = $this->oCRNRSTN_USR->return_form_submitted_value('crnrstn_curl_batch_uri_' . $i);
 
                             }
 

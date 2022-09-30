@@ -58,15 +58,15 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
         //
         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
-        $tmp_crnrstn_openssl_cipher = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_cipher');
-        $tmp_crnrstn_openssl_algorithm = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_algorithm');
-        $tmp_crnrstn_openssl_secret_key = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_secret_key');
-        $tmp_crnrstn_openssl_options = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_options');
-        $tmp_crnrstn_openssl_raw_data = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_raw_data');
-        $tmp_crnrstn_openssl_refresh_secret_key = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_refresh_secret_key');
-        $tmp_crnrstn_openssl_enable_unit_test_automation = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_enable_unit_test_automation');
-        $tmp_crnrstn_openssl_unit_test_automation_freq_secs = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_unit_test_automation_freq_secs');
-        $tmp_crnrstn_openssl_profile_randomization = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_profile_randomization');
+        $tmp_crnrstn_openssl_cipher = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_cipher');
+        $tmp_crnrstn_openssl_algorithm = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_algorithm');
+        $tmp_crnrstn_openssl_secret_key = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_secret_key');
+        $tmp_crnrstn_openssl_options = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_options');
+        $tmp_crnrstn_openssl_raw_data = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_raw_data');
+        $tmp_crnrstn_openssl_refresh_secret_key = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_refresh_secret_key');
+        $tmp_crnrstn_openssl_enable_unit_test_automation = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_enable_unit_test_automation');
+        $tmp_crnrstn_openssl_unit_test_automation_freq_secs = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_unit_test_automation_freq_secs');
+        $tmp_crnrstn_openssl_profile_randomization = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_profile_randomization');
 
         if($tmp_crnrstn_openssl_refresh_secret_key == "regenerate_key"){
 
@@ -187,7 +187,7 @@ foreach ($tmp_array as $key1 => $data1) {
     if($tmp_received_POST_data){
 
         $tmp_checked_dom_flag = '';
-        $tmp_chx_val = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_cipher_' . $data1 . '_chkbx');
+        $tmp_chx_val = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_cipher_' . $data1 . '_chkbx');
 
         if(strlen($tmp_chx_val) > 0){
 
@@ -229,7 +229,7 @@ foreach ($tmp_array as $key1 => $data1) {
     if($tmp_received_POST_data){
 
         $tmp_checked_dom_flag = '';
-        $tmp_chx_val = $oCRNRSTN->form_return_submitted_value('crnrstn_openssl_algorithm_' . $data1 . '_chkbx');
+        $tmp_chx_val = $oCRNRSTN->return_form_submitted_value('crnrstn_openssl_algorithm_' . $data1 . '_chkbx');
 
         if(strlen($tmp_chx_val) > 0){
 
@@ -608,7 +608,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
 
     <div class="crnrstn_cb_20"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">

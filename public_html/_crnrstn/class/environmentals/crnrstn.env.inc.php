@@ -309,7 +309,7 @@ class crnrstn_environment {
                     $this->oCRNRSTN_USR = $this->return_ENV_oCRNRSTN_USR($WORDPRESS_debug_mode);
 
                     //
-                    // INITIALIZE UI INTERACT PROFILE
+                    // INITIALIZE INTERACT UI PROFILE
                     $this->init_ui_interact_profile();
 
                     $this->oCRNRSTN->framework_integrations_client_packet(CRNRSTN_UI_SOAP_DATA_TUNNEL, true);
@@ -532,13 +532,13 @@ class crnrstn_environment {
 
     }
 
-//    public function return_crnrstn_language_manager($oCRNRSTN_USR, $header_language_attribute){
-//
-//        $this->oCRNRSTN_LANG_MGR->initialize_oCRNRSTN_USR($oCRNRSTN_USR);
-//
-//        return $this->oCRNRSTN_LANG_MGR;
-//
-//    }
+    public function return_crnrstn_language_manager($oCRNRSTN){
+
+        $this->oCRNRSTN_LANG_MGR->initialize_oCRNRSTN($oCRNRSTN);
+
+        return $this->oCRNRSTN_LANG_MGR;
+
+    }
 
 //    public function return_client_accept_language_array($header_accept_language){
 //
@@ -563,7 +563,7 @@ class crnrstn_environment {
         switch($integer_constant){
             case CRNRSTN_UI_INTERACT:
 
-                $tmp_array = $this->return_output_CRNRSTN_UI_INTERACT();
+                $tmp_array = $this->return_output_CRNRSTN_UI_MESSENGER();
                 $tmp_output = '';
 
                 //
@@ -1165,127 +1165,7 @@ class crnrstn_environment {
 
     }
 
-    private function return_output_CRNRSTN_UI_INTERACT(){
-
-        // # # # # # # # # # # # # # # # # # # # # # # # # # #
-        $tmp_str_array[] = '
-<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI INTERACT MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
-';
-        $tmp_str_array[] = '<div id="crnrstn_ui_interact_wrapper" class="crnrstn_ui_interact_wrapper">
-    <div class="crnrstn_ui_interact">
-
-        <div id="crnrstn_ui_interact_bg_border" class="crnrstn_ui_interact_bg_border"></div>
-
-        <div id="crnrstn_ui_interact_bg_border_edge" class="crnrstn_ui_interact_bg_border_edge" style="border: 1px solid #FFF;"></div>
-
-        <div style="position:relative; height:106px;">
-
-            <div id="crnrstn_ui_interact_primary_navgroup_wrapper" class="crnrstn_ui_interact_primary_navgroup_wrapper">
-
-                <div id="crnrstn_ui_interact_primary_nav_menu" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
-
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-
-                </div>
-
-                <div id="crnrstn_ui_interact_primary_nav_close_x" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
-
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-
-                </div>
-
-                <div id="crnrstn_ui_interact_primary_nav_fs_expand" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
-
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-
-                </div>
-
-                <div id="crnrstn_ui_interact_primary_nav_minimize" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
-
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_fivedev_sm" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FIVEDEV') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FIVEDEV') . '"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FIVEDEV') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FIVEDEV') . '"></div>
-
-                </div>
-
-            </div>
-            <div class="crnrstn_cb"></div>
-        </div>
-
-        <div class="crnrstn_cb"></div>
-
-        <div style="position:relative;">
-            <div style="position:absolute; z-index:68; margin: 2px 0 0 16px; border: 1px solid #FFF;">
-                <div id="crnrstn_ui_interact_bg_solid" class="crnrstn_ui_interact_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
-                    ' . $this->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
-                    <div class="crnrstn_cb"></div>
-                </div>
-            </div>
-            <div class="crnrstn_cb"></div>
-
-        </div>
-
-        <div id="crnrstn_ui_interact_content_wrapper" class="crnrstn_ui_interact_content_wrapper">
-            <div id="crnrstn_ui_interact_signin_frm_username" class="crnrstn_ui_interact_signin_frm_lbl">' . $this->get_lang_copy('FORM_LABEL_USERNAME') . '</div>
-            <div class="crnrstn_cb_5"></div>
-            <input type="text" name="username" value="">
-            <div class="crnrstn_cb_15"></div>
-            <div id="crnrstn_ui_interact_signin_frm_password" class="crnrstn_ui_interact_signin_frm_lbl">' . $this->get_lang_copy('FORM_LABEL_PASSWORD_OPTIONAL') . '</div>
-            <div class="crnrstn_cb_5"></div>
-            <input type="password" name="password" value="">
-            <div class="crnrstn_cb_10"></div>
-
-            <div class="crnrstn_ui_interact_signin_frm_chkbx_eula"><input type="checkbox" style="width: 20px;" name="crnrstn_signin_chkbx_eula_accept" value="eula_i_agree"></div>
-            <div class="crnrstn_ui_interact_signin_frm_lbl_eula"><a href="#">' . $this->get_lang_copy('FORM_LNK_TXT_EULA') . '</a></div>
-
-            <div class="crnrstn_cb_10"></div>
-
-            <div class="crnrstn_ui_interact_frm_submit" onclick="oCRNRSTN_JS.sign_in_form_submit_via_micro_expansion();">
-                <div id="crnrstn_ui_interact_signin_frm_btn_submit" class="crnrstn_ui_interact_signin_frm_btn_submit">' . $this->get_lang_copy('FORM_BUTTON_TEXT_CONNECT') . '</div>
-            </div>
-        </div>
-    </div>
-</div>
-';
-
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI INTERACT MODULE OUTPUT -->
-';
-
-        return $tmp_str_array;
-
-    }
-
     private function return_output_CRNRSTN_UI_SOAP_DATA_TUNNEL(){
-
-        /*
-        <theme_configuration>
-            <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" checksum="' . $this->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
-            <mini_canvas left="84%" width="100" height="70" hash="' . $this->hash('10070') . '"></mini_canvas>
-            <signin_canvas width="260" height="305" checksum="' . $this->hash('260305') . '"></signin_canvas>
-            <main_canvas width="1080" height="760" checksum="' . $this->hash('1080760') . '"></main_canvas>
-            <eula_canvas width="700" height="400" checksum="' . $this->hash('700400') . '"></eula_canvas>
-            <mit_license_canvas width="500" height="400" checksum="' . $this->hash('500400') . '"></mit_license_canvas>
-        </theme_configuration>
-
-        ()
-        */
-
-        error_log(__LINE__ . ' env running [' . __METHOD__ . '].');
 
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_xhr_root', 'crnrstn_xhr_root');
 
@@ -1308,21 +1188,24 @@ class crnrstn_environment {
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', 'crnrstn_php_sessionid', session_id(), CRNRSTN_INPUT_REQUIRED);
 
         $tmp_str_array[] = '
-<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
         $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden">
     <form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea>
         <button type="submit">SUBMIT</button>
-        <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '">       
-';
+        <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '">
+        <input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '">
+        <input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">     
+' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
 
          $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '    </form>
     <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR') . '</div>
+    <div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div>
 </div>';
 
-        $tmp_str_array[] = '<!-- END ' . $this->oCRNRSTN_USR->proper_version() . ' :: UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT -->
+        $tmp_str_array[] = '<!-- END ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT -->
 ';
         return $tmp_str_array;
 
@@ -1332,12 +1215,12 @@ class crnrstn_environment {
 
         // # # # # # # # # # # # # # # # # # # # # # # # # # #
         $tmp_str_array[] = '
-<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ANALYTICS SEO MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ANALYTICS SEO MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
 
         $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_analytics();
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ANALYTICS SEO MODULE OUTPUT -->
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ANALYTICS SEO MODULE OUTPUT -->
 ';
         return $tmp_str_array;
 
@@ -1347,53 +1230,13 @@ class crnrstn_environment {
 
         // # # # # # # # # # # # # # # # # # # # # # # # # # #
         $tmp_str_array[] = '
-<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT TAG MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ENGAGEMENT MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
         $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_engagement();
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT TAG MODULE OUTPUT -->
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT MODULE OUTPUT -->
 ';
         return $tmp_str_array;
-
-    }
-
-    private function return_output_CRNRSTN_UI_DOCS_NAV_LINK(){
-
-        $tmp_str = '';
-        $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/';
-
-        $tmp_data_key = 'crnrstn_ui_navigation';
-        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::INTERACT_UI::' . $this->hash($tmp_data_key);
-        if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_data_type_family)){
-
-            $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
-
-            //
-            // SOURCE :: https://www.php.net/manual/en/function.scandir.php
-            // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
-            $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
-
-            foreach($scanned_directory_ARRAY as $index => $dir_resource){
-
-                $tmp_data_key = 'CRNRSTN_NAV_LINK';
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
-
-                $tmp_str .= '
-                    <li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
-
-            }
-
-            $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
-            $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
-
-        }else{
-
-            $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
-            $tmp_str = $this->oCRNRSTN->get_resource($tmp_data_key, 0, $tmp_data_type_family);
-
-        }
-
-        return $tmp_str;
 
     }
 
@@ -1401,49 +1244,14 @@ class crnrstn_environment {
 
         // # # # # # # # # # # # # # # # # # # # # # # # # # #
         $tmp_str_array[] = '
-<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: SYSTEM FOOTER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SYSTEM FOOTER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <div id="crnrstn_ui_system_footer_src" class="crnrstn_hidden">
-            <div id="crnrstn_ui_system_footer_wrapper" class="crnrstn_ui_system_footer_wrapper">
-
-                <div class="crnrstn_ui_system_footer_rel">
-            
-                    <div id="crnrstn_ui_system_footer" class="crnrstn_ui_system_footer">
-                        
-                            <div class="crnrstn_ui_system_footer_content">
-                                <div id="crnrstn_ui_system_footer_stache" class="crnrstn_ui_system_footer_stache">' . $this->oCRNRSTN->return_system_image('STACHE', 17, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-
-                                <div id="crnrstn_ui_system_footer_mit" class="crnrstn_ui_system_footer_mit">MIT license</div>
-                                <div id="crnrstn_ui_system_footer_download" class="crnrstn_ui_system_footer_download"><a style="font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px;" href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') .'" target="_blank">download</a></div>
-                                
-                                <div class="crnrstn_ui_system_footer_stats_wrapper">
-                                    <div id="crnrstn_ui_system_footer_stat_stime" class="crnrstn_ui_system_footer_stat">[' . $this->oCRNRSTN->return_micro_time() . ']</div>
-                                    <div id="crnrstn_ui_system_footer_stat_rtime" class="crnrstn_ui_system_footer_stat">[rtime ' . $this->wall_time() . ' secs]</div>
-                                    <div id="crnrstn_ui_system_footer_stat_wtime" class="crnrstn_ui_system_footer_stat">[wtime ' . $this->wall_time() . ' secs]</div>
-                                    <div id="crnrstn_ui_system_footer_stat_meta" class="crnrstn_ui_system_footer_stat"></div>
-                                </div>
-                                        
-                                <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('5', 20, NULL, NULL, NULL, NULL, 20, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-
-                                <div class="crnrstn_cb"></div>
-                                
-                            </div>
-                        
-                        <div class="crnrstn_cb"></div>
-                        
-                   </div>
-                   
-                </div>
-                
-            </div class="crnrstn_ui_system_footer_wrapper">
-            
-        </div>
-        <div id="crnrstn_ui_mit_license_shell" class="crnrstn_ui_mit_license_shell"></div>
+        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_system_footer_src" class="crnrstn_hidden"></div>
         <div id="crnrstn_ui_system_footer_shell" class="crnrstn_ui_system_footer_shell"></div>
         ';
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: SYSTEM FOOTER MODULE OUTPUT -->
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SYSTEM FOOTER MODULE OUTPUT -->
 ';
 
         return $tmp_str_array;
@@ -1455,71 +1263,50 @@ class crnrstn_environment {
         //echo $oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS');
         // # # # # # # # # # # # # # # # # # # # # # # # # # #
         $tmp_str_array[] = '
-<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <div id="crnrstn_ui_documentation_side_nav_src" class="crnrstn_hidden">
+        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_documentation_side_nav_src" class="crnrstn_hidden"></div>
+        <div id="crnrstn_interact_ui_documentation_content_src" class="crnrstn_hidden"></div>
+        <div id="crnrstn_interact_ui_search_src" class="crnrstn_hidden"></div>
         <!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
         ';
 
-        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_side_nav_search" class="crnrstn_interact_ui_side_nav_search" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);">
-                
-                <div id="crnrstn_interact_ui_side_nav_search_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div>
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DOCUMENTATION MODULE OUTPUT -->
+';
 
-                <div class="crnrstn_interact_ui_side_nav_search_bar_rel">
-                    <div id="crnrstn_interact_ui_side_nav_search_bar" class="crnrstn_interact_ui_side_nav_search_bar"></div>
-                </div>
-                
-                <div id="crnrstn_interact_ui_side_nav_search_img_wrapper" class="crnrstn_interact_ui_side_nav_v_img_wrapper">
-                    
-                    <div id="crnrstn_interact_ui_side_nav_search_img_rel" class="crnrstn_interact_ui_side_nav_search_img_rel" style="width:35px; height:26px;">
-                    
-                        <div id="crnrstn_interact_ui_side_nav_search_img" class="crnrstn_interact_ui_side_nav_search_img">' . $this->oCRNRSTN->return_system_image('SEARCH_MAGNIFY_GLASS', 20, NULL, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-                        <div class="crnrstn_cb"></div>
+        return $tmp_str_array;
 
-                    </div>
-                    <div class="crnrstn_cb"></div>
-                    
-                </div>
-                <div class="crnrstn_cb"></div>
-                
-            </div>
-           
-            <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);">
-                
-                <div id="crnrstn_interact_ui_side_nav_logo_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div>
+    }
 
-                <div class="crnrstn_interact_ui_side_nav_logo_bar_rel">
-                    <div id="crnrstn_interact_ui_side_nav_logo_bar" class="crnrstn_interact_ui_side_nav_logo_bar"></div>
-                </div>
-                
-                <div id="crnrstn_interact_ui_side_nav_logo_img_wrapper" class="crnrstn_interact_ui_side_nav_logo_img_wrapper">
-                    
-                    <div id="crnrstn_interact_ui_side_nav_logo_img_rel" class="crnrstn_interact_ui_side_nav_logo_img_rel" style="width:80px; height:50px;">
-                    
-                        <div id="crnrstn_interact_ui_side_nav_logo_img" class="crnrstn_interact_ui_side_nav_logo_img">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-                        <div class="crnrstn_cb"></div>
+    private function return_output_CRNRSTN_UI_MESSENGER(){
 
-                    </div>
-                    <div class="crnrstn_cb"></div>
-                </div>
-            <div class="crnrstn_cb"></div>
-            </div>
-           
-            <div id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav">
-                <ul>' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK() . '
-                </ul>                
-                <div class="crnrstn_cb_20"></div>
-                <div class="crnrstn_interact_ui_side_nav_5">' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-                
-                <div class="crnrstn_cb_100"></div>
+        // # # # # # # # # # # # # # # # # # # # # # # # # # #
+        $tmp_str_array[] = '
+<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: CMESSENGER MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+';
 
-           </div>
-              
-        </div>
+        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_messenger_src" class="crnrstn_hidden"></div>
         ';
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: DOCUMENTATION MODULE OUTPUT -->
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI MESSENGER MODULE OUTPUT -->
+';
+
+        return $tmp_str_array;
+
+    }
+
+    private function return_output_CRNRSTN_UI_SEARCH(){
+
+        // # # # # # # # # # # # # # # # # # # # # # # # # # #
+        $tmp_str_array[] = '
+<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SEARCH MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+';
+
+        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_messenger_src" class="crnrstn_hidden"></div>
+        ';
+
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SEARCH MODULE OUTPUT -->
 ';
 
         return $tmp_str_array;
@@ -2693,9 +2480,9 @@ class crnrstn_environment {
 
     }
 
-    public function form_return_submitted_value($getpost_input_name, $transport_protocol = NULL){
+    public function return_form_submitted_value($getpost_input_name, $transport_protocol = NULL){
 
-        return $this->oHTTP_MGR->form_return_submitted_value($getpost_input_name, $transport_protocol);
+        return $this->oHTTP_MGR->return_form_submitted_value($getpost_input_name, $transport_protocol);
 
     }
 
@@ -2745,7 +2532,7 @@ class crnrstn_environment {
 
                 error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA HAS NO SESSION DATA.');
 
-                $tmp_client_id = $this->form_return_submitted_value('crnrstn_client_id');
+                $tmp_client_id = $this->return_form_submitted_value('crnrstn_client_id');
                 $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
 
                 // crnrstn_sessions TABLE DATA
@@ -2764,7 +2551,7 @@ class crnrstn_environment {
 
             error_log(__LINE__ . ' ui trans CRNRSTN_SESSION_DATA isset_query_result_set IS NOT SET!');
 
-            $tmp_client_id = $this->form_return_submitted_value('crnrstn_client_id');
+            $tmp_client_id = $this->return_form_submitted_value('crnrstn_client_id');
             $ts_json = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->return_query_date_time_stamp());
 
             // crnrstn_sessions TABLE DATA
@@ -2901,7 +2688,7 @@ class crnrstn_environment {
         switch($packet_type){
             case 'crnrstn_session_json':
 
-                //$tmp_crnrstn_session = $this->form_return_submitted_value('crnrstn_session');
+                //$tmp_crnrstn_session = $this->return_form_submitted_value('crnrstn_session');
                 /*
 
                 12/18/2021 1311 hrs
@@ -3075,47 +2862,47 @@ class crnrstn_environment {
         </theme_configuration>
 
         TODO :: NEED TO PASS DYNAMIC ID="crnrstn_xxxx" TO THE oCRNRSTN_USR FOR XML RETURN.
-        TODO :: SEE LINE 2196 USER :: return_ui_interact_profile() :: RETURN XML WITH CUSTOM NAV IDS FROM oENV
+        TODO :: SEE LINE 2196 USER :: return_interact_ui_profile() :: RETURN XML WITH CUSTOM NAV IDS FROM oENV
 
-        oENV LINE 1219 :: return_output_CRNRSTN_UI_INTERACT() OUTPUT BELOW FOR NOTES ON WHAT TO INITIALIZE...:
-        <div id="crnrstn_ui_interact_primary_nav_menu" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
+        oENV LINE 1219 :: return_output_CRNRSTN_UI_MESSENGER() OUTPUT BELOW FOR NOTES ON WHAT TO INITIALIZE...:
+        <div id="crnrstn_interact_ui_primary_nav_menu" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
 
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
-
-        </div>
-
-        <div id="crnrstn_ui_interact_primary_nav_close_x" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
-
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_hvr" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_click" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu" class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MENU', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case" class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MENU') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MENU') . '"></div>
 
         </div>
 
-        <div id="crnrstn_ui_interact_primary_nav_fs_expand" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
+        <div id="crnrstn_interact_ui_primary_nav_close_x" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
 
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x_hvr" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x_click" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x" class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_CLOSE_X', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case" class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_CLOSE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_CLOSE') . '"></div>
 
         </div>
 
-        <div id="crnrstn_ui_interact_primary_nav_minimize" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
+        <div id="crnrstn_interact_ui_primary_nav_fs_expand" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
 
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_fivedev_sm" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FIVEDEV') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FIVEDEV') . '"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FIVEDEV') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FIVEDEV') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_hvr" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_click" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand" class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case" class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FULLSCREEN') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FULLSCREEN') . '"></div>
+
+        </div>
+
+        <div id="crnrstn_interact_ui_primary_nav_minimize" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
+
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_hvr" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_HOVER', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_click" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_CLICK', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_MINIMIZE') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_MINIMIZE') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_fivedev_sm" class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="' . $this->return_creative('PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FIVEDEV') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FIVEDEV') . '"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case" class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmousedown\', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseup\', this);"><img src="' . $this->return_creative('TRANSPARENT_1X1', CRNRSTN_UI_IMG_BASE64) . '" width="40" height="40" alt="' . $this->get_lang_copy('UI_PRIMARY_NAV_ALT_FIVEDEV') . '" title="' . $this->get_lang_copy('UI_PRIMARY_NAV_TITLE_FIVEDEV') . '"></div>
 
         </div>
 

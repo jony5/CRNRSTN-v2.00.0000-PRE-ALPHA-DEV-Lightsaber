@@ -145,7 +145,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.docs_page_css_left = 0;
         this.current_serialization_key = '';
         this.current_serialization_hash = '';
-        this.crnrstn_ui_interact_mode = 'mini_canvas';
+        this.crnrstn_interact_ui_mode = 'mini_canvas';
         this.data_tunnel_ttl_monitor_isactive = false;
         this.ttl_tunnel_monitor_seconds = 0;
         this.rand_index_spoiler_ARRAY = [];
@@ -153,19 +153,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.ttl_array_pointer_index_root_ARRAY = [];
         this.transaction_thread_count_ARRAY = [];
 
-        /*
-        <input type="hidden" id="crnrstn_ui_interact_canvas_checksum" name="crnrstn_ui_interact_canvas_checksum" value="">
-        <input type="hidden" id="crnrstn_ui_interact_mini_canvas_checksum" name="crnrstn_ui_interact_mini_canvas_checksum" value="">
-        <input type="hidden" id="crnrstn_ui_interact_signin_canvas_checksum" name="crnrstn_ui_interact_signin_canvas_checksum" value="">
-        <input type="hidden" id="crnrstn_ui_interact_main_canvas_checksum" name="crnrstn_ui_interact_main_canvas_checksum" value="">
-        <input type="hidden" id="crnrstn_ui_interact_eula_canvas_checksum" name="crnrstn_ui_interact_eula_canvas_checksum" value="">
-        <input type="hidden" id="crnrstn_ui_interact_mit_license_canvas_checksum" name="crnrstn_ui_interact_mit_license_canvas_checksum" value="">
-
-        */
-
         //
         // TODO :: NEED TO POPULATE THIS ARRAY FROM SSDTLA XML RESPONSE DATA
-        this.transaction_thread_id_key_ARRAY = ['crnrstn_ui_interact', 'bassdrive_last_updated',
+        this.transaction_thread_id_key_ARRAY = ['crnrstn_interact_ui', 'bassdrive_last_updated',
             'bassdrive_relay_access_by_bitrate', 'bassdrive_the_situation', 'bassdrive_title', 'bassdrive_social',
             'bassdrive_locale_colors', 'bassdrive_locale_city_state_prov', 'bassdrive_connection_stats',
             'bassdrive_history', 'bassdrive_reporting', 'bassdrive_archives', 'lifestyle_banner_image_rotation',
@@ -173,7 +163,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         //
         // TODO :: NEED TO POPULATE THIS ARRAY FROM SSDTLA XML RESPONSE DATA
-        this.ui_interact_input_id_ARRAY = ['crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case', 'crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case', 'crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case', 'crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case'];
+        this.ui_interact_input_id_ARRAY = ['crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case'];
         this.ui_interact_input_type_ARRAY = ['menu', 'close_x', 'fs_expand', 'minimize'];
 
         this.data_array_adjusted_ttl_ARRAY = [];
@@ -267,44 +257,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         sanitizeTitle: false
 
     };
-
-    // CRNRSTN_JS.prototype.crnrstn_xxxxxx = function(elem) {
-    //
-    //     alert('hello crnrstn_xxxxxx {CRNRSTN_JS} world!');
-    //
-    //     //
-    //     /*
-    //     AJAX FORM SUBMISSION (SDT) TO PRODUCE CRNRSTN :: SIGN-IN "SITUATION"
-    //     // 1) AJAX REQUEST TO SERVER WITH META ON ALL "SSDTL INTEGRATIONS SUPPORTED" FUNCTIONALITY
-    //
-    //
-    //     */
-    //
-    //     if ($('#crnrstn').length > 0) {
-    //
-    //         return;
-    //
-    //     }
-    //
-    //     // this.$oCRNRSTN_JS       = $('#crnrstn');
-    //     //
-    //     // this.$lightbox.find('.lb-pr').on('click', function() {
-    //     //
-    //     //     if (self.currentImageIndex === 0) {
-    //     //
-    //     //         self.changeImage(self.album.length - 1);
-    //     //
-    //     //     } else {
-    //     //
-    //     //         self.changeImage(self.currentImageIndex - 1);
-    //     //
-    //     //     }
-    //     //
-    //     //     return false;
-    //     //
-    //     // });
-    //
-    // };
 
     CRNRSTN_JS.prototype.crnrstn_signin = function(elem) {
 
@@ -467,17 +419,20 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.link_text_click = function(page_key){
 
-        this.log_activity('[lnum 470] SSDTLA Sending request for data [' + page_key + '].', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 422] SSDTLA Sending request for data [' + page_key + '].', this.CRNRSTN_DEBUG_VERBOSE);
 
         //
         // SET THE LINK
         $('#crnrstn_interact_ui_link_text_click').val(page_key);
 
         this.fire_dom_state_controller();
+        this.ttl_tunnel_monitor_seconds = 1;
+        this.ttl_age_seconds = -1;
+        this.data_tunnel_ttl_monitor_isactive = false;
+        this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = -1;
 
         //
         // BEGIN UI PAGE LOAD VISUALIZATION EXPERIENCE
-        //crnrstn_ui_element_load_indicator_shell
         $('#crnrstn_interact_ui_page_load_progress').val('');
         this.start_page_request_visualization();
 
@@ -519,7 +474,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             }
 
         });
-
 
     };
 
@@ -605,7 +559,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.initialize_interact_ui_documentation_mode = function() {
+    CRNRSTN_JS.prototype.initialize_interact_ui_documentation_mode = function(module_content) {
 
         var self = this;
         this.$overlay = $('#crnrstn_interact_ui_full_lightbox_overlay');
@@ -613,110 +567,105 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(!this.$overlay.length){
 
-            $('<div id="crnrstn_interact_ui_full_doc_header_wrapper_rel" class="crnrstn_interact_ui_full_doc_header_wrapper_rel"><div class="crnrstn_cb"></div><div id="crnrstn_interact_ui_full_doc_header_wrapper" class="crnrstn_interact_ui_full_doc_header_wrapper"><div id="crnrstn_interact_ui_full_doc_close_wrapper_rel" class="crnrstn_interact_ui_full_doc_close_wrapper_rel"><div id="crnrstn_interact_ui_full_doc_close_wrapper" class="crnrstn_interact_ui_full_doc_close_wrapper"><div id="crnrstn_interact_ui_full_doc_close" class="crnrstn_interact_ui_full_doc_close" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);"></div></div></div><div class="crnrstn_cb"></div></div></div><div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper" class="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_ui_element_load_indicator_shell_rel" class="crnrstn_ui_element_load_indicator_shell_rel"><div id="crnrstn_ui_element_load_indicator_shell" class="crnrstn_ui_element_load_indicator_shell"><div id="crnrstn_ui_element_load_indicator_bg_rel" class="crnrstn_ui_element_load_indicator_bg_rel"><div id="crnrstn_ui_element_load_indicator_bg" class="crnrstn_ui_element_load_indicator_bg"></div></div><div id="crnrstn_ui_element_load_indicator_rel" class="crnrstn_ui_element_load_indicator_rel"><div id="crnrstn_ui_element_load_indicator" class="crnrstn_ui_element_load_indicator"></div></div></div></div><div id="crnrstn_documentation_dyn_shell_rel" class="crnrstn_documentation_dyn_shell_rel"><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div></div>').prependTo($('body'));
+            $('<div id="crnrstn_interact_ui_full_doc_header_wrapper_rel" class="crnrstn_interact_ui_full_doc_header_wrapper_rel"><div class="crnrstn_cb"></div><div id="crnrstn_interact_ui_full_doc_header_wrapper" class="crnrstn_interact_ui_full_doc_header_wrapper"><div id="crnrstn_interact_ui_full_doc_close_wrapper_rel" class="crnrstn_interact_ui_full_doc_close_wrapper_rel"><div id="crnrstn_interact_ui_full_doc_close_wrapper" class="crnrstn_interact_ui_full_doc_close_wrapper"><div id="crnrstn_interact_ui_full_doc_close" class="crnrstn_interact_ui_full_doc_close" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);"></div></div></div><div class="crnrstn_cb"></div></div></div><div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox"></div><div id="crnrstn_interact_ui_full_document_wrapper" class="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_ui_element_load_indicator_shell_rel" class="crnrstn_ui_element_load_indicator_shell_rel"><div id="crnrstn_ui_element_load_indicator_shell" class="crnrstn_ui_element_load_indicator_shell"><div id="crnrstn_ui_element_load_indicator_bg_rel" class="crnrstn_ui_element_load_indicator_bg_rel"><div id="crnrstn_ui_element_load_indicator_bg" class="crnrstn_ui_element_load_indicator_bg"></div></div><div id="crnrstn_ui_element_load_indicator_rel" class="crnrstn_ui_element_load_indicator_rel"><div id="crnrstn_ui_element_load_indicator" class="crnrstn_ui_element_load_indicator"></div></div></div></div><div id="crnrstn_documentation_dyn_shell_rel" class="crnrstn_documentation_dyn_shell_rel"><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div></div>').prependTo($('body'));
 
-            self.log_activity('[lnum 578] Initializing CRNRSTN :: INTERACT UI within the DOM.', self.CRNRSTN_DEBUG_VERBOSE);
-
-        }
-
-        if($('#crnrstn_ui_documentation_side_nav_src').length){
-
-            this.initialize_full_doc_navigation_pane();
-
-            $tmp_sidenav_html = $('#crnrstn_ui_documentation_side_nav_src').html();
-            $('#crnrstn_interact_ui_full_document').html($tmp_sidenav_html);
-
-            $('#crnrstn_ui_documentation_side_nav_src').html('');
-
-            $('#crnrstn_interact_ui_side_nav').animate({
-                width: this.side_navigation_min_width
-            }, {
-                duration: 500,
-                queue: false,
-                specialEasing: {
-                    width: "swing"
-                },
-                step: function( now, fx ) {
-
-                },
-                complete: function () {
-
-                }
-
-            });
-
-            $('#crnrstn_interact_ui_side_nav_logo').animate({
-                left: 18
-            }, {
-                duration: 500,
-                queue: false,
-                specialEasing: {
-                    left: "swing"
-                },
-                complete: function () {
-
-                }
-
-            });
-
-            $('#crnrstn_interact_ui_side_nav_search').animate({
-                left: 18
-            }, {
-                duration: 500,
-                queue: false,
-                specialEasing: {
-                    left: "swing"
-                },
-                complete: function () {
-
-                }
-
-            });
-
-            $('#crnrstn_ui_element_load_indicator_shell').animate({
-                marginLeft: this.side_navigation_min_width
-            }, {
-                duration: 500,
-                queue: false,
-                specialEasing: {
-                    marginLeft: "swing"
-                },
-                complete: function () {
-
-                }
-
-            });
-
-            $('#crnrstn_documentation_dyn_shell_rel').animate({
-                marginLeft: this.side_navigation_min_width
-            }, {
-                duration: 500,
-                queue: false,
-                specialEasing: {
-                    marginLeft: "swing"
-                },
-                complete: function () {
-
-                }
-
-            });
-
-            $('body').animate({
-                marginLeft: this.side_navigation_min_width,
-                paddingLeft: parseInt(this.side_navigation_min_width)
-            }, {
-                duration: 500,
-                queue: false,
-                specialEasing: {
-                    marginLeft: "swing"
-                },
-                complete: function () {
-
-                }
-
-            });
+            self.log_activity('[lnum 572] Initializing CRNRSTN :: INTERACT UI within the DOM.', self.CRNRSTN_DEBUG_VERBOSE);
 
         }
+
+        this.initialize_full_doc_navigation_pane();
+
+        $('#crnrstn_interact_ui_full_document').html(module_content);
+
+        $('#crnrstn_ui_documentation_side_nav_src').html('');
+
+        $('#crnrstn_interact_ui_side_nav').animate({
+            width: this.side_navigation_min_width
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                width: "swing"
+            },
+            step: function( now, fx ) {
+
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_interact_ui_side_nav_logo').animate({
+            left: 18
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                left: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_interact_ui_side_nav_search').animate({
+            left: 18
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                left: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_ui_element_load_indicator_shell').animate({
+            marginLeft: this.side_navigation_min_width
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                marginLeft: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('#crnrstn_documentation_dyn_shell_rel').animate({
+            marginLeft: this.side_navigation_min_width
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                marginLeft: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
+
+        $('body').animate({
+            marginLeft: this.side_navigation_min_width,
+            paddingLeft: parseInt(this.side_navigation_min_width)
+        }, {
+            duration: 500,
+            queue: false,
+            specialEasing: {
+                marginLeft: "swing"
+            },
+            complete: function () {
+
+            }
+
+        });
 
         // Attach event handlers to the newly minted DOM elements
         this.$overlay.hide().on('click', function() {
@@ -728,70 +677,66 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         $("#crnrstn_ui_element_load_indicator").html($("#crnrstn_interact_ui_loadbar_IMAGE_CACHE").html());
 
+        this.start_page_request_visualization();
+        $('#crnrstn_ui_element_load_indicator').stop();
+
     };
 
-    CRNRSTN_JS.prototype.initialize_interact_ui_system_footer = function() {
+    CRNRSTN_JS.prototype.initialize_interact_ui_system_footer = function(module_content) {
 
-        var self = this;
-        this.$system_footer = $('#crnrstn_ui_system_footer_src');
+        //var self = this;
+        //this.$system_footer = $('#crnrstn_ui_system_footer_src');
 
-        if(this.$system_footer.length){
+        this.log_activity('[lnum 690] Initializing system footer.', this.CRNRSTN_DEBUG_VERBOSE);
 
-            this.log_activity('[lnum 700] Initializing system footer.', this.CRNRSTN_DEBUG_VERBOSE);
+        $('#crnrstn_ui_system_footer_shell').html(module_content);
 
-            $tmp_footer_html = $('#crnrstn_ui_system_footer_src').html();
-            $('#crnrstn_ui_system_footer_shell').html($tmp_footer_html);
+        // WIDTH
+        this.size_element('crnrstn_ui_system_footer');
 
-            $('#crnrstn_ui_system_footer_src').html('');
+        // $('#crnrstn_ui_system_footer').animate({
+        //     fontsize: 25
+        // }, {
+        //     duration: 500,
+        //     queue: false,
+        //     specialEasing: {
+        //         opacity: "swing"
+        //     },
+        //     complete: function () {
+        //
+        //     }
+        //
+        // });
 
-            // WIDTH
-            this.size_element('crnrstn_ui_system_footer');
+        // Attach event handlers to the newly minted DOM elements
+        // this.$system_footer.hide().on('click', function() {
+        //
+        //     self.end();
+        //     return false;
+        //
+        // });
 
-            // $('#crnrstn_ui_system_footer').animate({
-            //     fontsize: 25
-            // }, {
-            //     duration: 500,
-            //     queue: false,
-            //     specialEasing: {
-            //         opacity: "swing"
-            //     },
-            //     complete: function () {
-            //
-            //     }
-            //
-            // });
+        //
+        // CSS STYLES
+        this.initialize_system_footer_css('crnrstn_ui_system_footer_mit');
+        this.initialize_system_footer_css('crnrstn_ui_system_footer_download');
+        this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_stime');
+        this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_rtime');
+        this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_wtime');
+        this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_meta');
 
-            // Attach event handlers to the newly minted DOM elements
-            this.$system_footer.hide().on('click', function() {
-
-                self.end();
-                return false;
-
-            });
-
-            //
-            // CSS STYLES
-            this.initialize_system_footer_css('crnrstn_ui_system_footer_mit');
-            this.initialize_system_footer_css('crnrstn_ui_system_footer_download');
-            this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_stime');
-            this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_rtime');
-            this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_wtime');
-            this.initialize_system_footer_css('crnrstn_ui_system_footer_stat_meta');
-
-            //this.$crnrstn_ui_system_footer      = $('#crnrstn_ui_system_footer');
-            //this.$ui_system_footer_stat = this.$crnrstn_ui_system_footer.find('.crnrstn_ui_system_footer_stat');
-            // this.$ui_system_footer_stat.on('load', function() {
-            //
-            //     self.$ui_system_footer_stat.css('fontFamily', 'Courier New, Courier, monospace');
-            //     self.$ui_system_footer_stat.css('fontSize', '12px');
-            //     self.$ui_system_footer_stat.css('lineHeight', '20px');
-            //     self.$ui_system_footer_stat.css('color', '#333');
-            //
-            //     return false;
-            //
-            // });
-
-        }
+        //this.$crnrstn_ui_system_footer      = $('#crnrstn_ui_system_footer');
+        //this.$ui_system_footer_stat = this.$crnrstn_ui_system_footer.find('.crnrstn_ui_system_footer_stat');
+        // this.$ui_system_footer_stat.on('load', function() {
+        //
+        //     self.$ui_system_footer_stat.css('fontFamily', 'Courier New, Courier, monospace');
+        //     self.$ui_system_footer_stat.css('fontSize', '12px');
+        //     self.$ui_system_footer_stat.css('lineHeight', '20px');
+        //     self.$ui_system_footer_stat.css('color', '#333');
+        //
+        //     return false;
+        //
+        // });
 
     };
 
@@ -847,88 +792,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.toggle_full_overlay = function() {
-
-        //
-        // ON OR OFF?
-        if($('#crnrstn_interact_ui_full_lightbox_overlay').css('opacity') > 0){
-
-            //
-            // TURN OFF
-            this.end();
-
-        }else{
-
-            //
-            // TURN ON
-            // Position Lightbox
-            var top = $window.scrollTop() + this.options.positionFromTop;
-            var left = $window.scrollLeft();
-
-            this.$lightbox.css({
-                top: top + 'px',
-                left: left + 'px'
-            }).fadeIn(this.options.fadeDuration);
-
-            // Disable scrolling of the page while open
-            if (this.options.disableScrolling) {
-
-                $('body').addClass('lb-disable-scrolling');
-
-            }
-
-            this.sizeOverlay();
-
-        }
-
-        //this.$overlay.fadeIn(this.options.fadeDuration);
-        //
-        // $('#crnrstn_interact_ui_full_overlay').animate({
-        //     width: 130
-        // }, {
-        //     duration: 500,
-        //     queue: false,
-        //     step: function( now, fx ) {
-        //
-        //     },
-        //     complete: function () {
-        //
-        //     }
-        //
-        // });
-        //
-        // $('#crnrstn_interact_ui_full_overlay').animate({
-        //     width: 100%,
-        //
-        // }, {
-        //     duration: 500,
-        //     queue: false,
-        //     step: function( now, fx ) {
-        //
-        //     },
-        //     complete: function () {
-        //
-        //     }
-        //
-        // });
-        //
-        //
-        // $('#crnrstn_interact_ui_full_overlay').animate({
-        //     width: 130
-        // }, {
-        //     duration: 500,
-        //     queue: false,
-        //     step: function( now, fx ) {
-        //
-        //     },
-        //     complete: function () {
-        //
-        //     }
-        //
-        // });
-
-    };
-
     CRNRSTN_JS.prototype.crnrstn_init = function() {
 
         var self = this;
@@ -972,21 +835,25 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 }
 
-
-
             }
 
-            self.log_activity('[lnum 939] DOM READY.', self.CRNRSTN_DEBUG_VERBOSE);
+            self.log_activity('[lnum 840] DOM READY.', self.CRNRSTN_DEBUG_VERBOSE);
 
-            if($('#crnrstn_ui_documentation_side_nav_src').length){
+            //
+            // RECEIVE PROGRAMME OF CRNRSTN :: INTERACT UI MODULES
+            var tmp_module_keys = $('#crnrstn_interact_ui_module_programme').val();
+            var tmp_module_key_ARRAY = tmp_module_keys.split('|');
+            var module_cnt = tmp_module_key_ARRAY.length;
 
-                self.initialize_interact_ui_documentation_mode();
+            for(var i = 0; i < module_cnt; i++){
 
-            }
+                //
+                // IF MODULE SHELL IS PRESENT IN DOM, REQUEST CONTENT FROM SERVER.
+                if($('#' + tmp_module_key_ARRAY[i]).length){
 
-            if($('#crnrstn_ui_system_footer_src').length){
+                    $('#' + tmp_module_key_ARRAY[i] + '_HASH').val('J5, my boy!');
 
-                self.initialize_interact_ui_system_footer();
+                }
 
             }
 
@@ -1028,7 +895,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     // AUTHOR :: Joe Riggs :: https://joe-riggs.com/blog/author/jriggs/
     CRNRSTN_JS.prototype.crnrstn_rtime_timer_cycle = function() {
 
-        this.log_activity('[lnum 991] Begin client cycling of a second. TTL delta=[' + this.ttl_age_seconds + ']', this.CRNRSTN_DEBUG_CONTROLS);
+        this.log_activity('[lnum 898] Begin client cycling of a second. TTL delta=[' + this.ttl_age_seconds + ']', this.CRNRSTN_DEBUG_CONTROLS);
 
         this.ttl_age_seconds = this.ttl_age_seconds + 1;
 
@@ -1209,7 +1076,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                     if(tmp_delay_secs === 0){
 
-                        //this.log_activity('[lnum 1172] FIRE! FIRE! FIRE! Executing ' + this.transaction_thread_id_key_ARRAY[i] + ' UI sync now. Looking forward to hearing from you! All the best, J5.', this.CRNRSTN_DEBUG_VERBOSE);
+                        //this.log_activity('[lnum 1079] FIRE! FIRE! FIRE! Executing ' + this.transaction_thread_id_key_ARRAY[i] + ' UI sync now. Looking forward to hearing from you! All the best, J5.', this.CRNRSTN_DEBUG_VERBOSE);
 
                         this.execution_delay_ui_sync_controller('fire', this.transaction_thread_id_key_ARRAY[i], false);
 
@@ -1227,33 +1094,35 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.process_data_tunnel_ttl = function() {
 
-        this.log_activity('[lnum 1190] Analyzing SSDTLA TTL.', this.CRNRSTN_DEBUG_CONTROLS);
+        this.log_activity('[lnum 1097] Analyzing SSDTLA TTL.', this.CRNRSTN_DEBUG_CONTROLS);
 
         //
         // CHECK PAGE LOAD TTL
         if(this.ttl_age_seconds > this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] && this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] != -1){
 
-            this.log_activity('[lnum 1196] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - PAGE LOAD TTL (' + this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl']  + ' secs).', this.CRNRSTN_DEBUG_VERBOSE);   // CRNRSTN_DEBUG_BASIC
+            this.log_activity('[lnum 1103] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - PAGE LOAD TTL (' + this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl']  + ' secs).', this.CRNRSTN_DEBUG_VERBOSE);
+            this.fire_dom_state_controller();
 
+            this.data_tunnel_ttl_monitor_isactive = false;
+            this.ttl_tunnel_monitor_seconds = 1;
             this.ttl_age_seconds = -1;
             this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = -1;
-
-            this.ttl_tunnel_monitor_seconds = 1;
-            this.fire_dom_state_controller();
 
         }else{
 
             if(this.data_tunnel_ttl_monitor_isactive){
 
+                //
                 // DO NOT RUN UNTIL READY TO PROCESS XML DRIVEN TTL UPDATES
                 // CHECK FOR THREAD ID TTL EXPIRE
                 if(this.thread_id_ttl_expired()){
 
+                    this.log_activity('[lnum 1120] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) :: Generic State Management Request.', this.CRNRSTN_DEBUG_VERBOSE);   // CRNRSTN_DEBUG_BASIC
+                    this.fire_dom_state_controller();
+
                     this.ttl_age_seconds = -1;
                     this.data_tunnel_ttl_monitor_isactive = false;
                     this.ttl_tunnel_monitor_seconds = 1;
-                    this.log_activity('[lnum 1215] ***** fire_dom_state_controller() DEV ABORTED ***** [CRNRSTN_JS.prototype.process_data_tunnel_ttl()].', this.CRNRSTN_DEBUG_VERBOSE);
-                    //this.fire_dom_state_controller();
 
                 }
 
@@ -1263,11 +1132,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 // INACTIVITY REFRESH. SET TO 5 MIN (300s)?
                 if(this.ttl_tunnel_monitor_seconds > 300){
 
+                    this.log_activity('[lnum 1135] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - INACTIVITY REFRESH TTL (5 min).', this.CRNRSTN_DEBUG_VERBOSE);   // CRNRSTN_DEBUG_BASIC
+                    this.fire_dom_state_controller();
+
                     this.ttl_age_seconds = -1;
                     this.data_tunnel_ttl_monitor_isactive = false;
                     this.ttl_tunnel_monitor_seconds = 1;
-                    this.log_activity('[lnum 1229] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - INACTIVITY REFRESH TTL (5 min).', this.CRNRSTN_DEBUG_VERBOSE);   // CRNRSTN_DEBUG_BASIC
-                    this.fire_dom_state_controller();
 
                 }
 
@@ -1277,9 +1147,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.fire_dom_state_controller = function() {
+    CRNRSTN_JS.prototype.fire_dom_state_controller = function(){
 
-        //var ssdtl_endpoint = document.getElementById("crnrstn_xhr_root").innerHTML;
+        var self = this;
         var ssdtl_endpoint = $("#crnrstn_xhr_root").val();
 
         if(ssdtl_endpoint !== undefined && ssdtl_endpoint != ''){
@@ -1290,71 +1160,34 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             var form = $("#crnrstn_soap_data_tunnel_frm");
             var dataString = $(form).serialize();
-            //debugger;
 
-            this.log_activity('[lnum 1255] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 1256] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 1257] SSDTLP ' + this.system_hash_algo + ' Hash = [' + $('#' + this.form_input_serialization_hash).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-
-            if($('#crnrstn_interact_ui_link_text_click').val() != ''){
-
-                this.log_activity('[lnum 1261] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-
-            }
+            this.log_activity('[lnum 1164] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 1165] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 1166] SSDTLP ' + this.system_hash_algo + ' Hash = [' + $('#' + this.form_input_serialization_hash).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             if($('#crnrstn_interact_ui_link_text_click').val() != ''){
 
-                //
-                // THIS IS SO BAD! LOL.
-                $.ajax({
-                    type: "POST",
-                    url: ssdtl_endpoint,
-                    data: dataString,
-                    dataType: "html",
-                    success: this.parse_data_tunnel_response_html
-
-                });
-
-            }else{
-
-                $.ajax({
-                    type: "POST",
-                    url: ssdtl_endpoint,
-                    data: dataString,
-                    dataType: "xml",
-                    success: this.parse_data_tunnel_response
-
-                });
+                this.log_activity('[lnum 1170] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             }
+
+            $.ajax({
+                type: "POST",
+                url: ssdtl_endpoint,
+                data: dataString,
+                dataType: 'xml',
+                complete: this.parse_data_tunnel_response
+
+            });
 
         }
-
-        //this.log_activity('[lnum 1293] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) aborting AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-
-    };
-
-    CRNRSTN_JS.prototype.parse_data_tunnel_response_html = function(response_data) {
-
-        //var packet_dl_bytes = response_data.documentElement.innerHTML.length;
-        var packet_dl_bytes = response_data.length;
-        oCRNRSTN_JS.log_activity('[lnum 1301] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
-
-        $('#crnrstn_ui_element_load_indicator').stop();
-
-        var page_load_progress = $('#crnrstn_ui_element_load_indicator').css('top');
-        $('#crnrstn_interact_ui_loadbar_progress').val(page_load_progress);
-        //$('#crnrstn_interact_ui_pageload_stoptime').val(page_load_progress);
-
-        oCRNRSTN_JS.receive_data_tunnel_response(response_data);
 
     };
 
     CRNRSTN_JS.prototype.parse_data_tunnel_response = function(response_data) {
 
-        //var packet_dl_bytes = response_data.documentElement.innerHTML.length;
-        var packet_dl_bytes = response_data.length;
-        oCRNRSTN_JS.log_activity('[lnum 1317] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        var packet_dl_bytes = response_data.responseText.length;
+        oCRNRSTN_JS.log_activity('[lnum 1190] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         $('#crnrstn_ui_element_load_indicator').stop();
 
@@ -1363,6 +1196,22 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //$('#crnrstn_interact_ui_pageload_stoptime').val(page_load_progress);
 
         oCRNRSTN_JS.receive_data_tunnel_response(response_data);
+
+    };
+
+    CRNRSTN_JS.prototype.receive_data_tunnel_response = function(response_data) {
+
+        //
+        // CONSUME XML RESPONSE DATA
+        this.consume_data_tunnel_response(response_data.responseXML, 'XML');
+
+        //
+        // SYNC CLIENT STATE TO THE FRESH XML
+        tmp_data_signature_request_serial = this.return_data_tunnel_xml_data('data_signature_request_serial');
+        tmp_data_signature_request_hash = this.return_data_tunnel_xml_data('data_signature_request_hash');
+
+        //alert('[lnum 1213] XML data_signature_request_serial='+tmp_data_signature_request_serial);
+        this.refresh_ui_state(tmp_data_signature_request_serial, tmp_data_signature_request_hash);
 
     };
 
@@ -1463,7 +1312,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             this.ttl_array_pointer_index_ARRAY.push(nomination + '_' + index);
             this.ttl_array_pointer_index_root_ARRAY[nomination + '_' + index] = nomination;
 
-            this.log_activity('[lnum 1426] TTL tracking has been initialized for XML node [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_BASIC);
+            this.log_activity('[lnum 1315] TTL tracking has been initialized for XML node [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_BASIC);
 
         }
 
@@ -1477,7 +1326,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(!(response_data in this.jony5_lifestyle_banner_index_ARRAY)){
 
                     var tmp_str = this.extract_filename(response_data);
-                    this.log_activity('[lnum 1440] STORING CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 1329] STORING CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                     this.jony5_lifestyle_banner_index_ARRAY[response_data] = 1;
                     this.jony5_lifestyle_banner_images_ARRAY.push(response_data);
@@ -1485,7 +1334,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 }else{
 
                     var tmp_str = this.extract_filename(response_data);
-                    this.log_activity('[lnum 1448] SKIPPING CRNRSTN :: SSDTL RESPONSE REDUNDANT XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 1337] SKIPPING CRNRSTN :: SSDTL RESPONSE REDUNDANT XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -1497,7 +1346,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(!(response_data in this.jony5_lifestyle_banner_index_FULLSCREEN_ARRAY)){
 
                     var tmp_str = this.extract_filename(response_data);
-                    this.log_activity('[lnum 1460] STORING CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 1349] STORING CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                     this.jony5_lifestyle_banner_index_FULLSCREEN_ARRAY[response_data] = 1;
                     this.jony5_lifestyle_banner_images_FULLSCREEN_ARRAY.push(response_data);
@@ -1505,7 +1354,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 }else{
 
                     var tmp_str = this.extract_filename(response_data);
-                    this.log_activity('[lnum 1468] SKIPPING REDUNDANT CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 1357] SKIPPING REDUNDANT CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -1548,11 +1397,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(node_attribute_nom.length > 0){
 
-            this.log_activity('[lnum 1511] Storing XML data (len='+ tmp_data.length +') attribute [' + node_attribute_nom + '] from XML node [' + xml_nom + '] as [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_CONTROLS);
+            this.log_activity('[lnum 1400] Storing XML data (len='+ tmp_data.length +') attribute [' + node_attribute_nom + '] from XML node [' + xml_nom + '] as [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_CONTROLS);
 
         }else{
 
-            this.log_activity('[lnum 1515] Storing XML node [' + xml_nom + '] data[' + tmp_data + '] (len='+ tmp_data.length +') as [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_CONTROLS);
+            this.log_activity('[lnum 1404] Storing XML node [' + xml_nom + '] data[' + tmp_data + '] (len='+ tmp_data.length +') as [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_CONTROLS);
 
         }
 
@@ -1572,9 +1421,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    // CRNRSTN_JS.prototype.crnrstn_ui_interact_is_visible_show = function() {
+    // CRNRSTN_JS.prototype.crnrstn_interact_ui_is_visible_show = function() {
     //
-    //     $('#crnrstn_ui_interact_wrapper').animate({
+    //     $('#crnrstn_interact_ui_wrapper').animate({
     //         opacity: 0
     //     }, {
     //         duration: 0,
@@ -1584,9 +1433,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     //         },
     //         complete: function () {
     //
-    //             $('#crnrstn_ui_interact_wrapper').css('overflow', 'visible');
+    //             $('#crnrstn_interact_ui_wrapper').css('overflow', 'visible');
     //
-    //             $('#crnrstn_ui_interact_wrapper').animate({
+    //             $('#crnrstn_interact_ui_wrapper').animate({
     //                 width: 100,
     //                 height: 70,
     //                 paddingBottom: 20,
@@ -1599,7 +1448,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     //                 },
     //                 complete: function () {
     //
-    //                     $( "#crnrstn_ui_interact_wrapper").animate({
+    //                     $( "#crnrstn_interact_ui_wrapper").animate({
     //                         opacity: 1.0
     //                     }, {
     //                         duration: 250,
@@ -1731,10 +1580,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.consume_response_crnrstn_ui_interact_profile_data = function(response_data, serialize_response){
+    CRNRSTN_JS.prototype.consume_response_crnrstn_interact_ui_profile_data = function(response_data, serialize_response){
 
         /*
-        <crnrstn_ui_interact_profile>
+        <crnrstn_interact_ui_profile>
             <is_enabled>true</is_enabled>
             <is_visible>true</is_visible>
             <theme_configuration>
@@ -1745,32 +1594,60 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 <eula_canvas width="700" height="400" checksum="592092546"></eula_canvas>
                 <mit_license_canvas width="500" height="400" checksum="1854028937"></mit_license_canvas>
             </theme_configuration>
-        </crnrstn_ui_interact_profile>
+
+            <page_content><![CDATA[<div style="padding: 20px;"><h1>crnrstn_ui_html_manager::out_ui_module_html_documentation</h1></div>]]></page_content>
+        </crnrstn_interact_ui_profile>
 
         */
 
         //
-        // CRNRSTN :: UI INTERACT ENABLED
-        var NODE_crnrstn_ui_interact_is_enabled = response_data.getElementsByTagName('is_enabled');
-        tmp_node_cnt = NODE_crnrstn_ui_interact_is_enabled.length;
-        if(tmp_node_cnt > 0) {
+        // CRNRSTN :: INTERACT UI CONTENT
+        // var NODE_crnrstn_interact_ui_documentation_content_src = response_data.getElementsByTagName('crnrstn_interact_ui_profile');
+        // tmp_node_cnt = NODE_crnrstn_interact_ui_documentation_content_src.length;
 
-            this.consume_data_tunnel_xml_node(response_data, 'crnrstn_ui_interact_is_enabled', 'is_enabled', '', serialize_response);
+        var module_content_node = '';
+        var module_hash_node = '';
+        var tmp_module_pipe_str = $('#crnrstn_interact_ui_module_programme').val();
+        var tmp_module_ARRAY = tmp_module_pipe_str.split('|');
+        var tmp_module_len = tmp_module_ARRAY.length;
+
+        for(var i = 0; i < tmp_module_len; i++){
+
+            module_content_node = tmp_module_ARRAY[i];
+            module_hash_node = module_content_node + '_HASH';
+
+            if($('#' + tmp_module_ARRAY[i]).length){
+
+                //alert('[lnum 1621] [' + module_content_node + ']. [' + tmp_module_ARRAY[i] + '].');
+                this.consume_data_tunnel_xml_node(response_data, module_content_node, module_content_node, '', serialize_response);
+                this.consume_data_tunnel_xml_node(response_data, module_hash_node, module_hash_node, '', serialize_response);
+
+            }
 
         }
 
         //
-        // CRNRSTN :: UI INTERACT IS_VISIBLE
-        var NODE_crnrstn_ui_interact_is_visible = response_data.getElementsByTagName('is_visible');
-        tmp_node_cnt = NODE_crnrstn_ui_interact_is_visible.length;
+        // CRNRSTN :: INTERACT UI ENABLED
+        var NODE_crnrstn_interact_ui_is_enabled = response_data.getElementsByTagName('is_enabled');
+        tmp_node_cnt = NODE_crnrstn_interact_ui_is_enabled.length;
         if(tmp_node_cnt > 0) {
 
-            this.consume_data_tunnel_xml_node(response_data, 'crnrstn_ui_interact_is_visible', 'is_visible', '', serialize_response);
+            this.consume_data_tunnel_xml_node(response_data, 'crnrstn_interact_ui_is_enabled', 'is_enabled', '', serialize_response);
 
         }
 
         //
-        // CRNRSTN :: UI INTERACT THEME CONFIGURATION
+        // CRNRSTN :: INTERACT UI IS_VISIBLE
+        var NODE_crnrstn_interact_ui_is_visible = response_data.getElementsByTagName('is_visible');
+        tmp_node_cnt = NODE_crnrstn_interact_ui_is_visible.length;
+        if(tmp_node_cnt > 0) {
+
+            this.consume_data_tunnel_xml_node(response_data, 'crnrstn_interact_ui_is_visible', 'is_visible', '', serialize_response);
+
+        }
+
+        //
+        // CRNRSTN :: INTERACT UI THEME CONFIGURATION
         var NODE_theme_configuration = response_data.getElementsByTagName('theme_configuration');
         tmp_node_cnt = NODE_theme_configuration.length;
         if(tmp_node_cnt > 0) {
@@ -2128,7 +2005,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 var NODE_client_response = response_data.getElementsByTagName('client_response');
                 if (NODE_client_response.length > 0) {
 
-                    this.log_activity('[lnum 2091] Extracting ' + data_type + ' data from CRNRSTN :: SOAP Services Data Tunnel Layer (SSDTL) response.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 2008] Extracting ' + data_type + ' data from CRNRSTN :: SOAP Services Data Tunnel Layer (SSDTL) response.', this.CRNRSTN_DEBUG_VERBOSE);
                     this.consume_data_tunnel_xml_node(response_data, 'response_timestamp', 'client_response', 'timestamp' , serialize_response);
 
                     //
@@ -2161,7 +2038,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     var NODE_state_synchronization_data = response_data.getElementsByTagName('state_synchronization_data');
                     if (NODE_state_synchronization_data.length > 0) {
 
-                        this.log_activity('[lnum 2124] Extracting [state_synchronization_data] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                        this.log_activity('[lnum 2041] Extracting [state_synchronization_data] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                         this.consume_browser_state_sync_data(NODE_state_synchronization_data[0], serialize_response);
 
@@ -2175,7 +2052,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         for(let i = 0; i < tmp_node_cnt; i++){
 
-                            this.log_activity('[lnum 2138] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                            this.log_activity('[lnum 2055] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                             this.consume_response_status_data(NODE_response_status[i], serialize_response);
 
@@ -2191,7 +2068,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         for(let i = 0; i < tmp_node_cnt; i++){
 
-                            this.log_activity('[lnum 2154] Extracting [client_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                            this.log_activity('[lnum 2071] Extracting [client_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                             this.consume_response_client_profile_data(NODE_client_profile[i], serialize_response);
 
@@ -2200,16 +2077,16 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     }
 
                     //
-                    // CRNRSTN :: UI INTERACT DATA
-                    var NODE_crnrstn_ui_interact_profile = response_data.getElementsByTagName('crnrstn_ui_interact_profile');
-                    tmp_node_cnt = NODE_crnrstn_ui_interact_profile.length;
-                    if (tmp_node_cnt > 0) {
+                    // CRNRSTN :: INTERACT UI DATA
+                    var NODE_crnrstn_interact_ui_profile = response_data.getElementsByTagName('crnrstn_interact_ui_profile');
+                    tmp_node_cnt = NODE_crnrstn_interact_ui_profile.length;
+                    if(tmp_node_cnt > 0){
 
                         for(let i = 0; i < tmp_node_cnt; i++){
 
-                            this.log_activity('[lnum 2170] Extracting [crnrstn_ui_interact_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_VERBOSE);
+                            this.log_activity('[lnum 2087] Extracting [crnrstn_interact_ui_profile] data from CRNRSTN :: SSDTLA response.', this.CRNRSTN_DEBUG_VERBOSE);
 
-                            this.consume_response_crnrstn_ui_interact_profile_data(NODE_crnrstn_ui_interact_profile[i], serialize_response);
+                            this.consume_response_crnrstn_interact_ui_profile_data(NODE_crnrstn_interact_ui_profile[i], serialize_response);
 
                         }
 
@@ -2223,7 +2100,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         for(let i = 0; i < tmp_node_cnt; i++){
 
-                            this.log_activity('[lnum 2186] Extracting [bassdrive] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                            this.log_activity('[lnum 2103] Extracting [bassdrive] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                             this.consume_response_bassdrive_data(NODE_bassdrive[i], serialize_response);
 
@@ -2239,7 +2116,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         for(let i = 0; i < tmp_node_cnt; i++){
 
-                            this.log_activity('[lnum 2202] Extracting [lifestyle_banner] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                            this.log_activity('[lnum 2119] Extracting [lifestyle_banner] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                             this.consume_response_lifestyle_banner_data(NODE_lifestyle_banner[i], serialize_response);
 
@@ -2248,10 +2125,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     }
 
                     this.data_tunnel_ttl_monitor_isactive = true;
-                    this.log_activity('[lnum 2211] CRNRSTN :: SSDTL response consumption is now complete.', this.CRNRSTN_DEBUG_VERBOSE);
-                    this.log_activity('[lnum 2212] CRNRSTN :: SSDTL TTL monitoring for client state is now active.', this.CRNRSTN_DEBUG_VERBOSE);
-
-                    //debugger;
+                    this.log_activity('[lnum 2128] CRNRSTN :: SSDTL response consumption is now complete.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 2129] CRNRSTN :: SSDTL TTL monitoring for client state is now active.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 }
 
@@ -2280,7 +2155,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     //         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">SOAP_DATA_TUNNEL_LAYER_PACKET</textarea>
     //         <button type="submit">SUBMIT</button>
     //         <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="">
-    //         <input type="hidden" id="crnrstn_request_serialization_checksum" name="crnrstn_request_serialization_checksum" value="">
+    //         <input type="hidden" id="crnrstn_request_serialization_hash" name="crnrstn_request_serialization_hash" value="">
     //         <input type="hidden" id="crnrstn_ttl_expired_ui_threads" name="crnrstn_ttl_expired_ui_threads" value="">
     //         ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_soap_data_tunnel_form').'
     //
@@ -2440,7 +2315,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 tmp_ttl_expired = true;
 
-                this.log_activity('[lnum 2403] TTL for a data tunneled thread [' + this.ttl_array_pointer_index_ARRAY[i] + '] has been expired at ' + this.ttl_age_seconds + ' seconds, where the threshold is ' + tmp_array_adjusted_ttl + ' secs.', this.CRNRSTN_DEBUG_BASIC);
+                this.log_activity('[lnum 2318] TTL for a data tunneled thread [' + this.ttl_array_pointer_index_ARRAY[i] + '] has been expired at ' + this.ttl_age_seconds + ' seconds, where the threshold is ' + tmp_array_adjusted_ttl + ' secs.', this.CRNRSTN_DEBUG_BASIC);
 
             }
 
@@ -2466,7 +2341,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             tmp_cnt = tmp_cnt + (delta);
             this.transaction_thread_count_ARRAY[thread_id] = tmp_cnt;
 
-            this.log_activity('[lnum 2429] UI sync controller transaction thread count updated to ' + tmp_cnt + ' with the initialization of [' + thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+            this.log_activity('[lnum 2344] UI sync controller transaction thread count updated to ' + tmp_cnt + ' with the initialization of [' + thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
         }
 
@@ -2529,27 +2404,42 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.active_transaction_count = function() {
 
+        if(this.transaction_count_ARRAY[this.current_serialization_key] != undefined){
+
+            return this.transaction_count_ARRAY[this.current_serialization_key];
+
+        }
+
+        this.transaction_count_ARRAY[this.current_serialization_key] = 0;
+
         return this.transaction_count_ARRAY[this.current_serialization_key];
 
     };
 
-    CRNRSTN_JS.prototype.initialize_transaction_serialization = function(serial = null){
+    CRNRSTN_JS.prototype.initialize_transaction_serialization = function(){
 
+        var tmp_serial = null;
         var request_serial = '';
 
-        if(serial == null){
+        if(this.current_serialization_key.length > 5){
+
+            tmp_serial = this.current_serialization_key;
+
+        }
+
+        if(tmp_serial == null){
 
             request_serial = this.generate_new_key();
 
         }else{
 
-            if(serial.length < 1){
+            if(tmp_serial.length < 1){
 
                 request_serial = this.generate_new_key();
 
             }else{
 
-                request_serial = serial;
+                request_serial = tmp_serial;
 
             }
 
@@ -2561,19 +2451,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         $('#' + this.form_input_serialization_key).val(this.current_serialization_key);
         $('#' + this.form_input_serialization_hash).val(this.current_serialization_hash);
 
-
-        $('#' + this.form_input_serialization_hash).val(this.current_serialization_hash);
-
-        /*
-        <input type="hidden" id="crnrstn_ui_interact_canvas_checksum" name="crnrstn_ui_interact_canvas_checksum" value="">
-            <input type="hidden" id="crnrstn_ui_interact_mini_canvas_checksum" name="crnrstn_ui_interact_mini_canvas_checksum" value="">
-            <input type="hidden" id="crnrstn_ui_interact_signin_canvas_checksum" name="crnrstn_ui_interact_signin_canvas_checksum" value="">
-            <input type="hidden" id="crnrstn_ui_interact_main_canvas_checksum" name="crnrstn_ui_interact_main_canvas_checksum" value="">
-            <input type="hidden" id="crnrstn_ui_interact_eula_canvas_checksum" name="crnrstn_ui_interact_eula_canvas_checksum" value="">
-            <input type="hidden" id="crnrstn_ui_interact_mit_license_canvas_checksum" name="crnrstn_ui_interact_mit_license_canvas_checksum" value="">
-
-        * */
-
+        this.log_activity('[lnum 2454] Setting current_serialization_key to ' + request_serial + '.', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 2455] Setting current_serialization_hash to ' + this.current_serialization_hash + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
     };
 
@@ -2608,17 +2487,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         }
 
-        if(tmp_transaction_is_authorized){
-
-            this.active_transaction_checksum = this.form_input_serialization_hash;
-
-        }
-
         return tmp_transaction_is_authorized;
 
     };
 
-    CRNRSTN_JS.prototype.crnrstn_ui_interact_canvas_theme_sync = function(){
+    CRNRSTN_JS.prototype.crnrstn_interact_ui_canvas_theme_sync = function(){
         /*
         <canvas
         z_index="60"
@@ -2671,55 +2544,55 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //
         // PRIMARY NAVIGATION DISPLAY CASE Z-INDEX INIT
         tmp_tgt_z = parseInt(this.baseline_z_index) + 10;
-        $('#crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case').css('zIndex', parseInt(tmp_tgt_z));
-        $('#crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case').css('zIndex', parseInt(tmp_tgt_z));
-        $('#crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case').css('zIndex', parseInt(tmp_tgt_z));
-        $('#crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case').css('zIndex', parseInt(tmp_tgt_z));
+        $('#crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case').css('zIndex', parseInt(tmp_tgt_z));
+        $('#crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case').css('zIndex', parseInt(tmp_tgt_z));
+        $('#crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case').css('zIndex', parseInt(tmp_tgt_z));
+        $('#crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case').css('zIndex', parseInt(tmp_tgt_z));
 
-        $('#crnrstn_ui_interact_wrapper').css('zIndex', parseInt(this.baseline_z_index));
+        $('#crnrstn_interact_ui_wrapper').css('zIndex', parseInt(this.baseline_z_index));
 
-        $('#crnrstn_ui_interact_wrapper').css('padding-top', parseInt(tmp_canvas_window_edge_padding));
-        $('#crnrstn_ui_interact_wrapper').css('padding-right', parseInt(tmp_canvas_window_edge_padding));
-        $('#crnrstn_ui_interact_wrapper').css('padding-bottom', parseInt(tmp_canvas_window_edge_padding));
-        $('#crnrstn_ui_interact_wrapper').css('padding-left', parseInt(tmp_canvas_window_edge_padding));
+        $('#crnrstn_interact_ui_wrapper').css('padding-top', parseInt(tmp_canvas_window_edge_padding));
+        $('#crnrstn_interact_ui_wrapper').css('padding-right', parseInt(tmp_canvas_window_edge_padding));
+        $('#crnrstn_interact_ui_wrapper').css('padding-bottom', parseInt(tmp_canvas_window_edge_padding));
+        $('#crnrstn_interact_ui_wrapper').css('padding-left', parseInt(tmp_canvas_window_edge_padding));
 
         // border: 2px solid #767676;
-        $('#crnrstn_ui_interact_bg_border').css('border-top-width', parseInt(tmp_canvas_outline_border_edge_line_width));
-        $('#crnrstn_ui_interact_bg_border').css('border-right-width', parseInt(tmp_canvas_outline_border_edge_line_width));
-        $('#crnrstn_ui_interact_bg_border').css('border-bottom-width', parseInt(tmp_canvas_outline_border_edge_line_width));
-        $('#crnrstn_ui_interact_bg_border').css('border-left-width', parseInt(tmp_canvas_outline_border_edge_line_width));
-        $('#crnrstn_ui_interact_bg_border').css('borderStyle', tmp_canvas_outline_border_edge_line_style);
-        $('#crnrstn_ui_interact_bg_border').css('borderColor', tmp_canvas_outline_border_edge_line_color);
-        $('#crnrstn_ui_interact_bg_border').css('opacity', tmp_canvas_border_opacity);
-        $('#crnrstn_ui_interact_bg_border').css('backgroundColor', tmp_canvas_border_color);
+        $('#crnrstn_interact_ui_bg_border').css('border-top-width', parseInt(tmp_canvas_outline_border_edge_line_width));
+        $('#crnrstn_interact_ui_bg_border').css('border-right-width', parseInt(tmp_canvas_outline_border_edge_line_width));
+        $('#crnrstn_interact_ui_bg_border').css('border-bottom-width', parseInt(tmp_canvas_outline_border_edge_line_width));
+        $('#crnrstn_interact_ui_bg_border').css('border-left-width', parseInt(tmp_canvas_outline_border_edge_line_width));
+        $('#crnrstn_interact_ui_bg_border').css('borderStyle', tmp_canvas_outline_border_edge_line_style);
+        $('#crnrstn_interact_ui_bg_border').css('borderColor', tmp_canvas_outline_border_edge_line_color);
+        $('#crnrstn_interact_ui_bg_border').css('opacity', tmp_canvas_border_opacity);
+        $('#crnrstn_interact_ui_bg_border').css('backgroundColor', tmp_canvas_border_color);
 
-        //crnrstn_ui_interact_bg_border_edge
-        $('#crnrstn_ui_interact_bg_border_edge').css('border-top-width', parseInt('1'));
-        $('#crnrstn_ui_interact_bg_border_edge').css('border-right-width', parseInt('1'));
-        $('#crnrstn_ui_interact_bg_border_edge').css('border-bottom-width', parseInt('1'));
-        $('#crnrstn_ui_interact_bg_border_edge').css('border-left-width', parseInt('1'));
-        $('#crnrstn_ui_interact_bg_border_edge').css('borderStyle', 'solid');
-        $('#crnrstn_ui_interact_bg_border_edge').css('borderColor', '#FFF');
-        $('#crnrstn_ui_interact_bg_border_edge').css('opacity', '0.5');
-        $('#crnrstn_ui_interact_bg_border_edge').css('backgroundColor', 'transparent');
+        //crnrstn_interact_ui_bg_border_edge
+        $('#crnrstn_interact_ui_bg_border_edge').css('border-top-width', parseInt('1'));
+        $('#crnrstn_interact_ui_bg_border_edge').css('border-right-width', parseInt('1'));
+        $('#crnrstn_interact_ui_bg_border_edge').css('border-bottom-width', parseInt('1'));
+        $('#crnrstn_interact_ui_bg_border_edge').css('border-left-width', parseInt('1'));
+        $('#crnrstn_interact_ui_bg_border_edge').css('borderStyle', 'solid');
+        $('#crnrstn_interact_ui_bg_border_edge').css('borderColor', '#FFF');
+        $('#crnrstn_interact_ui_bg_border_edge').css('opacity', '0.5');
+        $('#crnrstn_interact_ui_bg_border_edge').css('backgroundColor', 'transparent');
 
-        $('#crnrstn_ui_interact_bg_solid').css('backgroundColor', tmp_canvas_background_color);
-        $('#crnrstn_ui_interact_bg_solid').css('width', 80);
-        $('#crnrstn_ui_interact_bg_solid').css('height', 50);
+        $('#crnrstn_interact_ui_bg_solid').css('backgroundColor', tmp_canvas_background_color);
+        $('#crnrstn_interact_ui_bg_solid').css('width', 80);
+        $('#crnrstn_interact_ui_bg_solid').css('height', 50);
 
-        //$('#crnrstn_ui_interact_bg_solid').css('opacity', tmp_canvas_background_opacity);
-        //$('#crnrstn_ui_interact_bg_solid').css('margin-top', parseInt(tmp_canvas_border_width) - parseInt(tmp_canvas_outline_border_edge_line_width));
-        //$('#crnrstn_ui_interact_bg_solid').css('margin-left', parseInt(tmp_canvas_border_width) - parseInt(tmp_canvas_outline_border_edge_line_width));
-        //$('#crnrstn_ui_interact_bg_solid').css('margin-left', parseInt(10));
+        //$('#crnrstn_interact_ui_bg_solid').css('opacity', tmp_canvas_background_opacity);
+        //$('#crnrstn_interact_ui_bg_solid').css('margin-top', parseInt(tmp_canvas_border_width) - parseInt(tmp_canvas_outline_border_edge_line_width));
+        //$('#crnrstn_interact_ui_bg_solid').css('margin-left', parseInt(tmp_canvas_border_width) - parseInt(tmp_canvas_outline_border_edge_line_width));
+        //$('#crnrstn_interact_ui_bg_solid').css('margin-left', parseInt(10));
 
-        $('#crnrstn_ui_interact_content_wrapper').css('padding-top', parseInt(tmp_canvas_inner_content_edge_padding));
-        $('#crnrstn_ui_interact_content_wrapper').css('padding-left', parseInt(tmp_canvas_inner_content_edge_padding));
+        $('#crnrstn_interact_ui_content_wrapper').css('padding-top', parseInt(tmp_canvas_inner_content_edge_padding));
+        $('#crnrstn_interact_ui_content_wrapper').css('padding-left', parseInt(tmp_canvas_inner_content_edge_padding));
 
-        this.canvas_border_calibrate($('#crnrstn_ui_interact_wrapper'), $('#crnrstn_ui_interact_bg_border'), $('#crnrstn_ui_interact_bg_solid'), $('#crnrstn_ui_interact_bg_border_edge'), tmp_canvas_border_width);
+        this.canvas_border_calibrate($('#crnrstn_interact_ui_wrapper'), $('#crnrstn_interact_ui_bg_border'), $('#crnrstn_interact_ui_bg_solid'), $('#crnrstn_interact_ui_bg_border_edge'), tmp_canvas_border_width);
 
         /*
         XML
-        <crnrstn_ui_interact_profile>
+        <crnrstn_interact_ui_profile>
             <is_enabled>true</is_enabled>
             <is_visible>true</is_visible>
             <theme_configuration>
@@ -2732,48 +2605,48 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 <mit_license_canvas width="500" height="400" checksum="1854028937"></mit_license_canvas>
 
             </theme_configuration>
-        </crnrstn_ui_interact_profile>
+        </crnrstn_interact_ui_profile>
 
         CSS
-        .crnrstn_ui_interact_wrapper                    { position:-webkit-sticky; position: sticky; bottom:5px; z-index: 60; width: 100px; left: 84%; height: 70px; padding: 0 0 20px 0; left:-3000px; width:0; height: 0; overflow: hidden;}
-        .crnrstn_ui_interact                            { }
-        .crnrstn_ui_interact_bg_border                  { position: absolute; width:100px; height: 70px; border: 2px solid #767676; background-color: #FFF; opacity: 0.3; }
-        .crnrstn_ui_interact_bg_solid                   { position: absolute; width: 85px; height:46px; background-color: #FFF; opacity: 1; margin: 8px; padding: 11px 0 0 2px; cursor:pointer; }
+        .crnrstn_interact_ui_wrapper                    { position:-webkit-sticky; position: sticky; bottom:5px; z-index: 60; width: 100px; left: 84%; height: 70px; padding: 0 0 20px 0; left:-3000px; width:0; height: 0; overflow: hidden;}
+        .crnrstn_interact_ui                            { }
+        .crnrstn_interact_ui_bg_border                  { position: absolute; width:100px; height: 70px; border: 2px solid #767676; background-color: #FFF; opacity: 0.3; }
+        .crnrstn_interact_ui_bg_solid                   { position: absolute; width: 85px; height:46px; background-color: #FFF; opacity: 1; margin: 8px; padding: 11px 0 0 2px; cursor:pointer; }
 
-        .crnrstn_ui_interact_content_wrapper         { position: absolute; display: none; z-index: 61; padding: 25px 0 0 25px; }
-        .crnrstn_ui_interact_content_wrapper input   { text-align: left; font-size: 20px; width: 208px; height: 34px; border:2px solid #676767; background-color: #FFF;}
-        .crnrstn_ui_interact_signin_frm_lbl             { text-align: left; font-size: 20px;}
-        .crnrstn_ui_interact_signin_frm_chkbx_eula      { float: left; width: 16px;}
-        .crnrstn_ui_interact_signin_frm_lbl_eula        { float: left; width: 80px; font-size: 18px; padding:7px 0 0 0; cursor: pointer;}
-        .crnrstn_ui_interact_signin_frm_lbl_eula a      { text-decoration: none; color: #0066CC; text-decoration: underline;}
-        .crnrstn_ui_interact_frm_submit                 { width: 115px; height: 37px; background-color: #FFF; border: 2px solid #5C98EB; cursor:pointer; }
-        .crnrstn_ui_interact_signin_frm_btn_submit      { text-align: left; font-size: 20px; color: #5C98EB; font-weight: bold; padding: 7px 0 0 17px; cursor:pointer;}
+        .crnrstn_interact_ui_content_wrapper         { position: absolute; display: none; z-index: 61; padding: 25px 0 0 25px; }
+        .crnrstn_interact_ui_content_wrapper input   { text-align: left; font-size: 20px; width: 208px; height: 34px; border:2px solid #676767; background-color: #FFF;}
+        .crnrstn_interact_ui_signin_frm_lbl             { text-align: left; font-size: 20px;}
+        .crnrstn_interact_ui_signin_frm_chkbx_eula      { float: left; width: 16px;}
+        .crnrstn_interact_ui_signin_frm_lbl_eula        { float: left; width: 80px; font-size: 18px; padding:7px 0 0 0; cursor: pointer;}
+        .crnrstn_interact_ui_signin_frm_lbl_eula a      { text-decoration: none; color: #0066CC; text-decoration: underline;}
+        .crnrstn_interact_ui_frm_submit                 { width: 115px; height: 37px; background-color: #FFF; border: 2px solid #5C98EB; cursor:pointer; }
+        .crnrstn_interact_ui_signin_frm_btn_submit      { text-align: left; font-size: 20px; color: #5C98EB; font-weight: bold; padding: 7px 0 0 17px; cursor:pointer;}
 
         HTML
-        <div id="crnrstn_ui_interact_wrapper" class="crnrstn_ui_interact_wrapper">
-            <div class="crnrstn_ui_interact">
-                <div id="crnrstn_ui_interact_bg_border" class="crnrstn_ui_interact_bg_border"></div>
-                <div id="crnrstn_ui_interact_bg_solid" class="crnrstn_ui_interact_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
+        <div id="crnrstn_interact_ui_wrapper" class="crnrstn_interact_ui_wrapper">
+            <div class="crnrstn_interact_ui">
+                <div id="crnrstn_interact_ui_bg_border" class="crnrstn_interact_ui_bg_border"></div>
+                <div id="crnrstn_interact_ui_bg_solid" class="crnrstn_interact_ui_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
                     ' . $this->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
                     <div class="crnrstn_cb"></div>
                 </div>
-                <div id="crnrstn_ui_interact_content_wrapper" class="crnrstn_ui_interact_content_wrapper">
-                    <div id="crnrstn_ui_interact_signin_frm_username" class="crnrstn_ui_interact_signin_frm_lbl">' . $this->get_lang_copy('FORM_LABEL_USERNAME') . '</div>
+                <div id="crnrstn_interact_ui_content_wrapper" class="crnrstn_interact_ui_content_wrapper">
+                    <div id="crnrstn_interact_ui_signin_frm_username" class="crnrstn_interact_ui_signin_frm_lbl">' . $this->get_lang_copy('FORM_LABEL_USERNAME') . '</div>
                     <div class="crnrstn_cb_5"></div>
                     <input type="text" name="username" value="">
                     <div class="crnrstn_cb_15"></div>
-                    <div id="crnrstn_ui_interact_signin_frm_password" class="crnrstn_ui_interact_signin_frm_lbl">' . $this->get_lang_copy('FORM_LABEL_PASSWORD_OPTIONAL') . '</div>
+                    <div id="crnrstn_interact_ui_signin_frm_password" class="crnrstn_interact_ui_signin_frm_lbl">' . $this->get_lang_copy('FORM_LABEL_PASSWORD_OPTIONAL') . '</div>
                     <div class="crnrstn_cb_5"></div>
                     <input type="password" name="password" value="">
                     <div class="crnrstn_cb_10"></div>
 
-                    <div class="crnrstn_ui_interact_signin_frm_chkbx_eula"><input type="checkbox" style="width: 20px;" name="crnrstn_signin_chkbx_eula_accept" value="eula_i_agree"></div>
-                    <div class="crnrstn_ui_interact_signin_frm_lbl_eula"><a href="#">EULA</a></div>
+                    <div class="crnrstn_interact_ui_signin_frm_chkbx_eula"><input type="checkbox" style="width: 20px;" name="crnrstn_signin_chkbx_eula_accept" value="eula_i_agree"></div>
+                    <div class="crnrstn_interact_ui_signin_frm_lbl_eula"><a href="#">EULA</a></div>
 
                     <div class="crnrstn_cb_10"></div>
 
-                    <div class="crnrstn_ui_interact_frm_submit" onclick="oCRNRSTN_JS.sign_in_form_submit_via_micro_expansion();">
-                        <div id="crnrstn_ui_interact_signin_frm_btn_submit" class="crnrstn_ui_interact_signin_frm_btn_submit">' . $this->get_lang_copy('FORM_BUTTON_TEXT_CONNECT') . '</div>
+                    <div class="crnrstn_interact_ui_frm_submit" onclick="oCRNRSTN_JS.sign_in_form_submit_via_micro_expansion();">
+                        <div id="crnrstn_interact_ui_signin_frm_btn_submit" class="crnrstn_interact_ui_signin_frm_btn_submit">' . $this->get_lang_copy('FORM_BUTTON_TEXT_CONNECT') . '</div>
                     </div>
                 </div>
             </div>
@@ -2784,9 +2657,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.canvas_border_calibrate = function(elem_wrap, elem_bg, elem_bg_solid, elem_bg_edge, border_width) {
 
-        tmp_left = this.return_data_tunnel_xml_data(this.crnrstn_ui_interact_mode + '_left');
-        tmp_width = this.return_data_tunnel_xml_data(this.crnrstn_ui_interact_mode + '_width');
-        tmp_height = this.return_data_tunnel_xml_data(this.crnrstn_ui_interact_mode + '_height');
+        tmp_left = this.return_data_tunnel_xml_data(this.crnrstn_interact_ui_mode + '_left');
+        tmp_width = this.return_data_tunnel_xml_data(this.crnrstn_interact_ui_mode + '_width');
+        tmp_height = this.return_data_tunnel_xml_data(this.crnrstn_interact_ui_mode + '_height');
 
         tmp_target_net_border_width = parseInt(border_width) * 2;
         tmp_target_delta_border_width = parseInt(border_width) / 2;
@@ -2821,37 +2694,37 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.crnrstn_ui_interact_canvas_mode_sync = function() {
+    CRNRSTN_JS.prototype.crnrstn_interact_ui_canvas_mode_sync = function() {
 
-        this.crnrstn_ui_interact_is_visible(this.return_data_tunnel_xml_data('crnrstn_ui_interact_is_visible'));
+        this.crnrstn_interact_ui_is_visible(this.return_data_tunnel_xml_data('crnrstn_interact_ui_is_visible'));
 
     };
 
-    CRNRSTN_JS.prototype.crnrstn_ui_interact_is_visible = function(is_visible) {
+    CRNRSTN_JS.prototype.crnrstn_interact_ui_is_visible = function(is_visible) {
 
         switch(is_visible){
             case 'true':
 
                 // show
-                this.crnrstn_ui_interact_is_visible_show();
+                this.crnrstn_interact_ui_is_visible_show();
 
             break;
             default:
 
                 //false
-                //this.crnrstn_ui_interact_is_visible_hide();
+                //this.crnrstn_interact_ui_is_visible_hide();
 
             break;
         }
 
     };
 
-    CRNRSTN_JS.prototype.crnrstn_ui_interact_is_visible_show = function() {
+    CRNRSTN_JS.prototype.crnrstn_interact_ui_is_visible_show = function() {
 
         //tmp_bounce_max_width = 0;
         //tmp_bounce_max_height = 0;
 
-        $( "#crnrstn_ui_interact_wrapper").animate({
+        $( "#crnrstn_interact_ui_wrapper").animate({
             opacity: 1.0
         }, {
             duration: 250,
@@ -2929,18 +2802,177 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+
+    CRNRSTN_JS.prototype.interact_ui_animation_sequence = function(module_key){
+
+        var self = this;
+
+        switch(module_key){
+            case 'crnrstn_interact_ui_mit_license_src':
+
+                tmp_content = this.return_data_tunnel_xml_data(module_key);
+
+                this.log_activity('[lnum 2815] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+            break;
+            case 'crnrstn_interact_ui_documentation_content_src':
+
+                tmp_content = this.return_data_tunnel_xml_data(module_key);
+
+                this.log_activity('[lnum 2822] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                $('#crnrstn_documentation_dyn_shell').animate({
+                    top: this.docs_page_css_top + 'px',
+                    left: this.docs_page_css_left + 'px'
+                }, {
+                    duration: 100,
+                    queue: false,
+                    complete: function () {
+
+                        if($('#crnrstn_documentation_dyn_shell').length){
+
+                            $('#crnrstn_documentation_dyn_shell').animate({
+                                opacity: 0
+                            }, {
+                                duration: 0,
+                                queue: false,
+                                complete: function () {
+
+                                    $("#crnrstn_documentation_dyn_shell").html(tmp_content);
+                                    $('#crnrstn_interact_ui_link_text_click').val('');
+
+                                    $('#crnrstn_documentation_dyn_shell').animate({
+                                        opacity: 1.0
+                                    }, {
+                                        duration: 500,
+                                        queue: false,
+                                        specialEasing: {
+                                            opacity: "swing"
+                                        },
+                                        complete: function () {
+
+                                        }
+
+                                    });
+
+                                }
+
+                            });
+
+                        }
+
+                    }
+
+                });
+
+                $('#crnrstn_ui_element_load_indicator_shell').animate({
+                    width: 3
+                }, {
+                    duration: 250,
+                    queue: false,
+                    specialEasing: {
+                        width: "swing"
+                    },
+                    complete: function () {
+
+                    }
+
+                });
+
+            break;
+            case 'crnrstn_interact_ui_documentation_side_nav_src':
+
+                tmp_content = this.return_data_tunnel_xml_data(module_key);
+                this.log_activity('[lnum 2886] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                this.initialize_interact_ui_documentation_mode(tmp_content);
+
+            break;
+            case 'crnrstn_interact_ui_system_footer_src':
+
+                tmp_content = this.return_data_tunnel_xml_data(module_key);
+                this.log_activity('[lnum 2894] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                this.initialize_interact_ui_system_footer(tmp_content);
+
+            break;
+            case 'crnrstn_interact_ui_search_src':
+
+                tmp_content = this.return_data_tunnel_xml_data(module_key);
+                this.log_activity('[lnum 2902] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+            break;
+            case 'crnrstn_interact_ui_messenger_src':
+
+                tmp_content = this.return_data_tunnel_xml_data(module_key);
+                this.log_activity('[lnum 2908] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+            break;
+            default:
+
+                this.log_activity('[lnum 2913] Cannot oCRNRSTN_JS.interact_ui_animation_sequence() on unknown XML node [' + module_key + '] which has been provided. ', this.CRNRSTN_DEBUG_VERBOSE);
+
+            break;
+
+        }
+
+    };
+
     CRNRSTN_JS.prototype.execute_ui_sync = function(ui_thread_id){
 
+        var self = this;
+
         switch(ui_thread_id){
-            case 'crnrstn_ui_interact':
+            case 'crnrstn_interact_ui':
+
+                //
+                // LOAD INTERACT UI MODULES
+                var tmp_module_keys = $('#crnrstn_interact_ui_module_programme').val();
+                var tmp_module_key_ARRAY = tmp_module_keys.split('|');
+                var module_cnt = tmp_module_key_ARRAY.length;
+
+                for(var i = 0; i < module_cnt; i++){
+
+                    /*
+                    crnrstn_interact_ui_documentation_content_src
+                    case 'crnrstn_interact_ui_documentation_side_nav_src':
+                    case 'crnrstn_interact_ui_system_footer_src':
+                    case 'crnrstn_interact_ui_search_src':
+                    case 'crnrstn_interact_ui_messenger_src':
+
+interact_ui_animation_sequence = function(module_key){
+
+            case 'crnrstn_interact_ui_documentation_content_src':
+
+                    */
+
+                    //
+                    // IF MODULE SHELL IS PRESENT IN DOM, REQUEST CONTENT FROM SERVER.
+                    //alert('Do we have crnrstn_interact_ui_documentation_content_src? [' + tmp_module_key_ARRAY[i] + ']');
+                    if($('#' + tmp_module_key_ARRAY[i]).length){
+
+                        tmp_hash = this.return_data_tunnel_xml_data(tmp_module_key_ARRAY[i] + '_HASH');
+
+                        if(tmp_hash.length > 0){
+
+                            $('#' + tmp_module_key_ARRAY[i] + '_HASH').val(tmp_hash);
+                            this.log_activity('[lnum 2959] UPDATE [' + tmp_module_key_ARRAY[i] + '_HASH' + '] to [' + tmp_hash + '].', this.CRNRSTN_DEBUG_VERBOSE);
+
+                            this.interact_ui_animation_sequence(tmp_module_key_ARRAY[i]);
+
+                        }
+
+                    }
+
+                }
 
                 //
                 // SYNC CANVAS THEME
-                this.crnrstn_ui_interact_canvas_theme_sync();
+                //this.crnrstn_interact_ui_canvas_theme_sync();
 
                 //
                 // SYNC UI MODE
-                this.crnrstn_ui_interact_canvas_mode_sync();
+                //this.crnrstn_interact_ui_canvas_mode_sync();
 
             break;
             case 'bassdrive_title':
@@ -3037,7 +3069,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 if(this.jony5_banner_mode == 'PLAY'){
 
-                    this.log_activity('[lnum 3000] FIRE! FIRE! FIRE! [' + ui_thread_id + ']. ', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 3072] FIRE! FIRE! FIRE! [' + ui_thread_id + ']. ', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                     this.rotate_lifestyle_banner_image();
 
@@ -3046,7 +3078,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 3009] UI sync instructions have not been configured for [' + ui_thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3081] UI sync instructions have not been configured for [' + ui_thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
 
@@ -3061,7 +3093,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 this.update_thread_count(action_id, 1, scheduler_invoked);
 
-                this.log_activity('[lnum 3024] UI sync controller set to fire [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3096] UI sync controller set to fire [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
                 //
                 // FIRE UI UPDATE THREAD
@@ -3074,7 +3106,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 this.ui_sync_controller_thread_delay_ARRAY[action_id] = delay_ttl;
 
-                this.log_activity('[lnum 3037] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_UI);
+                this.log_activity('[lnum 3109] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_UI);
 
             break;
             case 'stop':
@@ -3084,18 +3116,18 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'cancel':
 
-                this.log_activity('[lnum 3047] UI sync controller has cancelled [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3119] UI sync controller has cancelled [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'sleep':
 
-                this.log_activity('[lnum 3052] UI sync controller has put [' + action_id + '] to sleep.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3124] UI sync controller has put [' + action_id + '] to sleep.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'silence_is_golden':
 
                 //this.update_thread_count(action_id, 1, scheduler_invoked);
-                this.log_activity('[lnum 3058] UI sync controller has scheduled [' + action_id + '] to run silently in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3130] UI sync controller has scheduled [' + action_id + '] to run silently in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
 
@@ -3118,7 +3150,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             if(!(image_uri in self.jony5_lifestyle_banner_index_ARRAY)){
 
                 var tmp_str = self.extract_filename(image_uri);
-                self.log_activity('[lnum 3081] STORING STATIC BANNER DOM DATA [' + tmp_str + '].', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                self.log_activity('[lnum 3153] STORING STATIC BANNER DOM DATA [' + tmp_str + '].', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 self.jony5_lifestyle_banner_index_ARRAY[image_uri] = 1;
                 self.jony5_lifestyle_banner_images_ARRAY.push(image_uri);
@@ -3138,7 +3170,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var tmp_str = this.extract_filename(tmp_next_image);
         var tmp_zindex_alpha = $("#jony5_banner_lifestyle_alpha").css('zIndex');
-        this.log_activity('[lnum 3101] STATIC DOM LOAD [' + tmp_str + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#jony5_banner_lifestyle_alpha').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 3173] STATIC DOM LOAD [' + tmp_str + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#jony5_banner_lifestyle_alpha').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         //
         // SELECT AN IMAGE AND LOAD IT INTO THE LOWEST Z-INDEX DOM ELEMENT
@@ -3154,11 +3186,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         var tmp_zindex_beta = $("#jony5_banner_lifestyle_beta").css('zIndex');
         $("#jony5_banner_lifestyle_beta").css('opacity', 0);
 
-        this.log_activity('[lnum 3117] STATIC DOM LOAD [' + tmp_str + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#jony5_banner_lifestyle_beta').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 3189] STATIC DOM LOAD [' + tmp_str + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#jony5_banner_lifestyle_beta').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         this.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-        this.log_activity('[lnum 3121] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 3193] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
         this.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
         $('#banner_control_play_wrapper').html('<div class="banner_play_arrow"></div>');
@@ -3206,119 +3238,27 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         // START UI REFRESH TRANSACTION. HERE, ONLY ONE (1) AT ANY GIVEN TIME, PLEASE.
         if(this.authorize_transaction(request_serial, request_hash, 1)) {
 
-            //alert('WE GOOD!');
             this.ttl_tunnel_monitor_seconds = 0;
             this.update_transaction_count();
 
             //
             // UI :: UPDATE PRIMARY SEQUENCE CONTROLLER
-            this.execution_delay_ui_sync_controller('fire', 'crnrstn_ui_interact');
-            this.execution_delay_ui_sync_controller('fire', 'bassdrive_last_updated');
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_relay_access_by_bitrate', 3);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_the_situation', 6);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_title', 9);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_locale_colors', 10);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_social', 12);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_locale_city_state_prov', 14);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_connection_stats', 17);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_history', 20);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_reporting', 20);
-            this.execution_delay_ui_sync_controller('schedule', 'bassdrive_archives', 20);
+            this.execution_delay_ui_sync_controller('fire', 'crnrstn_interact_ui');
+            //this.execution_delay_ui_sync_controller('fire', 'bassdrive_last_updated');
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_relay_access_by_bitrate', 3);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_the_situation', 6);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_title', 9);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_locale_colors', 10);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_social', 12);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_locale_city_state_prov', 14);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_connection_stats', 17);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_history', 20);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_reporting', 20);
+            //this.execution_delay_ui_sync_controller('schedule', 'bassdrive_archives', 20);
 
             //this.execution_delay_ui_sync_controller('schedule', 'wethrbug_results');
             //this.execution_delay_ui_sync_controller('schedule', 'living_stream_podcast_selection');
             //this.execution_delay_ui_sync_controller('schedule', 'css_validator_featured_element');
-
-        }
-
-    };
-
-    CRNRSTN_JS.prototype.receive_data_tunnel_response = function(response_data) {
-
-        if(response_data.length > 0){
-
-            if($('#crnrstn_interact_ui_link_text_click').val() != ''){
-
-                $('#crnrstn_documentation_dyn_shell').animate({
-                    top: this.docs_page_css_top + 'px',
-                    left: this.docs_page_css_left + 'px'
-                }, {
-                    duration: 100,
-                    queue: false,
-                    complete: function () {
-
-                        if($('#crnrstn_documentation_dyn_shell').length){
-
-                            $('#crnrstn_documentation_dyn_shell').animate({
-                                opacity: 0
-                            }, {
-                                duration: 0,
-                                queue: false,
-                                complete: function () {
-
-                                    $("#crnrstn_documentation_dyn_shell").html(response_data);
-                                    $('#crnrstn_interact_ui_link_text_click').val('');
-
-                                    $('#crnrstn_documentation_dyn_shell').animate({
-                                        opacity: 1.0
-                                    }, {
-                                        duration: 500,
-                                        queue: false,
-                                        specialEasing: {
-                                            opacity: "swing"
-                                        },
-                                        complete: function () {
-
-                                        }
-
-                                    });
-
-                                }
-
-                            });
-
-                        }
-
-                    }
-
-                });
-
-                $('#crnrstn_ui_element_load_indicator_shell').animate({
-                    width: 3
-                }, {
-                    duration: 250,
-                    queue: false,
-                    specialEasing: {
-                        width: "swing"
-                    },
-                    complete: function () {
-
-                    }
-
-                });
-
-            }else{
-
-                //var NODE_crnrstn_client_response = response_data.getElementsByTagName('crnrstn_client_response');
-
-                if(response_data.length > 0){
-                //if(NODE_crnrstn_client_response.length > 0){
-
-                    //
-                    // CONSUME XML RESPONSE DATA
-                    //this.consume_data_tunnel_response(response_data, 'XML');
-
-                    //
-                    // SYNC CLIENT STATE TO THE FRESH XML
-                    //tmp_data_signature_request_serial = this.return_data_tunnel_xml_data('data_signature_request_serial');
-                    //tmp_data_signature_request_hash = this.return_data_tunnel_xml_data('data_signature_request_hash');
-
-                    //this.refresh_ui_state(tmp_data_signature_request_serial, tmp_data_signature_request_hash);
-
-                }
-
-            }
-
 
         }
 
@@ -3343,7 +3283,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 3327] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 3286] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -3354,6 +3294,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     CRNRSTN_JS.prototype.size_element = function(dom_elem_id) {
 
         switch(dom_elem_id){
+            case 'crnrstn_ui_system_overlay':
+
+            break;
             case 'crnrstn_ui_system_footer':
 
                 var self = this;
@@ -3416,7 +3359,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 3400] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 3362] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -3466,8 +3409,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             //alert('innerHTML=' + this.innerHTML);
             self.interact_ui_refresh_state_docs_bg = 'ENABLED';
             self.link_text_click(this.text);
-
-
 
             return false;
 
@@ -4991,7 +4932,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             var tmp_str = $('#' + dom_element_beta).html();
             tmp_str = this.extract_filename(tmp_str);
-            this.log_activity('[lnum 4975] ALPHA Z-SHIFTED ' + tmp_zindex_alpha + '->' + tmp_zindex_beta + '. [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_alpha).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 4935] ALPHA Z-SHIFTED ' + tmp_zindex_alpha + '->' + tmp_zindex_beta + '. [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_alpha).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             $('#' + dom_element_alpha).animate({
                 opacity: 1.0
@@ -5037,13 +4978,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-                                    self.log_activity('[lnum 5021] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 4981] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 5027] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 4987] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'OFF');
 
@@ -5051,13 +4992,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 2){
 
-                                    self.log_activity('[lnum 5035] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 4995] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('back_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 5041] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5001] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('back_btn_banner', 'OFF');
 
@@ -5074,7 +5015,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.jony5_lifestyle_banner_sequence_position++;
 
                                 var tmp_str = self.extract_filename(tmp_next_image);
-                                self.log_activity('[lnum 5058] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 5018] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 0){
 
@@ -5089,7 +5030,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.back_press_cnt = self.back_press_cnt * 1;
                                 var result = self.jony5_lifestyle_banner_sequence_control_ARRAY.length - self.jony5_lifestyle_banner_sequence_position - self.back_press_cnt;
 
-                                self.log_activity('[lnum 5073] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 5033] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
@@ -5103,7 +5044,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-                                self.log_activity('[lnum 5087] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 5047] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                                 self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                             }
@@ -5128,7 +5069,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             var tmp_str = $('#' + dom_element_beta).html();
             tmp_str = this.extract_filename(tmp_str);
-            this.log_activity('[lnum 5112] BETA Z-SHIFTED ' + tmp_zindex_beta + '->' + tmp_zindex_alpha + ' [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_beta).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 5072] BETA Z-SHIFTED ' + tmp_zindex_beta + '->' + tmp_zindex_alpha + ' [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_beta).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             $('#' + dom_element_beta).animate({
                 opacity: 1.0
@@ -5174,13 +5115,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-                                    self.log_activity('[lnum 5158] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5118] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 5164] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5124] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'OFF');
 
@@ -5188,13 +5129,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 2){
 
-                                    self.log_activity('[lnum 5172] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5132] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('back_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 5178] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5138] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('back_btn_banner', 'OFF');
 
@@ -5211,7 +5152,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.jony5_lifestyle_banner_sequence_position++;
 
                                 var tmp_str = self.extract_filename(tmp_next_image);
-                                self.log_activity('[lnum 5195] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 5155] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 0){
 
@@ -5225,7 +5166,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.back_press_cnt = self.back_press_cnt * 1;
                                 var result = self.jony5_lifestyle_banner_sequence_control_ARRAY.length - self.jony5_lifestyle_banner_sequence_position - self.back_press_cnt;
-                                self.log_activity('[lnum 5209] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 5169] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_VERBOSE);
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'ON');
@@ -5238,7 +5179,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-                                self.log_activity('[lnum 5222] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 5182] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                                 self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
@@ -5303,14 +5244,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var tmp_alpha_img = this.extract_filename($('#' + dom_element_alpha).html());
         var tmp_beta_img = this.extract_filename($('#' + dom_element_beta).html());
-        this.log_activity('[lnum 5287] TRANSITION AFTER BUTTON PRESS. ALPHA-Z[' + tmp_zindex_alpha + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 5247] TRANSITION AFTER BUTTON PRESS. ALPHA-Z[' + tmp_zindex_alpha + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         $('#' + dom_element_alpha).css('zIndex', tmp_zindex_beta);
         $('#' + dom_element_beta).css('zIndex', tmp_zindex_alpha);
 
         tmp_zindex_alpha_new = $('#' + dom_element_alpha).css( "zIndex" );
         tmp_zindex_beta_new = $('#' + dom_element_beta).css( "zIndex" );
-        this.log_activity('[lnum 5294] NEW ALPHA-Z[' + tmp_zindex_alpha_new + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta_new + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 5254] NEW ALPHA-Z[' + tmp_zindex_alpha_new + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta_new + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         if(tmp_zindex_alpha < tmp_zindex_beta){
 
@@ -5334,7 +5275,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         },
                         complete: function () {
 
-                            self.log_activity('[lnum 5318] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                            self.log_activity('[lnum 5278] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                             self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                         }
@@ -5367,7 +5308,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         },
                         complete: function () {
 
-                            self.log_activity('[lnum 5351] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                            self.log_activity('[lnum 5311] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                             self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                         }
@@ -5406,7 +5347,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                     $('#' + dom_element_alpha).html(image_html);
 
-                    self.log_activity('[lnum 5390] LOAD [' + tmp_fname + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#' + dom_element_alpha).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    self.log_activity('[lnum 5350] LOAD [' + tmp_fname + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#' + dom_element_alpha).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -5425,7 +5366,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 complete: function () {
 
                     $('#' + dom_element_beta).html(image_html);
-                    self.log_activity('[lnum 5409] LOAD [' + tmp_fname + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#' + dom_element_beta).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    self.log_activity('[lnum 5369] LOAD [' + tmp_fname + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#' + dom_element_beta).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -5462,13 +5403,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(this.jony5_banner_mode == 'PLAY'){
 
                     this.jony5_banner_mode = 'PAUSE';
-                    this.log_activity('[lnum 5446] STOP BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 5406] STOP BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                     this.execution_delay_ui_sync_controller('stop', 'lifestyle_banner_image_rotation');
 
                 }else{
 
                     this.jony5_banner_mode = 'PLAY';
-                    this.log_activity('[lnum 5452] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 5412] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                     this.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                 }
@@ -5478,13 +5419,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'forward':
 
-                this.log_activity('[lnum 5462] ADVANCE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 5422] ADVANCE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                 this.jony5_lifestyle_advance_button('forward');
 
             break;
             case 'back':
 
-                this.log_activity('[lnum 5468] REVERSE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 5428] REVERSE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                 this.jony5_lifestyle_advance_button('back');
 
             break;
@@ -5519,7 +5460,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
         tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-        this.log_activity('[lnum 5503] PRE-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 5463] PRE-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
         if(tmp_zindex_alpha < tmp_zindex_beta){
 
@@ -5547,7 +5488,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
                     tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-                    self.log_activity('[lnum 5531] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                    self.log_activity('[lnum 5491] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                     //
                     // OPACITY TO 1.0 THE TOP ELEM
@@ -5618,7 +5559,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
                     tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-                    self.log_activity('[lnum 5602] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                    self.log_activity('[lnum 5562] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                     //
                     // OPACITY TO 1.0 THE TOP ELEM
@@ -5670,7 +5611,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
         tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-        this.log_activity('[lnum 5654] POST-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 5614] POST-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
     };
 
@@ -5712,7 +5653,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 // }
                 //
                 // var tmp_str = this.extract_filename(this.jony5_lifestyle_banner_sequence_control_ARRAY[this.jony5_lifestyle_banner_sequence_position]);
-                // this.log_activity('[lnum 5696] BACK CLICKED. NEW (-3) SEQ POS=[' + this.jony5_lifestyle_banner_sequence_position + '] IMAGE AT SEQ POS[' + tmp_str + '] SEQ-IMAGE-CNT[' + this.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                // this.log_activity('[lnum 5656] BACK CLICKED. NEW (-3) SEQ POS=[' + this.jony5_lifestyle_banner_sequence_position + '] IMAGE AT SEQ POS[' + tmp_str + '] SEQ-IMAGE-CNT[' + this.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                 //
                 // this.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', this.jony5_lifestyle_banner_sequence_control_ARRAY[this.jony5_lifestyle_banner_sequence_position]);
                 //
@@ -5743,13 +5684,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if((result != 0) && (result < this.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-            this.log_activity('[lnum 5727] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 5687] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.init_ui_input_control_state('forward_btn_banner', 'ON');
 
         }else{
 
-            this.log_activity('[lnum 5733] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 5693] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.init_ui_input_control_state('forward_btn_banner', 'OFF');
 
@@ -5757,13 +5698,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(this.jony5_lifestyle_banner_sequence_position > 2){
 
-            this.log_activity('[lnum 5741] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 5701] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.init_ui_input_control_state('back_btn_banner', 'ON');
 
         }else{
 
-            this.log_activity('[lnum 5747] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 5707] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.init_ui_input_control_state('back_btn_banner', 'OFF');
 
@@ -5790,7 +5731,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         var image_uri_alpha = this.jony5_lifestyle_banner_images_ARRAY[index_img_seq_int_alpha];
         var image_uri_beta = this.jony5_lifestyle_banner_images_ARRAY[index_img_seq_int_beta];
 
-        this.log_activity('[lnum 5774] BANNER STATE REVERSION DELTA[' + delta + '] index/img alpha=[' + index_img_seq_int_alpha + '/' + image_uri_alpha + '] index/img beta=[' + index_img_seq_int_beta + '/' + image_uri_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 5734] BANNER STATE REVERSION DELTA[' + delta + '] index/img alpha=[' + index_img_seq_int_alpha + '/' + image_uri_alpha + '] index/img beta=[' + index_img_seq_int_beta + '/' + image_uri_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
         var image_html_alpha = '<img src="' + image_uri_alpha + '" width="1180" height="250" alt="Jonathan \'J5\' Harris">';
         var image_html_beta = '<img src="' + image_uri_beta + '" width="1180" height="250" alt="Jonathan \'J5\' Harris">';
@@ -5880,22 +5821,22 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.sign_in_form_submit_via_micro_expansion = function(){
 
-        // crnrstn_ui_interact_wrapper
+        // crnrstn_interact_ui_wrapper
         // [current=bottom:5px; width: 100px; left: 84%; height: 80px;]
         // [target=1085wx756h]
 
-        // crnrstn_ui_interact_bg_border
+        // crnrstn_interact_ui_bg_border
         // [current=width:260px; height: 305px;]
         // [target=1085wx756h]
 
-        // crnrstn_ui_interact_bg_solid
+        // crnrstn_interact_ui_bg_solid
         // [current=width: 85px; height:46px; margin: 8px; padding: 11px 0 0 2px; cursor: pointer;]
         // [target=260wx305h]
 
-        $( "#crnrstn_ui_interact_content_wrapper").toggle();
-        $( "#crnrstn_ui_interact_bg_solid").html('');
+        $( "#crnrstn_interact_ui_content_wrapper").toggle();
+        $( "#crnrstn_interact_ui_bg_solid").html('');
 
-        $( "#crnrstn_ui_interact_wrapper").animate({
+        $( "#crnrstn_interact_ui_wrapper").animate({
             height: 756,
             width: 1085,
             bottom: 20,
@@ -5914,7 +5855,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             }
         });
 
-        $( "#crnrstn_ui_interact_bg_border").animate({
+        $( "#crnrstn_interact_ui_bg_border").animate({
             height: 756,
             width: 1085
         }, {
@@ -5933,7 +5874,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         });
 
-        $( "#crnrstn_ui_interact_bg_solid").animate({
+        $( "#crnrstn_interact_ui_bg_solid").animate({
             height: 736,
             width: 1060
         }, {
@@ -5947,7 +5888,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             },
             complete: function () {
 
-                $( "#crnrstn_ui_interact_wrapper").animate({
+                $( "#crnrstn_interact_ui_wrapper").animate({
                     height: 756,
                     width: 1085,
                     bottom: 20,
@@ -5966,7 +5907,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     }
                 });
 
-                $( "#crnrstn_ui_interact_bg_border").animate({
+                $( "#crnrstn_interact_ui_bg_border").animate({
                     height: 756,
                     width: 1085
                 }, {
@@ -5990,21 +5931,21 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.sign_in_transition_via_micro_expansion = function(){
 
-        this.log_activity('[lnum 5974] [MOUSE CLICK] CRNRSTN :: UI INTERACT MODULE BEGIN SIGN IN FORM EXPANSION', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 5934] [MOUSE CLICK] CRNRSTN :: INTERACT UI MODULE BEGIN SIGN IN FORM EXPANSION', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
-        // crnrstn_ui_interact_wrapper
+        // crnrstn_interact_ui_wrapper
         // [current=bottom:5px; width: 100px; left: 84%; height: 80px;]
         // [target=260wx305h]
 
-        // crnrstn_ui_interact_bg_border
+        // crnrstn_interact_ui_bg_border
         // [current=width:100px; height: 70px;]
         // [target=260wx305h]
 
-        // crnrstn_ui_interact_bg_solid
+        // crnrstn_interact_ui_bg_solid
         // [current=width: 85px; height:46px; margin: 8px; padding: 11px 0 0 2px; cursor: pointer;]
         // [target=260wx305h]
 
-        $( "#crnrstn_ui_interact_wrapper").animate({
+        $( "#crnrstn_interact_ui_wrapper").animate({
             height: 315,
             width: 270,
             bottom: 20,
@@ -6023,7 +5964,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             }
         });
 
-        $( "#crnrstn_ui_interact_bg_border").animate({
+        $( "#crnrstn_interact_ui_bg_border").animate({
             height: 315,
             width: 270
         }, {
@@ -6040,7 +5981,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             }
         });
 
-        $( "#crnrstn_ui_interact_bg_solid").animate({
+        $( "#crnrstn_interact_ui_bg_solid").animate({
             height: 291,
             width: 255
         }, {
@@ -6073,7 +6014,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             },
             complete: function () {
 
-                $( "#crnrstn_ui_interact_wrapper").animate({
+                $( "#crnrstn_interact_ui_wrapper").animate({
                     height: 305,
                     width: 260,
                     bottom: 15,
@@ -6092,7 +6033,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     }
                 });
 
-                $( "#crnrstn_ui_interact_bg_border").animate({
+                $( "#crnrstn_interact_ui_bg_border").animate({
                     height: 305,
                     width: 260
                 }, {
@@ -6109,7 +6050,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     }
                 });
 
-                $( "#crnrstn_ui_interact_bg_solid").animate({
+                $( "#crnrstn_interact_ui_bg_solid").animate({
                     height: 281,
                     width: 245
                 }, {
@@ -6148,9 +6089,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 //
                 // INJECT SIGN IN FORM ELEMENTS
-                $( "#crnrstn_ui_interact_content_wrapper").toggle();
+                $( "#crnrstn_interact_ui_content_wrapper").toggle();
 
-                $('#crnrstn_ui_interact_bg_solid').css('cursor', 'auto');
+                $('#crnrstn_interact_ui_bg_solid').css('cursor', 'auto');
 
             }
 
@@ -6168,10 +6109,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         SET ALL HIDDEN Z-INDEX TO 66.
 
                                 dom_handle_root             dom_handle_variant_element     dom_handle_postfix
-        Z-INDEX = auto = <div id="crnrstn_ui_interact_primary_nav_img_shell_ menu _inactive">
-        Z-INDEX = auto = <div id="crnrstn_ui_interact_primary_nav_img_shell_ menu _hvr">
-        Z-INDEX = auto = <div id="crnrstn_ui_interact_primary_nav_img_shell_ menu _click">
-        Z-INDEX = 68 = <div id="crnrstn_ui_interact_primary_nav_img_shell_ menu ">
+        Z-INDEX = auto = <div id="crnrstn_interact_ui_primary_nav_img_shell_ menu _inactive">
+        Z-INDEX = auto = <div id="crnrstn_interact_ui_primary_nav_img_shell_ menu _hvr">
+        Z-INDEX = auto = <div id="crnrstn_interact_ui_primary_nav_img_shell_ menu _click">
+        Z-INDEX = 68 = <div id="crnrstn_interact_ui_primary_nav_img_shell_ menu ">
 
         */
 
@@ -6186,7 +6127,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //
         // CLEAR HIGHEST Z-INDEX FOR TRANSITION
         tmp_state_cnt = system_nav_state_ARRAY.length;
-        this.log_activity('[lnum 6170] zIndex shift for all ' + dom_handle_root + dom_handle_variant_element + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 6130] zIndex shift for all ' + dom_handle_root + dom_handle_variant_element + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         for(let i = 0; i < tmp_state_cnt; i++){
 
@@ -6201,7 +6142,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     //
                     // SET TO 67 Z INDEX FOR STAGING IN 68
                     $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex', tmp_tgt_z);
-                    this.log_activity('[lnum 6185] zIndex shift for HIGHEST AT 68 [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 6145] zIndex shift for HIGHEST AT 68 [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 }else{
 
@@ -6218,14 +6159,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 //if($tmp_str != ){
                 tmp_tgt_z = parseInt(this.baseline_z_index) + 6;
                 $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex', tmp_tgt_z);
-                this.log_activity('[lnum 6202] zIndex shift TO 66 FOR OTHERS [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 6162] zIndex shift TO 66 FOR OTHERS [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 //}
 
             }
 
             //current_z_index_state_ARRAY[dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]] =
-            this.log_activity('[lnum 6209] current_z_index_state_ARRAY[' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '] = ' + $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex') + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 6169] current_z_index_state_ARRAY[' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '] = ' + $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex') + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         }
 
@@ -6258,7 +6199,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 tmp_tgt_z = parseInt(this.baseline_z_index) + 8;
                 $('#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix).css('zIndex', tmp_tgt_z);
 
-                self.log_activity('[lnum 6242] SHOW ' + '#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix, oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                self.log_activity('[lnum 6202] SHOW ' + '#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix, oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 $('#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix).animate({
                     opacity: 1.0
@@ -6275,7 +6216,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         self.dom_element_mouse_state_lock_ARRAY[dom_handle_root + dom_handle_variant_element] = 'OFF';
 
-                        self.log_activity('[lnum 6259] REMOVE dom_element_mouse_state_lock_ARRAY LOCK ON [' + '#' + dom_handle_root + dom_handle_variant_element + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        self.log_activity('[lnum 6219] REMOVE dom_element_mouse_state_lock_ARRAY LOCK ON [' + '#' + dom_handle_root + dom_handle_variant_element + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                     }
 
@@ -6287,31 +6228,108 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.crnrstn_ui_interact_ux = function(ux_action, elem){
+    CRNRSTN_JS.prototype.launch_overlay_mit = function(){
+
+        this.log_activity('[lnum 6233] Launch MIT license programme.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+        this.toggle_full_overlay();
+
+        this.link_text_click('mit_license');
+
+    }
+
+    CRNRSTN_JS.prototype.toggle_full_overlay = function() {
+
+        //
+        // ON OR OFF?
+        if($('#crnrstn_interact_ui_full_lightbox_overlay').css('opacity') > 0){
+
+            /*
+            crnrstn_interact_ui_full_lightbox_overlay
+            crnrstn_interact_ui_full_lightbox
+
+            */
+
+        }else{
+
+            $('#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix).animate({
+                opacity: 1.0
+            }, {
+                duration: 250,
+                queue: false,
+                specialEasing: {
+                    opacity: "swing"
+                },
+                step: function( now, fx ) {
+
+                },
+                complete: function () {
+
+                    self.dom_element_mouse_state_lock_ARRAY[dom_handle_root + dom_handle_variant_element] = 'OFF';
+
+                    self.log_activity('[lnum 6270] REMOVE dom_element_mouse_state_lock_ARRAY LOCK ON [' + '#' + dom_handle_root + dom_handle_variant_element + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+                }
+
+            });v
+
+        }
+
+    };
+
+    CRNRSTN_JS.prototype.crnrstn_interact_ui_ux = function(ux_action, elem){
 
         /*
 close_docs_fullscreen
-        <div id="crnrstn_ui_interact_primary_nav_menu" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
+        <div id="crnrstn_interact_ui_primary_nav_menu" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
 
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_inactive.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_hvr.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_click.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_inactive.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_hvr" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_hvr.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_click" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_click.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu" class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
 
-            <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case" class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
 
         </div>
 
-        this.ui_interact_input_id_ARRAY = ['crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case', 'crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case', 'crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case', 'crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case'];
+        this.ui_interact_input_id_ARRAY = ['crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case'];
         this.ui_interact_input_type_ARRAY = ['menu', 'close_x', 'fs_expand', 'minimize'];
 
 
 
-        <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_ui_interact_ux(\'onclick\', this);">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+        <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
 
         */
 
         switch(elem.id){
+            case 'crnrstn_ui_system_footer_mit_lnk':
+            case 'crnrstn_txt_lnk_mit':
+            case 'crnrstn_ui_system_footer_mit':
+
+                //
+                // MIT OVERLAY
+                switch(ux_action){
+                    case 'onmouseover':
+
+                    break;
+                    case 'onmouseout':
+
+                    break;
+                    case 'onmousedown':
+
+                    break;
+                    case 'onmouseup':
+
+                    break;
+                    case 'onclick':
+
+                        this.launch_overlay_mit();
+
+                    break;
+
+                }
+
+            break;
             case 'crnrstn_interact_ui_full_doc_close':
 
                 //onclick
@@ -6320,7 +6338,7 @@ close_docs_fullscreen
                 switch(ux_action){
                     case 'onmouseover':
 
-                        //this.log_activity('[lnum 6304] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        //this.log_activity('[lnum 6341] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         // ACTIVE MOUSEOVER (HOVER STATE)
                         $('#' + elem.id).css('color', '#F90000');
@@ -6328,7 +6346,7 @@ close_docs_fullscreen
                     break;
                     case 'onmouseout':
 
-                        //this.log_activity('[lnum 6312] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        //this.log_activity('[lnum 6349] ' + ux_action + ' FIRED ON [' + '#' + elem.id + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         // ACTIVE MOUSEOUT (BACK TO NORMAL)
                         $('#' + elem.id).css('color', '#F6F6F6');
@@ -6349,22 +6367,22 @@ close_docs_fullscreen
                 }
 
             break;
-            case 'crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case':
+            case 'crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case':
 
                 //dom_handle_variant_element = 'menu';
 
             break;
-            case 'crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case':
+            case 'crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case':
 
                 //dom_handle_variant_element = 'close_x';
 
             break;
-            case 'crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case':
+            case 'crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case':
 
                 //dom_handle_variant_element = 'fs_expand';
 
             break;
-            case 'crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case':
+            case 'crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case':
 
                 //dom_handle_variant_element = 'minimize';
 
@@ -6495,7 +6513,7 @@ close_docs_fullscreen
             break;
             default:
 
-                this.log_activity('[lnum 6479] [ACTION=' + ux_action + '] CRNRSTN :: UI INTERACT UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 6516] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -6517,7 +6535,7 @@ close_docs_fullscreen
 
         }
 
-        return true;
+        return false;
 
     };
 
@@ -7070,7 +7088,7 @@ close_docs_fullscreen
 
     };
 
-    CRNRSTN_JS.prototype.____crnrstn_ui_interact_ux = function(ux_action, elem){
+    CRNRSTN_JS.prototype.____crnrstn_interact_ui_ux = function(ux_action, elem){
 
         var dom_handle_postfix = '';
         var dom_handle_variant_element = '';
@@ -7078,29 +7096,29 @@ close_docs_fullscreen
         var element_id = elem.id;
 
         switch(element_id){
-            case 'crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case':
+            case 'crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case':
 
                 dom_handle_variant_element = 'menu';
 
             break;
-            case 'crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case':
+            case 'crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case':
 
                 dom_handle_variant_element = 'close_x';
 
             break;
-            case 'crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case':
+            case 'crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case':
 
                 dom_handle_variant_element = 'fs_expand';
 
             break;
-            case 'crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case':
+            case 'crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case':
 
                 dom_handle_variant_element = 'minimize';
 
             break;
             default:
 
-                this.log_activity('[lnum 7050] [ACTION=' + ux_action + '] CRNRSTN :: UI INTERACT UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 7121] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -7108,18 +7126,18 @@ close_docs_fullscreen
 
         //
         // TODO :: GET THIS INFO THROUGH THE SSDTLA XHR XML RESPONSE
-        var element_id_split_ARRAY = element_id.split("crnrstn_ui_interact_primary_nav_img_shell_");
+        var element_id_split_ARRAY = element_id.split("crnrstn_interact_ui_primary_nav_img_shell_");
         //dom_handle_variant_element = element_id_split_ARRAY[1];
 
-        var dom_handle_root = 'crnrstn_ui_interact_primary_nav_img_shell_';
+        var dom_handle_root = 'crnrstn_interact_ui_primary_nav_img_shell_';
 
         var dom_handle_element = dom_handle_root + dom_handle_variant_element;
 
-        this.log_activity('[lnum 7065] element_id_split_ARRAY[0]=' + element_id_split_ARRAY[0] + '] element_id_split_ARRAY[1]=' + element_id_split_ARRAY[1] + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 7136] element_id_split_ARRAY[0]=' + element_id_split_ARRAY[0] + '] element_id_split_ARRAY[1]=' + element_id_split_ARRAY[1] + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         if(this.dom_element_mouse_state_lock_ARRAY[dom_handle_element] === 'undefined'){
 
-            alert('[lnum 7069] dom_element_mouse_state_lock_ARRAY is undefined at ' + dom_handle_element + ' for ' + element_id + '.');
+            alert('[lnum 7140] dom_element_mouse_state_lock_ARRAY is undefined at ' + dom_handle_element + ' for ' + element_id + '.');
 
         }else{
 
@@ -7130,22 +7148,22 @@ close_docs_fullscreen
 
                         this.dom_element_mouse_state_tracker_ARRAY[dom_handle_variant_element] = '_hvr';
                         this.dom_element_mouse_state_lock_ARRAY[dom_handle_element] = 'ON';
-                        this.log_activity('[lnum 7080] [ACTION=onmouseover on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7151] [ACTION=onmouseover on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
-                        this.log_activity('[lnum 7082] LOCK ON FOR [' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7153] LOCK ON FOR [' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         dom_handle_postfix = '_hvr';
 
                         /*
-                        <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_inactive.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-                        <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_hvr.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-                        <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_click.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-                        <div id="crnrstn_ui_interact_primary_nav_img_shell_menu" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                        <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_inactive.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                        <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_hvr" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_hvr.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                        <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_click" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_click.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                        <div id="crnrstn_interact_ui_primary_nav_img_shell_menu" class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
 
                         */
 
-                        //crnrstn_ui_interact_primary_nav_img_shell_menu_hvr
-                        //var ui_interact_primary_nav_dom_ARRAY = ['crnrstn_ui_interact_primary_nav_img_shell_menu', 'crnrstn_ui_interact_primary_nav_img_shell_close_x', 'crnrstn_ui_interact_primary_nav_img_shell_fs_expand'];
+                        //crnrstn_interact_ui_primary_nav_img_shell_menu_hvr
+                        //var ui_interact_primary_nav_dom_ARRAY = ['crnrstn_interact_ui_primary_nav_img_shell_menu', 'crnrstn_interact_ui_primary_nav_img_shell_close_x', 'crnrstn_interact_ui_primary_nav_img_shell_fs_expand'];
 
                         //tmp_nav_cnt = ui_interact_primary_nav_dom_ARRAY.length;
 
@@ -7155,7 +7173,7 @@ close_docs_fullscreen
                         //
                         //     if(dom_handle_element != ui_interact_primary_nav_dom_ARRAY[i]){
                         //         var tmp_elem = ui_interact_primary_nav_dom_ARRAY[i];
-                        //         element_id_split_ARRAY = tmp_elem.split("crnrstn_ui_interact_primary_nav_img_shell_");
+                        //         element_id_split_ARRAY = tmp_elem.split("crnrstn_interact_ui_primary_nav_img_shell_");
                         //         tmp_element_dom_handle = element_id_split_ARRAY[1];
                         //
                         //         if(this.dom_element_mouse_state_tracker_ARRAY[tmp_element_dom_handle] === '_hvr'){
@@ -7177,7 +7195,7 @@ close_docs_fullscreen
                         this.dom_element_mouse_state_tracker_ARRAY[dom_handle_variant_element] = '';
                         this.dom_element_mouse_state_ARRAY[dom_handle_element] = 'ON';
 
-                        this.log_activity('[lnum 7127] [ACTION=onmouseout on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7198] [ACTION=onmouseout on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         this.primary_ui_interact_nav_state_shift(dom_handle_root, dom_handle_variant_element, dom_handle_postfix);
 
@@ -7215,7 +7233,7 @@ close_docs_fullscreen
                 //
                 // FIRE TRANSITION TO TARGET IMAGE WITHIN ACTIVE ELEMENT
                 var target_dom_handle = dom_handle_root + dom_handle_variant_element + dom_handle_postfix;
-                this.log_activity('[lnum 7165] [ACTION=' + ux_action + '] [target_dom_handle=' + target_dom_handle + '] CRNRSTN :: UI INTERACT (UX) ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 7236] [ACTION=' + ux_action + '] [target_dom_handle=' + target_dom_handle + '] CRNRSTN :: INTERACT UI (UX) ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             }
 

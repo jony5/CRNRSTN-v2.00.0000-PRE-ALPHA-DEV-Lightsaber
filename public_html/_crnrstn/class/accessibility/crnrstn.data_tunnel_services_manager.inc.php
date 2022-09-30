@@ -59,6 +59,7 @@ class crnrstn_data_tunnel_services_manager{
     protected $pssdtl_packet_hash;
     protected $crnrstn_pssdtl_http_tunneled_data_ARRAY = array();
     protected $pssdtl_packet_profile_ARRAY = array();
+    protected $received_data_ARRAY = array();
 
     public function __construct($oCRNRSTN){
 
@@ -67,6 +68,18 @@ class crnrstn_data_tunnel_services_manager{
         //
         // INSTANTIATE LOGGER
         $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
+
+    }
+
+    public function return_received_data($data_key){
+
+        if(isset($this->received_data_ARRAY[$data_key])){
+
+            return $this->received_data_ARRAY[$data_key];
+
+        }
+
+        return NULL;
 
     }
 
@@ -125,28 +138,88 @@ class crnrstn_data_tunnel_services_manager{
         switch($var_parse_channel){
             case 'G':
 
-                $tmp_crnrstn_pssdtl_packet = $this->oCRNRSTN->data_decrypt($_GET['crnrstn_pssdtl_packet']);
+                $this->received_data_ARRAY['crnrstn_pssdtl_packet'] = $this->oCRNRSTN->data_decrypt($this->oCRNRSTN->return_form_submitted_value('crnrstn_pssdtl_packet'));
 
             break;
             default:
 
-                $tmp_crnrstn_pssdtl_packet = $this->oCRNRSTN->data_decrypt($_POST['crnrstn_pssdtl_packet']);
+                //
+                // POST
+                $this->received_data_ARRAY['crnrstn_pssdtl_packet'] = $this->oCRNRSTN->data_decrypt($this->oCRNRSTN->return_form_submitted_value('crnrstn_pssdtl_packet'));
 
             break;
 
         }
 
         //
+        // RETRIEVE ALL OTHER SSDTLA DATUM FROM REQUEST
+        $this->received_data_ARRAY['crnrstn_request_serialization_key'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_request_serialization_key');
+        $this->received_data_ARRAY['crnrstn_request_serialization_hash'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_request_serialization_hash');
+        $this->received_data_ARRAY['crnrstn_interact_ui_module_programme'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_module_programme');
+        $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_link_text_click');
+        $this->received_data_ARRAY['crnrstn_interact_ui_loadbar_progress'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_loadbar_progress');
+        $this->received_data_ARRAY['crnrstn_interact_ui_active_nav_links'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_active_nav_links');
+        $this->received_data_ARRAY['crnrstn_ssdtla_form_serial'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_ssdtla_form_serial');
+        $this->received_data_ARRAY['crnrstn_ssdtla_timestamp'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_ssdtla_timestamp');
+        $this->received_data_ARRAY['crnrstn_ssdtl_packet_ttl'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_ssdtl_packet_ttl');
+        $this->received_data_ARRAY['crnrstn_client_user_agent'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_client_user_agent');
+        $this->received_data_ARRAY['crnrstn_soap_service_server_ip'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_soap_service_server_ip');
+        $this->received_data_ARRAY['crnrstn_soap_service_client_ip'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_soap_service_client_ip');
+        $this->received_data_ARRAY['crnrstn_soap_service_stime'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_soap_service_stime');
+        $this->received_data_ARRAY['crnrstn_soap_service_rtime'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_soap_service_rtime');
+        $this->received_data_ARRAY['crnrstn_soap_service_framework_version'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_soap_service_framework_version');
+        $this->received_data_ARRAY['crnrstn_soap_service_encoding'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_soap_service_encoding');
+        $this->received_data_ARRAY['crnrstn_session_client_auth_key'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_session_client_auth_key');
+        $this->received_data_ARRAY['crnrstn_session_client_id'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_session_client_id');
+        $this->received_data_ARRAY['crnrstn_php_sessionid'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_php_sessionid');
+
+
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN->return_ssdtl_packet_ttl(), 'crnrstn_soap_srvc_ttl');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_user_agent', true, $_SERVER['HTTP_USER_AGENT'], 'crnrstn_soap_srvc_user_agent');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_server_ip', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_srvc_server_ip');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_service_client_ip', true, $this->oCRNRSTN->return_client_ip(), 'crnrstn_soap_service_client_ip');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_stime', true, $this->oCRNRSTN->starttime, 'crnrstn_soap_srvc_stime');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_rtime', true, $this->oCRNRSTN->wall_time(), 'crnrstn_soap_srvc_rtime');
+//        //$this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_protocol_version', true, $this->oCRNRSTN->proper_version('SOAP'), 'crnrstn_soap_srvc_protocol_version');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_php_sessionid', true, session_id());
+//        //$this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_encoding', true, $tmp_oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_srvc_protocol_version');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session_client_id', true, $tmp_client_id, 'crnrstn_session_client_id');
+//        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_session_client_auth_key', true, $tmp_client_auth_key, 'crnrstn_session_client_auth_key');
+//
+        //
+        // RETRIEVE MODULE HASH DATA
+        $tmp_module_ARRAY = $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('array');
+
+        foreach($tmp_module_ARRAY as $index => $module_nom){
+
+            $tmp_val = $this->oCRNRSTN->return_form_submitted_value($module_nom .  '_HASH');
+            if(strlen($tmp_val) > 0){
+
+                $this->received_data_ARRAY[$module_nom .  '_HASH'] = $tmp_val;
+                //error_log(__LINE__ . ' dts mgr ' . __METHOD__ . ' ' . $module_nom . '_HASH=[' . print_r($tmp_val,true) . '].');
+
+            }
+
+        }
+
+        //
         // PACKET HASH FOR VERIFICATION OF PACKET INTEGRITY. SAME VALUE SHOULD BE INSIDE THE ENCRYPTED PACKET.
-        $this->pssdtl_packet_hash = $this->oCRNRSTN->hash($tmp_crnrstn_pssdtl_packet);
+        $this->pssdtl_packet_hash = $this->oCRNRSTN->hash($this->received_data_ARRAY['crnrstn_pssdtl_packet']);
 
         //
         // EXTRACT DATA FROM HTTP
-        $tmp_crnrstn_pssdtl_packet_ojson = json_decode($tmp_crnrstn_pssdtl_packet, true);
+        $tmp_crnrstn_pssdtl_packet_ojson = json_decode($this->received_data_ARRAY['crnrstn_pssdtl_packet']);
 
-        if(isset($tmp_crnrstn_pssdtl_packet_ojson['crnrstn_data_packet'][0]['crnrstn_data_packet_ddo_elements'])){
+//        error_log(__LINE__ . ' dts mgr ' . __METHOD__ . ' $tmp_crnrstn_pssdtl_packet_ojson=[' . print_r($tmp_crnrstn_pssdtl_packet_ojson,true) . ']. die();');
+//        error_log(__LINE__ . ' dts mgr ' . __METHOD__ . ' received_data_ARRAY=[' . print_r($this->received_data_ARRAY,true) . ']. die();');
+//        error_log(__LINE__ . ' dts mgr ' . __METHOD__ . ' received_data_ARRAY=[' . print_r($this->received_data_ARRAY['crnrstn_interact_ui_module_programme'],true) . ']. die();');
+//
+//        die();
+        if(isset($this->received_data_ARRAY['crnrstn_pssdtl_packet'][0]['crnrstn_data_packet_ddo_elements'])){
 
-            foreach($tmp_crnrstn_pssdtl_packet_ojson['crnrstn_data_packet'][0]['crnrstn_data_packet_ddo_elements'] as $index => $node){
+            foreach($this->received_data_ARRAY['crnrstn_pssdtl_packet'][0]['crnrstn_data_packet_ddo_elements'] as $index => $node){
                 /*
                 Array
                 (
@@ -162,7 +235,7 @@ class crnrstn_data_tunnel_services_manager{
                 */
 
                 //$this->oCRNRSTN->print_r($node, 'CRNRSTN :: DECOUPLED DATA OBJECT ELEMENT :: CLIENT FORM SUBMISSION.', NULL, __LINE__, __METHOD__, __FILE__);
-                //error_log(__LINE__ . ' http [' . __METHOD__ . ']. $node=['. print_r($node, true) .  '].');
+                error_log(__LINE__ . ' dts mgr [' . __METHOD__ . ']. $node=['. print_r($node, true) .  '].');
 
                 if(!$this->receive_packet_data($node)){
 
@@ -208,6 +281,66 @@ class crnrstn_data_tunnel_services_manager{
 
     }
 
+    public function retrieve_interact_ui_module_hash($module_nom){
+
+        $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
+
+        switch($module_nom) {
+            case 'crnrstn_interact_ui_documentation_content_src':
+
+                $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
+                $tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();
+
+            break;
+            case 'crnrstn_interact_ui_mit_license':
+
+                //
+                // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
+                $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
+                $tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_mit_license();
+
+            break;
+            case 'crnrstn_interact_ui_documentation_side_nav_src':
+
+                //
+                // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
+                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation();
+                $tmp_module_data = $module_nom;
+
+            break;
+            case 'crnrstn_interact_ui_system_footer_src':
+
+                //
+                // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
+                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer();
+                $tmp_module_data = $module_nom;
+
+            break;
+            case 'crnrstn_interact_ui_search_src':
+
+                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_search();
+                $tmp_module_data = $module_nom;
+
+            break;
+            case 'crnrstn_interact_ui_messenger_src':
+
+                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_messenger();
+                $tmp_module_data = $module_nom;
+
+            break;
+            default:
+
+                $tmp_module_data = '';
+                $this->oCRNRSTN->error_log('Unknown INTERACT UI module [' . $module_nom . '] provided; unable to retrieve module hash.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            break;
+
+        }
+
+        return $this->oCRNRSTN->hash($tmp_module_data);
+
+    }
+
     public function return_hidden_input_html($crnrstn_form_handle, $data_auth_profile){
         /*
         case CRNRSTN_UI_FORM_INTEGRATION_PACKET: USER FACING
@@ -236,8 +369,6 @@ class crnrstn_data_tunnel_services_manager{
         <input type="hidden" name="crnrstn_request_serialization_hash" id="crnrstn_request_serialization_hash" value="">
         <input type="hidden" name="crnrstn_interact_ui_link_text_click" id="crnrstn_interact_ui_link_text_click" value="">
         <input type="hidden" name="crnrstn_interact_ui_loadbar_progress" id="crnrstn_interact_ui_loadbar_progress" value="">';
-                //$this->oCRNRSTN->print_r($tmp_str, $crnrstn_form_handle, NULL, __LINE__, __METHOD__, __FILE__);
-                error_log(__LINE__  . ' dtsm ' . __METHOD__ . ' [' . print_r($tmp_str, true) . '].');
 
             break;
             case CRNRSTN_OUTPUT_PSSDTLA:
@@ -307,6 +438,3 @@ class crnrstn_data_tunnel_services_manager{
     }
 
 }
-
-
-

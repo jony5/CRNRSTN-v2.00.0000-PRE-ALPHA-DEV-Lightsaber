@@ -75,12 +75,12 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
         //
         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
-        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_uri_endpoint');
-        $tmp_crnrstn_curl_batch_save = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_batch_save');
-        $tmp_crnrstn_curl_batch_count = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_batch_count');
+        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_uri_endpoint');
+        $tmp_crnrstn_curl_batch_save = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_batch_save');
+        $tmp_crnrstn_curl_batch_count = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_batch_count');
 
-        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_enable_unit_test_automation');
-        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_unit_test_automation_freq_secs');
+        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_enable_unit_test_automation');
+        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_unit_test_automation_freq_secs');
 
         if(strlen($tmp_crnrstn_curl_uri_endpoint) > 0){
 
@@ -107,7 +107,7 @@ if($oCRNRSTN->receive_form_integration_packet()){
 
                 for($i = 0; $i < $tmp_crnrstn_curl_batch_count; $i++){
 
-                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->form_return_submitted_value('crnrstn_curl_batch_uri_' . $i);
+                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_batch_uri_' . $i);
 
                     $tmp_crnrstn_curl_batch_preview .= '<div class="crnrstn_log_entry">[rtime ' . $oCRNRSTN_UNITTEST_MGR->rtime('curl', md5($tmp_crnrstn_curl_uri_endpoint)).'] ' .  $tmp_crnrstn_curl_uri_endpoint . '</div>
 
@@ -450,7 +450,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
 <div id="crnrstn_curl_data_storage" style="font-family:Arial, Helvetica, sans-serif; padding:0 10px 10px 20px; width:810px;">
 
-    <div style="font-weight: bold; font-size: 25px; padding: 10px 0 0 0; color: #FFF;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: UI Interact Button Events UX Laboratory</div>
+    <div style="font-weight: bold; font-size: 25px; padding: 10px 0 0 0; color: #FFF;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: Interact UI Button Events UX Laboratory</div>
     <div class="crnrstn_cb"></div>
     <div style="font-size: 11px; font-weight: normal; padding: 5px 0 0 0; color: #c2bfbf;">
         <?php
@@ -603,7 +603,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
     <div class="crnrstn_cb_200"></div>
     <div class="crnrstn_cb_200"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">

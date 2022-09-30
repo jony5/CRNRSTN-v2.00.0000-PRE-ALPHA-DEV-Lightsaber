@@ -72,12 +72,12 @@ if($oCRNRSTN_USR->receive_form_integration_packet()){
 
         //
         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
-        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN_USR->form_return_submitted_value('crnrstn_curl_uri_endpoint');
-        $tmp_crnrstn_curl_batch_save = $oCRNRSTN_USR->form_return_submitted_value('crnrstn_curl_batch_save');
-        $tmp_crnrstn_curl_batch_count = $oCRNRSTN_USR->form_return_submitted_value('crnrstn_curl_batch_count');
+        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN_USR->return_form_submitted_value('crnrstn_curl_uri_endpoint');
+        $tmp_crnrstn_curl_batch_save = $oCRNRSTN_USR->return_form_submitted_value('crnrstn_curl_batch_save');
+        $tmp_crnrstn_curl_batch_count = $oCRNRSTN_USR->return_form_submitted_value('crnrstn_curl_batch_count');
 
-        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN_USR->form_return_submitted_value('crnrstn_curl_enable_unit_test_automation');
-        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN_USR->form_return_submitted_value('crnrstn_curl_unit_test_automation_freq_secs');
+        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN_USR->return_form_submitted_value('crnrstn_curl_enable_unit_test_automation');
+        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN_USR->return_form_submitted_value('crnrstn_curl_unit_test_automation_freq_secs');
 
         if(strlen($tmp_crnrstn_curl_uri_endpoint) > 0){
 
@@ -104,7 +104,7 @@ if($oCRNRSTN_USR->receive_form_integration_packet()){
 
                 for($i = 0; $i < $tmp_crnrstn_curl_batch_count; $i++){
 
-                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN_USR->form_return_submitted_value('crnrstn_curl_batch_uri_' . $i);
+                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN_USR->return_form_submitted_value('crnrstn_curl_batch_uri_' . $i);
 
                     $tmp_crnrstn_curl_batch_preview .= '<div class="crnrstn_log_entry">[rtime ' . $oCRNRSTN_UNITTEST_MGR->rtime('curl', md5($tmp_crnrstn_curl_uri_endpoint)).'] ' .  $tmp_crnrstn_curl_uri_endpoint . '</div>
 
@@ -608,7 +608,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
     <div class="crnrstn_cb_200"></div>
     <div class="crnrstn_cb_200"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./?crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">
@@ -626,59 +626,59 @@ echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
 ?>
 
-<div id="crnrstn_ui_interact_wrapper" class="crnrstn_ui_interact_wrapper">
-    <div class="crnrstn_ui_interact">
+<div id="crnrstn_interact_ui_wrapper" class="crnrstn_interact_ui_wrapper">
+    <div class="crnrstn_interact_ui">
 
-        <div id="crnrstn_ui_interact_bg_border" class="crnrstn_ui_interact_bg_border">
+        <div id="crnrstn_interact_ui_bg_border" class="crnrstn_interact_ui_bg_border">
 
         </div>
 
-        <div id="crnrstn_ui_interact_bg_border_edge" class="crnrstn_ui_interact_bg_border_edge" style="border: 1px solid #FFF;">
+        <div id="crnrstn_interact_ui_bg_border_edge" class="crnrstn_interact_ui_bg_border_edge" style="border: 1px solid #FFF;">
 
         </div>
 
         <div style="position:relative; height:106px;">
 
-            <div id="crnrstn_ui_interact_primary_navgroup_wrapper" class="crnrstn_ui_interact_primary_navgroup_wrapper">
+            <div id="crnrstn_interact_ui_primary_navgroup_wrapper" class="crnrstn_interact_ui_primary_navgroup_wrapper">
 
-                <div id="crnrstn_ui_interact_primary_nav_menu" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
+                <div id="crnrstn_interact_ui_primary_nav_menu" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
 
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_inactive.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_hvr"  class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_hvr.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_click"  class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_click.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu"  class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_menu_glass_case"  class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-
-                </div>
-
-                <div id="crnrstn_ui_interact_primary_nav_close_x" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
-
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_inactive"  class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_close_x_inactive.png" width="40" height="40" alt="Close" title="Navigation to Close"></div class="crnrstn_ui_interact_primary_nav_img_shell">
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_hvr"  class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_close_x_hvr.png" width="40" height="40" alt="Close" title="Navigation to Close"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_click"  class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_close_x_click.png" width="40" height="40" alt="Close" title="Navigation to Close"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x"  class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_close_x.png" width="40" height="40" alt="Close" title="Navigation to Close"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_close_x_glass_case"  class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="Close" title="Navigation to Close"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_inactive.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_hvr"  class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_hvr.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_click"  class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_click.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_menu"  class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case"  class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
 
                 </div>
 
-                <div id="crnrstn_ui_interact_primary_nav_fs_expand" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
+                <div id="crnrstn_interact_ui_primary_nav_close_x" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
 
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_inactive"  class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_fs_expand_inactive.png" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_hvr"  class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_fs_expand_hvr.png" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_click"  class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_fs_expand_click.png" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand"  class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_fs_expand.png" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_fs_expand_glass_case"  class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x_inactive"  class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_close_x_inactive.png" width="40" height="40" alt="Close" title="Navigation to Close"></div class="crnrstn_interact_ui_primary_nav_img_shell">
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x_hvr"  class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_close_x_hvr.png" width="40" height="40" alt="Close" title="Navigation to Close"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x_click"  class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_close_x_click.png" width="40" height="40" alt="Close" title="Navigation to Close"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x"  class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_close_x.png" width="40" height="40" alt="Close" title="Navigation to Close"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case"  class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="Close" title="Navigation to Close"></div>
 
                 </div>
 
-                <div id="crnrstn_ui_interact_primary_nav_minimize" class="crnrstn_ui_interact_primary_navgroup_lnk_border">
+                <div id="crnrstn_interact_ui_primary_nav_fs_expand" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
 
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_inactive" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize_inactive.png" width="40" height="40" alt="5" title="eVifweb development"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_hvr" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize_hvr.png" width="40" height="40" alt="5" title="eVifweb development"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_click" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize_click.png" width="40" height="40" alt="5" title="eVifweb development"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize" class="crnrstn_ui_interact_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize.png" width="40" height="40" alt="5" title="eVifweb development"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_fivedev_sm" class="crnrstn_ui_interact_primary_nav_img_shell crnrstn_ui_interact_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize_fivedev_sm.png" width="40" height="40" alt="5" title="eVifweb development"></div>
-                    <div id="crnrstn_ui_interact_primary_nav_img_shell_minimize_glass_case" class="crnrstn_ui_interact_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_ui_interact_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="5" title="eVifweb development"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_inactive"  class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_fs_expand_inactive.png" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_hvr"  class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_fs_expand_hvr.png" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_click"  class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_fs_expand_click.png" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand"  class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_fs_expand.png" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case"  class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="FullScreen" title="Navigation to Full Screen"></div>
+
+                </div>
+
+                <div id="crnrstn_interact_ui_primary_nav_minimize" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
+
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize_inactive.png" width="40" height="40" alt="5" title="eVifweb development"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_hvr" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize_hvr.png" width="40" height="40" alt="5" title="eVifweb development"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_click" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize_click.png" width="40" height="40" alt="5" title="eVifweb development"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize.png" width="40" height="40" alt="5" title="eVifweb development"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_fivedev_sm" class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_minimize_fivedev_sm.png" width="40" height="40" alt="5" title="eVifweb development"></div>
+                    <div id="crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case" class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="5" title="eVifweb development"></div>
 
                 </div>
 
@@ -690,7 +690,7 @@ echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
         <div style="position:relative;">
             <div style="position:absolute; z-index:68; margin: 2px 0 0 16px; border: 1px solid #FFF;">
-                <div id="crnrstn_ui_interact_bg_solid" class="crnrstn_ui_interact_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
+                <div id="crnrstn_interact_ui_bg_solid" class="crnrstn_interact_ui_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
                     <?php echo $oCRNRSTN_USR->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED); ?>
                     <div class="crnrstn_cb"></div>
                 </div>
@@ -699,23 +699,23 @@ echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
         </div>
 
-        <div id="crnrstn_ui_interact_content_wrapper" class="crnrstn_ui_interact_content_wrapper">
-            <div id="crnrstn_ui_interact_signin_frm_username" class="crnrstn_ui_interact_signin_frm_lbl"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LABEL_USERNAME'); ?></div>
+        <div id="crnrstn_interact_ui_content_wrapper" class="crnrstn_interact_ui_content_wrapper">
+            <div id="crnrstn_interact_ui_signin_frm_username" class="crnrstn_interact_ui_signin_frm_lbl"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LABEL_USERNAME'); ?></div>
             <div class="crnrstn_cb_5"></div>
             <input type="text" name="username" value="">
             <div class="crnrstn_cb_15"></div>
-            <div id="crnrstn_ui_interact_signin_frm_password" class="crnrstn_ui_interact_signin_frm_lbl"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LABEL_PASSWORD_OPTIONAL'); ?></div>
+            <div id="crnrstn_interact_ui_signin_frm_password" class="crnrstn_interact_ui_signin_frm_lbl"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LABEL_PASSWORD_OPTIONAL'); ?></div>
             <div class="crnrstn_cb_5"></div>
             <input type="password" name="password" value="">
             <div class="crnrstn_cb_10"></div>
 
-            <div class="crnrstn_ui_interact_signin_frm_chkbx_eula"><input type="checkbox" style="width: 20px;" name="crnrstn_signin_chkbx_eula_accept" value="eula_i_agree"></div>
-            <div class="crnrstn_ui_interact_signin_frm_lbl_eula"><a href="#"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LNK_TXT_EULA'); ?></a></div>
+            <div class="crnrstn_interact_ui_signin_frm_chkbx_eula"><input type="checkbox" style="width: 20px;" name="crnrstn_signin_chkbx_eula_accept" value="eula_i_agree"></div>
+            <div class="crnrstn_interact_ui_signin_frm_lbl_eula"><a href="#"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LNK_TXT_EULA'); ?></a></div>
 
             <div class="crnrstn_cb_10"></div>
 
-            <div class="crnrstn_ui_interact_frm_submit" onclick="oCRNRSTN_JS.sign_in_form_submit_via_micro_expansion();">
-                <div id="crnrstn_ui_interact_signin_frm_btn_submit" class="crnrstn_ui_interact_signin_frm_btn_submit"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_BUTTON_TEXT_CONNECT'); ?>'</div>
+            <div class="crnrstn_interact_ui_frm_submit" onclick="oCRNRSTN_JS.sign_in_form_submit_via_micro_expansion();">
+                <div id="crnrstn_interact_ui_signin_frm_btn_submit" class="crnrstn_interact_ui_signin_frm_btn_submit"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_BUTTON_TEXT_CONNECT'); ?>'</div>
             </div>
         </div>
     </div>
