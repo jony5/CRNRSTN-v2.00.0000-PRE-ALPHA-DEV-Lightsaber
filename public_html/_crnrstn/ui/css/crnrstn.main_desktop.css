@@ -45,7 +45,7 @@
 
 .crnrstn_documentation_dyn_shell_rel                { position:relative; }
 .crnrstn_documentation_dyn_shell_bg                 { position: absolute; background-color: #003eff; z-index: 1; left:0; top:-8px; width: 0; height: 0; overflow: hidden;}
-.crnrstn_documentation_dyn_shell                    { position: absolute; z-index: 2; left:0; top:-8px; width: 0; height: 0; overflow: hidden;}
+.crnrstn_documentation_dyn_shell                    { position: absolute; z-index: 2; left:0; top:-8px; width: 0; overflow: hidden; overflow-y: scroll;}
 
 .crnrstn_ui_element_load_indicator_shell_rel	    { position:relative;}
 .crnrstn_ui_element_load_indicator_shell		    { position:absolute; z-index:9; left:1px; width:0; height:0; overflow:hidden;}
@@ -53,6 +53,28 @@
 .crnrstn_ui_element_load_indicator_bg			    { position:absolute; z-index:10; width:100px; height:3000px; background-color: #F90000;}
 .crnrstn_ui_element_load_indicator_rel	            { position:relative;}
 .crnrstn_ui_element_load_indicator                  { position:absolute; z-index:11; width:100px; height:3000px;}
+
+/*CRNRSTN::INTEGRATION INTERACT UI MODULE :: DOCUMENTATION CONTENT*/
+.crnrstn_documentation_dyn_content_shell            { width: 900px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
+.crnrstn_documentation_dyn_content_title            { font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 55px;}
+.crnrstn_documentation_dyn_content_title h1         { font-size: 45px; padding: 0 0 0 20px;}
+.crnrstn_documentation_dyn_content_title h2         { font-size: 35px; padding: 0 0 0 20px; margin-bottom:0;}
+.crnrstn_documentation_dyn_content_description      { font-size: 20px; padding: 12px 20px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
+.crnrstn_documentation_dyn_content_description p    { padding: 0; margin: 0; }
+.crnrstn_documentation_dyn_content_example          { width: 870px; padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
+
+.crnrstn_documentation_dyn_content_module_bg_rel    { position: relative; width: 100%; overflow: hidden;}
+.crnrstn_documentation_dyn_content_module_bg        { position: absolute; z-index: 2; top:0; left:0; width: 100%; height:2000px; background-color: #FFF; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0;}
+
+.crnrstn_documentation_dyn_content_module_wrap_s3           { width: 100%; padding: 0 0 20px 0; }
+.crnrstn_documentation_dyn_content_module_wrap_s2_outter    { overflow: hidden; border: 3px solid #FEFEFE; }
+.crnrstn_documentation_dyn_content_module_wrap_s2_inner     { overflow: hidden; border: 1px solid #A5B9D8;}
+.crnrstn_documentation_dyn_content_module_wrap_s1_rel       { position: relative; padding: 2px;}
+.crnrstn_documentation_dyn_content_module_wrap_s1           { position: absolute; z-index: 4; top:0; left:0;}
+.crnrstn_interact_ui_documentation_j5_wolf_pup .crnrstn_j5_wolf_pup_outter_wrap             { width: 900px; padding-right: 250px;}
+
+.crnrstn_j5_wolf_pup_outter_wrap            { width:98%; float:right; padding:120px 0 0 0; margin:0; text-align: right; }
+.crnrstn_j5_wolf_pup_inner_wrap             { position: absolute; padding-top:10px; width:98%; z-index: 2; text-align: right;}
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
 // SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/
@@ -171,9 +193,6 @@
 .crnrstn_signin_copyright_shell             { width:578px; text-align: center; margin:0 auto; font-size: 12px; line-height: 18px; color: #666;}
 .crnrstn_signin_copyright_shell a           { text-decoration:none; color: #0066CC; text-decoration:underline;}
 
-.crnrstn_j5_wolf_pup_outter_wrap            { float:right; width:100%; padding:20px 0 0 0; margin:0; text-align: right; }
-.crnrstn_j5_wolf_pup_inner_wrap             { }
-
 /*MIT LICENSE::SIGNIN*/
 .crnrstn_mit_back_copy_outter_shell         { float:right; text-align:left; position: relative;}
 .crnrstn_mit_back_copy_inner_shell          { position: absolute; left:-38px; top:12px;}
@@ -235,6 +254,7 @@ body.crnrstn-disable-scrolling              { overflow: hidden;}
 .crnrstn_log_entry                          { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; }
 
 /*UTILITY*/
+.crnrstn_hidden_void                        { visibility: hidden;}
 .crnrstn_hidden						        { width:0; height:0; position:absolute; left:-2000px; overflow:hidden;}
 .crnrstn_cb 								{ display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;}
 .crnrstn_cb_3                               { display:block; clear:both; height:3px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}

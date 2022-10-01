@@ -2851,6 +2851,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                         },
                                         complete: function () {
 
+                                            self.size_element_y('crnrstn_j5_wolf_pup_outter_wrap', true);
+
+                                            self.crnrstn_interact_ui_ux('scrolltop', false);
+
                                         }
 
                                     });
@@ -3264,9 +3268,52 @@ interact_ui_animation_sequence = function(module_key){
 
     };
 
-    CRNRSTN_JS.prototype.size_element_y = function(dom_elem_id) {
+    CRNRSTN_JS.prototype.size_element_y = function(dom_elem_id, force_execution = false) {
 
         switch(dom_elem_id){
+            case 'crnrstn_j5_wolf_pup_outter_wrap':
+
+                var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
+
+                //alert('css_int=' + css_int + '. side_navigation_min_width=' + this.side_navigation_min_width + '.');
+                if((css_int >= this.side_navigation_min_width + 5  && !(force_execution)) || (force_execution && (css_int <= this.side_navigation_min_width))){
+
+                    //
+                    // CLOSE SIDE NAVIGATION
+                    $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
+                        paddingRight: 22
+                    }, {
+                        duration: 500,
+                        queue: false,
+                        specialEasing: {
+                            paddingRight: "swing"
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+
+                    return true;
+                }
+
+                //
+                // EXPAND NAVIGATION
+                $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
+                    paddingRight: 260
+                }, {
+                    duration: 500,
+                    queue: false,
+                    specialEasing: {
+                        paddingRight: "swing"
+                    },
+                    complete: function () {
+
+                    }
+
+                });
+
+            break;
             case 'crnrstn_ui_element_load_indicator_shell':
 
                 var self = this;
@@ -3350,9 +3397,11 @@ interact_ui_animation_sequence = function(module_key){
 
                 setTimeout(function() {
 
+                    var height = $(window).height() + 12;
+
                     self.$dom_elem
-                        .width($(document).width())
-                        .height($(document).height());
+                        .width($(window).width())
+                        .height(height);
 
                 }, 0);
 
@@ -6271,7 +6320,7 @@ interact_ui_animation_sequence = function(module_key){
 
                 }
 
-            });v
+            });
 
         }
 
@@ -6279,27 +6328,46 @@ interact_ui_animation_sequence = function(module_key){
 
     CRNRSTN_JS.prototype.crnrstn_interact_ui_ux = function(ux_action, elem){
 
-        /*
-close_docs_fullscreen
-        <div id="crnrstn_interact_ui_primary_nav_menu" class="crnrstn_interact_ui_primary_navgroup_lnk_border">
+        if(ux_action === 'scrolltop'){
 
-            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_inactive" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_inactive.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_hvr" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_hvr.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_click" class="crnrstn_interact_ui_primary_nav_img_shell"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu_click.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
-            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu" class="crnrstn_interact_ui_primary_nav_img_shell crnrstn_interact_ui_active"><img src="../../../_crnrstn/ui/imgs/png/primary_nav_seriesblue00_120x120_menu.png" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+            if($('#crnrstn_documentation_dyn_shell').length){
 
-            <div id="crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case" class="crnrstn_interact_ui_primary_nav_glass_case" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseover', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseout', this);" onmousedown="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmousedown', this);" onmouseup="oCRNRSTN_JS.crnrstn_interact_ui_ux('onmouseup', this);"><img src="../../../_crnrstn/ui/imgs/gif/x.gif" width="40" height="40" alt="Menu" title="Navigation to Menu"></div>
+                $('#crnrstn_documentation_dyn_shell').animate({
+                    scrollTop: 0
+                }, {
+                    duration: 300,
+                    queue: false,
+                    specialEasing: {
+                        scrollTop: "swing"
+                    }
+                });
 
-        </div>
+                return false;
 
-        this.ui_interact_input_id_ARRAY = ['crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case', 'crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case'];
-        this.ui_interact_input_type_ARRAY = ['menu', 'close_x', 'fs_expand', 'minimize'];
+            }
 
+            if($('#crnrstn_interact_ui_full_doc_header_wrapper_rel').length){
 
+                //
+                // SOURCE :: https://stackoverflow.com/questions/5846595/how-to-scroll-an-item-inside-a-scrollable-div-to-the-top
+                // AUTHOR :: Richard :: https://stackoverflow.com/users/269537/richard
+                $('#crnrstn_interact_ui_full_doc_header_wrapper_rel').animate({
+                    scrollTop: 0
+                }, {
+                    duration: 500,
+                    queue: false,
+                    specialEasing: {
+                        scrollTop: "swing"
+                    }
+                });
 
-        <div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                return false;
 
-        */
+            }
+
+            return false;
+
+        }
 
         switch(elem.id){
             case 'crnrstn_ui_system_footer_mit_lnk':
@@ -6971,6 +7039,8 @@ close_docs_fullscreen
 
             });
 
+            this.size_element_y('crnrstn_j5_wolf_pup_outter_wrap');
+
             return true;
 
         }
@@ -7081,6 +7151,8 @@ close_docs_fullscreen
             }
 
         });
+
+        this.size_element_y('crnrstn_j5_wolf_pup_outter_wrap');
 
         return true;
 

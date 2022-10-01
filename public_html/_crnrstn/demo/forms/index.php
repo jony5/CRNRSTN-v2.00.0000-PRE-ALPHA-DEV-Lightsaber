@@ -124,8 +124,9 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
     <style type="text/css">
 
         .the_R_in_crnrstn                           { color:#F90000; }
-        .crnrstn_j5_wolf_pup_outter_wrap            { float:right; padding:420px 0 0 0; margin:0; width:100%;}
+        /*.crnrstn_j5_wolf_pup_outter_wrap            { float:right; padding:420px 0 0 0; margin:0; width:100%;}
         .crnrstn_j5_wolf_pup_inner_wrap             { position: absolute; width:98%; z-index: 2; text-align: right; padding-top: 20px;}
+        */
         .crnrstn_signin_copyright_shell             { font-family:Arial, Helvetica, sans-serif; width:578px; text-align: center; margin:0 auto; font-size: 12px; line-height: 18px; color: #666;}
         .crnrstn_signin_copyright_shell a           { text-decoration:none; color: #0066CC; text-decoration:underline;}
 

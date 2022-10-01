@@ -123,7 +123,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
     .debug_output				                { font-size:10px; height:200px; overflow:scroll; padding:10px 0 0 20px;}
 
     .the_R_in_crnrstn                           { color:#F90000; }
-      .crnrstn_log_entry                          { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; line-height: 17px; }
+      .crnrstn_log_entry                        { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; line-height: 17px; }
 
     .crnrstn_j5_wolf_pup_outter_wrap            { float:right; padding:200px 0 0 0; margin:0; width:100%;}
     .crnrstn_j5_wolf_pup_inner_wrap             { position: absolute; width:100%; z-index: 2; text-align: right; padding-top: 20px;}

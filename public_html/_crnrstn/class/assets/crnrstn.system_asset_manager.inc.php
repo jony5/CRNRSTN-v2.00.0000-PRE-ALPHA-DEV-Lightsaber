@@ -8235,8 +8235,10 @@ class crnrstn_system_image_asset_manager {
             // CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
             $tmp_minimum_bytes_required = strlen($tmp_data_str_out);
 
-            // TODO :: BEFORE THROWING HARD EXCEPTION, PUT A "DISK FULL WARNING BUFFER" INSIDE grant_permissions_fwrite().
+            //
             // ASK CRNRSTN :: TO GRANT PERMISSIONS FOR fwrite()
+            // WARNINGS WILL BE THROWN @ $oCRNRSTN->max_storage_utilization_warning PERCENTAGE.
+            // WRITE REQUESTS WILL BE DENIED @ $oCRNRSTN->max_storage_utilization PERCENTAGE.
             if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
 
                 //
