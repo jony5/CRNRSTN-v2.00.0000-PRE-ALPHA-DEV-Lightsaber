@@ -32,14 +32,14 @@ $channel_constant = $this->oCRNRSTN->device_type_bit();
 'CRNRSTN_AUTHORIZE_ISPASSWORD'
 */
 switch($channel_constant){
-    case CRNRSTN_UI_MOBILE:
+    case 'null':
         //
         // MOBILE DEVICE EXPERIENCE
         $tmp_str = 'hello mobi world!';
         $tmp_str = '';
 
     break;
-    case CRNRSTN_UI_TABLET:
+    case 'null':
 
         //
         // TABLET DEVICE EXPERIENCE
@@ -126,6 +126,8 @@ switch($channel_constant){
         }
 
     break;
+    case CRNRSTN_UI_MOBILE:
+    case CRNRSTN_UI_TABLET:
     default:
         // CRNRSTN_UI_DESKTOP:
 
