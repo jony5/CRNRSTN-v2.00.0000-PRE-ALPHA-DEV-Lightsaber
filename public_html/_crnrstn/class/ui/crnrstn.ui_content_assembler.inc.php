@@ -52,7 +52,7 @@
 class crnrstn_ui_content_assembler {
 
 	protected $oLogger;
-	public $oCRNRSTN_USR;
+	public $oCRNRSTN;
 	private static $oContentGen;
 
 	private static $page_path;
@@ -73,38 +73,40 @@ class crnrstn_ui_content_assembler {
 
 	}
 
-	public function initializePageContent(){
+	public function initialize_page_content(){
+
+        $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
         //
-        // INSTANTIATE DOCUMENTATION CONTENT MANAGER
-        self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, self::$page_path);
+        // INSTANTIATE CONTENT GENERATOR
+        self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, self::$page_path, $tmp_module_page_key);
 
     }
 
-    public function loadPage(){
+    public function load_page(){
 
-        self::$oContentGen->loadPage();
+        self::$oContentGen->load_page();
 
     }
 
-    public function indexPage(){
+    public function index_page(){
 
-	    if($this->oCRNRSTN_USR->get_resource('INDEX_PAGE_4SEARCH')){
+	    if($this->oCRNRSTN->get_resource('INDEX_PAGE_4SEARCH')){
 
-            $tmp_page_serial = self::$oContentGen->returnPageSerial();
-            ////$tmp_page_content = self::$oContentGen->returnPageHTML($tmp_page_serial, 'index');
+            $tmp_page_serial = self::$oContentGen->return_page_serial();
+            ////$tmp_page_content = self::$oContentGen->return_page_html($tmp_page_serial, 'index');
 
-            //$this->indexPageContent();
+            //$this->index_page_content();
 
         }
     }
 
-    private function indexPageContent(){
+    private function index_page_content(){
 
 	    //error_log('67 side bitch usr - ' . $page_content);
-        $oQueryProfileMgr = new crnrstn_query_profile_manager($this->oCRNRSTN_USR);
+        $oQueryProfileMgr = new crnrstn_query_profile_manager($this->oCRNRSTN);
         $tmp_page_serial = self::$oContentGen->returnPageSerial();
-        $tmp_page_content_ARRAY = $this->returnPageHTML($tmp_page_serial, 'index');
+        $tmp_page_content_ARRAY = $this->return_page_html($tmp_page_serial, 'index');
 
         $tmp_page_content = $tmp_page_content_ARRAY['page_content'];
         $tmp_search_result_display = $tmp_page_content_ARRAY['page_result_display'];
@@ -112,7 +114,7 @@ class crnrstn_ui_content_assembler {
         $tmp_chunk_title = $tmp_page_content_ARRAY['page_title'];
         $tmp_page_content_len = strlen($tmp_page_content);
 
-        $ts = $this->oCRNRSTN_USR->return_query_date_time_stamp();
+        $ts = $this->oCRNRSTN->return_query_date_time_stamp();
 
         /*
         search_content
@@ -142,17 +144,17 @@ class crnrstn_ui_content_assembler {
 
         */
 
-        $oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
+        $oCRNRSTN_MySQLi = $this->oCRNRSTN->return_crnrstn_mysqli();
         $mysqli = $oCRNRSTN_MySQLi->return_conn_object();
 
         //
         // CLEAR CHUNKED DATA
         $query = 'DELETE FROM `search_content_chunked`
                     WHERE `search_content_chunked`.`PAGE_SERIAL`="' . $mysqli->real_escape_string($tmp_page_serial).'" 
-                    AND `search_content_chunked`.`PAGE_SERIAL_CRC`="' . $this->oCRNRSTN_USR->crcINT($tmp_page_serial).'";';
+                    AND `search_content_chunked`.`PAGE_SERIAL_CRC`="' . $this->oCRNRSTN->crcINT($tmp_page_serial).'";';
 
         $oQueryProfileMgr->loadQueryProfile($oCRNRSTN_MySQLi, 'INIT_PAGE_SEARCH', '!jesus_is_my_dear_lord!', 'DELETE_CHUNKED');
-        $this->oCRNRSTN_USR->add_database_query($oQueryProfileMgr, 'DELETE_CHUNKED', $query);
+        $this->oCRNRSTN->add_database_query($oQueryProfileMgr, 'DELETE_CHUNKED', $query);
 
         $query_select = 'SELECT `search_content`.`CONTENT_ID`,
                     `search_content`.`PAGE_SERIAL`,
@@ -171,26 +173,26 @@ class crnrstn_ui_content_assembler {
                     `search_content`.`DATECREATED`
                 FROM `search_content`
                 WHERE `search_content`.`PAGE_SERIAL`="' . $mysqli->real_escape_string($tmp_page_serial).'" 
-                AND `search_content`.`PAGE_SERIAL_CRC`="' . $this->oCRNRSTN_USR->crcINT($tmp_page_serial).'" LIMIT 1;
+                AND `search_content`.`PAGE_SERIAL_CRC`="' . $this->oCRNRSTN->crcINT($tmp_page_serial).'" LIMIT 1;
                 ';
 
         $oQueryProfileMgr->loadQueryProfile($oCRNRSTN_MySQLi, 'INIT_PAGE_SEARCH', '!jesus_is_my_dear_lord!', 'CHECK_PAGE_INDEX_EXISTS');
-        $this->oCRNRSTN_USR->add_database_query($oQueryProfileMgr, 'CHECK_PAGE_INDEX_EXISTS', $query_select);
+        $this->oCRNRSTN->add_database_query($oQueryProfileMgr, 'CHECK_PAGE_INDEX_EXISTS', $query_select);
 
         //
         // PROCESS ALL QUERY TO CONNECTION(S)
-        $this->oCRNRSTN_USR->process_query(true);
+        $this->oCRNRSTN->process_query(true);
 
-        $tmp_record_cnt = $this->oCRNRSTN_USR->return_record_count($oQueryProfileMgr, 'CHECK_PAGE_INDEX_EXISTS');
+        $tmp_record_cnt = $this->oCRNRSTN->return_record_count($oQueryProfileMgr, 'CHECK_PAGE_INDEX_EXISTS');
 
-        //$this->oCRNRSTN_USR->closeConnection_MySQLi($mysqli);
+        //$this->oCRNRSTN->closeConnection_MySQLi($mysqli);
 
         if($tmp_record_cnt > 0){
 
-            $oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
+            $oCRNRSTN_MySQLi = $this->oCRNRSTN->return_crnrstn_mysqli();
             $mysqli = $oCRNRSTN_MySQLi->return_conn_object();
 
-            $tmp_content_id = $this->oCRNRSTN_USR->return_db_value($oQueryProfileMgr, 'CHECK_PAGE_INDEX_EXISTS', 'CONTENT_ID');
+            $tmp_content_id = $this->oCRNRSTN->return_db_value($oQueryProfileMgr, 'CHECK_PAGE_INDEX_EXISTS', 'CONTENT_ID');
 
             $oQueryProfileMgr->loadQueryProfile($oCRNRSTN_MySQLi, 'UPDATE_SEARCH', '!jesus_is_my_dear_lord!!', 'SEARCH_CONTENT');
 
@@ -201,14 +203,14 @@ class crnrstn_ui_content_assembler {
             `PAGE_CONTENT_RAW` = "' . $mysqli->real_escape_string($tmp_page_content).'",
             `BOOLEAN_TEST` = true,
             `CONTENT_LENGTH_RAW` = "' . $tmp_page_content_len.'",
-            `MODIFIED_BY_IP` = "' . $this->oCRNRSTN_USR->return_client_ip().'",
+            `MODIFIED_BY_IP` = "' . $this->oCRNRSTN->return_client_ip().'",
             `MODIFIED_BY_USERAGENT` = "' . $_SERVER['HTTP_USER_AGENT'].'",
             `DATEMODIFIED` = "' . $ts.'"
             WHERE `CONTENT_ID`= "' . $tmp_content_id . '"
-            AND `CONTENT_ID_CRC`= "' . $this->oCRNRSTN_USR->crcINT($tmp_content_id).'"
-            AND `PAGE_SERIAL` = "' . $tmp_page_serial . '" AND `PAGE_SERIAL_CRC` = "' . $this->oCRNRSTN_USR->crcINT($tmp_page_serial).'";';
+            AND `CONTENT_ID_CRC`= "' . $this->oCRNRSTN->crcINT($tmp_content_id).'"
+            AND `PAGE_SERIAL` = "' . $tmp_page_serial . '" AND `PAGE_SERIAL_CRC` = "' . $this->oCRNRSTN->crcINT($tmp_page_serial).'";';
 
-            $this->oCRNRSTN_USR->add_database_query($oQueryProfileMgr, 'SEARCH_CONTENT', $query);
+            $this->oCRNRSTN->add_database_query($oQueryProfileMgr, 'SEARCH_CONTENT', $query);
 
             //
             // REMOVE LINKS...ETC...
@@ -220,18 +222,18 @@ class crnrstn_ui_content_assembler {
             $tmp_page_content = $this->strSanitize($tmp_page_content,'index');
             $tmp_search_result_display = $this->strSanitize($tmp_search_result_display,'index');
 
-            $oChunkRestrictData = $this->oCRNRSTN_USR->chunkPageData($tmp_search_result_display, 200);
+            $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_search_result_display, 200);
             $tmp_sresult_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
             $tmp_search_result_display = $tmp_sresult_array['chunked_content'][0];
 
             //error_log('186 side bitch usr - content=>' . $tmp_page_content);
-            $oChunkRestrictData = $this->oCRNRSTN_USR->chunkPageData($tmp_page_content, 1000);
+            $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_page_content, 1000);
             $tmp_chunked_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
 
             $chunk_cnt = sizeof($tmp_chunked_array['chunked_content']);
 
             for($i=0;$i<$chunk_cnt;$i++){
-                $tmp_chunk_id = $this->oCRNRSTN_USR->generate_new_key(70);
+                $tmp_chunk_id = $this->oCRNRSTN->generate_new_key(70);
                 $tmp_chunk_search = strtolower($this->strSanitize($tmp_chunked_array['chunked_content'][$i],'search'));
 
                 $tmp_chunk_len_search = strlen($tmp_chunk_search);
@@ -258,33 +260,33 @@ class crnrstn_ui_content_assembler {
                                     ("' . $tmp_chunk_id . '",
                                     "' . $tmp_content_id . '",
                                     "' . $mysqli->real_escape_string($tmp_page_serial).'",
-                                    "' . $this->oCRNRSTN_USR->crcINT($tmp_page_serial).'",
+                                    "' . $this->oCRNRSTN->crcINT($tmp_page_serial).'",
                                     "' . $mysqli->real_escape_string($tmp_search_result_display).'",
                                     "' . $mysqli->real_escape_string($tmp_chunk_search).'",
                                     "' . $mysqli->real_escape_string($tmp_chunked_array['chunked_content'][$i]).'",
                                     "' . $mysqli->real_escape_string($tmp_chunk_title).'",
                                     "' . $tmp_chunk_len_search.'",
                                     "' . $tmp_chunk_len_raw.'",
-                                    "' . $this->oCRNRSTN_USR->return_client_ip().'",
-                                    "' . $this->oCRNRSTN_USR->return_client_ip().'",
+                                    "' . $this->oCRNRSTN->return_client_ip().'",
+                                    "' . $this->oCRNRSTN->return_client_ip().'",
                                     "' . $_SERVER['HTTP_USER_AGENT'].'",
                                     "' . $_SERVER['HTTP_USER_AGENT'].'",
                                     "' . $ts.'");
                                     ';
 
                 $oQueryProfileMgr->loadQueryProfile($oCRNRSTN_MySQLi, 'UPDATE_SEARCH', '!jesus_is_my_dear_lord!!', 'NEW_SEARCH_CHUNK_PUSH_' . $i);
-                $this->oCRNRSTN_USR->add_database_query($oQueryProfileMgr, 'NEW_SEARCH_CHUNK_PUSH_' . $i, $query_chunked);
+                $this->oCRNRSTN->add_database_query($oQueryProfileMgr, 'NEW_SEARCH_CHUNK_PUSH_' . $i, $query_chunked);
 
             }
 
         }else{
 
-            //$oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
+            //$oCRNRSTN_MySQLi = $this->oCRNRSTN->return_crnrstn_mysqli();
             //$mysqli = $oCRNRSTN_MySQLi->return_conn_object();
 
             //
             // INSERT
-            $tmp_content_id = $this->oCRNRSTN_USR->generate_new_key(70);
+            $tmp_content_id = $this->oCRNRSTN->generate_new_key(70);
 
             $query = 'INSERT INTO `search_content`
                         (`CONTENT_ID`,
@@ -302,22 +304,22 @@ class crnrstn_ui_content_assembler {
                         `DATEMODIFIED`)
                         VALUES
                         ("' . $tmp_content_id . '",
-                        "' . $this->oCRNRSTN_USR->crcINT($tmp_content_id).'",
+                        "' . $this->oCRNRSTN->crcINT($tmp_content_id).'",
                         "' . $mysqli->real_escape_string($tmp_page_serial).'",
-                        "' . $this->oCRNRSTN_USR->crcINT($tmp_page_serial).'",
+                        "' . $this->oCRNRSTN->crcINT($tmp_page_serial).'",
                         true,
                         "' . $mysqli->real_escape_string(self::$page_path).'",
                         "' . $mysqli->real_escape_string($tmp_page_content).'",
                         "' . $tmp_page_content_len.'",
-                        "' . $this->oCRNRSTN_USR->return_client_ip().'",
-                        "' . $this->oCRNRSTN_USR->return_client_ip().'",
+                        "' . $this->oCRNRSTN->return_client_ip().'",
+                        "' . $this->oCRNRSTN->return_client_ip().'",
                         "' . $_SERVER['HTTP_USER_AGENT'].'",
                         "' . $_SERVER['HTTP_USER_AGENT'].'",
                         "' . $ts.'");
                         ';
 
             $oQueryProfileMgr->loadQueryProfile($oCRNRSTN_MySQLi, 'NEW_SEARCH', '!jesus_is_my_dear_lord!!', 'NEW_SEARCH_PUSH');
-            $this->oCRNRSTN_USR->add_database_query($oQueryProfileMgr, 'NEW_SEARCH_PUSH', $query);
+            $this->oCRNRSTN->add_database_query($oQueryProfileMgr, 'NEW_SEARCH_PUSH', $query);
 
             //
             // REMOVE LINKS...ETC...
@@ -329,19 +331,19 @@ class crnrstn_ui_content_assembler {
             $tmp_page_content = $this->strSanitize($tmp_page_content,'index');
             $tmp_search_result_display = $this->strSanitize($tmp_search_result_display,'index');
 
-            $oChunkRestrictData = $this->oCRNRSTN_USR->chunkPageData($tmp_search_result_display, 200);
+            $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_search_result_display, 200);
             $tmp_sresult_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
             $tmp_search_result_display = $tmp_sresult_array['chunked_content'][0];
 
             //
             // BREAK CONTENT INTO CHUNKS
             //error_log('252 side bitch usr - content=' . $tmp_page_content);
-            $oChunkRestrictData = $this->oCRNRSTN_USR->chunkPageData($tmp_page_content, 1000);
+            $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_page_content, 1000);
             $tmp_chunked_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
             $chunk_cnt = sizeof($tmp_chunked_array['chunked_content']);
 
             for($i=0;$i<$chunk_cnt;$i++){
-                $tmp_chunk_id = $this->oCRNRSTN_USR->generate_new_key(70);
+                $tmp_chunk_id = $this->oCRNRSTN->generate_new_key(70);
                 $tmp_chunk_search = strtolower($this->strSanitize($tmp_chunked_array['chunked_content'][$i],'search'));
 
                 $tmp_chunk_len_search = strlen($tmp_chunk_search);
@@ -367,22 +369,22 @@ class crnrstn_ui_content_assembler {
                                     ("' . $tmp_chunk_id . '",
                                     "' . $tmp_content_id . '",
                                     "' . $mysqli->real_escape_string($tmp_page_serial).'",
-                                    "' . $this->oCRNRSTN_USR->crcINT($tmp_page_serial).'",
+                                    "' . $this->oCRNRSTN->crcINT($tmp_page_serial).'",
                                     "' . $mysqli->real_escape_string($tmp_search_result_display).'",
                                     "' . $mysqli->real_escape_string($tmp_chunk_search).'",
                                     "' . $mysqli->real_escape_string($tmp_chunked_array['chunked_content'][$i]).'",
                                     "' . $mysqli->real_escape_string($tmp_chunk_title).'",
                                     "' . $tmp_chunk_len_search.'",
                                     "' . $tmp_chunk_len_raw.'",
-                                    "' . $this->oCRNRSTN_USR->return_client_ip().'",
-                                    "' . $this->oCRNRSTN_USR->return_client_ip().'",
+                                    "' . $this->oCRNRSTN->return_client_ip().'",
+                                    "' . $this->oCRNRSTN->return_client_ip().'",
                                     "' . $_SERVER['HTTP_USER_AGENT'].'",
                                     "' . $_SERVER['HTTP_USER_AGENT'].'",
                                     "' . $ts.'");
                                     ';
 
                 $oQueryProfileMgr->loadQueryProfile($oCRNRSTN_MySQLi, 'NEW_SEARCH', '!jesus_is_my_dear_lord!!', 'NEW_SEARCH_CHUNK_PUSH_' . $i);
-                $this->oCRNRSTN_USR->add_database_query($oQueryProfileMgr, 'NEW_SEARCH_CHUNK_PUSH_' . $i, $query_chunked);
+                $this->oCRNRSTN->add_database_query($oQueryProfileMgr, 'NEW_SEARCH_CHUNK_PUSH_' . $i, $query_chunked);
 
             }
 
@@ -390,21 +392,21 @@ class crnrstn_ui_content_assembler {
 
         //
         // PROCESS ALL QUERY TO CONNECTION(S)
-        $this->oCRNRSTN_USR->process_query(true);
+        $this->oCRNRSTN->process_query(true);
 
     }
 
-    public function returnPageSearchResultsHTML($serial, $channel='desktop'){
+    public function return_page_search_results_html($serial, $channel='desktop'){
 
-        return self::$oContentGen->returnPageSearchResultsHTML($this, $serial, $channel);
+        return self::$oContentGen->return_page_search_results_html($this, $serial, $channel);
 
     }
 
-    public function returnSearchResultHTML($page_path, $return_content, $content_title, $ugc_search_str){
+    public function return_search_result_html($page_path, $return_content, $content_title, $ugc_search_str){
 
-        $tmp_result_id = $this->oCRNRSTN_USR->generate_new_key(10);
+        $tmp_result_id = $this->oCRNRSTN->generate_new_key(10);
         $page_path = ltrim($page_path, "/");
-        $tmp_page_uri = $this->oCRNRSTN_USR->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN_USR->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
+        $tmp_page_uri = $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
 
         if($content_title!=''){
             $content_title = '<span class="s_result_title">' . $content_title . ' ::</span> ';
@@ -419,13 +421,14 @@ class crnrstn_ui_content_assembler {
         return $result_HTML;
     }
 
-    public function returnSearchResultMOBILE($page_path, $return_content, $content_title, $ugc_search_str){
+    public function return_search_result_mobile($page_path, $return_content, $content_title, $ugc_search_str){
 
-        $tmp_result_id = $this->oCRNRSTN_USR->generate_new_key(10);
+        $tmp_result_id = $this->oCRNRSTN->generate_new_key(10);
         $page_path = ltrim($page_path, "/");
-        $tmp_page_uri = $this->oCRNRSTN_USR->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN_USR->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
+        $tmp_page_uri = $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
 
         if($content_title!=''){
+            
             $content_title = '<span class="s_result_title">' . $content_title . ' ::</span> ';
 
             //$result_HTML = '<div id="sresult_' . $tmp_result_id . '" class="s_resultfull_wrapper" onmouseover="ajax_search_result(\'#sresult_' . $tmp_result_id . '\', \'mouseover\'); return false;" onmouseout="ajax_search_result(\'#sresult_' . $tmp_result_id . '\', \'mouseout\'); return false;" onclick="loadPage(\'' . $tmp_page_uri.'\'); return false;">' . $content_title.$return_content.'...</div>';
@@ -460,13 +463,14 @@ class crnrstn_ui_content_assembler {
         }
 
         return $result_HTML;
+        
     }
 
-    public function returnAjaxSearchResultMOBILE($ugc_search_str, $page_path, $return_content, $content_title){
+    public function return_ajax_search_result_mobile($ugc_search_str, $page_path, $return_content, $content_title){
 
-        //$tmp_result_id = $this->oCRNRSTN_USR->generate_new_key(10);
+        //$tmp_result_id = $this->oCRNRSTN->generate_new_key(10);
         $page_path = ltrim($page_path, "/");
-        $tmp_page_uri = $this->oCRNRSTN_USR->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN_USR->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
+        $tmp_page_uri = $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
 
         //if($content_title!=''){
         //     $content_title = '<span class="s_result_title">' . $content_title . ' ::</span> ';
@@ -480,11 +484,11 @@ class crnrstn_ui_content_assembler {
 
     }
 
-    public function returnAjaxSearchResultHTML($page_path, $return_content, $content_title){
+    public function return_ajax_search_result_html($page_path, $return_content, $content_title){
 
-	    $tmp_result_id = $this->oCRNRSTN_USR->generate_new_key(10);
+	    $tmp_result_id = $this->oCRNRSTN->generate_new_key(10);
         $page_path = ltrim($page_path, "/");
-	    $tmp_page_uri = $this->oCRNRSTN_USR->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN_USR->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
+	    $tmp_page_uri = $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
 
 	    if($content_title!=''){
 
@@ -501,7 +505,7 @@ class crnrstn_ui_content_assembler {
     //
     // SOURCE :: https://www.php.net/manual/en/function.preg-split.php
     // AUTHOR :: (buzoganylaszlo at yahoo dot com) https://www.php.net/manual/en/function.preg-split.php#92632
-    public function processQuotedSearch($ugc_str){
+    public function process_quoted_search($ugc_str){
 
         $words = preg_split("/[\s,]*\\\"([^\\\"]+)\\\"[\s,]*|" . "[\s,]*'([^']+)'[\s,]*|" . "[\s,]+/", $ugc_str, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
@@ -528,7 +532,7 @@ class crnrstn_ui_content_assembler {
 	     * */
     }
 
-    public function initializePage($key, $category_name, $subcategory_name, $subsubcat_name){
+    public function initialize_page($key, $category_name, $subcategory_name, $subsubcat_name){
 
         try {
 
@@ -540,11 +544,11 @@ class crnrstn_ui_content_assembler {
 
             }
 
-            //$this->oCRNRSTN_USR->error_log('Breaking the switch(key) now to throw an exception...', __LINE__, __METHOD__, __FILE__, 'SKIP ME NOW!');
+            //$this->oCRNRSTN->error_log('Breaking the switch(key) now to throw an exception...', __LINE__, __METHOD__, __FILE__, 'SKIP ME NOW!');
 
             switch($key){
                 case 'PAGE':
-                    //$this->oCRNRSTN_USR->error_log('See me?...CERTAIN_DESTRUCTION', __LINE__, __METHOD__, __FILE__, 'CERTAIN_DESTRUCTION');
+                    //$this->oCRNRSTN->error_log('See me?...CERTAIN_DESTRUCTION', __LINE__, __METHOD__, __FILE__, 'CERTAIN_DESTRUCTION');
 
                     //error_log('215 side bitch usr - '.self::$oContentGen->page_serial);
                     //
@@ -559,7 +563,7 @@ class crnrstn_ui_content_assembler {
 
                     //
                     // GENERATE UNIQUE HANDLE FOR THIS DATA
-                    self::$oContentGen->initPage($this->oCRNRSTN_USR->crcINT(self::$oContentGen->page_uri.self::$oContentGen->page_category_name.self::$oContentGen->page_subcategory_name.self::$oContentGen->page_subsubcateg_name));
+                    self::$oContentGen->init_page($this->oCRNRSTN->crcINT(self::$oContentGen->page_uri.self::$oContentGen->page_category_name.self::$oContentGen->page_subcategory_name.self::$oContentGen->page_subsubcateg_name));
 
                     self::$oContentGen->page_category_name_ARRAY[self::$oContentGen->page_serial] = $category_name;
                     self::$oContentGen->page_subcategory_name_ARRAY[self::$oContentGen->page_serial] = $subcategory_name;
@@ -579,7 +583,7 @@ class crnrstn_ui_content_assembler {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -589,7 +593,7 @@ class crnrstn_ui_content_assembler {
 
     }
 
-	public function addPageElement($serial, $key, $attribute_00, $attribute_01=NULL, $attribute_02=NULL, $attribute_03=NULL, $attribute_04=NULL){
+	public function add_page_element($serial, $key, $attribute_00, $attribute_01=NULL, $attribute_02=NULL, $attribute_03=NULL, $attribute_04=NULL){
 
         try {
 
@@ -611,13 +615,13 @@ class crnrstn_ui_content_assembler {
                 case 'NOTE_COPY':
                 case 'SUB_TITLE':
 
-                    self::$oContentGen->addPageElement($serial, $key, $attribute_00);
+                    self::$oContentGen->add_page_element($serial, $key, $attribute_00);
 
                 break;
                 case 'EXAMPLE':
-                    //$oSideBitch_Usr->addPageElement($tmp_page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
+                    //$oSideBitch_Usr->add_page_element($tmp_page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
-                    self::$oContentGen->addPageElement($serial, $key, $attribute_00, $attribute_01, $attribute_02, $attribute_03);
+                    self::$oContentGen->add_page_element($serial, $key, $attribute_00, $attribute_01, $attribute_02, $attribute_03);
 
                 break;
 
@@ -627,34 +631,34 @@ class crnrstn_ui_content_assembler {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
 
     }
 
-    public function getCategory($serial){
+    public function get_category($serial){
 
 	    return self::$oContentGen->page_category_name_ARRAY[$serial];
     }
 
-    public function getSubCategory($serial){
+    public function get_sub_category($serial){
 
         return self::$oContentGen->page_subcategory_name_ARRAY[$serial];
     }
 
-    public function returnPageHTML($serial, $channel='desktop'){
+    public function return_page_html($serial, $channel = 'desktop'){
 
-        return self::$oContentGen->returnPageHTML($serial, $channel);
+        return self::$oContentGen->return_page_html($serial, $channel);
 
     }
 
-    public function returnPageSerial(){
+    public function return_page_serial(){
 
-        return self::$oContentGen->returnPageSerial();
+        return self::$oContentGen->return_page_serial();
     }
 
-    public function navVisibleState($nav_copy){
+    public function nav_visible_state($nav_copy){
 
         if(strtolower($nav_copy) == strtolower(self::$oContentGen->page_subcategory_name_ARRAY[self::$oContentGen->page_serial])){
 
@@ -663,13 +667,14 @@ class crnrstn_ui_content_assembler {
         }else{
 
             echo '';
+            
         }
 
         return NULL;
 
     }
 
-    public function navActiveState($nav_copy){
+    public function nav_active_state($nav_copy){
         //error_log('317 side bitch usr - serial='.self::$oContentGen->page_serial);
 	    if(strtolower($nav_copy) == strtolower(self::$oContentGen->page_subcategory_name_ARRAY[self::$oContentGen->page_serial])){
 
@@ -678,6 +683,7 @@ class crnrstn_ui_content_assembler {
         }else{
 
 	        echo '';
+	        
         }
 
 	    return NULL;
@@ -721,7 +727,7 @@ class crnrstn_ui_content_assembler {
                             // PROXY CHECK HERE. DO WE HAVE EXTERNAL LINK? IF SO, PROXY IT. self::$transform_output_ARRAY['QUERY'/'STYLED_CONTENT']
                             if(strpos($link, 'evifweb.com')>0){
 
-                                if($this->oCRNRSTN_USR->getSessionParam("DEVICETYPE")=="m"){
+                                if($this->oCRNRSTN->getSessionParam("DEVICETYPE")=="m"){
 
                                     return '<' . array_push($links, "<a $attr href=\"$protocol://$link\" class=\"htmllink\" data-ajax=\"false\">$link</a>") . '>';
 
@@ -739,7 +745,7 @@ class crnrstn_ui_content_assembler {
                                 $tmp_output_ARRAY = $this->buildProxy($protocol,$link);
 
 
-                                if($this->oCRNRSTN_USR->getSessionParam("DEVICETYPE")=="m"){
+                                if($this->oCRNRSTN->getSessionParam("DEVICETYPE")=="m"){
 
                                     return '<' . array_push($links, "<a $attr href=\"$tmp_output_ARRAY[0]://$tmp_output_ARRAY[1]\" class=\"htmllink\" data-ajax=\"false\">$link</a>") . '>';
 
@@ -836,7 +842,7 @@ class crnrstn_ui_content_assembler {
 
         } catch( Exception $e ) {
 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 

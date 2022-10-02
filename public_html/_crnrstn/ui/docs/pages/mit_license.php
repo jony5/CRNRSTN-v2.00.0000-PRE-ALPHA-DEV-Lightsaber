@@ -53,7 +53,7 @@ switch($channel_constant){
             <html lang="en">
             <head>
                 <?php
-                include_once($this->oCRNRSTN_USR->get_resource("DOCUMENT_ROOT") . $this->oCRNRSTN_USR->get_resource("DOCUMENT_ROOT_DIR") . '/common/inc/head/head.inc.php');
+                include_once($this->oCRNRSTN->get_resource("DOCUMENT_ROOT") . $this->oCRNRSTN->get_resource("DOCUMENT_ROOT_DIR") . '/common/inc/head/head.inc.php');
                 ?>
             </head>
 
@@ -61,13 +61,13 @@ switch($channel_constant){
             <div data-role="page" id="myPage">
                 <?php
 
-                //$tmp_HTML = $oSideBitch_Usr->returnPageHTML($tmp_page_serial, 'mobile');
+                //$tmp_HTML = $oSideBitch_Usr->return_page_html($tmp_page_serial, 'mobile');
 
-                //$tmp_formUnique = $this->oCRNRSTN_USR->generate_new_key(4);
-                //$tmp_pageName_Header =  strtolower($oSideBitch_Usr->getCategory($tmp_page_serial)).' ::';
-                //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.mobi.inc.php');
-                //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/nav/sidenav.mobi.inc.php');
-                //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/header/header.mobi.inc.php');
+                //$tmp_formUnique = $this->oCRNRSTN->generate_new_key(4);
+                //$tmp_pageName_Header =  strtolower($oSideBitch_Usr->get_category($tmp_page_serial)).' ::';
+                //require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.mobi.inc.php');
+                //require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/nav/sidenav.mobi.inc.php');
+                //require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/header/header.mobi.inc.php');
 
 
                 $tmp = '420';
@@ -75,30 +75,30 @@ switch($channel_constant){
                     case '420':
                         //
                         // AV SERVICE SAINT
-                        //$oMiniNav = new miniNav('avservice_saint', $this->oCRNRSTN_USR);
-                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
-                        //$oMiniNav->configureLink('obs clients', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/obs/');
-                        //$oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/logs/');
-                        //$oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/');
+                        //$oMiniNav = new miniNav('avservice_saint', $this->oCRNRSTN);
+                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN->oHTTP_MGR->extractData($_GET, 'kid'));
+                        //$oMiniNav->configureLink('obs clients', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/obs/');
+                        //$oMiniNav->configureLink('logs', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/logs/');
+                        //$oMiniNav->configureLink('refresh', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/');
 
                         break;
                     case '320':
                         //
                         // SAINT SERVING TRANSLATION
-                        $oMiniNav = new miniNav('translation_saint', $this->oCRNRSTN_USR);
-                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
-                        $oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_resources_http_path . 'dashboard/logs/');
-                        $oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_resources_http_path . 'dashboard/');
+                        $oMiniNav = new miniNav('translation_saint', $this->oCRNRSTN);
+                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN->oHTTP_MGR->extractData($_GET, 'kid'));
+                        $oMiniNav->configureLink('logs', $this->oCRNRSTN->crnrstn_resources_http_path . 'dashboard/logs/');
+                        $oMiniNav->configureLink('refresh', $this->oCRNRSTN->crnrstn_resources_http_path . 'dashboard/');
 
                         break;
 
                 }
 
-                //$tmp_formUnique = $this->oCRNRSTN_USR->generate_new_key(4);
+                //$tmp_formUnique = $this->oCRNRSTN->generate_new_key(4);
                 //$tmp_pageName_Header = 'home ::';
-                //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/search/search.mobi.inc.php');
-                //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/nav/sidenav.mobi.inc.php');
-                //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/header/header.mobi.inc.php');
+                //require($this->oCRNRSTN->crnrstn_resources_http_path.'/common/inc/search/search.mobi.inc.php');
+                //require($this->oCRNRSTN->crnrstn_resources_http_path.'/common/inc/nav/sidenav.mobi.inc.php');
+                //require($this->oCRNRSTN->crnrstn_resources_http_path.'/common/inc/header/header.mobi.inc.php');
 
                 ?>
 
@@ -113,7 +113,7 @@ switch($channel_constant){
                 </div><!-- /content -->
 
                 <?php
-                require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR') . '/common/inc/footer/footer.inc.php');
+                require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/common/inc/footer/footer.inc.php');
 
                 ?>
 
@@ -133,11 +133,6 @@ switch($channel_constant){
 
         //
         // DESKTOP EXPERIENCE
-        //$this->oCRNRSTN_USR->returnSrvrRespStatus(503);
-        // input_data_value($crnrstn_images_http_dir, 'crnrstn_resources_http_path', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
-//        error_log(__LINE__ . ' [' . get_class($this->oCRNRSTN_USR) . '] crnrstn_resources_http_path=' . $this->oCRNRSTN->get_resource('crnrstn_resources_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES') . '. die();');
-//        die();
-
         $tmp_http_root = $this->oCRNRSTN->current_location();
 
         $tmp_str = '<!DOCTYPE html>
@@ -234,6 +229,7 @@ DSJPCR
                     </select>
                 </div>
                 <div class="crnrstn_cb"></div>
+                
                 <div class="crnrstn_static_hdr_branding_shell">
                     <div class="crnrstn_static_hdr_branding_copy">C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . '</div>
                 </div>
@@ -270,7 +266,7 @@ DSJPCR
 
                             <div class="crnrstn_mit_back_copy_outter_shell">
                                 <div class="crnrstn_mit_back_copy_inner_shell">
-                                    <!--<a href="' . $this->oCRNRSTN_USR->return_back_link() . '" target="_self" class="crnrstn_mit_copy_back">BACK</a>-->
+                                    <!--<a href="' . $this->oCRNRSTN->return_back_link() . '" target="_self" class="crnrstn_mit_copy_back">BACK</a>-->
                                 </div>
                             </div>
                             

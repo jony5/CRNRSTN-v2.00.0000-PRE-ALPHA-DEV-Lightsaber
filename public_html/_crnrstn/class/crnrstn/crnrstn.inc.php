@@ -8203,8 +8203,13 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         return $this->oCRNRSTN_ENV->proper_response_return($response, $header_options_array, $crnrstn_response_profile_key);
 
+    }
 
-        }
+    public function return_back_link(){
+
+        return '';
+
+    }
 
     public function return_sticky_link($url, $meta_params_ARRAY = NULL){
 

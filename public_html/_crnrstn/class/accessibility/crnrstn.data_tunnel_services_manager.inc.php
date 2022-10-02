@@ -304,7 +304,7 @@ class crnrstn_data_tunnel_services_manager{
 
                 //
                 // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
-                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation();
+                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
                 $tmp_module_data = $module_nom;
 
             break;
@@ -312,7 +312,7 @@ class crnrstn_data_tunnel_services_manager{
 
                 //
                 // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
-                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer();
+                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer_generic();
                 $tmp_module_data = $module_nom;
 
             break;

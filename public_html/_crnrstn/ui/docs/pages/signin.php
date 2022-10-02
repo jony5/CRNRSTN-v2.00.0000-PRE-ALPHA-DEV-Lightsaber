@@ -41,7 +41,7 @@ $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_signin_flagship', 'crnrstn_p
 $channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_output_channel_constants);
 
 switch($channel_constant[0]){
-    case CRNRSTN_UI_MOBILE:
+    case '12345':
         //
         // MOBILE DEVICE EXPERIENCE
         $tmp_str = 'hello mobi world!';
@@ -49,7 +49,7 @@ switch($channel_constant[0]){
         //exit();
 
     break;
-    case CRNRSTN_UI_TABLET:
+    case 'null':
 
         //
         // TABLET DEVICE EXPERIENCE
@@ -76,10 +76,10 @@ switch($channel_constant[0]){
             <div data-role="page" id="myPage">
                 <?php
 
-                //$tmp_HTML = $oSideBitch_Usr->returnPageHTML($tmp_page_serial, 'mobile');
+                //$tmp_HTML = $oSideBitch_Usr->return_page_html($tmp_page_serial, 'mobile');
 
                 //$tmp_formUnique = $this->oCRNRSTN_USR->generate_new_key(4);
-                //$tmp_pageName_Header =  strtolower($oSideBitch_Usr->getCategory($tmp_page_serial)).' ::';
+                //$tmp_pageName_Header =  strtolower($oSideBitch_Usr->get_category($tmp_page_serial)).' ::';
                 //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.mobi.inc.php');
                 //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/nav/sidenav.mobi.inc.php');
                 //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/header/header.mobi.inc.php');
@@ -140,6 +140,8 @@ switch($channel_constant[0]){
         }
 
     break;
+    case CRNRSTN_UI_MOBILE:
+    case CRNRSTN_UI_TABLET:
     default:
         // CRNRSTN_UI_DESKTOP:
 

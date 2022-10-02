@@ -224,9 +224,6 @@ class crnrstn_http_manager {
             X-Wap-Profile
             X-UIDH[34][35][36]
 
-
-
-
         Response fields
             Access-Control-Allow-Origin,
             Access-Control-Allow-Credentials,

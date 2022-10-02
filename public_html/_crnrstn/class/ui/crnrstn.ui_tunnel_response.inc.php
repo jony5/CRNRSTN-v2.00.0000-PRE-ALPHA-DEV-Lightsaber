@@ -211,12 +211,12 @@ class crnrstn_ui_tunnel_response_manager {
                     break;
                     case 'crnrstn_interact_ui_documentation_side_nav_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation();
+                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
 
                     break;
                     case 'crnrstn_interact_ui_system_footer_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer();
+                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer_generic();
 
                     break;
                     case 'crnrstn_interact_ui_search_src':
@@ -250,6 +250,9 @@ class crnrstn_ui_tunnel_response_manager {
 
     public function return_interact_ui_request_response($output_format = 'xml'){
 
+        //
+        // NOT SURE IF THIS WILL STILL BE NECESSARY (E.G. DO WE NEED HTTP RESPONSE
+        // HEADER MANIPULATION OPPORTUNITY HERE?), BUT LEAVING FOR NOW.
         switch($output_format){
             case 'xml':
 
@@ -263,7 +266,7 @@ class crnrstn_ui_tunnel_response_manager {
                 error_log(__LINE__ . ' tunnel resp mgr XML [' . $this->oCRNRSTN->page_request_id . '].');
 
                 return $this->soap_data_tunnel_layer_response();
-                
+
             break;
 
         }

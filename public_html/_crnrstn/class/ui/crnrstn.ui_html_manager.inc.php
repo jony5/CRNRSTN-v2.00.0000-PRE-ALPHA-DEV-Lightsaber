@@ -55,7 +55,6 @@ class crnrstn_ui_html_manager {
 
 	protected $oLogger;
 	public $oCRNRSTN;
-    public $oCRNRSTN_USR;
     protected $oCRNRSTN_UI_ASSEMBLER;
 
     public $page_serial;
@@ -63,7 +62,6 @@ class crnrstn_ui_html_manager {
 	public function __construct($oCRNRSTN){
 
 	    $this->oCRNRSTN = $oCRNRSTN;
-	    $this->oCRNRSTN_USR = $this->oCRNRSTN->oCRNRSTN_USR;
 
         //
         // INSTANTIATE LOGGER
@@ -72,13 +70,8 @@ class crnrstn_ui_html_manager {
         //
         // PAGE CONTENT AGGREGATION
         $this->oCRNRSTN_UI_ASSEMBLER = new crnrstn_ui_content_assembler($this->oCRNRSTN);
-        $this->oCRNRSTN_UI_ASSEMBLER->initializePageContent();
-        //$this->oCRNRSTN_UI_ASSEMBLER->loadPage();
-        //$this->oCRNRSTN_UI_ASSEMBLER->indexPage();
-        $this->page_serial = $this->oCRNRSTN_UI_ASSEMBLER->returnPageSerial();
 
         $channel_selected_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_channel_constants);
-        $tmp_sel_cnt = count($channel_selected_ARRAY);
 
 	}
 
@@ -145,202 +138,20 @@ class crnrstn_ui_html_manager {
 
     public function out_ui_module_html_system_documentation_page(){
 
-        $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        $tmp_html_out = '';
 
-        if(strlen($tmp_module_page_key) > 0){
+        $this->oCRNRSTN_UI_ASSEMBLER->initialize_page_content();
+        //$this->oCRNRSTN_UI_ASSEMBLER->load_page();
+        //$this->oCRNRSTN_UI_ASSEMBLER->index_page();
+        $this->page_serial = $this->oCRNRSTN_UI_ASSEMBLER->return_page_serial();
 
-            $tmp_example_test = '//
-// CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
-$tmp_minimum_bytes_required = strlen($tmp_data_str_out);
+        $tmp_html_out  = $this->oCRNRSTN_UI_ASSEMBLER->return_page_html($this->page_serial);
 
-//
-// ASK CRNRSTN :: TO GRANT PERMISSIONS FOR fwrite()
-// WARNINGS WILL BE THROWN @ $oCRNRSTN->max_storage_utilization_warning PERCENTAGE. 
-// WRITE REQUESTS WILL BE DENIED @ $oCRNRSTN->max_storage_utilization PERCENTAGE.
-if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
-
-    //
-    // HOOOSTON...VE HAF PROBLEM!
-    $this->oCRNRSTN->error_log(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
-
-    $this->oCRNRSTN->print_r(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-    
-    throw new Exception(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
-
-}';
-            $tmp_example_test = $this->oCRNRSTN->print_r_str($tmp_example_test, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
-
-
-            $tmp_html_out = '<a name="crnrstn_top_' . $this->oCRNRSTN->session_salt() . '"></a>
-            <div class="crnrstn_documentation_dyn_content_shell">
-            
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
-                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
-                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
-                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
-                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                            
-                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
-
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
-                                    </div>
-
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
-                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
-                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
-                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
-                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                                    
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>Example 1 ::</h2></div>
-                                        <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
-                            
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
-                                    <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>Example 1 ::</h2></div>
-                                        <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
-                                    </div>
-                                
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
-                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
-                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
-                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
-                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                            
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Neque egestas congue quisque egestas diam in arcu. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
-                            
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
-                                    <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Neque egestas congue quisque egestas diam in arcu. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
-                                    </div>
-                                
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
-                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
-                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
-                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
-                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                            
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget est lorem ipsum dolor. Suspendisse ultrices gravida dictum fusce. Bibendum neque egestas congue quisque. Dapibus ultrices in iaculis nunc sed augue lacus viverra vitae. Hendrerit gravida rutrum quisque non tellus orci. Sagittis aliquam malesuada bibendum arcu vitae elementum. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Tortor posuere ac ut consequat semper viverra. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat. Ac turpis egestas sed tempus urna et pharetra pharetra. Venenatis cras sed felis eget.</p></div>
-                            
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
-                                    <div class="crnrstn_hidden_void">
-                                    
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget est lorem ipsum dolor. Suspendisse ultrices gravida dictum fusce. Bibendum neque egestas congue quisque. Dapibus ultrices in iaculis nunc sed augue lacus viverra vitae. Hendrerit gravida rutrum quisque non tellus orci. Sagittis aliquam malesuada bibendum arcu vitae elementum. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Tortor posuere ac ut consequat semper viverra. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat. Ac turpis egestas sed tempus urna et pharetra pharetra. Venenatis cras sed felis eget.</p></div>
-                                    
-                                    </div>
-                                
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div> 
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
-                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
-                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
-                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
-                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                            
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
-                            
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
-                                    <div class="crnrstn_hidden_void">
-                                    
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
-                                    
-                                    </div>
-                                
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div> 
-                
-                <div class="crnrstn_cb"></div>
-                <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
-                    <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
-                        <div class="crnrstn_j5_wolf_pup_inner_wrap">
-                            ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
-                        </div>
-                    </div>
-                </div>
-                <div class="crnrstn_cb"></div>
-            </div><div class="crnrstn_cb_75"></div>';
-
-            return $tmp_html_out;
-
-        }
-
-        return '';
+        return $tmp_html_out;
 
     }
 
-    public function out_ui_module_html_system_documentation(){
+    public function out_ui_module_html_system_documentation_nav(){
 
         $tmp_html_out = '<div id="crnrstn_interact_ui_side_nav_search" class="crnrstn_interact_ui_side_nav_search" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);">
                 
@@ -402,7 +213,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
     }
 
-    public function out_ui_module_html_system_footer(){
+    public function out_ui_module_html_system_footer_generic(){
 
         $tmp_html_out = '<div id="crnrstn_ui_system_footer_wrapper" class="crnrstn_ui_system_footer_wrapper">
 

@@ -35,10 +35,10 @@ switch($channel_constant[0]){
         <div data-role="page" id="myPage">
             <?php
 
-            //$tmp_HTML = $oSideBitch_Usr->returnPageHTML($tmp_page_serial, 'mobile');
+            //$tmp_HTML = $oSideBitch_Usr->return_page_html($tmp_page_serial, 'mobile');
 
             //$tmp_formUnique = $this->oCRNRSTN_USR->generate_new_key(4);
-            //$tmp_pageName_Header =  strtolower($oSideBitch_Usr->getCategory($tmp_page_serial)).' ::';
+            //$tmp_pageName_Header =  strtolower($oSideBitch_Usr->get_category($tmp_page_serial)).' ::';
             //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.mobi.inc.php');
             //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/nav/sidenav.mobi.inc.php');
             //require($this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/header/header.mobi.inc.php');
