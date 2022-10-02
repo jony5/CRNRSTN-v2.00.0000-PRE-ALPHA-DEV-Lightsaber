@@ -78,14 +78,14 @@
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
 // SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/
-.crnrstn_interact_ui_side_nav_search                { position: fixed; top:260px; left:0; border-radius: 10px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #A5B9D8; overflow: hidden; cursor: pointer; }
+.crnrstn_interact_ui_side_nav_search                { position: fixed; top:173px; left:0; border-radius: 10px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #A5B9D8; overflow: hidden; cursor: pointer; }
 .crnrstn_interact_ui_side_nav_search_bar_rel        { position: relative;}
 .crnrstn_interact_ui_side_nav_search_bar            { position:absolute; z-index: 9999; left: 0; height: 40px; width:2px; background-color: #A5B9D8;}
 .crnrstn_interact_ui_side_nav_search_img_wrapper    { float: left; color:#FFF; font-size:11px; font-weight:normal; padding:0 5px 3px 0;}
 .crnrstn_interact_ui_side_nav_search_img_rel        { position: relative;}
 .crnrstn_interact_ui_side_nav_search_img            { position:absolute; z-index: 9999; font-size:14px; padding:3px 0 0 5px; }
 
-.crnrstn_interact_ui_side_nav_logo                  { position: fixed; top:200px; left:0; border-radius: 15px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #A5B9D8; overflow: hidden; cursor: pointer; }
+.crnrstn_interact_ui_side_nav_logo                  { position: fixed; top:113px; left:0; border-radius: 15px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #A5B9D8; overflow: hidden; cursor: pointer; }
 .crnrstn_interact_ui_side_nav_logo_bar_rel          { position: relative;}
 .crnrstn_interact_ui_side_nav_logo_bar              { position:absolute; z-index:9999; left: 0; height: 60px; width:2px; background-color: #A5B9D8;}
 .crnrstn_interact_ui_side_nav_logo_img_wrapper      { float: left; color:#FFF; font-size:11px; font-weight:normal; padding:0 5px 3px 0;}
