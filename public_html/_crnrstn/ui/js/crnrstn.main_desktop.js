@@ -434,6 +434,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //
         // BEGIN UI PAGE LOAD VISUALIZATION EXPERIENCE
         $('#crnrstn_interact_ui_page_load_progress').val('');
+
         this.start_page_request_visualization();
 
         //
@@ -488,6 +489,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 top: "linear"
             },
             complete: function () {
+
+                $('#crnrstn_ui_element_load_indicator').stop();
 
             }
 
@@ -678,7 +681,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         $("#crnrstn_ui_element_load_indicator").html($("#crnrstn_interact_ui_loadbar_IMAGE_CACHE").html());
 
         this.start_page_request_visualization();
-        $('#crnrstn_ui_element_load_indicator').stop();
+        //$('#crnrstn_ui_element_load_indicator').stop();
 
     };
 
@@ -1187,7 +1190,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     CRNRSTN_JS.prototype.parse_data_tunnel_response = function(response_data) {
 
         var packet_dl_bytes = response_data.responseText.length;
-        oCRNRSTN_JS.log_activity('[lnum 1190] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        oCRNRSTN_JS.log_activity('[lnum 1193] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         $('#crnrstn_ui_element_load_indicator').stop();
 
@@ -1212,6 +1215,18 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         //alert('[lnum 1213] XML data_signature_request_serial='+tmp_data_signature_request_serial);
         this.refresh_ui_state(tmp_data_signature_request_serial, tmp_data_signature_request_hash);
+
+        $('#crnrstn_ui_element_load_indicator').animate({
+            opacity: 1.0
+        }, {
+            duration: 150,
+            queue: false,
+            complete: function () {
+
+
+            }
+
+        });
 
     };
 
@@ -2851,7 +2866,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                         },
                                         complete: function () {
 
-                                            self.size_element_y('crnrstn_j5_wolf_pup_outter_wrap', true);
+                                            self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
 
                                             self.crnrstn_interact_ui_ux('scrolltop', false);
 
@@ -3268,52 +3283,10 @@ interact_ui_animation_sequence = function(module_key){
 
     };
 
+
     CRNRSTN_JS.prototype.size_element_y = function(dom_elem_id, force_execution = false) {
 
         switch(dom_elem_id){
-            case 'crnrstn_j5_wolf_pup_outter_wrap':
-
-                var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
-
-                //alert('css_int=' + css_int + '. side_navigation_min_width=' + this.side_navigation_min_width + '.');
-                if((css_int >= this.side_navigation_min_width + 5  && !(force_execution)) || (force_execution && (css_int <= this.side_navigation_min_width))){
-
-                    //
-                    // CLOSE SIDE NAVIGATION
-                    $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
-                        paddingRight: 22
-                    }, {
-                        duration: 500,
-                        queue: false,
-                        specialEasing: {
-                            paddingRight: "swing"
-                        },
-                        complete: function () {
-
-                        }
-
-                    });
-
-                    return true;
-                }
-
-                //
-                // EXPAND NAVIGATION
-                $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
-                    paddingRight: 260
-                }, {
-                    duration: 500,
-                    queue: false,
-                    specialEasing: {
-                        paddingRight: "swing"
-                    },
-                    complete: function () {
-
-                    }
-
-                });
-
-            break;
             case 'crnrstn_ui_element_load_indicator_shell':
 
                 var self = this;
@@ -3331,6 +3304,62 @@ interact_ui_animation_sequence = function(module_key){
             default:
 
                 this.log_activity('[lnum 3286] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+
+            break;
+
+        }
+
+    };
+
+    CRNRSTN_JS.prototype.size_element_x = function(dom_elem_id, force_execution = false) {
+
+        switch(dom_elem_id){
+            case 'crnrstn_j5_wolf_pup_outter_wrap':
+
+                var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
+
+                if((css_int >= this.side_navigation_min_width + 5  && !(force_execution)) || (force_execution && (css_int <= this.side_navigation_min_width))){
+
+                    //
+                    // CLOSE SIDE NAVIGATION
+                    $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
+                        paddingRight: 45
+                    }, {
+                        duration: 500,
+                        queue: false,
+                        specialEasing: {
+                            paddingRight: "swing"
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+
+                    return true;
+
+                }
+
+                //
+                // EXPAND NAVIGATION
+                $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
+                    paddingRight: 268
+                }, {
+                    duration: 500,
+                    queue: false,
+                    specialEasing: {
+                        paddingRight: "swing"
+                    },
+                    complete: function () {
+
+                    }
+
+                });
+
+            break;
+            default:
+
+                this.log_activity('[lnum 3348] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -7039,7 +7068,7 @@ interact_ui_animation_sequence = function(module_key){
 
             });
 
-            this.size_element_y('crnrstn_j5_wolf_pup_outter_wrap');
+            this.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
 
             return true;
 
@@ -7152,7 +7181,7 @@ interact_ui_animation_sequence = function(module_key){
 
         });
 
-        this.size_element_y('crnrstn_j5_wolf_pup_outter_wrap');
+        this.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
 
         return true;
 

@@ -206,13 +206,16 @@ class crnrstn_ui_tunnel_response_manager {
                 switch($module_nom){
                     case 'crnrstn_interact_ui_documentation_content_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();
+                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('php');
+                        //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
+                        //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
 
                     break;
                     case 'crnrstn_interact_ui_documentation_side_nav_src':
 
                         $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
-
+                        //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
+                        //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
                     break;
                     case 'crnrstn_interact_ui_system_footer_src':
 

@@ -1269,7 +1269,6 @@ class crnrstn_environment {
         $tmp_str_array[] = '        <div id="crnrstn_interact_ui_documentation_side_nav_src" class="crnrstn_hidden"></div>
         <div id="crnrstn_interact_ui_documentation_content_src" class="crnrstn_hidden"></div>
         <div id="crnrstn_interact_ui_search_src" class="crnrstn_hidden"></div>
-        <!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
         ';
 
         $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DOCUMENTATION MODULE OUTPUT -->

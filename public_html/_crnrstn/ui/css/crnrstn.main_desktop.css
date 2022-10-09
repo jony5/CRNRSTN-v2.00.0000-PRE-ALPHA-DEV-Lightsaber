@@ -5,6 +5,9 @@
 .the_R_in_crnrstn                                   { color:#F90000; }
 .crnrstn_body_wrapper                               { width:100%; text-align:center; margin:0 auto; font-family:Arial, Helvetica, sans-serif; background-color: #FFF;}
 
+.crnrstn_j5_wolf_pup_outter_wrap                    { width:98%; float:right; padding:120px 0 0 0; margin:0; text-align: right; }
+.crnrstn_j5_wolf_pup_inner_wrap                     { position: absolute; padding-top:10px; width:98%; z-index: 2; text-align: right;}
+
 /*NEED TO SET Z-INDEX THROUGH THE SSDTL FOR ADMIN ACCESS*/
 .crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: black; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80); opacity: 0.8; display: none;}
 .crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; width: 100%; z-index: 10000; text-align: center; line-height: 0; font-weight: normal; outline: none;}
@@ -55,13 +58,13 @@
 .crnrstn_ui_element_load_indicator                  { position:absolute; z-index:11; width:100px; height:3000px;}
 
 /*CRNRSTN::INTEGRATION INTERACT UI MODULE :: DOCUMENTATION CONTENT*/
-.crnrstn_documentation_dyn_content_shell            { width: 900px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
+.crnrstn_documentation_dyn_content_shell            { width: 64%; min-width: 400px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
 .crnrstn_documentation_dyn_content_title            { font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 55px;}
-.crnrstn_documentation_dyn_content_title h1         { font-size: 45px; padding: 0 0 0 20px;}
+.crnrstn_documentation_dyn_content_title h1         { font-size: 45px; overflow-wrap: break-word;  padding: 0 0 0 20px;}
 .crnrstn_documentation_dyn_content_title h2         { font-size: 35px; padding: 0 0 0 20px; margin-bottom:0;}
-.crnrstn_documentation_dyn_content_description      { font-size: 20px; padding: 12px 20px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
+.crnrstn_documentation_dyn_content_description      { width: 90%; font-size: 20px; overflow-wrap: break-word;  padding: 12px 20px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_description p    { padding: 0; margin: 0; }
-.crnrstn_documentation_dyn_content_example          { width: 870px; padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
+.crnrstn_documentation_dyn_content_example          { width: 98%; /*width: 870px;*/ padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
 
 .crnrstn_documentation_dyn_content_module_bg_rel    { position: relative; width: 100%; overflow: hidden;}
 .crnrstn_documentation_dyn_content_module_bg        { position: absolute; z-index: 2; top:0; left:0; width: 100%; height:2000px; background-color: #FFF; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0;}
@@ -70,11 +73,8 @@
 .crnrstn_documentation_dyn_content_module_wrap_s2_outter    { overflow: hidden; border: 3px solid #FEFEFE; }
 .crnrstn_documentation_dyn_content_module_wrap_s2_inner     { overflow: hidden; border: 1px solid #A5B9D8;}
 .crnrstn_documentation_dyn_content_module_wrap_s1_rel       { position: relative; padding: 2px;}
-.crnrstn_documentation_dyn_content_module_wrap_s1           { position: absolute; z-index: 4; top:0; left:0;}
-.crnrstn_interact_ui_documentation_j5_wolf_pup .crnrstn_j5_wolf_pup_outter_wrap             { width: 900px; padding-right: 250px;}
-
-.crnrstn_j5_wolf_pup_outter_wrap            { width:98%; float:right; padding:120px 0 0 0; margin:0; text-align: right; }
-.crnrstn_j5_wolf_pup_inner_wrap             { position: absolute; padding-top:10px; width:98%; z-index: 2; text-align: right;}
+.crnrstn_documentation_dyn_content_module_wrap_s1           { width: 100%; position: absolute; z-index: 4; top:0; left:0;}
+.crnrstn_interact_ui_documentation_j5_wolf_pup .crnrstn_j5_wolf_pup_outter_wrap             { width: 98%; padding-right: 268px;}
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
 // SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/

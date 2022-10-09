@@ -75,14 +75,14 @@ class crnrstn_ui_html_manager {
 
 	}
 
-    public function return_output_CRNRSTN_UI_DOCS_NAV_LINK(){
+    public function return_output_CRNRSTN_UI_DOCS_NAV_LINK($type){
 
         $tmp_str = '';
-        $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/';
+        $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/' . $type . '/';
 
         $tmp_data_key = 'crnrstn_ui_navigation';
         $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::INTERACT_UI::' . $this->oCRNRSTN->hash($tmp_data_key);
-        if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_data_type_family)){
+//        if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_data_type_family)){
 
             $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
 
@@ -104,12 +104,12 @@ class crnrstn_ui_html_manager {
             $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
             $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
 
-        }else{
-
-            $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
-            $tmp_str = $this->oCRNRSTN->get_resource($tmp_data_key, 0, $tmp_data_type_family);
-
-        }
+//        }else{
+//
+//            $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
+//            $tmp_str = $this->oCRNRSTN->get_resource($tmp_data_key, 0, $tmp_data_type_family);
+//
+//        }
 
         return $tmp_str;
 
@@ -147,11 +147,12 @@ class crnrstn_ui_html_manager {
 
         $tmp_html_out  = $this->oCRNRSTN_UI_ASSEMBLER->return_page_html($this->page_serial);
 
+        //error_log(__LINE__ . ' ui html mgr '.__METHOD__);
         return $tmp_html_out;
 
     }
 
-    public function out_ui_module_html_system_documentation_nav(){
+    public function out_ui_module_html_system_documentation_nav($type = 'php'){
 
         $tmp_html_out = '<div id="crnrstn_interact_ui_side_nav_search" class="crnrstn_interact_ui_side_nav_search" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);">
                 
@@ -198,7 +199,8 @@ class crnrstn_ui_html_manager {
             </div>
            
             <div id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav">
-                <ul>' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK() . '
+                <!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
+                <ul>' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK($type) . '
                 </ul>                
                 <div class="crnrstn_cb_20"></div>
                 <div class="crnrstn_interact_ui_side_nav_5">' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
