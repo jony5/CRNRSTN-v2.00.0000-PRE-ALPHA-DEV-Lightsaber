@@ -3325,6 +3325,53 @@ interact_ui_animation_sequence = function(module_key){
     CRNRSTN_JS.prototype.size_element_x = function(dom_elem_id, force_execution = false){
 
         switch(dom_elem_id){
+            case 'crnrstn_activity_log_output_wrapper':
+
+                if($('#crnrstn_activity_log_output_wrapper').length){
+
+                    var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
+
+                    if((css_int >= this.side_navigation_min_width + 5  && !(force_execution)) || (force_execution && (css_int <= this.side_navigation_min_width))) {
+
+                        //
+                        // CLOSE SIDE NAVIGATION
+                        $( "#crnrstn_activity_log_output_wrapper").animate({
+                            width: '98%'
+                        }, {
+                            duration: 500,
+                            queue: false,
+                            specialEasing: {
+                                width: "swing"
+                            },
+                            complete: function () {
+
+                            }
+
+                        });
+
+                        return true;
+
+                    }
+
+                    $( "#crnrstn_activity_log_output_wrapper").animate({
+                        width: '102%'
+                    }, {
+                        duration: 500,
+                        queue: false,
+                        specialEasing: {
+                            width: "swing"
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+
+                    return true;
+
+                }
+
+            break;
             case 'crnrstn_j5_wolf_pup_outter_wrap':
 
                 var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
@@ -3366,6 +3413,10 @@ interact_ui_animation_sequence = function(module_key){
                     }
 
                 });
+
+            break;
+            case 'body':
+
 
             break;
             default:
@@ -7064,8 +7115,7 @@ interact_ui_animation_sequence = function(module_key){
 
             $('body').animate({
                 marginLeft: parseInt(this.side_navigation_min_width),
-                paddingLeft: parseInt(this.side_navigation_min_width),
-                width: b_width_nav_min
+                paddingLeft: parseInt(this.side_navigation_min_width)
             }, {
                 duration: 500,
                 queue: false,
@@ -7163,8 +7213,7 @@ interact_ui_animation_sequence = function(module_key){
 
         $('body').animate({
             marginLeft: parseInt(this.side_navigation_toggle_expand_width),
-            paddingLeft: parseInt(this.side_navigation_min_width),
-            width: b_width_nav_expand
+            paddingLeft: parseInt(this.side_navigation_min_width)
         }, {
             duration: 100,
             queue: false,
@@ -7191,7 +7240,9 @@ interact_ui_animation_sequence = function(module_key){
 
         });
 
-        this.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
+        this.size_element_x('body', true);
+        this.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
+        this.size_element_x('crnrstn_activity_log_output_wrapper', true);
 
         return true;
 
