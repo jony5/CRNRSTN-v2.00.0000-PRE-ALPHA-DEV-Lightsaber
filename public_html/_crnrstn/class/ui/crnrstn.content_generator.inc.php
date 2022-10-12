@@ -1329,10 +1329,8 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                 
                 <div class="crnrstn_cb"></div>
                 <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
-                    <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
-                        <div class="crnrstn_j5_wolf_pup_inner_wrap">
-                            ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
-                        </div>
+                    <div class="crnrstn_j5_wolf_pup_inner_wrap">
+                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
                     </div>
                 </div>
                 <div class="crnrstn_cb"></div>

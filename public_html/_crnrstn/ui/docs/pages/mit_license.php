@@ -317,7 +317,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         <div class="crnrstn_cb_40"></div>
 
-        <div class="crnrstn_j5_wolf_pup_outter_wrap">
+        <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
             <div class="crnrstn_j5_wolf_pup_inner_wrap">
                 ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
             </div>

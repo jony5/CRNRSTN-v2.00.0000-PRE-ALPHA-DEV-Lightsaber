@@ -3382,8 +3382,53 @@ interact_ui_animation_sequence = function(module_key){
 
                     //
                     // CLOSE SIDE NAVIGATION
-                    $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
-                        paddingRight: 268
+                    if($('#crnrstn_interact_ui_documentation_j5_wolf_pup').length){
+
+                        $('#crnrstn_interact_ui_documentation_j5_wolf_pup').animate({
+                            paddingRight: 268
+                        }, {
+                            duration: 500,
+                            queue: false,
+                            specialEasing: {
+                                paddingRight: "swing"
+                            },
+                            complete: function () {
+
+                            }
+
+                        });
+
+                    }
+
+                    if($('#crnrstn_j5_wolf_pup_outter_wrap').length){
+
+                        $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
+                            paddingRight: 268
+                        }, {
+                            duration: 500,
+                            queue: false,
+                            specialEasing: {
+                                paddingRight: "swing"
+                            },
+                            complete: function () {
+
+                            }
+
+                        });
+
+                    }
+
+
+                    return true;
+
+                }
+
+                //
+                // EXPAND NAVIGATION
+                if($('#crnrstn_interact_ui_documentation_j5_wolf_pup').length){
+
+                    $('#crnrstn_interact_ui_documentation_j5_wolf_pup').animate({
+                        paddingRight: 45
                     }, {
                         duration: 500,
                         queue: false,
@@ -3396,29 +3441,25 @@ interact_ui_animation_sequence = function(module_key){
 
                     });
 
-                    return true;
-
                 }
 
-                //
-                // EXPAND NAVIGATION
-                $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
-                    paddingRight: 45
-                }, {
-                    duration: 500,
-                    queue: false,
-                    specialEasing: {
-                        paddingRight: "swing"
-                    },
-                    complete: function () {
+                if($('#crnrstn_j5_wolf_pup_outter_wrap').length){
 
-                    }
+                    $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
+                        paddingRight: 45
+                    }, {
+                        duration: 500,
+                        queue: false,
+                        specialEasing: {
+                            paddingRight: "swing"
+                        },
+                        complete: function () {
 
-                });
+                        }
 
-            break;
-            case 'body':
+                    });
 
+                }
 
             break;
             default:

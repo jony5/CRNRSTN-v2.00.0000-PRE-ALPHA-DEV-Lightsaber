@@ -76,7 +76,7 @@
 .crnrstn_documentation_dyn_content_module_wrap_s2_inner     { overflow: hidden; border: 1px solid #A5B9D8;}
 .crnrstn_documentation_dyn_content_module_wrap_s1_rel       { position: relative; padding: 2px;}
 .crnrstn_documentation_dyn_content_module_wrap_s1           { width: 100%; position: absolute; z-index: 4; top:0; left:0;}
-.crnrstn_interact_ui_documentation_j5_wolf_pup .crnrstn_j5_wolf_pup_outter_wrap             { width: 98%; padding-right: 268px;}
+.crnrstn_interact_ui_documentation_j5_wolf_pup              { width: 98%; float:right; padding:120px 268px 0 0; margin:0; text-align: right;}
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
 // SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/
