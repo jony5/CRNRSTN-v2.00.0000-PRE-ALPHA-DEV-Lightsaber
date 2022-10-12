@@ -137,6 +137,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.dom_element_mouse_state_tracker_ARRAY = [];
         this.dom_element_mouse_state_lock_ARRAY = [];
         this.dom_element_mouse_state_ARRAY = [];
+        this.b_width_nav_expand = -1;
+        this.b_width_nav_min = -1;
         this.side_navigation_min_width = 17;
         this.side_navigation_toggle_expand_width = 250;
         this.docs_page_css_top = -420;
@@ -568,8 +570,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.$overlay = $('#crnrstn_interact_ui_full_lightbox_overlay');
         this.$crnrstn_lightbox = $('#crnrstn_interact_ui_full_lightbox');
 
-        var b_width_nav_expand = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
-        var b_width_nav_min = parseInt($('body').width()) - parseInt(this.side_navigation_min_width);
+        this.b_width_nav_expand = parseInt($(window).width()) - parseInt(this.side_navigation_toggle_expand_width) - 35;
+        this.b_width_nav_min = parseInt($(window).width()) - parseInt(this.side_navigation_min_width) - 35;
 
         if(!this.$overlay.length){
 
@@ -663,7 +665,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         $('body').animate({
             marginLeft: this.side_navigation_min_width,
             paddingLeft: parseInt(this.side_navigation_min_width),
-            width: b_width_nav_min
+            width: this.b_width_nav_min
         }, {
             duration: 500,
             queue: false,
@@ -2878,7 +2880,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                         },
                                         complete: function () {
 
-                                            self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
+                                            self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
 
                                             self.crnrstn_interact_ui_ux('scrolltop', false);
 
@@ -3374,14 +3376,14 @@ interact_ui_animation_sequence = function(module_key){
             break;
             case 'crnrstn_j5_wolf_pup_outter_wrap':
 
-                var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
+                var css_int = parseInt(this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width')));
 
                 if((css_int >= this.side_navigation_min_width + 5  && !(force_execution)) || (force_execution && (css_int <= this.side_navigation_min_width))){
 
                     //
                     // CLOSE SIDE NAVIGATION
                     $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
-                        paddingRight: 45
+                        paddingRight: 268
                     }, {
                         duration: 500,
                         queue: false,
@@ -3401,7 +3403,7 @@ interact_ui_animation_sequence = function(module_key){
                 //
                 // EXPAND NAVIGATION
                 $('#crnrstn_j5_wolf_pup_outter_wrap').animate({
-                    paddingRight: 268
+                    paddingRight: 45
                 }, {
                     duration: 500,
                     queue: false,
@@ -7020,9 +7022,11 @@ interact_ui_animation_sequence = function(module_key){
 
         var self = this;
         var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
-        var b_width_nav_expand = parseInt($('body').width()) - parseInt(this.side_navigation_toggle_expand_width);
-        var b_width_nav_min = parseInt($('body').width()) - parseInt(this.side_navigation_min_width);
 
+        this.b_width_nav_expand = parseInt($(window).width()) - parseInt(this.side_navigation_toggle_expand_width) - 35;
+        this.b_width_nav_min = parseInt($(window).width()) - parseInt(this.side_navigation_min_width) - 35;
+
+        //debugger;
         if(css_int > this.side_navigation_min_width + 35){
 
             //
@@ -7115,7 +7119,8 @@ interact_ui_animation_sequence = function(module_key){
 
             $('body').animate({
                 marginLeft: parseInt(this.side_navigation_min_width),
-                paddingLeft: parseInt(this.side_navigation_min_width)
+                paddingLeft: parseInt(this.side_navigation_min_width),
+                width: parseInt(this.b_width_nav_min)
             }, {
                 duration: 500,
                 queue: false,
@@ -7128,7 +7133,7 @@ interact_ui_animation_sequence = function(module_key){
 
             });
 
-            this.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
+            this.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
 
             return true;
 
@@ -7213,7 +7218,8 @@ interact_ui_animation_sequence = function(module_key){
 
         $('body').animate({
             marginLeft: parseInt(this.side_navigation_toggle_expand_width),
-            paddingLeft: parseInt(this.side_navigation_min_width)
+            paddingLeft: parseInt(this.side_navigation_min_width),
+            width: parseInt(this.b_width_nav_expand)
         }, {
             duration: 100,
             queue: false,
@@ -7240,7 +7246,6 @@ interact_ui_animation_sequence = function(module_key){
 
         });
 
-        this.size_element_x('body', true);
         this.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
         this.size_element_x('crnrstn_activity_log_output_wrapper', true);
 
