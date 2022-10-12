@@ -1118,6 +1118,18 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
             <div class="crnrstn_documentation_dyn_content_shell">
             
                 <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
+                                <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
                         
@@ -1133,13 +1145,13 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
+                                
                                     <div class="crnrstn_hidden_void">
                                         <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
                                         <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
                                     
                                     </div>
-
+                                    
                                 </div>
                             
                             </div>
@@ -1151,6 +1163,18 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                 </div>
                 
                 <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                
+                                <div class="crnrstn_documentation_dyn_content_title"><h2>Example 1 ::</h2></div>
+                                <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
                         
@@ -1181,6 +1205,17 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                 </div>
                 
                 <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                
+                                <div class="crnrstn_documentation_dyn_content_description"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Neque egestas congue quisque egestas diam in arcu. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
                         
@@ -1209,6 +1244,17 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                 </div>
                 
                 <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                
+                                <div class="crnrstn_documentation_dyn_content_description"><p>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget est lorem ipsum dolor. Suspendisse ultrices gravida dictum fusce. Bibendum neque egestas congue quisque. Dapibus ultrices in iaculis nunc sed augue lacus viverra vitae. Hendrerit gravida rutrum quisque non tellus orci. Sagittis aliquam malesuada bibendum arcu vitae elementum. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Tortor posuere ac ut consequat semper viverra. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat. Ac turpis egestas sed tempus urna et pharetra pharetra. Venenatis cras sed felis eget.</p></div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
                         
@@ -1224,12 +1270,14 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
                                     
-                                    <div class="crnrstn_hidden_void">
-                                    
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget est lorem ipsum dolor. Suspendisse ultrices gravida dictum fusce. Bibendum neque egestas congue quisque. Dapibus ultrices in iaculis nunc sed augue lacus viverra vitae. Hendrerit gravida rutrum quisque non tellus orci. Sagittis aliquam malesuada bibendum arcu vitae elementum. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Tortor posuere ac ut consequat semper viverra. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat. Ac turpis egestas sed tempus urna et pharetra pharetra. Venenatis cras sed felis eget.</p></div>
-                                    
+                                    <div>
+                                        <div class="crnrstn_hidden_void">
+                                        
+                                            <div class="crnrstn_documentation_dyn_content_description"><p>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget est lorem ipsum dolor. Suspendisse ultrices gravida dictum fusce. Bibendum neque egestas congue quisque. Dapibus ultrices in iaculis nunc sed augue lacus viverra vitae. Hendrerit gravida rutrum quisque non tellus orci. Sagittis aliquam malesuada bibendum arcu vitae elementum. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Tortor posuere ac ut consequat semper viverra. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat. Ac turpis egestas sed tempus urna et pharetra pharetra. Venenatis cras sed felis eget.</p></div>
+                                        
+                                        </div>
                                     </div>
-                                
+                                    
                                 </div>
                             
                             </div>
@@ -1239,6 +1287,17 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                 </div> 
                 
                 <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                
+                                <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
                         

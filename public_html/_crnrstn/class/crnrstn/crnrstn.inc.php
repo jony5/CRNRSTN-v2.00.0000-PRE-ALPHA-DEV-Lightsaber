@@ -5754,7 +5754,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             <div>
                 <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
                 <div style="border: 3px solid #FFF;">
-                <div style="margin:3px 6px 0 0;">
+                <div style="margin: 3px 6px 0 0;">
                     <div style="' . $tmp_meta_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; border:' . $tmp_meta_ARRAY['stage.canvas.border-width'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-style'] . ' ' . $tmp_meta_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
                     

@@ -100,6 +100,11 @@ class crnrstn_system_image_asset_manager {
         self::$image_output_mode = $image_output_mode;
 
         switch($creative_element_key){
+            case 'WOOD':
+
+                return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
             case 'STACHE':
 
                 return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -645,6 +650,11 @@ class crnrstn_system_image_asset_manager {
                 //error_log(__LINE__ .' image_output_mode=' . $image_output_mode.' ,creative_element_key=' . $creative_element_key);
 
                 switch($creative_element_key){
+                    case 'WOOD':
+
+                        return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'STACHE':
 
                         return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1140,6 +1150,11 @@ class crnrstn_system_image_asset_manager {
             case 'ALL_IMAGE_LOGO_OFF':
 
                 switch($creative_element_key){
+                    case 'WOOD':
+
+                        return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'STACHE':
 
                         return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1509,6 +1524,11 @@ class crnrstn_system_image_asset_manager {
             case 'ALL_HTML_LOGO_OFF':
 
                 switch($creative_element_key){
+                    case 'WOOD':
+
+                        return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'STACHE':
 
                         return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1872,6 +1892,11 @@ class crnrstn_system_image_asset_manager {
             default:
                 // case 'ALL_HTML':
                 switch($creative_element_key){
+                    case 'WOOD':
+
+                        return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'STACHE':
 
                         return $this->STACHE($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -2278,6 +2303,61 @@ class crnrstn_system_image_asset_manager {
             break;
 
         }
+
+    }
+
+    private function WOOD($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
+
+        # # # # # # # #
+        // USE NO EXTENSION.
+        //_crnrstn/ui/imgs/png/wood.png
+        $tmp_filename = 'wood';
+        $tmp_width = 512;
+        $tmp_height = 450;
+        $tmp_alt_text = 'wood';
+        $tmp_title_text = 'wood';
+        $tmp_link = '';
+        $tmp_target = '';
+        # # # # # # # #
+        # # # # # # # #
+
+        if(($height_override !== NULL) || ($height_override === '')){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if(($link_override !== NULL) || ($link_override === '')){
+
+            if(($target_override !== NULL) || ($target_override === '')){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if(($alt_override !== NULL) || ($alt_override === '')){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if(($title_override !== NULL) || ($title_override === '')){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if(($width_override !== NULL) || ($width_override === '')){
+
+            $tmp_width = $width_override;
+
+        }
+
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
@@ -7766,19 +7846,16 @@ class crnrstn_system_image_asset_manager {
 
                     $tmp_path_base64 = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php';
 
-                    if(!@include($tmp_path_base64)){
+                    if(!is_file($tmp_path_base64)){
 
                         $this->oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
-                        $this->oCRNRSTN->print_r('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                         $this->oCRNRSTN->system_base64_synchronize($tmp_filename . '.png');
 
-                        //
-                        // TRY AGAIN (...AFTER system_base64_synchronize())
-                        if(!@include($tmp_path_base64)){
+                        if(!is_file($tmp_path_base64)){
 
                             $this->oCRNRSTN->error_log('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
-                            $this->oCRNRSTN->print_r('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                            //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                             //
                             // HOOOSTON...VE HAF PROBLEM!
@@ -7786,9 +7863,16 @@ class crnrstn_system_image_asset_manager {
 
                         }else{
 
-                            $this->oCRNRSTN->print_r('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                            //$this->oCRNRSTN->print_r('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                            $this->oCRNRSTN->error_log('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+
+                            include($tmp_path_base64);
 
                         }
+
+                    }else{
+
+                        include($tmp_path_base64);
 
                     }
 
@@ -7817,16 +7901,14 @@ class crnrstn_system_image_asset_manager {
 
                     $tmp_path_base64 = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php';
 
-                    if(!@include($tmp_path_base64)){
+                    if(!is_file($tmp_path_base64)){
 
                         $this->oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
                         //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
                         $this->oCRNRSTN->system_base64_synchronize($tmp_filename);
 
-                        //
-                        // TRY AGAIN (...AFTER system_base64_synchronize())
-                        if(!@include($tmp_path_base64)){
+                        if(!is_file($tmp_path_base64)){
 
                             $this->oCRNRSTN->error_log('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
                             //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
@@ -7840,7 +7922,13 @@ class crnrstn_system_image_asset_manager {
                             //$this->oCRNRSTN->print_r('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
                             $this->oCRNRSTN->error_log('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
+                            include($tmp_path_base64);
+
                         }
+
+                    }else{
+
+                        include($tmp_path_base64);
 
                     }
 
@@ -7860,7 +7948,38 @@ class crnrstn_system_image_asset_manager {
                 case CRNRSTN_UI_IMG_BASE64:
                 case CRNRSTN_UI_IMG_BASE64_PNG:
 
-                    require(CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php');
+                    $tmp_path_base64 = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/base64/' . $tmp_filename . '.php';
+
+                    if(!is_file($tmp_path_base64)){
+
+                        $this->oCRNRSTN->error_log('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                        //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_filename . '] for inclusion. Attempting to repair the BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                        $this->oCRNRSTN->system_base64_synchronize($tmp_filename);
+
+                        if(!is_file($tmp_path_base64)){
+
+                            $this->oCRNRSTN->error_log('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                            //$this->oCRNRSTN->print_r('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+
+                            //
+                            // HOOOSTON...VE HAF PROBLEM!
+                            throw new Exception('Failure opening [' . $tmp_path_base64 . '] for inclusion and permission was denied to write to the BASE64 file system for repair.');
+
+                        }else{
+
+                            //$this->oCRNRSTN->print_r('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                            $this->oCRNRSTN->error_log('Repair of asset successfully completed on [' . $tmp_filename . '] within the CRNRSTN :: BASE64 file system.', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+
+                            include($tmp_path_base64);
+
+                        }
+
+                    }else{
+
+                        include($tmp_path_base64);
+
+                    }
 
                     if(isset($system_file_serial)) {
 
@@ -8730,6 +8849,7 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
         // 'success_chk.jpg2'
         // 'success_chk'
 
+        $tmp_original_file_extension_clean = '';
         self::$request_salt = $this->oCRNRSTN->generate_new_key(26);
 
         if(isset($data_key)){
@@ -8806,16 +8926,26 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
             switch(strtolower($img_type)){
                 case 'png':
 
+                    if(strlen($tmp_original_file_extension_clean) < 1){
+
+                        $tmp_file_extension_clean = 'png';
+
+                    }else{
+
+                        $tmp_file_extension_clean = $tmp_original_file_extension_clean;
+
+                    }
+
                     //
                     // CHECK PNG IS VALID FILE
                     if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_PNG, 'SOURCE')){
 
                         //
                         // DO WE HAVE A VALID FILE?
-                        if(is_file($tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean)){
+                        if(is_file($tmp_dir_PNG . $img_name . '.' . $tmp_file_extension_clean)){
 
-                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_original_file_extension_clean;
-                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] = $tmp_dir_PNG . $img_name . '.' . $tmp_original_file_extension_clean;
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_file_extension_clean;
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['path_filename'] = $tmp_dir_PNG . $img_name . '.' . $tmp_file_extension_clean;
                             self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
                             self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] = $img_name . '.php';
                             self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] = $tmp_dir_BASE64 . $img_name . '.php';
@@ -8869,16 +8999,26 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
                 case 'jpeg':
                 case 'jpg2':
 
+                    if(strlen($tmp_original_file_extension_clean) < 1){
+
+                        $tmp_file_extension_clean = 'jpg';
+
+                    }else{
+
+                        $tmp_file_extension_clean = $tmp_original_file_extension_clean;
+
+                    }
+
                     //
                     // JPEG
                     if($this->oCRNRSTN->validate_DIR_endpoint($tmp_dir_JPEG, 'SOURCE')){
 
                         //
                         // DO WE HAVE A VALID JPEG FILE NAME
-                        if(is_file($tmp_dir_JPEG . $img_name . '.' . $tmp_original_file_extension_clean)){
+                        if(is_file($tmp_dir_JPEG . $img_name . '.' . $tmp_file_extension_clean)){
 
-                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_original_file_extension_clean;
-                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] = $tmp_dir_JPEG . $img_name . '.' . $tmp_original_file_extension_clean;
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['filename'] = $img_name . '.' . $tmp_file_extension_clean;
+                            self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['path_filename'] = $tmp_dir_JPEG . $img_name . '.' . $tmp_file_extension_clean;
                             self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['image_dimensions'] = '';
                             self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'] = $img_name . '.php';
                             self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'] = $tmp_dir_BASE64 . $img_name . '.php';
