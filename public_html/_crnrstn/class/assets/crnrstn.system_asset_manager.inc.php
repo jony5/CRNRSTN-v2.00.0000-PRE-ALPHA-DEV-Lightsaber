@@ -100,6 +100,11 @@ class crnrstn_system_image_asset_manager {
         self::$image_output_mode = $image_output_mode;
 
         switch($creative_element_key){
+            case 'R_STONE_PILLAR':
+
+                return $this->R_STONE_PILLAR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+            break;
             case 'WOOD':
 
                 return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -650,6 +655,11 @@ class crnrstn_system_image_asset_manager {
                 //error_log(__LINE__ .' image_output_mode=' . $image_output_mode.' ,creative_element_key=' . $creative_element_key);
 
                 switch($creative_element_key){
+                    case 'R_STONE_PILLAR':
+
+                        return $this->R_STONE_PILLAR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'WOOD':
 
                         return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1150,6 +1160,11 @@ class crnrstn_system_image_asset_manager {
             case 'ALL_IMAGE_LOGO_OFF':
 
                 switch($creative_element_key){
+                    case 'R_STONE_PILLAR':
+
+                        return $this->R_STONE_PILLAR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'WOOD':
 
                         return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1524,6 +1539,11 @@ class crnrstn_system_image_asset_manager {
             case 'ALL_HTML_LOGO_OFF':
 
                 switch($creative_element_key){
+                    case 'R_STONE_PILLAR':
+
+                        return $this->R_STONE_PILLAR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'WOOD':
 
                         return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -1892,6 +1912,11 @@ class crnrstn_system_image_asset_manager {
             default:
                 // case 'ALL_HTML':
                 switch($creative_element_key){
+                    case 'R_STONE_PILLAR':
+
+                        return $this->R_STONE_PILLAR($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
+
+                    break;
                     case 'WOOD':
 
                         return $this->WOOD($height_override, $link_override, $alt_override, $title_override, $target_override, $width_override);
@@ -2303,6 +2328,61 @@ class crnrstn_system_image_asset_manager {
             break;
 
         }
+
+    }
+
+    private function R_STONE_PILLAR($height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $width_override = NULL){
+
+        # # # # # # # #
+        // USE NO EXTENSION.
+        //_crnrstn/ui/imgs/png/r_stone_pillar.png
+        $tmp_filename = 'r_stone_pillar';
+        $tmp_width = 112;
+        $tmp_height = 1000;
+        $tmp_alt_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+        $tmp_link = '';
+        $tmp_target = '';
+        # # # # # # # #
+        # # # # # # # #
+
+        if(($height_override !== NULL) || ($height_override === '')){
+
+            $tmp_height = $height_override;
+
+        }
+
+        if(($link_override !== NULL) || ($link_override === '')){
+
+            if(($target_override !== NULL) || ($target_override === '')){
+
+                $tmp_target = $target_override;
+
+            }
+
+            $tmp_link = $link_override;
+
+        }
+
+        if(($alt_override !== NULL) || ($alt_override === '')){
+
+            $tmp_alt_text = $alt_override;
+
+        }
+
+        if(($title_override !== NULL) || ($title_override === '')){
+
+            $tmp_title_text = $title_override;
+
+        }
+
+        if(($width_override !== NULL) || ($width_override === '')){
+
+            $tmp_width = $width_override;
+
+        }
+
+        return $this->return_image_data($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target);
 
     }
 
