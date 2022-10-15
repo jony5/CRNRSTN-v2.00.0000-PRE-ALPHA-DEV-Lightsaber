@@ -1231,7 +1231,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
                                     
-                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 500, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', 2000, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
                                     
                                     </div>
                                     
@@ -1268,11 +1268,13 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                             
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
                             
                                     </div>
                                     
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                    <div class="crnrstn_documentation_dyn_content_module_bg">                                        
+                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', 3000, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                    </div>
                                     
                                     <div class="crnrstn_hidden_void">
                                         <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
@@ -1311,7 +1313,10 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                             
                                     </div>
                                     
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                    <div class="crnrstn_documentation_dyn_content_module_bg">                                        
+                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 1000, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                    
+                                    </div>
                                     
                                     <div>
                                         <div class="crnrstn_hidden_void">
