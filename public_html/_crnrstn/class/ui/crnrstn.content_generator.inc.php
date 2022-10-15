@@ -1126,7 +1126,6 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                 <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
                                 
                             </div>
-                            
                         </div>
                     </div>
                     
@@ -1157,9 +1156,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                             </div>
                             
                         </div>
-                        
                     </div>
-                    
                 </div>
                 
                 <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
