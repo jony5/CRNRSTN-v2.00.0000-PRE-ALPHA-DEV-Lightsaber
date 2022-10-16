@@ -2990,6 +2990,33 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'BACKGROUND_COPY_DOCUMENTATION_TECH_SPECS':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    case 'no':
+
+                        return 'Tekniske spesifikasjoner';
+
+                    break;
+                    case 'en':
+                    case 'el':
+
+                        return 'Τεχνικές προδιαγραφές';
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Technical specifications';
+
+                    break;
+
+                }
+
+            break;
             case 'DOCUMENTATION_TITLE_TXT_EXAMPLE':
 
                 switch($this->country_iso_code) {

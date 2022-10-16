@@ -1250,6 +1250,73 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 
+                                <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
+                                    <ul class="crnrstn_documentation_dyn_content_tech_specs">
+                                        <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. </li>
+                                        <li>Eget est lorem ipsum dolor.</li>
+                                        <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
+                                        
+                                    </ul>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+                        
+                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+                                    
+                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+                               
+                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+                            
+                                        <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
+                                            <ul class="crnrstn_documentation_dyn_content_tech_specs">
+                                                <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. </li>
+                                                <li>Eget est lorem ipsum dolor. </li>
+                                                <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
+                                            
+                                            </ul>
+                                        </div>      
+                                                              
+                                    </div>
+                                    
+                                    <div class="crnrstn_documentation_dyn_content_module_bg">
+                                        <div class="crnrstn_interact_ui_bg_title_tech_spec">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('BACKGROUND_COPY_DOCUMENTATION_TECH_SPECS') . '</div>
+
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="crnrstn_hidden_void">
+                                        
+                                            <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
+                                                <ul class="crnrstn_documentation_dyn_content_tech_specs">
+                                                    <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. </li>
+                                                    <li>Eget est lorem ipsum dolor. </li>
+                                                    <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
+                                                
+                                                </ul>
+                                            </div>          
+                                                                          
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                
                                 <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
     
                             </div>
@@ -1284,49 +1351,6 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                         </div>
                     </div>
                 </div>
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
-                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
-                        <div class="crnrstn_documentation_dyn_content_module_border">
-                            <div class="crnrstn_hidden_void">
-                                
-                                <div class="crnrstn_documentation_dyn_content_description"><p>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget est lorem ipsum dolor. Suspendisse ultrices gravida dictum fusce. Bibendum neque egestas congue quisque. Dapibus ultrices in iaculis nunc sed augue lacus viverra vitae. Hendrerit gravida rutrum quisque non tellus orci. Sagittis aliquam malesuada bibendum arcu vitae elementum. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Tortor posuere ac ut consequat semper viverra. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat. Ac turpis egestas sed tempus urna et pharetra pharetra. Venenatis cras sed felis eget.</p></div>
-    
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
-                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
-                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
-                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
-                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                            
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget est lorem ipsum dolor. Suspendisse ultrices gravida dictum fusce. Bibendum neque egestas congue quisque. Dapibus ultrices in iaculis nunc sed augue lacus viverra vitae. Hendrerit gravida rutrum quisque non tellus orci. Sagittis aliquam malesuada bibendum arcu vitae elementum. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Tortor posuere ac ut consequat semper viverra. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat. Ac turpis egestas sed tempus urna et pharetra pharetra. Venenatis cras sed felis eget.</p></div>
-                            
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
-                                    <div>
-                                        <div class="crnrstn_hidden_void">
-                                        
-                                            <div class="crnrstn_documentation_dyn_content_description"><p>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget est lorem ipsum dolor. Suspendisse ultrices gravida dictum fusce. Bibendum neque egestas congue quisque. Dapibus ultrices in iaculis nunc sed augue lacus viverra vitae. Hendrerit gravida rutrum quisque non tellus orci. Sagittis aliquam malesuada bibendum arcu vitae elementum. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Tortor posuere ac ut consequat semper viverra. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat. Ac turpis egestas sed tempus urna et pharetra pharetra. Venenatis cras sed felis eget.</p></div>
-                                        
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div> 
                 
                 <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 
