@@ -2990,6 +2990,64 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'DOCUMENTATION_TITLE_TXT_EXAMPLE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    case 'en':
+                    case 'cn':
+
+                        return '示例';
+
+                    default:
+
+                        //case 'en':
+                        return 'Note';
+
+                    break;
+
+                }
+
+            break;
+            case 'BACKGROUND_COPY_DOCUMENTATION_NOTE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                        break;
+                    case 'en':
+                    case 'ko':
+
+                        return '메모';
+
+                    default:
+
+                        //case 'en':
+                        return 'Note';
+
+                        break;
+
+                }
+
+            break;
+            case 'LNK_DOWNLOAD_TXT_FOOTER':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'download';
+
+                    break;
+
+                }
+
+            break;
             case 'FOR_CONFIG_REFERENCE_PLEASE_SEE':
 
                 switch($this->country_iso_code) {
@@ -3005,7 +3063,7 @@ class crnrstn_multi_language_manager {
 
                 }
 
-                break;
+            break;
             case 'FOR_REFERENCE_PLEASE_SEE':
 
                 switch($this->country_iso_code) {

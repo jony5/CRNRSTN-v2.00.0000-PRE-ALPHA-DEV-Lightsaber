@@ -1165,7 +1165,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 
-                                <div class="crnrstn_documentation_dyn_content_title"><h2>Example 1 ::</h2></div>
+                                <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
                                 <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                                 
                             </div>
@@ -1181,7 +1181,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                     
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>Example 1 ::</h2></div>
+                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
                                         <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                             
                                     </div>
@@ -1189,7 +1189,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
                                     
                                     <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>Example 1 ::</h2></div>
+                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
                                         <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                                     </div>
                                 
@@ -1207,7 +1207,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 
-                                <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis.</p></div>
+                                <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
     
                             </div>
                         </div>
@@ -1221,19 +1221,19 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                                        
-                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
                             
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
                                     
-                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', 800, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                        <div class="crnrstn_interact_ui_bg_title">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('BACKGROUND_COPY_DOCUMENTATION_NOTE') . '</div>
+                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 110, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
                                     
                                     </div>
                                     
                                     <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
                                     </div>
                                 
                                 </div>
@@ -1310,10 +1310,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                             
                                     </div>
                                     
-                                    <div class="crnrstn_documentation_dyn_content_module_bg">                                        
-                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 200, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-                                    
-                                    </div>
+                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
                                     
                                     <div>
                                         <div class="crnrstn_hidden_void">
