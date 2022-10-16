@@ -81,7 +81,7 @@
 
 .crnrstn_documentation_dyn_content_module_wrap_s1           { width: 100%; position: absolute; z-index: 4; top:0; left:0;}
 .crnrstn_interact_ui_r_stone_pillar                         { float: right; padding: 10px 20px 0 0; }
-.crnrstn_interact_ui_bg_title                               { position: absolute; font-size: 140px; font-weight: bold; float:left; left:-5px; top:-10px; font-family: Arial, Helvetica, sans-serif; color: #a5a5a5; /*line-height: 150px;*/}
+.crnrstn_interact_ui_bg_title                               { position: absolute; font-size: 140px; color: #333; font-weight: bold; float:left; left:-5px; top:-10px; font-family: Arial, Helvetica, sans-serif; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20); opacity: 0.2;}
 .crnrstn_interact_ui_documentation_j5_wolf_pup              { width: 98%; float:right; padding:120px 268px 0 0; margin:0; text-align: right;}
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
