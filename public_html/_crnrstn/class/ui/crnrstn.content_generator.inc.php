@@ -1228,7 +1228,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
                                     
                                         <div class="crnrstn_interact_ui_bg_title">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('BACKGROUND_COPY_DOCUMENTATION_NOTE') . '</div>
-                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 110, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 160, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
                                     
                                     </div>
                                     
