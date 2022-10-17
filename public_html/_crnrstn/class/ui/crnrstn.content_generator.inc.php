@@ -1226,10 +1226,9 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
-                                    
-                                        <div class="crnrstn_interact_ui_bg_title">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('BACKGROUND_COPY_DOCUMENTATION_NOTE') . '</div>
+                                        <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('BACKGROUND_COPY_DOCUMENTATION_NOTE') . '</div>
                                         <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 160, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
-                                    
+                                        
                                     </div>
                                     
                                     <div class="crnrstn_hidden_void">
@@ -1252,7 +1251,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                 
                                 <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
                                     <ul class="crnrstn_documentation_dyn_content_tech_specs">
-                                        <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. </li>
+                                        <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
                                         <li>Eget est lorem ipsum dolor.</li>
                                         <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
                                         
@@ -1274,8 +1273,8 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                             
                                         <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
                                             <ul class="crnrstn_documentation_dyn_content_tech_specs">
-                                                <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. </li>
-                                                <li>Eget est lorem ipsum dolor. </li>
+                                                <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
+                                                <li>Eget est lorem ipsum dolor.</li>
                                                 <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
                                             
                                             </ul>
@@ -1293,8 +1292,8 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                         
                                             <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
                                                 <ul class="crnrstn_documentation_dyn_content_tech_specs">
-                                                    <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. </li>
-                                                    <li>Eget est lorem ipsum dolor. </li>
+                                                    <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
+                                                    <li>Eget est lorem ipsum dolor.</li>
                                                     <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
                                                 
                                                 </ul>
