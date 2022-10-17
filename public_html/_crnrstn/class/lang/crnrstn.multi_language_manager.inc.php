@@ -2985,7 +2985,7 @@ class crnrstn_multi_language_manager {
 
     }
 
-	public function get_lang_copy($message_key){
+	public function multi_lang_content_return($message_key){
 
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.

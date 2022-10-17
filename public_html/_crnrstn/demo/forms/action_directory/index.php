@@ -199,7 +199,7 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
                 <div class="crnrstn_field_input_wrapper">
                     <div style="width:100%;">
                         <div style="float: left; padding-top: 10px;">
-                            <input style="width:100px;" type="submit" value="<?php echo $oCRNRSTN->get_lang_copy('BUTTON_TEXT_SUBMIT'); ?>">
+                            <input style="width:100px;" type="submit" value="<?php echo $oCRNRSTN->multi_lang_content_return('BUTTON_TEXT_SUBMIT'); ?>">
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,7 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
 
         <div class="crnrstn_cb_20"></div>
 
-        <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a href="./&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+        <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART2'); ?> <a href="./&crnrstn_mit=true" target="_self"><?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     </div>
 

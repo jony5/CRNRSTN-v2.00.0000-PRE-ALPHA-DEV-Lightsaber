@@ -470,7 +470,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
         <div class="crnrstn_field_input_wrapper">
             <div class="crnrstn_field_input_title">
                 Unit Test Dataset Profiles
-                <span id="crnrst_add_btn" class="toggleUnit_copy" onmouseover="crnrstn_interact_btn(this, 'ON'); return false;" onmouseout="crnrstn_interact_btn(this, 'OFF'); return false;" onmousedown="crnrstn_interact_btn(this, 'MOUSE_DOWN'); return false;" onmouseup="crnrstn_interact_btn(this, 'MOUSE_UP'); return false;" onclick="crnrstn_interact_btn(this, 'CLICK'); crnrstn_add_unittest_openssl_dataset_input('openssl_mysql_storage_performance'); return false;"><?php echo $oCRNRSTN->get_lang_copy('BUTTON_TEXT_ADD'); ?></span>
+                <span id="crnrst_add_btn" class="toggleUnit_copy" onmouseover="crnrstn_interact_btn(this, 'ON'); return false;" onmouseout="crnrstn_interact_btn(this, 'OFF'); return false;" onmousedown="crnrstn_interact_btn(this, 'MOUSE_DOWN'); return false;" onmouseup="crnrstn_interact_btn(this, 'MOUSE_UP'); return false;" onclick="crnrstn_interact_btn(this, 'CLICK'); crnrstn_add_unittest_openssl_dataset_input('openssl_mysql_storage_performance'); return false;"><?php echo $oCRNRSTN->multi_lang_content_return('BUTTON_TEXT_ADD'); ?></span>
                 <div id="crnrstn_unittest_openssl_dataset_input_wrapper"></div>
             </div>
         </div>
@@ -485,7 +485,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
         <div class="crnrstn_field_input_wrapper">
             <div style="width:100%;">
             <div style="float: left; padding-top: 10px;">
-                <input style="width:100px;" type="submit" value="<?php echo $oCRNRSTN->get_lang_copy('BUTTON_TEXT_SUBMIT'); ?>">
+                <input style="width:100px;" type="submit" value="<?php echo $oCRNRSTN->multi_lang_content_return('BUTTON_TEXT_SUBMIT'); ?>">
                 <div class="crnrstn_cb_10"></div>
                 <div style="float: left; width: 100px; font-size: 12px; font-style: italic; line-height: 17px; padding:0 0 0 0;">14 secs before next POST.<br> <a href="#" style="text-decoration: none; color:#0066CC; text-decoration:underline;">Cancel</a></div>
             </div>
@@ -608,7 +608,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
 
     <div class="crnrstn_cb_20"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">

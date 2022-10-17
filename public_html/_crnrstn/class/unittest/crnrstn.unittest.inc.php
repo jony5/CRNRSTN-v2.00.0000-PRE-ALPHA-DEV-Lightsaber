@@ -341,7 +341,7 @@ class crnrstn_unit_test_manager {
           
             //
             // APPEND NEW INPUT TO FORM
-            $(\'<input type="text" name="crnrstn_add_unittest_openssl_dataset_input" style="width:150px;" value="" placeholder="' . $this->oCRNRSTN_USR->get_lang_copy('TEXT_PLACEHOLDER_CHAR_COUNT'). '">\').appendTo($(\'#crnrstn_unittest_openssl_dataset_input_wrapper\'));
+            $(\'<input type="text" name="crnrstn_add_unittest_openssl_dataset_input" style="width:150px;" value="" placeholder="' . $this->oCRNRSTN->multi_lang_content_return('TEXT_PLACEHOLDER_CHAR_COUNT'). '">\').appendTo($(\'#crnrstn_unittest_openssl_dataset_input_wrapper\'));
             
         }
 

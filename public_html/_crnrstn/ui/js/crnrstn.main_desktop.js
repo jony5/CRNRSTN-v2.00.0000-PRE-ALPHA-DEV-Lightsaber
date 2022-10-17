@@ -2654,11 +2654,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     <div class="crnrstn_cb"></div>
                 </div>
                 <div id="crnrstn_interact_ui_content_wrapper" class="crnrstn_interact_ui_content_wrapper">
-                    <div id="crnrstn_interact_ui_signin_frm_username" class="crnrstn_interact_ui_signin_frm_lbl">' . $this->get_lang_copy('FORM_LABEL_USERNAME') . '</div>
+                    <div id="crnrstn_interact_ui_signin_frm_username" class="crnrstn_interact_ui_signin_frm_lbl">' . $this->oCRNRSTN->multi_lang_content_return('FORM_LABEL_USERNAME') . '</div>
                     <div class="crnrstn_cb_5"></div>
                     <input type="text" name="username" value="">
                     <div class="crnrstn_cb_15"></div>
-                    <div id="crnrstn_interact_ui_signin_frm_password" class="crnrstn_interact_ui_signin_frm_lbl">' . $this->get_lang_copy('FORM_LABEL_PASSWORD_OPTIONAL') . '</div>
+                    <div id="crnrstn_interact_ui_signin_frm_password" class="crnrstn_interact_ui_signin_frm_lbl">' . $this->oCRNRSTN->multi_lang_content_return('FORM_LABEL_PASSWORD_OPTIONAL') . '</div>
                     <div class="crnrstn_cb_5"></div>
                     <input type="password" name="password" value="">
                     <div class="crnrstn_cb_10"></div>
@@ -2669,7 +2669,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     <div class="crnrstn_cb_10"></div>
 
                     <div class="crnrstn_interact_ui_frm_submit" onclick="oCRNRSTN_JS.sign_in_form_submit_via_micro_expansion();">
-                        <div id="crnrstn_interact_ui_signin_frm_btn_submit" class="crnrstn_interact_ui_signin_frm_btn_submit">' . $this->get_lang_copy('FORM_BUTTON_TEXT_CONNECT') . '</div>
+                        <div id="crnrstn_interact_ui_signin_frm_btn_submit" class="crnrstn_interact_ui_signin_frm_btn_submit">' . $this->oCRNRSTN->multi_lang_content_return('FORM_BUTTON_TEXT_CONNECT') . '</div>
                     </div>
                 </div>
             </div>

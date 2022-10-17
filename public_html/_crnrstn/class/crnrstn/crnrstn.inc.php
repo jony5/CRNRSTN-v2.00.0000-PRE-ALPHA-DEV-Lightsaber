@@ -2821,9 +2821,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '"></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
-        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_VALID_ENV_DETECTION') . '
+        <br>// ' . $this->multi_lang_content_return('PLEASE_ENTER_VALID_ENV_DETECTION') . '
         <br>// File Source: ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 548].' . '       
-        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_CONFIG_REFERENCE_PLEASE_SEE') . '
+        <br>// ' . $this->multi_lang_content_return('FOR_CONFIG_REFERENCE_PLEASE_SEE') . '
          
     </div>
 </div>
@@ -2876,9 +2876,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     <div style="padding: 10px 0 20px 0;"><img src="' . $this->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64) . '" height="70" alt="CRNRSTN :: v' . self::$version_crnrstn . '" title="CRNRSTN :: v' . self::$version_crnrstn . '"></div>
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
-        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
+        <br>// ' . $this->multi_lang_content_return('PLEASE_ENTER_A_CONFIG_SERIAL') . '
         <br>// File Source: ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].
-        <br>// ' . $this->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . '
+        <br>// ' . $this->multi_lang_content_return('FOR_REFERENCE_PLEASE_SEE') . '
         
     </div>
     
@@ -2941,11 +2941,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function get_lang_copy($data_key){
+    public function multi_lang_content_return($data_key){
 
-        return $this->oCRNRSTN_ENV->get_lang_copy($data_key);
+        return $this->oCRNRSTN_LANG_MGR->multi_lang_content_return($data_key);
 
     }
+
+//    public function get_lang_copy($data_key){
+//
+//        return $this->oCRNRSTN_ENV->get_lang_copy($data_key);
+//
+//    }
 
     public function get_resource_wp($data_key, $index = 0, $data_type_family = 'CRNRSTN::WP::INTEGRATIONS', $soap_transport = false){
 
@@ -4465,9 +4471,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_crnrstn_language_manager($header_language_attribute = null){
+    public function return_crnrstn_language_manager(){
 
-        return $this->oCRNRSTN_ENV->return_crnrstn_language_manager($this, $header_language_attribute);
+        return $this->oCRNRSTN_LANG_MGR;
 
     }
 

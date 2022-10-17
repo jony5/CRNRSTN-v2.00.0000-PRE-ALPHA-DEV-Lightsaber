@@ -1165,7 +1165,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 
-                                <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
+                                <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
                                 <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                                 
                             </div>
@@ -1181,7 +1181,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                     
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
+                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
                                         <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                             
                                     </div>
@@ -1189,7 +1189,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
                                     
                                     <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
+                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
                                         <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                                     </div>
                                 
@@ -1226,7 +1226,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
-                                        <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('BACKGROUND_COPY_DOCUMENTATION_NOTE') . '</div>
+                                        <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->multi_lang_content_return('BACKGROUND_COPY_DOCUMENTATION_NOTE') . '</div>
                                         <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 160, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
                                         
                                     </div>
@@ -1283,7 +1283,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
-                                        <div class="crnrstn_interact_ui_bg_title_tech_spec">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('BACKGROUND_COPY_DOCUMENTATION_TECH_SPECS') . '</div>
+                                        <div class="crnrstn_interact_ui_bg_title_tech_spec">' . $this->oCRNRSTN->multi_lang_content_return('BACKGROUND_COPY_DOCUMENTATION_TECH_SPECS') . '</div>
 
                                     </div>
                                     
@@ -1429,7 +1429,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                 for($i=0;$i<$tmp_page_element_cnt;$i++){
 
                     //
-                    // FOR EACH PAGE ELEMENT IN SEQUENCE.
+                    // FOR EACH PAGE ELEMENT IN SEQUENCE OF CONSTRUCTION.
                     foreach($this->page_content_ARRAY[$this->page_serial][$this->content_load_sequence_ARRAY[$i]] as $key=>$val){
 
                         switch($key){

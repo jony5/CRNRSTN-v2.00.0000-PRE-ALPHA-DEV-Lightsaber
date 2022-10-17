@@ -1169,11 +1169,11 @@ class crnrstn_user{
 
     }
 
-    public function return_crnrstn_language_manager($header_language_attribute = null){
-
-        return $this->oCRNRSTN_ENV->return_crnrstn_language_manager($this, $header_language_attribute);
-
-    }
+//    public function return_crnrstn_language_manager($header_language_attribute = null){
+//
+//        return $this->oCRNRSTN_ENV->return_crnrstn_language_manager($this, $header_language_attribute);
+//
+//    }
 
     public function init_session(){
 
@@ -4743,11 +4743,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function get_lang_copy($data_key){
-
-        return $this->oCRNRSTN_ENV->get_lang_copy($data_key);
-
-    }
+//    public function get_lang_copy($data_key){
+//
+//        return $this->oCRNRSTN_ENV->get_lang_copy($data_key);
+//
+//    }
     
     public function return_crnrstn_mysqli($host = NULL, $db = NULL, $un = NULL, $port = NULL, $pwd = NULL){
 
@@ -10422,7 +10422,7 @@ class crnrstn_user_auth{
 
             //
             // ENSURE LOG OUT USER
-            $this->log_account_notification($this->oCRNRSTN_USR->get_lang_copy('CRNRSTN_SESSION_INACTIVE_EXPIRE'));
+            $this->log_account_notification($this->oCRNRSTN->multi_lang_content_return('CRNRSTN_SESSION_INACTIVE_EXPIRE'));
             error_log(__LINE__ . ' user crnrstn_user_auth log_account_notification [' . $this->log_sys_notice_ARRAY[0] . ']');
 
             $this->is_logged_in(false);

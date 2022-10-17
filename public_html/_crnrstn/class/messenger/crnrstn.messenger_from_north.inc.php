@@ -4323,7 +4323,7 @@ class crnrstn_communications_css_standard{
 
                                 <div style="height:40px; width:100%; clear:both; display: block; overflow: hidden;"></div>
 
-                                <div style="text-align:left; font-size: 12px; color: #6885C3;">&copy; 2012-'.date('Y').' Jonathan \'J5\' Harris :: <a href="' . $tmp_http_root.'" target="_self" style=\'text-decoration:none; color:#6885C3; font-family: "Courier New", Courier, monospace; text-decoration: underline;\'>' . $this->oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT').'</a></div>
+                                <div style="text-align:left; font-size: 12px; color: #6885C3;">&copy; 2012-'.date('Y').' Jonathan \'J5\' Harris :: <a href="' . $tmp_http_root.'" target="_self" style=\'text-decoration:none; color:#6885C3; font-family: "Courier New", Courier, monospace; text-decoration: underline;\'>' . $this->oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT').'</a></div>
                                 <div style="height:5px; width:100%; clear:both; display: block; overflow: hidden;"></div>
 
                                 <div style="text-align:left; font-size: 12px; color: #6885C3;">All Rights Reserved.</div>

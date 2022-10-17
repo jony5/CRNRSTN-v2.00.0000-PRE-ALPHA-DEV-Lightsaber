@@ -26,8 +26,8 @@ $err_uri = 'l=e';
 $success_uri = 'l=s';
 $this->oCRNRSTN_USR->add_validation_redirect('crnrstn_signin_flagship', '*', '*', $err_uri, $success_uri);
 
-$this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship', 'crnrstn_auth_e', 'EMAIL_REQUIRED', $this->oCRNRSTN_USR->get_lang_copy('EMAIL_REQUIRED'));
-$this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship', 'crnrstn_auth_pwd', 'PASSWORD_REQUIRED', $this->oCRNRSTN_USR->get_lang_copy('PASSWORD_REQUIRED'));
+$this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship', 'crnrstn_auth_e', 'EMAIL_REQUIRED', $this->oCRNRSTN->multi_lang_content_return('EMAIL_REQUIRED'));
+$this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship', 'crnrstn_auth_pwd', 'PASSWORD_REQUIRED', $this->oCRNRSTN->multi_lang_content_return('PASSWORD_REQUIRED'));
 //$this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship','crnrstn_auth_e', 'Email is required.');
 //$this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship','crnrstn_auth_pwd', 'Password is required.');
 
@@ -233,7 +233,7 @@ switch($channel_constant[0]){
     
                                         </div>
     
-                                        <div class="crnrstn_form_input_label signin"><label for="crnrstn_auth_e">' . $this->oCRNRSTN_USR->get_lang_copy('INPUT_LABEL_EMAIL') . ' <span class="crnrstn_form_input_label_req_star">*</span></label></div>
+                                        <div class="crnrstn_form_input_label signin"><label for="crnrstn_auth_e">' . $this->oCRNRSTN->multi_lang_content_return('INPUT_LABEL_EMAIL') . ' <span class="crnrstn_form_input_label_req_star">*</span></label></div>
                                         <div class="crnrstn_cb"></div>
     
                                     </div>
@@ -263,24 +263,24 @@ switch($channel_constant[0]){
                                     
                                     </div>
     
-                                    <div class="crnrstn_form_input_label signin"><label for="crnrstn_auth_pwd">' . $this->oCRNRSTN_USR->get_lang_copy('INPUT_LABEL_PASSWORD') . ' <span class="crnrstn_form_input_label_req_star">*</span></label></div>
+                                    <div class="crnrstn_form_input_label signin"><label for="crnrstn_auth_pwd">' . $this->oCRNRSTN->multi_lang_content_return('INPUT_LABEL_PASSWORD') . ' <span class="crnrstn_form_input_label_req_star">*</span></label></div>
         
                                     <div class="crnrstn_cb_10"></div>
                                     
                                     <div class="crnrstn_signin_module_wrapper">
                                            
                                         <div class="crnrstn_signin_button_wrapper">
-                                            <button type="submit" id="submit_' . $this->page_serial . '">' . $this->oCRNRSTN_USR->get_lang_copy('BTN_TEXT_SIGN_IN') . '</button>
+                                            <button type="submit" id="submit_' . $this->page_serial . '">' . $this->oCRNRSTN->multi_lang_content_return('BTN_TEXT_SIGN_IN') . '</button>
                                         </div>
     
-                                        <div class="crnrstn_signin_create_account_copy">' . $this->oCRNRSTN_USR->get_lang_copy('COPY_PART1_NEED_TO') . ' <a href="#" target="_self">' . $this->oCRNRSTN_USR->get_lang_copy('COPY_PART2_CREATE_ACCOUNT') . '</a> ' . $this->oCRNRSTN_USR->get_lang_copy('COPY_PART_x_OR') . '<br><a href="#" target="_self">' . $this->oCRNRSTN_USR->get_lang_copy('COPY_PART3_FORGET_PWD') . '</a>?</div>
+                                        <div class="crnrstn_signin_create_account_copy">' . $this->oCRNRSTN->multi_lang_content_return('COPY_PART1_NEED_TO') . ' <a href="#" target="_self">' . $this->oCRNRSTN->multi_lang_content_return('COPY_PART2_CREATE_ACCOUNT') . '</a> ' . $this->oCRNRSTN->multi_lang_content_return('COPY_PART_x_OR') . '<br><a href="#" target="_self">' . $this->oCRNRSTN->multi_lang_content_return('COPY_PART3_FORGET_PWD') . '</a>?</div>
     
                                         <div class="crnrstn_cb"></div>
     
                                         <div class="crnrstn_signin_module_stats_wrapper">
-                                            <div class="crnrstn_signin_module_stats_ip_wrapper">' . $this->oCRNRSTN_USR->get_lang_copy('COPY_YOUR_IP') . ' :: <span class="crnrstn_signin_module_stats_ip">' . $this->oCRNRSTN_USR->return_client_ip() . '</span></div>
-                                            <div class="crnrstn_signin_module_stats_attempts">' . $this->oCRNRSTN_USR->get_lang_copy('COPY_LOGIN_ATTEMPTS') . ' :: ' . $this->oCRNRSTN_USR->account_max_login_attempts() . '</div>
-                                            <div class="crnrstn_signin_module_stats_remaining">' . $this->oCRNRSTN_USR->get_lang_copy('COPY_ATTEMPTS_REMAINING') . ' :: <span id="crnrstn_signin_module_stats_remaining_cnt" class="crnrstn_signin_module_stats_remaining_cnt">' . $this->oCRNRSTN_USR->account_remaining_login_attempts() . '</span></div>
+                                            <div class="crnrstn_signin_module_stats_ip_wrapper">' . $this->oCRNRSTN->multi_lang_content_return('COPY_YOUR_IP') . ' :: <span class="crnrstn_signin_module_stats_ip">' . $this->oCRNRSTN_USR->return_client_ip() . '</span></div>
+                                            <div class="crnrstn_signin_module_stats_attempts">' . $this->oCRNRSTN->multi_lang_content_return('COPY_LOGIN_ATTEMPTS') . ' :: ' . $this->oCRNRSTN_USR->account_max_login_attempts() . '</div>
+                                            <div class="crnrstn_signin_module_stats_remaining">' . $this->oCRNRSTN->multi_lang_content_return('COPY_ATTEMPTS_REMAINING') . ' :: <span id="crnrstn_signin_module_stats_remaining_cnt" class="crnrstn_signin_module_stats_remaining_cnt">' . $this->oCRNRSTN_USR->account_remaining_login_attempts() . '</span></div>
                                             <!--<div style="text-align:right; color: #000; font-size:10px; font-family: Courier, monospace">Access denied :: <span style="color: #F90000;">30 min</span></div>-->
     
                                         </div>
@@ -325,7 +325,7 @@ switch($channel_constant[0]){
             
             <div class="crnrstn_cb_20"></div>
     
-            <div class="crnrstn_signin_copyright_shell">&copy; 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: ' . $this->oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br> ' . $this->oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART2') . ' <a href="' . $tmp_http_root . '&crnrstn_mit=true" target="_self">' . $this->oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT') . '</a>.</div>
+            <div class="crnrstn_signin_copyright_shell">&copy; 2012-' . date('Y') . ' Jonathan \'J5\' Harris :: ' . $this->oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART1') . '<br> ' . $this->oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART2') . ' <a href="' . $tmp_http_root . '&crnrstn_mit=true" target="_self">' . $this->oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT') . '</a>.</div>
             
             <div class="crnrstn_cb_40"></div>
     

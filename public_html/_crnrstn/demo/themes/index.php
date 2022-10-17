@@ -297,10 +297,10 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
 //echo '
 //
 //    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
-//        <br>// ' . $oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('PLEASE_ENTER_A_CONFIG_SERIAL') . '
-//        <br>// ' . $oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
+//        <br>// ' . $oCRNRSTN->multi_lang_content_return('PLEASE_ENTER_A_CONFIG_SERIAL') . '
+//        <br>// ' . $oCRNRSTN->multi_lang_content_return('FOR_REFERENCE_PLEASE_SEE') . ' ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 141].' . '
 //        <br>$CRNRSTN_config_serial = \'' . $oCRNRSTN->generate_new_key(64, -3) . '\';
-//        <br>// <a href="#"  style="font-family:Courier New, Courier, monospace; color: #0066CC;">' . $oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('CLICK_HERE') . '</a> to copy the 64 ' . $oCRNRSTN->oCRNRSTN_LANG_MGR->get_lang_copy('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
+//        <br>// <a href="#"  style="font-family:Courier New, Courier, monospace; color: #0066CC;">' . $oCRNRSTN->multi_lang_content_return('CLICK_HERE') . '</a> to copy the 64 ' . $oCRNRSTN->multi_lang_content_return('TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD') . '.
 //        <br>
 //
 //    </div>
@@ -348,7 +348,7 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
 //    ?>
 <!--</form>-->
 
-<div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+<div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
 <div style="width:700px;">
     <div class="crnrstn_j5_wolf_pup_outter_wrap">

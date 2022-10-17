@@ -1211,7 +1211,8 @@ class crnrstn_ui_tunnel_response_manager {
         //en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
         $tmp_header_language_attribute = $this->oCRNRSTN->return_client_header_value('Accept-Language');
 
-        $oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager($tmp_header_language_attribute);
+        //$oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager($tmp_header_language_attribute);
+        $oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager();
 
         //$tmp_accept_language_preference_ARRAY = $this->oCRNRSTN->return_client_accept_language_array($tmp_header_language_attribute);
 

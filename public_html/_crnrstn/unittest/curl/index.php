@@ -272,7 +272,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
                     <div class="crnrstn_cb"></div>
                     <div style="float: left;"><input type="text" name="crnrstn_curl_uri_endpoint" style="width:500px;" value="" placeholder="Enter URI"></div>
                     <div style="float: left; width: 20px; padding: 5px 0 0 20px;"><input type="checkbox" style="width: 20px;" name="crnrstn_curl_batch_save" value="batch_save" <?php echo $tmp_crnrstn_curl_batch_save;?>></div>
-                    <div style="float: left; width: 110px; font-size: 12px; padding:13px 0 0 10px; cursor: pointer;" onclick="oCRNRSTN_JS.log_activity('[lnum 448] DOM click[' + this.innerHTML +  '] :: reporting for duty.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);"><?php echo $oCRNRSTN->get_lang_copy('CHKBX_TEXT_PROCESS_TO_BATCH'); ?></div>
+                    <div style="float: left; width: 110px; font-size: 12px; padding:13px 0 0 10px; cursor: pointer;" onclick="oCRNRSTN_JS.log_activity('[lnum 448] DOM click[' + this.innerHTML +  '] :: reporting for duty.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);"><?php echo $oCRNRSTN->multi_lang_content_return('CHKBX_TEXT_PROCESS_TO_BATCH'); ?></div>
                     <div class="crnrstn_cb"></div>
                 </div>
                 <div class="crnrstn_cb"></div>
@@ -283,7 +283,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
             <div class="crnrstn_field_input_wrapper">
                 <div style="width:100%;">
                     <div style="float: left; padding-top: 10px;">
-                        <input style="width:100px;" type="submit" value="<?php echo $oCRNRSTN->get_lang_copy('BUTTON_TEXT_SUBMIT'); ?>">
+                        <input style="width:100px;" type="submit" value="<?php echo $oCRNRSTN->multi_lang_content_return('BUTTON_TEXT_SUBMIT'); ?>">
                         <div class="crnrstn_cb_10"></div>
                         <div style="float: left; width: 100px; font-size: 12px; font-style: italic; line-height: 17px; padding:0 0 0 0;">14 secs before next POST.<br> <a href="#" style="text-decoration: none; color:#0066CC; text-decoration:underline;">Cancel</a></div>
                     </div>
@@ -362,7 +362,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
     <div class="crnrstn_cb_20"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">

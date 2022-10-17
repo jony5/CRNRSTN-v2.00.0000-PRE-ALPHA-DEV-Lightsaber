@@ -80,6 +80,44 @@ class crnrstn_content_source_controller {
         try{
 
             switch($this->page_path){
+                case  'error_log':
+
+                    $tmp_categ_name = 'Configuration File';
+                    $tmp_subcateg_name = 'Configuration File';            # MATCHES SECTION TITLE LINK COPY
+                    $tmp_subsubcat_name = 'addDatabase()';
+                    self::$page_serial = self::$oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE', $tmp_categ_name, $tmp_subcateg_name, $tmp_subsubcat_name);
+
+                    //
+                    // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
+                    // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
+                    self::$oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu augue vel risus commodo porta ut viverra nibh. Cras placerat augue urna, congue facilisis urna dapibus nec. Aenean eget justo tortor. Aenean sit amet sem non nunc vulputate pellentesque. Nunc hendrerit scelerisque felis, vitae elementum lectus malesuada in. Integer vehicula odio convallis sem cursus, ac tempus erat mollis. In dapibus lobortis dui id sagittis.');
+                    self::$oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY','Fusce ipsum tellus, bibendum sit amet rhoncus in, facilisis at lectus. Fusce a augue maximus, pulvinar turpis vel, consectetur lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed turpis quam, bibendum at interdum eu, pharetra et tellus. Nam pharetra quam vel libero gravida aliquam. Curabitur consectetur felis a aliquam congue. ');
+
+                    //
+                    // TECH SPECS...PASS IN ARRAY OF SPECS
+                    $tmp_spec_array = array();
+                    $tmp_spec_array[0] = 'Currently tested on an Ubuntu Server 18.04 running PHP 7.0.22/MySQLi 5.0.12 and CentOS 7 Linux (a 100% compatible rebuild of the Red Hat Enterprise Linux) running PHP 5.6.32/MySQLi 5.5.58.';
+                    $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
+
+                    self::$oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'TECH_SPEC', $tmp_spec_array);
+                    self::$oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'INVOKING_CLASS','crnrstn_user');
+                    self::$oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'METHOD_DEFINITION','isClientMobile($tabletIsMobile=false)');
+
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
+                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
+                    $tmp_param_def[0]['param_required'] = false;
+
+                    self::$oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
+                    self::$oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'RETURNED_VALUE','Returns a string <em>\'isMobile\'</em> on successful mobile match. <em>\'isTablet\'</em> will be returned, however, if $tabletIsMobile is passed in as TRUE and the User-Agent and HTTP headers indicate that the client is a tablet computer. FALSE is returned for non-successful matches.');
+
+                    $tmp_example_title_str = 'Example 1';
+                    $tmp_example_description_str = 'Retrieve a multi data-type response as indication of the existence of conditions which...to a high degree of probability...confirm (or deny) that this is a request originating from a mobile device or tablet computer.';
+                    $tmp_example_presentation_file = '/common/inc/examples/isClientMobile_show.php';
+                    $tmp_example_execute_file = '/common/inc/examples/isClientMobile_exec.php';
+                    self::$oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                break;
                 case '/search/':
                     $tmp_categ_name = 'search results';
                     $tmp_subcateg_name = 'search results';            # MATCHES SECTION TITLE LINK COPY

@@ -608,7 +608,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
     <div class="crnrstn_cb_200"></div>
     <div class="crnrstn_cb_200"></div>
 
-    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN_USR->get_lang_copy('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
+    <div class="crnrstn_signin_copyright_shell">&copy; 2012-<?php echo date('Y'); ?> Jonathan 'J5' Harris :: <?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART1') . '<br>' . $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART2'); ?> <a id="crnrstn_txt_lnk_mit" href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux('onclick', this);"><?php echo $oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT'); ?></a>.</div>
 
     <div style="width:700px;">
         <div class="crnrstn_j5_wolf_pup_outter_wrap">
@@ -700,22 +700,22 @@ echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
         </div>
 
         <div id="crnrstn_interact_ui_content_wrapper" class="crnrstn_interact_ui_content_wrapper">
-            <div id="crnrstn_interact_ui_signin_frm_username" class="crnrstn_interact_ui_signin_frm_lbl"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LABEL_USERNAME'); ?></div>
+            <div id="crnrstn_interact_ui_signin_frm_username" class="crnrstn_interact_ui_signin_frm_lbl"><?php echo $oCRNRSTN->multi_lang_content_return('FORM_LABEL_USERNAME'); ?></div>
             <div class="crnrstn_cb_5"></div>
             <input type="text" name="username" value="">
             <div class="crnrstn_cb_15"></div>
-            <div id="crnrstn_interact_ui_signin_frm_password" class="crnrstn_interact_ui_signin_frm_lbl"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LABEL_PASSWORD_OPTIONAL'); ?></div>
+            <div id="crnrstn_interact_ui_signin_frm_password" class="crnrstn_interact_ui_signin_frm_lbl"><?php echo $oCRNRSTN->multi_lang_content_return('FORM_LABEL_PASSWORD_OPTIONAL'); ?></div>
             <div class="crnrstn_cb_5"></div>
             <input type="password" name="password" value="">
             <div class="crnrstn_cb_10"></div>
 
             <div class="crnrstn_interact_ui_signin_frm_chkbx_eula"><input type="checkbox" style="width: 20px;" name="crnrstn_signin_chkbx_eula_accept" value="eula_i_agree"></div>
-            <div class="crnrstn_interact_ui_signin_frm_lbl_eula"><a href="#"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_LNK_TXT_EULA'); ?></a></div>
+            <div class="crnrstn_interact_ui_signin_frm_lbl_eula"><a href="#"><?php echo $oCRNRSTN->multi_lang_content_return('FORM_LNK_TXT_EULA'); ?></a></div>
 
             <div class="crnrstn_cb_10"></div>
 
             <div class="crnrstn_interact_ui_frm_submit" onclick="oCRNRSTN_JS.sign_in_form_submit_via_micro_expansion();">
-                <div id="crnrstn_interact_ui_signin_frm_btn_submit" class="crnrstn_interact_ui_signin_frm_btn_submit"><?php echo $oCRNRSTN_USR->get_lang_copy('FORM_BUTTON_TEXT_CONNECT'); ?>'</div>
+                <div id="crnrstn_interact_ui_signin_frm_btn_submit" class="crnrstn_interact_ui_signin_frm_btn_submit"><?php echo $oCRNRSTN->multi_lang_content_return('FORM_BUTTON_TEXT_CONNECT'); ?>'</div>
             </div>
         </div>
     </div>

@@ -255,7 +255,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
     <div class="crnrstn_cb_30"></div>
     <form action="./?<?php echo $oCRNRSTN->data_decrypt($oCRNRSTN->get_resource('CRNRSTN_SYSTEM_DATA_GET')); ?>=#" method="post" enctype="multipart/form-data" id="crnrstn_image_to_encode" name="crnrstn_image_to_encode" data-ajax="false">
         <div style="padding-bottom: 20px;">
-            <input id="crnrstn_image_to_process_name" name="crnrstn_image_to_process_name" placeholder="<?php $oCRNRSTN->get_lang_copy('SYSTEM_IMAGE_SYNC_ENTER_JPG_PNG') ?>" value="">
+            <input id="crnrstn_image_to_process_name" name="crnrstn_image_to_process_name" placeholder="<?php $oCRNRSTN->multi_lang_content_return('SYSTEM_IMAGE_SYNC_ENTER_JPG_PNG') ?>" value="">
         </div>
 
         <div style="padding-bottom: 20px;">
