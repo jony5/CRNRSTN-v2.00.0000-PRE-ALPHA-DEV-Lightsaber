@@ -1108,11 +1108,11 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
     //
     // HOOOSTON...VE HAF PROBLEM!
-    $this->oCRNRSTN->error_log(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
+    $this->oCRNRSTN->error_log(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
 
-    $this->oCRNRSTN->print_r(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\', NULL, __LINE__, __METHOD__, __FILE__);
+    $this->oCRNRSTN->print_r(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\', NULL, __LINE__, __METHOD__, __FILE__);
 
-    throw new Exception(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
+    throw new Exception(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
 
 }';
                 $tmp_example_test = $this->oCRNRSTN->print_r_str($tmp_example_test, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
@@ -1168,7 +1168,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 
-                                <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
+                                <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
                                 <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                                 
                             </div>
@@ -1184,7 +1184,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                     
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
+                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
                                         <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                             
                                     </div>
@@ -1192,7 +1192,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
                                     
                                     <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_TXT_EXAMPLE') . ' 1 ::</h2></div>
+                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
                                         <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                                     </div>
                                 
@@ -1229,7 +1229,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
-                                        <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->multi_lang_content_return('BACKGROUND_COPY_DOCUMENTATION_NOTE') . '</div>
+                                        <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_NOTE') . '</div>
                                         <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 160, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
                                         
                                     </div>
@@ -1286,7 +1286,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
-                                        <div class="crnrstn_interact_ui_bg_title_tech_spec">' . $this->oCRNRSTN->multi_lang_content_return('BACKGROUND_COPY_DOCUMENTATION_TECH_SPECS') . '</div>
+                                        <div class="crnrstn_interact_ui_bg_title_tech_spec">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_TECH_SPECS') . '</div>
 
                                     </div>
                                     

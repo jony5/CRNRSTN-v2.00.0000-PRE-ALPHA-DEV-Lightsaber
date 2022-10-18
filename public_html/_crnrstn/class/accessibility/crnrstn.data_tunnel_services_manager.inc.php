@@ -292,7 +292,7 @@ class crnrstn_data_tunnel_services_manager{
                 $tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();
 
             break;
-            case 'crnrstn_interact_ui_mit_license':
+            case 'crnrstn_interact_ui_mit_license_src':
 
                 //
                 // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME

@@ -80,39 +80,123 @@ class crnrstn_content_source_controller {
         try{
 
             switch($this->module_key){
-                case  '_error_log':
+                case  '1error_log':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
-                    // BASIC_COPY,NOTE_COPY,TECH_SPEC,INVOKING_CLASS,METHOD_DEFINITION,PARAMETER_DEFINITION,RETURNED_VALUE,EXAMPLE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu augue vel risus commodo porta ut viverra nibh. Cras placerat augue urna, congue facilisis urna dapibus nec. Aenean eget justo tortor. Aenean sit amet sem non nunc vulputate pellentesque. Nunc hendrerit scelerisque felis, vitae elementum lectus malesuada in. Integer vehicula odio convallis sem cursus, ac tempus erat mollis. In dapibus lobortis dui id sagittis.');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'NOTE_COPY','Fusce ipsum tellus, bibendum sit amet rhoncus in, facilisis at lectus. Fusce a augue maximus, pulvinar turpis vel, consectetur lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed turpis quam, bibendum at interdum eu, pharetra et tellus. Nam pharetra quam vel libero gravida aliquam. Curabitur consectetur felis a aliquam congue. ');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $this->module_key);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_DESCRIPTION', 'This is the [' . $this->module_key . '] description.');
+
+                    $tmp_example_test = '//
+// CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
+$tmp_minimum_bytes_required = strlen($tmp_data_str_out);
+
+//
+// ASK CRNRSTN :: TO GRANT PERMISSIONS FOR fwrite()
+// WARNINGS WILL BE THROWN @ $oCRNRSTN->max_storage_utilization_warning PERCENTAGE. 
+// WRITE REQUESTS WILL BE DENIED @ $oCRNRSTN->max_storage_utilization PERCENTAGE.
+if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
+
+    //
+    // HOOOSTON...VE HAF PROBLEM!
+    $this->oCRNRSTN->error_log(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
+
+    $this->oCRNRSTN->print_r(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\', NULL, __LINE__, __METHOD__, __FILE__);
+
+    throw new Exception(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
+
+}';
+                    //$tmp_example = $this->oCRNRSTN->print_r_str($tmp_example_test, $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG'), CRNRSTN_UI_DARKNIGHT);
+
+                    //
+                    // TIDY THIS UP A BIT...Tuesday, October 18, 0752 hrs
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_TITLE_MAIN', $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT'));
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_TITLE_INTEGRATED', $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG'));
+
+                    $tmp_example_title_str = 'Example 1';
+                    $tmp_example_description_str = 'Retrieve a multi data-type response as indication of the existence of conditions which...to a high degree of probability...confirm (or deny) that this is a request originating from a mobile device or tablet computer.';
+                    $tmp_example_presentation_file = '/public_html/_crnrstn/ui/docs/examples/error_log_show.php';
+                    $tmp_example_execute_file = '/public_html/_crnrstn/ui/docs/examples/error_log_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_test);
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE_TITLE', $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_NOTE'));
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE_COPY', 'Velit HELLO [' . __LINE__ . '] NOTE_COPY! euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.');
 
                     //
                     // TECH SPECS...PASS IN ARRAY OF SPECS
                     $tmp_spec_array = array();
-                    $tmp_spec_array[0] = 'Currently tested on an Ubuntu Server 18.04 running PHP 7.0.22/MySQLi 5.0.12 and CentOS 7 Linux (a 100% compatible rebuild of the Red Hat Enterprise Linux) running PHP 5.6.32/MySQLi 5.5.58.';
+                    $tmp_spec_array[0] = 'Currently tested on Ubuntu 18.04.1 LTS running Apache v2.4.29, MySQLi v5.0.12, php v7.0.33, OpenSSL v1.1.1, and NuSOAP v0.9.5.';
                     $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
 
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'TECH_SPEC', $tmp_spec_array);
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'INVOKING_CLASS','crnrstn_user');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'METHOD_DEFINITION','isClientMobile($tabletIsMobile=false)');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS_TITLE', $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_TECH_SPECS'));
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS', $tmp_spec_array);
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_NAKED', 'Scelerisque HELLO [' . __LINE__ . '] GENERAL_COPY_NAKED! eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', 'Risus HELLO [' . __LINE__ . '] GENERAL_COPY_R_STONE! nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.');
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', 'error_log($str, $line_num = NULL, $method = NULL, $file = NULL, $log_silo_key = NULL);');
 
                     $tmp_param_def = array();
-                    $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
-                    $tmp_param_def[0]['param_required'] = false;
+                    $tmp_param_def[0]['param_name'] = '$str';
+                    $tmp_param_def[0]['param_copy'] = 'This is the $str.';
+                    $tmp_param_def[0]['param_required'] = true;
 
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'RETURNED_VALUE','Returns a string <em>\'isMobile\'</em> on successful mobile match. <em>\'isTablet\'</em> will be returned, however, if $tabletIsMobile is passed in as TRUE and the User-Agent and HTTP headers indicate that the client is a tablet computer. FALSE is returned for non-successful matches.');
+                    $tmp_param_def[1]['param_name'] = '$line_num';
+                    $tmp_param_def[1]['param_copy'] = 'This is the $line_num.';
+                    $tmp_param_def[1]['param_required'] = false;
 
-                    $tmp_example_title_str = 'Example 1';
-                    $tmp_example_description_str = 'Retrieve a multi data-type response as indication of the existence of conditions which...to a high degree of probability...confirm (or deny) that this is a request originating from a mobile device or tablet computer.';
-                    $tmp_example_presentation_file = '/common/inc/examples/isClientMobile_show.php';
-                    $tmp_example_execute_file = '/common/inc/examples/isClientMobile_exec.php';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
+                    $tmp_param_def[2]['param_name'] = '$method';
+                    $tmp_param_def[2]['param_copy'] = 'This is the $method.';
+                    $tmp_param_def[2]['param_required'] = false;
+
+                    $tmp_param_def[3]['param_name'] = '$file';
+                    $tmp_param_def[3]['param_copy'] = 'This is the $file.';
+                    $tmp_param_def[3]['param_required'] = false;
+
+                    $tmp_param_def[4]['param_name'] = '$log_silo_key';
+                    $tmp_param_def[4]['param_copy'] = 'This is the $log_silo_key.';
+                    $tmp_param_def[4]['param_required'] = false;
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'true');
+
+                    /*
+                    Tuesday, October 18, 2022 @ 0534 hrs
+                    CRNRSTN :: LIGHTSABER
+                    PAGE_TITLE
+                    PAGE_DESCRIPTION
+                    EXAMPLE_TITLE_MAIN
+                    EXAMPLE_TITLE_INTEGRATED
+                    EXAMPLE_CONTENT
+                    NOTE_TITLE
+                    NOTE_COPY
+                    TECH_SPECS_TITLE
+                    TECH_SPECS (array)
+                    GENERAL_COPY_NAKED
+                    GENERAL_COPY_R_STONE
+                    ----
+                    METHOD_DEFINITION
+                    PARAMETER_DEFINITION
+                    RETURN_VALUE
+
+                    ====
+                    September 28, 2020 @ 1857 hrs
+                    http://v2.crnrstn.evifweb.com/
+
+                    BASIC_COPY
+                    NOTE_COPY
+                    TECH_SPEC
+                    METHOD_DEFINITION
+                    PARAMETER_DEFINITION
+                    RETURNED_VALUE
+                    EXAMPLE
+
+
+                    */
 
                 break;
                 case '/search/':
@@ -196,7 +280,6 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY','It is now June 20, 2018, and a hard launch date of July 4, 2018 has been set. The C<span class="the_R">R</span>NRSTN Suite :: version 1.0.0 documentation has been pushed to production, and the <a href="https://github.com/jony5/CRNRSTN" target="_blank">GitHub repository</a> for this project has been updated with the latest release. We have now entered into the realm of soft launch for the C<span class="the_R">R</span>NRSTN Suite :: version 1.0.0. Over the next couple of weeks leading up to the official release date, there will be plenty of &quot;tire kicking&quot;, fine tuning, and copy tweaks. After a solid 6 years spent in thoughtful contemplation and faithful laboring, we are finally ready to go! Thank You, Lord Jesus!');
 
                 break;
-
                 case '/suite_methods/configuration_file/':
                     $tmp_categ_name = 'Configuration File';
                     $tmp_subcateg_name = 'Configuration File';            # MATCHES SECTION TITLE LINK COPY

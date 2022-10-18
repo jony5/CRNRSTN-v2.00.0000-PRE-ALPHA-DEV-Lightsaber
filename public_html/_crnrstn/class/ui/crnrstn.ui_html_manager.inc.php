@@ -138,8 +138,6 @@ class crnrstn_ui_html_manager {
 
     public function out_ui_module_html_system_documentation_page(){
 
-        $tmp_html_out = '';
-
         $this->page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page_content();
 
         //

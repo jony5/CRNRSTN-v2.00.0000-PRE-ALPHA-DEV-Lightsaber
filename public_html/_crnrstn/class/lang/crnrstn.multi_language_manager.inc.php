@@ -2990,7 +2990,23 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
-            case 'BACKGROUND_COPY_DOCUMENTATION_TECH_SPECS':
+            case 'DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'A TASTY CRNRSTN :: SNIPPET.';
+
+                    break;
+
+                }
+
+            break;
+            case 'DOCUMENTATION_BACKGROUND_COPY_TECH_SPECS':
 
                 switch($this->country_iso_code) {
                     case 'es':
@@ -3017,7 +3033,7 @@ class crnrstn_multi_language_manager {
                 }
 
             break;
-            case 'DOCUMENTATION_TITLE_TXT_EXAMPLE':
+            case 'DOCUMENTATION_EXAMPLE_TITLE_TXT':
 
                 switch($this->country_iso_code) {
                     case 'es':
@@ -3038,7 +3054,7 @@ class crnrstn_multi_language_manager {
                 }
 
             break;
-            case 'BACKGROUND_COPY_DOCUMENTATION_NOTE':
+            case 'DOCUMENTATION_BACKGROUND_COPY_NOTE':
 
                 switch($this->country_iso_code) {
                     case 'es':
