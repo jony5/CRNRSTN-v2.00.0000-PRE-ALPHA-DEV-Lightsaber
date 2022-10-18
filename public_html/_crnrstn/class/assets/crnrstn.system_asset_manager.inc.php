@@ -8522,11 +8522,11 @@ class crnrstn_system_image_asset_manager {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                $this->oCRNRSTN->error_log('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
+                $this->oCRNRSTN->error_log('DISK WRITE ERROR. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
 
-                $this->oCRNRSTN->print_r('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('DISK WRITE ERROR. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
 
-                throw new Exception('WARNING. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.');
+                throw new Exception('DISK WRITE ERROR. Disk space exceeds ' . $this->oCRNRSTN->get_performance_metric('maximum_disk_use') . '% minimum allocation of free space. File write [' . $tmp_filepath . '] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.');
 
             }
 
