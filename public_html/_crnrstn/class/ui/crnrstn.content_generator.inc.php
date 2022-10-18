@@ -52,7 +52,6 @@ class crnrstn_content_generator {
 
     protected $oLogger;
     public $oCRNRSTN;
-    public $oCRNRSTN_UI_ASSEMBLER;
     private static $oCSController;
 
     public $page_content_ARRAY = array();
@@ -65,25 +64,28 @@ class crnrstn_content_generator {
     public $page_subcategory_name;
     public $page_subsubcateg_name;
 
-	public function __construct($oCRNRSTN, $oCRNRSTN_UI_ASSEMBLER, $page_path, $module_key = NULL){
+	public function __construct($oCRNRSTN, $oCRNRSTN_UI_ASSEMBLER, $module_page_key = NULL){
 
         //
         // INSTANTIATE LOGGER
         $this->oCRNRSTN = $oCRNRSTN;
-        $this->oCRNRSTN_UI_ASSEMBLER = $oCRNRSTN_UI_ASSEMBLER;
 
         $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         //
         // INSTANTIATE CONTENT SOURCE CONTROLLER
-        self::$oCSController = new crnrstn_content_source_controller($this->oCRNRSTN, $this->oCRNRSTN_UI_ASSEMBLER, $page_path, $module_key);
+        self::$oCSController = new crnrstn_content_source_controller($this->oCRNRSTN, $oCRNRSTN_UI_ASSEMBLER, $module_page_key);
 
 	}
 
-	public function init_page($serial){
+	public function initialize_page(){
 
-	    $this->page_content_ARRAY[] = $serial;
-	    $this->page_serial = $serial;
+	    $tmp_serial = $this->oCRNRSTN->hash(self::$oCSController->module_key);
+
+	    $this->page_content_ARRAY[] = $tmp_serial;
+	    $this->page_serial = $tmp_serial;
+
+	    return $this->page_serial;
 
     }
 
@@ -105,7 +107,7 @@ class crnrstn_content_generator {
 
     }
 
-    public function add_page_element($serial, $key, $attribute_00, $attribute_01=NULL, $attribute_02=NULL, $attribute_03=NULL){
+    public function add_page_element($serial, $key, $attribute_00, $attribute_01 = NULL, $attribute_02 = NULL, $attribute_03 = NULL){
 
 	    try{
 
@@ -119,7 +121,7 @@ class crnrstn_content_generator {
                 case 'NOTE_COPY':
                 case 'SUB_TITLE':
 
-                    if($attribute_00==''){
+                    if($attribute_00 ==''){
 
                         $attribute_00 = ' ';
 
@@ -271,7 +273,7 @@ class crnrstn_content_generator {
                                 $tmp_ugc_search_clean_str_ARRAY = array();
                                 for ($i = 0; $i < $tmp_cnt; $i++) {
 
-                                    $tmp_ugc_search_clean_str_ARRAY[$i] = strtolower($oSideBitch_Usr->strSanitize($tmp_ugc_array[$i], 'search'));
+                                    $tmp_ugc_search_clean_str_ARRAY[$i] = strtolower($oSideBitch_Usr->str_sanitize($tmp_ugc_array[$i], 'search'));
 
                                     $query = 'SELECT `search_content_chunked`.`CHUNK_ID`,
                                                 `search_content_chunked`.`CONTENT_ID`,
@@ -362,7 +364,7 @@ class crnrstn_content_generator {
 
                                 //
                                 // NO QUOTES...PROCESS ENTIRE UGC
-                                $tmp_ugc_search_str_clean = strtolower($oSideBitch_Usr->strSanitize($tmp_ugc_search_str, 'search'));
+                                $tmp_ugc_search_str_clean = strtolower($oSideBitch_Usr->str_sanitize($tmp_ugc_search_str, 'search'));
 
                                 $query = 'SELECT `search_content_chunked`.`CHUNK_ID`,
                                             `search_content_chunked`.`CONTENT_ID`,
@@ -576,7 +578,7 @@ class crnrstn_content_generator {
                                 $tmp_ugc_search_clean_str_ARRAY = array();
                                 for ($i = 0; $i < $tmp_cnt; $i++) {
 
-                                    $tmp_ugc_search_clean_str_ARRAY[$i] = strtolower($oSideBitch_Usr->strSanitize($tmp_ugc_array[$i], 'search'));
+                                    $tmp_ugc_search_clean_str_ARRAY[$i] = strtolower($oSideBitch_Usr->str_sanitize($tmp_ugc_array[$i], 'search'));
 
                                     $query = 'SELECT `search_content_chunked`.`CHUNK_ID`,
                                                 `search_content_chunked`.`CONTENT_ID`,
@@ -667,7 +669,7 @@ class crnrstn_content_generator {
 
                                 //
                                 // NO QUOTES...PROCESS ENTIRE UGC
-                                $tmp_ugc_search_str_clean = strtolower($oSideBitch_Usr->strSanitize($tmp_ugc_search_str, 'search'));
+                                $tmp_ugc_search_str_clean = strtolower($oSideBitch_Usr->str_sanitize($tmp_ugc_search_str, 'search'));
 
                                 $query = 'SELECT `search_content_chunked`.`CHUNK_ID`,
                                             `search_content_chunked`.`CONTENT_ID`,
@@ -820,7 +822,7 @@ class crnrstn_content_generator {
 
                 $tmp_page_element_cnt = sizeof($this->content_load_sequence_ARRAY);
                 //error_log('415 gen - count=' . $tmp_page_element_cnt);
-                for($i=0;$i<$tmp_page_element_cnt;$i++){
+                for($i = 0; $i < $tmp_page_element_cnt; $i++){
 
                     //
                     // FOR EACH PAGE ELEMENT IN SEQUENCE.
@@ -927,7 +929,8 @@ class crnrstn_content_generator {
                 }
 
             break;
-            case 'mobile':
+            case 'MOBILE':
+            case 'TABLET':
 
                 if(strlen($this->page_subsubcateg_name_ARRAY[$this->page_serial])>2){
 
@@ -1426,7 +1429,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                 // LOOP THROUGH CONTENT ARRAY
                 $tmp_page_element_cnt = sizeof($this->content_load_sequence_ARRAY);
 
-                for($i=0;$i<$tmp_page_element_cnt;$i++){
+                for($i = 0; $i < $tmp_page_element_cnt; $i++){
 
                     //
                     // FOR EACH PAGE ELEMENT IN SEQUENCE OF CONSTRUCTION.
@@ -1589,7 +1592,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
         }else{
 
-            $str = $this->oCRNRSTN_UI_ASSEMBLER->strSanitize($str, 'index');
+            $str = $this->oCRNRSTN->str_sanitize($str, 'index');
             $str = $str . ' ';
 
         }

@@ -216,6 +216,7 @@ class crnrstn_ui_tunnel_response_manager {
                         $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
                         //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
                         //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
+                        
                     break;
                     case 'crnrstn_interact_ui_system_footer_src':
 
@@ -1203,7 +1204,7 @@ class crnrstn_ui_tunnel_response_manager {
 //
 //    }
 
-    private function sdtl_response_http_language_preference($output_type = 'xml'){
+    private function ssdtl_response_http_language_preference($output_type = 'xml'){
 
         $output_string = '';
         $output_type = strtolower($output_type);
@@ -1211,8 +1212,10 @@ class crnrstn_ui_tunnel_response_manager {
         //en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
         $tmp_header_language_attribute = $this->oCRNRSTN->return_client_header_value('Accept-Language');
 
-        //$oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager($tmp_header_language_attribute);
-        $oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager();
+        $oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager($tmp_header_language_attribute);
+        $oCRNRSTN_LANG_MGR->initialize_client_language_profile();
+
+        //$oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager();
 
         //$tmp_accept_language_preference_ARRAY = $this->oCRNRSTN->return_client_accept_language_array($tmp_header_language_attribute);
 
@@ -2242,7 +2245,7 @@ class crnrstn_ui_tunnel_response_manager {
                 </global_privacy_control>
                 <device_type>' . $this->oCRNRSTN->device_type_bit() . '|' . $this->oCRNRSTN->device_type() . '</device_type>
                 <language>
-                    ' . $this->sdtl_response_http_language_preference('xml') . '
+                    ' . $this->ssdtl_response_http_language_preference('xml') . '
                 </language>
             </client_profile>
             <crnrstn_interact_ui_profile>' . $tmp_CRNRSTN_UI_INTERACT . '

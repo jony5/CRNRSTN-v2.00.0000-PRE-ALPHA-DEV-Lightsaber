@@ -2470,7 +2470,7 @@ class crnrstn {
 
             //
             // STORE ADMINISTRATOR CONFIGURATION PARAMETERS
-            $this->error_log('Environment [' . $env_key . '] storing administrative authentication profile [$email=' . $this->strSanitize($email_or_creds_path, 'email_private') . ' | $tmp_pwd=##### REDACTED ##### | $ttl=' . $ttl . ' | $max_login_attempts=' . $max_login_attempts . '.] within CRNRSTN ::.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            $this->error_log('Environment [' . $env_key . '] storing administrative authentication profile [$email=' . $this->str_sanitize($email_or_creds_path, 'email_private') . ' | $tmp_pwd=##### REDACTED ##### | $ttl=' . $ttl . ' | $max_login_attempts=' . $max_login_attempts . '.] within CRNRSTN ::.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             $this->add_administrator($env_key, $email_or_creds_path, $pwd, $ttl, $max_login_attempts);
 
@@ -2499,7 +2499,7 @@ class crnrstn {
         self::$oCRNRSTN_CONFIG_MGR->input_data_value($ttl, 'ttl', NULL, NULL, NULL, $env_key);
         self::$oCRNRSTN_CONFIG_MGR->input_data_value($maxlogin_attempts, 'maxlogin_attempts', NULL, NULL, NULL, $env_key);
 
-        $this->error_log('Storing administrative credential profile information for email [' . $this->strSanitize($email, 'email_private') . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        $this->error_log('Storing administrative credential profile information for email [' . $this->str_sanitize($email, 'email_private') . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         return true;
 
@@ -6679,7 +6679,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function strSanitize($str, $type){
+    public function str_sanitize($str, $type){
 
         $patterns = array();
         $replacements = array();
@@ -6689,6 +6689,56 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         try {
 
             switch ($type) {
+                case 'index':
+
+                    $patterns[0] = '&nbsp;';
+                    $patterns[1] = ')';
+                    $replacements[0] = ' ';
+                    $replacements[1] = ') ';
+
+                break;
+                case 'search':
+
+                    $patterns[0] = "
+";
+                    $patterns[1] = '"';
+                    $patterns[2] = '=';
+                    $patterns[3] = '{';
+                    $patterns[4] = '}';
+                    $patterns[5] = '(';
+                    $patterns[6] = ')';
+                    $patterns[7] = ' ';
+                    $patterns[8] = '	';
+                    $patterns[9] = ',';
+                    $patterns[10] = '\n';
+                    $patterns[11] = '\r';
+                    $patterns[12] = '\'';
+                    $patterns[13] = '/';
+                    $patterns[14] = '#';
+                    $patterns[15] = ';';
+                    $patterns[16] = ':';
+                    //$patterns[17] = '>';
+
+                    $replacements[0] = '';
+                    $replacements[1] = '';
+                    $replacements[2] = '';
+                    $replacements[3] = '';
+                    $replacements[4] = '';
+                    $replacements[5] = '';
+                    $replacements[6] = '';
+                    $replacements[7] = '';
+                    $replacements[8] = '';
+                    $replacements[9] = '';
+                    $replacements[10] = '';
+                    $replacements[11] = '';
+                    $replacements[12] = '';
+                    $replacements[13] = '';
+                    $replacements[14] = '';
+                    $replacements[15] = '';
+                    $replacements[16] = '';
+                    //$replacements[17] = '';
+
+                break;
                 case 'email_private':
 
                     $tmp_new_post_at_ARRAY = array();
@@ -6798,7 +6848,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function string_sanitize($str, $type){
 
-        return $this->strSanitize($str, $type);
+        return $this->str_sanitize($str, $type);
 
     }
 

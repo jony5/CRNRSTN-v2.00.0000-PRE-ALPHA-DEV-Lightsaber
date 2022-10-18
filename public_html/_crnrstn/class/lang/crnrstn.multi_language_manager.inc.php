@@ -2969,9 +2969,9 @@ class crnrstn_multi_language_manager {
 
     }
 
-	public function initialize_oCRNRSTN($oCRNRSTN){
+	public function initialize_client_language_profile(){
 
-        $this->oCRNRSTN = $oCRNRSTN;
+        //$this->oCRNRSTN = $oCRNRSTN;
 
         $this->country_iso_code = $this->oCRNRSTN->country_iso_code();
 

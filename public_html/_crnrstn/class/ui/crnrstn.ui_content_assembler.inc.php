@@ -75,19 +75,32 @@ class crnrstn_ui_content_assembler {
 
 	public function initialize_page_content(){
 
+	    //
+        // SSDTLA PARAMETER EXTRACTION.
+        // CURRENTLY, ALL CRNRSTN :: LIGHTSABER LINK CLICKS ARE crnrstn_interact_ui_link_text_click
         $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
         //
         // INSTANTIATE CONTENT GENERATOR
-        self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, self::$page_path, $tmp_module_page_key);
-
-    }
-
-    public function load_page(){
+        self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, $tmp_module_page_key);
 
         self::$oContentGen->load_page();
 
+        return self::$oContentGen->return_page_serial();
+
     }
+
+    public function return_page_path(){
+
+	    return self::$page_path;
+
+    }
+
+//    public function load_page(){
+//
+//        self::$oContentGen->load_page();
+//
+//    }
 
     public function index_page(){
 
@@ -219,8 +232,8 @@ class crnrstn_ui_content_assembler {
 
             //
             // BREAK CONTENT INTO CHUNKS
-            $tmp_page_content = $this->strSanitize($tmp_page_content,'index');
-            $tmp_search_result_display = $this->strSanitize($tmp_search_result_display,'index');
+            $tmp_page_content = $this->str_sanitize($tmp_page_content,'index');
+            $tmp_search_result_display = $this->str_sanitize($tmp_search_result_display,'index');
 
             $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_search_result_display, 200);
             $tmp_sresult_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
@@ -234,7 +247,7 @@ class crnrstn_ui_content_assembler {
 
             for($i=0;$i<$chunk_cnt;$i++){
                 $tmp_chunk_id = $this->oCRNRSTN->generate_new_key(70);
-                $tmp_chunk_search = strtolower($this->strSanitize($tmp_chunked_array['chunked_content'][$i],'search'));
+                $tmp_chunk_search = strtolower($this->str_sanitize($tmp_chunked_array['chunked_content'][$i],'search'));
 
                 $tmp_chunk_len_search = strlen($tmp_chunk_search);
                 $tmp_chunk_len_raw = strlen($tmp_chunked_array['chunked_content'][$i]);
@@ -328,8 +341,8 @@ class crnrstn_ui_content_assembler {
 
             //
             // BREAK CONTENT INTO CHUNKS
-            $tmp_page_content = $this->strSanitize($tmp_page_content,'index');
-            $tmp_search_result_display = $this->strSanitize($tmp_search_result_display,'index');
+            $tmp_page_content = $this->str_sanitize($tmp_page_content,'index');
+            $tmp_search_result_display = $this->str_sanitize($tmp_search_result_display,'index');
 
             $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_search_result_display, 200);
             $tmp_sresult_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
@@ -344,7 +357,7 @@ class crnrstn_ui_content_assembler {
 
             for($i=0;$i<$chunk_cnt;$i++){
                 $tmp_chunk_id = $this->oCRNRSTN->generate_new_key(70);
-                $tmp_chunk_search = strtolower($this->strSanitize($tmp_chunked_array['chunked_content'][$i],'search'));
+                $tmp_chunk_search = strtolower($this->str_sanitize($tmp_chunked_array['chunked_content'][$i],'search'));
 
                 $tmp_chunk_len_search = strlen($tmp_chunk_search);
                 $tmp_chunk_len_raw = strlen($tmp_chunked_array['chunked_content'][$i]);
@@ -532,51 +545,40 @@ class crnrstn_ui_content_assembler {
 	     * */
     }
 
-    public function initialize_page($key, $category_name, $subcategory_name, $subsubcat_name){
+    public function initialize_page($key){
 
         try {
 
-            if(strlen($category_name)<3 || strlen($subcategory_name)<3){
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('Error building page [' . $category_name . '/' . $subcategory_name . '] from provided key [' . $key.'].');
-
-            }
-
-            //$this->oCRNRSTN->error_log('Breaking the switch(key) now to throw an exception...', __LINE__, __METHOD__, __FILE__, 'SKIP ME NOW!');
-
             switch($key){
                 case 'PAGE':
-                    //$this->oCRNRSTN->error_log('See me?...CERTAIN_DESTRUCTION', __LINE__, __METHOD__, __FILE__, 'CERTAIN_DESTRUCTION');
 
-                    //error_log('215 side bitch usr - '.self::$oContentGen->page_serial);
                     //
                     // AFTER TESTING...MAY NEED TO MAKE MORE ROBUST IF APPENDING $_GET PARAMS TO LINKS
                     $tmp_uri = $_SERVER['SCRIPT_NAME'];
-                    $tmp_uri = str_replace("index.php", "", $tmp_uri);
+                    $tmp_uri = str_replace('index.php', '', $tmp_uri);
 
                     self::$oContentGen->page_uri = $tmp_uri;
-                    self::$oContentGen->page_category_name = $category_name;
-                    self::$oContentGen->page_subcategory_name = $subcategory_name;
-                    self::$oContentGen->page_subsubcateg_name = $subsubcat_name;
+//                    self::$oContentGen->page_category_name = $category_name;
+//                    self::$oContentGen->page_subcategory_name = $subcategory_name;
+//                    self::$oContentGen->page_subsubcateg_name = $subsubcat_name;
 
                     //
                     // GENERATE UNIQUE HANDLE FOR THIS DATA
-                    self::$oContentGen->init_page($this->oCRNRSTN->crcINT(self::$oContentGen->page_uri.self::$oContentGen->page_category_name.self::$oContentGen->page_subcategory_name.self::$oContentGen->page_subsubcateg_name));
+                    return self::$oContentGen->initialize_page();
 
-                    self::$oContentGen->page_category_name_ARRAY[self::$oContentGen->page_serial] = $category_name;
-                    self::$oContentGen->page_subcategory_name_ARRAY[self::$oContentGen->page_serial] = $subcategory_name;
-                    self::$oContentGen->page_subsubcateg_name_ARRAY[self::$oContentGen->page_serial] = $subsubcat_name;
+//                    self::$oContentGen->page_category_name_ARRAY[self::$oContentGen->page_serial] = $category_name;
+//                    self::$oContentGen->page_subcategory_name_ARRAY[self::$oContentGen->page_serial] = $subcategory_name;
+//                    self::$oContentGen->page_subsubcateg_name_ARRAY[self::$oContentGen->page_serial] = $subsubcat_name;
 
                 break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
-                    throw new Exception('Error building page within section [' . $category_name . '/' . $subcategory_name . '] from provided key [' . $key.'].');
+                    throw new Exception('Error building page from provided key [' . $key . '].');
 
                 break;
+
             }
 
         } catch (Exception $e) {
@@ -588,8 +590,6 @@ class crnrstn_ui_content_assembler {
             return false;
 
         }
-
-        return self::$oContentGen->page_serial;
 
     }
 
@@ -640,14 +640,16 @@ class crnrstn_ui_content_assembler {
     public function get_category($serial){
 
 	    return self::$oContentGen->page_category_name_ARRAY[$serial];
+
     }
 
     public function get_sub_category($serial){
 
         return self::$oContentGen->page_subcategory_name_ARRAY[$serial];
+
     }
 
-    public function return_page_html($serial, $channel = 'desktop'){
+    public function return_page_html($serial, $channel = 'DESKTOP'){
 
         return self::$oContentGen->return_page_html($serial, $channel);
 
@@ -656,6 +658,7 @@ class crnrstn_ui_content_assembler {
     public function return_page_serial(){
 
         return self::$oContentGen->return_page_serial();
+
     }
 
     public function nav_visible_state($nav_copy){
@@ -770,7 +773,7 @@ class crnrstn_ui_content_assembler {
         return preg_replace_callback('/<(\d+)>/', function ($match) use (&$links) { return $links[$match[1] - 1]; }, $value);
     }
 
-    public function strSanitize($str, $type){
+    public function str_sanitize($str, $type){
 
         $patterns = array();
         $replacements = array();

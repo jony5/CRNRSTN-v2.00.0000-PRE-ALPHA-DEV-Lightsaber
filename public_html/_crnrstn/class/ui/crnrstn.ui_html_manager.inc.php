@@ -140,14 +140,14 @@ class crnrstn_ui_html_manager {
 
         $tmp_html_out = '';
 
-        $this->oCRNRSTN_UI_ASSEMBLER->initialize_page_content();
-        //$this->oCRNRSTN_UI_ASSEMBLER->load_page();
+        $this->page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page_content();
+
+        //
+        // SEARCH INTEGRATION
         //$this->oCRNRSTN_UI_ASSEMBLER->index_page();
-        $this->page_serial = $this->oCRNRSTN_UI_ASSEMBLER->return_page_serial();
 
-        $tmp_html_out  = $this->oCRNRSTN_UI_ASSEMBLER->return_page_html($this->page_serial);
+        $tmp_html_out = $this->oCRNRSTN_UI_ASSEMBLER->return_page_html($this->page_serial);
 
-        //error_log(__LINE__ . ' ui html mgr '.__METHOD__);
         return $tmp_html_out;
 
     }

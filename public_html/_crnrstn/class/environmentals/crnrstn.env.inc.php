@@ -5807,7 +5807,7 @@ class crnrstn_environment {
 
     }
 
-    public function strSanitize($str, $type){
+    public function str_sanitize($str, $type){
 
         $patterns = array();
         $replacements = array();
