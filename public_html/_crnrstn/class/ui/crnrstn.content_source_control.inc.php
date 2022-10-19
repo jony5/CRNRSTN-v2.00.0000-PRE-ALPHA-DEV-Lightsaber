@@ -80,97 +80,117 @@ class crnrstn_content_source_controller {
         try{
 
             switch($this->module_key){
-                case  '1error_log':
+                case 'add_system_resource':
+                case 'config_add_administration':
+                case 'config_add_database':
+                case 'config_add_environment':
+                case 'config_add_seo_analytics':
+                case 'config_add_seo_engagement':
+                case 'config_deny_access':
+                case 'config_detect_environment':
+                case 'config_grant_exclusive_access':
+                case 'config_include_encryption':
+                case 'config_include_seo_analytics':
+                case 'config_include_seo_engagement':
+                case 'config_include_system_resources':
+                case 'config_include_wordpress':
+                case 'config_init_images_http_dir':
+                case 'config_init_images_transport_mode':
+                case 'config_init_logging':
+                case 'form_hidden_input_add':
+                case 'form_input_add':
+                case 'form_input_feedback_copy_add':
+                case 'form_integration_html_packet_output':
+                case 'form_response_add':
+                case 'get_resource':
+                case 'grant_permissions_fwrite':
+                case 'ini_set':
+                case 'is_configured':
+                case 'print_r':
+                case 'print_r_str':
+                case 'return_system_image':
+                case 'return_youtube_embed':
+                case 'set_crnrstn_as_err_handler':
+                case 'set_max_login_attempts':
+                case 'set_timeout_user_inactive':
+                case 'set_timezone_default':
+                case 'set_ui_theme_style':
+                case 'error_log':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
-                    // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $this->module_key);
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_DESCRIPTION', 'This is the [' . $this->module_key . '] description.');
-
-                    $tmp_example_test = '//
-// CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
-$tmp_minimum_bytes_required = strlen($tmp_data_str_out);
-
-//
-// ASK CRNRSTN :: TO GRANT PERMISSIONS FOR fwrite()
-// WARNINGS WILL BE THROWN @ $oCRNRSTN->max_storage_utilization_warning PERCENTAGE. 
-// WRITE REQUESTS WILL BE DENIED @ $oCRNRSTN->max_storage_utilization PERCENTAGE.
-if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
-
-    //
-    // HOOOSTON...VE HAF PROBLEM!
-    $this->oCRNRSTN->error_log(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
-
-    $this->oCRNRSTN->print_r(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\', NULL, __LINE__, __METHOD__, __FILE__);
-
-    throw new Exception(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
-
-}';
-                    //$tmp_example = $this->oCRNRSTN->print_r_str($tmp_example_test, $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG'), CRNRSTN_UI_DARKNIGHT);
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Lorem ipsum ' . $this->module_key . ' dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
-                    // TIDY THIS UP A BIT...Tuesday, October 18, 0752 hrs
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_TITLE_MAIN', $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT'));
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_TITLE_INTEGRATED', $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG'));
-
-                    $tmp_example_title_str = 'Example 1';
-                    $tmp_example_description_str = 'Retrieve a multi data-type response as indication of the existence of conditions which...to a high degree of probability...confirm (or deny) that this is a request originating from a mobile device or tablet computer.';
-                    $tmp_example_presentation_file = '/public_html/_crnrstn/ui/docs/examples/error_log_show.php';
-                    $tmp_example_execute_file = '/public_html/_crnrstn/ui/docs/examples/error_log_exec.php';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
-
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_test);
-
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE_TITLE', $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_NOTE'));
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE_COPY', 'Velit HELLO [' . __LINE__ . '] NOTE_COPY! euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.');
+                    // METHOD DEFINITION
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', 'error_log(<br>&nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $str,<br>&nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $line_num = NULL, <br>&nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $method = NULL, <br>&nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $file = NULL, <br>&nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $log_silo_key = NULL<br>): <span class="crnrstn_documentation_method_data_type">boolean|true</span>');
 
                     //
-                    // TECH SPECS...PASS IN ARRAY OF SPECS
-                    $tmp_spec_array = array();
-                    $tmp_spec_array[0] = 'Currently tested on Ubuntu 18.04.1 LTS running Apache v2.4.29, MySQLi v5.0.12, php v7.0.33, OpenSSL v1.1.1, and NuSOAP v0.9.5.';
-                    $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
-
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS_TITLE', $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_TECH_SPECS'));
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS', $tmp_spec_array);
-
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_NAKED', 'Scelerisque HELLO [' . __LINE__ . '] GENERAL_COPY_NAKED! eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', 'Risus HELLO [' . __LINE__ . '] GENERAL_COPY_R_STONE! nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.');
-
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', 'error_log($str, $line_num = NULL, $method = NULL, $file = NULL, $log_silo_key = NULL);');
-
+                    // PARAMETER DEFINITION
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$str';
-                    $tmp_param_def[0]['param_copy'] = 'This is the $str.';
+                    $tmp_param_def[0]['param_definition'] = 'This is the $str. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.';
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_param_def[1]['param_name'] = '$line_num';
-                    $tmp_param_def[1]['param_copy'] = 'This is the $line_num.';
+                    $tmp_param_def[1]['param_definition'] = 'This is the $line_num.';
                     $tmp_param_def[1]['param_required'] = false;
 
                     $tmp_param_def[2]['param_name'] = '$method';
-                    $tmp_param_def[2]['param_copy'] = 'This is the $method.';
+                    $tmp_param_def[2]['param_definition'] = 'This is the $method. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.';
                     $tmp_param_def[2]['param_required'] = false;
 
                     $tmp_param_def[3]['param_name'] = '$file';
-                    $tmp_param_def[3]['param_copy'] = 'This is the $file.';
+                    $tmp_param_def[3]['param_definition'] = 'This is the $file. Faucibus scelerisque eleifend donec pretium vulputate sapien nec.';
                     $tmp_param_def[3]['param_required'] = false;
 
                     $tmp_param_def[4]['param_name'] = '$log_silo_key';
-                    $tmp_param_def[4]['param_copy'] = 'This is the $log_silo_key.';
+                    $tmp_param_def[4]['param_definition'] = 'This is the $log_silo_key. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare.Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare.';
                     $tmp_param_def[4]['param_required'] = false;
-
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // RETURN VALUE
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'true');
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG');
+                    $tmp_example_presentation_file = '/_crnrstn/ui/docs/documentation/php/error_log/examples/error_log_show.php';
+                    $tmp_example_execute_file = '';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // NOTE
+                    $tmp_note_array = array();
+                    $tmp_note_array['NOTE_COPY'] = 'Velit HELLO [' . __LINE__ . '] NOTE_COPY! euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE', $tmp_note_array);
+
+                    //
+                    // TECH SPECS
+                    $tmp_spec_array = array();
+                    $tmp_spec_array[0] = 'Currently tested on Ubuntu 18.04.1 LTS running Apache v2.4.29, MySQLi v5.0.12, php v7.0.33, OpenSSL v1.1.1, and NuSOAP v0.9.5.';
+                    $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS', $tmp_spec_array);
+
+                    //
+                    // GENERAL COPY DEMOS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_NAKED', 'Scelerisque HELLO [' . __LINE__ . '] GENERAL_COPY_NAKED! eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', 'Risus HELLO [' . __LINE__ . '] GENERAL_COPY_R_STONE! nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.');
 
                     /*
                     Tuesday, October 18, 2022 @ 0534 hrs
                     CRNRSTN :: LIGHTSABER
                     PAGE_TITLE
                     PAGE_DESCRIPTION
-                    EXAMPLE_TITLE_MAIN
-                    EXAMPLE_TITLE_INTEGRATED
+                    --EXAMPLE_TITLE_MAIN
+                    --EXAMPLE_TITLE_INTEGRATED
                     EXAMPLE_CONTENT
                     NOTE_TITLE
                     NOTE_COPY
@@ -194,7 +214,6 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                     PARAMETER_DEFINITION
                     RETURNED_VALUE
                     EXAMPLE
-
 
                     */
 
@@ -358,7 +377,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[0]['param_datatype'] = 'string';
                     $tmp_param_def[0]['param_name'] = '$config_filepath';
-                    $tmp_param_def[0]['param_copy'] = $tmp_str;
+                    $tmp_param_def[0]['param_definition'] = $tmp_str;
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_str = 'This should be a unique and custom string in order to serialize this configuration 
@@ -379,7 +398,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[1]['param_datatype'] = 'string';
                     $tmp_param_def[1]['param_name'] = '$C<span class="the_R">R</span>NRSTN_config_serialization';
-                    $tmp_param_def[1]['param_copy'] = $tmp_str;
+                    $tmp_param_def[1]['param_definition'] = $tmp_str;
                     $tmp_param_def[1]['param_required'] = true;
 
                     $tmp_str = 'The master debug mode for the C<span class="the_R">R</span>NRSTN Suite ::, where $C<span class="the_R">R</span>NRSTN_debugMode =  0, 1, or 2.
@@ -429,7 +448,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[2]['param_datatype'] = 'int';
                     $tmp_param_def[2]['param_name'] = '$C<span class="the_R">R</span>NRSTN_debugMode';
-                    $tmp_param_def[2]['param_copy'] = $tmp_str;
+                    $tmp_param_def[2]['param_definition'] = $tmp_str;
                     $tmp_param_def[2]['param_required'] = false;
 
                     $tmp_str = 'Debug output level for PHPMAILER - A full-featured email creation and transfer class for 
@@ -450,7 +469,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[3]['param_datatype'] = 'int';
                     $tmp_param_def[3]['param_name'] = '$PHPMAILER_debug_mode';
-                    $tmp_param_def[3]['param_copy'] = $tmp_str;
+                    $tmp_param_def[3]['param_definition'] = $tmp_str;
                     $tmp_param_def[3]['param_required'] = false;
 
                     $tmp_str = 'To limit ALL error log trace activity across the entire application to hand 
@@ -485,7 +504,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[4]['param_datatype'] = 'string';
                     $tmp_param_def[4]['param_name'] = '$log_silo_key_piped';
-                    $tmp_param_def[4]['param_copy'] = $tmp_str;
+                    $tmp_param_def[4]['param_definition'] = $tmp_str;
                     $tmp_param_def[4]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -541,7 +560,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_datatype'] = 'string';
                     $tmp_param_def[0]['param_name'] = '$env_key';
-                    $tmp_param_def[0]['param_copy'] = 'A custom user-defined value representing a specific environment 
+                    $tmp_param_def[0]['param_definition'] = 'A custom user-defined value representing a specific environment 
                     within which this application will be running and which key will be used throughout this 
                     configuration file + any C<span class="the_R">R</span>NRSTN :: resource includes in order to align 
                     the necessary functionality and resources to said environment to support the seamless migration of the same 
@@ -565,7 +584,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[1]['param_datatype'] = 'int';
                     $tmp_param_def[1]['param_name'] = '$errorReporting';
-                    $tmp_param_def[1]['param_copy'] = $tmp_str;
+                    $tmp_param_def[1]['param_definition'] = $tmp_str;
                     $tmp_param_def[1]['param_required'] = true;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -624,7 +643,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[0]['param_datatype'] = 'boolean';
                     $tmp_param_def[0]['param_name'] = '$isActive';
-                    $tmp_param_def[0]['param_copy'] = $tmp_str;
+                    $tmp_param_def[0]['param_definition'] = $tmp_str;
                     $tmp_param_def[0]['param_required'] = false;
 
                     $tmp_str = 'Configure the error level constants that should (or should not) be handled by PHP, 
@@ -636,7 +655,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[1]['param_datatype'] = 'int';
                     $tmp_param_def[1]['param_name'] = '$errorTypesProfile';
-                    $tmp_param_def[1]['param_copy'] = $tmp_str;
+                    $tmp_param_def[1]['param_definition'] = $tmp_str;
                     $tmp_param_def[1]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -691,7 +710,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_datatype'] = 'string';
                     $tmp_param_def[0]['param_name'] = '$env_key';
-                    $tmp_param_def[0]['param_copy'] = 'A custom user-defined value representing a specific environment 
+                    $tmp_param_def[0]['param_definition'] = 'A custom user-defined value representing a specific environment 
                     within which this application will be running and which key will be used throughout this 
                     configuration file + any C<span class="the_R">R</span>NRSTN :: resource includes in order to align 
                     the necessary functionality and resources to said environment to support the seamless migration of the same 
@@ -706,7 +725,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[1]['param_datatype'] = 'boolean';
                     $tmp_param_def[1]['param_name'] = '$isActive';
-                    $tmp_param_def[1]['param_copy'] = $tmp_str;
+                    $tmp_param_def[1]['param_definition'] = $tmp_str;
                     $tmp_param_def[1]['param_required'] = false;
 
                     $tmp_str = 'Configure the error level constants that should (or should not) be handled by PHP, 
@@ -718,7 +737,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[2]['param_datatype'] = 'int';
                     $tmp_param_def[2]['param_name'] = '$errorTypesProfile';
-                    $tmp_param_def[2]['param_copy'] = $tmp_str;
+                    $tmp_param_def[2]['param_definition'] = $tmp_str;
                     $tmp_param_def[2]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -774,7 +793,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[0]['param_datatype'] = 'string';
                     $tmp_param_def[0]['param_name'] = '$mode';
-                    $tmp_param_def[0]['param_copy'] = $tmp_str;
+                    $tmp_param_def[0]['param_definition'] = $tmp_str;
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -831,7 +850,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[0]['param_datatype'] = 'string';
                     $tmp_param_def[0]['param_name'] = '$env_key';
-                    $tmp_param_def[0]['param_copy'] = $tmp_str;
+                    $tmp_param_def[0]['param_definition'] = $tmp_str;
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_str = 'A publically accessible HTTP/S endpoint according to which 
@@ -839,7 +858,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                     accessed by any email client.';
                     $tmp_param_def[1]['param_datatype'] = 'string';
                     $tmp_param_def[1]['param_name'] = '$crnrstn_images_http_dir';
-                    $tmp_param_def[1]['param_copy'] = $tmp_str;
+                    $tmp_param_def[1]['param_definition'] = $tmp_str;
                     $tmp_param_def[1]['param_required'] = true;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -905,7 +924,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[0]['param_datatype'] = 'string';
                     $tmp_param_def[0]['param_name'] = '$env_key';
-                    $tmp_param_def[0]['param_copy'] = $tmp_str;
+                    $tmp_param_def[0]['param_definition'] = $tmp_str;
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_str = 'The full local directory path to the include file, 
@@ -914,7 +933,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                     <span class="phpvar_copy">\'/config.resource_wildcards.secure/\'</span>';
 
                     $tmp_param_def[1]['param_name'] = '$filepathWildCardResource';
-                    $tmp_param_def[1]['param_copy'] = $tmp_str;
+                    $tmp_param_def[1]['param_definition'] = $tmp_str;
                     $tmp_param_def[1]['param_required'] = true;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -969,7 +988,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[0]['param_datatype'] = 'string';
                     $tmp_param_def[0]['param_name'] = '$env_key';
-                    $tmp_param_def[0]['param_copy'] = $tmp_str;
+                    $tmp_param_def[0]['param_definition'] = $tmp_str;
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_str = 'Provide a pipe delimited string of the logging profiles that should be applied to meet 
@@ -1000,7 +1019,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[1]['param_datatype'] = 'string';
                     $tmp_param_def[1]['param_name'] = '$loggingProfilePipe';
-                    $tmp_param_def[1]['param_copy'] = $tmp_str;
+                    $tmp_param_def[1]['param_definition'] = $tmp_str;
                     $tmp_param_def[1]['param_required'] = false;
 
                     $tmp_str = '<span class="phpvar_copy">$loggingEndpointPipe</span> and 
@@ -1035,7 +1054,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[2]['param_datatype'] = 'string';
                     $tmp_param_def[2]['param_name'] = '$loggingEndpointPipe';
-                    $tmp_param_def[2]['param_copy'] = $tmp_str;
+                    $tmp_param_def[2]['param_definition'] = $tmp_str;
                     $tmp_param_def[2]['param_required'] = false;
 
                     $tmp_str = '<span class="phpvar_copy">$wcrProfilePipe</span> should have the same number of pipes 
@@ -1055,7 +1074,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def[3]['param_datatype'] = 'string';
                     $tmp_param_def[3]['param_name'] = '$wcrProfilePipe';
-                    $tmp_param_def[3]['param_copy'] = $tmp_str;
+                    $tmp_param_def[3]['param_definition'] = $tmp_str;
                     $tmp_param_def[3]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1094,7 +1113,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1131,7 +1150,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1168,7 +1187,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1205,7 +1224,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1242,7 +1261,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile. ';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1279,7 +1298,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1316,7 +1335,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1353,7 +1372,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1391,7 +1410,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1428,7 +1447,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1465,7 +1484,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1502,7 +1521,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1539,7 +1558,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1576,7 +1595,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1613,7 +1632,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1650,7 +1669,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1687,7 +1706,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1724,7 +1743,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1762,7 +1781,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1799,7 +1818,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1855,7 +1874,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1892,7 +1911,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$mobileIsTablet';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that mobile devices should be treated as tablet computer and where FALSE only allows identified-as-tablet user-agent and HTTP headers to qualify as tablet.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that mobile devices should be treated as tablet computer and where FALSE only allows identified-as-tablet user-agent and HTTP headers to qualify as tablet.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -1929,7 +1948,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$target_device';
-                    $tmp_param_def[0]['param_copy'] = 'A string value representing a particular algorithm to be used to look for a specific mobile device or tablet computer platform. For a list of supported algorithms, you can check out the <a href="http://demo.mobiledetect.net/" target="_blank">Mobile Detect Demo</a>. While there, <strong>please feel free to help them improve the mobile detection algorithms by choosing an appropriate answer from the small user experience feedback form on that demo page. This will help to make future releases of <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> more robust and accurate for everyone...and the C<span class="the_R">R</span>NRSTN Suite ::</strong> They are listed here as well. As of Mobile Detect v2.8.34, the custom detection methods are listed as: 
+                    $tmp_param_def[0]['param_definition'] = 'A string value representing a particular algorithm to be used to look for a specific mobile device or tablet computer platform. For a list of supported algorithms, you can check out the <a href="http://demo.mobiledetect.net/" target="_blank">Mobile Detect Demo</a>. While there, <strong>please feel free to help them improve the mobile detection algorithms by choosing an appropriate answer from the small user experience feedback form on that demo page. This will help to make future releases of <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> more robust and accurate for everyone...and the C<span class="the_R">R</span>NRSTN Suite ::</strong> They are listed here as well. As of Mobile Detect v2.8.34, the custom detection methods are listed as: 
 isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsung(), isLG(), isSony(), isAsus(), isNokiaLumia(), isMicromax(), isPalm(), isVertu(), isPantech(), isFly(), isWiko(), isiMobile(), isSimValley(), isWolfgang(), isAlcatel(), isNintendo(), isAmoi(), isINQ(), isOnePlus(), isGenericPhone(), isiPad(), isNexusTablet(), isGoogleTablet(), isSamsungTablet(), isKindle(), isSurfaceTablet(), isHPTablet(), isAsusTablet(), isBlackBerryTablet(), isHTCtablet(), isMotorolaTablet(), isNookTablet(), isAcerTablet(), isToshibaTablet(), isLGTablet(), isFujitsuTablet(), isPrestigioTablet(), isLenovoTablet(), isDellTablet(), isYarvikTablet(), isMedionTablet(), isArnovaTablet(), isIntensoTablet(), isIRUTablet(), isMegafonTablet(), isEbodaTablet(), isAllViewTablet(), isArchosTablet(), isAinolTablet(), isNokiaLumiaTablet(), isSonyTablet(), isPhilipsTablet(), isCubeTablet(), isCobyTablet(), isMIDTablet(), isMSITablet(), isSMiTTablet(), isRockChipTablet(), isFlyTablet(), isbqTablet(), isHuaweiTablet(), isNecTablet(), isPantechTablet(), isBronchoTablet(), isVersusTablet(), isZyncTablet(), isPositivoTablet(), isNabiTablet(), isKoboTablet(), isDanewTablet(), isTexetTablet(), isPlaystationTablet(), isTrekstorTablet(), isPyleAudioTablet(), isAdvanTablet(), isDanyTechTablet(), isGalapadTablet(), isMicromaxTablet(), isKarbonnTablet(), isAllFineTablet(), isPROSCANTablet(), isYONESTablet(), isChangJiaTablet(), isGUTablet(), isPointOfViewTablet(), isOvermaxTablet(), isHCLTablet(), isDPSTablet(), isVistureTablet(), isCrestaTablet(), isMediatekTablet(), isConcordeTablet(), isGoCleverTablet(), isModecomTablet(), isVoninoTablet(), isECSTablet(), isStorexTablet(), isVodafoneTablet(), isEssentielBTablet(), isRossMoorTablet(), isiMobileTablet(), isTolinoTablet(), isAudioSonicTablet(), isAMPETablet(), isSkkTablet(), isTecnoTablet(), isJXDTablet(), isiJoyTablet(), isFX2Tablet(), isXoroTablet(), isViewsonicTablet(), isVerizonTablet(), isOdysTablet(), isCaptivaTablet(), isIconbitTablet(), isTeclastTablet(), isOndaTablet(), isJaytechTablet(), isBlaupunktTablet(), isDigmaTablet(), isEvolioTablet(), isLavaTablet(), isAocTablet(), isMpmanTablet(), isCelkonTablet(), isWolderTablet(), isMediacomTablet(), isMiTablet(), isNibiruTablet(), isNexoTablet(), isLeaderTablet(), isUbislateTablet(), isPocketBookTablet(), isKocasoTablet(), isHisenseTablet(), isHudl(), isTelstraTablet(), isGenericTablet(), isAndroidOS(), isBlackBerryOS(), isPalmOS(), isSymbianOS(), isWindowsMobileOS(), isWindowsPhoneOS(), isiOS(), isiPadOS(), isMeeGoOS(), isMaemoOS(), isJavaOS(), iswebOS(), isbadaOS(), isBREWOS(), isChrome(), isDolfin(), isOpera(), isSkyfire(), isEdge(), isIE(), isFirefox(), isBolt(), isTeaShark(), isBlazer(), isSafari(), isWeChat(), isUCBrowser(), isbaiduboxapp(), isbaidubrowser(), isDiigoBrowser(), isMercury(), isObigoBrowser(), isNetFront(), isGenericBrowser(), and isPaleMoon().';
                     $tmp_param_def[0]['param_required'] = true;
 
@@ -2026,7 +2045,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$target_device';
-                    $tmp_param_def[0]['param_copy'] = 'A string value representing a particular algorithm to be used to look for a specific mobile device or tablet computer platform. For a list of supported algorithms, you can check out the <a href="http://demo.mobiledetect.net/" target="_blank">Mobile Detect Demo</a>. While there, <strong>please feel free to help them improve the mobile detection algorithms by choosing an appropriate answer from the small user experience feedback form on that demo page. This will help to make future releases of <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> more robust and accurate for everyone...and the C<span class="the_R">R</span>NRSTN Suite ::</strong> They are listed here as well. As of Mobile Detect v2.8.34, the custom detection methods are listed as: 
+                    $tmp_param_def[0]['param_definition'] = 'A string value representing a particular algorithm to be used to look for a specific mobile device or tablet computer platform. For a list of supported algorithms, you can check out the <a href="http://demo.mobiledetect.net/" target="_blank">Mobile Detect Demo</a>. While there, <strong>please feel free to help them improve the mobile detection algorithms by choosing an appropriate answer from the small user experience feedback form on that demo page. This will help to make future releases of <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> more robust and accurate for everyone...and the C<span class="the_R">R</span>NRSTN Suite ::</strong> They are listed here as well. As of Mobile Detect v2.8.34, the custom detection methods are listed as: 
 isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsung(), isLG(), isSony(), isAsus(), isNokiaLumia(), isMicromax(), isPalm(), isVertu(), isPantech(), isFly(), isWiko(), isiMobile(), isSimValley(), isWolfgang(), isAlcatel(), isNintendo(), isAmoi(), isINQ(), isOnePlus(), isGenericPhone(), isiPad(), isNexusTablet(), isGoogleTablet(), isSamsungTablet(), isKindle(), isSurfaceTablet(), isHPTablet(), isAsusTablet(), isBlackBerryTablet(), isHTCtablet(), isMotorolaTablet(), isNookTablet(), isAcerTablet(), isToshibaTablet(), isLGTablet(), isFujitsuTablet(), isPrestigioTablet(), isLenovoTablet(), isDellTablet(), isYarvikTablet(), isMedionTablet(), isArnovaTablet(), isIntensoTablet(), isIRUTablet(), isMegafonTablet(), isEbodaTablet(), isAllViewTablet(), isArchosTablet(), isAinolTablet(), isNokiaLumiaTablet(), isSonyTablet(), isPhilipsTablet(), isCubeTablet(), isCobyTablet(), isMIDTablet(), isMSITablet(), isSMiTTablet(), isRockChipTablet(), isFlyTablet(), isbqTablet(), isHuaweiTablet(), isNecTablet(), isPantechTablet(), isBronchoTablet(), isVersusTablet(), isZyncTablet(), isPositivoTablet(), isNabiTablet(), isKoboTablet(), isDanewTablet(), isTexetTablet(), isPlaystationTablet(), isTrekstorTablet(), isPyleAudioTablet(), isAdvanTablet(), isDanyTechTablet(), isGalapadTablet(), isMicromaxTablet(), isKarbonnTablet(), isAllFineTablet(), isPROSCANTablet(), isYONESTablet(), isChangJiaTablet(), isGUTablet(), isPointOfViewTablet(), isOvermaxTablet(), isHCLTablet(), isDPSTablet(), isVistureTablet(), isCrestaTablet(), isMediatekTablet(), isConcordeTablet(), isGoCleverTablet(), isModecomTablet(), isVoninoTablet(), isECSTablet(), isStorexTablet(), isVodafoneTablet(), isEssentielBTablet(), isRossMoorTablet(), isiMobileTablet(), isTolinoTablet(), isAudioSonicTablet(), isAMPETablet(), isSkkTablet(), isTecnoTablet(), isJXDTablet(), isiJoyTablet(), isFX2Tablet(), isXoroTablet(), isViewsonicTablet(), isVerizonTablet(), isOdysTablet(), isCaptivaTablet(), isIconbitTablet(), isTeclastTablet(), isOndaTablet(), isJaytechTablet(), isBlaupunktTablet(), isDigmaTablet(), isEvolioTablet(), isLavaTablet(), isAocTablet(), isMpmanTablet(), isCelkonTablet(), isWolderTablet(), isMediacomTablet(), isMiTablet(), isNibiruTablet(), isNexoTablet(), isLeaderTablet(), isUbislateTablet(), isPocketBookTablet(), isKocasoTablet(), isHisenseTablet(), isHudl(), isTelstraTablet(), isGenericTablet(), isAndroidOS(), isBlackBerryOS(), isPalmOS(), isSymbianOS(), isWindowsMobileOS(), isWindowsPhoneOS(), isiOS(), isiPadOS(), isMeeGoOS(), isMaemoOS(), isJavaOS(), iswebOS(), isbadaOS(), isBREWOS(), isChrome(), isDolfin(), isOpera(), isSkyfire(), isEdge(), isIE(), isFirefox(), isBolt(), isTeaShark(), isBlazer(), isSafari(), isWeChat(), isUCBrowser(), isbaiduboxapp(), isbaidubrowser(), isDiigoBrowser(), isMercury(), isObigoBrowser(), isNetFront(), isGenericBrowser(), and isPaleMoon().';
                     $tmp_param_def[0]['param_required'] = true;
 
@@ -2095,7 +2114,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2132,7 +2151,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2169,7 +2188,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2206,7 +2225,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2243,7 +2262,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2280,7 +2299,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2317,7 +2336,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2354,7 +2373,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2392,7 +2411,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2429,7 +2448,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2466,7 +2485,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2503,7 +2522,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2541,7 +2560,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2578,7 +2597,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2615,7 +2634,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2652,7 +2671,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2690,7 +2709,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2727,7 +2746,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2764,7 +2783,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2801,7 +2820,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2838,7 +2857,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2876,7 +2895,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2913,7 +2932,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2950,7 +2969,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -2987,7 +3006,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3024,7 +3043,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3061,7 +3080,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3099,7 +3118,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3136,7 +3155,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3173,7 +3192,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3210,7 +3229,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3270,11 +3289,11 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$data';
-                    $tmp_param_def[0]['param_copy'] = 'The data that is to be encrypted. Please note, only string, integer, double, float, int data types will be successfully processed. All other data types will return NULL.';
+                    $tmp_param_def[0]['param_definition'] = 'The data that is to be encrypted. Please note, only string, integer, double, float, int data types will be successfully processed. All other data types will return NULL.';
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_param_def[1]['param_name'] = '$secret_key';
-                    $tmp_param_def[1]['param_copy'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
+                    $tmp_param_def[1]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
                     $tmp_param_def[1]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3314,15 +3333,15 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$data';
-                    $tmp_param_def[0]['param_copy'] = 'The data that is to be encrypted. Please note, only <em>string</em>, <em>integer</em>, <em>double</em>, <em>float</em>, and <em>int</em> data types will be successfully processed. All other data types will return NULL.';
+                    $tmp_param_def[0]['param_definition'] = 'The data that is to be encrypted. Please note, only <em>string</em>, <em>integer</em>, <em>double</em>, <em>float</em>, and <em>int</em> data types will be successfully processed. All other data types will return NULL.';
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_param_def[1]['param_name'] = '$uri_passthrough';
-                    $tmp_param_def[1]['param_copy'] = 'When openssl tunnel encrypted data is sent through GET, this should be TRUE. Due to the character sets <a href="https://www.youtube.com/watch?v=217CdX7Z2tM" target="_blank">emerging</a> from many openssl encryption algorithms, it is necessary to clean the string before successful decryption can be accomplished. Otherwise, an exception will be thrown. Therefore, this is actually a required parameter when the data tunnel mechanism is HTTP/S GET.';
+                    $tmp_param_def[1]['param_definition'] = 'When openssl tunnel encrypted data is sent through GET, this should be TRUE. Due to the character sets <a href="https://www.youtube.com/watch?v=217CdX7Z2tM" target="_blank">emerging</a> from many openssl encryption algorithms, it is necessary to clean the string before successful decryption can be accomplished. Otherwise, an exception will be thrown. Therefore, this is actually a required parameter when the data tunnel mechanism is HTTP/S GET.';
                     $tmp_param_def[1]['param_required'] = false;
 
                     $tmp_param_def[2]['param_name'] = '$secret_key';
-                    $tmp_param_def[2]['param_copy'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
+                    $tmp_param_def[2]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
                     $tmp_param_def[2]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3359,7 +3378,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3423,15 +3442,15 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$data';
-                    $tmp_param_def[0]['param_copy'] = 'The data that is to be encrypted. Please note, only <em>string</em>, <em>integer</em>, <em>double</em>, <em>float</em>, and <em>int</em> data types will be successfully processed. All other data types will return NULL.';
+                    $tmp_param_def[0]['param_definition'] = 'The data that is to be encrypted. Please note, only <em>string</em>, <em>integer</em>, <em>double</em>, <em>float</em>, and <em>int</em> data types will be successfully processed. All other data types will return NULL.';
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_param_def[1]['param_name'] = '$uri_passthrough';
-                    $tmp_param_def[1]['param_copy'] = 'When openssl tunnel encrypted data is sent through GET, this should be TRUE. Due to the character sets <a href="https://www.youtube.com/watch?v=217CdX7Z2tM" target="_blank">emerging</a> from many openssl encryption algorithms, it is necessary to clean the string before successful decryption can be accomplished. Otherwise, an exception will be thrown. Therefore, this is actually a required parameter when the data tunnel mechanism is HTTP/S GET.';
+                    $tmp_param_def[1]['param_definition'] = 'When openssl tunnel encrypted data is sent through GET, this should be TRUE. Due to the character sets <a href="https://www.youtube.com/watch?v=217CdX7Z2tM" target="_blank">emerging</a> from many openssl encryption algorithms, it is necessary to clean the string before successful decryption can be accomplished. Otherwise, an exception will be thrown. Therefore, this is actually a required parameter when the data tunnel mechanism is HTTP/S GET.';
                     $tmp_param_def[1]['param_required'] = false;
 
                     $tmp_param_def[2]['param_name'] = '$secret_key';
-                    $tmp_param_def[2]['param_copy'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
+                    $tmp_param_def[2]['param_definition'] = 'If it is desired to override the environmentally specific and globally applied openssl-encryption-key passed into init_tunnel_encryption(), this parameter will be used in place of the openssl encryption key provided there in the C<span class="the_R">R</span>NRSTN Suite :: configuration file for all of the environments within which the application code base will be running.';
                     $tmp_param_def[2]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3468,7 +3487,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3505,7 +3524,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3542,7 +3561,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3579,7 +3598,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3616,7 +3635,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3653,7 +3672,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3690,7 +3709,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3727,7 +3746,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3764,7 +3783,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3801,7 +3820,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3838,7 +3857,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3875,7 +3894,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3912,7 +3931,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3949,7 +3968,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -3986,7 +4005,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4023,7 +4042,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4060,7 +4079,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4098,7 +4117,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4135,7 +4154,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4172,7 +4191,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4209,7 +4228,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4246,7 +4265,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4283,7 +4302,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4320,7 +4339,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4357,7 +4376,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4394,7 +4413,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4431,7 +4450,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4468,7 +4487,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4505,7 +4524,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4542,7 +4561,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4579,7 +4598,7 @@ between the server and client can be achieved with minimal effort and maximum da
     
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
     
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4616,7 +4635,7 @@ between the server and client can be achieved with minimal effort and maximum da
     
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
     
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4653,7 +4672,7 @@ between the server and client can be achieved with minimal effort and maximum da
     
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
     
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4690,7 +4709,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4727,7 +4746,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4764,7 +4783,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4801,7 +4820,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4838,7 +4857,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4875,7 +4894,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4912,7 +4931,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4949,7 +4968,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -4986,7 +5005,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5023,7 +5042,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5060,7 +5079,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5097,7 +5116,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5134,7 +5153,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5171,7 +5190,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5208,7 +5227,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5245,7 +5264,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5282,7 +5301,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5319,7 +5338,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5357,7 +5376,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5394,7 +5413,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5431,7 +5450,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5468,7 +5487,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5505,7 +5524,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5542,7 +5561,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5579,7 +5598,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5616,7 +5635,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5653,7 +5672,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5690,7 +5709,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5727,7 +5746,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5764,7 +5783,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5801,7 +5820,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5838,7 +5857,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5875,7 +5894,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5912,7 +5931,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5949,7 +5968,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tabletIsMobile';
-                    $tmp_param_def[0]['param_copy'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
+                    $tmp_param_def[0]['param_definition'] = 'Boolean value where TRUE indicates that tablet devices should be treated as mobile and where FALSE only allows identified-as-mobile user-agent and HTTP headers to qualify as mobile.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
@@ -5968,11 +5987,17 @@ between the server and client can be achieved with minimal effort and maximum da
                     // HOOOSTON...VE HAF PROBLEM!
                     //throw new Exception('Error building page [' . $this->module_key . '|' . $this->page_path .  '] due to missing load_page() switch case.');
 
+                    if(strlen($this->module_key) > 0){
+
+                        $this->oCRNRSTN->error_log('Error building page [' . $this->module_key . '|' . $this->page_path .  '] due to missing load_page() switch case.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    }
+
                 break;
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 

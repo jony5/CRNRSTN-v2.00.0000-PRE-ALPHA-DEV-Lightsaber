@@ -2916,7 +2916,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_interact_ui_documentation_side_nav_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 2917] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2917] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 this.initialize_interact_ui_documentation_mode(tmp_content);
 
@@ -2924,7 +2924,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_interact_ui_system_footer_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 2925] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2925] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 this.initialize_interact_ui_system_footer(tmp_content);
 
@@ -2932,13 +2932,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_interact_ui_search_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 2933] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2933] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 break;
             case 'crnrstn_interact_ui_messenger_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 2939] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + tmp_content.length + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2939] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 break;
             default:
@@ -7291,6 +7291,68 @@ interact_ui_animation_sequence = function(module_key){
         this.size_element_x('crnrstn_activity_log_output_wrapper', true);
 
         return true;
+
+    };
+
+    CRNRSTN_JS.prototype.copy_to_clipboard = function(elem_hash){
+
+        //
+        // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+        // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+        if(document.selection){ // IE
+
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById('crnstn_print_r_source_' + elem_hash));
+            range.select();
+
+        }else if (window.getSelection){
+
+            var range = document.createRange();
+            range.selectNode(document.getElementById('crnstn_print_r_source_' + elem_hash));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+        }
+
+        //
+        // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+        /* Copy the text inside the text field */
+        document.execCommand('copy');
+
+        //
+        // ONLY HTTPS
+        // navigator.clipboard.writeText($('#crnstn_print_r_source_' + elem_hash).html()).then(
+        //     () => {
+        //         /* clipboard successfully set */
+        //         //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_"  +  elem_hash).innerHTML);
+        //
+        //     },
+        //     () => {
+        //         /* clipboard write failed */
+        //         //alert("FAIL::Copied the text: " + document.getElementById("crnstn_print_r_source_"  +  elem_hash).innerHTML);
+        //
+        //     }
+        // );
+
+        /* Alert the copied text */
+        //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_"  +  elem_hash).innerHTML);
+        //alert("Highlight Color: " + $('#crnstn_print_r_highlight_color_' + elem_hash).html());
+        document.getElementById('crnstn_print_r_source_' +  elem_hash).style.backgroundColor = $('#crnstn_print_r_highlight_color_' + elem_hash).html();
+        //$('#crnstn_print_r_source_' + elem_hash).css('backgroundColor', $('#crnstn_print_r_highlight_color_' + elem_hash).html());
+
+        // $('#crnstn_print_r_source_' + elem_hash).animate({
+        //     backgroundColor: $('#crnstn_print_r_highlight_color_' + elem_hash).html()
+        // }, {
+        //     duration: 500,
+        //     queue: false,
+        //     specialEasing: {
+        //         backgroundColor: "swing"
+        //     },
+        //     complete: function () {
+        //
+        //     }
+        //
+        // });
 
     };
 

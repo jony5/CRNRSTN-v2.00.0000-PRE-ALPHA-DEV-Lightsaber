@@ -2850,7 +2850,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
                     error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.');
 
-                    break;
+                break;
                 default:
 
                     // $CRNRSTN_config_serial = '[n2X0@F2=?C8[-8ij5X6k*4k8XT}uuDQ{ZHkCr*KK5!sT%Z~cdGylAx(8WVYPb@N';
@@ -5712,14 +5712,14 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_out = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-        <script>
+        $tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
+        $tmp_copy_clipboard_func_def_str = '<script>
         function copy_output_' . $tmp_hash . '() {
     
             //
             // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
             // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
-            if(document.selection){ // IE
+            if (document.selection) { // IE
     
                 var range = document.body.createTextRange();
                 range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
@@ -5744,18 +5744,31 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
     
         }
-        </script>
+        </script>';
+
+        if(strlen($this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click')) > 0){
+
+            //
+            // REQUIRES HTTPS FOR RELIABLE USE DUE TO AJAX INJECTION
+            //$tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="oCRNRSTN_JS.copy_to_clipboard(\'' . $tmp_hash . '\'); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
+            $tmp_copy_clipboard_func_call_str = '';
+            $tmp_copy_clipboard_func_def_str = '';
+
+        }
+
+        $tmp_out = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+        ' . $tmp_copy_clipboard_func_def_str . '
         <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
             <div style="width:100%;">
                 <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:180px;">
-                    <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                    <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>' . $tmp_copy_clipboard_func_call_str . '
                 </div>
                 <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; overflow-wrap: break-word; font-size:12px; line-height: 20px; float: left; width:74%;">
                     <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
                 </div>
                 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
             </div>
-            <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '</div>
 
             <div>
                 <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
@@ -5929,8 +5942,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_out = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-        <script>
+        $tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
+        $tmp_copy_clipboard_func_def_str = '<script>
         function copy_output_' . $tmp_hash . '() {
     
             //
@@ -5961,18 +5974,31 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '";
     
         }
-        </script>
+        </script>';
+
+        if(strlen($this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click')) > 0){
+
+            //
+            // REQUIRES HTTPS FOR RELIABLE USE DUE TO AJAX INJECTION
+            //$tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="oCRNRSTN_JS.copy_to_clipboard(\'' . $tmp_hash . '\'); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
+            $tmp_copy_clipboard_func_call_str = '';
+            $tmp_copy_clipboard_func_def_str = '';
+
+        }
+
+        $tmp_out = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+        ' . $tmp_copy_clipboard_func_def_str . '
         <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
             <div style="width:100%;">
                 <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:180px;">
-                    <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>
+                    <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>' . $tmp_copy_clipboard_func_call_str . '
                 </div>
                 <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; overflow-wrap: break-word; font-size:12px; line-height: 20px; float: left; width:74%;">
                     <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
                 </div>
                 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
             </div>
-            <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '</div>
 
             <div>
                 <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
@@ -6373,9 +6399,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $creative = '<div style="padding:4px 0 5px 5px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">C<span style="color:#F00;">R</span>NRSTN :: v' . self::$version_crnrstn . '</div>';
 
-            } else {
+            }else{
 
-                error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' [img=' . $tmp_weighted_elements_keys_ARRAY[$tmp_int] . '][$output_mode=' . $output_mode . '].');
+                //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' [img=' . $tmp_weighted_elements_keys_ARRAY[$tmp_int] . '][$output_mode=' . $output_mode . '].');
                 $creative = '<span style="font-family: Courier New, Courier, monospace; font-size:11px;">' . $this->return_creative($tmp_weighted_elements_keys_ARRAY[$tmp_int], $output_mode) . '</span>';
 
             }

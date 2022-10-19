@@ -650,6 +650,7 @@ class crnrstn_system_image_asset_manager {
         //
         // LAST USE :: Saturday August 6, 2022 @ 1805 hrs
         // LAST USE :: Wednesday August 26, 2022 @ 0516 hrs
+        // LAST USE :: Wednesday October 19, 2022 @ 0025 hrs ...print_r_str documentation integration testing
         //error_log(__LINE__ . ' img ' . __METHOD__ . ' $creative_element_key=[' . $creative_element_key . '] $tmp_sys_notices_creative_mode=[' . $tmp_sys_notices_creative_mode . '] self::$image_output_mode=[' . self::$image_output_mode . ']');
 
         //

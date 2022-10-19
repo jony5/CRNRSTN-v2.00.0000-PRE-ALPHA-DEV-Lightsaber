@@ -2990,6 +2990,54 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'DOCUMENTATION_TITLE_RETURN_VALUE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Return Value';
+
+                    break;
+
+                }
+
+            break;
+            case 'DOCUMENTATION_TITLE_PARAMETER_DEFINITION':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Method Parameter Definitions';
+
+                    break;
+
+                }
+
+            break;
+            case 'DOCUMENTATION_TITLE_METHOD_DEFINITION':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Method Definition';
+
+                    break;
+
+                }
+
+            break;
             case 'DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG':
 
                 switch($this->country_iso_code) {
@@ -3059,7 +3107,7 @@ class crnrstn_multi_language_manager {
                 switch($this->country_iso_code) {
                     case 'es':
 
-                        break;
+                    break;
                     case 'en':
                     case 'ko':
 
@@ -3070,7 +3118,7 @@ class crnrstn_multi_language_manager {
                         //case 'en':
                         return 'Note';
 
-                        break;
+                    break;
 
                 }
 

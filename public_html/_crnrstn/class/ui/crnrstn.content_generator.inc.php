@@ -112,14 +112,14 @@ class crnrstn_content_generator {
 	    try{
 
             switch($key){
-                case 'PARAMETER_DEFINITION':
-                case 'RETURNED_VALUE':
+                case 'PAGE_TITLE':
+                case 'NOTE':
+                case 'TECH_SPECS':
+                case 'GENERAL_COPY_NAKED':
+                case 'GENERAL_COPY_R_STONE':
                 case 'METHOD_DEFINITION':
-                case 'TECH_SPEC':
-                case 'INVOKING_CLASS':
-                case 'BASIC_COPY':
-                case 'NOTE_COPY':
-                case 'SUB_TITLE':
+                case 'PARAMETER_DEFINITION':
+                case 'RETURN_VALUE':
 
                     if($attribute_00 ==''){
 
@@ -127,13 +127,12 @@ class crnrstn_content_generator {
 
                     }
 
-                    $tmp_seq_key = $this->oCRNRSTN->generate_new_key(10);
+                    $tmp_seq_key = $this->oCRNRSTN->generate_new_key(26);
                     $this->content_load_sequence_ARRAY[] = $tmp_seq_key;
                     $this->page_content_ARRAY[$serial][$tmp_seq_key][$key] = $attribute_00;
-                    //error_log('81 gen - data=' . $attribute_00);
 
                 break;
-                case 'EXAMPLE':
+                case 'EXAMPLE_CONTENT':
                     $tmp_seq_key = $this->oCRNRSTN->generate_new_key(10);
                     $this->content_load_sequence_ARRAY[] = $tmp_seq_key;
 
@@ -150,7 +149,7 @@ class crnrstn_content_generator {
                     }
 
                     $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['title_string'] = $attribute_00;
-                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['description_string'] = $attribute_01;
+                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['integrated_title_string'] = $attribute_01;
                     $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['pres_file'] = $attribute_02;
                     $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['exec_file'] = $attribute_03;
 
@@ -841,13 +840,12 @@ class crnrstn_content_generator {
                                 }
                             case 'NOTE_COPY':
                             case 'METHOD_DEFINITION':
-                            case 'INVOKING_CLASS':
-                            case 'RETURNED_VALUE':
+                            case 'RETURN_VALUE':
                                 //error_log('430 gen - val=' . $val);
                                 $html_out .= $this->prep_page_index_content($val);
                                 //error_log('432 gen - out=' . $html_out);
                             break;
-                            case 'EXAMPLE':
+                            case 'EXAMPLE_CONTENT':
 
                                 if($val['title_string']!=''){
 
@@ -855,9 +853,9 @@ class crnrstn_content_generator {
 
                                 }
 
-                                if($val['description_string']!=''){
+                                if($val['integrated_title_string']!=''){
 
-                                    $html_out .= $this->prep_page_index_content($val['description_string']);
+                                    $html_out .= $this->prep_page_index_content($val['integrated_title_string']);
 
                                 }
 
@@ -909,9 +907,9 @@ class crnrstn_content_generator {
 
                                     }
 
-                                    if($tmp_val['param_copy']!=''){
+                                    if($tmp_val['param_definition']!=''){
 
-                                        $html_out .= $this->prep_page_index_content($tmp_val['param_copy']);
+                                        $html_out .= $this->prep_page_index_content($tmp_val['param_definition']);
 
                                     }
 
@@ -991,7 +989,7 @@ class crnrstn_content_generator {
 
                                 /*
                                 $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['title_string'] = $attribute_00;
-                                $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['description_string'] = $attribute_01;
+                                $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['integrated_title_string'] = $attribute_01;
                                 $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['pres_file'] = $attribute_02;
                                 $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['exec_file'] = $attribute_03;
 
@@ -999,7 +997,7 @@ class crnrstn_content_generator {
 
                                 $html_out .= '<div class="crnrstn_example_title_wrapper">
                                     <div class="crnrstn_example_title">' . $val['title_string'].' ::</div>
-                                    <div class="crnrstn_example_description">' . $val['description_string'].'</div>
+                                    <div class="crnrstn_example_description">' . $val['integrated_title_string'].'</div>
                                 </div>';
 
                                 //
@@ -1065,12 +1063,12 @@ class crnrstn_content_generator {
                                     if($tmp_val['param_required']){
 
                                         $html_out .=  '<div class="method_parameter"><span class="method_parameter_datatype">' . $tmp_val['param_datatype'].'</span>' . $tmp_val['param_name'].'&nbsp;<span class="parameter_require_required">(Required)</span></div>
-                                    <blockquote class="method_parameter_definition">' . $tmp_val['param_copy'].'</blockquote>';
+                                    <blockquote class="method_parameter_definition">' . $tmp_val['param_definition'].'</blockquote>';
 
                                     }else{
 
                                         $html_out .=  '<div class="method_parameter"><span class="method_parameter_datatype">' . $tmp_val['param_datatype'].'</span>' . $tmp_val['param_name'].'&nbsp;<span class="parameter_require_optional">(Optional)</span></div>
-                                    <blockquote class="method_parameter_definition">' . $tmp_val['param_copy'].'</blockquote>';
+                                    <blockquote class="method_parameter_definition">' . $tmp_val['param_definition'].'</blockquote>';
 
                                     }
 
@@ -1095,38 +1093,347 @@ class crnrstn_content_generator {
 
             break;
             default:
-
-                $tmp_example_test = '//
-// CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
-$tmp_minimum_bytes_required = strlen($tmp_data_str_out);
-
 //
-// ASK CRNRSTN :: TO GRANT PERMISSIONS FOR fwrite()
-// WARNINGS WILL BE THROWN @ $oCRNRSTN->max_storage_utilization_warning PERCENTAGE. 
-// WRITE REQUESTS WILL BE DENIED @ $oCRNRSTN->max_storage_utilization PERCENTAGE.
-if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
+//                $tmp_example_test = '//
+//// CALCULATE MINIMUM BYTES REQUIRED FOR NEW FILE
+//$tmp_minimum_bytes_required = strlen($tmp_data_str_out);
+//
+////
+//// ASK CRNRSTN :: TO GRANT PERMISSIONS FOR fwrite()
+//// WARNINGS WILL BE THROWN @ $oCRNRSTN->max_storage_utilization_warning PERCENTAGE.
+//// WRITE REQUESTS WILL BE DENIED @ $oCRNRSTN->max_storage_utilization PERCENTAGE.
+//if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_required)){
+//
+//    //
+//    // HOOOSTON...VE HAF PROBLEM!
+//    $this->oCRNRSTN->error_log(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
+//
+//    $this->oCRNRSTN->print_r(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\', NULL, __LINE__, __METHOD__, __FILE__);
+//
+//    throw new Exception(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
+//
+//}';
+//                $tmp_example_test = $this->oCRNRSTN->print_r_str($tmp_example_test, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
+//
+//                $html_out = '<a name="crnrstn_top_' . $this->oCRNRSTN->session_salt() . '"></a>
+//            <div class="crnrstn_documentation_dyn_content_shell">
+//
+//                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+//                        <div class="crnrstn_documentation_dyn_content_module_border">
+//                            <div class="crnrstn_hidden_void">
+//                                <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
+//                                <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
+//
+//                            </div>
+//                        </div>
+//                    </div>
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+//                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+//
+//                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+//
+//                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+//
+//                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
+//                                        <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
+//
+//                                    </div>
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+//
+//                                    <div class="crnrstn_hidden_void">
+//                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
+//                                        <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
+//
+//                                    </div>
+//
+//                                </div>
+//
+//                            </div>
+//
+//                        </div>
+//                    </div>
+//                </div>
+//
+//                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+//                        <div class="crnrstn_documentation_dyn_content_module_border">
+//                            <div class="crnrstn_hidden_void">
+//
+//                                <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
+//                                <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
+//
+//                            </div>
+//                        </div>
+//                    </div>
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+//                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+//
+//                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+//
+//                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+//
+//                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
+//                                        <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
+//
+//                                    </div>
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+//
+//                                    <div class="crnrstn_hidden_void">
+//                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
+//                                        <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
+//                                    </div>
+//
+//                                </div>
+//
+//                            </div>
+//
+//                        </div>
+//                    </div>
+//                </div>
+//
+//                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+//                        <div class="crnrstn_documentation_dyn_content_module_border">
+//                            <div class="crnrstn_hidden_void">
+//
+//                                <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
+//
+//                            </div>
+//                        </div>
+//                    </div>
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+//                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+//
+//                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+//
+//                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+//                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
+//
+//                                    </div>
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_bg">
+//                                        <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_NOTE') . '</div>
+//                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 160, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+//
+//                                    </div>
+//
+//                                    <div class="crnrstn_hidden_void">
+//                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
+//                                    </div>
+//
+//                                </div>
+//
+//                            </div>
+//
+//                        </div>
+//                    </div>
+//                </div>
+//
+//                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+//                        <div class="crnrstn_documentation_dyn_content_module_border">
+//                            <div class="crnrstn_hidden_void">
+//
+//                                <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
+//                                    <ul class="crnrstn_documentation_dyn_content_tech_specs">
+//                                        <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
+//                                        <li>Eget est lorem ipsum dolor.</li>
+//                                        <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
+//
+//                                    </ul>
+//                                </div>
+//
+//                            </div>
+//                        </div>
+//                    </div>
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+//                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+//
+//                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+//
+//                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+//
+//                                        <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
+//                                            <ul class="crnrstn_documentation_dyn_content_tech_specs">
+//                                                <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
+//                                                <li>Eget est lorem ipsum dolor.</li>
+//                                                <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
+//
+//                                            </ul>
+//                                        </div>
+//
+//                                    </div>
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_bg">
+//                                        <div class="crnrstn_interact_ui_bg_title_tech_spec">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_TECH_SPECS') . '</div>
+//
+//                                    </div>
+//
+//                                    <div>
+//                                        <div class="crnrstn_hidden_void">
+//
+//                                            <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
+//                                                <ul class="crnrstn_documentation_dyn_content_tech_specs">
+//                                                    <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
+//                                                    <li>Eget est lorem ipsum dolor.</li>
+//                                                    <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
+//
+//                                                </ul>
+//                                            </div>
+//
+//                                        </div>
+//                                    </div>
+//
+//                                </div>
+//
+//                            </div>
+//
+//                        </div>
+//                    </div>
+//                </div>
+//
+//                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+//                        <div class="crnrstn_documentation_dyn_content_module_border">
+//                            <div class="crnrstn_hidden_void">
+//
+//                                <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
+//
+//                            </div>
+//                        </div>
+//                    </div>
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+//                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+//
+//                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+//
+//                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+//
+//                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
+//
+//                                    </div>
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_bg">
+//                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', 1640, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+//                                    </div>
+//
+//                                    <div class="crnrstn_hidden_void">
+//                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
+//                                    </div>
+//
+//                                </div>
+//
+//                            </div>
+//
+//                        </div>
+//                    </div>
+//                </div>
+//
+//                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+//                        <div class="crnrstn_documentation_dyn_content_module_border">
+//                            <div class="crnrstn_hidden_void">
+//
+//                                <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
+//
+//                            </div>
+//                        </div>
+//                    </div>
+//
+//                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+//                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+//
+//                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+//
+//                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+//
+//                                        <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
+//
+//                                    </div>
+//
+//                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+//
+//                                    <div class="crnrstn_hidden_void">
+//
+//                                        <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
+//
+//                                    </div>
+//
+//                                </div>
+//
+//                            </div>
+//
+//                        </div>
+//                    </div>
+//                </div>
+//
+//                <div class="crnrstn_cb"></div>
+//                <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
+//                    <div class="crnrstn_j5_wolf_pup_inner_wrap">
+//                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
+//                    </div>
+//                </div>
+//                <div class="crnrstn_cb"></div>
+//            </div>';
+//
+//
+//                //return $html_out;
+//
+//                //require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
+//
+//                //$html_out .= '<div class="cb"></div>';
 
-    //
-    // HOOOSTON...VE HAF PROBLEM!
-    $this->oCRNRSTN->error_log(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY_DISK);
-
-    $this->oCRNRSTN->print_r(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\', \'Image Processing.\', NULL, __LINE__, __METHOD__, __FILE__);
-
-    throw new Exception(\'DISK WRITE ERROR. Disk space exceeds \' . $this->oCRNRSTN->get_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
-
-}';
-                $tmp_example_test = $this->oCRNRSTN->print_r_str($tmp_example_test, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
-
+                //
+                // DESKTOP EXPERIENCE
                 $html_out = '<a name="crnrstn_top_' . $this->oCRNRSTN->session_salt() . '"></a>
-            <div class="crnrstn_documentation_dyn_content_shell">
-            
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+            <div class="crnrstn_documentation_dyn_content_shell">';
+
+                //
+                // LOOP THROUGH CONTENT ARRAY
+                $tmp_page_element_cnt = sizeof($this->content_load_sequence_ARRAY);
+
+                for($i = 0; $i < $tmp_page_element_cnt; $i++){
+
+                    //
+                    // FOR EACH PAGE ELEMENT IN SEQUENCE OF CONSTRUCTION.
+                    foreach($this->page_content_ARRAY[$this->page_serial][$this->content_load_sequence_ARRAY[$i]] as $key => $val){
+
+                        switch($key){
+                            case 'PAGE_TITLE':
+
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
-                                <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
-                                <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
+                                <div class="crnrstn_documentation_dyn_content_title"><h1>' . $val['PAGE_TITLE'] . '</h1></div>
+                                <div class="crnrstn_documentation_dyn_content_description"><p>' . $val['PAGE_DESCRIPTION'] . '</p></div>
                                 
                             </div>
                         </div>
@@ -1141,76 +1448,37 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                             
-                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $val['PAGE_TITLE'] . '</h1></div>
+                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val['PAGE_DESCRIPTION'] . '</p></div>
+                                        
+                                    </div>
+                                    
+                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                
+                                    <div class="crnrstn_hidden_void">
+                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $val['PAGE_TITLE'] . '</h1></div>
+                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val['PAGE_DESCRIPTION'] . '</p></div>
+                                    
+                                    </div>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>';
 
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                
-                                    <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</h1></div>
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque sodales ut etiam sit. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Ultricies tristique nulla aliquet enim tortor at. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p></div>
-                                    
-                                    </div>
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                            break;
+                            case 'NOTE':
+
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 
-                                <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
-                                <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
-                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
-                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
-                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
-                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                                    
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
-                                        <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
-                            
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
-                                    <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::</h2></div>
-                                        <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
-                                    </div>
-                                
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-               
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
-                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
-                        <div class="crnrstn_documentation_dyn_content_module_border">
-                            <div class="crnrstn_hidden_void">
-                                
-                                <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
+                                <div class="crnrstn_documentation_dyn_content_note_copy"><p>' . $val['NOTE_COPY'] . '</p></div>
     
                             </div>
                         </div>
@@ -1224,7 +1492,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>' . $val['NOTE_COPY'] . '</p></div>
                             
                                     </div>
                                     
@@ -1235,7 +1503,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     </div>
                                     
                                     <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>' . $val['NOTE_COPY'] . '</p></div>
                                     </div>
                                 
                                 </div>
@@ -1244,9 +1512,28 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                             
                         </div>
                     </div>
-                </div>
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                </div>';
+
+                            break;
+                            case 'TECH_SPECS':
+
+                                $tmp_spec_li = '';
+                                $tmp_spec_size = sizeof($val);
+                                for($ii = 0; $ii < $tmp_spec_size; $ii++){
+
+                                    if($ii == $tmp_spec_size - 1){
+
+                                        $tmp_spec_li .= '<li style="padding-bottom: 0;">' . $val[$ii].'</li>';
+
+                                    }else{
+
+                                        $tmp_spec_li .= '<li>' . $val[$ii].'</li>';
+
+                                    }
+
+                                }
+
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
@@ -1254,10 +1541,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                 
                                 <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
                                     <ul class="crnrstn_documentation_dyn_content_tech_specs">
-                                        <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
-                                        <li>Eget est lorem ipsum dolor.</li>
-                                        <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
-                                        
+                                        ' . $tmp_spec_li . '
                                     </ul>
                                 </div>
     
@@ -1276,10 +1560,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                             
                                         <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
                                             <ul class="crnrstn_documentation_dyn_content_tech_specs">
-                                                <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
-                                                <li>Eget est lorem ipsum dolor.</li>
-                                                <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
-                                            
+                                                ' . $tmp_spec_li . '
                                             </ul>
                                         </div>      
                                                               
@@ -1295,10 +1576,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                         
                                             <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
                                                 <ul class="crnrstn_documentation_dyn_content_tech_specs">
-                                                    <li>Risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique.</li>
-                                                    <li>Eget est lorem ipsum dolor.</li>
-                                                    <li style="padding-bottom: 0;">It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.</li>
-                                                
+                                                     ' . $tmp_spec_li . '
                                                 </ul>
                                             </div>          
                                                                           
@@ -1311,15 +1589,18 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                             
                         </div>
                     </div>
-                </div>
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                </div>';
+
+                            break;
+                            case 'GENERAL_COPY_NAKED':
+
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 
-                                <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
+                                <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
     
                             </div>
                         </div>
@@ -1334,7 +1615,51 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                             
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                            
+                                    </div>
+                                    
+                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                    
+                                    <div class="crnrstn_hidden_void">
+                                    
+                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                    
+                                    </div>
+                                
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>';
+
+                            break;
+                            case 'GENERAL_COPY_R_STONE':
+
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                
+                                <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+                        
+                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+                                    
+                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+                               
+                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+                            
+                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
                             
                                     </div>
                                     
@@ -1343,7 +1668,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                     </div>
                                     
                                     <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
                                     </div>
                                 
                                 </div>
@@ -1352,16 +1677,19 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                             
                         </div>
                     </div>
-                </div>
-                
-                <div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                </div>';
+
+                            break;
+                            case 'METHOD_DEFINITION':
+
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
+                                <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
+                                <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
                                 
-                                <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
-    
                             </div>
                         </div>
                     </div>
@@ -1374,146 +1702,31 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                            
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
-                            
+                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
+                                        <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
+
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
+                                
                                     <div class="crnrstn_hidden_void">
-                                    
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
+                                        <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
                                     
                                     </div>
-                                
+                                    
                                 </div>
                             
                             </div>
                             
                         </div>
                     </div>
-                </div> 
-                
-                <div class="crnrstn_cb"></div>
-                <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
-                    <div class="crnrstn_j5_wolf_pup_inner_wrap">
-                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
-                    </div>
-                </div>
-                <div class="crnrstn_cb"></div>
-            </div><div class="crnrstn_cb_75"></div>';
-
-
-                return $html_out;
-
-                require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
-
-                $html_out .= '<div class="cb"></div>';
-
-                //
-                // DESKTOP EXPERIENCE
-                if(strlen($this->page_subsubcateg_name_ARRAY[$this->page_serial])>2){
-
-                    $html_out .= '<div class="section_title">' . $this->page_subsubcateg_name_ARRAY[$this->page_serial].' ::</div>
-                <div class="content_results_subtitle_divider"></div>';
-
-                }else{
-
-                    $html_out .= '<div class="section_title">'.strtolower($this->page_subcategory_name_ARRAY[$this->page_serial]).' ::</div>
-                <div class="content_results_subtitle_divider"></div>';
-
-                }
-
-                //
-                // LOOP THROUGH CONTENT ARRAY
-                $tmp_page_element_cnt = sizeof($this->content_load_sequence_ARRAY);
-
-                for($i = 0; $i < $tmp_page_element_cnt; $i++){
-
-                    //
-                    // FOR EACH PAGE ELEMENT IN SEQUENCE OF CONSTRUCTION.
-                    foreach($this->page_content_ARRAY[$this->page_serial][$this->content_load_sequence_ARRAY[$i]] as $key=>$val){
-
-                        switch($key){
-                            case 'SUB_TITLE':
-
-                                $html_out .= '<div class="section_title">' . $val . ' ::</div>
-                <div class="content_results_subtitle_divider"></div>';
-
-                            break;
-                            case 'BASIC_COPY':
-
-                                $html_out .= '<div class="crnrstn_page_description">' . $val . '</div>';
-
-                            break;
-                            case 'NOTE_COPY':
-
-                                $html_out .= '<div class="crnrstn_note_wrapper">
-                                    <div class="crnrstn_note_crnrstn_icon" style="background-image: url(\'' . $this->oCRNRSTN->crnrstn_resources_http_path.'common/imgs/logo_sm.png\'); background-repeat: no-repeat; width:50px; height:30px; float:right;"></div>
-                                    <div class="crnrstn_note_notetitle">Note ::</div>
-                                    <div class="crnrstn_note_notecopy">' . $val . '</div>
-                                    <div class="cb"></div>
-                                </div>';
-
-                            break;
-                            case 'EXAMPLE':
-
-                                $html_out .= '<div class="crnrstn_example_title_wrapper">
-                                    <div class="section_title">' . $val['title_string'].' ::</div>
-                                    <div class="crnrstn_example_description">' . $val['description_string'].'</div>
-                                </div>';
-
-                                //
-                                // CODE EXAMPLE
-                                $html_out .= $this->retrieve_code_example_html($val['pres_file']);
-
-                                //
-                                // EXAMPLE OUTPUT
-                                if($val['exec_file']!=''){
-
-                                    $html_out .= '<div class="crnrstn_example_output_title">' . $val['title_string'].' Output :: </div>';
-                                    $html_out .= $this->retrieve_code_example_output_html($val['exec_file']);
-
-                                }
-
-                            break;
-                            case 'TECH_SPEC':
-
-                                $html_out .= '<div class="section_title">Technical specifications ::</div>
-                                <div class="content_results_subtitle_divider"></div>
-                                <div class="tech_specs_wrapper">
-                                    <ul>';
-
-                                $tmp_spec_size = sizeof($val);
-                                for($ii = 0; $ii < $tmp_spec_size; $ii++){
-                                    $html_out .= '<li>' . $val[$ii].'</li>';
-                                }
-
-                                $html_out .= '</ul>
-                                </div>';
-
-                            break;
-                            case 'INVOKING_CLASS':
-
-                                $html_out .= '<div class="section_title">Invoking class ::</div>
-                                <div class="content_results_subtitle_divider"></div>
-                                <div class="basic_section_content">' . $val . '</div>';
-
-                            break;
-                            case 'METHOD_DEFINITION':
-
-                                $html_out .= '<div class="section_title">Method definition ::</div>
-                                <div class="content_results_subtitle_divider"></div>
-                                <div class="basic_section_content_method_definition">' . $val . '</div>';
+                </div>';
 
                             break;
                             case 'PARAMETER_DEFINITION':
 
-                                $html_out .= '<div class="section_title">Method parameter definitions ::</div>
-                                <div class="content_results_subtitle_divider"></div>
-                                <div class="basic_section_content">';
-
+                                $tmp_definition_str = '';
                                 foreach($val as $tmp_key => $tmp_val){
 
                                     if(!isset($tmp_val['param_datatype'])){
@@ -1528,26 +1741,176 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
                                     if($tmp_val['param_required']){
 
-                                        $html_out .=  '<div class="method_parameter"><span class="method_parameter_name"><span class="method_parameter_datatype">' . $tmp_val['param_datatype'].'</span>' . $tmp_val['param_name'].'</span>&nbsp;<span class="parameter_require_required">(Required)</span></div>
-                                    <blockquote class="method_parameter_definition">' . $tmp_val['param_copy'].'</blockquote>';
+                                        $tmp_definition_str .= '
+                                        <div class="crnrstn_documentation_param_shell">
+                                            <div class="crnrstn_documentation_param_name_shell">
+                                                <span class="crnrstn_documentation_param_name">' . $tmp_val['param_name'] . '</span>&nbsp;<span class="crnrstn_documentation_param_require_required">(Required)</span>
+                                            </div>
+                                            <div class="crnrstn_documentation_param_definition_shell">
+                                                <p>' . $tmp_val['param_definition'] . '</p>
+                                            </div>
+                                        </div>';
 
                                     }else{
 
-                                        $html_out .=  '<div class="method_parameter"><span class="method_parameter_name"><span class="method_parameter_datatype">' . $tmp_val['param_datatype'].'</span>' . $tmp_val['param_name'].'</span>&nbsp;<span class="parameter_require_optional">(Optional)</span></div>
-                                    <blockquote class="method_parameter_definition">' . $tmp_val['param_copy'].'</blockquote>';
+                                        $tmp_definition_str .= '
+                                        <div class="crnrstn_documentation_param_shell">
+                                            <div class="crnrstn_documentation_param_name_shell">
+                                                <span class="crnrstn_documentation_param_name">' . $tmp_val['param_name'] . '</span>&nbsp;<span class="crnrstn_documentation_param_require_optional">(Optional)</span>
+                                            </div>
+                                            <div class="crnrstn_documentation_param_definition_shell">
+                                                <p>' . $tmp_val['param_definition'] . '</p>
+                                            </div>
+                                        </div>';
 
                                     }
 
                                 }
 
-                                $html_out .= '</div>';
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_PARAMETER_DEFINITION') . '</h3></div>
+                                <div class="crnrstn_documentation_dyn_content_description">' . $tmp_definition_str . '</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+                        
+                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+                                    
+                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+                               
+                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_PARAMETER_DEFINITION') . '</h3></div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $tmp_definition_str . '</div>
+
+                                    </div>
+                                    
+                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                
+                                    <div class="crnrstn_hidden_void">
+                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_PARAMETER_DEFINITION') . '</h3></div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $tmp_definition_str . '</div>
+                                    
+                                    </div>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>';
 
                             break;
-                            case 'RETURNED_VALUE':
+                            case 'RETURN_VALUE':
 
-                                $html_out .= '<div class="section_title">Returned value ::</div>
-                                <div class="content_results_subtitle_divider"></div>
-                                <div class="basic_section_content">' . $val . '</div>';
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
+                                <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+                        
+                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+                                    
+                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+                               
+                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+                            
+                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
+                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+
+                                    </div>
+                                    
+                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                
+                                    <div class="crnrstn_hidden_void">
+                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
+                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                    
+                                    </div>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>';
+
+                            break;
+                            case 'EXAMPLE_CONTENT':
+
+                                //
+                                // EXAMPLE OUTPUT
+                                $tmp_example_test_out = '';
+                                if($val['exec_file'] != ''){
+
+                                    $tmp_example_test_out .= '<div class="crnrstn_example_output_title">' . $val['title_string'].' Output :: </div>';
+                                    $tmp_example_test_out .= '<div>' . $this->retrieve_code_example_output_html($val['exec_file']) . '</div>';
+
+                                }
+
+                                $tmp_example_test = $this->oCRNRSTN->print_r_str($this->retrieve_code_example_html($val['pres_file']), $val['integrated_title_string']);
+
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                <div class="crnrstn_documentation_dyn_content_title"><h2>' . $val['title_string'] . '</h2></div>
+                                <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
+                                ' . $tmp_example_test_out . '
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+                        
+                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+                                    
+                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+                               
+                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $val['title_string'] . '</h2></div>
+                                        <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
+                                        ' . $tmp_example_test_out . '
+                            
+                                    </div>
+                                    
+                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                    
+                                    <div class="crnrstn_hidden_void">
+                                        <div class="crnrstn_documentation_dyn_content_title"><h2>' . $val['title_string'] . '</h2></div>
+                                        <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
+                                        ' . $tmp_example_test_out . '
+                                        
+                                    </div>
+                                
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>';
 
                             break;
 
@@ -1556,6 +1919,16 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
                     }
 
                 }
+
+                $html_out .= '
+                <div class="crnrstn_cb"></div>
+                <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
+                    <div class="crnrstn_j5_wolf_pup_inner_wrap">
+                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
+                    </div>
+                </div>
+                <div class="crnrstn_cb"></div>
+            </div>';
 
             break;
 
@@ -1605,23 +1978,7 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
 
         $filepath = $this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . $filepath;
 
-        $tmp_html_output = '';
-
-        $tmp_html_output .= '<div class="crnrstn_code_wrapper">';
-        $tmp_html_output .= $this->retrieve_code_example_line_num_html($filepath);
-
-        $tmp_html_output .= '<div class="crnrstn_code_shell">
-                <code>';
-
-        //$tmp_html_output .= highlight_file($filepath,true);
-        $tmp_html_output .= $this->oCRNRSTN->highlight_text($filepath);
-
-        $tmp_html_output .= '</code>
-            </div>';
-
-        $tmp_html_output .= '</div>';
-
-	    return $tmp_html_output;
+        return file_get_contents($filepath);
 
     }
 

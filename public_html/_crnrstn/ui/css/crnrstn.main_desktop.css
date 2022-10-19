@@ -59,12 +59,24 @@
 
 /*CRNRSTN::INTEGRATION INTERACT UI MODULE :: DOCUMENTATION CONTENT*/
 .crnrstn_documentation_dyn_content_shell                    { width: 64%; min-width: 400px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
-.crnrstn_documentation_dyn_content_title                    { font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 55px; padding: 0 10px 0 20px;}
-.crnrstn_documentation_dyn_content_title h1                 { font-size: 45px; overflow-wrap: break-word;  }
+.crnrstn_documentation_dyn_content_title                    { font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 55px; padding: 0 10px 0 20px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+.crnrstn_documentation_dyn_content_title h1                 { font-size: 45px; overflow-wrap: break-word; }
 .crnrstn_documentation_dyn_content_title h2                 { font-size: 35px; margin-bottom:0;}
+.crnrstn_documentation_dyn_content_title h3                 { font-size: 25px; margin-bottom:0;}
 .crnrstn_documentation_dyn_content_description              { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_description p            { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_documentation_dyn_content_example                  { width: 98%; padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
+.crnrstn_documentation_dyn_content_method_definition        { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: "Courier New", Courier, monospace; color:#333; line-height: 33px;}
+.crnrstn_documentation_dyn_content_method_definition p      { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+.crnrstn_documentation_method_data_type                     { color: #58af3a; }
+.crnrstn_documentation_param_shell                          { padding: 0 0 20px 0; color:#333; }
+.crnrstn_documentation_param_name_shell                     { padding: 0; margin: 0;}
+.crnrstn_documentation_param_name                           { font-weight: bold; }
+.crnrstn_documentation_param_require_required               { color: #F90000; font-family: "Courier New", Courier, monospace; }
+.crnrstn_documentation_param_require_optional               { font-family: "Courier New", Courier, monospace; }
+.crnrstn_documentation_param_definition_shell               { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 5px 10px 0 30px; color:#333; line-height: 33px;}
+.crnrstn_documentation_param_definition_shell p             { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+
 .crnrstn_documentation_dyn_content_note_copy                { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_note_copy p              { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_documentation_dyn_content_tech_specs_wrapper       { padding: 10px 0 0 10px; color:#333;}
@@ -84,7 +96,7 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_documentation_dyn_content_module_wrap_s1           { width: 100%; position: absolute; z-index: 4; top:0; left:0;}
 .crnrstn_interact_ui_r_stone_pillar                         { float: right; padding: 10px 20px 0 0; }
 .crnrstn_interact_ui_bg_title_note                          { position: absolute; font-size: 140px; color: #F8F8F8; font-weight: bold; float:left; left:0; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
-.crnrstn_interact_ui_bg_title_tech_spec                     { position: absolute; font-size: 80px; padding: 0 10px 0 0; color: #F8F8F8; text-align: right; font-weight: bold; float:left; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
+.crnrstn_interact_ui_bg_title_tech_spec                     { position: absolute; font-size: 80px; padding: 0 10px 0 10px; color: #F8F8F8; text-align: right; font-weight: bold; float:left; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
 .crnrstn_interact_ui_documentation_j5_wolf_pup              { width: 98%; float:right; padding:120px 268px 0 0; margin:0; text-align: right; }
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION

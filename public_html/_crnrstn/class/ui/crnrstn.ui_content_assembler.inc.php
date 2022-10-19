@@ -606,21 +606,21 @@ class crnrstn_ui_content_assembler {
             }
 
             switch($key){
-                case 'PARAMETER_DEFINITION':
-                case 'RETURNED_VALUE':
-                case 'INVOKING_CLASS':
+                case 'PAGE_TITLE':
+                case 'NOTE':
+                case 'TECH_SPECS':
+                case 'GENERAL_COPY_NAKED':
+                case 'GENERAL_COPY_R_STONE':
                 case 'METHOD_DEFINITION':
-                case 'TECH_SPEC':
-                case 'BASIC_COPY':
-                case 'NOTE_COPY':
-                case 'SUB_TITLE':
+                case 'PARAMETER_DEFINITION':
+                case 'RETURN_VALUE':
 
                     self::$oContentGen->add_page_element($serial, $key, $attribute_00);
 
                 break;
-                case 'EXAMPLE':
-                    //$oSideBitch_Usr->add_page_element($tmp_page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
+                case 'EXAMPLE_CONTENT':
 
+                    //$oSideBitch_Usr->add_page_element($tmp_page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
                     self::$oContentGen->add_page_element($serial, $key, $attribute_00, $attribute_01, $attribute_02, $attribute_03);
 
                 break;
