@@ -120,6 +120,7 @@ class crnrstn_content_generator {
                 case 'METHOD_DEFINITION':
                 case 'PARAMETER_DEFINITION':
                 case 'RETURN_VALUE':
+                case 'RELATED_METHODS':
 
                     if($attribute_00 ==''){
 
@@ -158,9 +159,10 @@ class crnrstn_content_generator {
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
-                    throw new Exception('Unhandled key [' . $key.'].');
+                    throw new Exception('Unhandled key [' . $key . '].');
 
                 break;
+
             }
 
         }catch( Exception $e ) {
@@ -1842,6 +1844,69 @@ class crnrstn_content_generator {
                                     <div class="crnrstn_hidden_void">
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                    
+                                    </div>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>';
+
+                            break;
+                            case 'RELATED_METHODS':
+
+                                $tmp_related_methods = '';
+                                $tmp_related_methods_size = sizeof($val);
+                                for($ii = 0; $ii < $tmp_related_methods_size; $ii++){
+
+                                    if($ii == $tmp_related_methods_size - 1){
+
+                                        $tmp_related_methods .= '<div class="crnrstn_documentation_related_method" style="padding-bottom: 0;"><a href="#" onclick="oCRNRSTN_JS.related_link_text_click(\'' . $val[$ii] . '\');">' . $val[$ii] . '</a></div>
+                    ';
+
+                                    }else{
+
+                                        $tmp_related_methods .= '<div class="crnrstn_documentation_related_method"><a href="#" onclick="oCRNRSTN_JS.related_link_text_click(\'' . $val[$ii] . '\');">' . $val[$ii] . '</a></div>
+                    ';
+
+                                    }
+
+                                }
+
+                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                
+                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                        <div class="crnrstn_documentation_dyn_content_module_border">
+                            <div class="crnrstn_hidden_void">
+                                <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
+                                <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+                        
+                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+                                    
+                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+                               
+                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+                            
+                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
+                                        <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
+
+                                    </div>
+                                    
+                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                
+                                    <div class="crnrstn_hidden_void">
+                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
+                                        <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
                                     
                                     </div>
                                     

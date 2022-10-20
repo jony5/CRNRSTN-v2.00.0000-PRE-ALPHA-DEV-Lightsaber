@@ -419,6 +419,17 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    CRNRSTN_JS.prototype.related_link_text_click = function(page_key){
+
+        $('#crnrstn_ui_element_load_indicator').stop();
+
+        this.interact_ui_refresh_state_docs_bg = 'ENABLED';
+        this.link_text_click(page_key);
+
+        return false;
+
+    };
+
     CRNRSTN_JS.prototype.link_text_click = function(page_key){
 
         this.log_activity('[lnum 422] SSDTLA Sending request for data [' + page_key + '].', this.CRNRSTN_DEBUG_VERBOSE);

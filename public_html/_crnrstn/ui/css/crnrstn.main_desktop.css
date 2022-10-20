@@ -68,6 +68,7 @@
 .crnrstn_documentation_dyn_content_example                  { width: 98%; padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
 .crnrstn_documentation_dyn_content_method_definition        { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: "Courier New", Courier, monospace; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_method_definition p      { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+.crnrstn_documentation_dyn_content_related_methods          { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: "Courier New", Courier, monospace; color:#333; line-height: 33px;}
 .crnrstn_documentation_method_data_type                     { color: #58af3a; }
 .crnrstn_documentation_param_shell                          { padding: 0 0 20px 0; color:#333; }
 .crnrstn_documentation_param_name_shell                     { padding: 0; margin: 0;}
@@ -76,6 +77,8 @@
 .crnrstn_documentation_param_require_optional               { font-family: "Courier New", Courier, monospace; }
 .crnrstn_documentation_param_definition_shell               { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 5px 10px 0 30px; color:#333; line-height: 33px;}
 .crnrstn_documentation_param_definition_shell p             { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+.crnrstn_documentation_related_method                       { padding: 0 0 5px 0; }
+.crnrstn_documentation_related_method a                     { text-decoration: none; color:#0066CC; }
 
 .crnrstn_documentation_dyn_content_note_copy                { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_note_copy p              { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }

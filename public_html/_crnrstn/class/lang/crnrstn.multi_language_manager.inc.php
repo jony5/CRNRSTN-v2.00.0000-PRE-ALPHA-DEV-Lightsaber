@@ -2990,6 +2990,22 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'DOCUMENTATION_TITLE_RELATED_METHODS':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Related Methods';
+
+                    break;
+
+                }
+
+            break;
             case 'DOCUMENTATION_TITLE_RETURN_VALUE':
 
                 switch($this->country_iso_code) {

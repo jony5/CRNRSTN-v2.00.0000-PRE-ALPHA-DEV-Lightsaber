@@ -430,6 +430,13 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_NAKED', 'Scelerisque HELLO [' . __LINE__ . '] GENERAL_COPY_NAKED! eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', 'Risus HELLO [' . __LINE__ . '] GENERAL_COPY_R_STONE! nullam eget felis eget nunc lobortis mattis aliquam faucibus. Nibh tortor id aliquet lectus proin nibh. In hac habitasse platea dictumst quisque sagittis purus sit amet. Sit amet volutpat consequat mauris nunc congue. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Tristique et egestas quis ipsum suspendisse ultrices gravida. Rhoncus urna neque viverra justo nec. Eget nullam non nisi est sit amet facilisis magna etiam. Luctus accumsan tortor posuere ac ut. Purus viverra accumsan in nisl. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Tellus at urna condimentum mattis pellentesque id nibh tortor id. Amet nisl purus in mollis nunc.');
 
+                    //
+                    // RELATED METHODS
+                    $tmp_related_array = array();
+                    $tmp_related_array[0] = 'print_r';
+                    $tmp_related_array[1] = 'print_r_str';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
+
                     /*
                     Tuesday, October 18, 2022 @ 0534 hrs
                     CRNRSTN :: LIGHTSABER

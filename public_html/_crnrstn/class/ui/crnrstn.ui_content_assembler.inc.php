@@ -614,6 +614,7 @@ class crnrstn_ui_content_assembler {
                 case 'METHOD_DEFINITION':
                 case 'PARAMETER_DEFINITION':
                 case 'RETURN_VALUE':
+                case 'RELATED_METHODS':
 
                     self::$oContentGen->add_page_element($serial, $key, $attribute_00);
 
