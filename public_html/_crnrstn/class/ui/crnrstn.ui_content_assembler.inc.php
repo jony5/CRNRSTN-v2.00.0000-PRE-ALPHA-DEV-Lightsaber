@@ -593,7 +593,7 @@ class crnrstn_ui_content_assembler {
 
     }
 
-	public function add_page_element($serial, $key, $attribute_00, $attribute_01=NULL, $attribute_02=NULL, $attribute_03=NULL, $attribute_04=NULL){
+	public function add_page_element($serial, $key, $attribute_00, $attribute_01 = NULL, $attribute_02 = NULL, $attribute_03 = NULL, $attribute_04 = NULL){
 
         try {
 

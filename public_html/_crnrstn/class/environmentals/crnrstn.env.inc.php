@@ -8225,7 +8225,6 @@ class crnrstn_decoupled_data_object {
 
                 }
 
-
             break;
             case 'string':
 

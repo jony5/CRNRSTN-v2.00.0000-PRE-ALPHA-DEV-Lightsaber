@@ -81,40 +81,286 @@ class crnrstn_content_source_controller {
 
             switch($this->module_key){
                 case 'add_system_resource':
+                    /*
+                    public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $data_index = NULL, $env_key = NULL, $default_ttl = 60){
+
+                    ON SUCCESS
+                    return $data_key (hash)
+
+                    ON ERR
+                    return $this->session_salt();
+
+                    */
+
                 case 'config_add_administration':
+                    /*
+                    public function config_add_administration($env_key, $email_or_creds_path, $pwd = NULL, $ttl = 120, $max_login_attempts = 10){
+
+                    return true;
+
+                    */
+
                 case 'config_add_database':
+                    /*
+                    public function config_add_database($env_key, $host_or_creds_path, $un = NULL, $pwd = NULL, $db = NULL, $port = NULL){
+
+                    return true;
+
+                    */
+
                 case 'config_add_environment':
+                    /*
+                    public function config_add_environment($env_key, $err_reporting_profile){
+
+                    return true;
+
+                    */
+
                 case 'config_add_seo_analytics':
+                    /*
+                    private function config_add_seo_analytics($env_key, $data_key, $data_value, $is_enabled = true){
+
+                    return true;
+
+                    */
+
                 case 'config_add_seo_engagement':
+                    /*
+                    private function config_add_seo_engagement($env_key, $data_key, $data_value, $is_enabled = true){
+
+                    return true;
+
+                    */
+
                 case 'config_deny_access':
+                    /*
+                    public function config_deny_access($env_key, $ipOrFile){
+
+                    return true;
+
+                    */
+
                 case 'config_detect_environment':
+                    /*
+                    public function config_detect_environment($env_key = CRNRSTN_RESOURCE_ALL, $data_key = NULL, $value = NULL, $required_server_matches = 1){
+
+                    ON SUCCESS
+                    return self::$env_select_ARRAY[$this->config_serial_hash];
+
+                    ON ERR (NO MATCH)
+                    return false;
+
+                    */
+
                 case 'config_grant_exclusive_access':
+                    /*
+                    public function config_grant_exclusive_access($env_key, $ipOrFile){
+
+                    return true;
+
+                    */
+
                 case 'config_include_encryption':
+                    /*
+                    public function config_include_encryption($env_key, $crnrstn_openssl_config_file_path){
+
+                    return true;
+
+                    */
+
                 case 'config_include_seo_analytics':
+                    /*
+                    public function config_include_seo_analytics($env_key, $crnrstn_analytics_config_file_path){
+
+                    return true;
+
+                    */
+
                 case 'config_include_seo_engagement':
+                    /*
+                    public function config_include_seo_engagement($env_key, $crnrstn_engagement_config_file_path){
+
+                    return true;
+
+                    */
+
                 case 'config_include_system_resources':
+                    /*
+                    public function config_include_system_resources($env_key, $crnrstn_resource_config_file_path){
+
+                    return true;
+
+                    */
+
                 case 'config_include_wordpress':
+                    /*
+                    public function config_include_wordpress($env_key, $crnrstn_wp_config_file_path){
+
+                    return true;
+
+                    */
+
                 case 'config_init_images_http_dir':
+                    /*
+                    public function config_init_images_http_dir($env_key, $crnrstn_images_http_dir){
+
+                    return true;
+
+                    */
+
                 case 'config_init_images_transport_mode':
+                    /*
+                    public function config_init_images_transport_mode($system_asset_mode = CRNRSTN_ASSET_MODE_BASE64){
+
+                    return true;
+
+                    */
+
                 case 'config_init_logging':
+                    /*
+                    public function config_init_logging($env_key, $CRNRSTN_loggingProfile = CRNRSTN_LOG_DEFAULT, $CRNRSTN_loggingMeta = NULL){
+
+                    return true;
+
+                    */
+
                 case 'form_hidden_input_add':
+                    /*
+                    public function form_hidden_input_add($crnrstn_form_handle = NULL, $field_input_name = NULL, $field_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL, $encrypt_data = true){
+
+                    return NULL;
+
+                    */
+
                 case 'form_input_add':
+                    /*
+                    public function form_input_add($crnrstn_form_handle = NULL, $field_input_name = NULL, $field_input_id = NULL, $default_value = NULL, $validation_constant_profile = CRNRSTN_INPUT_OPTIONAL, $table_field_name = NULL){
+
+                    return NULL;
+
+                    */
+
                 case 'form_input_feedback_copy_add':
+                    /*
+                    public function form_input_feedback_copy_add($crnrstn_form_handle, $validation_constant_profile, $field_input_name, $field_input_id = NULL, $err_msg = NULL, $success_msg = NULL, $info_msg = NULL){
+
+                    return true;
+
+                    */
+
                 case 'form_integration_html_packet_output':
+                    /*
+                    public function form_integration_html_packet_output($crnrstn_form_handle){
+
+                    return $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, $crnrstn_form_handle);
+
+                    */
+
                 case 'form_response_add':
+                    /*
+                    public function form_response_add($crnrstn_form_handle, $field_input_name = NULL, $success_response_data = NULL, $success_response_type = NULL, $error_response_data = NULL, $error_response_type = NULL){
+
+                    return true;
+
+                    */
+
                 case 'get_resource':
+                    /*
+                    public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
+
+                    return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $data_auth_request);
+
+                    */
+
                 case 'grant_permissions_fwrite':
+                    /*
+                    public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
+
+                    return $this->oCRNRSTN_PERFORMANCE_REGULATOR->grant_permissions_fwrite($filepath, $minimum_bytes_required);
+
+                    */
+
                 case 'ini_set':
+                    /*
+                    public function ini_set($ini_setting, $ini_value){
+
+                    return ini_set($ini_setting, $ini_value);
+
+                    */
+
                 case 'is_configured':
+                    /*
+                    public function is_configured(){
+
+                    return true;
+
+                    */
+
                 case 'print_r':
+                    /*
+                    public function print_r($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
+
+                    */
+
                 case 'print_r_str':
+                    /*
+                    public function print_r_str($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
+
+
+                    */
+
                 case 'return_system_image':
+                    /*
+                    public function return_system_image($creative_element_key, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $width = NULL, $image_output_mode = NULL){
+
+                    */
+
                 case 'return_youtube_embed':
+                    /*
+                    public function return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true){
+
+                    */
+
                 case 'set_crnrstn_as_err_handler':
+                    /*
+                    public function set_crnrstn_as_err_handler($env_key, $crnrstn_is_active = true, $error_types_profile = NULL){
+
+                    ON SUCCESS
+                    return true;
+
+                    ON ERR
+                    return false;
+
+                    */
+
                 case 'set_max_login_attempts':
+                    /*
+                    public function set_max_login_attempts($env_key, $max_login_attempts){
+
+
+                    */
+
                 case 'set_timeout_user_inactive':
+                    /*
+                    public function set_timeout_user_inactive($env_key, $secs){
+
+
+                    */
+
                 case 'set_timezone_default':
+                    /*
+                    public function set_timezone_default($timezone_id){
+
+                    return date_default_timezone_set($timezone_id);
+
+                    */
+
                 case 'set_ui_theme_style':
+                    /*
+                    public function set_ui_theme_style($theme_style = CRNRSTN_UI_PHPNIGHT, $index = NULL){
+
+                    */
+
                 case 'error_log':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');

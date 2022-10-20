@@ -1684,6 +1684,8 @@ class crnrstn {
 
         }
 
+        return true;
+
     }
 
     public function config_include_seo_analytics($env_key, $crnrstn_analytics_config_file_path){
@@ -1718,6 +1720,8 @@ class crnrstn {
             }
 
         }
+
+        return true;
 
     }
 
@@ -1754,6 +1758,8 @@ class crnrstn {
 
         }
 
+        return true;
+
     }
 
     public function config_include_encryption($env_key, $crnrstn_openssl_config_file_path){
@@ -1779,7 +1785,7 @@ class crnrstn {
 
                     }
 
-                } else {
+                }else{
 
                     //
                     // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
@@ -1793,6 +1799,8 @@ class crnrstn {
             // WE DON'T HAVE THE ENVIRONMENT, BUT DETECTION WOULD HAVE ALREADY BEEN COMPLETED.
             //throw new Exception('Unable to process system resource for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
             $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_openssl_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            return true;
 
         } catch (Exception $e) {
 
@@ -1844,6 +1852,8 @@ class crnrstn {
                 }
 
             }
+
+            return true;
 
         } catch (Exception $e) {
 
@@ -2027,7 +2037,7 @@ class crnrstn {
 
         try {
 
-            if (isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
                 if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash) {
 
@@ -2507,7 +2517,7 @@ class crnrstn {
 
     public function config_detect_environment($env_key = CRNRSTN_RESOURCE_ALL, $data_key = NULL, $value = NULL, $required_server_matches = 1){
 
-        if (!isset(self::$env_select_ARRAY[$this->config_serial_hash])) {
+        if(!isset(self::$env_select_ARRAY[$this->config_serial_hash])){
 
             if ($required_server_matches < 0) {
 
@@ -2747,13 +2757,13 @@ class crnrstn {
 
             $tmp_env_key_hash = $this->hash($env_key);
 
-            if (count($tmp_param_missing_ARRAY) > 0) {
+            if(count($tmp_param_missing_ARRAY) > 0){
 
                 $this->error_log('Attempted ' . __METHOD__ . '(' . $data_key . ') but missing required parameters. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 throw new Exception('CRNRSTN :: initialization ERROR :: define_env_resource was called but was missing parameter information and so was not able to be initialized. env_key and resourceKey are required. env_key[' . $env_key . '] resourceKey[' . $data_key . ']');
 
-            } else {
+            }else{
 
                 if ($env_key === '*') {
 
@@ -4115,6 +4125,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
             $this->error_log('Bypassed processing analytics for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
+            return true;
+
         }catch (Exception $e){
 
             //
@@ -4127,7 +4139,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    private function config_add_seo_engagemnent($env_key, $data_key, $data_value, $is_enabled = true){
+    private function config_add_seo_engagement($env_key, $data_key, $data_value, $is_enabled = true){
 
         try {
 
@@ -4182,6 +4194,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             // WE DON'T HAVE THE ENVIRONMENT, BUT DETECTION WOULD HAVE ALREADY BEEN COMPLETED.
             //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
             $this->error_log('Bypassed processing analytics for environment [' . $env_key_hash . '/' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            return true;
 
         }catch (Exception $e){
 
@@ -9274,7 +9288,7 @@ class crnrstn_config_manager {
             // HOOOSTON...VE HAF PROBLEM!
             //throw new Exception('CRNRSTN :: error :: on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ').');
 
-        } catch( Exception $e ) {
+        }catch( Exception $e ){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
@@ -9285,8 +9299,6 @@ class crnrstn_config_manager {
             return false;
 
         }
-
-        return true;
 
     }
 
