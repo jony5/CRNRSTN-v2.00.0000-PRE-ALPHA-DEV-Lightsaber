@@ -114,6 +114,8 @@ class crnrstn_ui_tunnel_response_manager {
 
             }
 
+            //error_log(__LINE__ . ' ui tunnel resp [' . $tmp_str_out . '].');
+
             return $tmp_str_out;
 
         }
@@ -140,7 +142,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // CRNRSTN :: LIGHTSABER DOCUMENTATION NAV
-        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_documentation_side_nav_src'] = 1;
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_documentation_side_nav_src'] = 'GLOBAL';
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_documentation_side_nav_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_documentation_side_nav_src'] = -1;
 
@@ -152,7 +154,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // CRNRSTN :: LIGHTSABER SYSTEM FOOTER
-        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_system_footer_src'] = 1;
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_system_footer_src'] = 'GLOBAL';
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_system_footer_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_system_footer_src'] = -1;
 
@@ -164,7 +166,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // CRNRSTN :: LIGHTSABER MESSENGER
-        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_messenger_src'] = 1;
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_messenger_src'] = 'GLOBAL';
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_messenger_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_messenger_src'] = 90;
 
@@ -175,6 +177,9 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_out_str = '';
         $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
         $tmp_module_ARRAY = $this->return_interact_ui_module_programme('array');
+        $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+
+        //error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
 
         //
         // THE WAY THIS SHOULD WORK:
@@ -182,31 +187,48 @@ class crnrstn_ui_tunnel_response_manager {
         // 2) IF THE KEY IS PRESENT, RETURN THE CONTENT IF HASH IS DIFFERENT.
         foreach($tmp_module_ARRAY as $index => $module_nom){
 
+            $tmp_xml_concat = false;
             $tmp_post_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data($module_nom . '_HASH');
             $tmp_module_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->retrieve_interact_ui_module_hash($module_nom);
 
-            if(($module_nom == 'crnrstn_interact_ui_documentation_content_src') || ($module_nom == 'crnrstn_interact_ui_mit_license_src')){
+            //
+            // TODO :: TTL CONSIDERATIONS
+            if($tmp_post_hash != $tmp_module_hash && $this->interact_ui_module_keys_ARRAY[$module_nom] == 'GLOBAL' && (strlen($tmp_module_page_key) < 1)){
 
-                $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+                //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                $tmp_xml_concat = true;
 
-                if(strlen($tmp_module_page_key) < 1){
+            }
 
-                    $tmp_post_hash = '';
+            if(strlen($tmp_module_page_key) > 0 && $module_nom == 'crnrstn_interact_ui_documentation_content_src'){
+
+                if($tmp_module_page_key != 'mit_license'){
+
+                    //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                    $tmp_xml_concat = true;
 
                 }
 
             }
 
-            if((strlen($tmp_post_hash) > 0) && ($tmp_post_hash != $tmp_module_hash)){
+            if($tmp_module_page_key == 'mit_license' && $module_nom == 'crnrstn_interact_ui_mit_license_src'){
+
+                //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                $tmp_xml_concat = true;
+
+            }
+
+            if($tmp_xml_concat){
 
                 $tmp_out_str .= '
                 <' . $module_nom . '_HASH>' . $tmp_module_hash . '</' . $module_nom . '_HASH>
                 <' . $module_nom . '><![CDATA[';
 
+                //error_log(__LINE__ . ' ui tunnel $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . print_r($tmp_module_ARRAY,true) . '].');
                 switch($module_nom){
                     case 'crnrstn_interact_ui_documentation_content_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('php');
+                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();  //php
                         //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
                         //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
 
@@ -216,7 +238,7 @@ class crnrstn_ui_tunnel_response_manager {
                         $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
                         //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
                         //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
-                        
+
                     break;
                     case 'crnrstn_interact_ui_system_footer_src':
 

@@ -4,13 +4,14 @@
 // Code is Poetry */
 .the_R_in_crnrstn                                   { color:#F90000; }
 .crnrstn_body_wrapper                               { width:100%; text-align:center; margin:0 auto; font-family:Arial, Helvetica, sans-serif; background-color: #FFF;}
+.crnrstn_lightbox_body_wrapper                      { width:100%; text-align:center; margin:0 auto; font-family:Arial, Helvetica, sans-serif;}
 
 .crnrstn_j5_wolf_pup_outter_wrap                    { width:98%; float:right; padding:120px 0 0 0; margin:0; text-align: right; }
-.crnrstn_j5_wolf_pup_inner_wrap                     { position: absolute; padding-top:10px; width:98%; z-index: 2; text-align: right;}
+.crnrstn_j5_wolf_pup_inner_wrap                     { position: absolute; padding:10px 0 0 0; width:98%; z-index: 2; text-align: right;}
 
 /*NEED TO SET Z-INDEX THROUGH THE SSDTL FOR ADMIN ACCESS*/
-.crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: black; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80); opacity: 0.8; display: none;}
-.crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; width: 100%; z-index: 10000; text-align: center; line-height: 0; font-weight: normal; outline: none;}
+.crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: #000; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0;}
+.crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; width: 100%; z-index: 10000; text-align: center; font-weight: normal; outline: none;}
 
 /*CRNRSTN::INTEGRATION INTERACT UI MODULE :: SYSTEM FOOTER*/
 .crnrstn_ui_system_footer_shell                     { /*position:-webkit-sticky; position: sticky; bottom:5px;*/}
@@ -155,6 +156,9 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_interact_ui_frm_submit             { width: 115px; height: 37px; background-color: #FFF; border: 2px solid #5C98EB; cursor:pointer; }
 .crnrstn_interact_ui_signin_frm_btn_submit  { text-align: left; font-size: 20px; color: #5C98EB; font-weight: bold; padding: 7px 0 0 17px; cursor:pointer;}
 
+/*MIT OVERLAY*/
+.crnrstn_lightbox_content_shell             { width:620px; background-color: #FFF; text-align: center; margin:0 auto; margin-top: 30px; border-radius: 5px;}
+
 /*HEAD SECTION::SIGNIN FORM*/
 .crnrstn_dyn_signin_hdr_branding_shell      { width:578px; height:45px; text-align: center; margin:0 auto; padding-top: 10px;}
 .crnrstn_env_select_wrapper                 { float: left;}
@@ -168,7 +172,7 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_section_outter_wrapper.signin      { border:2px solid #000; width:578px; text-align: center; margin:0 auto;}
 .crnrstn_section_inner_wrapper.signin       { border:2px solid #C6C6C6; width:574px; height: 460px;}
 .crnrstn_signin_meta_time_stats_wrapper     { position: absolute; z-index: 1; margin:15px 0 0 0; width:540px;}
-.crnrstn_signin_meta_time_stats             { position: absolute; z-index: 3; margin:421px 0 0 10px; text-align:left; color: #000; padding-left:0px; font-size:10px; line-height: 15px; font-family: Courier, monospace;}
+.crnrstn_signin_meta_time_stats             { position: absolute; z-index: 3; margin:421px 0 0 10px; text-align:left; color: #000; padding-left:0; font-size:10px; line-height: 15px; font-family: Courier, monospace;}
 .crnrstn_signin_meta_5_logo                 { position: absolute; z-index: 3; padding:418px 0 0 547px; float: right; text-align:right;}
 .crnrstn_signin_backdrop_logo               { position: absolute; z-index: 1; margin-left: 30px; top:20px;}
 
@@ -223,7 +227,7 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_mit_back_copy_outter_shell         { float:right; text-align:left; position: relative;}
 .crnrstn_mit_back_copy_inner_shell          { position: absolute; left:-38px; top:12px;}
 .crnrstn_mit_copy_back                      { font-size:11px;}
-.crnrstn_mit_license_wrapper                { float:left; text-align: left; text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em white;}
+.crnrstn_mit_license_wrapper                { float:left; text-align: left; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
 
 /*HEAD SECTION::USER DASHBOARD*/
 body.crnrstn-disable-scrolling              { overflow: hidden;}

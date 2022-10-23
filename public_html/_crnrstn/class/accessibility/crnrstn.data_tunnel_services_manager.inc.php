@@ -289,7 +289,8 @@ class crnrstn_data_tunnel_services_manager{
             case 'crnrstn_interact_ui_documentation_content_src':
 
                 $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
-                $tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();
+                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();
+                $tmp_module_data = $module_nom.$tmp_module_page_key;
 
             break;
             case 'crnrstn_interact_ui_mit_license_src':
@@ -297,7 +298,8 @@ class crnrstn_data_tunnel_services_manager{
                 //
                 // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
                 $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
-                $tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_mit_license();
+                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_mit_license();
+                $tmp_module_data = $module_nom.$tmp_module_page_key;
 
             break;
             case 'crnrstn_interact_ui_documentation_side_nav_src':

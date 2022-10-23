@@ -82,34 +82,26 @@ class crnrstn_ui_html_manager {
 
         $tmp_data_key = 'crnrstn_ui_navigation';
         $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::INTERACT_UI::' . $this->oCRNRSTN->hash($tmp_data_key);
-//        if(!$this->oCRNRSTN->isset_data_key($tmp_data_key, $tmp_data_type_family)){
 
-            $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
+        $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
 
-            //
-            // SOURCE :: https://www.php.net/manual/en/function.scandir.php
-            // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
-            $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
+        //
+        // SOURCE :: https://www.php.net/manual/en/function.scandir.php
+        // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
+        $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
 
-            foreach($scanned_directory_ARRAY as $index => $dir_resource){
+        foreach($scanned_directory_ARRAY as $index => $dir_resource){
 
-                $tmp_data_key = 'CRNRSTN_NAV_LINK';
-                $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
-
-                $tmp_str .= '
-                    <li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" onclick="oCRNRSTN_JS.toggle_full_overlay(); return false;" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
-
-            }
-
-            $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
+            $tmp_data_key = 'CRNRSTN_NAV_LINK';
             $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
 
-//        }else{
-//
-//            $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
-//            $tmp_str = $this->oCRNRSTN->get_resource($tmp_data_key, 0, $tmp_data_type_family);
-//
-//        }
+            $tmp_str .= '
+                <li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
+
+        }
+
+        $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
+        $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
 
         return $tmp_str;
 
@@ -121,12 +113,92 @@ class crnrstn_ui_html_manager {
 
         if(strlen($tmp_module_page_key)>0){
 
-            $tmp_html_out = '
-            <div style="text-align: left; padding: 40px;">
-                <span style=" font-size: 45px; font-family: Arial, Helvetica, sans-serif; color:#FEFEFE; "><br>' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '</span>
-                <div class="crnrstn_cb_20"></div>
-                <div class="crnrstn_documentation_dyn_content_description">CONTENT PENDING</span>
-            </div>';
+            $tmp_html_out = '<div class="crnrstn_lightbox_body_wrapper">
+<div class="crnrstn_lightbox_content_shell">
+<div class="crnrstn_dyn_signin_hdr_branding_shell">
+
+            <div class="crnrstn_env_select_wrapper">
+                <div class="crnrstn_env_select_component_wrapper">
+                    <select name="crnrstn_host_endpoint" style="height: 15px; font-size: 11px; display:inline;">
+                        <option value="0">-</option>
+                        <option value="7">Apache v' . $this->oCRNRSTN->version_apache() . '</option>
+                        <option value="8">MySQLi v' . $this->oCRNRSTN->version_mysqli() . '</option>
+                        <option value="9">PHP v' . $this->oCRNRSTN->version_php() . '</option>
+                    </select>
+                </div>
+                <div class="crnrstn_cb"></div>
+                
+                <div class="crnrstn_static_hdr_branding_shell">
+                    <div class="crnrstn_static_hdr_branding_copy">C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . '</div>
+                </div>
+
+            </div>
+
+            <div class="crnrstn_dyn_branding_elem_wrapper signin">
+                <div class="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN->return_branding_creative(true, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+            </div>
+
+                <div class="crnrstn_cb_5"></div>
+                
+        </div>
+
+        <div class="crnrstn_section_outter_wrapper signin">
+            <div class="crnrstn_section_inner_wrapper signin">
+
+                <div class="crnrstn_signin_meta_time_stats_wrapper">
+                    <div class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</div>
+                    <div class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN->return_creative('5', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+
+                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 250, '', '', '', '', '', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+
+                    <div class="crnrstn_cb"></div>
+                </div>
+
+                <div class="crnrstn_cb"></div>
+
+                <div class="crnrstn_signin_form_outter_wrapper">
+
+                    <div class="crnrstn_signin_form_inner_wrapper crnrstn_mit_landing">
+
+                        <div class="crnrstn_signin_form_inner_wrapper_rel">
+
+                            <div class="crnrstn_mit_license_wrapper">
+                                <code><pre>MIT License
+                               
+Copyright (c) 2012-' . date('Y') . ' Jonathan \'J5\' Harris
+
+Permission is hereby granted, free of charge, to any person obtaining 
+a copy of this software and associated documentation files (the 
+"Software"), to deal in the Software without restriction, including 
+without limitation the rights to use, copy, modify, merge, publish, 
+distribute, sublicense, and/or sell copies of the Software, and to 
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be 
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></code>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="crnrstn_cb_40"></div>
+        </div>
+        </div>';
 
             return $tmp_html_out;
 

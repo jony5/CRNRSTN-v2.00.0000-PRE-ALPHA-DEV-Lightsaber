@@ -155,19 +155,19 @@ class crnrstn_messenger_from_north {
                     $this->password = $password;
                     $this->port = $port;
 
-                    break;
+                break;
                 case 'CRNRSTN_PROXY':
                     //
                     //
 
-                    break;
+                break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('Unknown mail protocol of "' . $mail_protocol . '" has been provided. The options which are available include "SMTP", "MAIL", "SENDMAIL" and "QMAIL".');
 
-                    break;
+                break;
 
             }
 
@@ -832,16 +832,22 @@ class crnrstn_messenger_from_north {
                 switch($tmp_priority){
                     case 1:
                     case 'HIGH':
+
                         $this->priorityBulk[$email_experience_tracker] = 1;
-                        break;
+
+                    break;
                     case 3:
                     case 'NORMAL':
+
                         $this->priorityBulk[$email_experience_tracker] = 3;
-                        break;
+
+                    break;
                     case 5:
                     case 'LOW':
+
                         $this->priorityBulk[$email_experience_tracker] = 5;
-                        break;
+
+                    break;
                     default:
 
                         $this->priorityBulk[$email_experience_tracker] = 3;
@@ -850,7 +856,7 @@ class crnrstn_messenger_from_north {
                         // HOOOSTON...VE HAF PROBLEM!
                         throw new Exception('The provided priority level of "' . $priority.'" is invalid; NORMAL priority has been applied for this recipient experience. Options include, "HIGH" or 1, "NORMAL" or 3 and "LOW" or 5.');
 
-                        break;
+                    break;
 
                 }
 
@@ -2237,29 +2243,32 @@ class crnrstn_messenger_from_north {
                                 )
                             );
 
-                            break;
+                        break;
                         case 'MAIL':
+
                             self::$oCRNRSTN_n->error_log('oGabriel isMail()', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                             $oCRNRSTN_PHPMailer->isMail();
 
-                            break;
+                        break;
+
                         case 'SENDMAIL':
                             self::$oCRNRSTN_n->error_log('oGabriel isSendmail()', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                             $oCRNRSTN_PHPMailer->isSendmail();
 
-                            break;
+                        break;
+
                         case 'QMAIL':
                             self::$oCRNRSTN_n->error_log('oGabriel isQmail()', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                             $oCRNRSTN_PHPMailer->isQmail();
 
-                            break;
+                        break;
                         default:
 
                             //
                             // HOOOSTON...VE HAF PROBLEM!
                             throw new Exception('Unknown mail protocol of "' . $this->mail_protocol . '" has been provided. The options which are available include "SMTP", "MAIL", "SENDMAIL" and "QMAIL".');
 
-                            break;
+                        break;
 
                     }
 
@@ -2433,7 +2442,7 @@ class crnrstn_messenger_from_north {
 
                             }
 
-                            break;
+                        break;
                         case 'bulk':
 
                             //self::$oCRNRSTN_n->error_log('oGabriel SWITCH() ENTRY CASE="bulk"', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
@@ -2563,14 +2572,15 @@ class crnrstn_messenger_from_north {
 
                             }
 
-                            break;
+                        break;
                         default:
 
                             //
                             // HOOOSTON...VE HAF PROBLEM!
                             throw new Exception('Unknown bulk or single indicator,"' . $bulk_single_indicator.'" received.');
 
-                            break;
+                        break;
+
                     }
 
                     self::$oCRNRSTN_n->error_log('[' . $i.'] oGabriel [PROXY] BULK - Returning FULLY EMAIL, CONNECTION and CONTENT CHARGED oCRNRSTN_PHPMailer to the oArray().', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
@@ -2743,7 +2753,7 @@ class crnrstn_messenger_from_north {
 
                             }
 
-                            break;
+                        break;
                         case 'bulk':
 
                             //self::$oCRNRSTN_n->error_log('oGabriel SWITCH() ENTRY CASE="bulk"', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
@@ -2873,14 +2883,15 @@ class crnrstn_messenger_from_north {
 
                             }
 
-                            break;
+                        break;
                         default:
 
                             //
                             // HOOOSTON...VE HAF PROBLEM!
                             throw new Exception('Unknown bulk or single indicator,"' . $bulk_single_indicator.'" received.');
 
-                            break;
+                        break;
+
                     }
 
                     self::$oCRNRSTN_n->error_log('[' . $i.'] oGabriel BULK - Returning FULLY EMAIL, CONNECTION and CONTENT CHARGED oCRNRSTN_PHPMailer to the oArray().', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
@@ -3210,7 +3221,7 @@ class crnrstn_messenger_from_north {
 </body>
 </html>';
 
-                    break;
+                break;
                 case 'EXCEPTION_NOTIFICATION':
 
                     $tmp_body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -3376,7 +3387,7 @@ class crnrstn_messenger_from_north {
 </body>
 </html>';
 
-                    break;
+                break;
                 case 'EXCEPTION_NOTIFICATION::SOAP_TUNNEL':
 
                     $tmp_body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -3541,14 +3552,15 @@ class crnrstn_messenger_from_north {
 </table>
 </body>
 </html>';
-                    break;
+                break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('Unknown HTML message body, "' . $msgType.'", requested.');
 
-                    break;
+                break;
+
             }
 
             return $tmp_body;
@@ -3633,7 +3645,7 @@ system notifications, please contact the
 website administrator.
 ';
 
-                    break;
+                break;
                 case 'EXCEPTION_NOTIFICATION':
 
                     $tmp_body = 'CRNRSTN :: Exception Notification
@@ -3685,7 +3697,7 @@ LOG TRACE
 ';
 
 
-                    break;
+                break;
                 case 'EXCEPTION_NOTIFICATION::SOAP_TUNNEL':
 
                     $tmp_body = 'CRNRSTN :: Exception Notification
@@ -3735,14 +3747,14 @@ LOG TRACE
 {LOG_TRACE}
 
 ';
-                    break;
+                break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('Unknown TEXT message body, "' . $msgType.'", requested.');
 
-                    break;
+                break;
 
             }
 
@@ -4105,13 +4117,13 @@ class crnrstn_communications_css_standard{
     protected $grading_curve = 51.00000;
     public $output_string_ARRAY = array();
 
-    public function __construct($oCRNRSTN_USR, $raw_html_data = NULL, $output_mode = 'HTML_PAGE'){
+    public function __construct($oCRNRSTN, $raw_html_data = NULL, $output_mode = 'HTML_PAGE'){
 
-        $this->oCRNRSTN_USR = $oCRNRSTN_USR;
+        $this->oCRNRSTN = $oCRNRSTN;
 
         //
         // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
+        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         $this->output_string_ARRAY['str'] = '';
 
@@ -4130,31 +4142,31 @@ class crnrstn_communications_css_standard{
         $this->output_mode = $output_mode;
         $this->raw_data = $raw_html_data;
         $this->raw_data_LOWER = strtolower($raw_html_data);
-        $this->raw_data_PACKED = $this->oCRNRSTN_USR->proper_replace(' ', '', $this->raw_data_LOWER);
+        $this->raw_data_PACKED = $this->oCRNRSTN->proper_replace(' ', '', $this->raw_data_LOWER);
 
         //
         // LET'S DEFINE SOME CONSTANTS FOR THIS CLASS OBJECT.
-        @define('CRNRSTN_MAIL_CLIENT_DESKTOP', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_MAIL_CLIENT_DESKTOP'));
-        @define('CRNRSTN_MAIL_CLIENT_MOBILE', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_MAIL_CLIENT_MOBILE'));
-        @define('CRNRSTN_MAIL_CLIENT_WEB', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_MAIL_CLIENT_WEB'));
-        @define('CRNRSTN_CSS_VALIDATE_NONE', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_NONE'));
-        @define('CRNRSTN_CSS_VALIDATE_IS_DEPRECATED', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_IS_DEPRECATED'));
-        @define('CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD'));
-        @define('CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS'));
-        @define('CRNRSTN_CSS_VALIDATE_STANDARD_USE', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STANDARD_USE'));
-        @define('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD'));
-        @define('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD'));
-        @define('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY'));
-        @define('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY'));
-        @define('CRNRSTN_CSS_VALIDATE_HSLA', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_HSLA'));
-        @define('CRNRSTN_CSS_VALIDATE_RGB', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_RGB'));
-        @define('CRNRSTN_CSS_VALIDATE_RGBA', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_RGBA'));
-        @define('CRNRSTN_CSS_VALIDATE_CURRENTCOLOR', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_CURRENTCOLOR'));
-        @define('CRNRSTN_CSS_ICON_ALERT_BANG', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_ICON_ALERT_BANG'));            // INDICATION OF ICON TYPE TO BIND
-        @define('CRNRSTN_CSS_ICON_SUCCESS_CHECK', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_ICON_SUCCESS_CHECK'));           // INDICATION OF ICON TYPE TO BIND
-        @define('CRNRSTN_CSS_ICON_ERR_X', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_ICON_ERR_X'));                 // INDICATION OF ICON TYPE TO BIND
-        @define('CRNRSTN_CSS_CLIENT_ASSOC_HAS_META', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_CLIENT_ASSOC_HAS_META'));      // INDICATION OF NEED TO SHOW A NOTE
-        @define('CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK'));  // INDICATION OF NEED TO HTTP LINK THE ELEMENT
+        @define('CRNRSTN_MAIL_CLIENT_DESKTOP', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_MAIL_CLIENT_DESKTOP'));
+        @define('CRNRSTN_MAIL_CLIENT_MOBILE', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_MAIL_CLIENT_MOBILE'));
+        @define('CRNRSTN_MAIL_CLIENT_WEB', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_MAIL_CLIENT_WEB'));
+        @define('CRNRSTN_CSS_VALIDATE_NONE', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_NONE'));
+        @define('CRNRSTN_CSS_VALIDATE_IS_DEPRECATED', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_IS_DEPRECATED'));
+        @define('CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD'));
+        @define('CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS'));
+        @define('CRNRSTN_CSS_VALIDATE_STANDARD_USE', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STANDARD_USE'));
+        @define('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD'));
+        @define('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD'));
+        @define('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY'));
+        @define('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY'));
+        @define('CRNRSTN_CSS_VALIDATE_HSLA', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_HSLA'));
+        @define('CRNRSTN_CSS_VALIDATE_RGB', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_RGB'));
+        @define('CRNRSTN_CSS_VALIDATE_RGBA', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_RGBA'));
+        @define('CRNRSTN_CSS_VALIDATE_CURRENTCOLOR', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_CURRENTCOLOR'));
+        @define('CRNRSTN_CSS_ICON_ALERT_BANG', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_ICON_ALERT_BANG'));            // INDICATION OF ICON TYPE TO BIND
+        @define('CRNRSTN_CSS_ICON_SUCCESS_CHECK', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_ICON_SUCCESS_CHECK'));           // INDICATION OF ICON TYPE TO BIND
+        @define('CRNRSTN_CSS_ICON_ERR_X', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_ICON_ERR_X'));                 // INDICATION OF ICON TYPE TO BIND
+        @define('CRNRSTN_CSS_CLIENT_ASSOC_HAS_META', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_CLIENT_ASSOC_HAS_META'));      // INDICATION OF NEED TO SHOW A NOTE
+        @define('CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK'));  // INDICATION OF NEED TO HTTP LINK THE ELEMENT
 
         $this->load_mail_clients();
 
@@ -4171,19 +4183,19 @@ class crnrstn_communications_css_standard{
             foreach ($chunkArray0 as $key_css => $css_string_nomination) {
 
                 /*
-                define('CRNRSTN_CSS_VALIDATE_NONE', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_NONE'));
-                define('CRNRSTN_CSS_VALIDATE_IS_DEPRECATED', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_IS_DEPRECATED'));
-                define('CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD'));
-                define('CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS'));
-                define('CRNRSTN_CSS_VALIDATE_STANDARD_USE', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STANDARD_USE'));
-                define('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD'));
-                define('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD'));
-                define('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY'));
-                define('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY'));
-                define('CRNRSTN_CSS_VALIDATE_HSLA', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_HSLA'));
-                define('CRNRSTN_CSS_VALIDATE_RGB', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_RGB'));
-                define('CRNRSTN_CSS_VALIDATE_RGBA', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_RGBA'));
-                define('CRNRSTN_CSS_VALIDATE_CURRENTCOLOR', (int) $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_CURRENTCOLOR'));
+                define('CRNRSTN_CSS_VALIDATE_NONE', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_NONE'));
+                define('CRNRSTN_CSS_VALIDATE_IS_DEPRECATED', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_IS_DEPRECATED'));
+                define('CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD'));
+                define('CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS'));
+                define('CRNRSTN_CSS_VALIDATE_STANDARD_USE', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STANDARD_USE'));
+                define('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD'));
+                define('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD'));
+                define('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY'));
+                define('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY'));
+                define('CRNRSTN_CSS_VALIDATE_HSLA', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_HSLA'));
+                define('CRNRSTN_CSS_VALIDATE_RGB', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_RGB'));
+                define('CRNRSTN_CSS_VALIDATE_RGBA', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_RGBA'));
+                define('CRNRSTN_CSS_VALIDATE_CURRENTCOLOR', (int) $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_CURRENTCOLOR'));
                  * */
 
                 //
@@ -4232,6 +4244,7 @@ class crnrstn_communications_css_standard{
                     default:
                         //
                         // CRNRSTN_CSS_VALIDATE_NONE
+
                     break;
 
                 }
@@ -4256,16 +4269,16 @@ class crnrstn_communications_css_standard{
 
     public function return_css_validator_input_form_HTML(){
 
-        $tmp_form_serial = $this->oCRNRSTN_USR->generate_new_key(8, '01');
+        $tmp_form_serial = $this->oCRNRSTN->generate_new_key(8, '01');
 
         $tmp_array_encry = array();
         $tmp_array_clear = array();
-        $tmp_array_encry[] = 'crnrstn_l=' . $this->oCRNRSTN_USR->data_encrypt('css_validator');
+        $tmp_array_encry[] = 'crnrstn_l=' . $this->oCRNRSTN->data_encrypt('css_validator');
         $tmp_array_mit_clear[] = 'crnrstn_mit=true';
-        $tmp_array_alg_cear[] = 'crnrstn_css_valptrn=' . $this->oCRNRSTN_USR->generate_new_key(8, '01');
+        $tmp_array_alg_cear[] = 'crnrstn_css_valptrn=' . $this->oCRNRSTN->generate_new_key(8, '01');
 
-        $tmp_http_root = $this->oCRNRSTN_USR->append_url_param($tmp_array_encry, true, $tmp_array_mit_clear);
-        $tmp_alg_lnk = $this->oCRNRSTN_USR->append_url_param($tmp_array_encry, true, $tmp_array_alg_cear);
+        $tmp_http_root = $this->oCRNRSTN->append_url_param($tmp_array_encry, true, $tmp_array_mit_clear);
+        $tmp_alg_lnk = $this->oCRNRSTN->append_url_param($tmp_array_encry, true, $tmp_array_alg_cear);
 
         //
         // INITIALIZE CRNRSTN :: TO CATCH THE FORM(S) ON THIS PAGE. THEREFORE, NEED TO THROW  SOME THINGS.
@@ -4278,7 +4291,12 @@ class crnrstn_communications_css_standard{
         // THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
         # THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE ENCRYPTED INITIALLY.
         # $oCRNRSTN_USR->form_input_add({crnrstn_pssdtl_packet}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
-        $this->oCRNRSTN_USR->form_input_add('crnrstn_validate_css', 'ugc_html', true);
+
+        $this->oCRNRSTN->print_r('PICK BACK UP HERE WHEN CRNRSTN :: FORM HANDLING IS FULLY REFACTORED TO LIGHTSABER. die(); Sunday, October 23, 2022 @ 1201 hrs.', NULL, NULL, __LINE__, __METHOD__, __FILE__);
+        error_log('PICK BACK UP HERE WHEN CRNRSTN :: FORM HANDLING IS FULLY REFACTORED TO LIGHTSABER. die(); Sunday, October 23, 2022 @ 1201 hrs.');
+
+        die();
+        $this->oCRNRSTN->form_input_add('crnrstn_validate_css', 'ugc_html', true);
 
         $this->oCRNRSTN_USR->init_validation_message('crnrstn_validate_css','ugc_html', 'Content is required.');
 
@@ -4309,7 +4327,7 @@ class crnrstn_communications_css_standard{
                                     <a href="' . $tmp_alg_lnk . '" target="_self" style=\'font-family:"Courier New", Courier, monospace; text-decoration:none; font-size: 11px; color: #6885C3; text-decoration:underline;\'>algorithm</a>
                                 </div>
                                 <div style="float: left; text-align: left; padding:0 10px 0 0; line-height: 15px;">
-                                    <a href="' . $this->oCRNRSTN_USR->return_sticky_link('https://github.com/jony5/CSS-Validator-for-HTML-Email-v2.00.0000').'" target="_blank" style=\'font-family:"Courier New", Courier, monospace; text-decoration:none; font-size: 11px; color: #6885C3; text-decoration:underline;\'>download</a>
+                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CSS-Validator-for-HTML-Email-v2.00.0000').'" target="_blank" style=\'font-family:"Courier New", Courier, monospace; text-decoration:none; font-size: 11px; color: #6885C3; text-decoration:underline;\'>download</a>
                                 </div>
                                 <div style="float: left; text-align: left; padding:0 0 0 0; line-height: 15px;">
                                     <a rel="crnrstn_signin" href="#" target="_blank" style=\'font-family:"Courier New", Courier, monospace; text-decoration:none; font-size: 11px; color: #6885C3; text-decoration:underline;\'>login</a>
@@ -4333,8 +4351,8 @@ class crnrstn_communications_css_standard{
 
                                     <div style="text-align: center; margin:0 auto;">
 
-                                        <div style="float:left; background-image:url(' . $this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG).');background-repeat:no-repeat; margin-right:10px; padding:0 10px 0 17px; width:35px; height:19px;">&nbsp;<a href="' . $this->oCRNRSTN_USR->return_sticky_link('http://validator.w3.org/check?uri=referer', 'validator_w3_org').'" target="_blank">XHTML</a></div>
-                                        <div style="float:left; background-image:url(' . $this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG).');background-repeat:no-repeat; margin-right:10px; padding:0 10px 0 17px; width:25px; height:19px;">&nbsp;<a href="' . $this->oCRNRSTN_USR->return_sticky_link('http://jigsaw.w3.org/css-validator/check/referer', 'jigsaw_w3_org').'" target="_blank">CSS</a></div>
+                                        <div style="float:left; background-image:url(' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG).');background-repeat:no-repeat; margin-right:10px; padding:0 10px 0 17px; width:35px; height:19px;">&nbsp;<a href="' . $this->oCRNRSTN->return_sticky_link('http://validator.w3.org/check?uri=referer', 'validator_w3_org').'" target="_blank">XHTML</a></div>
+                                        <div style="float:left; background-image:url(' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG).');background-repeat:no-repeat; margin-right:10px; padding:0 10px 0 17px; width:25px; height:19px;">&nbsp;<a href="' . $this->oCRNRSTN->return_sticky_link('http://jigsaw.w3.org/css-validator/check/referer', 'jigsaw_w3_org').'" target="_blank">CSS</a></div>
 
                                         <div style="height:0; width:100%; clear:both; display: block; overflow: hidden;"></div>
 
@@ -4519,12 +4537,12 @@ class crnrstn_communications_css_standard{
         $tmp_array_encry = array();
         $tmp_array_clear = array();
         $tmp_array_delete = array();
-        $tmp_array_encry[] = 'crnrstn_l=' . $this->oCRNRSTN_USR->data_encrypt('css_validator');
+        $tmp_array_encry[] = 'crnrstn_l=' . $this->oCRNRSTN->data_encrypt('css_validator');
         $tmp_array_clear[] = 'crnrstn_css_valptrn=return_all';
         $tmp_array_delete[] = 'crnrstn_css_valptrn';
 
-        $tmp_lnk_all = $this->oCRNRSTN_USR->append_url_param($tmp_array_encry, true, $tmp_array_clear);
-        $tmp_lnk_css = $this->oCRNRSTN_USR->append_url_param($tmp_array_encry, true, $tmp_array_delete, false);
+        $tmp_lnk_all = $this->oCRNRSTN->append_url_param($tmp_array_encry, true, $tmp_array_clear);
+        $tmp_lnk_css = $this->oCRNRSTN->append_url_param($tmp_array_encry, true, $tmp_array_delete, false);
 
         $tmp_str = '<div style="text-align: left; width: 390px; background-color: #FFF;">
                                                 <div style="width:385px; border:2px solid #FFF; margin:0; color: #6885C3;">
@@ -4544,7 +4562,7 @@ class crnrstn_communications_css_standard{
                                             this validator.<br><br>
                                             
                                             Matching (and source of record) information can be found within Campaign Monitor\'s
-                                            Ultimate Guide to CSS, <a href="' . $this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/css/', 'css_validator_kpi_header').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">here</a>.</div>
+                                            Ultimate Guide to CSS, <a href="' . $this->oCRNRSTN->return_sticky_link('http://www.campaignmonitor.com/css/', 'css_validator_kpi_header').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">here</a>.</div>
                                         
                                             <div style=\'font-family:"Courier New", Courier, monospace; font-size: 13px; font-weight: normal; border-left: 0px solid #FFF;  border-top: 0px solid #FFF; border-bottom: 6px solid #FFF; color: #6885C3; line-height:19px;\'>
                                             <a href="' . $tmp_lnk_all . '" target="_self" style=\'text-decoration:none; font-family:"Courier New", Courier, monospace; font-size: 13px; font-weight: normal; color: #6885C3; text-decoration:underline; \'>Click here</a> to get all of this data in a single &amp; <span style="color:#D24A45">proper massive large</span> server response.</div>
@@ -4576,7 +4594,7 @@ class crnrstn_communications_css_standard{
     private function initialize_pattern_regulated_bit($string_pattern, $integer_constant){
 
         //$const_nom = 'CRNRSTN_'.strtoupper(md5($string_pattern));
-        $tmp_val = $this->oCRNRSTN_USR->initialize_serialized_bit($string_pattern, $integer_constant);
+        $tmp_val = $this->oCRNRSTN->initialize_serialized_bit($string_pattern, $integer_constant);
 
         //
         // DEFINE CONSTANT ONE WITH BIT INTEGER STORAGE
@@ -4675,7 +4693,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Mostly supported, but unquoted font names containing line breaks don\'t work.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_APPLE_MAIL_10':
 
                         $tmp_regulated_string_patterns_ARRAY = array('max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', 'EOT', 'font-size-adjust', 'font-stretch', 'hyphens', 'text-fill-color', 'text-size-adjust', 'text-stroke-color', 'text-stroke-width', 'background-attachment', 'position', 'backface-visibility', 'transform');
@@ -4716,7 +4734,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Supported with <code>-webkit</code> prefix.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_IBM_NOTES_9':
 
                         $tmp_regulated_string_patterns_ARRAY = array('caption-side', '<link> in <head>', '<link> in <body>', '@media', 'and', 'or (comma)', 'not','screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'direction', 'font', 'font-family', 'font-feature-settings', 'font-kerning', 'font-size', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'letter-spacing', 'line-height', 'overflow-wrap', 'text-align', 'text-decoration', 'text-fill-color', 'text-indent', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'text-transform', 'vertical-align', 'white-space', 'word-spacing', 'word-wrap', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-color', 'background-image', 'background-origin', 'background-position', 'background-repeat', 'background-size', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'currentColor', 'border', 'border-bottom', 'border-bottom-color', 'border-bottom-left-radius', 'border-bottom-right-radius', 'border-bottom-style', 'border-bottom-width','border-color', 'border-image', 'border-left', 'border-left-color', 'border-left-style', 'border-left-width', 'border-radius', 'border-right', 'border-right-color', 'border-right-style', 'border-right-width', 'border-style', 'border-top', 'border-top-color', 'border-top-left-radius', 'border-top-right-radius', 'border-top-style', 'border-top-width', 'border-width', 'box-shadow', 'box-sizing', 'height', 'margin', 'margin-bottom', 'margin-left', 'margin-right', 'margin-top', 'MEDIA_QUERIES_max-height', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height', 'BOX_MODEL_min-width', 'padding', 'padding-bottom', 'padding-left', 'padding-right', 'padding-top', 'bottom', 'clear', 'cursor', 'GRID_display', 'FLEXBOX_display', 'float', 'left', 'object-fit', 'object-position', 'opacity', 'outline', 'outline-color', 'outline-style', 'outline-width', 'overflow', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style', 'list-style-image', 'list-style-position', 'list-style-type', 'border-collapse', 'border-spacing', 'empty-cells', 'table-layout', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-content', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'POSITIONING_AND_DISPLAY_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -4833,7 +4851,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Buggy.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_OUTLOOK_2000_03':
 
                         $tmp_regulated_string_patterns_ARRAY = array('caption-side', 'and', 'or (comma)', 'not','only screen', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-family', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-wrap', 'background', 'background-blend-mode', 'background-clip', 'background-origin', 'background-size', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'currentColor', 'border-bottom-left-radius', 'border-bottom-right-radius', 'border-image', 'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'box-shadow', 'box-sizing', 'MEDIA_QUERIES_max-height', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height','BOX_MODEL_min-width', 'cursor', 'GRID_display', 'object-fit', 'object-position', 'opacity', 'outline', 'outline-color', 'outline-style', 'outline-width', 'resize', 'list-style-type', 'border-collapse', 'border-spacing', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-content', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'FLEXBOX_display', 'POSITIONING_AND_DISPLAY_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -4874,7 +4892,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Mostly supported, but unquoted font names containing line breaks don\'t work.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_OUTLOOK_2007_16':
 
                         $tmp_regulated_string_patterns_ARRAY = array('caption-side', '<link> in <head>', '<link> in <body>', '@media', 'and', 'or (comma)', 'not','screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'line-height', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'text-transform', 'vertical-align', 'white-space', 'word-spacing', 'word-wrap', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-color', 'background-image', 'background-origin', 'background-position', 'background-repeat', 'background-size', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'currentColor', 'border', 'border-bottom', 'border-bottom-left-radius', 'border-bottom-right-radius', 'border-bottom-width','border-color', 'border-image', 'border-left', 'border-left-width', 'border-radius', 'border-right', 'border-right-width', 'border-top', 'border-top-left-radius', 'border-top-right-radius', 'border-top-width', 'border-width', 'box-shadow', 'box-sizing', 'height', 'margin', 'margin-bottom', 'margin-left', 'margin-right', 'margin-top', 'MEDIA_QUERIES_max-height', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height', 'BOX_MODEL_min-width', 'padding', 'padding-bottom', 'padding-left', 'padding-right', 'padding-top', 'width', 'bottom', 'clear', 'cursor', 'GRID_display', 'float', 'left', 'object-fit', 'object-position', 'opacity', 'outline', 'outline-color', 'outline-style', 'outline-width', 'overflow', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style', 'list-style-image', 'list-style-position', 'list-style-type', 'border-spacing', 'empty-cells', 'table-layout', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-content', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5011,7 +5029,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Mostly supported, but the shorthand property fails to override <code>font-weight</code>.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_OUTLOOK_EXPRESS':
 
                         $tmp_regulated_string_patterns_ARRAY = array('caption-side', '<link> in <head>', '<link> in <body>', 'and', 'or (comma)', 'not', 'only screen', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-family', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-wrap', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-image', 'background-origin', 'background-position', 'background-repeat', 'background-size', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'currentColor', 'border-bottom-left-radius', 'border-bottom-right-radius', 'border-image', 'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'box-shadow', 'box-sizing', 'MEDIA_QUERIES_max-height', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height', 'BOX_MODEL_min-width', 'cursor', 'GRID_display', 'object-fit', 'object-position', 'opacity', 'outline', 'outline-color', 'outline-style', 'outline-width', 'resize', 'list-style-image', 'list-style-type', 'border-collapse', 'border-spacing', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-content', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5052,7 +5070,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'User is prompted to download webfont, but it doesn\'t display.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ERR_X);
 
-                        break;
+                    break;
                     case 'CRNRSTN_OUTLOOK_FOR_MAC':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<link> in <body>','<link> in <head>', 'max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', 'EOT', 'font-stretch', 'font-style', 'hyphens', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'backface-visibility', 'transform');
@@ -5101,7 +5119,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'When images are downloaded.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_POSTBOX':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<link> in <body>', 'any-hover', 'any-pointer', 'hover', 'max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-attachment', 'background-blend-mode', 'isolation', 'mix-blend-mode', 'CSS gradients', 'border-image', 'box-sizing', 'object-fit', 'object-position', 'overflow', 'position', 'resize', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-content', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'GRID_display', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5146,7 +5164,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'When images are downloaded.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_THUNDERBIRD':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<link> in <body>', 'any-hover', 'any-pointer', 'hover', 'max-device-pixel-ratio', 'min-device-pixel-ratio', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'font-synthesis', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'backdrop-filter', 'break-after', 'break-before', 'break-inside', 'column-fill', 'column-span');
@@ -5179,7 +5197,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'When images are downloaded.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_WINDOWS_10_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('caption-side', '@media', 'and', 'or (comma)', 'not', 'screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'line-height', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'text-transform', 'vertical-align', 'white-space', 'word-spacing', 'word-wrap', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-color', 'background-image', 'background-origin', 'background-position', 'background-repeat', 'background-size', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'currentColor', 'border', 'border-bottom', 'border-bottom-left-radius', 'border-bottom-right-radius', 'border-bottom-width', 'border-color', 'border-image', 'border-left-width', 'border-radius', 'border-right', 'border-right-width', 'border-top', 'border-top-left-radius', 'border-top-right-radius', 'border-top-width', 'border-width', 'box-shadow', 'box-sizing', 'height', 'margin', 'margin-bottom', 'margin-left', 'margin-right', 'margin-top', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height', 'BOX_MODEL_min-width', 'padding', 'padding-bottom', 'padding-left', 'padding-right', 'padding-top', 'width', 'bottom', 'clear', 'cursor', 'GRID_display', 'float', 'left', 'object-fit', 'object-position', 'opacity', 'outline', 'outline-color', 'outline-style', 'outline-width', 'overflow', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style', 'list-style-image', 'list-style-position', 'list-style-type', 'border-spacing', 'empty-cells', 'table-layout', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-content', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5316,7 +5334,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Mostly supported, but the shorthand property fails to override <code>font-weight</code>.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_WINDOWS_LIVE_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('caption-side', '<link> in <head>', '<link> in <body>', 'and', 'or (comma)', 'not', 'only screen', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-family', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-wrap', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-image', 'background-origin', 'background-position', 'background-repeat', 'background-size', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'currentColor', 'border-bottom-left-radius', 'border-bottom-right-radius', 'border-image', 'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'box-shadow', 'box-sizing', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height', 'BOX_MODEL_min-width', 'cursor', 'GRID_display', 'object-fit', 'object-position', 'opacity', 'outline', 'outline-color', 'outline-style', 'outline-width', 'overflow', 'resize', 'list-style-image', 'list-style-type', 'border-collapse', 'border-spacing', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-content', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5357,11 +5375,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Mostly supported, but unquoted font names containing line breaks don\'t work.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-
-
-                        break;
-
-
+                    break;
                     case 'CRNRSTN_ANDROID_4_2_2_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('FLEXBOX_display', '<link> in <head>', '<link> in <body>', 'any-hover', 'any-pointer', 'hover', 'max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'letter-spacing', 'overflow-wrap', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-blend-mode', 'background-image', 'isolation', 'mix-blend-mode', 'CSS gradients', 'border-image', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height', 'BOX_MODEL_min-width', 'cursor', 'object-fit', 'object-position', 'resize', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'transform', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-content', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'GRID_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5474,7 +5488,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Partial. Supports CSS2 values, but not CSS3.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_ANDROID_4_4_4_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'min-aspect-ratio', 'min-device-pixel-ratio', 'EOT', 'WOFF2', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-attachment', 'background-blend-mode', 'isolation', 'mix-blend-mode', 'border-image', 'BOX_MODEL_max-width', 'cursor', 'resize', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'backdrop-filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'GRID_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'GRID_justify-content', 'justify-items', 'justify-self');
@@ -5579,7 +5593,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Supported with <code>-webkit</code> prefix.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_AOL_ALTO_ANDROID_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <head>', '<style> in <body>', '<link> in <head>', '<link> in <body>', '@media', 'and', 'or (comma)', 'not', 'screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'font-size-adjust', 'font-synthesis', 'hyphens', 'text-fill-color', 'text-indent', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-attachment', 'cursor', 'position', 'resize', 'backdrop-filter', 'FLEXBOX_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'FLEXBOX_justify-content', 'order');
@@ -5616,7 +5630,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Partial. Breaks words, but doesn\'t add hyphens.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_AOL_ALTO_IOS_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <head>', '<style> in <body>', '<link> in <head>', '<link> in <body>', '@media', 'and', 'or (comma)', 'not', 'screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'font-size-adjust', 'font-stretch', 'hyphens', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background-attachment', 'cursor', 'POSITIONING_AND_DISPLAY_display', 'position', 'resize', 'transform', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function');
@@ -5661,7 +5675,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Supported with <code>-webkit</code> prefix.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_BLACKBERRY':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<link> in <head>', '<link> in <body>', 'any-hover', 'any-pointer', 'hover', 'max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', 'pointer', '@font-face', 'EOT', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-spacing', 'background', 'background-attachment', 'background-blend-mode', 'isolation', 'mix-blend-mode', 'CSS gradients', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height', 'BOX_MODEL_min-width', 'cursor', 'object-fit', 'object-position', 'resize', 'list-style-type', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'backdrop-filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'GRID_display', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5810,7 +5824,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Supported with <code>-webkit</code> prefix.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_GMAIL_ANDROID_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <body>', '<link> in <head>', '<link> in <body>', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'MEDIA_QUERIES_min-height', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-size', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-attachment', 'Data URI background image', 'border-image', 'box-shadow', 'bottom', 'cursor', 'left', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'table-layout', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5827,7 +5841,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Partial. Doesn\'t support all keywords.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_GMAIL_ANDROID_IMAP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <head>', '<style> in <body>', '<link> in <head>', '<link> in <body>', '@media', 'and', 'or (comma)', 'not', 'screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-size', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-image', 'background-origin', 'background-position', 'background-repeat', 'background-size', 'isolation', 'mix-blend-mode', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'currentColor', 'border-image', 'box-sizing', 'bottom', 'clear', 'cursor', 'left', 'object-fit', 'object-position', 'opacity', 'overflow', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-self', 'GRID_align-items', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'GRID_display', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5844,7 +5858,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Partial. Doesn\'t support all keywords.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_GMAIL_IOS_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <body>', '<link> in <head>', '<link> in <body>', 'and', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'max-resolution', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'MEDIA_QUERIES_min-height', 'min-resolution', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-wrap', 'background-attachment', 'Data URI background image', 'border-image', 'box-shadow', 'bottom', 'cursor', 'left', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5857,7 +5871,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Property is supported, but the client breaks long words with <code>&lt;wbr&gt;</code> elements. And the <code>word-wrap</code> property defaults to <code>break-word</code>.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_GMAIL_MOBILE_WEBMAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <head>', '<style> in <body>', '<link> in <head>', '<link> in <body>', '@media', 'and', 'or (comma)', 'not', 'screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-wrap', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-origin', 'background-size', 'isolation', 'mix-blend-mode', 'Data URI background image', 'border-image', 'box-shadow', 'box-sizing', 'bottom', 'cursor', 'left', 'object-fit', 'object-position', 'opacity', 'overflow', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5874,7 +5888,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Property is supported, but the client breaks long words with <code>&lt;wbr&gt;</code> elements. And the <code>word-wrap</code> property defaults to <code>break-word</code>.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_GOOGLE_INBOX_ANDROID_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <body>', '<link> in <head>', '<link> in <body>', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'MEDIA_QUERIES_min-height', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-attachment', 'Data URI background image', 'border-image', 'box-shadow', 'bottom', 'cursor', 'left', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'GRID_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5887,7 +5901,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Property is supported, but the client breaks long words with <code>&lt;wbr&gt;</code> elements. And the <code>word-wrap</code> property defaults to <code>break-word</code>.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_GOOGLE_INBOX_IOS_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('Data URI background image', '<style> in <body>', '<link> in <body>','<link> in <head>', 'and', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'max-resolution', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'MEDIA_QUERIES_min-height', 'min-resolution', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-wrap', 'background-attachment', 'border-image', 'box-shadow', 'bottom', 'cursor', 'left', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -5900,7 +5914,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Property is supported, but the client breaks long words with <code>&lt;wbr&gt;</code> elements. And the <code>word-wrap</code> property defaults to <code>break-word</code>.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_IOS_10_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', 'EOT', 'font-size', 'font-size-adjust', 'hyphens', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background-attachment', 'cursor', 'position', 'resize', 'backface-visibility', 'transform');
@@ -5949,7 +5963,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'By default, minimum font size is 13px. Use <code>-webkit-text-size-adjust: 100%;</code> to override.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_IOS_11_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', 'EOT', 'font-size', 'font-size-adjust', 'hyphens', 'text-fill-color', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background-attachment', 'cursor', 'position', 'resize', 'backface-visibility', 'transform');
@@ -5994,7 +6008,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'By default, minimum font size is 13px. Use <code>-webkit-text-size-adjust: 100%;</code> to override.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_OUTLOOK_ANDROID_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('max-aspect-ratio', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'min-aspect-ratio', 'min-device-pixel-ratio', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'font-feature-settings', 'font-size-adjust', 'font-synthesis', 'hyphens', 'text-fill-color', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-attachment', 'cursor', 'overflow', 'resize', 'table-layout', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter');
@@ -6028,12 +6042,12 @@ class crnrstn_communications_css_standard{
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
 
-                        break;
+                    break;
                     case 'CRNRSTN_OUTLOOK_IOS_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('grid-column', 'GRID_align-self', 'max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'white-space', 'background-attachment', 'isolation', 'mix-blend-mode', 'CSS gradients', 'HSL Colors', 'HSLA Colors', 'border-image', 'box-shadow', 'box-sizing', 'bottom', 'cursor', 'left', 'object-fit', 'object-position', 'opacity', 'position', 'resize', 'right', 'top', 'z-index', 'list-style-image', 'table-layout', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'FLEXBOX_align-content', 'FLEXBOX_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'GRID_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
 
-                        break;
+                    break;
                     case 'CRNRSTN_SPARROW':
 
                         $tmp_regulated_string_patterns_ARRAY = array('max-device-aspect-ratio', 'max-device-pixel-ratio', 'max-resolution', 'min-device-pixel-ratio', 'min-resolution', 'EOT', 'font-feature-settings', 'font-size-adjust', 'font-stretch', 'hyphens', 'text-fill-color', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background-attachment', 'cursor', 'position', 'resize', 'table-layout', 'transform-style', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'flex', 'flex-basis', 'flex-grow', 'flex-shrink', 'flex-wrap');
@@ -6066,7 +6080,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Supported with <code>-webkit</code> prefix.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_WINDOWS_PHONE_8_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('caption-side', '<link> in <head>', '<link> in <body>', 'and', 'or (comma)', 'not', 'only screen', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-family', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'white-space', 'word-wrap', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-image', 'background-origin', 'background-position', 'background-repeat', 'background-size', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Data URI background image', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'currentColor', 'border-bottom-left-radius', 'border-bottom-right-radius', 'border-image', 'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'box-shadow', 'box-sizing', 'BOX_MODEL_max-height', 'BOX_MODEL_min-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-width', 'bottom', 'cursor', 'GRID_display', 'object-fit', 'object-position', 'opacity', 'outline', 'outline-color', 'outline-style', 'outline-width', 'overflow', 'resize', 'top', 'list-style-image', 'list-style-type', 'border-collapse', 'border-spacing', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -6099,7 +6113,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Mostly supported, but unquoted font names containing line breaks don\'t work.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_YAHOO_MAIL_ANDROID_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <head>', '<link> in <head>', '<link> in <body>', 'and', 'or (comma)', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'max-resolution', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'min-resolution', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-image', 'background-origin', 'background-position', 'background-repeat', 'background-size', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'border-image', 'box-shadow', 'box-sizing', 'height', 'BOX_MODEL_max-height', 'BOX_MODEL_max-width', 'BOX_MODEL_min-height', 'BOX_MODEL_min-width', 'bottom', 'cursor', 'left', 'object-fit', 'object-position', 'opacity', 'overflow', 'position', 'resize', 'right', 'top', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'GRID_display', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -6124,7 +6138,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Partial. Supports CSS2 values, but not CSS3.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_YAHOO_MAIL_IOS_APP':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<link> in <head>', '<link> in <body>', 'and', 'or (comma)', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'max-resolution', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'min-resolution', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-wrap', 'background', 'background-attachment', 'background-blend-mode', 'background-clip', 'background-origin', 'isolation', 'mix-blend-mode', 'CSS gradients', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'border-image', 'box-shadow', 'box-sizing', 'height', 'BOX_MODEL_min-height', 'bottom', 'left', 'object-fit', 'object-position', 'opacity', 'position', 'resize', 'right', 'top', 'z-index', 'table-layout', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'GRID_display', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -6149,9 +6163,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Partial. Supports CSS2 values, but not CSS3.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
-
-
+                    break;
                     case 'CRNRSTN_AOL_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <head>', '<style> in <body>', '<link> in <head>', '<link> in <body>', '@media', 'and', 'or (comma)', 'not', 'screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'font-synthesis');
@@ -6160,7 +6172,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'When images are downloaded.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_SUCCESS_CHECK);
 
-                        break;
+                    break;
                     case 'CRNRSTN_G_SUITE':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <body>', '<link> in <head>', '<link> in <body>', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'MEDIA_QUERIES_min-height', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-stretch', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background-attachment', 'Data URI background image', 'border-image', 'box-shadow', 'bottom', 'cursor', 'left', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -6173,7 +6185,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'The property itself is intact, but the necessary media query is removed.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ERR_X);
 
-                        break;
+                    break;
                     case 'CRNRSTN_GMAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <body>', '<link> in <head>', '<link> in <body>', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'MEDIA_QUERIES_min-height', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-stretch', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background-attachment', 'Data URI background image', 'border-image', 'box-shadow', 'bottom', 'cursor', 'left', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -6186,7 +6198,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'The property itself is intact, but the necessary media query is removed.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ERR_X);
 
-                        break;
+                    break;
                     case 'CRNRSTN_GOOGLE_INBOX':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<style> in <body>', '<link> in <head>', '<link> in <body>', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'MEDIA_QUERIES_max-height', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'MEDIA_QUERIES_min-height', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-stretch', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'background-attachment', 'Data URI background image', 'border-image', 'box-shadow', 'bottom', 'cursor', 'left', 'position', 'resize', 'right', 'top', 'visibility', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -6199,7 +6211,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'The property itself is intact, but the necessary media query is removed.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ERR_X);
 
-                        break;
+                    break;
                     case 'CRNRSTN_OUTLOOK_COM':
 
                         $tmp_regulated_string_patterns_ARRAY = array('GRID_align-self', '<link> in <head>', '<link> in <body>', '@media', 'and', 'or (comma)', 'not', 'screen', 'only screen', 'all', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'MEDIA_QUERIES_max-height', 'max-resolution', 'MEDIA_QUERIES_max-width', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'MEDIA_QUERIES_min-height', 'min-resolution', 'MEDIA_QUERIES_min-width', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-size-adjust', 'font-stretch', 'font-style', 'font-synthesis', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-shadow', 'text-size-adjust', 'text-stroke', 'mix-blend-mode', 'text-stroke-color', 'text-stroke-width', 'white-space', 'background-attachment', 'background-origin', 'isolation', 'CSS gradients', 'HSL Colors', 'HSLA Colors', 'border-image', 'box-shadow', 'box-sizing', 'bottom', 'cursor', 'left', 'object-fit', 'object-position', 'position', 'resize', 'right', 'top', 'z-index', 'list-style-image', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'FLEXBOX_align-self', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'GRID_align-self', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -6208,7 +6220,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Partial. Supports <code>italic</code>, but not <code>oblique</code>.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
                     case 'CRNRSTN_YAHOO_MAIL':
 
                         $tmp_regulated_string_patterns_ARRAY = array('<link> in <head>', '<link> in <body>', 'and', 'or (comma)', 'not', 'any-hover', 'any-pointer', 'hover', 'max-aspect-ratio', 'max-device-aspect-ratio', 'max-device-height', 'max-device-pixel-ratio', 'max-device-width', 'max-resolution', 'min-aspect-ratio', 'min-device-aspect-ratio', 'min-device-height', 'min-device-pixel-ratio', 'min-device-width', 'min-resolution', 'orientation', 'pointer', '@font-face', 'EOT', 'SVG', 'TTF', 'WOFF', 'WOFF2', 'WOFF base64 encoded', 'WOFF2 base64 encoded', 'font-feature-settings', 'font-kerning', 'font-stretch', 'font-synthesis', 'font-variant', 'hyphens', 'overflow-wrap', 'text-fill-color', 'text-overflow', 'text-shadow', 'text-size-adjust', 'text-stroke', 'text-stroke-color', 'text-stroke-width', 'word-wrap', 'background', 'background-blend-mode', 'background-clip', 'background-origin', 'isolation', 'CSS gradients', 'Data URI background image', 'Multiple background images', 'HSL Colors', 'HSLA Colors', 'RGBA Colors', 'border-image', 'box-shadow', 'box-sizing', 'height', 'BOX_MODEL_min-height', 'bottom', 'cursor', 'left', 'object-fit', 'object-position', 'opacity', 'position', 'resize', 'right', 'top', 'animation', 'animation-delay', 'animation-direction', 'animation-duration', 'animation-fill-mode', 'animation-iteration-count', 'animation-name', 'animation-play-state', 'animation-timing-function', 'backface-visibility', 'perspective', 'perspective-origin', 'transform', 'transform-origin', 'transform-style', 'transition', 'transition-delay', 'transition-duration', 'transition-property', 'transition-timing-function', 'backdrop-filter', 'filter', 'break-after', 'break-before', 'break-inside', 'column-count', 'column-fill', 'column-gap', 'column-rule', 'column-rule-color', 'column-rule-style', 'column-rule-width', 'column-span', 'column-width', 'columns', 'GRID_align-content', 'GRID_align-items', 'GRID_align-self', 'FLEXBOX_align-content', 'flex', 'flex-basis', 'flex-direction', 'flex-flow', 'flex-grow', 'flex-shrink', 'flex-wrap', 'GRID_justify-content', 'order', 'FLEXBOX_align-items', 'FLEXBOX_align-self', 'GRID_display', 'FLEXBOX_display', 'grid', 'grid-area', 'grid-auto-columns', 'grid-auto-flow', 'grid-auto-rows', 'mix-blend-mode', 'grid-column', 'grid-column-end', 'grid-column-gap', 'grid-column-start', 'grid-gap', 'grid-row', 'grid-row-end', 'grid-row-gap', 'grid-row-start', 'grid-template-areas', 'grid-template-columns', 'grid-template-rows', 'FLEXBOX_justify-content', 'justify-items', 'justify-self');
@@ -6245,7 +6257,7 @@ class crnrstn_communications_css_standard{
                         $tmp_note = 'Partial. Supports CSS2 values, but not CSS3.';
                         $this->css_meta_load($mail_const_int, $tmp_css_pattern, $tmp_note, CRNRSTN_CSS_ICON_ALERT_BANG);
 
-                        break;
+                    break;
 
                 }
 
@@ -6284,7 +6296,7 @@ class crnrstn_communications_css_standard{
             // URI
             if(strlen($tmp_uri)>0){
 
-                //$this->oCRNRSTN_USR->initialize_serialized_bit($tmp_serialized_bit_nomination_seed, CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK);
+                //$this->oCRNRSTN->initialize_serialized_bit($tmp_serialized_bit_nomination_seed, CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK);
 
                 $this->css_pattern_meta_docs_uri_ARRAY[$string_pattern] = $tmp_uri;
 
@@ -6299,11 +6311,11 @@ class crnrstn_communications_css_standard{
             //
             // IF BIT IS NOT FLIPPED (E.G. CSS STRING PATTERN IS NOT INITIALIZED VIA $this->css_meta_load), FLIP ICON BIT.
             //error_log(__LINE__ .' '. __METHOD__ .' seed=>'.$tmp_serialized_meta_index_seed);
-            if(!$this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nomination_seed, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+            if(!$this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nomination_seed, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                 //
                 // ERROR ICON
-                $this->oCRNRSTN_USR->initialize_serialized_bit($tmp_serialized_bit_nomination_seed, CRNRSTN_CSS_ICON_ERR_X);
+                $this->oCRNRSTN->initialize_serialized_bit($tmp_serialized_bit_nomination_seed, CRNRSTN_CSS_ICON_ERR_X);
 
             }
 
@@ -6330,14 +6342,14 @@ class crnrstn_communications_css_standard{
 
         //
         // ICONOGRAPHY :: ICON TYPE TO BIND
-        $this->oCRNRSTN_USR->initialize_serialized_bit($tmp_serialized_meta_index, $icon_class_constant);
+        $this->oCRNRSTN->initialize_serialized_bit($tmp_serialized_meta_index, $icon_class_constant);
 
         //
         // NOTE
         if(strlen($string_comment) > 0){
 
             //error_log(__LINE__ .' '. __METHOD__ .' we initialize_serialized_bit() the HAS_META flag for this =>'.$tmp_serialized_meta_index);
-            $tmp_val = $this->oCRNRSTN_USR->initialize_serialized_bit($tmp_serialized_meta_index, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META);
+            $tmp_val = $this->oCRNRSTN->initialize_serialized_bit($tmp_serialized_meta_index, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META);
 
             //
             // DEFINE CONSTANT ONE WITH BIT INTEGER STORAGE
@@ -6368,7 +6380,7 @@ class crnrstn_communications_css_standard{
         // BASE CONFIG BITWISE INDEX SERIAL     = 'CRNRSTN_'.strtoupper(md5($css_regulated_pattern))
         // META SERIAL CSS/CLIENT $COMBINED_SEED = 'CRNRSTN_META_'.strtoupper(md5($css_regulated_pattern.$mail_client_constant))
 
-        $this->oCRNRSTN_USR->initialize_serialized_bit($COMBINED_SEED, CRNRSTN_CSS_ICON_ALERT_BANG);
+        $this->oCRNRSTN->initialize_serialized_bit($COMBINED_SEED, CRNRSTN_CSS_ICON_ALERT_BANG);
 
         $meta_str_raw_storage_ARRAY['CRNRSTN_META_'.strtoupper(md5($css_regulated_pattern.$mail_client_constant))] = $meta_str
 
@@ -6425,36 +6437,36 @@ class crnrstn_communications_css_standard{
 
             switch($client_type){
                 case CRNRSTN_MAIL_CLIENT_DESKTOP:
-                    //error_log(__LINE__ .' '. __METHOD__ .' $index='.$index.' |desktop CONST='.$this->desktop_mail_CONST_ARRAY[$index]);
+                    //error_log(__LINE__ .' '. __METHOD__ .' $index='.$index.' |desktop CONST=' . $this->desktop_mail_CONST_ARRAY[$index]);
 
-                    @define($this->desktop_mail_CONST_ARRAY[$index], (int) $this->oCRNRSTN_USR->initialize_bit($this->desktop_mail_CONST_ARRAY[$index]));
+                    @define($this->desktop_mail_CONST_ARRAY[$index], (int) $this->oCRNRSTN->initialize_bit($this->desktop_mail_CONST_ARRAY[$index]));
 
                     self::$email_rendering_client_ARRAY[$client_type]['name'][] = $client_name;
 
-                    break;
+                break;
                 case CRNRSTN_MAIL_CLIENT_MOBILE:
-                    //error_log(__LINE__ .' '. __METHOD__ .' $index='.$index.' |mobi CONST='.$this->mobile_mail_CONST_ARRAY[$index]);
+                    //error_log(__LINE__ .' '. __METHOD__ .' $index='.$index.' |mobi CONST=' . $this->mobile_mail_CONST_ARRAY[$index]);
 
-                    @define($this->mobile_mail_CONST_ARRAY[$index], (int) $this->oCRNRSTN_USR->initialize_bit($this->mobile_mail_CONST_ARRAY[$index]));
+                    @define($this->mobile_mail_CONST_ARRAY[$index], (int) $this->oCRNRSTN->initialize_bit($this->mobile_mail_CONST_ARRAY[$index]));
 
                     self::$email_rendering_client_ARRAY[$client_type]['name'][] = $client_name;
 
-                    break;
+                break;
                 case CRNRSTN_MAIL_CLIENT_WEB:
-                    //error_log(__LINE__ .' '. __METHOD__ .' $index='.$index.' |web CONST='.$this->web_mail_CONST_ARRAY[$index]);
+                    //error_log(__LINE__ .' '. __METHOD__ .' $index='.$index.' |web CONST=' . $this->web_mail_CONST_ARRAY[$index]);
 
-                    @define($this->web_mail_CONST_ARRAY[$index], (int) $this->oCRNRSTN_USR->initialize_bit($this->web_mail_CONST_ARRAY[$index]));
+                    @define($this->web_mail_CONST_ARRAY[$index], (int) $this->oCRNRSTN->initialize_bit($this->web_mail_CONST_ARRAY[$index]));
 
                     self::$email_rendering_client_ARRAY[$client_type]['name'][] = $client_name;
 
-                    break;
+                break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('Unknown CSS validation channel integer CONSTANT ['.$client_type.'].');
 
-                    break;
+                break;
 
             }
 
@@ -6543,7 +6555,7 @@ class crnrstn_communications_css_standard{
             // URI
             if(strlen($tmp_uri)>0){
 
-                $tmp_val = $this->oCRNRSTN_USR->initialize_serialized_bit($tmp_serialized_bit_nomination, CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK);
+                $tmp_val = $this->oCRNRSTN->initialize_serialized_bit($tmp_serialized_bit_nomination, CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK);
 
                 //
                 // DEFINE CONSTANT ONE WITH BIT INTEGER STORAGE
@@ -6758,18 +6770,18 @@ class crnrstn_communications_css_standard{
 
                 return 'integer return will be CSS checked!';
 
-                break;
+            break;
             case CRNRSTN_CSS_RESULTS_BOOLEAN:
 
                 return 'boolean return will be CSS checked!';
 
-                break;
+            break;
             case CRNRSTN_CSS_RESULTS_HTML:
             default:
 
                 return 'html return will be CSS checked!';
 
-                break;
+            break;
 
         }
 
@@ -6788,164 +6800,164 @@ class crnrstn_communications_css_standard{
                 // STYLE_ELEMENT
                 case '<style> in <head>':
 
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link('https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style', 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link('https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style', 'developer_mozilla_web_docs');
                     $tmp_description = 'The HTML &lt;style&gt; element contains style information for a document, or part of a document. It contains CSS, which is applied to the contents of the document containing the &lt;style&gt; element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD;
                     $tmp_pattern_species = 'STYLE_ELEMENT';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case '<style> in <body>':
 
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link('https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style', 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link('https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style', 'developer_mozilla_web_docs');
                     $tmp_description = 'The HTML &lt;style&gt; element contains style information for a document, or part of a document. It contains CSS, which is applied to the contents of the document containing the &lt;style&gt; element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY;
                     $tmp_pattern_species = 'STYLE_ELEMENT';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // LINK_ELEMENT
                 case '<link> in <body>':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The HTML External Resource Link element (&lt;link&gt;) specifies relationships between the current document and an external resource. This element is most commonly used to link to stylesheets, but is also used to establish site icons (both "favicon" style icons and icons for the home screen and apps on mobile devices) among other things.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_LINK_IN_BODY;
                     $tmp_pattern_species = 'LINK_ELEMENT';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case '<link> in <head>':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The HTML External Resource Link element (&lt;link&gt;) specifies relationships between the current document and an external resource. This element is most commonly used to link to stylesheets, but is also used to establish site icons (both "favicon" style icons and icons for the home screen and apps on mobile devices) among other things.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD;
                     $tmp_pattern_species = 'LINK_ELEMENT';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // MEDIA_QUERIES
                 case '@media':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The @media CSS at-rule can be used to apply part of a style sheet based on the result of one or more media queries. With it, you specify a media query and a block of CSS to apply to the document if and only if the media query matches the device on which the content is being used.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'and':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#logical_operators';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The @media CSS at-rule can be used to apply part of a style sheet based on the result of one or more media queries. With it, you specify a media query and a block of CSS to apply to the document if and only if the media query matches the device on which the content is being used.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'or (comma)':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#logical_operators';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The @media CSS at-rule can be used to apply part of a style sheet based on the result of one or more media queries. With it, you specify a media query and a block of CSS to apply to the document if and only if the media query matches the device on which the content is being used.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'not':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#logical_operators';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The @media CSS at-rule can be used to apply part of a style sheet based on the result of one or more media queries. With it, you specify a media query and a block of CSS to apply to the document if and only if the media query matches the device on which the content is being used.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'screen':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The @media CSS at-rule can be used to apply part of a style sheet based on the result of one or more media queries. With it, you specify a media query and a block of CSS to apply to the document if and only if the media query matches the device on which the content is being used.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'only screen':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media#testing_for_print_and_screen_media_types';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The @media CSS at-rule can be used to apply part of a style sheet based on the result of one or more media queries. With it, you specify a media query and a block of CSS to apply to the document if and only if the media query matches the device on which the content is being used.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'all':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/all';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The all shorthand CSS property resets all of an element\'s properties except unicode-bidi, direction, and CSS Custom Properties. It can set properties to their initial or inherited values, or to the values specified in another stylesheet origin.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'any-hover':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The any-hover CSS media feature can be used to test whether any available input mechanism can hover over elements.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'any-pointer':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-pointer';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The any-pointer CSS media feature tests whether the user has any pointing device (such as a mouse), and if so, how accurate it is.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'hover':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/:hover';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The :hover CSS pseudo-class matches when the user interacts with an element with a pointing device, but does not necessarily activate it. It is generally triggered when the user hovers over an element with the cursor (mouse pointer).';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'max-aspect-ratio':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/aspect-ratio';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The aspect-ratio CSS media feature can be used to test the aspect ratio of the viewport.<br><br>
 
 The aspect-ratio feature is specified as a <ratio> value representing the width-to-height aspect ratio of the viewport. It is a range feature, meaning you can also use the prefixed min-aspect-ratio and max-aspect-ratio variants to query minimum and maximum values, respectively.';
@@ -6954,11 +6966,11 @@ The aspect-ratio feature is specified as a <ratio> value representing the width-
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'max-device-aspect-ratio':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-aspect-ratio';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The device-aspect-ratio CSS media feature can be used to test the width-to-height aspect ratio of an output device.<br><br>
 
 The device-aspect-ratio feature is specified as a <ratio>. It is a range feature, meaning that you can also use the prefixed min-device-aspect-ratio and max-device-aspect-ratio variants to query minimum and maximum values, respectively.';
@@ -6967,11 +6979,11 @@ The device-aspect-ratio feature is specified as a <ratio>. It is a range feature
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'max-device-height':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-height';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The device-height CSS media feature can be used to test the height of an output device\'s rendering surface.<br><br>
 
 The device-height feature is specified as a <length> value. It is a range feature, meaning that you can also use the prefixed min-device-height and max-device-height variants to query minimum and maximum values, respectively.';
@@ -6980,22 +6992,22 @@ The device-height feature is specified as a <length> value. It is a range featur
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'max-device-pixel-ratio':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/-webkit-device-pixel-ratio';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The -webkit-device-pixel-ratio is a non-standard Boolean CSS media feature which is an alternative to the standard resolution media feature.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_IS_NONSTANDARD;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'max-device-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The device-width CSS media feature can be used to test the width of an output device\'s rendering surface.<br><br>
 The device-width feature is specified as a <length> value. It is a range feature, meaning that you can also use the prefixed min-device-width and max-device-width variants to query minimum and maximum values, respectively.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_IS_DEPRECATED;
@@ -7003,22 +7015,22 @@ The device-width feature is specified as a <length> value. It is a range feature
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'MEDIA_QUERIES_max-height':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The max-height CSS property sets the maximum height of an element. It prevents the used value of the height property from becoming larger than the value specified for max-height.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'max-resolution':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/resolution';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The resolution CSS media feature can be used to test the pixel density of the output device.<br><br>
 
 The resolution feature is specified as a <resolution> value representing the pixel density of the output device. It is a range feature, meaning that you can also use the prefixed min-resolution and max-resolution variants to query minimum and maximum values, respectively.';
@@ -7027,22 +7039,22 @@ The resolution feature is specified as a <resolution> value representing the pix
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'MEDIA_QUERIES_max-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The max-width CSS property sets the maximum width of an element. It prevents the used value of the width property from becoming larger than the value specified by max-width.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'min-aspect-ratio':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/aspect-ratio';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The aspect-ratio CSS media feature can be used to test the aspect ratio of the viewport.<br><br>
 
 The aspect-ratio feature is specified as a <ratio> value representing the width-to-height aspect ratio of the viewport. It is a range feature, meaning you can also use the prefixed min-aspect-ratio and max-aspect-ratio variants to query minimum and maximum values, respectively.';
@@ -7051,44 +7063,44 @@ The aspect-ratio feature is specified as a <ratio> value representing the width-
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'min-device-aspect-ratio':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-aspect-ratio';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The device-aspect-ratio CSS media feature can be used to test the width-to-height aspect ratio of an output device.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_IS_DEPRECATED;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'min-device-height':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-height';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The device-height CSS media feature can be used to test the height of an output device\'s rendering surface.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_IS_DEPRECATED;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'min-device-pixel-ratio':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/-moz-device-pixel-ratio';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The -moz-device-pixel-ratio Gecko-only CSS media feature can be used to apply styles based on the number of device pixels per CSS pixel.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_IS_DEPRECATED;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'min-device-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/device-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The device-width CSS media feature can be used to test the width of an output device\'s rendering surface.<br><br>
 The device-width feature is specified as a <length> value. It is a range feature, meaning that you can also use the prefixed min-device-width and max-device-width variants to query minimum and maximum values, respectively.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_IS_DEPRECATED;
@@ -7096,22 +7108,22 @@ The device-width feature is specified as a <length> value. It is a range feature
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'MEDIA_QUERIES_min-height':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The min-height CSS property sets the minimum height of an element. It prevents the used value of the height property from becoming smaller than the value specified for min-height.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'min-resolution':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/resolution';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The resolution CSS media feature can be used to test the pixel density of the output device.<br><br>
 
 The resolution feature is specified as a <resolution> value representing the pixel density of the output device. It is a range feature, meaning that you can also use the prefixed min-resolution and max-resolution variants to query minimum and maximum values, respectively.';
@@ -7120,53 +7132,53 @@ The resolution feature is specified as a <resolution> value representing the pix
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'MEDIA_QUERIES_min-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The min-width CSS property sets the minimum width of an element. It prevents the used value of the width property from becoming smaller than the value specified for min-width.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'orientation':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The orientation CSS media feature can be used to test the orientation of the viewport (or the page box, for paged media).';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'pointer':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The pointer CSS media feature tests whether the user has a pointing device (such as a mouse), and if so, how accurate the primary pointing device is.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'MEDIA_QUERIES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // TEXT_FONTS
                 case '@font-face':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The @font-face CSS at-rule specifies a custom font with which to display text; the font can be loaded from either a remote server or a locally-installed font on the user\'s own computer.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'EOT':
 
                     $tmp_uri = '';
@@ -7177,18 +7189,18 @@ The resolution feature is specified as a <resolution> value representing the pix
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'SVG':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The svg element is a container that defines a new coordinate system and viewport. It is used as the outermost element of SVG documents, but it can also be used to embed an SVG fragment inside an SVG or HTML document.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'TTF':
 
                     $tmp_uri = '';
@@ -7199,18 +7211,18 @@ The resolution feature is specified as a <resolution> value representing the pix
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'WOFF':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/Guide/WOFF';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'WOFF (the Web Open Font Format) is a web font format developed by Mozilla in concert with Type Supply, LettError, and other organizations. It uses a compressed version of the same table-based sfnt structure used by TrueType, OpenType, and Open Font Format, but adds metadata and private-use data structures, including predefined fields allowing foundries and vendors to provide license information if desired.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_NONE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'WOFF2':
 
                     $tmp_uri = '';
@@ -7220,7 +7232,7 @@ The resolution feature is specified as a <resolution> value representing the pix
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'WOFF base64 encoded':
 
                     $tmp_uri = '';
@@ -7230,7 +7242,7 @@ The resolution feature is specified as a <resolution> value representing the pix
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'WOFF2 base64 encoded':
 
                     $tmp_uri = '';
@@ -7240,121 +7252,121 @@ The resolution feature is specified as a <resolution> value representing the pix
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'direction':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/direction';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The direction CSS property sets the direction of text, table columns, and horizontal overflow. Use rtl for languages written from right to left (like Hebrew or Arabic), and ltr for those written from left to right (like English and most other languages).';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font CSS shorthand property sets all the different properties of an element\'s font. Alternatively, it sets an element\'s font to a system font.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-family':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-family';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-family CSS property specifies a prioritized list of one or more font family names and/or generic family names for the selected element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-feature-settings':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-feature-settings CSS property controls advanced typographic features in OpenType fonts.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-kerning':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-kerning';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-kerning CSS property sets the use of the kerning information stored in a font.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-size':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-size';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-size CSS property sets the size of the font. Changing the font size also updates the sizes of the font size-relative <length> units, such as em, ex, and so forth.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-size-adjust':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-size-adjust';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-size-adjust CSS property sets the size of lower-case letters relative to the current font size (which defines the size of upper-case letters).';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-stretch':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-stretch';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-stretch CSS property selects a normal, condensed, or expanded face from a font.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-style CSS property sets whether a font should be styled with a normal, italic, or oblique face from its font-family.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-synthesis':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-synthesis';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-synthesis CSS property controls which missing typefaces, bold or italic, may be synthesized by the browser.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-variant':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-variant CSS shorthand property allows you to set all the font variants for a font.<br><br>
 
 You can also set the CSS Level 2 (Revision 1) values of font-variant, (that is, normal or small-caps), by using the font shorthand.';
@@ -7363,220 +7375,220 @@ You can also set the CSS Level 2 (Revision 1) values of font-variant, (that is, 
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'font-weight':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The font-weight CSS property sets the weight (or boldness) of the font. The weights available depend on the font-family that is currently set.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'hyphens':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The hyphens CSS property specifies how words should be hyphenated when text wraps across multiple lines. It can prevent hyphenation entirely, hyphenate at manually-specified points within the text, or let the browser automatically insert hyphens where appropriate.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'letter-spacing':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The letter-spacing CSS property sets the horizontal spacing behavior between text characters. This value is added to the natural spacing between characters while rendering the text. Positive values of letter-spacing causes characters to spread farther apart, while negative values of letter-spacing bring characters closer together.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'line-height':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/line-height';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The line-height CSS property sets the height of a line box. It\'s commonly used to set the distance between lines of text. On block-level elements, it specifies the minimum height of line boxes within the element. On non-replaced inline elements, it specifies the height that is used to calculate line box height.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'overflow-wrap':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The overflow-wrap CSS property applies to inline elements, setting whether the browser should insert line breaks within an otherwise unbreakable string to prevent text from overflowing its line box.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-align':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-align';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The text-align CSS property sets the horizontal alignment of a block element or table-cell box. This means it works like vertical-align but in the horizontal direction.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-decoration':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The text-decoration shorthand CSS property sets the appearance of decorative lines on text. It is a shorthand for text-decoration-line, text-decoration-color, text-decoration-style, and the newer text-decoration-thickness property.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-fill-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-text-fill-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The -webkit-text-fill-color CSS property specifies the fill color of characters of text. If this property is not set, the value of the color property is used.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-indent':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-indent';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The text-indent CSS property sets the length of empty space (indentation) that is put before lines of text in a block';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-overflow':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The text-overflow CSS property sets how hidden overflow content is signaled to users. It can be clipped, display an ellipsis (\'…\'), or display a custom string.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-shadow':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The text-shadow CSS property adds shadows to text. It accepts a comma-separated list of shadows to be applied to the text and any of its decorations. Each shadow is described by some combination of X and Y offsets from the element, blur radius, and color.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-size-adjust':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The text-size-adjust CSS property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-stroke':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-text-stroke';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The -webkit-text-stroke CSS property specifies the width and color of strokes for text characters. This is a shorthand property for the longhand properties -webkit-text-stroke-width and -webkit-text-stroke-color.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-stroke-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-text-stroke-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The -webkit-text-stroke-color CSS property specifies the stroke color of characters of text. If this property is not set, the value of the color property is used.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-stroke-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-text-stroke-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The -webkit-text-stroke-width CSS property specifies the width of the stroke for text.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'text-transform':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The text-transform CSS property specifies how to capitalize an element\'s text. It can be used to make text appear in all-uppercase or all-lowercase, or with each word capitalized. It also can help improve legibility for ruby.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'vertical-align':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The vertical-align CSS property sets vertical alignment of an inline, inline-block or table-cell box.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'white-space':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/white-space';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The white-space CSS property sets how white space inside an element is handled.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'word-spacing':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/word-spacing';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The word-spacing CSS property sets the length of space between words and between tags.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TEXT_FONTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'word-wrap':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The overflow-wrap CSS property applies to inline elements, setting whether the browser should insert line breaks within an otherwise unbreakable string to prevent text from overflowing its line box.<br><br>
 The property was originally a nonstandard and unprefixed Microsoft extension called word-wrap, and was implemented by most browsers with the same name. It has since been renamed to overflow-wrap, with word-wrap being an alias.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
@@ -7584,163 +7596,163 @@ The property was originally a nonstandard and unprefixed Microsoft extension cal
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // COLOR_BACKGROUND
                 case 'background':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background shorthand CSS property sets all background style properties at once, such as color, image, origin and size, or repeat method.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-attachment':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-attachment CSS property sets whether a background image\'s position is fixed within the viewport, or scrolls with its containing block.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-blend-mode':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-blend-mode';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-blend-mode CSS property sets how an element\'s background images should blend with each other and with the element\'s background color.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-clip':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-clip CSS property sets whether an element\'s background extends underneath its border box, padding box, or content box.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-color CSS property sets the background color of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-image':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-image';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-image CSS property sets one or more background images on an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-origin':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-origin CSS property sets the background\'s origin: from the border start, inside the border, or inside the padding.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-position':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-position';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-position CSS property sets the initial position for each background image. The position is relative to the position layer set by background-origin.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-repeat':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-repeat CSS property sets how background images are repeated. A background image can be repeated along the horizontal and vertical axes, or not repeated at all.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'background-size':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-size';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The background-size CSS property sets the size of the element\'s background image. The image can be left to its natural size, stretched, or constrained to fit the available space.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The color CSS property sets the foreground color value of an element\'s text and text decorations, and sets the <currentcolor> value. currentcolor may be used as an indirect value on other properties and is the default for other color properties, such as border-color.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'isolation':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/isolation';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The isolation CSS property determines whether an element must create a new stacking context.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'mix-blend-mode':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The mix-blend-mode CSS property sets how an element\'s content should blend with the content of the element\'s parent and the element\'s background.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'CSS gradients':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'CSS gradients are represented by the <gradient> data type, a special type of <image> made of a progressive transition between two or more colors. You can choose between three types of gradients: linear (created with the linear-gradient() function), radial (created with radial-gradient()), and conic (created with the conic-gradient() function). You can also create repeating gradients with the repeating-linear-gradient(), repeating-radial-gradient(), and repeating-conic-gradient() functions.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_CSS_GRADIENTS;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'Data URI background image':
 
                     $tmp_uri = '';
@@ -7750,44 +7762,44 @@ The property was originally a nonstandard and unprefixed Microsoft extension cal
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'Multiple background images':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'You can apply multiple backgrounds to elements. These are layered atop one another with the first background you provide on top and the last background listed in the back. Only the last background can include a background color.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'HTML 4.01 Named Colors':
 
                     $tmp_uri = 'https://www.w3schools.com/colors/colors_names.asp';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'Color names.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'X11 Named Colors':
 
                     $tmp_uri = 'https://en.wikipedia.org/wiki/X11_color_names';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'In computing, on the X Window System, X11 color names are represented in a simple text file, which maps certain strings to RGB color values.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'HEX Colors':
 
                     $tmp_uri = 'https://www.w3schools.com/colors/colors_hexadecimal.asp';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'Hexadecimal color values are also supported in all browsers.<br><br>
 
 A hexadecimal color is specified with: #RRGGBB.<br><br>
@@ -7800,66 +7812,66 @@ For example, #0000FF is displayed as blue, because the blue component is set to 
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'HEX Shorthand Colors':
 
                     $tmp_uri = 'https://www.w3.org/TR/CSS1/#color-units';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The format of an RGB value in hexadecimal notation is a \'#\' immediately followed by either three or six hexadecimal characters. The three-digit RGB notation (#rgb) is converted into six-digit form (#rrggbb) by replicating digits, not by adding zeros.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'HSL Colors':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl()';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The hsl() functional notation expresses a given color according to its hue, saturation, and lightness components. An optional alpha component represents the color\'s transparency.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'HSLA Colors':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsla()';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The hsla() functional notation expresses a given color according to its hue, saturation, and lightness components. An optional alpha component represents the color\'s transparency.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_HSLA;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'RGB Colors':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb()';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The rgb() functional notation expresses a color according to its red, green, and blue components. An optional alpha component represents the color\'s transparency.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_RGB;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'RGBA Colors':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgba()';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The rgba() functional notation expresses a color according to its red, green, and blue components. An optional alpha component represents the color\'s transparency.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_RGBA;
                     $tmp_pattern_species = 'COLOR_BACKGROUND';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'currentColor':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The currentcolor keyword represents the value of an element\'s color property. This lets you use the color value on properties that do not receive it by default.<br><br>
 
 If currentcolor is used as the value of the color property, it instead takes its value from the inherited value of the color property.';
@@ -7868,464 +7880,464 @@ If currentcolor is used as the value of the color property, it instead takes its
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // BOX_MODEL
                 case 'border':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border shorthand CSS property sets an element\'s border. It sets the values of border-width, border-style, and border-color.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-bottom':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-bottom shorthand CSS property sets an element\'s bottom border. It sets the values of border-bottom-width, border-bottom-style and border-bottom-color.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-bottom-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-bottom-color CSS property sets the color of an element\'s bottom border. It can also be set with the shorthand CSS properties border-color or border-bottom.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-bottom-left-radius':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-left-radius';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-bottom-left-radius CSS property rounds the bottom-left corner of an element by specifying the radius (or the radius of the semi-major and semi-minor axes) of the ellipse defining the curvature of the corner.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-bottom-right-radius':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-right-radius';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-bottom-right-radius CSS property rounds the bottom-right corner of an element by specifying the radius (or the radius of the semi-major and semi-minor axes) of the ellipse defining the curvature of the corner.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-bottom-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-bottom-style CSS property sets the line style of an element\'s bottom border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-bottom-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-bottom-width CSS property sets the width of the bottom border of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-color shorthand CSS property sets the color of an element\'s border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-image':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-image';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-image CSS property draws an image around a given element. It replaces the element\'s regular border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-left':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-left';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-left shorthand CSS property sets all the properties of an element\'s left border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-left-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-left-color CSS property sets the color of an element\'s left border. It can also be set with the shorthand CSS properties border-color or border-left.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-left-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-left-style CSS property sets the line style of an element\'s left border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-left-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-left-width CSS property sets the width of the left border of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-radius':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-radius CSS property rounds the corners of an element\'s outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-right':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-right';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-right shorthand CSS property sets all the properties of an element\'s right border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-right-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-right-color CSS property sets the color of an element\'s right border. It can also be set with the shorthand CSS properties border-color or border-right.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-right-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-right-style CSS property sets the line style of an element\'s right border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-right-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-right-width CSS property sets the width of the right border of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-style shorthand CSS property sets the line style for all four sides of an element\'s border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-top':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-top';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-top shorthand CSS property sets all the properties of an element\'s top border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-top-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-top-color CSS property sets the color of an element\'s top border. It can also be set with the shorthand CSS properties border-color or border-top.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-top-left-radius':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-left-radius';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-top-left-radius CSS property rounds the top-left corner of an element by specifying the radius (or the radius of the semi-major and semi-minor axes) of the ellipse defining the curvature of the corner.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-top-right-radius':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-right-radius';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-top-right-radius CSS property rounds the top-right corner of an element by specifying the radius (or the radius of the semi-major and semi-minor axes) of the ellipse defining the curvature of the corner.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-top-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-top-style CSS property sets the line style of an element\'s top border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-top-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-top-width CSS property sets the width of the top border of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-width shorthand CSS property sets the width of an element\'s border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'box-shadow':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The box-shadow CSS property adds shadow effects around an element\'s frame. You can set multiple effects separated by commas. A box shadow is described by X and Y offsets relative to the element, blur and spread radius, and color.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'box-sizing':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The box-sizing CSS property sets how the total width and height of an element is calculated.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'height':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/height';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The height CSS property specifies the height of an element. By default, the property defines the height of the content area. If box-sizing is set to border-box, however, it instead determines the height of the border area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'margin':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/margin';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The margin CSS property sets the margin area on all four sides of an element. It is a shorthand for margin-top, margin-right, margin-bottom, and margin-left.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'margin-bottom':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The margin-bottom CSS property sets the margin area on the bottom of an element. A positive value places it farther from its neighbors, while a negative value places it closer.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'margin-left':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The margin-left CSS property sets the margin area on the left side of an element. A positive value places it farther from its neighbors, while a negative value places it closer.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'margin-right':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The margin-right CSS property sets the margin area on the right side of an element. A positive value places it farther from its neighbors, while a negative value places it closer.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'margin-top':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The margin-top CSS property sets the margin area on the top of an element. A positive value places it farther from its neighbors, while a negative value places it closer.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'BOX_MODEL_max-height':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/max-height';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The max-height CSS property sets the maximum height of an element. It prevents the used value of the height property from becoming larger than the value specified for max-height.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'BOX_MODEL_max-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/max-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The max-width CSS property sets the maximum width of an element. It prevents the used value of the width property from becoming larger than the value specified by max-width.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'BOX_MODEL_min-height':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/min-height';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The min-height CSS property sets the minimum height of an element. It prevents the used value of the height property from becoming smaller than the value specified for min-height.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'BOX_MODEL_min-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/min-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The min-width CSS property sets the minimum width of an element. It prevents the used value of the width property from becoming smaller than the value specified for min-width.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'padding':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/padding';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The padding CSS shorthand property sets the padding area on all four sides of an element at once.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'padding-bottom':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The padding-bottom CSS property sets the height of the padding area on the bottom of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'padding-left':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The padding-left CSS property sets the width of the padding area to the left of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'padding-right':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The padding-right CSS property sets the width of the padding area on the right of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
@@ -8336,7 +8348,7 @@ If currentcolor is used as the value of the color property, it instead takes its
                 case 'padding-top':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The padding-top CSS property sets the height of the padding area on the top of an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
@@ -8347,53 +8359,53 @@ If currentcolor is used as the value of the color property, it instead takes its
                 case 'width':  // 2
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The width CSS property sets an element\'s width. By default, it sets the width of the content area, but if box-sizing is set to border-box, it sets the width of the border area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'BOX_MODEL';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // POSITIONING_AND_DISPLAY
                 case 'bottom':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/bottom';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The bottom CSS property participates in setting the vertical position of a positioned element. It has no effect on non-positioned elements.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'clear':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/clear';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The clear CSS property sets whether an element must be moved below (cleared) floating elements that precede it. The clear property applies to floating and non-floating elements.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'cursor':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/cursor';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The cursor CSS property sets the type of mouse cursor, if any, to show when the mouse pointer is over an element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'POSITIONING_AND_DISPLAY_display':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/display';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The display CSS property sets whether an element is treated as a block or inline element and the layout used for its children, such as flow layout, grid or flex.<br><br>
 
 Formally, the display property sets an element\'s inner and outer display types. The outer type sets an element\'s participation in flow layout; the inner type sets the layout of children. Some values of display are fully defined in their own individual specifications; for example the detail of what happens when display: flex is declared is defined in the CSS Flexible Box Model specification.';
@@ -8402,200 +8414,200 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'float':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/float';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The float CSS property places an element on the left or right side of its container, allowing text and inline elements to wrap around it. The element is removed from the normal flow of the page, though still remaining a part of the flow (in contrast to absolute positioning).';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'left':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/left';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The left CSS property participates in specifying the horizontal position of a positioned element. It has no effect on non-positioned elements.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'object-fit':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The object-fit CSS property sets how the content of a replaced element, such as an <img> or <video>, should be resized to fit its container.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'object-position':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/object-position';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The object-position CSS property specifies the alignment of the selected replaced element\'s contents within the element\'s box. Areas of the box which aren\'t covered by the replaced element\'s object will show the element\'s background.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'opacity':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/opacity';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The opacity CSS property sets the opacity of an element. Opacity is the degree to which content behind an element is hidden, and is the opposite of transparency.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'outline':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/outline';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The outline CSS shorthand property set all the outline properties in a single declaration.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'outline-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The outline-color CSS property sets the color of an element\'s outline.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'outline-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The outline-style CSS property sets the style of an element\'s outline. An outline is a line that is drawn around an element, outside the border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'outline-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The CSS outline-width property sets the thickness of an element\'s outline. An outline is a line that is drawn around an element, outside the border.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'overflow':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/overflow';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The overflow CSS shorthand property sets the desired behavior for an element\'s overflow &ndash; i.e. when an element\'s content is too big to fit in its block formatting context &ndash; in both directions.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'position':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/position';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The position CSS property sets how an element is positioned in a document. The top, right, bottom, and left properties determine the final location of positioned elements.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'resize':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/resize';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The resize CSS property sets whether an element is resizable, and if so, in which direction';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'right':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/right';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The right CSS property participates in specifying the horizontal position of a positioned element. It has no effect on non-positioned elements.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'top':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/top';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The top CSS property participates in specifying the vertical position of a positioned element. It has no effect on non-positioned elements.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'visibility':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/visibility';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The visibility CSS property shows or hides an element without changing the layout of a document. The property can also hide rows or columns in a <table>.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'z-index':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/z-index';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The z-index CSS property sets the z-order of a positioned element and its descendants or flex items. Overlapping elements with a larger z-index cover those with a smaller one.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'POSITIONING_AND_DISPLAY';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // LISTS
                 case 'list-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/list-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The list-style CSS shorthand property allows you to set all the list style properties at once.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'LISTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'list-style-image':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-image';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The list-style-image CSS property sets an image to be used as the list item marker.<br><br>
 
 It is often more convenient to use the shorthand list-style.';
@@ -8604,147 +8616,147 @@ It is often more convenient to use the shorthand list-style.';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'list-style-position':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The list-style-position CSS property sets the position of the ::marker relative to a list item.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'LISTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'list-style-type':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The list-style-type CSS property sets the marker (such as a disc, character, or custom counter style) of a list item element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'LISTS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // TABLES
                 case 'border-collapse':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-collapse CSS property sets whether cells inside a <table> have shared or separate borders.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TABLES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'border-spacing':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The border-spacing CSS property sets the distance between the borders of adjacent <table> cells. This property applies only when border-collapse is separate.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TABLES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'caption-side':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The caption-side CSS property puts the content of a table\'s <caption> on the specified side. The values are relative to the writing-mode of the table.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TABLES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'empty-cells':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/empty-cells';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The empty-cells CSS property sets whether borders and backgrounds appear around <table> cells that have no visible content.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TABLES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'table-layout':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The table-layout CSS property sets the algorithm used to lay out <table> cells, rows, and columns.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TABLES';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // ANIMATIONS
                 case 'animation':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation shorthand CSS property applies an animation between styles. It is a shorthand for animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, and animation-play-state.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'ANIMATIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'animation-delay':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation-delay CSS property specifies the amount of time to wait from applying the animation to an element before beginning to perform the animation. The animation can start later, immediately from its beginning, or immediately and partway through the animation.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'ANIMATIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'animation-direction':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation-direction CSS property sets whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'ANIMATIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'animation-duration':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation-duration CSS property sets the length of time that an animation takes to complete one cycle.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'ANIMATIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'animation-fill-mode':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation-fill-mode CSS property sets how a CSS animation applies styles to its target before and after its execution.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'ANIMATIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'animation-iteration-count':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation-iteration-count CSS property sets the number of times an animation sequence should be played before stopping.<br><br>
 
 If multiple values are specified, each time the animation is played the next value in the list is used, cycling back to the first value after the last one is used.';
@@ -8753,182 +8765,182 @@ If multiple values are specified, each time the animation is played the next val
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'animation-name':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation-name CSS property specifies the names of one or more @keyframes at-rules describing the animation or animations to apply to the element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'ANIMATIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'animation-play-state':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation-play-state CSS property sets whether an animation is running or paused.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'ANIMATIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'animation-timing-function':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The animation-timing-function CSS property sets how an animation progresses through the duration of each cycle.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'ANIMATIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // TRANSFORMS
                 case 'backface-visibility':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The backface-visibility CSS property sets whether the back face of an element is visible when turned towards the user.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSFORMS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'perspective':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/perspective';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The perspective CSS property determines the distance between the z=0 plane and the user in order to give a 3D-positioned element some perspective.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSFORMS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'perspective-origin':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/perspective-origin';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The perspective-origin CSS property determines the position at which the viewer is looking. It is used as the vanishing point by the perspective property.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSFORMS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'transform':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/transform';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The transform CSS property lets you rotate, scale, skew, or translate an element. It modifies the coordinate space of the CSS visual formatting model.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSFORMS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'transform-origin':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The transform-origin CSS property sets the origin for an element\'s transformations.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSFORMS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'transform-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The transform-style CSS property sets whether children of an element are positioned in the 3D space or are flattened in the plane of the element.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSFORMS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // TRANSITIONS
                 case 'transition':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/transition';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The transition CSS property is a shorthand property for transition-property, transition-duration, transition-timing-function, and transition-delay.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSITIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'transition-delay':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The transition-delay CSS property specifies the duration to wait before starting a property\'s transition effect when its value changes.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSITIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'transition-duration':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The transition-duration CSS property sets the length of time a transition animation should take to complete. By default, the value is 0s, meaning that no animation will occur.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSITIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'transition-property':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The transition-property CSS property sets the CSS properties to which a transition effect should be applied.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSITIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'transition-timing-function':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The transition-timing-function CSS property sets how intermediate values are calculated for CSS properties being affected by a transition effect.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'TRANSITIONS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // FILTERS
                 case 'backdrop-filter':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The backdrop-filter CSS property lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FILTERS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'filter':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/filter';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The filter CSS property applies graphical effects like blur or color shift to an element. Filters are commonly used to adjust the rendering of images, backgrounds, and borders.<br><br>
 
 Included in the CSS standard are several functions that achieve predefined effects. You can also reference an SVG filter with a URL to an SVG filter element.';
@@ -8937,191 +8949,191 @@ Included in the CSS standard are several functions that achieve predefined effec
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // COLUMNS
                 case 'break-after':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/break-after';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The break-after CSS property sets how page, column, or region breaks should behave after a generated box. If there is no generated box, the property is ignored.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'break-before':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/break-before';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The break-before CSS property sets how page, column, or region breaks should behave before a generated box. If there is no generated box, the property is ignored.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'break-inside':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/break-inside';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The break-inside CSS property sets how page, column, or region breaks should behave inside a generated box. If there is no generated box, the property is ignored.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-count':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-count';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-count CSS property breaks an element\'s content into the specified number of columns.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-fill':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-fill';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-fill CSS property controls how an element\'s contents are balanced when broken into columns.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-gap':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-gap CSS property sets the size of the gap (gutter) between an element\'s columns.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-rule':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-rule';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-rule shorthand CSS property sets the width, style, and color of the line drawn between columns in a multi-column layout.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-rule-color':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-rule-color';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-rule-color CSS property sets the color of the line drawn between columns in a multi-column layout.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-rule-style':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-rule-style';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-rule-style CSS property sets the style of the line drawn between columns in a multi-column layout.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-rule-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-rule-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-rule-width CSS property sets the width of the line drawn between columns in a multi-column layout.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-span':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-span';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-span CSS property makes it possible for an element to span across all columns when its value is set to all.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'column-width':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-width';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-width CSS property sets the ideal column width in a multi-column layout. The container will have as many columns as can fit without any of them having a width less than the column-width value. If the width of the container is narrower than the specified value, the single column\'s width will be smaller than the declared column width.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'columns':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/columns';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The columns CSS shorthand property sets the number of columns to use when drawing an element\'s contents, as well as those columns\' widths.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'COLUMNS';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // FLEXBOX
                 case 'FLEXBOX_align-content':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/align-content';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The CSS align-content property sets the distribution of space between and around content items along a flexbox\'s cross-axis or a grid\'s block axis.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'FLEXBOX_align-items':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/align-items';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The CSS align-items property sets the align-self value on all direct children as a group. In Flexbox, it controls the alignment of items on the Cross Axis. In Grid Layout, it controls the alignment of items on the Block Axis within their grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'FLEXBOX_align-self':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/align-self';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The align-self CSS property overrides a grid or flex item\'s align-items value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'FLEXBOX_display':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/display';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The display CSS property sets whether an element is treated as a block or inline element and the layout used for its children, such as flow layout, grid or flex.<br><br>
 
 Formally, the display property sets an element\'s inner and outer display types. The outer type sets an element\'s participation in flow layout; the inner type sets the layout of children. Some values of display are fully defined in their own individual specifications; for example the detail of what happens when display: flex is declared is defined in the CSS Flexible Box Model specification.';
@@ -9130,66 +9142,66 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'flex':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/flex';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The flex CSS shorthand property sets how a flex item will grow or shrink to fit the space available in its flex container.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'flex-basis':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The flex-basis CSS property sets the initial main size of a flex item. It sets the size of the content box unless otherwise set with box-sizing.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'flex-direction':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The flex-direction CSS property sets how flex items are placed in the flex container defining the main axis and the direction (normal or reversed).';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'flex-flow':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/flex-flow';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The flex-flow CSS shorthand property specifies the direction of a flex container, as well as its wrapping behavior.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'flex-grow':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The flex-grow CSS property sets the flex grow factor of a flex item\'s main size.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'flex-shrink':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The flex-shrink CSS property sets the flex shrink factor of a flex item. If the size of all flex items is larger than the flex container, items shrink to fit according to flex-shrink.<br><br>
 
 In use, flex-shrink is used alongside the other flex properties flex-grow and flex-basis, and normally defined using the flex shorthand.';
@@ -9198,79 +9210,79 @@ In use, flex-shrink is used alongside the other flex properties flex-grow and fl
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'flex-wrap':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The flex-wrap CSS property sets whether flex items are forced onto one line or can wrap onto multiple lines. If wrapping is allowed, it sets the direction that lines are stacked.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'FLEXBOX_justify-content':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The CSS justify-content property defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'order':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/order';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The order CSS property sets the order to lay out an item in a flex or grid container. Items in a container are sorted by ascending order value and then by their source code order.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'FLEXBOX';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
 
                 // GRID
                 case 'GRID_align-content':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/align-content';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The CSS align-content property sets the distribution of space between and around content items along a flexbox\'s cross-axis or a grid\'s block axis.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'GRID_align-items':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/align-items';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The CSS align-items property sets the align-self value on all direct children as a group. In Flexbox, it controls the alignment of items on the Cross Axis. In Grid Layout, it controls the alignment of items on the Block Axis within their grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'GRID_align-self':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/align-self';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The align-self CSS property overrides a grid or flex item\'s align-items value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'GRID_display':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/display';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The display CSS property sets whether an element is treated as a block or inline element and the layout used for its children, such as flow layout, grid or flex.<br><br>
 
 Formally, the display property sets an element\'s inner and outer display types. The outer type sets an element\'s participation in flow layout; the inner type sets the layout of children. Some values of display are fully defined in their own individual specifications; for example the detail of what happens when display: flex is declared is defined in the CSS Flexible Box Model specification.';
@@ -9279,227 +9291,227 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid CSS property is a shorthand property that sets all of the explicit and implicit grid properties in a single declaration.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-area':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-area CSS shorthand property specifies a grid item’s size and location within a grid by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the edges of its grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-auto-columns':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-auto-columns CSS property specifies the size of an implicitly-created grid column track or pattern of tracks.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-auto-flow':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-auto-flow CSS property controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-auto-rows':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-auto-rows CSS property specifies the size of an implicitly-created grid row track or pattern of tracks.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-column':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-column CSS shorthand property specifies a grid item\'s size and location within a grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-column-end':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-column-end CSS property specifies a grid item’s end position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the block-end edge of its grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-column-gap':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The column-gap CSS property sets the size of the gap (gutter) between an element\'s columns.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-column-start':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-column-start CSS property specifies a grid item’s start position within the grid column by contributing a line, a span, or nothing (automatic) to its grid placement. This start position defines the block-start edge of the grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-gap':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/gap';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The gap CSS property sets the gaps (gutters) between rows and columns. It is a shorthand for row-gap and column-gap.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-row':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-row CSS shorthand property specifies a grid item’s size and location within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start and inline-end edge of its grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-row-end':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-row-end CSS property specifies a grid item’s end position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-end edge of its grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-row-gap':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The row-gap CSS property sets the size of the gap (gutter) between an element\'s grid rows.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-row-start':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-row-start CSS property specifies a grid item’s start position within the grid row by contributing a line, a span, or nothing (automatic) to its grid placement, thereby specifying the inline-start edge of its grid area.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-template-areas':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-template-areas CSS property specifies named grid areas, establishing the cells in the grid and assigning them names.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-template-columns':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-template-columns CSS property defines the line names and track sizing functions of the grid columns.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'grid-template-rows':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The grid-template-rows CSS property defines the line names and track sizing functions of the grid rows.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'GRID_justify-content': // 2
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The CSS justify-content property defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'justify-items':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The CSS justify-items property defines the default justify-self for all items of the box, giving them all a default way of justifying each box along the appropriate axis.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case 'justify-self':
 
                     $tmp_uri = 'https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self';
-                    $tmp_uri = $this->oCRNRSTN_USR->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
+                    $tmp_uri = $this->oCRNRSTN->return_sticky_link($tmp_uri, 'developer_mozilla_web_docs');
                     $tmp_description = 'The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_self">CSS</a> justify-self property sets the way a box is justified inside its alignment container along the appropriate axis.';
                     $tmp_validation_type = CRNRSTN_CSS_VALIDATE_STANDARD_USE;
                     $tmp_pattern_species = 'GRID';
 
                     $tmp_pattern_meta_array = array($tmp_uri, $tmp_description, $css_pattern_nom, $tmp_validation_type, $tmp_pattern_species);
 
-                    break;
+                break;
                 case '____font-size':
 
                     /*
@@ -9523,29 +9535,29 @@ Formally, the display property sets an element\'s inner and outer display types.
                     //
                     //
                     // CONSTANTS DEFINED FROM CONSTRUCTOR OF THIS CLASS
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STANDARD_USE');
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD');
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD');
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY');
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY');
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STANDARD_USE');
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_HEAD');
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_HEAD');
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_STYLE_IN_BODY');
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_VALIDATE_LINK_IN_BODY');
 
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_ICON_ALERT_BANG');            // INDICATION OF ICON TYPE TO BIND
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_ICON_SUCCESS_CHECK');           // INDICATION OF ICON TYPE TO BIND
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_ICON_ERR_X');                 // INDICATION OF ICON TYPE TO BIND
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_ICON_ALERT_BANG');            // INDICATION OF ICON TYPE TO BIND
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_ICON_SUCCESS_CHECK');           // INDICATION OF ICON TYPE TO BIND
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_ICON_ERR_X');                 // INDICATION OF ICON TYPE TO BIND
 
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_CLIENT_ASSOC_HAS_META');      // INDICATION OF NEED TO SHOW A NOTE
-                    $this->oCRNRSTN_USR->initialize_bit('CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK');  // INDICATION OF NEED TO HTTP LINK THE ELEMENT
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_CLIENT_ASSOC_HAS_META');      // INDICATION OF NEED TO SHOW A NOTE
+                    $this->oCRNRSTN->initialize_bit('CRNRSTN_CSS_CLIENT_ASSOC_HAS_DOCS_LNK');  // INDICATION OF NEED TO HTTP LINK THE ELEMENT
 
                      * */
 
-                    break;
+                break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('Unknown HTML CSS string nomination pattern provided, '.$css_pattern_nom.'.');
 
-                    break;
+                break;
 
             }
 
@@ -9582,13 +9594,13 @@ Formally, the display property sets an element\'s inner and outer display types.
         'CRNRSTN_UI_COOKIE_THEME_GREYSKYS'
          * */
 
-        $tmp_form_serial = $this->oCRNRSTN_USR->generate_new_key(7);
+        $tmp_form_serial = $this->oCRNRSTN->generate_new_key(7);
 
         $tmp_str = '<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        '.$this->oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'
+        ' . $this->oCRNRSTN->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED) . '
         <meta name="distribution" content="Global" />
         <meta name="ROBOTS" content="index" />
         <meta name="ROBOTS" content="follow" />
@@ -9667,7 +9679,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                 <div style="float:right; height: 40px;">
                     <div style="height:18px; width:100%; clear:both; display: block; overflow: hidden;"></div>
-                    <div id="crnrstn_dyn_branding_elem_shell">'.$this->oCRNRSTN_USR->return_branding_creative(true).'</div>
+                    <div id="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN_USR->return_branding_creative(true).'</div>
                 </div>
             </div>
             <div style="height:1px; width:100%; clear:both; display: block; overflow: hidden;"></div>
@@ -9694,9 +9706,9 @@ Formally, the display property sets an element\'s inner and outer display types.
                                 <table style="border:0; padding: 0; margin:0; width:305px;">
                                 <tr>
                                     <td style=\'text-align:left; line-height: 18px; color:#6885C3;border-right:15px solid #FFF; font-size: 14px; margin: 0; font-family:"Courier New", Courier, monospace;\'>
-                                        <strong>Note:</strong> Special thanks to the folks  at <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://webstandards.org/', 'web_standards_thanks_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">WaSP</a> and <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/', 'campaign_monitor_thanks_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Campaign Monitor</a>
-                                        for  their <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/css/', 'ultimate_guide_to_css_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Ultimate Guide to CSS</a> breaking  down a host of the nitty-gritty with
-                                         respect to CSS support for many popular mobile, web, and desktop email  clients and for their creation of  the <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.email-standards.org/', 'email_standards_project_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Email Standards Project</a>.
+                                        <strong>Note:</strong> Special thanks to the folks  at <a href="' . $this->oCRNRSTN->return_sticky_link('http://webstandards.org/', 'web_standards_thanks_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">WaSP</a> and <a href="' . $this->oCRNRSTN->return_sticky_link('http://www.campaignmonitor.com/', 'campaign_monitor_thanks_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Campaign Monitor</a>
+                                        for  their <a href="' . $this->oCRNRSTN->return_sticky_link('http://www.campaignmonitor.com/css/', 'ultimate_guide_to_css_results') . '" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Ultimate Guide to CSS</a> breaking  down a host of the nitty-gritty with
+                                         respect to CSS support for many popular mobile, web, and desktop email  clients and for their creation of  the <a href="' . $this->oCRNRSTN->return_sticky_link('http://www.email-standards.org/', 'email_standards_project_results').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Email Standards Project</a>.
     
                                         <br><br>  The strength, accuracy, and thorough  consideration baked into the
                                         algorithm  behind this validator are each and  equally directly proportional
@@ -9707,7 +9719,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;">
-                                        <div style="border-right:20px solid #FFF; border-top:20px solid #FFF;">'.$this->oCRNRSTN_USR->return_creative('ICON_EMAIL_INBOX_REFLECT', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'</div>
+                                        <div style="border-right:20px solid #FFF; border-top:20px solid #FFF;">' . $this->oCRNRSTN->return_creative('ICON_EMAIL_INBOX_REFLECT', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'</div>
                                     </td>
                                 </tr>
                                 </table>
@@ -9726,7 +9738,7 @@ Formally, the display property sets an element\'s inner and outer display types.
     
         <div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
             <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
-                '.$this->oCRNRSTN_USR->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'
+                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'
             </div>
         </div>
 
@@ -9734,10 +9746,10 @@ Formally, the display property sets an element\'s inner and outer display types.
 
     </div>
    
-    '.$this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ANALYTICS).'
-    '.$this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ENGAGEMENT).'
-    '.$this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_COOKIE_PREFERENCE).'
-    '.$this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_INTERACT).'
+    ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ANALYTICS).'
+    ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ENGAGEMENT).'
+    ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_COOKIE_PREFERENCE).'
+    ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_INTERACT).'
     
     </body>
     </html>';
@@ -9748,13 +9760,13 @@ Formally, the display property sets an element\'s inner and outer display types.
 
     private function return_css_validator_content_HTML($html_content_injection, $r_tblcol_top_padding = 117){
 
-        $tmp_form_serial = $this->oCRNRSTN_USR->generate_new_key(7);
+        $tmp_form_serial = $this->oCRNRSTN->generate_new_key(7);
 
         $tmp_str = '<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        '.$this->oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON').'
+        ' . $this->oCRNRSTN->return_creative('CRNRSTN_FAVICON').'
         <meta name="distribution" content="Global" />
         <meta name="ROBOTS" content="index" />
         <meta name="ROBOTS" content="follow" />
@@ -9833,7 +9845,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                 <div style="float:right; height: 40px;">
                     <div style="height:18px; width:100%; clear:both; display: block; overflow: hidden;"></div>
-                    <div id="crnrstn_dyn_branding_elem_shell">'.$this->oCRNRSTN_USR->return_branding_creative(true).'</div>
+                    <div id="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN_USR->return_branding_creative(true).'</div>
                 </div>
             </div>
             <div style="height:1px; width:100%; clear:both; display: block; overflow: hidden;"></div>
@@ -9859,9 +9871,9 @@ Formally, the display property sets an element\'s inner and outer display types.
                                     <table style="border:0; padding: 0; margin:0; width:305px;">
                                     <tr>
                                         <td style=\'text-align:left; line-height: 18px; color:#6885C3;border-right:15px solid #FFF; font-size: 14px; margin: 0; font-family:"Courier New", Courier, monospace;\'>
-                                            <strong>Note:</strong> Special thanks to the folks  at <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://webstandards.org/', 'web_standards_thanks').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">WaSP</a> and <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/', 'campaign_monitor_thanks').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Campaign Monitor</a>
-                                            for  their <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.campaignmonitor.com/css/', 'ultimate_guide_to_css').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Ultimate Guide to CSS</a> breaking  down a host of the nitty-gritty with
-                                             respect to CSS support for many popular mobile, web, and desktop email  clients and for their creation of  the <a href="'.$this->oCRNRSTN_USR->return_sticky_link('http://www.email-standards.org/', 'email_standards_project').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Email Standards Project</a>.
+                                            <strong>Note:</strong> Special thanks to the folks  at <a href="' . $this->oCRNRSTN->return_sticky_link('http://webstandards.org/', 'web_standards_thanks').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">WaSP</a> and <a href="' . $this->oCRNRSTN->return_sticky_link('http://www.campaignmonitor.com/', 'campaign_monitor_thanks').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Campaign Monitor</a>
+                                            for  their <a href="' . $this->oCRNRSTN->return_sticky_link('http://www.campaignmonitor.com/css/', 'ultimate_guide_to_css').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Ultimate Guide to CSS</a> breaking  down a host of the nitty-gritty with
+                                             respect to CSS support for many popular mobile, web, and desktop email  clients and for their creation of  the <a href="' . $this->oCRNRSTN->return_sticky_link('http://www.email-standards.org/', 'email_standards_project').'" target="_blank" style="text-decoration: none; color:#0066CC; text-decoration: underline;">Email Standards Project</a>.
         
                                             <br><br>  The strength, accuracy, and thorough  consideration baked into the
                                             algorithm  behind this validator are each and  equally directly proportional
@@ -9872,7 +9884,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                     </tr>
                                     <tr>
                                         <td style="text-align: right;">
-                                            <div style="border-right:20px solid #FFF; border-top:20px solid #FFF;">'.$this->oCRNRSTN_USR->return_creative('ICON_EMAIL_INBOX_REFLECT').'</div>
+                                            <div style="border-right:20px solid #FFF; border-top:20px solid #FFF;">' . $this->oCRNRSTN->return_creative('ICON_EMAIL_INBOX_REFLECT').'</div>
                                         </td>
                                     </tr>
                                     </table>
@@ -9891,7 +9903,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
         <div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
             <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
-                '.$this->oCRNRSTN_USR->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'
+                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'
             </div>
         </div>
 
@@ -9899,9 +9911,9 @@ Formally, the display property sets an element\'s inner and outer display types.
 
     </div>
     
-    '.$this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ANALYTICS).'
-    '.$this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ENGAGEMENT).'
-    '.$this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_INTERACT).'
+    ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ANALYTICS).'
+    ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_TAG_ENGAGEMENT).'
+    ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_INTERACT).'
     
     </body>
     </html>';
@@ -9965,11 +9977,11 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     $tmp_serialized_bit_nom = 'META_'.$tmp_array[4].'_'.$css_str_pattern.$mail_client_constant;
 
-                    if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
+                    if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
 
                         //
                         // INFORMATION BANG ICONOGRAPHY
-                        $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                        $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                         $this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG'][] = 1;
                         //error_log(__LINE__ .' '.$mail_client_constant.' BANG cnt = '.count($this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG']));
@@ -9978,11 +9990,11 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // CHECK FOR ERR_X
-                        if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                             //
                             // ERROR X ICONOGRAPHY
-                            $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                            $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                             $this->results_count_aggregation_ARRAY[$mail_client_constant]['X'][] = 1;
                             //error_log(__LINE__ .' '.$mail_client_constant.' X cnt = '.count($this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG']));
@@ -9992,7 +10004,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             //
                             // SUCCESS CHECK ICONOGRAPHY
-                            $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                            $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                             $this->results_count_aggregation_ARRAY[$mail_client_constant]['SUCCESS'][] = 1;
                             //error_log(__LINE__ .' '.$mail_client_constant.' SUCCESS cnt = '.count($this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG']));
@@ -10003,7 +10015,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     //
                     // META NOTE INCLUDE CHECK
-                    if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+                    if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                         $tmp_meta_note = $this->css_pattern_meta_note_ARRAY[$tmp_serialized_bit_nom];
 
@@ -10017,29 +10029,29 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     $tmp_serialized_bit_nom = 'META_'.$css_str_pattern.$mail_client_constant;
 
-                    if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
+                    if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
 
                         //
                         // INFORMATION BANG ICONOGRAPHY
-                        $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                        $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
                         $this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG'][] = 1;
 
                     }else{
 
                         //
                         // CHECK FOR ERR_X
-                        if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                             //
                             // ERROR X ICONOGRAPHY
-                            $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                            $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
                             $this->results_count_aggregation_ARRAY[$mail_client_constant]['X'][] = 1;
 
                         }else{
 
                             //
                             // SUCCESS CHECK ICONOGRAPHY
-                            $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                            $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
                             $this->results_count_aggregation_ARRAY[$mail_client_constant]['SUCCESS'][] = 1;
 
                         }
@@ -10048,7 +10060,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     //
                     // META NOTE INCLUDE CHECK
-                    if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+                    if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                         $tmp_meta_note = $this->css_pattern_meta_note_ARRAY[$tmp_serialized_bit_nom];
 
@@ -10085,7 +10097,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                     <tr>
                                     <td></td>
                                     <td>
-                                        <div style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-top: 3px solid #FFF; \'>'.$this->format_output($tmp_meta_note).' '.$tmp_hit_count.'</div>
+                                        <div style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-top: 3px solid #FFF; \'>' . $this->format_output($tmp_meta_note).' '.$tmp_hit_count.'</div>
                                     </td>
                                     
                                 </tr>                                        
@@ -10128,17 +10140,18 @@ Formally, the display property sets an element\'s inner and outer display types.
                         $tmp_str = '<div style=\'font-family:"Courier New", Courier, monospace; font-size: 17px; line-height:25px; font-weight: bold; text-align: left; border-top: 20px solid #FFF; border-bottom: 6px solid #FFF; color: #6885C3;\'><a href="'.$tmp_css_uri.'" target="_blank" style=\'font-family:"Courier New", Courier, monospace; font-size: 17px;text-decoration:none; color: #6885C3; text-decoration: underline; \'>'.htmlentities($css_str_pattern_TITLE).'</a></div>  
 <div style=\'font-family:"Courier New", Courier, monospace; font-size: 13px; font-weight: normal; border-left: 0px solid #FFF;  border-right: 10px solid #FFF; border-bottom: 20px solid #FFF; color: #6885C3; line-height:16px; text-align:left;\'>' . $tmp_css_description . ' '.$tmp_deprecated_indicator.'</div>';
 
-                        break;
+                    break;
                     default:
                         //
                         // TEXT VERSION EMAIL, GETS NOT THIS CONTENT.
 
-                        break;
+                    break;
+
                 }
 
                 return $tmp_str;
 
-                break;
+            break;
             case 'VALIDATOR_LOGIC_DESKTOP_CLIENT_SUPPORT':
 
                 //
@@ -10160,7 +10173,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                 $tmp_email_client_ARRAY = $this->desktop_mail_client_ARRAY;
                 $tmp_email_client_CONST_ARRAY = $this->desktop_mail_CONST_ARRAY;
 
-                break;
+            break;
             case 'VALIDATOR_LOGIC_MOBILE_CLIENT_SUPPORT':
 
                 //
@@ -10182,7 +10195,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                 $tmp_email_client_ARRAY = $this->mobile_mail_client_ARRAY;
                 $tmp_email_client_CONST_ARRAY = $this->mobile_mail_CONST_ARRAY;
 
-                break;
+            break;
             case 'VALIDATOR_LOGIC_WEB_CLIENT_SUPPORT':
 
                 //
@@ -10205,13 +10218,13 @@ Formally, the display property sets an element\'s inner and outer display types.
                 $tmp_email_client_ARRAY = $this->web_mail_client_ARRAY;
                 $tmp_email_client_CONST_ARRAY = $this->web_mail_CONST_ARRAY;
 
-                break;
+            break;
             default:
 
                 //
                 // SILENCE IS GOLDEN.
 
-                break;
+            break;
 
         }
 
@@ -10230,30 +10243,29 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         $tmp_serialized_bit_nom = 'META_'.$tmp_css_species.'_'.$css_str_pattern.$tmp_email_client_CONST_ARRAY[$key_client_d];
 
-                        if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
+                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
 
-
-                            if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_SUCCESS_CHECK)){  // HAS SUCCESS
+                            if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_SUCCESS_CHECK)){  // HAS SUCCESS
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                             }else{
 
                                 //
                                 // HAS ERR X
-                                if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                                if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                                     //
                                     // ERROR X ICONOGRAPHY
-                                    $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                                 }else{
 
                                     //
                                     // INFORMATION BANG ICONOGRAPHY
-                                    $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                                 }
 
@@ -10263,17 +10275,17 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             //
                             // CHECK FOR ERR_X
-                            if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                            if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                                 //
                                 // ERROR X ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                             }else{
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                             }
 
@@ -10281,7 +10293,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // META NOTE INCLUDE CHECK
-                        if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                             $tmp_meta_note = $this->css_pattern_meta_note_ARRAY[$tmp_serialized_bit_nom];
 
@@ -10295,27 +10307,27 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         $tmp_serialized_bit_nom = 'META_'.$css_str_pattern.$tmp_email_client_CONST_ARRAY[$key_client_d];
 
-                        if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
+                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
 
-                            if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_SUCCESS_CHECK)){
+                            if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_SUCCESS_CHECK)){
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                             }else{
 
-                                if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                                if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                                     //
                                     // ERROR X ICONOGRAPHY
-                                    $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                                 }else{
 
                                     //
                                     // INFORMATION BANG ICONOGRAPHY
-                                    $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                                 }
 
@@ -10325,17 +10337,17 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             //
                             // CHECK FOR ERR_X
-                            if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                            if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                                 //
                                 // ERROR X ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                             }else{
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                             }
 
@@ -10343,7 +10355,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // META NOTE INCLUDE CHECK
-                        if($this->oCRNRSTN_USR->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                             $tmp_meta_note = $this->css_pattern_meta_note_ARRAY[$tmp_serialized_bit_nom];
 
@@ -10367,7 +10379,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                 <tr>
                                                 <td></td>
                                                 <td>
-                                                    <div style=\'color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-top: 1px solid #FFF; \'>'.$this->format_output($tmp_meta_note).'</div>
+                                                    <div style=\'color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-top: 1px solid #FFF; \'>' . $this->format_output($tmp_meta_note).'</div>
                                                 </td>                                                
                                             </tr>                                                                                           
                                             </table>                                                                                                                                        
@@ -10455,16 +10467,18 @@ Formally, the display property sets an element\'s inner and outer display types.
 
         }
 
+        return false;
+
     }
 
     private function return_validation_results_header($output_format = 'HTML'){
 
         $tmp_str = '';
         $tmp_array = array();
-        $tmp_array[] = 'crnrstn_l=' . $this->oCRNRSTN_USR->data_encrypt('css_validator');
+        $tmp_array[] = 'crnrstn_l=' . $this->oCRNRSTN->data_encrypt('css_validator');
         $tmp_array[] = 'crnrstn_mit=true';
 
-        $tmp_http_root = $this->oCRNRSTN_USR->append_url_param($tmp_array);
+        $tmp_http_root = $this->oCRNRSTN->append_url_param($tmp_array);
 
         $tmp_ = explode('.',$this->oCRNRSTN_USR->starttime);
         $try_harder = $tmp_[1];
@@ -10492,10 +10506,10 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                             <td style="vertical-align: top; width:240px;">
                                                                 <div style=\'font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-left: 10px solid #FFF; border-top: 10px solid #FFF; border-bottom: 5px solid #FFF; color: #6885C3;\'>Operation Runtime: '.$tmp_walltime.' secs</div>
                                                                 <div style=\'font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-left: 10px solid #FFF; border-bottom: 5px solid #FFF; color: #6885C3;\'>Total Packet Size: '.$packet_size.'</div>
-                                                                <div style=\'font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-left: 10px solid #FFF; border-bottom: 5px solid #FFF; color: #6885C3;\'>IP: '.$this->oCRNRSTN_USR->return_client_ip().'</div>
+                                                                <div style=\'font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-left: 10px solid #FFF; border-bottom: 5px solid #FFF; color: #6885C3;\'>IP: ' . $this->oCRNRSTN_USR->return_client_ip().'</div>
                                                                 <div style=\'font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-left: 10px solid #FFF; border-bottom: 5px solid #FFF; \'>Timestamp: '.date('G:i:s').'.'.$try_harder.' '.date('T').'</div>
                                                                 <div style=\'font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-left: 10px solid #FFF; border-bottom: 5px solid #FFF; color: #6885C3;\'>Date: '.date('D, F j, Y').'</div>
-                                                                <div style=\'font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-left: 10px solid #FFF; border-bottom: 0px solid #FFF; color: #6885C3;\'>Raw Score: '.$this->return_validation_score('NUMERIC_RAW').'</div>
+                                                                <div style=\'font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; border-left: 10px solid #FFF; border-bottom: 0px solid #FFF; color: #6885C3;\'>Raw Score: ' . $this->return_validation_score('NUMERIC_RAW').'</div>
             
                                                             </td>
                                                             <td style="vertical-align: top;">
@@ -10504,7 +10518,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                                     <table cellspacing="0" cellpadding="0" border="0" style="border-left:35px solid #FFF; border-top:0px solid #FFF; ">
                                                                     <tr>
                                                                         <td>
-                                                                            <div style=\'background-color:#A5B9D8; border-top:0px solid #A5B9D8; border-right:10px solid #A5B9D8; border-bottom:0px solid #A5B9D8; border-left:10px solid #A5B9D8; font-family:Arial, Helvetica, sans-serif;\'>'.$this->return_validation_score('ALPHA').'</div>
+                                                                            <div style=\'background-color:#A5B9D8; border-top:0px solid #A5B9D8; border-right:10px solid #A5B9D8; border-bottom:0px solid #A5B9D8; border-left:10px solid #A5B9D8; font-family:Arial, Helvetica, sans-serif;\'>' . $this->return_validation_score('ALPHA').'</div>
                                                                         </td>
                                                                     </tr>
                                                                     </table>
@@ -10513,7 +10527,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                                 <table cellspacing="0" cellpadding="0" border="0" style="border-top:5px solid #FFF;  border-left:10px solid #FFF; text-align: right; width:135px;">
                                                                 <tr>
                                                                     <td>
-                                                                        <div style=\'font-family:"Courier New", Courier, monospace; font-size: 30px; color: #6885C3; \'>'.$this->return_validation_score('NUMERIC').'/100</div>                                        
+                                                                        <div style=\'font-family:"Courier New", Courier, monospace; font-size: 30px; color: #6885C3; \'>' . $this->return_validation_score('NUMERIC').'/100</div>                                        
                                                                     </td>
                                                                 </tr>
                                                                 </table>
@@ -10532,22 +10546,22 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                                             <td style="width:239px; border-right: 20px solid #FFF;">
                                                                                 <table cellspacing="0" cellpadding="0" border="0" style="width:239px;">
                                                                                 <tr>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 1).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 2).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 3).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 4).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 5).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 6).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 7).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 8).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 9).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 0px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 10).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 1) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 2) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 3) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 4) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 5) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 6) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 7) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 8) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 9) . '</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 0px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_DESKTOP', 10) . '</div></td>
                             
                                                                                 </tr>
                                                                                                                                     
                                                                                 </table>
                                                                             </td>
-                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#desktop_channel_details" target="_self">'.$this->oCRNRSTN_USR->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
+                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#desktop_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
                                                                         </tr>
                                                                                                                         
                                                                         </table>
@@ -10562,22 +10576,22 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                                             <td style="width:239px; border-right: 20px solid #FFF;">
                                                                                 <table cellspacing="0" cellpadding="0" border="0" style="width:239px; ">
                                                                                 <tr>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 1).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 2).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 3).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 4).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 5).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 6).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 7).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 8).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 9).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 0px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 10).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 1).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 2).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 3).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 4).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 5).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 6).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 7).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 8).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 9).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 0px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_MOBILE', 10).'</div></td>
                             
                                                                                 </tr>
                                                                                                                                     
                                                                                 </table>
                                                                             </td>
-                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#mobile_channel_details" target="_self">'.$this->oCRNRSTN_USR->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
+                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#mobile_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
                             
                                                                         </tr>
                                                                                                                         
@@ -10593,21 +10607,21 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                                         <td style="width:239px; border-right: 20px solid #FFF;">
                                                                                 <table cellspacing="0" cellpadding="0" border="0" style="width:239px;">
                                                                                 <tr>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 1).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 2).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 3).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 4).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 5).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 6).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 7).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 8).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 9).'</div></td>
-                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 0px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 10).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 1).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 2).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 3).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 4).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 5).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 6).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 7).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 8).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 9).'</div></td>
+                                                                                    <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 0px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_WEB', 10).'</div></td>
                                                                                 </tr>
                                                                                                                                     
                                                                                 </table>
                                                                             </td>
-                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#web_channel_details" target="_self">'.$this->oCRNRSTN_USR->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
+                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#web_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
                                                                             
                                                                         </tr>
                                                                                                                         
@@ -10625,10 +10639,10 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                             <td colspan="2">
                                                                 <div style=\'font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: bold; border-left: 10px solid #FFF;  border-top: 10px solid #FFF; border-bottom: 6px solid #FFF; color: #6885C3;\'>Validator Status ::</div>
                                                                 <div style=\'font-family:"Courier New", Courier, monospace; font-size: 13px; font-weight: normal; border-left: 10px solid #FFF; border-right: 10px solid #FFF; border-right: 10px solid #FFF; border-bottom: 10px solid #FFF; color: #6885C3; line-height:17px; \'><span style=\'font-family:"Courier New", Courier, monospace; font-size: 14px; font-weight: bold;\'>April 20, 2021 2055hrs.</span> Please scroll down for the CSS validation report details. This tool is currently under active development. 
-                                                                We just finished clearing many bugs in the <a href="./?crnrstn_l=' . urlencode($this->oCRNRSTN_USR->data_encrypt('css_validator')) . '&crnrstn_css_valptrn='.$this->oCRNRSTN_USR->generate_new_key(8, '01').'" style="color:#0066CC;">underlying rules</a> supporting the validation algorithm and also within exception handling. For now, there are still other 
+                                                                We just finished clearing many bugs in the <a href="./?crnrstn_l=' . urlencode($this->oCRNRSTN->data_encrypt('css_validator')) . '&crnrstn_css_valptrn=' . $this->oCRNRSTN->generate_new_key(8, '01').'" style="color:#0066CC;">underlying rules</a> supporting the validation algorithm and also within exception handling. For now, there are still other 
                                                                 bugs and incomplete core elements, so this tool remains in PRE-ALPHA. Once testing is complete, this brief status report will be updated to an 
                                                                 overview of the tool. <br><br>It would be nice to have share via 
-                                                                email/FTAF for this report. This project is <a href="' . $tmp_http_root . '" target="_blank">MIT Licensed</a>, and it has been pushed to <a href="'.$this->oCRNRSTN_USR->return_sticky_link('https://github.com/jony5/CSS-Validator-for-HTML-Email-v2.00.0000').'" target="_blank">GitHub</a>.</div>
+                                                                email/FTAF for this report. This project is <a href="' . $tmp_http_root . '" target="_blank">MIT Licensed</a>, and it has been pushed to <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CSS-Validator-for-HTML-Email-v2.00.0000').'" target="_blank">GitHub</a>.</div>
                                                                 
                                                             </td>
                                                         </tr>
@@ -10700,34 +10714,34 @@ Formally, the display property sets an element\'s inner and outer display types.
             $tmp_success_cnt = count($this->results_count_aggregation_ARRAY[$this->desktop_mail_CONST_ARRAY[$key]]['SUCCESS']) - 1;
 
             $tmp_str = $tmp_str . '<div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 15px solid #FFF; \'>
-                                            <a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: normal; \'>'.$client_nom.'</a>                                 
+                                            <a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: normal; \'>'.$client_nom.'</a>                                 
                                             </div>
                                             <div>
                                             <table cellspacing="0" cellpadding="0" border="0" style="width:239px; height:20px; overflow:hidden; padding:0; margin:0;">
                                             <tr style="padding:0; margin:0; height: 20px;">
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-left: 9px solid #FFF; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 1, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 2, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 3, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 4, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 5, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 6, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 7, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 8, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 9, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 10, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-left: 9px solid #FFF; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 1, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 2, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 3, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 4, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 5, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 6, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 7, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 8, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 9, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 10, $this->desktop_mail_CONST_ARRAY[$key]).'</div></td>
                                             </tr>               
                                             <tr style="padding:0; margin:0; height: 23px;">
                                                 <td colspan="10">
                                                     <table cellpadding="0" cellspacing="0" border="0" style="padding:0; margin:0;">
                                                     <tr>
-                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="width:35px; height: 19px;"><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="width:35px; height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="width:35px;height: 19px; "><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="width:35px;height: 19px; "><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="height: 19px;"><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
                                                    
                                                     </tr>                       
                                                     </table>                         
@@ -10757,34 +10771,34 @@ Formally, the display property sets an element\'s inner and outer display types.
             $tmp_success_cnt = count($this->results_count_aggregation_ARRAY[$this->mobile_mail_CONST_ARRAY[$key]]['SUCCESS']) - 1;
 
             $tmp_str = $tmp_str . '<div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 15px solid #FFF; \'>
-                                            <a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: normal; \'>'.$client_nom.'</a>                                 
+                                            <a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: normal; \'>'.$client_nom.'</a>                                 
                                             </div>
                                             <div>
                                             <table cellspacing="0" cellpadding="0" border="0" style="width:239px; height:20px; overflow:hidden; padding:0; margin:0;">
                                             <tr style="padding:0; margin:0; height: 20px;">
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-left: 9px solid #FFF; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 1, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 2, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 3, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 4, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 5, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 6, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 7, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 8, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 9, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 10, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-left: 9px solid #FFF; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 1, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 2, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 3, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 4, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 5, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 6, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 7, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 8, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 9, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 10, $this->mobile_mail_CONST_ARRAY[$key]).'</div></td>
                                             </tr>               
                                             <tr style="padding:0; margin:0; height: 23px;">
                                                 <td colspan="10">
                                                     <table cellpadding="0" cellspacing="0" border="0" style="padding:0; margin:0;">
                                                     <tr>
-                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="width:35px; height: 19px;"><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="width:35px; height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="width:35px;height: 19px; "><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="width:35px;height: 19px; "><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="height: 19px;"><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
                                                    
                                                     </tr>                       
                                                     </table>                         
@@ -10812,34 +10826,34 @@ Formally, the display property sets an element\'s inner and outer display types.
             $tmp_success_cnt = count($this->results_count_aggregation_ARRAY[$this->web_mail_CONST_ARRAY[$key]]['SUCCESS']) - 1;
 
             $tmp_str = $tmp_str . '<div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 15px solid #FFF; \'>
-                                            <a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: normal; \'>'.$client_nom.'</a>                                 
+                                            <a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: normal; \'>'.$client_nom.'</a>                                 
                                             </div>
                                             <div>
                                             <table cellspacing="0" cellpadding="0" border="0" style="width:239px; height:20px; overflow:hidden; padding:0; margin:0;">
                                             <tr style="padding:0; margin:0; height: 20px;">
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-left: 9px solid #FFF; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 1, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 2, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 3, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 4, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 5, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 6, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 7, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 8, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 9, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
-                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">'.$this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 10, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-left: 9px solid #FFF; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 1, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 2, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 3, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 4, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 5, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 6, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 7, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 8, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 9, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
+                                                <td><div style="width: 20px; height: 20px; overflow:hidden; border-right: 1px solid #FFF;">' . $this->return_validation_score('GRAPHIC_DOT_CHANNEL_CLIENT', 10, $this->web_mail_CONST_ARRAY[$key]).'</div></td>
                                             </tr>               
                                             <tr style="padding:0; margin:0; height: 23px;">
                                                 <td colspan="10">
                                                     <table cellpadding="0" cellspacing="0" border="0" style="padding:0; margin:0;">
                                                     <tr>
-                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="width:35px; height: 19px;"><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="width:35px; height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="width:35px;height: 19px; "><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="width:35px;height: 19px; "><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">'.$this->oCRNRSTN_USR->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
-                                                        <td style="height: 19px;"><a href="#'.$this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td style="height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
                                                    
                                                     </tr>                       
                                                     </table>                         
@@ -10900,7 +10914,7 @@ CSS Support Within Message';
 
             }
 
-            $tmp_str = $tmp_str . '<div id="'.$this->format_output($client_nom, 'CLIENT_NOM').'"></div><div id="'.$this->format_output($client_nom, 'CLIENT_NOM').'"></div><div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 10px solid #FFF; text-align: left;color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: bold; \'>
+            $tmp_str = $tmp_str . '<div id="' . $this->format_output($client_nom, 'CLIENT_NOM').'"></div><div id="' . $this->format_output($client_nom, 'CLIENT_NOM').'"></div><div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 10px solid #FFF; text-align: left;color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: bold; \'>
                                
                                 <table cellpadding="0" cellspacing="0" border="0" style="width:320px;">
                                         <tr>
@@ -10952,7 +10966,7 @@ CSS Support Within Message';
 
             }
 
-            $tmp_str = $tmp_str . '<div id="'.$this->format_output($client_nom, 'CLIENT_NOM').'"></div><div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 10px solid #FFF; text-align: left;color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: bold; \'>
+            $tmp_str = $tmp_str . '<div id="' . $this->format_output($client_nom, 'CLIENT_NOM').'"></div><div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 10px solid #FFF; text-align: left;color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: bold; \'>
                                
                                 <table cellpadding="0" cellspacing="0" border="0" style="width:320px;">
                                         <tr>
@@ -11003,7 +11017,7 @@ CSS Support Within Message';
 
             }
 
-            $tmp_str = $tmp_str . '<div id="'.$this->format_output($client_nom, 'CLIENT_NOM').'"></div><div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 10px solid #FFF; text-align: left;color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: bold; \'>
+            $tmp_str = $tmp_str . '<div id="' . $this->format_output($client_nom, 'CLIENT_NOM').'"></div><div style=\'border-bottom: 5px solid #FFF; border-left: 14px solid #FFF; border-top: 10px solid #FFF; text-align: left;color: #6885C3;font-family:"Courier New", Courier, monospace; font-size: 17px; font-weight: bold; \'>
                                
                                 <table cellpadding="0" cellspacing="0" border="0" style="width:320px;">
                                         <tr>
@@ -11161,15 +11175,15 @@ CSS Support Within Message';
         switch($format_type){
             case 'CLIENT_NOM':
 
-                $formatted_str = strtolower($this->oCRNRSTN_USR->proper_replace(' ', '_', $str));
+                $formatted_str = strtolower($this->oCRNRSTN->proper_replace(' ', '_', $str));
 
                 break;
             default:
 
                 //
                 // NOTE
-                $formatted_str = $this->oCRNRSTN_USR->proper_replace('<code>', '<code style=\'border:2px solid #D9DEEB; border-radius: 5px; border-bottom-right-radius: 0; border-top-left-radius: 0; padding:1px 0 1px 0; line-height:17px; color:#FFF;\'><code style=\'background-color: #6886C3; border:1px solid #FFF; border-radius: 5px; border-bottom-right-radius: 0; border-top-left-radius: 0; padding:1px 3px 1px 3px; color:#FFF; font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; line-height:17px; \'>', $str);
-                $formatted_str = $this->oCRNRSTN_USR->proper_replace('</code>', '</code></code>', $formatted_str);
+                $formatted_str = $this->oCRNRSTN->proper_replace('<code>', '<code style=\'border:2px solid #D9DEEB; border-radius: 5px; border-bottom-right-radius: 0; border-top-left-radius: 0; padding:1px 0 1px 0; line-height:17px; color:#FFF;\'><code style=\'background-color: #6886C3; border:1px solid #FFF; border-radius: 5px; border-bottom-right-radius: 0; border-top-left-radius: 0; padding:1px 3px 1px 3px; color:#FFF; font-family:"Courier New", Courier, monospace; font-size: 11px; font-weight: normal; line-height:17px; \'>', $str);
+                $formatted_str = $this->oCRNRSTN->proper_replace('</code>', '</code></code>', $formatted_str);
 
                 break;
 
@@ -11353,13 +11367,13 @@ CSS Support Within Message';
 
             //
             // USE GREEN DOTS
-            $tmp_dot_HTML = $this->oCRNRSTN_USR->return_creative('DOT_GREEN', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+            $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_GREEN', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
         }else{
 
             //
             // USE RED DOTS
-            $tmp_dot_HTML = $this->oCRNRSTN_USR->return_creative('DOT_RED', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+            $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_RED', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
         }
 
@@ -11373,7 +11387,7 @@ CSS Support Within Message';
 
                 //
                 // USE CLEAR DOTS FOR ANY REMAINING DOTS.
-                $tmp_dot_HTML = $this->oCRNRSTN_USR->return_creative('DOT_OFF', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_OFF', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
 
                 return $tmp_dot_HTML;
 

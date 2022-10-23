@@ -1051,6 +1051,18 @@ class crnrstn {
 
     }
 
+    public function initialize_serialized_bit($const_nom, $integer_const, $default_state = true){
+
+        return $this->oCRNRSTN_BITFLIP_MGR->initialize_serialized_bit($const_nom, $integer_const, $default_state);
+
+    }
+
+    public function initialize_bit($integer_constant, $default_state = true){
+
+        return $this->oCRNRSTN_USR->initialize_bit($integer_constant, $default_state);
+
+    }
+
     public function serialized_is_bit_set($const_nom, $integer_const){
 
         return $this->oCRNRSTN_BITFLIP_MGR->serialized_is_bit_set($const_nom, $integer_const);
@@ -1230,7 +1242,7 @@ class crnrstn {
 
         */
 
-        $this->oCRNRSTN_BITFLIP_MGR = new crnrstn_bitflip_manager();
+        $this->oCRNRSTN_BITFLIP_MGR = new crnrstn_bitflip_manager($this);
 
         //$this->log_silo_profile
 
@@ -9674,7 +9686,7 @@ class crnrstn_openssl_encryption_layer_profile_manager {
 class crnrstn_bitflip_manager {
 
     protected $oLogger;
-    public $oCRNRSTN_USR;
+    public $oCRNRSTN;
     protected $oCRNRSTN_BITWISE;
 
     protected $oCRNRSTN_BITS_ARRAY = array();
@@ -9691,7 +9703,13 @@ class crnrstn_bitflip_manager {
 
     private static $crnrstn_bits_position_by_serial_ARRAY = array();
 
-    public function __construct() {
+    public function __construct($oCRNRSTN) {
+
+        $this->oCRNRSTN = $oCRNRSTN;
+
+        //
+        // INSTANTIATE LOGGER
+        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
         $this->initialize_cpu_profile();
 
@@ -9699,21 +9717,15 @@ class crnrstn_bitflip_manager {
 
     }
 
-    public function init_oCRNRSTN_USR($oCRNRSTN_USR){
-
-        $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-
-    }
-
     public function return_serialized_bit_value($bitwise_object_array_index_serial, $integer_constant){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($bitwise_object_array_index_serial, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5'))])){
 
             return false;
 
         }else{
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($bitwise_object_array_index_serial, 'md5'))];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5'))];
 
             $tmp_val = $this->return_bit_value($integer_constant);
 
@@ -9733,7 +9745,7 @@ class crnrstn_bitflip_manager {
 
     public function serialized_is_bit_set($const_nom, $integer_const){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
 
             return false;
 
@@ -9741,7 +9753,7 @@ class crnrstn_bitflip_manager {
 
             //error_log(__LINE__ .' '. __METHOD__ .' we think the array[' . $const_nom . '] index holds a oCRNRSTN_BITMASK object.');
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
 
             //return $oCRNRSTN_BITMASK->read(constant($integer_const));
             return $oCRNRSTN_BITMASK->read($integer_const);
@@ -9754,7 +9766,7 @@ class crnrstn_bitflip_manager {
 
         $tmp_str = '';
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
 
             return false;
 
@@ -9762,7 +9774,7 @@ class crnrstn_bitflip_manager {
 
             //error_log(__LINE__ .' '. __METHOD__ .' we think the array['.$const_nom.'] index holds a oCRNRSTN_BITMASK object.');
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
 
             $tmp_str = $oCRNRSTN_BITMASK->stringout();
 
@@ -9774,22 +9786,22 @@ class crnrstn_bitflip_manager {
 
     public function serialized_bit_stringin($const_nom, $bits_stringin){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
 
             //
             // SOURCE :: https://www.php.net/manual/en/language.operators.bitwise.php
             // AUTHOR :: icy at digitalitcc dot com :: https://www.php.net/manual/en/language.operators.bitwise.php#50299
             $oCRNRSTN_BITMASK = new crnrstn_bitmask();
 
-            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
 
         $oCRNRSTN_BITMASK->stringin($bits_stringin);
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         return true;
 
@@ -9797,19 +9809,19 @@ class crnrstn_bitflip_manager {
 
     public function initialize_serialized_bit($const_nom, $integer_const, $default_state = true){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
 
             //
             // SOURCE :: https://www.php.net/manual/en/language.operators.bitwise.php
             // AUTHOR :: icy at digitalitcc dot com :: https://www.php.net/manual/en/language.operators.bitwise.php#50299
             $oCRNRSTN_BITMASK = new crnrstn_bitmask();
 
-            //error_log(__LINE__ .' '. __METHOD__ .' NEW bitmask object flipping['.$integer_const.'] to array index, '.strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5')));
-            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+            //error_log(__LINE__ .' '. __METHOD__ .' NEW bitmask object flipping['.$integer_const.'] to array index, '.strtoupper($this->oCRNRSTN->hash($const_nom, 'md5')));
+            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
 
         //
         // WILL BASICALLY RETURN AN INT++ FOR EACH UNIQUE CONSTANT PROVIDED.
@@ -9833,9 +9845,9 @@ class crnrstn_bitflip_manager {
 
         }
 
-        //error_log(__LINE__ .' '. __METHOD__ .' we put back into the array['.strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5')).']...a oCRNRSTN_BITMASK object.');
+        //error_log(__LINE__ .' '. __METHOD__ .' we put back into the array['.strtoupper($this->oCRNRSTN->hash($const_nom, 'md5')).']...a oCRNRSTN_BITMASK object.');
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         return $tmp_val;
 
@@ -9893,13 +9905,13 @@ class crnrstn_bitflip_manager {
 
     public function toggle_serialized_bit($const_nom, $integer_constant, $target_state = NULL){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
 
             return false;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
 
         if(is_bool($target_state)){
 
@@ -9935,7 +9947,7 @@ class crnrstn_bitflip_manager {
 
         }
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN_USR->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
 
         return $oCRNRSTN_BITMASK->read($integer_constant);
 

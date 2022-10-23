@@ -39,7 +39,7 @@ switch($channel_constant){
         $tmp_str = '';
 
     break;
-    case 'null':
+    case 'null_0':
 
         //
         // TABLET DEVICE EXPERIENCE
