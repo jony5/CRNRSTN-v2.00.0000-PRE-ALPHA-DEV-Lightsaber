@@ -6451,53 +6451,53 @@ class crnrstn_environment {
 
     }
 
-    public function return_sticky_link($url, $meta_params_ARRAY = NULL){
-
-        $tmp_array = array();
-        $tmp_flag_array = array();
-
-        $tmp_array[] = 'crnrstn_l=crnrstn';
-        $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
-        $tmp_flag_array['crnrstn_l'] = 1;
-        $tmp_flag_array['crnrstn_r'] = 1;
-
-        if(isset($meta_params_ARRAY)){
-
-            if(is_array($meta_params_ARRAY)){
-
-                foreach($meta_params_ARRAY as $key => $value){
-
-                    if(!isset($tmp_flag_array[$key])){
-
-                        $tmp_flag_array[$key] = 1;
-
-                        $tmp_array[] = $value;
-
-                    }
-
-                }
-
-            }else{
-
-                if(is_string($meta_params_ARRAY)){
-
-                    if(!isset($tmp_flag_array['crnrstn_m'])){
-
-                        $tmp_flag_array['crnrstn_m'] = 1;
-
-                        $tmp_array[] = 'crnrstn_m=' . urlencode($meta_params_ARRAY);
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        return $this->append_url_param($tmp_array);
-
-    }
+//    public function return_sticky_link($url, $meta_params_ARRAY = NULL){
+//
+//        $tmp_array = array();
+//        $tmp_flag_array = array();
+//
+//        $tmp_array[] = 'crnrstn_l=crnrstn';
+//        $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
+//        $tmp_flag_array['crnrstn_l'] = 1;
+//        $tmp_flag_array['crnrstn_r'] = 1;
+//
+//        if(isset($meta_params_ARRAY)){
+//
+//            if(is_array($meta_params_ARRAY)){
+//
+//                foreach($meta_params_ARRAY as $key => $value){
+//
+//                    if(!isset($tmp_flag_array[$key])){
+//
+//                        $tmp_flag_array[$key] = 1;
+//
+//                        $tmp_array[] = $value;
+//
+//                    }
+//
+//                }
+//
+//            }else{
+//
+//                if(is_string($meta_params_ARRAY)){
+//
+//                    if(!isset($tmp_flag_array['crnrstn_m'])){
+//
+//                        $tmp_flag_array['crnrstn_m'] = 1;
+//
+//                        $tmp_array[] = 'crnrstn_m=' . urlencode($meta_params_ARRAY);
+//
+//                    }
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//        return $this->append_url_param($tmp_array);
+//
+//    }
 
     public function explode_url($uri){
 

@@ -1003,9 +1003,66 @@ class crnrstn {
 
     }
 
-    public function return_icon_social_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false){
+    public function return_sticky_link($url, $meta_params = NULL){
 
-        return $this->oCRNRSTN_USR->return_icon_social_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false);
+        $tmp_array = array();
+        $tmp_flag_array = array();
+
+        $tmp_array[] = $this->session_salt() . '=lnk';
+        $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
+        $tmp_flag_array[$this->session_salt()] = 1;
+        $tmp_flag_array['crnrstn_r'] = 1;
+
+        if(isset($meta_params)){
+
+            if(is_array($meta_params)){
+
+                foreach($meta_params as $key => $value){
+
+                    //
+                    // TO AVOID RECURSION
+                    if(!isset($tmp_flag_array[$key])){
+
+                        $tmp_flag_array[$key] = 1;
+
+                        $tmp_array[] = $value;
+
+                    }
+
+                }
+
+            }else{
+
+                if(is_string($meta_params)){
+
+                    if(!isset($tmp_flag_array['crnrstn_m'])){
+
+                        $tmp_flag_array['crnrstn_m'] = 1;
+                        $tmp_array[] = 'crnrstn_m=' . urlencode($meta_params);
+                        //error_log(__LINE__ . ' [' . print_r($meta_params, true) . '].');
+                        //$tmp_array[] = urlencode($meta_params);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return $this->append_url_param($tmp_array);
+
+    }
+
+    public function return_sticky_icon_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false){
+
+        return $this->oCRNRSTN_USR->return_sticky_icon_link($creative_element_key, $url, $target, $email_channel);
+
+    }
+
+    public function return_sticky_text_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false){
+
+        //return $this->oCRNRSTN_USR->return_sticky_text_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false);
 
     }
 
@@ -8316,58 +8373,6 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     public function return_back_link(){
 
         return '';
-
-    }
-
-    public function return_sticky_link($url, $meta_params_ARRAY = NULL){
-
-        $tmp_array = array();
-        $tmp_flag_array = array();
-
-        $tmp_array[] = $this->session_salt() . '=lnk';
-        $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
-        $tmp_flag_array[$this->session_salt()] = 1;
-        $tmp_flag_array['crnrstn_r'] = 1;
-
-        if(isset($meta_params_ARRAY)){
-
-            if(is_array($meta_params_ARRAY)){
-
-                foreach($meta_params_ARRAY as $key => $value){
-
-                    //
-                    // TO AVOID RECURSION
-                    if(!isset($tmp_flag_array[$key])){
-
-                        $tmp_flag_array[$key] = 1;
-
-                        $tmp_array[] = $value;
-
-                    }
-
-                }
-
-            }else{
-
-                if(is_string($meta_params_ARRAY)){
-
-                    //
-                    // TO AVOID RECURSION
-                    if(!isset($tmp_flag_array['crnrstn_m'])){
-
-                        $tmp_flag_array['crnrstn_m'] = 1;
-
-                        $tmp_array[] = 'crnrstn_m=' . urlencode($meta_params_ARRAY);
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        return $this->append_url_param($tmp_array);
 
     }
 

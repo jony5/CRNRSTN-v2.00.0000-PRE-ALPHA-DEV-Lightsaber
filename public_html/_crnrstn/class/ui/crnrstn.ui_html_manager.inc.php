@@ -113,10 +113,7 @@ class crnrstn_ui_html_manager {
 
         if(strlen($tmp_module_page_key)>0){
 
-            $tmp_html_out = '<div class="crnrstn_lightbox_body_wrapper">
-<div class="crnrstn_lightbox_content_shell">
-<div class="crnrstn_dyn_signin_hdr_branding_shell">
-
+            $tmp_mit_license = '<div class="crnrstn_mit_license_hdr_branding_shell">
             <div class="crnrstn_env_select_wrapper">
                 <div class="crnrstn_env_select_component_wrapper">
                     <select name="crnrstn_host_endpoint" style="height: 15px; font-size: 11px; display:inline;">
@@ -196,8 +193,51 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </div>
 
         </div>
-        <div class="crnrstn_cb_40"></div>
-        </div>
+        <div class="crnrstn_cb_40"></div>';
+
+            $tmp_html_out = '<div class="crnrstn_lightbox_body_wrapper">
+<div class="crnrstn_lightbox_content_shell">
+
+<div class="crnrstn_mit_license_module_wrap_s3">
+                
+                    <div class="crnrstn_mit_license_module_border_rel">
+                        <div class="crnrstn_mit_license_module_border">
+                            <div class="crnrstn_hidden_void">
+                                <div class="crnrstn_mit_license_module_content">' . $tmp_mit_license . '</div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crnrstn_mit_license_module_wrap_s2_outter">
+                        <div class="crnrstn_mit_license_module_wrap_s2_inner">
+                        
+                            <div class="crnrstn_mit_license_module_bg_rel">
+                                    
+                                <div class="crnrstn_mit_license_module_wrap_s1_rel">
+                               
+                                    <div class="crnrstn_mit_license_module_wrap_s1">
+                            
+                                        <div class="crnrstn_mit_license_module_content">' . $tmp_mit_license . '</div>
+
+                                    </div>
+                                    
+                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                
+                                    <div class="crnrstn_hidden_void">
+                                        <div class="crnrstn_mit_license_module_content">' . $tmp_mit_license . '</div>
+                                    
+                                    </div>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
         </div>';
 
             return $tmp_html_out;

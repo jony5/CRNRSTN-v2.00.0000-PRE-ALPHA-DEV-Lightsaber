@@ -21,7 +21,7 @@
 .crnrstn_ui_system_footer                           { position: absolute; z-index:9999; border-top: 1px solid #A5B9D8; height: 100px; background-color: #FFF; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; }
 
 .crnrstn_ui_system_footer_content_wrapper           {}
-.crnrstn_ui_system_footer_content                   { float: left; width: 100%; padding: 10px 0 0 0;}
+.crnrstn_ui_system_footer_content                   { float: left; width: 100%; padding: 10px 0 0 0; font-weight: normal;}
 
 .crnrstn_ui_system_footer_stache                    { float: left; padding: 3px 27px 0 20px; }
 .crnrstn_ui_system_footer_mit                       { float: left; padding: 1px 10px 0 10px; }
@@ -57,6 +57,18 @@
 .crnrstn_ui_element_load_indicator_bg			    { position:absolute; z-index:10; width:100px; height:3000px; background-color: #F90000;}
 .crnrstn_ui_element_load_indicator_rel	            { position:relative;}
 .crnrstn_ui_element_load_indicator                  { position:absolute; z-index:11; width:100px; height:3000px;}
+
+/*CRNRSTN::INTEGRATION INTERACT UI MODULE :: MIT LICENSE*/
+.crnrstn_mit_license_module_wrap_s3                 { width: 100%; padding: 20px 0 19px 0; }
+.crnrstn_mit_license_module_border_rel              { position: relative; width: 100%;}
+.crnrstn_mit_license_module_border                  { position: absolute; z-index: 2; padding: 0 2px 14px 0; top: -9px; left: -9px; width: 100%; background-color: #FFF; border: 8px solid #FFF; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30); opacity: 0.3; border-radius: 5px; }
+.crnrstn_mit_license_module_wrap_s2_outter          { overflow: hidden; background-color: #FEFEFE; border: 3px solid #FEFEFE; border-radius: 5px; }
+.crnrstn_mit_license_module_wrap_s2_inner           { overflow: hidden; border: 1px solid #A5B9D8; border-radius: 5px; }
+.crnrstn_mit_license_module_bg_rel                  { position: relative; width: 100%; overflow: hidden;}
+.crnrstn_mit_license_module_wrap_s1_rel             { position: relative; padding: 2px 0 2px 0;}
+.crnrstn_mit_license_module_wrap_s1                 { width: 100%; position: absolute; z-index: 4; top:-10px; left:0;}
+.crnrstn_mit_license_module_content                 { color:#333;}
+.crnrstn_mit_license_hdr_branding_shell             { width:578px; height:45px; text-align: center; margin:0 auto; padding-top: 40px;}
 
 /*CRNRSTN::INTEGRATION INTERACT UI MODULE :: DOCUMENTATION CONTENT*/
 .crnrstn_documentation_dyn_content_shell                    { width: 64%; min-width: 400px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
@@ -156,8 +168,8 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_interact_ui_frm_submit             { width: 115px; height: 37px; background-color: #FFF; border: 2px solid #5C98EB; cursor:pointer; }
 .crnrstn_interact_ui_signin_frm_btn_submit  { text-align: left; font-size: 20px; color: #5C98EB; font-weight: bold; padding: 7px 0 0 17px; cursor:pointer;}
 
-/*MIT OVERLAY*/
-.crnrstn_lightbox_content_shell             { width:620px; background-color: #FFF; text-align: center; margin:0 auto; margin-top: 30px; border-radius: 5px;}
+/*OVERLAY::MIT*/
+.crnrstn_lightbox_content_shell             { width:620px; /*background-color: #FFF;*/ text-align: center; margin:0 auto; margin-top: 30px; border-radius: 5px;}
 
 /*HEAD SECTION::SIGNIN FORM*/
 .crnrstn_dyn_signin_hdr_branding_shell      { width:578px; height:45px; text-align: center; margin:0 auto; padding-top: 10px;}

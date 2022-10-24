@@ -6,9 +6,6 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-echo '[lnum ' . __LINE__ . ']  die();';
-die();
-
 function openssl_error_return(&$err_array, $lnum, $err_key){
 
     while($tmp_openssl_err_msg = openssl_error_string())
@@ -64,107 +61,6 @@ $oCRNRSTN_UNITTEST_MGR = new crnrstn_unit_test_manager($oCRNRSTN);
 //error_log('28 curl index die() crc32(\'Subliminal\')=' . $oCRNRSTN->crcINT('Subliminal'));  //  07/05/2022 @ 1537hrs
 //error_log('29 curl index die() ID=[' . $oCRNRSTN->generate_new_key(64) . ']');
 //die();
-
-//
-// ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
-if($oCRNRSTN->receive_form_integration_packet()){
-
-    if($oCRNRSTN->isvalid_data_validation_check('POST')){
-
-        $tmp_received_POST_data =  true;
-
-        //
-        // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
-        $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_uri_endpoint');
-        $tmp_crnrstn_curl_batch_save = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_batch_save');
-        $tmp_crnrstn_curl_batch_count = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_batch_count');
-
-        $tmp_crnrstn_curl_enable_unit_test_automation = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_enable_unit_test_automation');
-        $tmp_crnrstn_curl_unit_test_automation_freq_secs = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_unit_test_automation_freq_secs');
-
-        if(strlen($tmp_crnrstn_curl_uri_endpoint) > 0){
-
-            $oCRNRSTN_UNITTEST_MGR->configure_unit_test('curl', $tmp_crnrstn_curl_uri_endpoint, $tmp_crnrstn_curl_batch_count);
-            $oCRNRSTN_UNITTEST_MGR->execute_unit_test();
-
-            //
-            // ADD TO BATCH PREVIEW WINDOW?
-            if($tmp_crnrstn_curl_batch_save == "batch_save") {
-
-                $tmp_crnrstn_curl_batch_save = "checked";
-
-            }
-
-            $tmp_crnrstn_curl_batch_preview .= '<div class="crnrstn_log_entry">[rtime ' . $oCRNRSTN_UNITTEST_MGR->rtime('curl', md5($tmp_crnrstn_curl_uri_endpoint)).'] ' .  $tmp_crnrstn_curl_uri_endpoint . '</div>
-
-            <input type="hidden" name="crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt . '" value="' .  $tmp_crnrstn_curl_uri_endpoint . '">';
-
-            $oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
-
-            $tmp_batch_preview_cnt++;
-
-            if($tmp_crnrstn_curl_batch_count > 0){
-
-                for($i = 0; $i < $tmp_crnrstn_curl_batch_count; $i++){
-
-                    $tmp_crnrstn_curl_uri_endpoint = $oCRNRSTN->return_form_submitted_value('crnrstn_curl_batch_uri_' . $i);
-
-                    $tmp_crnrstn_curl_batch_preview .= '<div class="crnrstn_log_entry">[rtime ' . $oCRNRSTN_UNITTEST_MGR->rtime('curl', md5($tmp_crnrstn_curl_uri_endpoint)).'] ' .  $tmp_crnrstn_curl_uri_endpoint . '</div>
-
-                    <input type="hidden" name="crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt . '" value="' .  $tmp_crnrstn_curl_uri_endpoint . '">';
-
-                    $oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_uri_' . $tmp_batch_preview_cnt);
-
-                    $tmp_batch_preview_cnt++;
-
-                }
-
-            }
-
-        }
-
-        $oCRNRSTN->form_hidden_input_add('curl', 'crnrstn_curl_batch_count', true, $tmp_batch_preview_cnt);
-
-        if($tmp_crnrstn_curl_enable_unit_test_automation == "automation_on"){
-
-            $tmp_crnrstn_curl_enable_unit_test_automation = "checked";
-
-        }else{
-
-            $tmp_crnrstn_curl_enable_unit_test_automation = "";
-
-        }
-
-    }else{
-
-        //
-        // FORM INPUT ERROR HANDLING. CAN MANUALLY HANDLE REDIRECTS HERE IF DESIRED.
-        $tmp_err_array = $oCRNRSTN->return_err_data_validation_check('POST');
-        $test = '';
-
-        foreach($tmp_err_array as $key=>$val){
-
-            $test .= $val.'<br>';
-
-        }
-
-    }
-
-}
-
-$tmp_form_serial = $oCRNRSTN->generate_new_key(5);
-$tmp_http_root = $oCRNRSTN->current_location();
-
-//
-// THESE ARE THE INPUT FIELDS TO WHICH WE WILL LOOK
-# THESE FIELDS ARE NOT HIDDEN. THEY WILL NOT/CANNOT BE
-# ENCRYPTED INITIALLY.
-# $this->oCRNRSTN_USR->form_input_add({crnrstn_pssdtl_packet}, {HTML_DOM_FORM_INPUT_NAME}}, {IS_REQUIRED});
-$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_uri_endpoint');
-$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_save');
-$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_batch_count');
-$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_enable_unit_test_automation');
-$oCRNRSTN->form_input_add('curl', 'crnrstn_curl_unit_test_automation_freq_secs');
 
 $openssl_err_queue_ARRAY = array();
 $public_key_res = 'NULL';
@@ -467,22 +363,44 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
         <div style="padding: 10px 20px 10px 20px;">
         <?php
 
+        /*
+        ARCHIVES
+        BANDCAMP
+        BASSDRIVE
+        BEATPORT
+        DISCOGS
+        FACEBOOK
+        HISTORY
+        INSTAGRAM
+        JSON
+        LINKEDIN
+        MIXCLOUD
+        PAYPAL
+        ROLLDABEATS
+        SOUNDCLOUD
+        SPOTIFY
+        TWITTER
+        WWW
+        YOUTUBE
+
+        */
         //echo '<img src="' . $oCRNRSTN->return_creative('MYSQL_DOLPHIN', CRNRSTN_UI_IMG_BASE64) .'" height="100">';
 
         echo '<div style="float: right;"><img src="' . $oCRNRSTN->return_creative('REDHAT_LOGO', CRNRSTN_UI_IMG_BASE64) . '" width="103"></div><div class="crnrstn_cb_10" style="border-bottom: 2px solid #dbdbdb;"></div>';
         echo '<div class="crnrstn_cb_30"></div>';
 
         echo '<div style="font-weight: bold; font-size: 20px;">Web ::</div><div class="crnrstn_cb"></div>';
-        echo 'Here is the small (26px height) social media sticky link: ' . $oCRNRSTN->return_icon_social_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100');
-        echo '<div class="crnrstn_cb"></div>Here is the medium (50px height) social media sticky link: ' . $oCRNRSTN->return_icon_social_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100');
-        echo '<div class="crnrstn_cb"></div>Here is the large (76px height) social media sticky link: ' . $oCRNRSTN->return_icon_social_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100');
+        echo 'Here is the sticky link: <a href="' . $oCRNRSTN->return_sticky_link('https://soundcloud.com/jonathan-harris-772368100','soundcloud_social_media_lnk').'" target="_blank">click here</a>';
+        echo '<div class="crnrstn_cb"></div>Here is the small (26px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100');
+        echo '<div class="crnrstn_cb"></div>Here is the medium (50px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100');
+        echo '<div class="crnrstn_cb"></div>Here is the large (76px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100');
 
         echo '<div class="crnrstn_cb_30"></div>';
 
         echo '<div style="font-weight: bold; font-size: 20px;">Email ::</div><div class="crnrstn_cb"></div>';
-        echo 'Here is the small (26px height) social media sticky link: ' . $oCRNRSTN->return_icon_social_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
-        echo '<div class="crnrstn_cb"></div>Here is the medium (50px height) social media sticky link: ' . $oCRNRSTN->return_icon_social_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
-        echo '<div class="crnrstn_cb"></div>Here is the large (76px height) social media sticky link: ' . $oCRNRSTN->return_icon_social_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo 'Here is the small (26px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo '<div class="crnrstn_cb"></div>Here is the medium (50px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo '<div class="crnrstn_cb"></div>Here is the large (76px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
 
         echo '<div class="crnrstn_cb_10"></div>';
 
@@ -591,13 +509,6 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 </div>
 
     <div class="crnrstn_cb_15"></div>
-
-    <form action="#" method="post" name="curl" id="curl"  enctype="multipart/form-data">
-
-        <?php
-        echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'curl');
-        ?>
-    </form>
 
     <div class="crnrstn_cb_200"></div>
     <div class="crnrstn_cb_200"></div>
