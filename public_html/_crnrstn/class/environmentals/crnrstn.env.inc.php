@@ -81,7 +81,6 @@ class crnrstn_environment {
     public $oFINITE_EXPRESS;
     //public $oCRNRSTN_LANG_MGR;
     public $oCRNRSTN_ASSET_MGR;
-    public $oCRNRSTN_MEDIA_CONVERTOR;
 
     private static $sess_env_param_ARRAY = array();
     private static $m_starttime = array();
@@ -106,7 +105,6 @@ class crnrstn_environment {
     public $env_key_ARRAY = array();
     protected $is_soap_data_tunnel_endpoint = false;
     public $destruct_output;
-    public $sys_notices_creative_mode = 'ALL_HTML';
     public $system_setting_jpg_image_quality = 100;  // 0 = worst / smaller file, 100 = better / bigger file
 
     protected $oSOAP_services_access_manager = array();
@@ -131,7 +129,6 @@ class crnrstn_environment {
         $this->system_hash_algo = $oCRNRSTN->system_hash_algorithm();
         $this->starttime = $oCRNRSTN->starttime;
         self::$system_database_table_prefix = $oCRNRSTN->system_database_table_prefix;
-        $this->sys_notices_creative_mode = $oCRNRSTN->sys_notices_creative_mode;
         $this->oCRNRSTN_BITFLIP_MGR = $oCRNRSTN->oCRNRSTN_BITFLIP_MGR;
 
         $this->operating_system = $oCRNRSTN->operating_system;
@@ -174,7 +171,7 @@ class crnrstn_environment {
 
         $this->config_serial_hash = $oCRNRSTN->get_server_config_serial('hash');
         self::$config_serial = $oCRNRSTN->get_server_config_serial('raw');
-        $this->oCRNRSTN_MEDIA_CONVERTOR = $oCRNRSTN->oCRNRSTN_MEDIA_CONVERTOR;
+        $this->oCRNRSTN_ASSET_MGR = $oCRNRSTN->oCRNRSTN_ASSET_MGR;
 
         $this->oLogger = new crnrstn_logging(__CLASS__, $this);
 
@@ -331,10 +328,6 @@ class crnrstn_environment {
 //                    // NOTE: DATABASE DATA STORAGE FORMAT WILL SHADOW/SUPPORT USE OF (S) AND (P)
 //                    // ON A SESSION TO SESSION BASIS.
 //                    $this->init_ssdtla_session_data_packet();
-
-                    //
-                    // END OF CRNRSTN :: ENVIRONMENTAL CONFIG OPERATION
-                    $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('You have reached the end of the CRNRSTN :: environmental detection and configuration process.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 }
 
@@ -508,6 +501,11 @@ class crnrstn_environment {
     }
 
     public function client_request_listen(){
+
+        //
+        // END OF CRNRSTN :: ENVIRONMENTAL CONFIG OPERATION
+        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('You have reached the end of the CRNRSTN :: environmental detection and configuration process.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('CRNRSTN :: is now listening for requests.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         return $this->oHTTP_MGR->client_request_listen();
 
@@ -813,119 +811,310 @@ class crnrstn_environment {
                     switch ($integer_constant){
                         case CRNRSTN_UI_JS_MAIN_DESKTOP:
 
-                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
-                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/crnrstn.main_desktop.js');
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
-<link rel="stylesheet" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . filesize(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '"></style>
+                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
+                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/crnrstn.main_desktop.js');
+
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.lightbox.min.css&v=420.00.' . filesize($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '">
 ';
-                            $tmp_str_array[] = '<!-- ' . $this->oCRNRSTN_USR->proper_version() . ' :: DESKTOP JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
-<script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/crnrstn.main_desktop.js?v=420.00.' . $tmp_cache_ver . '"></script>
+
+                            }else{
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
+<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . filesize($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '">
 ';
+                            }
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- ' . $this->oCRNRSTN_USR->proper_version() . ' :: DESKTOP JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_desktop.js&v=420.00.' . $tmp_cache_ver . '"></script>
+';
+                            }else{
+
+                                $tmp_str_array[] = '<!-- ' . $this->oCRNRSTN_USR->proper_version() . ' :: DESKTOP JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<script src="' . $tmp_http_path_js . 'crnrstn.main_desktop.js?v=420.00.' . $tmp_cache_ver . '"></script>
+';
+
+                            }
+
                         break;
                         case CRNRSTN_UI_JS_MAIN_TABLET:
 
-                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/crnrstn.main_tablet.js');
-                            $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
-<link rel="stylesheet" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . filesize(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '"></style>
+                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
+                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/crnrstn.main_tablet.js');
+
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=lightbox.min.css&v=420.00.' . filesize($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '"
 ';
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
-<script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/crnrstn.main_tablet.js?v=420.00.' . $tmp_cache_ver . '"></script>
+                            }else{
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
+<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . filesize($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '">
 ';
+
+                            }
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .  '=crnrstn.main_tablet.js&v=420.00.' . $tmp_cache_ver . '"></script>
+';
+                            }else{
+
+                                $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<script src="' . $tmp_http_path_js . 'crnrstn.main_tablet.js?v=420.00.' . $tmp_cache_ver . '"></script>
+';
+
+                            }
+
                         break;
                         case CRNRSTN_UI_JS_MAIN_MOBILE:
 
-                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/crnrstn.main_mobi.js');
-                            $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
-<link rel="stylesheet" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . filesize(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '"></style>
+                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
+                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/crnrstn.main_mobi.js');
+
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.min.css&v=420.00.' . filesize($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '">
 ';
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
-<script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/crnrstn.main_mobi.js?v=420.00.' . $tmp_cache_ver . '"></script>
+                            }else{
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main_desktop.js -->
+<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . filesize($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '">
 ';
+                            }
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_mobi.js?v=420.00.' . $tmp_cache_ver . '"></script>
+';
+
+                            }else{
+
+                                $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<script src="' . $tmp_http_path_js . 'crnrstn.main_mobi.js?v=420.00.' . $tmp_cache_ver . '"></script>
+';
+
+                            }
+
                         break;
                         case CRNRSTN_UI_JS_JQUERY:
 
-                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js');
-                            $tmp_str_array[] = '<!-- jquery 3.6.0 -->
-<script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js?v=420.00.' . $tmp_cache_ver . '"></script>
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
+                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js');
+
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- jquery 3.6.0 -->
+<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-3.6.0.min.js&v=420.00.' . $tmp_cache_ver . '"></script>
 ';
+
+                            }else{
+
+                                $tmp_str_array[] = '<!-- jquery 3.6.0 -->
+<script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js?v=420.00.' . $tmp_cache_ver . '"></script>
+';
+                            }
 
                         break;
                         case CRNRSTN_UI_JS_JQUERY_UI:
 
-                            $tmp_path = $this->oCRNRSTN->crnrstn_resources_http_path();
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.min.css');
-                            $tmp_str_array[] = '<!-- jquery ui css 1.12.1 -->
-<link rel="stylesheet" href="' . $tmp_path . 'ui/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.min.css?v=420.00.' . $tmp_cache_ver . '"></style>
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
+                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.min.css');
+                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js');
+
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- jquery ui css 1.12.1 -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.min.css&v=420.00.' . $tmp_cache_verA . '">
+';
+                            }else{
+
+                                $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.min.css');
+                                $tmp_str_array[] = '<!-- jquery ui css 1.12.1 -->
+<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.min.css?v=420.00.' . $tmp_cache_verA . '">
 ';
 
-                            $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js');
-                            $tmp_str_array[] = '<!-- jquery 3.6.0 -->
-<script src="' . $tmp_path . 'ui/js/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js?v=420.00.' . $tmp_cache_ver . '"></script>
+                            }
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- jquery 3.6.0 -->
+<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-3.6.0.min.js&v=420.00.' . $tmp_cache_ver . '"></script>
 ';
 
-                            if($tmp_path === '\\'){
+                            }else{
 
-                                $this->oCRNRSTN->error_log('CRNRSTN_UI_JS_JQUERY_UI cannot be returned. $oCRNRSTN->init_sys_comm_img_HTTP_DIR() has not been initialized.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
-
-                                //
-                                // HOOOSTON...VE HAF PROBLEM!
-                                throw new Exception('Content for CRNRSTN_UI_JS_JQUERY_UI cannot be returned. $oCRNRSTN->init_sys_comm_img_HTTP_DIR() has not been initialized within the config file [' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php].');
+                                $tmp_str_array[] = '<!-- jquery 3.6.0 -->
+<script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js?v=420.00.' . $tmp_cache_ver . '"></script>
+';
 
                             }
 
                         break;
                         case CRNRSTN_UI_JS_JQUERY_MOBILE:
 
-                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css');
-                            $tmp_cache_verB = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js');
-                            $tmp_cache_verC = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/index.js');
-                            $tmp_cache_verD = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js');
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_str_array[] = '<!-- jquery.mobile 1.4.5 CSS -->
-<link rel="stylesheet" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.structure-1.4.5.min.css?v=420.00.' . $tmp_cache_verA . '">
+                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.structure-1.4.5.min.css');
+                            $tmp_cache_verB = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js');
+                            $tmp_cache_verC = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/index.js');
+                            $tmp_cache_verD = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js');
+
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- jquery.mobile 1.4.5 CSS -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.structure-1.4.5.min.css?v=420.00.' . $tmp_cache_verA . '">
 ';
-                            $tmp_str_array[] = '<!-- jquery 1.11.1 -->
-<script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js?v=420.00.' . $tmp_cache_verB . '"></script>
+                            }else{
+
+                                $tmp_str_array[] = '<!-- jquery.mobile 1.4.5 CSS -->
+<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.structure-1.4.5.min.css?v=420.00.' . $tmp_cache_verA . '">
+';
+
+                            }
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- jquery 1.11.1 -->
+<script src="' . $tmp_http_path  . '?' . $this->oCRNRSTN->session_salt() . '=jquery-1.11.1.min.js&v=420.00.' . $tmp_cache_verB . '"></script>
 <!-- jquery.mobile 1.4.5 mobile helpmate -->
-<script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/index.js?v=420.00.' . $tmp_cache_verC . '"></script>
+<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=index.js&v=420.00.' . $tmp_cache_verC . '"></script>
 <!-- jquery.mobile 1.4.5 -->
-<script src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js?v=420.00.' . $tmp_cache_verD . '"></script>
+<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile-1.4.5.min.js&v=420.00.' . $tmp_cache_verD . '"></script>
 ';
+                            }else{
+
+                                $tmp_str_array[] = '<!-- jquery 1.11.1 -->
+<script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js?v=420.00.' . $tmp_cache_verB . '"></script>
+<!-- jquery.mobile 1.4.5 mobile helpmate -->
+<script src="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/index.js?v=420.00.' . $tmp_cache_verC . '"></script>
+<!-- jquery.mobile 1.4.5 -->
+<script src="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js?v=420.00.' . $tmp_cache_verD . '"></script>
+';
+
+                            }
 
                         break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
-                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_cache_verB = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css');
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
-                            $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS -->
-<link rel="stylesheet" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . $tmp_cache_verA . '"></style>
+                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
+                            $tmp_cache_verB = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.min.js');
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.min.css&v=420.00.' . $tmp_cache_verA . '">
+
 ';
 
-                            $tmp_str_array[] = '<!-- lightbox 2.11.3 plus jquery.min.js -->
-<script type="application/javascript" src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.min.js?v=420.00.' . $tmp_cache_verB . '"></script>
+                            }else{
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS -->
+<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . $tmp_cache_verA . '">
 ';
+
+                            }
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 plus jquery.min.js -->
+<script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-plus-jquery.min.js&v=420.00.' . $tmp_cache_verB . '"></script>
+';
+                            }else{
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 plus jquery.min.js -->
+<script type="application/javascript" src="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.min.js?v=420.00.' . $tmp_cache_verB . '"></script>
+';
+
+                            }
 
                         break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
 
-                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
-                            $tmp_cache_verB = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox.min.js');
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS -->
-<link rel="stylesheet" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . filesize(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '"></style>
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                            $tmp_cache_verA = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
+                            $tmp_cache_verB = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox.min.js');
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.min.css&v=420.00.' . filesize($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '">
 ';
 
-                            $tmp_str_array[] = '<!-- lightbox 2.11.3 -->
-<script type="application/javascript" src="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox.min.js?v=420.00.' . $tmp_cache_verB . '"></script>
+                            }else{
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS -->
+<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . filesize($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '.' . $tmp_cache_verA . '">
 ';
+
+                            }
+
+                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+
+                                $tmp_str_array[] = '<!-- lightbox 2.11.3 -->
+<script type="application/javascript" src="' . $tmp_http_path . '?'. $this->oCRNRSTN->session_salt() . '=lightbox.min.js&v=420.00.' . $tmp_cache_verB . '"></script>
+';
+                            }else{
+
+                                  $tmp_str_array[] = '<!-- lightbox 2.11.3 -->
+<script type="application/javascript" src="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox.min.js?v=420.00.' . $tmp_cache_verB . '"></script>
+';
+
+                            }
 
                         break;
 
@@ -946,24 +1135,31 @@ class crnrstn_environment {
                     switch ($integer_constant){
                         case CRNRSTN_UI_JS_MAIN_DESKTOP:
 
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
                             $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: DESKTOP JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/crnrstn.main_desktop.js') . '
+' . file_get_contents($tmp_path_js . '/crnrstn.main_desktop.js') . '
 // --> 
 </script>
 ';
                         break;
                         case CRNRSTN_UI_JS_MAIN_TABLET:
 
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
                             $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/crnrstn.main_tablet.js') . '
+' . file_get_contents($tmp_path_js . '/crnrstn.main_tablet.js') . '
 // --> 
 </script>
 ';
                         break;
                         case CRNRSTN_UI_JS_MAIN_MOBILE:
 
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
                             $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/crnrstn.main_mobi.js') . '
+' . file_get_contents($tmp_path_js . '/crnrstn.main_mobi.js') . '
 // --> 
 </script>
 ';
@@ -971,69 +1167,79 @@ class crnrstn_environment {
                         break;
                         case CRNRSTN_UI_JS_JQUERY:
 
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
                             $tmp_str_array[] = '<!-- jquery 3.6.0 --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js') . '
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js') . '
 // --> 
 </script>
 ';
                         break;
                         case CRNRSTN_UI_JS_JQUERY_UI:
 
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
                             $tmp_str_array[] = '<!-- jquery ui 1.12.1 --><style>
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.min.css') . '
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.min.css') . '
 </style>
 ';
                             $tmp_str_array[] = '<!-- jquery 3.6.0 --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js') . '
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js') . '
 // --> 
 </script>
 ';
                         break;
                         case CRNRSTN_UI_JS_JQUERY_MOBILE:
 
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
                             $tmp_str_array[] = '<!-- jquery.mobile 1.4.5 CSS --><style>
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css') . '
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css') . '
 </style>
 ';
 
                             $tmp_str_array[] = '<!-- jquery 1.11.1 --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js').'
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js').'
 // --> 
 </script>
 ';
 
                             $tmp_str_array[] = '<!-- jquery.mobile 1.4.5 helpmate --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/index.js').'
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/index.js').'
 // --> 
 </script>
 ';
                             $tmp_str_array[] = '<!-- jquery.mobile 1.4.5 --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js') . '
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js') . '
 // --> 
 </script>
 ';
                         break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
                             $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS --><style>
-' . file_get_contents(CRNRSTN_ROOT . 'js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css').'
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css').'
 </style>
 ';
 
                             $tmp_str_array[] = '<!-- lightbox 2.11.3 plus jquery.min.js --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . 'js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.min.js').'
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.min.js').'
 // --> 
 </script>
 ';
                         break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
 
+                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
                             $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS --><style>
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css') . '
 </style>
 ';
                             $tmp_str_array[] = '<!-- lightbox 2.11.3 --><script> //<!--
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox.min.js').'
+' . file_get_contents($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox.min.js').'
 // --> 
 </script>
 ';
@@ -1079,33 +1285,84 @@ class crnrstn_environment {
                 switch ($integer_constant){
                     case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
-                        $tmp_path = $this->oCRNRSTN->crnrstn_resources_http_path();
+                        $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                        $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                        if($tmp_path === '\\'){
+                        $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_css . '/crnrstn.main_desktop.css');
 
-                            $this->error_log('CRNRSTN_UI_CSS_MAIN_DESKTOP cannot be returned. $oCRNRSTN->init_sys_comm_img_HTTP_DIR() has not been initialized.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
+                        //
+                        // TO BE SAFE. CSS HTTP PATH WILL AT LEAST BE A QUALIFIED LINK.
+                        $tmp_http_path_css = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_css);
 
-                        }
+                        $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
-                        $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_desktop.css');
-                        $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $tmp_path . 'ui/css/crnrstn.main_desktop.css?v=420.00.' . $tmp_cache_ver . '">
+                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_desktop.css&v=420.0.' . $tmp_cache_ver . '">
 ';
+                        }else{
+
+                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_desktop.css?v=420.00.' . $tmp_cache_ver . '">
+';
+                        }
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_TABLET:
 
-                        $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_tablet.css');
-                        $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/css/crnrstn.main_tablet.css?v=420.00.' . $tmp_cache_ver . '">
+                        $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                        $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
+                        $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_css . '/crnrstn.main_tablet.css');
+
+                        //
+                        // TO BE SAFE. CSS HTTP PATH WILL AT LEAST BE A QUALIFIED LINK.
+                        $tmp_http_path_css = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_css);
+
+                        $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_tablet.css&v=420.0.' . $tmp_cache_ver . '">
 ';
+
+                        }else{
+
+                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_tablet.css?v=420.0.' . $tmp_cache_ver . '">
+';
+                        }
+
                     break;
                     case CRNRSTN_UI_CSS_MAIN_MOBILE:
 
-                        $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_mobile.css');
-                        $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $this->oCRNRSTN->crnrstn_resources_http_path() . 'ui/css/crnrstn.main_mobile.css?v=420.00.' . $tmp_cache_ver . '">
+                        $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                        $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
+                        $tmp_cache_ver = $this->oCRNRSTN_USR->resource_filecache_version($tmp_path_css . '/crnrstn.main_mobile.css');
+
+                        //
+                        // TO BE SAFE. CSS HTTP PATH WILL AT LEAST BE A QUALIFIED LINK.
+                        $tmp_http_path_css = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_css);
+
+                        $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+
+                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_mobile.css&v=420.0.' . $tmp_cache_ver . '">
 ';
+
+                        }else{
+
+                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+<link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_mobile.css?v=420.0.' . $tmp_cache_ver . '">
+';
+
+                        }
+
                     break;
 
                 }
@@ -1194,7 +1451,7 @@ class crnrstn_environment {
 ' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
 
          $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form>
-    <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR') . '</div>
+    <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
     <div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div>
 </div>';
 
@@ -4436,12 +4693,6 @@ class crnrstn_environment {
 
         header($this->getServerArrayVar('SERVER_PROTOCOL') . ' ' . $error_code . ' ' . $http_status_codes[$error_code]);
 
-        //
-        // THO WE HAVE SINCE MIGRATED TO BITWISE, I AM LEAVING THIS SWITCH AS IS...FOR FUTURE WHITE LABELING INTEGRATIONS.
-        switch($this->sys_notices_creative_mode){
-            case 'ALL_IMAGE':
-            case 'ALL_IMAGE_LOGO_OFF':
-
                 $str = '<!doctype html>
 <html lang="en">
 <head>
@@ -4470,13 +4721,13 @@ class crnrstn_environment {
 -->
 <div style="padding:16px 2% 0 0; float:right; width:260px;">
     <div style="float:right; ">
-        ' . $this->return_component_branding_creative(true, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
+        ' . $this->oCRNRSTN->return_component_branding_creative(true, CRNRSTN_UI_IMG_HTML_WRAPPED) . '
     </div>
 </div>
 
 <div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
     <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
-        ' . $this->return_creative('J5_WOLF_PUP_RAND') . '
+        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND') . '
     </div>
 </div>
 
@@ -4484,57 +4735,6 @@ class crnrstn_environment {
 
 </body>
 </html>';
-
-            break;
-            case 'ALL_HTML_LOGO_OFF':
-            case 'ALL_HTML':
-            default:
-
-                $str = '<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>' . $error_code . ' ' . $http_status_codes[$error_code] . '</title>
-</head>
-<body style="background-color: #FFF; text-align: left; margin:0px auto; border: 0; padding:0; margin:0; font-family:Arial, Helvetica, sans-serif; ">
-<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-bottom: 2px solid #F90000;"></div>
-<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-bottom: 1px solid #DB1717;"></div>
-
-<div style=\'width:96%; margin:0 0 0 0; padding:6px 2% 0 2%; color:#FFF; font-family:"trebuchet MS", Verdana, sans-serif;background-color:#BEBEBE; height:30px; line-height: 28px;\'><h1 style="font-size: 30px; overflow: hidden; height:23px; padding-top:7px; margin-top: 0;">Server Error</h1></div>
-<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px; border-top: 2px solid #FFF;"></div>
-
-<div style="height:5px; '.$this->return_creative('BG_ELEMENT_RESPONSE_CODE', CRNRSTN_UI_IMG_BASE64).' background-repeat: repeat-x;">
-    <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-</div>
-
-<div style="padding:100px 0 300px 100px; float:left; font-family:arial; font-weight:bold; font-size:11px;">' . $error_code . ' ' . $http_status_codes[$error_code] . '</div>
-<!--
-<div style="position:absolute; padding:200px 0 0 10px; float:left;"><pre>
-
-' . $crnrstn_html_burn . '
-
-</pre></div>
--->
-<div style="padding:16px 2% 0 0; float:right; width:260px;">
-    <div style="float:right; ">
-        ' . $this->return_component_branding_creative(true, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
-    </div>
-</div>
-
-<div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
-    <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
-        ' . $this->return_creative('J5_WOLF_PUP_RAND') . '
-    </div>
-</div>
-
-<div style="height:0px; width:100%; clear:both; display: block; overflow: hidden;"></div>
-
-</body>
-</html>';
-
-            break;
-
-        }
         
         echo $str;
         
@@ -5457,7 +5657,7 @@ class crnrstn_environment {
 
     public function system_base64_synchronize($data_key = NULL){
 
-        return $this->oCRNRSTN_MEDIA_CONVERTOR->system_base64_synchronize($data_key);
+        return $this->oCRNRSTN_ASSET_MGR->system_base64_synchronize($data_key);
 
     }
 
@@ -5476,7 +5676,7 @@ class crnrstn_environment {
             // SOURCE - LOCAL_DIR
             if(is_readable($dir_filepath)){
 
-                $this->oCRNRSTN->print_r('THIS IS A READABLE DIRECTORY: ' . $dir_filepath, 'is_readable().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('THIS IS A READABLE DIRECTORY: ' . $dir_filepath, 'is_readable().', NULL, __LINE__, __METHOD__, __FILE__);
 
                 //
                 // SCAN DIR FOR IMAGE FILE CONTENT
@@ -5509,7 +5709,7 @@ class crnrstn_environment {
 
                 */
 
-                $this->oCRNRSTN->print_r('Scanning Images: ' . $dir_filepath, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('Scanning Images: ' . $dir_filepath, 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
                 $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $dir_filepath, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
                 $tmp_scraped_filename_ARRAY = $this->oCRNRSTN->better_scandir($dir_filepath);
 
@@ -5521,17 +5721,17 @@ class crnrstn_environment {
                 $tmp_img_cnt = sizeof($tmp_scraped_filename_ARRAY);
                 for($i = 0; $i < $tmp_img_cnt; $i++){
 
-                    $this->oCRNRSTN->print_r('FILE[' . $i . ' of ' . $tmp_img_cnt . ']: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_ASSET_MGR::is_approved_mime_type().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    $this->oCRNRSTN->print_r('FILE[' . $i . ' of ' . $tmp_img_cnt . ']: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_ASSET_MGR::is_approved_mime_type().', NULL, __LINE__, __METHOD__, __FILE__);
 
 //                    if($this->oCRNRSTN->oCRNRSTN_PERFORMANCE_REGULATOR->is_approved_mime_type(CRNRSTN_RESOURCE_IMAGE, $dir_filepath, $tmp_scraped_filename_ARRAY[$i])){
 //
-//                        $this->oCRNRSTN->print_r('APPROVED FILE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_PERFORMANCE_REGULATOR::is_approved_mime_type().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//                        $this->oCRNRSTN->print_r('APPROVED FILE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_PERFORMANCE_REGULATOR::is_approved_mime_type().', NULL, __LINE__, __METHOD__, __FILE__);
 //
 //                        die();
 //
 //                    }else{
 //
-//                        $this->oCRNRSTN->print_r('UNAUTHORIZED FILE TYPE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_PERFORMANCE_REGULATOR::is_approved_mime_type().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//                        $this->oCRNRSTN->print_r('UNAUTHORIZED FILE TYPE: ' . $tmp_scraped_filename_ARRAY[$i], 'oCRNRSTN_PERFORMANCE_REGULATOR::is_approved_mime_type().', NULL, __LINE__, __METHOD__, __FILE__);
 //
 //                        die();
 //
@@ -5547,7 +5747,7 @@ class crnrstn_environment {
                 //
                 // HOOOSTON...VE HAF PROBLEM!
                 //$this->oCRNRSTN->error_log('CRNRSTN :: has experienced permissions related errors attempting to read from the source directory, ' . $dir_path . '.');
-                $this->oCRNRSTN->print_r('NOT READABLE DIRECTORY: ' . $dir_filepath, 'is_readable().', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('NOT READABLE DIRECTORY: ' . $dir_filepath, 'is_readable().', NULL, __LINE__, __METHOD__, __FILE__);
 
             }
 
@@ -5556,15 +5756,15 @@ class crnrstn_environment {
             //
             // HOOOSTON...VE HAF PROBLEM!
             //$this->oCRNRSTN->error_log('CRNRSTN :: has experienced errors attempting to find the source directory, ' . $dir_path . ', within the local file system.');
-            $this->oCRNRSTN->print_r('NOT A DIRECTORY: ' . $dir_filepath, 'is_dir(). ', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->print_r('NOT A DIRECTORY: ' . $dir_filepath, 'is_dir(). ', NULL, __LINE__, __METHOD__, __FILE__);
 
             if(is_file($dir_filepath) && strlen($dir_filepath) > 0){
 
-                $this->oCRNRSTN->print_r('THIS IS A FILE: ' . $dir_filepath, 'is_file(). ', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('THIS IS A FILE: ' . $dir_filepath, 'is_file(). ', NULL, __LINE__, __METHOD__, __FILE__);
 
             }else{
 
-                $this->oCRNRSTN->print_r('NOT A FILE: ' . $dir_filepath, 'is_file(). ', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                $this->oCRNRSTN->print_r('NOT A FILE: ' . $dir_filepath, 'is_file(). ', NULL, __LINE__, __METHOD__, __FILE__);
 
             }
 
@@ -5572,7 +5772,7 @@ class crnrstn_environment {
 
         die();
 
-        //$this->oCRNRSTN->print_r('Images count: [' . count($tmp_filtered_filename_ARRAY) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        //$this->oCRNRSTN->print_r('Images count: [' . count($tmp_filtered_filename_ARRAY) . '].', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
 
         $tmp_oMEDIA_CONVERTOR = new crnrstn_system_image_asset_manager($this->oCRNRSTN);
 
@@ -5611,7 +5811,7 @@ class crnrstn_environment {
 
                 if($tmp_oMEDIA_CONVERTOR->system_base64_synchronize($tmp_filename)){
 
-                    //$this->oCRNRSTN->print_r('Processed image: [' . $tmp_filename . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    //$this->oCRNRSTN->print_r('Processed image: [' . $tmp_filename . '].', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
                     $tmp_processed_filename_ARRAY[] = $tmp_filename;
                     $tmp_flagged_filename_ARRAY[$img_name] = 1;
 
@@ -5621,7 +5821,7 @@ class crnrstn_environment {
 
         }
 
-        //$this->oCRNRSTN->print_r('Processed Images [skipped=' . $tmp_skipped . '] [err=' . $tmp_err_cnt . '][' . print_r($tmp_processed_filename_ARRAY, true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        //$this->oCRNRSTN->print_r('Processed Images [skipped=' . $tmp_skipped . '] [err=' . $tmp_err_cnt . '][' . print_r($tmp_processed_filename_ARRAY, true) . '].', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
 
         return true;
 
@@ -5629,7 +5829,7 @@ class crnrstn_environment {
 
 
 
-        return $this->oCRNRSTN_MEDIA_CONVERTOR->system_base64_integrate($dir_path, $img_batch_size);
+        return $this->oCRNRSTN_ASSET_MGR->system_base64_integrate($dir_path, $img_batch_size);
 
     }
 
@@ -5639,63 +5839,77 @@ class crnrstn_environment {
         $tmp_filtered_filename_ARRAY = array();
         $tmp_processed_filename_ARRAY = array();
 
-        $tmp_dir_path_PNG = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/png/';
-        $tmp_dir_path_JPEG = CRNRSTN_ROOT . '/_crnrstn/ui/imgs/jpg/';
+        $tmp_path_directory = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+        $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
 
-        //$this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path_PNG, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-        $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $tmp_dir_path_PNG, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
-        $tmp_scraped_filename_PNG_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path_PNG);
+        $tmp_png_path_ARRAY = array();
+        $tmp_jpeg_path_ARRAY = array();
+        $tmp_png_path_ARRAY[] = $tmp_path_directory . '/' . $tmp_system_directory . '/ui/imgs/png/system/';
+        $tmp_png_path_ARRAY[] = $tmp_path_directory . '/' . $tmp_system_directory . '/ui/imgs/png/social/';
+        $tmp_jpeg_path_ARRAY[] = $tmp_path_directory . '/' . $tmp_system_directory . '/ui/imgs/jpg/system/';
+        $tmp_jpeg_path_ARRAY[] = $tmp_path_directory . '/' . $tmp_system_directory . '/ui/imgs/jpg/social/';
 
-        //$this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path_JPEG, 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-        $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $tmp_dir_path_JPEG, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
-        $tmp_scraped_filename_JPEG_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path_JPEG);
+        for($ii = 0; $ii < 2; $ii++) {
+
+            $tmp_dir_path_PNG = $tmp_png_path_ARRAY[$ii];
+            $tmp_dir_path_JPEG = $tmp_jpeg_path_ARRAY[$ii];
+
+            //$this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path_PNG, 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $tmp_dir_path_PNG, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+            $tmp_scraped_filename_PNG_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path_PNG);
+
+            //$this->oCRNRSTN->print_r('Scanning Images: ' . $tmp_dir_path_JPEG, 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
+            $this->oCRNRSTN->error_log('CRNRSTN :: BASE64 services scanning system images: ' . $tmp_dir_path_JPEG, __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+            $tmp_scraped_filename_JPEG_ARRAY = $this->oCRNRSTN->better_scandir($tmp_dir_path_JPEG);
 
 //        $tmp = array_pop($tmp_scraped_filename_PNG_ARRAY);
 //        $tmp = array_pop($tmp_scraped_filename_PNG_ARRAY);
 //        $tmp = array_pop($tmp_scraped_filename_JPEG_ARRAY);
 //        $tmp = array_pop($tmp_scraped_filename_JPEG_ARRAY);
 
-        // PNG
-        $tmp_img_cnt = sizeof($tmp_scraped_filename_PNG_ARRAY);
-        for($i = 0; $i < $tmp_img_cnt; $i++){
+            // PNG
+            $tmp_img_cnt = sizeof($tmp_scraped_filename_PNG_ARRAY);
+            for ($i = 0; $i < $tmp_img_cnt; $i++) {
 
-            $tmp_pos_png = strpos($tmp_scraped_filename_PNG_ARRAY[$i], '.png');
-            $tmp_pos_ds_store = strpos($tmp_scraped_filename_PNG_ARRAY[$i], 'DS_Store');
+                $tmp_pos_png = strpos($tmp_scraped_filename_PNG_ARRAY[$i], '.png');
+                $tmp_pos_ds_store = strpos($tmp_scraped_filename_PNG_ARRAY[$i], 'DS_Store');
 
-            if(($tmp_pos_png !== false) && ($tmp_pos_ds_store === false)){
+                if (($tmp_pos_png !== false) && ($tmp_pos_ds_store === false)) {
 
-                $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_PNG_ARRAY[$i];
+                    $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_PNG_ARRAY[$i];
 
-            }else{
+                } else {
 
-                $tmp_skipped_filename_ARRAY[] = $tmp_scraped_filename_PNG_ARRAY[$i];
+                    $tmp_skipped_filename_ARRAY[] = $tmp_scraped_filename_PNG_ARRAY[$i];
+
+                }
+
+            }
+
+            // JPEG
+            $tmp_img_cnt = sizeof($tmp_scraped_filename_JPEG_ARRAY);
+            for ($i = 0; $i < $tmp_img_cnt; $i++) {
+
+                $tmp_pos_jpg = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpg');
+                $tmp_pos_jpeg = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpeg');
+                $tmp_pos_jpg2 = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpg2');
+                $tmp_pos_ds_store = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], 'DS_Store');
+
+                if ((($tmp_pos_jpg !== false) || ($tmp_pos_jpeg !== false) || ($tmp_pos_jpg2 !== false)) && ($tmp_pos_ds_store === false)) {
+
+                    $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_JPEG_ARRAY[$i];
+
+                } else {
+
+                    $tmp_skipped_filename_ARRAY[] = $tmp_scraped_filename_JPEG_ARRAY[$i];
+
+                }
 
             }
 
         }
 
-        // JPEG
-        $tmp_img_cnt = sizeof($tmp_scraped_filename_JPEG_ARRAY);
-        for($i = 0; $i < $tmp_img_cnt; $i++){
-
-            $tmp_pos_jpg = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpg');
-            $tmp_pos_jpeg = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpeg');
-            $tmp_pos_jpg2 = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], '.jpg2');
-            $tmp_pos_ds_store = strpos($tmp_scraped_filename_JPEG_ARRAY[$i], 'DS_Store');
-
-            if((($tmp_pos_jpg !== false) || ($tmp_pos_jpeg !== false) || ($tmp_pos_jpg2 !== false)) && ($tmp_pos_ds_store === false)){
-
-                $tmp_filtered_filename_ARRAY[] = $tmp_scraped_filename_JPEG_ARRAY[$i];
-
-            }else{
-
-                $tmp_skipped_filename_ARRAY[] = $tmp_scraped_filename_JPEG_ARRAY[$i];
-
-            }
-
-        }
-
-        //$this->oCRNRSTN->print_r('Images count: [' . count($tmp_filtered_filename_ARRAY) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        //$this->oCRNRSTN->print_r('Images count: [' . count($tmp_filtered_filename_ARRAY) . '].', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
 
         $tmp_oMEDIA_CONVERTOR = new crnrstn_system_image_asset_manager($this->oCRNRSTN);
 
@@ -5734,7 +5948,7 @@ class crnrstn_environment {
 
                 if($tmp_oMEDIA_CONVERTOR->system_base64_synchronize($tmp_filename)){
 
-                    //$this->oCRNRSTN->print_r('Processed image: [' . $tmp_filename . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    //$this->oCRNRSTN->print_r('Processed image: [' . $tmp_filename . '].', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
                     $tmp_processed_filename_ARRAY[] = $tmp_filename;
                     $tmp_flagged_filename_ARRAY[$img_name] = 1;
 
@@ -5744,7 +5958,7 @@ class crnrstn_environment {
 
         }
 
-        //$this->oCRNRSTN->print_r('Processed Images [skipped=' . $tmp_skipped . '] [err=' . $tmp_err_cnt . '][' . print_r($tmp_processed_filename_ARRAY, true) . '].', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        $this->oCRNRSTN->print_r('Processed Images [' . print_r($tmp_processed_filename_ARRAY, true) . '].', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
 
         return true;
 
@@ -5752,7 +5966,7 @@ class crnrstn_environment {
 
     public function return_creative($creative_element_key, $image_output_mode = NULL){
 
-        return $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative($creative_element_key, $image_output_mode);
+        return $this->oCRNRSTN_ASSET_MGR->return_creative($creative_element_key, $image_output_mode);
 
     }
 
@@ -6834,6 +7048,24 @@ class crnrstn_environment {
 
     }
 
+    public function header_signature_options_return(){
+
+        return $this->oHTTP_MGR->header_signature_options_return();
+
+    }
+    
+    public function header_options_add($header_array, $overwrite_existing){
+        
+        $this->oHTTP_MGR->header_options_add($header_array, $overwrite_existing);
+        
+    }
+
+    public function header_options_apply(){
+
+        $this->oHTTP_MGR->header_options_apply();
+
+    }
+
     /**
      * UTF-8 aware parse_url() replacement.
      *
@@ -7519,7 +7751,7 @@ class crnrstn_decoupled_data_object {
 
         if(strlen($this->oCRNRSTN->get_server_env()) > 0){
 
-            //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. . $this->data_value_ARRAY=[' . print_r($this->data_value_ARRAY, true) . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', 'Output title.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+            //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. . $this->data_value_ARRAY=[' . print_r($this->data_value_ARRAY, true) . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', 'Output title.', NULL, __LINE__, __METHOD__, __FILE__);
 
             $tmp_cnt = sizeof($this->data_value_ARRAY[$data_key]);
 
@@ -7589,7 +7821,7 @@ class crnrstn_decoupled_data_object {
 
 //        if($data_key == 'ac7971ddce7e6720466d7fb07d03cdf6fd017a508d87ac7132d7d5d11a34f077db'){
 //
-//            $this->oCRNRSTN->print_r('$data_value=[' . $data_value . ']. $data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+//            $this->oCRNRSTN->print_r('$data_value=[' . $data_value . ']. $data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, NULL, __LINE__, __METHOD__, __FILE__);
 //
 //            $tmp_array = array();
 //            $tmp_array[] = '12345';
@@ -7931,7 +8163,7 @@ class crnrstn_decoupled_data_object {
 
                 //if($data_key == '6780e3fb74e6d79e416ede7df352e02400fe55271e3959ba0996cb47b525cac8db'){
 
-                    //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+                    //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, NULL, __LINE__, __METHOD__, __FILE__);
                     //error_log(__LINE__ . ' env DDO::' . __METHOD__ . '() $data_key=[' . $data_key . ']. $index=[' . $index . '].');
                 //}
 
@@ -8497,7 +8729,7 @@ class crnrstn_decoupled_data_object {
 
                 //$tmp_SOAP_SVC_REQUESTED_RESOURCES = $this->oCRNRSTN->serialized_bit_stringout('CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED');
                 //error_log(__LINE__ .' $tmp_SOAP_SVC_REQUESTED_RESOURCES='.$tmp_SOAP_SVC_REQUESTED_RESOURCES);
-                // $this->oCRNRSTN->print_r($tmp_SOAP_SVC_REQUESTED_RESOURCES,'SOAP CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED TEST',NULL, __LINE__,__METHOD__,__FILE__);
+                // $this->oCRNRSTN->print_r($tmp_SOAP_SVC_REQUESTED_RESOURCES,'SOAP CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED TEST', NULL, __LINE__,__METHOD__,__FILE__);
 
                 //$tmp_SOAP_SVC_REQUESTED_RESOURCES = $this->oCRNRSTN->data_decrypt($SOAP_response['SOAP_ENCRYPT_OPTIONS'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);
 //                $tmp_STATUS_CODE = $this->oCRNRSTN->data_decrypt($SOAP_response['STATUS_CODE'], CRNRSTN_ENCRYPT_SOAP, true, $tmp_SOAP_ENCRYPT_CIPHER, $tmp_SOAP_ENCRYPT_SECRET_KEY, $tmp_SOAP_ENCRYPT_HMAC_ALG, $tmp_SOAP_ENCRYPT_OPTIONS);

@@ -121,7 +121,7 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
     <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
         $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
         $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
-    <style type="text/css">
+    <style>
 
         .the_R_in_crnrstn                           { color:#F90000; }
         /*.crnrstn_j5_wolf_pup_outter_wrap            { float:right; padding:420px 0 0 0; margin:0; width:100%;}
@@ -288,7 +288,7 @@ echo $oCRNRSTN->framework_integrations_client_packet(-1);
         <div class="crnrstn_j5_wolf_pup_inner_wrap">
             <?php
 
-            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
+            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
             ?>
         </div>

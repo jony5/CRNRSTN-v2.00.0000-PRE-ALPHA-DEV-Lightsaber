@@ -141,6 +141,9 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
 $CRNRSTN_config_serial = '';
 
 /**
+ *
+ * THIS SHOULD GET A RE-WRITE. TL;DR
+ *
  * $CRNRSTN_log_silo_profile
  * DESCRIPTION :: To limit ALL error log trace activity across the entire application to
  *  hand selected CRNRSTN error log silo key(s), include the desired key(s) within a pipe
@@ -329,11 +332,11 @@ CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL                 // RETURN SYSTEM IMAGE FOR EXPOS
 CRNRSTN_UI_IMG_BASE64                           // RETURN BASE64 ENCODE OF PNG FORMAT.
 CRNRSTN_UI_IMG_BASE64_PNG                       // RETURN BASE64 ENCODE OF PNG FORMAT.
 CRNRSTN_UI_IMG_BASE64_JPEG                      // RETURN BASE64 ENCODE OF JPEG FORMAT.
-CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED              // RETURN SYSTEM IMAGE BASE64 ENCODED WITHIN <IMG> DOM TAGS.
+CRNRSTN_UI_IMG_HTML_WRAPPED              // RETURN SYSTEM IMAGE BASE64 ENCODED WITHIN <IMG> DOM TAGS.
 CRNRSTN_UI_IMG_JPEG                             // RETURN HTTP URI OF SYSTEM IMAGE IN JPEG FORMAT.
-CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED                // RETURN SYSTEM IMAGE AS JPEG WITHIN <IMG> DOM TAGS.
+CRNRSTN_UI_IMG_HTML_WRAPPED                // RETURN SYSTEM IMAGE AS JPEG WITHIN <IMG> DOM TAGS.
 CRNRSTN_UI_IMG_PNG                              // RETURN HTTP URI OF SYSTEM IMAGE IN PNG FORMAT.
-CRNRSTN_UI_IMG_PNG_HTML_WRAPPED                 // RETURN SYSTEM IMAGE AS PNG WITHIN <IMG> DOM TAGS.
+CRNRSTN_UI_IMG_HTML_WRAPPED                 // RETURN SYSTEM IMAGE AS PNG WITHIN <IMG> DOM TAGS.
 * * E.G. RECEIVED BY $oCRNRSTN->return_creative().
 
 // CONTENT INCLUDE CONSTANT :: UGC ANALYTICS
@@ -456,13 +459,12 @@ The error level constants are always available as part of the PHP core.
 */
 
 /**
- * $oCRNRSTN->addEnvironment()
+ * $oCRNRSTN->config_add_environment()
  * DESCRIPTION :: Key an environment to enable CRNRSTN :: detection and resource configuration.
  *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
  *
  * @param error level constant integer(s) profiles $errorReporting will allow for configuration
  * of the error reporting profile for the specified application development/hosting environment.
@@ -480,70 +482,6 @@ $oCRNRSTN->config_add_environment('LOCALHOST_MACBOOKPRO', E_ALL);
 $oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
 
 //
-// CRNRSTN :: ENVIRONMENTAL DETECTION FOR EACH ENVIRONMENT ABOVE KEYING ON
-// RELEVANT (EVEN CUSTOM APACHE.CONF) CORE $_SERVER SETTINGS
-/**
- * $oCRNRSTN->config_detect_environment()
- *
- * DESCRIPTION :: Firstly, the successful initialization of the CRNRSTN Suite :: within each running
- *  environment depends on the parameters passed through config_detect_environment() for each
- *  keyed environment. For example, if your replication of server-unique $_SERVER parameter variables
- *  are off by even a character (e.g. due to reversed slashes, neglect of case-sensitivity, etc.),
- *  the CRNRSTN Suite :: will not initialize with the correct environment...if any.
- *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
- *
- * @param   string $key contains the $_SERVER[] super global array key to be used for environmental
- * detection or a user defined key that will be referenced globally throughout the application to
- * facilitate site wide features and functionality such as paths to assets, common resource profile
- * data such as maximum display counts for search results or pagination, or endpoints from the
- * front to the back including client-side AJAX request URI, 3rd party APIs, and SOAP WSDLs.
- *
- * @param   string $value contains the data to be exposed to the application whenever the $key is
- * provided to $oCRNRSTN_USR->get_resource();
- *
- * @param   string $required_server_matches contains the count of the number of SERVER values that
- * must be matched before the environment can be positively detected.
- *
- * Here are three (3) hosting environments defined for the purposes of supporting environmental detection.
- * BLUEHOST = production
- * CYEXX_SOLUTIONS = stage
- * LOCALHOST_MACBOOKTERMINAL = localhost
- *
- * CAUTION :: When handling domain and server name, please note that http://www.your-domain.com is not
- * the same as http://your-domain.com. If your site CAN be accessed via both formats, you will need to
- * detect them as two (2) unique environments...but you should be able to use the same key for both if
- * there are no other differences. Failure to support either format will cause CRNRSTN :: environmental
- * detection to fail...e.g. 500 server error...when the neglected format is used by a web site visitor.
- *
- * Environment #1
- * $oCRNRSTN->config_detect_environment('BLUEHOST', 'SERVER_NAME', 'http://jony5.com/', 2);
- * $oCRNRSTN->config_detect_environment('BLUEHOST', 'SERVER_ADDR', '50.87.249.11', 2);
- *
- * Environment #2
- * $oCRNRSTN->config_detect_environment('CYEXX_SOLUTIONS', 'SERVER_NAME', 'stage.jony5.com', 2);
- * $oCRNRSTN->config_detect_environment('CYEXX_SOLUTIONS', 'SERVER_ADDR', '184.173.96.66', 2);
- *
- * Environment #3
- * $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKTERMINAL', 'SERVER_ADDR', '172.16.195.132', 1);
- *
- * To apply any resource to all server environments, use integer constant CRNRSTN_RESOURCE_ALL as the key ::
- * $oCRNRSTN->config_detect_environment(CRNRSTN_RESOURCE_ALL, 'SOA_NAMESPACE', 'http://www.w3.org/2003/05/soap-encoding');
- *
- * Technically, ANY $_SERVER[] super global array key can be used for environmental detection, but many
- * of these will have identical values from one machine to the next, and therefore they are useless
- * for the purposes of programmatically detecting a running environment where n+1 configured servers
- * are hosting the same application. Think of localhost vs production at in light of using
- * a value stored within $_SERVER, e.g. $_SERVER['REQUEST_METHOD'], to detect the running environment, lol.
- *
- * For a more complete list of available super global array parameters, please see ::
- * http://php.net/manual/en/reserved.variables.server.php
- */
-
-//
 // ENVIRONMENTAL DETECTION
 $oCRNRSTN->config_detect_environment('BLUEHOST_JONY5', 'SERVER_NAME', 'lightsaber.crnrstn.jony5.com');
 $oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsaber.crnrstn.evifweb.com');
@@ -559,40 +497,7 @@ $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PROTOCOL', 
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'DOCUMENT_ROOT', '/var/www/html', 5); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
 
 //
-// INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT. 2 WAYS TO USE THIS METHOD.
-/**
- * $oCRNRSTN->add_database()
- *
- * DESCRIPTION :: Add database credentials for each environment in-line at this location or provide a path to
- *  the remote specification of the same within the file _crnrstn.db.config.inc.php. Any in-line database auth
- *  creds will be processed before looking for the database creds include file.
- *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
- *
- * @param   string $host_or_creds_path serves a dual purpose of containing either the database host (which would
- * be followed by a few other...at this point...no longer optional...parameters such as $un, $pwd, and $db) or
- * a path to a database credential include file called _crnrstn.db.config.inc.php within the CRNRSTN :: distro.
- *
- * @param   string $un contains the user name associated with this database connection.
- *
- * @param   string $pwd contains the password for the user name associated with this database connection.
- *
- * @param   string $db contains the database name.
- *
- * @param   string $port contains the database port.
- *
- * NOTE :: A demo database authorization credentials include file ships with CRNRSTN ::, and can be found at:
- * /_crnrstn/_config/config.database.secure/_crnrstn.db.config.inc.php
- *
- * Example using the CRNRSTN :: include file ::
- * $oCRNRSTN->add_database('CYEXX_SOLUTIONS', '/home/jony5/crnrstn.v2.jony5.com/_crnrstn/_config/config.database.secure/_crnrstn.db.config.inc.php');
- *
- * Example of in-line database credentials specification ::
- * $oCRNRSTN->add_database('LOCALHOST_PC', 'localhost', 'crnrstn_demo', 'aXNTPxGPeLRwYzTS', 'crnrstn_demo', 3306);
- */
+// INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT.
 $oCRNRSTN->config_add_database(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.secure/_crnrstn.db.config.inc.php');
 
 //
@@ -606,29 +511,7 @@ $oCRNRSTN->config_include_encryption(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crn
 $oCRNRSTN->config_include_system_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php');
 
 //
-// INITIALIZE WORDPRESS
-/**
- * $oCRNRSTN->add_wordpress()
- *
- * DESCRIPTION :: Add wordpress.
- *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
- *
- * @param   string $crnrstn_wp_config_file_path serves a dual purpose of containing either a comma delimited set of IP
- * from which a set of IP ranges will be derived in order to evaluate the client IP for appropriateness
- * or a path to an IP address security include file called _crnrstn.ipauthmgr.config.inc.php within
- * the CRNRSTN :: distribution which will be used for the same.
- *
- * NOTE :: A demo WordPress config include file ships with CRNRSTN ::, and can be found at:
- * /_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php
- *
- * Example using the CRNRSTN :: include file ::
- * $oCRNRSTN->add_wordpress('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//_crnrstn//_config//config.wp.secure//_crnrstn.wp_config.inc.php');
- *
- */
+// INITIALIZE SUPPORT FOR WORDPRESS CONFIGURATION(S)
 $oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php');
 
 /**
@@ -639,10 +522,9 @@ $oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnr
  *  $oCRNRSTN->init_CRNRSTN_errHandle_embryonic(), where the error handling during the initialization or embryonic
  *  stage of CRNRSTN :: would have been configured.
  *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
  *
  * @param   boolean $isActive where value of TRUE (or NULL) will give CRNRSTN :: and the current configuration of
  * its error log trace handling jurisdiction over all levels of error, from E_ERROR to E_USER_DEPRECATED. This
@@ -662,99 +544,82 @@ $oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnr
  * The above gives E_NOTICE, E_STRICT, AND E_DEPRECATED throws to native PHP for handling. All else
  * will go through CRNRSTN :: and can be sent as CRNRSTN :: system EMAIL notification if desired.
  */
-$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_JONY5',true);
-$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_EVIFWEB',true);
+$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_JONY5');
+$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_EVIFWEB');
 $oCRNRSTN->set_crnrstn_as_err_handler('LOCALHOST_MACBOOKPRO',false);
-$oCRNRSTN->set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO',true);
+$oCRNRSTN->set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO');
 
 /**
- * $oCRNRSTN->config_init_images_transport_mode()
+ * $oCRNRSTN->config_init_images_format_default()
  * DESCRIPTION :: Configure the HTML email image handling profile for CRNRSTN :: system notifications.
  * OPTIONS ::
  * CRNRSTN_ASSET_MODE_PNG
- * CRNRSTN_ASSET_MODE_BASE64
  * CRNRSTN_ASSET_MODE_JPEG
+ * CRNRSTN_ASSET_MODE_BASE64
  *
  * @param   int $system_asset_mode constant. Use of any system images will resolve when
  * coupled with specification of the appropriate images hosting directory with
- * $oCRNRSTN->config_init_images_http_dir(). This will indicate the nature of the
+ *
+ * $oCRNRSTN->config_init_images_http(). This will indicate the nature of the
  * creative (png, jpg or base64 encoded) that is to be returned by
  * CRNRSTN :: for web and email access.
  *
  * @return	boolean TRUE
- *
  * Example ::
  * $oCRNRSTN->config_init_images_transport_mode(CRNRSTN_ASSET_MODE_BASE64);
  *
  */
-$oCRNRSTN->config_init_images_transport_mode(CRNRSTN_ASSET_MODE_PNG);
+/*
+config_init_images_format_default()
+CRNRSTN_ASSET_MODE_PNG
+CRNRSTN_ASSET_MODE_JPEG
+CRNRSTN_ASSET_MODE_BASE64 (WILL CAUSE JS AND CSS META TO BE INJECTED INTO HTML <HEAD>)
+
+*/
+//
+// $env_key = CRNRSTN_RESOURCE_ALL, $format_default = CRNRSTN_ASSET_MODE_BASE64
+$oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG);
+
+// 
+// $env_key = CRNRSTN_RESOURCE_ALL, $is_HTML = true. If false, text email only for system communications (e.g. exception handling).
+$oCRNRSTN->config_init_html_mode_email();
 
 /**
- * $oCRNRSTN->config_init_images_http_dir()
+ * $oCRNRSTN->config_init_http()
  * DESCRIPTION :: Configure public IP image HTTP URI directory endpoint(s) for
  *  CRNRSTN :: system notifications.
  *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
  *
- * @param   string $crnrstn_images_http_dir the root for the publicly accessible HTTP/S endpoint
- * according to which the CRNRSTN :: email and web image assets will be hosted and can thus be
- * accessed by any email or web client. This should terminate at the /_crnrstn/ framework directory.
+ * @param   string $crnrstn_http_endpoint the entire http/s access url terminating on /_crnrstn/.
  *
- * NOTE ::
- * All assets ship with CRNRSTN :: and can be found within '/_crnrstn/ui/'
- *
- * Example ::
- * $oCRNRSTN->config_init_images_http_dir('CYEXX_SOLUTIONS', 'http://v2.crnrstn.evifweb.com/_crnrstn/');
- * The above example will allow web and email content generated from the environment keyed
- * as 'CYEXX_SOLUTIONS' to generate system emails using the $crnrstn_images_http_dir parameter to
- * build image URI in support of, e.g., the HTML versions of system email messages. On that note the
- * text versions are available for all system notifications, and HTML can be 'turned off' if desired.
- */
-$oCRNRSTN->config_init_images_http_dir('BLUEHOST_JONY5', 'http://lightsaber.crnrstn.jony5.com/_crnrstn/');
-$oCRNRSTN->config_init_images_http_dir('BLUEHOST_EVIFWEB', 'http://lightsaber.crnrstn.evifweb.com/_crnrstn/');
-$oCRNRSTN->config_init_images_http_dir('LOCALHOST_MACBOOKPRO', 'http://172.16.225.128/jony5/_crnrstn/');
-$oCRNRSTN->config_init_images_http_dir('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/_crnrstn/');
-//http://172.16.225.139/lightsaber.crnrstn.evifweb.com/_crnrstn/
+ * @param   string $crnrstn_dir_path the entire file access directory path terminating on /_crnrstn.
 
-//
-// INITIALIZE SENSITIVE (I.E. UNDESIRABLE TO DEFINE IN-LINE "ALL OVER" THE
-// APPLICATION...E.G. AS IN SMTP CREDENTIALS) "WILDCARD" RESOURCES RELEVANT TO EACH
-// ENVIRONMENT ABOVE. TODO :: THIS IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2020 @ 0315 hrs
-/**
- * $oCRNRSTN->add_wildcards()
- *
- * DESCRIPTION :: Wild card resource (or WCR) objects are custom resources defined within
- *  the application to meet the need of more robust data requirements within an
- *  OOP context wherein which one would otherwise be forced to call several different methods
- *  or pass 9+ parameters into a single method in order to aggregate the necessary data to
- *  meet the need at hand. WCR data is accessed through a common method (a method also used to
- *  access the CRNRSTN :: configuration's defined environmental resources) which simplifies
- *  the development process. The WCR objects can be defined in-line, but this side-steps the
- *  built-in CRNRSTN :: environmental detection for environmentally specific WCR objects. One
- *  can still respect environmental alignment through the use of 1) switch() or other
- *  conditional statements and 2) methods such as:
- *  $oCRNRSTN_USR->isCurrentEnvironment('LOCALHOST_MACBOOKPRO'), which returns BOOLEAN
- *  or $oCRNRSTN_USR->current_location(), which could return a string such as 'LOCALHOST_MACBOOKPRO'
- *  representing the current example's current running environment.
- *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
- *
- * @param   string $filepathWildCardResource is the full local directory path to the include
- * file, _crnrstn.resource_wildcards.inc.php, which ships with CRNRSTN ::. This file can be
- * found within '/_crnrstn/_config/config.resource_wildcards.secure/'
- *
- * @return boolean TRUE on success or FALSE on error.
- *
- * Example :: /var/www/html/alpha.jony5.com/_crnrstn/_config/config.resource_wildcards.secure
- * $oCRNRSTN->add_wildcards('LOCALHOST_PC', C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//config.resource_wildcards.secure//_crnrstn.resource_wildcards.inc.php);
- */
-//$oCRNRSTN->add_wildcards(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.resource_wildcards.secure/_crnrstn.resource_wildcards.inc.php');
+*/
+$oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'http://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('BLUEHOST_EVIFWEB', 'http://lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_MACBOOKPRO', 'http://172.16.225.128/jony5/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+
+/*
+CRNRSTN_ASSET_MAPPING
+CRNRSTN_ASSET_MAPPING_PROXY
+
+*/
+// $env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MAPPING, $soap_endpoint = NULL
+//$oCRNRSTN->config_init_asset_mapping();
+//$oCRNRSTN->config_init_asset_tunnel_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MAPPING_PROXY, 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/');
+
+// CRNRSTN_ASSET_MAPPING
+// $env_key = CRNRSTN_RESOURCE_ALL, $is_active = true, $path = '_crnrstn/ui/js/'
+$oCRNRSTN->config_init_asset_mapping_favicon(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs/favicon/system');
+$oCRNRSTN->config_init_asset_mapping_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/css');
+$oCRNRSTN->config_init_asset_mapping_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');
+$oCRNRSTN->config_init_asset_mapping_system_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+$oCRNRSTN->config_init_asset_mapping_social_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+//$oCRNRSTN->config_init_asset_tunnel_routing_css(CRNRSTN_RESOURCE_ALL, false);   // TOGGLE ROUTING OFF...CHECK.
 
 //
 // INITIALIZE LOGGING FUNCTIONALITY FOR EACH ENVIRONMENT
@@ -764,10 +629,9 @@ $oCRNRSTN->config_init_images_http_dir('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.
  * $oCRNRSTN->config_init_logging()
  * DESCRIPTION :: Configure the server error logging notifications profile for each environment.
  *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
  *
  * @param   string $loggingProfilePipe contains a pipe delimited string of the logging profiles
  * that should be applied to meet the system logging requirements for each environment.
@@ -842,10 +706,9 @@ $oCRNRSTN->config_init_logging('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_LOG_DEFAULT)
  *  is to be granted access; FALSE will be returned if the client IP is outside the range of
  *  IP provided to config_grant_exclusive_access().
  *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
  *
  * @param   string $ipOrFile serves a dual purpose of containing either a comma delimited set of IP
  * from which a set of IP ranges will be derived in order to evaluate the client IP for appropriateness
@@ -879,10 +742,9 @@ $oCRNRSTN->config_init_logging('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_LOG_DEFAULT)
  *  (FALSE if otherwise). One may then process the remainder of the
  *  use-case appropriately.
  *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
  *
  * @param   string $ipOrFile serves a dual purpose of containing either a comma delimited set of IP
  * from which a set of IP ranges will be derived in order to evaluate the client IP for appropriateness
@@ -925,10 +787,9 @@ $oCRNRSTN->is_configured();
  *  the remote specification of the same within the file _crnrstn.admin.config.inc.php. Any in-line administration
  *  auth creds will be processed before looking for the add_administration() credentials include file.
  *
- * @param   string $env_key is a custom user-defined value representing a specific environment
- * within which this application will be running and which key will be used throughout this
- * configuration file + any CRNRSTN :: resource includes in order to align the necessary
- * functionality and resources to said environment.
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
  *
  * @param   string $email_or_creds_path serves a dual purpose of containing either the Administrator email
  * address (which said email address would be followed by another...at this point...no longer

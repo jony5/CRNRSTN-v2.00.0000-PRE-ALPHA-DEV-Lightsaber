@@ -46,7 +46,6 @@ if ( ! session_id() ) @ session_start();
 $CRNRSTN_ROOT_OFFSET = '';
 @define('CRNRSTN_ROOT', crnrstn_root_dir_shift($CRNRSTN_ROOT_OFFSET));
 
-
 function crnrstn_root_dir_shift($dir_offset){
 
     $tmp_root_dir_output_ARRAY = array();

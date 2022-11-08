@@ -85,7 +85,7 @@ $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=yJg_H_NVfAA';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=W9SwCjSFpBA'; // 07/01/2022 @ 1128 hrs
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=VAoWeFhhno4';
 
-$social_sprite_serial = $oCRNRSTN->generate_new_key(10);
+$sprite_serial = $oCRNRSTN->generate_new_key(10);
 
 ?>
 <!DOCTYPE html>
@@ -98,7 +98,7 @@ $social_sprite_serial = $oCRNRSTN->generate_new_key(10);
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
 
-<style type="text/css">
+<style>
     .the_R_in_crnrstn                           { color:#F90000; }
     .crnrstn_activity_log                       { opacity: 0; }
     .crnrstn_log_output_wrapper                 { background-color:#04050A; border:3px solid #9F9393; padding:10px; margin:10px 10px 0 0; width:800px; height:190px; overflow:scroll;}
@@ -193,7 +193,7 @@ $social_sprite_serial = $oCRNRSTN->generate_new_key(10);
     <div class="crnrstn_j5_wolf_pup_outter_wrap">
         <div class="crnrstn_j5_wolf_pup_inner_wrap">
             <?php
-            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
+            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
             ?>
         </div>
     </div>

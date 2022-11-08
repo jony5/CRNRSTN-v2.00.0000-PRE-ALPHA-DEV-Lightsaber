@@ -50,19 +50,19 @@ switch($channel_constant[0]){
                     //
                     // AV SERVICE SAINT
                     //$oMiniNav = new miniNav('avservice_saint', $this->oCRNRSTN_USR);
-                    //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
-                    //$oMiniNav->configureLink('obs clients', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/obs/');
-                    //$oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/logs/');
-                    //$oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/');
+                    //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
+                    //$oMiniNav->configureLink('obs clients', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/obs/');
+                    //$oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/logs/');
+                    //$oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/');
 
                     break;
                 case '320':
                     //
                     // SAINT SERVING TRANSLATION
                     $oMiniNav = new miniNav('translation_saint', $this->oCRNRSTN_USR);
-                    //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
-                    $oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/logs/');
-                    $oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/');
+                    //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
+                    $oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/logs/');
+                    $oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/');
 
                     break;
 
@@ -70,9 +70,9 @@ switch($channel_constant[0]){
 
             //$tmp_formUnique = $this->oCRNRSTN_USR->generate_new_key(4);
             //$tmp_pageName_Header = 'home ::';
-            //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/search/search.mobi.inc.php');
-            //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/nav/sidenav.mobi.inc.php');
-            //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/header/header.mobi.inc.php');
+            //require($this->oCRNRSTN_USR->crnrstn_http_endpoint.'/common/inc/search/search.mobi.inc.php');
+            //require($this->oCRNRSTN_USR->crnrstn_http_endpoint.'/common/inc/nav/sidenav.mobi.inc.php');
+            //require($this->oCRNRSTN_USR->crnrstn_http_endpoint.'/common/inc/header/header.mobi.inc.php');
 
             ?>
 
@@ -269,7 +269,7 @@ define(\'WP_DEBUG\', \'' . $this->oCRNRSTN_USR->tidy_boolean($this->oCRNRSTN_USR
                                         
                             <div class="crnrstn_meta_time_stats_content">
                             
-                                <div id="crnrstn_meta00_' . $this->page_serial.'" class="crnrstn_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time().' '.date('T').'] [rtime ' . $this->oCRNRSTN_USR->wall_time().' secs] [wtime <span id="crnrstn_wtime_' . $this->page_serial.'"></span>] <div class="crnrstn_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('5').'</div></div>
+                                <div id="crnrstn_meta00_' . $this->page_serial.'" class="crnrstn_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time().' '.date('T').'] [rtime ' . $this->oCRNRSTN_USR->wall_time().' secs] [wtime <span id="crnrstn_wtime_' . $this->page_serial.'"></span>] <div class="crnrstn_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('FIVE', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></div>
                   
                             </div>  
                               

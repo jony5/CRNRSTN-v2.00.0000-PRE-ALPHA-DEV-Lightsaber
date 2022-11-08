@@ -76,19 +76,19 @@ switch($channel_constant){
                         //
                         // AV SERVICE SAINT
                         //$oMiniNav = new miniNav('avservice_saint', $this->oCRNRSTN);
-                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN->oHTTP_MGR->extractData($_GET, 'kid'));
-                        //$oMiniNav->configureLink('obs clients', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/obs/');
-                        //$oMiniNav->configureLink('logs', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/logs/');
-                        //$oMiniNav->configureLink('refresh', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/');
+                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN->crnrstn_http_endpoint.'dashboard/streams/?kid=' . $this->oCRNRSTN->oHTTP_MGR->extractData($_GET, 'kid'));
+                        //$oMiniNav->configureLink('obs clients', $this->oCRNRSTN->crnrstn_http_endpoint.'dashboard/obs/');
+                        //$oMiniNav->configureLink('logs', $this->oCRNRSTN->crnrstn_http_endpoint.'dashboard/logs/');
+                        //$oMiniNav->configureLink('refresh', $this->oCRNRSTN->crnrstn_http_endpoint.'dashboard/');
 
                         break;
                     case '320':
                         //
                         // SAINT SERVING TRANSLATION
                         $oMiniNav = new miniNav('translation_saint', $this->oCRNRSTN);
-                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN->oHTTP_MGR->extractData($_GET, 'kid'));
-                        $oMiniNav->configureLink('logs', $this->oCRNRSTN->crnrstn_resources_http_path . 'dashboard/logs/');
-                        $oMiniNav->configureLink('refresh', $this->oCRNRSTN->crnrstn_resources_http_path . 'dashboard/');
+                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN->crnrstn_http_endpoint().'_crnrstn/dashboard/streams/?kid=' . $this->oCRNRSTN->oHTTP_MGR->extractData($_GET, 'kid'));
+                        $oMiniNav->configureLink('logs', $this->oCRNRSTN->crnrstn_http_endpoint() . '_crnrstn/dashboard/logs/');
+                        $oMiniNav->configureLink('refresh', $this->oCRNRSTN->crnrstn_http_endpoint() . '_crnrstn/dashboard/');
 
                         break;
 
@@ -96,9 +96,9 @@ switch($channel_constant){
 
                 //$tmp_formUnique = $this->oCRNRSTN->generate_new_key(4);
                 //$tmp_pageName_Header = 'home ::';
-                //require($this->oCRNRSTN->crnrstn_resources_http_path.'/common/inc/search/search.mobi.inc.php');
-                //require($this->oCRNRSTN->crnrstn_resources_http_path.'/common/inc/nav/sidenav.mobi.inc.php');
-                //require($this->oCRNRSTN->crnrstn_resources_http_path.'/common/inc/header/header.mobi.inc.php');
+                //require($this->oCRNRSTN->crnrstn_http_endpoint.'/common/inc/search/search.mobi.inc.php');
+                //require($this->oCRNRSTN->crnrstn_http_endpoint.'/common/inc/nav/sidenav.mobi.inc.php');
+                //require($this->oCRNRSTN->crnrstn_http_endpoint.'/common/inc/header/header.mobi.inc.php');
 
                 ?>
 
@@ -139,7 +139,7 @@ switch($channel_constant){
     <html lang="' . $this->oCRNRSTN->country_iso_code() . '">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        ' . $this->oCRNRSTN->return_creative('CRNRSTN_FAVICON') . '
+        ' . $this->oCRNRSTN->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
         ' . $this->oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI) .
             $this->oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP) . '
     </head>
@@ -237,7 +237,7 @@ DSJPCR
             </div>
 
             <div class="crnrstn_dyn_branding_elem_wrapper signin">
-                <div class="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN->return_branding_creative(true, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                <div class="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN->return_branding_creative(true, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
             </div>
 
                 <div class="crnrstn_cb_5"></div>
@@ -249,9 +249,9 @@ DSJPCR
 
                 <div class="crnrstn_signin_meta_time_stats_wrapper">
                     <div id="crnrstn_signin_meta00_' . $this->page_serial . '" class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</div>
-                    <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN->return_creative('5', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                    <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN->return_creative('FIVE', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
 
-                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 250, '', '', '', '', '', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 250, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
 
                     <div class="crnrstn_cb"></div>
                 </div>
@@ -307,7 +307,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <div class="crnrstn_signin_reflection_wrapper">
             <div class="crnrstn_signin_reflection_wrapper_rel">
-                <div class="crnrstn_signin_reflection_img_shell">' . $this->oCRNRSTN->return_creative('BG_ELEMENT_REFLECTION_SIGNIN', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                <div class="crnrstn_signin_reflection_img_shell">' . $this->oCRNRSTN->return_creative('BG_ELEMENT_REFLECTION_SIGNIN', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
             </div>
         </div>
         
@@ -319,7 +319,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
             <div class="crnrstn_j5_wolf_pup_inner_wrap">
-                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
+                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
             </div>
         </div>
 

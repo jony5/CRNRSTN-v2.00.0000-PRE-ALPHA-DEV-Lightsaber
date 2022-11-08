@@ -57,7 +57,7 @@ $oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
     <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
         $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
         $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
-    <style type="text/css">
+    <style>
         .the_R_in_crnrstn                           { color:#F90000; }
         .crnrstn_logo_wrapper                       { padding: 15px 0 20px 15px; }
 
@@ -243,7 +243,7 @@ $oCRNRSTN->print_r('$tmp_str = $oCRNRSTN->print_r_str(\'Output content.\', \'Out
 
 $oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('echo $oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', \'\', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);', '$oCRNRSTN->return_system_image()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('echo $oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', \'\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', CRNRSTN_UI_IMG_HTML_WRAPPED);', '$oCRNRSTN->return_system_image()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $oCRNRSTN->print_r('echo $oCRNRSTN->return_youtube_embed(\'https://www.youtube.com/watch?v=NePb9UWK8Yg\', 560, 315, true);', '$oCRNRSTN->return_youtube_embed()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
@@ -270,7 +270,7 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
 //return $this->oCRNRSTN->generate_new_key($len, $char_selection);
 
 
-//echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', 1000, 'http://jony5.com/', 'J5 MY BOY!', 'AWESOME!', '_blank', '', CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED);
+//echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 1000, 'http://jony5.com/', 'J5 MY BOY!', 'AWESOME!', '_blank', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
 ?>
 
@@ -337,7 +337,7 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
     <div class="crnrstn_j5_wolf_pup_outter_wrap">
         <div class="crnrstn_j5_wolf_pup_inner_wrap">
             <?php
-            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
+            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
             ?>
         </div>
     </div>

@@ -3713,7 +3713,7 @@ class bassdrive_integration_data {
     public $stream_has_social;
     public $stream_has_social_config_ARRAY = array();
     public $stream_social;
-    public $social_sprite_serial;
+    public $sprite_serial;
 
     private static $social_lnk_cnt = 0;
 
@@ -3724,7 +3724,7 @@ class bassdrive_integration_data {
         $this->oUserEnvironment = $oUserEnvironment;
         $this->dataBaseIntegration = $dataBaseIntegration;
 
-        $this->social_sprite_serial = filesize($this->oUser->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oUser->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png').'.'.filemtime($this->oUser->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oUser->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png').'.0';
+        $this->sprite_serial = filesize($this->oUser->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oUser->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png').'.'.filemtime($this->oUser->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oUser->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png').'.0';
 
     }
 
@@ -4433,9 +4433,9 @@ class bassdrive_integration_data {
                         self::$social_lnk_cnt++;
                         $this->stream_has_social = true;
 
-                        return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->social_sprite_serial .'" width="165" height="80" /></div></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
+                        return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->sprite_serial .'" width="165" height="80" /></div></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
 
-                        //return '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->social_sprite_serial .')"></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
+                        //return '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->sprite_serial .')"></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
 
                     }else{
 
@@ -4465,9 +4465,9 @@ class bassdrive_integration_data {
                         self::$social_lnk_cnt++;
                         $this->stream_has_social = true;
 
-                        return '<div class="bassdrive_social_link_anchor ' . rtrim($channel,'2') . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->social_sprite_serial .'" width="165" height="80" /></div></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
+                        return '<div class="bassdrive_social_link_anchor ' . rtrim($channel,'2') . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->sprite_serial .'" width="165" height="80" /></div></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
 
-                        //return '<div class="bassdrive_social_link ' . rtrim($channel,'2') . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->social_sprite_serial .')"></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
+                        //return '<div class="bassdrive_social_link ' . rtrim($channel,'2') . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->sprite_serial .')"></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
 
                     }else{
 
@@ -4497,9 +4497,9 @@ class bassdrive_integration_data {
                         self::$social_lnk_cnt++;
                         $this->stream_has_social = true;
 
-                        return '<div class="bassdrive_social_link_anchor ' . rtrim($channel,'3') . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->social_sprite_serial .'" width="165" height="80" /></div></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
+                        return '<div class="bassdrive_social_link_anchor ' . rtrim($channel,'3') . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->sprite_serial .'" width="165" height="80" /></div></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
 
-                        //return '<div class="bassdrive_social_link ' . rtrim($channel,'3') . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->social_sprite_serial .')"></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
+                        //return '<div class="bassdrive_social_link ' . rtrim($channel,'3') . '" onclick="launch_newwindow(\'' . $stream_meta_ARRAY[$channel] . '\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->sprite_serial .')"></div><div class="hidden">Click <a href="' . $stream_meta_ARRAY[$channel] . '" target="_blank">here</a>' . $social_channel . '.</div>';
 
                     }else{
 
@@ -4532,9 +4532,9 @@ class bassdrive_integration_data {
 
                             if(strlen($stream_meta_ARRAY[$channel]) > 5){
 
-                                return $tmp_line_wrap . '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\'' . $url . '\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->social_sprite_serial .'" width="165" height="80" /></div></div>';
+                                return $tmp_line_wrap . '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\'' . $url . '\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->sprite_serial .'" width="165" height="80" /></div></div>';
 
-                                //return $tmp_line_wrap . '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\'' . $url . '\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->social_sprite_serial .')"></div>';
+                                //return $tmp_line_wrap . '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\'' . $url . '\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->sprite_serial .')"></div>';
 
                             }else{
 
@@ -4546,9 +4546,9 @@ class bassdrive_integration_data {
 
                             if(strlen($stream_meta_ARRAY[$channel]) > 5){
 
-                                return $tmp_line_wrap . '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\''.$stream_meta_ARRAY[$channel].'\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->social_sprite_serial .'" width="165" height="80" /></div></div>';
+                                return $tmp_line_wrap . '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\''.$stream_meta_ARRAY[$channel].'\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->sprite_serial .'" width="165" height="80" /></div></div>';
 
-                                //return $tmp_line_wrap . '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\''.$stream_meta_ARRAY[$channel].'\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->social_sprite_serial .')"></div>';
+                                //return $tmp_line_wrap . '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\''.$stream_meta_ARRAY[$channel].'\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->sprite_serial .')"></div>';
 
                             }else{
 
@@ -4573,9 +4573,9 @@ class bassdrive_integration_data {
 
                         if(strlen($stream_meta_ARRAY[$channel]) > 5){
 
-                            return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="bassdrive_load_history(\''.$stream_meta_ARRAY[$channel].'\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->social_sprite_serial .'" width="165" height="80" /></div></div>';
+                            return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="bassdrive_load_history(\''.$stream_meta_ARRAY[$channel].'\'); return false;"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_high_qual.png?v=420' . $this->sprite_serial .'" width="165" height="80" /></div></div>';
 
-                            //return '<div class="bassdrive_social_link ' . $channel . '" onclick="bassdrive_load_history(\''.$stream_meta_ARRAY[$channel].'\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->social_sprite_serial .')"></div>';
+                            //return '<div class="bassdrive_social_link ' . $channel . '" onclick="bassdrive_load_history(\''.$stream_meta_ARRAY[$channel].'\'); return false;" style="background-image:url(' . $this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oUser->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $this->sprite_serial .')"></div>';
 
                         }else{
 

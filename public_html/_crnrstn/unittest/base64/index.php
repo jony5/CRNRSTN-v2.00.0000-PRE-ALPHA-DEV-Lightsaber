@@ -25,13 +25,13 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 // CRNRSTN :: IMAGE OUTPUT MODE VALUES
 // CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL, CRNRSTN_UI_IMG_BASE64, CRNRSTN_UI_IMG_BASE64_PNG,
-// CRNRSTN_UI_IMG_BASE64_JPEG, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED,
-// CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED,
-// CRNRSTN_UI_IMG_JPEG, CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED
+// CRNRSTN_UI_IMG_BASE64_JPEG, CRNRSTN_UI_IMG_HTML_WRAPPED,
+// CRNRSTN_UI_IMG_HTML_WRAPPED, CRNRSTN_UI_IMG_HTML_WRAPPED,
+// CRNRSTN_UI_IMG_JPEG, CRNRSTN_UI_IMG_HTML_WRAPPED
 
 
 // SYSTEM IMAGE :: $oCRNRSTN->return_creative(); $oCRNRSTN->return_branding_creative();
-echo '<br><br><br>' . $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
+echo '<br><br><br>' . $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
 // CUSTOM IMAGE :: $oCRNRSTN->return_img();
 //echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);
@@ -63,7 +63,7 @@ j5_pup_top_right
 
 //$oCRNRSTN->print_r('System BASE64 processing complete.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 //echo  '<div style="padding: 40px;">' . $oCRNRSTN->return_creative('SUCCESS_CHECK') . '</div>';
-//echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
+//echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED);
 //echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG) . '" width="100" height="100">';
 
 //die();
@@ -116,7 +116,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
 <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI); ?>
-<style type="text/css">
+<style>
 
     body                                        { }
     p                                           { padding:10px 0 0 20px; font-size: 18px;}
@@ -244,7 +244,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
     </div>
     <div style="padding:5px 0 0 0; width: 523px; text-align: center; margin: 0 auto;">
         <div style="float: left;">
-            <?php echo $oCRNRSTN->return_branding_creative(false, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED); ?>
+            <?php echo $oCRNRSTN->return_branding_creative(false, CRNRSTN_UI_IMG_HTML_WRAPPED); ?>
         </div>
         <div style="float: right;">
             <span style="text-align: right; font-family: Arial, Helvetica, sans-serif;"><?php echo $oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name'); ?></span>
@@ -381,7 +381,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 <div class="crnrstn_j5_wolf_pup_outter_wrap">
     <div class="crnrstn_j5_wolf_pup_inner_wrap">
         <?php
-        echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED);
+        echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
         ?>
     </div>
 </div>

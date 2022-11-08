@@ -37,7 +37,7 @@ if($oCRNRSTN->http_data_services_initialize()){
 <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
-<style type="text/css">
+<style>
 
     .the_R_in_crnrstn                           { color:#F90000; }
     .crnrstn_j5_wolf_pup_outter_wrap            { float:right; padding:420px 0 0 0; margin:0; width:100%;}

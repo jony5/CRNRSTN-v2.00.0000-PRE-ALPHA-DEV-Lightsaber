@@ -3028,7 +3028,7 @@ class crnrstn_messenger_from_north {
                                         <td colspan="2">
                                             <table>
                                                 <tr>
-                                                    <td style="width:180px;"><div style="border-top: 10px solid #FFF;border-left: 10px solid #FFF;">'.self::$oCRNRSTN_n->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'</div></td>
+                                                    <td style="width:180px;"><div style="border-top: 10px solid #FFF;border-left: 10px solid #FFF;">'.self::$oCRNRSTN_n->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                     <td valign="top" align="right" style="text-align:right;">
                                                         <table cellpadding="0" cellspacing="0" border="0" width="610" style="border-bottom:10px solid #FFF; border-right: 10px solid #FFF; text-align: right;">
                                                             <tr>
@@ -3199,7 +3199,7 @@ class crnrstn_messenger_from_north {
                                         </td>
                                         <td align="right" style="text-align:right; border-top:10px solid #FFF; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">
                                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                                                <tr><td style="text-align: right;">'.self::$oCRNRSTN_n->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'</td></tr></table>
+                                                <tr><td style="text-align: right;">'.self::$oCRNRSTN_n->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED).'</td></tr></table>
                                         </td>
                                     </tr>
                                 </table>
@@ -3228,7 +3228,7 @@ class crnrstn_messenger_from_north {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    '.self::$oCRNRSTN_n->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'
+    '.self::$oCRNRSTN_n->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_HTML_WRAPPED).'
     <title>CRNRSTN ::</title>
 </head>
 
@@ -3252,7 +3252,7 @@ class crnrstn_messenger_from_north {
                                         <td colspan="2">
                                             <table>
                                                 <tr>
-                                                    <td style="width:180px;"><div style="border-top: 10px solid #FFF;border-left: 10px solid #FFF;">'.self::$oCRNRSTN_n->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'</div></td>
+                                                    <td style="width:180px;"><div style="border-top: 10px solid #FFF;border-left: 10px solid #FFF;">'.self::$oCRNRSTN_n->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                     <td valign="top" align="right" style="text-align:right;">
                                                         <table cellpadding="0" cellspacing="0" border="0" width="610" style="border-bottom:10px solid #FFF; border-right: 10px solid #FFF; text-align: right;">
                                                             <tr>
@@ -3365,7 +3365,7 @@ class crnrstn_messenger_from_north {
                                         </td>
                                         <td align="right" style="text-align:right; border-top:10px solid #FFF; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight: normal;">
                                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                                                <tr><td style="text-align: right;">'.self::$oCRNRSTN_n->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'</td></tr></table>
+                                                <tr><td style="text-align: right;">'.self::$oCRNRSTN_n->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED).'</td></tr></table>
                                         </td>
                                     </tr>
                                 </table>
@@ -9600,7 +9600,7 @@ Formally, the display property sets an element\'s inner and outer display types.
     <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        ' . $this->oCRNRSTN->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED) . '
+        ' . $this->oCRNRSTN->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
         <meta name="distribution" content="Global" />
         <meta name="ROBOTS" content="index" />
         <meta name="ROBOTS" content="follow" />
@@ -9719,7 +9719,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                 </tr>
                                 <tr>
                                     <td style="text-align: right;">
-                                        <div style="border-right:20px solid #FFF; border-top:20px solid #FFF;">' . $this->oCRNRSTN->return_creative('ICON_EMAIL_INBOX_REFLECT', CRNRSTN_UI_IMG_PNG_HTML_WRAPPED).'</div>
+                                        <div style="border-right:20px solid #FFF; border-top:20px solid #FFF;">' . $this->oCRNRSTN->return_creative('ICON_EMAIL_INBOX_REFLECTED', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div>
                                     </td>
                                 </tr>
                                 </table>
@@ -9738,7 +9738,7 @@ Formally, the display property sets an element\'s inner and outer display types.
     
         <div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
             <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
-                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'
+                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED).'
             </div>
         </div>
 
@@ -9884,7 +9884,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                     </tr>
                                     <tr>
                                         <td style="text-align: right;">
-                                            <div style="border-right:20px solid #FFF; border-top:20px solid #FFF;">' . $this->oCRNRSTN->return_creative('ICON_EMAIL_INBOX_REFLECT').'</div>
+                                            <div style="border-right:20px solid #FFF; border-top:20px solid #FFF;">' . $this->oCRNRSTN->return_creative('ICON_EMAIL_INBOX_REFLECTED').'</div>
                                         </td>
                                     </tr>
                                     </table>
@@ -9903,7 +9903,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
         <div style="float:right; padding:420px 0 0 0; margin:0; width:100%;">
             <div style="position: absolute; width:100%; text-align: right; background-color: #FFF; padding-top: 20px;">
-                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'
+                ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED).'
             </div>
         </div>
 
@@ -9981,7 +9981,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // INFORMATION BANG ICONOGRAPHY
-                        $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                        $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                         $this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG'][] = 1;
                         //error_log(__LINE__ .' '.$mail_client_constant.' BANG cnt = '.count($this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG']));
@@ -9994,7 +9994,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             //
                             // ERROR X ICONOGRAPHY
-                            $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                            $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                             $this->results_count_aggregation_ARRAY[$mail_client_constant]['X'][] = 1;
                             //error_log(__LINE__ .' '.$mail_client_constant.' X cnt = '.count($this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG']));
@@ -10004,7 +10004,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             //
                             // SUCCESS CHECK ICONOGRAPHY
-                            $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                            $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                             $this->results_count_aggregation_ARRAY[$mail_client_constant]['SUCCESS'][] = 1;
                             //error_log(__LINE__ .' '.$mail_client_constant.' SUCCESS cnt = '.count($this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG']));
@@ -10033,7 +10033,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // INFORMATION BANG ICONOGRAPHY
-                        $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                        $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_HTML_WRAPPED);
                         $this->results_count_aggregation_ARRAY[$mail_client_constant]['BANG'][] = 1;
 
                     }else{
@@ -10044,14 +10044,14 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             //
                             // ERROR X ICONOGRAPHY
-                            $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                            $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED);
                             $this->results_count_aggregation_ARRAY[$mail_client_constant]['X'][] = 1;
 
                         }else{
 
                             //
                             // SUCCESS CHECK ICONOGRAPHY
-                            $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                            $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED);
                             $this->results_count_aggregation_ARRAY[$mail_client_constant]['SUCCESS'][] = 1;
 
                         }
@@ -10249,7 +10249,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                             }else{
 
@@ -10259,13 +10259,13 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                                     //
                                     // ERROR X ICONOGRAPHY
-                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                                 }else{
 
                                     //
                                     // INFORMATION BANG ICONOGRAPHY
-                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                                 }
 
@@ -10279,13 +10279,13 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                                 //
                                 // ERROR X ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                             }else{
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                             }
 
@@ -10313,7 +10313,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                             }else{
 
@@ -10321,13 +10321,13 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                                     //
                                     // ERROR X ICONOGRAPHY
-                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                                 }else{
 
                                     //
                                     // INFORMATION BANG ICONOGRAPHY
-                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                    $tmp_icon_img = $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                                 }
 
@@ -10341,13 +10341,13 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                                 //
                                 // ERROR X ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                             }else{
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
-                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                                $tmp_icon_img = $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                             }
 
@@ -10561,7 +10561,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                                                                                                     
                                                                                 </table>
                                                                             </td>
-                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#desktop_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
+                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#desktop_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_HTML_WRAPPED).'</a></div></td>
                                                                         </tr>
                                                                                                                         
                                                                         </table>
@@ -10591,7 +10591,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                                                                                                     
                                                                                 </table>
                                                                             </td>
-                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#mobile_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
+                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#mobile_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_HTML_WRAPPED).'</a></div></td>
                             
                                                                         </tr>
                                                                                                                         
@@ -10621,7 +10621,7 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                                                                                                     
                                                                                 </table>
                                                                             </td>
-                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#web_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</a></div></td>
+                                                                            <td style="width:50px; text-align:right;"><div style="border-top: 4px solid #FFF;"><a href="#web_channel_details" target="_self">' . $this->oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS', CRNRSTN_UI_IMG_HTML_WRAPPED).'</a></div></td>
                                                                             
                                                                         </tr>
                                                                                                                         
@@ -10734,13 +10734,13 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                 <td colspan="10">
                                                     <table cellpadding="0" cellspacing="0" border="0" style="padding:0; margin:0;">
                                                     <tr>
-                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="width:35px; height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="width:35px;height: 19px; "><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
                                                    
                                                     </tr>                       
@@ -10791,13 +10791,13 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                 <td colspan="10">
                                                     <table cellpadding="0" cellspacing="0" border="0" style="padding:0; margin:0;">
                                                     <tr>
-                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="width:35px; height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="width:35px;height: 19px; "><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
                                                    
                                                     </tr>                       
@@ -10846,13 +10846,13 @@ Formally, the display property sets an element\'s inner and outer display types.
                                                 <td colspan="10">
                                                     <table cellpadding="0" cellspacing="0" border="0" style="padding:0; margin:0;">
                                                     <tr>
-                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height:19px; overflow:hidden; border-left: 14px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('NOTICE_TRI_ALERT', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="width:35px; height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_bang_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left:8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('ERR_X', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="width:35px;height: 19px; "><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_x_cnt.'</a></td>
                                                     
-                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED).'</div></td>
+                                                        <td><div style="width: 19px; height: 19px; overflow:hidden; border-left: 8px solid #FFF; border-right: 4px solid #FFF; border-top: 3px solid #FFF; line-height:10px;">' . $this->oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></td>
                                                         <td style="height: 19px;"><a href="#' . $this->format_output($client_nom,'CLIENT_NOM').'" style=\'height: 23px; color: #6885C3; font-family:"Courier New", Courier, monospace; font-size: 15px; font-weight: normal; line-height:10px; margin:0; padding:0; \'>'.$tmp_success_cnt.'</a></td>
                                                    
                                                     </tr>                       
@@ -11367,13 +11367,13 @@ CSS Support Within Message';
 
             //
             // USE GREEN DOTS
-            $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_GREEN', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+            $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_GREEN', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
         }else{
 
             //
             // USE RED DOTS
-            $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_RED', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+            $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_RED', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
         }
 
@@ -11387,7 +11387,7 @@ CSS Support Within Message';
 
                 //
                 // USE CLEAR DOTS FOR ANY REMAINING DOTS.
-                $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_OFF', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED);
+                $tmp_dot_HTML = $this->oCRNRSTN->return_creative('DOT_GREY', CRNRSTN_UI_IMG_HTML_WRAPPED);
 
                 return $tmp_dot_HTML;
 

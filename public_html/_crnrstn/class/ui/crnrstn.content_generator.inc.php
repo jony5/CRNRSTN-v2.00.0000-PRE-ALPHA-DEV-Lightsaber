@@ -971,7 +971,7 @@ class crnrstn_content_generator {
 
                                 /*
                                 <div class="crnrstn_note_wrapper">
-                                    <div class="crnrstn_note_crnrstn_icon" style="background-image: url('<?php echo $oCRNRSTN_USR->crnrstn_resources_http_path;  ?>common/imgs/logo_sm.png'); background-repeat: no-repeat; width:50px; height:30px; float:right;"></div>
+                                    <div class="crnrstn_note_crnrstn_icon" style="background-image: url('<?php echo $oCRNRSTN_USR->crnrstn_http_endpoint;  ?>common/imgs/logo_sm.png'); background-repeat: no-repeat; width:50px; height:30px; float:right;"></div>
                                     <div class="crnrstn_note_notetitle">Note ::</div>
                                     <div class="crnrstn_note_notecopy">This functionality stands on top of the <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> project which has been incorporated into C<span class="the_R">R</span>NRSTN Suite v2.0.0. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is a lightweight PHP class for detecting mobile devices (including tablets). It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment. <a href="http://mobiledetect.net/" target="_blank">Mobile Detect</a> is sponsored by it's developers and community, and they send thanks to the JetBrains team for providing <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a> and <a href="https://www.jetbrains.com/datagrip/" target="_blank">DataGrip</a> licenses for said project.</div>
                                     <div class="cb"></div>
@@ -980,7 +980,7 @@ class crnrstn_content_generator {
                                 */
 
                                 $html_out .= '<div class="crnrstn_note_wrapper">
-                                    <div class="crnrstn_note_crnrstn_icon" style="background-image: url(\'' . $this->oCRNRSTN->crnrstn_resources_http_path.'common/imgs/logo_sm.png\'); background-repeat: no-repeat; width:50px; height:30px; float:right;"></div>
+                                    <div class="crnrstn_note_crnrstn_icon" style="background-image: url(\'' . $this->oCRNRSTN->crnrstn_http_endpoint.'common/imgs/logo_sm.png\'); background-repeat: no-repeat; width:50px; height:30px; float:right;"></div>
                                     <div class="crnrstn_note_notetitle">Note ::</div>
                                     <div class="crnrstn_note_notecopy">' . $val . '</div>
                                     <div class="cb"></div>
@@ -1230,7 +1230,7 @@ class crnrstn_content_generator {
 //
 //                                    <div class="crnrstn_documentation_dyn_content_module_bg">
 //                                        <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_NOTE') . '</div>
-//                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 160, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+//                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', '', 160, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
 //
 //                                    </div>
 //
@@ -1339,7 +1339,7 @@ class crnrstn_content_generator {
 //                                    </div>
 //
 //                                    <div class="crnrstn_documentation_dyn_content_module_bg">
-//                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', 1640, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+//                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', '', 1640, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
 //                                    </div>
 //
 //                                    <div class="crnrstn_hidden_void">
@@ -1398,7 +1398,7 @@ class crnrstn_content_generator {
 //                <div class="crnrstn_cb"></div>
 //                <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
 //                    <div class="crnrstn_j5_wolf_pup_inner_wrap">
-//                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
+//                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
 //                    </div>
 //                </div>
 //                <div class="crnrstn_cb"></div>
@@ -1500,7 +1500,7 @@ class crnrstn_content_generator {
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
                                         <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_NOTE') . '</div>
-                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', 160, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', '', 160, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
                                         
                                     </div>
                                     
@@ -1666,7 +1666,7 @@ class crnrstn_content_generator {
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">                                        
-                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', 1640, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', '', 1640, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
                                     </div>
                                     
                                     <div class="crnrstn_hidden_void">
@@ -1989,7 +1989,7 @@ class crnrstn_content_generator {
                 <div class="crnrstn_cb"></div>
                 <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
                     <div class="crnrstn_j5_wolf_pup_inner_wrap">
-                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '
+                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
                     </div>
                 </div>
                 <div class="crnrstn_cb"></div>
@@ -2050,7 +2050,7 @@ class crnrstn_content_generator {
     public function retrieve_code_example_output_html($filepath){
 
         if($filepath!=''){
-	        $filepath = $this->oCRNRSTN->crnrstn_resources_http_path.$filepath;
+	        $filepath = $this->oCRNRSTN->crnrstn_http_endpoint() . $filepath;
 
             $tmp_html_out = '';
 

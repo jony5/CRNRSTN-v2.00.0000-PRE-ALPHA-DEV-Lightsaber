@@ -69,6 +69,9 @@ class crnrstn_http_manager {
     public $isMobile;
     public $isTablet;
     public $device_detected = false;
+    public $crnrstn_asset_family;
+    public $crnrstn_asset_return_method_key;
+    public $crnrstn_asset_meta_path;
 
     public $customClientDevice = array();
 
@@ -445,13 +448,51 @@ class crnrstn_http_manager {
 
     }
 
-    public function http_data_services_response(){
+    public function http_data_services_response($output_format = 'xml'){
 
         //
         // TOO[sic] SIMPLE...BUT GOOD FOR PROOF OF CONCEPT
         if($this->crnrstn_ssdtla_enabled){
 
-            return $this->proper_response_return($this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_request_response());
+            $tmp_data_ARRAY = array();
+
+            //
+            // ASSET URI REQUEST RESPONSE
+            if(isset($this->crnrstn_asset_family)){
+
+                $tmp_session_salt = $this->oCRNRSTN->session_salt();
+
+                $tmp_data_ARRAY['crnrstn_asset_method_key'] = $this->crnrstn_asset_return_method_key;
+                $tmp_data_ARRAY['crnrstn_asset_family'] = $this->crnrstn_asset_family;   // currently only css, js, system, social, or favicon
+                $tmp_data_ARRAY['crnrstn_asset_key'] = $_GET[$tmp_session_salt];         // asset name/key
+
+                if(isset($this->crnrstn_asset_meta_path)){
+
+                    $tmp_data_ARRAY['crnrstn_asset_meta_path'] = $this->crnrstn_asset_meta_path;
+
+                }
+
+                $tmp_data_ARRAY['output_format'] = 'asset';
+
+                //
+                // SET RESPONSE OUTPUT MODE. THE KING'S HIGHWAY. GRIPPING THE LIGHTSABER (...BLADE!!).
+                //$this->oCRNRSTN->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                $this->crnrstn_ssdtla_enabled = false;
+//                [crnrstn_asset_method_key] => SOCIAL_ARCHIVES_HQ
+//                [crnrstn_asset_family] => social
+//                [crnrstn_asset_key] => social_archives_hq
+//                [output_format] => asset
+
+                //error_log(__LINE__ . ' http mgr  [' . print_r($tmp_data_ARRAY, true) . ']. die();');
+
+                //die();
+
+                return $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_request_response(CRNRSTN_ASSET_MAPPING, $tmp_data_ARRAY);
+
+            }
+
+            return $this->proper_response_return($this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_request_response($output_format));
 
         }
 
@@ -498,6 +539,89 @@ class crnrstn_http_manager {
                             $this->form_integration_isset_ARRAY['GET'] = true;
                             $this->crnrstn_ssdtla_enabled = true;
                             $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->http_data_services_initialize($var_parse_channel);
+
+                        }
+
+                        if($this->issetParam($_GET, $this->oCRNRSTN->session_salt())){
+
+                            $tmp_salt_ugc_val = $_GET[$this->oCRNRSTN->session_salt()];
+
+                            if(strlen($tmp_salt_ugc_val) > 0){
+
+                                if($this->oCRNRSTN->asset_routing_data_key_lookup('favicon', $tmp_salt_ugc_val)){
+
+                                    $this->crnrstn_ssdtla_enabled = true;
+                                    $this->crnrstn_asset_family = 'favicon';
+
+                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+
+                                    return true;
+
+                                }
+
+                                if($this->oCRNRSTN->asset_routing_data_key_lookup('system', $tmp_salt_ugc_val)){
+
+                                    $this->crnrstn_ssdtla_enabled = true;
+                                    $this->crnrstn_asset_family = 'system';
+                                    $this->crnrstn_asset_return_method_key = $this->oCRNRSTN->asset_return_method_key('system', $tmp_salt_ugc_val);
+
+                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+
+                                    return true;
+
+                                }
+
+                                if($this->oCRNRSTN->asset_routing_data_key_lookup('social', $tmp_salt_ugc_val)){
+
+                                    $this->crnrstn_ssdtla_enabled = true;
+                                    $this->crnrstn_asset_family = 'social';
+                                    $this->crnrstn_asset_return_method_key = $this->oCRNRSTN->asset_return_method_key('social', $tmp_salt_ugc_val);
+
+                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . ']  asset HOOKED[' . $tmp_salt_ugc_val . '].');
+
+                                    return true;
+
+                                }
+
+                                if($this->oCRNRSTN->asset_routing_data_key_lookup('css', $tmp_salt_ugc_val)){
+
+                                    $this->crnrstn_ssdtla_enabled = true;
+                                    $this->crnrstn_asset_family = 'css';
+                                    $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_CSS';
+                                    $this->crnrstn_asset_meta_path = $this->oCRNRSTN->asset_return_method_key('css', $tmp_salt_ugc_val);
+
+                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . ']  asset HOOKED[' . $tmp_salt_ugc_val . '].');
+
+                                    return true;
+
+                                }
+
+                                if($this->oCRNRSTN->asset_routing_data_key_lookup('js', $tmp_salt_ugc_val)){
+
+                                    $this->crnrstn_ssdtla_enabled = true;
+                                    $this->crnrstn_asset_family = 'js';
+                                    $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_JS';
+                                    $this->crnrstn_asset_meta_path = $this->oCRNRSTN->asset_return_method_key('js', $tmp_salt_ugc_val);
+
+                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+
+                                    return true;
+
+                                }
+
+                                if($this->oCRNRSTN->asset_routing_data_key_lookup('integrations', $tmp_salt_ugc_val)){
+
+                                    $this->crnrstn_ssdtla_enabled = true;
+                                    $this->crnrstn_asset_family = 'integrations';
+                                    $this->crnrstn_asset_return_method_key = $this->oCRNRSTN->asset_return_method_key('integrations', $tmp_salt_ugc_val);
+
+                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+
+                                    return true;
+
+                                }
+
+                            }
 
                         }
 
@@ -725,12 +849,12 @@ class crnrstn_http_manager {
     public function proper_response_return($response = NULL, $header_options_array = NULL, $crnrstn_response_profile_key = NULL){
 
         $tmp_curr_headers_ARRAY = headers_list();
-        $tmp_crnrstn_signature_headers_ARRAY = $this->return_signature_headers();
+        $tmp_crnrstn_signature_headers_ARRAY = $this->header_signature_options_return();
 
         //
         // ENSURE ALL SIGNATURE HEADERS ARE IN PLACE AND CONTINUE
-        $this->aggregate_parse_header_array($tmp_curr_headers_ARRAY);
-        $this->aggregate_parse_header_array($tmp_crnrstn_signature_headers_ARRAY);
+        $this->header_options_add($tmp_curr_headers_ARRAY);
+        $this->header_options_add($tmp_crnrstn_signature_headers_ARRAY);
 
         //
         // RESPONSE HEADER CONSTRUCTION
@@ -745,7 +869,7 @@ class crnrstn_http_manager {
 
             //
             // USE PROVISIONAL HEADERS (APPLY THEM AT THE END FOR OVERWRITE PROTECTION)
-            $this->aggregate_parse_header_array($header_options_array);
+            $this->header_options_add($header_options_array);
 
         }
 
@@ -757,9 +881,9 @@ class crnrstn_http_manager {
                     $tmp_array = array();
                     $tmp_array[] = 'Cache-Control: max-age=0';
                     $tmp_array[] = 'X-Frame-Options: SAMEORIGIN';
-                    $this->aggregate_parse_header_array($tmp_array);
+                    $this->header_options_add($tmp_array);
 
-                    $this->apply_headers();
+                    $this->header_options_apply();
                     echo $response;
                     exit;
 
@@ -770,7 +894,7 @@ class crnrstn_http_manager {
                     // TEMPORARY = 307
                     // header("Location: /foo.php", true, 307); // THE BOOL == "ALLOW DUPLICATE HEADER ENTRIES"...WHICH MAY BE FASTER.
 
-                    $this->apply_headers();
+                    $this->header_options_apply();
                     header("Location: $response", true, 307);
                     exit;
 
@@ -784,9 +908,9 @@ class crnrstn_http_manager {
                     $tmp_array = array();
                     $tmp_array[] = 'Cache-Control: max-age=0';
                     $tmp_array[] = 'X-Frame-Options: SAMEORIGIN';
-                    $this->aggregate_parse_header_array($tmp_array);
+                    $this->header_options_add($tmp_array);
 
-                    $this->apply_headers();
+                    $this->header_options_apply();
                     header("Location: $response", true, 303);
                     exit;
 
@@ -797,7 +921,7 @@ class crnrstn_http_manager {
                     //
                     // BASIC PAGE RESPONSE RETURN
 
-                    $this->apply_headers();
+                    $this->header_options_apply();
                     return $response;
 
                 break;
@@ -806,7 +930,7 @@ class crnrstn_http_manager {
 
         }else{
 
-            $this->apply_headers();
+            $this->header_options_apply();
             return $response;
 
         }
@@ -876,7 +1000,7 @@ class crnrstn_http_manager {
 
     }
 
-    private function aggregate_parse_header_array($header_array, $overwrite_existing = true){
+    public function header_options_add($header_array, $overwrite_existing = true){
 
         foreach($header_array as $key0 => $header_elem){
 
@@ -917,7 +1041,7 @@ class crnrstn_http_manager {
 
     }
 
-    private function apply_headers(){
+    public function header_options_apply(){
 
         foreach($this->response_header_attribute_ARRAY['header'] as $key => $headers_attribute){
 
@@ -953,7 +1077,7 @@ class crnrstn_http_manager {
 
     }
 
-    private function return_signature_headers(){
+    public function header_signature_options_return(){
 
         $tmp_date = date('D, M j Y G:i:s T', strtotime('now'));
         $tmp_date_expire = date('D, M j Y G:i:s T', strtotime('- 42 seconds'));
@@ -1047,7 +1171,7 @@ class crnrstn_http_manager {
                     $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_host', true, $_SERVER['SERVER_ADDR'], 'crnrstn_soap_data_tunnel_host');
                     $this->form_hidden_input_add('crnrstn_soap_data_tunnel_frm', 'crnrstn_soap_data_tunnel_host', true, $this->oNUSOAP_BASE->soap_defencoding, 'crnrstn_soap_data_tunnel_encoding');
 
-                    $tmp_html = '<form action="' . $this->crnrstn_resources_http_path . 'soa/tunnel/" method="post" id="crnrstn_ssdtl_frm" name="crnrstn_ssdtl_frm" enctype="multipart/form-data">
+                    $tmp_html = '<form action="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '" method="post" id="crnrstn_ssdtl_frm" name="crnrstn_ssdtl_frm" enctype="multipart/form-data">
 <div style="padding-bottom: 20px;"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">' . $tmp_crnrstn_soap_data_tunnel_output . '</textarea></div>
 <button type="submit" style="width:150px; height:30px; text-align: center; font-weight: bold;">SUBMIT</button>
 <input type="hidden" name="crnrstn_soap_srvc_soap_action" value="urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl#returnCRNRSTN_UI_GLOBAL_SYNC">

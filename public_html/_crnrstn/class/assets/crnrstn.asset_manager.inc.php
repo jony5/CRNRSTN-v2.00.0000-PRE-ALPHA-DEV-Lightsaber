@@ -1819,6 +1819,7 @@ class crnrstn_asset_manager {
 		// 
 		// TRIM TO 100 CHARS
 		return substr($this->normalizeString($str),0,100);
+
 	}
 	
 	//

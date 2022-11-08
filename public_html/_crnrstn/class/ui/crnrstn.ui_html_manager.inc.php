@@ -132,7 +132,7 @@ class crnrstn_ui_html_manager {
             </div>
 
             <div class="crnrstn_dyn_branding_elem_wrapper signin">
-                <div class="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN->return_branding_creative(true, CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                <div class="crnrstn_dyn_branding_elem_shell">' . $this->oCRNRSTN->return_branding_creative(true, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
             </div>
 
                 <div class="crnrstn_cb_5"></div>
@@ -144,9 +144,9 @@ class crnrstn_ui_html_manager {
 
                 <div class="crnrstn_signin_meta_time_stats_wrapper">
                     <div class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</div>
-                    <div class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN->return_creative('5', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                    <div class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN->return_creative('FIVE', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
 
-                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 250, '', '', '', '', '', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '</div>
+                    <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO','', 250, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
 
                     <div class="crnrstn_cb"></div>
                 </div>
@@ -276,7 +276,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     
                     <div id="crnrstn_interact_ui_side_nav_search_img_rel" class="crnrstn_interact_ui_side_nav_search_img_rel" style="width:35px; height:26px;">
                     
-                        <div id="crnrstn_interact_ui_side_nav_search_img" class="crnrstn_interact_ui_side_nav_search_img">' . $this->oCRNRSTN->return_system_image('SEARCH_MAGNIFY_GLASS', 20, NULL, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                        <div id="crnrstn_interact_ui_side_nav_search_img" class="crnrstn_interact_ui_side_nav_search_img">' . $this->oCRNRSTN->return_system_image('SEARCH_MAGNIFY_GLASS','', 20, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
                         <div class="crnrstn_cb"></div>
 
                     </div>
@@ -299,7 +299,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     
                     <div id="crnrstn_interact_ui_side_nav_logo_img_rel" class="crnrstn_interact_ui_side_nav_logo_img_rel" style="width:80px; height:50px;">
                     
-                        <div id="crnrstn_interact_ui_side_nav_logo_img" class="crnrstn_interact_ui_side_nav_logo_img">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', 40, '', '', '', '', NULL, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                        <div id="crnrstn_interact_ui_side_nav_logo_img" class="crnrstn_interact_ui_side_nav_logo_img">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 40, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
                         <div class="crnrstn_cb"></div>
 
                     </div>
@@ -313,7 +313,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <ul>' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK($type) . '
                 </ul>                
                 <div class="crnrstn_cb_20"></div>
-                <div class="crnrstn_interact_ui_side_nav_5">' . $this->oCRNRSTN->return_system_image('5', 30, '', '', '', '', 30, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                <div class="crnrstn_interact_ui_side_nav_5">' . $this->oCRNRSTN->return_system_image('FIVE', 30, 30, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
                 
                 <div class="crnrstn_cb_100"></div>
 
@@ -334,7 +334,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <div id="crnrstn_ui_system_footer" class="crnrstn_ui_system_footer">
                         
                             <div class="crnrstn_ui_system_footer_content">
-                                <div id="crnrstn_ui_system_footer_stache" class="crnrstn_ui_system_footer_stache">' . $this->oCRNRSTN->return_system_image('STACHE', 17, NULL, NULL, NULL, NULL, '', CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                <div id="crnrstn_ui_system_footer_stache" class="crnrstn_ui_system_footer_stache">' . $this->oCRNRSTN->return_system_image('STACHE','', 17, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
 
                                 <div id="crnrstn_ui_system_footer_mit" class="crnrstn_ui_system_footer_mit"><a id="crnrstn_ui_system_footer_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);" target="_self">' . $this->oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT') . '</a></div>
                                 <div id="crnrstn_ui_system_footer_download" class="crnrstn_ui_system_footer_download"><a style="font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px;" href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber', 'crnrstn_text_lnk_download') .'" target="_blank">' . $this->oCRNRSTN->multi_lang_content_return('LNK_DOWNLOAD_TXT_FOOTER') . '</a></div>
@@ -346,7 +346,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <div id="crnrstn_ui_system_footer_stat_meta" class="crnrstn_ui_system_footer_stat"></div>
                                 </div>
                                         
-                                <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('5', 20, NULL, NULL, NULL, NULL, 20, CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED) . '</div>
+                                <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('FIVE', 20, 20, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
 
                                 <div class="crnrstn_cb"></div>
                                 
@@ -427,7 +427,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <div style="position:relative;">
             <div style="position:absolute; z-index:68; margin: 2px 0 0 16px; border: 1px solid #FFF;">
                 <div id="crnrstn_interact_ui_bg_solid" class="crnrstn_interact_ui_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
-                    ' . $this->oCRNRSTN->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
+                    ' . $this->oCRNRSTN->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
                     <div class="crnrstn_cb"></div>
                 </div>
             </div>

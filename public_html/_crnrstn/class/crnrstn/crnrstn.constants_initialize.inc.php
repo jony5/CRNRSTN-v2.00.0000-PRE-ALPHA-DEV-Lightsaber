@@ -408,7 +408,7 @@ function crnrstn_constants_init($const_nom){
 
         //
         // 7301-7509
-        // 'CRNRSTN_UI_IMG_BASE64', 'CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED', 'CRNRSTN_UI_IMG_PNG', 'CRNRSTN_UI_IMG_PNG_HTML_WRAPPED'
+        // 'CRNRSTN_UI_IMG_BASE64', 'CRNRSTN_UI_IMG_HTML_WRAPPED', 'CRNRSTN_UI_IMG_PNG', 'CRNRSTN_UI_IMG_HTML_WRAPPED'
         case 'CRNRSTN_UI_SOAP_DATA_TUNNEL':
 
             return (int) 7301;
@@ -429,7 +429,7 @@ function crnrstn_constants_init($const_nom){
             return (int) 7304;
 
         break;
-        case 'CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED':
+        case 'CRNRSTN_UI_IMG_HTML_WRAPPED':
 
             return (int) 7305;
 
@@ -439,154 +439,141 @@ function crnrstn_constants_init($const_nom){
             return (int) 7306;
 
         break;
-        case 'CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED':
+        case 'CRNRSTN_UI_IMG_JPEG':
 
             return (int) 7307;
 
         break;
-        case 'CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED':
+        case 'CRNRSTN_UI_IMG_PNG':
 
             return (int) 7308;
 
         break;
-        case 'CRNRSTN_UI_IMG_JPEG':
+        case 'CRNRSTN_UI_IMG':
 
             return (int) 7309;
 
         break;
-        case 'CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED':
+        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
 
             return (int) 7310;
 
         break;
-        case 'CRNRSTN_UI_IMG_PNG':
+        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
 
             return (int) 7311;
 
         break;
-        case 'CRNRSTN_UI_IMG_PNG_HTML_WRAPPED':
+        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
 
             return (int) 7312;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+        case 'CRNRSTN_UI_JS_MAIN_DESKTOP':
 
             return (int) 7313;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+        case 'CRNRSTN_UI_JS_MAIN_TABLET':
 
             return (int) 7314;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+        case 'CRNRSTN_UI_JS_MAIN_MOBILE':
 
             return (int) 7315;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_DESKTOP':
+        case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
 
             return (int) 7316;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_TABLET':
+        case 'CRNRSTN_UI_JS_JQUERY':
 
             return (int) 7317;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_MOBILE':
+        case 'CRNRSTN_UI_JS_JQUERY_UI':
 
             return (int) 7318;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
+        case 'CRNRSTN_UI_JS_JQUERY_MOBILE':
 
             return (int) 7319;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY':
+        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS':
 
             return (int) 7320;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_UI':
+        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY':
 
             return (int) 7321;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_MOBILE':
+        case 'CRNRSTN_UI_TAG_ANALYTICS':
 
             return (int) 7322;
 
         break;
-        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS':
+        case 'CRNRSTN_UI_TAG_ENGAGEMENT':
 
             return (int) 7323;
 
         break;
-        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY':
+        case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
 
             return (int) 7324;
 
         break;
-        case 'CRNRSTN_UI_TAG_ANALYTICS':
+        case 'CRNRSTN_UI_COOKIE_PREFERENCE':
 
             return (int) 7325;
 
         break;
-        case 'CRNRSTN_UI_TAG_ENGAGEMENT':
+        case 'CRNRSTN_UI_COOKIE_YESNO':
 
             return (int) 7326;
 
         break;
-        case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
+        case 'CRNRSTN_UI_COOKIE_NOTICE':
 
             return (int) 7327;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_PREFERENCE':
+        case 'CRNRSTN_UI_INTERACT':
 
             return (int) 7328;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_YESNO':
+        case 'CRNRSTN_UI_CSS_BASE64MODE':
 
             return (int) 7329;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_NOTICE':
+        case 'CRNRSTN_UI_JS_BASE64MODE':
 
             return (int) 7330;
 
         break;
-        case 'CRNRSTN_UI_INTERACT':
+        case 'CRNRSTN_UI_CSS':
 
             return (int) 7331;
 
         break;
+        case 'CRNRSTN_UI_JS':
+
+            return (int) 7332;
+
+        break;
 
         /*
-        'CRNRSTN_UI_CSS_MAIN_MOBILE',
-        'CRNRSTN_UI_CSS_MAIN_TABLET',
-        'CRNRSTN_UI_CSS_MAIN_DESKTOP',
-        'CRNRSTN_UI_JS_JQUERY',
-        'CRNRSTN_UI_JS_JQUERY_UI',
-        'CRNRSTN_UI_JS_JQUERY_MOBILE',
-        'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS',
-        'CRNRSTN_UI_TAG_ANALYTICS',
-        'CRNRSTN_UI_TAG_ENGAGEMENT',
-        'CRNRSTN_UI_FORM_INTEGRATION_PACKET',
-        'CRNRSTN_UI_COOKIE_PREFERENCE',
-        'CRNRSTN_UI_COOKIE_YESNO',
-        'CRNRSTN_UI_COOKIE_NOTICE',
-        'CRNRSTN_UI_COOKIE_THEME_DARKNIGHT',
-        'CRNRSTN_UI_COOKIE_THEME_FEATHER',
-        'CRNRSTN_UI_COOKIE_THEME_DAYLIGHT',
-        'CRNRSTN_UI_COOKIE_THEME_GREYSKYS'
-
-
-
-
+        CRNRSTN_UI_CSS_MAIN_MOBILE
+        CRNRSTN_UI_CSS_MAIN_TABLET
+        CRNRSTN_UI_CSS_MAIN_DESKTOP
 
         CRNRSTN_UI_JS_JQUERY
         CRNRSTN_UI_JS_JQUERY_UI
@@ -602,17 +589,12 @@ function crnrstn_constants_init($const_nom){
         CRNRSTN_UI_COOKIE_YESNO
         CRNRSTN_UI_COOKIE_NOTICE
 
-        CRNRSTN_UI_COOKIE_THEME_DARKNIGHT
-        CRNRSTN_UI_COOKIE_THEME_FEATHER
-        CRNRSTN_UI_COOKIE_THEME_DAYLIGHT
-        CRNRSTN_UI_COOKIE_THEME_GREYSKYS
-
-
         */
 
         //
-        // 7510-8050
-        // 'CRNRSTN_ASSET_MODE_BASE64', 'CRNRSTN_ASSET_MODE_PNG', 'CRNRSTN_ASSET_MODE_JPEG'
+        // 7510-7699, 8000-8050
+        // 'CRNRSTN_ASSET_MODE_BASE64', 'CRNRSTN_ASSET_MODE_PNG', 'CRNRSTN_ASSET_MODE_JPEG', 'CRNRSTN_ASSET_MODE_ICO'
+        // 'CRNRSTN_ASSET_MODE_IMG'
         case 'CRNRSTN_ASSET_MODE_BASE64':
 
             return (int) 7510;
@@ -626,6 +608,54 @@ function crnrstn_constants_init($const_nom){
         case 'CRNRSTN_ASSET_MODE_JPEG':
 
             return (int) 7512;
+
+        break;
+        case 'CRNRSTN_ASSET_MODE_ICO':
+
+            return (int) 7513;
+
+        break;
+
+        //
+        // 7700-7999
+        case 'CRNRSTN_FAVICON_ASSET_MAPPING':
+
+            return (int) 7700;
+
+        break;
+        case 'CRNRSTN_SYSTEM_IMG_ASSET_MAPPING':
+
+            return (int) 7701;
+
+        break;
+        case 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING':
+
+            return (int) 7702;
+
+        break;
+        case 'CRNRSTN_JS_ASSET_MAPPING':
+
+            return (int) 7703;
+
+        break;
+        case 'CRNRSTN_CSS_ASSET_MAPPING':
+
+            return (int) 7704;
+
+        break;
+        case 'CRNRSTN_SYSTEM_EMAIL_IS_HTML':
+
+            return (int) 7705;
+
+        break;
+        case 'CRNRSTN_ASSET_MAPPING':
+
+            return (int) 7706;
+
+        break;
+        case 'CRNRSTN_ASSET_MAPPING_PROXY':
+
+            return (int) 7707;
 
         break;
 

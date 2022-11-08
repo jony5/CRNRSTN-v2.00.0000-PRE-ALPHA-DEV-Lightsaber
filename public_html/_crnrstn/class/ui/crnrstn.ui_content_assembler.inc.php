@@ -67,7 +67,7 @@ class crnrstn_ui_content_assembler {
 
         $tmp_page_path = $_SERVER['SCRIPT_NAME'];
         $tmp_page_path = str_replace("index.php", "", $tmp_page_path);
-        $tmp_page_path = str_replace($this->oCRNRSTN->crnrstn_resources_http_path(), "", $tmp_page_path);
+        $tmp_page_path = str_replace($this->oCRNRSTN->crnrstn_http_endpoint(), "", $tmp_page_path);
 
         self::$page_path = $tmp_page_path;
 

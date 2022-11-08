@@ -274,28 +274,41 @@ class crnrstn_ui_tunnel_response_manager {
         
     }
 
-    public function return_interact_ui_request_response($output_format = 'xml'){
+    public function return_interact_ui_request_response($output_mode = 'xml', $data_ARRAY = NULL){
 
         //
         // NOT SURE IF THIS WILL STILL BE NECESSARY (E.G. DO WE NEED HTTP RESPONSE
         // HEADER MANIPULATION OPPORTUNITY HERE?), BUT LEAVING FOR NOW.
-        switch($output_format){
+        switch($output_mode){
             case 'xml':
 
                 //return $this->return_interact_ui_request_response($this->oCRNRSTN->page_request_id);
                 return $this->soap_data_tunnel_layer_response();
 
             break;
+            case CRNRSTN_ASSET_MAPPING:
+
+                return $this->oCRNRSTN->client_asset_response($output_mode, $data_ARRAY);
+
+            break;
             default:
 
-                //return $this->return_interact_ui_request_response('documentation');
-                error_log(__LINE__ . ' tunnel resp mgr XML [' . $this->oCRNRSTN->page_request_id . '].');
+                if($this->oCRNRSTN->is_bit_set(CRNRSTN_ASSET_MAPPING)){
 
-                return $this->soap_data_tunnel_layer_response();
+//                    $this->crnrstn_ssdtla_enabled = true;
+//                    $this->crnrstn_asset_family = 'css';
+//                    $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_CSS';
+//                    $this->crnrstn_asset_meta_path = $this->oCRNRSTN->asset_return_method_key('css', $tmp_salt_ugc_val);
+
+                    return $this->oCRNRSTN->client_asset_response(CRNRSTN_ASSET_MAPPING, $data_ARRAY);
+
+                }
 
             break;
 
         }
+
+        return '';
 
     }
 
@@ -2852,7 +2865,7 @@ class crnrstn_ui_tunnel_response_manager {
 
     }
 
-    private function return_social_link_HTML($social_id, $channel_key, $stream_key, $show_title, $url, $social_sprite_serial){
+    private function return_social_link_HTML($social_id, $channel_key, $stream_key, $show_title, $url, $sprite_serial){
 
         $tmp_param_array = array();
         $tmp_param_array[] = 'crnrstn_bst=true';
@@ -2964,9 +2977,10 @@ class crnrstn_ui_tunnel_response_manager {
 
                     self::$social_lnk_cnt++;
 
-                    return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\'' . $url_sticky. '\'); return false;"><div class="bassdrive_social_link_float_rel"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_crnrstn/ui/imgs/png/social_sprite_hq.png?v=420' . $social_sprite_serial .'" width="165" height="80" /></div></div></div><div class="hidden">Click <a href="' . $url_sticky . '" target="_blank">here</a>' . $social_channel . '.</div>';
+                    error_log(__LINE__ . ' ui tunnel resp get address path from config.');
+                    return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\'' . $url_sticky. '\'); return false;"><div class="bassdrive_social_link_float_rel"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_crnrstn/ui/imgs/png/sprite_hq.png?v=420' . $sprite_serial .'" width="165" height="80" /></div></div></div><div class="hidden">Click <a href="' . $url_sticky . '" target="_blank">here</a>' . $social_channel . '.</div>';
 
-                    //return '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\'' . $url_sticky. '\'); return false;" style="background-image:url(' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $social_sprite_serial .')"></div><div class="hidden">Click <a href="' . $url_sticky . '" target="_blank">here</a>' . $social_channel . '.</div>';
+                    //return '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\'' . $url_sticky. '\'); return false;" style="background-image:url(' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $sprite_serial .')"></div><div class="hidden">Click <a href="' . $url_sticky . '" target="_blank">here</a>' . $social_channel . '.</div>';
 
                 }else{
 
@@ -2990,10 +3004,12 @@ class crnrstn_ui_tunnel_response_manager {
                 //
                 // JSON
                 if(strlen($url) > 5){
+                    
+                    error_log(__LINE__ . ' ui tunnel resp get address path from config.');
 
-                    return $tmp_line_wrap . '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\'' . $url_sticky . '\'); return false;"><div class="bassdrive_social_link_float_rel"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_crnrstn/ui/imgs/png/social_sprite_hq.png?v=420' . $social_sprite_serial .'" width="165" height="80" /></div></div></div>';
+                    return $tmp_line_wrap . '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="launch_newwindow(\'' . $url_sticky . '\'); return false;"><div class="bassdrive_social_link_float_rel"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_crnrstn/ui/imgs/png/sprite_hq.png?v=420' . $sprite_serial .'" width="165" height="80" /></div></div></div>';
 
-                    //return $tmp_line_wrap . '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\'' . $url_sticky . '\'); return false;" style="background-image:url(' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $social_sprite_serial .')"></div>';
+                    //return $tmp_line_wrap . '<div class="bassdrive_social_link ' . $channel . '" onclick="launch_newwindow(\'' . $url_sticky . '\'); return false;" style="background-image:url(' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $sprite_serial .')"></div>';
 
                 }else{
 
@@ -3009,10 +3025,12 @@ class crnrstn_ui_tunnel_response_manager {
                 if(isset($url)){
 
                     if(strlen($url) > 5){
+                        
+                        error_log(__LINE__ . ' ui tunnel resp get address path from config.');
 
-                        return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="bassdrive_load_history(\'' . $url . '\'); return false;"><div class="bassdrive_social_link_float_rel"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_crnrstn/ui/imgs/png/social_sprite_hq.png?v=420' . $social_sprite_serial .'" width="165" height="80" /></div></div></div>';
+                        return '<div class="bassdrive_social_link_anchor ' . $channel . '" onclick="bassdrive_load_history(\'' . $url . '\'); return false;"><div class="bassdrive_social_link_float_rel"><div class="bassdrive_social_link_float ' . $channel . '"><img src="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_crnrstn/ui/imgs/png/sprite_hq.png?v=420' . $sprite_serial .'" width="165" height="80" /></div></div></div>';
 
-                        //return '<div class="bassdrive_social_link ' . $channel . '" onclick="bassdrive_load_history(\'' . $url . '\'); return false;" style="background-image:url(' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $social_sprite_serial .')"></div>';
+                        //return '<div class="bassdrive_social_link ' . $channel . '" onclick="bassdrive_load_history(\'' . $url . '\'); return false;" style="background-image:url(' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP').$this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/social_integration_sprite_sm.png?v=420' . $sprite_serial .')"></div>';
 
                     }else{
 
@@ -3044,9 +3062,9 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_uri_json = $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_proxy/bassdrive/';
         $tmp_uri_history = $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_proxy/bassdrive/?action=load_history';
 
-        //error_log(__LINE__ . ' ui tunnel $tmp_uri_json=[' . $tmp_uri_json . '] DOCUMENT_ROOT=[' . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . ']. die();');
+        //error_log(__LINE__ . ' ui tunnel $tmp_uri_json=[' . $tmp_uri_json . '] DOCUMENT_ROOT=[' . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . ']. GET sprite_hq.png from ASSET MGR. -Sunday, October 30, 2022 @ 1709 hrs.');
         //die();
-        $social_sprite_serial = filesize($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/imgs/png/social_sprite_hq.png') . '.' . filemtime($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/imgs/png/social_sprite_hq.png') . '.0';
+        $sprite_serial = filesize($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/imgs/png/social/sprite_hq.png') . '.' . filemtime($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/imgs/png/social/sprite_hq.png') . '.0';
 
         $tmp_RELAY_META_LOOKUP_DATA_count = $this->oCRNRSTN->return_record_count('RELAY_SOCIAL_DATA');
 
@@ -3065,7 +3083,7 @@ class crnrstn_ui_tunnel_response_manager {
 
             }else{
 
-                $tmp_social_html .= $this->return_social_link_HTML($tmp_SOCIAL_ID, $tmp_SOCIAL_MEDIA_KEY, $stream_key, $show_title, $tmp_CLICKTHROUGH_URL, $social_sprite_serial);
+                $tmp_social_html .= $this->return_social_link_HTML($tmp_SOCIAL_ID, $tmp_SOCIAL_MEDIA_KEY, $stream_key, $show_title, $tmp_CLICKTHROUGH_URL, $sprite_serial);
 
             }
 
@@ -3079,9 +3097,9 @@ class crnrstn_ui_tunnel_response_manager {
 
         }else{
 
-            $tmp_social_html .= $this->return_social_link_HTML('paypal', 'paypal', $stream_key, $show_title, $tmp_uri_paypal, $social_sprite_serial);
-            $tmp_social_html .= $this->return_social_link_HTML('json', 'json', $stream_key, $show_title, $tmp_uri_json, $social_sprite_serial);
-            $tmp_social_html .= $this->return_social_link_HTML('history', 'history', $stream_key, $show_title, $tmp_uri_history, $social_sprite_serial);
+            $tmp_social_html .= $this->return_social_link_HTML('paypal', 'paypal', $stream_key, $show_title, $tmp_uri_paypal, $sprite_serial);
+            $tmp_social_html .= $this->return_social_link_HTML('json', 'json', $stream_key, $show_title, $tmp_uri_json, $sprite_serial);
+            $tmp_social_html .= $this->return_social_link_HTML('history', 'history', $stream_key, $show_title, $tmp_uri_history, $sprite_serial);
 
             $tmp_social_html = '<div class="cb"></div>
                     <div id="bassdrive_social_wrapper" class="bassdrive_social_wrapper">

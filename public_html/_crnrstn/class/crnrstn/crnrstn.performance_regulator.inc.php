@@ -614,732 +614,782 @@ class crnrstn_performance_regulator{
         }
 
         switch($int_constant){
-            case CRNRSTN_DEBUG_OFF:
+            case 'CRNRSTN_DEBUG_OFF':
 
                 $tmp_str_out = 'CRNRSTN_DEBUG_OFF';
 
             break;
-            case CRNRSTN_DEBUG_NATIVE_ERR_LOG:
+            case 'CRNRSTN_DEBUG_NATIVE_ERR_LOG':
 
                 $tmp_str_out = 'CRNRSTN_DEBUG_NATIVE_ERR_LOG';
 
             break;
-            case CRNRSTN_DEBUG_AGGREGATION_ON:
+            case 'CRNRSTN_DEBUG_AGGREGATION_ON':
 
                 $tmp_str_out = 'CRNRSTN_DEBUG_AGGREGATION_ON';
 
             break;
-            case CRNRSTN_LOG_NONE:
+            case 'CRNRSTN_LOG_NONE':
 
                 $tmp_str_out = 'CRNRSTN_LOG_NONE';
 
             break;
-            case CRNRSTN_LOG_ALL:
+            case 'CRNRSTN_LOG_ALL':
 
                 $tmp_str_out = 'CRNRSTN_LOG_ALL';
 
             break;
-            case CRNRSTN_AUTHORIZED_ACCOUNT:
+            case 'CRNRSTN_AUTHORIZED_ACCOUNT':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZED_ACCOUNT';
 
             break;
-            case CRNRSTN_INTEGER_LENGTH:
+            case 'CRNRSTN_INTEGER_LENGTH':
 
                 $tmp_str_out = 'CRNRSTN_INTEGER_LENGTH';
 
             break;
-            case CRNRSTN_SETTINGS_APACHE:
+            case 'CRNRSTN_SETTINGS_APACHE':
 
                 $tmp_str_out = 'CRNRSTN_SETTINGS_APACHE';
 
             break;
-            case CRNRSTN_SETTINGS_MYSQLI:
+            case 'CRNRSTN_SETTINGS_MYSQLI':
 
                 $tmp_str_out = 'CRNRSTN_SETTINGS_MYSQLI';
 
             break;
-            case CRNRSTN_SETTINGS_PHP:
+            case 'CRNRSTN_SETTINGS_PHP':
 
                 $tmp_str_out = 'CRNRSTN_SETTINGS_PHP';
 
             break;
-            case CRNRSTN_SETTINGS_CRNRSTN:
+            case 'CRNRSTN_SETTINGS_CRNRSTN':
 
                 $tmp_str_out = 'CRNRSTN_SETTINGS_CRNRSTN';
 
             break;
-            case CRNRSTN_SETTINGS_WORDPRESS:
+            case 'CRNRSTN_SETTINGS_WORDPRESS':
 
                 $tmp_str_out = 'CRNRSTN_SETTINGS_WORDPRESS';
 
             break;
-            case CRNRSTN_SETTINGS_CLIENT:
+            case 'CRNRSTN_SETTINGS_CLIENT':
 
                 $tmp_str_out = 'CRNRSTN_SETTINGS_CLIENT';
 
             break;
-            case CRNRSTN_INPUT_OPTIONAL:
+            case 'CRNRSTN_INPUT_OPTIONAL':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_OPTIONAL';
 
             break;
-            case CRNRSTN_INPUT_REQUIRED:
+            case 'CRNRSTN_INPUT_REQUIRED':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_REQUIRED';
 
             break;
-            case CRNRSTN_INPUT_PASSWORD:
+            case 'CRNRSTN_INPUT_PASSWORD':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_PASSWORD';
 
             break;
-            case CRNRSTN_INPUT_IS_EMAIL:
+            case 'CRNRSTN_INPUT_IS_EMAIL':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_IS_EMAIL';
 
             break;
-            case CRNRSTN_INPUT_CHAR_RESTRICTIONS:
+            case 'CRNRSTN_INPUT_CHAR_RESTRICTIONS':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_CHAR_RESTRICTIONS';
 
             break;
-            case CRNRSTN_INPUT_CHAR_LIMITS:
+            case 'CRNRSTN_INPUT_CHAR_LIMITS':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_CHAR_LIMITS';
 
             break;
-            case CRNRSTN_INPUT_IS_FILE_IMAGE:
+            case 'CRNRSTN_INPUT_IS_FILE_IMAGE':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_IMAGE';
 
             break;
-            case CRNRSTN_INPUT_IS_FILE_IMAGE_PNG:
+            case 'CRNRSTN_INPUT_IS_FILE_IMAGE_PNG':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_IMAGE_PNG';
 
             break;
-            case CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG:
+            case 'CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG';
 
             break;
-            case CRNRSTN_INPUT_IS_FILE_IMAGE_GIF:
+            case 'CRNRSTN_INPUT_IS_FILE_IMAGE_GIF':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_IMAGE_GIF';
 
             break;
-            case CRNRSTN_INPUT_IS_FILE_DOCUMENT:
+            case 'CRNRSTN_INPUT_IS_FILE_DOCUMENT':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_DOCUMENT';
 
             break;
-            case CRNRSTN_INPUT_IS_FILE_ZIP:
+            case 'CRNRSTN_INPUT_IS_FILE_ZIP':
 
                 $tmp_str_out = 'CRNRSTN_INPUT_IS_FILE_ZIP';
 
             break;
-            case CRNRSTN_DATABASE:
+            case 'CRNRSTN_DATABASE':
 
                 $tmp_str_out = 'CRNRSTN_DATABASE';
 
             break;
-            case CRNRSTN_DATABASE_CONNECTION:
+            case 'CRNRSTN_DATABASE_CONNECTION':
 
                 $tmp_str_out = 'CRNRSTN_DATABASE_CONNECTION';
 
             break;
-            case CRNRSTN_DATABASE_QUERY:
+            case 'CRNRSTN_DATABASE_QUERY':
 
                 $tmp_str_out = 'CRNRSTN_DATABASE_QUERY';
 
             break;
-            case CRNRSTN_DATABASE_QUERY_SILO:
+            case 'CRNRSTN_DATABASE_QUERY_SILO':
 
                 $tmp_str_out = 'CRNRSTN_DATABASE_QUERY_SILO';
 
             break;
-            case CRNRSTN_DATABASE_QUERY_DYNAMIC:
+            case 'CRNRSTN_DATABASE_QUERY_DYNAMIC':
 
                 $tmp_str_out = 'CRNRSTN_DATABASE_QUERY_DYNAMIC';
 
             break;
-            case CRNRSTN_DATABASE_RESULT:
+            case 'CRNRSTN_DATABASE_RESULT':
 
                 $tmp_str_out = 'CRNRSTN_DATABASE_RESULT';
 
             break;
-            case CRNRSTN_GABRIEL:
+            case 'CRNRSTN_GABRIEL':
 
                 $tmp_str_out = 'CRNRSTN_GABRIEL';
 
             break;
-            case CRNRSTN_SMTP_AUTHENTICATION:
+            case 'CRNRSTN_SMTP_AUTHENTICATION':
 
                 $tmp_str_out = 'CRNRSTN_SMTP_AUTHENTICATION';
 
             break;
-            case CRNRSTN_EMAIL_CRNRSTN_SOURCE:
+            case 'CRNRSTN_EMAIL_CRNRSTN_SOURCE':
 
                 $tmp_str_out = 'CRNRSTN_EMAIL_CRNRSTN_SOURCE';
 
             break;
-            case CRNRSTN_EMAIL_USER_SOURCE:
+            case 'CRNRSTN_EMAIL_USER_SOURCE':
 
                 $tmp_str_out = 'CRNRSTN_EMAIL_USER_SOURCE';
 
             break;
-            case CRNRSTN_ELECTRUM:
+            case 'CRNRSTN_ELECTRUM':
 
                 $tmp_str_out = 'CRNRSTN_ELECTRUM';
 
             break;
-            case CRNRSTN_ELECTRUM_THREAD:
+            case 'CRNRSTN_ELECTRUM_THREAD':
 
                 $tmp_str_out = 'CRNRSTN_ELECTRUM_THREAD';
 
             break;
-            case CRNRSTN_ELECTRUM_COMM:
+            case 'CRNRSTN_ELECTRUM_COMM':
 
                 $tmp_str_out = 'CRNRSTN_ELECTRUM_COMM';
 
             break;
-            case CRNRSTN_ELECTRUM_FTP:
+            case 'CRNRSTN_ELECTRUM_FTP':
 
                 $tmp_str_out = 'CRNRSTN_ELECTRUM_FTP';
 
             break;
-            case CRNRSTN_ELECTRUM_LOCALDIR:
+            case 'CRNRSTN_ELECTRUM_LOCALDIR':
 
                 $tmp_str_out = 'CRNRSTN_ELECTRUM_LOCALDIR';
 
             break;
-            case CRNRSTN_FILE_MANAGEMENT:
+            case 'CRNRSTN_FILE_MANAGEMENT':
 
                 $tmp_str_out = 'CRNRSTN_FILE_MANAGEMENT';
 
             break;
-            case CRNRSTN_SOAP:
+            case 'CRNRSTN_SOAP':
 
                 $tmp_str_out = 'CRNRSTN_SOAP';
 
             break;
-            case CRNRSTN_SOAP_SERVER:
+            case 'CRNRSTN_SOAP_SERVER':
 
                 $tmp_str_out = 'CRNRSTN_SOAP_SERVER';
 
             break;
-            case CRNRSTN_SOAP_CLIENT:
+            case 'CRNRSTN_SOAP_CLIENT':
 
                 $tmp_str_out = 'CRNRSTN_SOAP_CLIENTCRNRSTN_SOAP_CLIENT';
 
             break;
-            case CRNRSTN_PROXY_KINGS_HIGHWAY:
+            case 'CRNRSTN_PROXY_KINGS_HIGHWAY':
 
                 $tmp_str_out = 'CRNRSTN_PROXY_KINGS_HIGHWAY';
 
             break;
-            case CRNRSTN_PROXY_EMAIL:
+            case 'CRNRSTN_PROXY_EMAIL':
 
                 $tmp_str_out = 'CRNRSTN_PROXY_EMAIL';
 
             break;
-            case CRNRSTN_PROXY_ELECTRUM:
+            case 'CRNRSTN_PROXY_ELECTRUM':
 
                 $tmp_str_out = 'CRNRSTN_PROXY_ELECTRUM';
 
             break;
-            case CRNRSTN_PROXY_AUTHENTICATE:
+            case 'CRNRSTN_PROXY_AUTHENTICATE':
 
                 $tmp_str_out = 'CRNRSTN_PROXY_AUTHENTICATE';
 
             break;
-            case CRNRSTN_UI_RANDOM:
+            case 'CRNRSTN_UI_RANDOM':
 
                 $tmp_str_out = 'CRNRSTN_UI_RANDOM';
 
             break;
-            case CRNRSTN_UI_PHPNIGHT:
+            case 'CRNRSTN_UI_PHPNIGHT':
 
                 $tmp_str_out = 'CRNRSTN_UI_PHPNIGHT';
 
             break;
-            case CRNRSTN_UI_DARKNIGHT:
+            case 'CRNRSTN_UI_DARKNIGHT':
 
                 $tmp_str_out = 'CRNRSTN_UI_DARKNIGHT';
 
             break;
-            case CRNRSTN_UI_PHP:
+            case 'CRNRSTN_UI_PHP':
 
                 $tmp_str_out = 'CRNRSTN_UI_PHP';
 
             break;
-            case CRNRSTN_UI_GREYSKYS:
+            case 'CRNRSTN_UI_GREYSKYS':
 
                 $tmp_str_out = 'CRNRSTN_UI_GREYSKYS';
 
             break;
-            case CRNRSTN_UI_HTML:
+            case 'CRNRSTN_UI_HTML':
 
                 $tmp_str_out = 'CRNRSTN_UI_HTML';
 
             break;
-            case CRNRSTN_UI_DAYLIGHT:
+            case 'CRNRSTN_UI_DAYLIGHT':
 
                 $tmp_str_out = 'CRNRSTN_UI_DAYLIGHT';
 
             break;
-            case CRNRSTN_UI_FEATHER:
+            case 'CRNRSTN_UI_FEATHER':
 
                 $tmp_str_out = 'CRNRSTN_UI_FEATHER';
 
             break;
-            case CRNRSTN_UI_GLASS_LIGHT_COPY:
+            case 'CRNRSTN_UI_GLASS_LIGHT_COPY':
 
                 $tmp_str_out = 'CRNRSTN_UI_GLASS_LIGHT_COPY';
 
             break;
-            case CRNRSTN_UI_GLASS_DARK_COPY:
+            case 'CRNRSTN_UI_GLASS_DARK_COPY':
 
                 $tmp_str_out = 'CRNRSTN_UI_GLASS_DARK_COPY';
 
             break;
-            case CRNRSTN_UI_TERMINAL:
+            case 'CRNRSTN_UI_TERMINAL':
 
                 $tmp_str_out = 'CRNRSTN_UI_TERMINAL';
 
             break;
-            case CRNRSTN_UI_DESKTOP:
+            case 'CRNRSTN_UI_DESKTOP':
 
                 $tmp_str_out = 'CRNRSTN_UI_DESKTOP';
 
             break;
-            case CRNRSTN_UI_TABLET:
+            case 'CRNRSTN_UI_TABLET':
 
                 $tmp_str_out = 'CRNRSTN_UI_TABLET';
 
             break;
-            case CRNRSTN_UI_MOBILE:
+            case 'CRNRSTN_UI_MOBILE':
 
                 $tmp_str_out = 'CRNRSTN_UI_MOBILE';
 
             break;
-            case CRNRSTN_UI_SOAP_DATA_TUNNEL:
+            case 'CRNRSTN_UI_SOAP_DATA_TUNNEL':
 
                 $tmp_str_out = 'CRNRSTN_UI_SOAP_DATA_TUNNEL';
 
             break;
-            case CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL:
+            case 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL':
 
                 $tmp_str_out = 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL';
 
             break;
-            case CRNRSTN_UI_IMG_BASE64:
+            case 'CRNRSTN_UI_IMG_BASE64':
 
                 $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64';
 
             break;
-            case CRNRSTN_UI_IMG_BASE64_PNG:
+            case 'CRNRSTN_UI_IMG_BASE64_PNG':
 
                 $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_PNG';
 
             break;
-            case CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED:
+            case 'CRNRSTN_UI_IMG_HTML_WRAPPED':
 
-                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED';
+                $tmp_str_out = 'CRNRSTN_UI_IMG_HTML_WRAPPED';
 
             break;
-            case CRNRSTN_UI_IMG_BASE64_JPEG:
+            case 'CRNRSTN_UI_IMG_BASE64_JPEG':
 
                 $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_JPEG';
 
             break;
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED';
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED:
-
-                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED';
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG:
+            case 'CRNRSTN_UI_IMG_JPEG':
 
                 $tmp_str_out = 'CRNRSTN_UI_IMG_JPEG';
 
             break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str_out = 'CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED';
-
-            break;
-            case CRNRSTN_UI_IMG_PNG:
+            case 'CRNRSTN_UI_IMG_PNG':
 
                 $tmp_str_out = 'CRNRSTN_UI_IMG_PNG';
 
             break;
-            case CRNRSTN_UI_IMG_PNG_HTML_WRAPPED:
+            case 'CRNRSTN_UI_IMG':
 
-                $tmp_str_out = 'CRNRSTN_UI_IMG_PNG_HTML_WRAPPED';
+                $tmp_str_out = 'CRNRSTN_UI_IMG';
 
             break;
-            case CRNRSTN_UI_CSS_MAIN_DESKTOP:
+            case 'CRNRSTN_UI_CSS_BASE64MODE':
+
+                $tmp_str_out = 'CRNRSTN_UI_CSS_BASE64MODE';
+
+            break;
+            case 'CRNRSTN_UI_JS_BASE64MODE':
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_BASE64MODE';
+
+            break;
+            case 'CRNRSTN_UI_CSS':
+
+                $tmp_str_out = 'CRNRSTN_UI_CSSv';
+
+            break;
+            case 'CRNRSTN_UI_JS':
+
+                $tmp_str_out = 'CRNRSTN_UI_JS';
+
+            break;
+            case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
 
                 $tmp_str_out = 'CRNRSTN_UI_CSS_MAIN_DESKTOP';
 
             break;
-            case CRNRSTN_UI_CSS_MAIN_TABLET:
+            case 'CRNRSTN_UI_CSS_MAIN_TABLET':
 
                 $tmp_str_out = 'CRNRSTN_UI_CSS_MAIN_TABLET';
 
             break;
-            case CRNRSTN_UI_CSS_MAIN_MOBILE:
+            case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
 
                 $tmp_str_out = 'CRNRSTN_UI_CSS_MAIN_MOBILE';
 
             break;
-            case CRNRSTN_UI_JS_MAIN_DESKTOP:
+            case 'CRNRSTN_UI_JS_MAIN_DESKTOP':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_MAIN_DESKTOP';
 
             break;
-            case CRNRSTN_UI_JS_MAIN_TABLET:
+            case 'CRNRSTN_UI_JS_MAIN_TABLET':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_MAIN_TABLET';
 
             break;
-            case CRNRSTN_UI_JS_MAIN_MOBILE:
+            case 'CRNRSTN_UI_JS_MAIN_MOBILE':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_MAIN_MOBILE';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY_1_11_1:
+            case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_1_11_1';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY:
+            case 'CRNRSTN_UI_JS_JQUERY':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY_UI:
+            case 'CRNRSTN_UI_JS_JQUERY_UI':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_UI';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY_MOBILE:
+            case 'CRNRSTN_UI_JS_JQUERY_MOBILE':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_MOBILE';
 
             break;
-            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
+            case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS';
 
             break;
-            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
+            case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY':
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY';
 
             break;
-            case CRNRSTN_UI_TAG_ANALYTICS:
+            case 'CRNRSTN_UI_TAG_ANALYTICS':
 
                 $tmp_str_out = 'CRNRSTN_UI_TAG_ANALYTICS';
 
             break;
-            case CRNRSTN_UI_TAG_ENGAGEMENT:
+            case 'CRNRSTN_UI_TAG_ENGAGEMENT':
 
                 $tmp_str_out = 'CRNRSTN_UI_TAG_ENGAGEMENT';
 
             break;
-            case CRNRSTN_UI_FORM_INTEGRATION_PACKET:
+            case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
 
                 $tmp_str_out = 'CRNRSTN_UI_FORM_INTEGRATION_PACKET';
 
             break;
-            case CRNRSTN_UI_COOKIE_PREFERENCE:
+            case 'CRNRSTN_UI_COOKIE_PREFERENCE':
 
                 $tmp_str_out = 'CRNRSTN_UI_COOKIE_PREFERENCE';
 
             break;
-            case CRNRSTN_UI_COOKIE_YESNO:
+            case 'CRNRSTN_UI_COOKIE_YESNO':
 
                 $tmp_str_out = 'CRNRSTN_UI_COOKIE_YESNO';
 
             break;
-            case CRNRSTN_UI_COOKIE_NOTICE:
+            case 'CRNRSTN_UI_COOKIE_NOTICE':
 
                 $tmp_str_out = 'CRNRSTN_UI_COOKIE_NOTICE';
 
             break;
-            case CRNRSTN_UI_INTERACT:
+            case 'CRNRSTN_UI_INTERACT':
 
                 $tmp_str_out = 'CRNRSTN_UI_INTERACT';
 
             break;
-            case CRNRSTN_ASSET_MODE_BASE64:
+            case 'CRNRSTN_ASSET_MODE_BASE64':
 
                 $tmp_str_out = 'CRNRSTN_ASSET_MODE_BASE64';
 
             break;
-            case CRNRSTN_ASSET_MODE_PNG:
+            case 'CRNRSTN_ASSET_MODE_PNG':
 
                 $tmp_str_out = 'CRNRSTN_ASSET_MODE_PNG';
 
             break;
-            case CRNRSTN_ASSET_MODE_JPEG:
+            case 'CRNRSTN_ASSET_MODE_JPEG':
 
                 $tmp_str_out = 'CRNRSTN_ASSET_MODE_JPEG';
 
             break;
-            case CRNRSTN_LOG_EMAIL:
+            case 'CRNRSTN_ASSET_MODE_ICO':
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MODE_ICO';
+
+            break;
+            case 'CRNRSTN_LOG_EMAIL':
 
                 $tmp_str_out = 'CRNRSTN_LOG_EMAIL';
 
             break;
-            case CRNRSTN_LOG_EMAIL_PROXY:
+            case 'CRNRSTN_LOG_EMAIL_PROXY':
 
                 $tmp_str_out = 'CRNRSTN_LOG_EMAIL_PROXY';
 
             break;
-            case CRNRSTN_LOG_FILE:
+            case 'CRNRSTN_LOG_FILE':
 
                 $tmp_str_out = 'CRNRSTN_LOG_FILE';
 
             break;
-            case CRNRSTN_LOG_FILE_PROXY:
+            case 'CRNRSTN_LOG_FILE_PROXY':
 
                 $tmp_str_out = 'CRNRSTN_LOG_FILE_PROXY';
 
             break;
-            case CRNRSTN_LOG_FILE_FTP:
+            case 'CRNRSTN_LOG_FILE_FTP':
 
                 $tmp_str_out = 'CRNRSTN_LOG_FILE_FTP';
 
             break;
-            case CRNRSTN_LOG_SCREEN_TEXT:
+            case 'CRNRSTN_LOG_SCREEN_TEXT':
 
                 $tmp_str_out = 'CRNRSTN_LOG_SCREEN_TEXT';
 
             break;
-            case CRNRSTN_LOG_SCREEN:
+            case 'CRNRSTN_LOG_SCREEN':
 
                 $tmp_str_out = 'CRNRSTN_LOG_SCREEN';
 
             break;
-            case CRNRSTN_LOG_SCREEN_HTML:
+            case 'CRNRSTN_LOG_SCREEN_HTML':
 
                 $tmp_str_out = 'CRNRSTN_LOG_SCREEN_HTML';
 
             break;
-            case CRNRSTN_LOG_SCREEN_HTML_HIDDEN:
+            case 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN':
 
                 $tmp_str_out = 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN';
 
             break;
-            case CRNRSTN_LOG_DEFAULT:
+            case 'CRNRSTN_LOG_DEFAULT':
 
                 $tmp_str_out = 'CRNRSTN_LOG_DEFAULT';
 
             break;
-            case CRNRSTN_LOG_DEFAULT_PROXY:
+            case 'CRNRSTN_LOG_DEFAULT_PROXY':
 
                 $tmp_str_out = 'CRNRSTN_LOG_DEFAULT_PROXY';
 
             break;
-            case CRNRSTN_LOG_ELECTRUM:
+            case 'CRNRSTN_LOG_ELECTRUM':
 
                 $tmp_str_out = 'CRNRSTN_LOG_ELECTRUM';
 
             break;
-            case CRNRSTN_AUTHORIZE_RUNTIME_ONLY:
+            case 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY';
 
             break;
-            case CRNRSTN_AUTHORIZE_ALL:
+            case 'CRNRSTN_AUTHORIZE_ALL':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_ALL';
 
             break;
-            case CRNRSTN_AUTHORIZE_DATABASE:
+            case 'CRNRSTN_AUTHORIZE_DATABASE':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_DATABASE';
 
             break;
-            case CRNRSTN_AUTHORIZE_SSDTLA:
+            case 'CRNRSTN_AUTHORIZE_SSDTLA':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_SSDTLA';
 
             break;
-            case CRNRSTN_AUTHORIZE_PSSDTLA:
+            case 'CRNRSTN_AUTHORIZE_PSSDTLA':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_PSSDTLA';
 
             break;
-            case CRNRSTN_AUTHORIZE_SESSION:
+            case 'CRNRSTN_AUTHORIZE_SESSION':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_SESSION';
 
             break;
-            case CRNRSTN_AUTHORIZE_COOKIE:
+            case 'CRNRSTN_AUTHORIZE_COOKIE':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_COOKIE';
 
             break;
-            case CRNRSTN_AUTHORIZE_SOAP:
+            case 'CRNRSTN_AUTHORIZE_SOAP':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_SOAP';
 
             break;
-            case CRNRSTN_AUTHORIZE_GET:
+            case 'CRNRSTN_AUTHORIZE_GET':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_GET';
 
             break;
-            case CRNRSTN_AUTHORIZE_ISEMAIL:
+            case 'CRNRSTN_AUTHORIZE_ISEMAIL':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_ISEMAIL';
 
             break;
-            case CRNRSTN_AUTHORIZE_ISPASSWORD:
+            case 'CRNRSTN_AUTHORIZE_ISPASSWORD':
 
                 $tmp_str_out = 'CRNRSTN_AUTHORIZE_ISPASSWORD';
 
             break;
-            case CRNRSTN_ENCRYPT_TUNNEL:
+            case 'CRNRSTN_ENCRYPT_TUNNEL':
 
                 $tmp_str_out = 'CRNRSTN_ENCRYPT_TUNNEL';
 
             break;
-            case CRNRSTN_ENCRYPT_DATABASE:
+            case 'CRNRSTN_ENCRYPT_DATABASE':
 
                 $tmp_str_out = 'CRNRSTN_ENCRYPT_DATABASE';
 
             break;
-            case CRNRSTN_ENCRYPT_SESSION:
+            case 'CRNRSTN_ENCRYPT_SESSION':
 
                 $tmp_str_out = 'CRNRSTN_ENCRYPT_SESSION';
 
             break;
-            case CRNRSTN_ENCRYPT_COOKIE:
+            case 'CRNRSTN_ENCRYPT_COOKIE':
 
                 $tmp_str_out = 'CRNRSTN_ENCRYPT_COOKIE';
 
             break;
-            case CRNRSTN_ENCRYPT_SOAP:
+            case 'CRNRSTN_ENCRYPT_SOAP':
 
                 $tmp_str_out = 'CRNRSTN_ENCRYPT_SOAP';
 
             break;
-            case CRNRSTN_ENCRYPT_OERSL:
+            case 'CRNRSTN_ENCRYPT_OERSL':
 
                 $tmp_str_out = 'CRNRSTN_ENCRYPT_OERSL';
 
             break;
-            case CRNRSTN_RESOURCE_ALL:
+            case 'CRNRSTN_FAVICON_ASSET_MAPPING':
+
+                $tmp_str_out = 'CRNRSTN_FAVICON_ASSET_MAPPING';
+
+            break;
+            case 'CRNRSTN_SYSTEM_IMG_ASSET_MAPPING':
+
+                $tmp_str_out = 'CRNRSTN_SYSTEM_IMG_ASSET_MAPPING';
+
+            break;
+            case 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING':
+
+                $tmp_str_out = 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING';
+
+            break;
+            case 'CRNRSTN_JS_ASSET_MAPPING':
+
+                $tmp_str_out = 'CRNRSTN_JS_ASSET_MAPPING';
+
+            break;
+            case 'CRNRSTN_CSS_ASSET_MAPPING':
+
+                $tmp_str_out = 'CRNRSTN_CSS_ASSET_MAPPING';
+
+            break;
+            case 'CRNRSTN_SYSTEM_EMAIL_IS_HTML':
+
+                $tmp_str_out = 'CRNRSTN_SYSTEM_EMAIL_IS_HTML';
+
+            break;
+            case 'CRNRSTN_ASSET_MAPPING':
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MAPPING';
+
+            break;
+            case 'CRNRSTN_ASSET_MAPPING_PROXY':
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MAPPING_PROXY';
+
+            break;
+            case 'CRNRSTN_RESOURCE_ALL':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_ALL';
 
             break;
-            case CRNRSTN_RESOURCE_BASSDRIVE:
+            case 'CRNRSTN_RESOURCE_BASSDRIVE':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_BASSDRIVE';
 
             break;
-            case CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE:
+            case 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE';
 
             break;
-            case CRNRSTN_RESOURCE_CSS_VALIDATOR:
+            case 'CRNRSTN_RESOURCE_CSS_VALIDATOR':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_CSS_VALIDATOR';
 
             break;
-            case CRNRSTN_RESOURCE_DOCUMENTATION:
+            case 'CRNRSTN_RESOURCE_DOCUMENTATION':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_DOCUMENTATION';
 
             break;
-            case CRNRSTN_RESOURCE_IMAGE:
+            case 'CRNRSTN_RESOURCE_IMAGE':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_IMAGE';
 
             break;
-            case CRNRSTN_RESOURCE_DOCUMENT:
+            case 'CRNRSTN_RESOURCE_DOCUMENT':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_DOCUMENT';
 
             break;
-            case CRNRSTN_RESOURCE_OPENSOURCE:
+            case 'CRNRSTN_RESOURCE_OPENSOURCE':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_OPENSOURCE';
 
             break;
-            case CRNRSTN_RESOURCE_NEWS_SYNDICATION:
+            case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_NEWS_SYNDICATION';
 
             break;
-            case CRNRSTN_RESOURCE_ELECTRUM:
+            case 'CRNRSTN_RESOURCE_ELECTRUM':
 
                 $tmp_str_out = 'CRNRSTN_RESOURCE_ELECTRUM';
 
             break;
-            case CRNRSTN_BARNEY:
+            case 'CRNRSTN_BARNEY':
 
                 $tmp_str_out = 'CRNRSTN_BARNEY';
 
             break;
-            case CRNRSTN_BARNEY_DATABASE:
+            case 'CRNRSTN_BARNEY_DATABASE':
 
                 $tmp_str_out = 'CRNRSTN_BARNEY_DATABASE';
 
             break;
-            case CRNRSTN_BARNEY_FILE:
+            case 'CRNRSTN_BARNEY_FILE':
 
                 $tmp_str_out = 'CRNRSTN_BARNEY_FILE';
 
             break;
-            case CRNRSTN_BARNEY_FTP:
+            case 'CRNRSTN_BARNEY_FTP':
 
                 $tmp_str_out = 'CRNRSTN_BARNEY_FTP';
 
             break;
-            case CRNRSTN_BARNEY_ELECTRUM:
+            case 'CRNRSTN_BARNEY_ELECTRUM':
 
                 $tmp_str_out = 'CRNRSTN_BARNEY_ELECTRUM';
 
             break;
-            case CRNRSTN_BARNEY_GABRIEL:
+            case 'CRNRSTN_BARNEY_GABRIEL':
 
                 $tmp_str_out = 'CRNRSTN_BARNEY_GABRIEL';
 
             break;
-            case CRNRSTN_BARNEY_DISK:
+            case 'CRNRSTN_BARNEY_DISK':
 
                 $tmp_str_out = 'CRNRSTN_BARNEY_DISK';
 
             break;
-            case CRNRSTN_PERFORMANCE_MONITOR:
+            case 'CRNRSTN_PERFORMANCE_MONITOR':
 
                 $tmp_str_out = 'CRNRSTN_PERFORMANCE_MONITOR';
 
             break;
-            case CRNRSTN_WORDPRESS_DEBUG:
+            case 'CRNRSTN_WORDPRESS_DEBUG':
 
                 $tmp_str_out = 'CRNRSTN_WORDPRESS_DEBUG';
 
             break;
-            case CRNRSTN_IP_SECURITY:
+            case 'CRNRSTN_IP_SECURITY':
 
                 $tmp_str_out = 'CRNRSTN_IP_SECURITY';
 
             break;
-            case CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE:
+            case 'CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE':
 
                 $tmp_str_out = 'CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE';
 
@@ -1697,9 +1747,9 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_PNG';
 
             break;
-            case CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED:
+            case CRNRSTN_UI_IMG_HTML_WRAPPED:
 
-                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_JPEG_HTML_WRAPPED';
+                $tmp_str_out = 'CRNRSTN_UI_IMG_HTML_WRAPPED';
 
             break;
             case CRNRSTN_UI_IMG_BASE64_JPEG:
@@ -1707,24 +1757,9 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_JPEG';
 
             break;
-            case CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED:
-
-                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED';
-
-            break;
-            case CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED:
-
-                $tmp_str_out = 'CRNRSTN_UI_IMG_BASE64_PNG_HTML_WRAPPED';
-
-            break;
             case CRNRSTN_UI_IMG_JPEG:
 
                 $tmp_str_out = 'CRNRSTN_UI_IMG_JPEG';
-
-            break;
-            case CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED:
-
-                $tmp_str_out = 'CRNRSTN_UI_IMG_JPEG_HTML_WRAPPED';
 
             break;
             case CRNRSTN_UI_IMG_PNG:
@@ -1732,9 +1767,29 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_UI_IMG_PNG';
 
             break;
-            case CRNRSTN_UI_IMG_PNG_HTML_WRAPPED:
+            case CRNRSTN_UI_IMG:
 
-                $tmp_str_out = 'CRNRSTN_UI_IMG_PNG_HTML_WRAPPED';
+                $tmp_str_out = 'CRNRSTN_UI_IMG';
+
+            break;
+            case CRNRSTN_UI_CSS_BASE64MODE:
+
+                $tmp_str_out = 'CRNRSTN_UI_CSS_BASE64MODE';
+
+            break;
+            case CRNRSTN_UI_JS_BASE64MODE:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS_BASE64MODE';
+
+            break;
+            case CRNRSTN_UI_CSS:
+
+                $tmp_str_out = 'CRNRSTN_UI_CSSv';
+
+            break;
+            case CRNRSTN_UI_JS:
+
+                $tmp_str_out = 'CRNRSTN_UI_JS';
 
             break;
             case CRNRSTN_UI_CSS_MAIN_DESKTOP:
@@ -1845,6 +1900,11 @@ class crnrstn_performance_regulator{
             case CRNRSTN_ASSET_MODE_JPEG:
 
                 $tmp_str_out = 'CRNRSTN_ASSET_MODE_JPEG';
+
+            break;
+            case CRNRSTN_ASSET_MODE_ICO:
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MODE_ICO';
 
             break;
             case CRNRSTN_LOG_EMAIL:
@@ -1990,6 +2050,46 @@ class crnrstn_performance_regulator{
             case CRNRSTN_ENCRYPT_OERSL:
 
                 $tmp_str_out = 'CRNRSTN_ENCRYPT_OERSL';
+
+            break;
+            case CRNRSTN_FAVICON_ASSET_MAPPING:
+
+                $tmp_str_out = 'CRNRSTN_FAVICON_ASSET_MAPPING';
+
+            break;
+            case CRNRSTN_SYSTEM_IMG_ASSET_MAPPING:
+
+                $tmp_str_out = 'CRNRSTN_SYSTEM_IMG_ASSET_MAPPING';
+
+            break;
+            case CRNRSTN_SOCIAL_IMG_ASSET_MAPPING:
+
+                $tmp_str_out = 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING';
+
+            break;
+            case CRNRSTN_JS_ASSET_MAPPING:
+
+                $tmp_str_out = 'CRNRSTN_JS_ASSET_MAPPING';
+
+            break;
+            case CRNRSTN_CSS_ASSET_MAPPING:
+
+                $tmp_str_out = 'CRNRSTN_CSS_ASSET_MAPPING';
+
+            break;
+            case CRNRSTN_SYSTEM_EMAIL_IS_HTML:
+
+                $tmp_str_out = 'CRNRSTN_SYSTEM_EMAIL_IS_HTML';
+
+            break;
+            case CRNRSTN_ASSET_MAPPING:
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MAPPING';
+
+            break;
+            case CRNRSTN_ASSET_MAPPING_PROXY:
+
+                $tmp_str_out = 'CRNRSTN_ASSET_MAPPING_PROXY';
 
             break;
             case CRNRSTN_RESOURCE_ALL:

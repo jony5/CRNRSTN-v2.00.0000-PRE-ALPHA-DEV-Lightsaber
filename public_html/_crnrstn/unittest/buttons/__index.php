@@ -376,7 +376,7 @@ openssl_error_return($openssl_err_queue_ARRAY,__LINE__, '--openssl_public_decryp
 <?php echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
     $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
     $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
-<style type="text/css">
+<style>
     *                                           { font-family:Arial, Helvetica, sans-serif;}
     .the_R_in_crnrstn                           { color:#F90000; }
     .crnrstn_activity_log                       { opacity: 0; }
@@ -691,7 +691,7 @@ echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
         <div style="position:relative;">
             <div style="position:absolute; z-index:68; margin: 2px 0 0 16px; border: 1px solid #FFF;">
                 <div id="crnrstn_interact_ui_bg_solid" class="crnrstn_interact_ui_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
-                    <?php echo $oCRNRSTN_USR->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED); ?>
+                    <?php echo $oCRNRSTN_USR->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_HTML_WRAPPED); ?>
                     <div class="crnrstn_cb"></div>
                 </div>
             </div>

@@ -90,19 +90,19 @@ switch($channel_constant[0]){
                         //
                         // AV SERVICE SAINT
                         //$oMiniNav = new miniNav('avservice_saint', $this->oCRNRSTN_USR);
-                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
-                        //$oMiniNav->configureLink('obs clients', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/obs/');
-                        //$oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/logs/');
-                        //$oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/');
+                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
+                        //$oMiniNav->configureLink('obs clients', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/obs/');
+                        //$oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/logs/');
+                        //$oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/');
 
                         break;
                     case '320':
                         //
                         // SAINT SERVING TRANSLATION
                         $oMiniNav = new miniNav('translation_saint', $this->oCRNRSTN_USR);
-                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
-                        $oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/logs/');
-                        $oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_resources_http_path.'dashboard/');
+                        //$oMiniNav->configureLink('streams', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/streams/?kid=' . $this->oCRNRSTN_USR->oHTTP_MGR->extractData($_GET, 'kid'));
+                        $oMiniNav->configureLink('logs', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/logs/');
+                        $oMiniNav->configureLink('refresh', $this->oCRNRSTN_USR->crnrstn_http_endpoint.'dashboard/');
 
                         break;
 
@@ -110,9 +110,9 @@ switch($channel_constant[0]){
 
                 //$tmp_formUnique = $this->oCRNRSTN_USR->generate_new_key(4);
                 //$tmp_pageName_Header = 'home ::';
-                //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/search/search.mobi.inc.php');
-                //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/nav/sidenav.mobi.inc.php');
-                //require($this->oCRNRSTN_USR->crnrstn_resources_http_path.'/common/inc/header/header.mobi.inc.php');
+                //require($this->oCRNRSTN_USR->crnrstn_http_endpoint.'/common/inc/search/search.mobi.inc.php');
+                //require($this->oCRNRSTN_USR->crnrstn_http_endpoint.'/common/inc/nav/sidenav.mobi.inc.php');
+                //require($this->oCRNRSTN_USR->crnrstn_http_endpoint.'/common/inc/header/header.mobi.inc.php');
 
                 ?>
 
@@ -193,9 +193,9 @@ switch($channel_constant[0]){
     
                     <div class="crnrstn_signin_meta_time_stats_wrapper">
                         <div id="crnrstn_signin_meta00_' . $this->page_serial . '" class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ' secs] [wtime <span id="crnrstn_wtime_' . $this->page_serial . '"></span>]</div>
-                        <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('5') . '</div>
+                        <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('FIVE', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
     
-                        <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO') . '</div>
+                        <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
     
                         <div class="crnrstn_cb"></div>
                     </div>
@@ -296,7 +296,7 @@ switch($channel_constant[0]){
                                     <div class="crnrstn_frm_errstatus crnrstn_account_locked" style="width:100%; display:none;">Account locked.</div>
                                     <div class="crnrstn_frm_errstatus crnrstn_account_admin_deleted" style="width:100%; display:none;">Account admin deleted.</div>
                                     <div class="crnrstn_frm_errstatus crnrstn_account_user_deleted" style="width:100%; display:none;">Account user deleted.</div>
-                                    <div class="crnrstn_frm_errstatus crnrstn_account_activate" style="width:100%; display:none;">The account has not yet been activated. <a href="' . $this->oCRNRSTN_USR->crnrstn_resources_http_path . 'account/activate/resend/" target="_self" style="text-decoration:none; color:#06C;text-decoration:underline;">Click here</a> to resend your activation email.</div>
+                                    <div class="crnrstn_frm_errstatus crnrstn_account_activate" style="width:100%; display:none;">The account has not yet been activated. <a href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '_crnrstn/account/activate/resend/" target="_self" style="text-decoration:none; color:#06C;text-decoration:underline;">Click here</a> to resend your activation email.</div>
                                    
                                     <div class="crnrstn_hidden">
                                         <div id="crnrstn_rtime_src_' . $this->page_serial . '"></div>

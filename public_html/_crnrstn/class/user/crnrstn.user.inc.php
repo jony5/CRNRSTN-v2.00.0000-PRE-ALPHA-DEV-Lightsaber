@@ -72,7 +72,6 @@ class crnrstn_user{
     private static $oMySQLi_hash_ARRAY = array();
     private static $oSqlSilo;
     private static $oPaginator;
-    public $oCRNRSTN_MEDIA_CONVERTOR;
     protected $oSoapClient;
     protected $oCRNRSTN_UX;
     private static $oCRNRSTN_CSS_VALIDATOR;
@@ -113,8 +112,6 @@ class crnrstn_user{
     public $env_key_hash;
     public $system_resource_constants;
     public $system_output_channel_constants;
-    public $sys_notices_creative_mode;
-    public $crnrstn_resources_http_path;
     public $device_type = '';
     public $device_type_bit = 0;
 
@@ -167,7 +164,6 @@ class crnrstn_user{
         $this->log_silo_profile = $oCRNRSTN_ENV->log_silo_profile;
         $this->system_resource_constants = $oCRNRSTN_ENV->system_resource_constants;
         $this->system_output_channel_constants = $oCRNRSTN_ENV->system_output_channel_constants;
-        $this->sys_notices_creative_mode = $oCRNRSTN_ENV->sys_notices_creative_mode;
         self::$oLog_ProfileManager = $oCRNRSTN_ENV->return_oLog_ProfileManager();
         self::$oLog_ProfileManager->sync_to_environment(NULL, $oCRNRSTN_ENV, $this);
 
@@ -187,7 +183,7 @@ class crnrstn_user{
 
         //
         // INSTANTIATE CRNRSTN :: SYSTEM EMAIL CONTENT HELPER CLASS
-        $this->oCRNRSTN_MEDIA_CONVERTOR = $oCRNRSTN->oCRNRSTN_MEDIA_CONVERTOR;
+        $this->oCRNRSTN_ASSET_MGR = $oCRNRSTN->oCRNRSTN_ASSET_MGR;
 
         //
         // INSTANTIATE QUERY SILO
@@ -1212,11 +1208,11 @@ class crnrstn_user{
 
                 //
                 // STRING PARSE NINJA BACKFLIP INTO PNG FILE PATH FROM JPG/JPEG
-                $tmp_cleaned_ext_file_path = $this->strrtrim($file_path, '.jpg');
+                $tmp_cleaned_ext_file_path = $this->oCRNRSTN->strrtrim($file_path, '.jpg');
 
                 if(strlen($tmp_cleaned_ext_file_path) == strlen($file_path)){
 
-                    $tmp_cleaned_ext_file_path = $this->strrtrim($tmp_cleaned_ext_file_path, '.jpeg');
+                    $tmp_cleaned_ext_file_path = $this->oCRNRSTN->strrtrim($tmp_cleaned_ext_file_path, '.jpeg');
 
                 }
 
@@ -3933,7 +3929,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         if(is_string($index)){
 
-            error_log(__LINE__ . ' user get_resource(\'' . $data_key . '\') needs the "$index = 0" parameter added. thx! die();');
+            error_log(__LINE__ . ' STRING PROVIDED, BUT INTEGER IS REQUIRED. Or user get_resource(\'' . $data_key . '\') needs the "$index = 0" parameter added. thx! die();');
             die();
 
         }
@@ -7208,7 +7204,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function return_creative($creative_element_key, $image_output_mode = NULL){
 
-        return $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative($creative_element_key, $image_output_mode);
+        return $this->oCRNRSTN_ASSET_MGR->return_creative($creative_element_key, $image_output_mode);
 
     }
 
@@ -7216,6 +7212,105 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         // TESTING NOTE:
         // IS IT POSSIBLE FOR Z-INDEX TO CAUSE TROUBLE (...AS THE DEEPEST DOM ELEM IS ABSOLUTE POSITIONED)?
+        /*
+        SOUNDCLOUD
+        FACEBOOK
+        INSTAGRAM
+        TWITTER
+        WWW_ICON
+        JSON_ICON
+        APPLE_ANDROID
+        FEEDBURNER
+        SLASHDOT_ICON
+        XHAMSTER_ICON
+        MOZILLA_ICON
+        MIXCLOUD
+        DISCOGS
+        BEATPORT
+        BANDCAMP
+        SPOTIFY
+        ROLLDABEATS
+        STACKOVERFLOW
+        KINK
+        PHP_ICON
+        REDDIT
+        YOUTUBE
+        PAYPAL
+        HISTORY_ICON
+        ARCHIVES_ICON
+        BASSDRIVE_ICON
+        GITHUB_ICON
+        XNXX
+        LINKEDIN
+        GOOGLE_MAPS_ANNIVERSARY
+        FLICKR
+        WIKIPEDIA
+        BLOGSPOT_ICON
+        PINTEREST_ICON
+        SERVER_FAULT_ICON
+        GOOGLE_DRIVE
+        BLUEHOST_ICON
+        AMAZON_ICON
+        PORNHUB
+        EBAY
+        MOZILLA_WORDMARK
+        PATREON
+        TWITCH
+        MICROSOFT_ICON
+        INTERNET_ARCHIVE
+        W3C
+        XHAMSTER_WORDMARK
+        ETSY_ICON
+        APPLE_MUSIC
+        XVIDEOS
+        SLASHDOT_WORDMARK
+        VIMEO_BLUE_ICON
+        IDE_ONE_ICON
+        GOOGLE_MAPS_SQUARE
+        BLUEHOST_WORDMARK
+        PANDORA_ICON
+        LAST.FM
+        VIMEO_BLUE_WORDMARK
+        VIMEO_DARKFOREST_WORDMARK
+
+        social_apple_android_hq
+        social_feedburner_hq
+        social_slashdot_icon_hq
+        social_xhamster_icon_hq
+        social_mozilla_icon_hq
+        social_stackoverflow_hq
+        social_kink_hq
+        social_php_icon_hq
+        social_reddit_hq
+        social_github_hq
+        social_xnxx_hq
+        social_google_maps_hq
+        social_flickr_hq
+        social_wikipedia_hq
+        social_blogspot_hq
+        social_pinterest_hq
+        social_server_fault_hq
+        social_google_drive_hq
+        social_bluehost_icon_hq
+        social_amazon_icon_hq
+        social_pornhub_hq
+        social_ebay_hq
+        social_mozilla_wordmark_hq
+        social_patreon_hq
+        social_twitch_hq
+        social_microsoft_icon_hq
+        social_internet_archive_hq
+        social_w3c_hq
+        social_xhamster_wordmark_hq
+        social_etsy_hq
+        social_apple_music_hq
+        social_xvideos_hq
+        social_slashdot_wordmark_hq
+        social_bluehost_wordmark_hq
+        social_pandora_icon_hq
+        social_last_fm_hq
+
+        */
 
         $curr_creative_element_key = trim(strtoupper($creative_element_key));
 
@@ -7224,8 +7319,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             //
             // DETERMINE ICON SIZE PREFERENCE (SMALL, MEDIUM, LARGE)
             $tmp_social_element_meta_ARRAY = explode('_', $curr_creative_element_key);
+            $tmp_nom_section_cnt = count($tmp_social_element_meta_ARRAY);
+            $tmp_nom_section_cnt--;
 
-            if(count($tmp_social_element_meta_ARRAY) < 2){
+            if($tmp_nom_section_cnt < 2){
 
                 throw new Exception('The social media key [' . $creative_element_key . '] does not specify size (e.g. \'FACEBOOK_MEDIUM\').');
 
@@ -7233,27 +7330,48 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
             //
             // INITIALIZATION OF SOCIAL MEDIA IMAGE SPRITE DIMENSIONS
-            switch($tmp_social_element_meta_ARRAY[1]){
+            switch($tmp_social_element_meta_ARRAY[$tmp_nom_section_cnt]){
                 case 'SMALL':
 
-                    $tmp_social_media_endpoint = $tmp_social_element_meta_ARRAY[0];
-                    $tmp_icon_family_size = $tmp_social_element_meta_ARRAY[1];
+                    $tmp_social_media_endpoint = '';
+                    for($i = 0; $i < $tmp_nom_section_cnt; $i++){
+
+                        $tmp_social_media_endpoint .= $tmp_social_element_meta_ARRAY[$i] . '_';
+
+                    }
+
+                    $tmp_social_media_endpoint = $this->oCRNRSTN->strrtrim($tmp_social_media_endpoint, '_');
+                    $tmp_icon_family_size = $tmp_social_element_meta_ARRAY[$tmp_nom_section_cnt];
                     $tmp_sprite_width = 233;
                     $tmp_sprite_height = 146;
 
                 break;
                 case 'MEDIUM':
 
-                    $tmp_social_media_endpoint = $tmp_social_element_meta_ARRAY[0];
-                    $tmp_icon_family_size = $tmp_social_element_meta_ARRAY[1];
+                    $tmp_social_media_endpoint = '';
+                    for($i = 0; $i < $tmp_nom_section_cnt; $i++){
+
+                        $tmp_social_media_endpoint .= $tmp_social_element_meta_ARRAY[$i] . '_';
+
+                    }
+
+                    $tmp_social_media_endpoint = $this->oCRNRSTN->strrtrim($tmp_social_media_endpoint, '_');
+                    $tmp_icon_family_size = $tmp_social_element_meta_ARRAY[$tmp_nom_section_cnt];
                     $tmp_sprite_width = 447;
                     $tmp_sprite_height = 281;
 
                 break;
                 case 'LARGE':
 
-                    $tmp_social_media_endpoint = $tmp_social_element_meta_ARRAY[0];
-                    $tmp_icon_family_size = $tmp_social_element_meta_ARRAY[1];
+                    $tmp_social_media_endpoint = '';
+                    for($i = 0; $i < $tmp_nom_section_cnt; $i++){
+
+                        $tmp_social_media_endpoint .= $tmp_social_element_meta_ARRAY[$i] . '_';
+
+                    }
+
+                    $tmp_social_media_endpoint = $this->oCRNRSTN->strrtrim($tmp_social_media_endpoint, '_');
+                    $tmp_icon_family_size = $tmp_social_element_meta_ARRAY[$tmp_nom_section_cnt];
                     $tmp_sprite_width = 700;
                     $tmp_sprite_height = 440;
 
@@ -7267,20 +7385,20 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             }
 
             switch($tmp_social_media_endpoint){
-                case 'ARCHIVES':
+                case 'SOUNDCLOUD':
 
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 40;
-                            $tmp_social_img_height = 27;
-                            $tmp_social_img_left = -90;
-                            $tmp_social_img_top = -53;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7289,8 +7407,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 119;
-                            $tmp_social_img_height = 77;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -7298,218 +7416,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
-                    $tmp_social_img_alt = 'Archives';
-                    $tmp_social_img_title = 'Link to Archives.';
+                    $tmp_social_img_alt = 'SoundCloud';
+                    $tmp_social_img_title = 'Link to SoundCloud tracks.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                    <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                </div></div></div>';
-
-                    return $tmp_social_html;
-
-                break;
-                case 'BANDCAMP':
-
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
-
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 27;
-                            $tmp_social_img_left = -79;
-                            $tmp_social_img_top = -26;
-
-                        break;
-                        case 'MEDIUM':
-
-                            $tmp_social_img_width = 50;
-                            $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-                        default:
-                            // 'LARGE':
-
-                            $tmp_social_img_width = 76;
-                            $tmp_social_img_height = 77;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-
-                    }
-
-                    $tmp_social_img_alt = 'Bandcamp';
-                    $tmp_social_img_title = 'Link to Bandcamp music page.';
-                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
-                break;
-                case 'BASSDRIVE':
-
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
-
-                            $tmp_social_img_width = 32;
-                            $tmp_social_img_height = 26;
-                            $tmp_social_img_left = -133;
-                            $tmp_social_img_top = -53;
-
-                        break;
-                        case 'MEDIUM':
-
-                            $tmp_social_img_width = 50;
-                            $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-                        default:
-                            // 'LARGE':
-
-                            $tmp_social_img_width = 95;
-                            $tmp_social_img_height = 78;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-
-                    }
-
-                    $tmp_social_img_alt = 'Bassdrive';
-                    $tmp_social_img_title = 'Link to Bassdrive profile.';
-                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
-                break;
-                case 'BEATPORT':
-
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
-
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 27;
-                            $tmp_social_img_left = -53;
-                            $tmp_social_img_top = -26;
-
-                        break;
-                        case 'MEDIUM':
-
-                            $tmp_social_img_width = 50;
-                            $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-                        default:
-                            // 'LARGE':
-
-                            $tmp_social_img_width = 76;
-                            $tmp_social_img_height = 77;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-
-                    }
-
-                    $tmp_social_img_alt = 'Beatport';
-                    $tmp_social_img_title = 'Link to Beatport featured tracks.';
-                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
-                break;
-                case 'DISCOGS':
-
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
-
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 27;
-                            $tmp_social_img_left = -26;
-                            $tmp_social_img_top = -26;
-
-                        break;
-                        case 'MEDIUM':
-
-                            $tmp_social_img_width = 50;
-                            $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-                        default:
-                            // 'LARGE':
-
-                            $tmp_social_img_width = 77;
-                            $tmp_social_img_height = 76;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-
-                    }
-
-                    $tmp_social_img_alt = 'Discogs';
-                    $tmp_social_img_title = 'Link to Discogs music selection.';
-                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
 
                 break;
                 case 'FACEBOOK':
@@ -7517,15 +7426,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 26;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
                             $tmp_social_img_left = -26;
                             $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7534,8 +7443,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 77;
-                            $tmp_social_img_height = 76;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -7544,70 +7453,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     }
 
                     $tmp_social_img_alt = 'Facebook';
-                    $tmp_social_img_title = 'Link to Facebook page.';
+                    $tmp_social_img_title = 'Link to Facebook related resource.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
-                break;
-                case 'HISTORY':
-
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
-
-                            $tmp_social_img_width = 37;
-                            $tmp_social_img_height = 27;
-                            $tmp_social_img_left = -53;
-                            $tmp_social_img_top = -53;
-
-                        break;
-                        case 'MEDIUM':
-
-                            $tmp_social_img_width = 50;
-                            $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-                        default:
-                            // 'LARGE':
-
-                            $tmp_social_img_width = 110;
-                            $tmp_social_img_height = 76;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-
-                    }
-
-                    $tmp_social_img_alt = 'History';
-                    $tmp_social_img_title = 'Link to history.';
-                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
 
                 break;
                 case 'INSTAGRAM':
@@ -7615,15 +7462,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 27;
-                            $tmp_social_img_height = 26;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
                             $tmp_social_img_left = -52;
                             $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7632,8 +7479,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 77;
-                            $tmp_social_img_height = 77;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -7645,34 +7492,21 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     $tmp_social_img_title = 'Link to Instagram feed.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
                 break;
-                case 'JSON':
+                case 'TWITTER':
 
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 26;
-                            $tmp_social_img_left = -131;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -79;
                             $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7681,8 +7515,80 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 72;
-                            $tmp_social_img_height = 81;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Twitter';
+                    $tmp_social_img_title = 'Link to Twitter feed.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'WWW':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -105;
+                            $tmp_social_img_top = 1;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Website';
+                    $tmp_social_img_title = 'Link to website.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'JSON':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -7691,37 +7597,24 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     }
 
                     $tmp_social_img_alt = 'JSON';
-                    $tmp_social_img_title = 'Link to JSON.';
+                    $tmp_social_img_title = 'Link to JSON object.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
                 break;
-                case 'LINKEDIN':
+                case 'APPLE_MUSIC':
 
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 25;
-                            $tmp_social_img_height = 26;
-                            $tmp_social_img_left = 0;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
                             $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7730,8 +7623,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 76;
-                            $tmp_social_img_height = 76;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -7739,22 +7632,153 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
-                    $tmp_social_img_alt = 'LinkedIn';
-                    $tmp_social_img_title = 'Link to LinkedIn profile.';
+                    $tmp_social_img_alt = 'Apple Music';
+                    $tmp_social_img_title = 'Link to Apple Music related resource.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
+                break;
+                case 'FEEDBURNER':
 
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
 
                     }
 
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
+                    $tmp_social_img_alt = 'Feedburner';
+                    $tmp_social_img_title = 'Link to Feedburner feed proxy.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    return $tmp_social_html;
+                break;
+                case 'SLASHDOT_ICON':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Slashdot';
+                    $tmp_social_img_title = 'Link to Slashdot related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'XHAMSTER_ICON':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'XHAMSTER';
+                    $tmp_social_img_title = 'Link to XHAMSTER related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'MOZILLA_ICON':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Mozilla';
+                    $tmp_social_img_title = 'Link to Mozilla resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
                 break;
                 case 'MIXCLOUD':
@@ -7762,15 +7786,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 27;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = -26;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7779,7 +7803,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 74;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 74;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7792,34 +7816,21 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     $tmp_social_img_title = 'Link to Mixcloud community.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
                 break;
-                case 'PAYPAL':
+                case 'DISCOGS':
 
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 27;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
                             $tmp_social_img_left = -26;
-                            $tmp_social_img_top = -53;
+                            $tmp_social_img_top = -26;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7828,8 +7839,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 77;
-                            $tmp_social_img_height = 76;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -7837,32 +7848,55 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
-                    $tmp_social_img_alt = 'Paypal';
-                    $tmp_social_img_title = 'Link to Paypal.';
+                    $tmp_social_img_alt = 'Discogs';
+                    $tmp_social_img_title = 'Link to Discogs music selection.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
                 break;
-                case 'ROLLDABEATS':
+                case 'BEATPORT':
 
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 26;
-                            $tmp_social_img_left = -132;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -53;
+                            $tmp_social_img_top = -26;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Beatport';
+                    $tmp_social_img_title = 'Link to Beatport featured tracks.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'BANDCAMP':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -79;
                             $tmp_social_img_top = -26;
 
                         break;
@@ -7877,8 +7911,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 76;
-                            $tmp_social_img_height = 76;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -7886,71 +7920,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
-                    $tmp_social_img_alt = 'RollDaBeats';
-                    $tmp_social_img_title = 'Link to RollDaBeats catalog.';
+                    $tmp_social_img_alt = 'Bandcamp';
+                    $tmp_social_img_title = 'Link to Bandcamp music page.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
-                break;
-                case 'SOUNDCLOUD':
-
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
-
-                            $tmp_social_img_width = 25;
-                            $tmp_social_img_height = 26;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-                        case 'MEDIUM':
-
-                            $tmp_social_img_width = 50;
-                            $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-                        default:
-                            // 'LARGE':
-
-                            $tmp_social_img_width = 75;
-                            $tmp_social_img_height = 77;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
-
-                        break;
-
-                    }
-
-                    $tmp_social_img_alt = 'SoundCloud';
-                    $tmp_social_img_title = 'Link to SoundCloud tracks.';
-                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
-
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                        <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                            <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                        </div></div></div>';
-
-                    return $tmp_social_html;
 
                 break;
                 case 'SPOTIFY':
@@ -7958,15 +7930,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 26;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
                             $tmp_social_img_left = -106;
                             $tmp_social_img_top = -27;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -7975,8 +7947,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 77;
-                            $tmp_social_img_height = 77;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -7988,34 +7960,21 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     $tmp_social_img_title = 'Link to Spotify community.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                    </div></div></div>';
-
-                    return $tmp_social_html;
-
                 break;
-                case 'TWITTER':
+                case 'ROLLDABEATS':
 
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 26;
-                            $tmp_social_img_left = -79;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -132;
+                            $tmp_social_img_top = -26;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -8024,8 +7983,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 77;
-                            $tmp_social_img_height = 76;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -8033,38 +7992,25 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
-                    $tmp_social_img_alt = 'Twitter';
-                    $tmp_social_img_title = 'Link to Twitter feed.';
+                    $tmp_social_img_alt = 'RollDaBeats';
+                    $tmp_social_img_title = 'Link to RollDaBeats catalog.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
-
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
-
-                    }
-
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                    <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                </div></div></div>';
-
-                    return $tmp_social_html;
-
                 break;
-                case 'WWW':
+                case 'STACKOVERFLOW':
 
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 28;
-                            $tmp_social_img_left = -105;
-                            $tmp_social_img_top = 1;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -8073,8 +8019,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 79;
-                            $tmp_social_img_height = 79;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -8082,22 +8028,117 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
-                    $tmp_social_img_alt = 'Website';
-                    $tmp_social_img_title = 'Link to website.';
+                    $tmp_social_img_alt = 'Stackoverflow';
+                    $tmp_social_img_title = 'Link to Stackoverflow related resource.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
+                break;
+                case 'KINK':
 
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
 
                     }
 
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                                <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                    <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                                </div></div></div>';
+                    $tmp_social_img_alt = 'Kink.com';
+                    $tmp_social_img_title = 'Link to Kink.com related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    return $tmp_social_html;
+                break;
+                case 'PHP':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'PHP.net';
+                    $tmp_social_img_title = 'Link to PHP related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'REDDIT':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Reddit';
+                    $tmp_social_img_title = 'Link to Reddit resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
                 break;
                 case 'YOUTUBE':
@@ -8105,15 +8146,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = 26;
-                            $tmp_social_img_height = 27;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = -52;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = 50;
+                            $tmp_social_img_width = '';
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
@@ -8122,8 +8163,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = 77;
-                            $tmp_social_img_height = 76;
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
                             $tmp_social_img_top = 0;
 
@@ -8132,21 +8173,1556 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     }
 
                     $tmp_social_img_alt = 'YouTube';
-                    $tmp_social_img_title = 'Link to YouTube channel.';
+                    $tmp_social_img_title = 'Link to YouTube resource.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    if($email_channel){
+                break;
+                case 'PAYPAL':
 
-                        return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -26;
+                            $tmp_social_img_top = -53;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
 
                     }
 
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
-                            <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                <img src="' . $this->oCRNRSTN_MEDIA_CONVERTOR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
-                            </div></div></div>';
+                    $tmp_social_img_alt = 'Paypal';
+                    $tmp_social_img_title = 'Link to Paypal related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
-                    return $tmp_social_html;
+                break;
+                case 'HISTORY':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -53;
+                            $tmp_social_img_top = -53;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'History';
+                    $tmp_social_img_title = 'Link to history.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'ARCHIVES':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -90;
+                            $tmp_social_img_top = -53;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Archives';
+                    $tmp_social_img_title = 'Link to Archives.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'BASSDRIVE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -133;
+                            $tmp_social_img_top = -53;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Bassdrive';
+                    $tmp_social_img_title = 'Link to Bassdrive resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'GITHUB':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Github';
+                    $tmp_social_img_title = 'Link to Github resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'XNXX':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'XNXX.com';
+                    $tmp_social_img_title = 'Link to XNXX resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'LINKEDIN':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'LinkedIn';
+                    $tmp_social_img_title = 'Link to LinkedIn related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'GOOGLE_MAPS_ANNIVERSARY':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Google Maps Anniversary';
+                    $tmp_social_img_title = 'Link to Google Maps resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'FLICKR':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Flickr';
+                    $tmp_social_img_title = 'Link to Flickr related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'WIKIPEDIA':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Wikipedia';
+                    $tmp_social_img_title = 'Link to Wikipedia related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'BLOGSPOT':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Blogspot';
+                    $tmp_social_img_title = 'Link to Blogspot related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'PINTEREST':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Pinterest';
+                    $tmp_social_img_title = 'Link to Pinterest related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'SERVER_FAULT':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'ServerFault';
+                    $tmp_social_img_title = 'Link to ServerFault related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'GOOGLE_DRIVE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Google Drive';
+                    $tmp_social_img_title = 'Link to Google Drive resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'BLUEHOST_ICON':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Bluehost';
+                    $tmp_social_img_title = 'Link to Bluehost hosted resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'AMAZON':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Amazon';
+                    $tmp_social_img_title = 'Link to Amazon related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'PORNHUB':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Pornhub';
+                    $tmp_social_img_title = 'Link to Pornhub related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'EBAY':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'eBay';
+                    $tmp_social_img_title = 'Link to eBay related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'MOZILLA_WORDMARK':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -133;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Mozilla';
+                    $tmp_social_img_title = 'Link to Mozilla resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'PATREON':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Paetron';
+                    $tmp_social_img_title = 'Link to Paetron related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'TWITCH':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Twitch';
+                    $tmp_social_img_title = 'Link to Twitch related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'MICROSOFT':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Microsoft';
+                    $tmp_social_img_title = 'Link to Microsoft related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'INTERNET_ARCHIVE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'INTERNET ARCHIVE';
+                    $tmp_social_img_title = 'Link to INTERNET ARCHIVE resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'W3C':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'W3C';
+                    $tmp_social_img_title = 'Link to W3C resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'XHAMSTER_WORDMARK':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -111;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'XHAMSTER';
+                    $tmp_social_img_title = 'Link to XHAMSTER resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'ETSY':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Etsy';
+                    $tmp_social_img_title = 'Link to Etsy resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'APPLE_LOGO_WHT_BLK_CIRCLE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Apple';
+                    $tmp_social_img_title = 'Link to Apple related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'XVIDEOS':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'XVIDEOS';
+                    $tmp_social_img_title = 'Link to XVIDEOS resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'SLASHDOT_WORDMARK':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -132;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Slashdot';
+                    $tmp_social_img_title = 'Link to Slashdot resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'VIMEO_BLUE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Vimeo';
+                    $tmp_social_img_title = 'Link to Vimeo resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'IDE_ONE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'IDE ONE';
+                    $tmp_social_img_title = 'Link to IDE ONE resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'GOOGLE_MAPS_SQUARE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Google Maps';
+                    $tmp_social_img_title = 'Link to Google Maps resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'BLUEHOST_WORDMARK':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 10;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Bluehost';
+                    $tmp_social_img_title = 'Link to Bluehost hosted resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'PANDORA':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Pandora';
+                    $tmp_social_img_title = 'Link to Pandora resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'LAST.FM':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Last.fm';
+                    $tmp_social_img_title = 'Link to Last.fm resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'VIMEO_BLUE_WORDMARK':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 10;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Vimeo';
+                    $tmp_social_img_title = 'Link to Vimeo resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'VIMEO_DARKFOREST_WORDMARK':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 20;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Vimeo';
+                    $tmp_social_img_title = 'Link to Vimeo resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'APPLE_LOGO_BLK_WHT_CIRCLE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -121;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Apple';
+                    $tmp_social_img_title = 'Link to Apple related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'APPLE_LOGO_BLK':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -132;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Apple';
+                    $tmp_social_img_title = 'Link to Apple related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'APPLE_LOGO_WHT':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 10;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Apple';
+                    $tmp_social_img_title = 'Link to Apple related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'APPLE_LOGO_GREY':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 10;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Apple';
+                    $tmp_social_img_title = 'Link to Apple related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'APPLE_LOGO_GREY_BLK_CIRCLE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 40;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Apple';
+                    $tmp_social_img_title = 'Link to Apple related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'APPLE_LOGO_GREY_WHT_CIRCLE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -131;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = 0;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = '';
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = 30;
+                            $tmp_social_img_top = 0;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Apple';
+                    $tmp_social_img_title = 'Link to Apple related resource.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
                 break;
                 default:
@@ -8156,6 +9732,25 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 break;
 
             }
+
+            if(!isset($tmp_sticky_link_meta)){
+
+                if($email_channel){
+
+                    return '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '" target="' . $target . '"><img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative('SOCIAL_' . $tmp_social_media_endpoint, CRNRSTN_UI_IMG_PNG) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+
+                }
+
+                $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
+                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
+                                        <img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative('SOCIAL_SPRITE', CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                    </div></div></div>';
+
+                return $tmp_social_html;
+
+            }
+
+            return '';
 
         }catch (Exception $e){
 
@@ -8182,7 +9777,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         social_rolldabeats.png
         social_soundcloud.png
         social_spotify.png
-        social_sprite.png
+        sprite.png
         social_twitter.png
         social_www.png
         social_youtube.png
@@ -8553,7 +10148,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function return_branding_creative($strip_formatting = false, $output_mode = CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED){
+    public function return_branding_creative($strip_formatting = false, $output_mode = CRNRSTN_UI_IMG_HTML_WRAPPED){
 
         return $this->oCRNRSTN_ENV->return_component_branding_creative($strip_formatting, $output_mode);
 
@@ -8571,8 +10166,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 //    public function encode_image($crnrstn_file_to_encode, $filetype = NULL) {
 //
 //        //
-//        // WHERE $crnrstn_file_to_encode = 'social_sprite.png' OR EVEN JUST
-//        // WHERE $crnrstn_file_to_encode = 'social_sprite'
+//        // WHERE $crnrstn_file_to_encode = 'sprite.png' OR EVEN JUST
+//        // WHERE $crnrstn_file_to_encode = 'sprite'
 //
 //        //$filename
 //        $tmp_crnrstn_file_to_encode = $this->oCRNRSTN_ENV->data_decrypt($crnrstn_file_to_encode);
@@ -8844,9 +10439,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function crnrstn_resources_http_path(){
+    public function crnrstn_http_endpoint(){
 
-        return $this->oCRNRSTN->get_resource('crnrstn_resources_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+        return $this->oCRNRSTN->get_resource('crnrstn_http_endpoint', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
 
     }
 
@@ -9918,12 +11513,6 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             return false;
 
         }
-
-    }
-
-    public function strrtrim($message, $strip){
-
-        return $this->oCRNRSTN->strrtrim($message, $strip);
 
     }
 

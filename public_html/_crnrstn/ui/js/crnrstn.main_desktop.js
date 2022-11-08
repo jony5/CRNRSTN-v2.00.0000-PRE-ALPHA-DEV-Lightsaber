@@ -2039,131 +2039,135 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         switch(data_type){
             case 'XML':
 
-                var NODE_client_response = response_data.getElementsByTagName('client_response');
-                if (NODE_client_response.length > 0) {
+                if(response_data != undefined){
 
-                    this.log_activity('[lnum 2045] Extracting ' + data_type + ' data from CRNRSTN :: SOAP Services Data Tunnel Layer (SSDTL) response.', this.CRNRSTN_DEBUG_VERBOSE);
-                    this.consume_data_tunnel_xml_node(response_data, 'response_timestamp', 'client_response', 'timestamp' , serialize_response);
+                    var NODE_client_response = response_data.getElementsByTagName('client_response');
+                    if (NODE_client_response.length > 0) {
 
-                    //
-                    // RECEIVE NEW SOAP SERVICES DATA TUNNEL LAYER FORM PACKET SITUATION....SITUATION
-                    this.consume_data_tunnel_xml_node(response_data, 'ssdtl_packet', 'soap_data_tunnel_layer_fih_packet', '' , serialize_response);
+                        this.log_activity('[lnum 2047] Extracting ' + data_type + ' data from CRNRSTN :: SOAP Services Data Tunnel Layer (SSDTL) response.', this.CRNRSTN_DEBUG_VERBOSE);
+                        this.consume_data_tunnel_xml_node(response_data, 'response_timestamp', 'client_response', 'timestamp' , serialize_response);
 
-                    //
-                    // IF WE HAVE RESPONSE STATUS REPORT DATA
-                    var NODE_data_signature = response_data.getElementsByTagName('data_signature');
-                    var tmp_node_cnt = NODE_data_signature.length;
-                    if (tmp_node_cnt > 0) {
+                        //
+                        // RECEIVE NEW SOAP SERVICES DATA TUNNEL LAYER FORM PACKET SITUATION....SITUATION
+                        this.consume_data_tunnel_xml_node(response_data, 'ssdtl_packet', 'soap_data_tunnel_layer_fih_packet', '' , serialize_response);
 
-                        for(let i = 0; i < tmp_node_cnt; i++){
+                        //
+                        // IF WE HAVE RESPONSE STATUS REPORT DATA
+                        var NODE_data_signature = response_data.getElementsByTagName('data_signature');
+                        var tmp_node_cnt = NODE_data_signature.length;
+                        if (tmp_node_cnt > 0) {
 
-                            this.log_activity('Extracting [data_signature] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                            for(let i = 0; i < tmp_node_cnt; i++){
 
-                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_serial', 'request_serial', '' , true, i);
-                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_hash', 'request_hash', '' , true, i);
-                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_bool', 'jesus_christ_is_lord', '' , true, i);
-                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_vv', 'jesus_christ_is_lord', 'source' , true, i);
-                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_bool', 'satan_is_a_liar', '' , true, i);
-                            this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_vv', 'satan_is_a_liar', 'source' , true, i);
+                                this.log_activity('Extracting [data_signature] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
-                        }
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_serial', 'request_serial', '' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_hash', 'request_hash', '' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_bool', 'jesus_christ_is_lord', '' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_vv', 'jesus_christ_is_lord', 'source' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_bool', 'satan_is_a_liar', '' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_vv', 'satan_is_a_liar', 'source' , true, i);
 
-                    }
-
-                    //
-                    // IF WE HAVE BROWSER STATE SYNC DATA
-                    var NODE_state_synchronization_data = response_data.getElementsByTagName('state_synchronization_data');
-                    if (NODE_state_synchronization_data.length > 0) {
-
-                        this.log_activity('[lnum 2078] Extracting [state_synchronization_data] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                        this.consume_browser_state_sync_data(NODE_state_synchronization_data[0], serialize_response);
-
-                    }
-
-                    //
-                    // IF WE HAVE RESPONSE STATUS REPORT DATA
-                    var NODE_response_status = response_data.getElementsByTagName('response_status');
-                    var tmp_node_cnt = NODE_response_status.length;
-                    if (tmp_node_cnt > 0) {
-
-                        for(let i = 0; i < tmp_node_cnt; i++){
-
-                            this.log_activity('[lnum 2092] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                            this.consume_response_status_data(NODE_response_status[i], serialize_response);
+                            }
 
                         }
 
-                    }
+                        //
+                        // IF WE HAVE BROWSER STATE SYNC DATA
+                        var NODE_state_synchronization_data = response_data.getElementsByTagName('state_synchronization_data');
+                        if (NODE_state_synchronization_data.length > 0) {
 
-                    //
-                    // CLIENT PROFILE DATA
-                    var NODE_client_profile = response_data.getElementsByTagName('client_profile');
-                    tmp_node_cnt = NODE_client_profile.length;
-                    if (tmp_node_cnt > 0) {
+                            this.log_activity('[lnum 2080] Extracting [state_synchronization_data] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
-                        for(let i = 0; i < tmp_node_cnt; i++){
-
-                            this.log_activity('[lnum 2108] Extracting [client_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                            this.consume_response_client_profile_data(NODE_client_profile[i], serialize_response);
+                            this.consume_browser_state_sync_data(NODE_state_synchronization_data[0], serialize_response);
 
                         }
 
-                    }
+                        //
+                        // IF WE HAVE RESPONSE STATUS REPORT DATA
+                        var NODE_response_status = response_data.getElementsByTagName('response_status');
+                        var tmp_node_cnt = NODE_response_status.length;
+                        if (tmp_node_cnt > 0) {
 
-                    //
-                    // CRNRSTN :: INTERACT UI DATA
-                    var NODE_crnrstn_interact_ui_profile = response_data.getElementsByTagName('crnrstn_interact_ui_profile');
-                    tmp_node_cnt = NODE_crnrstn_interact_ui_profile.length;
-                    if(tmp_node_cnt > 0){
+                            for(let i = 0; i < tmp_node_cnt; i++){
 
-                        for(let i = 0; i < tmp_node_cnt; i++){
+                                this.log_activity('[lnum 2094] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
-                            this.log_activity('[lnum 2124] Extracting [crnrstn_interact_ui_profile] data from CRNRSTN :: SSDTLA response.', this.CRNRSTN_DEBUG_VERBOSE);
+                                this.consume_response_status_data(NODE_response_status[i], serialize_response);
 
-                            this.consume_response_crnrstn_interact_ui_profile_data(NODE_crnrstn_interact_ui_profile[i], serialize_response);
-
-                        }
-
-                    }
-
-                    //
-                    // BASSDRIVE DATA
-                    var NODE_bassdrive = response_data.getElementsByTagName('bassdrive');
-                    tmp_node_cnt = NODE_bassdrive.length;
-                    if (tmp_node_cnt > 0) {
-
-                        for(let i = 0; i < tmp_node_cnt; i++){
-
-                            this.log_activity('[lnum 2140] Extracting [bassdrive] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                            this.consume_response_bassdrive_data(NODE_bassdrive[i], serialize_response);
+                            }
 
                         }
 
-                    }
+                        //
+                        // CLIENT PROFILE DATA
+                        var NODE_client_profile = response_data.getElementsByTagName('client_profile');
+                        tmp_node_cnt = NODE_client_profile.length;
+                        if (tmp_node_cnt > 0) {
 
-                    //
-                    // LIFESTYLE IMAGE BANNER DATA
-                    var NODE_lifestyle_banner = response_data.getElementsByTagName('lifestyle_banner');
-                    tmp_node_cnt = NODE_lifestyle_banner.length;
-                    if (tmp_node_cnt > 0) {
+                            for(let i = 0; i < tmp_node_cnt; i++){
 
-                        for(let i = 0; i < tmp_node_cnt; i++){
+                                this.log_activity('[lnum 2110] Extracting [client_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
-                            this.log_activity('[lnum 2156] Extracting [lifestyle_banner] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                                this.consume_response_client_profile_data(NODE_client_profile[i], serialize_response);
 
-                            this.consume_response_lifestyle_banner_data(NODE_lifestyle_banner[i], serialize_response);
+                            }
 
                         }
 
-                    }
+                        //
+                        // CRNRSTN :: INTERACT UI DATA
+                        var NODE_crnrstn_interact_ui_profile = response_data.getElementsByTagName('crnrstn_interact_ui_profile');
+                        tmp_node_cnt = NODE_crnrstn_interact_ui_profile.length;
+                        if(tmp_node_cnt > 0){
 
-                    this.data_tunnel_ttl_monitor_isactive = true;
-                    this.log_activity('[lnum 2165] CRNRSTN :: SSDTL response consumption is now complete.', this.CRNRSTN_DEBUG_VERBOSE);
-                    this.log_activity('[lnum 2166] CRNRSTN :: SSDTL TTL monitoring for client state is now active.', this.CRNRSTN_DEBUG_VERBOSE);
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2126] Extracting [crnrstn_interact_ui_profile] data from CRNRSTN :: SSDTLA response.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                                this.consume_response_crnrstn_interact_ui_profile_data(NODE_crnrstn_interact_ui_profile[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // BASSDRIVE DATA
+                        var NODE_bassdrive = response_data.getElementsByTagName('bassdrive');
+                        tmp_node_cnt = NODE_bassdrive.length;
+                        if (tmp_node_cnt > 0) {
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2142] Extracting [bassdrive] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_response_bassdrive_data(NODE_bassdrive[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // LIFESTYLE IMAGE BANNER DATA
+                        var NODE_lifestyle_banner = response_data.getElementsByTagName('lifestyle_banner');
+                        tmp_node_cnt = NODE_lifestyle_banner.length;
+                        if (tmp_node_cnt > 0) {
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2158] Extracting [lifestyle_banner] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_response_lifestyle_banner_data(NODE_lifestyle_banner[i], serialize_response);
+
+                            }
+
+                        }
+
+                        this.data_tunnel_ttl_monitor_isactive = true;
+                        this.log_activity('[lnum 2167] CRNRSTN :: SSDTL response consumption is now complete.', this.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 2168] CRNRSTN :: SSDTL TTL monitoring for client state is now active.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                    }
 
                 }
 
@@ -2188,7 +2192,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     //     CRNRSTN :: UI SOAP SERVICES DATA TUNNEL MODULE OUTPUT
     //     $tmp_str_array[] = '
     //     <div id="crnrstn_soap_data_tunnel_form_shell" class="hidden">
-    //     <form action="' . $this->crnrstn_resources_http_path.'soa/tunnel/" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
+    //
+    //     <form action="' . $this->crnrstn_http_endpoint.'soa/tunnel/" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
+    //
     //         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">SOAP_DATA_TUNNEL_LAYER_PACKET</textarea>
     //         <button type="submit">SUBMIT</button>
     //         <input type="hidden" id="crnrstn_request_serialization_key" name="crnrstn_request_serialization_key" value="">
@@ -2197,6 +2203,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     //         ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_FORM_INTEGRATION_PACKET, 'crnrstn_soap_data_tunnel_form').'
     //
     //     </form>
+    //
     //     </div>';
     //     */
     //
@@ -2352,7 +2359,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 tmp_ttl_expired = true;
 
-                this.log_activity('[lnum 2355] TTL for a data tunneled thread [' + this.ttl_array_pointer_index_ARRAY[i] + '] has been expired at ' + this.ttl_age_seconds + ' seconds, where the threshold is ' + tmp_array_adjusted_ttl + ' secs.', this.CRNRSTN_DEBUG_BASIC);
+                this.log_activity('[lnum 2362] TTL for a data tunneled thread [' + this.ttl_array_pointer_index_ARRAY[i] + '] has been expired at ' + this.ttl_age_seconds + ' seconds, where the threshold is ' + tmp_array_adjusted_ttl + ' secs.', this.CRNRSTN_DEBUG_BASIC);
 
             }
 
@@ -2378,7 +2385,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             tmp_cnt = tmp_cnt + (delta);
             this.transaction_thread_count_ARRAY[thread_id] = tmp_cnt;
 
-            this.log_activity('[lnum 2381] UI sync controller transaction thread count updated to ' + tmp_cnt + ' with the initialization of [' + thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+            this.log_activity('[lnum 2388] UI sync controller transaction thread count updated to ' + tmp_cnt + ' with the initialization of [' + thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
         }
 
@@ -2488,8 +2495,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         $('#' + this.form_input_serialization_key).val(this.current_serialization_key);
         $('#' + this.form_input_serialization_hash).val(this.current_serialization_hash);
 
-        this.log_activity('[lnum 2491] Setting current_serialization_key to ' + request_serial + '.', this.CRNRSTN_DEBUG_VERBOSE);
-        this.log_activity('[lnum 2492] Setting current_serialization_hash to ' + this.current_serialization_hash + '.', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 2498] Setting current_serialization_key to ' + request_serial + '.', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 2499] Setting current_serialization_hash to ' + this.current_serialization_hash + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
     };
 
@@ -2664,7 +2671,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             <div class="crnrstn_interact_ui">
                 <div id="crnrstn_interact_ui_bg_border" class="crnrstn_interact_ui_bg_border"></div>
                 <div id="crnrstn_interact_ui_bg_solid" class="crnrstn_interact_ui_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
-                    ' . $this->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_BASE64_HTML_WRAPPED) . '
+                    ' . $this->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
                     <div class="crnrstn_cb"></div>
                 </div>
                 <div id="crnrstn_interact_ui_content_wrapper" class="crnrstn_interact_ui_content_wrapper">
@@ -2837,7 +2844,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 tmp_mit_content = this.return_data_tunnel_xml_data(module_key);
 
-                this.log_activity('[lnum 2840] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_mit_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2847] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_mit_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 $('#crnrstn_interact_ui_full_lightbox').animate({
                     top: this.docs_page_css_top + 'px',
@@ -2897,7 +2904,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
 
-                this.log_activity('[lnum 2900] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2907] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 $('#crnrstn_documentation_dyn_shell').animate({
                     top: this.docs_page_css_top + 'px',
@@ -2972,7 +2979,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_interact_ui_documentation_side_nav_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 2975] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2982] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 this.initialize_interact_ui_documentation_mode(tmp_content);
 
@@ -2980,7 +2987,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_interact_ui_system_footer_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 2983] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2990] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 this.initialize_interact_ui_system_footer(tmp_content);
 
@@ -2988,18 +2995,18 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_interact_ui_search_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 2991] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 2998] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
             break;
             case 'crnrstn_interact_ui_messenger_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 2997] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 3004] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
             break;
             default:
 
-                this.log_activity('[lnum 3002] Cannot oCRNRSTN_JS.interact_ui_animation_sequence() on unknown XML node [' + module_key + '] which has been provided. ', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 3009] Cannot oCRNRSTN_JS.interact_ui_animation_sequence() on unknown XML node [' + module_key + '] which has been provided. ', this.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -3046,7 +3053,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         if(tmp_hash.length > 0){
 
                             $('#' + tmp_module_key_ARRAY[i] + '_HASH').val(tmp_hash);
-                            this.log_activity('[lnum 3049] UPDATE [' + tmp_module_key_ARRAY[i] + '_HASH' + '] to [' + tmp_hash + '].', this.CRNRSTN_DEBUG_VERBOSE);
+                            this.log_activity('[lnum 3056] UPDATE [' + tmp_module_key_ARRAY[i] + '_HASH' + '] to [' + tmp_hash + '].', this.CRNRSTN_DEBUG_VERBOSE);
 
                             this.interact_ui_animation_sequence(tmp_module_key_ARRAY[i]);
 
@@ -3159,7 +3166,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 if(this.jony5_banner_mode == 'PLAY'){
 
-                    this.log_activity('[lnum 3162] FIRE! FIRE! FIRE! [' + ui_thread_id + ']. ', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 3169] FIRE! FIRE! FIRE! [' + ui_thread_id + ']. ', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                     this.rotate_lifestyle_banner_image();
 
@@ -3168,7 +3175,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 3171] UI sync instructions have not been configured for [' + ui_thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3178] UI sync instructions have not been configured for [' + ui_thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
 
@@ -3183,7 +3190,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 this.update_thread_count(action_id, 1, scheduler_invoked);
 
-                this.log_activity('[lnum 3186] UI sync controller set to fire [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3193] UI sync controller set to fire [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
                 //
                 // FIRE UI UPDATE THREAD
@@ -3196,7 +3203,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 this.ui_sync_controller_thread_delay_ARRAY[action_id] = delay_ttl;
 
-                this.log_activity('[lnum 3199] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3206] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'stop':
@@ -3206,18 +3213,18 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'cancel':
 
-                this.log_activity('[lnum 3209] UI sync controller has cancelled [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3216] UI sync controller has cancelled [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'sleep':
 
-                this.log_activity('[lnum 3214] UI sync controller has put [' + action_id + '] to sleep.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3221] UI sync controller has put [' + action_id + '] to sleep.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'silence_is_golden':
 
                 //this.update_thread_count(action_id, 1, scheduler_invoked);
-                this.log_activity('[lnum 3220] UI sync controller has scheduled [' + action_id + '] to run silently in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3227] UI sync controller has scheduled [' + action_id + '] to run silently in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
 
@@ -3240,7 +3247,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             if(!(image_uri in self.jony5_lifestyle_banner_index_ARRAY)){
 
                 var tmp_str = self.extract_filename(image_uri);
-                self.log_activity('[lnum 3243] STORING STATIC BANNER DOM DATA [' + tmp_str + '].', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                self.log_activity('[lnum 3250] STORING STATIC BANNER DOM DATA [' + tmp_str + '].', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 self.jony5_lifestyle_banner_index_ARRAY[image_uri] = 1;
                 self.jony5_lifestyle_banner_images_ARRAY.push(image_uri);
@@ -3260,7 +3267,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var tmp_str = this.extract_filename(tmp_next_image);
         var tmp_zindex_alpha = $("#jony5_banner_lifestyle_alpha").css('zIndex');
-        this.log_activity('[lnum 3263] STATIC DOM LOAD [' + tmp_str + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#jony5_banner_lifestyle_alpha').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 3270] STATIC DOM LOAD [' + tmp_str + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#jony5_banner_lifestyle_alpha').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         //
         // SELECT AN IMAGE AND LOAD IT INTO THE LOWEST Z-INDEX DOM ELEMENT
@@ -3276,11 +3283,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         var tmp_zindex_beta = $("#jony5_banner_lifestyle_beta").css('zIndex');
         $("#jony5_banner_lifestyle_beta").css('opacity', 0);
 
-        this.log_activity('[lnum 3279] STATIC DOM LOAD [' + tmp_str + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#jony5_banner_lifestyle_beta').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 3286] STATIC DOM LOAD [' + tmp_str + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#jony5_banner_lifestyle_beta').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         this.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-        this.log_activity('[lnum 3283] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 3290] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
         this.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
         $('#banner_control_play_wrapper').html('<div class="banner_play_arrow"></div>');
@@ -3373,7 +3380,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 3376] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 3383] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -3521,7 +3528,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 3524] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 3531] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -3603,7 +3610,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 3606] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 3613] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -5175,7 +5182,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             var tmp_str = $('#' + dom_element_beta).html();
             tmp_str = this.extract_filename(tmp_str);
-            this.log_activity('[lnum 5178] ALPHA Z-SHIFTED ' + tmp_zindex_alpha + '->' + tmp_zindex_beta + '. [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_alpha).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 5185] ALPHA Z-SHIFTED ' + tmp_zindex_alpha + '->' + tmp_zindex_beta + '. [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_alpha).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             $('#' + dom_element_alpha).animate({
                 opacity: 1.0
@@ -5221,13 +5228,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-                                    self.log_activity('[lnum 5224] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5231] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 5230] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5237] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'OFF');
 
@@ -5235,13 +5242,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 2){
 
-                                    self.log_activity('[lnum 5238] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5245] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('back_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 5244] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5251] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('back_btn_banner', 'OFF');
 
@@ -5258,7 +5265,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.jony5_lifestyle_banner_sequence_position++;
 
                                 var tmp_str = self.extract_filename(tmp_next_image);
-                                self.log_activity('[lnum 5261] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 5268] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 0){
 
@@ -5273,7 +5280,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.back_press_cnt = self.back_press_cnt * 1;
                                 var result = self.jony5_lifestyle_banner_sequence_control_ARRAY.length - self.jony5_lifestyle_banner_sequence_position - self.back_press_cnt;
 
-                                self.log_activity('[lnum 5276] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 5283] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
@@ -5287,7 +5294,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-                                self.log_activity('[lnum 5290] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 5297] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                                 self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                             }
@@ -5312,7 +5319,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             var tmp_str = $('#' + dom_element_beta).html();
             tmp_str = this.extract_filename(tmp_str);
-            this.log_activity('[lnum 5315] BETA Z-SHIFTED ' + tmp_zindex_beta + '->' + tmp_zindex_alpha + ' [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_beta).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 5322] BETA Z-SHIFTED ' + tmp_zindex_beta + '->' + tmp_zindex_alpha + ' [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_beta).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             $('#' + dom_element_beta).animate({
                 opacity: 1.0
@@ -5358,13 +5365,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-                                    self.log_activity('[lnum 5361] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5368] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 5367] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5374] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'OFF');
 
@@ -5372,13 +5379,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 2){
 
-                                    self.log_activity('[lnum 5375] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5382] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('back_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 5381] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 5388] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.init_ui_input_control_state('back_btn_banner', 'OFF');
 
@@ -5395,7 +5402,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.jony5_lifestyle_banner_sequence_position++;
 
                                 var tmp_str = self.extract_filename(tmp_next_image);
-                                self.log_activity('[lnum 5398] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 5405] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 0){
 
@@ -5409,7 +5416,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.back_press_cnt = self.back_press_cnt * 1;
                                 var result = self.jony5_lifestyle_banner_sequence_control_ARRAY.length - self.jony5_lifestyle_banner_sequence_position - self.back_press_cnt;
-                                self.log_activity('[lnum 5412] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 5419] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_VERBOSE);
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
                                     self.init_ui_input_control_state('forward_btn_banner', 'ON');
@@ -5422,7 +5429,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-                                self.log_activity('[lnum 5425] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 5432] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                                 self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
@@ -5487,14 +5494,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var tmp_alpha_img = this.extract_filename($('#' + dom_element_alpha).html());
         var tmp_beta_img = this.extract_filename($('#' + dom_element_beta).html());
-        this.log_activity('[lnum 5490] TRANSITION AFTER BUTTON PRESS. ALPHA-Z[' + tmp_zindex_alpha + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 5497] TRANSITION AFTER BUTTON PRESS. ALPHA-Z[' + tmp_zindex_alpha + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         $('#' + dom_element_alpha).css('zIndex', tmp_zindex_beta);
         $('#' + dom_element_beta).css('zIndex', tmp_zindex_alpha);
 
         tmp_zindex_alpha_new = $('#' + dom_element_alpha).css( "zIndex" );
         tmp_zindex_beta_new = $('#' + dom_element_beta).css( "zIndex" );
-        this.log_activity('[lnum 5497] NEW ALPHA-Z[' + tmp_zindex_alpha_new + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta_new + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 5504] NEW ALPHA-Z[' + tmp_zindex_alpha_new + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta_new + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         if(tmp_zindex_alpha < tmp_zindex_beta){
 
@@ -5518,7 +5525,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         },
                         complete: function () {
 
-                            self.log_activity('[lnum 5521] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                            self.log_activity('[lnum 5528] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                             self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                         }
@@ -5551,7 +5558,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         },
                         complete: function () {
 
-                            self.log_activity('[lnum 5554] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                            self.log_activity('[lnum 5561] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                             self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                         }
@@ -5590,7 +5597,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                     $('#' + dom_element_alpha).html(image_html);
 
-                    self.log_activity('[lnum 5593] LOAD [' + tmp_fname + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#' + dom_element_alpha).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    self.log_activity('[lnum 5600] LOAD [' + tmp_fname + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#' + dom_element_alpha).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -5609,7 +5616,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 complete: function () {
 
                     $('#' + dom_element_beta).html(image_html);
-                    self.log_activity('[lnum 5612] LOAD [' + tmp_fname + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#' + dom_element_beta).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    self.log_activity('[lnum 5619] LOAD [' + tmp_fname + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#' + dom_element_beta).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -5645,13 +5652,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(this.jony5_banner_mode == 'PLAY'){
 
                     this.jony5_banner_mode = 'PAUSE';
-                    this.log_activity('[lnum 5648] STOP BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 5655] STOP BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                     this.execution_delay_ui_sync_controller('stop', 'lifestyle_banner_image_rotation');
 
                 }else{
 
                     this.jony5_banner_mode = 'PLAY';
-                    this.log_activity('[lnum 5654] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 5661] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                     this.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                 }
@@ -5661,13 +5668,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'forward':
 
-                this.log_activity('[lnum 5664] ADVANCE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 5671] ADVANCE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                 this.jony5_lifestyle_advance_button('forward');
 
             break;
             case 'back':
 
-                this.log_activity('[lnum 5670] REVERSE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 5677] REVERSE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                 this.jony5_lifestyle_advance_button('back');
 
             break;
@@ -5702,7 +5709,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
         tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-        this.log_activity('[lnum 5705] PRE-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 5712] PRE-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
         if(tmp_zindex_alpha < tmp_zindex_beta){
 
@@ -5730,7 +5737,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
                     tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-                    self.log_activity('[lnum 5733] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                    self.log_activity('[lnum 5740] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                     //
                     // OPACITY TO 1.0 THE TOP ELEM
@@ -5801,7 +5808,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
                     tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-                    self.log_activity('[lnum 5804] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                    self.log_activity('[lnum 5811] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                     //
                     // OPACITY TO 1.0 THE TOP ELEM
@@ -5853,7 +5860,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
         tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-        this.log_activity('[lnum 5856] POST-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 5863] POST-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
     };
 
@@ -5926,13 +5933,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if((result != 0) && (result < this.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-            this.log_activity('[lnum 5929] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 5936] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.init_ui_input_control_state('forward_btn_banner', 'ON');
 
         }else{
 
-            this.log_activity('[lnum 5935] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 5942] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.init_ui_input_control_state('forward_btn_banner', 'OFF');
 
@@ -5940,13 +5947,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(this.jony5_lifestyle_banner_sequence_position > 2){
 
-            this.log_activity('[lnum 5943] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 5950] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.init_ui_input_control_state('back_btn_banner', 'ON');
 
         }else{
 
-            this.log_activity('[lnum 5949] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 5956] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.init_ui_input_control_state('back_btn_banner', 'OFF');
 
@@ -5973,7 +5980,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         var image_uri_alpha = this.jony5_lifestyle_banner_images_ARRAY[index_img_seq_int_alpha];
         var image_uri_beta = this.jony5_lifestyle_banner_images_ARRAY[index_img_seq_int_beta];
 
-        this.log_activity('[lnum 5976] BANNER STATE REVERSION DELTA[' + delta + '] index/img alpha=[' + index_img_seq_int_alpha + '/' + image_uri_alpha + '] index/img beta=[' + index_img_seq_int_beta + '/' + image_uri_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 5983] BANNER STATE REVERSION DELTA[' + delta + '] index/img alpha=[' + index_img_seq_int_alpha + '/' + image_uri_alpha + '] index/img beta=[' + index_img_seq_int_beta + '/' + image_uri_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
         var image_html_alpha = '<img src="' + image_uri_alpha + '" width="1180" height="250" alt="Jonathan \'J5\' Harris">';
         var image_html_beta = '<img src="' + image_uri_beta + '" width="1180" height="250" alt="Jonathan \'J5\' Harris">';
@@ -6173,7 +6180,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.sign_in_transition_via_micro_expansion = function(){
 
-        this.log_activity('[lnum 6176] [MOUSE CLICK] CRNRSTN :: INTERACT UI MODULE BEGIN SIGN IN FORM EXPANSION', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 6183] [MOUSE CLICK] CRNRSTN :: INTERACT UI MODULE BEGIN SIGN IN FORM EXPANSION', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         // crnrstn_interact_ui_wrapper
         // [current=bottom:5px; width: 100px; left: 84%; height: 80px;]
@@ -6369,7 +6376,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //
         // CLEAR HIGHEST Z-INDEX FOR TRANSITION
         tmp_state_cnt = system_nav_state_ARRAY.length;
-        this.log_activity('[lnum 6372] zIndex shift for all ' + dom_handle_root + dom_handle_variant_element + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 6379] zIndex shift for all ' + dom_handle_root + dom_handle_variant_element + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         for(let i = 0; i < tmp_state_cnt; i++){
 
@@ -6384,7 +6391,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     //
                     // SET TO 67 Z INDEX FOR STAGING IN 68
                     $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex', tmp_tgt_z);
-                    this.log_activity('[lnum 6387] zIndex shift for HIGHEST AT 68 [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 6394] zIndex shift for HIGHEST AT 68 [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 }else{
 
@@ -6401,14 +6408,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 //if($tmp_str != ){
                 tmp_tgt_z = parseInt(this.baseline_z_index) + 6;
                 $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex', tmp_tgt_z);
-                this.log_activity('[lnum 6404] zIndex shift TO 66 FOR OTHERS [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 6411] zIndex shift TO 66 FOR OTHERS [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 //}
 
             }
 
             //current_z_index_state_ARRAY[dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]] =
-            this.log_activity('[lnum 6411] current_z_index_state_ARRAY[' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '] = ' + $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex') + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 6418] current_z_index_state_ARRAY[' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '] = ' + $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex') + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         }
 
@@ -6441,7 +6448,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 tmp_tgt_z = parseInt(this.baseline_z_index) + 8;
                 $('#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix).css('zIndex', tmp_tgt_z);
 
-                self.log_activity('[lnum 6444] SHOW ' + '#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix, oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                self.log_activity('[lnum 6451] SHOW ' + '#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix, oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 $('#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix).animate({
                     opacity: 1.0
@@ -6458,7 +6465,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         self.dom_element_mouse_state_lock_ARRAY[dom_handle_root + dom_handle_variant_element] = 'OFF';
 
-                        self.log_activity('[lnum 6461] REMOVE dom_element_mouse_state_lock_ARRAY LOCK ON [' + '#' + dom_handle_root + dom_handle_variant_element + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        self.log_activity('[lnum 6468] REMOVE dom_element_mouse_state_lock_ARRAY LOCK ON [' + '#' + dom_handle_root + dom_handle_variant_element + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                     }
 
@@ -6472,7 +6479,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.launch_overlay_mit = function(){
 
-        this.log_activity('[lnum 6475] Launch MIT license programme.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 6482] Launch MIT license programme.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         this.crnrstn_overlay_mode = 'MIT';
 
@@ -6869,7 +6876,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 6872] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 6879] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -7542,7 +7549,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 7545] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 7552] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -7557,11 +7564,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var dom_handle_element = dom_handle_root + dom_handle_variant_element;
 
-        this.log_activity('[lnum 7560] element_id_split_ARRAY[0]=' + element_id_split_ARRAY[0] + '] element_id_split_ARRAY[1]=' + element_id_split_ARRAY[1] + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 7567] element_id_split_ARRAY[0]=' + element_id_split_ARRAY[0] + '] element_id_split_ARRAY[1]=' + element_id_split_ARRAY[1] + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         if(this.dom_element_mouse_state_lock_ARRAY[dom_handle_element] === 'undefined'){
 
-            alert('[lnum 7564] dom_element_mouse_state_lock_ARRAY is undefined at ' + dom_handle_element + ' for ' + element_id + '.');
+            alert('[lnum 7571] dom_element_mouse_state_lock_ARRAY is undefined at ' + dom_handle_element + ' for ' + element_id + '.');
 
         }else{
 
@@ -7572,9 +7579,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         this.dom_element_mouse_state_tracker_ARRAY[dom_handle_variant_element] = '_hvr';
                         this.dom_element_mouse_state_lock_ARRAY[dom_handle_element] = 'ON';
-                        this.log_activity('[lnum 7575] [ACTION=onmouseover on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7582] [ACTION=onmouseover on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
-                        this.log_activity('[lnum 7577] LOCK ON FOR [' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7584] LOCK ON FOR [' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         dom_handle_postfix = '_hvr';
 
@@ -7619,7 +7626,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         this.dom_element_mouse_state_tracker_ARRAY[dom_handle_variant_element] = '';
                         this.dom_element_mouse_state_ARRAY[dom_handle_element] = 'ON';
 
-                        this.log_activity('[lnum 7622] [ACTION=onmouseout on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 7629] [ACTION=onmouseout on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         this.primary_ui_interact_nav_state_shift(dom_handle_root, dom_handle_variant_element, dom_handle_postfix);
 
@@ -7657,7 +7664,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 //
                 // FIRE TRANSITION TO TARGET IMAGE WITHIN ACTIVE ELEMENT
                 var target_dom_handle = dom_handle_root + dom_handle_variant_element + dom_handle_postfix;
-                this.log_activity('[lnum 7660] [ACTION=' + ux_action + '] [target_dom_handle=' + target_dom_handle + '] CRNRSTN :: INTERACT UI (UX) ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 7667] [ACTION=' + ux_action + '] [target_dom_handle=' + target_dom_handle + '] CRNRSTN :: INTERACT UI (UX) ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             }
 
