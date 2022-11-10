@@ -291,68 +291,68 @@ class crnrstn_system_image_asset_manager {
     private function asset_data($asset_data_key, $width_override = NULL, $height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $output_mode = NULL){
 
         switch($asset_data_key){
-            case 'LIGHTBOX_CLOSE':
-
-                $tmp_filename = 'framework/lightbox/close';
-                $tmp_width = 27;
-                $tmp_height = 27;
-                $tmp_alt_text = 'close';
-                $tmp_title_text = 'close';
-                $tmp_link = '';
-                $tmp_target = '';
-                $tmp_asset_family = 'integrations';
-                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
-
-            break;
-            case 'LIGHTBOX_LOADING':
-
-                $tmp_filename = 'framework/lightbox/loading';
-                $tmp_width = 32;
-                $tmp_height = 32;
-                $tmp_alt_text = 'loading';
-                $tmp_title_text = 'loading';
-                $tmp_link = '';
-                $tmp_target = '';
-                $tmp_asset_family = 'integrations';
-                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
-
-            break;
-            case 'LIGHTBOX_NEXT':
-
-                $tmp_filename = 'framework/lightbox/next';
-                $tmp_width = 50;
-                $tmp_height = 45;
-                $tmp_alt_text = 'next';
-                $tmp_title_text = 'next';
-                $tmp_link = '';
-                $tmp_target = '';
-                $tmp_asset_family = 'integrations';
-                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
-
-            break;
-            case 'LIGHTBOX_PREV':
-
-                /*
-                array(
-                'framework/lightbox/close' => 'LIGHTBOX_CLOSE',
-                'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
-                'framework/lightbox/next' => 'LIGHTBOX_NEXT',
-                'framework/lightbox/prev' => 'LIGHTBOX_PREV'
-                );
-
-                */
-
-                $tmp_filename = 'framework/lightbox/prev';
-                $tmp_width = 50;
-                $tmp_height = 45;
-                $tmp_alt_text = 'prev';
-                $tmp_title_text = 'prev';
-                $tmp_link = '';
-                $tmp_target = '';
-                $tmp_asset_family = 'integrations';
-                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
-
-            break;
+//            case 'LIGHTBOX_CLOSE':
+//
+//                $tmp_filename = 'framework/lightbox/close';
+//                $tmp_width = 27;
+//                $tmp_height = 27;
+//                $tmp_alt_text = 'close';
+//                $tmp_title_text = 'close';
+//                $tmp_link = '';
+//                $tmp_target = '';
+//                $tmp_asset_family = 'integrations';
+//                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+//
+//            break;
+//            case 'LIGHTBOX_LOADING':
+//
+//                $tmp_filename = 'framework/lightbox/loading';
+//                $tmp_width = 32;
+//                $tmp_height = 32;
+//                $tmp_alt_text = 'loading';
+//                $tmp_title_text = 'loading';
+//                $tmp_link = '';
+//                $tmp_target = '';
+//                $tmp_asset_family = 'integrations';
+//                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+//
+//            break;
+//            case 'LIGHTBOX_NEXT':
+//
+//                $tmp_filename = 'framework/lightbox/next';
+//                $tmp_width = 50;
+//                $tmp_height = 45;
+//                $tmp_alt_text = 'next';
+//                $tmp_title_text = 'next';
+//                $tmp_link = '';
+//                $tmp_target = '';
+//                $tmp_asset_family = 'integrations';
+//                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+//
+//            break;
+//            case 'LIGHTBOX_PREV':
+//
+//                /*
+//                array(
+//                'framework/lightbox/close' => 'LIGHTBOX_CLOSE',
+//                'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
+//                'framework/lightbox/next' => 'LIGHTBOX_NEXT',
+//                'framework/lightbox/prev' => 'LIGHTBOX_PREV'
+//                );
+//
+//                */
+//
+//                $tmp_filename = 'framework/lightbox/prev';
+//                $tmp_width = 50;
+//                $tmp_height = 45;
+//                $tmp_alt_text = 'prev';
+//                $tmp_title_text = 'prev';
+//                $tmp_link = '';
+//                $tmp_target = '';
+//                $tmp_asset_family = 'integrations';
+//                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+//
+//            break;
             case 'BASSDRIVE_FAVICON':
 
                 $tmp_filename = 'favicon';
@@ -3315,6 +3315,28 @@ class crnrstn_system_image_asset_manager {
 
         }
 
+        if($output_mode == CRNRSTN_FILE_MANAGEMENT){
+
+            if(isset($tmp_filename) && $tmp_asset_family != 'integrations'){
+
+                $tmp_ARRAY = array();
+
+                $tmp_ARRAY['filename'] = $tmp_filename;
+                $tmp_ARRAY['width'] = $tmp_width;
+                $tmp_ARRAY['height'] = $tmp_height;
+                $tmp_ARRAY['alt_text'] = $tmp_alt_text;
+                $tmp_ARRAY['title_text'] = $tmp_title_text;
+                $tmp_ARRAY['link'] = $tmp_link;
+                $tmp_ARRAY['target'] = $tmp_target;
+
+                return $tmp_ARRAY;
+
+            }
+
+            return false;
+
+        }
+
         if(isset($output_mode)){
 
             self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = $output_mode;
@@ -5450,9 +5472,10 @@ class crnrstn_system_image_asset_manager {
         $tmp_title_text = 'CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: J5 Wolf Pup';
         $tmp_link = '';
         $tmp_target = '';
+
         */
 
-        return $this->return_creative($data_key, NULL, NULL);
+        return $this->return_creative($data_key, CRNRSTN_FILE_MANAGEMENT, NULL);
 
     }
 
@@ -6114,6 +6137,7 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
 
         $tmp_original_file_extension_clean = '';
         self::$request_salt = $this->oCRNRSTN->generate_new_key(26);
+        error_log(__LINE__. ' asset mgr $data_key[' . $data_key . '].');
 
         if(isset($data_key)){
 
@@ -6122,7 +6146,6 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_sa
             // IS THIS A SYSTEM KEY
             $tmp_system_data_profile_ARRAY = $this->return_creative_profile($data_key);
 
-            error_log(__LINE__. ' asset mgr $data_key[' . $data_key . ']. $tmp_system_data_profile_ARRAY[' . print_r($tmp_system_data_profile_ARRAYv, true) . '].');
             if(is_array($tmp_system_data_profile_ARRAY)){
 
                 /*

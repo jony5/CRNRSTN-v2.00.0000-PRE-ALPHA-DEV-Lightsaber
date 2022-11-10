@@ -5946,7 +5946,11 @@ class crnrstn_environment {
 
                 }
 
+                //$this->oCRNRSTN->error_log('$tmp_filename[' . $tmp_filename . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+
                 if($tmp_oMEDIA_CONVERTOR->system_base64_synchronize($tmp_filename)){
+
+                    //$this->oCRNRSTN->error_log('SUCCESS. $tmp_filename[' . $tmp_filename . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                     //$this->oCRNRSTN->print_r('Processed image: [' . $tmp_filename . '].', 'Image Processing.', NULL, __LINE__, __METHOD__, __FILE__);
                     $tmp_processed_filename_ARRAY[] = $tmp_filename;
