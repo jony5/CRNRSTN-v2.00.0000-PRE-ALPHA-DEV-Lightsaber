@@ -1008,7 +1008,8 @@ class crnrstn_content_generator {
 
                                 //
                                 // EXAMPLE OUTPUT
-                                $html_out .= '<div class="crnrstn_example_output_title">' . $val['title_string'].' Output :: </div>';
+
+                                $html_out .= '<div class="crnrstn_example_title_wrapper"><div class="crnrstn_example_title">' . $val['title_string'] . ' Output ::</div></div>';
                                 $html_out .= $this->retrieve_code_example_output_html($val['exec_file']);
 
                             break;
@@ -1645,9 +1646,7 @@ class crnrstn_content_generator {
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
-                                
-                                <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
-    
+                                <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>    
                             </div>
                         </div>
                     </div>
@@ -1661,7 +1660,7 @@ class crnrstn_content_generator {
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                             
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
                             
                                     </div>
                                     
@@ -1670,7 +1669,7 @@ class crnrstn_content_generator {
                                     </div>
                                     
                                     <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
                                     </div>
                                 
                                 </div>
@@ -1926,8 +1925,8 @@ class crnrstn_content_generator {
                                 $tmp_example_test_out = '';
                                 if($val['exec_file'] != ''){
 
-                                    $tmp_example_test_out .= '<div class="crnrstn_example_output_title">' . $val['title_string'].' Output :: </div>';
-                                    $tmp_example_test_out .= '<div>' . $this->retrieve_code_example_output_html($val['exec_file']) . '</div>';
+                                    $tmp_example_test_out .= '<div class="crnrstn_documentation_dyn_content_title"><h2>' . $val['title_string'] . ' Output</h2></div>';
+                                    $tmp_example_test_out .= '<div class="crnrstn_documentation_example_output">' . $this->retrieve_code_example_output_html($val['exec_file']) . '</div>';
 
                                 }
 
@@ -1940,8 +1939,7 @@ class crnrstn_content_generator {
                             <div class="crnrstn_hidden_void">
                                 <div class="crnrstn_documentation_dyn_content_title"><h2>' . $val['title_string'] . '</h2></div>
                                 <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
-                                ' . $tmp_example_test_out . '
-                                
+                                <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test_out . '</div>
                             </div>
                         </div>
                     </div>
@@ -2041,7 +2039,10 @@ class crnrstn_content_generator {
 
     public function retrieve_code_example_html($filepath){
 
-        $filepath = $this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . $filepath;
+        $tmp_path_dir = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+        $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+
+        $filepath = $tmp_path_dir . DIRECTORY_SEPARATOR . $tmp_system_directory . $filepath;
 
         return file_get_contents($filepath);
 
@@ -2049,19 +2050,24 @@ class crnrstn_content_generator {
 
     public function retrieve_code_example_output_html($filepath){
 
-        if($filepath!=''){
-	        $filepath = $this->oCRNRSTN->crnrstn_http_endpoint() . $filepath;
+        if($filepath != ''){
+
+            $tmp_path_dir = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+            $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+
+            $filepath = $tmp_path_dir . DIRECTORY_SEPARATOR . $tmp_system_directory . $filepath;
 
             $tmp_html_out = '';
 
-            $tmp_html_out .= '<div class="crnrstn_code_output_wrapper">
-            <div class="crnrstn_code_output_copy">';
+            $tmp_html_out .= '<div class="crnrstn_documentation_dyn_content_example">';
 
+            if(is_file($filepath)){
 
-            include($filepath);
+                include($filepath);
 
+            }
 
-            $tmp_html_out .= '</div>
+            $tmp_html_out .= '
     </div>';
 
             return $tmp_html_out;

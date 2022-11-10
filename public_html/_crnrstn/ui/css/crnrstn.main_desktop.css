@@ -76,13 +76,15 @@
 .crnrstn_documentation_dyn_content_title h1                 { font-size: 45px; overflow-wrap: break-word; }
 .crnrstn_documentation_dyn_content_title h2                 { font-size: 35px; margin-bottom:0;}
 .crnrstn_documentation_dyn_content_title h3                 { font-size: 25px; margin-bottom:0;}
-.crnrstn_documentation_dyn_content_description              { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
+.crnrstn_documentation_dyn_content_description              { width: 98%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_description p            { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_documentation_dyn_content_example                  { width: 98%; padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
+.crnrstn_documentation_example_output                       { padding: 20px 10px 20px 10px;}
 .crnrstn_documentation_dyn_content_method_definition        { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: "Courier New", Courier, monospace; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_method_definition p      { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_documentation_dyn_content_related_methods          { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: "Courier New", Courier, monospace; color:#333; line-height: 33px;}
 .crnrstn_documentation_method_data_type                     { color: #58af3a; }
+.crnrstn_documentation_method_data_system_val               { color: #f58a04; }
 .crnrstn_documentation_param_shell                          { padding: 0 0 20px 0; color:#333; }
 .crnrstn_documentation_param_name_shell                     { padding: 0; margin: 0;}
 .crnrstn_documentation_param_name                           { font-weight: bold; }
@@ -92,6 +94,16 @@
 .crnrstn_documentation_param_definition_shell p             { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_documentation_related_method                       { padding: 0 0 5px 0; }
 .crnrstn_documentation_related_method a                     { text-decoration: none; color:#0066CC; }
+.crnrstn_predefined_constant_demo_shell                     { padding: 0 0 70px 0;}
+.crnrstn_predefined_constant_title h2                       { font-size: 25px; font-weight: bold; margin-bottom:0; line-height: 55px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+.crnrstn_predefined_constant_title_description              { font-size: 16px; line-height: 25px; font-weight: normal; padding: 0 0 10px 0; }
+.crnrstn_predefined_constant_content                        { padding: 10px 0 0 0;}
+
+.crnrstn_predefined_constant_demo_name                      { width: 64%; float: left; font-size: 18px; font-weight: bold; padding: 0; margin:0; line-height: 24px; overflow-wrap: break-word; }
+.crnrstn_predefined_constant_demo_icon_wrapper              { width: 30%; float: left; }
+.crnrstn_predefined_constant_demo_icon                      { float: left; padding: 10px;}
+.crnrstn_predefined_constant_demo_about                     { font-size: 13px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; }
+.crnrstn_predefined_constant_demo_about p                   { padding: 0; margin:0; background-color: #FFF; }
 
 .crnrstn_documentation_dyn_content_note_copy                { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_note_copy p              { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
@@ -106,7 +118,7 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 
 .crnrstn_documentation_dyn_content_module_wrap_s3           { width: 100%; padding: 0 0 19px 0; }
 .crnrstn_documentation_dyn_content_module_wrap_s2_outter    { overflow: hidden; border: 3px solid #FEFEFE; }
-.crnrstn_documentation_dyn_content_module_wrap_s2_inner     { overflow: hidden; border: 1px solid #A5B9D8; }
+.crnrstn_documentation_dyn_content_module_wrap_s2_inner     { overflow: hidden; border: 1px solid #A5B9D8; background-color: #FFF; }
 .crnrstn_documentation_dyn_content_module_wrap_s1_rel       { position: relative; padding: 2px 0 2px 0;}
 
 .crnrstn_documentation_dyn_content_module_wrap_s1           { width: 100%; position: absolute; z-index: 4; top:0; left:0;}

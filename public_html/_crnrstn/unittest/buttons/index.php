@@ -391,16 +391,16 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
         echo '<div style="font-weight: bold; font-size: 20px;">Web ::</div><div class="crnrstn_cb"></div>';
         echo 'Here is the sticky link: <a href="' . $oCRNRSTN->return_sticky_link('https://soundcloud.com/jonathan-harris-772368100','soundcloud_social_media_lnk').'" target="_blank">click here</a>';
-        echo '<div class="crnrstn_cb"></div>Here is the small (26px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100');
-        echo '<div class="crnrstn_cb"></div>Here is the medium (50px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100');
-        echo '<div class="crnrstn_cb"></div>Here is the large (76px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100');
+        echo '<div class="crnrstn_cb"></div>Here is the small (26px height) social media sticky link: ' . $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100');
+        echo '<div class="crnrstn_cb"></div>Here is the medium (50px height) social media sticky link: ' . $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100');
+        echo '<div class="crnrstn_cb"></div>Here is the large (76px height) social media sticky link: ' . $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100');
 
         echo '<div class="crnrstn_cb_30"></div>';
 
         echo '<div style="font-weight: bold; font-size: 20px;">Email ::</div><div class="crnrstn_cb"></div>';
-        echo 'Here is the small (26px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
-        echo '<div class="crnrstn_cb"></div>Here is the medium (50px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
-        echo '<div class="crnrstn_cb"></div>Here is the large (76px height) social media sticky link: ' . $oCRNRSTN->return_sticky_icon_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo 'Here is the small (26px height) social media sticky link: ' . $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo '<div class="crnrstn_cb"></div>Here is the medium (50px height) social media sticky link: ' . $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo '<div class="crnrstn_cb"></div>Here is the large (76px height) social media sticky link: ' . $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
 
         echo '<div class="crnrstn_cb_10"></div>';
 

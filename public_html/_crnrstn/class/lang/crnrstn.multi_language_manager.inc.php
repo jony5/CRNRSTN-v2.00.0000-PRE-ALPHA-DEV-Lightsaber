@@ -3081,7 +3081,7 @@ class crnrstn_multi_language_manager {
                         return 'Tekniske spesifikasjoner';
 
                     break;
-                    case 'en':
+                    //case 'en':
                     case 'el':
 
                         return 'Τεχνικές προδιαγραφές';
@@ -3103,7 +3103,7 @@ class crnrstn_multi_language_manager {
                     case 'es':
 
                     break;
-                    case 'en':
+                    //case 'en':
                     case 'cn':
 
                         return '示例';
@@ -3111,7 +3111,7 @@ class crnrstn_multi_language_manager {
                     default:
 
                         //case 'en':
-                        return 'Note';
+                        return 'Example';
 
                     break;
 
@@ -3124,7 +3124,7 @@ class crnrstn_multi_language_manager {
                     case 'es':
 
                     break;
-                    case 'en':
+                    //case 'en':
                     case 'ko':
 
                         return '메모';

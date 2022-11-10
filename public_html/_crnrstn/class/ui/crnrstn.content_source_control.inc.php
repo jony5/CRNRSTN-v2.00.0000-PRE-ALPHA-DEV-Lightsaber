@@ -76,10 +76,159 @@ class crnrstn_content_source_controller {
 	public function load_page(){
 
         $return_true_str = 'This function always returns TRUE.';
+        $tmp_path = '';
 
         try{
 
             switch($this->module_key){
+                case 'return_sticky_media_link':
+
+                    //
+                    // return_sticky_media_link($media_element_key, $url = NULL, $target = '_blank', $email_channel = false)
+                    
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns a small (25px), medium (50px), or large (75px) 
+                    image than can be sticky linked to a provided url. When $email_channel is true, a single media 
+                    image that is wrapped in a sticky linked anchor tag will be returned. When $email_channel is 
+                    false, an image sprite will be used in place of the single image.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = 'return_sticky_media_link(<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $media_element_key,<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $url = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $target = \'_blank\', <br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $email_channel = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">string|HTML OUTPUT</span>';
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // PARAMETER DEFINITION
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$media_element_key';
+                    $tmp_param_def[0]['param_definition'] = 'A predefined (string) constant for the desired small (25 pixels in height), medium (50 pixels in height) or large (75 pixels in height) trademark logo, icon, or wordmark.';
+                    $tmp_param_def[0]['param_required'] = true;
+
+                    $tmp_param_def[1]['param_name'] = '$url';
+                    $tmp_param_def[1]['param_definition'] = 'The link that is to be made sticky.';
+                    $tmp_param_def[1]['param_required'] = false;
+
+                    $tmp_param_def[2]['param_name'] = '$target';
+                    $tmp_param_def[2]['param_definition'] = 'Where to display the linked URL. E.g. _self, _blank, _parent, or _top.';
+                    $tmp_param_def[2]['param_required'] = false;
+
+                    $tmp_param_def[3]['param_name'] = '$email_channel';
+                    $tmp_param_def[3]['param_definition'] = 'Determines whether the returned and sticky linked HTML 
+                    needs to work correctly within a multipart HTML email message. The default value, false, will employ 
+                    a sticky linked image sprite. Passing true will return HTML having a traditional anchor tag 
+                    linked media image.';
+                    $tmp_param_def[3]['param_required'] = false;
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // RETURN VALUE
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'HTML OUTPUT.');
+
+                    // public_html/_crnrstn/ui/docs/documentation/php//index.php
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG');
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/return_sticky_media_link/examples/return_sticky_media_link_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/return_sticky_media_link/examples/return_sticky_media_link_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+//                    //
+//                    // NOTE
+//                    $tmp_note_array = array();
+//                    $tmp_note_array['NOTE_COPY'] = 'Velit HELLO [' . __LINE__ . '] NOTE_COPY! euismod in pellentesque massa placerat duis ultricies lacus sed. Hac habitasse platea dictumst quisque sagittis purus sit. Ipsum nunc aliquet bibendum enim facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Eros in cursus turpis massa tincidunt dui ut ornare lectus. A lacus vestibulum sed arcu non. Pellentesque nec nam aliquam sem et tortor consequat.';
+//                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE', $tmp_note_array);
+
+                    //
+                    // TECH SPECS
+                    $tmp_spec_array = array();
+                    $tmp_spec_array[0] = 'Currently tested on Ubuntu 18.04.1 LTS running Apache v2.4.29, MySQLi v5.0.12, php v7.0.33, OpenSSL v1.1.1, and NuSOAP v0.9.5.';
+                    $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS', $tmp_spec_array);
+
+//                    //
+//                    // GENERAL COPY DEMOS
+//                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_NAKED', 'Scelerisque HELLO [' . __LINE__ . '] GENERAL_COPY_NAKED! eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. At augue eget arcu dictum. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Donec enim diam vulputate ut pharetra sit amet. Pulvinar neque laoreet suspendisse interdum. Dolor sed viverra ipsum nunc. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Lectus mauris ultrices eros in cursus turpis massa. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Consectetur adipiscing elit ut aliquam purus sit.');
+
+                    $tmp_predefined_constants_html = '<div class="crnrstn_predefined_constant_title"><h2>Media Image Links Predefined (String) Constants ::</h2></div>';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title_description"><p>The string constants below are derived from (and hence are always available as) part of the core of the C<span class="the_R_in_crnrstn">R</span>NRSTN :: ASSET MAPPING architecture.
+</p></div>';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_content">
+';
+
+                    /*
+                    $tmp_ARRAY[$str_constant]['alt_text'] = $tmp_alt_text;
+                    $tmp_ARRAY[$str_constant]['title_text'] = $tmp_title_text;
+
+                    return $tmp_ARRAY;
+                    */
+
+                    foreach($this->oCRNRSTN->asset_routing_data_key_lookup_ARRAY['social'] as $key => $str_constant){
+
+                        $string_constant_is_valid = true;
+
+                        $pos_HQ_chars = strpos($str_constant,'_HQ');
+                        $pos_SPRITE_chars = strpos($str_constant,'SPRITE');
+
+                        if($pos_HQ_chars !== false || $pos_SPRITE_chars !== false){
+
+                            $string_constant_is_valid = false;
+
+                        }
+
+                        if($string_constant_is_valid){
+
+                            $tmp_ARRAY = $this->oCRNRSTN->return_system_image($str_constant, '', '', '', '', '', '', CRNRSTN_RESOURCE_DOCUMENTATION);
+
+                            $str_constant_trimmed = $this->oCRNRSTN->proper_replace('SOCIAL_', '', $str_constant);
+
+                            $demo_media_constant = $str_constant_trimmed . '_LARGE';
+
+                            if($str_constant_trimmed == 'BLUEHOST_WORDMARK'){
+
+                                $demo_media_constant = $str_constant_trimmed . '_MEDIUM';
+
+                            }
+
+                            $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_demo_shell">
+                        <div class="crnrstn_predefined_constant_demo_name">' . $str_constant_trimmed . '_SMALL<br>' . $str_constant_trimmed . '_MEDIUM<br>' . $str_constant_trimmed . '_LARGE</div>
+                        <div class="crnrstn_predefined_constant_demo_icon_wrapper">
+                            <div class="crnrstn_predefined_constant_demo_icon">' . $this->oCRNRSTN->return_sticky_media_link($demo_media_constant) . '</div>
+                            <div class="crnrstn_cb_5"></div>
+                            <div class="crnrstn_predefined_constant_demo_about"><p>' . $demo_media_constant . '</p></div>
+                            <div class="crnrstn_predefined_constant_demo_about"><p>' . $tmp_ARRAY[$str_constant]['title_text'] . '</p></div>
+                        
+                        </div>
+                        <div class="crnrstn_cb_5"></div>
+                        </div>';
+
+                        }
+
+                    }
+
+                    $tmp_predefined_constants_html .= '</div>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', $tmp_predefined_constants_html);
+
+//                    //
+//                    // RELATED METHODS
+//                    $tmp_related_array = array();
+//                    $tmp_related_array[0] = 'print_r';
+//                    $tmp_related_array[1] = 'print_r_str';
+//                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
+
+                break;
                 case 'add_system_resource':
                     /*
                     public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $data_index = NULL, $env_key = NULL, $default_ttl = 60){
@@ -311,7 +460,7 @@ class crnrstn_content_source_controller {
 
                 case 'return_system_image':
                     /*
-                    public function return_system_image($creative_element_key, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $width = NULL, $image_output_mode = NULL){
+                    public function return_system_image($media_element_key, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $width = NULL, $image_output_mode = NULL){
 
                     */
 
@@ -408,7 +557,7 @@ class crnrstn_content_source_controller {
                     // EXAMPLE
                     $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
                     $tmp_example_title_integrated = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG');
-                    $tmp_example_presentation_file = '/_crnrstn/ui/docs/documentation/php/error_log/examples/error_log_show.php';
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/error_log/examples/error_log_show.php';
                     $tmp_example_execute_file = '';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
 

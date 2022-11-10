@@ -5964,9 +5964,9 @@ class crnrstn_environment {
 
     }
 
-    public function return_creative($creative_element_key, $image_output_mode = NULL){
+    public function return_creative($media_element_key, $image_output_mode = NULL){
 
-        return $this->oCRNRSTN_ASSET_MGR->return_creative($creative_element_key, $image_output_mode);
+        return $this->oCRNRSTN_ASSET_MGR->return_creative($media_element_key, $image_output_mode);
 
     }
 

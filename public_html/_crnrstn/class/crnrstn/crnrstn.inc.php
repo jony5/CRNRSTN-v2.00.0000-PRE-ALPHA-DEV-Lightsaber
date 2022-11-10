@@ -75,7 +75,7 @@ class crnrstn {
     private static $lang_content_ARRAY = array();
     private static $sys_logging_profile_ARRAY = array();
     private static $sys_logging_meta_ARRAY = array();
-    protected $asset_routing_data_key_lookup_ARRAY = array();
+    public $asset_routing_data_key_lookup_ARRAY = array();
 
     private static $crnrstn_session_salt;
     protected $env_key;
@@ -1180,15 +1180,15 @@ class crnrstn {
 
     }
 
-    public function return_sticky_icon_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false){
+    public function return_sticky_media_link($media_element_key, $url = NULL, $target = '_blank', $email_channel = false){
 
-        return $this->oCRNRSTN_USR->return_sticky_icon_link($creative_element_key, $url, $target, $email_channel);
+        return $this->oCRNRSTN_USR->return_sticky_media_link($media_element_key, $url, $target, $email_channel);
 
     }
 
-    public function return_sticky_text_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false){
+    public function return_sticky_text_link($media_element_key, $url = NULL, $target = '_blank', $email_channel = false){
 
-        //return $this->oCRNRSTN_USR->return_sticky_text_link($creative_element_key, $url = NULL, $target = '_blank', $email_channel = false);
+        //return $this->oCRNRSTN_USR->return_sticky_text_link($media_element_key, $url = NULL, $target = '_blank', $email_channel = false);
 
     }
 
@@ -3145,7 +3145,7 @@ class crnrstn {
 //            'SOCIAL_FEEDBURNER', 'SOCIAL_FEEDBURNER_HQ', 'SOCIAL_FLICKR', 'SOCIAL_FLICKR_HQ', 'SOCIAL_GITHUB',
 //            'SOCIAL_GITHUB_HQ', 'SOCIAL_GOOGLE_DRIVE', 'SOCIAL_GOOGLE_DRIVE_HQ', 'SOCIAL_GOOGLE_MAPS',
 //            'SOCIAL_GOOGLE_MAPS_HQ', 'SOCIAL_GOOGLE_MAPS_SQUARE', 'SOCIAL_GOOGLE_MAPS_SQUARE_HQ', 'SOCIAL_HISTORY',
-//            'SOCIAL_HISTORY_HQ', 'SOCIAL_IDE1', 'SOCIAL_IDE1_HQ', 'SOCIAL_INSTAGRAM', 'SOCIAL_INSTAGRAM_HQ',
+//            'SOCIAL_HISTORY_HQ', 'SOCIAL_IDEONE', 'SOCIAL_IDEONE_HQ', 'SOCIAL_INSTAGRAM', 'SOCIAL_INSTAGRAM_HQ',
 //            'SOCIAL_INTERNET_ARCHIVE', 'SOCIAL_INTERNET_ARCHIVE_HQ', 'SOCIAL_JSON', 'SOCIAL_JSON_HQ', 'SOCIAL_KINK',
 //            'SOCIAL_KINK_HQ', 'SOCIAL_LAST_FM', 'SOCIAL_LAST_FM_HQ', 'SOCIAL_LINKEDIN', 'SOCIAL_LINKEDIN_HQ',
 //            'SOCIAL_MICROSOFT', 'SOCIAL_MICROSOFT_HQ', 'SOCIAL_MIXCLOUD', 'SOCIAL_MIXCLOUD_HQ',
@@ -3166,12 +3166,12 @@ class crnrstn {
 //        $this->asset_routing_data_key_lookup_ARRAY['social-meta-key'] = $tmp_ARRAY;
 
         $tmp_ARRAY  = array('amazon_icon' => 'SOCIAL_AMAZON', 'amazon_icon_hq' => 'SOCIAL_AMAZON_HQ',
-            'apple_logo_blk' => 'SOCIAL_APPLE_LOGO_BLK', 'apple_logo_blk_hq' => 'SOCIAL_APPLE_LOGO_BLK_HQ',
+            'apple_logo_blk' => 'SOCIAL_APPLE_LOGO_BLK', 'apple_logo_wht' => 'SOCIAL_APPLE_LOGO_WHT', 'apple_logo_blk_hq' => 'SOCIAL_APPLE_LOGO_BLK_HQ',
             'apple_logo_blk_wht_circle' => 'SOCIAL_APPLE_LOGO_BLK_WHT_CIRCLE', 'apple_logo_blk_wht_circle_hq' => 'SOCIAL_APPLE_LOGO_BLK_WHT_CIRCLE_HQ',
             'apple_logo_grey' => 'SOCIAL_APPLE_LOGO_GREY', 'apple_logo_grey_blk_circle' => 'SOCIAL_APPLE_LOGO_GREY_BLK_CIRCLE',
             'apple_logo_grey_blk_circle_hq' => 'SOCIAL_APPLE_LOGO_GREY_BLK_CIRCLE_HQ', 'apple_logo_grey_hq' => 'SOCIAL_APPLE_LOGO_GREY_HQ',
             'apple_logo_grey_wht_circle' => 'SOCIAL_APPLE_LOGO_GREY_WHT_CIRCLE', 'apple_logo_grey_wht_circle_hq' => 'SOCIAL_APPLE_LOGO_GREY_WHT_CIRCLE_HQ',
-            'apple_logo_wht' => 'SOCIAL_APPLE_LOGO_WHT', 'apple_logo_wht_blk_circle' => 'SOCIAL_APPLE_LOGO_WHT_BLK_CIRCLE',
+             'apple_logo_wht_blk_circle' => 'SOCIAL_APPLE_LOGO_WHT_BLK_CIRCLE',
             'apple_logo_wht_blk_circle_hq' => 'SOCIAL_APPLE_LOGO_WHT_BLK_CIRCLE_HQ', 'apple_logo_wht_hq' => 'SOCIAL_APPLE_LOGO_WHT_HQ',
             'apple_music' => 'SOCIAL_APPLE_MUSIC', 'apple_music_hq' => 'SOCIAL_APPLE_MUSIC_HQ', 'archives' => 'SOCIAL_ARCHIVES',
             'archives_hq' => 'SOCIAL_ARCHIVES_HQ', 'bandcamp' => 'SOCIAL_BANDCAMP', 'bandcamp_hq' => 'SOCIAL_BANDCAMP_HQ',
@@ -3185,7 +3185,7 @@ class crnrstn {
             'google_drive' => 'SOCIAL_GOOGLE_DRIVE', 'google_drive_hq' => 'SOCIAL_GOOGLE_DRIVE_HQ', 'google_maps' => 'SOCIAL_GOOGLE_MAPS',
             'google_maps_hq' => 'SOCIAL_GOOGLE_MAPS_HQ', 'google_maps_square' => 'SOCIAL_GOOGLE_MAPS_SQUARE',
             'google_maps_square_hq' => 'SOCIAL_GOOGLE_MAPS_SQUARE_HQ', 'history' => 'SOCIAL_HISTORY', 'history_hq' => 'SOCIAL_HISTORY_HQ',
-            'ide1_icon' => 'SOCIAL_IDE1', 'ide1_icon_hq' => 'SOCIAL_IDE1_HQ', 'instagram' => 'SOCIAL_INSTAGRAM', 'instagram_hq' => 'SOCIAL_INSTAGRAM_HQ',
+            'ide1_icon' => 'SOCIAL_IDEONE', 'ide1_icon_hq' => 'SOCIAL_IDEONE_HQ', 'instagram' => 'SOCIAL_INSTAGRAM', 'instagram_hq' => 'SOCIAL_INSTAGRAM_HQ',
             'internet_archive' => 'SOCIAL_INTERNET_ARCHIVE', 'internet_archive_hq' => 'SOCIAL_INTERNET_ARCHIVE_HQ', 'json' => 'SOCIAL_JSON',
             'json_hq' => 'SOCIAL_JSON_HQ', 'kink' => 'SOCIAL_KINK', 'kink_hq' => 'SOCIAL_KINK_HQ', 'last_fm' => 'SOCIAL_LAST_FM', 'last_fm_hq' => 'SOCIAL_LAST_FM_HQ',
             'linkedin' => 'SOCIAL_LINKEDIN', 'linkedin_hq' => 'SOCIAL_LINKEDIN_HQ', 'microsoft_icon' => 'SOCIAL_MICROSOFT',
@@ -3211,6 +3211,8 @@ class crnrstn {
             'youtube' => 'SOCIAL_YOUTUBE', 'youtube_hq' => 'SOCIAL_YOUTUBE_HQ');
 
         $this->asset_routing_data_key_lookup_ARRAY['social'] = $tmp_ARRAY;
+
+
 
 //        $tmp_ARRAY = array('5' => '5', 'apache_feather_logo'=> 'apache_feather_logo', 'crnrstn_R_lg' => 'crnrstn_R_lg', 'crnrstn_R_md' => 'crnrstn_R_md', 'crnrstn_R_md_plus_wall' => 'crnrstn_R_md_plus_wall',
 //            'crnrstn_R_sm' => 'crnrstn_R_sm', 'crnrstn_css_validator_logo_smedia' => 'crnrstn_css_validator_logo_smedia', 'crnrstn_logo_lg' => 'crnrstn_logo_lg', 'crnrstn_logo_md' => 'crnrstn_logo_md',
@@ -3333,6 +3335,64 @@ class crnrstn {
         $tmp_ARRAY = array('framework/lightbox/close' => 'LIGHTBOX_CLOSE', 'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
             'framework/lightbox/next' => 'LIGHTBOX_NEXT', 'framework/lightbox/prev' => 'LIGHTBOX_PREV');
         $this->asset_routing_data_key_lookup_ARRAY['integrations'] = $tmp_ARRAY;
+
+    }
+
+    public function tmp_restrict_this_image_sprite_media_constant($social_media_constant){
+
+        $tmp_ARRAY  = array('AMAZON' => 'INACTIVE', 'APPLE_LOGO_BLK' => 'INACTIVE', 'APPLE_LOGO_WHT' => 'INACTIVE', 'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY' => 'INACTIVE',
+            'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE',  'APPLE_LOGO_WHT_BLK_CIRCLE' => 'INACTIVE',
+            'APPLE_MUSIC' => 'INACTIVE', 'ARCHIVES' => 'INACTIVE', 'BANDCAMP' => 'INACTIVE', 'BASSDRIVE' => 'INACTIVE', 'BEATPORT' => 'INACTIVE', 'BLOGSPOT' => 'INACTIVE', 'BLUEHOST_ICON' => 'INACTIVE',
+            'BLUEHOST_WORDMARK' => 'INACTIVE', 'DISCOGS' => 'INACTIVE', 'EBAY' => 'INACTIVE', 'ETSY' => 'INACTIVE', 'FACEBOOK' => 'INACTIVE', 'FEEDBURNER' => 'INACTIVE', 'FLICKR' => 'INACTIVE', 'GITHUB' => 'INACTIVE',
+            'GOOGLE_DRIVE' => 'INACTIVE', 'GOOGLE_MAPS' => 'INACTIVE', 'GOOGLE_MAPS_SQUARE' => 'INACTIVE', 'HISTORY' => 'INACTIVE', 'IDEONE' => 'INACTIVE', 'INSTAGRAM' => 'INACTIVE', 'INTERNET_ARCHIVE' => 'INACTIVE',
+            'JSON' => 'INACTIVE', 'KINK' => 'INACTIVE', 'LAST_FM' => 'INACTIVE', 'LINKEDIN' => 'INACTIVE', 'MICROSOFT' => 'INACTIVE',  'MIXCLOUD' => 'INACTIVE', 'MOZILLA_ICON' => 'INACTIVE', 'MOZILLA_WORDMARK' => 'INACTIVE',
+            'PANDORA' => 'INACTIVE', 'PATREON' => 'INACTIVE', 'PAYPAL' => 'INACTIVE', 'PHP' => 'INACTIVE', 'PINTEREST' => 'INACTIVE', 'PORNHUB' => 'INACTIVE', 'REDDIT' => 'INACTIVE', 'ROLLDABEATS' => 'INACTIVE', 'SERVER_FAULT' => 'INACTIVE',
+            'SLASHDOT_ICON' => 'INACTIVE', 'SLASHDOT_WORDMARK' => 'INACTIVE', 'SPOTIFY' => 'INACTIVE', 'SPRITE' => 'INACTIVE', 'STACKOVERFLOW' => 'INACTIVE', 'TWITCH' => 'INACTIVE',
+            'TWITTER' => 'INACTIVE', 'VIMEO_BLUE_ICON' => 'INACTIVE',  'VIMEO_BLUE_WORDMARK' => 'INACTIVE', 'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE', 'W3C' => 'INACTIVE', 'WIKIPEDIA' => 'INACTIVE',
+            'WWW' => 'INACTIVE', 'XHAMSTER_ICON' => 'INACTIVE', 'XHAMSTER_WORDMARK' => 'INACTIVE', 'XNXX' => 'INACTIVE', 'XVIDEOS' => 'INACTIVE', 'YOUTUBE');
+
+        /*
+        REMOVED
+        'SOUNDCLOUD' => 'INACTIVE'
+
+
+        */
+
+        if(isset($tmp_ARRAY[$social_media_constant])){
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
+    public function tmp_restrict_this_lorem_ipsum_method($method){
+
+        $tmp_ARRAY = array('add_system_resource' => 'DISABLED', 'config_add_administration' => 'DISABLED',
+            'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED', 'config_add_seo_analytics' => 'DISABLED',
+            'config_add_seo_engagement' => 'DISABLED', 'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
+            'config_grant_exclusive_access' => 'DISABLED', 'config_include_encryption' => 'DISABLED',
+            'config_include_seo_analytics' => 'DISABLED', 'config_include_seo_engagement' => 'DISABLED',
+            'config_include_system_resources' => 'DISABLED', 'config_include_wordpress' => 'DISABLED',
+            'config_init_images_http_dir' => 'DISABLED', 'config_init_images_transport_mode' => 'DISABLED',
+            'config_init_logging' => 'DISABLED', 'error_log' => 'DISABLED', 'form_hidden_input_add' => 'DISABLED',
+            'form_input_add' => 'DISABLED', 'form_input_feedback_copy_add' => 'DISABLED',
+            'form_integration_html_packet_output' => 'DISABLED', 'form_response_add' => 'DISABLED', 'get_resource' => 'DISABLED',
+            'grant_permissions_fwrite' => 'DISABLED', 'ini_set' => 'DISABLED', 'is_configured' => 'DISABLED',
+            'print_r' => 'DISABLED', 'print_r_str' => 'DISABLED', 'return_system_image' => 'DISABLED',
+            'return_youtube_embed' => 'DISABLED', 'set_crnrstn_as_err_handler' => 'DISABLED', 'set_max_login_attempts' => 'DISABLED',
+            'set_timeout_user_inactive' => 'DISABLED', 'set_timezone_default' => 'DISABLED', 'set_ui_theme_style' => 'DISABLED'
+            );
+
+        if(isset($tmp_ARRAY[$method])){
+
+            return true;
+
+        }
+
+        return false;
 
     }
 
@@ -7695,15 +7755,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_system_image($creative_element_key, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $image_output_mode = NULL){
+    public function return_system_image($media_element_key, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $image_output_mode = NULL){
 
-        return $this->oCRNRSTN_ASSET_MGR->return_system_image($creative_element_key, $width, $height, $hyperlink, $alt, $title, $target, $image_output_mode);
+        return $this->oCRNRSTN_ASSET_MGR->return_system_image($media_element_key, $width, $height, $hyperlink, $alt, $title, $target, $image_output_mode);
 
     }
 
-    public function return_creative($creative_element_key, $image_output_mode = NULL, $creative_mode = NULL){
+    public function return_creative($media_element_key, $image_output_mode = NULL, $creative_mode = NULL){
 
-        return $this->oCRNRSTN_ASSET_MGR->return_creative($creative_element_key, $image_output_mode, $creative_mode);
+        return $this->oCRNRSTN_ASSET_MGR->return_creative($media_element_key, $image_output_mode, $creative_mode);
 
     }
 

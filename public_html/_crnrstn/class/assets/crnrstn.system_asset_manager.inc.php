@@ -124,7 +124,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    public function return_creative($creative_element_key, $output_mode_override = NULL, $asset_mode_override = NULL){
+    public function return_creative($media_element_key, $output_mode_override = NULL, $asset_mode_override = NULL){
 
         $height_override = $link_override = $alt_override = $title_override = $target_override = $width_override = NULL;
 
@@ -144,7 +144,7 @@ class crnrstn_system_image_asset_manager {
 
             if($asset_mode_override === CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL){
 
-                return '{' . $creative_element_key . '::SOAP_TUNNEL}';
+                return '{' . $media_element_key . '::SOAP_TUNNEL}';
 
             }
 
@@ -154,8 +154,8 @@ class crnrstn_system_image_asset_manager {
         // LAST USE :: Saturday August 6, 2022 @ 1805 hrs
         // LAST USE :: Wednesday August 26, 2022 @ 0516 hrs
         // LAST USE :: Wednesday October 19, 2022 @ 0025 hrs ...print_r_str documentation integration testing
-        //error_log(__LINE__ . ' img ' . __METHOD__ . ' $creative_element_key=[' . $creative_element_key . '] self::$image_output_mode=[' . self::$image_output_mode . ']');
-        return $this->asset_data($creative_element_key, $width_override, $height_override, $link_override, $alt_override, $title_override, $target_override, $output_mode);
+        //error_log(__LINE__ . ' img ' . __METHOD__ . ' $media_element_key=[' . $media_element_key . '] self::$image_output_mode=[' . self::$image_output_mode . ']');
+        return $this->asset_data($media_element_key, $width_override, $height_override, $link_override, $alt_override, $title_override, $target_override, $output_mode);
 
     }
 
@@ -259,7 +259,7 @@ class crnrstn_system_image_asset_manager {
             case 'system':
             case 'social':
 
-                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . '].  $this->asset_response_method_key/$creative_element_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . '].  $this->asset_response_method_key/$media_element_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
                 //return $this->return_image_data($this->asset_request_data_key, NULL, NULL, NULL, NULL, NULL, NULL, $this->asset_request_asset_family, $output_mode);
 
                 //die();
@@ -1165,7 +1165,7 @@ class crnrstn_system_image_asset_manager {
                 self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
 
             break;
-            case 'SOCIAL_IDE1':
+            case 'SOCIAL_IDEONE':
 
                 $tmp_filename = 'ide1_icon';
                 $tmp_width = '';
@@ -1178,7 +1178,7 @@ class crnrstn_system_image_asset_manager {
                 self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
 
             break;
-            case 'SOCIAL_IDE1_HQ':
+            case 'SOCIAL_IDEONE_HQ':
 
                 $tmp_filename = 'ide1_icon_hq';
                 $tmp_width = '';
@@ -3303,6 +3303,18 @@ class crnrstn_system_image_asset_manager {
 
         }
 
+        //
+        // AUGMENT DOCUMENTATION WITH ASSET META
+        if($output_mode == CRNRSTN_RESOURCE_DOCUMENTATION){
+
+            $tmp_ARRAY = array();
+            $tmp_ARRAY[$asset_data_key]['alt_text'] = $tmp_alt_text;
+            $tmp_ARRAY[$asset_data_key]['title_text'] = $tmp_title_text;
+
+            return $tmp_ARRAY;
+
+        }
+
         if(isset($output_mode)){
 
             self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = $output_mode;
@@ -4644,7 +4656,7 @@ class crnrstn_system_image_asset_manager {
 
                             //$tmp_file_extension = 'png';
                             //$tmp_filepath = $this->oCRNRSTN->crnrstn_path_directory() . '/' . $this->oCRNRSTN->crnrstn_root_directory() .'/ui/imgs/png/' . $this->asset_request_asset_family . '/' . $tmp_filename . '.' . $tmp_file_extension;
-                            error_log(__LINE__ . ' asset mgr [CRNRSTN_ASSET_MODE_PNG]. $tmp_filepath[' . $tmp_filename . '].');
+                            $this->oCRNRSTN->error_log(' asset mgr [CRNRSTN_ASSET_MODE_PNG]. $tmp_filepath[' . $tmp_filename . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                             return $this->return_image_string($tmp_path, $tmp_http, $tmp_map_http, $tmp_output_mode, $asset_mapping_is_active);
                             //return $this->return_image();
@@ -4652,10 +4664,11 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_ASSET_MODE_BASE64:
                         case CRNRSTN_UI_IMG_BASE64:
-                        $this->oCRNRSTN->error_log(__LINE__ . ' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+
+                            $this->oCRNRSTN->error_log(' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                             if($this->oCRNRSTN->is_system_terminate_enabled()){
-                                $this->oCRNRSTN->error_log(__LINE__ . ' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                                $this->oCRNRSTN->error_log(' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                                 $tmp_path = CRNRSTN_ROOT;
                                 $tmp_system_directory = '_crnrstn';

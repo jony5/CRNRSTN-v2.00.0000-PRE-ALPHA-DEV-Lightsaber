@@ -95,8 +95,12 @@ class crnrstn_ui_html_manager {
             $tmp_data_key = 'CRNRSTN_NAV_LINK';
             $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
 
-            $tmp_str .= '
+            if(!$this->oCRNRSTN->tmp_restrict_this_lorem_ipsum_method($dir_resource)){
+
+                $tmp_str .= '
                 <li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
+
+            }
 
         }
 
