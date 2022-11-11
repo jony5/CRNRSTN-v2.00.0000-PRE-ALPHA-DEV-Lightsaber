@@ -140,7 +140,8 @@ class crnrstn_content_source_controller {
                     // public_html/_crnrstn/ui/docs/documentation/php//index.php
                     // EXAMPLE
                     $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
-                    $tmp_example_title_integrated = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG');
+                    $tmp_example_title_integrated = '';   //$this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG');
+
                     $tmp_example_presentation_file = '/ui/docs/documentation/php/return_sticky_media_link/examples/return_sticky_media_link_show.php';
                     $tmp_example_execute_file = '/ui/docs/documentation/php/return_sticky_media_link/examples/return_sticky_media_link_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
@@ -556,7 +557,7 @@ class crnrstn_content_source_controller {
                     //
                     // EXAMPLE
                     $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
-                    $tmp_example_title_integrated = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG');
+                    $tmp_example_title_integrated = ''; //$this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG');
                     $tmp_example_presentation_file = '/ui/docs/documentation/php/error_log/examples/error_log_show.php';
                     $tmp_example_execute_file = '';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);

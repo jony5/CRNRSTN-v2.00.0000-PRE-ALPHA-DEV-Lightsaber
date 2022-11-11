@@ -150,7 +150,13 @@ class crnrstn_content_generator {
                     }
 
                     $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['title_string'] = $attribute_00;
-                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['integrated_title_string'] = $attribute_01;
+
+                    if(isset($attribute_01)){
+
+                        $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['integrated_title_string'] = $attribute_01;
+
+                    }
+
                     $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['pres_file'] = $attribute_02;
                     $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['exec_file'] = $attribute_03;
 
@@ -1930,7 +1936,26 @@ class crnrstn_content_generator {
 
                                 }
 
-                                $tmp_example_test = $this->oCRNRSTN->print_r_str($this->retrieve_code_example_html($val['pres_file']), $val['integrated_title_string']);
+                                if(isset($val['integrated_title_string'])){
+
+                                    if(strlen($val['integrated_title_string']) > 0){
+
+                                        error_log(__LINE__ . ' css ['.print_r($val['integrated_title_string'], true).'].');
+                                        $tmp_example_test = $this->oCRNRSTN->print_r_str($this->retrieve_code_example_html($val['pres_file']), $val['integrated_title_string']);
+
+                                    }else{
+
+                                        error_log(__LINE__ . ' css ['.print_r($val['integrated_title_string'], true).'].');
+                                        $tmp_example_test = $this->oCRNRSTN->print_r_str($this->retrieve_code_example_html($val['pres_file']));
+
+                                    }
+
+                                }else{
+
+                                    error_log(__LINE__ . ' css ['.print_r($val['integrated_title_string'], true).'].');
+                                    $tmp_example_test = $this->oCRNRSTN->print_r_str($this->retrieve_code_example_html($val['pres_file']));
+
+                                }
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 

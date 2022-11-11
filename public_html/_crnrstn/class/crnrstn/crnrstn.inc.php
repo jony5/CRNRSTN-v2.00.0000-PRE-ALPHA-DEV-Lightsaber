@@ -6578,17 +6578,27 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
-        if (isset($title) && $title != '') {
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= $title;
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        } else {
+        if(!isset($title)){
 
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+            $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+        }else{
+
+            if($title != ''){
+
+                $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                $tmp_title .= $title;
+                $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+            }else{
+
+                $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+            }
 
         }
 
@@ -6816,17 +6826,27 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         // NOTHING COULD BE DARKER. NOTHING.
         $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $tmp_meta_ARRAY['stage.lnum.css.color'] . '; border-right:' . $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $tmp_meta_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
-        if (isset($title) && $title != '') {
-
-            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= $title;
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
-
-        } else {
+        if(!isset($title)){
 
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
-            $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+            $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+        }else{
+
+            if($title != ''){
+
+                $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                $tmp_title .= $title;
+                $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+            }else{
+
+                $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+            }
 
         }
 
