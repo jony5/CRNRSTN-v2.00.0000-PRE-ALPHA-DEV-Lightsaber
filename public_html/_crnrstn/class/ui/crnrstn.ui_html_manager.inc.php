@@ -115,7 +115,7 @@ class crnrstn_ui_html_manager {
 
         $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
-        if(strlen($tmp_module_page_key)>0){
+        if(strlen($tmp_module_page_key) > 0){
 
             $tmp_mit_license = '<div class="crnrstn_mit_license_hdr_branding_shell">
             <div class="crnrstn_env_select_wrapper">
@@ -126,6 +126,7 @@ class crnrstn_ui_html_manager {
                         <option value="8">MySQLi v' . $this->oCRNRSTN->version_mysqli() . '</option>
                         <option value="9">PHP v' . $this->oCRNRSTN->version_php() . '</option>
                     </select>
+                    
                 </div>
                 <div class="crnrstn_cb"></div>
                 

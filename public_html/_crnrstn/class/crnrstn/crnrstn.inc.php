@@ -6592,6 +6592,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
             $tmp_title .= 'Begin ' . __FUNCTION__ . '() output by C<span style="color:#F00;">R</span>NRSTN ::';
             $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+            $title  = '';
 
         }else{
 
@@ -6645,13 +6646,25 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
         </script>';
 
-        if(strlen($this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click')) > 0){
+        $tmp_module_page_key = $this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        if(strlen($tmp_module_page_key) > 0){
 
             //
             // REQUIRES HTTPS FOR RELIABLE USE DUE TO AJAX INJECTION
             //$tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="oCRNRSTN_JS.copy_to_clipboard(\'' . $tmp_hash . '\'); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
             $tmp_copy_clipboard_func_call_str = '';
             $tmp_copy_clipboard_func_def_str = '';
+
+        }
+
+        $tmp_title_content = '';
+
+        if(strlen($tmp_module_page_key) < 1 || (strlen($title) > 0) || (strlen($title) < 1 && __FUNCTION__ == 'print_r')){
+
+            $tmp_title_content = '
+                <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; overflow-wrap: break-word; font-size:12px; line-height: 20px; float: left; width:74%;">
+                    <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                </div>';
 
         }
 
@@ -6662,9 +6675,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:180px;">
                     <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>' . $tmp_copy_clipboard_func_call_str . '
                 </div>
-                <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; overflow-wrap: break-word; font-size:12px; line-height: 20px; float: left; width:74%;">
-                    <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
-                </div>
+                ' . $tmp_title_content . '
                 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
             </div>
             <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '</div>
@@ -6893,13 +6904,25 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
         </script>';
 
-        if(strlen($this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click')) > 0){
+        $tmp_module_page_key = $this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        if(strlen($tmp_module_page_key) > 0){
 
             //
             // REQUIRES HTTPS FOR RELIABLE USE DUE TO AJAX INJECTION
             //$tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="oCRNRSTN_JS.copy_to_clipboard(\'' . $tmp_hash . '\'); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
             $tmp_copy_clipboard_func_call_str = '';
             $tmp_copy_clipboard_func_def_str = '';
+
+        }
+
+        $tmp_title_content = '';
+
+        if(strlen($tmp_module_page_key) < 1 || (strlen($title) > 0) || (strlen($title) < 1 && __FUNCTION__ == 'print_r')){
+
+            $tmp_title_content = '
+                <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; overflow-wrap: break-word; font-size:12px; line-height: 20px; float: left; width:74%;">
+                    <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                </div>';
 
         }
 
@@ -6910,9 +6933,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:180px;">
                     <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>' . $tmp_copy_clipboard_func_call_str . '
                 </div>
-                <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; overflow-wrap: break-word; font-size:12px; line-height: 20px; float: left; width:74%;">
-                    <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
-                </div>
+                ' . $tmp_title_content . '
                 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
             </div>
             <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $tmp_meta_ARRAY['stage.content.highlight-color'] . '</div>
