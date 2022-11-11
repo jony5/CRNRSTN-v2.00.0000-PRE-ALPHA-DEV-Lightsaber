@@ -7,7 +7,7 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 //
 // HTML STRING DATA FOR A LARGE SOUNDCLOUD MEDIA ICON WITH
-// A STICKY LINK IS RETURNED FOR USE IN EMAIL (OR WHEN A
+// A STICKY LINK IS RETURNED FOR USE IN EMAIL (OR WHENEVER A
 // SIMPLE ANCHOR TAG WRAPPED <IMG> IS DESIRED).
 echo 'HTML Email Compatible:<br>';
 echo $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
