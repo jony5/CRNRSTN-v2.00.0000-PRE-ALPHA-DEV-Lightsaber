@@ -134,18 +134,19 @@ class crnrstn_content_generator {
 
                 break;
                 case 'EXAMPLE_CONTENT':
+
                     $tmp_seq_key = $this->oCRNRSTN->generate_new_key(10);
                     $this->content_load_sequence_ARRAY[] = $tmp_seq_key;
 
                     if($attribute_00==''){
 
-                        $attribute_00= ' ';
+                        $attribute_00 = ' ';
 
                     }
 
-                    if($attribute_01==''){
+                    if($attribute_01 == ''){
 
-                        $attribute_01= ' ';
+                        $attribute_01 = NULL;
 
                     }
 

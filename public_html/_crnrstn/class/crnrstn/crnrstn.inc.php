@@ -6590,7 +6590,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         if(!isset($title)){
 
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+            $tmp_title .= 'Begin ' . __FUNCTION__ . '() output by C<span style="color:#F00;">R</span>NRSTN ::';
             $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
         }else{
@@ -6604,7 +6604,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             }else{
 
                 $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                $tmp_title .= 'Begin ' . __FUNCTION__ . '() output by C<span style="color:#F00;">R</span>NRSTN ::';
                 $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
             }
@@ -6838,7 +6838,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         if(!isset($title)){
 
             $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-            $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+            $tmp_title .= 'Begin ' . __FUNCTION__ . '() output by C<span style="color:#F00;">R</span>NRSTN ::';
             $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
         }else{
@@ -6852,7 +6852,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             }else{
 
                 $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
-                $tmp_title .= 'Begin print_r() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                $tmp_title .= 'Begin ' . __FUNCTION__ . '() output by C<span style="color:#F00;">R</span>NRSTN ::';
                 $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
 
             }
