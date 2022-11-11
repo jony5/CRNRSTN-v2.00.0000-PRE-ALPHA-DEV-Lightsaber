@@ -76,7 +76,7 @@
 .crnrstn_documentation_dyn_content_title h1                 { font-size: 45px; overflow-wrap: break-word; }
 .crnrstn_documentation_dyn_content_title h2                 { font-size: 35px; margin-bottom:0;}
 .crnrstn_documentation_dyn_content_title h3                 { font-size: 25px; margin-bottom:0;}
-.crnrstn_documentation_dyn_content_description              { width: 98%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
+.crnrstn_documentation_dyn_content_description              { width: 94%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px;}
 .crnrstn_documentation_dyn_content_description p            { padding: 0; margin: 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_documentation_dyn_content_example                  { width: 98%; padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
 .crnrstn_documentation_example_output                       { padding: 20px 10px 20px 10px;}
