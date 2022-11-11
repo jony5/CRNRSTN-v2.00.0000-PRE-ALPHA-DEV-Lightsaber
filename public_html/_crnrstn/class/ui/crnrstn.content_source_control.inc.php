@@ -103,10 +103,12 @@ class crnrstn_content_source_controller {
                     $tmp_method_definition = 'return_sticky_media_link(<br>
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $media_element_key,<br>
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $url = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
-                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $target = \'_blank\', <br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $target = \'<span class="crnrstn_documentation_method_string_data">_blank</span>\', <br>
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $email_channel = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
                     ): <span class="crnrstn_documentation_method_data_type">string|HTML OUTPUT</span>';
 
+
+                    /**/
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
                     //

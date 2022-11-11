@@ -85,6 +85,7 @@
 .crnrstn_documentation_dyn_content_related_methods          { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: "Courier New", Courier, monospace; color:#333; line-height: 33px;}
 .crnrstn_documentation_method_data_type                     { color: #58af3a; }
 .crnrstn_documentation_method_data_system_val               { color: #f58a04; }
+.crnrstn_documentation_method_string_data                   { color: #818de2; }
 .crnrstn_documentation_param_shell                          { padding: 0 0 20px 0; color:#333; }
 .crnrstn_documentation_param_name_shell                     { padding: 0; margin: 0;}
 .crnrstn_documentation_param_name                           { font-weight: bold; }
