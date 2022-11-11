@@ -6595,6 +6595,41 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    //(\'onclick\', \''. $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) .'\', this)
+
+    CRNRSTN_JS.prototype.crnrstn_interact_ui_ux_sticky_link = function(ux_action, url, target, elem){
+
+        //
+        // CLOSE OVERLAY
+        switch(ux_action){
+            case 'onmouseover':
+
+            break;
+            case 'onmouseout':
+
+            break;
+            case 'onmousedown':
+
+            break;
+            case 'onmouseup':
+
+            break;
+            case 'onclick':
+
+                if(url !== '#'){
+
+                    window.open(url, target);
+
+                }
+
+            break;
+
+        }
+
+        return false;
+
+    };
+
     CRNRSTN_JS.prototype.crnrstn_interact_ui_ux = function(ux_action, elem){
 
         if(ux_action === 'scrolltop'){

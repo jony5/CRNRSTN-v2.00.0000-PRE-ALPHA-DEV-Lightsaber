@@ -1135,7 +1135,16 @@ class crnrstn {
         $tmp_flag_array = array();
 
         $tmp_array[] = $this->session_salt() . '=lnk';
-        $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
+        if($url == '#'){
+
+            return '#';
+
+        }else{
+
+            $tmp_array[] = 'crnrstn_r=' . $this->data_encrypt($url);
+
+        }
+
         $tmp_flag_array[$this->session_salt()] = 1;
         $tmp_flag_array['crnrstn_r'] = 1;
 

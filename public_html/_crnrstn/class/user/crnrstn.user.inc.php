@@ -9757,8 +9757,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     }
 
-                    //return $this->oCRNRSTN->return_system_image('SOCIAL_' . $tmp_social_media_data_key, $tmp_social_img_width, $tmp_social_img_height, '#', $tmp_social_img_alt, $tmp_social_img_title, '_self', CRNRSTN_UI_IMG_HTML_WRAPPED);
-                    return '<a href="#" target="_self"><img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative('SOCIAL_' . $tmp_social_media_data_key, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                    return $this->oCRNRSTN->return_system_image('SOCIAL_' . $tmp_social_media_data_key, $tmp_social_img_width, $tmp_social_img_height, '#', $tmp_social_img_alt, $tmp_social_img_title, '_self', CRNRSTN_UI_IMG_HTML_WRAPPED);
+                    //return '<a href="#" target="_self"><img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative('SOCIAL_' . $tmp_social_media_data_key, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                 }
 
@@ -9778,14 +9778,20 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     }
 
                     $tmp_note = '<!-- CRNRSTN :: v' . $this->version_crnrstn() . ' :: Graceful degradation to $email_channel=true until ' . $tmp_social_media_endpoint . ' image sprite coordinates can be approved. -->';
-                    //return $tmp_note . $this->oCRNRSTN->return_system_image('SOCIAL_' . $tmp_social_media_data_key, $tmp_social_img_width, $tmp_social_img_height, '#', $tmp_social_img_alt, $tmp_social_img_title, '_self', CRNRSTN_UI_IMG_HTML_WRAPPED);
-                    return $tmp_note . '<a href="#" target="_self"><img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative('SOCIAL_' . $tmp_social_media_data_key, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
+                    return $tmp_note . $this->oCRNRSTN->return_system_image('SOCIAL_' . $tmp_social_media_data_key, $tmp_social_img_width, $tmp_social_img_height, '#', $tmp_social_img_alt, $tmp_social_img_title, '_self', CRNRSTN_UI_IMG_HTML_WRAPPED);
+                    //return $tmp_note . '<a href="#" target="_self"><img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative('SOCIAL_' . $tmp_social_media_data_key, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_social_img_width . '" height="' . $tmp_social_img_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'" border="0" style="border: 0;"></a>';
 
                 }
 
                 if($valid_url){
 
-                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
+//  BREAKS WITH # AS URL
+//                    $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="window.open(\'' . $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) . '\', \'' . $target . '\'); return false;">
+//                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
+//                                        <img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative($tmp_social_media_sprite, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+//                                    </div></div></div>';
+
+                    $tmp_social_html = '<div id="crnrstn_media_sticky_link_'. $this->oCRNRSTN->generate_new_key(26) .'" style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux_sticky_link(\'onclick\', \''. $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) .'\', \'' . $target . '\', this);">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
                                         <img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative($tmp_social_media_sprite, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
                                     </div></div></div>';
