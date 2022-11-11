@@ -291,68 +291,68 @@ class crnrstn_system_image_asset_manager {
     private function asset_data($asset_data_key, $width_override = NULL, $height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $output_mode = NULL){
 
         switch($asset_data_key){
-//            case 'LIGHTBOX_CLOSE':
-//
-//                $tmp_filename = 'framework/lightbox/close';
-//                $tmp_width = 27;
-//                $tmp_height = 27;
-//                $tmp_alt_text = 'close';
-//                $tmp_title_text = 'close';
-//                $tmp_link = '';
-//                $tmp_target = '';
-//                $tmp_asset_family = 'integrations';
-//                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
-//
-//            break;
-//            case 'LIGHTBOX_LOADING':
-//
-//                $tmp_filename = 'framework/lightbox/loading';
-//                $tmp_width = 32;
-//                $tmp_height = 32;
-//                $tmp_alt_text = 'loading';
-//                $tmp_title_text = 'loading';
-//                $tmp_link = '';
-//                $tmp_target = '';
-//                $tmp_asset_family = 'integrations';
-//                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
-//
-//            break;
-//            case 'LIGHTBOX_NEXT':
-//
-//                $tmp_filename = 'framework/lightbox/next';
-//                $tmp_width = 50;
-//                $tmp_height = 45;
-//                $tmp_alt_text = 'next';
-//                $tmp_title_text = 'next';
-//                $tmp_link = '';
-//                $tmp_target = '';
-//                $tmp_asset_family = 'integrations';
-//                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
-//
-//            break;
-//            case 'LIGHTBOX_PREV':
-//
-//                /*
-//                array(
-//                'framework/lightbox/close' => 'LIGHTBOX_CLOSE',
-//                'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
-//                'framework/lightbox/next' => 'LIGHTBOX_NEXT',
-//                'framework/lightbox/prev' => 'LIGHTBOX_PREV'
-//                );
-//
-//                */
-//
-//                $tmp_filename = 'framework/lightbox/prev';
-//                $tmp_width = 50;
-//                $tmp_height = 45;
-//                $tmp_alt_text = 'prev';
-//                $tmp_title_text = 'prev';
-//                $tmp_link = '';
-//                $tmp_target = '';
-//                $tmp_asset_family = 'integrations';
-//                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
-//
-//            break;
+            case 'LIGHTBOX_CLOSE':
+
+                $tmp_filename = 'framework/lightbox/close';
+                $tmp_width = 27;
+                $tmp_height = 27;
+                $tmp_alt_text = 'close';
+                $tmp_title_text = 'close';
+                $tmp_link = '';
+                $tmp_target = '';
+                $tmp_asset_family = 'integrations';
+                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+
+            break;
+            case 'LIGHTBOX_LOADING':
+
+                $tmp_filename = 'framework/lightbox/loading';
+                $tmp_width = 32;
+                $tmp_height = 32;
+                $tmp_alt_text = 'loading';
+                $tmp_title_text = 'loading';
+                $tmp_link = '';
+                $tmp_target = '';
+                $tmp_asset_family = 'integrations';
+                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+
+            break;
+            case 'LIGHTBOX_NEXT':
+
+                $tmp_filename = 'framework/lightbox/next';
+                $tmp_width = 50;
+                $tmp_height = 45;
+                $tmp_alt_text = 'next';
+                $tmp_title_text = 'next';
+                $tmp_link = '';
+                $tmp_target = '';
+                $tmp_asset_family = 'integrations';
+                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+
+            break;
+            case 'LIGHTBOX_PREV':
+
+                /*
+                array(
+                'framework/lightbox/close' => 'LIGHTBOX_CLOSE',
+                'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
+                'framework/lightbox/next' => 'LIGHTBOX_NEXT',
+                'framework/lightbox/prev' => 'LIGHTBOX_PREV'
+                );
+
+                */
+
+                $tmp_filename = 'framework/lightbox/prev';
+                $tmp_width = 50;
+                $tmp_height = 45;
+                $tmp_alt_text = 'prev';
+                $tmp_title_text = 'prev';
+                $tmp_link = '';
+                $tmp_target = '';
+                $tmp_asset_family = 'integrations';
+                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+
+            break;
             case 'BASSDRIVE_FAVICON':
 
                 $tmp_filename = 'favicon';
@@ -4511,25 +4511,25 @@ class crnrstn_system_image_asset_manager {
                 case 'social':
                 case 'favicon':
 
-                    if($tmp_filename == 'favicon.ico'){
-
-                        //
-                        // RETURN FAVICON **REDUNDANT SECTION???**
-                        $tmp_filepath = $this->oCRNRSTN->get_resource('crnrstn_favicon_asset_tunnel_route_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-                        $tmp_filepath .= '/' . $tmp_asset_family . '/' . $tmp_filename;
-                        error_log(__LINE__ . ' img asset mgr [' . $tmp_filename . '][' . $tmp_asset_family . ']. $tmp_filepath=[' . $tmp_filepath . '].');
-
-                        die();
-                        header("Content-Type: " . mime_content_type($tmp_filepath));
-                        header('Content-Disposition: inline; filename="' . $this->process_for_filename($tmp_filename) . '.ico"');
-
-                        $this->readfile_chunked($tmp_filepath);
-
-                        ob_flush();
-                        flush();
-                        exit();
-
-                    }
+//                    if($tmp_filename == 'favicon.ico'){
+//
+//                        //
+//                        // RETURN FAVICON **REDUNDANT SECTION???**
+//                        $tmp_filepath = $this->oCRNRSTN->get_resource('crnrstn_favicon_asset_tunnel_route_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+//                        $tmp_filepath .= '/' . $tmp_asset_family . '/' . $tmp_filename;
+//                        error_log(__LINE__ . ' img asset mgr [' . $tmp_filename . '][' . $tmp_asset_family . ']. $tmp_filepath=[' . $tmp_filepath . '].');
+//
+//                        die();
+//                        header("Content-Type: " . mime_content_type($tmp_filepath));
+//                        header('Content-Disposition: inline; filename="' . $this->process_for_filename($tmp_filename) . '.ico"');
+//
+//                        $this->readfile_chunked($tmp_filepath);
+//
+//                        ob_flush();
+//                        flush();
+//                        exit();
+//
+//                    }
 
                     $tmp_ASSET_MODE = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants, true);
 
@@ -5359,7 +5359,7 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    private function return_linked_ui_element($str, $link, $target, $width = NULL, $height = NULL, $alt = NULL, $title = NULL, $meta_params_ARRAY = array()){
+    private function return_linked_ui_element($str, $url, $target, $width = NULL, $height = NULL, $alt = NULL, $title = NULL, $meta_params_ARRAY = array()){
 
         $width = $this->html_img_dom_return($width, 'WIDTH');
         $height = $this->html_img_dom_return($height, 'HEIGHT');
@@ -5377,26 +5377,32 @@ class crnrstn_system_image_asset_manager {
 
         }
 
-        if(strlen($link) > 0){
+        if(isset($url)){
 
-            if($this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
-                //if(strlen($this->oCRNRSTN->env_key) > 0 && $this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
+            if(strlen($url) > 0){
 
-                $tmp_str = '<a href="' . $this->oCRNRSTN->return_sticky_link($link, $meta_params_ARRAY) . '" target="' . $target . '">' . $tmp_str . '</a>';
+                if($this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
+                    //if(strlen($this->oCRNRSTN->env_key) > 0 && $this->oCRNRSTN->isset_encryption(CRNRSTN_ENCRYPT_TUNNEL)){
+
+                    $tmp_str = '<a href="' . $this->oCRNRSTN->return_sticky_link($url, $meta_params_ARRAY) . '" target="' . $target . '">' . $tmp_str . '</a>';
+
+                    return $tmp_str;
+
+                }
+
+                $tmp_str = '<a href="' . $url . '" target="' . $target . '">' . $tmp_str . '</a>';
+
+                return $tmp_str;
+
+            }else{
 
                 return $tmp_str;
 
             }
 
-            $tmp_str = '<a href="' . $link . '" target="' . $target . '">' . $tmp_str . '</a>';
-
-            return $tmp_str;
-
-        }else{
-
-            return $tmp_str;
-
         }
+
+        return $tmp_str;
 
     }
 
