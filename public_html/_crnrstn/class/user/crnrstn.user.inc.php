@@ -9793,7 +9793,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     $tmp_social_html = '<div id="crnrstn_media_sticky_link_'. $this->oCRNRSTN->generate_new_key(26) .'" style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; cursor:pointer; overflow: hidden;" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux_sticky_link(\'onclick\', \''. $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) .'\', \'' . $target . '\', this);">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative($tmp_social_media_sprite, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        ' . $this->oCRNRSTN->return_system_image($tmp_social_media_sprite, $tmp_sprite_width, $tmp_sprite_height, '', $tmp_social_img_alt, $tmp_social_img_title, $target, CRNRSTN_UI_IMG_HTML_WRAPPED) . '
                                     </div></div></div>';
 
                     return $tmp_social_html;
@@ -9802,11 +9802,15 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 //
                 // INVALID URL MEDIA IMAGE STICKY LINK
+//                $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; overflow: hidden;">
+//                                    <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
+//                                        <img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative($tmp_social_media_sprite, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+//                                    </div></div></div>';
+
                 $tmp_social_html = '<div style="display: inline-block; width:' . $tmp_social_img_width . 'px; height:' . $tmp_social_img_height . 'px; overflow: hidden;">
                                     <div style="position: relative;"><div style="position: absolute; left:' . $tmp_social_img_left . 'px; top: ' . $tmp_social_img_top . 'px;">
-                                        <img src="' . $this->oCRNRSTN_ASSET_MGR->return_creative($tmp_social_media_sprite, CRNRSTN_UI_IMG_BASE64) . '" width="' . $tmp_sprite_width . '" height="' . $tmp_sprite_height . '" alt="' . $tmp_social_img_alt . '" title="' . $tmp_social_img_title .'">
+                                        ' . $this->oCRNRSTN->return_system_image($tmp_social_media_sprite, $tmp_sprite_width, $tmp_sprite_height, '', $tmp_social_img_alt, $tmp_social_img_title, '_self', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
                                     </div></div></div>';
-
                 return $tmp_social_html;
 
             }
