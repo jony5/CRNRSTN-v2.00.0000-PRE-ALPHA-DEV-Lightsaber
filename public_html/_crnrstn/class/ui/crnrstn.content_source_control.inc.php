@@ -112,6 +112,10 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
                     //
+                    // RETURN VALUE
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'HTML OUTPUT.');
+
+                    //
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$media_element_key';
@@ -134,10 +138,6 @@ class crnrstn_content_source_controller {
                     $tmp_param_def[3]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
-
-                    //
-                    // RETURN VALUE
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'HTML OUTPUT.');
 
                     // public_html/_crnrstn/ui/docs/documentation/php//index.php
                     // EXAMPLE
@@ -230,6 +230,8 @@ class crnrstn_content_source_controller {
 //                    $tmp_related_array[0] = 'print_r';
 //                    $tmp_related_array[1] = 'print_r_str';
 //                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
                 break;
                 case 'add_system_resource':

@@ -62,6 +62,7 @@ class crnrstn_http_manager {
     public $oCRNRSTN_USR;
 
 	private static $relevant_header_fields_ARRAY = array();
+	public $is_SSL = false;
 
     public $client_header_field_data_ARRAY = array();
 
@@ -92,6 +93,12 @@ class crnrstn_http_manager {
         'Authorization', 'Cache-Control', 'Connection', 'Content-Encoding', 'Content-Length', 'Content-MD5', 'Content-Type', 'Cookie',
         'Date', 'Expect', 'Forwarded', 'Host', 'Proxy-Authorization', 'Range', 'Referer', 'User-Agent', 'Warning', 'X-Requested-With',
         'DNT', 'X-Forwarded-For', 'X-Forwarded-Host', 'X-Forwarded-Proto', 'X-Wap-Profile', 'X-UIDH[34][35][36]');
+
+        if($this->oCRNRSTN->isSSL()){
+
+            $this->is_SSL = true;
+
+        }
 
 	    //
         // LOAD CLIENT HEADERS

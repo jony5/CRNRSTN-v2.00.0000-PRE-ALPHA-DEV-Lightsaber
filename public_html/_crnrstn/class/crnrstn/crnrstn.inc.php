@@ -83,6 +83,9 @@ class crnrstn {
     protected $env_key_hash;
     protected $config_serial_hash;
     public $total_bytes_hashed = 0;
+    public $total_bytes_encrypted = 0;
+    public $total_bytes_decrypted = 0;
+    public $is_SSL = false;
 
     public $session_client_id;
 
@@ -248,7 +251,7 @@ class crnrstn {
 
         //
         // INITIALIZE ARRAY OF ENCRYPTABLE DATATYPES
-        self::$encryptable_data_types_ARRAY = array('string', 'integer', 'double', 'float', 'int');
+        self::$encryptable_data_types_ARRAY = array('string' => 'string', 'integer' => 'integer', 'double' => 'double', 'float' => 'float', 'int' => 'int');
 
         //
         // INITIALIZE INTEGER CONSTANTS ARRAY OF FLAGS FOR THE DATA ARCHITECTURE AUTHORIZATION OF DATA
@@ -3804,13 +3807,29 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function data_encrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
+        //if(in_array(gettype($data), self::$encryptable_data_types_ARRAY)){
+        if(isset(self::$encryptable_data_types_ARRAY[gettype($data)])){
+
+            $this->total_bytes_encrypted += strlen((string) $data);
+
+        }
+
         return $this->oCRNRSTN_ENV->data_encrypt($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
     }
 
     public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
-        return $this->oCRNRSTN_ENV->data_decrypt($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+        $tmp_data_decrypted = $this->oCRNRSTN_ENV->data_decrypt($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
+
+        //if(in_array(gettype($tmp_data_decrypted), self::$encryptable_data_types_ARRAY)){
+        if(isset(self::$encryptable_data_types_ARRAY[gettype($tmp_data_decrypted)])){
+
+            $this->total_bytes_decrypted += strlen((string) $tmp_data_decrypted);
+
+        }
+
+        return $tmp_data_decrypted;
 
     }
 
@@ -5276,6 +5295,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function start_time(){
+
+        return date("Y-m-d H:i:s", $this->starttime);
+
+    }
+
     public function wall_time(){
 
         $timediff = $this->microtime_float() - $this->starttime;
@@ -5351,6 +5376,25 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function return_client_header_value($header_attribute, $index = 0){
 
         return $this->oCRNRSTN_ENV->return_client_header_value($header_attribute, $index);
+
+    }
+
+    public function return_client_language_preference_profile($output_type = 'array'){
+
+        /*
+        $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+        $tmp_ARRAY[$i]['region_variant>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i);
+        $tmp_ARRAY[$i]['factor_weighting>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i);
+        $tmp_ARRAY[$i]['iso_language_nomination>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i);
+        $tmp_ARRAY[$i]['native_nomination>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i);
+        $tmp_ARRAY[$i]['iso_639-1_2002>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i);
+        $tmp_ARRAY[$i]['iso_639-2_1998>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i);
+        $tmp_ARRAY[$i]['iso_639-3_2007>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i);
+        $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+
+        */
+
+        return $this->oCRNRSTN_TRM->ssdtl_response_http_language_preference('array');
 
     }
 
@@ -9634,14 +9678,29 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     // AUTHOR :: https://stackoverflow.com/users/887067/saeven
     public function isSSL(){
 
-        if (!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] != 'off'))
+        if(!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] != 'off')){
 
+            $this->is_SSL = true;
             return true;
 
-        if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+        }
+
+        if(!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
+
+            $this->is_SSL = true;
             return true;
+
+        }
+
+        $this->is_SSL = false;
 
         return false;
+
+    }
+
+    public function return_total_bytes_stored(){
+
+        return self::$oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->return_total_bytes_stored();
 
     }
 

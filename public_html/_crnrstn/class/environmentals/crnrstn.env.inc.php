@@ -4190,7 +4190,8 @@ class crnrstn_environment {
 
                 //
                 // DATA TYPE MUST BE ENCRYPTABLE...AND SAFE FOR URI
-                if(in_array(gettype($data), $this->encryptableDataTypes)){
+                //if(in_array(gettype($data), $this->encryptableDataTypes)){
+                if(isset($this->encryptableDataTypes[gettype($data)])){
 
                     $tmp_encrypt_val = $this->return_data_encrypted($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
@@ -7042,10 +7043,10 @@ class crnrstn_environment {
     // AUTHOR :: https://stackoverflow.com/users/887067/saeven
     public function isSSL(){
 
-        if( !empty( $_SERVER['HTTPS'] ) && ($_SERVER['HTTPS'] != 'off') )
+        if(!empty( $_SERVER['HTTPS'] ) && ($_SERVER['HTTPS'] != 'off'))
             return true;
 
-        if( !empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' )
+        if(!empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
             return true;
 
         return false;

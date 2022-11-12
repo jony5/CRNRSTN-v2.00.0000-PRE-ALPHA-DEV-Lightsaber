@@ -1239,7 +1239,7 @@ class crnrstn_ui_tunnel_response_manager {
 //
 //    }
 
-    private function ssdtl_response_http_language_preference($output_type = 'xml'){
+    public function ssdtl_response_http_language_preference($output_type = 'xml'){
 
         $output_string = '';
         $output_type = strtolower($output_type);
@@ -1255,7 +1255,31 @@ class crnrstn_ui_tunnel_response_manager {
         //$tmp_accept_language_preference_ARRAY = $this->oCRNRSTN->return_client_accept_language_array($tmp_header_language_attribute);
 
         switch($output_type){
+            case 'array':
+
+                $tmp_ARRAY = array();
+
+                $tmp_lang_pref_cnt = $oCRNRSTN_LANG_MGR->return_lang_pref_count();
+
+                for($i = 0; $i < $tmp_lang_pref_cnt; $i++){
+
+                    $tmp_ARRAY[$i]['locale_identifier'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+                    $tmp_ARRAY[$i]['region_variant'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i);
+                    $tmp_ARRAY[$i]['factor_weighting'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i);
+                    $tmp_ARRAY[$i]['iso_language_nomination'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i);
+                    $tmp_ARRAY[$i]['native_nomination'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i);
+                    $tmp_ARRAY[$i]['iso_639-1_2002'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i);
+                    $tmp_ARRAY[$i]['iso_639-2_1998'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i);
+                    $tmp_ARRAY[$i]['iso_639-3_2007'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i);
+                    $tmp_ARRAY[$i]['locale_identifier'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+
+                }
+
+                return $tmp_ARRAY;
+
+            break;
             case 'xml':
+            default:
 
                 $tmp_lang_pref_cnt = $oCRNRSTN_LANG_MGR->return_lang_pref_count();
 
@@ -1275,7 +1299,7 @@ class crnrstn_ui_tunnel_response_manager {
                         <iso_639-2_1998>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i) . '</iso_639-2_1998>
                         <iso_639-3_2007>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i) . '</iso_639-3_2007>';
 
-                    if($i < $tmp_lang_pref_cnt-1){
+                    if($i < $tmp_lang_pref_cnt - 1){
 
                         $output_string .= '
                     </language_preference>
@@ -2324,6 +2348,7 @@ class crnrstn_ui_tunnel_response_manager {
         <soap_data_transport_layer_fih_packet><![CDATA[
         ' . $tmp_SOAP_DATA_TUNNEL_PACKET . '
         ]]></soap_data_transport_layer_fih_packet>
+        <runtime>' . $this->oCRNRSTN->wall_time() . ' seconds</runtime>
     </client_response>
 </crnrstn_client_response>';
 

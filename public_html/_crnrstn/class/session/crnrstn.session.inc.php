@@ -85,7 +85,7 @@ class crnrstn_session_manager {
 
         //
         // INITIALIZE ARRAY OF ENCRYPTABLE DATATYPES
-        self::$encryptableDataTypes = array('string', 'integer', 'double', 'float', 'int');
+        self::$encryptableDataTypes = array('string' => 'string', 'integer' => 'integer', 'double' => 'double', 'float' => 'float', 'int' => 'int');
 
         //
         // INITIALIZE CONFIG SERIAL FOR SESSION SERIALIZATION
@@ -773,9 +773,10 @@ class crnrstn_session_manager {
 	public function set_session_param($session_param_key, $val = NULL, $iterator = 0){
 
         $tmp_data_type = gettype($val);
-        $session_param_key_crc = $this->crcINT($session_param_key);
+        $session_param_key_crc = $this->oCRNRSTN->hash($session_param_key);
 
-        if(in_array($tmp_data_type, self::$encryptableDataTypes)){
+        //if(in_array($tmp_data_type, self::$encryptableDataTypes)){
+        if(isset(self::$encryptableDataTypes[$tmp_data_type])){
 
             $tmp_val_encrypted = $this->sessionParamEncrypt($val);
             $tmp_prefixed_ddo_key = $this->oCRNRSTN_USR->return_prefixed_ddo_key($session_param_key, $this->oCRNRSTN_USR->env_key);
@@ -905,7 +906,8 @@ class crnrstn_session_manager {
         $tmp_data_type = gettype($val);
         $session_param_key = $this->crcINT($session_param_key);
 
-        if(in_array($tmp_data_type, self::$encryptableDataTypes)){
+        //if(in_array($tmp_data_type, self::$encryptableDataTypes)){
+        if(isset(self::$encryptableDataTypes[$tmp_data_type])){
 
             $tmp_val_encrypted = $this->sessionParamEncrypt($val);
             $this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->add($tmp_val_encrypted, 'CRNRSTN_' . $_SESSION['CRNRSTN_CONFIG_SERIAL_HASH'] . 'CRNRSTN_' . $this->env_key_crc . 'CRNRSTN_' . $session_param_key, 0, false);

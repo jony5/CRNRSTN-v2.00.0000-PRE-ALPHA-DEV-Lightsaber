@@ -223,6 +223,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.response_serial = '';
         this.response_timestamp = '';
         this.response_server_runtime = '';
+        this.runtime = '';
 
         //
         // CRNRSTN :: INITIALIZATION
@@ -1212,7 +1213,30 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     CRNRSTN_JS.prototype.parse_data_tunnel_response = function(response_data){
 
         var packet_dl_bytes = response_data.responseText.length;
-        oCRNRSTN_JS.log_activity('[lnum 1215] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+        /*
+        // USE THIS JUST TO GET AN IDEA OF HOW MANY EXTRA BYTES TO ADD.
+        tmp_size_clean_pretty = self.format_bytes(tmp_size_clean, 3);
+
+        //
+        // ADD EXTRA BYTES FOR THE TEXT OF THE COUNT OF PAGE BYTES ABOUT TO BE INJECTED
+        tmp_size_final = parseInt(tmp_size_clean) + new Blob([tmp_size_clean_pretty]).size;
+
+        //
+        // TAKE THIS FINAL NUMBER AND FORMAT IT FOR DISPLAY.
+        tmp_size_final_pretty = self.format_bytes(tmp_size_final, 3);
+
+        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g,  tmp_size_final_pretty);
+        //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
+
+
+        */
+
+        tmp_size_final = new Blob([response_data.responseText]).size;
+        tmp_size_final_pretty = oCRNRSTN_JS.format_bytes(tmp_size_final, 3);
+
+        //oCRNRSTN_JS.log_activity('[lnum 1215] Receiving ' + oCRNRSTN_JS.pretty_format_number(packet_dl_bytes) + ' chars in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        oCRNRSTN_JS.log_activity('[lnum 1239] Receiving ' + tmp_size_final_pretty + ' in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         $('#crnrstn_ui_element_load_indicator').stop();
 
@@ -1548,6 +1572,15 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    CRNRSTN_JS.prototype.consume_response_runtime = function(response_data, serialize_response){
+
+   //     this.consume_data_tunnel_xml_node(response_data, 'response_server_runtime', 'server_runtime', '' , serialize_response);
+
+        this.runtime = response_data.innerHTML;
+        //this.consume_data_tunnel_xml_node(response_data, 'runtime', 'runtime', '' , true);
+
+    };
+
     CRNRSTN_JS.prototype.consume_response_client_profile_data = function(response_data, serialize_response){
 
         //
@@ -1655,7 +1688,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             if($('#' + tmp_module_ARRAY[i]).length){
 
-                //alert('[lnum 1642] [' + module_content_node + ']. [' + tmp_module_ARRAY[i] + '].');
+                //alert('[lnum 1658] [' + module_content_node + ']. [' + tmp_module_ARRAY[i] + '].');
                 this.consume_data_tunnel_xml_node(response_data, module_content_node, module_content_node, '', serialize_response);
                 this.consume_data_tunnel_xml_node(response_data, module_hash_node, module_hash_node, '', serialize_response);
 
@@ -2039,7 +2072,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         switch(data_type){
             case 'XML':
 
-                if(response_data != undefined){
+                if(response_data !== undefined){
 
                     var NODE_client_response = response_data.getElementsByTagName('client_response');
                     if (NODE_client_response.length > 0) {
@@ -2094,6 +2127,23 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 this.log_activity('[lnum 2094] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                                 this.consume_response_status_data(NODE_response_status[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // RUNTIME
+                        //
+                        var NODE_runtime = response_data.getElementsByTagName('runtime');
+                        var tmp_node_cnt = NODE_runtime.length;
+                        if(tmp_node_cnt > 0){
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2111] Extracting [runtime] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_response_runtime(NODE_runtime[i], serialize_response);
 
                             }
 
@@ -2928,9 +2978,84 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                             }, {
                                 duration: 0,
                                 queue: false,
-                                complete: function () {
+                                complete: function(){
 
-                                    $("#crnrstn_documentation_dyn_shell").html(tmp_content);
+                                    //
+                                    // CHECK FOR {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}
+                                    tmp_pattern = '{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}';
+                                    tmp_pos_pattern = self.strpos(tmp_content, tmp_pattern);
+                                    if(tmp_pos_pattern){
+
+                                        //
+                                        // SOURCE :: https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
+                                        // AUTHOR :: P Roitto :: https://stackoverflow.com/users/9292799/p-roitto
+                                        tmp_size_total = new Blob([tmp_content]).size;
+
+                                        //
+                                        // SUBTRACT COUNT OF BYTES FROM THE PLACEHOLDER STRING DATA (WILL BE REPLACED)
+                                        tmp_size_filler = new Blob([tmp_pattern]).size;
+                                        tmp_size_clean = parseInt(tmp_size_total) - parseInt(tmp_size_filler);
+
+                                        //
+                                        // USE THIS JUST TO GET AN IDEA OF HOW MANY EXTRA BYTES TO ADD.
+                                        tmp_size_clean_pretty = self.format_bytes(tmp_size_clean, 3);
+
+                                        //
+                                        // ADD EXTRA BYTES FOR THE TEXT OF THE COUNT OF PAGE BYTES ABOUT TO BE INJECTED
+                                        tmp_size_final = parseInt(tmp_size_clean) + new Blob([tmp_size_clean_pretty]).size;
+
+                                        //
+                                        // TAKE THIS FINAL NUMBER AND FORMAT IT FOR DISPLAY.
+                                        tmp_size_final_pretty = self.format_bytes(tmp_size_final, 3);
+
+                                        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g,  tmp_size_final_pretty);
+                                        //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
+
+
+                                        /*
+                                        tmp_size_total = tmp_content.length;
+                                        tmp_char_count_str_total = this.char
+                                        tmp_size_filler = tmp_pattern.length;
+                                        tmp_size_clean = parseInt(tmp_size_total) - parseInt(tmp_size_filler);
+
+                                        tmp_size_clean_pretty = self.pretty_format_number(tmp_size_clean)
+
+                                        //alert('[lnum 2946] tmp_size_clean[' + tmp_size_clean + ']. tmp_size_clean_pretty/len[' + tmp_size_clean_pretty + ']/[' + tmp_size_clean_pretty.length + '].');
+                                        tmp_size_final = parseInt(tmp_size_clean) + tmp_size_clean_pretty.length;
+                                        //alert('[lnum 2948] tmp_size_final[' + tmp_size_final + '].');
+                                        tmp_size_final_pretty = self.pretty_format_number(tmp_size_final)
+
+
+
+                                        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g,  tmp_size_final_pretty + ' chars');
+                                        //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
+
+                                        */
+
+                                    }
+
+                                    tmp_pattern = '{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}';
+                                    tmp_pos_pattern = self.strpos(tmp_content_final, tmp_pattern);
+                                    if(tmp_pos_pattern){
+
+                                        //this.consume_data_tunnel_xml_node(response_data, 'response_server_runtime', 'server_runtime', '' , serialize_response);
+                                        //this.consume_data_tunnel_xml_node(response_data, 'runtime', 'runtime', '' , true);
+
+                                        tmp_server_runtime = self.return_data_tunnel_xml_data('response_server_runtime');
+
+                                        if(self.runtime === ''){
+
+                                            self.runtime = tmp_server_runtime;
+
+                                        }
+
+                                        //alert('[lnum 2990] runtime=' + self.runtime);
+                                        //alert('[lnum 2991] response_server_runtime=' + self.return_data_tunnel_xml_data('response_server_runtime'));
+                                        tmp_content_final = tmp_content_final.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}/g, self.runtime);
+
+                                    }
+
+                                    $("#crnrstn_documentation_dyn_shell").html(tmp_content_final);
                                     $('#crnrstn_interact_ui_link_text_click').val('');
 
                                     $('#crnrstn_documentation_dyn_shell').animate({
@@ -4764,6 +4889,23 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    //
+    // SOURCE :: https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
+    // AUTHOR :: StackOverflow's community
+    CRNRSTN_JS.prototype.format_bytes = function(bytes, decimals = 2){
+
+        if (!+bytes) return '0 Bytes'
+
+        const k = 1024
+        const dm = decimals < 0 ? 0 : decimals
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+
+        const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+        return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+
+    };
+
     CRNRSTN_JS.prototype.short_format_data_size = function(data_format){
 
         var format = '';
@@ -6594,8 +6736,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         }
 
     };
-
-    //(\'onclick\', \''. $this->oCRNRSTN->return_sticky_link($url, $tmp_sticky_link_meta) .'\', this)
 
     CRNRSTN_JS.prototype.crnrstn_interact_ui_ux_sticky_link = function(ux_action, url, target, elem){
 

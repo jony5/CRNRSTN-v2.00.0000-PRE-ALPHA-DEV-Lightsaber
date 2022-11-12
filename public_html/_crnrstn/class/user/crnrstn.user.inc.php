@@ -6814,10 +6814,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     // AUTHOR :: https://stackoverflow.com/users/887067/saeven
     public function isSSL(){
 
-        if( !empty( $_SERVER['HTTPS'] ) && ($_SERVER['HTTPS'] != 'off') )
+        if(!empty( $_SERVER['HTTPS'] ) && ($_SERVER['HTTPS'] != 'off'))
             return true;
 
-        if( !empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' )
+        if(!empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
             return true;
 
         return false;

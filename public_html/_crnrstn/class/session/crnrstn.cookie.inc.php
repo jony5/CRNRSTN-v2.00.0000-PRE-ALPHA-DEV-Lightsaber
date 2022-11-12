@@ -323,7 +323,8 @@ class crnrstn_cookie_manager {
 
                 //
                 // DATA TYPE MUST BE ENCRYPTABLE...AND SAFE FOR URI
-                if(in_array(gettype($data), $this->oCRNRSTN_USR->oCRNRSTN_ENV->encryptableDataTypes)){
+                //if(in_array(gettype($data), $this->oCRNRSTN_USR->oCRNRSTN_ENV->encryptableDataTypes)){
+                if(isset($this->oCRNRSTN_USR->oCRNRSTN_ENV->encryptableDataTypes[gettype($data)])){
 
                     if($this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN_SYSTEM_CHANNEL::COOKIE_ENCRYPTION'), true)) {
 
