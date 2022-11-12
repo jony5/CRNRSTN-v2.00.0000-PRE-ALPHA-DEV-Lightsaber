@@ -7338,8 +7338,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     //
                     // LOCKED IN AT 964x858 WITH SOUNDCLOUD(50x50)
-                    $tmp_sprite_width = 964;
-                    $tmp_sprite_height = 858;
+                    $tmp_sprite_width = 648;
+                    $tmp_sprite_height = 864;
 
                 break;
                 case 'LARGE':
@@ -9158,7 +9158,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                             $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = -1;
+                            $tmp_social_img_top = 0;
 
                         break;
                         default:
