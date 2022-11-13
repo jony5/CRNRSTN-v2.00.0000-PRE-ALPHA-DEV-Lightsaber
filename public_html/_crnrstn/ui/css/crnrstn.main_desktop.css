@@ -18,7 +18,7 @@
 
 .crnrstn_ui_system_footer_wrapper                   { position: fixed; z-index: 100; bottom:0; left: 0; }
 .crnrstn_ui_system_footer_rel                       { position: relative;}
-.crnrstn_ui_system_footer                           { position: absolute; z-index:9999; border-top: 1px solid #A5B9D8; height: 100px; background-color: #FFF; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; }
+.crnrstn_ui_system_footer                           { position: absolute; z-index:auto; border-top: 1px solid #A5B9D8; height: 100px; background-color: #FFF; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; }
 
 .crnrstn_ui_system_footer_content_wrapper           {}
 .crnrstn_ui_system_footer_content                   { float: left; width: 100%; padding: 10px 0 0 0; font-weight: normal;}
@@ -41,11 +41,11 @@
 .crnrstn_interact_ui_full_document                  { position: absolute; z-index: 101; left:0; top:0; width: 315px; }
 
 .crnrstn_interact_ui_full_doc_header_wrapper_rel    { position: relative; width:100%;}
-.crnrstn_interact_ui_full_doc_header_wrapper        { position: absolute; z-index: 9999; top:-10px; width:99%; height:65px; /*background-color: #FFF; box-shadow: 3px 2px 2px black;*/}
+.crnrstn_interact_ui_full_doc_header_wrapper        { position: absolute; z-index: 9999; top:-10px; width:0; height:65px; /*background-color: #FFF; box-shadow: 3px 2px 2px black;*/}
 
 .crnrstn_interact_ui_full_doc_close_wrapper_rel     { padding: 0 50px 0 0;}
-.crnrstn_interact_ui_full_doc_close_wrapper         { position: relative; cursor: pointer;}
-.crnrstn_interact_ui_full_doc_close                 { position: fixed; z-index: 9999; left:95%; top:0; padding:10px 80px 0 0; font-family: Arial, Helvetica, sans-serif; font-size: 50px; line-height: 60px; font-weight: normal; color: #f6f6f6;}
+.crnrstn_interact_ui_full_doc_close_wrapper         { position: relative; cursor: pointer; padding:10px 80px 0 0;}
+.crnrstn_interact_ui_full_doc_close                 { position: fixed; margin:10px 0 0 0; padding:0 30px 0 50px; /*z-index: 9999;*/ left:88.5%; top:0; font-family: Arial, Helvetica, sans-serif; font-size: 50px; line-height: 60px; font-weight: normal; color: #f6f6f6;}
 
 .crnrstn_documentation_dyn_shell_rel                { position:relative; }
 .crnrstn_documentation_dyn_shell_bg                 { position: absolute; background-color: #003eff; z-index: 1; left:0; top:-8px; width: 0; height: 0; overflow: hidden;}
@@ -136,6 +136,7 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_interact_ui_bg_title_note                          { position: absolute; font-size: 140px; color: #F8F8F8; font-weight: bold; float:left; left:0; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
 .crnrstn_interact_ui_bg_title_tech_spec                     { position: absolute; font-size: 80px; padding: 0 10px 0 10px; color: #F8F8F8; text-align: right; font-weight: bold; float:left; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
 .crnrstn_interact_ui_documentation_j5_wolf_pup              { width: 98%; float:right; padding:120px 268px 0 0; margin:0; text-align: right; }
+.crnrstn_interact_ui_documentation_j5_wolf_pup_inner_wrap   { position: absolute; left:35px; padding:10px 0 0 0; width:98%; z-index: 2; text-align: right;}
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION
 // SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->*/

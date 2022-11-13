@@ -7,7 +7,7 @@ require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 /*
-CRNRSTN :: R&D
+CRNRSTN :: R&D (read as "messy kitchen below"...and this right here is by no means the end of it.)
 CONFIGURATION OF OUTPUT FORMAT FOR MAPPED ASSETS
 
 CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_BASE64

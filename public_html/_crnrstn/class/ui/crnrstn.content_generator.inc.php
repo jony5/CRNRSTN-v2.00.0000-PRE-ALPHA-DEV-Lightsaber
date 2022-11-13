@@ -2191,7 +2191,7 @@ Request time: ' . $this->oCRNRSTN->start_time() . '</p>
                 $html_out .= '
                 <div class="crnrstn_cb"></div>
                 <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
-                    <div class="crnrstn_j5_wolf_pup_inner_wrap">
+                    <div class="crnrstn_interact_ui_documentation_j5_wolf_pup_inner_wrap">
                         ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
                     </div>
                 </div>

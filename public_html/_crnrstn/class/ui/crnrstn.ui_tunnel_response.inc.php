@@ -166,7 +166,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // CRNRSTN :: LIGHTSABER MESSENGER
-        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_messenger_src'] = 'GLOBAL';
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_messenger_src'] = 1;  //GLOBAL DEACTIVATED FOR NOW
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_messenger_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_messenger_src'] = 90;
 
