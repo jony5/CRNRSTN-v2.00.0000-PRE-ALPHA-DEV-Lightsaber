@@ -3751,7 +3751,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 self.$dom_elem = $("#" + dom_elem_id);
                 var closed_delta =  -18;
-                var open_delta =  -248;
+                var open_delta =  -250;
 
                 //
                 // I LIKE THIS. SHOULD MOVE EVERYTHING THIS DIRECTION (IF THIS ATTEMPT WORKS...)

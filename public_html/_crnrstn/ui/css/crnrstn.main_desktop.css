@@ -71,6 +71,8 @@
 .crnrstn_mit_license_hdr_branding_shell             { width:578px; height:45px; text-align: center; margin:0 auto; padding-top: 40px;}
 
 /*CRNRSTN::INTEGRATION INTERACT UI MODULE :: DOCUMENTATION CONTENT*/
+.crnrstn_documentation_lnk_top_rel                          { position: relative; float: right; width:65px; }
+.crnrstn_documentation_lnk_top                              { position: absolute; width:50px; height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px;text-align: right;}
 .crnrstn_documentation_dyn_content_shell                    { width: 64%; min-width: 400px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
 .crnrstn_documentation_dyn_content_title                    { font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 55px; padding: 0 10px 0 20px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_documentation_dyn_content_title h1                 { font-size: 45px; overflow-wrap: break-word; }
@@ -211,10 +213,10 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_signin_meta_5_logo                 { position: absolute; z-index: 3; padding:418px 0 0 547px; float: right; text-align:right;}
 .crnrstn_signin_backdrop_logo               { position: absolute; z-index: 1; margin-left: 30px; top:20px;}
 
-.crnrstn_signin_form_outter_wrapper         { width: 100%;}
-.crnrstn_signin_form_inner_wrapper          { position:absolute; z-index: 2; padding:50px 0 0 135px;}
+.crnrstn_signin_form_outter_wrapper                         { width: 100%;}
+.crnrstn_signin_form_inner_wrapper                          { position:absolute; z-index: 2; padding:50px 0 0 135px;}
 .crnrstn_signin_form_inner_wrapper.crnrstn_mit_landing      { padding:64px 0 0 14px;}
-.crnrstn_signin_form_inner_wrapper_rel      { position: relative;}
+.crnrstn_signin_form_inner_wrapper_rel                      { position: relative;}
 
 .crnrstn_signin_email_input_component       { }
 .crnrstn_signin_password_input_component    { }
@@ -277,15 +279,15 @@ body.crnrstn-disable-scrolling              { overflow: hidden;}
 .crnrstn_branding_elem_content              { padding:10px 0 0 0; text-align: right;}
 .crnrstn_branding_elem_shell                { text-align: right;}
 
-.crnrstn_left_nav_abs_wrapper               { position: absolute; z-index: 3;}
-.crnrstn_left_nav_rel_wrapper               { position: relative; padding-top: 10px;}
-.crnrstn_left_nav_col_wrapper               { float: left; text-align: center; margin:0 auto; width:300px;}
-.crnrstn_left_nav_button_wrapper            { list-style: none; text-align: center; margin:0 auto;}
-.crnrstn_left_nav_button_wrapper ul         { list-style: none; padding:0 10px 0 10px; margin:0; }
-.crnrstn_left_nav_button_wrapper li         { width: 280px; cursor: pointer; list-style: none; margin:0; margin:0; color: #6885C3; border: 2px solid #F5F7FB; font-family:Arial, Helvetica, sans-serif; font-size: 19px; font-weight: bold; background-color: #FFF; line-height: 35px; text-align: center; /*padding: 10px 20px 10px 20px; margin: 10px 0 10px 0;*/}
-.crnrstn_left_nav_li_btn_shell              { width: 278px; padding:5px 0 5px 0; text-align: center; margin:0 auto; border: 1px solid #A5B9D8;}
-.crnrstn_left_nav_li_btn_shell.crnrstn_nav_active { background-color:#7999CB; color: #FFF;}
-.crnrstn_wp_btn_reg_mrk                     { font-size: 70%; line-height: 13px; font-weight: normal; font-variant-position: super;}
+.crnrstn_left_nav_abs_wrapper                       { position: absolute; z-index: 3;}
+.crnrstn_left_nav_rel_wrapper                       { position: relative; padding-top: 10px;}
+.crnrstn_left_nav_col_wrapper                       { float: left; text-align: center; margin:0 auto; width:300px;}
+.crnrstn_left_nav_button_wrapper                    { list-style: none; text-align: center; margin:0 auto;}
+.crnrstn_left_nav_button_wrapper ul                 { list-style: none; padding:0 10px 0 10px; margin:0; }
+.crnrstn_left_nav_button_wrapper li                 { width: 280px; cursor: pointer; list-style: none; margin:0; color: #6885C3; border: 2px solid #F5F7FB; font-family:Arial, Helvetica, sans-serif; font-size: 19px; font-weight: bold; background-color: #FFF; line-height: 35px; text-align: center; /*padding: 10px 20px 10px 20px; margin: 10px 0 10px 0;*/}
+.crnrstn_left_nav_li_btn_shell                      { width: 278px; padding:5px 0 5px 0; text-align: center; margin:0 auto; border: 1px solid #A5B9D8;}
+.crnrstn_left_nav_li_btn_shell.crnrstn_nav_active   { background-color:#7999CB; color: #FFF;}
+.crnrstn_wp_btn_reg_mrk                             { font-size: 70%; line-height: 13px; font-weight: normal; font-variant-position: super;}
 
 .crnrstn_right_section_abs_out_wrapper      { position:absolute; z-index: 6; border: 2px solid #F5F7FB; width:55%; min-width: 465px; left: 310px; margin-top: 12px;}
 .crnrstn_right_section_abs_wrapper          { position:relative; text-align:left; border: 1px solid #A5B9D8; background-color: #FFF; color: #333; overflow: scroll; overflow-x: scroll;}
