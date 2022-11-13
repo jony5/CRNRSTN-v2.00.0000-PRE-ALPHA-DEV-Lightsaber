@@ -17,6 +17,10 @@ SOUNDCLOUD_LARGE
 $tmp_html_out .= 'HTML Email Compatible (small):<br>';
 $tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
 
+//$tmp_test_str = 'APPLE_MUSIC';
+//$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link($tmp_test_str . '_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+//$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link($tmp_test_str . '_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
+
 $tmp_html_out .= '<div class="crnrstn_cb_20"></div>';
 $tmp_html_out .= 'Image Sprite (medium):<br>';
 
@@ -27,7 +31,13 @@ $tmp_html_out .= 'Image Sprite (medium):<br>';
 // THE SPRITE COORDINATES HAVE NOT YET BEEN APPROVED.
 $tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
 
+//$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link($tmp_test_str . '_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+//$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link($tmp_test_str . '_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
+
 $tmp_html_out .= '<div class="crnrstn_cb_20"></div>';
 $tmp_html_out .= 'Image Sprite (large):<br>';
 
 $tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
+
+//$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link($tmp_test_str . '_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+//$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link($tmp_test_str . '_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
