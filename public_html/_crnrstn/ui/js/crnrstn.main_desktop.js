@@ -726,6 +726,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         $("#crnrstn_ui_element_load_indicator").html($("#crnrstn_interact_ui_loadbar_IMAGE_CACHE").html());
 
+        //
+        // INITIALIZE PAGE REQUEST VISUALIZATION
         this.start_page_request_visualization();
         //$('#crnrstn_ui_element_load_indicator').stop();
 
@@ -1062,6 +1064,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             this.size_element('crnrstn_documentation_dyn_shell_bg');
             this.size_element('crnrstn_documentation_dyn_shell');
+            this.size_element('crnrstn_documentation_dyn_content_shell');
+            this.size_element('crnrstn_interact_ui_full_doc_close');
 
         }
 
@@ -3084,8 +3088,29 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                     }
 
+                                    //
+                                    // INSERT CONTENT FROM CRNRSTN :: SSDTLA INTO DOM OBJECT.
                                     $("#crnrstn_documentation_dyn_shell").html(tmp_content_final);
+
+                                    //
+                                    // CLEAR THE LAST UI CLICK KEY NOW THAT IT HAS BEEN FULFILLED.
                                     $('#crnrstn_interact_ui_link_text_click').val('');
+
+                                    tmp_window_width = $(window).width();
+                                    tmp_new_doc_content_width = (tmp_window_width) * 0.64;
+
+                                    $('#crnrstn_documentation_dyn_content_shell').animate({
+                                        width: tmp_new_doc_content_width
+                                    }, {
+                                        duration: 0,
+                                        queue: false,
+                                        complete: function () {
+
+                                        }
+
+                                    });
+
+                                    //        .crnrstn_interact_ui_full_doc_close                 { position: fixed; margin:10px 0 0 0; padding:0 30px 0 50px; /*z-index: 9999;*/ left:88.5%; top:0; font-family: Arial, Helvetica, sans-serif; font-size: 50px; line-height: 60px; font-weight: normal; color: #f6f6f6;}
 
                                     $('#crnrstn_documentation_dyn_shell').animate({
                                         opacity: 1.0
@@ -3097,7 +3122,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                         },
                                         complete: function () {
 
-                                            self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
+                                            //self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
 
                                             self.crnrstn_interact_ui_ux('scrolltop', false);
 
@@ -3747,6 +3772,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'crnrstn_documentation_dyn_shell':
 
+                //
+                // TO KEEP THE VERTICAL SCROLL BAR IN POSITION
                 var self = this;
 
                 self.$dom_elem = $("#" + dom_elem_id);
@@ -3774,6 +3801,114 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         .height(height);
 
                 }, 0);
+
+                return true;
+
+            break;
+            case 'crnrstn_interact_ui_full_doc_close':
+
+                // .crnrstn_interact_ui_full_doc_close                 { position: fixed; margin:10px 0 0 0; padding:0 30px 0 50px; /*z-index: 9999;*/ left:88.5%; top:0; font-family: Arial, Helvetica, sans-serif; font-size: 50px; line-height: 60px; font-weight: normal; color: #f6f6f6;}
+
+                if($('#crnrstn_interact_ui_full_doc_close').length){
+
+                    tmp_window_width = $(window).width();
+                    tmp_new_doc_content_left = (tmp_window_width) * 0.885;
+
+                    tmp_current_left = $('#crnrstn_interact_ui_full_doc_close').css('left');
+                    tmp_current_left = this.string_clean_css_px_int(tmp_current_left);
+
+                    if((parseInt(tmp_current_left) - parseInt(tmp_new_doc_content_left)) >= 0){
+
+                        if(1 > (parseInt(tmp_current_left) - parseInt(tmp_new_doc_content_left))){
+
+                            return true;
+
+                        }
+
+                    }
+
+                    if((parseInt(tmp_new_doc_content_left) - parseInt(tmp_current_left)) >= 0){
+
+                        if(1 > (parseInt(tmp_new_doc_content_left) - parseInt(tmp_current_left))){
+
+                            return true;
+
+                        }
+
+                    }
+
+                    $('#crnrstn_interact_ui_full_doc_close').animate({
+                        left: tmp_new_doc_content_left
+                    }, {
+                        duration: 250,
+                        queue: false,
+                        specialEasing: {
+                            left: "swing"
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+
+                }
+
+                return true;
+
+            break;
+            case 'crnrstn_documentation_dyn_content_shell':
+
+                tmp_window_width = $(window).width();
+                tmp_new_doc_content_width = (tmp_window_width) * 0.64;
+
+                if($('#crnrstn_documentation_dyn_content_shell').length && (tmp_new_doc_content_width > 400)){
+
+                    tmp_current_width = $('#crnrstn_documentation_dyn_content_shell').css('width');
+                    tmp_current_width = this.string_clean_css_px_int(tmp_current_width);
+                    //alert('[lnum 3794] tmp_current_width[' + tmp_current_width + ']. [' + tmp_new_doc_content_width + '].');
+                    //alert('[lnum 3795] tmp_current_width[' + parseInt(tmp_current_width) + ']. [' + parseInt(tmp_new_doc_content_width) + '].');
+
+                    if((parseInt(tmp_current_width) - parseInt(tmp_new_doc_content_width)) >= 0){
+
+                        //
+                        // GET SMALLER?
+                        if(1 > (parseInt(tmp_current_width) - parseInt(tmp_new_doc_content_width))){
+
+                            tmp_test = true;
+
+                            return true;
+
+                        }
+
+                    }
+
+                    if((parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width)) >= 0){
+
+                        if(1 > (parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width))){
+
+                            tmp_test = true;
+
+                            return true;
+
+                        }
+
+                    }
+
+                    $('#crnrstn_documentation_dyn_content_shell').animate({
+                        width: tmp_new_doc_content_width
+                    }, {
+                        duration: 250,
+                        queue: false,
+                        specialEasing: {
+                            width: "swing"
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+
+                }
 
                 return true;
 
@@ -7568,13 +7703,30 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 },
                 complete: function () {
 
+                    //
+                    // CLOSE SIDE NAVIGATION :: MOVE THE WOLF PUP TO MIN POSITION
+                    //self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
+
                 }
 
             });
 
             //
-            // CLOSE SIDE NAVIGATION :: MOVE THE WOLF PUP TO MIN POSITION
-            this.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
+            // //
+            // // DELAY
+            // $('body').animate({
+            //
+            // }, {
+            //     duration: 500,
+            //     queue: false,
+            //     specialEasing: {
+            //         marginLeft: "swing"
+            //     },
+            //     complete: function () {
+            //
+            //     }
+            //
+            // });
 
             return true;
 
@@ -7698,7 +7850,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             },
             complete: function () {
 
-                self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
+                //self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap', true);
 
             }
 

@@ -1432,7 +1432,7 @@ class crnrstn_content_generator {
                                     </div>';
 
                 $html_out = '<a name="crnrstn_top_' . $this->oCRNRSTN->session_salt() . '"></a>
-            <div class="crnrstn_documentation_dyn_content_shell">';
+            <div id="crnrstn_documentation_dyn_content_shell" class="crnrstn_documentation_dyn_content_shell">';
 
                 //
                 // LOOP THROUGH CONTENT ARRAY
