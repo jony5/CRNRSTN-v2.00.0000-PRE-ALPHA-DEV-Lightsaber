@@ -2143,6 +2143,7 @@ SERVER ::<br>
 Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>stored: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->return_total_bytes_stored(), 5) . '<br>
 Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>hashed: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_hashed, 5) . '<br>
 Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>encrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_encrypted, 5) . '<br>
+Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>decrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_decrypted, 5) . '<br>
 Server name: ' . $_SERVER['SERVER_NAME'] . '<br>
 Server address: ' . $_SERVER['SERVER_ADDR'] . '<br>
 SSL enabled: ' . $tmp_SSL_ENABLED . '<br>

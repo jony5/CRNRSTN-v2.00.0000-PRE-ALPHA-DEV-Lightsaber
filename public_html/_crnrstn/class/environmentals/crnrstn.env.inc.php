@@ -4151,7 +4151,7 @@ class crnrstn_environment {
                 $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
                 $this->error_log('Decryption of data aborted due to missing of parameters. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                die();
+//                die();
 
                 //
                 // NO ENCRYPTION. RETURN VAL
