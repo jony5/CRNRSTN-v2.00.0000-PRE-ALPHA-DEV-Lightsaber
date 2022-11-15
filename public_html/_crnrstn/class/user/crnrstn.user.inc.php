@@ -7217,8 +7217,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         FACEBOOK
         INSTAGRAM
         TWITTER
-        WWW_ICON
-        JSON_ICON
+        WWW
+        JSON
         APPLE_ANDROID
         FEEDBURNER
         SLASHDOT_ICON
@@ -7232,25 +7232,25 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         ROLLDABEATS
         STACKOVERFLOW
         KINK
-        PHP_ICON
+        PHP
         REDDIT
         YOUTUBE
         PAYPAL
-        HISTORY_ICON
-        ARCHIVES_ICON
-        BASSDRIVE_ICON
+        HISTORY
+        ARCHIVES
+        BASSDRIVE
         GITHUB_ICON
         XNXX
         LINKEDIN
         GOOGLE_MAPS_ANNIVERSARY
         FLICKR
         WIKIPEDIA
-        BLOGSPOT_ICON
-        PINTEREST_ICON
-        SERVER_FAULT_ICON
+        BLOGSPOT
+        PINTEREST
+        SERVER_FAULT
         GOOGLE_DRIVE
         BLUEHOST_ICON
-        AMAZON_ICON
+        AMAZON
         PORNHUB
         EBAY
         MOZILLA_WORDMARK
@@ -7337,9 +7337,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     $tmp_social_media_sprite = 'SOCIAL_SPRITE_HQ';
 
                     //
-                    // LOCKED IN AT 964x858 WITH SOUNDCLOUD(50x50)
-                    $tmp_sprite_width = 648;
-                    $tmp_sprite_height = 864;
+                    // LOCKED IN AT 648x864 WITH SOUNDCLOUD(50x50)
+                    // LOCKED IN AT 639x851 WITH SOUNDCLOUD(50x50)
+                    $tmp_sprite_width = 639;
+                    $tmp_sprite_height = 851;
 
                 break;
                 case 'LARGE':
@@ -7383,27 +7384,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -3;
+                            $tmp_social_img_top = -117;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -8;
+                            $tmp_social_img_top = -224;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -12;
+                            $tmp_social_img_top = -336;
 
                         break;
 
@@ -7681,7 +7682,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                             $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = -348;
+                            $tmp_social_img_left = -343;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -7707,27 +7708,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 39;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -90;
-                            $tmp_social_img_top = -53;
+                            $tmp_social_img_left = -102;
+                            $tmp_social_img_top = -60;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 78;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -209;
+                            $tmp_social_img_top = -111;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 116;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -314;
+                            $tmp_social_img_top = -166;
 
                         break;
 
@@ -7743,27 +7744,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -79;
-                            $tmp_social_img_top = -26;
+                            $tmp_social_img_left = -81;
+                            $tmp_social_img_top = -27;
 
                         break;
                         case 'MEDIUM':
 
                             $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -167;
+                            $tmp_social_img_top = -55;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -251;
+                            $tmp_social_img_top = -83;
 
                         break;
 
@@ -7779,27 +7780,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 30;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -133;
-                            $tmp_social_img_top = -53;
+                            $tmp_social_img_left = -144;
+                            $tmp_social_img_top = -59;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 61;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -292;
+                            $tmp_social_img_top = -112;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 91;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -439;
+                            $tmp_social_img_top = -167;
 
                         break;
 
@@ -7815,27 +7816,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
                             $tmp_social_img_left = -53;
-                            $tmp_social_img_top = -26;
+                            $tmp_social_img_top = -27;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -111;
+                            $tmp_social_img_top = -56;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -167;
+                            $tmp_social_img_top = -83;
 
                         break;
 
@@ -7851,27 +7852,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -159;
+                            $tmp_social_img_top = -88;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -316;
+                            $tmp_social_img_top = -169;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -475;
+                            $tmp_social_img_top = -254;
 
                         break;
 
@@ -7887,27 +7888,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -293;
+                            $tmp_social_img_top = -88;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -572;
+                            $tmp_social_img_top = -169;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -858;
+                            $tmp_social_img_top = -254;
 
                         break;
 
@@ -7959,27 +7960,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
                             $tmp_social_img_left = -26;
-                            $tmp_social_img_top = -26;
+                            $tmp_social_img_top = -27;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -56;
+                            $tmp_social_img_top = -55;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -84;
+                            $tmp_social_img_top = -83;
 
                         break;
 
@@ -7995,27 +7996,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 63;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -127;
+                            $tmp_social_img_top = -118;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 125;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -250;
+                            $tmp_social_img_top = -224;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 187;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -374;
+                            $tmp_social_img_top = -337;
 
                         break;
 
@@ -8077,7 +8078,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                             $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = -56;
+                            $tmp_social_img_left = -55;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -8103,26 +8104,26 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
+                            $tmp_social_img_left = -195;
                             $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
+                            $tmp_social_img_left = -401;
                             $tmp_social_img_top = 0;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
+                            $tmp_social_img_left = -603;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -8139,27 +8140,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 54;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -60;
+                            $tmp_social_img_top = -88;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 108;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -122;
+                            $tmp_social_img_top = -166;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 161;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -182;
+                            $tmp_social_img_top = -250;
 
                         break;
 
@@ -8175,27 +8176,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -180;
+                            $tmp_social_img_top = -58;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -362;
+                            $tmp_social_img_top = -111;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -543;
+                            $tmp_social_img_top = -167;
 
                         break;
 
@@ -8211,27 +8212,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 28;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -261;
+                            $tmp_social_img_top = -88;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 56;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -510;
+                            $tmp_social_img_top = -169;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 84;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -765;
+                            $tmp_social_img_top = -254;
 
                         break;
 
@@ -8247,27 +8248,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -31;
+                            $tmp_social_img_top = -90;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -61;
+                            $tmp_social_img_top = -166;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -91;
+                            $tmp_social_img_top = -249;
 
                         break;
 
@@ -8319,27 +8320,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 36;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -53;
-                            $tmp_social_img_top = -53;
+                            $tmp_social_img_left = -65;
+                            $tmp_social_img_top = -60;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 72;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -132;
+                            $tmp_social_img_top = -111;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 108;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -198;
+                            $tmp_social_img_top = -166;
 
                         break;
 
@@ -8401,7 +8402,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                             $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = -112;
+                            $tmp_social_img_left = -111;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -8473,7 +8474,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                             $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = -289;
+                            $tmp_social_img_left = -285;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -8499,27 +8500,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -194;
+                            $tmp_social_img_top = -30;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -394;
+                            $tmp_social_img_top = -56;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -592;
+                            $tmp_social_img_top = -85;
 
                         break;
 
@@ -8571,27 +8572,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -2;
+                            $tmp_social_img_top = -89;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -168;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -253;
 
                         break;
 
@@ -8643,27 +8644,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = -26;
+                            $tmp_social_img_top = -27;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -56;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
-                            $tmp_social_img_height = 74;
+                            $tmp_social_img_width = 75;
+                            $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -84;
 
                         break;
 
@@ -8679,26 +8680,26 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -281;
+                            $tmp_social_img_top = -1;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
+                            $tmp_social_img_left = -572;
                             $tmp_social_img_top = 0;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
+                            $tmp_social_img_left = -859;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -8712,30 +8713,56 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 break;
                 case 'MOZILLA_WORDMARK':
 
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
+                    /*
+                     case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 63;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -133;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -127;
+                            $tmp_social_img_top = -118;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 125;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -250;
+                            $tmp_social_img_top = -224;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 187;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -374;
+                            $tmp_social_img_top = -337;
+
+                    */
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = 114;
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -192;
+                            $tmp_social_img_top = -118;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = 227;
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = -380;
+                            $tmp_social_img_top = -224;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = 341;
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = -570;
+                            $tmp_social_img_top = -337;
 
                         break;
 
@@ -8823,27 +8850,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -26;
-                            $tmp_social_img_top = -53;
+                            $tmp_social_img_left = -38;
+                            $tmp_social_img_top = -59;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -77;
+                            $tmp_social_img_top = -111;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -115;
+                            $tmp_social_img_top = -166;
 
                         break;
 
@@ -8859,27 +8886,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 47;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -223;
+                            $tmp_social_img_top = -30;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 95;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -456;
+                            $tmp_social_img_top = -56;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 143;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -686;
+                            $tmp_social_img_top = -84;
 
                         break;
 
@@ -8895,27 +8922,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -188;
+                            $tmp_social_img_top = -88;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -372;
+                            $tmp_social_img_top = -169;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -558;
+                            $tmp_social_img_top = -254;
 
                         break;
 
@@ -8931,27 +8958,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 87;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -37;
+                            $tmp_social_img_top = -118;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 176;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -69;
+                            $tmp_social_img_top = -222;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 265;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -104;
+                            $tmp_social_img_top = -333;
 
                         break;
 
@@ -8964,30 +8991,56 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 break;
                 case 'REDDIT':
 
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
+                    /*
+                    case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 47;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -223;
+                            $tmp_social_img_top = -30;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 95;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -456;
+                            $tmp_social_img_top = -56;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 143;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -686;
+                            $tmp_social_img_top = -84;
+
+                    */
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = 25;
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -274;
+                            $tmp_social_img_top = -29;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = 50;
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = -559;
+                            $tmp_social_img_top = -57;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = 75;
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = -838;
+                            $tmp_social_img_top = -86;
 
                         break;
 
@@ -9003,27 +9056,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -132;
-                            $tmp_social_img_top = -26;
+                            $tmp_social_img_left = -137;
+                            $tmp_social_img_top = -30;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -279;
+                            $tmp_social_img_top = -56;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -418;
+                            $tmp_social_img_top = -83;
 
                         break;
 
@@ -9039,27 +9092,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 38;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -218;
+                            $tmp_social_img_top = -88;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 76;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -428;
+                            $tmp_social_img_top = -169;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 114;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -643;
+                            $tmp_social_img_top = -254;
 
                         break;
 
@@ -9075,27 +9128,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
+                            $tmp_social_img_left = -223;
                             $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -457;
+                            $tmp_social_img_top = -1;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -686;
+                            $tmp_social_img_top = -1;
 
                         break;
 
@@ -9180,30 +9233,48 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 break;
                 case 'SPOTIFY':
 
+                    /*
+                    case 'SMALL':
+                    $tmp_social_img_left = -81;
+                    $tmp_social_img_top = -27;
+
+                    break;
+                    case 'MEDIUM':
+                    $tmp_social_img_left = -169;
+                    $tmp_social_img_top = -56;
+
+                    break;
+                    default:
+                    // 'LARGE':
+                    $tmp_social_img_left = -251;
+                    $tmp_social_img_top = -83;
+
+                    */
+
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -106;
-                            $tmp_social_img_top = -27;
+                            $tmp_social_img_left = -110;
+                            $tmp_social_img_top = -31;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -223;
+                            $tmp_social_img_top = -55;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -334;
+                            $tmp_social_img_top = -83;
 
                         break;
 
@@ -9219,27 +9290,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -166;
+                            $tmp_social_img_top = -28;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -336;
+                            $tmp_social_img_top = -56;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 74;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -505;
+                            $tmp_social_img_top = -85;
 
                         break;
 
@@ -9301,7 +9372,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                             $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = -169;
+                            $tmp_social_img_left = -166;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -9471,27 +9542,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 38;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -117;
+                            $tmp_social_img_top = -89;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 77;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -234;
+                            $tmp_social_img_top = -169;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 116;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -351;
+                            $tmp_social_img_top = -254;
 
                         break;
 
@@ -9517,7 +9588,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                             $tmp_social_img_width = 52;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = -229;
+                            $tmp_social_img_left = -227;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -9543,26 +9614,26 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 27;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
+                            $tmp_social_img_left = -251;
                             $tmp_social_img_top = 0;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 54;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
+                            $tmp_social_img_left = -513;
                             $tmp_social_img_top = 0;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 81;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
+                            $tmp_social_img_left = -769;
                             $tmp_social_img_top = 0;
 
                         break;
@@ -9615,27 +9686,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 112;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -210;
+                            $tmp_social_img_top = -60;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 224;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -418;
+                            $tmp_social_img_top = -113;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 336;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -627;
+                            $tmp_social_img_top = -167;
 
                         break;
 
@@ -9687,27 +9758,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 35;
                             $tmp_social_img_height = 25;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = -52;
+                            $tmp_social_img_top = -58;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 71;
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -112;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 106;
                             $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -168;
 
                         break;
 

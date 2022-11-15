@@ -3352,16 +3352,16 @@ class crnrstn {
 
     public function tmp_restrict_this_image_sprite_media_constant($social_media_constant){
 
-        $tmp_ARRAY  = array('AMAZON' => 'INACTIVE', 'APPLE_LOGO_BLK' => 'INACTIVE', 'APPLE_LOGO_WHT' => 'INACTIVE', 'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY' => 'INACTIVE',
-            'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE',  'APPLE_LOGO_WHT_BLK_CIRCLE' => 'INACTIVE',
-             'ARCHIVES' => 'INACTIVE', 'BANDCAMP' => 'INACTIVE', 'BASSDRIVE' => 'INACTIVE', 'BEATPORT' => 'INACTIVE', 'BLOGSPOT' => 'INACTIVE', 'BLUEHOST_ICON' => 'INACTIVE',
-            'BLUEHOST_WORDMARK' => 'INACTIVE', 'DISCOGS' => 'INACTIVE', 'EBAY' => 'INACTIVE', 'ETSY' => 'INACTIVE', 'FEEDBURNER' => 'INACTIVE', 'FLICKR' => 'INACTIVE', 'GITHUB' => 'INACTIVE',
-            'GOOGLE_DRIVE' => 'INACTIVE', 'GOOGLE_MAPS' => 'INACTIVE', 'GOOGLE_MAPS_SQUARE' => 'INACTIVE', 'HISTORY' => 'INACTIVE', 'IDEONE' => 'INACTIVE', 'INTERNET_ARCHIVE' => 'INACTIVE',
-             'KINK' => 'INACTIVE', 'LAST_FM' => 'INACTIVE', 'LINKEDIN' => 'INACTIVE', 'MICROSOFT' => 'INACTIVE',  'MIXCLOUD' => 'INACTIVE', 'MOZILLA_ICON' => 'INACTIVE', 'MOZILLA_WORDMARK' => 'INACTIVE',
-            'PANDORA' => 'INACTIVE', 'PATREON' => 'INACTIVE', 'PAYPAL' => 'INACTIVE', 'PHP' => 'INACTIVE', 'PINTEREST' => 'INACTIVE', 'PORNHUB' => 'INACTIVE', 'REDDIT' => 'INACTIVE', 'ROLLDABEATS' => 'INACTIVE', 'SERVER_FAULT' => 'INACTIVE',
-            'SLASHDOT_ICON' => 'INACTIVE', 'SLASHDOT_WORDMARK' => 'INACTIVE', 'SPOTIFY' => 'INACTIVE', 'SPRITE' => 'INACTIVE', 'STACKOVERFLOW' => 'INACTIVE', 'TWITCH' => 'INACTIVE',
-            'VIMEO_BLUE_ICON' => 'INACTIVE',  'VIMEO_BLUE_WORDMARK' => 'INACTIVE', 'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE', 'W3C' => 'INACTIVE', 'WIKIPEDIA' => 'INACTIVE',
-             'XHAMSTER_ICON' => 'INACTIVE', 'XHAMSTER_WORDMARK' => 'INACTIVE', 'XNXX' => 'INACTIVE', 'XVIDEOS' => 'INACTIVE', 'YOUTUBE' => 'INACTIVE');
+        $tmp_ARRAY  = array( 'APPLE_LOGO_BLK' => 'INACTIVE', 'APPLE_LOGO_WHT' => 'INACTIVE',
+            'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY' => 'INACTIVE',
+            'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE',
+            'APPLE_LOGO_WHT_BLK_CIRCLE' => 'INACTIVE', 'BLUEHOST_WORDMARK' => 'INACTIVE', 'ETSY' => 'INACTIVE',
+            'GOOGLE_MAPS_SQUARE' => 'INACTIVE','IDEONE' => 'INACTIVE', 'INTERNET_ARCHIVE' => 'INACTIVE',
+             'LAST_FM' => 'INACTIVE', 'MICROSOFT' => 'INACTIVE', 'PANDORA' => 'INACTIVE', 'PATREON' => 'INACTIVE',
+            'SLASHDOT_WORDMARK' => 'INACTIVE',  'SPRITE' => 'INACTIVE',  'TWITCH' => 'INACTIVE',
+            'VIMEO_BLUE_ICON' => 'INACTIVE',  'VIMEO_BLUE_WORDMARK' => 'INACTIVE',
+            'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE', 'W3C' => 'INACTIVE',
+            'XHAMSTER_WORDMARK' => 'INACTIVE', 'XVIDEOS' => 'INACTIVE');
 
         /*
         REMOVED
@@ -3374,7 +3374,44 @@ class crnrstn {
         REMOVED 'WWW' => 'INACTIVE'                 Sunday November 13, 2022 @ 0835 hrs
         REMOVED 'JSON' => 'INACTIVE'                Sunday November 13, 2022 @ 0901 hrs
         REMOVED 'APPLE_MUSIC' => 'INACTIVE'         Sunday November 13, 2022 @ 0917 hrs
-        STOP :: Sunday November 13, 2022 @ 0932 hrs
+        STOPPED :: Sunday November 13, 2022 @ 0932 hrs
+
+        START ::
+        REMOVED 'FEEDBURNER' => 'INACTIVE'          Monday November 15, 2022 @ 0000 hrs
+        REMOVED 'SLASHDOT_ICON' => 'INACTIVE'       Monday November 15, 2022 @ 0024 hrs
+        REMOVED 'XHAMSTER_ICON' => 'INACTIVE'       Monday November 15, 2022 @ 0032 hrs
+        REMOVED 'MOZILLA_ICON' => 'INACTIVE'        Monday November 15, 2022 @ 0044 hrs
+        REMOVED 'MIXCLOUD' => 'INACTIVE'            Monday November 15, 2022 @ 0052 hrs
+        REMOVED 'DISCOGS' => 'INACTIVE'             Monday November 15, 2022 @ 0102 hrs
+        REMOVED 'BEATPORT' => 'INACTIVE'            Monday November 15, 2022 @ 0112 hrs
+        REMOVED 'BANDCAMP' => 'INACTIVE'            Monday November 15, 2022 @ 0119 hrs
+        REMOVED 'SPOTIFY' => 'INACTIVE'             Monday November 15, 2022 @ 0127 hrs
+        REMOVED 'ROLLDABEATS' => 'INACTIVE'         Monday November 15, 2022 @ 0200 hrs
+        REMOVED 'STACKOVERFLOW' => 'INACTIVE'       Monday November 15, 2022 @ 0209 hrs
+        REMOVED 'KINK' => 'INACTIVE'                Monday November 15, 2022 @ 0216 hrs
+        REMOVED 'PHP' => 'INACTIVE'                 Monday November 15, 2022 @ 0223 hrs
+        REMOVED 'REDDIT' => 'INACTIVE'              Monday November 15, 2022 @ 0232 hrs
+        REMOVED 'YOUTUBE' => 'INACTIVE'             Monday November 15, 2022 @ 0240 hrs
+        REMOVED 'PAYPAL' => 'INACTIVE'              Monday November 15, 2022 @ 0246 hrs
+        REMOVED 'HISTORY' => 'INACTIVE'             Monday November 15, 2022 @ 0251 hrs
+        REMOVED 'ARCHIVES' => 'INACTIVE'            Monday November 15, 2022 @ 0301 hrs
+        REMOVED 'BASSDRIVE' => 'INACTIVE'           Monday November 15, 2022 @ 0305 hrs
+        REMOVED 'GITHUB' => 'INACTIVE'              Monday November 15, 2022 @ 0312 hrs
+        REMOVED 'XNXX' => 'INACTIVE'                Monday November 15, 2022 @ 0321 hrs
+        REMOVED 'LINKEDIN' => 'INACTIVE'            Monday November 15, 2022 @ 0334 hrs
+        REMOVED 'GOOGLE_MAPS' => 'INACTIVE'         Monday November 15, 2022 @ 0345 hrs
+        REMOVED 'FLICKR' => 'INACTIVE'              Monday November 15, 2022 @ 0359 hrs
+        REMOVED 'WIKIPEDIA' => 'INACTIVE'           Monday November 15, 2022 @ 0405 hrs
+        REMOVED 'BLOGSPOT' => 'INACTIVE'            Monday November 15, 2022 @ 0413 hrs
+        REMOVED 'PINTEREST' => 'INACTIVE'           Monday November 15, 2022 @ 0427 hrs
+        REMOVED 'SERVER_FAULT' => 'INACTIVE'        Monday November 15, 2022 @ 0432 hrs
+        REMOVED 'GOOGLE_DRIVE' => 'INACTIVE'        Monday November 15, 2022 @ 0440 hrs
+        REMOVED 'BLUEHOST_ICON' => 'INACTIVE'       Monday November 15, 2022 @ 0445 hrs
+        REMOVED 'AMAZON' => 'INACTIVE'              Monday November 15, 2022 @ 0449 hrs
+        REMOVED 'PORNHUB' => 'INACTIVE'             Monday November 15, 2022 @ 0459 hrs
+        REMOVED 'EBAY' => 'INACTIVE'                Monday November 15, 2022 @ 0505 hrs
+        REMOVED 'MOZILLA_WORDMARK' => 'INACTIVE'    Monday November 15, 2022 @ 0519 hrs
+        STOPPED Monday November 15, 2022 @ 0526 hrs
 
         */
 
