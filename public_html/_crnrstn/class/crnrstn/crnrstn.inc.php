@@ -3377,41 +3377,41 @@ class crnrstn {
         STOPPED :: Sunday November 13, 2022 @ 0932 hrs
 
         START ::
-        REMOVED 'FEEDBURNER' => 'INACTIVE'          Monday November 15, 2022 @ 0000 hrs
-        REMOVED 'SLASHDOT_ICON' => 'INACTIVE'       Monday November 15, 2022 @ 0024 hrs
-        REMOVED 'XHAMSTER_ICON' => 'INACTIVE'       Monday November 15, 2022 @ 0032 hrs
-        REMOVED 'MOZILLA_ICON' => 'INACTIVE'        Monday November 15, 2022 @ 0044 hrs
-        REMOVED 'MIXCLOUD' => 'INACTIVE'            Monday November 15, 2022 @ 0052 hrs
-        REMOVED 'DISCOGS' => 'INACTIVE'             Monday November 15, 2022 @ 0102 hrs
-        REMOVED 'BEATPORT' => 'INACTIVE'            Monday November 15, 2022 @ 0112 hrs
-        REMOVED 'BANDCAMP' => 'INACTIVE'            Monday November 15, 2022 @ 0119 hrs
-        REMOVED 'SPOTIFY' => 'INACTIVE'             Monday November 15, 2022 @ 0127 hrs
-        REMOVED 'ROLLDABEATS' => 'INACTIVE'         Monday November 15, 2022 @ 0200 hrs
-        REMOVED 'STACKOVERFLOW' => 'INACTIVE'       Monday November 15, 2022 @ 0209 hrs
-        REMOVED 'KINK' => 'INACTIVE'                Monday November 15, 2022 @ 0216 hrs
-        REMOVED 'PHP' => 'INACTIVE'                 Monday November 15, 2022 @ 0223 hrs
-        REMOVED 'REDDIT' => 'INACTIVE'              Monday November 15, 2022 @ 0232 hrs
-        REMOVED 'YOUTUBE' => 'INACTIVE'             Monday November 15, 2022 @ 0240 hrs
-        REMOVED 'PAYPAL' => 'INACTIVE'              Monday November 15, 2022 @ 0246 hrs
-        REMOVED 'HISTORY' => 'INACTIVE'             Monday November 15, 2022 @ 0251 hrs
-        REMOVED 'ARCHIVES' => 'INACTIVE'            Monday November 15, 2022 @ 0301 hrs
-        REMOVED 'BASSDRIVE' => 'INACTIVE'           Monday November 15, 2022 @ 0305 hrs
-        REMOVED 'GITHUB' => 'INACTIVE'              Monday November 15, 2022 @ 0312 hrs
-        REMOVED 'XNXX' => 'INACTIVE'                Monday November 15, 2022 @ 0321 hrs
-        REMOVED 'LINKEDIN' => 'INACTIVE'            Monday November 15, 2022 @ 0334 hrs
-        REMOVED 'GOOGLE_MAPS' => 'INACTIVE'         Monday November 15, 2022 @ 0345 hrs
-        REMOVED 'FLICKR' => 'INACTIVE'              Monday November 15, 2022 @ 0359 hrs
-        REMOVED 'WIKIPEDIA' => 'INACTIVE'           Monday November 15, 2022 @ 0405 hrs
-        REMOVED 'BLOGSPOT' => 'INACTIVE'            Monday November 15, 2022 @ 0413 hrs
-        REMOVED 'PINTEREST' => 'INACTIVE'           Monday November 15, 2022 @ 0427 hrs
-        REMOVED 'SERVER_FAULT' => 'INACTIVE'        Monday November 15, 2022 @ 0432 hrs
-        REMOVED 'GOOGLE_DRIVE' => 'INACTIVE'        Monday November 15, 2022 @ 0440 hrs
-        REMOVED 'BLUEHOST_ICON' => 'INACTIVE'       Monday November 15, 2022 @ 0445 hrs
-        REMOVED 'AMAZON' => 'INACTIVE'              Monday November 15, 2022 @ 0449 hrs
-        REMOVED 'PORNHUB' => 'INACTIVE'             Monday November 15, 2022 @ 0459 hrs
-        REMOVED 'EBAY' => 'INACTIVE'                Monday November 15, 2022 @ 0505 hrs
-        REMOVED 'MOZILLA_WORDMARK' => 'INACTIVE'    Monday November 15, 2022 @ 0519 hrs
-        STOPPED Monday November 15, 2022 @ 0526 hrs
+        REMOVED 'FEEDBURNER' => 'INACTIVE'          Tuesday November 15, 2022 @ 0000 hrs
+        REMOVED 'SLASHDOT_ICON' => 'INACTIVE'       Tuesday November 15, 2022 @ 0024 hrs
+        REMOVED 'XHAMSTER_ICON' => 'INACTIVE'       Tuesday November 15, 2022 @ 0032 hrs
+        REMOVED 'MOZILLA_ICON' => 'INACTIVE'        Tuesday November 15, 2022 @ 0044 hrs
+        REMOVED 'MIXCLOUD' => 'INACTIVE'            Tuesday November 15, 2022 @ 0052 hrs
+        REMOVED 'DISCOGS' => 'INACTIVE'             Tuesday November 15, 2022 @ 0102 hrs
+        REMOVED 'BEATPORT' => 'INACTIVE'            Tuesday November 15, 2022 @ 0112 hrs
+        REMOVED 'BANDCAMP' => 'INACTIVE'            Tuesday November 15, 2022 @ 0119 hrs
+        REMOVED 'SPOTIFY' => 'INACTIVE'             Tuesday November 15, 2022 @ 0127 hrs
+        REMOVED 'ROLLDABEATS' => 'INACTIVE'         Tuesday November 15, 2022 @ 0200 hrs
+        REMOVED 'STACKOVERFLOW' => 'INACTIVE'       Tuesday November 15, 2022 @ 0209 hrs
+        REMOVED 'KINK' => 'INACTIVE'                Tuesday November 15, 2022 @ 0216 hrs
+        REMOVED 'PHP' => 'INACTIVE'                 Tuesday November 15, 2022 @ 0223 hrs
+        REMOVED 'REDDIT' => 'INACTIVE'              Tuesday November 15, 2022 @ 0232 hrs
+        REMOVED 'YOUTUBE' => 'INACTIVE'             Tuesday November 15, 2022 @ 0240 hrs
+        REMOVED 'PAYPAL' => 'INACTIVE'              Tuesday November 15, 2022 @ 0246 hrs
+        REMOVED 'HISTORY' => 'INACTIVE'             Tuesday November 15, 2022 @ 0251 hrs
+        REMOVED 'ARCHIVES' => 'INACTIVE'            Tuesday November 15, 2022 @ 0301 hrs
+        REMOVED 'BASSDRIVE' => 'INACTIVE'           Tuesday November 15, 2022 @ 0305 hrs
+        REMOVED 'GITHUB' => 'INACTIVE'              Tuesday November 15, 2022 @ 0312 hrs
+        REMOVED 'XNXX' => 'INACTIVE'                Tuesday November 15, 2022 @ 0321 hrs
+        REMOVED 'LINKEDIN' => 'INACTIVE'            Tuesday November 15, 2022 @ 0334 hrs
+        REMOVED 'GOOGLE_MAPS' => 'INACTIVE'         Tuesday November 15, 2022 @ 0345 hrs
+        REMOVED 'FLICKR' => 'INACTIVE'              Tuesday November 15, 2022 @ 0359 hrs
+        REMOVED 'WIKIPEDIA' => 'INACTIVE'           Tuesday November 15, 2022 @ 0405 hrs
+        REMOVED 'BLOGSPOT' => 'INACTIVE'            Tuesday November 15, 2022 @ 0413 hrs
+        REMOVED 'PINTEREST' => 'INACTIVE'           Tuesday November 15, 2022 @ 0427 hrs
+        REMOVED 'SERVER_FAULT' => 'INACTIVE'        Tuesday November 15, 2022 @ 0432 hrs
+        REMOVED 'GOOGLE_DRIVE' => 'INACTIVE'        Tuesday November 15, 2022 @ 0440 hrs
+        REMOVED 'BLUEHOST_ICON' => 'INACTIVE'       Tuesday November 15, 2022 @ 0445 hrs
+        REMOVED 'AMAZON' => 'INACTIVE'              Tuesday November 15, 2022 @ 0449 hrs
+        REMOVED 'PORNHUB' => 'INACTIVE'             Tuesday November 15, 2022 @ 0459 hrs
+        REMOVED 'EBAY' => 'INACTIVE'                Tuesday November 15, 2022 @ 0505 hrs
+        REMOVED 'MOZILLA_WORDMARK' => 'INACTIVE'    Tuesday November 15, 2022 @ 0519 hrs
+        STOPPED Tuesday November 15, 2022 @ 0526 hrs
 
         */
 
