@@ -65,7 +65,9 @@ CRNRSTN :: LEAD DEVELOPER HELPER FOR SPRITE SETUP
 //$tmp_mode = O;
 
 */
+$tmp_mode = 1;
 $tmp_mode = 0;
+$media_key = 'FEEDBURNER';
 
 switch($tmp_mode){
     case 2:
@@ -134,9 +136,22 @@ switch($tmp_mode){
         //
         // IMAGE SPRITE COORDINATES TESTING
         // APPLE_MUSIC_SMALL, APPLE_MUSIC_MEDIUM, APPLE_MUSIC_LARGE
-        echo $oCRNRSTN->return_sticky_media_link('APPLE_MUSIC_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
+        echo '<div style="font-family: Courier New, Courier, monospace; color: #333; font-size: 14px;">[small]</div>';
+        echo $oCRNRSTN->return_sticky_media_link($media_key . '_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
         echo '<div style="display:block; clear:both; height:3px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>';
-        echo $oCRNRSTN->return_sticky_media_link('APPLE_MUSIC_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo $oCRNRSTN->return_sticky_media_link($media_key . '_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo '<div style="display:block; clear:both; height:20px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>';
+
+        echo '<div style="font-family: Courier New, Courier, monospace; color: #333; font-size: 14px;">[medium]</div>';
+        echo $oCRNRSTN->return_sticky_media_link($media_key . '_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
+        echo '<div style="display:block; clear:both; height:3px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>';
+        echo $oCRNRSTN->return_sticky_media_link($media_key . '_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+        echo '<div style="display:block; clear:both; height:20px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>';
+
+        echo '<div style="font-family: Courier New, Courier, monospace; color: #333; font-size: 14px;">[large]</div>';
+        echo $oCRNRSTN->return_sticky_media_link($media_key . '_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
+        echo '<div style="display:block; clear:both; height:3px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>';
+        echo $oCRNRSTN->return_sticky_media_link($media_key . '_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
 
         exit();
 
