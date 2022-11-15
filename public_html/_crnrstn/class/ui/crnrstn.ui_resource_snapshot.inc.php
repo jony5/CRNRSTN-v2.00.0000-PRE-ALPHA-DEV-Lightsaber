@@ -292,7 +292,7 @@ class crnrstn_view_state_controller {
             case CRNRSTN_RESOURCE_ALL:
 
                 $this->oCRNRSTN_USR->reset_auth_account();
-                error_log(__LINE__ . ' vsc process ORGANIC _GET...');
+                //error_log(__LINE__ . ' vsc process ORGANIC _GET...');
 
                 //
                 // ORGANIC REQUEST HANDLING (as in...like...e.g...idk...um...maybe..$_GET) - NO FORM POST
@@ -300,7 +300,7 @@ class crnrstn_view_state_controller {
 
                     //if($this->oCRNRSTN_AUTH->is_logged_in()){
                         if($this->oCRNRSTN_USR->isset_http_param('crnrstn_l', 'GET')){
-                            error_log(__LINE__ . ' vsc isset_http_param time...');
+                            //error_log(__LINE__ . ' vsc isset_http_param time...');
 
                             $tmp_req = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
                             $tmp_mit = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_mit', 'GET', true);           // GETS YOU LICENSE...ALWAYS
@@ -450,7 +450,7 @@ class crnrstn_view_state_controller {
 
                         }else{
 
-                            error_log(__LINE__ . ' vsc process ORGANIC _GET...');
+                            //error_log(__LINE__ . ' vsc process ORGANIC _GET...');
 
                             $this->oCRNRSTN_USR->proper_response_return();
                             return '';
@@ -623,14 +623,14 @@ class crnrstn_view_state_controller {
 
                     }else{
 
-                        error_log(__LINE__ . ' vsc process ORGANIC _GET...');
+                        //error_log(__LINE__ . ' vsc process ORGANIC _GET...');
 
                         $this->oCRNRSTN_USR->proper_response_return('', NULL, 'RESPONSE_SANS_POST');
 
                         return '';
 
                     }
-                    error_log(__LINE__ . ' vsc isset_http_param time...');
+                    //error_log(__LINE__ . ' vsc isset_http_param time...');
 
                     return '';
 

@@ -1424,6 +1424,14 @@ class crnrstn_content_generator {
                 // DESKTOP EXPERIENCE
 
                 //
+                // THE R
+                $tmp_html_the_r = '<div class="crnrstn_documentation_r_icon_shell">
+                                        <div class="crnrstn_documentation_r_icon_rel">
+                                            <div class="crnrstn_documentation_r_icon">' . $this->oCRNRSTN->return_system_image('CRNRSTN_R_MD', 30, 40, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+                                        </div>
+                                    </div>';
+
+                //
                 // TOP LINK
                 $tmp_html_top_link = '<div class="crnrstn_documentation_lnk_top_rel">
                                         <div class="crnrstn_documentation_lnk_top">
@@ -1689,6 +1697,7 @@ class crnrstn_content_generator {
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
+                                        
                                     </div>
                                 
                                 </div>
@@ -1710,6 +1719,7 @@ class crnrstn_content_generator {
                                 ' . $tmp_html_top_link . '
                                 <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
                                 <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
+                                ' .  $tmp_html_the_r . '
                                 
                             </div>
                         </div>
@@ -1726,7 +1736,8 @@ class crnrstn_content_generator {
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
-
+                                        ' . $tmp_html_the_r . '
+                                        
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
@@ -1735,7 +1746,8 @@ class crnrstn_content_generator {
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
-                                    
+                                        ' . $tmp_html_the_r . '
+                                        
                                     </div>
                                     
                                 </div>
@@ -2171,7 +2183,7 @@ Request time: ' . $this->oCRNRSTN->start_time() . '</p>
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
                                 <div class="crnrstn_documentation_page_stats_content">' . $tmp_report . '</div>
-                                
+                                ' . $tmp_html_the_r . '
                             </div>
                         </div>
                     </div>
@@ -2186,7 +2198,7 @@ Request time: ' . $this->oCRNRSTN->start_time() . '</p>
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_page_stats_content">' . $tmp_report . '</div>
-
+                                        ' . $tmp_html_the_r . '
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
@@ -2194,7 +2206,7 @@ Request time: ' . $this->oCRNRSTN->start_time() . '</p>
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_page_stats_content">' . $tmp_report . '</div>
-                                    
+                                        ' . $tmp_html_the_r . '
                                     </div>
                                     
                                 </div>
@@ -2216,7 +2228,7 @@ Request time: ' . $this->oCRNRSTN->start_time() . '</p>
                 $html_out .= '
                 <div class="crnrstn_cb"></div>
                 <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
-                    <div class="crnrstn_interact_ui_documentation_j5_wolf_pup_inner_wrap">
+                    <div id="crnrstn_interact_ui_documentation_j5_wolf_pup_inner_wrap" class="crnrstn_interact_ui_documentation_j5_wolf_pup_inner_wrap">
                         ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
                     </div>
                 </div>

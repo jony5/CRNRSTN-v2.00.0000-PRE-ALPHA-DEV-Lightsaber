@@ -284,8 +284,8 @@ echo $oCRNRSTN->framework_integrations_client_packet(-1);
 ?>
 
 <div style="width:700px;">
-    <div class="crnrstn_j5_wolf_pup_outter_wrap">
-        <div class="crnrstn_j5_wolf_pup_inner_wrap">
+    <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
+        <div id="crnrstn_j5_wolf_pup_inner_wrap" class="crnrstn_j5_wolf_pup_inner_wrap">
             <?php
 
             echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);

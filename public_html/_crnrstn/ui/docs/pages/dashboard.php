@@ -282,10 +282,10 @@ switch($channel_constant[0]){
             
         </div>
        
-        <div class="crnrstn_j5_wolf_pup_outter_wrap">
-            <div class="crnrstn_j5_wolf_pup_inner_wrap">
+        <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
+            <divc class="crnrstn_j5_wolf_pup_inner_wrap">
                 ' . $this->oCRNRSTN_USR->return_creative('J5_WOLF_PUP_RAND').'
-            </div>
+            </divc>
         </div>
         
         <div class="crnrstn_cb"></div>
