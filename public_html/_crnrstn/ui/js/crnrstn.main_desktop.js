@@ -303,7 +303,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 //        if(this.crnrstn_ui_component_state_ARRAY[component_key].length){
         if(this.crnrstn_ui_component_state_ARRAY[component_key]){
 
-            //alert('[lnum 306] Key[' + component_key +  ']  is set to [' + this.crnrstn_ui_component_state_ARRAY[component_key] + '].');
+            //alert('[lnum 306] Key[' + component_key + '] is set to [' + this.crnrstn_ui_component_state_ARRAY[component_key] + '].');
 
             return this.crnrstn_ui_component_state_ARRAY[component_key];
 
@@ -1260,7 +1260,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         // TAKE THIS FINAL NUMBER AND FORMAT IT FOR DISPLAY.
         tmp_size_final_pretty = self.format_bytes(tmp_size_final, 3);
 
-        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g,  tmp_size_final_pretty);
+        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g, tmp_size_final_pretty);
         //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
 
 
@@ -2333,7 +2333,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         //
         // I'M NOT DOING THIS WORK IN THE CLOUD.
-        // xxxx_xxxx_xxx_0  <- REMOVE TRAILING INDEX FOR CLEAN SERVER PROCESSING.
+        // xxxx_xxxx_xxx_0 <- REMOVE TRAILING INDEX FOR CLEAN SERVER PROCESSING.
         var clean_index_str = '';
         var tmp_clean_input_str_ARRAY = [];
         var tmp_str_ARRAY = str.split('_');
@@ -3042,7 +3042,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                         // TAKE THIS FINAL NUMBER AND FORMAT IT FOR DISPLAY.
                                         tmp_size_final_pretty = self.format_bytes(tmp_size_final, 3);
 
-                                        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g,  tmp_size_final_pretty);
+                                        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g, tmp_size_final_pretty);
                                         //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
 
 
@@ -3061,7 +3061,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
 
 
-                                        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g,  tmp_size_final_pretty + ' chars');
+                                        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g, tmp_size_final_pretty + ' chars');
                                         //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
 
                                         */
@@ -3593,7 +3593,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                     //var css_int = this.string_clean_css_px_int($('#crnrstn_interact_ui_side_nav').css('width'));
 
-//                    if((css_int >= this.side_navigation_min_width + 5  && !(force_execution)) || (force_execution && (css_int <= this.side_navigation_min_width))) {
+//                    if((css_int >= this.side_navigation_min_width + 5 && !(force_execution)) || (force_execution && (css_int <= this.side_navigation_min_width))) {
                     if(tmp_nav_state === 'MIN'){
 
                         tmp_window_width = $(window).width();
@@ -3810,8 +3810,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 var self = this;
 
                 self.$dom_elem = $("#" + dom_elem_id);
-                var closed_delta =  -18;
-                var open_delta =  -250;
+                var closed_delta = -18;
+                var open_delta = -250;
 
                 //
                 // I LIKE THIS. SHOULD MOVE EVERYTHING THIS DIRECTION (IF THIS ATTEMPT WORKS...)
@@ -7928,20 +7928,20 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         // navigator.clipboard.writeText($('#crnstn_print_r_source_' + elem_hash).html()).then(
         //     () => {
         //         /* clipboard successfully set */
-        //         //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_"  +  elem_hash).innerHTML);
+        //         //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_" + elem_hash).innerHTML);
         //
         //     },
         //     () => {
         //         /* clipboard write failed */
-        //         //alert("FAIL::Copied the text: " + document.getElementById("crnstn_print_r_source_"  +  elem_hash).innerHTML);
+        //         //alert("FAIL::Copied the text: " + document.getElementById("crnstn_print_r_source_" + elem_hash).innerHTML);
         //
         //     }
         // );
 
         /* Alert the copied text */
-        //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_"  +  elem_hash).innerHTML);
+        //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_" + elem_hash).innerHTML);
         //alert("Highlight Color: " + $('#crnstn_print_r_highlight_color_' + elem_hash).html());
-        document.getElementById('crnstn_print_r_source_' +  elem_hash).style.backgroundColor = $('#crnstn_print_r_highlight_color_' + elem_hash).html();
+        document.getElementById('crnstn_print_r_source_' + elem_hash).style.backgroundColor = $('#crnstn_print_r_highlight_color_' + elem_hash).html();
         //$('#crnstn_print_r_source_' + elem_hash).css('backgroundColor', $('#crnstn_print_r_highlight_color_' + elem_hash).html());
 
         // $('#crnstn_print_r_source_' + elem_hash).animate({

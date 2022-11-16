@@ -187,7 +187,7 @@ class crnrstn_system_image_asset_manager {
 
         */
 
-        //error_log(__LINE__ .  ' asset mgr [' . __METHOD__ . '] [' . print_r($data_ARRAY, true) . '].');
+        //error_log(__LINE__ . ' asset mgr [' . __METHOD__ . '] [' . print_r($data_ARRAY, true) . '].');
 
         $this->asset_meta_path = '';
         if(isset($data_ARRAY['crnrstn_asset_method_key'])){
@@ -214,7 +214,7 @@ class crnrstn_system_image_asset_manager {
                 $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
                 $tmp_header_options_ARRAY[] = 'X-Frame-Options: SAMEORIGIN';
 
-                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . '].  $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
 
                 $tmp_ARRAY = explode('/', $this->asset_request_data_key);
 
@@ -259,7 +259,7 @@ class crnrstn_system_image_asset_manager {
             case 'system':
             case 'social':
 
-                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . '].  $this->asset_response_method_key/$media_element_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key/$media_element_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
                 //return $this->return_image_data($this->asset_request_data_key, NULL, NULL, NULL, NULL, NULL, NULL, $this->asset_request_asset_family, $output_mode);
 
                 //die();
@@ -268,13 +268,13 @@ class crnrstn_system_image_asset_manager {
             break;
             case 'js':
 
-                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . '].  $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
                 return $this->return_asset_data();
 
             break;
             case 'css':
 
-                //error_log(__LINE__ . ' asset mgr asset mgr $tmp_meta_path[' . $this->asset_meta_path . '].  $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+                //error_log(__LINE__ . ' asset mgr asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
                 return $this->return_asset_data();
 
             break;
@@ -3524,7 +3524,7 @@ class crnrstn_system_image_asset_manager {
                     switch($this->asset_request_asset_family){
                         case 'favicon':
 
-                            error_log(__LINE__  . ' asset mgr FAVICON $this->asset_request_asset_family[' . $this->asset_request_asset_family . ']. [' . $tmp_output_mode . ']. die();');
+                            error_log(__LINE__ . ' asset mgr FAVICON $this->asset_request_asset_family[' . $this->asset_request_asset_family . ']. [' . $tmp_output_mode . ']. die();');
                             die();
 
                         break;
@@ -3572,7 +3572,7 @@ class crnrstn_system_image_asset_manager {
 
                     if(!isset($tmp_filepath)){
 
-                        //error_log(__LINE__ . ' asset mgr $tmp_http[' . $tmp_http . ']. $this->asset_request_asset_family[' . $this->asset_request_asset_family . '].  $this->asset_request_data_key[' . $this->asset_request_data_key . ']');
+                        //error_log(__LINE__ . ' asset mgr $tmp_http[' . $tmp_http . ']. $this->asset_request_asset_family[' . $this->asset_request_asset_family . ']. $this->asset_request_data_key[' . $this->asset_request_data_key . ']');
 
                         $tmp_file_extension = 'png';
                         $tmp_filepath = $tmp_path . '/png/' . $this->asset_request_asset_family . '/' . $this->asset_request_data_key . '.' . $tmp_file_extension;
@@ -3986,7 +3986,7 @@ class crnrstn_system_image_asset_manager {
                     switch($this->asset_request_asset_family){
                         case 'favicon':
 
-                            error_log(__LINE__  . ' asset mgr FAVICON $this->asset_request_asset_family[' . $this->asset_request_asset_family . ']. [' . $tmp_filename . '][' . $tmp_width . '][' . $tmp_height . '][' . $tmp_alt_text . '][' . $tmp_title_text . '][' . $tmp_link . '][' . $tmp_target . '][' . $tmp_asset_family . '][' . $tmp_output_mode . ']');
+                            error_log(__LINE__ . ' asset mgr FAVICON $this->asset_request_asset_family[' . $this->asset_request_asset_family . ']. [' . $tmp_filename . '][' . $tmp_width . '][' . $tmp_height . '][' . $tmp_alt_text . '][' . $tmp_title_text . '][' . $tmp_link . '][' . $tmp_target . '][' . $tmp_asset_family . '][' . $tmp_output_mode . ']');
                             die();
 
                         break;
@@ -4103,7 +4103,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_path = $this->oCRNRSTN->get_resource('crnrstn_system_asset_tunnel_route_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             if(strlen($tmp_path) < 1){
 
-                                $tmp_path = $tmp_path_directory . DIRECTORY_SEPARATOR . $tmp_system_directory . DIRECTORY_SEPARATOR . 'ui' . DIRECTORY_SEPARATOR .  'imgs';
+                                $tmp_path = $tmp_path_directory . DIRECTORY_SEPARATOR . $tmp_system_directory . DIRECTORY_SEPARATOR . 'ui' . DIRECTORY_SEPARATOR . 'imgs';
 
                             }
 
@@ -4113,7 +4113,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_path = $this->oCRNRSTN->get_resource('crnrstn_social_asset_tunnel_route_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             if(strlen($tmp_path) < 1){
 
-                                $tmp_path = $tmp_path_directory . DIRECTORY_SEPARATOR . $tmp_system_directory . DIRECTORY_SEPARATOR . 'ui' . DIRECTORY_SEPARATOR .  'imgs';
+                                $tmp_path = $tmp_path_directory . DIRECTORY_SEPARATOR . $tmp_system_directory . DIRECTORY_SEPARATOR . 'ui' . DIRECTORY_SEPARATOR . 'imgs';
 
                             }
 
@@ -4391,7 +4391,7 @@ class crnrstn_system_image_asset_manager {
                     default:
 
                         //error_log(__LINE__ . ' asste mgr [' . $tmp_asset_family . '].');
-                        return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '?' . $this->oCRNRSTN->session_salt() . '=' . $tmp_asset_family . '/' .  $tmp_filename . '.ico&v=420.00" />';
+                        return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '?' . $this->oCRNRSTN->session_salt() . '=' . $tmp_asset_family . '/' . $tmp_filename . '.ico&v=420.00" />';
 
                     break;
 
@@ -4649,7 +4649,7 @@ class crnrstn_system_image_asset_manager {
                             //
                             // RETURN IMAGE STRING
                             //$tmp_file_extension = 'jpg';
-                            //$tmp_filepath = $this->oCRNRSTN->crnrstn_path_directory() . '/' . $this->oCRNRSTN->crnrstn_root_directory() .  '/ui/imgs/jpg/' . $this->asset_request_asset_family . '/' . $tmp_filename . '.' . $tmp_file_extension;
+                            //$tmp_filepath = $this->oCRNRSTN->crnrstn_path_directory() . '/' . $this->oCRNRSTN->crnrstn_root_directory() . '/ui/imgs/jpg/' . $this->asset_request_asset_family . '/' . $tmp_filename . '.' . $tmp_file_extension;
                             //error_log(__LINE__ . ' asset mgr [CRNRSTN_ASSET_MODE_JPEG]. $tmp_filepath[' . $tmp_filename . '].');
 
                             return $this->return_image_string($tmp_path, $tmp_http, $tmp_map_http, $tmp_output_mode, $asset_mapping_is_active);
@@ -4827,7 +4827,7 @@ class crnrstn_system_image_asset_manager {
 
                             }
 
-                            //error_log(__LINE__  . ' asset  mgr DEFAULT SWITCH HIT. $this->default_asset_mode[' . $this->default_asset_mode . ']. [' . $tmp_filename . ']. [' . $tmp_output_mode . ']. [' . self::$asset_output_mode_ARRAY[$this->asset_request_asset_family][$tmp_filename] . '].');
+                            //error_log(__LINE__ . ' asset mgr DEFAULT SWITCH HIT. $this->default_asset_mode[' . $this->default_asset_mode . ']. [' . $tmp_filename . ']. [' . $tmp_output_mode . ']. [' . self::$asset_output_mode_ARRAY[$this->asset_request_asset_family][$tmp_filename] . '].');
 
                             return $this->return_image_string($tmp_path, $tmp_http, $tmp_map_http, $tmp_output_mode, $asset_mapping_is_active);
 
@@ -5028,7 +5028,7 @@ class crnrstn_system_image_asset_manager {
                 break;
                 case CRNRSTN_UI_IMG_HTML_WRAPPED:
 
-                    //error_log(__LINE__ . ' asset mgr $tmp_family[' . $this->asset_request_asset_family . ']. $tmp_filename[' . $tmp_filename . '].  $tmp_output_mode[' . $tmp_output_mode . '].');
+                    //error_log(__LINE__ . ' asset mgr $tmp_family[' . $this->asset_request_asset_family . ']. $tmp_filename[' . $tmp_filename . ']. $tmp_output_mode[' . $tmp_output_mode . '].');
                     $tmp_str = $this->oCRNRSTN->crnrstn_http_endpoint() . '_crnrstn/ui/imgs/jpg/' . $tmp_filename . '.jpg';
 
                     if(strlen($tmp_link) > 0){
@@ -5044,7 +5044,7 @@ class crnrstn_system_image_asset_manager {
                             case 'baasdrive':
                             case 'jony5':
 
-                                return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '?' . $this->oCRNRSTN->session_salt() . '=' . $tmp_asset_family . '/' .  $tmp_filename . '.ico&v=420.00" />';
+                                return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '?' . $this->oCRNRSTN->session_salt() . '=' . $tmp_asset_family . '/' . $tmp_filename . '.ico&v=420.00" />';
 
                             break;
                             default:
@@ -5061,7 +5061,7 @@ class crnrstn_system_image_asset_manager {
                 break;
                 case CRNRSTN_UI_IMG_JPEG:
 
-                    //error_log(__LINE__ . ' asset mgr $tmp_filename[' . $tmp_filename . '].  $tmp_output_mode[' . $tmp_output_mode . '].');
+                    //error_log(__LINE__ . ' asset mgr $tmp_filename[' . $tmp_filename . ']. $tmp_output_mode[' . $tmp_output_mode . '].');
                     $tmp_str = $this->oCRNRSTN->crnrstn_http_endpoint() . 'ui/imgs/jpg/' . $tmp_filename . '.jpg';
 
                     //
@@ -5071,7 +5071,7 @@ class crnrstn_system_image_asset_manager {
                 break;
                 case CRNRSTN_UI_IMG_PNG:
 
-                    //error_log(__LINE__ . ' asset mgr $tmp_filename[' . $tmp_filename . '].  $tmp_output_mode[' . $tmp_output_mode . '].');
+                    //error_log(__LINE__ . ' asset mgr $tmp_filename[' . $tmp_filename . ']. $tmp_output_mode[' . $tmp_output_mode . '].');
                     switch($tmp_asset_family){
                         case 'system':
 
@@ -5296,7 +5296,7 @@ class crnrstn_system_image_asset_manager {
 
             $this->oCRNRSTN->header_options_apply();
 
-            //error_log(__LINE__ . ' asset mgr asset mgr file_path[' . $tmp_filepath . '].  asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+            //error_log(__LINE__ . ' asset mgr asset mgr file_path[' . $tmp_filepath . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
 
             echo $tmp_str;
             exit;
@@ -5353,7 +5353,7 @@ class crnrstn_system_image_asset_manager {
 
         */
 
-        //error_log(__LINE__ . ' asset mgr asset mgr asset_meta_path[' . $this->asset_meta_path . '].  asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+        //error_log(__LINE__ . ' asset mgr asset mgr asset_meta_path[' . $this->asset_meta_path . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
 
         return 'Hello world.';
 
@@ -5894,14 +5894,14 @@ switch(self::$image_output_mode){
         // BASE64 ENCODE OF JPG';
         if($has_jpeg){
 
-            $tmp_file_input_str  .= '
+            $tmp_file_input_str .= '
         self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'datecreated_base64_JPEG\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$this->system_file_serial]['datecreated_base64_JPEG'] . '\';
         self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['base64'] . '\';
 ';
 
         }
 
-        $tmp_file_input_str  .= '
+        $tmp_file_input_str .= '
     break;
     default:
     
@@ -5909,14 +5909,14 @@ switch(self::$image_output_mode){
         // BASE64 ENCODE OF PNG';
         if($has_png){
 
-            $tmp_file_input_str  .= '
+            $tmp_file_input_str .= '
         self::$image_filesystem_meta_ARRAY[self::$image_output_mode][self::$request_salt][$system_file_serial][\'datecreated_base64_PNG\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$this->system_file_serial]['datecreated_base64_PNG'] . '\';
         self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_salt][$system_file_serial][\'base64\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_PNG][self::$request_salt]['base64'] . '\';
 ';
 
         }
 
-        $tmp_file_input_str  .= '
+        $tmp_file_input_str .= '
     break;
     
 }
@@ -5979,12 +5979,12 @@ self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_PNG][self::$request_sal
         if($has_jpeg){
 
             $tmp_file_input_str .= 'self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'md5\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['md5'] . '\';';
-            $tmp_file_input_str  .= '
+            $tmp_file_input_str .= '
 self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64_JPEG][self::$request_salt][$system_file_serial][\'sha1\'] = \'' . self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_JPEG][self::$request_salt]['sha1'] . '\';';
 
         }
 
-        $tmp_file_input_str  .= '
+        $tmp_file_input_str .= '
 
 
 # # # # # 

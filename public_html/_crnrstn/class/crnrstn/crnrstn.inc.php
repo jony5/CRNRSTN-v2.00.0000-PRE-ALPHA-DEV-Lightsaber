@@ -628,7 +628,7 @@ class crnrstn {
 
         }
 
-        //error_log(__LINE__ . ' crnrstn  [' . $salt_ugc . '] NOT FOUND IN [' . $crnrstn_asset_family . '].');
+        //error_log(__LINE__ . ' crnrstn [' . $salt_ugc . '] NOT FOUND IN [' . $crnrstn_asset_family . '].');
         return false;
 
     }
@@ -2492,7 +2492,7 @@ class crnrstn {
 
         if($crnrstn_http_endpoint == ''){
             
-            $crnrstn_http_endpoint = 'http://' . $_SERVER['SERVER_ADDR'] .  '/';
+            $crnrstn_http_endpoint = 'http://' . $_SERVER['SERVER_ADDR'] . '/';
 
         }
 
@@ -2984,7 +2984,6 @@ class crnrstn {
 
         }
 
-
     }
 
     public function config_add_administration($env_key, $email_or_creds_path, $pwd = NULL, $ttl = 120, $max_login_attempts = 10){
@@ -3144,7 +3143,7 @@ class crnrstn {
 
         */
 
-//        $tmp_ARRAY  = array('SOCIAL_AMAZON', 'SOCIAL_AMAZON_HQ', 'SOCIAL_APPLE_LOGO_BLK', 'SOCIAL_APPLE_LOGO_BLK_HQ',
+//        $tmp_ARRAY = array('SOCIAL_AMAZON', 'SOCIAL_AMAZON_HQ', 'SOCIAL_APPLE_LOGO_BLK', 'SOCIAL_APPLE_LOGO_BLK_HQ',
 //            'SOCIAL_APPLE_LOGO_BLK_WHT_CIRCLE', 'SOCIAL_APPLE_LOGO_BLK_WHT_CIRCLE_HQ', 'SOCIAL_APPLE_LOGO_GREY',
 //            'SOCIAL_APPLE_LOGO_GREY_BLK_CIRCLE', 'SOCIAL_APPLE_LOGO_GREY_BLK_CIRCLE_HQ', 'SOCIAL_APPLE_LOGO_GREY_HQ',
 //            'SOCIAL_APPLE_LOGO_GREY_WHT_CIRCLE', 'SOCIAL_APPLE_LOGO_GREY_WHT_CIRCLE_HQ', 'SOCIAL_APPLE_LOGO_WHT',
@@ -3177,7 +3176,7 @@ class crnrstn {
 //            'SOCIAL_YOUTUBE', 'SOCIAL_YOUTUBE_HQ');
 //        $this->asset_routing_data_key_lookup_ARRAY['social-meta-key'] = $tmp_ARRAY;
 
-        $tmp_ARRAY  = array('amazon_icon' => 'SOCIAL_AMAZON', 'amazon_icon_hq' => 'SOCIAL_AMAZON_HQ',
+        $tmp_ARRAY = array('amazon_icon' => 'SOCIAL_AMAZON', 'amazon_icon_hq' => 'SOCIAL_AMAZON_HQ',
             'apple_logo_blk' => 'SOCIAL_APPLE_LOGO_BLK', 'apple_logo_wht' => 'SOCIAL_APPLE_LOGO_WHT', 'apple_logo_blk_hq' => 'SOCIAL_APPLE_LOGO_BLK_HQ',
             'apple_logo_blk_wht_circle' => 'SOCIAL_APPLE_LOGO_BLK_WHT_CIRCLE', 'apple_logo_blk_wht_circle_hq' => 'SOCIAL_APPLE_LOGO_BLK_WHT_CIRCLE_HQ',
             'apple_logo_grey' => 'SOCIAL_APPLE_LOGO_GREY', 'apple_logo_grey_blk_circle' => 'SOCIAL_APPLE_LOGO_GREY_BLK_CIRCLE',
@@ -3436,7 +3435,7 @@ class crnrstn {
 
         */
 
-        $tmp_ARRAY  = array('SPRITE' => 'INACTIVE');
+        $tmp_ARRAY = array('SPRITE' => 'INACTIVE');
 
         if(isset($tmp_ARRAY[$social_media_constant])){
 
@@ -6659,7 +6658,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $tmp_04 = $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][$i];
             $tmp_05 = $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][$i];
 
-            $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' '  . $tmp_02 . ' '  . $tmp_03 . ' '  . $tmp_04 . ' '  . $tmp_05 . ', ';
+            $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' ' . $tmp_02 . ' ' . $tmp_03 . ' ' . $tmp_04 . ' ' . $tmp_05 . ', ';
 
         }
 
@@ -6915,7 +6914,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $tmp_04 = $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][$i];
             $tmp_05 = $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][$i];
 
-            $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' '  . $tmp_02 . ' '  . $tmp_03 . ' '  . $tmp_04 . ' '  . $tmp_05 . ', ';
+            $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' ' . $tmp_02 . ' ' . $tmp_03 . ' ' . $tmp_04 . ' ' . $tmp_05 . ', ';
 
         }
 

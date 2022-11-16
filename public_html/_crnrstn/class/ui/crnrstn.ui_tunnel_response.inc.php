@@ -122,7 +122,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         foreach($this->interact_ui_module_keys_ARRAY as $module_key => $val){
 
-            $tmp_str_out .=  $module_key . '|';
+            $tmp_str_out .= $module_key . '|';
 
         }
 

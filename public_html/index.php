@@ -69,7 +69,7 @@ $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION, 
     </div>
 
     <div class="crnrstn_cb_20"></div>
-    <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;"><?php echo $oCRNRSTN->return_CRNRSTN_ASCII_ART();  ?></pre>
+    <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;"><?php echo $oCRNRSTN->return_CRNRSTN_ASCII_ART(); ?></pre>
 
 </div>
 
@@ -84,7 +84,7 @@ $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION, 
 </div>
 
 <?php 
-    echo  $oCRNRSTN->framework_integrations_client_packet(); 
+    echo $oCRNRSTN->framework_integrations_client_packet();
 ?>
 </body>
 </html>
