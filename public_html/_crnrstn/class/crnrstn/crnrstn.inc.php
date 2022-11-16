@@ -3359,11 +3359,7 @@ class crnrstn {
             'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE',
             'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE',
             'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE',
-            'LAST_FM' => 'INACTIVE',
-            'PANDORA' => 'INACTIVE',
-            'SPRITE' => 'INACTIVE',
-            'VIMEO_BLUE_WORDMARK' => 'INACTIVE',
-            'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE',
+            'SPRITE' => 'INACTIVE'
              );
 
         /*
@@ -3436,6 +3432,10 @@ class crnrstn {
         REMOVED 'VIMEO_BLUE_ICON' => 'INACTIVE'             Tuesday November 15, 2022 @ 0020 hrs
         REMOVED 'IDEONE' => 'INACTIVE'                      Tuesday November 15, 2022 @ 0039 hrs
         REMOVED 'GOOGLE_MAPS_SQUARE' => 'INACTIVE'          Tuesday November 15, 2022 @ 0047 hrs
+        REMOVED 'PANDORA' => 'INACTIVE'                     Tuesday November 15, 2022 @ 0100 hrs
+        REMOVED 'LAST_FM' => 'INACTIVE'                     Tuesday November 15, 2022 @ 0107 hrs
+        REMOVED 'VIMEO_BLUE_WORDMARK' => 'INACTIVE'         Tuesday November 15, 2022 @ 0114 hrs
+        REMOVED 'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE'   Tuesday November 15, 2022 @ 0122 hrs
 
 
         STOPPED Tuesday November 15, 2022 @

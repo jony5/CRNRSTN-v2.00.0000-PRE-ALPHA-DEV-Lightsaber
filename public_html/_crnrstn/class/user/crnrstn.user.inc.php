@@ -7268,8 +7268,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         IDEONE
         GOOGLE_MAPS_SQUARE
         BLUEHOST_WORDMARK
-        PANDORA_ICON
-        LAST.FM
+        PANDORA
+        LAST_FM
         VIMEO_BLUE_WORDMARK
         VIMEO_DARKFOREST_WORDMARK
         APPLE_LOGO_WHT_BLK_CIRCLE
@@ -8538,27 +8538,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 99;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -183;
+                            $tmp_social_img_top = -203;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 198;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -375;
+                            $tmp_social_img_top = -393;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 297;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -564;
+                            $tmp_social_img_top = -591;
 
                         break;
 
@@ -8780,27 +8780,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -154;
+                            $tmp_social_img_top = -203;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -311;
+                            $tmp_social_img_top = -393;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -466;
+                            $tmp_social_img_top = -591;
 
                         break;
 
@@ -9462,27 +9462,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 87;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = -231;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 177;
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -451;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 265;
                             $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -678;
 
                         break;
 
@@ -9498,27 +9498,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 87;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -89;
+                            $tmp_social_img_top = -231;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 177;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 20;
+                            $tmp_social_img_left = -179;
+                            $tmp_social_img_top = -451;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 265;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -269;
+                            $tmp_social_img_top = -678;
 
                         break;
 
