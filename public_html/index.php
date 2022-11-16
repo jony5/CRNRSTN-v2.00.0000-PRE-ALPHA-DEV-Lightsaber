@@ -23,7 +23,7 @@ $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION, 
     <div class="crnrstn_system_default_page_logo"><?php echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 70, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED); ?></div>
 
     <div class="crnrstn_general_content_title">
-        <h2>C<span class="the_R_in_crnrstn">R</span>NRSTN :: version <?php echo $oCRNRSTN->version_crnrstn(); ?></h2>
+        <h2>C<span class="the_R_in_crnrstn">R</span>NRSTN :: <?php echo $oCRNRSTN->version_crnrstn(); ?></h2>
     </div>
     <p>Welcome to C<span class="the_R_in_crnrstn">R</span>NRSTN ::.<br><br>This is the intro demo page for a vanilla install.</p>
     <div class="crnrstn_cb_40"></div>
