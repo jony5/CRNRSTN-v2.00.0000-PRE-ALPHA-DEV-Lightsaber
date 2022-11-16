@@ -25,17 +25,22 @@ $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION, 
     <div class="crnrstn_general_content_title">
         <h2>C<span class="the_R_in_crnrstn">R</span>NRSTN :: <?php echo $oCRNRSTN->version_crnrstn(); ?></h2>
     </div>
-    <p>Welcome to C<span class="the_R_in_crnrstn">R</span>NRSTN ::.<br><br>This is the intro demo page for a vanilla install.</p>
+    <p>Welcome to C<span class="the_R_in_crnrstn">R</span>NRSTN ::.<br><br>This is the intro demo page for a vanilla implementation.</p>
     <div class="crnrstn_cb_40"></div>
     <div class="crnrstn_general_content_title">
         <h3>Demonstration ::</h3>
-        <p>Pulling custom data out of the system resource configuration *file:</p>
+        <p>Pulling custom data out of the system resource configuration <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>file:</p>
         <div class="crnrstn_cb_5"></div>
         <div class="crnrstn_cb_10" style="border-top: 3px solid #000; width: 70%;"></div>
     </div>
     <div style="padding:0 0 20px 20px; font-family: Courier New, Courier, monospace;"><strong>WETHRBUG_APP</strong> = <?php echo $oCRNRSTN->get_resource('WETHRBUG_APP'); ?></div>
-    <p>* <em>'/_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php'</em></p>
 
+    <div class="crnrstn_general_dagger_key_shell">
+        <div class="crnrstn_general_dagger_key_dag">&dagger;</div>
+        <div class="crnrstn_general_dagger_key_description"><p><em>See '/_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php'</em>.</p></div>
+        <div class="crnrstn_cb"></div>
+
+    </div>
     <div class="crnrstn_cb_40"></div>
     <div class="crnrstn_general_content_title">
         <h3>Recent Activity ::</h3>

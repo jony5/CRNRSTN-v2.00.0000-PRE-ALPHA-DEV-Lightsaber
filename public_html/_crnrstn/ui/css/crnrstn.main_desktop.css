@@ -11,7 +11,7 @@
 
 /*CRNRSTN :: DEFAULT LANDING PAGE*/
 .crnrstn_system_default_page_wrapper                { padding: 0 0 0 20px;}
-.crnrstn_system_default_page_wrapper p              { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal;padding:0; margin:0; }
+.crnrstn_system_default_page_wrapper p              { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal;padding:0; margin:0;}
 .crnrstn_system_default_page_logo                   { padding: 10px 0 10px 0;}
 .crnrstn_general_copyright_shell                    { width:578px; font-family: Arial, Helvetica, sans-serif; text-align: center; margin:0 auto; font-size: 12px; line-height: 18px; color: #666;}
 .crnrstn_general_copyright_shell a                  { text-decoration:none; color: #0066CC; text-decoration:underline;}
@@ -23,6 +23,10 @@
 .crnrstn_general_post_log_shell ul                 { list-style:none; margin: 0; padding: 0;}
 .crnrstn_general_post_log_shell li                 { margin: 0; padding: 0;}
 
+.crnrstn_general_dagger_key_shell                   {width: 100%; padding:0;}
+.crnrstn_general_dagger_key_dag                     { float: left; width:14px;}
+.crnrstn_general_dagger_key_description             { float: left; width:80%; text-align: left; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
+.crnrstn_general_dagger_key_description p           { padding: 0; margin:0; }
 
 /*NEED TO SET Z-INDEX THROUGH THE SSDTL FOR ADMIN ACCESS*/
 .crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: #000; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0;}
