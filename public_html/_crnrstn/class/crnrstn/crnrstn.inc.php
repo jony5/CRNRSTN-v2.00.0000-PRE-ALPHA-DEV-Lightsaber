@@ -3355,12 +3355,12 @@ class crnrstn {
         $tmp_ARRAY  = array( 'APPLE_LOGO_BLK' => 'INACTIVE', 'APPLE_LOGO_WHT' => 'INACTIVE',
             'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY' => 'INACTIVE',
             'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE',
-            'APPLE_LOGO_WHT_BLK_CIRCLE' => 'INACTIVE', 'BLUEHOST_WORDMARK' => 'INACTIVE', 'ETSY' => 'INACTIVE',
-            'GOOGLE_MAPS_SQUARE' => 'INACTIVE','IDEONE' => 'INACTIVE', 'INTERNET_ARCHIVE' => 'INACTIVE',
-             'LAST_FM' => 'INACTIVE', 'MICROSOFT' => 'INACTIVE', 'PANDORA' => 'INACTIVE', 'PATREON' => 'INACTIVE',
-            'SLASHDOT_WORDMARK' => 'INACTIVE',  'SPRITE' => 'INACTIVE',  'TWITCH' => 'INACTIVE',
+            'APPLE_LOGO_WHT_BLK_CIRCLE' => 'INACTIVE', 'ETSY' => 'INACTIVE',
+            'GOOGLE_MAPS_SQUARE' => 'INACTIVE','IDEONE' => 'INACTIVE',
+             'LAST_FM' => 'INACTIVE',  'PANDORA' => 'INACTIVE',
+            'SLASHDOT_WORDMARK' => 'INACTIVE',  'SPRITE' => 'INACTIVE',
             'VIMEO_BLUE_ICON' => 'INACTIVE',  'VIMEO_BLUE_WORDMARK' => 'INACTIVE',
-            'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE', 'W3C' => 'INACTIVE',
+            'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE',
             'XHAMSTER_WORDMARK' => 'INACTIVE', 'XVIDEOS' => 'INACTIVE');
 
         /*
@@ -3412,6 +3412,24 @@ class crnrstn {
         REMOVED 'EBAY' => 'INACTIVE'                Tuesday November 15, 2022 @ 0505 hrs
         REMOVED 'MOZILLA_WORDMARK' => 'INACTIVE'    Tuesday November 15, 2022 @ 0519 hrs
         STOPPED Tuesday November 15, 2022 @ 0526 hrs
+
+        START ::
+        REMOVED 'PATREON' => 'INACTIVE'             Tuesday November 15, 2022 @ 1443 hrs
+        REMOVED 'TWITCH' => 'INACTIVE'              Tuesday November 15, 2022 @ 1500 hrs
+        REMOVED 'MICROSOFT' => 'INACTIVE'           Tuesday November 15, 2022 @ 1510 hrs
+        REMOVED 'PATREON' => 'INACTIVE'             Tuesday November 15, 2022 @ 1443 hrs
+        REMOVED 'PATREON' => 'INACTIVE'             Tuesday November 15, 2022 @ 1443 hrs
+        REMOVED 'BLUEHOST_WORDMARK' => 'INACTIVE'   Tuesday November 15, 2022 @ 1523 hrs
+        REMOVED 'INTERNET_ARCHIVE' => 'INACTIVE'    Tuesday November 15, 2022 @ 1527 hrs
+        STOPPED Tuesday November 15, 2022 @ 1539 hrs
+
+        START ::
+        REMOVED 'W3C' => 'INACTIVE'                 Tuesday November 15, 2022 @ 2140 hrs
+
+
+
+
+        STOPPED Tuesday November 15, 2022 @
 
         */
 

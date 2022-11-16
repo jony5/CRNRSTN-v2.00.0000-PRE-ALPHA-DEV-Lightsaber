@@ -7256,7 +7256,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         MOZILLA_WORDMARK
         PATREON
         TWITCH
-        MICROSOFT_ICON
+        MICROSOFT
         INTERNET_ARCHIVE
         W3C
         XHAMSTER_WORDMARK
@@ -8428,27 +8428,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 26;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -96;
+                            $tmp_social_img_top = -147;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 52;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -189;
+                            $tmp_social_img_top = -277;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 77;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -284;
+                            $tmp_social_img_top = -417;
 
                         break;
 
@@ -8608,27 +8608,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -66;
+                            $tmp_social_img_top = -147;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -134;
+                            $tmp_social_img_top = -277;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -201;
+                            $tmp_social_img_top = -418;
 
                         break;
 
@@ -8810,31 +8810,30 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 break;
                 case 'PATREON':
-
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 26;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = -146;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 52;
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -279;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 78;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -1;
+                            $tmp_social_img_top = -420;
 
                         break;
 
@@ -9326,27 +9325,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -32;
+                            $tmp_social_img_top = -146;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -71;
+                            $tmp_social_img_top = -277;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -106;
+                            $tmp_social_img_top = -420;
 
                         break;
 
@@ -9506,27 +9505,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 52;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -126;
+                            $tmp_social_img_top = -147;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 105;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -246;
+                            $tmp_social_img_top = -281;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 157;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -369;
+                            $tmp_social_img_top = -422;
 
                         break;
 
