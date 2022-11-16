@@ -7260,18 +7260,19 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         INTERNET_ARCHIVE
         W3C
         XHAMSTER_WORDMARK
-        ETSY_ICON
+        ETSY
         APPLE_MUSIC
         XVIDEOS
         SLASHDOT_WORDMARK
         VIMEO_BLUE_ICON
-        IDE_ONE_ICON
+        IDEONE
         GOOGLE_MAPS_SQUARE
         BLUEHOST_WORDMARK
         PANDORA_ICON
         LAST.FM
         VIMEO_BLUE_WORDMARK
         VIMEO_DARKFOREST_WORDMARK
+        APPLE_LOGO_WHT_BLK_CIRCLE
 
         */
 
@@ -7453,30 +7454,31 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 break;
                 case 'APPLE_LOGO_BLK_WHT_CIRCLE':
 
+
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -121;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -26;
+                            $tmp_social_img_top = -173;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -52;
+                            $tmp_social_img_top = -340;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -76;
+                            $tmp_social_img_top = -511;
 
                         break;
 
@@ -7636,27 +7638,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -28;
+                            $tmp_social_img_top = -173;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -56;
+                            $tmp_social_img_top = -340;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -84;
+                            $tmp_social_img_top = -511;
 
                         break;
 
@@ -7924,27 +7926,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 152;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = -203;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 302;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 10;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = -396;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 453;
                             $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -595;
 
                         break;
 
@@ -8032,27 +8034,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = 0;
+                            $tmp_social_img_top = -173;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -340;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
                             $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_top = -511;
 
                         break;
 
@@ -8284,27 +8286,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -293;
+                            $tmp_social_img_top = -175;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -585;
+                            $tmp_social_img_top = -337;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -878;
+                            $tmp_social_img_top = -507;
 
                         break;
 
@@ -8356,27 +8358,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -265;
+                            $tmp_social_img_top = -176;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -530;
+                            $tmp_social_img_top = -338;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -795;
+                            $tmp_social_img_top = -508;
 
                         break;
 
@@ -9160,30 +9162,57 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 break;
                 case 'SLASHDOT_WORDMARK':
 
-                    switch($tmp_icon_family_size){
-                        case 'SMALL':
+                    /*
+                     case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 99;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -132;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -57;
+                            $tmp_social_img_top = -175;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 197;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -111;
+                            $tmp_social_img_top = -337;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 295;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -167;
+                            $tmp_social_img_top = -507;
+
+                    */
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = 79;
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -156;
+                            $tmp_social_img_top = -175;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = 156;
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = -311;
+                            $tmp_social_img_top = -337;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = 235;
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = -468;
+                            $tmp_social_img_top = -507;
 
                         break;
 
@@ -9397,27 +9426,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 25;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -237;
+                            $tmp_social_img_top = -175;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 50;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -472;
+                            $tmp_social_img_top = -337;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 75;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -710;
+                            $tmp_social_img_top = -507;
 
                         break;
 
@@ -9649,27 +9678,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 121;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -111;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -189;
+                            $tmp_social_img_top = -146;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 242;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -357;
+                            $tmp_social_img_top = -279;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 363;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -536;
+                            $tmp_social_img_top = -420;
 
                         break;
 
@@ -9721,27 +9750,27 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                     switch($tmp_icon_family_size){
                         case 'SMALL':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 99;
                             $tmp_social_img_height = 25;
-                            $tmp_social_img_left = -131;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -57;
+                            $tmp_social_img_top = -175;
 
                         break;
                         case 'MEDIUM':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 197;
                             $tmp_social_img_height = 50;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -111;
+                            $tmp_social_img_top = -337;
 
                         break;
                         default:
                             // 'LARGE':
 
-                            $tmp_social_img_width = '';
+                            $tmp_social_img_width = 295;
                             $tmp_social_img_height = 75;
-                            $tmp_social_img_left = 0;
-                            $tmp_social_img_top = 0;
+                            $tmp_social_img_left = -167;
+                            $tmp_social_img_top = -507;
 
                         break;
 

@@ -66,13 +66,13 @@ CRNRSTN :: LEAD DEVELOPER HELPER FOR SPRITE SETUP
 
 */
 
-//$tmp_mode = 2;
+//$tmp_mode = 2;        // sudo chmod xxx -R imgs/
 //$tmp_mode = 1;
 $tmp_mode = 0;
 
-$media_key = 'MOZILLA_WORDMARK';
+$media_key = 'BLUEHOST_WORDMARK';
 $sprite_debug_bg_color = '#FFF';
-///$sprite_debug_bg_color = '#000';
+//$sprite_debug_bg_color = '#000';
 switch($tmp_mode){
     case 2:
 

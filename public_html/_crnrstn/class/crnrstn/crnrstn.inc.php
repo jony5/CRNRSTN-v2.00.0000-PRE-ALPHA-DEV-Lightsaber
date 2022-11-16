@@ -3352,16 +3352,19 @@ class crnrstn {
 
     public function tmp_restrict_this_image_sprite_media_constant($social_media_constant){
 
-        $tmp_ARRAY  = array( 'APPLE_LOGO_BLK' => 'INACTIVE', 'APPLE_LOGO_WHT' => 'INACTIVE',
-            'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY' => 'INACTIVE',
-            'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE', 'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE',
-            'APPLE_LOGO_WHT_BLK_CIRCLE' => 'INACTIVE', 'ETSY' => 'INACTIVE',
-            'GOOGLE_MAPS_SQUARE' => 'INACTIVE','IDEONE' => 'INACTIVE',
-             'LAST_FM' => 'INACTIVE',  'PANDORA' => 'INACTIVE',
-            'SLASHDOT_WORDMARK' => 'INACTIVE',  'SPRITE' => 'INACTIVE',
-            'VIMEO_BLUE_ICON' => 'INACTIVE',  'VIMEO_BLUE_WORDMARK' => 'INACTIVE',
+        $tmp_ARRAY  = array(
+            'APPLE_LOGO_BLK' => 'INACTIVE',
+            'APPLE_LOGO_WHT' => 'INACTIVE',
+            'APPLE_LOGO_GREY' => 'INACTIVE',
+            'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE',
+            'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE',
+            'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE',
+            'LAST_FM' => 'INACTIVE',
+            'PANDORA' => 'INACTIVE',
+            'SPRITE' => 'INACTIVE',
+            'VIMEO_BLUE_WORDMARK' => 'INACTIVE',
             'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE',
-            'XHAMSTER_WORDMARK' => 'INACTIVE', 'XVIDEOS' => 'INACTIVE');
+             );
 
         /*
         REMOVED
@@ -3424,9 +3427,15 @@ class crnrstn {
         STOPPED Tuesday November 15, 2022 @ 1539 hrs
 
         START ::
-        REMOVED 'W3C' => 'INACTIVE'                 Tuesday November 15, 2022 @ 2140 hrs
-
-
+        REMOVED 'W3C' => 'INACTIVE'                         Tuesday November 15, 2022 @ 2140 hrs
+        REMOVED 'XHAMSTER_WORDMARK' => 'INACTIVE'           Tuesday November 15, 2022 @ 2335 hrs
+        REMOVED 'ETSY' => 'INACTIVE'                        Tuesday November 15, 2022 @ 2346 hrs
+        REMOVED 'APPLE_LOGO_WHT_BLK_CIRCLE' => 'INACTIVE'   Tuesday November 15, 2022 @ 2355 hrs
+        REMOVED 'XVIDEOS' => 'INACTIVE'                     Tuesday November 15, 2022 @ 0000 hrs
+        REMOVED 'SLASHDOT_WORDMARK' => 'INACTIVE'           Tuesday November 15, 2022 @ 0020 hrs
+        REMOVED 'VIMEO_BLUE_ICON' => 'INACTIVE'             Tuesday November 15, 2022 @ 0020 hrs
+        REMOVED 'IDEONE' => 'INACTIVE'                      Tuesday November 15, 2022 @ 0039 hrs
+        REMOVED 'GOOGLE_MAPS_SQUARE' => 'INACTIVE'          Tuesday November 15, 2022 @ 0047 hrs
 
 
         STOPPED Tuesday November 15, 2022 @
