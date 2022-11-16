@@ -60,7 +60,7 @@ $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'BANNER_IMAGES_HT
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'BANNER_IMAGES_HTTP_DIR_MOBILE', 'common/imgs/lifestyle_banner/mobile/');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'WSDL_URI_MGMT', 'http://172.16.225.139/services/soa/crnrstnmgmt/1.0.0/wsdl/index.php?wsdl');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'WSDL_URI', 'http://172.16.225.139/services/soa/crnrstn/1.0.0/wsdl/index.php?wsdl');
-$this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'WETHRBUG_APP', 'http://172.16.225.139/wethrbug/');
+$this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'WETHRBUG_APP', 'http://wethrbug.jony5.com/');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'BASSDRIVE_INTEGRATE', true);
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'BASSDRIVE_RELAY_STATE', 'http://jony5.com/_proxy/bassdrive/');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'CRNRSTN_UI_INTERACT_ENABLED', true);
