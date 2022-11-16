@@ -749,6 +749,7 @@ class crnrstn_http_manager {
 
         $tmp_str_out = $this->http_data_services_response();
 
+
         //
         // CRNRSTN :: CONSOLE DASHBOARD PORTAL ENTRY POINT
         //$tmp_html = $this->user_request_listener();
@@ -860,8 +861,11 @@ class crnrstn_http_manager {
 
         //
         // ENSURE ALL SIGNATURE HEADERS ARE IN PLACE AND CONTINUE
-        $this->header_options_add($tmp_curr_headers_ARRAY);
         $this->header_options_add($tmp_crnrstn_signature_headers_ARRAY);
+
+        //
+        // ADD PRE-EXISTING HEADER OPTIONS AFTER DEFAULT FOR OVERWRITE
+        $this->header_options_add($tmp_curr_headers_ARRAY);
 
         //
         // RESPONSE HEADER CONSTRUCTION
@@ -1086,9 +1090,10 @@ class crnrstn_http_manager {
 
     public function header_signature_options_return(){
 
-        $tmp_date = date('D, M j Y G:i:s T', strtotime('now'));
-        $tmp_date_expire = date('D, M j Y G:i:s T', strtotime('- 42 seconds'));
-        $tmp_date_lastmod = date('D, M j Y G:i:s T', strtotime('- 420 seconds'));
+        $tmp_date = date('D, M j Y G:i:s T');
+        $tmp_date_expire = date('D, M j Y G:i:s T', strtotime('+ 7 days'));
+        //$tmp_date_lastmod = date('D, M j Y G:i:s T', strtotime('- 420 seconds'));
+        $tmp_date_lastmod = date('D, j M Y G:i:s T');
 
         $tmp_array = array();
         $tmp_array[] = 'Content-Language: ' . $this->oCRNRSTN->country_iso_code();

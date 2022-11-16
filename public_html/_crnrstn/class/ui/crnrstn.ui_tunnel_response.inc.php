@@ -2352,6 +2352,19 @@ class crnrstn_ui_tunnel_response_manager {
     </client_response>
 </crnrstn_client_response>';
 
+
+        $tmp_date_expire = date('D, M j Y G:i:s T');
+        //$tmp_date_lastmod = date('D, M j Y G:i:s T', strtotime('- 420 seconds'));
+        $tmp_date_lastmod = date('D, M j Y G:i:s T');
+
+        $tmp_array = array();
+        $tmp_array[] = 'Content-Type: text/xml; charset=UTF-8';
+        $tmp_array[] = 'Expires: ' . $tmp_date_expire;
+        $tmp_array[] = 'Last-Modified: ' . $tmp_date_lastmod;
+
+        $this->oCRNRSTN->header_options_add($tmp_array);
+        $this->oCRNRSTN->header_options_apply();
+
         return $tmp_xml_response;
 
     }

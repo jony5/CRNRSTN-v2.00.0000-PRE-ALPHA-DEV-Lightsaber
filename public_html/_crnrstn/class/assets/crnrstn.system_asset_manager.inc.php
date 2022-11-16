@@ -209,9 +209,13 @@ class crnrstn_system_image_asset_manager {
             case 'favicon':
 
                 $tmp_filepath = $this->oCRNRSTN->get_resource('crnrstn_favicon_asset_tunnel_route_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                $tmp_date_lastmod = filemtime($tmp_filepath);
+                //$tmp_date_lastmod = date('D, M j Y G:i:s T', strtotime($tmp_date_lastmod));
+                $tmp_date_lastmod = date('D, j M Y G:i:s T', $tmp_date_lastmod);
 
                 $tmp_header_options_ARRAY = array();//Cache-Control: public, max-age=604800
                 $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
+                $tmp_header_options_ARRAY[] = 'Last-Modified: ' . $tmp_date_lastmod;
                 $tmp_header_options_ARRAY[] = 'X-Frame-Options: SAMEORIGIN';
 
                 //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
@@ -3608,6 +3612,10 @@ class crnrstn_system_image_asset_manager {
                             $tmp_header_options_ARRAY[] = 'Content-length: ' . $tmp_filesize;
                             $tmp_header_options_ARRAY[] = 'Content-Disposition: inline; filename="' . $tmp_filename_clean . '.' . $tmp_file_extension . '"';
 
+                            $tmp_date_lastmod = filemtime($tmp_filepath);
+                            $tmp_date_lastmod = date('D, j M Y G:i:s T', $tmp_date_lastmod);
+                            $tmp_header_options_ARRAY[] = 'Last-Modified: ' . $tmp_date_lastmod;
+
                             // header_options_add
                             // header_options_apply
                             // header_signature_options_return
@@ -4484,6 +4492,10 @@ class crnrstn_system_image_asset_manager {
                             $tmp_header_options_ARRAY[] = 'Content-length: ' . $tmp_filesize;
                             $tmp_header_options_ARRAY[] = 'Content-Disposition: inline; filename="' . $tmp_filename_clean . '.' . $tmp_file_extension . '"';
 
+                            $tmp_date_lastmod = filemtime($tmp_filepath);
+                            $tmp_date_lastmod = date('D, j M Y G:i:s T', $tmp_date_lastmod);
+                            $tmp_header_options_ARRAY[] = 'Last-Modified: ' . $tmp_date_lastmod;
+
                             // header_options_add
                             // header_options_apply
                             // header_signature_options_return
@@ -4858,6 +4870,10 @@ class crnrstn_system_image_asset_manager {
                             $tmp_header_options_ARRAY[] = 'Content-length: ' . $tmp_filesize;
                             $tmp_header_options_ARRAY[] = 'Content-Disposition: inline; filename="' . $tmp_filename_clean . '.' . $tmp_file_extension . '"';
 
+                            $tmp_date_lastmod = filemtime($tmp_filepath);
+                            $tmp_date_lastmod = date('D, j M Y G:i:s T', $tmp_date_lastmod);
+                            $tmp_header_options_ARRAY[] = 'Last-Modified: ' . $tmp_date_lastmod;
+
                             // header_options_add
                             // header_options_apply
                             // header_signature_options_return
@@ -5183,6 +5199,12 @@ class crnrstn_system_image_asset_manager {
                 $tmp_header_options_ARRAY[] = 'Content-Type: text/css';
                 $tmp_dir_path = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
+                $tmp_date_lastmod = filemtime($tmp_dir_path);
+                $tmp_date_lastmod = date('D, j M Y G:i:s T', $tmp_date_lastmod);
+                $tmp_header_options_ARRAY[] = 'Last-Modified: ' . $tmp_date_lastmod;
+
+                //error_log(__LINE__ . 'Last-Modified: ' . $tmp_date_lastmod);
+                //error_log(__LINE__ . ' Last-Modified: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT');
                 switch($this->asset_meta_path){
                     case $this->oCRNRSTN->session_salt():
 
@@ -5234,6 +5256,10 @@ class crnrstn_system_image_asset_manager {
                 }
 
                 $tmp_dir_path = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
+                $tmp_date_lastmod = filemtime($tmp_dir_path);
+                $tmp_date_lastmod = date('D, j M Y G:i:s T', $tmp_date_lastmod);
+                $tmp_header_options_ARRAY[] = 'Last-Modified: ' . $tmp_date_lastmod;
 
                 if(isset($this->asset_meta_path)){
 
