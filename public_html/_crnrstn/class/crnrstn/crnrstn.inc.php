@@ -3352,16 +3352,6 @@ class crnrstn {
 
     public function tmp_restrict_this_image_sprite_media_constant($social_media_constant){
 
-        $tmp_ARRAY  = array(
-            'APPLE_LOGO_BLK' => 'INACTIVE',
-            'APPLE_LOGO_WHT' => 'INACTIVE',
-            'APPLE_LOGO_GREY' => 'INACTIVE',
-            'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE',
-            'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE',
-            'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE',
-            'SPRITE' => 'INACTIVE'
-             );
-
         /*
         REMOVED
         'SOUNDCLOUD' => 'INACTIVE'
@@ -3436,11 +3426,17 @@ class crnrstn {
         REMOVED 'LAST_FM' => 'INACTIVE'                     Tuesday November 15, 2022 @ 0107 hrs
         REMOVED 'VIMEO_BLUE_WORDMARK' => 'INACTIVE'         Tuesday November 15, 2022 @ 0114 hrs
         REMOVED 'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE'   Tuesday November 15, 2022 @ 0122 hrs
-
-
-        STOPPED Tuesday November 15, 2022 @
+        REMOVED 'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE'   Tuesday November 15, 2022 @ 0132 hrs
+        REMOVED 'APPLE_LOGO_BLK' => 'INACTIVE'              Tuesday November 15, 2022 @ 0136 hrs
+        REMOVED 'APPLE_LOGO_WHT' => 'INACTIVE'              Tuesday November 15, 2022 @ 0155 hrs
+        REMOVED 'APPLE_LOGO_GREY' => 'INACTIVE'             Tuesday November 15, 2022 @ 0200 hrs
+        REMOVED 'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE'  Tuesday November 15, 2022 @ 0206 hrs
+        REMOVED 'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE'  Tuesday November 15, 2022 @ 0213 hrs
+        STOPPED Tuesday November 15, 2022 @ 0226 hrs
 
         */
+
+        $tmp_ARRAY  = array('SPRITE' => 'INACTIVE');
 
         if(isset($tmp_ARRAY[$social_media_constant])){
 
@@ -7920,6 +7916,64 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
     }
+
+    /*
+    CRNRSTN :: R&D (read as "messy kitchen below"...and this right here is by no means the end of it.)
+    CONFIGURATION OF OUTPUT FORMAT FOR MAPPED ASSETS
+
+    CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_BASE64
+    CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_PNG
+    CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_JPEG
+
+
+
+    ---
+    CRNRSTN_UI_IMG_HTML_WRAPPED
+    CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_UI_IMG_PNG
+    CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_UI_IMG_JPEG
+    CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_JPEG
+    CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_PNG
+
+    CRNRSTN_UI_IMG_PNG
+    CRNRSTN_ASSET_MODE_PNG
+    CRNRSTN_UI_IMG_JPEG
+    CRNRSTN_ASSET_MODE_JPEG
+
+    case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_UI_IMG_BASE64_JPEG
+    case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_BASE64 & CRNRSTN_UI_IMG_JPEG
+    case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_BASE64
+    case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_BASE64 & CRNRSTN_UI_IMG_PNG
+    case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_UI_IMG_BASE64
+    case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_UI_IMG_BASE64_PNG
+    case CRNRSTN_ASSET_MODE_BASE64
+    case CRNRSTN_UI_IMG_BASE64
+    case CRNRSTN_ASSET_MODE_BASE64
+    case CRNRSTN_UI_IMG_BASE64_PNG
+    case CRNRSTN_UI_IMG_BASE64_JPEG
+
+
+    //echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 250, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
+    //echo $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+    //echo $oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', false);
+    //echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_HTML_WRAPPED);
+
+    //
+    // SYNC BASE64 TO SYSTEM AND SOCIAL PNG AND JPEG ASSETS.
+    // THIS MAINTAINS A BASE64 FILE SYSTEM THAT PARALLELS THE SOURCE PNG/JPG FILES.
+    //$oCRNRSTN->system_base64_synchronize();
+
+    //
+    // TODO :: THE GOAL IS TO RECEIVE A DIR PATH FROM AN ADMIN FOR BASE64 REPLICATION OF *.* IMAGES (e.g.
+    // USER PROFILE PICS). AND THEN GET THESE ASSETS BEHIND CRNRSTN :: ASSET MAPPING AND CONTENT CONTROL.
+    // e.g. https://yourdomain.com/?crnrstn_01010010110=your_image_name.jpg&crnrstn_hsh=c2e96b13634c287620fd5f9d51708946
+    //
+    // THIS WILL SUPPORT ::
+    //  - SOCIAL MEDIA INTEGRATIONS WITH JPEGS BEING RETURNED (OR CREATED FROM PNG VIA SCRIPT AUTOMATICALLY) FOR
+    //    ALL HTML META TAGS HOLDING SOCIAL MEDIA PREVIEW DATA.
+    //  - IP ADDRESS RESTRICTIONS CAN BE APPLIED TO ASSETS
+    //  - ACCOUNT AUTHENTICATION (VALID SESSION) CAN BE REQUIRED FOR ASSET ACCESS.
+
+    */
 
     public function return_system_image($media_element_key, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $image_output_mode = NULL){
 
