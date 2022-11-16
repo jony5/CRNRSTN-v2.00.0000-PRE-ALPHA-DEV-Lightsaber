@@ -9,6 +9,21 @@
 .crnrstn_j5_wolf_pup_outter_wrap                    { width:98%; float:right; padding:120px 0 0 0; margin:0; text-align: right; }
 .crnrstn_j5_wolf_pup_inner_wrap                     { width:98%; position:absolute; padding:10px 0 0 0;  z-index: 2; text-align: right; }
 
+/*CRNRSTN :: DEFAULT LANDING PAGE*/
+.crnrstn_system_default_page_wrapper                { padding: 0 0 0 20px;}
+.crnrstn_system_default_page_wrapper p              { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal;padding:0; margin:0; }
+.crnrstn_system_default_page_logo                   { padding: 10px 0 10px 0;}
+.crnrstn_general_copyright_shell                    { width:578px; font-family: Arial, Helvetica, sans-serif; text-align: center; margin:0 auto; font-size: 12px; line-height: 18px; color: #666;}
+.crnrstn_general_copyright_shell a                  { text-decoration:none; color: #0066CC; text-decoration:underline;}
+.crnrstn_general_content_title                      { font-family: Arial, Helvetica, sans-serif; color:#333;padding: 0 10px 10px 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+.crnrstn_general_content_title h1                   { font-size: 45px; line-height: 50px; padding:0; margin:0; overflow-wrap: break-word; }
+.crnrstn_general_content_title h2                   { font-size: 35px; line-height: 40px; padding:0; margin:0; }
+.crnrstn_general_content_title h3                   { font-size: 25px; line-height: 30px; padding:0 0 10px 0; margin:0; }
+
+.crnrstn_general_post_log_shell ul                 { list-style:none; margin: 0; padding: 0;}
+.crnrstn_general_post_log_shell li                 { margin: 0; padding: 0;}
+
+
 /*NEED TO SET Z-INDEX THROUGH THE SSDTL FOR ADMIN ACCESS*/
 .crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: #000; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0;}
 .crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; width: 100%; z-index: 10000; text-align: center; font-weight: normal; outline: none;}

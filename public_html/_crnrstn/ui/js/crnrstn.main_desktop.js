@@ -137,6 +137,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         this.form_input_serialization_key = 'crnrstn_request_serialization_key';
         this.form_input_serialization_hash = 'crnrstn_request_serialization_hash';
+        this.source_action_ux_element_id = 'page_load';
         this.dom_element_mouse_state_tracker_ARRAY = [];
         this.dom_element_mouse_state_lock_ARRAY = [];
         this.dom_element_mouse_state_ARRAY = [];
@@ -2940,7 +2941,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         if($('#crnrstn_interact_ui_full_lightbox').length){
 
                             // Disable scrolling of the page while open
-                            if(self.options.disableScrolling){
+                            if(self.options.disableScrolling && self.source_action_ux_element_id !== 'crnrstn_general_mit_lnk'){
 
                                 $('body').addClass('lb-disable-scrolling');
 
@@ -6831,13 +6832,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.launch_overlay_mit = function(){
+    CRNRSTN_JS.prototype.launch_overlay_mit = function(element_id){
 
         this.log_activity('[lnum 6669] Launch MIT license programme.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         this.crnrstn_overlay_mode = 'MIT';
 
-        this.toggle_full_overlay();
+        this.toggle_full_overlay(element_id);
 
         //
         // SET THE LINK
@@ -6847,13 +6848,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    CRNRSTN_JS.prototype.close_overlay_mit = function(){
+    CRNRSTN_JS.prototype.close_overlay_mit = function(element_id){
 
-        this.toggle_full_overlay();
+        this.toggle_full_overlay(element_id);
 
     };
 
-    CRNRSTN_JS.prototype.toggle_full_overlay = function(){
+    CRNRSTN_JS.prototype.toggle_full_overlay = function(element_id = 'standard_issue'){
 
         var self = this;
 
@@ -6905,11 +6906,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             });
 
-            // tmp_z = $('#crnrstn_interact_ui_full_lightbox_overlay').css('zIndex');
-            // tmp_width = $('#crnrstn_interact_ui_full_lightbox_overlay').css('width');
-            // tmp_height = $('#crnrstn_interact_ui_full_lightbox_overlay').css('height');
-
-
         }else{
 
             var $window = $(window);
@@ -6938,12 +6934,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 return false;
 
             });
-
-            // tmp_z = $('#crnrstn_interact_ui_full_lightbox_overlay').css('zIndex');
-            // tmp_width = $('#crnrstn_interact_ui_full_lightbox_overlay').css('width');
-            // tmp_height = $('#crnrstn_interact_ui_full_lightbox_overlay').css('height');
-
-            //alert('[lnum 6470] zIndex=' + tmp_z + ' tmp_width=' + tmp_width + ' tmp_height=' + tmp_height );
 
         }
 
@@ -7025,6 +7015,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         }
 
+        this.source_action_ux_element_id = elem.id;
+
         switch(elem.id){
             case 'crnrstn_interact_ui_full_lightbox':
             case 'crnrstn_interact_ui_full_lightbox_overlay':
@@ -7042,7 +7034,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         if(this.crnrstn_overlay_mode === 'MIT'){
 
-                            this.close_overlay_mit();
+                            this.close_overlay_mit(elem.id);
 
                         }
 
@@ -7053,6 +7045,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 return false;
 
             break;
+            case 'crnrstn_general_mit_lnk':
             case 'crnrstn_ui_system_footer_mit_lnk':
             case 'crnrstn_txt_lnk_mit':
 
@@ -7073,7 +7066,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     break;
                     case 'onclick':
 
-                        this.launch_overlay_mit();
+                        this.launch_overlay_mit(elem.id);
 
                     break;
 
