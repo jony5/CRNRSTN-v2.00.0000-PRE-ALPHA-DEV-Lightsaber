@@ -2358,7 +2358,7 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_date_lastmod = date('D, M j Y G:i:s T');
 
         $tmp_array = array();
-        $tmp_array[] = 'Content-Type: text/xml; charset=UTF-8';
+        $tmp_array[] = 'Content-Type: application/xml; charset=UTF-8';
         $tmp_array[] = 'Expires: ' . $tmp_date_expire;
         $tmp_array[] = 'Last-Modified: ' . $tmp_date_lastmod;
 
