@@ -5,13 +5,15 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-//
-// SPOOL DESIRED CONTENT (DOCUMENTATION INCOMING) FOR HTML HEAD OUTPUT LATER VIA output_system_head_html()
+// HTML HEAD.
+// PASS TRUE TO SPOOL DESIRED CONTENT (DOCUMENTATION INCOMING) TO BE
+// OUTPUTTED LATER INTO THE HTML HEAD VIA output_system_head_html()
 $oCRNRSTN->output_system_head_html(CRNRSTN_UI_JS_JQUERY_UI, true);
 $oCRNRSTN->output_system_head_html(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP, true);
 
-//
-// SPOOL DESIRED CONTENT (DOCUMENTATION INCOMING) FOR HTML FOOTER OUTPUT VIA output_system_footer_html()
+// HTML FOOTER.
+// PASS TRUE TO SPOOL DESIRED CONTENT (DOCUMENTATION INCOMING) TO BE
+// OUTPUTTED LATER INTO THE HTML FOOTER VIA output_system_footer_html()
 $oCRNRSTN->output_system_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
 
 ?>
