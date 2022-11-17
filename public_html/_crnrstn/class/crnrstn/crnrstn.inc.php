@@ -135,6 +135,7 @@ class crnrstn {
     private static $encryptable_data_types_ARRAY = array();
     protected $system_resource_constants = array();
     protected $system_ui_module_constants_ARRAY = array();
+    protected $system_head_html_constants_spool_ARRAY = array();
     protected $system_ui_module_constants_spool_ARRAY = array();
     protected $system_data_profile_constants_ARRAY = array();
     public $system_theme_style_constants_ARRAY = array();
@@ -187,6 +188,7 @@ class crnrstn {
 
     */
     protected $ficp_module_build_flag_ARRAY = array();
+    protected $html_head_build_flag_ARRAY = array();
 
     private static $CRNRSTN_debug_mode;
 
@@ -3960,7 +3962,49 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function framework_integrations_client_packet($integer_constant = NULL, $spool_for_output = false){
+    public function output_system_head_html($integer_constant = NULL, $spool_for_output = false){
+
+        $tmp_head_html_output = '';
+
+        if($spool_for_output){
+
+            $this->system_head_html_constants_spool_ARRAY[] = $integer_constant;
+
+            return true;
+
+        }
+
+        foreach($this->system_head_html_constants_spool_ARRAY as $index => $int_const){
+
+            if(!isset($this->html_head_build_flag_ARRAY[$int_const])){
+
+                $this->html_head_build_flag_ARRAY[$int_const] = 1;
+
+            }
+
+        }
+
+        if(isset($integer_constant)){
+
+            if(!isset($this->html_head_build_flag_ARRAY[$integer_constant])){
+
+                $this->html_head_build_flag_ARRAY[$integer_constant] = 1;
+
+            }
+
+        }
+
+        foreach($this->html_head_build_flag_ARRAY as $const => $val){
+
+            $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($const);
+
+        }
+
+        return $tmp_head_html_output;
+
+    }
+
+    public function output_system_footer_html($integer_constant = NULL, $spool_for_output = false){
 
         if($spool_for_output){
 
@@ -3991,7 +4035,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
 
 
-            framework_integrations_client_packet_build_flag_ARRAY
+            output_system_footer_html_build_flag_ARRAY
             ficp_module_build_flag_ARRAY
             */
 

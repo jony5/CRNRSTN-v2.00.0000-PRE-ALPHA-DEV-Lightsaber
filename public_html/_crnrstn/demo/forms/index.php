@@ -279,7 +279,7 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
 //
 // TESTING -1 TO PREMATURELY DUMP ANY DESTRUCTOR STRING OUTPUT DATA HERE (WELL INSIDE THE <HTML> TAGS).
 // NO CONSTANT CRNRSTN_RESOURCE_DESTRUCTOR, YET.
-echo $oCRNRSTN->framework_integrations_client_packet(-1);
+echo $oCRNRSTN->output_system_footer_html(-1);
 
 ?>
 
@@ -299,7 +299,7 @@ echo $oCRNRSTN->framework_integrations_client_packet(-1);
 
 <?php
 
-echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
+echo $oCRNRSTN->output_system_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

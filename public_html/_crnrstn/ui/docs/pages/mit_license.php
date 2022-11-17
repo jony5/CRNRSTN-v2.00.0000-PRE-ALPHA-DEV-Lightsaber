@@ -327,7 +327,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     </div>
     
-    ' . $this->oCRNRSTN->framework_integrations_client_packet() . '
+    ' . $this->oCRNRSTN->output_system_footer_html() . '
     
     </body>
     </html>';

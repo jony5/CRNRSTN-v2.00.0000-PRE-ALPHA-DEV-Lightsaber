@@ -76,7 +76,7 @@ if($oCRNRSTN->http_data_services_initialize()){
 <body>
 
 <?php
-echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
+echo $oCRNRSTN->output_system_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

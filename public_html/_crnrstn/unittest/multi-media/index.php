@@ -204,7 +204,7 @@ $sprite_serial = $oCRNRSTN->generate_new_key(10);
 
 <?php
 
-echo $oCRNRSTN->framework_integrations_client_packet(CRNRSTN_RESOURCE_DOCUMENTATION);
+echo $oCRNRSTN->output_system_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION);
 
 ?>
 </body>

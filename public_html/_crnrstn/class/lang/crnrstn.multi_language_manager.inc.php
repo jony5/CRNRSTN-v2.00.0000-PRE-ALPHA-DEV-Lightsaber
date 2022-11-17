@@ -2990,6 +2990,222 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'DEFAULT_LANDING_TITLE_WELCOME':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Welcome to C<span class="the_R_in_crnrstn">R</span>NRSTN ::.';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_TITLE_DESCRIPTION':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'This is the intro demo page for a vanilla implementation.';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_TITLE_DEMONSTRATION':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Demonstration ::';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_DEMONSTRATION_DESCRIPTION':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Pulling custom data out of the system resource configuration';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_TEXT_FILE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'file';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_TEXT_SEE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'See';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_TITLE_RECENT_ACTIVITY':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Recent Activity ::';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_RECENT_ACTIVITY_DESCRIPTION':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'For now, current activity related to the direction of the project will be posted here:';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_RECENT_ACTIVITY_CRICKETS':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'There are currently no posts to display.';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_TITLE':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                        break;
+                    default:
+
+                        //case 'en':
+                        return 'There are currently no posts to display.';
+
+                        break;
+
+                }
+
+                break;
+                /*
+
+                Check out the CRNRSTN :: v1.0.0 Facebook photo album!
+photo album
+
+                 */
+
+            break;
+            case 'DEFAULT_LANDING_TEXT_CHECK_OUT':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Check out the C<span class="the_R_in_crnrstn">R</span>NRSTN :: v1.0.0';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_TEXT_PHOTO_ALBUM':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'photo album';
+
+                    break;
+
+                }
+
+            break;
+            case 'DEFAULT_LANDING_TEXT_ALL_RIGHTS':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Jonathan \'J5\' Harris :: All Rights Reserved in accordance with<br>the latest version of the';
+
+                    break;
+
+                }
+
+            break;
             case 'DOCUMENTATION_MODULE_TOP_TEXT':
 
                 switch($this->country_iso_code) {
@@ -3005,7 +3221,7 @@ class crnrstn_multi_language_manager {
 
                 }
 
-                break;
+            break;
             case 'DOCUMENTATION_TITLE_RELATED_METHODS':
 
                 switch($this->country_iso_code) {
