@@ -952,8 +952,8 @@ class crnrstn_system_image_asset_manager {
                 //$tmp_date_lastmod = date('D, M j Y G:i:s T', strtotime($tmp_date_lastmod));
                 $tmp_date_lastmod = date('D, j M Y G:i:s T', $tmp_date_lastmod);
 
-                $tmp_header_options_ARRAY = array();//Cache-Control: public, max-age=604800
-                $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
+                $tmp_header_options_ARRAY = array();//Cache-Control: public, max-age=forever=1yearlimit
+                $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=31536000';
                 $tmp_header_options_ARRAY[] = 'Last-Modified: ' . $tmp_date_lastmod;
                 $tmp_header_options_ARRAY[] = 'X-Frame-Options: SAMEORIGIN';
 
@@ -4335,7 +4335,7 @@ class crnrstn_system_image_asset_manager {
 
                             $tmp_header_options_ARRAY = array();
 
-                            $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
+                            $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=31536000';
                             $tmp_header_options_ARRAY[] = 'X-Frame-Options: SAMEORIGIN';
 
                             $tmp_filename_clean = $this->process_for_filename($this->asset_request_data_key);
@@ -5215,7 +5215,7 @@ class crnrstn_system_image_asset_manager {
 
                             $tmp_header_options_ARRAY = array();
 
-                            $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
+                            $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=31536000';
                             $tmp_header_options_ARRAY[] = 'X-Frame-Options: SAMEORIGIN';
 
                             $tmp_filename_clean = $this->process_for_filename($tmp_filename);
@@ -5593,7 +5593,7 @@ class crnrstn_system_image_asset_manager {
 
                             $tmp_header_options_ARRAY = array();
 
-                            $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
+                            $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=31536000';
                             $tmp_header_options_ARRAY[] = 'X-Frame-Options: SAMEORIGIN';
 
                             $tmp_filename_clean = $this->process_for_filename($tmp_filename);
@@ -5928,7 +5928,7 @@ class crnrstn_system_image_asset_manager {
         $tmp_header_options_ARRAY = array();
         $tmp_process_return = false;
 
-        $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
+        $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=31536000';
         $tmp_header_options_ARRAY[] = 'X-Frame-Options: SAMEORIGIN';
 
         switch($this->asset_request_asset_family){
@@ -6108,7 +6108,7 @@ class crnrstn_system_image_asset_manager {
         }
 
         $tmp_array = array();
-        $tmp_array[] = 'Cache-Control: public, max-age=604800';
+        $tmp_array[] = 'Cache-Control: public, max-age=31536000';
         $tmp_array[] = 'X-Frame-Options: SAMEORIGIN';
         $this->header_options_add($tmp_array);
 
