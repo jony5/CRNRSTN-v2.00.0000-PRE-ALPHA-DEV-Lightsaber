@@ -3329,8 +3329,8 @@ class crnrstn {
 
         $this->asset_routing_data_key_lookup_ARRAY['favicon'] = array('crnrstn/favicon.ico' => 'crnrstn/favicon.ico', 'jony5/favicon.ico' => 'jony5/favicon.ico', 'bassdrive/favicon.ico' => 'bassdrive/favicon.ico');
 
-        $tmp_ARRAY = array('lightbox.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js', 'crnrstn.main_desktop.js' => '/',
-            'crnrstn.main_tablet.js' => '/', 'crnrstn.main_mobi.js' => '/','jquery-3.6.0.min.js' => '_lib/frameworks/jquery/3.6.0',
+        $tmp_ARRAY = array('lightbox.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js', 'crnrstn.main.js' => '/',
+            'jquery-3.6.0.min.js' => '_lib/frameworks/jquery/3.6.0',
             'jquery-1.11.1.min.js' => '_lib/frameworks/jquery/1.11.1', 'index.js' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
             'jquery.mobile-1.4.5.min.js' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
             'lightbox-plus-jquery.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js',
