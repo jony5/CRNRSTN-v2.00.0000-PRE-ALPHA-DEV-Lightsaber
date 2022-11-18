@@ -237,6 +237,43 @@ class crnrstn_system_image_asset_manager {
 
     private function return_output_CRNRSTN_UI_JS($const){
 
+        /*
+        CRNRSTN_JS_FRAMEWORK_REACT
+        CRNRSTN_JS_FRAMEWORK_MITHRIL
+        CRNRSTN_JS_FRAMEWORK_PROTOTYPE
+        CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
+        CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
+        CRNRSTN_JS_FRAMEWORK_MOOFX
+        CRNRSTN_JS_FRAMEWORK_BACKBONE
+
+        React js
+        https://reactjs.org/
+        Next, add three <script> tags to the HTML page right before the closing </body> tag:
+          <!-- ... other HTML ... -->
+
+          <!-- Load React. -->
+          <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+          <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+          <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+          <!-- Load our React component. -->
+          <script src="like_button.js"></script>
+
+        </body>
+
+        Mithril
+        https://mithril.js.org/
+
+        Prototype js
+        http://prototypejs.org/
+        Scriptaculous js
+
+        Moo.FX
+
+        Backbone js
+        http://backbonejs.org/
+
+        */
         try{
 
             $asset_mode_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants);
@@ -253,6 +290,17 @@ class crnrstn_system_image_asset_manager {
 ';
 
                     switch ($const){
+                        case CRNRSTN_JS_FRAMEWORK_REACT:
+                        case CRNRSTN_JS_FRAMEWORK_MITHRIL:
+                        case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
+                        case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
+                        case CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
+                        case CRNRSTN_JS_FRAMEWORK_MOOFX:
+                        case CRNRSTN_JS_FRAMEWORK_BACKBONE:
+
+
+
+                        break;
                         case CRNRSTN_UI_JS_MAIN_DESKTOP:
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -573,6 +621,17 @@ class crnrstn_system_image_asset_manager {
 ';
 
                     switch ($const){
+                        case CRNRSTN_JS_FRAMEWORK_REACT:
+                        case CRNRSTN_JS_FRAMEWORK_MITHRIL:
+                        case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
+                        case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
+                        case CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
+                        case CRNRSTN_JS_FRAMEWORK_MOOFX:
+                        case CRNRSTN_JS_FRAMEWORK_BACKBONE:
+
+
+
+                        break;
                         case CRNRSTN_UI_JS_MAIN_DESKTOP:
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -710,6 +769,47 @@ class crnrstn_system_image_asset_manager {
 
     private function return_output_CRNRSTN_UI_CSS($const){
 
+        /*
+        CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID
+        CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM
+        CRNRSTN_CSS_FRAMEWORK_FOUNDATION
+        CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE
+        CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM
+        CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC
+        CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID
+        CRNRSTN_CSS_FRAMEWORK_SKELETON
+        CRNRSTN_CSS_FRAMEWORK_RWDGRID
+
+        Simple Grid
+        https://simplegrid.io/
+        Simple Grid
+        http://thisisdallas.github.io/Simple-Grid/
+
+        960 Grid System
+        https://960.gs/
+
+        Foundation
+        https://get.foundation/
+
+        HTML5 Boilerplate
+        https://html5boilerplate.com/
+
+        Responsive Grid System
+        http://www.responsivegridsystem.com/
+
+        Unsemantic
+        https://unsemantic.com/
+
+        Dead Simple Grid
+        https://mourner.github.io/dead-simple-grid/
+
+        Skeleton
+        http://getskeleton.com/
+
+        rwdgrid
+        http://rwdgrid.com/
+
+        */
         $asset_mode_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_profile_constants);
 
         $tmp_str_array = array();
@@ -723,6 +823,18 @@ class crnrstn_system_image_asset_manager {
 ';
 
                 switch ($const){
+                    case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
+                    case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM:
+                    case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
+                    case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
+                    case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
+                    case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
+                    case CRNRSTN_CSS_FRAMEWORK_SKELETON:
+                    case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
+
+
+                    break;
                     case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
                         $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -820,6 +932,18 @@ class crnrstn_system_image_asset_manager {
 ';
 
                 switch ($const){
+                    case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
+                    case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM:
+                    case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
+                    case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
+                    case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
+                    case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
+                    case CRNRSTN_CSS_FRAMEWORK_SKELETON:
+                    case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
+
+
+                    break;
                     case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
                         $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
@@ -5336,8 +5460,6 @@ class crnrstn_system_image_asset_manager {
                     case 'CRNRSTN_UI_COOKIE_YESNO':
                     case 'CRNRSTN_UI_COOKIE_NOTICE':
                     case 'CRNRSTN_UI_INTERACT':
-                    case 'CRNRSTN_UI_CSS_BASE64MODE':
-                    case 'CRNRSTN_UI_JS_BASE64MODE':
 
                     */
 
@@ -5674,12 +5796,6 @@ class crnrstn_system_image_asset_manager {
                         break;
 
                     }
-
-                break;
-                case CRNRSTN_UI_CSS_BASE64MODE:
-
-                break;
-                case CRNRSTN_UI_JS_BASE64MODE:
 
                 break;
                 case CRNRSTN_UI_CSS:

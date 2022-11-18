@@ -138,6 +138,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.form_input_serialization_key = 'crnrstn_request_serialization_key';
         this.form_input_serialization_hash = 'crnrstn_request_serialization_hash';
         this.source_action_ux_element_id = 'page_load';
+        this.max_xhr_retrys = 5;
+        this.ssdtla_xhr_request_attempt_count_ARRAY = [];
         this.dom_element_mouse_state_tracker_ARRAY = [];
         this.dom_element_mouse_state_lock_ARRAY = [];
         this.dom_element_mouse_state_ARRAY = [];
@@ -2057,7 +2059,43 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         switch(data_type){
             case 'XML':
 
-                if(response_data !== undefined){
+                if(response_data === undefined){
+
+                    this.log_activity('[lnum 2062] ERROR [undefined response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 2063] Resending request SSDTLA request for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                    tmp_cnt = this.ssdtla_xhr_request_attempt_count_ARRAY[data_type];
+                    tmp_cnt = parseInt(tmp_cnt) + 1;
+                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = tmp_cnt;
+
+                    if(tmp_cnt <= this.max_xhr_retrys){
+
+                        this.fire_dom_state_controller();
+
+                    }
+
+                }
+
+                if(response_data === null){
+
+                    this.log_activity('[lnum 2074] ERROR [NULL response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 2075] SSDTLA Response [NULL] ERROR experienced on return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                    tmp_cnt = this.ssdtla_xhr_request_attempt_count_ARRAY[data_type];
+                    tmp_cnt = parseInt(tmp_cnt) + 1;
+                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = tmp_cnt;
+
+                    if(tmp_cnt <= this.max_xhr_retrys){
+
+                        this.fire_dom_state_controller();
+
+                    }
+
+                }
+
+                if(response_data !== undefined && response_data !== null){
+
+                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = 0;
 
                     var NODE_client_response = response_data.getElementsByTagName('client_response');
                     if (NODE_client_response.length > 0) {

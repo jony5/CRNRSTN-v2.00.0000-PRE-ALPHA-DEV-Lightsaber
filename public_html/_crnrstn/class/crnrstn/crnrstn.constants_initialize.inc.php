@@ -549,16 +549,6 @@ function crnrstn_constants_init($const_nom){
             return (int) 7328;
 
         break;
-        case 'CRNRSTN_UI_CSS_BASE64MODE':
-
-            return (int) 7329;
-
-        break;
-        case 'CRNRSTN_UI_JS_BASE64MODE':
-
-            return (int) 7330;
-
-        break;
         case 'CRNRSTN_UI_CSS':
 
             return (int) 7331;
@@ -567,6 +557,86 @@ function crnrstn_constants_init($const_nom){
         case 'CRNRSTN_UI_JS':
 
             return (int) 7332;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
+
+            return (int) 7333;
+
+        break;
+        case 'CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM':
+
+            return (int) 7334;
+
+        break;
+        case 'CRNRSTNCSS_FRAMEWORK_FOUNDATION':
+
+            return (int) 7335;
+
+        break;
+        case 'CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE':
+
+            return (int) 7336;
+
+        break;
+        case 'CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
+
+            return (int) 7337;
+
+        break;
+        case 'CRNRSTNCSS_FRAMEWORK_UNSEMANTIC':
+
+            return (int) 7338;
+
+        break;
+        case 'CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+
+            return (int) 7339;
+
+        break;
+        case 'CRNRSTNCSS_FRAMEWORK_SKELETON':
+
+            return (int) 7340;
+
+        break;
+        case 'CRNRSTNCSS_FRAMEWORK_RWDGRID':
+
+            return (int) 7341;
+
+        break;
+		case 'CRNRSTNJS_FRAMEWORK_REACT':
+
+            return (int) 7342;
+
+        break;
+        case 'CRNRSTNJS_FRAMEWORK_MITHRIL':
+
+            return (int) 7343;
+
+        break;
+        case 'CRNRSTNJS_FRAMEWORK_PROTOTYPE':
+
+            return (int) 7344;
+
+        break;
+        case 'CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS':
+
+            return (int) 7345;
+
+        break;
+        case 'CRNRSTNJS_FRAMEWORK_PROTOTYPE & CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS':
+
+            return (int) 7346;
+
+        break;
+        case 'CRNRSTNJS_FRAMEWORK_MOOFX':
+
+            return (int) 7347;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
+
+            return (int) 7348;
 
         break;
 

@@ -969,14 +969,79 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_UI_IMG';
 
             break;
-            case 'CRNRSTN_UI_CSS_BASE64MODE':
+            case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
 
-                $tmp_str_out = 'CRNRSTN_UI_CSS_BASE64MODE';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID';
 
             break;
-            case 'CRNRSTN_UI_JS_BASE64MODE':
+            case 'CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM':
 
-                $tmp_str_out = 'CRNRSTN_UI_JS_BASE64MODE';
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM';
+
+            break;
+            case 'CRNRSTNCSS_FRAMEWORK_FOUNDATION':
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_FOUNDATION';
+
+            break;
+            case 'CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE':
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE';
+
+            break;
+            case 'CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
+
+            break;
+            case 'CRNRSTNCSS_FRAMEWORK_UNSEMANTIC':
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_UNSEMANTIC';
+
+            break;
+            case 'CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID';
+
+            break;
+            case 'CRNRSTNCSS_FRAMEWORK_SKELETON':
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_SKELETON';
+
+            break;
+            case 'CRNRSTNCSS_FRAMEWORK_RWDGRID':
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_RWDGRID';
+
+            break;
+            case 'CRNRSTNJS_FRAMEWORK_REACT':
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_REACT';
+
+            break;
+            case 'CRNRSTNJS_FRAMEWORK_MITHRIL':
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_MITHRIL';
+
+            break;
+            case 'CRNRSTNJS_FRAMEWORK_PROTOTYPE':
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_PROTOTYPE';
+
+            break;
+            case 'CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS':
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS';
+
+            break;
+            case 'CRNRSTNJS_FRAMEWORK_MOOFX':
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_MOOFX';
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_BACKBONE';
 
             break;
             case 'CRNRSTN_UI_CSS':
@@ -1772,14 +1837,79 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_UI_IMG';
 
             break;
-            case CRNRSTN_UI_CSS_BASE64MODE:
+            case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
 
-                $tmp_str_out = 'CRNRSTN_UI_CSS_BASE64MODE';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID';
 
             break;
-            case CRNRSTN_UI_JS_BASE64MODE:
+            case CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM:
 
-                $tmp_str_out = 'CRNRSTN_UI_JS_BASE64MODE';
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM';
+
+            break;
+            case CRNRSTNCSS_FRAMEWORK_FOUNDATION:
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_FOUNDATION';
+
+            break;
+            case CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE:
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE';
+
+            break;
+            case CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
+
+            break;
+            case CRNRSTNCSS_FRAMEWORK_UNSEMANTIC:
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_UNSEMANTIC';
+
+            break;
+            case CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID:
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID';
+
+            break;
+            case CRNRSTNCSS_FRAMEWORK_SKELETON:
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_SKELETON';
+
+            break;
+            case CRNRSTNCSS_FRAMEWORK_RWDGRID:
+
+                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_RWDGRID';
+
+            break;
+            case CRNRSTNJS_FRAMEWORK_REACT:
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_REACT';
+
+            break;
+            case CRNRSTNJS_FRAMEWORK_MITHRIL:
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_MITHRIL';
+
+            break;
+            case CRNRSTNJS_FRAMEWORK_PROTOTYPE:
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_PROTOTYPE';
+
+            break;
+            case CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS:
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS';
+
+            break;
+            case CRNRSTNJS_FRAMEWORK_MOOFX:
+
+                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_MOOFX';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_BACKBONE:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_BACKBONE';
 
             break;
             case CRNRSTN_UI_CSS:

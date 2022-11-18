@@ -2,8 +2,6 @@
 
 /*
 SYSTEM DEFAULTS TO SUPPORT ::
-this.max_xhr_retrys = 5;
-
 $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
 
 $tmp_array[] = 'Content-Type: text/html; charset=UTF-8';

@@ -81,6 +81,89 @@ class crnrstn_content_source_controller {
         try{
 
             switch($this->module_key){
+                case 'output_system_head_html':
+                    /*
+                    CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID
+                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM
+                    CRNRSTN_CSS_FRAMEWORK_FOUNDATION
+                    CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE
+                    CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM
+                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC
+                    CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID
+                    CRNRSTN_CSS_FRAMEWORK_SKELETON
+                    CRNRSTN_CSS_FRAMEWORK_RWDGRID
+
+                    Simple Grid
+                    https://simplegrid.io/
+                    Simple Grid
+                    http://thisisdallas.github.io/Simple-Grid/
+
+                    960 Grid System
+                    https://960.gs/
+
+                    Foundation
+                    https://get.foundation/
+
+                    HTML5 Boilerplate
+                    https://html5boilerplate.com/
+
+                    Responsive Grid System
+                    http://www.responsivegridsystem.com/
+
+                    Unsemantic
+                    https://unsemantic.com/
+
+                    Dead Simple Grid
+                    https://mourner.github.io/dead-simple-grid/
+
+                    Skeleton
+                    http://getskeleton.com/
+
+                    rwdgrid
+                    http://rwdgrid.com/
+
+                    = = = = = = = = =
+                    CRNRSTN_JS_FRAMEWORK_REACT
+                    CRNRSTN_JS_FRAMEWORK_MITHRIL
+                    CRNRSTN_JS_FRAMEWORK_PROTOTYPE
+                    CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
+                    CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
+                    CRNRSTN_JS_FRAMEWORK_MOOFX
+                    CRNRSTN_JS_FRAMEWORK_BACKBONE
+
+                    React js
+                    https://reactjs.org/
+                    Next, add three <script> tags to the HTML page right before the closing </body> tag:
+                      <!-- ... other HTML ... -->
+
+                      <!-- Load React. -->
+                      <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+                      <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+                      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+                      <!-- Load our React component. -->
+                      <script src="like_button.js"></script>
+
+                    </body>
+
+                    Mithril
+                    https://mithril.js.org/
+
+                    Prototype js
+                    http://prototypejs.org/
+                    Scriptaculous js
+
+                    Moo.FX
+
+                    Backbone js
+                    http://backbonejs.org/
+
+                    */
+
+                break;
+                case 'output_system_footer_html':
+
+                break;
                 case 'return_sticky_media_link':
 
                     //
