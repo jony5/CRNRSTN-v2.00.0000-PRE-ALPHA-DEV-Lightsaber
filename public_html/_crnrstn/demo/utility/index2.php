@@ -58,8 +58,8 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
     <?php
 
-    echo $oCRNRSTN->output_system_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION);
-    //echo $oCRNRSTN->output_system_footer_html();
+    echo $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION);
+    //echo $oCRNRSTN->system_output_footer_html();
     ?>
 
 </div>

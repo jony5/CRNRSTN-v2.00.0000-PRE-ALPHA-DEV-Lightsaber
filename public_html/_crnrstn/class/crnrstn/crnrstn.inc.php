@@ -3962,7 +3962,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function output_system_head_html($integer_constant = NULL, $spool_for_output = false){
+    public function system_output_head_html($integer_constant = NULL, $spool_for_output = false){
 
         $tmp_head_html_output = '';
 
@@ -4004,7 +4004,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function output_system_footer_html($integer_constant = NULL, $spool_for_output = false){
+    public function system_output_footer_html($integer_constant = NULL, $spool_for_output = false){
 
         if($spool_for_output){
 
@@ -4035,7 +4035,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
 
 
-            output_system_footer_html_build_flag_ARRAY
+            system_output_footer_html_build_flag_ARRAY
             ficp_module_build_flag_ARRAY
             */
 

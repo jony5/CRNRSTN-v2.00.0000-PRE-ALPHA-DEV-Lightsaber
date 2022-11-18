@@ -377,7 +377,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
 <?php
 
-    //echo $oCRNRSTN->output_system_footer_html();
+    //echo $oCRNRSTN->system_output_footer_html();
 
 ?>
 </body>

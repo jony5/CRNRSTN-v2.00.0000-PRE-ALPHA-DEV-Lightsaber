@@ -81,7 +81,7 @@ class crnrstn_content_source_controller {
         try{
 
             switch($this->module_key){
-                case 'output_system_head_html':
+                case 'system_output_head_html':
                     /*
                     CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID
                     CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM
@@ -160,8 +160,50 @@ class crnrstn_content_source_controller {
 
                     */
 
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Output string data to be placed within the &lt;HEAD&gt; of 
+                    an HTML document. Pass in TRUE to spool the requested content for output at a later time.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    // system_output_head_html($integer_constant = NULL, $spool_for_output = false)
+                    // METHOD DEFINITION
+                    $tmp_method_definition = 'system_output_head_html(<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $integer_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $spool_for_output = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">string|HTML OUTPUT</span>';
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
                 break;
-                case 'output_system_footer_html':
+                case 'system_output_footer_html':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Output string data to be placed at the end of &lt;BODY&gt; 
+                    content within an HTML document. Pass in TRUE to spool the requested content for output at a later time.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = 'system_output_footer_html(<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $integer_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $spool_for_output = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">string|HTML OUTPUT</span>';
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
                 break;
                 case 'return_sticky_media_link':
