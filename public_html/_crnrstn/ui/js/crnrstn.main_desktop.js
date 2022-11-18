@@ -2943,6 +2943,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 queue: false,
                                 complete: function () {
 
+                                    var top_delta = $(window).scrollTop();
+                                    $('#crnrstn_interact_ui_full_lightbox').css('paddingTop', top_delta + 'px');
                                     $('#crnrstn_interact_ui_full_lightbox').css('width', '100%');
                                     $('#crnrstn_interact_ui_full_lightbox').html(tmp_mit_content);
                                     $('#crnrstn_interact_ui_link_text_click').val('');
@@ -2956,7 +2958,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                             opacity: "swing"
                                         },
                                         complete: function () {
-
 
                                         }
 
@@ -6906,11 +6907,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             $('#crnrstn_interact_ui_full_lightbox_overlay').animate({
                 top: this.docs_page_css_top + 'px',
                 left: this.docs_page_css_left + 'px',
-                opacity: 0.8
+                opacity: 0.5
             }, {
                 duration: 250,
                 queue: false,
-                complete: function () {
+                complete: function(){
+
+                    //
+                    // SCROLL BACK TOP
 
                 }
 
