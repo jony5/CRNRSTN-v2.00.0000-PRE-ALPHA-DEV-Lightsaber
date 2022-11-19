@@ -6934,8 +6934,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.crnrstn_interact_ui_ux_sticky_link = function(ux_action, url, target, elem){
 
-        //
-        // CLOSE OVERLAY
         switch(ux_action){
             case 'onmouseover':
 

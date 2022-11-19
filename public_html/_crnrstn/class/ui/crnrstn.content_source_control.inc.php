@@ -82,83 +82,6 @@ class crnrstn_content_source_controller {
 
             switch($this->module_key){
                 case 'system_output_head_html':
-                    /*
-                    CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID
-                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM
-                    CRNRSTN_CSS_FRAMEWORK_FOUNDATION
-                    CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE
-                    CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM
-                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC
-                    CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID
-                    CRNRSTN_CSS_FRAMEWORK_SKELETON
-                    CRNRSTN_CSS_FRAMEWORK_RWDGRID
-
-                    Simple Grid
-                    https://simplegrid.io/
-                    Simple Grid
-                    http://thisisdallas.github.io/Simple-Grid/
-
-                    960 Grid System
-                    https://960.gs/
-
-                    Foundation
-                    https://get.foundation/
-
-                    HTML5 Boilerplate
-                    https://html5boilerplate.com/
-
-                    Responsive Grid System
-                    http://www.responsivegridsystem.com/
-
-                    Unsemantic
-                    https://unsemantic.com/
-
-                    Dead Simple Grid
-                    https://mourner.github.io/dead-simple-grid/
-
-                    Skeleton
-                    http://getskeleton.com/
-
-                    rwdgrid
-                    http://rwdgrid.com/
-
-                    = = = = = = = = =
-                    CRNRSTN_JS_FRAMEWORK_REACT
-                    CRNRSTN_JS_FRAMEWORK_MITHRIL
-                    CRNRSTN_JS_FRAMEWORK_PROTOTYPE
-                    CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
-                    CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
-                    CRNRSTN_JS_FRAMEWORK_MOOFX
-                    CRNRSTN_JS_FRAMEWORK_BACKBONE
-
-                    React js
-                    https://reactjs.org/
-                    Next, add three <script> tags to the HTML page right before the closing </body> tag:
-                      <!-- ... other HTML ... -->
-
-                      <!-- Load React. -->
-                      <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-                      <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-                      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-
-                      <!-- Load our React component. -->
-                      <script src="like_button.js"></script>
-
-                    </body>
-
-                    Mithril
-                    https://mithril.js.org/
-
-                    Prototype js
-                    http://prototypejs.org/
-                    Scriptaculous js
-
-                    Moo.FX
-
-                    Backbone js
-                    http://backbonejs.org/
-
-                    */
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
@@ -218,9 +141,68 @@ class crnrstn_content_source_controller {
                     $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS', $tmp_spec_array);
 
+                    $tmp_resource_profiles_ARRAY = $this->return_integer_constant_profiles($this->module_key);
+
+                    //$this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_NAKED', $this->oCRNRSTN->print_r_str($tmp_resource_profiles_ARRAY));
+
+//
+//                    $tmp_output_ARRAY[$resource_constant]['INTEGER'] = $resource_constant;
+//                    $tmp_output_ARRAY[$resource_constant]['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+//                    $tmp_output_ARRAY[$resource_constant]['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI JAVASCRIPT';
+//                    $tmp_output_ARRAY[$resource_constant]['VERSION'] = '1.00.0000';
+//                    $tmp_output_ARRAY[$resource_constant]['DESCRIPTION'] = '';
+//                    $tmp_output_ARRAY[$resource_constant]['URL'] = '';
+
+                    $tmp_predefined_constants_html = '<div class="crnrstn_predefined_constant_title"><h2>Resource Constants :: CSS + JS</h2></div>';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title_description"><p>The integer constants below are always available as part of the core of C<span class="the_R_in_crnrstn">R</span>NRSTN ::.
+</p></div>';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_content">
+';
+
+                    $tmp_element_cnt = 0;
+                    foreach($tmp_resource_profiles_ARRAY as $int_const => $profile_ARRAY){
+                        $tmp_element_cnt++;
+                        $tmp_www_link = '';
+                        $tmp_inline_style = '';
 
 
+                        if(isset($profile_ARRAY)){
 
+                            $tmp_lnk = $profile_ARRAY['URL'];
+
+                            if(strlen($tmp_lnk) > 0){
+
+                                //$tmp_www_link = '<a href="'. $this->oCRNRSTN->return_sticky_link($tmp_lnk) . '" target="_blank">website</a>';
+                                $tmp_www_link = '<span>' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', $tmp_lnk, '_blank');
+
+                            }
+
+                        }
+
+                        if($tmp_element_cnt <= 7 ){
+
+                            $tmp_inline_style =  'style="width:58%;"';
+
+                        }
+
+                        $tmp_predefined_constants_html .= '<div class="crnrstn_resource_constant_demo_shell">
+                        <div class="crnrstn_resource_constant_nom"><span style="font-weight: normal;">' . $profile_ARRAY['INTEGER'] . '</span>&nbsp;&nbsp;&nbsp;' . $profile_ARRAY['STRING'] . '</div>                        
+                        <div class="crnrstn_resource_constant_version"><p>' . $profile_ARRAY['TITLE'] . ' v' . $profile_ARRAY['VERSION'] . '</p></div>
+                        <div class="crnrstn_resource_constant_www">
+                            <div class="crnrstn_resource_constant_www_source"><a href="#" target="_self">view source</a></div>
+                            <div class="crnrstn_resource_constant_www_website">' . $tmp_www_link . '</div>
+                            <div class="crnrstn_cb"></div>
+                        </div>
+                        <div class="crnrstn_cb"></div>
+                        <div class="crnrstn_resource_constant_description" ' . $tmp_inline_style . '><p>' . $profile_ARRAY['DESCRIPTION'] . '</p></div>
+                        <div class="crnrstn_cb_5"></div>
+                        
+                        </div>';
+
+                    }
+
+                    $tmp_predefined_constants_html .= '</div>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', $tmp_predefined_constants_html);
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
@@ -283,9 +265,6 @@ class crnrstn_content_source_controller {
                     $tmp_spec_array[0] = 'Currently tested on Ubuntu 18.04.1 LTS running Apache v2.4.29, MySQLi v5.0.12, php v7.0.33, OpenSSL v1.1.1, and NuSOAP v0.9.5.';
                     $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS', $tmp_spec_array);
-
-
-
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
@@ -6632,6 +6611,473 @@ between the server and client can be achieved with minimal effort and maximum da
 //        return $this->oCRNRSTN_UI_ASSEMBLER;
 //
 //    }
+
+    private function return_resource_profile($resource_constant){
+
+        $tmp_output_ARRAY =  array();
+
+        if(is_array($resource_constant)){
+
+            $tmp_agg_output_ARRAY  = array();
+
+            foreach($resource_constant as $index => $res_const){
+
+                $tmp_agg_output_ARRAY[$res_const] = $this->return_resource_profile($res_const);
+
+            }
+
+            return $tmp_agg_output_ARRAY;
+
+        }
+
+        switch($resource_constant){
+            case CRNRSTN_UI_JS_MAIN:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI JAVASCRIPT';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release off
+                                                    LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
+                                                    for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['URL'] = '';
+
+            break;
+            case CRNRSTN_UI_JS_JQUERY_1_11_1:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'jQuery (1.11.1)';
+                $tmp_output_ARRAY['VERSION'] = '1.11.1';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. 
+                            It makes things like HTML document traversal and manipulation, event handling, animation,
+                            and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+                            With a combination of versatility and extensibility, jQuery has changed the way that millions
+                            of people write JavaScript.';
+                $tmp_output_ARRAY['URL'] = 'https://jquery.com/';
+
+            break;
+            case CRNRSTN_UI_JS_JQUERY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'jQuery';
+                $tmp_output_ARRAY['VERSION'] = '3.6.1';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. It makes
+                                                    things like HTML document traversal and manipulation, event handling,
+                                                    animation, and Ajax much simpler with an easy-to-use API that works
+                                                    across a multitude of browsers. With a combination of versatility and
+                                                    extensibility, jQuery has changed the way that millions of people
+                                                    write JavaScript.';
+                $tmp_output_ARRAY['URL'] = 'https://jquery.com/';
+
+            break;
+            case CRNRSTN_UI_JS_JQUERY_UI:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery UI is a curated set of user interface interactions, effects,
+                                                    widgets, and themes built on top of the jQuery JavaScript Library.
+                                                    Whether you\'re building highly interactive web applications or you
+                                                    just need to add a date picker to a form control, jQuery UI is the
+                                                    perfect choice.';
+                $tmp_output_ARRAY['URL'] = 'https://jqueryui.com/';
+
+            break;
+            case CRNRSTN_UI_JS_JQUERY_MOBILE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'jQuery Mobile';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'A Touch-Optimized Web Framework. jQuery Mobile is a HTML5-based user
+                                                    interface system designed to make responsive web sites and apps that 
+                                                    are accessible on all smartphone, tablet and desktop devices.';
+                $tmp_output_ARRAY['URL'] = 'https://jquerymobile.com/';
+
+            break;
+            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script.';
+                $tmp_output_ARRAY['URL'] = 'https://lokeshdhakar.com/projects/lightbox2/';
+
+            break;
+            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script plus JQUERY.';
+                $tmp_output_ARRAY['URL'] = 'https://lokeshdhakar.com/projects/lightbox2/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_REACT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'React';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'A JavaScript library for building user interfaces. React makes it 
+                            painless to create interactive UIs. Design simple views for each state in your application, 
+                            and React will efficiently update and render just the right components when your data changes.
+                            <br><br>
+                            Declarative views make your code more predictable and easier to debug.';
+                $tmp_output_ARRAY['URL'] = 'https://reactjs.org/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_MITHRIL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'Mithril.js';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Mithril.js is a modern client-side JavaScript framework for building 
+                            Single Page Applications. It\'s small (&LT; 10kb gzip), fast and provides routing and XHR 
+                            utilities out of the box. Mithril.js supports IE11, Firefox ESR, and the last two versions 
+                            of Firefox, Edge, Safari, and Chrome. No polyfills required.';
+                $tmp_output_ARRAY['URL'] = 'https://mithril.js.org/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'Prototype';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Prototype takes the complexity out of client-side web programming. 
+                            Built to solve real-world problems, it adds useful extensions to the browser scripting 
+                            environment and provides elegant APIs around the clumsy interfaces of Ajax and the Document 
+                            Object Model.';
+                $tmp_output_ARRAY['URL'] = 'http://prototypejs.org/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'script.aculo.us';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'script.aculo.us provides you with easy-to-use, cross-browser user 
+                            interface JavaScript libraries to make your web sites and web applications fly.<br><br>
+                            What\'s inside? animation framework, drag and drop, Ajax controls DOM utilities, and 
+                            unit testing.<br><br>
+                            It\'s an add-on to the fantastic Prototype framework.';
+                $tmp_output_ARRAY['URL'] = 'http://script.aculo.us/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'MooTools &amp; moo.fx';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'MooTools is a compact, modular, Object-Oriented JavaScript 
+                            framework designed for the intermediate to advanced JavaScript developer. It allows you to 
+                            write powerful, flexible, and cross-browser code with its elegant, well documented, and coherent API.
+                            <br><br>
+                            MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox 
+                            (and its mozilla friends), Opera and Camino.
+                            <br><br>
+                            moo.fx is a superlightweight, ultratiny, megasmall javascript effects library, to be used 
+                            with prototype.js or the mootools framework.<br><br>
+                            It\'s very easy to use, blazing fast, cross-browser, standards compliant, provides controls 
+                            to modify any CSS property of any HTML element, including colors, with builtin checks that 
+                            won\'t let a user break the effect with multiple, crazy clicks. Optimized to make you write 
+                            the lesser code possible, the new moo.fx is so modular you can create any kind of effect 
+                            with it.<br><br>
+                            moo.fx is open source, released under the very liberal MIT License, so feel free to do 
+                            anything you want with it.';
+                $tmp_output_ARRAY['URL'] = 'https://web.archive.org/web/20140901004420/http://mootools.net/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_BACKBONE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'BACKBONE.JS';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Backbone.js gives structure to web applications by providing models 
+                            with key-value binding and custom events, collections with a rich API of enumerable functions, 
+                            views with declarative event handling, and connects it all to your existing API over a 
+                            RESTful JSON interface.';
+                $tmp_output_ARRAY['URL'] = 'https://backbonejs.org/';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_DESKTOP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['URL'] = '';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_TABLET:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['URL'] = '';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_MOBILE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile Device Stylesheet';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['URL'] = '';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'Simple Grid';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Responsive; your website will 
+                            display beautifully, no matter the device or screen type. Lightweight; the CSS is super 
+                            light, so you won’t have to worry about adding to page load times. Simple; Simple Grid is 
+                            made for all skill levels, so you can jump right into your project. Simple Grid is a 
+                            12-column, lightweight CSS grid to help you quickly build responsive websites. 
+                            Download the CSS stylesheet, add the appropriate classes to your markup, and you\'re off to 
+                            the races. It’s that simple.<br><br>
+                            Each column is contained within rows, which are contained within a container. The container 
+                            is set to a maximum width of 960px, but you can edit without having to break anything.';
+                $tmp_output_ARRAY['URL'] = 'https://simplegrid.io/';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = '960 Grid System';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
+                            workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
+                            two variants: 12 and 16 columns, which can be used separately or in tandem.';
+                $tmp_output_ARRAY['URL'] = 'https://960.gs/';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'Foundation';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The most advanced responsive 
+                            front-end framework in the world. A Framework for any device, medium, and accessibility. 
+                            Foundation is a family of responsive front-end frameworks that make it easy to design 
+                            beautiful responsive websites, apps and emails that look amazing on any device. Foundation 
+                            is semantic, readable, flexible, and completely customizable. We’re constantly adding new 
+                            resources and code snippets, including handy HTML templates to help get you started!';
+                $tmp_output_ARRAY['URL'] = 'https://get.foundation/';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'HTML5 Boilerplate';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The web\'s most popular front-end template, HTML5 Boilerplate helps 
+                            you build fast, robust, and adaptable web apps or sites. Kick-start your project with the 
+                            combined knowledge and effort of 100s of developers, all in one little package.';
+                $tmp_output_ARRAY['URL'] = 'https://html5boilerplate.com/';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'Responsive Grid System';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Spectacularly Easy Responsive 
+                            Design. The Responsive Grid System isn\'t a framework. It\'s not a boilerplate either. It\'s 
+                            a quick, easy &amp; flexible way to create a responsive web site.';
+                $tmp_output_ARRAY['URL'] = 'http://www.responsivegridsystem.com/';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'unsemantic';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
+                            Grid System. It works in a similar way, but instead of being a set number of columns, 
+                            it\'s entirely based on percentages.';
+                $tmp_output_ARRAY['URL'] = 'https://unsemantic.com/';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'Dead Simple Grid';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Dead Simple Grid is a responsive CSS 
+                            grid micro framework that is just that. Dead simple. It\'s the Malevich\'s Black Square of
+                            grid frameworks. It is tiny (about 250 bytes of CSS) and without dependencies, has only two
+                            classes (row and col), fluid columns with fixed gutters, supports infinite nesting, and
+                            doesn\'t constrain you to any column sets or media query breakpoints. It embraces concepts 
+                            of progressive enhancement and mobile first, serving one-column mobile layout to older 
+                            browsers (IE 6-7). IE 8 is supported if you use Respond.js';
+                $tmp_output_ARRAY['URL'] = 'https://mourner.github.io/dead-simple-grid/';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_SKELETON:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'SKELETON';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'A dead simple, responsive boilerplate. Light as a feather at ~400 
+                            lines &amp; built with mobile in mind. Styles designed to be a starting point, not a UI framework.';
+                $tmp_output_ARRAY['URL'] = 'http://getskeleton.com/';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'RWD GRID';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Responsive Grid System for your Next Project. 2kb, Mobile First 
+                            Grid System, HTML5 Boilerplate Head, 960grid like naming convention,IE8+, Firefox, Chrome, 
+                            Safari, Opera, PSD Grid & included, Free to use and Abuse.';
+                $tmp_output_ARRAY['URL'] = 'http://rwdgrid.com/';
+
+            break;
+
+        }
+
+        return $tmp_output_ARRAY;
+
+    }
+
+    public function return_integer_constant_profiles($module_key){
+        /*
+        CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID
+        CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM
+        CRNRSTN_CSS_FRAMEWORK_FOUNDATION
+        CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE
+        CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM
+        CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC
+        CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID
+        CRNRSTN_CSS_FRAMEWORK_SKELETON
+        CRNRSTN_CSS_FRAMEWORK_RWDGRID
+
+        Simple Grid
+        https://simplegrid.io/
+        Simple Grid
+        http://thisisdallas.github.io/Simple-Grid/
+
+        960 Grid System
+        https://960.gs/
+
+        Foundation
+        https://get.foundation/
+
+        HTML5 Boilerplate
+        https://html5boilerplate.com/
+
+        Responsive Grid System
+        http://www.responsivegridsystem.com/
+
+        Unsemantic
+        https://unsemantic.com/
+
+        Dead Simple Grid
+        https://mourner.github.io/dead-simple-grid/
+
+        Skeleton
+        http://getskeleton.com/
+
+        rwdgrid
+        http://rwdgrid.com/
+
+        = = = = = = = = =
+        CRNRSTN_JS_FRAMEWORK_REACT
+        CRNRSTN_JS_FRAMEWORK_MITHRIL
+        CRNRSTN_JS_FRAMEWORK_PROTOTYPE
+        CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
+        CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
+        CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX
+        CRNRSTN_JS_FRAMEWORK_BACKBONE
+
+        React js
+        https://reactjs.org/
+        Next, add three <script> tags to the HTML page right before the closing </body> tag:
+         <!-- ... other HTML ... -->
+
+         <!-- Load React. -->
+         <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+         <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+         <!-- Load our React component. -->
+         <script src="like_button.js"></script>
+
+        </body>
+
+        Mithril
+        https://mithril.js.org/
+
+        Prototype js
+        http://prototypejs.org/
+        Scriptaculous js
+
+        Moo.FX
+
+        Backbone js
+        http://backbonejs.org/
+
+       */
+
+        switch($module_key){
+            case 'system_output_head_html':
+
+                $tmp_output_ARRAY = array();
+
+                // 25
+                // MASTER CLIENT META ASSET ARRAY (CSS, JS)
+                $tmp_resource_ctrl_ARRAY = array(CRNRSTN_UI_JS_MAIN, CRNRSTN_UI_JS_JQUERY_1_11_1, CRNRSTN_UI_JS_JQUERY,
+                    CRNRSTN_UI_JS_JQUERY_UI, CRNRSTN_UI_JS_JQUERY_MOBILE, CRNRSTN_UI_JS_LIGHTBOX_DOT_JS,
+                    CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY, CRNRSTN_JS_FRAMEWORK_REACT, CRNRSTN_JS_FRAMEWORK_MITHRIL,
+                    CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
+                    CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX, CRNRSTN_JS_FRAMEWORK_BACKBONE, CRNRSTN_UI_CSS_MAIN_DESKTOP,
+                    CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE, CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID,
+                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_FOUNDATION,
+                    CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE, CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM,
+                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC, CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID,
+                    CRNRSTN_CSS_FRAMEWORK_SKELETON, CRNRSTN_CSS_FRAMEWORK_RWDGRID);
+
+                $tmp_output_ARRAY = $this->return_resource_profile($tmp_resource_ctrl_ARRAY);
+
+            break;
+            case 'system_output_footer_html':
+
+                $tmp_output_ARRAY = array();
+
+            break;
+
+        }
+
+        return $tmp_output_ARRAY;
+
+    }
 
 	public function __destruct() {
 		

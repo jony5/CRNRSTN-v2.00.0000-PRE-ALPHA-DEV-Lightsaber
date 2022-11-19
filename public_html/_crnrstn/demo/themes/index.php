@@ -71,7 +71,7 @@ $oCRNRSTN->config_add_environment('BLUEHOST_JONY5', E_ALL & ~E_NOTICE & ~E_STRIC
     <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
     <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
         $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
-        $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
+        $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
     <style>
         .the_R_in_crnrstn                           { color:#F90000; }
         .crnrstn_logo_wrapper                       { padding: 15px 0 20px 15px; }

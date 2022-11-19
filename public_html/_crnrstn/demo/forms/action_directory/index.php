@@ -87,7 +87,7 @@ $oCRNRSTN->form_hidden_input_add('CRNRSTN:: A DEMO_FORM_EXAMPLE', 'crnrstn_hidde
 <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
 <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
     $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
-    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
 <style>
 
     .the_R_in_crnrstn                           { color:#F90000; }

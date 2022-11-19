@@ -469,174 +469,159 @@ function crnrstn_constants_init($const_nom){
             return (int) 7312;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_DESKTOP':
+        case 'CRNRSTN_UI_JS_MAIN':
 
             return (int) 7313;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_TABLET':
+        case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
 
             return (int) 7314;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN_MOBILE':
+        case 'CRNRSTN_UI_JS_JQUERY':
 
             return (int) 7315;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
+        case 'CRNRSTN_UI_JS_JQUERY_UI':
 
             return (int) 7316;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY':
+        case 'CRNRSTN_UI_JS_JQUERY_MOBILE':
 
             return (int) 7317;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_UI':
+        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS':
 
             return (int) 7318;
 
         break;
-        case 'CRNRSTN_UI_JS_JQUERY_MOBILE':
+        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY':
 
             return (int) 7319;
 
         break;
-        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS':
+        case 'CRNRSTN_UI_TAG_ANALYTICS':
 
             return (int) 7320;
 
         break;
-        case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY':
+        case 'CRNRSTN_UI_TAG_ENGAGEMENT':
 
             return (int) 7321;
 
         break;
-        case 'CRNRSTN_UI_TAG_ANALYTICS':
+        case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
 
             return (int) 7322;
 
         break;
-        case 'CRNRSTN_UI_TAG_ENGAGEMENT':
+        case 'CRNRSTN_UI_COOKIE_PREFERENCE':
 
             return (int) 7323;
 
         break;
-        case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
+        case 'CRNRSTN_UI_COOKIE_YESNO':
 
             return (int) 7324;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_PREFERENCE':
+        case 'CRNRSTN_UI_COOKIE_NOTICE':
 
             return (int) 7325;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_YESNO':
+        case 'CRNRSTN_UI_INTERACT':
 
             return (int) 7326;
 
         break;
-        case 'CRNRSTN_UI_COOKIE_NOTICE':
+        case 'CRNRSTN_UI_CSS':
 
             return (int) 7327;
 
         break;
-        case 'CRNRSTN_UI_INTERACT':
+        case 'CRNRSTN_UI_JS':
 
             return (int) 7328;
 
         break;
-        case 'CRNRSTN_UI_CSS':
+        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
+
+            return (int) 7329;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
+
+            return (int) 7330;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
 
             return (int) 7331;
 
         break;
-        case 'CRNRSTN_UI_JS':
+        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
 
             return (int) 7332;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
 
             return (int) 7333;
 
         break;
-        case 'CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
 
             return (int) 7334;
 
         break;
-        case 'CRNRSTNCSS_FRAMEWORK_FOUNDATION':
+        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
 
             return (int) 7335;
 
         break;
-        case 'CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE':
+        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
 
             return (int) 7336;
 
         break;
-        case 'CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
+        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
 
             return (int) 7337;
 
         break;
-        case 'CRNRSTNCSS_FRAMEWORK_UNSEMANTIC':
+		case 'CRNRSTN_JS_FRAMEWORK_REACT':
 
             return (int) 7338;
 
         break;
-        case 'CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+        case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
 
             return (int) 7339;
 
         break;
-        case 'CRNRSTNCSS_FRAMEWORK_SKELETON':
+        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
 
             return (int) 7340;
 
         break;
-        case 'CRNRSTNCSS_FRAMEWORK_RWDGRID':
+        case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
 
             return (int) 7341;
 
         break;
-		case 'CRNRSTNJS_FRAMEWORK_REACT':
+        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX':
 
             return (int) 7342;
 
         break;
-        case 'CRNRSTNJS_FRAMEWORK_MITHRIL':
-
-            return (int) 7343;
-
-        break;
-        case 'CRNRSTNJS_FRAMEWORK_PROTOTYPE':
-
-            return (int) 7344;
-
-        break;
-        case 'CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS':
-
-            return (int) 7345;
-
-        break;
-        case 'CRNRSTNJS_FRAMEWORK_PROTOTYPE & CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS':
-
-            return (int) 7346;
-
-        break;
-        case 'CRNRSTNJS_FRAMEWORK_MOOFX':
-
-            return (int) 7347;
-
-        break;
         case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
 
-            return (int) 7348;
+            return (int) 7343;
 
         break;
 

@@ -9620,7 +9620,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
         <title>CRNRSTN :: CSS Validator for HTML Email v2.00.0000</title>
 ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
-            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP) . '
+            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN) . '
     </head>
     <body>
     <div style="width:100%; text-align:center; margin:0 auto; font-family:Arial, Helvetica, sans-serif; background-color: #FFF;">
@@ -9786,7 +9786,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
         <title>CRNRSTN :: CSS Validator for HTML Email v2.00.0000</title>
 ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI) .
-            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP) . '
+            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN) . '
     </head>
     <body>
     <div style="width:100%; text-align:center; margin:0 auto; font-family:Arial, Helvetica, sans-serif; background-color: #FFF;">

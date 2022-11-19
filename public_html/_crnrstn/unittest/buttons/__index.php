@@ -375,7 +375,7 @@ openssl_error_return($openssl_err_queue_ARRAY,__LINE__, '--openssl_public_decryp
 <?php echo $oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON'); ?>
 <?php echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
     $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI).
-    $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP); ?>
+    $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
 <style>
     *                                           { font-family:Arial, Helvetica, sans-serif;}
     .the_R_in_crnrstn                           { color:#F90000; }

@@ -119,56 +119,10 @@ class crnrstn_system_image_asset_manager {
     public function return_html_head_asset($const){
 
         switch($const){
-            case CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN_DESKTOP:
+            case CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN:
 
                 $tmp_array_CSS = $this->return_output_CRNRSTN_UI_CSS(CRNRSTN_UI_CSS_MAIN_DESKTOP);
-                $tmp_array_JS = $this->return_output_CRNRSTN_UI_JS(CRNRSTN_UI_JS_MAIN_DESKTOP);
-                $tmp_output = '';
-
-                //
-                // LOAD OUTPUT
-                foreach($tmp_array_CSS as $key => $resource_content){
-
-                    $tmp_output .= $resource_content;
-
-                }
-
-                foreach($tmp_array_JS as $key => $resource_content){
-
-                    $tmp_output .= $resource_content;
-
-                }
-
-                return $tmp_output;
-
-            break;
-            case CRNRSTN_UI_CSS_MAIN_TABLET & CRNRSTN_UI_JS_MAIN_TABLET:
-
-                $tmp_array_CSS = $this->return_output_CRNRSTN_UI_CSS(CRNRSTN_UI_CSS_MAIN_TABLET);
-                $tmp_array_JS = $this->return_output_CRNRSTN_UI_JS(CRNRSTN_UI_JS_MAIN_TABLET);
-                $tmp_output = '';
-
-                //
-                // LOAD OUTPUT
-                foreach($tmp_array_CSS as $key => $resource_content){
-
-                    $tmp_output .= $resource_content;
-
-                }
-
-                foreach($tmp_array_JS as $key => $resource_content){
-
-                    $tmp_output .= $resource_content;
-
-                }
-
-                return $tmp_output;
-
-            break;
-            case CRNRSTN_UI_CSS_MAIN_MOBILE & CRNRSTN_UI_JS_MAIN_MOBILE:
-
-                $tmp_array_CSS = $this->return_output_CRNRSTN_UI_CSS(CRNRSTN_UI_CSS_MAIN_MOBILE);
-                $tmp_array_JS = $this->return_output_CRNRSTN_UI_JS(CRNRSTN_UI_JS_MAIN_MOBILE);
+                $tmp_array_JS = $this->return_output_CRNRSTN_UI_JS(CRNRSTN_UI_JS_MAIN);
                 $tmp_output = '';
 
                 //
@@ -206,9 +160,7 @@ class crnrstn_system_image_asset_manager {
                 return $tmp_output;
 
             break;
-            case CRNRSTN_UI_JS_MAIN_DESKTOP:
-            case CRNRSTN_UI_JS_MAIN_TABLET:
-            case CRNRSTN_UI_JS_MAIN_MOBILE:
+            case CRNRSTN_UI_JS_MAIN:
             case CRNRSTN_UI_JS_JQUERY_1_11_1:
             case CRNRSTN_UI_JS_JQUERY:
             case CRNRSTN_UI_JS_JQUERY_UI:
@@ -243,7 +195,7 @@ class crnrstn_system_image_asset_manager {
         CRNRSTN_JS_FRAMEWORK_PROTOTYPE
         CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
         CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
-        CRNRSTN_JS_FRAMEWORK_MOOFX
+        CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX
         CRNRSTN_JS_FRAMEWORK_BACKBONE
 
         React js
@@ -269,6 +221,14 @@ class crnrstn_system_image_asset_manager {
         Scriptaculous js
 
         Moo.FX
+        include the scripts in the following order:
+
+        prototype.js or prototype.lite.js (required)
+        moo.fx.js (required)
+        moo.fx.pack.js (optional)
+        moo.fx.utils.js (optional)
+        moo.fx.accordion.js (optional)
+        moo.fx.transitions.js (optional)
 
         Backbone js
         http://backbonejs.org/
@@ -295,13 +255,14 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
                         case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
-                        case CRNRSTN_JS_FRAMEWORK_MOOFX:
+                        case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX:
                         case CRNRSTN_JS_FRAMEWORK_BACKBONE:
-
-
+                        case CRNRSTN_UI_JS_JQUERY_1_11_1:
 
                         break;
-                        case CRNRSTN_UI_JS_MAIN_DESKTOP:
+                        case CRNRSTN_UI_JS_MAIN:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -339,83 +300,9 @@ class crnrstn_system_image_asset_manager {
                             }
 
                         break;
-                        case CRNRSTN_UI_JS_MAIN_TABLET:
-
-                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-
-                            $tmp_cache_lightboxmincss = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
-                            $tmp_cache_crnrstnmainjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/crnrstn.main.js');
-
-                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
-                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
-
-                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
-
-                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main.js -->
-<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=lightbox.min.css&v=420.00.' . $tmp_cache_lightboxmincss . '"
-';
-                            }else{
-
-                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main.js -->
-<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.' . $tmp_cache_lightboxmincss . '">
-';
-
-                            }
-
-                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
-
-                                $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .  '=crnrstn.main.js&v=420.00.' . $tmp_cache_crnrstnmainjs . '"></script>
-';
-                            }else{
-
-                                $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<script src="' . $tmp_http_path_js . 'crnrstn.main.js?v=420.00.' . $tmp_cache_crnrstnmainjs . '"></script>
-';
-
-                            }
-
-                        break;
-                        case CRNRSTN_UI_JS_MAIN_MOBILE:
-
-                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-
-                            $tmp_cache_lightboxmincss = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css');
-                            $tmp_cache_crnrstnmainjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/crnrstn.main.js');
-
-                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
-                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
-
-                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
-
-                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main.js -->
-<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.min.css&v=420.00.' . $tmp_cache_lightboxmincss . '">
-';
-                            }else{
-
-                                $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS :: lightbox.js included WITH crnrstn.main.js -->
-<link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css/lightbox.min.css?v=420.00.'. $tmp_cache_lightboxmincss . '">
-';
-                            }
-
-                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
-
-                                $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main.js?v=420.00.' . $tmp_cache_crnrstnmainjs . '"></script>
-';
-
-                            }else{
-
-                                $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<script src="' . $tmp_http_path_js . 'crnrstn.main.js?v=420.00.' . $tmp_cache_crnrstnmainjs . '"></script>
-';
-
-                            }
-
-                        break;
                         case CRNRSTN_UI_JS_JQUERY:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -440,6 +327,8 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_UI_JS_JQUERY_UI:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY_UI] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -479,6 +368,8 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_UI_JS_JQUERY_MOBILE:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY_MOBILE] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -528,6 +419,8 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY] = 1;
+
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
@@ -567,6 +460,8 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_LIGHTBOX_DOT_JS] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -626,13 +521,15 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
                         case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
-                        case CRNRSTN_JS_FRAMEWORK_MOOFX:
+                        case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX:
                         case CRNRSTN_JS_FRAMEWORK_BACKBONE:
 
 
 
                         break;
-                        case CRNRSTN_UI_JS_MAIN_DESKTOP:
+                        case CRNRSTN_UI_JS_MAIN:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -642,29 +539,11 @@ class crnrstn_system_image_asset_manager {
 // --> 
 </script>
 ';
-                        break;
-                        case CRNRSTN_UI_JS_MAIN_TABLET:
-
-                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET JS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><script> //<!--
-' . file_get_contents($tmp_path_js . '/crnrstn.main.js') . '
-// --> 
-</script>
-';
-                        break;
-                        case CRNRSTN_UI_JS_MAIN_MOBILE:
-
-                            $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBI JS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><script> //<!--
-' . file_get_contents($tmp_path_js . '/crnrstn.main.js') . '
-// --> 
-</script>
-';
 
                         break;
                         case CRNRSTN_UI_JS_JQUERY:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
@@ -675,6 +554,8 @@ class crnrstn_system_image_asset_manager {
 ';
                         break;
                         case CRNRSTN_UI_JS_JQUERY_UI:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY_UI] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
@@ -689,6 +570,8 @@ class crnrstn_system_image_asset_manager {
 ';
                         break;
                         case CRNRSTN_UI_JS_JQUERY_MOBILE:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY_MOBILE] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
@@ -716,6 +599,8 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY] = 1;
+
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
                             $tmp_str_array[] = '<!-- lightbox 2.11.3 CSS --><style>
@@ -730,6 +615,8 @@ class crnrstn_system_image_asset_manager {
 ';
                         break;
                         case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
+
+                            $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_LIGHTBOX_DOT_JS] = 1;
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
@@ -837,6 +724,8 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
+                        $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP] = 1;
+
                         $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                         $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
@@ -862,6 +751,8 @@ class crnrstn_system_image_asset_manager {
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_TABLET:
+
+                        $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET] = 1;
 
                         $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                         $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -889,6 +780,8 @@ class crnrstn_system_image_asset_manager {
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_MOBILE:
+
+                        $this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE] = 1;
 
                         $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                         $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -5441,11 +5334,7 @@ class crnrstn_system_image_asset_manager {
                     case 'CRNRSTN_UI_JS':
                     =====
                     case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
-                    case 'CRNRSTN_UI_CSS_MAIN_TABLET':
-                    case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
-                    case 'CRNRSTN_UI_JS_MAIN_DESKTOP':
-                    case 'CRNRSTN_UI_JS_MAIN_TABLET':
-                    case 'CRNRSTN_UI_JS_MAIN_MOBILE':
+                    case 'CRNRSTN_UI_JS_MAIN':
                     case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
                     case 'CRNRSTN_UI_JS_JQUERY':
                     case 'CRNRSTN_UI_JS_JQUERY_UI':

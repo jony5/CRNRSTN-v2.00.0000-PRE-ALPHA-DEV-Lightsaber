@@ -130,6 +130,23 @@
 .crnrstn_predefined_constant_demo_about                     { font-size: 13px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: #FFF; }
 .crnrstn_predefined_constant_demo_about p                   { padding: 0; margin:0; }
 
+.crnrstn_resource_constant_demo_shell                       { padding: 0 0 70px 0;}
+.crnrstn_resource_constant_title h2                         { font-size: 25px; font-weight: bold; margin-bottom:0; line-height: 55px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+.crnrstn_resource_constant_title_description                { font-size: 16px; line-height: 25px; font-weight: normal; padding: 0 0 10px 0; }
+.crnrstn_resource_constant_content                          { padding: 10px 0 0 0;}
+
+.crnrstn_resource_constant_nom                              { width: 78%; text-align: left; font-size: 18px; font-weight: bold; padding: 0; margin:0; line-height: 24px; overflow-wrap: break-word; }
+.crnrstn_resource_constant_version                          { font-size: 17px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: transparent; padding: 10px 0 0 0; }
+.crnrstn_resource_constant_version p                        { padding: 0 0 10px 0; margin:0; }
+.crnrstn_resource_constant_version a                        { font-size: 13px; text-decoration: none; color: #0066CC; font-family: "Courier New", Courier, monospace; font-weight: normal; }
+.crnrstn_resource_constant_www                              { font-size: 13px; text-decoration: none; color: #0066CC; font-family: "Courier New", Courier, monospace; font-weight: normal; }
+.crnrstn_resource_constant_www_source                       { float: left;}
+.crnrstn_resource_constant_www_source a                     { float: left; text-decoration: none; color:#0066CC; }
+.crnrstn_resource_constant_www_website                      { float: left; padding: 4px 0 0 30px;}
+.crnrstn_resource_constant_www_website a                    { float: left; text-decoration: none; color:#0066CC; }
+.crnrstn_resource_constant_description                      { font-size: 13px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: #FFF; }
+.crnrstn_resource_constant_description p                    { padding: 0; margin:0;}
+
 .crnrstn_documentation_page_stats_content                                   { width:98%; }
 .crnrstn_documentation_page_stats_content p                                 { padding: 0 10px 0 20px; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
 .crnrstn_documentation_page_stats_sup                                       { line-height: 10px;}

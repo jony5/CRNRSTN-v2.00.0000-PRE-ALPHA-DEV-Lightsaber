@@ -136,7 +136,7 @@ class crnrstn {
     protected $system_resource_constants = array();
     protected $system_ui_module_constants_ARRAY = array();
     protected $system_head_html_constants_spool_ARRAY = array();
-    protected $system_ui_module_constants_spool_ARRAY = array();
+    protected $system_footer_html_constants_spool_ARRAY = array();
     protected $system_data_profile_constants_ARRAY = array();
     public $system_theme_style_constants_ARRAY = array();
     protected $current_theme_style_ARRAY = array();
@@ -187,8 +187,8 @@ class crnrstn {
     DSJPCR
 
     */
-    protected $ficp_module_build_flag_ARRAY = array();
-    protected $html_head_build_flag_ARRAY = array();
+    public $html_footer_build_flag_ARRAY = array();
+    public $html_head_build_flag_ARRAY = array();
 
     private static $CRNRSTN_debug_mode;
 
@@ -266,7 +266,7 @@ class crnrstn {
         //
         // INITIALIZE GROUPED CONSTANTS ARRAYS
         $this->system_data_profile_constants_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME_ONLY, CRNRSTN_AUTHORIZE_ALL, CRNRSTN_AUTHORIZE_DATABASE, CRNRSTN_AUTHORIZE_SSDTLA, CRNRSTN_AUTHORIZE_PSSDTLA, CRNRSTN_AUTHORIZE_SESSION, CRNRSTN_AUTHORIZE_COOKIE, CRNRSTN_AUTHORIZE_SOAP, CRNRSTN_AUTHORIZE_GET);
-        $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT, CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE, CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
+        $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL => 'CRNRSTN_RESOURCE_ALL', CRNRSTN_RESOURCE_BASSDRIVE => 'CRNRSTN_RESOURCE_BASSDRIVE', CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE => 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', CRNRSTN_RESOURCE_CSS_VALIDATOR => 'CRNRSTN_RESOURCE_CSS_VALIDATOR', CRNRSTN_RESOURCE_DOCUMENTATION => 'CRNRSTN_RESOURCE_DOCUMENTATION', CRNRSTN_RESOURCE_IMAGE => 'CRNRSTN_RESOURCE_IMAGE', CRNRSTN_RESOURCE_DOCUMENT => 'CRNRSTN_RESOURCE_DOCUMENT', CRNRSTN_RESOURCE_OPENSOURCE => 'CRNRSTN_RESOURCE_OPENSOURCE', CRNRSTN_RESOURCE_ELECTRUM => 'CRNRSTN_RESOURCE_ELECTRUM', CRNRSTN_RESOURCE_NEWS_SYNDICATION => 'CRNRSTN_RESOURCE_NEWS_SYNDICATION', CRNRSTN_LOG_DEFAULT => 'CRNRSTN_LOG_DEFAULT', CRNRSTN_UI_TAG_ANALYTICS => 'CRNRSTN_UI_TAG_ANALYTICS', CRNRSTN_UI_TAG_ENGAGEMENT => 'CRNRSTN_UI_TAG_ENGAGEMENT', CRNRSTN_UI_COOKIE_PREFERENCE => 'CRNRSTN_UI_COOKIE_PREFERENCE',CRNRSTN_UI_COOKIE_YESNO => 'CRNRSTN_UI_COOKIE_YESNO', CRNRSTN_UI_COOKIE_NOTICE => 'CRNRSTN_UI_COOKIE_NOTICE', CRNRSTN_PROXY_KINGS_HIGHWAY => 'CRNRSTN_PROXY_KINGS_HIGHWAY', CRNRSTN_PROXY_EMAIL => 'CRNRSTN_PROXY_EMAIL', CRNRSTN_PROXY_ELECTRUM => 'CRNRSTN_PROXY_ELECTRUM', CRNRSTN_PROXY_AUTHENTICATE => 'CRNRSTN_PROXY_AUTHENTICATE');
         $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
         $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_TERMINAL, CRNRSTN_UI_RANDOM);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
@@ -3129,6 +3129,7 @@ class crnrstn {
 
         //
         // SOURCE :: thomas dot sahlin at gmail dot com :: https://www.php.net/manual/en/function.in-array.php#93880
+        //
         // If you're creating an array yourself and then using in_array to
         // search it, consider setting the keys of the array and using isset
         // instead since it's much faster.
@@ -3144,39 +3145,6 @@ class crnrstn {
             print('Found it!');
 
         */
-
-//        $tmp_ARRAY = array('SOCIAL_AMAZON', 'SOCIAL_AMAZON_HQ', 'SOCIAL_APPLE_LOGO_BLK', 'SOCIAL_APPLE_LOGO_BLK_HQ',
-//            'SOCIAL_APPLE_LOGO_BLK_WHT_CIRCLE', 'SOCIAL_APPLE_LOGO_BLK_WHT_CIRCLE_HQ', 'SOCIAL_APPLE_LOGO_GREY',
-//            'SOCIAL_APPLE_LOGO_GREY_BLK_CIRCLE', 'SOCIAL_APPLE_LOGO_GREY_BLK_CIRCLE_HQ', 'SOCIAL_APPLE_LOGO_GREY_HQ',
-//            'SOCIAL_APPLE_LOGO_GREY_WHT_CIRCLE', 'SOCIAL_APPLE_LOGO_GREY_WHT_CIRCLE_HQ', 'SOCIAL_APPLE_LOGO_WHT',
-//            'SOCIAL_APPLE_LOGO_WHT_BLK_CIRCLE', 'SOCIAL_APPLE_LOGO_WHT_BLK_CIRCLE_HQ', 'SOCIAL_APPLE_LOGO_WHT_HQ',
-//            'SOCIAL_APPLE_MUSIC', 'SOCIAL_APPLE_MUSIC_HQ', 'SOCIAL_ARCHIVES', 'SOCIAL_ARCHIVES_HQ', 'SOCIAL_BANDCAMP',
-//            'SOCIAL_BANDCAMP_HQ', 'SOCIAL_BASSDRIVE', 'SOCIAL_BASSDRIVE_HQ', 'SOCIAL_BEATPORT', 'SOCIAL_BEATPORT_HQ',
-//            'SOCIAL_BLOGSPOT', 'SOCIAL_BLOGSPOT_HQ', 'SOCIAL_BLUEHOST_ICON', 'SOCIAL_BLUEHOST_ICON_HQ',
-//            'SOCIAL_BLUEHOST_WORDMARK', 'SOCIAL_BLUEHOST_WORDMARK_HQ', 'SOCIAL_DISCOGS', 'SOCIAL_DISCOGS_HQ',
-//            'SOCIAL_EBAY', 'SOCIAL_EBAY_HQ', 'SOCIAL_ETSY', 'SOCIAL_ETSY_HQ', 'SOCIAL_FACEBOOK', 'SOCIAL_FACEBOOK_HQ',
-//            'SOCIAL_FEEDBURNER', 'SOCIAL_FEEDBURNER_HQ', 'SOCIAL_FLICKR', 'SOCIAL_FLICKR_HQ', 'SOCIAL_GITHUB',
-//            'SOCIAL_GITHUB_HQ', 'SOCIAL_GOOGLE_DRIVE', 'SOCIAL_GOOGLE_DRIVE_HQ', 'SOCIAL_GOOGLE_MAPS',
-//            'SOCIAL_GOOGLE_MAPS_HQ', 'SOCIAL_GOOGLE_MAPS_SQUARE', 'SOCIAL_GOOGLE_MAPS_SQUARE_HQ', 'SOCIAL_HISTORY',
-//            'SOCIAL_HISTORY_HQ', 'SOCIAL_IDEONE', 'SOCIAL_IDEONE_HQ', 'SOCIAL_INSTAGRAM', 'SOCIAL_INSTAGRAM_HQ',
-//            'SOCIAL_INTERNET_ARCHIVE', 'SOCIAL_INTERNET_ARCHIVE_HQ', 'SOCIAL_JSON', 'SOCIAL_JSON_HQ', 'SOCIAL_KINK',
-//            'SOCIAL_KINK_HQ', 'SOCIAL_LAST_FM', 'SOCIAL_LAST_FM_HQ', 'SOCIAL_LINKEDIN', 'SOCIAL_LINKEDIN_HQ',
-//            'SOCIAL_MICROSOFT', 'SOCIAL_MICROSOFT_HQ', 'SOCIAL_MIXCLOUD', 'SOCIAL_MIXCLOUD_HQ',
-//            'SOCIAL_MOZILLA_ICON', 'SOCIAL_MOZILLA_ICON_HQ', 'SOCIAL_MOZILLA_WORDMARK', 'SOCIAL_MOZILLA_WORDMARK_HQ',
-//            'SOCIAL_PANDORA', 'SOCIAL_PANDORA_HQ', 'SOCIAL_PATREON', 'SOCIAL_PATREON_HQ', 'SOCIAL_PAYPAL',
-//            'SOCIAL_PAYPAL_HQ', 'SOCIAL_PHP', 'SOCIAL_PHP_HQ', 'SOCIAL_PINTEREST', 'SOCIAL_PINTEREST_HQ',
-//            'SOCIAL_PORNHUB', 'SOCIAL_PORNHUB_HQ', 'SOCIAL_REDDIT', 'SOCIAL_REDDIT_HQ', 'SOCIAL_ROLLDABEATS',
-//            'SOCIAL_ROLLDABEATS_HQ', 'SOCIAL_SERVER_FAULT', 'SOCIAL_SERVER_FAULT_HQ', 'SOCIAL_SLASHDOT_ICON',
-//            'SOCIAL_SLASHDOT_ICON_HQ', 'SOCIAL_SLASHDOT_WORDMARK', 'SOCIAL_SLASHDOT_WORDMARK_HQ', 'SOCIAL_SOUNDCLOUD',
-//            'SOCIAL_SOUNDCLOUD_HQ', 'SOCIAL_SPOTIFY', 'SOCIAL_SPOTIFY_HQ', 'SOCIAL_SPRITE', 'SOCIAL_SPRITE_HQ',
-//            'SOCIAL_STACKOVERFLOW', 'SOCIAL_STACKOVERFLOW_HQ', 'SOCIAL_TWITCH', 'SOCIAL_TWITCH_HQ', 'SOCIAL_TWITTER',
-//            'SOCIAL_TWITTER_HQ', 'SOCIAL_VIMEO_BLUE_ICON', 'SOCIAL_VIMEO_BLUE_ICON_HQ', 'SOCIAL_VIMEO_BLUE_WORDMARK',
-//            'SOCIAL_VIMEO_BLUE_WORDMARK_HQ', 'SOCIAL_VIMEO_DARKFOREST_WORDMARK', 'SOCIAL_VIMEO_DARKFOREST_WORDMARK_HQ',
-//            'SOCIAL_W3C', 'SOCIAL_W3C_HQ', 'SOCIAL_WIKIPEDIA', 'SOCIAL_WIKIPEDIA_HQ', 'SOCIAL_WWW', 'SOCIAL_WWW_HQ',
-//            'SOCIAL_XHAMSTER_ICON', 'SOCIAL_XHAMSTER_ICON_HQ', 'SOCIAL_XHAMSTER_WORDMARK',
-//            'SOCIAL_XHAMSTER_WORDMARK_HQ', 'SOCIAL_XNXX', 'SOCIAL_XNXX_HQ', 'SOCIAL_XVIDEOS', 'SOCIAL_XVIDEOS_HQ',
-//            'SOCIAL_YOUTUBE', 'SOCIAL_YOUTUBE_HQ');
-//        $this->asset_routing_data_key_lookup_ARRAY['social-meta-key'] = $tmp_ARRAY;
 
         $tmp_ARRAY = array('amazon_icon' => 'SOCIAL_AMAZON', 'amazon_icon_hq' => 'SOCIAL_AMAZON_HQ',
             'apple_logo_blk' => 'SOCIAL_APPLE_LOGO_BLK', 'apple_logo_wht' => 'SOCIAL_APPLE_LOGO_WHT', 'apple_logo_blk_hq' => 'SOCIAL_APPLE_LOGO_BLK_HQ',
@@ -3225,35 +3193,6 @@ class crnrstn {
 
         $this->asset_routing_data_key_lookup_ARRAY['social'] = $tmp_ARRAY;
 
-
-
-//        $tmp_ARRAY = array('5' => '5', 'apache_feather_logo'=> 'apache_feather_logo', 'crnrstn_R_lg' => 'crnrstn_R_lg', 'crnrstn_R_md' => 'crnrstn_R_md', 'crnrstn_R_md_plus_wall' => 'crnrstn_R_md_plus_wall',
-//            'crnrstn_R_sm' => 'crnrstn_R_sm', 'crnrstn_css_validator_logo_smedia' => 'crnrstn_css_validator_logo_smedia', 'crnrstn_logo_lg' => 'crnrstn_logo_lg', 'crnrstn_logo_md' => 'crnrstn_logo_md',
-//            'crnrstn_logo_sm' => 'crnrstn_logo_sm', 'crnrstn_logo_twitter_api_app_profile' => 'crnrstn_logo_twitter_api_app_profile', 'crnrstn_message_bubbles_seriesblue00' => 'crnrstn_message_bubbles_seriesblue00',
-//            'crnrstn_messenger_message_bubbles' => 'crnrstn_messenger_message_bubbles', 'dot_grey' => 'dot_grey', 'dot_grn' => 'dot_grn', 'dot_red' => 'dot_redV', 'elem_shadow_btm' => 'elem_shadow_btm',
-//            'element_page_load_indicator' => 'element_page_load_indicator', 'email_inbox_icon' => 'email_inbox_icon', 'err_x' => 'err_x', 'favicon' => 'favicon', 'j5_pup_top_right' => 'j5_pup_top_right', 'j5_wolf_pup' => 'j5_wolf_pup',
-//            'j5_wolf_pup_lay_00' => 'j5_wolf_pup_lay_00', 'j5_wolf_pup_lay_01' => 'j5_wolf_pup_lay_01', 'j5_wolf_pup_lay_02' => 'j5_wolf_pup_lay_02', 'j5_wolf_pup_lay_look_away' => 'j5_wolf_pup_lay_look_away',
-//            'j5_wolf_pup_lay_look_forward' => 'j5_wolf_pup_lay_look_forward', 'j5_wolf_pup_lay_look_forward_leash' => 'j5_wolf_pup_lay_look_forward_leash', 'j5_wolf_pup_leash_eyes_closed' => 'j5_wolf_pup_leash_eyes_closed',
-//            'j5_wolf_pup_lil_5_pts' => 'j5_wolf_pup_lil_5_pts', 'j5_wolf_pup_sit_eyes_closed' => 'j5_wolf_pup_sit_eyes_closed', 'j5_wolf_pup_sit_look_forward' => 'j5_wolf_pup_sit_look_forward',
-//            'j5_wolf_pup_sit_look_left_ish_shadow' => 'j5_wolf_pup_sit_look_left_ish_shadow', 'j5_wolf_pup_sit_look_right' => 'j5_wolf_pup_sit_look_right',
-//            'j5_wolf_pup_sit_look_right_longshadow' => 'j5_wolf_pup_sit_look_right_longshadow',
-//            'j5_wolf_pup_sit_look_right_shadow' => 'j5_wolf_pup_sit_look_right_shadow', 'j5_wolf_pup_sit_look_right_shortshadow' => 'j5_wolf_pup_sit_look_right_shortshadow',
-//            'j5_wolf_pup_sit_look_right_up' => 'j5_wolf_pup_sit_look_right_up', 'j5_wolf_pup_sit_look_rightsharp_shadow' => 'j5_wolf_pup_sit_look_rightsharp_shadow', 'j5_wolf_pup_stand_look_right' => 'j5_wolf_pup_stand_look_right',
-//            'j5_wolf_pup_stand_look_up' => 'j5_wolf_pup_stand_look_up', 'j5_wolf_pup_walk' => 'j5_wolf_pup_walk', 'linux_penguin_lg' => 'linux_penguin_lg', 'linux_penguin_md' => 'linux_penguin_md', 'linux_penguin_sm' => 'linux_penguin_sm',
-//            'mag_glass_search' => 'mag_glass_search', 'mysql_logo' => 'mysql_logo', 'php_logo' => 'php_logo', 'powered_by_apache' => 'powered_by_apache', 'powered_by_apache_1_3' => 'powered_by_apache_1_3',
-//            'powered_by_apache_2' => 'powered_by_apache_2', 'powered_by_apache_2_2' => 'powered_by_apache_2_2', 'powered_by_apache_2_4' => 'powered_by_apache_2_4', 'powered_by_php' => 'powered_by_php',
-//            'primary_nav_seriesblue00_120x120_close_x' => 'primary_nav_seriesblue00_120x120_close_x', 'primary_nav_seriesblue00_120x120_close_x_click' => 'primary_nav_seriesblue00_120x120_close_x_click',
-//            'primary_nav_seriesblue00_120x120_close_x_hvr' => 'primary_nav_seriesblue00_120x120_close_x_hvr', 'primary_nav_seriesblue00_120x120_close_x_inactive' => 'primary_nav_seriesblue00_120x120_close_x_inactive',
-//            'primary_nav_seriesblue00_120x120_fs_expand' => 'primary_nav_seriesblue00_120x120_fs_expand', 'primary_nav_seriesblue00_120x120_fs_expand_click' => 'primary_nav_seriesblue00_120x120_fs_expand_click',
-//            'primary_nav_seriesblue00_120x120_fs_expand_hvr' => 'primary_nav_seriesblue00_120x120_fs_expand_hvr', 'primary_nav_seriesblue00_120x120_fs_expand_inactive' => 'primary_nav_seriesblue00_120x120_fs_expand_inactive',
-//            'primary_nav_seriesblue00_120x120_menu' => 'primary_nav_seriesblue00_120x120_menu', 'primary_nav_seriesblue00_120x120_menu_click' => 'primary_nav_seriesblue00_120x120_menu_click',
-//            'primary_nav_seriesblue00_120x120_menu_hvr' => 'primary_nav_seriesblue00_120x120_menu_hvr', 'primary_nav_seriesblue00_120x120_menu_inactive' => 'primary_nav_seriesblue00_120x120_menu_inactive',
-//            'primary_nav_seriesblue00_120x120_minimize' => 'primary_nav_seriesblue00_120x120_minimize', 'primary_nav_seriesblue00_120x120_minimize_click' => 'primary_nav_seriesblue00_120x120_minimize_click',
-//            'primary_nav_seriesblue00_120x120_minimize_fivedev' => 'primary_nav_seriesblue00_120x120_minimize_fivedev', 'primary_nav_seriesblue00_120x120_minimize_fivedev_sm' => 'primary_nav_seriesblue00_120x120_minimize_fivedev_sm',
-//            'primary_nav_seriesblue00_120x120_minimize_hvr' => 'primary_nav_seriesblue00_120x120_minimize_hvr', 'primary_nav_seriesblue00_120x120_minimize_inactive' => 'primary_nav_seriesblue00_120x120_minimize_inactive',
-//            'r_stone_giant_pillar' => 'r_stone_giant_pillar', 'r_stone_pillar' => 'r_stone_pillar', 'redhat_hat_logo' => 'redhat_hat_logo', 'redhat_logo' => 'redhat_logo', 'signin_frm_reflection' => 'signin_frm_reflection',
-//            'stache' => 'stache', 'success_chk' => 'success_chk', 'triangle_alert' => 'triangle_alert', 'wood' => 'wood', 'x' => 'x', 'zend_framework' => 'zend_framework', 'zend_framework_3' => 'zend_framework_3', 'zend_logo');
-
         $tmp_ARRAY = array('5' => 'FIVE', 'apache_feather_logo'=> 'APACHE_FEATHER', 'crnrstn_R_lg' => 'CRNRSTN_R_LG', 'crnrstn_R_md' => 'CRNRSTN_R_MD',
             'crnrstn_R_md_plus_wall' => 'CRNRSTN_R_WALL', 'crnrstn_R_sm' => 'CRNRSTN_R_SM', 'crnrstn_css_validator_logo_smedia' => 'crnrstn_css_validator_logo_smedia',
             'crnrstn_logo_lg' => 'CRNRSTN_LOGO', 'crnrstn_logo_md' => 'crnrstn_logo_md', 'crnrstn_logo_sm' => 'crnrstn_logo_sm',
@@ -3298,35 +3237,6 @@ class crnrstn {
 
         $this->asset_routing_data_key_lookup_ARRAY['system'] = $tmp_ARRAY;
 
-//        $tmp_ARRAY = array('5', 'APACHE_FEATHER', 'CRNRSTN_R_LG', 'CRNRSTN_R_MD', 'CRNRSTN_R_WALL',
-//            'CRNRSTN_R_SM', 'crnrstn_css_validator_logo_smedia', 'CRNRSTN_LOGO', 'crnrstn_logo_md',
-//            'crnrstn_logo_sm', 'crnrstn_logo_twitter_api_app_profile', 'MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00',
-//            'MESSAGE_CONVERSATION_BUBBLE', 'DOT_GREY', 'DOT_GREEN', 'DOT_RED', 'BG_ELEMENT_RESPONSE_CODE',
-//            'UI_PAGELOAD_INDICATOR', 'ICON_EMAIL_INBOX_REFLECTED', 'ERR_X', 'CRNRSTN_FAVICON', 'j5_pup_top_right', 'J5_WOLF_PUP',
-//            'J5_WOLF_PUP_LAY_00', 'J5_WOLF_PUP_LAY_01', 'J5_WOLF_PUP_LAY_02', 'J5_WOLF_PUP_LAY_LOOK_AWAY',
-//            'J5_WOLF_PUP_LAY_LOOK_FORWARD', 'J5_WOLF_PUP_LAY_LOOK_FORWARD_LEASH', 'J5_WOLF_PUP_LEASH_EYES_CLOSED',
-//            'J5_WOLF_PUP_LIL_5_PTS', 'J5_WOLF_PUP_SIT_EYES_CLOSED', 'J5_WOLF_PUP_SIT_LOOK_FORWARD',
-//            'J5_WOLF_PUP_SIT_LOOK_LEFT_ISH_SHADOW', 'J5_WOLF_PUP_SIT_LOOK_RIGHT',
-//            'J5_WOLF_PUP_SIT_LOOK_RIGHT_LONGSHADOW',
-//            'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHADOW', 'J5_WOLF_PUP_SIT_LOOK_RIGHT_SHORT_SHADOW',
-//            'J5_WOLF_PUP_SIT_LOOK_RIGHT_UP', 'J5_WOLF_PUP_SIT_LOOK_RIGHTSHARP_SHADOW', 'J5_WOLF_PUP_STAND_LOOK_RIGHT',
-//            'J5_WOLF_PUP_STAND_LOOK_UP', 'J5_WOLF_PUP_WALK', 'LINUX_PENGUIN_LRG', 'LINUX_PENGUIN_MED', 'LINUX_PENGUIN_SMALL',
-//            'SEARCH_MAGNIFY_GLASS', 'MYSQL_DOLPHIN', 'PHP_ELLIPSE', 'APACHE_POWER', 'APACHE_POWER_1_3',
-//            'APACHE_POWER_2_0', 'APACHE_POWER_2_2', 'APACHE_POWER_2_4', 'POWER_BY_PHP',
-//            'PRIMARY_NAV_BLUE00_CLOSE_X', 'PRIMARY_NAV_BLUE00_CLOSE_X_CLICK',
-//            'PRIMARY_NAV_BLUE00_CLOSE_X_HOVER', 'PRIMARY_NAV_BLUE00_CLOSE_X_INACTIVE',
-//            'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND', 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_CLICK',
-//            'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_HOVER', 'PRIMARY_NAV_BLUE00_FULLSCREEN_EXPAND_INACTIVE',
-//            'PRIMARY_NAV_BLUE00_MENU', 'PRIMARY_NAV_BLUE00_MENU_CLICK',
-//            'PRIMARY_NAV_BLUE00_MENU_HOVER', 'PRIMARY_NAV_BLUE00_MENU_INACTIVE',
-//            'PRIMARY_NAV_BLUE00_MINIMIZE', 'PRIMARY_NAV_BLUE00_MINIMIZE_CLICK',
-//            'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV', 'PRIMARY_NAV_BLUE00_MINIMIZE_FIVEDEV_SMALL',
-//            'PRIMARY_NAV_BLUE00_MINIMIZE_HOVER', 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE',
-//            'R_STONE_GIANT_PILLAR', 'R_STONE_PILLAR', 'REDHAT_HAT_LOGO', 'REDHAT_LOGO', 'BG_ELEMENT_REFLECTION_SIGNIN',
-//            'STACHE', 'SUCCESS_CHECK', 'NOTICE_TRI_ALERT', 'WOOD', 'TRANSPARENT_1X1', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'ZEND_LOGO');
-//
-//        $this->asset_routing_data_key_lookup_ARRAY['system-meta-key'] = $tmp_ARRAY;
-
         $this->asset_routing_data_key_lookup_ARRAY['favicon'] = array('crnrstn/favicon.ico' => 'crnrstn/favicon.ico', 'jony5/favicon.ico' => 'jony5/favicon.ico', 'bassdrive/favicon.ico' => 'bassdrive/favicon.ico');
 
         $tmp_ARRAY = array('lightbox.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js', 'crnrstn.main.js' => '/',
@@ -3348,104 +3258,6 @@ class crnrstn {
         $tmp_ARRAY = array('framework/lightbox/close' => 'LIGHTBOX_CLOSE', 'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
             'framework/lightbox/next' => 'LIGHTBOX_NEXT', 'framework/lightbox/prev' => 'LIGHTBOX_PREV');
         $this->asset_routing_data_key_lookup_ARRAY['integrations'] = $tmp_ARRAY;
-
-    }
-
-    public function tmp_restrict_this_image_sprite_media_constant($social_media_constant){
-
-        /*
-        REMOVED
-        'SOUNDCLOUD' => 'INACTIVE'
-
-        START ::
-        REMOVED 'FACEBOOK' => 'INACTIVE'            Sunday November 13, 2022 @ 0629 hrs
-        REMOVED 'INSTAGRAM' => 'INACTIVE'           Sunday November 13, 2022 @ 0810 hrs
-        REMOVED 'TWITTER' => 'INACTIVE'             Sunday November 13, 2022 @ 0826 hrs
-        REMOVED 'WWW' => 'INACTIVE'                 Sunday November 13, 2022 @ 0835 hrs
-        REMOVED 'JSON' => 'INACTIVE'                Sunday November 13, 2022 @ 0901 hrs
-        REMOVED 'APPLE_MUSIC' => 'INACTIVE'         Sunday November 13, 2022 @ 0917 hrs
-        STOPPED :: Sunday November 13, 2022 @ 0932 hrs
-
-        START ::
-        REMOVED 'FEEDBURNER' => 'INACTIVE'          Tuesday November 15, 2022 @ 0000 hrs
-        REMOVED 'SLASHDOT_ICON' => 'INACTIVE'       Tuesday November 15, 2022 @ 0024 hrs
-        REMOVED 'XHAMSTER_ICON' => 'INACTIVE'       Tuesday November 15, 2022 @ 0032 hrs
-        REMOVED 'MOZILLA_ICON' => 'INACTIVE'        Tuesday November 15, 2022 @ 0044 hrs
-        REMOVED 'MIXCLOUD' => 'INACTIVE'            Tuesday November 15, 2022 @ 0052 hrs
-        REMOVED 'DISCOGS' => 'INACTIVE'             Tuesday November 15, 2022 @ 0102 hrs
-        REMOVED 'BEATPORT' => 'INACTIVE'            Tuesday November 15, 2022 @ 0112 hrs
-        REMOVED 'BANDCAMP' => 'INACTIVE'            Tuesday November 15, 2022 @ 0119 hrs
-        REMOVED 'SPOTIFY' => 'INACTIVE'             Tuesday November 15, 2022 @ 0127 hrs
-        REMOVED 'ROLLDABEATS' => 'INACTIVE'         Tuesday November 15, 2022 @ 0200 hrs
-        REMOVED 'STACKOVERFLOW' => 'INACTIVE'       Tuesday November 15, 2022 @ 0209 hrs
-        REMOVED 'KINK' => 'INACTIVE'                Tuesday November 15, 2022 @ 0216 hrs
-        REMOVED 'PHP' => 'INACTIVE'                 Tuesday November 15, 2022 @ 0223 hrs
-        REMOVED 'REDDIT' => 'INACTIVE'              Tuesday November 15, 2022 @ 0232 hrs
-        REMOVED 'YOUTUBE' => 'INACTIVE'             Tuesday November 15, 2022 @ 0240 hrs
-        REMOVED 'PAYPAL' => 'INACTIVE'              Tuesday November 15, 2022 @ 0246 hrs
-        REMOVED 'HISTORY' => 'INACTIVE'             Tuesday November 15, 2022 @ 0251 hrs
-        REMOVED 'ARCHIVES' => 'INACTIVE'            Tuesday November 15, 2022 @ 0301 hrs
-        REMOVED 'BASSDRIVE' => 'INACTIVE'           Tuesday November 15, 2022 @ 0305 hrs
-        REMOVED 'GITHUB' => 'INACTIVE'              Tuesday November 15, 2022 @ 0312 hrs
-        REMOVED 'XNXX' => 'INACTIVE'                Tuesday November 15, 2022 @ 0321 hrs
-        REMOVED 'LINKEDIN' => 'INACTIVE'            Tuesday November 15, 2022 @ 0334 hrs
-        REMOVED 'GOOGLE_MAPS' => 'INACTIVE'         Tuesday November 15, 2022 @ 0345 hrs
-        REMOVED 'FLICKR' => 'INACTIVE'              Tuesday November 15, 2022 @ 0359 hrs
-        REMOVED 'WIKIPEDIA' => 'INACTIVE'           Tuesday November 15, 2022 @ 0405 hrs
-        REMOVED 'BLOGSPOT' => 'INACTIVE'            Tuesday November 15, 2022 @ 0413 hrs
-        REMOVED 'PINTEREST' => 'INACTIVE'           Tuesday November 15, 2022 @ 0427 hrs
-        REMOVED 'SERVER_FAULT' => 'INACTIVE'        Tuesday November 15, 2022 @ 0432 hrs
-        REMOVED 'GOOGLE_DRIVE' => 'INACTIVE'        Tuesday November 15, 2022 @ 0440 hrs
-        REMOVED 'BLUEHOST_ICON' => 'INACTIVE'       Tuesday November 15, 2022 @ 0445 hrs
-        REMOVED 'AMAZON' => 'INACTIVE'              Tuesday November 15, 2022 @ 0449 hrs
-        REMOVED 'PORNHUB' => 'INACTIVE'             Tuesday November 15, 2022 @ 0459 hrs
-        REMOVED 'EBAY' => 'INACTIVE'                Tuesday November 15, 2022 @ 0505 hrs
-        REMOVED 'MOZILLA_WORDMARK' => 'INACTIVE'    Tuesday November 15, 2022 @ 0519 hrs
-        STOPPED Tuesday November 15, 2022 @ 0526 hrs
-
-        START ::
-        REMOVED 'PATREON' => 'INACTIVE'             Tuesday November 15, 2022 @ 1443 hrs
-        REMOVED 'TWITCH' => 'INACTIVE'              Tuesday November 15, 2022 @ 1500 hrs
-        REMOVED 'MICROSOFT' => 'INACTIVE'           Tuesday November 15, 2022 @ 1510 hrs
-        REMOVED 'PATREON' => 'INACTIVE'             Tuesday November 15, 2022 @ 1443 hrs
-        REMOVED 'PATREON' => 'INACTIVE'             Tuesday November 15, 2022 @ 1443 hrs
-        REMOVED 'BLUEHOST_WORDMARK' => 'INACTIVE'   Tuesday November 15, 2022 @ 1523 hrs
-        REMOVED 'INTERNET_ARCHIVE' => 'INACTIVE'    Tuesday November 15, 2022 @ 1527 hrs
-        STOPPED Tuesday November 15, 2022 @ 1539 hrs
-
-        START ::
-        REMOVED 'W3C' => 'INACTIVE'                         Tuesday November 15, 2022 @ 2140 hrs
-        REMOVED 'XHAMSTER_WORDMARK' => 'INACTIVE'           Tuesday November 15, 2022 @ 2335 hrs
-        REMOVED 'ETSY' => 'INACTIVE'                        Tuesday November 15, 2022 @ 2346 hrs
-        REMOVED 'APPLE_LOGO_WHT_BLK_CIRCLE' => 'INACTIVE'   Tuesday November 15, 2022 @ 2355 hrs
-        REMOVED 'XVIDEOS' => 'INACTIVE'                     Tuesday November 15, 2022 @ 0000 hrs
-        REMOVED 'SLASHDOT_WORDMARK' => 'INACTIVE'           Tuesday November 15, 2022 @ 0020 hrs
-        REMOVED 'VIMEO_BLUE_ICON' => 'INACTIVE'             Tuesday November 15, 2022 @ 0020 hrs
-        REMOVED 'IDEONE' => 'INACTIVE'                      Tuesday November 15, 2022 @ 0039 hrs
-        REMOVED 'GOOGLE_MAPS_SQUARE' => 'INACTIVE'          Tuesday November 15, 2022 @ 0047 hrs
-        REMOVED 'PANDORA' => 'INACTIVE'                     Tuesday November 15, 2022 @ 0100 hrs
-        REMOVED 'LAST_FM' => 'INACTIVE'                     Tuesday November 15, 2022 @ 0107 hrs
-        REMOVED 'VIMEO_BLUE_WORDMARK' => 'INACTIVE'         Tuesday November 15, 2022 @ 0114 hrs
-        REMOVED 'VIMEO_DARKFOREST_WORDMARK' => 'INACTIVE'   Tuesday November 15, 2022 @ 0122 hrs
-        REMOVED 'APPLE_LOGO_BLK_WHT_CIRCLE' => 'INACTIVE'   Tuesday November 15, 2022 @ 0132 hrs
-        REMOVED 'APPLE_LOGO_BLK' => 'INACTIVE'              Tuesday November 15, 2022 @ 0136 hrs
-        REMOVED 'APPLE_LOGO_WHT' => 'INACTIVE'              Tuesday November 15, 2022 @ 0155 hrs
-        REMOVED 'APPLE_LOGO_GREY' => 'INACTIVE'             Tuesday November 15, 2022 @ 0200 hrs
-        REMOVED 'APPLE_LOGO_GREY_BLK_CIRCLE' => 'INACTIVE'  Tuesday November 15, 2022 @ 0206 hrs
-        REMOVED 'APPLE_LOGO_GREY_WHT_CIRCLE' => 'INACTIVE'  Tuesday November 15, 2022 @ 0213 hrs
-        STOPPED Tuesday November 15, 2022 @ 0226 hrs
-
-        */
-
-        $tmp_ARRAY = array('SPRITE' => 'INACTIVE');
-
-        if(isset($tmp_ARRAY[$social_media_constant])){
-
-            return true;
-
-        }
-
-        return false;
 
     }
 
@@ -3973,11 +3785,45 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             return true;
 
         }
+        
+        //
+        // CHECK FOOTER ARRAY FOR CSS/JS DEPENDENCIES
+        foreach($this->system_footer_html_constants_spool_ARRAY as $index => $int_const){
+
+            //error_log(__LINE__ . ' crnrstn [' . $int_const . '].');
+
+            switch($int_const){
+               case CRNRSTN_RESOURCE_DOCUMENTATION:
+
+                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY_UI])){
+
+                       $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY_UI] = 1;
+
+                   }
+
+                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP])){
+
+                       $this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP] = 1;
+
+                   }
+
+                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+
+                       $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
+
+                   }
+
+               break;
+
+           }
+
+        }
 
         foreach($this->system_head_html_constants_spool_ARRAY as $index => $int_const){
 
             if(!isset($this->html_head_build_flag_ARRAY[$int_const])){
 
+                error_log(__LINE__ . ' crnrstn [' . $int_const . '].');
                 $this->html_head_build_flag_ARRAY[$int_const] = 1;
 
             }
@@ -4008,45 +3854,95 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         if($spool_for_output){
 
-            $this->system_ui_module_constants_spool_ARRAY[] = $resource_constant;
+            $this->system_footer_html_constants_spool_ARRAY[] = $resource_constant;
 
             return true;
 
         }
 
-        //$this->fic_packet_build_flag = 1;
-
         $tmp_client_packet_output = '';
 
+        //
+        // BASIC CLEAN UP FOR RESOURCES SPOOLED FOR <HEAD> BUT NOT OUTPUTTED.
+        foreach($this->system_head_html_constants_spool_ARRAY as $index => $int_const){
+
+            //
+            // QUICK CHECK WITH <HEAD> BUILD FLAG ARRAY
+            if(!isset($this->html_head_build_flag_ARRAY[$int_const])){
+
+                $this->html_head_build_flag_ARRAY[$int_const] = 1;
+                $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($int_const);
+
+            }
+
+        }
+
+        //
+        // PROCESS ALL SPOOLED FOOTER RESOURCES
+        foreach($this->system_footer_html_constants_spool_ARRAY as $index => $int_const){
+
+            //
+            // IF VALID CONSTANT
+            if(isset($this->system_ui_module_constants_ARRAY[$int_const])){
+
+                //
+                // IF RESOURCE NOT BUILT
+                if(!isset($this->html_footer_build_flag_ARRAY[$int_const])){
+
+                    //
+                    // CHECK FOR SATISFACTION OF ALL <HEAD> DEPENDENCIES
+                    switch($int_const){
+                        case CRNRSTN_RESOURCE_DOCUMENTATION:
+
+                            //
+                            // <HEAD> DEPENDENCIES
+                            $tmp_ARRAY = array(CRNRSTN_UI_CSS_MAIN_DESKTOP, CRNRSTN_UI_JS_JQUERY , CRNRSTN_UI_JS_MAIN);
+
+                            foreach($tmp_ARRAY as $index => $head_resource_constant){
+
+                                if(!isset($this->html_head_build_flag_ARRAY[$head_resource_constant])){
+
+                                    $this->html_head_build_flag_ARRAY[$head_resource_constant] = 1;
+                                    $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($head_resource_constant);
+
+                                }
+
+                            }
+
+                            //
+                            // RETURN MODULE RESOURCE NOW THAT ALL <HEAD> DEPENDENCIES HAVE BEEN CHECKED
+                            $this->html_footer_build_flag_ARRAY[$int_const] = 1;
+                            $tmp_client_packet_output .= $this->ui_content_module_out($int_const);
+
+                            //
+                            // RESOURCE DEPENDENCIES :: SYSTEM FOOTER
+                            if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER])){
+
+                                $this->html_footer_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER] = 1;
+                                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_RESOURCE_FOOTER);
+
+                            }
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        //
+        // CHECK FOR RETURN RESOURCE FROM METHOD PARAMETER
         if(isset($resource_constant)){
 
-            /*
-            'CRNRSTN_RESOURCE_ALL', 'CRNRSTN_RESOURCE_BASSDRIVE',
-            'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', 'CRNRSTN_RESOURCE_CSS_VALIDATOR', 'CRNRSTN_RESOURCE_DOCUMENTATION',
-            'CRNRSTN_RESOURCE_FOOTER', 'CRNRSTN_RESOURCE_IMAGE', 'CRNRSTN_RESOURCE_DOCUMENT', 'CRNRSTN_RESOURCE_OPENSOURCE',
-            'CRNRSTN_RESOURCE_NEWS_SYNDICATION'
+            if(isset($this->system_ui_module_constants_ARRAY[$resource_constant])){
 
+                if(!isset($this->html_footer_build_flag_ARRAY[$resource_constant])){
 
-            $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE,
-            CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION,
-            CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_ELECTRUM
-            CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_DEFAULT, CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT,
-            CRNRSTN_UI_COOKIE_PREFERENCE, CRNRSTN_UI_COOKIE_YESNO, CRNRSTN_UI_COOKIE_NOTICE,
-            CRNRSTN_PROXY_KINGS_HIGHWAY, CRNRSTN_PROXY_EMAIL, CRNRSTN_PROXY_ELECTRUM, CRNRSTN_PROXY_AUTHENTICATE);
-
-
-            system_output_footer_html_build_flag_ARRAY
-            ficp_module_build_flag_ARRAY
-            */
-
-            if(in_array($resource_constant, $this->system_ui_module_constants_ARRAY)){
-
-                if(!isset($this->ficp_module_build_flag_ARRAY[$resource_constant])){
-
-                    $this->ficp_module_build_flag_ARRAY[$resource_constant] = 1;
+                    $this->html_footer_build_flag_ARRAY[$resource_constant] = 1;
                     $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
-
-                    //return $tmp_client_packet_output;
 
                 }
 
@@ -4068,76 +3964,26 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-//            if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_TAG_ANALYTICS])){
-//
-//                $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_TAG_ANALYTICS] = 1;
-//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_TAG_ANALYTICS);
-//
-//            }
-//
-//            if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_TAG_ENGAGEMENT])){
-//
-//                $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_TAG_ENGAGEMENT] = 1;
-//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_TAG_ENGAGEMENT);
-//
-//            }
-//
-//            if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_ELECTRUM])){
-//
-//                $this->ficp_module_build_flag_ARRAY[CRNRSTN_ELECTRUM] = 1;
-//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_ELECTRUM);
-//
-//            }
-
-        foreach ($this->system_ui_module_constants_spool_ARRAY as $index => $int_const) {
-
-            if (in_array($int_const, $this->system_ui_module_constants_ARRAY)) {
-
-                if (!isset($this->ficp_module_build_flag_ARRAY[$int_const])) {
-
-                    $this->ficp_module_build_flag_ARRAY[$int_const] = 1;
-                    $tmp_client_packet_output .= $this->ui_content_module_out($int_const);
-
-                    //return $tmp_client_packet_output;
-
-                }
-
-            }
-        }
-
-        if(isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_RESOURCE_DOCUMENTATION]) && !isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER])){
-
-            $this->ficp_module_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER] = 1;
-            $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_RESOURCE_FOOTER);
-
-        }
-
-
-//            if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_INTERACT])){
-//
-//                $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_INTERACT] = 1;
-//                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_INTERACT);
-//
-//            }
-
+        //
+        // CHECK FOR RESOURCES WITH FLIPPED BITS FOR FOOTER
         $tmp_flipped_bit_constants_ARRAY = $this->return_set_bits($this->system_ui_module_constants_ARRAY);
 
         foreach($tmp_flipped_bit_constants_ARRAY as $index => $resource_constant){
 
-            if(!isset($this->ficp_module_build_flag_ARRAY[$resource_constant])){
+            if(!isset($this->html_footer_build_flag_ARRAY[$resource_constant])){
 
-                $this->ficp_module_build_flag_ARRAY[$resource_constant] = 1;
+                $this->html_footer_build_flag_ARRAY[$resource_constant] = 1;
                 $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
-
-                //error_log(__LINE__ . ' crnrstn NEEDED! [' . $resource_constant . ']. [' . $tmp_client_packet_output . '].');
 
             }
 
         }
 
-        if(!isset($this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+        //
+        // SSDTLA SUPPORT :: LAST OUTPUT
+        if((isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP]) || isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET]) || isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])) && isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
 
-            $this->ficp_module_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+            $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
             $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
         }
@@ -6260,7 +6106,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_array = array();
 
-        foreach($constants_int_ARRAY as $key => $int_constant){
+        foreach($constants_int_ARRAY as $index => $int_constant){
+
+            if(is_string($int_constant)){
+
+                $int_constant = $index;
+
+            }
 
             if($this->oCRNRSTN_BITFLIP_MGR->is_bit_set($int_constant)){
 
@@ -7149,7 +7001,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_constant_profile_ARRAY($int_constant){
+    public function return_constant_profile_ARRAY($int_constant, $return_value = 'array'){
 
         $tmp_ARRAY = array();
 
@@ -7172,26 +7024,27 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             }
 
-            //$this->print_r('[' . var_dump($int_constant) . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
             //
             // CAN WE CAST TO INT CONST?
             $int_constant = (int) $int_constant;
             $int_constant = (int) crnrstn_constants_init($int_constant);
-            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
         }
 
         if(is_integer($int_constant)){
 
             $tmp_ARRAY['INTEGER'] = $int_constant;
-            //$this->print_r('[' . $int_constant . '] == [' . $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant) . ']', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-            //die();
             $tmp_ARRAY['STRING'] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant);
             //$tmp_ARRAY['DESCRIPTION'] = '';
             //$tmp_ARRAY['DEPENDENT_METHODS_ARRAY'] = array();      // UPDATES DOCUMENTATION
             //$tmp_ARRAY['DATA_FAMILY_TYPE'] = '';                  // UPDATES DOCUMENTATION
+
+        }
+
+        if($return_value == 'string'){
+
+            return $tmp_ARRAY['STRING'];
 
         }
 

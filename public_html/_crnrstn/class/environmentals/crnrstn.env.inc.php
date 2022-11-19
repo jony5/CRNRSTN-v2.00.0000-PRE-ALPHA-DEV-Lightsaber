@@ -308,7 +308,7 @@ class crnrstn_environment {
                     // INITIALIZE INTERACT UI PROFILE
                     $this->init_ui_interact_profile();
 
-                    $this->oCRNRSTN->system_output_footer_html(CRNRSTN_UI_SOAP_DATA_TUNNEL, true);
+                    //$this->oCRNRSTN->system_output_footer_html(CRNRSTN_UI_SOAP_DATA_TUNNEL, true);
 
                     /*
                     CRNRSTN :: ORDER OF OPERATIONS (PREFERENCE) FOR SELECTION OF
