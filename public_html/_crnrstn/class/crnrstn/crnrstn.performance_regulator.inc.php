@@ -974,69 +974,69 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID';
 
             break;
-            case 'CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM':
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
 
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM';
-
-            break;
-            case 'CRNRSTNCSS_FRAMEWORK_FOUNDATION':
-
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_FOUNDATION';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM';
 
             break;
-            case 'CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE':
+            case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
 
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE';
-
-            break;
-            case 'CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
-
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION';
 
             break;
-            case 'CRNRSTNCSS_FRAMEWORK_UNSEMANTIC':
+            case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
 
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_UNSEMANTIC';
-
-            break;
-            case 'CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID':
-
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE';
 
             break;
-            case 'CRNRSTNCSS_FRAMEWORK_SKELETON':
+            case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
 
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_SKELETON';
-
-            break;
-            case 'CRNRSTNCSS_FRAMEWORK_RWDGRID':
-
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_RWDGRID';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
 
             break;
-            case 'CRNRSTNJS_FRAMEWORK_REACT':
+            case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
 
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_REACT';
-
-            break;
-            case 'CRNRSTNJS_FRAMEWORK_MITHRIL':
-
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_MITHRIL';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC';
 
             break;
-            case 'CRNRSTNJS_FRAMEWORK_PROTOTYPE':
+            case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
 
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_PROTOTYPE';
-
-            break;
-            case 'CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS':
-
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID';
 
             break;
-            case 'CRNRSTNJS_FRAMEWORK_MOOFX':
+            case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
 
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_MOOFX';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_SKELETON';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_RWDGRID';
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_REACT':
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_REACT';
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_MITHRIL';
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE';
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS';
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_MOOFX':
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_MOOFX';
 
             break;
             case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
@@ -1046,7 +1046,7 @@ class crnrstn_performance_regulator{
             break;
             case 'CRNRSTN_UI_CSS':
 
-                $tmp_str_out = 'CRNRSTN_UI_CSSv';
+                $tmp_str_out = 'CRNRSTN_UI_CSS';
 
             break;
             case 'CRNRSTN_UI_JS':
@@ -1842,69 +1842,69 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID';
 
             break;
-            case CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM:
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM:
 
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_960_GRID_SYSTEM';
-
-            break;
-            case CRNRSTNCSS_FRAMEWORK_FOUNDATION:
-
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_FOUNDATION';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM';
 
             break;
-            case CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE:
+            case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
 
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_HTML5_BOILERPLATE';
-
-            break;
-            case CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
-
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION';
 
             break;
-            case CRNRSTNCSS_FRAMEWORK_UNSEMANTIC:
+            case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
 
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_UNSEMANTIC';
-
-            break;
-            case CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID:
-
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_DEAD_SIMPLE_GRID';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE';
 
             break;
-            case CRNRSTNCSS_FRAMEWORK_SKELETON:
+            case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
 
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_SKELETON';
-
-            break;
-            case CRNRSTNCSS_FRAMEWORK_RWDGRID:
-
-                $tmp_str_out = 'CRNRSTNCSS_FRAMEWORK_RWDGRID';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
 
             break;
-            case CRNRSTNJS_FRAMEWORK_REACT:
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
 
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_REACT';
-
-            break;
-            case CRNRSTNJS_FRAMEWORK_MITHRIL:
-
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_MITHRIL';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC';
 
             break;
-            case CRNRSTNJS_FRAMEWORK_PROTOTYPE:
+            case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
 
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_PROTOTYPE';
-
-            break;
-            case CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS:
-
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_SCRIPTACULOUS';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID';
 
             break;
-            case CRNRSTNJS_FRAMEWORK_MOOFX:
+            case CRNRSTN_CSS_FRAMEWORK_SKELETON:
 
-                $tmp_str_out = 'CRNRSTNJS_FRAMEWORK_MOOFX';
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_SKELETON';
+
+            break;
+            case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
+
+                $tmp_str_out = 'CRNRSTN_CSS_FRAMEWORK_RWDGRID';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_REACT:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_REACT';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_MITHRIL:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_MITHRIL';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_MOOFX:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_MOOFX';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_BACKBONE:
@@ -1914,7 +1914,7 @@ class crnrstn_performance_regulator{
             break;
             case CRNRSTN_UI_CSS:
 
-                $tmp_str_out = 'CRNRSTN_UI_CSSv';
+                $tmp_str_out = 'CRNRSTN_UI_CSS';
 
             break;
             case CRNRSTN_UI_JS:
