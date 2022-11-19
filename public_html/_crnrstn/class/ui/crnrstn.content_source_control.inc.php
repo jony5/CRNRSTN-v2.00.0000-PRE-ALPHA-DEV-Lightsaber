@@ -111,7 +111,7 @@ class crnrstn_content_source_controller {
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$resource_constant';
                     $tmp_param_def[0]['param_definition'] = 'An integer constant representing a resource that is 
-                    being requested.';
+                    being requested. A list of resource (CSS &amp; JS) constants that are currently being integrated into C<span class="the_R_in_crnrstn">R</span>NRSTN :: Lightsaber can be found below.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $tmp_param_def[1]['param_name'] = '$spool_for_output';
