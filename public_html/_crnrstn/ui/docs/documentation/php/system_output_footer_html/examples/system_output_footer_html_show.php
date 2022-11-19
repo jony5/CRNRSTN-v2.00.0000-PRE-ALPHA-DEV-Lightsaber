@@ -16,6 +16,11 @@ $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
 <head>
     <title>CRNRSTN ::</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <?php
+
+    echo $oCRNRSTN->system_output_head_html();
+
+    ?>
 </head>
 <body>
 <p>hello HTML!</p>

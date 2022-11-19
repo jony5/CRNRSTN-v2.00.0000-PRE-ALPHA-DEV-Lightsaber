@@ -26,5 +26,10 @@ $oCRNRSTN->system_output_head_html(CRNRSTN_UI_JS_JQUERY_UI, true);
 <body>
 <p>hello HTML!</p>
 
+<?php
+
+echo $oCRNRSTN->system_output_footer_html();
+
+?>
 </body>
 </html>

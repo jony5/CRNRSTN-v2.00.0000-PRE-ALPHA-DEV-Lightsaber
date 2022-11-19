@@ -115,11 +115,11 @@ class crnrstn_content_source_controller {
                     $tmp_param_def[0]['param_required'] = false;
 
                     $tmp_param_def[1]['param_name'] = '$spool_for_output';
-                    $tmp_param_def[1]['param_definition'] = 'Passing in false will return the optional and currently 
+                    $tmp_param_def[1]['param_definition'] = 'Passing in FALSE will return the optional and currently 
                     requested resource as well as all previously requested (spooled) resources. All resources will 
                     be returned in the order in which they were requested.<br><br>
                     
-                    When spooling is true, the method will return boolean true after storing the request for return at 
+                    When spooling is TRUE, the method will return boolean TRUE after storing the request for return at 
                     a later time.';
                     $tmp_param_def[1]['param_required'] = false;
 
@@ -240,11 +240,11 @@ class crnrstn_content_source_controller {
                     $tmp_param_def[0]['param_required'] = false;
 
                     $tmp_param_def[1]['param_name'] = '$spool_for_output';
-                    $tmp_param_def[1]['param_definition'] = 'Passing in false will return the optional and currently 
+                    $tmp_param_def[1]['param_definition'] = 'Passing in FALSE will return the optional and currently 
                     requested resource as well as all previously requested (spooled) resources. All resources will 
                     be returned in the order in which they were requested.<br><br>
                     
-                    When spooling is true, the method will return boolean true after storing the request for return at 
+                    When spooling is TRUE, the method will return boolean TRUE after storing the request for return at 
                     a later time.';
                     $tmp_param_def[1]['param_required'] = false;
 
@@ -281,9 +281,9 @@ class crnrstn_content_source_controller {
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
                     $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns a small (25px), medium (50px), or large (75px) 
-                    image than can be sticky linked to a provided url. When $email_channel is true, a single media 
+                    image than can be sticky linked to a provided url. When $email_channel is TRUE, a single media 
                     image that is wrapped in a sticky linked anchor tag will be returned. When $email_channel is 
-                    false, an image sprite will be used in place of the single image.';
+                    FALSE, an image sprite will be used in place of the single image.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
@@ -318,8 +318,8 @@ class crnrstn_content_source_controller {
 
                     $tmp_param_def[3]['param_name'] = '$email_channel';
                     $tmp_param_def[3]['param_definition'] = 'Determines whether the returned and sticky linked HTML 
-                    needs to work correctly within a multipart HTML email message. The default value, false, will employ 
-                    a sticky linked image sprite. Passing true will return HTML having a traditional anchor tag 
+                    needs to work correctly within a multipart HTML email message. The default value, FALSE, will employ 
+                    a sticky linked image sprite. Passing TRUE will return HTML having a traditional anchor tag 
                     linked media image.';
                     $tmp_param_def[3]['param_required'] = false;
 
