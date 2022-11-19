@@ -3757,7 +3757,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
 
                     // FYI,...COULD ALSO CALL: $this->spool_destruct_output($str);
-                    $this->destruct_output .= '<!doctype html>
+                    $this->destruct_output .= '<!DOCTYPE html>
 <html lang="' . $this->country_iso_code() . '">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -3815,7 +3815,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
                     // TEMPLATE FOR SOMETHING ADMIN-NEWY-ISH BACK TO "HERE" FOR CONSISTENCY.
                     // FYI,...COULD ALSO CALL: $this->spool_destruct_output($str);
-                    $this->destruct_output .= '<!doctype html>
+                    $this->destruct_output .= '<!DOCTYPE html>
 <html lang="' . $this->country_iso_code() . '">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -6866,8 +6866,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '">';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '" style="color:' . $tmp_meta_ARRAY['highlight.html'] . ';">';
         $tmp_str_out .= print_r($output, true);
+
         $tmp_str_out .= '</pre>';
 
         if($this->is_system_terminate_enabled()){
@@ -7124,7 +7125,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:#000; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression,true)) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '">';
+        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $tmp_meta_ARRAY['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression,true)) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->current_theme_style_ARRAY['NAME'] . '" style="color:' . $tmp_meta_ARRAY['highlight.html'] . ';">';
         print_r($output);
         echo '</pre>';
 
@@ -8235,7 +8236,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 //
                 // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
-                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+                // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
                 ini_set('highlight.comment', $tmp_meta_ARRAY['highlight.comment']);
                 ini_set('highlight.default', $tmp_meta_ARRAY['highlight.default']);
                 ini_set('highlight.html', $tmp_meta_ARRAY['highlight.html']);
@@ -9793,7 +9794,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         header($_SERVER['SERVER_PROTOCOL'] . ' ' . $response_code . ' ' . $http_status_codes[$response_code]);
 
-        $str = '<!doctype html>
+        $str = '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />

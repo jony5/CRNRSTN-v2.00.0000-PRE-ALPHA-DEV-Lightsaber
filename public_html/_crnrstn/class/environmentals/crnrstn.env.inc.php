@@ -3956,7 +3956,7 @@ class crnrstn_environment {
 
         header($this->getServerArrayVar('SERVER_PROTOCOL') . ' ' . $error_code . ' ' . $http_status_codes[$error_code]);
 
-                $str = '<!doctype html>
+                $str = '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />

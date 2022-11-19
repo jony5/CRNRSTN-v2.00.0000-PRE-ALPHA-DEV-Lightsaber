@@ -208,7 +208,7 @@ class crnrstn_content_source_controller {
                     $tmp_example_title_integrated = NULL;
 
                     $tmp_example_presentation_file = '/ui/docs/documentation/php/system_output_head_html/examples/system_output_head_html_show.php';
-                    $tmp_example_execute_file = '/ui/docs/documentation/php/system_output_head_html/examples/system_output_head_html_exec.php';
+                    $tmp_example_execute_file = ''; //'/ui/docs/documentation/php/system_output_head_html/examples/system_output_head_html_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                     //
@@ -274,7 +274,7 @@ class crnrstn_content_source_controller {
                     $tmp_example_title_integrated = NULL;
 
                     $tmp_example_presentation_file = '/ui/docs/documentation/php/system_output_footer_html/examples/system_output_footer_html_show.php';
-                    $tmp_example_execute_file = '/ui/docs/documentation/php/system_output_footer_html/examples/system_output_footer_html_exec.php';
+                    $tmp_example_execute_file = ''; //'/ui/docs/documentation/php/system_output_footer_html/examples/system_output_footer_html_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                     //

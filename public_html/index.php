@@ -37,7 +37,7 @@ $oCRNRSTN->system_output_head_html(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_M
 $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<?php echo $oCRNRSTN->country_iso_code(); ?>">
 <head>
     <title>CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?></title>
