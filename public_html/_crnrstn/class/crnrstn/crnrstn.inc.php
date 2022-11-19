@@ -3962,13 +3962,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function system_output_head_html($integer_constant = NULL, $spool_for_output = false){
+    public function system_output_head_html($resource_constant = NULL, $spool_for_output = false){
 
         $tmp_head_html_output = '';
 
         if($spool_for_output){
 
-            $this->system_head_html_constants_spool_ARRAY[] = $integer_constant;
+            $this->system_head_html_constants_spool_ARRAY[] = $resource_constant;
 
             return true;
 
@@ -3984,11 +3984,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        if(isset($integer_constant)){
+        if(isset($resource_constant)){
 
-            if(!isset($this->html_head_build_flag_ARRAY[$integer_constant])){
+            if(!isset($this->html_head_build_flag_ARRAY[$resource_constant])){
 
-                $this->html_head_build_flag_ARRAY[$integer_constant] = 1;
+                $this->html_head_build_flag_ARRAY[$resource_constant] = 1;
 
             }
 
@@ -4004,11 +4004,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function system_output_footer_html($integer_constant = NULL, $spool_for_output = false){
+    public function system_output_footer_html($resource_constant = NULL, $spool_for_output = false){
 
         if($spool_for_output){
 
-            $this->system_ui_module_constants_spool_ARRAY[] = $integer_constant;
+            $this->system_ui_module_constants_spool_ARRAY[] = $resource_constant;
 
             return true;
 
@@ -4018,7 +4018,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_client_packet_output = '';
 
-        if(isset($integer_constant)){
+        if(isset($resource_constant)){
 
             /*
             'CRNRSTN_RESOURCE_ALL', 'CRNRSTN_RESOURCE_BASSDRIVE',
@@ -4039,12 +4039,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             ficp_module_build_flag_ARRAY
             */
 
-            if(in_array($integer_constant, $this->system_ui_module_constants_ARRAY)){
+            if(in_array($resource_constant, $this->system_ui_module_constants_ARRAY)){
 
-                if(!isset($this->ficp_module_build_flag_ARRAY[$integer_constant])){
+                if(!isset($this->ficp_module_build_flag_ARRAY[$resource_constant])){
 
-                    $this->ficp_module_build_flag_ARRAY[$integer_constant] = 1;
-                    $tmp_client_packet_output .= $this->ui_content_module_out($integer_constant);
+                    $this->ficp_module_build_flag_ARRAY[$resource_constant] = 1;
+                    $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
 
                     //return $tmp_client_packet_output;
 
@@ -4054,7 +4054,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // CONSIDERING SETTING UP INTEGER CONSTANT CRNRSTN_DESTRUCT_OUTPUT IN LEU OF -1
-            if($integer_constant == -1){
+            if($resource_constant == -1){
 
                 if($this->destruct_output != ''){
 
@@ -4167,9 +4167,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function ui_content_module_out($integer_constant, $crnrstn_form_handle = NULL){
+    public function ui_content_module_out($resource_constant, $crnrstn_form_handle = NULL){
 
-        return $this->oCRNRSTN_USR->ui_content_module_out($integer_constant, $crnrstn_form_handle);
+        return $this->oCRNRSTN_USR->ui_content_module_out($resource_constant, $crnrstn_form_handle);
 
     }
 

@@ -170,14 +170,57 @@ class crnrstn_content_source_controller {
                     an HTML document. Pass in TRUE to spool the requested content for output at a later time.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
-                    // system_output_head_html($integer_constant = NULL, $spool_for_output = false)
+                    // system_output_head_html($resource_constant = NULL, $spool_for_output = false)
                     // METHOD DEFINITION
                     $tmp_method_definition = 'system_output_head_html(<br>
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $integer_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $spool_for_output = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
-                    ): <span class="crnrstn_documentation_method_data_type">string|HTML OUTPUT</span>';
+                    ): <span class="crnrstn_documentation_method_data_type">string|boolean</span>';
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // RETURN VALUE
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'HTML OUTPUT or TRUE (if spooling).');
+
+                    //
+                    // PARAMETER DEFINITION
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$resource_constant';
+                    $tmp_param_def[0]['param_definition'] = 'An integer constant representing a resource that is 
+                    being requested.';
+                    $tmp_param_def[0]['param_required'] = false;
+
+                    $tmp_param_def[1]['param_name'] = '$spool_for_output';
+                    $tmp_param_def[1]['param_definition'] = 'Passing in false will return the optional and currently 
+                    requested resource as well as all previously requested (spooled) resources. All resources will 
+                    be returned in the order in which they were requested.<br><br>
+                    
+                    When spooling is true, the method will return boolean true after storing the request for return at 
+                    a later time.';
+                    $tmp_param_def[1]['param_required'] = false;
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/system_output_head_html/examples/system_output_head_html_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/system_output_head_html/examples/system_output_head_html_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // TECH SPECS
+                    $tmp_spec_array = array();
+                    $tmp_spec_array[0] = 'Currently tested on Ubuntu 18.04.1 LTS running Apache v2.4.29, MySQLi v5.0.12, php v7.0.33, OpenSSL v1.1.1, and NuSOAP v0.9.5.';
+                    $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS', $tmp_spec_array);
+
+
+
+
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
@@ -197,11 +240,52 @@ class crnrstn_content_source_controller {
                     //
                     // METHOD DEFINITION
                     $tmp_method_definition = 'system_output_footer_html(<br>
-                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $integer_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $resource_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $spool_for_output = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
-                    ): <span class="crnrstn_documentation_method_data_type">string|HTML OUTPUT</span>';
+                    ): <span class="crnrstn_documentation_method_data_type">string|boolean</span>';
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // RETURN VALUE
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'HTML OUTPUT or TRUE (if spooling).');
+
+                    //
+                    // PARAMETER DEFINITION
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$resource_constant';
+                    $tmp_param_def[0]['param_definition'] = 'An integer constant representing a resource that is being requested.';
+                    $tmp_param_def[0]['param_required'] = false;
+
+                    $tmp_param_def[1]['param_name'] = '$spool_for_output';
+                    $tmp_param_def[1]['param_definition'] = 'Passing in false will return the optional and currently 
+                    requested resource as well as all previously requested (spooled) resources. All resources will 
+                    be returned in the order in which they were requested.<br><br>
+                    
+                    When spooling is true, the method will return boolean true after storing the request for return at 
+                    a later time.';
+                    $tmp_param_def[1]['param_required'] = false;
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/system_output_footer_html/examples/system_output_footer_html_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/system_output_footer_html/examples/system_output_footer_html_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // TECH SPECS
+                    $tmp_spec_array = array();
+                    $tmp_spec_array[0] = 'Currently tested on Ubuntu 18.04.1 LTS running Apache v2.4.29, MySQLi v5.0.12, php v7.0.33, OpenSSL v1.1.1, and NuSOAP v0.9.5.';
+                    $tmp_spec_array[1] = 'It is recommended that you upgrade to the latest official release of PHP to take advantage of gains in security and processing efficiency together with the latest features and functionality.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'TECH_SPECS', $tmp_spec_array);
+
+
+
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
@@ -230,10 +314,8 @@ class crnrstn_content_source_controller {
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $url = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $target = \'<span class="crnrstn_documentation_method_string_data">_blank</span>\', <br>
                     &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $email_channel = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
-                    ): <span class="crnrstn_documentation_method_data_type">string|HTML OUTPUT</span>';
+                    ): <span class="crnrstn_documentation_method_data_type">string</span>';
 
-
-                    /**/
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
                     //
@@ -264,7 +346,7 @@ class crnrstn_content_source_controller {
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
 
-                    // public_html/_crnrstn/ui/docs/documentation/php//index.php
+                    //
                     // EXAMPLE
                     $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
                     $tmp_example_title_integrated = NULL;   //$this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG');
