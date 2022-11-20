@@ -2061,6 +2061,8 @@ class crnrstn_content_generator {
                                 switch($val) {
                                     case 'STANDARD_REPORT':
 
+                                        $tmp_hashed_html = '';
+                                        $tmp_hashed_html_out = '';
                                         $tmp_SSL_ENABLED = 'FALSE';
                                         if($this->oCRNRSTN->is_SSL){
 
@@ -2139,10 +2141,36 @@ class crnrstn_content_generator {
                                         }
 
                                         $tmp_lang_report = $this->oCRNRSTN->strrtrim($tmp_lang_report, ', ');
-
                                         $tmp_lang_report .= '.';
 
-                                            $tmp_report = '<p>Response returned in {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}.<br><br>
+                                        //
+                                        // BYTES HASH REPORT
+                                        $tmp_total_bytes = 0;
+                                        foreach($this->oCRNRSTN->total_bytes_hashed_ARRAY as $algo => $bytes){
+
+                                            $tmp_star_char = '&nbsp;';
+                                            $tmp_total_bytes += $bytes;
+
+                                            if($algo == $this->oCRNRSTN->system_hash_algo()){
+
+                                                $tmp_star_char = '*';
+
+                                            }
+
+                                            $tmp_hashed_html .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
+                                            $tmp_hashed_html .= '   <div class="crnrstn_documentation_page_stats_hash_algo">' . $tmp_star_char . $algo . ':</div>
+                                                                    <div class="crnrstn_documentation_page_stats_hash_algo_bytes">'. $this->oCRNRSTN->format_bytes($bytes) . '</div>';
+                                            $tmp_hashed_html .= '</div><div class="crnrstn_cb"></div>';
+
+                                        }
+
+                                        $tmp_hashed_html_out .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
+                                        $tmp_hashed_html_out .= '<div class="crnrstn_documentation_page_stats_hash_total">Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>hashed: ' . $this->oCRNRSTN->format_bytes($tmp_total_bytes, 5) . '</div>';
+                                        $tmp_hashed_html_out .= '</div>';
+
+                                        $tmp_hashed_html_out  .= $tmp_hashed_html;
+
+                                        $tmp_report = '<p style="margin-bottom:0;">Response returned in {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}.<br><br>
 
 CLIENT ::<br>
 Returned page size (in text data): {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}.<br>
@@ -2152,8 +2180,10 @@ Accept-Language: ' . $this->oCRNRSTN->return_client_header_value('Accept-Languag
 ' . $tmp_lang_report . '<br><br>
 
 SERVER ::<br>
-Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>stored: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->return_total_bytes_stored(), 5) . '<br>
-Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>hashed: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_hashed, 5) . '<br>
+Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>stored: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->return_total_bytes_stored(), 5) . '
+</p>
+' . $tmp_hashed_html_out . '
+<p style="margin-top:0;">
 Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>encrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_encrypted, 5) . '<br>
 Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>decrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_decrypted, 5) . '<br>
 Server name: ' . $_SERVER['SERVER_NAME'] . '<br>
@@ -2168,7 +2198,13 @@ Request time: ' . $this->oCRNRSTN->start_time() . '</p>
     <div class="crnrstn_cb"></div>
     
 </div>
-
+<div class="crnrstn_cb_10"></div>
+<div class="crnrstn_documentation_page_stats_dagger_key_shell">
+    <div class="crnrstn_documentation_page_stats_dagger_key_dag">*</div>
+    <div class="crnrstn_documentation_page_stats_dagger_key_description"><p>System default hashing algorithm.</p></div>
+    <div class="crnrstn_cb"></div>
+    
+</div>
 <div class="crnrstn_cb_40"></div>
 <p>[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</p>';
 

@@ -2,6 +2,7 @@
 
 /*
 SYSTEM DEFAULTS TO SUPPORT ::
+PAGE LOAD TTL = 2;
 this.max_xhr_retrys = 5;
 
 $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';

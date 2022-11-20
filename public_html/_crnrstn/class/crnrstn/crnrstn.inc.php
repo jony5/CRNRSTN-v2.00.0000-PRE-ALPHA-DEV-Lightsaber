@@ -82,7 +82,7 @@ class crnrstn {
     private static $config_serial;
     protected $env_key_hash;
     protected $config_serial_hash;
-    public $total_bytes_hashed = 0;
+    public $total_bytes_hashed_ARRAY = array();
     public $total_bytes_encrypted = 0;
     public $total_bytes_decrypted = 0;
     public $is_SSL = false;
@@ -1029,6 +1029,12 @@ class crnrstn {
         }
 
         return $this->oCRNRSTN_USR->country_iso_code;
+
+    }
+
+    public function system_hash_algo(){
+
+        return $this->system_hash_algo;
 
     }
 
@@ -9729,13 +9735,19 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     public function hash($data, $algorithm = NULL){
 
-        $this->total_bytes_hashed += strlen($data);
-
         if(!isset($algorithm)){
 
             $algorithm = $this->system_hash_algo;
 
         }
+
+        if(!isset($this->total_bytes_hashed_ARRAY[$algorithm])){
+
+            $this->total_bytes_hashed_ARRAY[$algorithm] = 0;
+
+        }
+
+        $this->total_bytes_hashed_ARRAY[$algorithm] += strlen($data);
 
         switch($algorithm){
             case 'crc32':
@@ -10057,7 +10069,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 //
 //            }
 
-            $this->oLog_output_ARRAY[] = $this->error_log('goodbye crnrstn :: ' . __CLASS__ . '::' . __METHOD__ . ' called. [rtime ' . $this->wall_time() . ' secs][bytes_stored ' . $this->format_bytes(self::$oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->return_total_bytes_stored(), 5) . '][bytes_hashed ' . $this->format_bytes($this->total_bytes_hashed, 5) . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
+            $this->oLog_output_ARRAY[] = $this->error_log('goodbye crnrstn :: ' . __CLASS__ . '::' . __METHOD__ . ' called. [rtime ' . $this->wall_time() . ' secs][bytes_stored ' . $this->format_bytes(self::$oCRNRSTN_CONFIG_MGR->oCRNRSTN_CONFIG_DDO->return_total_bytes_stored(), 5) . '][bytes_hashed ' . print_r($this->total_bytes_hashed_ARRAY, true). '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
 
         }
 
