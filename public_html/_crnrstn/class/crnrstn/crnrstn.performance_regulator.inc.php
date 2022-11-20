@@ -1075,34 +1075,49 @@ class crnrstn_performance_regulator{
                 $tmp_int_out = CRNRSTN_UI_JS_MAIN;
 
             break;
-            case 'CRNRSTN_UI_JS_JQUERY_1_11_1':
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY':
 
-                $tmp_int_out = CRNRSTN_UI_JS_JQUERY_1_11_1;
-
-            break;
-            case 'CRNRSTN_UI_JS_JQUERY':
-
-                $tmp_int_out = CRNRSTN_UI_JS_JQUERY;
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY;
 
             break;
-            case 'CRNRSTN_UI_JS_JQUERY_UI':
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0':
 
-                $tmp_int_out = CRNRSTN_UI_JS_JQUERY_UI;
-
-            break;
-            case 'CRNRSTN_UI_JS_JQUERY_MOBILE':
-
-                $tmp_int_out = CRNRSTN_UI_JS_JQUERY_MOBILE;
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0;
 
             break;
-            case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS':
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1':
 
-                $tmp_int_out = CRNRSTN_UI_JS_LIGHTBOX_DOT_JS;
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1;
 
             break;
-            case 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY':
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI':
 
-                $tmp_int_out = CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY;
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1;
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE;
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY;
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2;
 
             break;
             case 'CRNRSTN_UI_TAG_ANALYTICS':
@@ -1932,34 +1947,49 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_UI_JS_MAIN';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY_1_11_1:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY:
 
-                $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_1_11_1';
-
-            break;
-            case CRNRSTN_UI_JS_JQUERY:
-
-                $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY';
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY_UI:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0:
 
-                $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_UI';
-
-            break;
-            case CRNRSTN_UI_JS_JQUERY_MOBILE:
-
-                $tmp_str_out = 'CRNRSTN_UI_JS_JQUERY_MOBILE';
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0';
 
             break;
-            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
 
-                $tmp_str_out = 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS';
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1';
 
             break;
-            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_UI:
 
-                $tmp_str_out = 'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY';
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2';
 
             break;
             case CRNRSTN_UI_TAG_ANALYTICS:

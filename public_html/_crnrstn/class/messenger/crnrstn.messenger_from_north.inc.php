@@ -9578,10 +9578,10 @@ Formally, the display property sets an element\'s inner and outer display types.
     private function return_validation_results_HTML($html_content_injection, $r_tblcol_top_padding = 117){
 
         /*
-        'CRNRSTN_UI_JS_JQUERY',
-        'CRNRSTN_UI_JS_JQUERY_UI',
-        'CRNRSTN_UI_JS_JQUERY_MOBILE',
-        'CRNRSTN_UI_JS_LIGHTBOX_DOT_JS',
+        'CRNRSTN_JS_FRAMEWORK_JQUERY',
+        'CRNRSTN_JS_FRAMEWORK_JQUERY_UI',
+        'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE',
+        'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS',
         'CRNRSTN_UI_TAG_ANALYTICS',
         'CRNRSTN_UI_TAG_ENGAGEMENT',
         'CRNRSTN_UI_FORM_INTEGRATION_PACKET',
@@ -9619,7 +9619,7 @@ Formally, the display property sets an element\'s inner and outer display types.
         <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />
 
         <title>CRNRSTN :: CSS Validator for HTML Email v2.00.0000</title>
-' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
+' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY) .
             $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN) . '
     </head>
     <body>
@@ -9785,7 +9785,7 @@ Formally, the display property sets an element\'s inner and outer display types.
         <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />
 
         <title>CRNRSTN :: CSS Validator for HTML Email v2.00.0000</title>
-' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI) .
+' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI) .
             $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN) . '
     </head>
     <body>

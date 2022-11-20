@@ -140,7 +140,7 @@ switch($channel_constant){
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         ' . $this->oCRNRSTN->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
-        ' . $this->oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI) .
+        ' . $this->oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI) .
             $this->oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN) . '
     </head>
     <body>

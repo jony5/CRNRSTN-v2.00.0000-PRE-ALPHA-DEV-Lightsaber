@@ -609,8 +609,8 @@ class crnrstn_http_manager {
                                     $this->crnrstn_asset_family = 'js';
                                     $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_JS';
                                     $this->crnrstn_asset_meta_path = $this->oCRNRSTN->asset_return_method_key('js', $tmp_salt_ugc_val);
-
-                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+//
+//                                    error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
 
                                     return true;
 

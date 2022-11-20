@@ -179,6 +179,8 @@ class crnrstn_content_source_controller {
 
                         }
 
+                        //
+                        // KEEP DESCRIPTION TEXT FROM RUNNING ON TOP OF THE BACKGROUND R PILLAR GRAPHIC
                         if($tmp_element_cnt <= 7 ){
 
                             $tmp_inline_style =  'style="width:58%;"';
@@ -6643,11 +6645,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'] = '';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY_1_11_1:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'jQuery (1.11.1)';
+                $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '1.11.1';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. 
                             It makes things like HTML document traversal and manipulation, event handling, animation,
@@ -6657,7 +6659,22 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'] = 'https://jquery.com/';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'jQuery';
+                $tmp_output_ARRAY['VERSION'] = '3.6.0';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. It makes
+                                                    things like HTML document traversal and manipulation, event handling,
+                                                    animation, and Ajax much simpler with an easy-to-use API that works
+                                                    across a multitude of browsers. With a combination of versatility and
+                                                    extensibility, jQuery has changed the way that millions of people
+                                                    write JavaScript.';
+                $tmp_output_ARRAY['URL'] = 'https://jquery.com/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_JQUERY:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
@@ -6672,12 +6689,12 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'] = 'https://jquery.com/';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY_UI:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_UI:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '1.13.2';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery UI is a curated set of user interface interactions, effects,
                                                     widgets, and themes built on top of the jQuery JavaScript Library.
                                                     Whether you\'re building highly interactive web applications or you
@@ -6686,34 +6703,48 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'] = 'https://jqueryui.com/';
 
             break;
-            case CRNRSTN_UI_JS_JQUERY_MOBILE:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
+                $tmp_output_ARRAY['VERSION'] = '1.12.1';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery UI is a curated set of user interface interactions, effects,
+                                                    widgets, and themes built on top of the jQuery JavaScript Library.
+                                                    Whether you\'re building highly interactive web applications or you
+                                                    just need to add a date picker to a form control, jQuery UI is the
+                                                    perfect choice.';
+                $tmp_output_ARRAY['URL'] = 'https://jqueryui.com/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery Mobile';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '1.4.5';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A Touch-Optimized Web Framework. jQuery Mobile is a HTML5-based user
                                                     interface system designed to make responsive web sites and apps that 
                                                     are accessible on all smartphone, tablet and desktop devices.';
                 $tmp_output_ARRAY['URL'] = 'https://jquerymobile.com/';
 
             break;
-            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS:
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '2.11.3';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script.';
                 $tmp_output_ARRAY['URL'] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
-            case CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY:
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '2.11.3/v3.4.1';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script plus JQUERY.';
                 $tmp_output_ARRAY['URL'] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
@@ -6750,7 +6781,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Prototype';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '1.7.3';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Prototype takes the complexity out of client-side web programming. 
                             Built to solve real-world problems, it adds useful extensions to the browser scripting 
                             environment and provides elegant APIs around the clumsy interfaces of Ajax and the Document 
@@ -6763,7 +6794,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'script.aculo.us';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '1.9.0';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'script.aculo.us provides you with easy-to-use, cross-browser user 
                             interface JavaScript libraries to make your web sites and web applications fly.<br><br>
                             What\'s inside? animation framework, drag and drop, Ajax controls DOM utilities, and 
@@ -7053,9 +7084,10 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 // 25
                 // MASTER CLIENT META ASSET ARRAY (CSS, JS)
-                $tmp_resource_ctrl_ARRAY = array(CRNRSTN_UI_JS_MAIN, CRNRSTN_UI_JS_JQUERY_1_11_1, CRNRSTN_UI_JS_JQUERY,
-                    CRNRSTN_UI_JS_JQUERY_UI, CRNRSTN_UI_JS_JQUERY_MOBILE, CRNRSTN_UI_JS_LIGHTBOX_DOT_JS,
-                    CRNRSTN_UI_JS_LIGHTBOX_DOT_JS_PLUS_JQUERY, CRNRSTN_JS_FRAMEWORK_REACT, CRNRSTN_JS_FRAMEWORK_MITHRIL,
+                $tmp_resource_ctrl_ARRAY = array(CRNRSTN_UI_JS_MAIN, CRNRSTN_JS_FRAMEWORK_JQUERY, CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_UI, CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS,
+                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY, CRNRSTN_JS_FRAMEWORK_REACT, CRNRSTN_JS_FRAMEWORK_MITHRIL,
                     CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
                     CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX, CRNRSTN_JS_FRAMEWORK_BACKBONE, CRNRSTN_UI_CSS_MAIN_DESKTOP,
                     CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE, CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID,

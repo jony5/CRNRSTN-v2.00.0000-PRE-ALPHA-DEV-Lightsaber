@@ -114,8 +114,8 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 <title>CRNRSTN :: <?php echo $oCRNRSTN->version_crnrstn(); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
-<?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY) .
-    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_JS_JQUERY_UI); ?>
+<?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY) .
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI); ?>
 <style>
 
     body                                        { }

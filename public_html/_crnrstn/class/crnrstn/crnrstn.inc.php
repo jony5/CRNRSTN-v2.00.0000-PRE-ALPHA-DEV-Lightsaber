@@ -3245,15 +3245,50 @@ class crnrstn {
 
         $this->asset_routing_data_key_lookup_ARRAY['favicon'] = array('crnrstn/favicon.ico' => 'crnrstn/favicon.ico', 'jony5/favicon.ico' => 'jony5/favicon.ico', 'bassdrive/favicon.ico' => 'bassdrive/favicon.ico');
 
-        $tmp_ARRAY = array('lightbox.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js', 'crnrstn.main.js' => '/',
+        $tmp_ARRAY = array(
+            'crnrstn.main.js' => '/',
+
             'jquery-3.6.0.min.js' => '_lib/frameworks/jquery/3.6.0',
-            'jquery-1.11.1.min.js' => '_lib/frameworks/jquery/1.11.1', 'index.js' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery-3.6.1.min.js' => '_lib/frameworks/jquery/3.6.1' ,
+            'jquery-1.11.1.min.js' => '_lib/frameworks/jquery/1.11.1',
+
+            'jquery.mobile-1.4.5/index.js' => '_lib/frameworks/jquery_mobi/1.4.5',
             'jquery.mobile-1.4.5.min.js' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.theme-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.structure-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.inline-svg-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.inline-png-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.icons-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.external-png-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+
             'lightbox-plus-jquery.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js',
             'lightbox.min.css' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css',
-            'jquery-ui.min.css' => '_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1',
-            'jquery.mobile-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-            'jquery.mobile.structure-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5');
+            'lightbox.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js',
+
+            '2.02/css/lightbox.css' => '_lib/frameworks/lightbox.js',
+            '2.02/js/lightbox.js' => '_lib/frameworks/lightbox.js',
+
+            'prototype.js' => '_lib/frameworks/prototype.js/1.7.3',
+            'scriptaculous.js'  => '_lib/frameworks/script.aculo.us/1.9',
+            'builder.js'  => '_lib/frameworks/script.aculo.us/1.9',
+            'controls.js'  => '_lib/frameworks/script.aculo.us/1.9',
+            'dragdrop.js'  => '_lib/frameworks/script.aculo.us/1.9',
+            'effects.js'  => '_lib/frameworks/script.aculo.us/1.9',
+            'slider.js'  => '_lib/frameworks/script.aculo.us/1.9',
+            'sound.js'  => '_lib/frameworks/script.aculo.us/1.9',
+
+            'jquery-ui.min.js' => '_lib/frameworks/jquery_ui/1.13.2/jquery-ui-1.13.2',
+            'jquery-ui.min.css' => '_lib/frameworks/jquery_ui/1.13.2/jquery-ui-1.13.2',
+            'jquery-ui.theme.min.css' => '_lib/frameworks/jquery_ui/1.13.2/jquery-ui-1.13.2',
+            'jquery-ui.structure.min.css' => '_lib/frameworks/jquery_ui/1.13.2/jquery-ui-1.13.2',
+
+            'jquery-ui-1.12.1/jquery-ui.min.js' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.min.css' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.theme.min.css' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.structure.min.css' => '_lib/frameworks/jquery_ui/1.12.1'
+
+        );
 
         $this->asset_routing_data_key_lookup_ARRAY['js'] = $tmp_ARRAY;
 
@@ -3264,6 +3299,22 @@ class crnrstn {
         $tmp_ARRAY = array('framework/lightbox/close' => 'LIGHTBOX_CLOSE', 'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
             'framework/lightbox/next' => 'LIGHTBOX_NEXT', 'framework/lightbox/prev' => 'LIGHTBOX_PREV');
         $this->asset_routing_data_key_lookup_ARRAY['integrations'] = $tmp_ARRAY;
+
+    }
+
+    public function flag_built_head_resource($resource_constant){
+
+        $this->html_head_build_flag_ARRAY[$resource_constant] = 1;
+
+        return true;
+
+    }
+
+    public function flag_built_footer_resource($resource_constant){
+
+        $this->html_footer_build_flag_ARRAY[$resource_constant] = 1;
+
+        return true;
 
     }
 
@@ -3359,7 +3410,7 @@ class crnrstn {
     public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
 
         //$this->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $soap_tunnel=[' . $soap_tunnel . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-
+        //error_log(__LINE__ . '[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $soap_tunnel=[' . $data_auth_request . '].');
         // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_tunnel = false){
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $data_auth_request);
 
@@ -3791,19 +3842,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             return true;
 
         }
-        
+
         //
         // CHECK FOOTER ARRAY FOR CSS/JS DEPENDENCIES
         foreach($this->system_footer_html_constants_spool_ARRAY as $index => $int_const){
 
-            //error_log(__LINE__ . ' crnrstn [' . $int_const . '].');
-
             switch($int_const){
                case CRNRSTN_RESOURCE_DOCUMENTATION:
 
-                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY_UI])){
+                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI])){
 
-                       $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_JQUERY_UI] = 1;
+                       $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
 
                    }
 
@@ -3829,7 +3878,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             if(!isset($this->html_head_build_flag_ARRAY[$int_const])){
 
-                error_log(__LINE__ . ' crnrstn [' . $int_const . '].');
                 $this->html_head_build_flag_ARRAY[$int_const] = 1;
 
             }
@@ -3902,7 +3950,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                             //
                             // <HEAD> DEPENDENCIES
-                            $tmp_ARRAY = array(CRNRSTN_UI_CSS_MAIN_DESKTOP, CRNRSTN_UI_JS_JQUERY , CRNRSTN_UI_JS_MAIN);
+                            $tmp_ARRAY = array(CRNRSTN_UI_CSS_MAIN_DESKTOP, CRNRSTN_JS_FRAMEWORK_JQUERY , CRNRSTN_UI_JS_MAIN);
 
                             foreach($tmp_ARRAY as $index => $head_resource_constant){
 

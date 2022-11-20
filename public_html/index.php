@@ -6,9 +6,10 @@ require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 //
-// PASS TRUE TO SPOOL DESIRED CONTENT (DOCUMENTATION IN PROGRESS) TO BE
-// OUTPUTTED LATER INTO THE HTML FOOTER VIA system_output_footer_html()
+// PASS TRUE TO SPOOL DESIRED CONTENT TO BE OUTPUTTED LATER
+// INTO THE HTML FOOTER VIA system_output_footer_html()
 $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
+//$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS, true);
 
 ?>
 <!DOCTYPE html>

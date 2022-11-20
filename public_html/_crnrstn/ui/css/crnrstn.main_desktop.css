@@ -137,7 +137,7 @@
 
 .crnrstn_resource_constant_nom                              { width: 78%; text-align: left; font-size: 18px; font-weight: bold; padding: 0; margin:0; line-height: 24px; overflow-wrap: break-word; }
 .crnrstn_resource_constant_version                          { font-size: 17px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: transparent; padding: 10px 0 0 0; }
-.crnrstn_resource_constant_version p                        { padding: 0 0 10px 0; margin:0; }
+.crnrstn_resource_constant_version p                        { padding:0; margin:0; }
 .crnrstn_resource_constant_version a                        { font-size: 13px; text-decoration: none; color: #0066CC; font-family: "Courier New", Courier, monospace; font-weight: normal; }
 .crnrstn_resource_constant_www                              { font-size: 13px; text-decoration: none; color: #0066CC; font-family: "Courier New", Courier, monospace; font-weight: normal; }
 .crnrstn_resource_constant_www_source                       { float: left;}
