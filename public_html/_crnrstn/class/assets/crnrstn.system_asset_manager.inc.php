@@ -294,7 +294,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_cache_scriptaculousjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/scriptaculous.js');
+                            $tmp_cache_scriptaculousjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/scriptaculous.js');
 
                             $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
                             $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
@@ -340,12 +340,12 @@ class crnrstn_system_image_asset_manager {
 
                                 */
 
-                                $tmp_cache_builderjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/builder.js');
-                                $tmp_cache_controlsjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/controls.js');
-                                $tmp_cache_dragdropjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/dragdrop.js');
-                                $tmp_cache_effectsjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/effects.js');
-                                $tmp_cache_sliderjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/slider.js');
-                                $tmp_cache_soundjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/sound.js');
+                                $tmp_cache_builderjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/builder.js');
+                                $tmp_cache_controlsjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/controls.js');
+                                $tmp_cache_dragdropjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/dragdrop.js');
+                                $tmp_cache_effectsjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/effects.js');
+                                $tmp_cache_sliderjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/slider.js');
+                                $tmp_cache_soundjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/sound.js');
 
                                 $tmp_str_array[] = '    <!-- scriptaculous v1.9.0 :: js -->
     <script src="' . $tmp_http_path  . '?' . $this->oCRNRSTN->session_salt() . '=scriptaculous.js&v=420.00.' . $tmp_cache_scriptaculousjs . '"></script>
@@ -359,13 +359,12 @@ class crnrstn_system_image_asset_manager {
                             }else{
 
                                 $tmp_str_array[] = '    <!-- scriptaculous v1.9.0 :: js -->
-    <script src="' . $tmp_http_path_js . '_lib/frameworks/script.aculo.us/1.9/scriptaculous.js?v=420.00.' . $tmp_cache_scriptaculousjs . '"></script>
+    <script src="' . $tmp_http_path_js . '_lib/frameworks/script.aculo.us/1.9.0/src/scriptaculous.js?v=420.00.' . $tmp_cache_scriptaculousjs . '"></script>
 ';
 
                             }
 
                         break;
-                        case CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX:
                         case CRNRSTN_JS_FRAMEWORK_BACKBONE:
                             // IMPLEMENTATION PENDING
@@ -954,37 +953,37 @@ class crnrstn_system_image_asset_manager {
 
                             $tmp_str_array[] = '    <!-- scriptaculous v1.9.0 :: js -->
     <script> //<!-- scriptaculous v1.9.0 :: js
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/scriptaculous.js') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/scriptaculous.js') . '
     // --> 
     </script>
     
         <script> //<!-- scriptaculous v1.9.0 :: include builder.js
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/builder.js') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/builder.js') . '
     // --> 
     </script>
     
     <script> //<!-- scriptaculous v1.9.0 :: include effects.js
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/effects.js') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/effects.js') . '
     // --> 
     </script>
     
     <script> //<!-- scriptaculous v1.9.0 :: include dragdrop.js
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/dragdrop.js') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/dragdrop.js') . '
     // --> 
     </script>
     
     <script> //<!-- scriptaculous v1.9.0 :: include controls.js
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/controls.js') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/controls.js') . '
     // --> 
     </script>
     
     <script> //<!-- scriptaculous v1.9.0 :: include slider.js
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/slider.js') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/slider.js') . '
     // --> 
     </script>
     
     <script> //<!-- scriptaculous v1.9.0 :: include sound.js
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9/sound.js') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/sound.js') . '
     // --> 
     </script>
 ';
