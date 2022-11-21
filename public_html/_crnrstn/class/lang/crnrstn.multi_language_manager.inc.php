@@ -2990,6 +2990,22 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'TEXT_REDIRECTING_TO':
+
+                switch($this->country_iso_code) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Redirecting to';
+
+                    break;
+
+                }
+
+            break;
             case 'DEFAULT_LANDING_TITLE_WELCOME':
 
                 switch($this->country_iso_code) {
@@ -3118,7 +3134,7 @@ class crnrstn_multi_language_manager {
                 }
 
             break;
-            case 'DEFAULT_LANDING_RECENT_ACTIVITY_CRICKETS':
+            case 'DEFAULT_LANDING_RECENT_ACTIVITY_CRICKETS_CHIRPING':
 
                 switch($this->country_iso_code) {
                     case 'es':

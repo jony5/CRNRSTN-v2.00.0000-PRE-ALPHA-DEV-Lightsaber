@@ -10,6 +10,7 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 // INTO THE HTML FOOTER VIA system_output_footer_html()
 $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
 //$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS, true);
+//$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3, true);
 
 ?>
 <!DOCTYPE html>
@@ -33,6 +34,22 @@ $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
         <br><br>
         <?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_TITLE_DESCRIPTION'); ?>
     </p>
+
+    <div class="crnrstn_cb_40"></div>
+    <div class="crnrstn_general_content_title">
+        <h3><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_TITLE_RECENT_ACTIVITY'); ?></h3>
+        <p><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_RECENT_ACTIVITY_DESCRIPTION'); ?></p>
+        <div class="crnrstn_cb_5"></div>
+        <div class="crnrstn_cb_10" style="border-top: 3px solid #000; width: 70%;"></div>
+    </div>
+    <div class="crnrstn_general_post_log_shell">
+        <ul>
+            <li><p style="font-family: Courier New, Courier, monospace; font-size: 13px; color: #333;"><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_RECENT_ACTIVITY_CRICKETS_CHIRPING'); ?></p></li>
+
+        </ul>
+
+    </div>
+
     <div class="crnrstn_cb_40"></div>
     <div class="crnrstn_general_content_title">
         <h3><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_TITLE_DEMONSTRATION'); ?></h3>
@@ -48,21 +65,6 @@ $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
         <div class="crnrstn_cb"></div>
 
     </div>
-    <div class="crnrstn_cb_40"></div>
-    <div class="crnrstn_general_content_title">
-        <h3><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_TITLE_RECENT_ACTIVITY'); ?></h3>
-        <p><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_RECENT_ACTIVITY_DESCRIPTION'); ?></p>
-        <div class="crnrstn_cb_5"></div>
-        <div class="crnrstn_cb_10" style="border-top: 3px solid #000; width: 70%;"></div>
-    </div>
-    <div class="crnrstn_general_post_log_shell">
-        <ul>
-            <li><p style="font-family: Courier New, Courier, monospace; font-size: 13px; color: #333;"><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_RECENT_ACTIVITY_CRICKETS'); ?></p></li>
-
-        </ul>
-
-    </div>
-
     <div class="crnrstn_cb_40"></div>
     <div>
         <div style="float: left; padding: 15px 20px 0 0;">

@@ -1115,9 +1115,9 @@ class crnrstn_performance_regulator{
                 $tmp_int_out = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY;
 
             break;
-            case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2':
+            case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
 
-                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2;
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3;
 
             break;
             case 'CRNRSTN_UI_TAG_ANALYTICS':
@@ -1987,9 +1987,9 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY';
 
             break;
-            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2:
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
-                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2';
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3';
 
             break;
             case CRNRSTN_UI_TAG_ANALYTICS:

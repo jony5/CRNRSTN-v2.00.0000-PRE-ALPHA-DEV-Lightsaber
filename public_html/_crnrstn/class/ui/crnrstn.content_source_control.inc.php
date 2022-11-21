@@ -151,7 +151,7 @@ class crnrstn_content_source_controller {
 //                    $tmp_output_ARRAY[$resource_constant]['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI JAVASCRIPT';
 //                    $tmp_output_ARRAY[$resource_constant]['VERSION'] = '1.00.0000';
 //                    $tmp_output_ARRAY[$resource_constant]['DESCRIPTION'] = '';
-//                    $tmp_output_ARRAY[$resource_constant]['URL'] = '';
+//                    $tmp_output_ARRAY[$resource_constant]['URL'][] = '';
 
                     $tmp_predefined_constants_html = '<div class="crnrstn_predefined_constant_title"><h2>Resource Constants :: CSS + JS</h2></div>';
                     $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title_description"><p>The integer constants below are always available as part of the core of C<span class="the_R_in_crnrstn">R</span>NRSTN ::.
@@ -160,20 +160,30 @@ class crnrstn_content_source_controller {
 ';
 
                     $tmp_element_cnt = 0;
+
                     foreach($tmp_resource_profiles_ARRAY as $int_const => $profile_ARRAY){
                         $tmp_element_cnt++;
                         $tmp_www_link = '';
                         $tmp_inline_style = '';
 
-
                         if(isset($profile_ARRAY)){
 
-                            $tmp_lnk = $profile_ARRAY['URL'];
+                            if(isset($profile_ARRAY['URL'])){
 
-                            if(strlen($tmp_lnk) > 0){
+                                $tmp_www_link = '';
 
-                                //$tmp_www_link = '<a href="'. $this->oCRNRSTN->return_sticky_link($tmp_lnk) . '" target="_blank">website</a>';
-                                $tmp_www_link = '<span>' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', $tmp_lnk, '_blank');
+                                foreach($profile_ARRAY['URL'] as $index => $url){
+
+                                    $tmp_lnk = $url;
+
+                                    if(strlen($tmp_lnk) > 0){
+
+                                        //$tmp_www_link = '<a href="'. $this->oCRNRSTN->return_sticky_link($tmp_lnk) . '" target="_blank">website</a>';
+                                        $tmp_www_link .= '<span>' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', $tmp_lnk, '_blank') . '</span>&nbsp;&nbsp;';
+
+                                    }
+
+                                }
 
                             }
 
@@ -185,6 +195,13 @@ class crnrstn_content_source_controller {
 
                             $tmp_inline_style =  'style="width:58%;"';
 
+                        }
+
+                        if(!isset($profile_ARRAY['INTEGER'])){
+
+                            error_log(__LINE__ . ' csc ['.print_r($profile_ARRAY, true).'].');
+
+                            die();
                         }
 
                         $tmp_predefined_constants_html .= '<div class="crnrstn_resource_constant_demo_shell">
@@ -6642,7 +6659,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release off
                                                     LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
                                                     for CRNRSTN :: INTERACT UI.';
-                $tmp_output_ARRAY['URL'] = '';
+                $tmp_output_ARRAY['URL'][] = '';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
@@ -6656,7 +6673,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
                             With a combination of versatility and extensibility, jQuery has changed the way that millions
                             of people write JavaScript.';
-                $tmp_output_ARRAY['URL'] = 'https://jquery.com/';
+                $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0:
@@ -6671,7 +6688,7 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     across a multitude of browsers. With a combination of versatility and
                                                     extensibility, jQuery has changed the way that millions of people
                                                     write JavaScript.';
-                $tmp_output_ARRAY['URL'] = 'https://jquery.com/';
+                $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_JQUERY:
@@ -6686,7 +6703,7 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     across a multitude of browsers. With a combination of versatility and
                                                     extensibility, jQuery has changed the way that millions of people
                                                     write JavaScript.';
-                $tmp_output_ARRAY['URL'] = 'https://jquery.com/';
+                $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_JQUERY_UI:
@@ -6700,7 +6717,7 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     Whether you\'re building highly interactive web applications or you
                                                     just need to add a date picker to a form control, jQuery UI is the
                                                     perfect choice.';
-                $tmp_output_ARRAY['URL'] = 'https://jqueryui.com/';
+                $tmp_output_ARRAY['URL'][] = 'https://jqueryui.com/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1:
@@ -6714,7 +6731,7 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     Whether you\'re building highly interactive web applications or you
                                                     just need to add a date picker to a form control, jQuery UI is the
                                                     perfect choice.';
-                $tmp_output_ARRAY['URL'] = 'https://jqueryui.com/';
+                $tmp_output_ARRAY['URL'][] = 'https://jqueryui.com/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE:
@@ -6726,7 +6743,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A Touch-Optimized Web Framework. jQuery Mobile is a HTML5-based user
                                                     interface system designed to make responsive web sites and apps that 
                                                     are accessible on all smartphone, tablet and desktop devices.';
-                $tmp_output_ARRAY['URL'] = 'https://jquerymobile.com/';
+                $tmp_output_ARRAY['URL'][] = 'https://jquerymobile.com/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS:
@@ -6736,7 +6753,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script.';
-                $tmp_output_ARRAY['URL'] = 'https://lokeshdhakar.com/projects/lightbox2/';
+                $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY:
@@ -6746,7 +6763,17 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3/v3.4.1';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script plus JQUERY.';
-                $tmp_output_ARRAY['URL'] = 'https://lokeshdhakar.com/projects/lightbox2/';
+                $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
+                $tmp_output_ARRAY['VERSION'] = '2.03.3';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script which will load using prototype.js.';
+                $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_REACT:
@@ -6760,7 +6787,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             and React will efficiently update and render just the right components when your data changes.
                             <br><br>
                             Declarative views make your code more predictable and easier to debug.';
-                $tmp_output_ARRAY['URL'] = 'https://reactjs.org/';
+                $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_MITHRIL:
@@ -6773,7 +6800,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             Single Page Applications. It\'s small (&LT; 10kb gzip), fast and provides routing and XHR 
                             utilities out of the box. Mithril.js supports IE11, Firefox ESR, and the last two versions 
                             of Firefox, Edge, Safari, and Chrome. No polyfills required.';
-                $tmp_output_ARRAY['URL'] = 'https://mithril.js.org/';
+                $tmp_output_ARRAY['URL'][] = 'https://mithril.js.org/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
@@ -6786,7 +6813,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             Built to solve real-world problems, it adds useful extensions to the browser scripting 
                             environment and provides elegant APIs around the clumsy interfaces of Ajax and the Document 
                             Object Model.';
-                $tmp_output_ARRAY['URL'] = 'http://prototypejs.org/';
+                $tmp_output_ARRAY['URL'][] = 'http://prototypejs.org/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
@@ -6800,7 +6827,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             What\'s inside? animation framework, drag and drop, Ajax controls DOM utilities, and 
                             unit testing.<br><br>
                             It\'s an add-on to the fantastic Prototype framework.';
-                $tmp_output_ARRAY['URL'] = 'http://script.aculo.us/';
+                $tmp_output_ARRAY['URL'][] = 'http://script.aculo.us/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX:
@@ -6825,7 +6852,8 @@ between the server and client can be achieved with minimal effort and maximum da
                             with it.<br><br>
                             moo.fx is open source, released under the very liberal MIT License, so feel free to do 
                             anything you want with it.';
-                $tmp_output_ARRAY['URL'] = 'https://web.archive.org/web/20140901004420/http://mootools.net/';
+                $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20140901004420/http://mootools.net/';
+                $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20080109090359/http://moofx.mad4milk.net/#mootools';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_BACKBONE:
@@ -6838,7 +6866,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             with key-value binding and custom events, collections with a rich API of enumerable functions, 
                             views with declarative event handling, and connects it all to your existing API over a 
                             RESTful JSON interface.';
-                $tmp_output_ARRAY['URL'] = 'https://backbonejs.org/';
+                $tmp_output_ARRAY['URL'][] = 'https://backbonejs.org/';
 
             break;
             case CRNRSTN_UI_CSS_MAIN_DESKTOP:
@@ -6848,7 +6876,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for CRNRSTN :: INTERACT UI.';
-                $tmp_output_ARRAY['URL'] = '';
+                $tmp_output_ARRAY['URL'][] = '';
 
             break;
             case CRNRSTN_UI_CSS_MAIN_TABLET:
@@ -6858,7 +6886,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for CRNRSTN :: INTERACT UI.';
-                $tmp_output_ARRAY['URL'] = '';
+                $tmp_output_ARRAY['URL'][] = '';
 
             break;
             case CRNRSTN_UI_CSS_MAIN_MOBILE:
@@ -6868,7 +6896,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile Device Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for CRNRSTN :: INTERACT UI.';
-                $tmp_output_ARRAY['URL'] = '';
+                $tmp_output_ARRAY['URL'][] = '';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
@@ -6886,7 +6914,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             the races. It’s that simple.<br><br>
                             Each column is contained within rows, which are contained within a container. The container 
                             is set to a maximum width of 960px, but you can edit without having to break anything.';
-                $tmp_output_ARRAY['URL'] = 'https://simplegrid.io/';
+                $tmp_output_ARRAY['URL'][] = 'https://simplegrid.io/';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM:
@@ -6898,7 +6926,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
                             workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
                             two variants: 12 and 16 columns, which can be used separately or in tandem.';
-                $tmp_output_ARRAY['URL'] = 'https://960.gs/';
+                $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
@@ -6913,7 +6941,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             beautiful responsive websites, apps and emails that look amazing on any device. Foundation 
                             is semantic, readable, flexible, and completely customizable. We’re constantly adding new 
                             resources and code snippets, including handy HTML templates to help get you started!';
-                $tmp_output_ARRAY['URL'] = 'https://get.foundation/';
+                $tmp_output_ARRAY['URL'][] = 'https://get.foundation/';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
@@ -6925,7 +6953,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The web\'s most popular front-end template, HTML5 Boilerplate helps 
                             you build fast, robust, and adaptable web apps or sites. Kick-start your project with the 
                             combined knowledge and effort of 100s of developers, all in one little package.';
-                $tmp_output_ARRAY['URL'] = 'https://html5boilerplate.com/';
+                $tmp_output_ARRAY['URL'][] = 'https://html5boilerplate.com/';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
@@ -6937,7 +6965,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Spectacularly Easy Responsive 
                             Design. The Responsive Grid System isn\'t a framework. It\'s not a boilerplate either. It\'s 
                             a quick, easy &amp; flexible way to create a responsive web site.';
-                $tmp_output_ARRAY['URL'] = 'http://www.responsivegridsystem.com/';
+                $tmp_output_ARRAY['URL'][] = 'http://www.responsivegridsystem.com/';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
@@ -6949,7 +6977,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
                             it\'s entirely based on percentages.';
-                $tmp_output_ARRAY['URL'] = 'https://unsemantic.com/';
+                $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
@@ -6965,7 +6993,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             doesn\'t constrain you to any column sets or media query breakpoints. It embraces concepts 
                             of progressive enhancement and mobile first, serving one-column mobile layout to older 
                             browsers (IE 6-7). IE 8 is supported if you use Respond.js';
-                $tmp_output_ARRAY['URL'] = 'https://mourner.github.io/dead-simple-grid/';
+                $tmp_output_ARRAY['URL'][] = 'https://mourner.github.io/dead-simple-grid/';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_SKELETON:
@@ -6976,7 +7004,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A dead simple, responsive boilerplate. Light as a feather at ~400 
                             lines &amp; built with mobile in mind. Styles designed to be a starting point, not a UI framework.';
-                $tmp_output_ARRAY['URL'] = 'http://getskeleton.com/';
+                $tmp_output_ARRAY['URL'][] = 'http://getskeleton.com/';
 
             break;
             case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
@@ -6988,7 +7016,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Responsive Grid System for your Next Project. 2kb, Mobile First 
                             Grid System, HTML5 Boilerplate Head, 960grid like naming convention,IE8+, Firefox, Chrome, 
                             Safari, Opera, PSD Grid & included, Free to use and Abuse.';
-                $tmp_output_ARRAY['URL'] = 'http://rwdgrid.com/';
+                $tmp_output_ARRAY['URL'][] = 'http://rwdgrid.com/';
 
             break;
 
@@ -7084,11 +7112,12 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 // 25
                 // MASTER CLIENT META ASSET ARRAY (CSS, JS)
-                $tmp_resource_ctrl_ARRAY = array(CRNRSTN_UI_JS_MAIN, CRNRSTN_JS_FRAMEWORK_JQUERY, CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0,
-                    CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
-                    CRNRSTN_JS_FRAMEWORK_JQUERY_UI, CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS,
-                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY, CRNRSTN_JS_FRAMEWORK_REACT, CRNRSTN_JS_FRAMEWORK_MITHRIL,
-                    CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
+                $tmp_resource_ctrl_ARRAY = array(CRNRSTN_UI_JS_MAIN, CRNRSTN_JS_FRAMEWORK_JQUERY,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0, CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_UI, CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE,
+                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY,
+                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3, CRNRSTN_JS_FRAMEWORK_REACT,
+                    CRNRSTN_JS_FRAMEWORK_MITHRIL, CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
                     CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX, CRNRSTN_JS_FRAMEWORK_BACKBONE, CRNRSTN_UI_CSS_MAIN_DESKTOP,
                     CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE, CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID,
                     CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_FOUNDATION,

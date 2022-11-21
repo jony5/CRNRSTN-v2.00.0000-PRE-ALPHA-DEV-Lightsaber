@@ -3266,8 +3266,8 @@ class crnrstn {
             'lightbox.min.css' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css',
             'lightbox.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js',
 
-            '2.02/css/lightbox.css' => '_lib/frameworks/lightbox.js',
-            '2.02/js/lightbox.js' => '_lib/frameworks/lightbox.js',
+            '2.03.3/css/lightbox.css' => '_lib/frameworks/lightbox.js',
+            '2.03.3/js/lightbox.js' => '_lib/frameworks/lightbox.js',
 
             'prototype.js' => '_lib/frameworks/prototype.js/1.7.3',
             'scriptaculous.js'  => '_lib/frameworks/script.aculo.us/1.9.0/src',

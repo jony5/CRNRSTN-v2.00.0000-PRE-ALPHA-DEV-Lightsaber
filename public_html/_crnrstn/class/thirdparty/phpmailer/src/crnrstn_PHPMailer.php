@@ -31,7 +31,7 @@ namespace PHPMailer\crnrstn_PHPMailer;
 class crnrstn_PHPMailer
 {
     //
-    // CRNRSTN v2.0.0 ERROR LOGGING SUPPORT
+    // CRNRSTN v2.00.0000 ERROR LOGGING SUPPORT
     private static $oCRNRSTN_n;
 
     const CHARSET_ASCII = 'us-ascii';

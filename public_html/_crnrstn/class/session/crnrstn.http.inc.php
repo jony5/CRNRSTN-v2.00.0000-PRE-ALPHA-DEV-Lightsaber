@@ -814,16 +814,19 @@ class crnrstn_http_manager {
 
             $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($tmp_uri);
 
+            //<p><a href="' . $tmp_uri . '" target="_self" style="color:#0066CC;">Click here</a>, if you are not redirected immediately.</p>
             $tmp_redirect_html = '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="refresh" content="0; url=' . $tmp_uri . '" />
     <style>
-        p               { padding:10px 0 0 20px; font-size: 18px;}
+        p                                       { padding:10px 0 0 20px; font-size: 14px; color:#333; font-family: Arial, Helvetica, sans-serif;}
+        .crnrstn_redirectinng_url_copy          { font-family: Courier New, Courier, monospace;}
+        .crnrstn_redirectinng_double_colon_copy { color: #F90000; font-weight: bold;}
     </style>
 </head>
 <body>
-<p><a href="' . $tmp_uri . '" target="_self" style="color:#0066CC;">Click here</a>, if you are not redirected immediately.</p>
+<p>' . $this->oCRNRSTN->multi_lang_content_return('TEXT_REDIRECTING_TO') . ' <span class="crnrstn_redirectinng_double_colon_copy">::</span> <span class="crnrstn_redirectinng_url_copy">' . $tmp_uri . '</span></p>
 <!-- 
 
       ___           ___           ___           ___           ___                         ___              

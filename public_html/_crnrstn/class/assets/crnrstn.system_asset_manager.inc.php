@@ -171,7 +171,7 @@ class crnrstn_system_image_asset_manager {
             case CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE:
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS:
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY:
-            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2:
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
                 $tmp_array = $this->return_output_CRNRSTN_UI_JS($const);
                 $tmp_output = '';
@@ -309,14 +309,14 @@ class crnrstn_system_image_asset_manager {
 
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
-                                    $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.02] -->
+                                    $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.03.3] -->
     <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=prototype.js&v=420.00.' . $tmp_cache_prototypejs . '"></script>
     
 ';
 
                                 }else{
 
-                                    $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.02] -->
+                                    $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.03.3] -->
     <script src="' . $tmp_http_path_js . '_lib/frameworks/prototype.js/1.7.3/prototype.js?v=420.00.' . $tmp_cache_prototypejs . '"></script>
 ';
 
@@ -326,20 +326,6 @@ class crnrstn_system_image_asset_manager {
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
-                                /*
-                                public_html/_crnrstn/ui/js/_lib/frameworks/script.aculo.us/1.9/scriptaculous.js
-                                public_html/_crnrstn/ui/js/_lib/frameworks/script.aculo.us/1.9/builder.js
-                                public_html/_crnrstn/ui/js/_lib/frameworks/script.aculo.us/1.9/controls.js
-                                public_html/_crnrstn/ui/js/_lib/frameworks/script.aculo.us/1.9/dragdrop.js
-                                public_html/_crnrstn/ui/js/_lib/frameworks/script.aculo.us/1.9/effects.js
-                                public_html/_crnrstn/ui/js/_lib/frameworks/script.aculo.us/1.9/slider.js
-                                public_html/_crnrstn/ui/js/_lib/frameworks/script.aculo.us/1.9/sound.js
-
-                                (includes ? includes[1] :
-                                'builder,effects,dragdrop,controls,slider,sound').split(',').each(
-
-                                */
-
                                 $tmp_cache_builderjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/builder.js');
                                 $tmp_cache_controlsjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/controls.js');
                                 $tmp_cache_dragdropjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/dragdrop.js');
@@ -348,13 +334,13 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_cache_soundjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/sound.js');
 
                                 $tmp_str_array[] = '    <!-- scriptaculous v1.9.0 :: js -->
-    <script src="' . $tmp_http_path  . '?' . $this->oCRNRSTN->session_salt() . '=scriptaculous.js&v=420.00.' . $tmp_cache_scriptaculousjs . '"></script>
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=builder.js&v=420.00.' . $tmp_cache_builderjs . '"></script>
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=effects.js&v=420.00.' . $tmp_cache_effectsjs . '"></script>
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=dragdrop.js&v=420.00.' . $tmp_cache_dragdropjs . '"></script>
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=controls.js&v=420.00.' . $tmp_cache_controlsjs . '"></script>
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=slider.js&v=420.00.' . $tmp_cache_sliderjs . '"></script>
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=sound.js&v=420.00.' . $tmp_cache_soundjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=scriptaculous.js&v=420.00.' . $tmp_cache_scriptaculousjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=builder.js&v=420.00.' . $tmp_cache_builderjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=effects.js&v=420.00.' . $tmp_cache_effectsjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=dragdrop.js&v=420.00.' . $tmp_cache_dragdropjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=controls.js&v=420.00.' . $tmp_cache_controlsjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=slider.js&v=420.00.' . $tmp_cache_sliderjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=sound.js&v=420.00.' . $tmp_cache_soundjs . '"></script>
 ';
                             }else{
 
@@ -833,7 +819,7 @@ class crnrstn_system_image_asset_manager {
                             }
 
                         break;
-                        case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2:
+                        case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
                             $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS);
 
@@ -843,19 +829,19 @@ class crnrstn_system_image_asset_manager {
                             $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
                             $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
-                            $tmp_cache_lightboxcss = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.02/css/lightbox.css');
-                            $tmp_cache_lightboxjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.02/js/lightbox.js');
+                            $tmp_cache_lightboxcss = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.03.3/css/lightbox.css');
+                            $tmp_cache_lightboxjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.03.3/js/lightbox.js');
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
-                                $tmp_str_array[] = '    <!-- lightbox.js v2.02 :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=2.02/css/lightbox.css&v=420.00.' . $tmp_cache_lightboxcss . '">
+                                $tmp_str_array[] = '    <!-- lightbox.js v2.03.3 :: css -->
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=2.03.3/css/lightbox.css&v=420.00.' . $tmp_cache_lightboxcss . '">
 ';
 
                             }else{
 
-                                $tmp_str_array[] = '    <!-- lightbox.js v2.02 :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.02/css/lightbox.css?v=420.00.' . $tmp_cache_lightboxcss . '">
+                                $tmp_str_array[] = '    <!-- lightbox.js v2.03.3 :: css -->
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.03.3/css/lightbox.css?v=420.00.' . $tmp_cache_lightboxcss . '">
 ';
 
                             }
@@ -870,13 +856,13 @@ class crnrstn_system_image_asset_manager {
 
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
-                                    $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.02] -->
+                                    $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.03.3] -->
     <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=prototype.js&v=420.00.' . $tmp_cache_prototypejs . '"></script>
 ';
 
                                 }else{
 
-                                    $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.02] -->
+                                    $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.03.3] -->
     <script src="' . $tmp_http_path_js . '_lib/frameworks/prototype.js/1.7.3/prototype.js?v=420.00.' . $tmp_cache_prototypejs . '"></script>
 ';
 
@@ -886,13 +872,13 @@ class crnrstn_system_image_asset_manager {
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
-                                $tmp_str_array[] = '    <!-- lightbox.js v2.02 :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path . '?'. $this->oCRNRSTN->session_salt() . '=2.02/js/lightbox.js&v=420.00.' . $tmp_cache_lightboxjs . '"></script>
+                                $tmp_str_array[] = '    <!-- lightbox.js v2.03.3 :: js -->
+    <script type="application/javascript" src="' . $tmp_http_path . '?'. $this->oCRNRSTN->session_salt() . '=2.03.3/js/lightbox.js&v=420.00.' . $tmp_cache_lightboxjs . '"></script>
 ';
                             }else{
 
-                                $tmp_str_array[] = '    <!-- lightbox.js v2.02 :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.02/js/lightbox.js?v=420.00.' . $tmp_cache_lightboxjs . '"></script>
+                                $tmp_str_array[] = '    <!-- lightbox.js v2.03.3 :: js -->
+    <script type="application/javascript" src="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.03.3/js/lightbox.js?v=420.00.' . $tmp_cache_lightboxjs . '"></script>
 ';
 
                             }
@@ -1232,15 +1218,15 @@ class crnrstn_system_image_asset_manager {
     </script>
 ';
                         break;
-                        case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2:
+                        case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
-                            $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_0_2);
+                            $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3);
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_str_array[] = '    <!-- lightbox.js v2.02 :: css -->
+                            $tmp_str_array[] = '    <!-- lightbox.js v2.03.3 :: css -->
     <style>
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/lightbox.js/2.02/css/lightbox.css') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/lightbox.js/2.03.3/css/lightbox.css') . '
     </style>
 ';
 
@@ -1250,7 +1236,7 @@ class crnrstn_system_image_asset_manager {
 
                                 $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
 
-                                $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.02] -->
+                                $tmp_str_array[] = '    <!-- prototype.js v1.7.3 :: js [in support of lightbox js v2.03.3] -->
     <script> //<!--
     ' . file_get_contents($tmp_path_js . '/_lib/frameworks/prototype.js/1.7.3/prototype.js').'
     // --> 
@@ -1258,9 +1244,9 @@ class crnrstn_system_image_asset_manager {
 ';
                             }
 
-                            $tmp_str_array[] = '    <!-- lightbox v2.02 :: js -->
+                            $tmp_str_array[] = '    <!-- lightbox v2.03.3 :: js -->
     <script> //<!--
-    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/lightbox.js/2.02/js/lightbox.js') . '
+    ' . file_get_contents($tmp_path_js . '/_lib/frameworks/lightbox.js/2.03.3/js/lightbox.js') . '
     // --> 
     </script>
 ';
