@@ -743,16 +743,21 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_REACT:
 
                             error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
-
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MITHRIL:
 
                             error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_BACKBONE:
 
                             error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
@@ -849,6 +854,8 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX:
 
                             error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
@@ -919,12 +926,14 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE:
 
                             error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
-
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
 
                             error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
-
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
                         break;
                         case CRNRSTN_UI_JS_MAIN:
 
@@ -1243,16 +1252,22 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_REACT:
 
                             error_log(__LINE__ . ' asset mgr CRNRSTN_JS_FRAMEWORK_REACT IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MITHRIL:
 
                             error_log(__LINE__ . ' asset mgr CRNRSTN_JS_FRAMEWORK_MITHRIL IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_BACKBONE:
 
                             error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
@@ -1331,6 +1346,8 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX:
 
                             error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
@@ -1370,11 +1387,15 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE:
 
                             error_log(__LINE__ . ' asset mgr CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
 
                             error_log(__LINE__ . ' asset mgr CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE IMPLEMENTATION PENDING.');
+                            $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                         break;
                         case CRNRSTN_UI_JS_MAIN:
@@ -1511,46 +1532,64 @@ class crnrstn_system_image_asset_manager {
                     case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_SKELETON:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
 
                         error_log(__LINE__ . ' asset mgr ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING.');
+                        $tmp_str_array[] = '    <!-- ' . $this->oCRNRSTN->return_constant_profile_ARRAY($const, 'string') . ' IMPLEMENTATION PENDING. -->
+';
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_DESKTOP:
