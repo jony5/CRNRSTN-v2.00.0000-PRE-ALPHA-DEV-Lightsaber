@@ -57,6 +57,7 @@ class crnrstn {
     public $oCRNRSTN_ENV;
     public $oCRNRSTN_USR;
     public $oCRNRSTN_TRM; // TODO :: INSTANTIATION IS CURRENTLY BOUND TO THIRD PARTY SERVICE; UNBIND BEFORE USE. Thursday, August 18, 2022 @ 2134 hrs
+    public $oCRNRSTN_UI_HTML_MGR;
     private static $oCRNRSTN_CONFIG_MGR;
     public $oMYSQLI_CONN_MGR;
     private static $oLog_ProfileManager;
@@ -7247,6 +7248,18 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         </div></div></div>';
 
         echo '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+    }
+
+    public function return_resource_profile($resource_constant){
+
+        if(!isset($this->oCRNRSTN_UI_HTML_MGR)){
+
+            $this->oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+
+        }
+
+        return $this->oCRNRSTN_UI_HTML_MGR->return_resource_profile($resource_constant);
 
     }
 

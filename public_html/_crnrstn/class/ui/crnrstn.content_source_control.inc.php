@@ -6620,7 +6620,7 @@ between the server and client can be achieved with minimal effort and maximum da
 //
 //    }
 
-    private function return_resource_profile($resource_constant){
+    public function return_resource_profile($resource_constant){
 
         $tmp_output_ARRAY =  array();
 

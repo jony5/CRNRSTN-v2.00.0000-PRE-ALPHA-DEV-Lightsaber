@@ -80,13 +80,31 @@ class crnrstn_ui_content_assembler {
         // CURRENTLY, ALL CRNRSTN :: LIGHTSABER LINK CLICKS ARE crnrstn_interact_ui_link_text_click
         $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
-        //
-        // INSTANTIATE CONTENT GENERATOR
-        self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, $tmp_module_page_key);
+        if(!isset(self::$oContentGen)){
+
+            //
+            // INSTANTIATE CONTENT GENERATOR
+            self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, $tmp_module_page_key);
+
+        }
 
         self::$oContentGen->load_page();
 
         return self::$oContentGen->return_page_serial();
+
+    }
+
+    public function return_resource_profile($resource_constant){
+
+	    if(!isset(self::$oContentGen)){
+
+            //
+            // INSTANTIATE CONTENT GENERATOR
+            self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, $tmp_module_page_key);
+
+        }
+
+        return self::$oContentGen->return_resource_profile($resource_constant);
 
     }
 

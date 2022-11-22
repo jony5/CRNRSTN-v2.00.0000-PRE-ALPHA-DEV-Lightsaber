@@ -75,6 +75,12 @@ class crnrstn_ui_html_manager {
 
 	}
 
+    public function return_resource_profile($resource_constant){
+
+        return $this->oCRNRSTN_UI_ASSEMBLER->return_resource_profile($resource_constant);
+
+    }
+
     public function return_output_CRNRSTN_UI_DOCS_NAV_LINK($type){
 
         $tmp_str = '';

@@ -78,6 +78,12 @@ class crnrstn_content_generator {
 
 	}
 
+    public function return_resource_profile($resource_constant){
+
+        return self::$oCSController->return_resource_profile($resource_constant);
+
+    }
+
 	public function initialize_page(){
 
 	    $tmp_serial = $this->oCRNRSTN->hash(self::$oCSController->module_key);
