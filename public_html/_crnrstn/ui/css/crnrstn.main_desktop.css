@@ -10,23 +10,34 @@
 .crnrstn_j5_wolf_pup_inner_wrap                     { width:98%; position:absolute; padding:10px 0 0 0;  z-index: 2; text-align: right; }
 
 /*CRNRSTN :: DEFAULT LANDING PAGE*/
-.crnrstn_system_default_page_wrapper                { padding: 0 0 0 20px;}
-.crnrstn_system_default_page_wrapper p              { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: normal;padding:0; margin:0;}
-.crnrstn_system_default_page_logo                   { padding: 10px 0 10px 0;}
-.crnrstn_general_copyright_shell                    { width:578px; font-family: Arial, Helvetica, sans-serif; text-align: center; margin:0 auto; font-size: 12px; line-height: 18px; color: #666;}
-.crnrstn_general_copyright_shell a                  { text-decoration:none; color: #0066CC; text-decoration:underline;}
-.crnrstn_general_content_title                      { font-family: Arial, Helvetica, sans-serif; color:#333;padding: 0 10px 10px 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
-.crnrstn_general_content_title h1                   { font-size: 45px; line-height: 50px; padding:0; margin:0; overflow-wrap: break-word; }
-.crnrstn_general_content_title h2                   { font-size: 35px; line-height: 40px; padding:0; margin:0; }
-.crnrstn_general_content_title h3                   { font-size: 25px; line-height: 30px; padding:0 0 10px 0; margin:0; }
+.crnrstn_default_landing_page_wrapper               { padding: 0 0 0 20px;}
+.crnrstn_default_landing_page_wrapper p             { font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-weight: normal;padding:0; margin:0;}
+.crnrstn_default_landing_page_logo                  { padding: 10px 0 10px 0;}
 
-.crnrstn_general_post_log_shell ul                 { list-style:none; margin: 0; padding: 0;}
-.crnrstn_general_post_log_shell li                 { margin: 0; padding: 0;}
+.crnrstn_default_landing_content_title              { font-family: Arial, Helvetica, sans-serif; color:#333; padding: 0 10px 10px 0; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+.crnrstn_default_landing_content_title h1           { font-size: 45px; line-height: 65px; padding:0; margin:0; overflow-wrap: break-word; }
+.crnrstn_default_landing_content_title h2           { font-size: 35px; line-height: 55px; padding:0; margin:0; }
+.crnrstn_default_landing_content_title h3           { font-size: 25px; line-height: 30px; padding:0 0 10px 0; margin:0; }
+.crnrstn_default_landing_content_footer             { padding: 20px 0 0 0;}
+.crnrstn_default_landing_recent_activity_creative   { }
+
+.crnrstn_default_landing_content_border_major       { border-top: 6px solid #000; width: 70%;}
+.crnrstn_default_landing_content_border_minor       { border-top: 3px solid #000; width: 70%;}
+
+.crnrstn_general_post_log_shell ul                      { list-style:none; margin: 0; padding: 0;}
+.crnrstn_general_post_log_shell li                      { margin: 0; padding: 0;}
+.crnrstn_general_post_recent_activity_shell             { width: 60%; font-size: 20px; padding: 10px 0 10px 0; color: #333;  font-family: Arial, Helvetica, sans-serif;}
+.crnrstn_general_post_recent_activity_date              { font-size: 25px; padding: 0 0 10px 0; font-weight: bold; }
+.crnrstn_general_post_recent_activity_copy p            { padding: 0 0 10px 0; line-height: 27px;}
+.crnrstn_general_post_recent_activity_copy blockquote   { padding: 0 0 10px 0; line-height: 27px; font-size: 90%;}
+.crnrstn_general_post_recent_activity_datestamp p       { font-family: "Courier New", Courier, monospace; font-size: 14px; padding: 20px 0 0 0;}
 
 .crnrstn_general_dagger_key_shell                   {width: 100%; padding:0;}
 .crnrstn_general_dagger_key_dag                     { float: left; width:14px;}
 .crnrstn_general_dagger_key_description             { float: left; width:80%; text-align: left; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
 .crnrstn_general_dagger_key_description p           { padding: 0; margin:0; }
+.crnrstn_general_copyright_shell                    { width:578px; font-family: Arial, Helvetica, sans-serif; text-align: center; margin:0 auto; font-size: 12px; line-height: 18px; color: #666;}
+.crnrstn_general_copyright_shell a                  { text-decoration:none; color: #0066CC; text-decoration:underline;}
 
 /*NEED TO SET Z-INDEX THROUGH THE SSDTL FOR ADMIN ACCESS*/
 .crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: #000; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0;}

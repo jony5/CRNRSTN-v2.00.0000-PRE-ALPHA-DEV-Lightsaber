@@ -2368,7 +2368,6 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/basic_functionality/create_adhocvar/':
                     $tmp_categ_name = 'Basic Functionality';
                     $tmp_subcateg_name = 'Basic Functionality';            # MATCHES SECTION TITLE LINK COPY
@@ -2443,7 +2442,6 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/device_detection/':
                     $tmp_categ_name = 'Device Detection';
                     $tmp_subcateg_name = 'Device Detection';            # MATCHES SECTION TITLE LINK COPY
@@ -2701,7 +2699,6 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/web_services/':
                     $tmp_categ_name = 'Web Services';
                     $tmp_subcateg_name = 'Web Services';            # MATCHES SECTION TITLE LINK COPY
@@ -2998,7 +2995,6 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/date_time/':
                     $tmp_categ_name = 'Date Time';
                     $tmp_subcateg_name = 'Date Time';            # MATCHES SECTION TITLE LINK COPY
@@ -3147,7 +3143,6 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/ip_address/':
                     $tmp_categ_name = 'IP Address';
                     $tmp_subcateg_name = 'IP Address';            # MATCHES SECTION TITLE LINK COPY
@@ -3296,7 +3291,6 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/http_management/':
                     $tmp_categ_name = 'HTTP Management';
                     $tmp_subcateg_name = 'HTTP Management';            # MATCHES SECTION TITLE LINK COPY
@@ -3482,7 +3476,6 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/cookie_management/':
                     $tmp_categ_name = 'Cookie Management';
                     $tmp_subcateg_name = 'Cookie Management';            # MATCHES SECTION TITLE LINK COPY
@@ -3705,7 +3698,6 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/session_management/':
                     $tmp_categ_name = 'Session Management';
                     $tmp_subcateg_name = 'Session Management';            # MATCHES SECTION TITLE LINK COPY
@@ -3854,7 +3846,6 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/tunnel_encryption/':
 
                     $tmp_categ_name = 'HTTP Encryption Tunneling';
@@ -4003,7 +3994,6 @@ between the server and client can be achieved with minimal effort and maximum da
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/mysql_database/':
                     $tmp_categ_name = 'MySQL Database Query/Response';
                     $tmp_subcateg_name = 'MySQL Database Query/Response';      # MATCHES SECTION TITLE LINK COPY
@@ -4704,7 +4694,6 @@ between the server and client can be achieved with minimal effort and maximum da
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                 break;
-
                 case '/suite_methods/form_handling/':
                     $tmp_categ_name = 'Form Handling';
                     $tmp_subcateg_name = 'Form Handling';            # MATCHES SECTION TITLE LINK COPY
@@ -5963,7 +5952,6 @@ between the server and client can be achieved with minimal effort and maximum da
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                     break;
-
                 case '/suite_methods/email_messaging/adddynamiccontent_subject/':
                     $tmp_categ_name = 'Email Messaging';
                     $tmp_subcateg_name = 'Email Messaging';            # MATCHES SECTION TITLE LINK COPY
