@@ -64,10 +64,10 @@ $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
                         assets as intended,...itself. So, for example, a JS application (running in the browser) would
                         know where to find all of it's &quot;internal&quot; images. This would be the fruit borne from
                         operating according to a more traditional approach...or (in this case) the fruit of setting
-                        <span style="font-family: Courier New, Courier, monospace; font-size: 90%;">$tunneling_active = false</span>
-                        when calling <span style="font-family: Courier New, Courier, monospace; font-size: 90%;">$oC<span class="the_R_in_crnrstn">R</span>NRSTN->config_init_asset_mapping_js()</span>.
+                        <span class="crnrstn_general_post_code_copy">$tunneling_active = false</span>
+                        when calling <span class="crnrstn_general_post_code_copy">$oC<span class="the_R_in_crnrstn">R</span>NRSTN->config_init_asset_mapping_js()</span>.
                         </p>
-                        <blockquote>On a side note...by default, <span style="font-family: Courier New, Courier, monospace; font-size: 110%;">$tunneling_active</span>
+                        <blockquote>On a side note...by default, <span class="crnrstn_general_post_code_copy">$tunneling_active</span>
                         is set to TRUE,...which is the lead dev's recommendation and which will eventually allow C<span class="the_R_in_crnrstn">R</span>NRSTN ::
                         to do some pretty cool shit like bind resources to sessions and quietly return ANY resource from
                         ANY authorized server (think...spontaneous file server).</blockquote>

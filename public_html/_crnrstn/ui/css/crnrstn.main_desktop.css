@@ -30,6 +30,9 @@
 .crnrstn_general_post_recent_activity_date              { font-size: 25px; padding: 0 0 10px 0; font-weight: bold; }
 .crnrstn_general_post_recent_activity_copy p            { padding: 0 0 10px 0; line-height: 29px;}
 .crnrstn_general_post_recent_activity_copy blockquote   { padding: 0 0 10px 0; line-height: 29px; font-size: 90%;}
+
+/*border: 1px solid #2d0404;*/
+.crnrstn_general_post_code_copy                         { font-family: Courier New, Courier, monospace; font-size: 80%; color: #333; margin-right: 3px; padding:3px 4px 3px 4px; background-color: rgba(51, 51, 51, 0.05); border: 1px solid rgba(51, 51, 51, 0.25); border-radius: 5px;}
 .crnrstn_general_post_recent_activity_datestamp p       { font-family: "Courier New", Courier, monospace; font-size: 14px; padding: 20px 0 0 0;}
 
 .crnrstn_general_dagger_key_shell                   { width: 100%; padding:0;}
