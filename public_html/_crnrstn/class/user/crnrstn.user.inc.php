@@ -2889,15 +2889,6 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function initSOAP_tunnelEncryptProfile($SOAP_endpoint, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override){
-
-        $this->secret_key_override_ARRAY[$this->hash($SOAP_endpoint)] = $secret_key_override;
-        $this->cipher_override_ARRAY[$this->hash($SOAP_endpoint)] = $cipher_override;
-        $this->hmac_algorithm_override_ARRAY[$this->hash($SOAP_endpoint)] = $hmac_algorithm_override;
-        $this->options_bitwise_override_ARRAY[$this->hash($SOAP_endpoint)] = $options_bitwise_override;
-
-    }
-
     public function SOAP_isset_soap_client(){
 
         if(isset($this->oSoapClient)){

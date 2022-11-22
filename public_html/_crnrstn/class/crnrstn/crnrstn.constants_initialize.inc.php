@@ -43,8 +43,35 @@
 #
 # # C # R # N # R # S # T # N # : : # # ##
 #
+
+/*
 // FIRST GLOBAL SCOPE FUNCTION IN CRNRSTN ::
 // Wednesday April 7, 2021 @ 1424 hrs
+
+SUCCESSFUL INSTALL OF NEW INTEGER CONSTANTS REQUIRES PERFECT INSERTION AT THESE
+TEN (10) LOCATIONS ACROSS FIVE (5) FILES:
+_crnrstn/class/crnrstn/crnrstn.constants_initialize.inc.php [THIS FILE]
+    function crnrstn_constants_init($const_nom)
+
+_crnrstn/class/crnrstn/crnrstn.constants_load.inc.php
+    $CRNRSTN_CONSTANTS_ARRAY = array(...{ADD NEW CONSTANT}...);
+    @define('DEFINE NEW CONSTANT HERE', (int) crnrstn_constants_init('DEFINE NEW CONSTANT HERE'));
+
+_crnrstn/class/crnrstn/crnrstn.performance_regulator.inc.php
+    public function return_constants_string($int_constant)
+    public function return_constants_integer($int_constant_str)
+
+_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php
+    public function return_html_head_asset($const){
+    private function return_output_CRNRSTN_UI_JS($const){
+    private function return_output_CRNRSTN_UI_CSS($const){
+
+_crnrstn/class/ui/crnrstn.content_source_control.inc.php [CHECK HERE FOR ADDING CONSTANT DOCUMENTATION]
+    private function return_resource_profile($resource_constant)
+    public function return_integer_constant_profiles($module_key)
+
+*/
+
 function crnrstn_constants_init($const_nom){
 
     switch($const_nom){
@@ -405,266 +432,254 @@ function crnrstn_constants_init($const_nom){
 
         break;
 
-
         //
-        // 7301-7509
-        // 'CRNRSTN_UI_IMG_BASE64', 'CRNRSTN_UI_IMG_HTML_WRAPPED', 'CRNRSTN_UI_IMG_PNG', 'CRNRSTN_UI_IMG_HTML_WRAPPED'
-        case 'CRNRSTN_UI_SOAP_DATA_TUNNEL':
-
-            return (int) 7301;
-
-        break;
-        case 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL':
-
-            return (int) 7302;
-
-        break;
-        case 'CRNRSTN_UI_IMG_BASE64':
-
-            return (int) 7303;
-
-        break;
-        case 'CRNRSTN_UI_IMG_BASE64_PNG':
-
-            return (int) 7304;
-
-        break;
-        case 'CRNRSTN_UI_IMG_HTML_WRAPPED':
-
-            return (int) 7305;
-
-        break;
-        case 'CRNRSTN_UI_IMG_BASE64_JPEG':
-
-            return (int) 7306;
-
-        break;
-        case 'CRNRSTN_UI_IMG_JPEG':
-
-            return (int) 7307;
-
-        break;
-        case 'CRNRSTN_UI_IMG_PNG':
-
-            return (int) 7308;
-
-        break;
-        case 'CRNRSTN_UI_IMG':
-
-            return (int) 7309;
-
-        break;
-        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
-
-            return (int) 7310;
-
-        break;
-        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
-
-            return (int) 7311;
-
-        break;
-        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
-
-            return (int) 7312;
-
-        break;
-        case 'CRNRSTN_UI_JS_MAIN':
-
-            return (int) 7313;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY':
-
-            return (int) 7314;
-
-        break;
-        case  'CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0':
-
-            return (int) 7315;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1':
-
-            return (int) 7316;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI':
-
-            return (int) 7317;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1':
-
-            return (int) 7318;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE':
-
-            return (int) 7319;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS':
-
-            return (int) 7320;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY':
-
-            return (int) 7321;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
-
-            return (int) 7322;
-
-        break;
+        // 7200-7299
         case 'CRNRSTN_UI_TAG_ANALYTICS':
 
-            return (int) 7323;
+            return (int) 7200;
 
         break;
         case 'CRNRSTN_UI_TAG_ENGAGEMENT':
 
-            return (int) 7324;
+            return (int) 7201;
 
         break;
         case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
 
-            return (int) 7325;
+            return (int) 7202;
 
         break;
         case 'CRNRSTN_UI_COOKIE_PREFERENCE':
 
-            return (int) 7326;
+            return (int) 7203;
 
         break;
         case 'CRNRSTN_UI_COOKIE_YESNO':
 
-            return (int) 7327;
+            return (int) 7204;
 
         break;
         case 'CRNRSTN_UI_COOKIE_NOTICE':
 
-            return (int) 7328;
+            return (int) 7205;
 
         break;
         case 'CRNRSTN_UI_INTERACT':
 
-            return (int) 7329;
+            return (int) 7206;
 
         break;
         case 'CRNRSTN_UI_CSS':
 
-            return (int) 7330;
+            return (int) 7207;
 
         break;
         case 'CRNRSTN_UI_JS':
 
-            return (int) 7331;
+            return (int) 7208;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
+        case 'CRNRSTN_UI_SOAP_DATA_TUNNEL':
 
-            return (int) 7332;
-
-        break;
-        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
-
-            return (int) 7333;
+            return (int) 7209;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
+        case 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL':
 
-            return (int) 7334;
-
-        break;
-        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
-
-            return (int) 7335;
+            return (int) 7210;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
+        case 'CRNRSTN_UI_IMG_BASE64':
 
-            return (int) 7336;
-
-        break;
-        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
-
-            return (int) 7337;
+            return (int) 7211;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+        case 'CRNRSTN_UI_IMG_BASE64_PNG':
 
-            return (int) 7338;
-
-        break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
-
-            return (int) 7339;
+            return (int) 7212;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+        case 'CRNRSTN_UI_IMG_HTML_WRAPPED':
 
-            return (int) 7340;
+            return (int) 7213;
 
         break;
-		case 'CRNRSTN_JS_FRAMEWORK_REACT':
+        case 'CRNRSTN_UI_IMG_BASE64_JPEG':
 
-            return (int) 7341;
+            return (int) 7214;
+
+        break;
+        case 'CRNRSTN_UI_IMG_JPEG':
+
+            return (int) 7215;
+
+        break;
+        case 'CRNRSTN_UI_IMG_PNG':
+
+            return (int) 7216;
+
+        break;
+        case 'CRNRSTN_UI_IMG':
+
+            return (int) 7217;
+
+        break;
+
+        //
+        // 7301-7399
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY':
+
+            return (int) 7301;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0':
+
+            return (int) 7302;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1':
+
+            return (int) 7303;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI':
+
+            return (int) 7304;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1':
+
+            return (int) 7305;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE':
+
+            return (int) 7306;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS':
+
+            return (int) 7307;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY':
+
+            return (int) 7308;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_REACT':
+
+            return (int) 7309;
 
         break;
         case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
 
-            return (int) 7342;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
-
-            return (int) 7343;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
-
-            return (int) 7344;
-
-        break;
-        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX':
-
-            return (int) 7345;
+            return (int) 7310;
 
         break;
         case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
 
-            return (int) 7346;
+            return (int) 7311;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
+
+            return (int) 7312;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
+
+            return (int) 7313;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX':
+
+            return (int) 7314;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
+
+            return (int) 7315;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE':
+
+            return (int) 7316;
+
+        break;
+        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE':
+
+            return (int) 7317;
+
+        break;
+        case 'CRNRSTN_UI_JS_MAIN':
+
+            return (int) 7318;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
+
+            return (int) 7319;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
+
+            return (int) 7320;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
+
+            return (int) 7321;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
+
+            return (int) 7322;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
+
+            return (int) 7323;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
+
+            return (int) 7324;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+
+            return (int) 7325;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
+
+            return (int) 7326;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+
+            return (int) 7327;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+
+            return (int) 7328;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+
+            return (int) 7329;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+
+            return (int) 7330;
 
         break;
 
-        /*
-        CRNRSTN_UI_CSS_MAIN_MOBILE
-        CRNRSTN_UI_CSS_MAIN_TABLET
-        CRNRSTN_UI_CSS_MAIN_DESKTOP
-
-        CRNRSTN_JS_FRAMEWORK_JQUERY
-        CRNRSTN_JS_FRAMEWORK_JQUERY_UI
-        CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE
-        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS
-
-        CRNRSTN_UI_TAG_ANALYTICS
-        CRNRSTN_UI_TAG_ENGAGEMENT
-
-        CRNRSTN_UI_FORM_INTEGRATION_PACKET
-
-        CRNRSTN_UI_COOKIE_PREFERENCE
-        CRNRSTN_UI_COOKIE_YESNO
-        CRNRSTN_UI_COOKIE_NOTICE
-
-        */
-
         //
-        // 7510-7699, 8000-8050
-        // 'CRNRSTN_ASSET_MODE_BASE64', 'CRNRSTN_ASSET_MODE_PNG', 'CRNRSTN_ASSET_MODE_JPEG', 'CRNRSTN_ASSET_MODE_ICO'
-        // 'CRNRSTN_ASSET_MODE_IMG'
+        // 7510-7699
         case 'CRNRSTN_ASSET_MODE_BASE64':
 
             return (int) 7510;

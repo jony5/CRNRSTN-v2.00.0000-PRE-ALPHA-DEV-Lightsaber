@@ -197,11 +197,12 @@ class crnrstn_content_source_controller {
 
                         }
 
-                        if(!isset($profile_ARRAY['INTEGER'])){
+                        $tmp_browser_support_html = '';
+                        if(isset($profile_ARRAY['BROWSER_COMPATIBILITY'])){
 
-                            error_log(__LINE__ . ' csc ['.print_r($profile_ARRAY, true).'].');
+                            $tmp_browser_support_html = '
+                             <div class="crnrstn_resource_constant_browser_support">Supported Browsers: ' . $profile_ARRAY['BROWSER_COMPATIBILITY'] . '</div>';
 
-                            die();
                         }
 
                         $tmp_predefined_constants_html .= '<div class="crnrstn_resource_constant_demo_shell">
@@ -211,7 +212,7 @@ class crnrstn_content_source_controller {
                             <div class="crnrstn_resource_constant_www_source"><a href="#" target="_self">view source</a></div>
                             <div class="crnrstn_resource_constant_www_website">' . $tmp_www_link . '</div>
                             <div class="crnrstn_cb"></div>
-                        </div>
+                        </div>' . $tmp_browser_support_html . '
                         <div class="crnrstn_cb"></div>
                         <div class="crnrstn_resource_constant_description" ' . $tmp_inline_style . '><p>' . $profile_ARRAY['DESCRIPTION'] . '</p></div>
                         <div class="crnrstn_cb_5"></div>
@@ -6638,29 +6639,19 @@ between the server and client can be achieved with minimal effort and maximum da
         }
 
         switch($resource_constant){
-            case CRNRSTN_UI_JS_MAIN:
-
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI JAVASCRIPT';
-                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release off
-                                                    LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
-                                                    for CRNRSTN :: INTERACT UI.';
-                $tmp_output_ARRAY['URL'][] = '';
-
-            break;
-            case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
-                $tmp_output_ARRAY['VERSION'] = '1.11.1';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. 
-                            It makes things like HTML document traversal and manipulation, event handling, animation,
-                            and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
-                            With a combination of versatility and extensibility, jQuery has changed the way that millions
-                            of people write JavaScript.';
+                $tmp_output_ARRAY['VERSION'] = '3.6.1';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. It makes
+                                                    things like HTML document traversal and manipulation, event handling,
+                                                    animation, and Ajax much simpler with an easy-to-use API that works
+                                                    across a multitude of browsers. With a combination of versatility and
+                                                    extensibility, jQuery has changed the way that millions of people
+                                                    write JavaScript.';
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
@@ -6670,6 +6661,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '3.6.0';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. It makes
                                                     things like HTML document traversal and manipulation, event handling,
                                                     animation, and Ajax much simpler with an easy-to-use API that works
@@ -6679,18 +6671,18 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
-            case CRNRSTN_JS_FRAMEWORK_JQUERY:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
-                $tmp_output_ARRAY['VERSION'] = '3.6.1';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. It makes
-                                                    things like HTML document traversal and manipulation, event handling,
-                                                    animation, and Ajax much simpler with an easy-to-use API that works
-                                                    across a multitude of browsers. With a combination of versatility and
-                                                    extensibility, jQuery has changed the way that millions of people
-                                                    write JavaScript.';
+                $tmp_output_ARRAY['VERSION'] = '1.11.1';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. 
+                            It makes things like HTML document traversal and manipulation, event handling, animation,
+                            and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+                            With a combination of versatility and extensibility, jQuery has changed the way that millions
+                            of people write JavaScript.';
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
@@ -6700,6 +6692,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
                 $tmp_output_ARRAY['VERSION'] = '1.13.2';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery UI is a curated set of user interface interactions, effects,
                                                     widgets, and themes built on top of the jQuery JavaScript Library.
                                                     Whether you\'re building highly interactive web applications or you
@@ -6714,6 +6707,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
                 $tmp_output_ARRAY['VERSION'] = '1.12.1';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery UI is a curated set of user interface interactions, effects,
                                                     widgets, and themes built on top of the jQuery JavaScript Library.
                                                     Whether you\'re building highly interactive web applications or you
@@ -6728,6 +6722,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery Mobile';
                 $tmp_output_ARRAY['VERSION'] = '1.4.5';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A Touch-Optimized Web Framework. jQuery Mobile is a HTML5-based user
                                                     interface system designed to make responsive web sites and apps that 
                                                     are accessible on all smartphone, tablet and desktop devices.';
@@ -6740,6 +6735,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script.';
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
@@ -6750,17 +6746,8 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3/v3.4.1';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script plus JQUERY.';
-                $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
-
-            break;
-            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
-
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
-                $tmp_output_ARRAY['VERSION'] = '2.03.3';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script which will load using prototype.js.';
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
@@ -6770,6 +6757,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'React';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A JavaScript library for building user interfaces. React makes it 
                             painless to create interactive UIs. Design simple views for each state in your application, 
                             and React will efficiently update and render just the right components when your data changes.
@@ -6784,11 +6772,26 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Mithril.js';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Mithril.js is a modern client-side JavaScript framework for building 
                             Single Page Applications. It\'s small (&LT; 10kb gzip), fast and provides routing and XHR 
                             utilities out of the box. Mithril.js supports IE11, Firefox ESR, and the last two versions 
                             of Firefox, Edge, Safari, and Chrome. No polyfills required.';
                 $tmp_output_ARRAY['URL'][] = 'https://mithril.js.org/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_BACKBONE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'BACKBONE.JS';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Backbone.js gives structure to web applications by providing models 
+                            with key-value binding and custom events, collections with a rich API of enumerable functions, 
+                            views with declarative event handling, and connects it all to your existing API over a 
+                            RESTful JSON interface.';
+                $tmp_output_ARRAY['URL'][] = 'https://backbonejs.org/';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
@@ -6797,6 +6800,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Prototype';
                 $tmp_output_ARRAY['VERSION'] = '1.7.3';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Prototype takes the complexity out of client-side web programming. 
                             Built to solve real-world problems, it adds useful extensions to the browser scripting 
                             environment and provides elegant APIs around the clumsy interfaces of Ajax and the Document 
@@ -6810,6 +6814,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'script.aculo.us';
                 $tmp_output_ARRAY['VERSION'] = '1.9.0';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'script.aculo.us provides you with easy-to-use, cross-browser user 
                             interface JavaScript libraries to make your web sites and web applications fly.<br><br>
                             What\'s inside? animation framework, drag and drop, Ajax controls DOM utilities, and 
@@ -6818,72 +6823,108 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'http://script.aculo.us/';
 
             break;
-            case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX:
+            case CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX:
+
+                /*
+                MOO.FX FOR PROTOTYPE
+                // THE PROTOTYPE.JS COMPATIBLE FLAVOR
+
+                include the scripts in the following order:
+
+                prototype.js or prototype.lite.js (required)
+                moo.fx.js (required)
+                moo.fx.pack.js (optional)
+                moo.fx.utils.js (optional)
+                moo.fx.accordion.js (optional)
+                moo.fx.transitions.js (optional)
+
+                */
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'MooTools &amp; moo.fx';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'MooTools is a compact, modular, Object-Oriented JavaScript 
-                            framework designed for the intermediate to advanced JavaScript developer. It allows you to 
-                            write powerful, flexible, and cross-browser code with its elegant, well documented, and coherent API.
-                            <br><br>
-                            MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox 
-                            (and its mozilla friends), Opera and Camino.
-                            <br><br>
-                            moo.fx is a superlightweight, ultratiny, megasmall javascript effects library, to be used 
+                $tmp_output_ARRAY['TITLE'] = 'moo.fx';
+                $tmp_output_ARRAY['VERSION'] = '2.0';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'moo.fx is a superlightweight, ultratiny, megasmall javascript effects library, to be used 
                             with prototype.js or the mootools framework.<br><br>
                             It\'s very easy to use, blazing fast, cross-browser, standards compliant, provides controls 
                             to modify any CSS property of any HTML element, including colors, with builtin checks that 
                             won\'t let a user break the effect with multiple, crazy clicks. Optimized to make you write 
                             the lesser code possible, the new moo.fx is so modular you can create any kind of effect 
                             with it.<br><br>
-                            moo.fx is open source, released under the very liberal MIT License, so feel free to do 
+                            moo.fx is open source, released under the very liberal <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT License</a>, so feel free to do 
                             anything you want with it.';
-                $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20140901004420/http://mootools.net/';
-                $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20080109090359/http://moofx.mad4milk.net/#mootools';
+                $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20080430210446/http://moofx.mad4milk.net/';
 
             break;
-            case CRNRSTN_JS_FRAMEWORK_BACKBONE:
+            case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'BACKBONE.JS';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'Backbone.js gives structure to web applications by providing models 
-                            with key-value binding and custom events, collections with a rich API of enumerable functions, 
-                            views with declarative event handling, and connects it all to your existing API over a 
-                            RESTful JSON interface.';
-                $tmp_output_ARRAY['URL'][] = 'https://backbonejs.org/';
+                $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
+                $tmp_output_ARRAY['VERSION'] = '2.03.3';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script which will load using prototype.js.';
+                $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
-            case CRNRSTN_UI_CSS_MAIN_DESKTOP:
+            case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
+                $tmp_output_ARRAY['TITLE'] = 'MooTools MORE';
+                $tmp_output_ARRAY['VERSION'] = '1.6.0';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, internet explorer 6 and 7, Firefox (and its 
+                mozilla friends), Opera and Camino';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Welcome to MooTools More, the official plugin repository for the 
+                MooTools JavaScript Framework. More includes extra features to Core classes and UI. MooTools More makes 
+                MooTools even More awesome.
+                <br><br>
+                MooTools is a collection of JavaScript utilities designed for the 
+                intermediate to advanced JavaScript developer. It allows you to write powerful and flexible code with 
+                its elegant, well documented, and coherent APIs. MooTools code is extensively documented and easy to 
+                read, enabling you to extend the functionality to match your requirements.
+                <br><br>
+                MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox (and its mozilla 
+                friends), Opera and Camino.
+                <br><br>
+                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT license</a> 
+                which gives you the possibility to use them and modify them in every circumstance.';
+                $tmp_output_ARRAY['URL'][] = 'https://mootools.net/more/docs/1.6.0';
+                $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-more';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'MooTools CORE';
+                $tmp_output_ARRAY['VERSION'] = '1.6.0';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, internet explorer 6 and 7, Firefox (and its 
+                mozilla friends), Opera and Camino';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'MooTools is a compact, modular, Object-Oriented JavaScript framework 
+                designed for the intermediate to advanced JavaScript developer. It allows you to write powerful, 
+                flexible, and cross-browser code with its elegant, well documented, and coherent API.
+                <br><br>
+                MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox (and its mozilla 
+                friends), Opera and Camino.
+                <br><br>
+                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT license</a> 
+                which gives you the possibility to use them and modify them in every circumstance.';
+                $tmp_output_ARRAY['URL'][] = 'https://mootools.net/core/docs/1.6.0';
+                $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-core';
+
+            break;
+            case CRNRSTN_UI_JS_MAIN:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI/UX JS';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for CRNRSTN :: INTERACT UI.';
-                $tmp_output_ARRAY['URL'][] = '';
-
-            break;
-            case CRNRSTN_UI_CSS_MAIN_TABLET:
-
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
-                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for CRNRSTN :: INTERACT UI.';
-                $tmp_output_ARRAY['URL'][] = '';
-
-            break;
-            case CRNRSTN_UI_CSS_MAIN_MOBILE:
-
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile Device Stylesheet';
-                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, Firefox, Chrome.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release off
+                                                    LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
+                                                    for CRNRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
@@ -6893,6 +6934,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Simple Grid';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Responsive; your website will 
                             display beautifully, no matter the device or screen type. Lightweight; the CSS is super 
                             light, so you won’t have to worry about adding to page load times. Simple; Simple Grid is 
@@ -6911,6 +6953,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
                             workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
                             two variants: 12 and 16 columns, which can be used separately or in tandem.';
@@ -6923,6 +6966,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Foundation';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The most advanced responsive 
                             front-end framework in the world. A Framework for any device, medium, and accessibility. 
                             Foundation is a family of responsive front-end frameworks that make it easy to design 
@@ -6938,6 +6982,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'HTML5 Boilerplate';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The web\'s most popular front-end template, HTML5 Boilerplate helps 
                             you build fast, robust, and adaptable web apps or sites. Kick-start your project with the 
                             combined knowledge and effort of 100s of developers, all in one little package.';
@@ -6950,6 +6995,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Responsive Grid System';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Spectacularly Easy Responsive 
                             Design. The Responsive Grid System isn\'t a framework. It\'s not a boilerplate either. It\'s 
                             a quick, easy &amp; flexible way to create a responsive web site.';
@@ -6962,6 +7008,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
                             it\'s entirely based on percentages.';
@@ -6974,6 +7021,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Dead Simple Grid';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Dead Simple Grid is a responsive CSS 
                             grid micro framework that is just that. Dead simple. It\'s the Malevich\'s Black Square of
                             grid frameworks. It is tiny (about 250 bytes of CSS) and without dependencies, has only two
@@ -6990,6 +7038,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'SKELETON';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A dead simple, responsive boilerplate. Light as a feather at ~400 
                             lines &amp; built with mobile in mind. Styles designed to be a starting point, not a UI framework.';
                 $tmp_output_ARRAY['URL'][] = 'http://getskeleton.com/';
@@ -7001,10 +7050,55 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'RWD GRID';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Responsive Grid System for your Next Project. 2kb, Mobile First 
                             Grid System, HTML5 Boilerplate Head, 960grid like naming convention,IE8+, Firefox, Chrome, 
                             Safari, Opera, PSD Grid & included, Free to use and Abuse.';
                 $tmp_output_ARRAY['URL'][] = 'http://rwdgrid.com/';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_DESKTOP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['URL'][] = '';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_TABLET:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['URL'][] = '';
+
+            break;
+            case CRNRSTN_UI_CSS_MAIN_MOBILE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile Device Stylesheet';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['URL'][] = '';
+
+            break;
+            default:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'UNKNOWN RESOURCE';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'UNKNOWN RESOURCE';
+                $tmp_output_ARRAY['URL'][] = '';
 
             break;
 
@@ -7061,7 +7155,7 @@ between the server and client can be achieved with minimal effort and maximum da
         CRNRSTN_JS_FRAMEWORK_PROTOTYPE
         CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
         CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
-        CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX
+        CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX
         CRNRSTN_JS_FRAMEWORK_BACKBONE
 
         React js
@@ -7100,18 +7194,21 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 // 25
                 // MASTER CLIENT META ASSET ARRAY (CSS, JS)
-                $tmp_resource_ctrl_ARRAY = array(CRNRSTN_UI_JS_MAIN, CRNRSTN_JS_FRAMEWORK_JQUERY,
+                $tmp_resource_ctrl_ARRAY = array(CRNRSTN_JS_FRAMEWORK_JQUERY,
                     CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0, CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
-                    CRNRSTN_JS_FRAMEWORK_JQUERY_UI, CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE,
-                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY,
-                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3, CRNRSTN_JS_FRAMEWORK_REACT,
-                    CRNRSTN_JS_FRAMEWORK_MITHRIL, CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
-                    CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX, CRNRSTN_JS_FRAMEWORK_BACKBONE, CRNRSTN_UI_CSS_MAIN_DESKTOP,
-                    CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE, CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID,
-                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_FOUNDATION,
-                    CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE, CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM,
-                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC, CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID,
-                    CRNRSTN_CSS_FRAMEWORK_SKELETON, CRNRSTN_CSS_FRAMEWORK_RWDGRID);
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_UI, CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS,
+                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY, CRNRSTN_JS_FRAMEWORK_REACT,
+                    CRNRSTN_JS_FRAMEWORK_MITHRIL, CRNRSTN_JS_FRAMEWORK_BACKBONE, CRNRSTN_JS_FRAMEWORK_PROTOTYPE,
+                    CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS, CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX,
+                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3,
+                    CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE, CRNRSTN_UI_JS_MAIN,
+                    CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM,
+                    CRNRSTN_CSS_FRAMEWORK_FOUNDATION, CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE,
+                    CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC,
+                    CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_SKELETON,
+                    CRNRSTN_CSS_FRAMEWORK_RWDGRID, CRNRSTN_UI_CSS_MAIN_DESKTOP,
+                    CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE);
 
                 $tmp_output_ARRAY = $this->return_resource_profile($tmp_resource_ctrl_ARRAY);
 

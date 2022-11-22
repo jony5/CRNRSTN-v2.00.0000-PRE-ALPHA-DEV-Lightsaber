@@ -601,9 +601,31 @@ class crnrstn_performance_regulator{
 
     public function return_constants_integer($int_constant_str){
 
-        //
-        // WORK IN PROGRESS.
-        // NEED TO TAKE STRING $int_constant_str AND RETURN INTEGER CONSTANT CRNRSTN_RESOURCE_ALL
+        /*
+        SUCCESSFUL INSTALL OF NEW INTEGER CONSTANTS REQUIRES PERFECT INSERTION AT THESE
+        TEN (10) LOCATIONS ACROSS FIVE (5) FILES:
+        _crnrstn/class/crnrstn/crnrstn.constants_initialize.inc.php
+            function crnrstn_constants_init($const_nom)
+
+        _crnrstn/class/crnrstn/crnrstn.constants_load.inc.php
+            $CRNRSTN_CONSTANTS_ARRAY = array(...{ADD NEW CONSTANT}...);
+            @define('DEFINE NEW CONSTANT HERE', (int) crnrstn_constants_init('DEFINE NEW CONSTANT HERE'));
+
+        _crnrstn/class/crnrstn/crnrstn.performance_regulator.inc.php [THIS FILE]
+            public function return_constants_string($int_constant)
+            public function return_constants_integer($int_constant_str)
+
+        _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php
+            public function return_html_head_asset($const){
+            private function return_output_CRNRSTN_UI_JS($const){
+            private function return_output_CRNRSTN_UI_CSS($const){
+
+        _crnrstn/class/ui/crnrstn.content_source_control.inc.php [CHECK HERE FOR ADDING CONSTANT DOCUMENTATION]
+            private function return_resource_profile($resource_constant)
+            public function return_integer_constant_profiles($module_key)
+
+        */
+
         $tmp_int_out = false;
 
         //
@@ -1035,9 +1057,19 @@ class crnrstn_performance_regulator{
                 $tmp_int_out = CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS;
 
             break;
-            case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX':
+            case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX':
 
-                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX;
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX;
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE;
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE;
 
             break;
             case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
@@ -1483,6 +1515,31 @@ class crnrstn_performance_regulator{
 
     public function return_constants_string($int_constant){
 
+        /*
+        SUCCESSFUL INSTALL OF NEW INTEGER CONSTANTS REQUIRES PERFECT INSERTION AT THESE
+        TEN (10) LOCATIONS ACROSS FIVE (5) FILES:
+        _crnrstn/class/crnrstn/crnrstn.constants_initialize.inc.php
+            function crnrstn_constants_init($const_nom)
+
+        _crnrstn/class/crnrstn/crnrstn.constants_load.inc.php
+            $CRNRSTN_CONSTANTS_ARRAY = array(...{ADD NEW CONSTANT}...);
+            @define('DEFINE NEW CONSTANT HERE', (int) crnrstn_constants_init('DEFINE NEW CONSTANT HERE'));
+
+        _crnrstn/class/crnrstn/crnrstn.performance_regulator.inc.php [THIS FILE]
+            public function return_constants_string($int_constant)
+            public function return_constants_integer($int_constant_str)
+
+        _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php
+            public function return_html_head_asset($const){
+            private function return_output_CRNRSTN_UI_JS($const){
+            private function return_output_CRNRSTN_UI_CSS($const){
+
+        _crnrstn/class/ui/crnrstn.content_source_control.inc.php [CHECK HERE FOR ADDING CONSTANT DOCUMENTATION]
+            private function return_resource_profile($resource_constant)
+            public function return_integer_constant_profiles($module_key)
+
+        */
+
         $tmp_str_out = '';
 
         if(in_array($int_constant, $this->system_integer_meta_lookup_ARRAY)){
@@ -1907,9 +1964,19 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS';
 
             break;
-            case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX:
+            case CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX:
 
-                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MOOFX';
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_BACKBONE:

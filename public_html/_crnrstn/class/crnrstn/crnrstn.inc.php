@@ -998,6 +998,12 @@ class crnrstn {
 
     public function device_type_bit(){
 
+        if($this->oCRNRSTN_USR->device_type_bit == 0){
+
+            return CRNRSTN_UI_DESKTOP;
+
+        }
+
         return $this->oCRNRSTN_USR->device_type_bit;
 
     }
@@ -3797,7 +3803,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function get_resource_submitted($input_field_name, $http_transport_protocol = 'POST'){
 
-        if (is_array($http_transport_protocol)) {
+        if(is_array($http_transport_protocol)){
 
             return '';
 
@@ -3805,7 +3811,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $http_channel_upper = strtoupper($http_transport_protocol);
 
-        if ($http_transport_protocol != 'POST') {
+        if($http_transport_protocol != 'POST'){
 
             $http_transport_protocol = $this->string_sanitize($http_channel_upper, 'http_protocol_simple');
 
@@ -3818,8 +3824,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             }
 
         }
-
-        //$input_field_name, $http_transport_protocol ['POST', 'GET']
 
     }
 
@@ -3835,6 +3839,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_head_html_output = '';
 
+        //
+        // CHECK FOR SPOOL REQUEST...NO OUTPUT. NO FLAG.
         if($spool_for_output){
 
             $this->system_head_html_constants_spool_ARRAY[] = $resource_constant;
@@ -3844,7 +3850,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         //
-        // CHECK FOOTER ARRAY FOR CSS/JS DEPENDENCIES
+        // CHECK *FOOTER* SPOOL ARRAY FOR CSS/JS DEPENDENCIES...AND FLAG FOR OUTPUT.
         foreach($this->system_footer_html_constants_spool_ARRAY as $index => $int_const){
 
             switch($int_const){
@@ -3874,6 +3880,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
+        //
+        // CHECK *HEAD* SPOOL ARRAY...AND FLAG FOR OUTPUT.
         foreach($this->system_head_html_constants_spool_ARRAY as $index => $int_const){
 
             if(!isset($this->html_head_build_flag_ARRAY[$int_const])){
@@ -3884,6 +3892,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
+        //
+        // CHECK FOR METHOD CALL PASSED RESOURCE PARAM...AND FLAG FOR OUTPUT.
         if(isset($resource_constant)){
 
             if(!isset($this->html_head_build_flag_ARRAY[$resource_constant])){
@@ -3894,9 +3904,88 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
+        //
+        // HO!...ASSEMBLE!...ALL FLAGGED RESOURCES.
         foreach($this->html_head_build_flag_ARRAY as $const => $val){
 
             $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($const);
+
+        }
+
+        $tmp_load_crnrstn_interact_ui = true;
+        $tmp_crnrstn_noncompatible_ARRAY = array(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
+            CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE,
+            CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3);
+
+        foreach($tmp_crnrstn_noncompatible_ARRAY as $index => $non_compatible){
+
+            if(isset($this->html_head_build_flag_ARRAY[$non_compatible])){
+
+                $tmp_load_crnrstn_interact_ui = false;
+
+            }
+
+        }
+
+        //
+        // CRNRSTN :: INTERACT UI
+        if($tmp_load_crnrstn_interact_ui){
+
+            //
+            // CRNRSTN :: CSS
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
+
+                $this->html_footer_build_flag_ARRAY[$this->device_type_bit()] = 1;
+
+                switch($this->device_type_bit()){
+                    case CRNRSTN_UI_MOBILE:
+
+                        $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
+
+                    break;
+                    case CRNRSTN_UI_TABLET:
+
+                        $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
+
+                    break;
+                    case CRNRSTN_UI_DESKTOP:
+                    default:
+
+                        $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
+
+                    break;
+
+                }
+
+            }
+
+            //
+            // JQUERY + JQUERY UI
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0]) &&!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])){
+
+                $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
+                $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY_UI);
+
+            }
+
+            //
+            // CRNRSTN :: JS
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+
+                $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
+                $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_JS_MAIN);
+
+            }
+
+            //
+            // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL]) ){
+
+                $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+                $tmp_head_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+            }
+
 
         }
 
@@ -3906,6 +3995,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function system_output_footer_html($resource_constant = NULL, $spool_for_output = false){
 
+        //
+        // CHECK FOR SPOOL REQUEST...NO OUTPUT. NO FLAG.
         if($spool_for_output){
 
             $this->system_footer_html_constants_spool_ARRAY[] = $resource_constant;
@@ -3917,7 +4008,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $tmp_client_packet_output = '';
 
         //
-        // BASIC CLEAN UP FOR RESOURCES SPOOLED FOR <HEAD> BUT NOT OUTPUTTED.
+        // BASIC CLEAN UP FOR UNBUILT RESOURCES SPOOLED FOR <HEAD>. NOT YET OUTPUTTED...BUT COULD HAVE BEEN.
         foreach($this->system_head_html_constants_spool_ARRAY as $index => $int_const){
 
             //
@@ -4033,12 +4124,116 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        //
-        // SSDTLA SUPPORT :: LAST OUTPUT
-        if((isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP]) || isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET]) || isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])) && isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+        $tmp_load_crnrstn_interact_ui = true;
+        $tmp_crnrstn_noncompatible_ARRAY = array(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
+        CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE,
+        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3);
 
-            $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
-            $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+        foreach($tmp_crnrstn_noncompatible_ARRAY as $index => $non_compatible){
+
+            if(isset($this->html_head_build_flag_ARRAY[$non_compatible])){
+
+                $tmp_load_crnrstn_interact_ui = false;
+
+            }
+
+        }
+
+        /*
+        REASONS NOT TO LOAD CRNRSTN ::
+        [JQUERY AND PROTOTYPE FRAMEWORKS SHOULD NOT BE RUN TOGETHER.]
+
+        CRNRSTN_JS_FRAMEWORK_PROTOTYPE
+        CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
+        CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX
+        CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE
+        CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE
+        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3
+
+
+        =====
+        JQUERY [AT MOST...ONLY NEED ONE OF THESE TO LOAD AT ANY TIME...EVER]
+        CRNRSTN_JS_FRAMEWORK_JQUERY,
+        CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0,
+        CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
+        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY
+
+        =====
+        CRNRSTN_UI_JS_MAIN,
+
+        CRNRSTN_JS_FRAMEWORK_JQUERY_UI,
+        CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE,
+        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS,
+        ,
+        CRNRSTN_JS_FRAMEWORK_REACT, CRNRSTN_JS_FRAMEWORK_MITHRIL, CRNRSTN_JS_FRAMEWORK_BACKBONE,
+        CRNRSTN_UI_CSS_MAIN_DESKTOP, CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE,
+        CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_FOUNDATION,
+        CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE, CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM,
+        CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC, CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID,
+        CRNRSTN_CSS_FRAMEWORK_SKELETON, CRNRSTN_CSS_FRAMEWORK_RWDGRID
+
+        */
+
+        //
+        // CRNRSTN :: INTERACT UI
+        if($tmp_load_crnrstn_interact_ui){
+
+            //
+            // CRNRSTN :: CSS
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
+
+                $this->html_footer_build_flag_ARRAY[$this->device_type_bit()] = 1;
+
+                switch($this->device_type_bit()){
+                    case CRNRSTN_UI_MOBILE:
+
+                        $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
+
+                    break;
+                    case CRNRSTN_UI_TABLET:
+
+                        $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
+
+                    break;
+                    case CRNRSTN_UI_DESKTOP:
+                    default:
+
+                        $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
+
+                    break;
+
+                }
+
+            }
+
+            //
+            // JQUERY + JQUERY UI
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0]) &&!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])){
+
+                $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
+
+                $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY_UI);
+
+            }
+
+            //
+            // CRNRSTN :: JS
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+
+                $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
+                $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_JS_MAIN);
+
+            }
+
+            //
+            // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL]) ){
+
+                $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+            }
+
 
         }
 
