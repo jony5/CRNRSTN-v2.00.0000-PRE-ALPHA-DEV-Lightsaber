@@ -28,11 +28,11 @@
 .crnrstn_general_post_log_shell li                      { margin: 0; padding: 0;}
 .crnrstn_general_post_recent_activity_shell             { width: 60%; font-size: 20px; padding: 10px 0 10px 0; color: #333;  font-family: Arial, Helvetica, sans-serif;}
 .crnrstn_general_post_recent_activity_date              { font-size: 25px; padding: 0 0 10px 0; font-weight: bold; }
-.crnrstn_general_post_recent_activity_copy p            { padding: 0 0 10px 0; line-height: 27px;}
-.crnrstn_general_post_recent_activity_copy blockquote   { padding: 0 0 10px 0; line-height: 27px; font-size: 90%;}
+.crnrstn_general_post_recent_activity_copy p            { padding: 0 0 10px 0; line-height: 29px;}
+.crnrstn_general_post_recent_activity_copy blockquote   { padding: 0 0 10px 0; line-height: 29px; font-size: 90%;}
 .crnrstn_general_post_recent_activity_datestamp p       { font-family: "Courier New", Courier, monospace; font-size: 14px; padding: 20px 0 0 0;}
 
-.crnrstn_general_dagger_key_shell                   {width: 100%; padding:0;}
+.crnrstn_general_dagger_key_shell                   { width: 100%; padding:0;}
 .crnrstn_general_dagger_key_dag                     { float: left; width:14px;}
 .crnrstn_general_dagger_key_description             { float: left; width:80%; text-align: left; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
 .crnrstn_general_dagger_key_description p           { padding: 0; margin:0; }
