@@ -340,6 +340,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
     <script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/3.6.0/jquery-3.6.1.min.js?v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
+
                             }
 
                         break;
@@ -368,6 +369,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
     <script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/3.6.0/jquery-3.6.0.min.js?v=420.00.' . $tmp_cache_jquery360minjs . '"></script>
 ';
+
                             }
 
                         break;
@@ -390,6 +392,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
     <script src="' . $tmp_http_path  . '?' . $this->oCRNRSTN->session_salt() . '=jquery-1.11.1.min.js&v=420.00.' . $tmp_cache_jquery1111minjs . '"></script>
 ';
+
                             }else{
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
@@ -450,6 +453,7 @@ class crnrstn_system_image_asset_manager {
     <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.structure.min.css&v=420.00.' . $tmp_cache_jqueryuistructuremincss . '">
     <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.min.css&v=420.00.' . $tmp_cache_jqueryuimincss . '">
 ';
+
                             }else{
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
@@ -502,6 +506,7 @@ class crnrstn_system_image_asset_manager {
     <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui-1.12.1/jquery-ui.structure.min.css&v=420.00.' . $tmp_cache_jqueryuistructuremincss . '">
     <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui-1.12.1/jquery-ui.min.css&v=420.00.' . $tmp_cache_jqueryuimincss . '">
 ';
+
                             }else{
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY_1_12['TITLE'] . ' v' . $tmp_ARRAY_1_12['VERSION'] . ' :: css -->
@@ -618,6 +623,7 @@ class crnrstn_system_image_asset_manager {
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY_1_11['TITLE'] . ' v' . $tmp_ARRAY_1_11['VERSION'] . ' :: js [in support of jquery mobile] -->
     <script src="' . $tmp_http_path  . '?' . $this->oCRNRSTN->session_salt() . '=jquery-1.11.1.min.js&v=420.00.' . $tmp_cache_jquery1111minjs . '"></script>
 ';
+
                                 }else{
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY_1_11['TITLE'] . ' v' . $tmp_ARRAY_1_11['VERSION'] . ' :: js [in support of jquery mobile] -->
@@ -635,6 +641,7 @@ class crnrstn_system_image_asset_manager {
     <!-- jquery.mobile 1.4.5 -->
     <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile-1.4.5.min.js&v=420.00.' . $tmp_cache_jquerymobile145minjs . '"></script>
 ';
+
                             }else{
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
@@ -706,8 +713,9 @@ class crnrstn_system_image_asset_manager {
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path . '?'. $this->oCRNRSTN->session_salt() . '=lightbox.min.js&v=420.00.' . $tmp_cache_lightboxminjs . '"></script>
+    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.min.js&v=420.00.' . $tmp_cache_lightboxminjs . '"></script>
 ';
+
                             }else{
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
@@ -752,6 +760,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
     <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-plus-jquery.min.js&v=420.00.' . $tmp_cache_lightboxplusjqueryminjs . '"></script>
 ';
+
                             }else{
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
@@ -941,7 +950,7 @@ class crnrstn_system_image_asset_manager {
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path . '?'. $this->oCRNRSTN->session_salt() . '=2.03.3/js/lightbox.js&v=420.00.' . $tmp_cache_lightboxjs . '"></script>
+    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=2.03.3/js/lightbox.js&v=420.00.' . $tmp_cache_lightboxjs . '"></script>
 ';
                             }else{
 
@@ -7427,7 +7436,7 @@ class crnrstn_system_image_asset_manager {
             $_SESSION['CRNRSTN_' . $this->oCRNRSTN->get_server_config_serial('hash')]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to open ' . $tmp_filepath . ', but ';
             if($resource_file = fopen($tmp_filepath, 'w')){
 
-                $_SESSION['CRNRSTN_'. $this->oCRNRSTN->get_server_config_serial('hash')]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+                $_SESSION['CRNRSTN_' . $this->oCRNRSTN->get_server_config_serial('hash')]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 
                 fwrite($resource_file, $tmp_data_str_out);
                 fclose($resource_file);
@@ -7450,14 +7459,14 @@ class crnrstn_system_image_asset_manager {
                 $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to chmod ' . str_pad($mkdir_mode,'4', '0',STR_PAD_LEFT) . ' the write permissions to related to ' . $tmp_filepath . ', currently [' . $tmp_current_perms . '], but ';
                 if(chmod($tmp_filepath, $mkdir_mode)){
 
-                    $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+                    $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 
                     //
                     // ANOTHER ATTEMPT TO WRITE AFTER MODIFICATION OF FILE PERMISSIONS
                     $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = __CLASS__ . '::' . __METHOD__ . '() attempted to fopen ' . $tmp_filepath . ' after the write permissions to related to same were first chmod to ' . str_pad($mkdir_mode, '4', '0', STR_PAD_LEFT) . '. An attempt to open was again made, but ';
                     if($resource_file = fopen($tmp_filepath, 'w')){
 
-                        $_SESSION['CRNRSTN_'. $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+                        $_SESSION['CRNRSTN_' . $this->oCRNRSTN->config_serial_crc]['CRNRSTN_EXCEPTION_PREFIX'] = '';
 
                         fwrite($resource_file, $tmp_data_str_out);
                         fclose($resource_file);

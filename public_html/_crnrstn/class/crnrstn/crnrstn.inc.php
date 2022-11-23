@@ -3752,7 +3752,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function data_encrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
 
-        //if(in_array(gettype($data), self::$encryptable_data_types_ARRAY)){
         if(isset(self::$encryptable_data_types_ARRAY[gettype($data)])){
 
             $this->total_bytes_encrypted += strlen((string) $data);
@@ -3767,7 +3766,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_data_decrypted = $this->oCRNRSTN_ENV->data_decrypt($data, $encryption_channel, $cipher_override, $secret_key_override, $hmac_algorithm_override, $options_bitwise_override);
 
-        //if(in_array(gettype($tmp_data_decrypted), self::$encryptable_data_types_ARRAY)){
         if(isset(self::$encryptable_data_types_ARRAY[gettype($tmp_data_decrypted)])){
 
             $this->total_bytes_decrypted += strlen((string) $tmp_data_decrypted);
@@ -3977,16 +3975,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_JS_MAIN);
 
             }
-
-            //
-            // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL]) ){
-
-                $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
-                $tmp_head_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
-
-            }
-
 
         }
 
