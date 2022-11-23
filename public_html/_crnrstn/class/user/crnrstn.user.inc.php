@@ -1985,84 +1985,65 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
             case 'documentation':
 
                 //$this->oCRNRSTN_UX->sync_back_link_state();
-
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
-                return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_documentation();
+                return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_documentation();
 
             break;
             case 'bassdrive_inject':
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
-                return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_inject_bassdrive();
+                return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_inject_bassdrive();
 
             break;
             case 'bassdrive_popup':
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
-                return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_bassdrive_popup();
+                return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_bassdrive_popup();
 
             break;
             case 'signin':
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
-                return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin();
+                return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin();
 
             break;
             case 'signin_m':
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
-                return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin_m();
+                return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin_m();
 
             break;
             case 'mit_license':
 
                 //$this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
-                return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_mit_license();
+                return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_mit_license();
 
             break;
             case 'css_validator':
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
-                return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_css_validator();
+                return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_css_validator();
 
             break;
             case 'css_validator_profile':
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
-                return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_css_validator_profile();
+                return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_css_validator_profile();
 
             break;
             case 'dashboard':
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
                 if($this->is_account_valid()){
 
-                    return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_dashboard();
+                    return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_dashboard();
 
                 }else{
 
-                    return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin();
+                    return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin();
 
                 }
 
@@ -2071,18 +2052,16 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 $this->oCRNRSTN_UX->sync_back_link_state();
 
-                $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
                 error_log(__LINE__ . ' user switch(config_wordpress) get class[' . get_class($this->oCRNRSTN_AUTH) . ']');
                 if($this->is_account_valid()){
-                    error_log(__LINE__ . ' user switch(config_wordpress) is_valid return true');
 
-                    return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_config_wordpress();
+                    error_log(__LINE__ . ' user switch(config_wordpress) is_valid return true');
+                    return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_config_wordpress();
 
                 }else{
-                    error_log(__LINE__ . ' user switch(config_wordpress) is_valid return false');
 
-                    return $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin();
+                    error_log(__LINE__ . ' user switch(config_wordpress) is_valid return false');
+                    return $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_html_doc_signin();
 
                 }
 

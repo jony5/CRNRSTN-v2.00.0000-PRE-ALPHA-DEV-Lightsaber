@@ -283,13 +283,10 @@ class crnrstn_data_tunnel_services_manager{
 
     public function retrieve_interact_ui_module_hash($module_nom){
 
-        $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
-
         switch($module_nom) {
             case 'crnrstn_interact_ui_documentation_content_src':
 
                 $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
-                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();
                 $tmp_module_data = $module_nom.$tmp_module_page_key;
 
             break;
@@ -298,35 +295,19 @@ class crnrstn_data_tunnel_services_manager{
                 //
                 // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
                 $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
-                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_mit_license();
                 $tmp_module_data = $module_nom.$tmp_module_page_key;
 
             break;
+            case 'crnrstn_interact_ui_search_src':
+            case 'crnrstn_interact_ui_messenger_src':
+            case 'crnrstn_interact_ui_system_footer_src':
             case 'crnrstn_interact_ui_documentation_side_nav_src':
 
                 //
-                // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
-                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
-                $tmp_module_data = $module_nom;
-
-            break;
-            case 'crnrstn_interact_ui_system_footer_src':
-
-                //
-                // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
-                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer_generic();
-                $tmp_module_data = $module_nom;
-
-            break;
-            case 'crnrstn_interact_ui_search_src':
-
-                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_search();
-                $tmp_module_data = $module_nom;
-
-            break;
-            case 'crnrstn_interact_ui_messenger_src':
-
-                //$tmp_module_data = $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_messenger();
+                // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME, BUT $module_nom WILL
+                // ALWAYS BE STABLE. WILL HAVE MAYBE TTL THESE FOR UPDATES?...WILL TTL-ING
+                // THE FOOTER RESET DISPLAYED WALL TIME TO ZERO? I THINK THE SSDTLA HOLDS
+                // THE WALL TIME SOURCE...SO SHOULD BE STABLE.
                 $tmp_module_data = $module_nom;
 
             break;
