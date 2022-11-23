@@ -6875,7 +6875,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             won\'t let a user break the effect with multiple, crazy clicks. Optimized to make you write 
                             the lesser code possible, the new moo.fx is so modular you can create any kind of effect 
                             with it.<br><br>
-                            moo.fx is open source, released under the very liberal <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT License</a>, so feel free to do 
+                            moo.fx is open source, released under the very liberal <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT License</a>, so feel free to do 
                             anything you want with it.';
                 $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20080430210446/http://moofx.mad4milk.net/';
 
@@ -6887,7 +6887,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.03.3';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script which will load using prototype.js.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script (circa 2008) which will load using prototype.js.';
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
@@ -6911,7 +6911,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox (and its mozilla 
                 friends), Opera and Camino.
                 <br><br>
-                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT license</a> 
+                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT license</a> 
                 which gives you the possibility to use them and modify them in every circumstance.';
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/more/docs/1.6.0';
                 $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-more';
@@ -6932,7 +6932,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox (and its mozilla 
                 friends), Opera and Camino.
                 <br><br>
-                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT license</a> 
+                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT license</a> 
                 which gives you the possibility to use them and modify them in every circumstance.';
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/core/docs/1.6.0';
                 $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-core';
