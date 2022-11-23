@@ -6945,7 +6945,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI/UX JS';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, Firefox, Chrome.';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release off
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release of
                                                     LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
                                                     for CRNRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
