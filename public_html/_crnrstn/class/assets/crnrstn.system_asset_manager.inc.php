@@ -1608,7 +1608,6 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
 
-                        
                         /*
                         [Tue Nov 22 18:33:14.786202 2022] [:error] [pid 49942] [client 172.16.225.1:55559] 
                         1557 asset mgr 
@@ -1619,7 +1618,8 @@ class crnrstn_system_image_asset_manager {
                             [VERSION] => 0.00.0000\n    
                             [BROWSER_COMPATIBILITY] => \n    
                             [DESCRIPTION] => The web's most popular front-end template, HTML5 Boilerplate helps \n                            you build fast, robust, and adaptable web apps or sites. Kick-start your project with the \n                            combined knowledge and effort of 100s of developers, all in one little package.\n    [URL] => Array\n        (\n            [0] => https://html5boilerplate.com/\n        )\n\n)\n
- 
+                            [URL][0]...
+
                         */
 
                         $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);

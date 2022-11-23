@@ -52,7 +52,6 @@ class crnrstn_content_generator {
 
     protected $oLogger;
     public $oCRNRSTN;
-    private static $oCSController;
 
     public $page_content_ARRAY = array();
     public $page_uri;
@@ -72,21 +71,17 @@ class crnrstn_content_generator {
 
         $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
-        //
-        // INSTANTIATE CONTENT SOURCE CONTROLLER
-        self::$oCSController = new crnrstn_content_source_controller($this->oCRNRSTN, $oCRNRSTN_UI_ASSEMBLER, $module_page_key);
-
 	}
 
     public function return_resource_profile($resource_constant){
 
-        return self::$oCSController->return_resource_profile($resource_constant);
+        return $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->return_resource_profile($resource_constant);
 
     }
 
 	public function initialize_page(){
 
-	    $tmp_serial = $this->oCRNRSTN->hash(self::$oCSController->module_key);
+	    $tmp_serial = $this->oCRNRSTN->hash($this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->module_key);
 
 	    $this->page_content_ARRAY[] = $tmp_serial;
 	    $this->page_serial = $tmp_serial;
@@ -97,19 +92,13 @@ class crnrstn_content_generator {
 
     public function return_page_serial(){
 
-	    return self::$oCSController->return_page_serial();
+	    return $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->return_page_serial();
 	    
     }
 
-//    public function returnLoadedBitch(){
-//
-//        return self::$oCSController->returnLoadedBitch();
-//
-//    }
+    public function load_page($module_page_key){
 
-    public function load_page(){
-
-        self::$oCSController->load_page();
+        $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->load_page($module_page_key);
 
     }
 
@@ -145,7 +134,7 @@ class crnrstn_content_generator {
                     $tmp_seq_key = $this->oCRNRSTN->generate_new_key(10);
                     $this->content_load_sequence_ARRAY[] = $tmp_seq_key;
 
-                    if($attribute_00==''){
+                    if($attribute_00 == ''){
 
                         $attribute_00 = ' ';
 

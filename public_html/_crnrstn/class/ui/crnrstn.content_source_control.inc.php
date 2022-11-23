@@ -73,7 +73,13 @@ class crnrstn_content_source_controller {
 
 	}
 
-	public function load_page(){
+	public function load_page($module_key = NULL){
+
+	    if(isset($module_key)){
+
+            $this->module_key = $module_key;
+
+        }
 
         $return_true_str = 'This function always returns TRUE.';
         $tmp_path = '';
@@ -6544,7 +6550,7 @@ between the server and client can be achieved with minimal effort and maximum da
                     $tmp_example_execute_file = '/common/inc/examples/isClientMobile_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
 
-                    break;
+                break;
                 case '/suite_methods/multi_language/returnpgnate_currentpage/':
                     $tmp_categ_name = 'Multi-Language Support';
                     $tmp_subcateg_name = 'Multi-Language Support';            # MATCHES SECTION TITLE LINK COPY

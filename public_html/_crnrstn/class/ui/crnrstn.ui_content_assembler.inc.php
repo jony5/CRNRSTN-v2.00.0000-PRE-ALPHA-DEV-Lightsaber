@@ -67,7 +67,11 @@ class crnrstn_ui_content_assembler {
 
         $tmp_page_path = $_SERVER['SCRIPT_NAME'];
         $tmp_page_path = str_replace("index.php", "", $tmp_page_path);
-        $tmp_page_path = str_replace($this->oCRNRSTN->crnrstn_http_endpoint(), "", $tmp_page_path);
+
+        //
+        // THE CRNRSTN :: CONSTRUCTOR HAS THIS CLASS AS A DEPENDENCY. WE DON'T HAVE
+        // CONFIG YET...TO SUPPORT THE NEXT LINE.
+        //$tmp_page_path = str_replace($this->oCRNRSTN->crnrstn_http_endpoint(), "", $tmp_page_path);
 
         self::$page_path = $tmp_page_path;
 
@@ -88,7 +92,7 @@ class crnrstn_ui_content_assembler {
 
         }
 
-        self::$oContentGen->load_page();
+        $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->load_page($tmp_module_page_key);
 
         return self::$oContentGen->return_page_serial();
 
@@ -96,15 +100,7 @@ class crnrstn_ui_content_assembler {
 
     public function return_resource_profile($resource_constant){
 
-	    if(!isset(self::$oContentGen)){
-
-            //
-            // INSTANTIATE CONTENT GENERATOR
-            self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this);
-
-        }
-
-        return self::$oContentGen->return_resource_profile($resource_constant);
+        $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->return_resource_profile($resource_constant);
 
     }
 
@@ -113,12 +109,6 @@ class crnrstn_ui_content_assembler {
 	    return self::$page_path;
 
     }
-
-//    public function load_page(){
-//
-//        self::$oContentGen->load_page();
-//
-//    }
 
     public function index_page(){
 

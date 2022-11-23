@@ -58,6 +58,7 @@ class crnrstn {
     public $oCRNRSTN_USR;
     public $oCRNRSTN_TRM; // TODO :: INSTANTIATION IS CURRENTLY BOUND TO THIRD PARTY SERVICE; UNBIND BEFORE USE. Thursday, August 18, 2022 @ 2134 hrs
     public $oCRNRSTN_UI_HTML_MGR;
+    public $oCRNRSTN_CS_CONTROLLER;
     private static $oCRNRSTN_CONFIG_MGR;
     public $oMYSQLI_CONN_MGR;
     private static $oLog_ProfileManager;
@@ -205,7 +206,6 @@ class crnrstn {
 
         $this->starttime = $_SERVER['REQUEST_TIME_FLOAT'];
 
-
         //
         // FORCE RE-SERIALIZATION OF SESSION WITH CONFIG FILE CHANGE. THE (P)SSDTLA (THERE SHOULD ALSO BE A
         // COOKIE TENTACLE) CAN SUPPORT PRESERVATION OF THE SESSION EVEN WITH CHANGE IN PHPSESSION ID DUE TO
@@ -330,7 +330,6 @@ class crnrstn {
 
         $_SESSION['CRNRSTN_ENV_KEY_' . $this->config_serial_hash] = $env_key;
 
-
         //
         // SPECIAL USE
         $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = '';
@@ -384,7 +383,7 @@ class crnrstn {
 
         try {
 
-            if (!array_key_exists('SERVER_ADDR', $_SERVER)) {
+            if(!array_key_exists('SERVER_ADDR', $_SERVER)){
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -393,49 +392,59 @@ class crnrstn {
 
                 throw new Exception('CRNRSTN :: initialization error :: $_SERVER[] super global has not been initialized. If calling this program via script, try using cURL (/usr/bin/curl). SERVER_NAME(SERVER_ADDR)-> ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ').');
 
-            } else {
-
-                //
-                // TODO :: REARCHITECT THIS INTO CRNRSTN :: ADMINISTRATOR SETTINGS CONFIGURATION AND MANAGEMENT
-                // SOURCE :: https://datatracker.ietf.org/doc/html/rfc8017#appendix-B
-                // INITIALIZE ARRAY OF OPENSSL DIGEST METHODS (RECOMMENDED BY PKCS #1: RSA Cryptography
-                // Specifications Version 2.2). For the EMSA-PKCS1-v1_5 encoding method, SHA-224, SHA-256,
-                // SHA-384, SHA-512, SHA-512/224, and SHA-512/256 are RECOMMENDED for new applications.
-                // MD2, MD5, and SHA-1 are recommended only for compatibility with existing applications
-                // based on PKCS #1 v1.5.
-                self::$openssl_preferred_digest_ARRAY = array('sha256', 'sha224', 'sha384', 'sha512', 'sha512-224', 'sha512-256', 'RSA-SHA224', 'RSA-SHA256', 'RSA-SHA384', 'RSA-SHA512', 'RSA-SHA512/224', 'RSA-SHA512/256', 'md5', 'sha1', 'RSA-MD5', 'RSA-SHA1');
-
-                $this->initialize_digest_profile();
-
-                //
-                // STORE CONFIG SERIAL KEY AND INITIALIZE MATCH COUNT
-                $_SESSION['CRNRSTN_ERROR_PREFIX_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = '';
-
-                //
-                // IF EARLY ENV DETECTION DURING define_env_resource() DUE TO SPECIFIED required_detection_matches(),
-                // STORE ENV HERE:
-                self::$server_env_key_hash_ARRAY[$this->config_serial_hash] = '';
-
-                //
-                // INITIALIZE DATABASE CONNECTION MANAGER.
-                $this->oMYSQLI_CONN_MGR = new crnrstn_mysqli_conn_manager($this);
-                $this->error_log('Instantiating mysqli database connection manager object. Ready to configure database authentication profiles.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                //
-                // INITIALIZE IP ADDRESS SECURITY MANAGER
-                $this->error_log('Instantiating IP security manager object with client IP of [' . $_SERVER['REMOTE_ADDR'] . '] and phpsessionid[' . session_id() . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-                $this->oCRNRSTN_IPSECURITY_MGR = new crnrstn_ip_auth_manager($this);
-
             }
 
-        } catch (Exception $e) {
+            //
+            // TODO :: REARCHITECT THIS INTO CRNRSTN :: ADMINISTRATOR SETTINGS CONFIGURATION AND MANAGEMENT
+            // SOURCE :: https://datatracker.ietf.org/doc/html/rfc8017#appendix-B
+            // INITIALIZE ARRAY OF OPENSSL DIGEST METHODS (RECOMMENDED BY PKCS #1: RSA Cryptography
+            // Specifications Version 2.2). For the EMSA-PKCS1-v1_5 encoding method, SHA-224, SHA-256,
+            // SHA-384, SHA-512, SHA-512/224, and SHA-512/256 are RECOMMENDED for new applications.
+            // MD2, MD5, and SHA-1 are recommended only for compatibility with existing applications
+            // based on PKCS #1 v1.5.
+            self::$openssl_preferred_digest_ARRAY = array('sha256', 'sha224', 'sha384', 'sha512', 'sha512-224', 'sha512-256', 'RSA-SHA224', 'RSA-SHA256', 'RSA-SHA384', 'RSA-SHA512', 'RSA-SHA512/224', 'RSA-SHA512/256', 'md5', 'sha1', 'RSA-MD5', 'RSA-SHA1');
+
+            $this->initialize_digest_profile();
+
+            //
+            // STORE CONFIG SERIAL KEY AND INITIALIZE MATCH COUNT
+            $_SESSION['CRNRSTN_ERROR_PREFIX_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = '';
+
+            //
+            // IF EARLY ENV DETECTION DURING define_env_resource() DUE TO SPECIFIED required_detection_matches(),
+            // STORE ENV HERE:
+            self::$server_env_key_hash_ARRAY[$this->config_serial_hash] = '';
+
+            //
+            // INITIALIZE DATABASE CONNECTION MANAGER.
+            $this->oMYSQLI_CONN_MGR = new crnrstn_mysqli_conn_manager($this);
+            $this->error_log('Instantiating mysqli database connection manager object. Ready to configure database authentication profiles.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            //
+            // INITIALIZE IP ADDRESS SECURITY MANAGER
+            $this->error_log('Instantiating IP security manager object with client IP of [' . $_SERVER['REMOTE_ADDR'] . '] and phpsessionid[' . session_id() . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            $this->oCRNRSTN_IPSECURITY_MGR = new crnrstn_ip_auth_manager($this);
+
+            $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
+
+        }catch (Exception $e){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
+
+    }
+
+    private function return_content_source_controller(){
+
+        $tmp_oCRNRSTN_UI_ASSEMBLER = new crnrstn_ui_content_assembler($this);
+
+        //
+        // INSTANTIATE CONTENT SOURCE CONTROLLER
+        return new crnrstn_content_source_controller($this, $tmp_oCRNRSTN_UI_ASSEMBLER);
 
     }
 
@@ -3428,7 +3437,6 @@ class crnrstn {
         //                              return $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $soap_tunnel, $index);
 
     }
-
 
     public function retrieve_data_count($data_key, $data_type_family = 'CRNRSTN::RESOURCE'){
 
@@ -7241,13 +7249,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function return_resource_profile($resource_constant){
 
-        if(!isset($this->oCRNRSTN_UI_HTML_MGR)){
+        /*
+        [Tue Nov 22 18:33:14.786202 2022] [:error] [pid 49942] [client 172.16.225.1:55559]
+        1557 asset mgr
+        Array\n(\n
+            [INTEGER] => 7322\n
+            [STRING] => CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE\n
+            [TITLE] => HTML5 Boilerplate\n
+            [VERSION] => 0.00.0000\n
+            [BROWSER_COMPATIBILITY] => \n
+            [DESCRIPTION] => The web's most popular front-end template, HTML5 Boilerplate helps \n                            you build fast, robust, and adaptable web apps or sites. Kick-start your project with the \n                            combined knowledge and effort of 100s of developers, all in one little package.\n    [URL] => Array\n        (\n            [0] => https://html5boilerplate.com/\n        )\n\n)\n
+            [URL][0]...
 
-            $this->oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
+        */
 
-        }
-
-        return $this->oCRNRSTN_UI_HTML_MGR->return_resource_profile($resource_constant);
+        return $this->oCRNRSTN_CS_CONTROLLER->return_resource_profile($resource_constant);
 
     }
 
