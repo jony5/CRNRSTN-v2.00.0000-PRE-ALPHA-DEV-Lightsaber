@@ -100,7 +100,7 @@ class crnrstn_ui_content_assembler {
 
             //
             // INSTANTIATE CONTENT GENERATOR
-            self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, $tmp_module_page_key);
+            self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this);
 
         }
 
