@@ -1531,8 +1531,8 @@ class crnrstn_performance_regulator{
 
         _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php
             public function return_html_head_asset($const){
-            private function return_output_CRNRSTN_UI_JS($const){
-            private function return_output_CRNRSTN_UI_CSS($const){
+            private function return_output_CRNRSTN_UI_JS($const)
+            private function return_output_CRNRSTN_UI_CSS($const)
 
         _crnrstn/class/ui/crnrstn.content_source_control.inc.php [CHECK HERE FOR ADDING CONSTANT DOCUMENTATION]
             private function return_resource_profile($resource_constant)

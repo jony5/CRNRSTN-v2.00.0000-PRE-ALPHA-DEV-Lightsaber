@@ -71,7 +71,7 @@ class crnrstn_ui_html_manager {
         // PAGE CONTENT AGGREGATION
         $this->oCRNRSTN_UI_ASSEMBLER = new crnrstn_ui_content_assembler($this->oCRNRSTN);
 
-        $channel_selected_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_channel_constants);
+        //$channel_selected_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_channel_constants);
 
 	}
 

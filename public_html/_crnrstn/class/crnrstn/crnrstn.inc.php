@@ -183,7 +183,7 @@ class crnrstn {
     1 :: S :: SSDTL PACKET (SOAP WRAPPED PSSDTL PACKET FOR BROWSER TO TALK LIKE SERVER)
     2 :: J :: PSSDTL PACKET (OPENSSL ENCRYPTED JSON OBJECT)
     3 :: P :: $_SERVER SESSION (PHP SESSION ARRAY SUPER GLOBAL)
-    4 :: C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)
+    4 :: C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT) ...OR BROWSER COOKIE...
     5 :: R :: RUNTIME ONLY
 
     DSJPCR
@@ -425,7 +425,7 @@ class crnrstn {
             $this->error_log('Instantiating IP security manager object with client IP of [' . $_SERVER['REMOTE_ADDR'] . '] and phpsessionid[' . session_id() . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             $this->oCRNRSTN_IPSECURITY_MGR = new crnrstn_ip_auth_manager($this);
-
+            $this->oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
             $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
 
         }catch (Exception $e){

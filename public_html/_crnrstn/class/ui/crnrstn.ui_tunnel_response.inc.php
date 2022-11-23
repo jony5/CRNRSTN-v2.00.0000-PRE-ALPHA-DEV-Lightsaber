@@ -175,7 +175,7 @@ class crnrstn_ui_tunnel_response_manager {
     private function return_interact_ui_ux_profile($output_format = 'xml'){
 
         $tmp_out_str = '';
-        $tmp_oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this->oCRNRSTN);
+
         $tmp_module_ARRAY = $this->return_interact_ui_module_programme('array');
         $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
@@ -228,36 +228,36 @@ class crnrstn_ui_tunnel_response_manager {
                 switch($module_nom){
                     case 'crnrstn_interact_ui_documentation_content_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();  //php
-                        //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
-                        //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
+                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();  //php
+                        //$tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
+                        //$tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
 
                     break;
                     case 'crnrstn_interact_ui_documentation_side_nav_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
-                        //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
-                        //$tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
+                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
+                        //$tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
+                        //$tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
 
                     break;
                     case 'crnrstn_interact_ui_system_footer_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer_generic();
+                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer_generic();
 
                     break;
                     case 'crnrstn_interact_ui_search_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_search();
+                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_search();
 
                     break;
                     case 'crnrstn_interact_ui_messenger_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_messenger();
+                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_messenger();
 
                     break;
                     case 'crnrstn_interact_ui_mit_license_src':
 
-                        $tmp_out_str .= $tmp_oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_mit_license();
+                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_mit_license();
 
                     break;
 
