@@ -7087,7 +7087,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
@@ -7098,7 +7098,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
@@ -7109,7 +7109,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile Device Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for CRNRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
