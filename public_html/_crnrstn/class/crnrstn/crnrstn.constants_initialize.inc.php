@@ -61,7 +61,7 @@ _crnrstn/class/crnrstn/crnrstn.performance_regulator.inc.php
     public function return_constants_string($int_constant)
     public function return_constants_integer($int_constant_str)
 
-_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php
+_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [CHECK IF ADDING FRAMEWORK RESOURCE]
     public function return_html_head_asset($const){
     private function return_output_CRNRSTN_UI_JS($const){
     private function return_output_CRNRSTN_UI_CSS($const){
@@ -526,7 +526,12 @@ function crnrstn_constants_init($const_nom){
         break;
 
         //
-        // 7301-7399
+        // 7300-7399
+        case 'CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS':
+
+            return (int) 7300;
+
+        break;
         case 'CRNRSTN_JS_FRAMEWORK_JQUERY':
 
             return (int) 7301;
@@ -572,109 +577,114 @@ function crnrstn_constants_init($const_nom){
             return (int) 7309;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
+        case 'CRNRSTN_JS_FRAMEWORK_REACT_DOM':
 
             return (int) 7310;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
+        case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
 
             return (int) 7311;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
+        case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
 
             return (int) 7312;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
+        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
 
             return (int) 7313;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX':
+        case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
 
             return (int) 7314;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
+        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX':
 
             return (int) 7315;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE':
+        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
 
             return (int) 7316;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE':
+        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE':
 
             return (int) 7317;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN':
+        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE':
 
             return (int) 7318;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
+        case 'CRNRSTN_UI_JS_MAIN':
 
             return (int) 7319;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
+        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
 
             return (int) 7320;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
 
             return (int) 7321;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
+        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
 
             return (int) 7322;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
+        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
 
             return (int) 7323;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
+        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
 
             return (int) 7324;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
 
             return (int) 7325;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
+        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
 
             return (int) 7326;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
 
             return (int) 7327;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
 
             return (int) 7328;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
 
             return (int) 7329;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
 
             return (int) 7330;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+
+            return (int) 7331;
 
         break;
 

@@ -47,7 +47,7 @@
 #  VERSION :: 2.00.0000
 #  DATE :: September 28, 2013 @ 2115hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI :: 
+#  URI ::
 #  DESCRIPTION :: The first class instantiated in the joining of the "wall of server" to the "wall of application".
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
@@ -431,7 +431,7 @@ class crnrstn {
         }catch (Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -542,13 +542,13 @@ class crnrstn {
         return $this->oCRNRSTN_ENV->header_signature_options_return();
 
     }
-    
+
     public function header_options_add($header_array, $overwrite_existing = true){
 
          $this->oCRNRSTN_ENV->header_options_add($header_array, $overwrite_existing);
 
     }
-    
+
     public function header_options_apply(){
 
         $this->oCRNRSTN_ENV->header_options_apply();
@@ -566,15 +566,15 @@ class crnrstn {
             case 'favicon':
 
                 if($this->is_bit_set(CRNRSTN_FAVICON_ASSET_MAPPING)){
-                    
+
                     if(isset($this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc])){
 
                         return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
 
                     }
-                    
+
                 }
-                
+
             break;
             case 'social':
 
@@ -587,7 +587,7 @@ class crnrstn {
                     }
 
                 }
-                
+
             break;
             case 'system':
 
@@ -2203,15 +2203,51 @@ class crnrstn {
         return true;
 
     }
-    
+
     /*
     $oCRNRSTN->config_init_asset_mapping_favicon();
     $oCRNRSTN->config_init_asset_mapping_css();
     $oCRNRSTN->config_init_asset_mapping_js();
     $oCRNRSTN->config_init_asset_mapping_system_img();
     $oCRNRSTN->config_init_asset_mapping_social_img();
-    
+
     */
+
+    public function config_init_framework_js_minimize($env_key = CRNRSTN_RESOURCE_ALL, $production_min_js = true){
+
+        $tmp_env_key_hash = $this->hash($env_key);
+
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+
+            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+
+                if(!$production_min_js){
+
+                    //
+                    // IF BIT IS FLIPPED...TURN IT OFF.
+                    if($this->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                        $this->initialize_bit(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS, false);
+
+                    }
+
+                }
+
+                if($production_min_js){
+
+                    $this->oCRNRSTN_BITFLIP_MGR->initialize_bit(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS, true);
+
+                }
+
+            }
+
+        }
+
+        return true;
+
+
+
+    }
 
     public function config_init_asset_mapping_favicon($env_key = CRNRSTN_RESOURCE_ALL, $tunneling_active = true, $dir_path = '', $http_path = ''){
 
@@ -2317,7 +2353,7 @@ class crnrstn {
 
                 if(!$tunneling_active){
 
-                    // 
+                    //
                     // IF BIT IS FLIPPED...TURN IT OFF.
                     if($this->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
@@ -2515,7 +2551,7 @@ class crnrstn {
     public function config_init_http($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_http_endpoint = '', $crnrstn_dir_path = '', $crnrstn_system_directory = '_crnrstn'){
 
         if($crnrstn_http_endpoint == ''){
-            
+
             $crnrstn_http_endpoint = 'http://' . $_SERVER['SERVER_ADDR'] . '/';
 
         }
@@ -5421,7 +5457,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         } catch (Exception $e) {
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -10357,7 +10393,7 @@ class crnrstn_config_manager {
     public $oCRNRSTN_CONFIG_DDO;
     private static $system_data_profile_constants_ARRAY = array();
     protected $system_profile_data_key_map_ARRAY = array();
-    
+
     public $config_serial_hash;
     protected $system_hash_algo;
 
@@ -10366,7 +10402,7 @@ class crnrstn_config_manager {
     public function __construct($oCRNRSTN) {
 
         $this->oCRNRSTN = $oCRNRSTN;
-        
+
         $this->config_serial_hash = $oCRNRSTN->get_server_config_serial('hash');
         $this->system_hash_algo = $oCRNRSTN->system_hash_algorithm();
         $this->init_data_profile_constants();
@@ -10414,7 +10450,7 @@ class crnrstn_config_manager {
     }
 
     private function return_generic_permissions_int_profile(){
-        
+
         /*
         CRNRSTN_AUTHORIZE_RUNTIME_ONLY
         CRNRSTN_AUTHORIZE_ALL

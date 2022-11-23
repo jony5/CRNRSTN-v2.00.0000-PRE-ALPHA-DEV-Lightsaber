@@ -6762,9 +6762,26 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'React';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '18.2.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A JavaScript library for building user interfaces. React makes it 
+                            painless to create interactive UIs. Design simple views for each state in your application, 
+                            and React will efficiently update and render just the right components when your data changes.
+                            <br><br>
+                            Declarative views make your code more predictable and easier to debug.';
+                $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_REACT_DOM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'ReactDOM';
+                $tmp_output_ARRAY['VERSION'] = '18.2.0';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The react-dom package provides DOM-specific methods that can be used 
+                            at the top level of your app and as an escape hatch to get outside the React model if you 
+                            need to do so. React is a JavaScript library for building user interfaces. React makes it 
                             painless to create interactive UIs. Design simple views for each state in your application, 
                             and React will efficiently update and render just the right components when your data changes.
                             <br><br>
@@ -7205,6 +7222,7 @@ between the server and client can be achieved with minimal effort and maximum da
                     CRNRSTN_JS_FRAMEWORK_JQUERY_UI, CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1,
                     CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS,
                     CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY, CRNRSTN_JS_FRAMEWORK_REACT,
+                    CRNRSTN_JS_FRAMEWORK_REACT_DOM,
                     CRNRSTN_JS_FRAMEWORK_MITHRIL, CRNRSTN_JS_FRAMEWORK_BACKBONE, CRNRSTN_JS_FRAMEWORK_PROTOTYPE,
                     CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS, CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX,
                     CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3,

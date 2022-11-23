@@ -613,8 +613,26 @@ CRNRSTN_ASSET_MAPPING_PROXY
 //$oCRNRSTN->config_init_asset_mapping();
 //$oCRNRSTN->config_init_asset_tunnel_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MAPPING_PROXY, 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/');
 
+/*
+//
+// JAVASCRIPT FRAMEWORK MINIMIZATION MODE
+Before deploying your website to production, be mindful that unminified
+JavaScript can significantly slow down the page for your users.
+
+Calling this method [config_init_framework_js_minimize()] will invoke the
+use of xxx.min.js where available. This setting can be bound to an admin
+or dev's sign-in session, and the javascript that is development will be
+returned to this authenticated user, alone.
+
+*/
+
+//
+// ACTIVATE MINIMIZATION OF CSS AND JS FRAMEWORKS (PRODUCTION VERSION vs DEVELOPMENT)
+$oCRNRSTN->config_init_framework_js_minimize();
+// $oCRNRSTN->config_init_framework_js_minimize('LOCALHOST_CHAD_MACBOOKPRO', false);
+
+//
 // CRNRSTN_ASSET_MAPPING
-// $env_key = CRNRSTN_RESOURCE_ALL, $is_active = true, $path = '_crnrstn/ui/js/'
 $oCRNRSTN->config_init_asset_mapping_favicon(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs/favicon/system');
 $oCRNRSTN->config_init_asset_mapping_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/css');
 $oCRNRSTN->config_init_asset_mapping_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');

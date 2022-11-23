@@ -615,7 +615,7 @@ class crnrstn_performance_regulator{
             public function return_constants_string($int_constant)
             public function return_constants_integer($int_constant_str)
 
-        _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php
+        _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [CHECK IF ADDING FRAMEWORK RESOURCE]
             public function return_html_head_asset($const){
             private function return_output_CRNRSTN_UI_JS($const){
             private function return_output_CRNRSTN_UI_CSS($const){
@@ -1042,6 +1042,11 @@ class crnrstn_performance_regulator{
                 $tmp_int_out = CRNRSTN_JS_FRAMEWORK_REACT;
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_REACT_DOM':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_REACT_DOM;
+
+            break;
             case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
 
                 $tmp_int_out = CRNRSTN_JS_FRAMEWORK_MITHRIL;
@@ -1105,6 +1110,11 @@ class crnrstn_performance_regulator{
             case 'CRNRSTN_UI_JS_MAIN':
 
                 $tmp_int_out = CRNRSTN_UI_JS_MAIN;
+
+            break;
+            case 'CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS':
+
+                $tmp_int_out = CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS;
 
             break;
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY':
@@ -1529,7 +1539,7 @@ class crnrstn_performance_regulator{
             public function return_constants_string($int_constant)
             public function return_constants_integer($int_constant_str)
 
-        _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php
+        _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [CHECK IF ADDING FRAMEWORK RESOURCE]
             public function return_html_head_asset($const){
             private function return_output_CRNRSTN_UI_JS($const)
             private function return_output_CRNRSTN_UI_CSS($const)
@@ -1949,6 +1959,11 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_REACT';
 
             break;
+            case CRNRSTN_JS_FRAMEWORK_REACT_DOM:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_REACT_DOM';
+
+            break;
             case CRNRSTN_JS_FRAMEWORK_MITHRIL:
 
                 $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_MITHRIL';
@@ -2012,6 +2027,11 @@ class crnrstn_performance_regulator{
             case CRNRSTN_UI_JS_MAIN:
 
                 $tmp_str_out = 'CRNRSTN_UI_JS_MAIN';
+
+            break;
+            case CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS:
+
+                $tmp_str_out = 'CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_JQUERY:
