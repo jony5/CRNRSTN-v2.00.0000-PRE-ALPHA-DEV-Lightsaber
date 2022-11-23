@@ -1670,13 +1670,13 @@ class crnrstn_system_image_asset_manager {
 
                         if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_desktop.css&v=420.0.' . $tmp_cache_crnrstnmain_desktopcss . '">
+                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_desktop.css&v=420.0.' . $tmp_cache_crnrstnmain_desktopcss . '">
 ';
                         }else{
 
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_desktop.css?v=420.00.' . $tmp_cache_crnrstnmain_desktopcss . '">
+                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+    <link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_desktop.css?v=420.00.' . $tmp_cache_crnrstnmain_desktopcss . '">
 ';
                         }
 
@@ -1698,14 +1698,14 @@ class crnrstn_system_image_asset_manager {
 
                         if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_tablet.css&v=420.0.' . $tmp_cache_crnrstnmain_tabletcss . '">
+                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_tablet.css&v=420.0.' . $tmp_cache_crnrstnmain_tabletcss . '">
 ';
 
                         }else{
 
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_tablet.css?v=420.0.' . $tmp_cache_crnrstnmain_tabletcss . '">
+                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+    <link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_tablet.css?v=420.0.' . $tmp_cache_crnrstnmain_tabletcss . '">
 ';
                         }
 
@@ -1727,14 +1727,14 @@ class crnrstn_system_image_asset_manager {
 
                         if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_mobile.css&v=420.0.' . $tmp_cache_crnrstnmain_mobilecss . '">
+                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_mobile.css&v=420.0.' . $tmp_cache_crnrstnmain_mobilecss . '">
 ';
 
                         }else{
 
-                            $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_mobile.css?v=420.0.' . $tmp_cache_crnrstnmain_mobilecss . '">
+                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+    <link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_mobile.css?v=420.0.' . $tmp_cache_crnrstnmain_mobilecss . '">
 ';
 
                         }
@@ -1830,22 +1830,22 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
-                        $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_desktop.css') . '
+                        $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
+    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_desktop.css') . '
 </style>
 ';
                     break;
                     case CRNRSTN_UI_CSS_MAIN_TABLET:
 
-                        $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_tablet.css') . '
+                        $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
+    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_tablet.css') . '
 </style>
 ';
                     break;
                     case CRNRSTN_UI_CSS_MAIN_MOBILE:
 
-                        $tmp_str_array[] = '<!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
-' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_mobile.css') . '
+                        $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
+    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_mobile.css') . '
 </style>
 ';
                     break;
