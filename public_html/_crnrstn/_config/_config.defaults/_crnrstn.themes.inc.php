@@ -1,81 +1,334 @@
 <?php
-
 /*
-SYSTEM DEFAULTS TO SUPPORT ::
-$tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
+private function return_theme_style_profile_meta_ARRAY($theme_style){
 
-$tmp_array[] = 'Content-Type: text/html; charset=UTF-8';
-$tmp_array[] = 'X-Powered-By: CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn();
+    $tmp_meta_ARRAY = array();
 
-protected $wcr_wp_profile_version_key = 'CRNRSTN::WP::INTEGRATIONS';
-public $country_iso_code = 'en';
+    $tmp_theme_style_ARRAY = $this->return_constant_profile_ARRAY($theme_style);
+    $tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
+    $tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
 
-public $cache_ttl_default = 80;
-public $useCURL_default = true;
-protected $max_login_attempts = 10;
-protected $max_seconds_inactive = 600;
-protected $ssdtl_packet_ttl = -1;
+    $this->current_theme_style_ARRAY['NAME'] = $tmp_meta_ARRAY['NAME'] = $tmp_theme_style_nom;
+    $this->current_theme_style_ARRAY['INTEGER'] = $tmp_meta_ARRAY['INTEGER'] = $tmp_theme_style_int;
 
-// J5, my boy!
-// INITIALIZE ALPHA SHIFT CRYPT KEY
-$this->initialize_alpha_shift_crypt('JFIVEMYBOY');
-protected $system_hash_algo = 'sha256';
-private static $version_crnrstn = '2.00.0000 PRE-ALPHA-DEV (Lightsaber)';
-public $system_database_table_prefix = 'crnrstn_';
-public $system_http_get_param_prefix = 'crnrstn_';
-public $max_storage_utilization = 85;
-public $max_storage_utilization_warning = 70;
+    switch($theme_style){
+        case CRNRSTN_UI_GLASS_LIGHT_COPY:
 
-$oWCR->add_attribute('EMAIL_SEND_ACTIVE', true);
+            // CONCEPT WORK IN PROGRESS.
+            $tmp_meta_ARRAY['highlight.comment'] = '#7CD38B';
+            $tmp_meta_ARRAY['highlight.default'] = '#D78783';
+            $tmp_meta_ARRAY['highlight.html'] = '#868686';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#CDA54A; font-weight: normal;';
+            $tmp_meta_ARRAY['highlight.string'] = '#8080DA';
 
-//        $oWCR->add_attribute('SMTP_KEEPALIVE', false);
-//        $oWCR->add_attribute('SMTP_SECURE', '');
-//        $oWCR->add_attribute('SMTP_AUTOTLS', true);
-//        $oWCR->add_attribute('SMTP_TIMEOUT', 5);
-//        $oWCR->add_attribute('DIBYA_SAHOO_SSL_CERT_BYPASS', true); // PER PHP +5.6, SEE RESEARCH [lnum 2906] [file /_crnrstn/class/environmentals/crnrstn.env.inc.php]
-//        $oWCR->add_attribute('SENDMAIL_PATH', '/usr/sbin/sendmail');
-//        $oWCR->add_attribute('USE_SENDMAIL_OPTIONS', true);
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = 'transparent';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#ECEFF2';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#F7F1E2';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#D6D6F0';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
 
-$oWCR->add_attribute('WORDWRAP', 79);
-$oWCR->add_attribute('ISHTML', true);
-$oWCR->add_attribute('PRIORITY', 'NORMAL');
-$oWCR->add_attribute('DUP_SUPPRESS', true);
-$oWCR->add_attribute('CHARSET', 'iso-8859-1');
-$oWCR->add_attribute('MESSAGE_ENCODING', '8bit');
-$oWCR->add_attribute('ALLOW_EMPTY', false);
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-$oWCR->add_attribute('SOA_NAMESPACE', 'http://www.w3.org/2003/05/soap-encoding');
-$oWCR->add_attribute('WSDL_CACHE_TTL', 80);
-$oWCR->add_attribute('NUSOAP_USECURL', true);
+        break;
+        case CRNRSTN_UI_GLASS_DARK_COPY:
 
-$oWCR->add_attribute('EMAIL_PROTOCOL', 'MAIL');     //SMTP, MAIL, QMAIL, SENDMAIL
+            // CONCEPT WORK IN PROGRESS.
+            $tmp_meta_ARRAY['highlight.comment'] = '#008000';
+            $tmp_meta_ARRAY['highlight.default'] = '#191A31';
+            $tmp_meta_ARRAY['highlight.html'] = '#808080';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#00B; font-weight: normal';
+            $tmp_meta_ARRAY['highlight.string'] = '#D00';
 
-$oWCR->add_attribute('FTP_TIMEOUT', 90);
-$oWCR->add_attribute('FTP_IS_SSL', false);
-$oWCR->add_attribute('FTP_USE_PASV', true);
-$oWCR->add_attribute('FTP_USE_PASV_ADDR', false);
-$oWCR->add_attribute('FTP_DISABLE_AUTOSEEK', false);
-$oWCR->add_attribute('FTP_MKDIR_MODE', 777);
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = 'transparent';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#ECEFF2';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#EFEFFB';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#D6D6F0';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
+
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+        case CRNRSTN_UI_TERMINAL:
+
+            //
+            // HARDCORE.
+            $tmp_meta_ARRAY['highlight.comment'] = '#257129';
+            $tmp_meta_ARRAY['highlight.default'] = '#41DB3C';
+            $tmp_meta_ARRAY['highlight.html'] = '#EBEBEB';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#19EE28; font-weight: bold';
+            $tmp_meta_ARRAY['highlight.string'] = '#54B33E';
+
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = '#131314';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#073F0B';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#0C8800';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#1FA61F';
+
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+        case CRNRSTN_UI_PHPNIGHT:
+
+            //
+            // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+            $tmp_meta_ARRAY['highlight.comment'] = '#7EC3E6';
+            $tmp_meta_ARRAY['highlight.default'] = '#9876AA';
+            $tmp_meta_ARRAY['highlight.html'] = '#EBEBEB';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#ED864A; font-weight: normal';
+            $tmp_meta_ARRAY['highlight.string'] = '#54B33E';
+
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = '#131314';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#9E9E9E';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#393939';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#833131';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#282828';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#00D500';
+
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+        case CRNRSTN_UI_DARKNIGHT:
+
+            //
+            // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
+            // NOTHING COULD BE DARKER. NOTHING.
+            $tmp_meta_ARRAY['highlight.comment'] = '#006498';
+            $tmp_meta_ARRAY['highlight.default'] = '#9E9D9F';
+            $tmp_meta_ARRAY['highlight.html'] = '#8C8C8C';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#CB733F; font-weight: normal';
+            $tmp_meta_ARRAY['highlight.string'] = '#216D10';
+
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = '#04050A';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#000';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#052E08';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#4B4444';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#111';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#1A6F1A';
+
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+        case CRNRSTN_UI_PHP:
+
+            //
+            // ALL ABOUT THE BUSINESS.
+            $tmp_meta_ARRAY['highlight.comment'] = '#008000';
+            $tmp_meta_ARRAY['highlight.default'] = '#191A31';
+            $tmp_meta_ARRAY['highlight.html'] = '#808080';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#00B; font-weight: normal';
+            $tmp_meta_ARRAY['highlight.string'] = '#D00';
+
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F2F2F2';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#C2C7DF';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#D6D6F4';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#2C2C2C';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#787CAF';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#EEE8E8';
+
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+        case CRNRSTN_UI_GREYSKYS:
+
+            //
+            // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
+            // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+            $tmp_meta_ARRAY['highlight.comment'] = '#D4762D';
+            $tmp_meta_ARRAY['highlight.default'] = '#939393';
+            $tmp_meta_ARRAY['highlight.html'] = '#C8C8C8';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#212121; font-weight: normal';
+            $tmp_meta_ARRAY['highlight.string'] = '#421414';
+
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F5F5F5';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#C3C3C3';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#DBDBDB';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#333';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#A5A5A5';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#E8E8E8';
+
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+        case CRNRSTN_UI_HTML:
+
+            //
+            // BE LIGHT AND HAPPY.
+            $tmp_meta_ARRAY['highlight.comment'] = '#169B2B';
+            $tmp_meta_ARRAY['highlight.default'] = '#B72620';
+            $tmp_meta_ARRAY['highlight.html'] = '#666';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#C08E1A; font-weight: normal;';
+            $tmp_meta_ARRAY['highlight.string'] = '#2020BD';
+
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F3F0F0';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#80A0DD';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#EBDCB8';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#333';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#3F6EC9';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#F3F0F0';
+
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+        case CRNRSTN_UI_DAYLIGHT:
+
+            //
+            // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+            $tmp_meta_ARRAY['highlight.comment'] = '#5AC86C';
+            $tmp_meta_ARRAY['highlight.default'] = '#CC6762';
+            $tmp_meta_ARRAY['highlight.html'] = '#666';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#C08E1A; font-weight: normal;';
+            $tmp_meta_ARRAY['highlight.string'] = '#5F5FD0';
+
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = '#F7F5F5';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#80A0DD';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#F5EDDA';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#5F5FD0';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#809FDB';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#F3F0F0';
+
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+        case CRNRSTN_UI_FEATHER:
+
+            //
+            // LIGHTER THAN DAYLIGHT.
+            $tmp_meta_ARRAY['highlight.comment'] = '#7CD38B';
+            $tmp_meta_ARRAY['highlight.default'] = '#D78783';
+            $tmp_meta_ARRAY['highlight.html'] = '#868686';
+            $tmp_meta_ARRAY['highlight.keyword'] = '#CDA54A; font-weight: normal;';
+            $tmp_meta_ARRAY['highlight.string'] = '#8080DA';
+
+            $tmp_meta_ARRAY['stage.canvas.background-color'] = '#FFF';
+            $tmp_meta_ARRAY['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.canvas.border-width'] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.border-color'] = '#ECEFF2';
+            $tmp_meta_ARRAY['stage.canvas.border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.content.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+            $tmp_meta_ARRAY['stage.content.highlight-color'] = '#F7F1E2';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-width'] = '1px';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-color'] = '#D6D6F0';
+            $tmp_meta_ARRAY['stage.lnum.css.right-border-style'] = 'solid';
+            $tmp_meta_ARRAY['stage.lnum.css.background-color'] = '#D4E1EE';
+            $tmp_meta_ARRAY['stage.lnum.css.color'] = '#FFF';
+
+            // * offset-x | offset-y | blur-radius | spread-radius | color
+            // <div style="box-shadow: 2px 3px 3px 0 #bfbfbf;">
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.inset'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-x'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.offset-y'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.blur-radius'][] = '3px';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.spread-radius'][] = '';
+            $tmp_meta_ARRAY['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+        break;
+
+    }
+
+    return $tmp_meta_ARRAY;
+
+}
 
 */
-
-//
-// BEGIN DEFAULTS FOR THE NEXT ENVIRONMENT
-$this->config_set_system_default('BLUEHOST_JONY5', 'DOCUMENT_ROOT_DIR', '', CRNRSTN_AUTHORIZE_RUNTIME_ONLY, 60);
-
-//
-// BEGIN DEFAULTS FOR THE NEXT ENVIRONMENT
-$this->config_set_system_default('BLUEHOST_EVIFWEB', 'DOCUMENT_ROOT_DIR', '');
-
-//
-// BEGIN DEFAULTS FOR THE NEXT ENVIRONMENT
-$this->config_set_system_default('LOCALHOST_MACBOOKPRO', 'DOCUMENT_ROOT_DIR', '/jony5');
-
-//
-// BEGIN DEFAULTS FOR THE NEXT ENVIRONMENT
-$this->config_set_system_default('LOCALHOST_CHAD_MACBOOKPRO', 'DOCUMENT_ROOT_DIR', '/lightsaber.crnrstn.evifweb.com');
-
-//
-// BEGIN DEFAULTS FOR ALL ENVIRONMENTS :: AS DESIGNATED BY PASSING CRNRSTN_RESOURCE_ALL AS ENV KEY PARAMETER
-$this->config_set_system_default(CRNRSTN_RESOURCE_ALL, 'WSDL_CACHE_TTL', '80');	# REQUIRED BY CRNRSTN :: SOAP CONNECTION MANAGER
-$this->config_set_system_default(CRNRSTN_RESOURCE_ALL, 'SOA_NAMESPACE', 'http://www.w3.org/2003/05/soap-encoding');   # USED BY CRNRSTN :: SOAP CONNECTION MANAGER

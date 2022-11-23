@@ -493,13 +493,13 @@ class crnrstn_system_image_asset_manager {
 
                                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jquery ui] -->
+                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-3.6.1.min.js&v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
 
                                     }else{
 
-                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jquery ui] -->
+                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-3.6.1.min.js&v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
 
@@ -509,13 +509,13 @@ class crnrstn_system_image_asset_manager {
 
                                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jquery ui] -->
+                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js?v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
 
                                     }else{
 
-                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jquery ui] -->
+                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js?v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
 
@@ -679,13 +679,13 @@ class crnrstn_system_image_asset_manager {
 
                                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jquery ui] -->
+                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-3.6.1.min.js&v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
 
                                     }else{
 
-                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jquery ui] -->
+                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-3.6.1.min.js&v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
 
@@ -695,13 +695,13 @@ class crnrstn_system_image_asset_manager {
 
                                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jquery ui] -->
+                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js?v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
 
                                     }else{
 
-                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jquery ui] -->
+                                        $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script src="' . $tmp_http_path_js . '_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js?v=420.00.' . $tmp_cache_jquery361minjs . '"></script>
 ';
 
@@ -1782,7 +1782,7 @@ class crnrstn_system_image_asset_manager {
 
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                                    $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY_3_6['TITLE'] . ' v' . $tmp_ARRAY_3_6['VERSION'] . ' :: js [in support of jquery ui] -->
+                                    $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY_3_6['TITLE'] . ' v' . $tmp_ARRAY_3_6['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script>//<!--
     ' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js') . '
     // --> 
@@ -1791,7 +1791,7 @@ class crnrstn_system_image_asset_manager {
 
                                 }else{
 
-                                    $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY_3_6['TITLE'] . ' v' . $tmp_ARRAY_3_6['VERSION'] . ' :: js [in support of jquery ui] -->
+                                    $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY_3_6['TITLE'] . ' v' . $tmp_ARRAY_3_6['VERSION'] . ' :: js [in support of jQuery UI] -->
     <script>//<!--
     ' . file_get_contents($tmp_path_js . '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js') . '
     // --> 
