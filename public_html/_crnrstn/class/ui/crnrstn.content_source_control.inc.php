@@ -6884,7 +6884,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
+                $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.03.3';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script which will load using prototype.js.';
@@ -6947,7 +6947,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, Firefox, Chrome.';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release of
                                                     LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
-                                                    for CRNRSTN :: INTERACT UI.';
+                                                    for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
