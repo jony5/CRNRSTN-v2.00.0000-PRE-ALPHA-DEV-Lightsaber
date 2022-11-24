@@ -6834,7 +6834,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Mithril.js';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '2.2.2';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE11, Firefox ESR, Firefox, Edge, Safari, Chrome';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Mithril.js is a modern client-side JavaScript framework for building 
                             Single Page Applications. It\'s small (&LT; 10kb gzip), fast, and provides routing and XHR 

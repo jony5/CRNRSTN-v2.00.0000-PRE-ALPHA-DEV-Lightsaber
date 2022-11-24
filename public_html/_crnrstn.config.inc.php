@@ -138,7 +138,7 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
  *
  * @var string
  */
-$CRNRSTN_config_serial = '';
+$CRNRSTN_config_serial='';
 
 /**
  *
@@ -485,7 +485,7 @@ $oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
 // ENVIRONMENTAL DETECTION
 $oCRNRSTN->config_detect_environment('BLUEHOST_JONY5', 'SERVER_NAME', 'lightsaber.crnrstn.jony5.com');
 $oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsaber.crnrstn.evifweb.com');
-$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.129', 1);
+$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139', 1);
 
 //
 // ENVIRONMENTAL DETECTION DEMONSTRATION OF CASE REQUIRING MORE THAN ONE (1) $_SERVER[] MATCH TO
@@ -628,7 +628,8 @@ returned to this authenticated user, alone.
 
 //
 // ACTIVATE MINIMIZATION OF CSS AND JS FRAMEWORKS (PRODUCTION VERSION vs DEVELOPMENT)
-$oCRNRSTN->config_init_js_css_minimization();
+//$oCRNRSTN->config_init_js_css_minimization();
+$oCRNRSTN->config_init_js_css_minimization(CRNRSTN_RESOURCE_ALL);
 // $oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
 
 //

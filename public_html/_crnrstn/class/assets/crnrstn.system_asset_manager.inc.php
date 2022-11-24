@@ -1180,17 +1180,29 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MITHRIL:
+                            /*
+                           <!-- Development: whichever you prefer -->
+                           <script src="https://unpkg.com/mithril/mithril.js"></script>
+                           <script src="https://cdn.jsdelivr.net/npm/mithril/mithril.js"></script>
+
+                           <!-- Production: whichever you prefer -->
+                           <script src="https://unpkg.com/mithril/mithril.min.js"></script>
+                           <script src="https://cdn.jsdelivr.net/npm/mithril/mithril.min.js"></script>
+
+                           */
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
                                 $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
-                                $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                                $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                <script src="https://cdn.jsdelivr.net/npm/mithril/mithril.min.js" crossorigin></script>
 ';
 
                             }else{
 
                                 $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
-                                $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                                $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                <script src="https://unpkg.com/mithril@2.2.2/mithril.js" crossorigin></script>
 ';
 
                             }
