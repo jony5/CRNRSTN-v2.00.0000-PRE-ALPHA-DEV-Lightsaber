@@ -6838,8 +6838,17 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE11, Firefox ESR, Firefox, Edge, Safari, Chrome';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Mithril.js is a modern client-side JavaScript framework for building 
                             Single Page Applications. It\'s small (&LT; 10kb gzip), fast, and provides routing and XHR 
-                            utilities out of the box. Mithril.js supports IE11, Firefox ESR, and the last two versions 
-                            of Firefox, Edge, Safari, and Chrome. No polyfills required.';
+                            utilities out of the box.
+                            <br><br>
+                            Mithril.js is used by companies like Vimeo and Nike, and open source platforms like Lichess.                            
+                            <br><br>
+                            If you are an experienced developer and want to know how Mithril.js compares to other frameworks, see the 
+                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://mithril.js.org/framework-comparison.html', 'crnrstn_documentation_mithril_js_framework_comparison') . '" target="_blank">framework comparison</a> 
+                            page.
+                            <br><br>
+                            Mithril.js supports IE11, Firefox ESR, and the last two versions of Firefox, Edge, Safari, and Chrome. No polyfills required.
+                            <br><br>
+                            Looking for the v1 docs? <a href="' . $this->oCRNRSTN->return_sticky_link('https://mithril.js.org/archive/v1.1.7/index.html', 'crnrstn_documentation_mithril_js_v1_docs_click_here') . '" target="_blank">Click here.</a>';
                 $tmp_output_ARRAY['URL'][] = 'https://mithril.js.org/';
 
             break;
