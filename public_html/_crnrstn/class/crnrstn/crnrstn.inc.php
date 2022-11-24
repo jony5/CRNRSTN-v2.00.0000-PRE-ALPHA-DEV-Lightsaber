@@ -2213,7 +2213,7 @@ class crnrstn {
 
     */
 
-    public function config_init_framework_js_minimize($env_key = CRNRSTN_RESOURCE_ALL, $production_min_js = true){
+    public function config_init_js_css_minimization($env_key = CRNRSTN_RESOURCE_ALL, $production_min_js = true){
 
         $tmp_env_key_hash = $this->hash($env_key);
 
