@@ -6800,7 +6800,11 @@ between the server and client can be achieved with minimal effort and maximum da
                             painless to create interactive UIs. Design simple views for each state in your application, 
                             and React will efficiently update and render just the right components when your data changes.
                             <br><br>
-                            Declarative views make your code more predictable and easier to debug.';
+                            Declarative views make your code more predictable and easier to debug.
+                            <br><br>
+                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/docs/getting-started.html', 'crnrstn_documentation_react_get_started') . '" target="_blank">Get started.</a>
+                            <br><br>
+                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/tutorial/tutorial.html', 'crnrstn_documentation_react_take_the_tutorial') . '" target="_blank">Take the Tutorial.</a>';
                 $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
@@ -6817,7 +6821,11 @@ between the server and client can be achieved with minimal effort and maximum da
                             painless to create interactive UIs. Design simple views for each state in your application, 
                             and React will efficiently update and render just the right components when your data changes.
                             <br><br>
-                            Declarative views make your code more predictable and easier to debug.';
+                            Declarative views make your code more predictable and easier to debug.                            
+                            <br><br>
+                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/docs/getting-started.html', 'crnrstn_documentation_react_dom_get_started') . '" target="_blank">Get started.</a>
+                            <br><br>
+                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/tutorial/tutorial.html', 'crnrstn_documentation_react_dom_take_the_tutorial') . '" target="_blank">Take the Tutorial.</a>';
                 $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
