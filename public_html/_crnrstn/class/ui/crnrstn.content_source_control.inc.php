@@ -6665,7 +6665,11 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     <br><br>
                                                     <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_view_source_github') . '" target="_blank">View Source on GitHub.</a>
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_works') . '" target="_blank">How jQuery Works.</a>';
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jquery') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery');
+
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
@@ -6685,7 +6689,10 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     <br><br>
                                                     <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_224_view_source_github') . '" target="_blank">View Source on GitHub.</a>
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_224_works') . '" target="_blank">How jQuery Works.</a>';
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_224_works') . '" target="_blank">How jQuery Works.</a>
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jquery') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery');
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
@@ -6705,7 +6712,10 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     <br><br>
                                                     <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_1124_view_source_github') . '" target="_blank">View Source on GitHub.</a>
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1124_how_jquery_works') . '" target="_blank">How jQuery Works.</a>';
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1124_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jquery') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery');
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
@@ -6725,7 +6735,10 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     <br><br>
                                                     <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_1111_view_source_github') . '" target="_blank">View Source on GitHub.</a>
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1111_how_jquery_works') . '" target="_blank">How jQuery Works.</a>';
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1111_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jquery') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery');
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
@@ -6740,7 +6753,9 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     widgets, and themes built on top of the jQuery JavaScript Library.
                                                     Whether you\'re building highly interactive web applications or you
                                                     just need to add a date picker to a form control, jQuery UI is the
-                                                    perfect choice.';
+                                                    perfect choice.
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery/jquery-ui');
                 $tmp_output_ARRAY['URL'][] = 'https://jqueryui.com/';
 
             break;
@@ -6755,7 +6770,9 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     widgets, and themes built on top of the jQuery JavaScript Library.
                                                     Whether you\'re building highly interactive web applications or you
                                                     just need to add a date picker to a form control, jQuery UI is the
-                                                    perfect choice.';
+                                                    perfect choice.
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery/jquery-ui');
                 $tmp_output_ARRAY['URL'][] = 'https://jqueryui.com/';
 
             break;
@@ -6778,7 +6795,9 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     that will work on all popular smartphone, tablet, and 
                                                     desktop platforms.
                                                     <br><br>
-                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://jquerymobile.com/browser-support/1.4/', 'crnrstn_documentation_jquery_mobile_1_4_mobile_browser_support') . '" target="_blank">Mobile Browser Support</a>';
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://jquerymobile.com/browser-support/1.4/', 'crnrstn_documentation_jquery_mobile_1_4_mobile_browser_support') . '" target="_blank">Mobile Browser Support</a>
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery-archive/jquery-mobile');
                 $tmp_output_ARRAY['URL'][] = 'https://jquerymobile.com/';
 
             break;
@@ -6806,7 +6825,10 @@ between the server and client can be achieved with minimal effort and maximum da
                 <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3') . '" target="_blank">Learn more</a> 
                 about the license.
                 <br><br>
-                by <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.lokeshdhakar.com/', 'crnrstn_documentation_lightbox_roadmap_2_11_3') . '" target="_blank">Lokesh Dhakar</a>';
+                by <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.lokeshdhakar.com/', 'crnrstn_documentation_lightbox_roadmap_2_11_3') . '" target="_blank">Lokesh Dhakar</a>
+                <br><br>
+                ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/lokesh') . '&nbsp;
+                ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/lokesh/lightbox2');
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
@@ -6834,8 +6856,10 @@ between the server and client can be achieved with minimal effort and maximum da
                 <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3_3_4_1') . '" target="_blank">Learn more</a> 
                 about the license.
                 <br><br>
-                by <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.lokeshdhakar.com/', 'crnrstn_documentation_lightbox_roadmap_2_11_3_3_4_1') . '" target="_blank">Lokesh Dhakar</a>';
-
+                by <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.lokeshdhakar.com/', 'crnrstn_documentation_lightbox_roadmap_2_11_3_3_4_1') . '" target="_blank">Lokesh Dhakar</a>
+                <br><br>
+                ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/lokesh') . '&nbsp;
+                ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/lokesh/lightbox2');
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
@@ -6854,7 +6878,12 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br><br>
                             <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/docs/getting-started.html', 'crnrstn_documentation_react_get_started') . '" target="_blank">Get started.</a>
                             <br><br>
-                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/tutorial/tutorial.html', 'crnrstn_documentation_react_take_the_tutorial') . '" target="_blank">Take the Tutorial.</a>';
+                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/tutorial/tutorial.html', 'crnrstn_documentation_react_take_the_tutorial') . '" target="_blank">Take the Tutorial.</a>
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL','https://github.com/facebook/react') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL','https://stackoverflow.com/questions/tagged/reactjs') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL','https://www.facebook.com/react') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL','https://twitter.com/reactjs');
                 $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
@@ -6875,7 +6904,12 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br><br>
                             <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/docs/getting-started.html', 'crnrstn_documentation_react_dom_get_started') . '" target="_blank">Get started.</a>
                             <br><br>
-                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/tutorial/tutorial.html', 'crnrstn_documentation_react_dom_take_the_tutorial') . '" target="_blank">Take the Tutorial.</a>';
+                            <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/tutorial/tutorial.html', 'crnrstn_documentation_react_dom_take_the_tutorial') . '" target="_blank">Take the Tutorial.</a>
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL','https://github.com/facebook/react') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL','https://stackoverflow.com/questions/tagged/reactjs') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL','https://www.facebook.com/react') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL','https://twitter.com/reactjs');
                 $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
@@ -6898,7 +6932,10 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br><br>
                             Mithril.js supports IE11, Firefox ESR, and the last two versions of Firefox, Edge, Safari, and Chrome. No polyfills required.
                             <br><br>
-                            Looking for the v1 docs? <a href="' . $this->oCRNRSTN->return_sticky_link('https://mithril.js.org/archive/v1.1.7/index.html', 'crnrstn_documentation_mithril_js_v1_docs_click_here') . '" target="_blank">Click here.</a>';
+                            Looking for the v1 docs? <a href="' . $this->oCRNRSTN->return_sticky_link('https://mithril.js.org/archive/v1.1.7/index.html', 'crnrstn_documentation_mithril_js_v1_docs_click_here') . '" target="_blank">Click here.</a>
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL','https://github.com/MithrilJS/mithril.js');
+
                 $tmp_output_ARRAY['URL'][] = 'https://mithril.js.org/';
 
             break;
@@ -7191,7 +7228,15 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A dead simple, responsive boilerplate. Light as a feather at ~400 
                             lines &amp; built with mobile in mind. Styles designed to be a starting point, not a UI 
-                            framework.';
+                            framework. Quick to start with zero compiling or installing necessary.
+                            <br><br>
+                            <strong>IS SKELETON FOR YOU?</strong>
+                            <br>
+                            You should use Skeleton if you\'re embarking on a smaller project or just don\'t feel like 
+                            you need all the utility of larger frameworks. Skeleton only styles a handful of standard 
+                            HTML elements and includes a grid, but that\'s often more than enough to get started.
+                            <br><br>
+                            Love Skeleton and want to Tweet it, share it, or star it? Well, I appreciate that <3';
                 $tmp_output_ARRAY['URL'][] = 'http://getskeleton.com/';
 
             break;
@@ -7204,7 +7249,12 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Responsive Grid System for your Next Project. 2kb, Mobile First 
                             Grid System, HTML5 Boilerplate Head, 960grid like naming convention,IE8+, Firefox, Chrome, 
-                            Safari, Opera, PSD Grid & included, Free to use and Abuse.';
+                            Safari, Opera, PSD Grid & included, Free to use and Abuse.
+                            <br><br>
+                            <!-- https://dribbble.com/gsvineeth -->
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/gsvineeth') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/gsvineeth');
+
                 $tmp_output_ARRAY['URL'][] = 'http://rwdgrid.com/';
 
             break;
