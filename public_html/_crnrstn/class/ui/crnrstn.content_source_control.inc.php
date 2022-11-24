@@ -209,7 +209,7 @@ class crnrstn_content_source_controller {
                             if(strlen($profile_ARRAY['BROWSER_COMPATIBILITY']) > 0){
 
                                 $tmp_browser_support_html = '
-                             <div class="crnrstn_resource_constant_browser_support">Supported Browsers: ' . $profile_ARRAY['BROWSER_COMPATIBILITY'] . '</div>';
+                             <div class="crnrstn_resource_constant_browser_support">Supported Browsers: <span class="crnrstn_documentation_browser_compatability_nom_copy">' . $profile_ARRAY['BROWSER_COMPATIBILITY'] . '</span></div>';
 
                             }
 
@@ -6755,7 +6755,8 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3';
-                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE 9+, Chrome, Safari, Firefox, iOS Safari, iOS Chrome, 
+                Android Browser, Android Chrome.';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The <em>original</em> lightbox script.
                 <br><br>
                 Lightbox is a small javascript library used to overlay images on top of the current page. It\'s a snap to 
@@ -6768,7 +6769,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 page Roadmap. View the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/lokesh/lightbox2/blob/master/ROADMAP.md', 'crnrstn_documentation_lightbox_roadmap_2_11_3') . '" target="_blank">Roadmap</a> 
                 for a peek at what is being planned for future releases.
                 <br><br>
-                <strong>License.</strong> Lightbox is licensed under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT License</a>. <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3') . '" target="_blank">Learn more</a> 
+                <strong>License.</strong> Lightbox is licensed under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT License</a>. <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3') . '" target="_blank">Learn more</a> 
                 about the license.
                 <br><br>
                 by <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.lokeshdhakar.com/', 'crnrstn_documentation_lightbox_roadmap_2_11_3') . '" target="_blank">Lokesh Dhakar</a>';
@@ -6781,7 +6782,8 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3/v3.4.1';
-                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE 9+, Chrome, Safari, Firefox, iOS Safari, iOS Chrome, 
+                Android Browser, Android Chrome.';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The <em>original</em> lightbox script.
                 <br><br>
                 Lightbox is a small javascript library used to overlay images on top of the current page. It\'s a snap to 
@@ -6794,7 +6796,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 page Roadmap. View the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/lokesh/lightbox2/blob/master/ROADMAP.md', 'crnrstn_documentation_lightbox_roadmap_2_11_3_3_4_1') . '" target="_blank">Roadmap</a> 
                 for a peek at what is being planned for future releases.
                 <br><br>
-                <strong>License.</strong> Lightbox is licensed under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT License</a>. 
+                <strong>License.</strong> Lightbox is licensed under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT License</a>. 
                 <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3_3_4_1') . '" target="_blank">Learn more</a> 
                 about the license.
                 <br><br>
@@ -6883,7 +6885,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             is available, as well as an online <a href="' . $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/test/', 'crnrstn_documentation_backbonejs_test_suite')  . '" target="_blank">test suite</a>, 
                             an <a href="'. $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/examples/todos/index.html', 'crnrstn_documentation_backbonejs_example_application').'" target="_blank">example application</a>, 
                             a <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites', 'crnrstn_documentation_backbonejs_list_of_tutorials').'" target="_blank">list of tutorials</a> and a <a href="'. $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/#examples', 'crnrstn_documentation_backbonejs_real_world_projects') . '" target="_blank">long list of real-world projects</a> 
-                            that use Backbone. Backbone is available for use under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT software license</a>.
+                            that use Backbone. Backbone is available for use under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT software license</a>.
                             <br><br>
                             You can report bugs and discuss features on the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/issues', 'crnrstn_documentation_backbonejs_github_issues_page') . '" target="_blank">GitHub issues page</a>, 
                             or add pages to the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki', 'crnrstn_documentation_backbonejs_wiki') . '" target="_blank">wiki</a>.
@@ -6902,7 +6904,17 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Prototype takes the complexity out of client-side web programming. 
                             Built to solve real-world problems, it adds useful extensions to the browser scripting 
                             environment and provides elegant APIs around the clumsy interfaces of Ajax and the Document 
-                            Object Model.';
+                            Object Model.
+                            <br><br>
+                            Getting started: 
+                            <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/class-inheritance', 'crnrstn_documentation_prototypejs_defining_classes_inheritance') . '" target="_blank">Defining classes and inheritance</a> 
+                            <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/extensions', 'crnrstn_documentation_prototypejs_how_prototype_extends_dom') . '" target="_blank">How Prototype extends the DOM</a> 
+                            <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/introduction-to-ajax', 'crnrstn_documentation_prototypejs_intro_to_ajax') . '" target="_blank">Introduction to Ajax</a> 
+                            <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/json', 'crnrstn_documentation_prototypejs_using_json') . '" target="_blank">Using JSON</a> 
+                            <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/event-delegation', 'crnrstn_documentation_prototypejs_event_delegation') . '" target="_blank">Event delegation</a> 
+                            <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/element-layout', 'crnrstn_documentation_prototypejs_using_element.layout') . '" target="_blank">Using Element.Layout</a>
+                            <br><br>
+                            <a href="'. $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/blog', 'crnrstn_documentation_prototypejs_weblog') . '" target="_blank">Weblog</a>';
                 $tmp_output_ARRAY['URL'][] = 'http://prototypejs.org/';
 
             break;
@@ -6917,7 +6929,12 @@ between the server and client can be achieved with minimal effort and maximum da
                             interface JavaScript libraries to make your web sites and web applications fly.<br><br>
                             What\'s inside? animation framework, drag and drop, Ajax controls DOM utilities, and 
                             unit testing.<br><br>
-                            It\'s an add-on to the fantastic Prototype framework.';
+                            It\'s an add-on to the fantastic Prototype framework.
+                            <br><br>
+                            What\'s inside? animation framework, drag and drop, Ajax controls, DOM utilities, and unit testing.
+                            <br><br>
+                            It\'s an add-on to the fantastic <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/', 'crnrstn_documentation_script.aculo.us_prototype') . '" target="_blank">Prototype</a>
+                            framework.';
                 $tmp_output_ARRAY['URL'][] = 'http://script.aculo.us/';
 
             break;
@@ -6950,7 +6967,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             won\'t let a user break the effect with multiple, crazy clicks. Optimized to make you write 
                             the lesser code possible, the new moo.fx is so modular you can create any kind of effect 
                             with it.<br><br>
-                            moo.fx is open source, released under the very liberal <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT License</a>, so feel free to do 
+                            moo.fx is open source, released under the very liberal <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT License</a>, so feel free to do 
                             anything you want with it.';
                 $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20080430210446/http://moofx.mad4milk.net/';
 
@@ -6974,7 +6991,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'MooTools MORE';
                 $tmp_output_ARRAY['VERSION'] = '1.6.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, internet explorer 6 and 7, Firefox (and its 
-                mozilla friends), Opera and Camino';
+                mozilla friends), Opera and Camino.';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Welcome to MooTools More, the official plugin repository for the 
                 MooTools JavaScript Framework. More includes extra features to Core classes and UI. MooTools More makes 
                 MooTools even More awesome.
@@ -6987,7 +7004,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox (and its mozilla 
                 friends), Opera and Camino.
                 <br><br>
-                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT license</a> 
+                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT license</a> 
                 which gives you the possibility to use them and modify them in every circumstance.';
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/more/docs/1.6.0';
                 $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-more';
@@ -7008,7 +7025,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox (and its mozilla 
                 friends), Opera and Camino.
                 <br><br>
-                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT license</a> 
+                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT license</a> 
                 which gives you the possibility to use them and modify them in every circumstance.';
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/core/docs/1.6.0';
                 $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-core';
@@ -7020,7 +7037,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI/UX JS';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
-                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, Firefox, Chrome.';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release of
                                                     LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
                                                     for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
