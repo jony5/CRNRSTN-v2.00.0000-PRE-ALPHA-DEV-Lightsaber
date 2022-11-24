@@ -206,8 +206,12 @@ class crnrstn_content_source_controller {
                         $tmp_browser_support_html = '';
                         if(isset($profile_ARRAY['BROWSER_COMPATIBILITY'])){
 
-                            $tmp_browser_support_html = '
+                            if(strlen($profile_ARRAY['BROWSER_COMPATIBILITY']) > 0){
+
+                                $tmp_browser_support_html = '
                              <div class="crnrstn_resource_constant_browser_support">Supported Browsers: ' . $profile_ARRAY['BROWSER_COMPATIBILITY'] . '</div>';
+
+                            }
 
                         }
 
@@ -6731,7 +6735,17 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A Touch-Optimized Web Framework. jQuery Mobile is a HTML5-based user
                                                     interface system designed to make responsive web sites and apps that 
-                                                    are accessible on all smartphone, tablet and desktop devices.';
+                                                    are accessible on all smartphone, tablet and desktop devices.
+                                                    <br><br>
+                                                    <strong>Seriously cross-platform with HTML5</strong><br>
+                                                    jQuery Mobile framework takes the "write less, do more" mantra to 
+                                                    the next level: Instead of writing unique applications for each 
+                                                    mobile device or OS, the jQuery mobile framework allows you to 
+                                                    design a single highly-branded responsive web site or application 
+                                                    that will work on all popular smartphone, tablet, and 
+                                                    desktop platforms.
+                                                    <br><br>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://jquerymobile.com/browser-support/1.4/', 'crnrstn_documentation_jquery_mobile_1_4_mobile_browser_support') . '" target="_blank">Mobile Browser Support</a>';
                 $tmp_output_ARRAY['URL'][] = 'https://jquerymobile.com/';
 
             break;
