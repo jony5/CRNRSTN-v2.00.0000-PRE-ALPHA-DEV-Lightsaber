@@ -6628,11 +6628,11 @@ between the server and client can be achieved with minimal effort and maximum da
 
     public function return_resource_profile($resource_constant){
 
-        $tmp_output_ARRAY =  array();
+        $tmp_output_ARRAY = array();
 
         if(is_array($resource_constant)){
 
-            $tmp_agg_output_ARRAY  = array();
+            $tmp_agg_output_ARRAY = array();
 
             foreach($resource_constant as $index => $res_const){
 
@@ -6868,8 +6868,9 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'moo.fx';
                 $tmp_output_ARRAY['VERSION'] = '2.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'moo.fx is a superlightweight, ultratiny, megasmall javascript effects library, to be used 
-                            with prototype.js or the mootools framework.<br><br>
+                $tmp_output_ARRAY['DESCRIPTION'] = 'moo.fx is a superlightweight, ultratiny, megasmall javascript 
+                            effects library, to be used with prototype.js or the mootools framework.
+                            <br><br>
                             It\'s very easy to use, blazing fast, cross-browser, standards compliant, provides controls 
                             to modify any CSS property of any HTML element, including colors, with builtin checks that 
                             won\'t let a user break the effect with multiple, crazy clicks. Optimized to make you write 
@@ -6887,7 +6888,8 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.03.3';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script (circa 2008) which will load using prototype.js.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script (circa 2008) which will load using 
+                            prototype.js.';
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
@@ -6943,7 +6945,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI/UX JS';
-                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, Firefox, Chrome.';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release of
                                                     LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
@@ -7063,7 +7065,8 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A dead simple, responsive boilerplate. Light as a feather at ~400 
-                            lines &amp; built with mobile in mind. Styles designed to be a starting point, not a UI framework.';
+                            lines &amp; built with mobile in mind. Styles designed to be a starting point, not a UI 
+                            framework.';
                 $tmp_output_ARRAY['URL'][] = 'http://getskeleton.com/';
 
             break;
@@ -7085,7 +7088,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
-                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
@@ -7096,7 +7099,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
-                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
@@ -7106,8 +7109,9 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile Device Stylesheet';
-                $tmp_output_ARRAY['VERSION'] = '1.00.0000';
+                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile 
+                            Device Stylesheet';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
