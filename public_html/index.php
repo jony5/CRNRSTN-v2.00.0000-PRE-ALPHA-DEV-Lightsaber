@@ -119,7 +119,7 @@ $oCRNRSTN->system_output_head_html(CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE, true
     <div class="crnrstn_cb_40"></div>
     <div>
         <div style="float: left; padding: 15px 20px 0 0;">
-            <p><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_TEXT_CHECK_OUT'); ?> <a href="<?php echo $oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a','crnrstn_photo_album_facebook'); ?>" target="_blank" style="text-decoration:none; color: #0066CC; text-decoration:underline;">Facebook</a> <?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_TEXT_PHOTO_ALBUM'); ?>!</p>
+            <p><?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_TEXT_CHECK_OUT'); ?> <a href="<?php echo $oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a','crnrstn_landing_photo_album_facebook'); ?>" target="_blank" style="text-decoration:none; color: #0066CC; text-decoration:underline;">Facebook</a> <?php echo $oCRNRSTN->multi_lang_content_return('DEFAULT_LANDING_TEXT_PHOTO_ALBUM'); ?>!</p>
         </div>
         <div style="float: left;">
             <?php

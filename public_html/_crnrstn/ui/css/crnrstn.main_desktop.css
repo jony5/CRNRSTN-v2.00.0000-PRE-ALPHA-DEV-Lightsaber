@@ -160,6 +160,7 @@
 .crnrstn_resource_constant_www_website a                    { float: left; text-decoration: none; color:#0066CC; }
 .crnrstn_resource_constant_description                      { font-size: 13px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: transparent; }
 .crnrstn_resource_constant_description p                    { padding: 0; margin:0;}
+.crnrstn_resource_constant_description a                    { text-decoration: none; color: #0066CC;}
 .crnrstn_resource_constant_browser_support                  { font-size: 13px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: transparent; padding:0;}
 
 

@@ -197,7 +197,7 @@ class crnrstn_content_source_controller {
 
                         //
                         // KEEP DESCRIPTION TEXT FROM RUNNING ON TOP OF THE BACKGROUND R PILLAR GRAPHIC
-                        if($tmp_element_cnt <= 7 ){
+                        if($tmp_element_cnt <= 5 ){
 
                             $tmp_inline_style =  'style="width:58%;"';
 
@@ -6742,7 +6742,22 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The <em>original</em> lightbox script.
+                <br><br>
+                Lightbox is a small javascript library used to overlay images on top of the current page. It\'s a snap to 
+                setup and works on all modern browsers.
+                <br><br>
+                <strong>Demos and usage instructions.</strong> Visit the <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/', 'crnrstn_documentation_lightbox_homepage_2_11_3') . '" target="_blank">Lightbox homepage</a> 
+                to see examples, info on getting started, script options, how to get help, and more.
+                <br><br>
+                <strong>Releases and Changelog.</strong> Viewable on the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/lokesh/lightbox2/releases', 'crnrstn_documentation_lightbox_github_releases_2_11_3') . '" target="_blank">Github Releases</a> 
+                page Roadmap. View the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/lokesh/lightbox2/blob/master/ROADMAP.md', 'crnrstn_documentation_lightbox_roadmap_2_11_3') . '" target="_blank">Roadmap</a> 
+                for a peek at what is being planned for future releases.
+                <br><br>
+                <strong>License.</strong> Lightbox is licensed under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT License</a>. <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3') . '" target="_blank">Learn more</a> 
+                about the license.
+                <br><br>
+                by <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.lokeshdhakar.com/', 'crnrstn_documentation_lightbox_roadmap_2_11_3') . '" target="_blank">Lokesh Dhakar</a>';
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
@@ -6753,7 +6768,24 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3/v3.4.1';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script plus JQUERY.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The <em>original</em> lightbox script.
+                <br><br>
+                Lightbox is a small javascript library used to overlay images on top of the current page. It\'s a snap to 
+                setup and works on all modern browsers.
+                <br><br>
+                <strong>Demos and usage instructions.</strong> Visit the <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/', 'crnrstn_documentation_lightbox_homepage_2_11_3_3_4_1') . '" target="_blank">Lightbox homepage</a> 
+                to see examples, info on getting started, script options, how to get help, and more.
+                <br><br>
+                <strong>Releases and Changelog.</strong> Viewable on the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/lokesh/lightbox2/releases', 'crnrstn_documentation_lightbox_github_releases_2_11_3_3_4_1') . '" target="_blank">Github Releases</a> 
+                page Roadmap. View the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/lokesh/lightbox2/blob/master/ROADMAP.md', 'crnrstn_documentation_lightbox_roadmap_2_11_3_3_4_1') . '" target="_blank">Roadmap</a> 
+                for a peek at what is being planned for future releases.
+                <br><br>
+                <strong>License.</strong> Lightbox is licensed under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT License</a>. 
+                <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3_3_4_1') . '" target="_blank">Learn more</a> 
+                about the license.
+                <br><br>
+                by <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.lokeshdhakar.com/', 'crnrstn_documentation_lightbox_roadmap_2_11_3_3_4_1') . '" target="_blank">Lokesh Dhakar</a>';
+
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
@@ -6795,9 +6827,9 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Mithril.js';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
-                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE11, Firefox ESR, Firefox, Edge, Safari, Chrome';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Mithril.js is a modern client-side JavaScript framework for building 
-                            Single Page Applications. It\'s small (&LT; 10kb gzip), fast and provides routing and XHR 
+                            Single Page Applications. It\'s small (&LT; 10kb gzip), fast, and provides routing and XHR 
                             utilities out of the box. Mithril.js supports IE11, Firefox ESR, and the last two versions 
                             of Firefox, Edge, Safari, and Chrome. No polyfills required.';
                 $tmp_output_ARRAY['URL'][] = 'https://mithril.js.org/';
@@ -6808,12 +6840,24 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'BACKBONE.JS';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '1.4.1';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Backbone.js gives structure to web applications by providing models 
                             with key-value binding and custom events, collections with a rich API of enumerable functions, 
                             views with declarative event handling, and connects it all to your existing API over a 
-                            RESTful JSON interface.';
+                            RESTful JSON interface.
+                            <br><br>
+                            The project is <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/', 'crnrstn_documentation_backbonejs_hosted_github') . '" target="_blank">hosted on GitHub</a>, 
+                            and the <a href="' . $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/docs/backbone.html', 'crnrstn_documentation_backbonejs_annotated_source_code') . '" target="_blank">annotated source code</a> 
+                            is available, as well as an online <a href="' . $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/test/', 'crnrstn_documentation_backbonejs_test_suite')  . '" target="_blank">test suite</a>, 
+                            an <a href="'. $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/examples/todos/index.html', 'crnrstn_documentation_backbonejs_example_application').'" target="_blank">example application</a>, 
+                            a <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites', 'crnrstn_documentation_backbonejs_list_of_tutorials').'" target="_blank">list of tutorials</a> and a <a href="'. $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/#examples', 'crnrstn_documentation_backbonejs_real_world_projects') . '" target="_blank">long list of real-world projects</a> 
+                            that use Backbone. Backbone is available for use under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self" style="text-decoration: none; color: #0066CC;">MIT software license</a>.
+                            <br><br>
+                            You can report bugs and discuss features on the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/issues', 'crnrstn_documentation_backbonejs_github_issues_page') . '" target="_blank">GitHub issues page</a>, 
+                            or add pages to the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki', 'crnrstn_documentation_backbonejs_wiki') . '" target="_blank">wiki</a>.
+                            <br><br>
+                            <em>Backbone is an open-source component of <a href="'. $this->oCRNRSTN->return_sticky_link('https://documentcloud.org/', 'crnrstn_documentation_backbonejs_documentcloud') . '" target="_blank">DocumentCloud</a></em>.';
                 $tmp_output_ARRAY['URL'][] = 'https://backbonejs.org/';
 
             break;
