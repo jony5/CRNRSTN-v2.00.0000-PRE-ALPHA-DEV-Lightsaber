@@ -1122,9 +1122,14 @@ class crnrstn_performance_regulator{
                 $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY;
 
             break;
-            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0':
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4':
 
-                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0;
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4;
+
+            break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4':
+
+                $tmp_int_out = CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4;
 
             break;
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1':
@@ -2039,9 +2044,14 @@ class crnrstn_performance_regulator{
                 $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY';
 
             break;
-            case CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4:
 
-                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0';
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4:
+
+                $tmp_str_out = 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:

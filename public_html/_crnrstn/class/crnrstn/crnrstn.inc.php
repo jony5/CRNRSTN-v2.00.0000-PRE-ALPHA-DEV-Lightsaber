@@ -3300,8 +3300,12 @@ class crnrstn {
         $tmp_ARRAY = array(
             'crnrstn.main.js' => '/',
 
-            'jquery-3.6.0.min.js' => '_lib/frameworks/jquery/3.6.0',
-            'jquery-3.6.1.min.js' => '_lib/frameworks/jquery/3.6.1' ,
+            'jquery-3.6.1.js '=> '_lib/frameworks/jquery/3.6.1' ,
+            'jquery-3.6.1.min.map' => '_lib/frameworks/jquery/3.6.1',
+            'jquery-3.6.1.min.js' => '_lib/frameworks/jquery/3.6.1',
+
+            'jquery-2.2.4.js' => '_lib/frameworks/jquery/2.2.4',
+            'jquery-2.2.4.min.js' => '_lib/frameworks/jquery/2.2.4',
             'jquery-1.11.1.min.js' => '_lib/frameworks/jquery/1.11.1',
 
             'jquery.mobile-1.4.5/index.js' => '_lib/frameworks/jquery_mobi/1.4.5',
@@ -4004,7 +4008,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // JQUERY + JQUERY UI
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0]) &&!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])){
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4]) &&!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])){
 
                 $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
                 $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY_UI);
@@ -4187,7 +4191,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         =====
         JQUERY [AT MOST...ONLY NEED ONE OF THESE TO LOAD AT ANY TIME...EVER]
         CRNRSTN_JS_FRAMEWORK_JQUERY,
-        CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0,
+        CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4,
         CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
         CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY
 
@@ -4241,7 +4245,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // JQUERY + JQUERY UI
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0]) &&!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])){
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4]) &&!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])){
 
                 $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
 

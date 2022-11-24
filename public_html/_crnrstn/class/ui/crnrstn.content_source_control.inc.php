@@ -6661,23 +6661,51 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     animation, and Ajax much simpler with an easy-to-use API that works
                                                     across a multitude of browsers. With a combination of versatility and
                                                     extensibility, jQuery has changed the way that millions of people
-                                                    write JavaScript.';
+                                                    write JavaScript.
+                                                    <br><br>
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_view_source_github') . '" target="_blank">View Source on GitHub.</a>
+                                                    <br><br>
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_works') . '" target="_blank">How jQuery Works.</a>';
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
-            case CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0:
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
-                $tmp_output_ARRAY['VERSION'] = '3.6.0';
+                $tmp_output_ARRAY['VERSION'] = '2.2.4';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. It makes
                                                     things like HTML document traversal and manipulation, event handling,
                                                     animation, and Ajax much simpler with an easy-to-use API that works
                                                     across a multitude of browsers. With a combination of versatility and
                                                     extensibility, jQuery has changed the way that millions of people
-                                                    write JavaScript.';
+                                                    write JavaScript.
+                                                    <br><br>
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_224_view_source_github') . '" target="_blank">View Source on GitHub.</a>
+                                                    <br><br>
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_224_works') . '" target="_blank">How jQuery Works.</a>';
+                $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
+
+            break;
+            case CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['TITLE'] = 'jQuery';
+                $tmp_output_ARRAY['VERSION'] = '1.12.4';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. It makes
+                                                    things like HTML document traversal and manipulation, event handling,
+                                                    animation, and Ajax much simpler with an easy-to-use API that works
+                                                    across a multitude of browsers. With a combination of versatility and
+                                                    extensibility, jQuery has changed the way that millions of people
+                                                    write JavaScript.
+                                                    <br><br>
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_1124_view_source_github') . '" target="_blank">View Source on GitHub.</a>
+                                                    <br><br>
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1124_how_jquery_works') . '" target="_blank">How jQuery Works.</a>';
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
@@ -6688,11 +6716,16 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '1.11.1';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. 
-                            It makes things like HTML document traversal and manipulation, event handling, animation,
-                            and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
-                            With a combination of versatility and extensibility, jQuery has changed the way that millions
-                            of people write JavaScript.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'jQuery is a fast, small, and feature-rich JavaScript library. It makes
+                                                    things like HTML document traversal and manipulation, event handling,
+                                                    animation, and Ajax much simpler with an easy-to-use API that works
+                                                    across a multitude of browsers. With a combination of versatility and
+                                                    extensibility, jQuery has changed the way that millions of people
+                                                    write JavaScript.
+                                                    <br><br>
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_1111_view_source_github') . '" target="_blank">View Source on GitHub.</a>
+                                                    <br><br>
+                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1111_how_jquery_works') . '" target="_blank">How jQuery Works.</a>';
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
@@ -7314,7 +7347,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 // 25
                 // MASTER CLIENT META ASSET ARRAY (CSS, JS)
                 $tmp_resource_ctrl_ARRAY = array(CRNRSTN_JS_FRAMEWORK_JQUERY,
-                    CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0, CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4, CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4, CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
                     CRNRSTN_JS_FRAMEWORK_JQUERY_UI, CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1,
                     CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS,
                     CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY, CRNRSTN_JS_FRAMEWORK_REACT,

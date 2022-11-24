@@ -537,154 +537,159 @@ function crnrstn_constants_init($const_nom){
             return (int) 7301;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_0':
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4':
 
             return (int) 7302;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1':
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4':
 
             return (int) 7303;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI':
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1':
 
             return (int) 7304;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1':
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI':
 
             return (int) 7305;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE':
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1':
 
             return (int) 7306;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS':
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE':
 
             return (int) 7307;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY':
+        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS':
 
             return (int) 7308;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_REACT':
+        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY':
 
             return (int) 7309;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_REACT_DOM':
+        case 'CRNRSTN_JS_FRAMEWORK_REACT':
 
             return (int) 7310;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
+        case 'CRNRSTN_JS_FRAMEWORK_REACT_DOM':
 
             return (int) 7311;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
+        case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
 
             return (int) 7312;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
+        case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
 
             return (int) 7313;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
+        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
 
             return (int) 7314;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX':
+        case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
 
             return (int) 7315;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
+        case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX':
 
             return (int) 7316;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE':
+        case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
 
             return (int) 7317;
 
         break;
-        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE':
+        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE':
 
             return (int) 7318;
 
         break;
-        case 'CRNRSTN_UI_JS_MAIN':
+        case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE':
 
             return (int) 7319;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
+        case 'CRNRSTN_UI_JS_MAIN':
 
             return (int) 7320;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
+        case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
 
             return (int) 7321;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
 
             return (int) 7322;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
+        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
 
             return (int) 7323;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
+        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
 
             return (int) 7324;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
+        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
 
             return (int) 7325;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
 
             return (int) 7326;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
+        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
 
             return (int) 7327;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
 
             return (int) 7328;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
 
             return (int) 7329;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
 
             return (int) 7330;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
 
             return (int) 7331;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+
+            return (int) 7332;
 
         break;
 
