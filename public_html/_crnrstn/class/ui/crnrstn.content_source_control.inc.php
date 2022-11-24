@@ -6853,13 +6853,12 @@ between the server and client can be achieved with minimal effort and maximum da
                 // THE PROTOTYPE.JS COMPATIBLE FLAVOR
 
                 include the scripts in the following order:
-
-                prototype.js or prototype.lite.js (required)
-                moo.fx.js (required)
-                moo.fx.pack.js (optional)
-                moo.fx.utils.js (optional)
-                moo.fx.accordion.js (optional)
-                moo.fx.transitions.js (optional)
+                    prototype.js or prototype.lite.js (required)
+                    moo.fx.js (required)
+                    moo.fx.pack.js (optional)
+                    moo.fx.utils.js (optional)
+                    moo.fx.accordion.js (optional)
+                    moo.fx.transitions.js (optional)
 
                 */
 
@@ -7111,7 +7110,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile 
                             Device Stylesheet';
-                $tmp_output_ARRAY['VERSION'] = '1.00.0000PRE-ALPHA-DEV (Lightsaber)';
+                $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
                 $tmp_output_ARRAY['URL'][] = '';
