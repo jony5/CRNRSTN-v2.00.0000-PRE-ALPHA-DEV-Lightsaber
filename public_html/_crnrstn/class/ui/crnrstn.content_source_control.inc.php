@@ -6769,7 +6769,8 @@ between the server and client can be achieved with minimal effort and maximum da
                 page Roadmap. View the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/lokesh/lightbox2/blob/master/ROADMAP.md', 'crnrstn_documentation_lightbox_roadmap_2_11_3') . '" target="_blank">Roadmap</a> 
                 for a peek at what is being planned for future releases.
                 <br><br>
-                <strong>License.</strong> Lightbox is licensed under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT License</a>. <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3') . '" target="_blank">Learn more</a> 
+                <strong>License.</strong> Lightbox is licensed under the <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT License.</a> 
+                <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3') . '" target="_blank">Learn more</a> 
                 about the license.
                 <br><br>
                 by <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.lokeshdhakar.com/', 'crnrstn_documentation_lightbox_roadmap_2_11_3') . '" target="_blank">Lokesh Dhakar</a>';
@@ -6796,7 +6797,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 page Roadmap. View the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/lokesh/lightbox2/blob/master/ROADMAP.md', 'crnrstn_documentation_lightbox_roadmap_2_11_3_3_4_1') . '" target="_blank">Roadmap</a> 
                 for a peek at what is being planned for future releases.
                 <br><br>
-                <strong>License.</strong> Lightbox is licensed under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT License</a>. 
+                <strong>License.</strong> Lightbox is licensed under the <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT License.</a> 
                 <a href="' . $this->oCRNRSTN->return_sticky_link('https://lokeshdhakar.com/projects/lightbox2/#license', 'crnrstn_documentation_lightbox_mit_license_learn_more_2_11_3_3_4_1') . '" target="_blank">Learn more</a> 
                 about the license.
                 <br><br>
@@ -6885,7 +6886,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             is available, as well as an online <a href="' . $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/test/', 'crnrstn_documentation_backbonejs_test_suite')  . '" target="_blank">test suite</a>, 
                             an <a href="'. $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/examples/todos/index.html', 'crnrstn_documentation_backbonejs_example_application').'" target="_blank">example application</a>, 
                             a <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites', 'crnrstn_documentation_backbonejs_list_of_tutorials').'" target="_blank">list of tutorials</a> and a <a href="'. $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/#examples', 'crnrstn_documentation_backbonejs_real_world_projects') . '" target="_blank">long list of real-world projects</a> 
-                            that use Backbone. Backbone is available for use under the <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT software license</a>.
+                            that use Backbone. Backbone is available for use under the <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT software license</a>.
                             <br><br>
                             You can report bugs and discuss features on the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/issues', 'crnrstn_documentation_backbonejs_github_issues_page') . '" target="_blank">GitHub issues page</a>, 
                             or add pages to the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki', 'crnrstn_documentation_backbonejs_wiki') . '" target="_blank">wiki</a>.
@@ -6967,8 +6968,8 @@ between the server and client can be achieved with minimal effort and maximum da
                             won\'t let a user break the effect with multiple, crazy clicks. Optimized to make you write 
                             the lesser code possible, the new moo.fx is so modular you can create any kind of effect 
                             with it.<br><br>
-                            moo.fx is open source, released under the very liberal <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT License</a>, so feel free to do 
-                            anything you want with it.';
+                            moo.fx is open source, released under the very liberal <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT License</a>, 
+                            so feel free to do anything you want with it.';
                 $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20080430210446/http://moofx.mad4milk.net/';
 
             break;
@@ -7004,7 +7005,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox (and its mozilla 
                 friends), Opera and Camino.
                 <br><br>
-                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT license</a> 
+                MooTools libraries are released under the Open Source <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT license</a>
                 which gives you the possibility to use them and modify them in every circumstance.';
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/more/docs/1.6.0';
                 $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-more';
@@ -7025,7 +7026,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 MooTools is compatible and fully tested with Safari, internet explorer 6 and 7, Firefox (and its mozilla 
                 friends), Opera and Camino.
                 <br><br>
-                MooTools libraries are released under the Open Source <a id="crnrstn_general_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this); return false;" target="_self">MIT license</a> 
+                MooTools libraries are released under the Open Source <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT license</a> 
                 which gives you the possibility to use them and modify them in every circumstance.';
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/core/docs/1.6.0';
                 $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-core';
