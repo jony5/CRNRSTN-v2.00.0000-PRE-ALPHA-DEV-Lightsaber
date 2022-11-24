@@ -184,8 +184,19 @@ class crnrstn_content_source_controller {
 
                                     if(strlen($tmp_lnk) > 0){
 
-                                        //$tmp_www_link = '<a href="'. $this->oCRNRSTN->return_sticky_link($tmp_lnk) . '" target="_blank">website</a>';
-                                        $tmp_www_link .= '<span>' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', $tmp_lnk, '_blank') . '</span>&nbsp;&nbsp;';
+                                        $pos_web_archive = strpos($tmp_lnk, 'web.archive.org/');
+
+                                        if($pos_web_archive !== false){
+
+                                            $tmp_www_link .= '<span>' . $this->oCRNRSTN->return_sticky_media_link('INTERNET_ARCHIVE_SMALL', $tmp_lnk, '_blank') . '</span>&nbsp;&nbsp;';
+
+
+                                        }else{
+
+                                            //$tmp_www_link = '<a href="'. $this->oCRNRSTN->return_sticky_link($tmp_lnk) . '" target="_blank">website</a>';
+                                            $tmp_www_link .= '<span>' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', $tmp_lnk, '_blank') . '</span>&nbsp;&nbsp;';
+
+                                        }
 
                                     }
 
@@ -6961,7 +6972,9 @@ between the server and client can be achieved with minimal effort and maximum da
                             You can report bugs and discuss features on the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/issues', 'crnrstn_documentation_backbonejs_github_issues_page') . '" target="_blank">GitHub issues page</a>, 
                             or add pages to the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki', 'crnrstn_documentation_backbonejs_wiki') . '" target="_blank">wiki</a>.
                             <br><br>
-                            <em>Backbone is an open-source component of <a href="'. $this->oCRNRSTN->return_sticky_link('https://documentcloud.org/', 'crnrstn_documentation_backbonejs_documentcloud') . '" target="_blank">DocumentCloud</a></em>.';
+                            <em>Backbone is an open-source component of <a href="'. $this->oCRNRSTN->return_sticky_link('https://documentcloud.org/', 'crnrstn_documentation_backbonejs_documentcloud') . '" target="_blank">DocumentCloud</a></em>.                           
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL','https://github.com/jashkenas/backbone');
                 $tmp_output_ARRAY['URL'][] = 'https://backbonejs.org/';
 
             break;
@@ -6985,6 +6998,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/event-delegation', 'crnrstn_documentation_prototypejs_event_delegation') . '" target="_blank">Event delegation</a> 
                             <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/element-layout', 'crnrstn_documentation_prototypejs_using_element.layout') . '" target="_blank">Using Element.Layout</a>
                             <br><br>
+                            <!-- https://groups.google.com/g/prototype-scriptaculous?pli=1 -->
                             <a href="'. $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/blog', 'crnrstn_documentation_prototypejs_weblog') . '" target="_blank">Weblog</a>';
                 $tmp_output_ARRAY['URL'][] = 'http://prototypejs.org/';
 
