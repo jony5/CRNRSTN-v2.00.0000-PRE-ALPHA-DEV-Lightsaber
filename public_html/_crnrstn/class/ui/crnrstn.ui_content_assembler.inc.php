@@ -427,7 +427,7 @@ class crnrstn_ui_content_assembler {
 
         $tmp_result_id = $this->oCRNRSTN->generate_new_key(10);
         $page_path = ltrim($page_path, "/");
-        $tmp_page_uri = $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
+        $tmp_page_uri = $this->oCRNRSTN->crnrstn_http_endpoint() . $page_path;
 
         if($content_title!=''){
             $content_title = '<span class="s_result_title">' . $content_title . ' ::</span> ';
@@ -446,7 +446,7 @@ class crnrstn_ui_content_assembler {
 
         $tmp_result_id = $this->oCRNRSTN->generate_new_key(10);
         $page_path = ltrim($page_path, "/");
-        $tmp_page_uri = $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
+        $tmp_page_uri = $this->oCRNRSTN->crnrstn_http_endpoint().$page_path;
 
         if($content_title!=''){
             
@@ -491,7 +491,7 @@ class crnrstn_ui_content_assembler {
 
         //$tmp_result_id = $this->oCRNRSTN->generate_new_key(10);
         $page_path = ltrim($page_path, "/");
-        $tmp_page_uri = $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
+        $tmp_page_uri = $this->oCRNRSTN->crnrstn_http_endpoint().$page_path;
 
         //if($content_title!=''){
         //     $content_title = '<span class="s_result_title">' . $content_title . ' ::</span> ';
@@ -509,7 +509,7 @@ class crnrstn_ui_content_assembler {
 
 	    $tmp_result_id = $this->oCRNRSTN->generate_new_key(10);
         $page_path = ltrim($page_path, "/");
-	    $tmp_page_uri = $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR").$page_path;
+	    $tmp_page_uri = $this->oCRNRSTN->crnrstn_http_endpoint().$page_path;
 
 	    if($content_title!=''){
 

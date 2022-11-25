@@ -1454,7 +1454,7 @@ class crnrstn_content_source_controller {
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', '<div class="section_title">Example 2 ::</div>');
                     $tmp_str = 'When C<span class="the_R">R</span>NRSTN :: has been configured to handle exceptions, 
-                    here is an example of one such system notification with the HTML email creative:<br><br><img src="' . $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR") . 'common/imgs/sys_notice_demo.png" width="571" height="677" alt="CRNRSTN ' . $this->oCRNRSTN->version_crnrstn . ' :: System Notification" title="CRNRSTN ' . $this->oCRNRSTN->version_crnrstn . ' :: System Notification">';
+                    here is an example of one such system notification with the HTML email creative:<br><br><img src="' . $this->oCRNRSTN->crnrstn_http_endpoint() . 'common/imgs/sys_notice_demo.png" width="571" height="677" alt="CRNRSTN ' . $this->oCRNRSTN->version_crnrstn . ' :: System Notification" title="CRNRSTN ' . $this->oCRNRSTN->version_crnrstn . ' :: System Notification">';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', $tmp_str);
 
 
@@ -1520,7 +1520,7 @@ class crnrstn_content_source_controller {
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', '<div class="section_title">Example 2 ::</div>');
                     $tmp_str = 'When C<span class="the_R">R</span>NRSTN :: has been configured to handle exceptions, 
-                    here is an example of one such system notification with the HTML email creative:<br><br><img src="' . $this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP").$this->oCRNRSTN->get_resource("ROOT_PATH_CLIENT_HTTP_DIR") . 'common/imgs/sys_notice_demo.png" width="571" height="677" alt="CRNRSTN ' . $this->oCRNRSTN->version_crnrstn . ' :: System Notification" title="CRNRSTN ' . $this->oCRNRSTN->version_crnrstn . ' :: System Notification">';
+                    here is an example of one such system notification with the HTML email creative:<br><br><img src="' . $this->oCRNRSTN->crnrstn_http_endpoint() . 'common/imgs/sys_notice_demo.png" width="571" height="677" alt="CRNRSTN ' . $this->oCRNRSTN->version_crnrstn . ' :: System Notification" title="CRNRSTN ' . $this->oCRNRSTN->version_crnrstn . ' :: System Notification">';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY', $tmp_str);
 
                 break;
@@ -7149,7 +7149,9 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release of
                                                     LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
-                                                    for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
+                                                    for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
@@ -7332,7 +7334,9 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
@@ -7343,7 +7347,9 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
@@ -7355,7 +7361,9 @@ between the server and client can be achieved with minimal effort and maximum da
                             Device Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
+                                                    <br><br>
+                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;

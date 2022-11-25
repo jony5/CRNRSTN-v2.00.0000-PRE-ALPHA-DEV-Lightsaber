@@ -2990,7 +2990,7 @@ class crnrstn_bassdrive_stream_output_controller{
         echo '<br><br><br>' . $this->stream_key. '<---->' . $colors_name_key;
         die();
 
-        $this->flagged_built_colors_ARRAY[$this->stream_key] = '<div class="colors_img_wrapper"><img src="' . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN_USR->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . 'common/imgs/bassdrive_component_creative/' . $national_colors_img_file . '" width="64" height="32" alt="LONDON, UK" title="National flag for LONDON, UK"></div>
+        $this->flagged_built_colors_ARRAY[$this->stream_key] = '<div class="colors_img_wrapper"><img src="' . $this->oCRNRSTN->crnrstn_http_endpoint() . 'common/imgs/bassdrive_component_creative/' . $national_colors_img_file . '" width="64" height="32" alt="LONDON, UK" title="National flag for LONDON, UK"></div>
         <div class="cb"></div>
         <div class="colors_city_state">LONDON, UK</div>';
 

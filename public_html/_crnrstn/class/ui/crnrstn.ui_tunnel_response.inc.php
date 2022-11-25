@@ -2207,7 +2207,7 @@ class crnrstn_ui_tunnel_response_manager {
         // GENERATE NEW PSEUDO SOAP DATA TUNNEL LAYER PACKET IF ANY PACKET DATA (I.E. CHECKSUMS) CHANGED AND
         // SEND ANY DATA HAVING DELTA TO CLIENT
         $tmp_ssdtl_ARRAY = $this->return_ssdtl_form_integrations_packet('array');
-        error_log(__LINE__ . ' ui tunnel SSDTL_FIP?->[' . print_r($tmp_ssdtl_ARRAY,  true) . '].');
+        //error_log(__LINE__ . ' ui tunnel SSDTL_FIP?->[' . print_r($tmp_ssdtl_ARRAY,  true) . '].');
         $tmp_SOAP_DATA_TUNNEL_PACKET = $tmp_ssdtl_ARRAY['SSDTL_FIP'];
         $tmp_SSDTL_TITLE_CONTENT = $tmp_ssdtl_ARRAY['TITLE_HTML'];
         $tmp_SSDTL_SOCIAL_CONTENT = $tmp_ssdtl_ARRAY['SOCIAL_HTML'];

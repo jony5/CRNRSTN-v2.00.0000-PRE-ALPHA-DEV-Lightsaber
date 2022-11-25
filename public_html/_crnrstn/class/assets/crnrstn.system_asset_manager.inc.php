@@ -5690,6 +5690,7 @@ class crnrstn_system_image_asset_manager {
                 self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
 
             break;
+            case 'CRNRSTN_R':
             case 'CRNRSTN_R_LG':
 
                 $tmp_filename = 'crnrstn_R_lg';

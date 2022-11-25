@@ -1150,7 +1150,7 @@ class crnrstn_http_manager {
                 // TODO :: TAKE CARE OF THIS.
                 // SOMETHING FOR NOW
                 //$tmp_config_wsdl = 'http://jony5.com/_crnrstn/soa/?wsdl';
-                $tmp_config_wsdl = $this->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_crnrstn/soa/?wsdl';
+                $tmp_config_wsdl = $this->oCRNRSTN->crnrstn_http_endpoint() . '_crnrstn/soa/?wsdl';
 
             }
 

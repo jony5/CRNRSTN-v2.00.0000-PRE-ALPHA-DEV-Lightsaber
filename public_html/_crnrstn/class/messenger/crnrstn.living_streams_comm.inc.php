@@ -917,7 +917,7 @@ class crnrstn_stream_manager {
 
                     }
 
-                    $tmp_feeder_cnt = '<a href="#" onclick="evifweb_followLink(\''.self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP').self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'stream/?sid=' . $oLIVING_STREAM->return_attribute_data('STREAM_ID').'&ruri=' . $tmp_curr_uri.'\');">(' . $tmp_feeder_cnt.')</a>';
+                    $tmp_feeder_cnt = '<a href="#" onclick="evifweb_followLink(\'' . self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP').self::$oUserEnvironment->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR').'stream/?sid=' . $oLIVING_STREAM->return_attribute_data('STREAM_ID').'&ruri=' . $tmp_curr_uri.'\');">(' . $tmp_feeder_cnt.')</a>';
                 }
 
                 if($oLIVING_STREAM->return_attribute_data('ATTACHED_ASSET_ID')!=""){
