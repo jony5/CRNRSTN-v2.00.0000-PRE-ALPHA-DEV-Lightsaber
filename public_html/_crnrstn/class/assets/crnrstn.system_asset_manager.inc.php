@@ -3437,7 +3437,7 @@ class crnrstn_system_image_asset_manager {
 
                 $this->readfile_chunked($tmp_filepath);
 
-                ob_flush();
+                //ob_flush();
                 flush();
                 exit();
 
@@ -7690,7 +7690,7 @@ class crnrstn_system_image_asset_manager {
 
                             $this->readfile_chunked($tmp_filepath);
 
-                            ob_flush();
+                            //ob_flush();
                             flush();
                             exit();
 

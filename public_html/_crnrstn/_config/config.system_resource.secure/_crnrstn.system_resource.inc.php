@@ -20,7 +20,7 @@ $this->config_add_system_resource('BLUEHOST_JONY5', 'SSL_ENABLED', false);
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'DOCUMENT_ROOT_DIR', '');
-$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP', 'http://lightsaber.crnrstn.evifweb.com/');
+$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP', 'https://lightsaber.crnrstn.evifweb.com/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BANNER_IMAGES_HTTP_DIR_DESKTOP', 'common/imgs/lifestyle_banner/desktop/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BANNER_IMAGES_HTTP_DIR_TABLET', 'common/imgs/lifestyle_banner/tablet/');
