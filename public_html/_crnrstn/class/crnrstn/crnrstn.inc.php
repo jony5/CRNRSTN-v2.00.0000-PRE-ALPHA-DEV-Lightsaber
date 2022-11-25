@@ -3299,52 +3299,73 @@ class crnrstn {
 
         $tmp_ARRAY = array(
             'crnrstn.main.js' => '/',
-
             'jquery-3.6.1.js '=> '_lib/frameworks/jquery/3.6.1' ,
             'jquery-3.6.1.min.map' => '_lib/frameworks/jquery/3.6.1',
             'jquery-3.6.1.min.js' => '_lib/frameworks/jquery/3.6.1',
-
-            'jquery-2.2.4.js' => '_lib/frameworks/jquery/2.2.4',
             'jquery-2.2.4.min.js' => '_lib/frameworks/jquery/2.2.4',
+            'jquery-2.2.4.js' => '_lib/frameworks/jquery/2.2.4',
+            'jquery-1.12.4.min.js' => '_lib/frameworks/jquery/1.12.4',
+            'jquery-1.12.4.js' => '_lib/frameworks/jquery/1.12.4',
             'jquery-1.11.1.min.js' => '_lib/frameworks/jquery/1.11.1',
-
+            'jquery-ui-1.13.2/jquery-ui.theme.min.css' => '_lib/frameworks/jquery_ui/1.13.2',
+            'jquery-ui-1.13.2/jquery-ui.structure.min.css' => '_lib/frameworks/jquery_ui/1.13.2',
+            'jquery-ui-1.13.2/jquery-ui.min.css' => '_lib/frameworks/jquery_ui/1.13.2',
+            'jquery-ui-1.13.2/jquery-ui.theme.css' => '_lib/frameworks/jquery_ui/1.13.2',
+            'jquery-ui-1.13.2/jquery-ui.structure.css' => '_lib/frameworks/jquery_ui/1.13.2',
+            'jquery-ui-1.13.2/jquery-ui.css' => '_lib/frameworks/jquery_ui/1.13.2',
+            'jquery-ui-1.13.2/jquery-ui.min.js' => '_lib/frameworks/jquery_ui/1.13.2',
+            'jquery-ui-1.13.2/jquery-ui.js' => '_lib/frameworks/jquery_ui/1.13.2',
+            'jquery-ui-1.12.1/jquery-ui.theme.min.css' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.structure.min.css' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.min.css' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.theme.css' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.structure.css' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.css' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.min.js' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery-ui-1.12.1/jquery-ui.js' => '_lib/frameworks/jquery_ui/1.12.1',
+            'jquery.mobile.external-png-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.icons-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.inline-png-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.inline-svg-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.structure-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.theme-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.external-png-1.4.5.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.icons-1.4.5.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.inline-png-1.4.5.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.inline-svg-1.4.5.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.structure-1.4.5.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile.theme-1.4.5.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'jquery.mobile-1.4.5.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
             'jquery.mobile-1.4.5/index.js' => '_lib/frameworks/jquery_mobi/1.4.5',
             'jquery.mobile-1.4.5.min.js' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-            'jquery.mobile-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-            'jquery.mobile.theme-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-            'jquery.mobile.structure-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-            'jquery.mobile.inline-svg-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-            'jquery.mobile.inline-png-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-            'jquery.mobile.icons-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-            'jquery.mobile.external-png-1.4.5.min.css' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
-
-            'lightbox-plus-jquery.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js',
-            'lightbox.min.css' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/css',
-            'lightbox.min.js' => '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js',
-
-            '2.03.3/css/lightbox.css' => '_lib/frameworks/lightbox.js',
-            '2.03.3/js/lightbox.js' => '_lib/frameworks/lightbox.js',
-
+            'jquery.mobile-1.4.5.js' => '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5',
+            'lightbox-2.11.3/css/lightbox.min.css' => '_lib/frameworks/lightbox.js/2.11.3',
+            'lightbox-2.11.3/css/lightbox.css' => '_lib/frameworks/lightbox.js/2.11.3',
+            'lightbox-2.11.3/js/lightbox.min.js' => '_lib/frameworks/lightbox.js/2.11.3',
+            'lightbox-2.11.3/js/lightbox.js' => '_lib/frameworks/lightbox.js/2.11.3',
+            'lightbox-2.11.3/js/lightbox-plus-jquery.min.js' => '_lib/frameworks/lightbox.js/2.11.3',
+            'lightbox-2.11.3/js/lightbox-plus-jquery.js' => '_lib/frameworks/lightbox.js/2.11.3',
+            '1.4.1/backbone-min.js' => '_lib/frameworks/backbone',
+            '1.4.1/backbone.js' => '_lib/frameworks/backbone',
             'prototype.js' => '_lib/frameworks/prototype.js/1.7.3',
-            'scriptaculous.js'  => '_lib/frameworks/script.aculo.us/1.9.0/src',
-            'builder.js'  => '_lib/frameworks/script.aculo.us/1.9.0/src',
-            'controls.js'  => '_lib/frameworks/script.aculo.us/1.9.0/src',
-            'dragdrop.js'  => '_lib/frameworks/script.aculo.us/1.9.0/src',
-            'effects.js'  => '_lib/frameworks/script.aculo.us/1.9.0/src',
-            'slider.js'  => '_lib/frameworks/script.aculo.us/1.9.0/src',
-            'sound.js'  => '_lib/frameworks/script.aculo.us/1.9.0/src',
-
-            'jquery-ui.min.js' => '_lib/frameworks/jquery_ui/1.13.2/jquery-ui-1.13.2',
-            'jquery-ui.min.css' => '_lib/frameworks/jquery_ui/1.13.2/jquery-ui-1.13.2',
-            'jquery-ui.theme.min.css' => '_lib/frameworks/jquery_ui/1.13.2/jquery-ui-1.13.2',
-            'jquery-ui.structure.min.css' => '_lib/frameworks/jquery_ui/1.13.2/jquery-ui-1.13.2',
-
-            'jquery-ui-1.12.1/jquery-ui.min.js' => '_lib/frameworks/jquery_ui/1.12.1',
-            'jquery-ui-1.12.1/jquery-ui.min.css' => '_lib/frameworks/jquery_ui/1.12.1',
-            'jquery-ui-1.12.1/jquery-ui.theme.min.css' => '_lib/frameworks/jquery_ui/1.12.1',
-            'jquery-ui-1.12.1/jquery-ui.structure.min.css' => '_lib/frameworks/jquery_ui/1.12.1'
+            'scriptaculous.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
+            'builder.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
+            'controls.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
+            'dragdrop.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
+            'effects.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
+            'slider.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
+            'sound.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
+            '2.03.3/css/lightbox.css' => '_lib/frameworks/lightbox.js',
+            '2.03.3/js/lightbox.js' => '_lib/frameworks/lightbox.js'
 
         );
+
+        /*
+        /
+        _lib/frameworks/lightbox.js/
+
+        */
 
         $this->asset_routing_data_key_lookup_ARRAY['js'] = $tmp_ARRAY;
 

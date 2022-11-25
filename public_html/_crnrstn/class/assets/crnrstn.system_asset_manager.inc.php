@@ -565,9 +565,9 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.theme.min.css&v=420.00.' . $tmp_cache_jqueryuithememincss . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.structure.min.css&v=420.00.' . $tmp_cache_jqueryuistructuremincss . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.min.css&v=420.00.' . $tmp_cache_jqueryuimincss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui-1.13.2/jquery-ui.theme.min.css&v=420.00.' . $tmp_cache_jqueryuithememincss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui-1.13.2/jquery-ui.structure.min.css&v=420.00.' . $tmp_cache_jqueryuistructuremincss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui-1.13.2/jquery-ui.min.css&v=420.00.' . $tmp_cache_jqueryuimincss . '">
 ';
 
                                 }else{
@@ -589,9 +589,9 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.theme.css&v=420.00.' . $tmp_cache_jqueryuithemecss . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.structure.css&v=420.00.' . $tmp_cache_jqueryuistructurecss . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui.css&v=420.00.' . $tmp_cache_jqueryuicss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui-1.13.2/jquery-ui.theme.css&v=420.00.' . $tmp_cache_jqueryuithemecss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui-1.13.2/jquery-ui.structure.css&v=420.00.' . $tmp_cache_jqueryuistructurecss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery-ui-1.13.2/jquery-ui.css&v=420.00.' . $tmp_cache_jqueryuicss . '">
 ';
 
                                 }else{
@@ -613,7 +613,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-ui.min.js&v=420.00.' . $tmp_cache_jqueryuiminjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-ui-1.13.2/jquery-ui.min.js&v=420.00.' . $tmp_cache_jqueryuiminjs . '"></script>
 ';
 
                                     return $tmp_str_array;
@@ -633,7 +633,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-ui.js&v=420.00.' . $tmp_cache_jqueryuijs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() .'=jquery-ui-1.13.2/jquery-ui.js&v=420.00.' . $tmp_cache_jqueryuijs . '"></script>
 ';
 
                                     return $tmp_str_array;
@@ -835,7 +835,7 @@ class crnrstn_system_image_asset_manager {
     <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.icons-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobileicons145mincss . '">
     <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.inline-png-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobileinlinepng145mincss . '">
     <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.inline-svg-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobileinlinesvg145mincss . '">
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.structure-1.4.5.min.css.' . $tmp_cache_jquerymobilestructure145mincss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.structure-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobilestructure145mincss . '">
     <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.theme-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobiletheme145mincss . '">
     <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobile145mincss . '">
 ';
@@ -855,26 +855,26 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.external-png-1.4.5.min.css&v=420.00.' . $tmp_cache_jquerymobileexternalpng145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.icons-1.4.5.min.css&v=420.00.' . $tmp_cache_jquerymobileicons145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.inline-png-1.4.5.min.css&v=420.00.' . $tmp_cache_jquerymobileinlinepng145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.inline-svg-1.4.5.min.css&v=420.00.' . $tmp_cache_jquerymobileinlinesvg145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.structure-1.4.5.min.css&v=420.00.' . $tmp_cache_jquerymobilestructure145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.theme-1.4.5.min.css&v=420.00.' . $tmp_cache_jquerymobiletheme145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile-1.4.5.min.css&v=420.00.' . $tmp_cache_jquerymobile145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.external-png-1.4.5.css&v=420.00.' . $tmp_cache_jquerymobileexternalpng145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.icons-1.4.5.css&v=420.00.' . $tmp_cache_jquerymobileicons145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.inline-png-1.4.5.css&v=420.00.' . $tmp_cache_jquerymobileinlinepng145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.inline-svg-1.4.5.css&v=420.00.' . $tmp_cache_jquerymobileinlinesvg145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.structure-1.4.5.css&v=420.00.' . $tmp_cache_jquerymobilestructure145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile.theme-1.4.5.css&v=420.00.' . $tmp_cache_jquerymobiletheme145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=jquery.mobile-1.4.5.css&v=420.00.' . $tmp_cache_jquerymobile145css . '">
 
 ';
 
                                 }else{
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.external-png-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobileexternalpng145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.icons-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobileicons145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.inline-png-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobileinlinepng145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.inline-svg-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobileinlinesvg145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.structure-1.4.5.min.css.' . $tmp_cache_jquerymobilestructure145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.theme-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobiletheme145css . '">
-    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css?v=420.00.' . $tmp_cache_jquerymobile145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.external-png-1.4.5.css?v=420.00.' . $tmp_cache_jquerymobileexternalpng145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.icons-1.4.5.css?v=420.00.' . $tmp_cache_jquerymobileicons145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.inline-png-1.4.5.css?v=420.00.' . $tmp_cache_jquerymobileinlinepng145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.inline-svg-1.4.5.css?v=420.00.' . $tmp_cache_jquerymobileinlinesvg145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.structure-1.4.5.css?v=420.00.' . $tmp_cache_jquerymobilestructure145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile.theme-1.4.5.css?v=420.00.' . $tmp_cache_jquerymobiletheme145css . '">
+    <link rel="stylesheet" href="' . $tmp_http_path_js . '_lib/frameworks/jquery_mobi/1.4.5/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css?v=420.00.' . $tmp_cache_jquerymobile145css . '">
 ';
 
                                 }
@@ -980,7 +980,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.min.css&v=420.00.' . $tmp_cache_lightboxmincss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-2.11.3/css/lightbox.min.css&v=420.00.' . $tmp_cache_lightboxmincss . '">
 ';
 
                                 }else{
@@ -998,7 +998,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.css&v=420.00.' . $tmp_cache_lightboxcss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-2.11.3/css/lightbox.css&v=420.00.' . $tmp_cache_lightboxcss . '">
 ';
 
                                 }else{
@@ -1068,7 +1068,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.min.js&v=420.00.' . $tmp_cache_lightboxminjs . '"></script>
+    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-2.11.3/js/lightbox.min.js&v=420.00.' . $tmp_cache_lightboxminjs . '"></script>
 ';
 
                                     return $tmp_str_array;
@@ -1088,7 +1088,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.js&v=420.00.' . $tmp_cache_lightboxjs . '"></script>
+    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-2.11.3/js/lightbox.js&v=420.00.' . $tmp_cache_lightboxjs . '"></script>
 ';
 
                                     return $tmp_str_array;
@@ -1114,8 +1114,6 @@ class crnrstn_system_image_asset_manager {
                             $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
                             $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
-                            $tmp_cache_lightboxplusjqueryminjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.min.js');
-
                             $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
@@ -1125,7 +1123,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.min.css&v=420.00.' . $tmp_cache_lightboxmincss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-2.11.3/css/lightbox.min.css&v=420.00.' . $tmp_cache_lightboxmincss . '">
 ';
 
                                 }
@@ -1141,7 +1139,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: css -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox.css&v=420.00.' . $tmp_cache_lightboxcss . '">
+    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-2.11.3/css/lightbox.css&v=420.00.' . $tmp_cache_lightboxcss . '">
 ';
 
                                 }else{
@@ -1161,7 +1159,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-plus-jquery.min.js&v=420.00.' . $tmp_cache_lightboxplusjqueryminjs . '"></script>
+    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-2.11.3/js/lightbox-plus-jquery.min.js&v=420.00.' . $tmp_cache_lightboxplusjqueryminjs . '"></script>
 ';
 
                                     return $tmp_str_array;
@@ -1181,7 +1179,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-plus-jquery.js&v=420.00.' . $tmp_cache_lightboxplusjqueryjs . '"></script>
+    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-2.11.3/js/lightbox-plus-jquery.js&v=420.00.' . $tmp_cache_lightboxplusjqueryjs . '"></script>
 ';
 
                                     return $tmp_str_array;
@@ -1256,16 +1254,16 @@ class crnrstn_system_image_asset_manager {
 
                            */
 
+                            $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                                $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
                                 <script src="https://cdn.jsdelivr.net/npm/mithril/mithril.min.js" crossorigin></script>
 ';
 
                             }else{
 
-                                $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
                                 <script src="https://unpkg.com/mithril@2.2.2/mithril.js" crossorigin></script>
 ';
@@ -1278,6 +1276,12 @@ class crnrstn_system_image_asset_manager {
                             $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_BACKBONE);
 
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                            $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
+                            $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
+                            $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+                            $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
@@ -1286,7 +1290,7 @@ class crnrstn_system_image_asset_manager {
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=backbone-min.js&v=420.00.' . $tmp_cache_backboneminjs . '"></script>
+    <script src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=1.4.1/backbone-min.js&v=420.00.' . $tmp_cache_backboneminjs . '"></script>
 ';
 
                                     return $tmp_str_array;
@@ -1294,19 +1298,19 @@ class crnrstn_system_image_asset_manager {
                                 }
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script src="' . $tmp_http_path_js . '_lib/frameworks/backbone/1.4.1/backbone-min.js?v=420.00.' . $tmp_cache_lightboxplusjqueryminjs . '"></script>
+    <script src="' . $tmp_http_path_js . '_lib/frameworks/backbone/1.4.1/backbone-min.js?v=420.00.' . $tmp_cache_backboneminjs . '"></script>
 ';
 
                                 return $tmp_str_array;
 
                             }else{
 
-                                $tmp_cache_lightboxplusjqueryjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.js');
+                                $tmp_cache_backbonejs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/backbone/1.4.1/backbone.js');
 
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
                                     $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=lightbox-plus-jquery.js&v=420.00.' . $tmp_cache_lightboxplusjqueryjs . '"></script>
+    <script type="application/javascript" src="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=1.4.1/backbone.js&v=420.00.' . $tmp_cache_backbonejs . '"></script>
 ';
 
                                     return $tmp_str_array;
@@ -1314,13 +1318,12 @@ class crnrstn_system_image_asset_manager {
                                 }
 
                                 $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' v' . $tmp_ARRAY['VERSION'] . ' :: js -->
-    <script type="application/javascript" src="' . $tmp_http_path_js . '_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/js/lightbox-plus-jquery.js?v=420.00.' . $tmp_cache_lightboxplusjqueryjs . '"></script>
+    <script type="application/javascript" src="' . $tmp_http_path_js . '_lib/frameworks/backbone/1.4.1/backbone.js?v=420.00.' . $tmp_cache_backbonejs . '"></script>
 ';
 
                                 return $tmp_str_array;
 
                             }
-
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
@@ -1377,8 +1380,6 @@ class crnrstn_system_image_asset_manager {
                             $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                             $tmp_http_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-                            $tmp_cache_scriptaculousjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/scriptaculous.js');
-
                             $tmp_http_path_js = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_js);
                             $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
@@ -1431,6 +1432,7 @@ class crnrstn_system_image_asset_manager {
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
+                                $tmp_cache_scriptaculousjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/scriptaculous.js');
                                 $tmp_cache_builderjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/builder.js');
                                 $tmp_cache_controlsjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/controls.js');
                                 $tmp_cache_dragdropjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/dragdrop.js');
@@ -1465,6 +1467,8 @@ class crnrstn_system_image_asset_manager {
                                 }
 
                             }else{
+
+                                $tmp_cache_scriptaculousjs = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/script.aculo.us/1.9.0/src/scriptaculous.js');
 
                                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
@@ -6806,8 +6810,8 @@ class crnrstn_system_image_asset_manager {
 
                             $this->readfile_chunked($tmp_filepath);
 
-                            ob_flush();
-                            flush();
+                            //ob_flush();
+                            @flush();
                             exit();
 
                         }

@@ -31,7 +31,7 @@ $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BASSDRIVE_INTEGRATE', tru
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BASSDRIVE_RELAY_STATE', 'http://jony5.com/_proxy/bassdrive/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'CRNRSTN_UI_INTERACT_ENABLED', false);
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'CRNRSTN_UI_INTERACT_ISVISIBLE', false);
-$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'SSL_ENABLED', false);
+$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'SSL_ENABLED', true);
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
