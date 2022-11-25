@@ -226,9 +226,20 @@ class crnrstn_content_source_controller {
 
                         }
 
+                        $tmp_version = '';
+                        if(isset($profile_ARRAY['VERSION'])){
+
+                            if(strlen($profile_ARRAY['VERSION']) > 0){
+
+                                $tmp_version = ' v' . $profile_ARRAY['VERSION'];
+
+                            }
+
+                        }
+
                         $tmp_predefined_constants_html .= '<div class="crnrstn_resource_constant_demo_shell">
                         <div class="crnrstn_resource_constant_nom"><span style="font-weight: normal;">' . $profile_ARRAY['INTEGER'] . '</span>&nbsp;&nbsp;&nbsp;' . $profile_ARRAY['STRING'] . '</div>                        
-                        <div class="crnrstn_resource_constant_version"><p>' . $profile_ARRAY['TITLE'] . ' v' . $profile_ARRAY['VERSION'] . '</p></div>
+                        <div class="crnrstn_resource_constant_version"><p>' . $profile_ARRAY['TITLE'] . $tmp_version . '</p></div>
                         <div class="crnrstn_resource_constant_www">
                             <div class="crnrstn_resource_constant_www_source"><a href="#" target="_self">view source</a></div>
                             <div class="crnrstn_resource_constant_www_website">' . $tmp_www_link . '</div>
@@ -6766,7 +6777,8 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     just need to add a date picker to a form control, jQuery UI is the
                                                     perfect choice.
                                                     <br><br>
-                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery/jquery-ui');
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery/jquery-ui') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jqueryui');
                 $tmp_output_ARRAY['URL'][] = 'https://jqueryui.com/';
 
             break;
@@ -6783,7 +6795,8 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     just need to add a date picker to a form control, jQuery UI is the
                                                     perfect choice.
                                                     <br><br>
-                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery/jquery-ui');
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery/jquery-ui') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jqueryui');
                 $tmp_output_ARRAY['URL'][] = 'https://jqueryui.com/';
 
             break;
@@ -6891,10 +6904,10 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br><br>
                             <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/tutorial/tutorial.html', 'crnrstn_documentation_react_take_the_tutorial') . '" target="_blank">Take the Tutorial.</a>
                             <br><br>
-                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL','https://github.com/facebook/react') . '&nbsp;
-                            ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL','https://stackoverflow.com/questions/tagged/reactjs') . '&nbsp;
-                            ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL','https://www.facebook.com/react') . '&nbsp;
-                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL','https://twitter.com/reactjs');
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/facebook/react') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/tagged/reactjs') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/react') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/reactjs');
                 $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
@@ -6917,10 +6930,10 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br><br>
                             <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/tutorial/tutorial.html', 'crnrstn_documentation_react_dom_take_the_tutorial') . '" target="_blank">Take the Tutorial.</a>
                             <br><br>
-                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL','https://github.com/facebook/react') . '&nbsp;
-                            ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL','https://stackoverflow.com/questions/tagged/reactjs') . '&nbsp;
-                            ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL','https://www.facebook.com/react') . '&nbsp;
-                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL','https://twitter.com/reactjs');
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/facebook/react') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/tagged/reactjs') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/react') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/reactjs');
                 $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
@@ -6945,7 +6958,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br><br>
                             Looking for the v1 docs? <a href="' . $this->oCRNRSTN->return_sticky_link('https://mithril.js.org/archive/v1.1.7/index.html', 'crnrstn_documentation_mithril_js_v1_docs_click_here') . '" target="_blank">Click here.</a>
                             <br><br>
-                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL','https://github.com/MithrilJS/mithril.js');
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/MithrilJS/mithril.js');
 
                 $tmp_output_ARRAY['URL'][] = 'https://mithril.js.org/';
 
@@ -6974,7 +6987,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br><br>
                             <em>Backbone is an open-source component of <a href="'. $this->oCRNRSTN->return_sticky_link('https://documentcloud.org/', 'crnrstn_documentation_backbonejs_documentcloud') . '" target="_blank">DocumentCloud</a></em>.                           
                             <br><br>
-                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL','https://github.com/jashkenas/backbone');
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jashkenas/backbone');
                 $tmp_output_ARRAY['URL'][] = 'https://backbonejs.org/';
 
             break;
@@ -7090,9 +7103,14 @@ between the server and client can be achieved with minimal effort and maximum da
                 friends), Opera and Camino.
                 <br><br>
                 MooTools libraries are released under the Open Source <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT license</a>
-                which gives you the possibility to use them and modify them in every circumstance.';
+                which gives you the possibility to use them and modify them in every circumstance.
+                <br><br>
+                ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/mootools/mootools-more') . '&nbsp;
+                ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/mootools') . '&nbsp;
+                ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/mootools') . '&nbsp;               
+                ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/tagged/mootools');
+
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/more/docs/1.6.0';
-                $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-more';
 
             break;
             case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
@@ -7111,9 +7129,13 @@ between the server and client can be achieved with minimal effort and maximum da
                 friends), Opera and Camino.
                 <br><br>
                 MooTools libraries are released under the Open Source <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT license</a> 
-                which gives you the possibility to use them and modify them in every circumstance.';
+                which gives you the possibility to use them and modify them in every circumstance.
+                <br><br>
+                ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/mootools/mootools-core') . '&nbsp
+                ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/mootools') . '&nbsp;
+                ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/mootools') . '&nbsp;
+                ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/tagged/mootools');
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/core/docs/1.6.0';
-                $tmp_output_ARRAY['URL'][] = 'https://github.com/mootools/mootools-core';
 
             break;
             case CRNRSTN_UI_JS_MAIN:
@@ -7134,7 +7156,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'Simple Grid';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Responsive; your website will 
                             display beautifully, no matter the device or screen type. Lightweight; the CSS is super 
@@ -7144,7 +7166,11 @@ between the server and client can be achieved with minimal effort and maximum da
                             Download the CSS stylesheet, add the appropriate classes to your markup, and you\'re off to 
                             the races. It’s that simple.<br><br>
                             Each column is contained within rows, which are contained within a container. The container 
-                            is set to a maximum width of 960px, but you can edit without having to break anything.';
+                            is set to a maximum width of 960px, but you can edit without having to break anything.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/ZachACole') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://zcole.me/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/zachacole/Simple-Grid');
                 $tmp_output_ARRAY['URL'][] = 'https://simplegrid.io/';
 
             break;
@@ -7153,11 +7179,17 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
                             workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
-                            two variants: 12 and 16 columns, which can be used separately or in tandem.';
+                            two variants: 12 and 16 columns, which can be used separately or in tandem.
+                            <br><br>
+                            <!-- CRNRSTN :: COMMUNITY OVER CODE -->
+                            ' . $this->oCRNRSTN->return_sticky_media_link('LINKEDIN_SMALL', 'https://www.linkedin.com/in/nathan/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://sonspring.com/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FLICKR_SMALL', 'https://flickr.com/photos/nathansmith') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/960-grid-system/');
                 $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
 
             break;
@@ -7173,7 +7205,11 @@ between the server and client can be achieved with minimal effort and maximum da
                             Foundation is a family of responsive front-end frameworks that make it easy to design 
                             beautiful responsive websites, apps and emails that look amazing on any device. Foundation 
                             is semantic, readable, flexible, and completely customizable. We’re constantly adding new 
-                            resources and code snippets, including handy HTML templates to help get you started!';
+                            resources and code snippets, including handy HTML templates to help get you started!
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('YOUTUBE_SMALL', 'https://www.youtube.com/channel/UCS7eqSwmBYuslPEKeJBq-kg') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/FoundationCSS') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/foundation/foundation-sites/');
                 $tmp_output_ARRAY['URL'][] = 'https://get.foundation/';
 
             break;
@@ -7186,7 +7222,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The web\'s most popular front-end template, HTML5 Boilerplate helps 
                             you build fast, robust, and adaptable web apps or sites. Kick-start your project with the 
-                            combined knowledge and effort of 100s of developers, all in one little package.';
+                            combined knowledge and effort of 100s of developers, all in one little package.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/h5bp') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/h5bp/html5-boilerplate/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/tagged/html5boilerplate');
                 $tmp_output_ARRAY['URL'][] = 'https://html5boilerplate.com/';
 
             break;
@@ -7199,7 +7239,10 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Spectacularly Easy Responsive 
                             Design. The Responsive Grid System isn\'t a framework. It\'s not a boilerplate either. It\'s 
-                            a quick, easy &amp; flexible way to create a responsive web site.';
+                            a quick, easy &amp; flexible way to create a responsive web site.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/graham_r_miller') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://www.edwardrobertson.co.uk/');
                 $tmp_output_ARRAY['URL'][] = 'http://www.responsivegridsystem.com/';
 
             break;
@@ -7212,7 +7255,9 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
-                            it\'s entirely based on percentages.';
+                            it\'s entirely based on percentages.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/unsemantic/');
                 $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
 
             break;
@@ -7229,7 +7274,10 @@ between the server and client can be achieved with minimal effort and maximum da
                             classes (row and col), fluid columns with fixed gutters, supports infinite nesting, and
                             doesn\'t constrain you to any column sets or media query breakpoints. It embraces concepts 
                             of progressive enhancement and mobile first, serving one-column mobile layout to older 
-                            browsers (IE 6-7). IE 8 is supported if you use Respond.js';
+                            browsers (IE 6-7). IE 8 is supported if you use Respond.js
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/mourner/dead-simple-grid') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://agafonkin.com/');
                 $tmp_output_ARRAY['URL'][] = 'https://mourner.github.io/dead-simple-grid/';
 
             break;
@@ -7239,7 +7287,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'SKELETON';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
-                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Chrome, Firefox, Opera, Safari, IE.';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A dead simple, responsive boilerplate. Light as a feather at ~400 
                             lines &amp; built with mobile in mind. Styles designed to be a starting point, not a UI 
                             framework. Quick to start with zero compiling or installing necessary.
@@ -7250,7 +7298,10 @@ between the server and client can be achieved with minimal effort and maximum da
                             you need all the utility of larger frameworks. Skeleton only styles a handful of standard 
                             HTML elements and includes a grid, but that\'s often more than enough to get started.
                             <br><br>
-                            Love Skeleton and want to Tweet it, share it, or star it? Well, I appreciate that <3';
+                            Love Skeleton and want to Tweet it, share it, or star it? Well, I appreciate that <3
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/dhg/Skeleton') . '&nbsp;                            
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/dhg');
                 $tmp_output_ARRAY['URL'][] = 'http://getskeleton.com/';
 
             break;
