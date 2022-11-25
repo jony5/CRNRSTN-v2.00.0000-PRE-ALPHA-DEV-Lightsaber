@@ -7078,7 +7078,9 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['VERSION'] = '2.03.3';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The original lightbox script (circa 2008) which will load using 
-                            prototype.js.';
+                            prototype.js.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/lokesh');
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
