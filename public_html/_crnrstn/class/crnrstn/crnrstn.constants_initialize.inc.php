@@ -57,10 +57,6 @@ _crnrstn/class/crnrstn/crnrstn.constants_load.inc.php
     $CRNRSTN_CONSTANTS_ARRAY = array(...{ADD NEW CONSTANT}...);
     @define('DEFINE NEW CONSTANT HERE', (int) crnrstn_constants_init('DEFINE NEW CONSTANT HERE'));
 
-_crnrstn/class/crnrstn/crnrstn.performance_regulator.inc.php
-    public function return_constants_string($int_constant)
-    public function return_constants_integer($int_constant_str)
-
 _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [CHECK IF ADDING FRAMEWORK RESOURCE]
     public function return_html_head_asset($const){
     private function return_output_CRNRSTN_UI_JS($const){
@@ -677,19 +673,24 @@ function crnrstn_constants_init($const_nom){
             return (int) 7329;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+        case 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID':
 
             return (int) 7330;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
 
             return (int) 7331;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
 
             return (int) 7332;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+
+            return (int) 7333;
 
         break;
 

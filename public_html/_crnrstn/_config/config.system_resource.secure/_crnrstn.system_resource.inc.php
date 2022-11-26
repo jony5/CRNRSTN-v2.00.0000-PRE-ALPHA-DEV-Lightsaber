@@ -2,9 +2,6 @@
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('BLUEHOST_JONY5', 'DOCUMENT_ROOT_DIR', '', CRNRSTN_AUTHORIZE_RUNTIME_ONLY, 60);
-$this->config_add_system_resource('BLUEHOST_JONY5', 'ROOT_PATH_CLIENT_HTTP', 'http://lightsaber.crnrstn.jony5.com/');
-$this->config_add_system_resource('BLUEHOST_JONY5', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
 $this->config_add_system_resource('BLUEHOST_JONY5', 'BANNER_IMAGES_HTTP_DIR_DESKTOP', 'common/imgs/lifestyle_banner/desktop/');
 $this->config_add_system_resource('BLUEHOST_JONY5', 'BANNER_IMAGES_HTTP_DIR_TABLET', 'common/imgs/lifestyle_banner/tablet/');
 $this->config_add_system_resource('BLUEHOST_JONY5', 'BANNER_IMAGES_HTTP_DIR_MOBILE', 'common/imgs/lifestyle_banner/mobile/');
@@ -19,9 +16,6 @@ $this->config_add_system_resource('BLUEHOST_JONY5', 'SSL_ENABLED', false);
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'DOCUMENT_ROOT_DIR', '');
-$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP', 'https://lightsaber.crnrstn.evifweb.com/');
-$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'ROOT_PATH_CLIENT_HTTP_DIR', '');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BANNER_IMAGES_HTTP_DIR_DESKTOP', 'common/imgs/lifestyle_banner/desktop/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BANNER_IMAGES_HTTP_DIR_TABLET', 'common/imgs/lifestyle_banner/tablet/');
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'BANNER_IMAGES_HTTP_DIR_MOBILE', 'common/imgs/lifestyle_banner/mobile/');
@@ -35,9 +29,6 @@ $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'SSL_ENABLED', true);
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'DOCUMENT_ROOT_DIR', '/jony5');
-$this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP', 'http://172.16.225.128/');
-$this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP_DIR', 'jony5/');
 $this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'BANNER_IMAGES_HTTP_DIR_DESKTOP', 'common/imgs/lifestyle_banner/desktop/');
 $this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'BANNER_IMAGES_HTTP_DIR_TABLET', 'common/imgs/lifestyle_banner/tablet/');
 $this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'BANNER_IMAGES_HTTP_DIR_MOBILE', 'common/imgs/lifestyle_banner/mobile/');
@@ -52,9 +43,6 @@ $this->config_add_system_resource('LOCALHOST_MACBOOKPRO', 'SSL_ENABLED', false);
 
 //
 // BEGIN SYSTEM RESOURCE DEFINITIONS FOR THE NEXT ENVIRONMENT
-$this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'DOCUMENT_ROOT_DIR', '/lightsaber.crnrstn.evifweb.com');
-$this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP', 'http://172.16.225.139/');
-$this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'ROOT_PATH_CLIENT_HTTP_DIR', 'lightsaber.crnrstn.evifweb.com/');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'BANNER_IMAGES_HTTP_DIR_DESKTOP', 'common/imgs/lifestyle_banner/desktop/');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'BANNER_IMAGES_HTTP_DIR_TABLET', 'common/imgs/lifestyle_banner/tablet/');
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'BANNER_IMAGES_HTTP_DIR_MOBILE', 'common/imgs/lifestyle_banner/mobile/');

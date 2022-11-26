@@ -5064,7 +5064,6 @@ class crnrstn_environment {
 
                 $tmp_current_batch--;
 
-
                 if($tmp_current_batch < 0){
 
                     $tmp_current_batch = $tmp_batch_size;

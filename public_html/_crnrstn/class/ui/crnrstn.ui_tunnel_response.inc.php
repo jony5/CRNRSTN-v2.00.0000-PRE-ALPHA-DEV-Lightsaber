@@ -3098,12 +3098,37 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_endpoint_xml = '';
 
         $tmp_uri_paypal = 'https://www.paypal.com/donate?hosted_button_id=GWNVTUTPEAA8C';
-        $tmp_uri_json = $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_proxy/bassdrive/';
-        $tmp_uri_history = $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_proxy/bassdrive/?action=load_history';
+        $tmp_uri_json = $this->oCRNRSTN->crnrstn_http_endpoint() . '_proxy/bassdrive/';
+        $tmp_uri_history = $this->oCRNRSTN->crnrstn_http_endpoint() . '_proxy/bassdrive/?action=load_history';
 
         //error_log(__LINE__ . ' ui tunnel $tmp_uri_json=[' . $tmp_uri_json . '] DOCUMENT_ROOT=[' . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . ']. GET sprite_hq.png from ASSET MGR. -Sunday, October 30, 2022 @ 1709 hrs.');
-        //die();
-        $sprite_serial = filesize($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/imgs/png/social/sprite_hq.png') . '.' . filemtime($this->oCRNRSTN->get_resource('DOCUMENT_ROOT') . $this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR') . '/_crnrstn/ui/imgs/png/social/sprite_hq.png') . '.0';
+        //die(); $this->oCRNRSTN->crnrstn_path_directory()
+        /*
+         'crnrstn_path_directory', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_system_directory, 'crnrstn_system_directory',
+
+        self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_http_endpoint, 'crnrstn_http_endpoint', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
+        self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_path_dir, 'crnrstn_path_directory', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
+        self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_system_directory, 'crnrstn_system_directory', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
+        self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_path_integrations, 'crnrstn_integrations_asset_mapping_dir_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_INTEGRATIONS', 0, NULL, $env_key);
+
+        [Sat Nov 26 08:48:57.054967 2022] [:error] [pid 119076] [client 172.16.225.1:53792] 3122
+        $tmp_asset_mapping_dir_path[/var/www/html/lightsaber.crnrstn.evifweb.com/lightsaber.crnrstn.evifweb.com/_crnrstn/ui].
+        $tmp_crnrstn_http_endpoint[].
+        $tmp_crnrstn_path_directory[/var/www/html/lightsaber.crnrstn.evifweb.com/lightsaber.crnrstn.evifweb.com].
+        $tmp_crnrstn_integrations_asset_mapping_dir_path[/var/www/html/lightsaber.crnrstn.evifweb.com/lightsaber.crnrstn.evifweb.com/_crnrstn/ui]., referer: http://172.16.225.139/lightsaber.crnrstn.evifweb.com/
+
+        [Sat Nov 26 08:50:15.948627 2022] [:error] [pid 118269] [client 172.16.225.1:54116] 3122
+        $tmp_asset_mapping_dir_path[/var/www/html/lightsaber.crnrstn.evifweb.com/_crnrstn/ui].
+        $tmp_crnrstn_http_endpoint[]. $tmp_crnrstn_path_directory[/var/www/html/lightsaber.crnrstn.evifweb.com].
+        $tmp_crnrstn_integrations_asset_mapping_dir_path[/var/www/html/lightsaber.crnrstn.evifweb.com/_crnrstn/ui]., referer: http://172.16.225.139/lightsaber.crnrstn.evifweb.com/
+
+        */
+        //$tmp_path = $this->oCRNRSTN->crnrstn_path_directory();
+        $tmp_asset_mapping_dir_path = $this->oCRNRSTN->get_resource('crnrstn_integrations_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_INTEGRATIONS');
+
+        //error_log(__LINE__ . ' ui tunnel sprite_hq path=[' . $tmp_asset_mapping_dir_path . '/imgs/png/social/sprite_hq.png].');
+        $sprite_serial = filesize($tmp_asset_mapping_dir_path . '/imgs/png/social/sprite_hq.png') . '.' . filemtime($tmp_asset_mapping_dir_path. '/imgs/png/social/sprite_hq.png') . '.0';
 
         $tmp_RELAY_META_LOOKUP_DATA_count = $this->oCRNRSTN->return_record_count('RELAY_SOCIAL_DATA');
 

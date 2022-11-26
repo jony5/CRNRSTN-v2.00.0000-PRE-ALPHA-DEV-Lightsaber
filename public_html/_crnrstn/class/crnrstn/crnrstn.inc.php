@@ -2552,7 +2552,15 @@ class crnrstn {
 
         if($crnrstn_http_endpoint == ''){
 
-            $crnrstn_http_endpoint = 'http://' . $_SERVER['SERVER_ADDR'] . '/';
+            if($this->isSSL()){
+
+                $crnrstn_http_endpoint = 'https://' . $_SERVER['SERVER_ADDR'] . '/';
+
+            }else{
+
+                $crnrstn_http_endpoint = 'http://' . $_SERVER['SERVER_ADDR'] . '/';
+
+            }
 
         }
 
@@ -2613,10 +2621,8 @@ class crnrstn {
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_http_endpoint, 'crnrstn_http_endpoint', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_path_dir, 'crnrstn_path_directory', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_system_directory, 'crnrstn_system_directory', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
-
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_path_integrations, 'crnrstn_integrations_asset_mapping_dir_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_INTEGRATIONS', 0, NULL, $env_key);
 
-                //
             }
 
         }
@@ -3357,13 +3363,17 @@ class crnrstn {
             'slider.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
             'sound.js' => '_lib/frameworks/script.aculo.us/1.9.0/src',
             '2.03.3/css/lightbox.css' => '_lib/frameworks/lightbox.js',
-            '2.03.3/js/lightbox.js' => '_lib/frameworks/lightbox.js'
+            '2.03.3/js/lightbox.js' => '_lib/frameworks/lightbox.js',
+            'moo.fx.js' => '_lib/frameworks/moo.fx/2.0/source',
+            'moo.fx.pack.js' => '_lib/frameworks/moo.fx/2.0/source',
+            'moo.fx.utils.js' => '_lib/frameworks/moo.fx/2.0/source',
+            'moo.fx.accordion.js' => '_lib/frameworks/moo.fx/2.0/source',
+            'moo.fx.transitions.js' => '_lib/frameworks/moo.fx/2.0/source'
 
         );
 
         /*
-        /
-        _lib/frameworks/lightbox.js/
+
 
         */
 
@@ -3693,6 +3703,8 @@ class crnrstn {
             switch ($message_type) {
                 case 'detection':
 
+                    $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
+
                     $this->config_init_images_format_default();
                     $this->config_init_http(CRNRSTN_RESOURCE_ALL, '', CRNRSTN_ROOT);
 
@@ -3745,6 +3757,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 break;
                 default:
+
+                    $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
 
                     $this->config_init_images_format_default();
                     $this->config_init_http(CRNRSTN_RESOURCE_ALL, '', CRNRSTN_ROOT);
@@ -7308,7 +7322,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_resource_profile($resource_constant){
+    public function return_resource_profile($resource_constant, $attribute = 'ARRAY'){
 
         /*
         [Tue Nov 22 18:33:14.786202 2022] [:error] [pid 49942] [client 172.16.225.1:55559]
@@ -7322,9 +7336,10 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             [DESCRIPTION] => The web's most popular front-end template, HTML5 Boilerplate helps \n                            you build fast, robust, and adaptable web apps or sites. Kick-start your project with the \n                            combined knowledge and effort of 100s of developers, all in one little package.\n    [URL] => Array\n        (\n            [0] => https://html5boilerplate.com/\n        )\n\n)\n
             [URL][0]...
 
+
         */
 
-        return $this->oCRNRSTN_CS_CONTROLLER->return_resource_profile($resource_constant);
+        return $this->oCRNRSTN_CS_CONTROLLER->return_resource_profile($resource_constant, $attribute);
 
     }
 
@@ -7341,7 +7356,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     if(is_integer($int_const)){
 
                         $tmp_ARRAY['INTEGER'][] = $int_const;
-                        $tmp_ARRAY['STRING'][] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_const);
+                        $tmp_ARRAY['STRING'][] = $this->return_resource_profile($int_const, 'STRING');
+
+
 
                     }
 
@@ -7362,10 +7379,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             $tmp_ARRAY['INTEGER'] = $int_constant;
 
-            $tmp_ARRAY['STRING'] = $this->oCRNRSTN_PERFORMANCE_REGULATOR->return_constants_string($int_constant);
-            //$tmp_ARRAY['DESCRIPTION'] = '';
-            //$tmp_ARRAY['DEPENDENT_METHODS_ARRAY'] = array();      // UPDATES DOCUMENTATION
-            //$tmp_ARRAY['DATA_FAMILY_TYPE'] = '';                  // UPDATES DOCUMENTATION
+            $tmp_ARRAY['STRING'] = $this->return_resource_profile($int_constant, 'STRING');
 
         }
 
@@ -10247,7 +10261,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     public function resource_filecache_version($file_path){
 
-        $file_cache_version_str = filesize($file_path) . '.' . filemtime($file_path).'.0';
+        $file_cache_version_str = '420.00.' . filesize($file_path) . '.' . filemtime($file_path).'.0';
 
         return $file_cache_version_str;
 

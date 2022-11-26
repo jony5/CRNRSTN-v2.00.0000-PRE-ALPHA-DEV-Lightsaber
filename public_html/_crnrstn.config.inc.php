@@ -485,7 +485,7 @@ $oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
 // ENVIRONMENTAL DETECTION
 $oCRNRSTN->config_detect_environment('BLUEHOST_JONY5', 'SERVER_NAME', 'lightsaber.crnrstn.jony5.com');
 $oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsaber.crnrstn.evifweb.com');
-$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.129', 1);
+$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139', 1);
 
 //
 // ENVIRONMENTAL DETECTION DEMONSTRATION OF CASE REQUIRING MORE THAN ONE (1) $_SERVER[] MATCH TO
@@ -494,7 +494,6 @@ $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_NAME', '172
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_ADDR', '172.16.225.128', 5);
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PORT', '80', 5);
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PROTOCOL', 'HTTP/1.1', 5);
-$oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'DOCUMENT_ROOT', '/var/www/html', 5); # VALUE FOR YOUR SERVER['DOCUMENT_ROOT']
 
 //
 // INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT.
@@ -579,7 +578,7 @@ CRNRSTN_ASSET_MODE_BASE64 (WILL CAUSE JS AND CSS META TO BE INJECTED DIRECTLY IN
 //
 // $env_key = CRNRSTN_RESOURCE_ALL, $format_default = CRNRSTN_ASSET_MODE_BASE64
 $oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG);
-//$oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
+$oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
 
 // 
 // $env_key = CRNRSTN_RESOURCE_ALL, $is_HTML = true. If false, text email only for system communications (e.g. exception handling).
@@ -629,7 +628,7 @@ returned to this authenticated user, alone.
 //
 // ACTIVATE MINIMIZATION OF CSS AND JS FRAMEWORKS (PRODUCTION VERSION vs DEVELOPMENT)
 //$oCRNRSTN->config_init_js_css_minimization();
-$oCRNRSTN->config_init_js_css_minimization(CRNRSTN_RESOURCE_ALL);
+//$oCRNRSTN->config_init_js_css_minimization(CRNRSTN_RESOURCE_ALL);
 // $oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
 
 //

@@ -187,6 +187,9 @@ class crnrstn_content_generator {
         $oQueryProfileMgr = new crnrstn_query_profile_manager($this->oCRNRSTN);
         $html_out = '';
 
+        $tmp_path_directory = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+        $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+
         switch($channel){
             case 'mobile':
 
@@ -481,14 +484,14 @@ class crnrstn_content_generator {
                     }else{
 
                         $html_out .= '<div class="section_title">&nbsp;</div><div class="content_results_subtitle_divider"></div>';
-                        require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
+                        require($tmp_path_directory . $tmp_system_directory . '/common/inc/search/search.inc.php');
 
                     }
 
                 }else{
 
                     $html_out .= '<div class="section_title">&nbsp;</div><div class="content_results_subtitle_divider"></div>';
-                    require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
+                    require($tmp_path_directory . $tmp_system_directory . '/common/inc/search/search.inc.php');
 
                 }
 
@@ -777,7 +780,7 @@ class crnrstn_content_generator {
                             $tmp_stats = '<div class="s_result_stats">' . $tmp_ugc_s_results_record_cnt.' results returned in ' . $tmp_walltime . ' seconds.</div>';
 
                             $html_out = $tmp_stats.$html_out;
-                            require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
+                            require($tmp_path_directory . $tmp_system_directory . '/common/inc/search/search.inc.php');
 
                             $html_out .= $this->oCRNRSTN->returnPaginationStateHTML();
                         }
@@ -785,14 +788,14 @@ class crnrstn_content_generator {
                     }else{
 
                         $html_out .= '<div class="section_title">&nbsp;</div><div class="content_results_subtitle_divider"></div>';
-                        require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
+                        require($tmp_path_directory . $tmp_system_directory . '/common/inc/search/search.inc.php');
 
                     }
 
                 }else{
 
                     $html_out .= '<div class="section_title">&nbsp;</div><div class="content_results_subtitle_divider"></div>';
-                    require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
+                    require($tmp_path_directory . $tmp_system_directory . '/common/inc/search/search.inc.php');
 
                 }
 
@@ -1411,7 +1414,7 @@ class crnrstn_content_generator {
 //
 //                //return $html_out;
 //
-//                //require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.inc.php');
+//                //require($tmp_path_directory . $tmp_system_directory . '/common/inc/search/search.inc.php');
 //
 //                //$html_out .= '<div class="cb"></div>';
 

@@ -65,9 +65,9 @@ switch($channel_constant){
 
                 //$tmp_formUnique = $this->oCRNRSTN->generate_new_key(4);
                 //$tmp_pageName_Header =  strtolower($oSideBitch_Usr->get_category($tmp_page_serial)).' ::';
-                //require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/search/search.mobi.inc.php');
-                //require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/nav/sidenav.mobi.inc.php');
-                //require($this->oCRNRSTN->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN->get_resource('DOCUMENT_ROOT_DIR').'/common/inc/header/header.mobi.inc.php');
+                //require($tmp_path_directory . $tmp_system_directory . '/common/inc/search/search.mobi.inc.php');
+                //require($tmp_path_directory . $tmp_system_directory . '/common/inc/nav/sidenav.mobi.inc.php');
+                //require($tmp_path_directory . $tmp_system_directory . '/common/inc/header/header.mobi.inc.php');
 
 
                 $tmp = '420';

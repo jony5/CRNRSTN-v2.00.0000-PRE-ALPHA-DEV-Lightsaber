@@ -193,7 +193,7 @@ class crnrstn_content_source_controller {
 
                                         }else{
 
-                                            //$tmp_www_link = '<a href="'. $this->oCRNRSTN->return_sticky_link($tmp_lnk) . '" target="_blank">website</a>';
+                                            //$tmp_www_link = '<a href="' . $this->oCRNRSTN->return_sticky_link($tmp_lnk) . '" target="_blank">website</a>';
                                             $tmp_www_link .= '<span>' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', $tmp_lnk, '_blank') . '</span>&nbsp;&nbsp;';
 
                                         }
@@ -234,6 +234,12 @@ class crnrstn_content_source_controller {
                                 $tmp_version = ' v' . $profile_ARRAY['VERSION'];
 
                             }
+
+                        }
+
+                        if(isset($profile_ARRAY['TITLE_DISPLAY'])){
+
+                            $profile_ARRAY['TITLE'] = $profile_ARRAY['TITLE_DISPLAY'];
 
                         }
 
@@ -2480,7 +2486,7 @@ class crnrstn_content_source_controller {
                     $tmp_subcateg_name = 'Device Detection';            # MATCHES SECTION TITLE LINK COPY
                     $tmp_subsubcat_name = '';
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE', $tmp_categ_name, $tmp_subcateg_name, $tmp_subsubcat_name);
-                    //error_log('43 css - serial='.self::$page_serial);
+                    //error_log('43 css - serial=' .self::$page_serial);
                     //
                     // NOW COMPILE PAGE CONTENT IN ORDER OF PRESENTATION...TOP TO BOTTOM
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'BASIC_COPY','When it is desired to determine what type of client is making a request to the server, version 2.0.0 of the C<span class="the_R">R</span>NRSTN Suite provides a rich set of crnrstn_user :: class object methods for device detection, session persistence of said device detection results, and the reversion of session data back to a state of agnosticism wherein which C<span class="the_R">R</span>NRSTN can start from "zero" again with respect to meeting the needs of any given use-case scenario.');
@@ -6652,7 +6658,7 @@ between the server and client can be achieved with minimal effort and maximum da
 //
 //    }
 
-    public function return_resource_profile($resource_constant){
+    public function return_resource_profile($resource_constant, $attribute = 'ARRAY'){
 
         $tmp_output_ARRAY = array();
 
@@ -6662,7 +6668,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
             foreach($resource_constant as $index => $res_const){
 
-                $tmp_agg_output_ARRAY[$res_const] = $this->return_resource_profile($res_const);
+                $tmp_agg_output_ARRAY[$res_const] = $this->return_resource_profile($res_const, $attribute);
 
             }
 
@@ -6671,10 +6677,11 @@ between the server and client can be achieved with minimal effort and maximum da
         }
 
         switch($resource_constant){
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY':
             case CRNRSTN_JS_FRAMEWORK_JQUERY:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '3.6.1';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6685,9 +6692,9 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     extensibility, jQuery has changed the way that millions of people
                                                     write JavaScript.
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_view_source_github') . '" target="_blank">View Source on GitHub.</a>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_view_source_github') . '" target="_blank">View Source on GitHub.</a>
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
                                                     <br><br>
                                                     ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jquery') . '&nbsp;
                                                     ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery');
@@ -6695,10 +6702,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '2.2.4';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6709,19 +6717,20 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     extensibility, jQuery has changed the way that millions of people
                                                     write JavaScript.
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_224_view_source_github') . '" target="_blank">View Source on GitHub.</a>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_224_view_source_github') . '" target="_blank">View Source on GitHub.</a>
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_224_works') . '" target="_blank">How jQuery Works.</a>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_how_jquery_224_works') . '" target="_blank">How jQuery Works.</a>
                                                     <br><br>
                                                     ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jquery') . '&nbsp;
                                                     ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery');
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '1.12.4';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6732,19 +6741,20 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     extensibility, jQuery has changed the way that millions of people
                                                     write JavaScript.
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_1124_view_source_github') . '" target="_blank">View Source on GitHub.</a>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_1124_view_source_github') . '" target="_blank">View Source on GitHub.</a>
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1124_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1124_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
                                                     <br><br>
                                                     ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jquery') . '&nbsp;
                                                     ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery');
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '1.11.1';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6755,19 +6765,20 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     extensibility, jQuery has changed the way that millions of people
                                                     write JavaScript.
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_1111_view_source_github') . '" target="_blank">View Source on GitHub.</a>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jquery/jquery', 'crnrstn_documentation_jquery_1111_view_source_github') . '" target="_blank">View Source on GitHub.</a>
                                                     <br><br>
-                                                    <a href="'.$this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1111_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
+                                                    <a href="' . $this->oCRNRSTN->return_sticky_link('https://learn.jquery.com/about-jquery/how-jquery-works/', 'crnrstn_documentation_jquery_1111_how_jquery_works') . '" target="_blank">How jQuery Works.</a>
                                                     <br><br>
                                                     ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/jquery') . '&nbsp;
                                                     ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jquery');
                 $tmp_output_ARRAY['URL'][] = 'https://jquery.com/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_UI:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
                 $tmp_output_ARRAY['VERSION'] = '1.13.2';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6782,10 +6793,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://jqueryui.com/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
                 $tmp_output_ARRAY['VERSION'] = '1.12.1';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6800,10 +6812,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://jqueryui.com/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery Mobile';
                 $tmp_output_ARRAY['VERSION'] = '1.4.5';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6825,10 +6838,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://jquerymobile.com/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS':
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS';
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE 9+, Chrome, Safari, Firefox, iOS Safari, iOS Chrome, 
@@ -6856,10 +6870,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY':
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY';
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3/v3.4.1';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE 9+, Chrome, Safari, Firefox, iOS Safari, iOS Chrome, 
@@ -6887,10 +6902,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_REACT':
             case CRNRSTN_JS_FRAMEWORK_REACT:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_REACT';
                 $tmp_output_ARRAY['TITLE'] = 'React';
                 $tmp_output_ARRAY['VERSION'] = '18.2.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6911,10 +6927,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_REACT_DOM':
             case CRNRSTN_JS_FRAMEWORK_REACT_DOM:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_REACT_DOM';
                 $tmp_output_ARRAY['TITLE'] = 'ReactDOM';
                 $tmp_output_ARRAY['VERSION'] = '18.2.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6924,7 +6941,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             painless to create interactive UIs. Design simple views for each state in your application, 
                             and React will efficiently update and render just the right components when your data changes.
                             <br><br>
-                            Declarative views make your code more predictable and easier to debug.                            
+                            Declarative views make your code more predictable and easier to debug.
                             <br><br>
                             <a href="' . $this->oCRNRSTN->return_sticky_link('https://reactjs.org/docs/getting-started.html', 'crnrstn_documentation_react_dom_get_started') . '" target="_blank">Get started.</a>
                             <br><br>
@@ -6937,10 +6954,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://reactjs.org/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
             case CRNRSTN_JS_FRAMEWORK_MITHRIL:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MITHRIL';
                 $tmp_output_ARRAY['TITLE'] = 'Mithril.js';
                 $tmp_output_ARRAY['VERSION'] = '2.2.2';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE11, Firefox ESR, Firefox, Edge, Safari, Chrome';
@@ -6948,7 +6966,7 @@ between the server and client can be achieved with minimal effort and maximum da
                             Single Page Applications. It\'s small (&LT; 10kb gzip), fast, and provides routing and XHR 
                             utilities out of the box.
                             <br><br>
-                            Mithril.js is used by companies like Vimeo and Nike, and open source platforms like Lichess.                            
+                            Mithril.js is used by companies like Vimeo and Nike, and open source platforms like Lichess.
                             <br><br>
                             If you are an experienced developer and want to know how Mithril.js compares to other frameworks, see the 
                             <a href="' . $this->oCRNRSTN->return_sticky_link('https://mithril.js.org/framework-comparison.html', 'crnrstn_documentation_mithril_js_framework_comparison') . '" target="_blank">framework comparison</a> 
@@ -6963,10 +6981,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://mithril.js.org/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
             case CRNRSTN_JS_FRAMEWORK_BACKBONE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_BACKBONE';
                 $tmp_output_ARRAY['TITLE'] = 'BACKBONE.JS';
                 $tmp_output_ARRAY['VERSION'] = '1.4.1';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -6978,23 +6997,24 @@ between the server and client can be achieved with minimal effort and maximum da
                             The project is <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/', 'crnrstn_documentation_backbonejs_hosted_github') . '" target="_blank">hosted on GitHub</a>, 
                             and the <a href="' . $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/docs/backbone.html', 'crnrstn_documentation_backbonejs_annotated_source_code') . '" target="_blank">annotated source code</a> 
                             is available, as well as an online <a href="' . $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/test/', 'crnrstn_documentation_backbonejs_test_suite')  . '" target="_blank">test suite</a>, 
-                            an <a href="'. $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/examples/todos/index.html', 'crnrstn_documentation_backbonejs_example_application').'" target="_blank">example application</a>, 
-                            a <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites', 'crnrstn_documentation_backbonejs_list_of_tutorials').'" target="_blank">list of tutorials</a> and a <a href="'. $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/#examples', 'crnrstn_documentation_backbonejs_real_world_projects') . '" target="_blank">long list of real-world projects</a> 
+                            an <a href="' . $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/examples/todos/index.html', 'crnrstn_documentation_backbonejs_example_application').'" target="_blank">example application</a>, 
+                            a <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites', 'crnrstn_documentation_backbonejs_list_of_tutorials').'" target="_blank">list of tutorials</a> and a <a href="' . $this->oCRNRSTN->return_sticky_link('https://backbonejs.org/#examples', 'crnrstn_documentation_backbonejs_real_world_projects') . '" target="_blank">long list of real-world projects</a> 
                             that use Backbone. Backbone is available for use under the <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'mit_license_modal\', this);" target="_self">MIT software license</a>.
                             <br><br>
-                            You can report bugs and discuss features on the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/issues', 'crnrstn_documentation_backbonejs_github_issues_page') . '" target="_blank">GitHub issues page</a>, 
-                            or add pages to the <a href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki', 'crnrstn_documentation_backbonejs_wiki') . '" target="_blank">wiki</a>.
+                            You can report bugs and discuss features on the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/issues', 'crnrstn_documentation_backbonejs_github_issues_page') . '" target="_blank">GitHub issues page</a>, 
+                            or add pages to the <a href="' . $this->oCRNRSTN->return_sticky_link('https://github.com/jashkenas/backbone/wiki', 'crnrstn_documentation_backbonejs_wiki') . '" target="_blank">wiki</a>.
                             <br><br>
-                            <em>Backbone is an open-source component of <a href="'. $this->oCRNRSTN->return_sticky_link('https://documentcloud.org/', 'crnrstn_documentation_backbonejs_documentcloud') . '" target="_blank">DocumentCloud</a></em>.                           
+                            <em>Backbone is an open-source component of <a href="' . $this->oCRNRSTN->return_sticky_link('https://documentcloud.org/', 'crnrstn_documentation_backbonejs_documentcloud') . '" target="_blank">DocumentCloud</a></em>.                           
                             <br><br>
                             ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jashkenas/backbone');
                 $tmp_output_ARRAY['URL'][] = 'https://backbonejs.org/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
             case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE';
                 $tmp_output_ARRAY['TITLE'] = 'Prototype';
                 $tmp_output_ARRAY['VERSION'] = '1.7.3';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7012,14 +7032,15 @@ between the server and client can be achieved with minimal effort and maximum da
                             <br>&nbsp;&bullet; <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/learn/element-layout', 'crnrstn_documentation_prototypejs_using_element.layout') . '" target="_blank">Using Element.Layout</a>
                             <br><br>
                             <!-- https://groups.google.com/g/prototype-scriptaculous?pli=1 -->
-                            <a href="'. $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/blog', 'crnrstn_documentation_prototypejs_weblog') . '" target="_blank">Weblog</a>';
+                            <a href="' . $this->oCRNRSTN->return_sticky_link('http://prototypejs.org/blog', 'crnrstn_documentation_prototypejs_weblog') . '" target="_blank">Weblog</a>';
                 $tmp_output_ARRAY['URL'][] = 'http://prototypejs.org/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
             case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS';
                 $tmp_output_ARRAY['TITLE'] = 'script.aculo.us';
                 $tmp_output_ARRAY['VERSION'] = '1.9.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7036,24 +7057,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'http://script.aculo.us/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX':
             case CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX:
 
-                /*
-                MOO.FX FOR PROTOTYPE
-                // THE PROTOTYPE.JS COMPATIBLE FLAVOR
-
-                include the scripts in the following order:
-                    prototype.js or prototype.lite.js (required)
-                    moo.fx.js (required)
-                    moo.fx.pack.js (optional)
-                    moo.fx.utils.js (optional)
-                    moo.fx.accordion.js (optional)
-                    moo.fx.transitions.js (optional)
-
-                */
-
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX';
                 $tmp_output_ARRAY['TITLE'] = 'moo.fx';
                 $tmp_output_ARRAY['VERSION'] = '2.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7070,10 +7078,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://web.archive.org/web/20080430210446/http://moofx.mad4milk.net/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3';
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.03.3';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7084,10 +7093,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://lokeshdhakar.com/projects/lightbox2/';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE':
             case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE';
                 $tmp_output_ARRAY['TITLE'] = 'MooTools MORE';
                 $tmp_output_ARRAY['VERSION'] = '1.6.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, internet explorer 6 and 7, Firefox (and its 
@@ -7109,16 +7119,17 @@ between the server and client can be achieved with minimal effort and maximum da
                 <br><br>
                 ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/mootools/mootools-more') . '&nbsp;
                 ' . $this->oCRNRSTN->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/mootools') . '&nbsp;
-                ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/mootools') . '&nbsp;               
+                ' . $this->oCRNRSTN->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/mootools') . '&nbsp;
                 ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/tagged/mootools');
 
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/more/docs/1.6.0';
 
             break;
+            case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE':
             case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE';
                 $tmp_output_ARRAY['TITLE'] = 'MooTools CORE';
                 $tmp_output_ARRAY['VERSION'] = '1.6.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, internet explorer 6 and 7, Firefox (and its 
@@ -7140,14 +7151,16 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://mootools.net/core/docs/1.6.0';
 
             break;
+            case 'CRNRSTN_UI_JS_MAIN':
             case CRNRSTN_UI_JS_MAIN:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI/UX JS';
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_JS_MAIN';
+                $tmp_output_ARRAY['TITLE'] = 'CRNRSTN :: INTERACT UI/UX JS';
+                $tmp_output_ARRAY['TITLE_DISPLAY'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI/UX JS';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS Object was built starting from the latest release of
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The oCRNRSTN_JS object was built starting from the latest release of
                                                     LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
                                                     for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
                                                     <br><br>
@@ -7155,10 +7168,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
             case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID';
                 $tmp_output_ARRAY['TITLE'] = 'Simple Grid';
                 $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7178,10 +7192,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://simplegrid.io/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7197,10 +7212,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
             case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION';
                 $tmp_output_ARRAY['TITLE'] = 'Foundation';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7217,10 +7233,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://get.foundation/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
             case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE';
                 $tmp_output_ARRAY['TITLE'] = 'HTML5 Boilerplate';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7234,10 +7251,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://html5boilerplate.com/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
             case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
                 $tmp_output_ARRAY['TITLE'] = 'Responsive Grid System';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7250,10 +7268,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'http://www.responsivegridsystem.com/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7265,10 +7284,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
             case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID';
                 $tmp_output_ARRAY['TITLE'] = 'Dead Simple Grid';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7285,10 +7305,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://mourner.github.io/dead-simple-grid/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
             case CRNRSTN_CSS_FRAMEWORK_SKELETON:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_SKELETON';
                 $tmp_output_ARRAY['TITLE'] = 'SKELETON';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Chrome, Firefox, Opera, Safari, IE.';
@@ -7309,10 +7330,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'http://getskeleton.com/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
             case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_RWDGRID';
                 $tmp_output_ARRAY['TITLE'] = 'RWD GRID';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7327,11 +7349,39 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'http://rwdgrid.com/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID':
+            case CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID';
+                $tmp_output_ARRAY['TITLE'] = 'Simple Grid (ThisIsDallas)';
+                $tmp_output_ARRAY['VERSION'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Simple Grid was created for developers who need a barebones grid. 
+                            Simple Grid works well with 1140px layouts but easily adapts to any size of layout. With 
+                            fluid columns, Simple Grid is responsive down to mobile.
+                            <br><br>
+                            Simple Grid is a basic lightweight grid, not a CSS framework. There are no styles for 
+                            buttons, tables, typography etc. etc. Simple Grid comes with two different types of grids. 
+                            There is a grid for content, which looks like <span class="crnrstn_general_post_code_copy">&lt;div class="col-1-3"&gt;&lt;/div&gt;&gt;</span> and a grid for 
+                            layouts, which looks like <span class="crnrstn_general_post_code_copy">&lt;div class="col-4-12"&gt;&lt;/div&gt;</span>. 
+                            <br><br>
+                            Simple Grid is also built for responsive layouts. With fluid columns, the grid will resize 
+                            to adjust to the browser resolution. To accommodate for mobile and tablet devices, the grid 
+                            will essentially stack all columns, one above another, when viewed on smaller screens.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/ThisIsDallas/Simple-Grid');
+
+                $tmp_output_ARRAY['URL'][] = 'http://thisisdallas.github.io/Simple-Grid/';
+
+            break;
+            case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
             case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_CSS_MAIN_DESKTOP';
+                $tmp_output_ARRAY['TITLE'] = 'CRNRSTN :: INTERACT UI Desktop Stylesheet';
+                $tmp_output_ARRAY['TITLE_DISPLAY'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
@@ -7340,11 +7390,13 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
+            case 'CRNRSTN_UI_CSS_MAIN_TABLET':
             case CRNRSTN_UI_CSS_MAIN_TABLET:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
-                $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_CSS_MAIN_TABLET';
+                $tmp_output_ARRAY['TITLE'] = 'CRNRSTN :: INTERACT UI Tablet Device Stylesheet';
+                $tmp_output_ARRAY['TITLE_DISPLAY'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
@@ -7353,11 +7405,14 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
+            case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
             case CRNRSTN_UI_CSS_MAIN_MOBILE:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_CSS_MAIN_MOBILE';
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile 
+                            Device Stylesheet';
+                $tmp_output_ARRAY['TITLE_DISPLAY'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile 
                             Device Stylesheet';
                 $tmp_output_ARRAY['VERSION'] = '1.00.0000 PRE-ALPHA-DEV (Lightsaber)';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -7366,6 +7421,1284 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = '';
 
+            break;
+            case 'CRNRSTN_DEBUG_OFF':
+            case CRNRSTN_DEBUG_OFF:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DEBUG_OFF';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DEBUG_NATIVE_ERR_LOG':
+            case CRNRSTN_DEBUG_NATIVE_ERR_LOG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DEBUG_NATIVE_ERR_LOG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DEBUG_AGGREGATION_ON':
+            case CRNRSTN_DEBUG_AGGREGATION_ON:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DEBUG_AGGREGATION_ON';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_NONE':
+            case CRNRSTN_LOG_NONE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_NONE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_ALL':
+            case CRNRSTN_LOG_ALL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_ALL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZED_ACCOUNT':
+            case CRNRSTN_AUTHORIZED_ACCOUNT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZED_ACCOUNT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INTEGER_LENGTH':
+            case CRNRSTN_INTEGER_LENGTH:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INTEGER_LENGTH';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SETTINGS_APACHE':
+            case CRNRSTN_SETTINGS_APACHE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_APACHE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SETTINGS_MYSQLI':
+            case CRNRSTN_SETTINGS_MYSQLI:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_MYSQLI';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SETTINGS_PHP':
+            case CRNRSTN_SETTINGS_PHP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_PHP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SETTINGS_CRNRSTN':
+            case CRNRSTN_SETTINGS_CRNRSTN:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_CRNRSTN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SETTINGS_WORDPRESS':
+            case CRNRSTN_SETTINGS_WORDPRESS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_WORDPRESS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SETTINGS_CLIENT':
+            case CRNRSTN_SETTINGS_CLIENT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_CLIENT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_OPTIONAL':
+            case CRNRSTN_INPUT_OPTIONAL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_OPTIONAL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_REQUIRED':
+            case CRNRSTN_INPUT_REQUIRED:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_REQUIRED';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_PASSWORD':
+            case CRNRSTN_INPUT_PASSWORD:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_PASSWORD';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_IS_EMAIL':
+            case CRNRSTN_INPUT_IS_EMAIL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_EMAIL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_CHAR_RESTRICTIONS':
+            case CRNRSTN_INPUT_CHAR_RESTRICTIONS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_CHAR_RESTRICTIONS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_CHAR_LIMITS':
+            case CRNRSTN_INPUT_CHAR_LIMITS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_CHAR_LIMITS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_IS_FILE_IMAGE':
+            case CRNRSTN_INPUT_IS_FILE_IMAGE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_IMAGE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_IS_FILE_IMAGE_PNG':
+            case CRNRSTN_INPUT_IS_FILE_IMAGE_PNG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_IMAGE_PNG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG':
+            case CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_IS_FILE_IMAGE_GIF':
+            case CRNRSTN_INPUT_IS_FILE_IMAGE_GIF:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_IMAGE_GIF';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_IS_FILE_DOCUMENT':
+            case CRNRSTN_INPUT_IS_FILE_DOCUMENT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_DOCUMENT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_INPUT_IS_FILE_ZIP':
+            case CRNRSTN_INPUT_IS_FILE_ZIP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_ZIP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DATABASE':
+            case CRNRSTN_DATABASE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DATABASE_CONNECTION':
+            case CRNRSTN_DATABASE_CONNECTION:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_CONNECTION';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DATABASE_QUERY':
+            case CRNRSTN_DATABASE_QUERY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_QUERY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DATABASE_QUERY_SILO':
+            case CRNRSTN_DATABASE_QUERY_SILO:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_QUERY_SILO';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DATABASE_QUERY_DYNAMIC':
+            case CRNRSTN_DATABASE_QUERY_DYNAMIC:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_QUERY_DYNAMIC';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DATABASE_RESULT':
+            case CRNRSTN_DATABASE_RESULT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_RESULT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_GABRIEL':
+            case CRNRSTN_GABRIEL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_GABRIEL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SMTP_AUTHENTICATION':
+            case CRNRSTN_SMTP_AUTHENTICATION:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SMTP_AUTHENTICATION';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_EMAIL_CRNRSTN_SOURCE':
+            case CRNRSTN_EMAIL_CRNRSTN_SOURCE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_EMAIL_CRNRSTN_SOURCE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_EMAIL_USER_SOURCE':
+            case CRNRSTN_EMAIL_USER_SOURCE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_EMAIL_USER_SOURCE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ELECTRUM':
+            case CRNRSTN_ELECTRUM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ELECTRUM_THREAD':
+            case CRNRSTN_ELECTRUM_THREAD:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM_THREAD';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ELECTRUM_COMM':
+            case CRNRSTN_ELECTRUM_COMM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM_COMM';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ELECTRUM_FTP':
+            case CRNRSTN_ELECTRUM_FTP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM_FTP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ELECTRUM_LOCALDIR':
+            case CRNRSTN_ELECTRUM_LOCALDIR:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM_LOCALDIR';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_FILE_MANAGEMENT':
+            case CRNRSTN_FILE_MANAGEMENT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_FILE_MANAGEMENT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SOAP':
+            case CRNRSTN_SOAP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOAP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SOAP_SERVER':
+            case CRNRSTN_SOAP_SERVER:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOAP_SERVER';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SOAP_CLIENT':
+            case CRNRSTN_SOAP_CLIENT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOAP_CLIENT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_PROXY_KINGS_HIGHWAY':
+            case CRNRSTN_PROXY_KINGS_HIGHWAY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PROXY_KINGS_HIGHWAY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_PROXY_EMAIL':
+            case CRNRSTN_PROXY_EMAIL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PROXY_EMAIL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_PROXY_ELECTRUM':
+            case CRNRSTN_PROXY_ELECTRUM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PROXY_ELECTRUM';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_PROXY_AUTHENTICATE':
+            case CRNRSTN_PROXY_AUTHENTICATE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PROXY_AUTHENTICATE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_PHPNIGHT':
+            case CRNRSTN_UI_PHPNIGHT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_PHPNIGHT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_DARKNIGHT':
+            case CRNRSTN_UI_DARKNIGHT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_DARKNIGHT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_PHP':
+            case CRNRSTN_UI_PHP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_PHP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_GREYSKYS':
+            case CRNRSTN_UI_GREYSKYS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GREYSKYS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_HTML':
+            case CRNRSTN_UI_HTML:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_HTML';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_DAYLIGHT':
+            case CRNRSTN_UI_DAYLIGHT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_DAYLIGHT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_FEATHER':
+            case CRNRSTN_UI_FEATHER:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_FEATHER';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_GLASS_LIGHT_COPY':
+            case CRNRSTN_UI_GLASS_LIGHT_COPY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GLASS_LIGHT_COPY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_GLASS_DARK_COPY':
+            case CRNRSTN_UI_GLASS_DARK_COPY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GLASS_DARK_COPY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_TERMINAL':
+            case CRNRSTN_UI_TERMINAL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TERMINAL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_DESKTOP':
+            case CRNRSTN_UI_DESKTOP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_DESKTOP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_TABLET':
+            case CRNRSTN_UI_TABLET:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TABLET';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_MOBILE':
+            case CRNRSTN_UI_MOBILE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_MOBILE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_SOAP_DATA_TUNNEL':
+            case CRNRSTN_UI_SOAP_DATA_TUNNEL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_SOAP_DATA_TUNNEL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL':
+            case CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_IMG_BASE64':
+            case CRNRSTN_UI_IMG_BASE64:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_BASE64';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_IMG_BASE64_PNG':
+            case CRNRSTN_UI_IMG_BASE64_PNG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_BASE64_PNG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_IMG_HTML_WRAPPED':
+            case CRNRSTN_UI_IMG_HTML_WRAPPED:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_HTML_WRAPPED';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_IMG_BASE64_JPEG':
+            case CRNRSTN_UI_IMG_BASE64_JPEG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_BASE64_JPEG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_IMG_JPEG':
+            case CRNRSTN_UI_IMG_JPEG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_JPEG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_IMG_PNG':
+            case CRNRSTN_UI_IMG_PNG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_PNG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_IMG':
+            case CRNRSTN_UI_IMG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_CSS':
+            case CRNRSTN_UI_CSS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_CSS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_JS':
+            case CRNRSTN_UI_JS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_JS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS':
+            case CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_TAG_ANALYTICS':
+            case CRNRSTN_UI_TAG_ANALYTICS:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TAG_ANALYTICS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_TAG_ENGAGEMENT':
+            case CRNRSTN_UI_TAG_ENGAGEMENT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TAG_ENGAGEMENT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
+            case CRNRSTN_UI_FORM_INTEGRATION_PACKET:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_FORM_INTEGRATION_PACKET';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_COOKIE_PREFERENCE':
+            case CRNRSTN_UI_COOKIE_PREFERENCE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_COOKIE_PREFERENCE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_COOKIE_YESNO':
+            case CRNRSTN_UI_COOKIE_YESNO:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_COOKIE_YESNO';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_COOKIE_NOTICE':
+            case CRNRSTN_UI_COOKIE_NOTICE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_COOKIE_NOTICE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_UI_INTERACT':
+            case CRNRSTN_UI_INTERACT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_INTERACT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ASSET_MODE_BASE64':
+            case CRNRSTN_ASSET_MODE_BASE64:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MODE_BASE64';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ASSET_MODE_PNG':
+            case CRNRSTN_ASSET_MODE_PNG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MODE_PNG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ASSET_MODE_JPEG':
+            case CRNRSTN_ASSET_MODE_JPEG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MODE_JPEG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ASSET_MODE_ICO':
+            case CRNRSTN_ASSET_MODE_ICO:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MODE_ICO';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_EMAIL':
+            case CRNRSTN_LOG_EMAIL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_EMAIL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_EMAIL_PROXY':
+            case CRNRSTN_LOG_EMAIL_PROXY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_EMAIL_PROXY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_FILE':
+            case CRNRSTN_LOG_FILE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_FILE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_FILE_PROXY':
+            case CRNRSTN_LOG_FILE_PROXY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_FILE_PROXY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_FILE_FTP':
+            case CRNRSTN_LOG_FILE_FTP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_FILE_FTP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_SCREEN_TEXT':
+            case CRNRSTN_LOG_SCREEN_TEXT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_SCREEN_TEXT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_SCREEN':
+            case CRNRSTN_LOG_SCREEN:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_SCREEN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_SCREEN_HTML':
+            case CRNRSTN_LOG_SCREEN_HTML:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_SCREEN_HTML';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN':
+            case CRNRSTN_LOG_SCREEN_HTML_HIDDEN:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_DEFAULT':
+            case CRNRSTN_LOG_DEFAULT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_DEFAULT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_DEFAULT_PROXY':
+            case CRNRSTN_LOG_DEFAULT_PROXY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_DEFAULT_PROXY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_LOG_ELECTRUM':
+            case CRNRSTN_LOG_ELECTRUM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_ELECTRUM';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY':
+            case CRNRSTN_AUTHORIZE_RUNTIME_ONLY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_ALL':
+            case CRNRSTN_AUTHORIZE_ALL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_ALL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_DATABASE':
+            case CRNRSTN_AUTHORIZE_DATABASE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_DATABASE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_SSDTLA':
+            case CRNRSTN_AUTHORIZE_SSDTLA:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_SSDTLA';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_PSSDTLA':
+            case CRNRSTN_AUTHORIZE_PSSDTLA:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_PSSDTLA';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_SESSION':
+            case CRNRSTN_AUTHORIZE_SESSION:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_SESSION';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_COOKIE':
+            case CRNRSTN_AUTHORIZE_COOKIE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_COOKIE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_SOAP':
+            case CRNRSTN_AUTHORIZE_SOAP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_SOAP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_GET':
+            case CRNRSTN_AUTHORIZE_GET:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_GET';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_ISEMAIL':
+            case CRNRSTN_AUTHORIZE_ISEMAIL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_ISEMAIL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_AUTHORIZE_ISPASSWORD':
+            case CRNRSTN_AUTHORIZE_ISPASSWORD:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_ISPASSWORD';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ENCRYPT_TUNNEL':
+            case CRNRSTN_ENCRYPT_TUNNEL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_TUNNEL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ENCRYPT_DATABASE':
+            case CRNRSTN_ENCRYPT_DATABASE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_DATABASE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ENCRYPT_SESSION':
+            case CRNRSTN_ENCRYPT_SESSION:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_SESSION';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ENCRYPT_COOKIE':
+            case CRNRSTN_ENCRYPT_COOKIE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_COOKIE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ENCRYPT_SOAP':
+            case CRNRSTN_ENCRYPT_SOAP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_SOAP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ENCRYPT_OERSL':
+            case CRNRSTN_ENCRYPT_OERSL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_OERSL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_FAVICON_ASSET_MAPPING':
+            case CRNRSTN_FAVICON_ASSET_MAPPING:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_FAVICON_ASSET_MAPPING';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SYSTEM_IMG_ASSET_MAPPING':
+            case CRNRSTN_SYSTEM_IMG_ASSET_MAPPING:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SYSTEM_IMG_ASSET_MAPPING';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING':
+            case CRNRSTN_SOCIAL_IMG_ASSET_MAPPING:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_JS_ASSET_MAPPING':
+            case CRNRSTN_JS_ASSET_MAPPING:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_ASSET_MAPPING';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_CSS_ASSET_MAPPING':
+            case CRNRSTN_CSS_ASSET_MAPPING:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_ASSET_MAPPING';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SYSTEM_EMAIL_IS_HTML':
+            case CRNRSTN_SYSTEM_EMAIL_IS_HTML:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SYSTEM_EMAIL_IS_HTML';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ASSET_MAPPING':
+            case CRNRSTN_ASSET_MAPPING:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MAPPING';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_ASSET_MAPPING_PROXY':
+            case CRNRSTN_ASSET_MAPPING_PROXY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MAPPING_PROXY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_ALL':
+            case CRNRSTN_RESOURCE_ALL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_ALL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_BASSDRIVE':
+            case CRNRSTN_RESOURCE_BASSDRIVE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_BASSDRIVE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE':
+            case CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_CSS_VALIDATOR':
+            case CRNRSTN_RESOURCE_CSS_VALIDATOR:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_CSS_VALIDATOR';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_DOCUMENTATION':
+            case CRNRSTN_RESOURCE_DOCUMENTATION:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_DOCUMENTATION';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_IMAGE':
+            case CRNRSTN_RESOURCE_IMAGE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_IMAGE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_DOCUMENT':
+            case CRNRSTN_RESOURCE_DOCUMENT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_DOCUMENT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_OPENSOURCE':
+            case CRNRSTN_RESOURCE_OPENSOURCE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_OPENSOURCE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
+            case CRNRSTN_RESOURCE_NEWS_SYNDICATION:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_NEWS_SYNDICATION';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_ELECTRUM':
+            case CRNRSTN_RESOURCE_ELECTRUM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_ELECTRUM';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_BARNEY':
+            case CRNRSTN_BARNEY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_BARNEY_DATABASE':
+            case CRNRSTN_BARNEY_DATABASE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_DATABASE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_BARNEY_FILE':
+            case CRNRSTN_BARNEY_FILE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_FILE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_BARNEY_FTP':
+            case CRNRSTN_BARNEY_FTP:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_FTP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_BARNEY_ELECTRUM':
+            case CRNRSTN_BARNEY_ELECTRUM:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_ELECTRUM';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_BARNEY_GABRIEL':
+            case CRNRSTN_BARNEY_GABRIEL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_GABRIEL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_BARNEY_DISK':
+            case CRNRSTN_BARNEY_DISK:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_DISK';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_PERFORMANCE_MONITOR':
+            case CRNRSTN_PERFORMANCE_MONITOR:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PERFORMANCE_MONITOR';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_WORDPRESS_DEBUG':
+            case CRNRSTN_WORDPRESS_DEBUG:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_WORDPRESS_DEBUG';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_IP_SECURITY':
+            case CRNRSTN_IP_SECURITY:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_IP_SECURITY';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE':
+            case CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                
             break;
             default:
 
@@ -7381,11 +8714,25 @@ between the server and client can be achieved with minimal effort and maximum da
 
         }
 
+        if(isset($attribute)){
+
+            //
+            // $attribute DEFAULT VALUE OF 'ARRAY' WILL NEVER BE SET WITHIN $tmp_output_ARRAY, WHICH
+            // WILL RESULT IN THE ENTIRE ARRAY BEING RETURNED.
+            if(isset($tmp_output_ARRAY[$attribute])){
+
+                return $tmp_output_ARRAY[$attribute];
+
+            }
+
+        }
+
         return $tmp_output_ARRAY;
 
     }
 
     public function return_integer_constant_profiles($module_key){
+
         /*
         CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID
         CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM
@@ -7426,42 +8773,6 @@ between the server and client can be achieved with minimal effort and maximum da
         rwdgrid
         http://rwdgrid.com/
 
-        = = = = = = = = =
-        CRNRSTN_JS_FRAMEWORK_REACT
-        CRNRSTN_JS_FRAMEWORK_MITHRIL
-        CRNRSTN_JS_FRAMEWORK_PROTOTYPE
-        CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
-        CRNRSTN_JS_FRAMEWORK_PROTOTYPE & CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
-        CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX
-        CRNRSTN_JS_FRAMEWORK_BACKBONE
-
-        React js
-        https://reactjs.org/
-        Next, add three <script> tags to the HTML page right before the closing </body> tag:
-         <!-- ... other HTML ... -->
-
-         <!-- Load React. -->
-         <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-         <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-
-         <!-- Load our React component. -->
-         <script src="like_button.js"></script>
-
-        </body>
-
-        Mithril
-        https://mithril.js.org/
-
-        Prototype js
-        http://prototypejs.org/
-        Scriptaculous js
-
-        Moo.FX
-
-        Backbone js
-        http://backbonejs.org/
-
        */
 
         switch($module_key){
@@ -7472,21 +8783,21 @@ between the server and client can be achieved with minimal effort and maximum da
                 // 25
                 // MASTER CLIENT META ASSET ARRAY (CSS, JS)
                 $tmp_resource_ctrl_ARRAY = array(CRNRSTN_JS_FRAMEWORK_JQUERY,
-                    CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4, CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4, CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
-                    CRNRSTN_JS_FRAMEWORK_JQUERY_UI, CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1,
-                    CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS,
-                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY, CRNRSTN_JS_FRAMEWORK_REACT,
-                    CRNRSTN_JS_FRAMEWORK_REACT_DOM,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4, CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1, CRNRSTN_JS_FRAMEWORK_JQUERY_UI,
+                    CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1, CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE,
+                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS, CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY,
+                    CRNRSTN_JS_FRAMEWORK_REACT, CRNRSTN_JS_FRAMEWORK_REACT_DOM,
                     CRNRSTN_JS_FRAMEWORK_MITHRIL, CRNRSTN_JS_FRAMEWORK_BACKBONE, CRNRSTN_JS_FRAMEWORK_PROTOTYPE,
                     CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS, CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX,
-                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3,
-                    CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE, CRNRSTN_UI_JS_MAIN,
+                    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE,
+                    CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE, CRNRSTN_UI_JS_MAIN,
                     CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM,
                     CRNRSTN_CSS_FRAMEWORK_FOUNDATION, CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE,
                     CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC,
                     CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_SKELETON,
-                    CRNRSTN_CSS_FRAMEWORK_RWDGRID, CRNRSTN_UI_CSS_MAIN_DESKTOP,
-                    CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE);
+                    CRNRSTN_CSS_FRAMEWORK_RWDGRID, CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID,
+                    CRNRSTN_UI_CSS_MAIN_DESKTOP, CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE);
 
                 $tmp_output_ARRAY = $this->return_resource_profile($tmp_resource_ctrl_ARRAY);
 
