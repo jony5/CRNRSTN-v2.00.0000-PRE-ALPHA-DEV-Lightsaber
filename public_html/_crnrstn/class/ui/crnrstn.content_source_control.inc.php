@@ -7100,8 +7100,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE';
                 $tmp_output_ARRAY['TITLE'] = 'MooTools MORE';
                 $tmp_output_ARRAY['VERSION'] = '1.6.0';
-                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, internet explorer 6 and 7, Firefox (and its 
-                mozilla friends), Opera and Camino.';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE, Firefox, Safari, Chrome, Opera, PhantomJS (virtual browser).';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Welcome to MooTools More, the official plugin repository for the 
                 MooTools JavaScript Framework. More includes extra features to Core classes and UI. MooTools More makes 
                 MooTools even More awesome.
@@ -7132,8 +7131,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE';
                 $tmp_output_ARRAY['TITLE'] = 'MooTools CORE';
                 $tmp_output_ARRAY['VERSION'] = '1.6.0';
-                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Safari, internet explorer 6 and 7, Firefox (and its 
-                mozilla friends), Opera and Camino';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE, Firefox, Safari, Chrome, Opera, PhantomJS (virtual browser).';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'MooTools is a compact, modular, Object-Oriented JavaScript framework 
                 designed for the intermediate to advanced JavaScript developer. It allows you to write powerful, 
                 flexible, and cross-browser code with its elegant, well documented, and coherent API.

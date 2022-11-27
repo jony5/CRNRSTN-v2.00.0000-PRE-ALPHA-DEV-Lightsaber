@@ -134,6 +134,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.crnrstn_debug_mode = this.CRNRSTN_DEBUG_LIFESTYLE_BANNER;
         this.crnrstn_overlay_mode = 'OFF';
         this.crnrstn_ui_component_state_ARRAY = [];
+        this.content_stage_max_width = 850;
 
         this.form_input_serialization_key = 'crnrstn_request_serialization_key';
         this.form_input_serialization_hash = 'crnrstn_request_serialization_hash';
@@ -4099,8 +4100,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         // GET SMALLER?
                         if(1 > (parseInt(tmp_current_width) - parseInt(tmp_new_doc_content_width))){
 
-                            tmp_test = true;
-
                             return true;
 
                         }
@@ -4111,13 +4110,30 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         if(1 > (parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width))){
 
-                            tmp_test = true;
-
                             return true;
 
                         }
 
                     }
+
+                    if(tmp_new_doc_content_width > this.content_stage_max_width){
+
+                        tmp_new_doc_content_width = this.content_stage_max_width;
+
+                        if((parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width)) >= 0){
+
+                            if(1 > (parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width))){
+
+                                return true;
+
+                            }
+
+                        }
+
+
+                    }
+
+                    //alert('[lnum 4128] new doc content width: ' + tmp_new_doc_content_width);
 
                     $('#crnrstn_documentation_dyn_content_shell').animate({
                         width: tmp_new_doc_content_width

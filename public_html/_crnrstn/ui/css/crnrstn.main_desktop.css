@@ -100,7 +100,10 @@
 .crnrstn_mit_license_module_wrap_s2_inner           { overflow: hidden; border: 1px solid #A5B9D8; border-radius: 5px; }
 .crnrstn_mit_license_module_bg_rel                  { position: relative; width: 100%; overflow: hidden;}
 .crnrstn_mit_license_module_wrap_s1_rel             { position: relative; padding: 2px 0 2px 0;}
+
 .crnrstn_mit_license_module_wrap_s1                 { width: 100%; position: absolute; z-index: 4; top:-10px; left:0;}
+.crnrstn_hidden_void                                { visibility: hidden;}
+
 .crnrstn_mit_license_module_content                 { color:#333;}
 .crnrstn_mit_license_hdr_branding_shell             { width:578px; height:45px; text-align: center; margin:0 auto; padding-top: 40px;}
 
@@ -383,7 +386,6 @@ body.crnrstn-disable-scrolling              { overflow: hidden;}
 .crnrstn_log_entry                          { display:block; clear:both; text-align: left; color:#7AF94F; font-size:12px; font-family: "Courier New", Courier, monospace; }
 
 /*UTILITY*/
-.crnrstn_hidden_void                        { visibility: hidden;}
 .crnrstn_hidden						        { width:0; height:0; position:absolute; left:-2000px; overflow:hidden;}
 .crnrstn_cb 								{ display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;}
 .crnrstn_cb_3                               { display:block; clear:both; height:3px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
