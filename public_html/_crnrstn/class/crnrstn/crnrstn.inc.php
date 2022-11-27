@@ -3368,7 +3368,11 @@ class crnrstn {
             'moo.fx.pack.js' => '_lib/frameworks/moo.fx/2.0/source',
             'moo.fx.utils.js' => '_lib/frameworks/moo.fx/2.0/source',
             'moo.fx.accordion.js' => '_lib/frameworks/moo.fx/2.0/source',
-            'moo.fx.transitions.js' => '_lib/frameworks/moo.fx/2.0/source'
+            'moo.fx.transitions.js' => '_lib/frameworks/moo.fx/2.0/source',
+            'mootools-more-1.6.0.js' => '_lib/frameworks/mootools/more/1.6.0',
+            'mootools-more-1.6.0-min.js' => '_lib/frameworks/mootools/more/1.6.0',
+            'mootools-core-1.6.0.js' => '_lib/frameworks/mootools/core/1.6.0',
+            'mootools-core-1.6.0-min.js' => '_lib/frameworks/mootools/core/1.6.0'
 
         );
 
@@ -3380,7 +3384,13 @@ class crnrstn {
         $this->asset_routing_data_key_lookup_ARRAY['js'] = $tmp_ARRAY;
 
         $tmp_ARRAY = array('crnrstn.main_desktop.css' => '/', 'crnrstn.main_tablet.css' => '/', 'crnrstn.main_mobi.css' => '/',
-            'crnrstn.lightbox.min.css' => $this->session_salt());
+            'crnrstn.lightbox.min.css' => $this->session_salt(),
+            'simple-grid.min.css' => '_lib/frameworks/simple_grid',
+            'simple-grid.css' => '_lib/frameworks/simple_grid',
+
+
+
+            );
         $this->asset_routing_data_key_lookup_ARRAY['css'] = $tmp_ARRAY;
 
         $tmp_ARRAY = array('framework/lightbox/close' => 'LIGHTBOX_CLOSE', 'framework/lightbox/loading' => 'LIGHTBOX_LOADING',

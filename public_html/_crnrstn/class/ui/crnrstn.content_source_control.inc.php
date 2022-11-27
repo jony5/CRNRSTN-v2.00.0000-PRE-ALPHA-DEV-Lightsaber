@@ -7098,7 +7098,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE';
-                $tmp_output_ARRAY['TITLE'] = 'MooTools MORE';
+                $tmp_output_ARRAY['TITLE'] = 'MooTools MORE (all boxes checked + full core)';
                 $tmp_output_ARRAY['VERSION'] = '1.6.0';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'IE, Firefox, Safari, Chrome, Opera, PhantomJS (virtual browser).';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Welcome to MooTools More, the official plugin repository for the 
@@ -7195,6 +7195,146 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM';
+                $tmp_output_ARRAY['TITLE'] = '960 Grid System';
+                $tmp_output_ARRAY['VERSION'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
+                            workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
+                            two variants: 12 and 16 columns, which can be used separately or in tandem.
+                            <br><br>
+                            <!-- CRNRSTN :: COMMUNITY OVER CODE -->
+                            ' . $this->oCRNRSTN->return_sticky_media_link('LINKEDIN_SMALL', 'https://www.linkedin.com/in/nathan/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://sonspring.com/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FLICKR_SMALL', 'https://flickr.com/photos/nathansmith') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/960-grid-system/');
+                $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL':
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL';
+                $tmp_output_ARRAY['TITLE'] = '960 Grid System';
+                $tmp_output_ARRAY['VERSION'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
+                                workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
+                                two variants: 12 and 16 columns, which can be used separately or in tandem.
+                                <br><br>
+                                <!-- CRNRSTN :: COMMUNITY OVER CODE -->
+                                ' . $this->oCRNRSTN->return_sticky_media_link('LINKEDIN_SMALL', 'https://www.linkedin.com/in/nathan/') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://sonspring.com/') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('FLICKR_SMALL', 'https://flickr.com/photos/nathansmith') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/960-grid-system/');
+                $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL':
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL';
+                $tmp_output_ARRAY['TITLE'] = '960 Grid System';
+                $tmp_output_ARRAY['VERSION'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
+                                workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
+                                two variants: 12 and 16 columns, which can be used separately or in tandem.
+                                <br><br>
+                                <!-- CRNRSTN :: COMMUNITY OVER CODE -->
+                                ' . $this->oCRNRSTN->return_sticky_media_link('LINKEDIN_SMALL', 'https://www.linkedin.com/in/nathan/') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://sonspring.com/') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('FLICKR_SMALL', 'https://flickr.com/photos/nathansmith') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/960-grid-system/');
+                $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL':
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL';
+                $tmp_output_ARRAY['TITLE'] = '960 Grid System';
+                $tmp_output_ARRAY['VERSION'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
+                                workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
+                                two variants: 12 and 16 columns, which can be used separately or in tandem.
+                                <br><br>
+                                <!-- CRNRSTN :: COMMUNITY OVER CODE -->
+                                ' . $this->oCRNRSTN->return_sticky_media_link('LINKEDIN_SMALL', 'https://www.linkedin.com/in/nathan/') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://sonspring.com/') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('FLICKR_SMALL', 'https://flickr.com/photos/nathansmith') . '&nbsp;
+                                ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/960-grid-system/');
+                $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL':
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL';
+                $tmp_output_ARRAY['TITLE'] = '960 Grid System';
+                $tmp_output_ARRAY['VERSION'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
+                            workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
+                            two variants: 12 and 16 columns, which can be used separately or in tandem.
+                            <br><br>
+                            <!-- CRNRSTN :: COMMUNITY OVER CODE -->
+                            ' . $this->oCRNRSTN->return_sticky_media_link('LINKEDIN_SMALL', 'https://www.linkedin.com/in/nathan/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://sonspring.com/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FLICKR_SMALL', 'https://flickr.com/photos/nathansmith') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/960-grid-system/');
+                $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL':
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL';
+                $tmp_output_ARRAY['TITLE'] = '960 Grid System';
+                $tmp_output_ARRAY['VERSION'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
+                            workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
+                            two variants: 12 and 16 columns, which can be used separately or in tandem.
+                            <br><br>
+                            <!-- CRNRSTN :: COMMUNITY OVER CODE -->
+                            ' . $this->oCRNRSTN->return_sticky_media_link('LINKEDIN_SMALL', 'https://www.linkedin.com/in/nathan/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://sonspring.com/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FLICKR_SMALL', 'https://flickr.com/photos/nathansmith') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/960-grid-system/');
+                $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL':
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL';
+                $tmp_output_ARRAY['TITLE'] = '960 Grid System';
+                $tmp_output_ARRAY['VERSION'] = '';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'The 960 Grid System is an effort to streamline web development 
+                            workflow by providing commonly used dimensions, based on a width of 960 pixels. There are 
+                            two variants: 12 and 16 columns, which can be used separately or in tandem.
+                            <br><br>
+                            <!-- CRNRSTN :: COMMUNITY OVER CODE -->
+                            ' . $this->oCRNRSTN->return_sticky_media_link('LINKEDIN_SMALL', 'https://www.linkedin.com/in/nathan/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('WWW_SMALL', 'https://sonspring.com/') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('FLICKR_SMALL', 'https://flickr.com/photos/nathansmith') . '&nbsp;
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/960-grid-system/');
+                $tmp_output_ARRAY['URL'][] = 'https://960.gs/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL':
+            case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -8791,6 +8931,10 @@ between the server and client can be achieved with minimal effort and maximum da
                     CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE,
                     CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE, CRNRSTN_UI_JS_MAIN,
                     CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM,
+                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL,  CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL,
+                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL,
+                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL,
+                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL,
                     CRNRSTN_CSS_FRAMEWORK_FOUNDATION, CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE,
                     CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC,
                     CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_SKELETON,

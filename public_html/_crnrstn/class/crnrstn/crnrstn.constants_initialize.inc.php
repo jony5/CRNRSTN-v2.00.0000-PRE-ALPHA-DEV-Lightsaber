@@ -638,59 +638,94 @@ function crnrstn_constants_init($const_nom){
             return (int) 7322;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL':
 
             return (int) 7323;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL':
 
             return (int) 7324;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL':
 
             return (int) 7325;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL':
 
             return (int) 7326;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL':
 
             return (int) 7327;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL':
 
             return (int) 7328;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL':
 
             return (int) 7329;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
 
             return (int) 7330;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+        case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
 
             return (int) 7331;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+        case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
 
             return (int) 7332;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
 
             return (int) 7333;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+
+            return (int) 7334;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
+
+            return (int) 7335;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+
+            return (int) 7336;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID':
+
+            return (int) 7337;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+
+            return (int) 7338;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+
+            return (int) 7339;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+
+            return (int) 7340;
 
         break;
 
