@@ -134,7 +134,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.crnrstn_debug_mode = this.CRNRSTN_DEBUG_LIFESTYLE_BANNER;
         this.crnrstn_overlay_mode = 'OFF';
         this.crnrstn_ui_component_state_ARRAY = [];
-        this.content_stage_max_width = 850;
 
         this.form_input_serialization_key = 'crnrstn_request_serialization_key';
         this.form_input_serialization_hash = 'crnrstn_request_serialization_hash';
@@ -150,6 +149,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.b_width_nav_min = -1;
         this.side_navigation_toggle_min_width = 17;
         this.side_navigation_toggle_max_width = 250;
+        this.content_stage_max_width = 850;
         this.docs_page_css_top = -420;
         this.interact_ui_refresh_state_body = 'SLEEPING';
         this.interact_ui_refresh_state_system_footer = 'SLEEPING';
@@ -4045,6 +4045,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                     if((parseInt(tmp_current_left) - parseInt(tmp_new_doc_content_left)) >= 0){
 
+                        //
+                        // THIS IS TO SEE IF A==B; NOTE THAT COMPARING AN INTEGER TO A FLOAT (DOUBLE). OR MAYBE
+                        // IT WAS TWO (2) FLOATS...
                         if(1 > (parseInt(tmp_current_left) - parseInt(tmp_new_doc_content_left))){
 
                             return true;
@@ -4054,7 +4057,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     }
 
                     if((parseInt(tmp_new_doc_content_left) - parseInt(tmp_current_left)) >= 0){
-
+                        
+                        //
+                        // THIS IS TO SEE IF A==B; NOTE THAT COMPARING AN INTEGER TO A FLOAT (DOUBLE). OR MAYBE
+                        // IT WAS TWO (2) FLOATS...
                         if(1 > (parseInt(tmp_new_doc_content_left) - parseInt(tmp_current_left))){
 
                             return true;
@@ -4097,7 +4103,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     if((parseInt(tmp_current_width) - parseInt(tmp_new_doc_content_width)) >= 0){
 
                         //
-                        // GET SMALLER?
+                        // THIS IS TO SEE IF A==B; NOTE THAT COMPARING AN INTEGER TO A FLOAT (DOUBLE). OR MAYBE
+                        // IT WAS TWO (2) FLOATS...
                         if(1 > (parseInt(tmp_current_width) - parseInt(tmp_new_doc_content_width))){
 
                             return true;
@@ -4108,6 +4115,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                     if((parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width)) >= 0){
 
+                        //
+                        // THIS IS TO SEE IF A==B; NOTE THAT COMPARING AN INTEGER TO A FLOAT (DOUBLE). OR MAYBE
+                        // IT WAS TWO (2) FLOATS...
                         if(1 > (parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width))){
 
                             return true;
@@ -4120,8 +4130,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         tmp_new_doc_content_width = this.content_stage_max_width;
 
+                        //
+                        // IF MAX WIDTH ACHIEVED. JUST RETURN TRUE; DO NOT RESIZE.
                         if((parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width)) >= 0){
 
+                            //
+                            // THIS IS TO SEE IF A==B; NOTE THAT COMPARING AN INTEGER TO A FLOAT (DOUBLE). OR MAYBE
+                            // IT WAS TWO (2) FLOATS...
                             if(1 > (parseInt(tmp_new_doc_content_width) - parseInt(tmp_current_width))){
 
                                 return true;

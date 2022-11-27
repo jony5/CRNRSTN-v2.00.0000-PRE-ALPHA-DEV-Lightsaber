@@ -833,7 +833,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                                 /////
@@ -843,7 +843,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                                 /*//////////
@@ -1024,7 +1024,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                                 /////
@@ -1034,7 +1034,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                                 /*//////////
@@ -1324,7 +1324,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                                 /////
@@ -1334,7 +1334,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                                 /*//////////
@@ -1401,7 +1401,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+                            $tmp_resource_dependency_constant = NULL;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -1411,7 +1411,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+                            $tmp_resource_dependency_constant = NULL;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                             $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                             /*//////////
@@ -1563,7 +1563,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
                                 /*//////////
@@ -1685,7 +1685,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
                                 /*//////////
@@ -1781,7 +1781,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
                                 /*//////////
@@ -1878,7 +1878,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -1888,7 +1888,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                             $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS);
                             /*//////////
@@ -1910,7 +1910,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                                 /////
@@ -1920,7 +1920,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                                 /*//////////
@@ -1937,7 +1937,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -1947,7 +1947,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -1957,7 +1957,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -1967,7 +1967,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -1977,7 +1977,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -1987,7 +1987,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -1997,7 +1997,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -2007,7 +2007,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                             $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY_UI);
                             /*//////////
@@ -2202,7 +2202,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                                 /////
@@ -2212,7 +2212,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                                 /*//////////
@@ -2393,7 +2393,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                                 /////
@@ -2403,7 +2403,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                                 /*//////////
@@ -2693,7 +2693,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                                 /////
@@ -2703,7 +2703,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                                 /*//////////
@@ -2770,7 +2770,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+                            $tmp_resource_dependency_constant = NULL;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -2780,7 +2780,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
+                            $tmp_resource_dependency_constant = NULL;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                             $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                             /*//////////
@@ -2966,7 +2966,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
                                 /*//////////
@@ -3071,7 +3071,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
                                 /*//////////
@@ -3169,7 +3169,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
-                                $tmp_resource_dependency_constant = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
                                 /*//////////
@@ -3266,7 +3266,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -3276,7 +3276,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                             $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS);
                             /*//////////
@@ -3298,7 +3298,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                                 /////
@@ -3308,7 +3308,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
-                                $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                                $tmp_resource_dependency_constant = $const;
                                 $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                                 $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
                                 /*//////////
@@ -3325,7 +3325,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -3335,7 +3335,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -3345,7 +3345,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -3355,7 +3355,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -3365,7 +3365,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -3375,7 +3375,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -3385,7 +3385,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
                             /////
@@ -3395,7 +3395,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
-                            $tmp_resource_dependency_constant = CRNRSTN_UI_JS_MAIN;
+                            $tmp_resource_dependency_constant = $const;
                             $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
                             $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY_UI);
                             /*//////////
@@ -4979,17 +4979,48 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
 
+                        /*
+                        <script src="js/vendor/jquery.js"></script>
+                        <script src="js/vendor/what-input.js"></script>
+                        <script src="js/vendor/foundation.js"></script>
+                        <script src="js/app.js"></script>
+
+                        */
+
                         $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
+                        //
+                        // CHECK FOR PREVIOUS LOAD OF JQUERY
+                        if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
+                            && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
+                            && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                            && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
-                        }else{
+                            /////
+                            // R :: RESOURCE //
+                            $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
+                            $tmp_file_name = 'jquery-3.6.1.min.js';
+                            $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
+                            $tmp_file_is_minimized = true;
+                            $tmp_asset_minimization_mode_is_active = true;
+                            $tmp_resource_dependency_constant = $const;
+                            $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
+                            /////
+                            // R :: RESOURCE //
+                            $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.js';
+                            $tmp_file_name = 'jquery-3.6.1.js';
+                            $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
+                            $tmp_file_is_minimized = false;
+                            $tmp_asset_minimization_mode_is_active = true;
+                            $tmp_resource_dependency_constant = $const;
+                            $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                            $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
+                            /*//////////
+                            //////////
+
+                            */
 
                         }
 

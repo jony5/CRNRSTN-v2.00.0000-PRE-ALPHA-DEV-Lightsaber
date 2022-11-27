@@ -5,6 +5,8 @@ SYSTEM DEFAULTS TO SUPPORT ::
 PAGE LOAD TTL = 2;
 this.max_xhr_retrys = 5;
 
+this.content_stage_max_width = 850;
+
 $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';
 
 $tmp_array[] = 'Content-Type: text/html; charset=UTF-8';
