@@ -137,6 +137,7 @@ class crnrstn {
     private static $encryptable_data_types_ARRAY = array();
     protected $system_resource_constants = array();
     protected $system_ui_module_constants_ARRAY = array();
+    protected $system_head_html_asset_array_spool_ARRAY = array();
     protected $system_head_html_constants_spool_ARRAY = array();
     protected $system_footer_html_constants_spool_ARRAY = array();
     protected $system_data_profile_constants_ARRAY = array();
@@ -3391,6 +3392,24 @@ class crnrstn {
 
 
             );
+
+        /*
+        _lib/frameworks/responsivegridsystem/css/html5reset.css
+        _lib/frameworks/responsivegridsystem/css/col.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/2cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/3cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/4cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/5cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/6cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/7cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/8cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/9cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/10cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/11cols.css" media="all">
+        _lib/frameworks/responsivegridsystem/css/12cols.css" media="all">
+
+         */
+
         $this->asset_routing_data_key_lookup_ARRAY['css'] = $tmp_ARRAY;
 
         $tmp_ARRAY = array('framework/lightbox/close' => 'LIGHTBOX_CLOSE', 'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
@@ -3927,6 +3946,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function spool_head_html_asset_array($resource_ARRAY, $asst_nom_hash){
+
+        $resource_ARRAY['footer_delay_crumb_path_hash'] = $asst_nom_hash;
+        $this->system_head_html_asset_array_spool_ARRAY[] = $resource_ARRAY;
+
+        return true;
+
+    }
+
     public function system_output_head_html($resource_constant = NULL, $spool_for_output = false){
 
         $tmp_head_html_output = '';
@@ -4319,7 +4347,32 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
+        /*
+        //
+        // DO WE BUILD?
+        if($tmp_build_html && !isset($this->framework_file_output_serial_ARRAY[$file_path_nom_hash])){
+
+        foreach($this->framework_resource_ARRAY[$resource_constant] as $index0 => $tmpchnkARRAY00){
+
+        foreach($tmpchnkARRAY00 as $file_path_nom_hash => $resARRAY){
+
+        if(!$resARRAY['asset_spool_delay_html_output_for_footer'] === 'TRUE'){
+
+        */
+
+        foreach($this->system_head_html_asset_array_spool_ARRAY as $asset_hash => $resource_ARRAY){
+
+            $tmp_client_packet_output .= $this->mapped_resource_html_output($resource_ARRAY, $asset_hash);
+
+        }
+
         return $tmp_client_packet_output;
+
+    }
+
+    private function mapped_resource_html_output($resource_ARRAY, $asset_hash, $footer_html_output = true){
+
+        return $this->oCRNRSTN_ASSET_MGR->mapped_resource_html_output($resource_ARRAY, $asset_hash, $footer_html_output);
 
     }
 
