@@ -176,6 +176,9 @@ class crnrstn_system_image_asset_manager {
             case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
             case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL:
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT:
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL:
             case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
             case CRNRSTN_CSS_FRAMEWORK_SKELETON:
             case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
@@ -524,6 +527,10 @@ class crnrstn_system_image_asset_manager {
                     if($resARRAY['asset_spool_delay_html_output_for_footer'][0] != 'TRUE'){
 
                         //$this->oCRNRSTN->print_r($resARRAY, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+
+                        //
+                        // LET'S TRY THIS HERE.
+                        $this->oCRNRSTN->flag_built_head_resource($resource_constant);
 
                         $tmp_str .= $this->mapped_resource_html_output($resARRAY, $asst_nom_hash);
                         //$this->oCRNRSTN->print_r($resARRAY, NULL, NULL, __LINE__, __METHOD__, __FILE__);
@@ -963,8 +970,6 @@ class crnrstn_system_image_asset_manager {
                     switch ($const){
                         case CRNRSTN_JS_FRAMEWORK_JQUERY:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
@@ -1002,8 +1007,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -1043,8 +1046,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/jquery/1.12.4/jquery-1.12.4.min.js';
@@ -1073,8 +1074,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js';
@@ -1092,8 +1091,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_UI:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             //
                             // CHECK FOR PREVIOUS LOAD OF JQUERY
@@ -1218,8 +1215,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.theme.min.css';
@@ -1293,8 +1288,6 @@ class crnrstn_system_image_asset_manager {
                                 && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
-                                $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_JQUERY);
-
                                 /////
                                 // R :: RESOURCE //
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
@@ -1349,8 +1342,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -1505,8 +1496,6 @@ class crnrstn_system_image_asset_manager {
                                 && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
-                                $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1);
-
                                 /////
                                 // R :: RESOURCE //
                                 $tmp_file_path = '/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js';
@@ -1561,8 +1550,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -1651,8 +1638,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -1778,8 +1763,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_BACKBONE:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/backbone/1.4.1/backbone-min.js';
@@ -1808,8 +1791,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/prototype.js/1.7.3/prototype.js';
@@ -1828,13 +1809,9 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             //
                             // CHECK FOR LOAD OF CRNRSTN_JS_FRAMEWORK_PROTOTYPE
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_PROTOTYPE])){
-
-                                $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
 
                                 /////
                                 // R :: RESOURCE //
@@ -1952,8 +1929,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             //
                             // CHECK FOR LOAD OF CRNRSTN_JS_FRAMEWORK_PROTOTYPE
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_PROTOTYPE])){
@@ -2033,8 +2008,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/lightbox.js/2.03.3/css/lightbox.css';
@@ -2089,8 +2062,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/mootools/more/1.6.0/mootools-more-1.6.0-min.js';
@@ -2119,8 +2090,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/mootools/core/1.6.0/mootools-core-1.6.0-min.js';
@@ -2148,8 +2117,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_UI_JS_MAIN:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -2331,8 +2298,6 @@ class crnrstn_system_image_asset_manager {
                     switch ($const){
                         case CRNRSTN_JS_FRAMEWORK_JQUERY:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
@@ -2362,12 +2327,6 @@ class crnrstn_system_image_asset_manager {
                             $tmp_asset_minimization_mode_is_active = true;
                             $tmp_resource_dependency_constant = NULL;
                             $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
-                            $tmp_str_array[] = $this->return_mapped_resources($const);
-                            /*//////////
-                            //////////
-
-                            */
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -2407,8 +2366,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/jquery/2.2.4/jquery-2.2.4.min.js';
@@ -2447,8 +2404,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js';
@@ -2466,8 +2421,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_UI:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             //
                             // CHECK FOR PREVIOUS LOAD OF JQUERY
@@ -2592,8 +2545,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/jquery_ui/1.12.1/jquery-ui-1.12.1/jquery-ui.theme.min.css';
@@ -2667,8 +2618,6 @@ class crnrstn_system_image_asset_manager {
                                 && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
-                                $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_JQUERY);
-
                                 /////
                                 // R :: RESOURCE //
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
@@ -2723,8 +2672,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -2879,8 +2826,6 @@ class crnrstn_system_image_asset_manager {
                                 && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
-                                $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1);
-
                                 /////
                                 // R :: RESOURCE //
                                 $tmp_file_path = '/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js';
@@ -2935,8 +2880,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -3025,8 +2968,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -3189,8 +3130,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_BACKBONE:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/backbone/1.4.1/backbone-min.js';
@@ -3219,8 +3158,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/prototype.js/1.7.3/prototype.js';
@@ -3239,13 +3176,9 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             //
                             // CHECK FOR LOAD OF CRNRSTN_JS_FRAMEWORK_PROTOTYPE
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_PROTOTYPE])){
-
-                                $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
 
                                 /////
                                 // R :: RESOURCE //
@@ -3343,14 +3276,8 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX:
 
                             //
-                            // CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
-                            //
                             // CHECK FOR LOAD OF CRNRSTN_JS_FRAMEWORK_PROTOTYPE
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_PROTOTYPE])){
-
-                                $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
 
                                 /////
                                 // R :: RESOURCE //
@@ -3427,8 +3354,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/lightbox.js/2.03.3/css/lightbox.css';
@@ -3447,8 +3372,6 @@ class crnrstn_system_image_asset_manager {
                             //
                             // CHECK FOR LOAD OF CRNRSTN_JS_FRAMEWORK_PROTOTYPE
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_PROTOTYPE])){
-
-                                $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_PROTOTYPE);
 
                                 /////
                                 // R :: RESOURCE //
@@ -3485,8 +3408,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/mootools/more/1.6.0/mootools-more-1.6.0-min.js';
@@ -3515,8 +3436,6 @@ class crnrstn_system_image_asset_manager {
                         break;
                         case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
 
-                            $this->oCRNRSTN->flag_built_head_resource($const);
-
                             /////
                             // R :: RESOURCE //
                             $tmp_file_path = '/_lib/frameworks/mootools/core/1.6.0/mootools-core-1.6.0-min.js';
@@ -3544,8 +3463,6 @@ class crnrstn_system_image_asset_manager {
 
                         break;
                         case CRNRSTN_UI_JS_MAIN:
-
-                            $this->oCRNRSTN->flag_built_head_resource($const);
 
                             /////
                             // R :: RESOURCE //
@@ -3694,7 +3611,7 @@ class crnrstn_system_image_asset_manager {
 
                             /////
                             // R :: RESOURCE //
-                            $tmp_file_path = 'crnrstn.main.js';
+                            $tmp_file_path = '/crnrstn.main.js';
                             $tmp_file_name = 'crnrstn.main.js';
                             $tmp_file_type_const = CRNRSTN_UI_JS & CRNRSTN_ASSET_MODE_BASE64;
                             $tmp_file_is_minimized = false;
@@ -3748,8 +3665,6 @@ class crnrstn_system_image_asset_manager {
 
                 switch ($const){
                     case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
-
-                        $this->oCRNRSTN->flag_built_head_resource($const);
 
                         /////
                         // R :: RESOURCE //
@@ -3810,21 +3725,7 @@ class crnrstn_system_image_asset_manager {
                         <link rel="stylesheet" href="css/text.css" />
                         <link rel="stylesheet" href="css/960.css" />
 
-
-                        _lib/frameworks/960_grid_system/code/css/min/reset.css
-                        _lib/frameworks/960_grid_system/code/css/reset.css
-                        _lib/frameworks/960_grid_system/code/css/min/text.css
-                        _lib/frameworks/960_grid_system/code/css/text.css
-                        _lib/frameworks/960_grid_system/code/css/min/960.css
-                        _lib/frameworks/960_grid_system/code/css/960.css
-
-
-
-
-
                         */
-
-                        $this->oCRNRSTN->flag_built_head_resource($const);
 
                         /////
                         // R :: RESOURCE //
@@ -3894,8 +3795,6 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL:
 
-                        $this->oCRNRSTN->flag_built_head_resource($const);
-
                         /////
                         // R :: RESOURCE //
                         $tmp_file_path = '/_lib/frameworks/960_grid_system/code/css/min/reset.css';
@@ -3963,8 +3862,6 @@ class crnrstn_system_image_asset_manager {
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL:
-
-                        $this->oCRNRSTN->flag_built_head_resource($const);
 
                         /////
                         // R :: RESOURCE //
@@ -4034,8 +3931,6 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL:
 
-                        $this->oCRNRSTN->flag_built_head_resource($const);
-
                         /////
                         // R :: RESOURCE //
                         $tmp_file_path = '/_lib/frameworks/960_grid_system/code/css/min/reset.css';
@@ -4103,8 +3998,6 @@ class crnrstn_system_image_asset_manager {
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL:
-
-                        $this->oCRNRSTN->flag_built_head_resource($const);
 
                         /////
                         // R :: RESOURCE //
@@ -4174,8 +4067,6 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL:
 
-                        $this->oCRNRSTN->flag_built_head_resource($const);
-
                         /////
                         // R :: RESOURCE //
                         $tmp_file_path = '/_lib/frameworks/960_grid_system/code/css/min/reset.css';
@@ -4243,8 +4134,6 @@ class crnrstn_system_image_asset_manager {
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL:
-
-                        $this->oCRNRSTN->flag_built_head_resource($const);
 
                         /////
                         // R :: RESOURCE //
@@ -4314,8 +4203,6 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL:
 
-                        $this->oCRNRSTN->flag_built_head_resource($const);
-
                         /////
                         // R :: RESOURCE //
                         $tmp_file_path = '/_lib/frameworks/960_grid_system/code/css/min/reset.css';
@@ -4383,8 +4270,6 @@ class crnrstn_system_image_asset_manager {
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
-
-                        $this->oCRNRSTN->flag_built_head_resource($const);
 
                         //
                         // CHECK FOR PREVIOUS LOAD OF JQUERY
@@ -4471,8 +4356,6 @@ class crnrstn_system_image_asset_manager {
 
                         */
 
-                        $this->oCRNRSTN->flag_built_head_resource($const);
-
                         /////
                         // R :: RESOURCE //
                         $tmp_file_path = '/_lib/frameworks/html5_boilerplate/8.0.0/css/normalize.css';
@@ -4556,6 +4439,12 @@ class crnrstn_system_image_asset_manager {
                         <link rel="stylesheet" href="css/12cols.css" media="all">
 
                         */
+
+                        $tmp_str_array[] = '<!-- Responsive and mobile friendly stuff -->
+                        <meta name="HandheldFriendly" content="True">
+                        <meta name="MobileOptimized" content="320">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+';
 
                         /////
                         // R :: RESOURCE //
@@ -4696,6 +4585,11 @@ class crnrstn_system_image_asset_manager {
                     case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
 
                         /*
+                        MORE CAN BE SUPPORTED HERE...ESPECIALLY CONSIDERING THE MOBILE SPECIFIC RESOURCES
+                        ASSOCIATED WITH UNSEMANTIC. THESE SIX (6) ARE A GESTURE BASED OFF OF READILY AVAILABLE
+                        DEMONSTRATIVE MATERIAL.
+
+                        case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
                         <head>
                             <meta charset="utf-8" />
                             <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -4713,7 +4607,69 @@ class crnrstn_system_image_asset_manager {
                             <![endif]-->
                         </head>
 
+                        */
 
+                        $tmp_str_array[] = '<meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <!--[if lt IE 9]>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/html5.js';
+                        $tmp_file_name = 'html5.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->
+                            <!--[if (gt IE 8) | (IEMobile)]><!-->';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-responsive.css';
+                        $tmp_file_name = 'unsemantic-grid-responsive.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<!--<![endif]-->
+                            <!--[if (lt IE 9) & (!IEMobile)]>';
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/ie.css';
+                        $tmp_file_name = 'unsemantic-grid-responsive.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->';
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL:
+
+                        /*
+                        case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL:
                         RTL
                         <head>
                             <meta charset="utf-8" />
@@ -4732,6 +4688,106 @@ class crnrstn_system_image_asset_manager {
                             <![endif]-->
                         </head>
 
+                        */
+
+                        $tmp_str_array[] = '<meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <!--[if lt IE 9]>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/html5.js';
+                        $tmp_file_name = 'html5.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = true;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->
+                            <!--[if (gt IE 8) | (IEMobile)]><!-->';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-responsive-rtl.css';
+                        $tmp_file_name = 'unsemantic-grid-responsive-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<!--<![endif]-->
+                            <!--[if (lt IE 9) & (!IEMobile)]>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/ie-rtl.css';
+                        $tmp_file_name = 'ie-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->';
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET:
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/reset.css';
+                        $tmp_file_name = 'reset.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL:
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/reset-rtl.css';
+                        $tmp_file_name = 'reset-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT:
+
+                        /*
+                        case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT:
                         ADAPT
                         <head>
                             <meta charset="utf-8" />
@@ -4759,6 +4815,106 @@ class crnrstn_system_image_asset_manager {
                             <script src="./assets/javascripts/adapt.min.js"></script>
                         </head>
 
+
+
+
+
+
+
+
+
+
+                            <script src="./assets/javascripts/adapt.min.js"></script>
+
+
+                        */
+
+                        $tmp_str_array[] = '<meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <!--[if lt IE 9]>
+';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/html5.js';
+                        $tmp_file_name = 'html5.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-base.css';
+                        $tmp_file_name = 'unsemantic-grid-base.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<noscript>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-mobile.css';
+                        $tmp_file_name = 'unsemantic-grid-mobile.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '</noscript>
+                            <script>
+                              var ADAPT_CONFIG = {
+                                path: \'./assets/stylesheets/\',
+                                dynamic: true,
+                                range: [
+                                  \'0 to 767px = unsemantic-grid-mobile.css\',
+                                  \'767px = unsemantic-grid-desktop.css\'
+                                ]
+                              };
+                            </script>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/adapt.min.js';
+                        $tmp_file_name = 'adapt.min.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL:
+
+                        /*
+                        case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL:
                         ADAPT RTL
                         <head>
                             <meta charset="utf-8" />
@@ -4788,190 +4944,294 @@ class crnrstn_system_image_asset_manager {
 
                         */
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
-
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        $tmp_str_array[] = '<meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <!--[if lt IE 9]>
 ';
 
-                        }else{
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/html5.js';
+                        $tmp_file_name = 'html5.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
+                        */
 
-                        }
+                        $tmp_str_array[] = '<![endif]-->';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-base-rtl.css';
+                        $tmp_file_name = 'unsemantic-grid-base-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<noscript>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-mobile-rtl.css';
+                        $tmp_file_name = 'unsemantic-grid-mobile-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                        $tmp_http_path_css = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_css);
+
+                        $tmp_str_array[] = '</noscript>
+                            <script>
+                              var ADAPT_CONFIG = {
+                                path: \'' . $tmp_http_path_css . '_lib/frameworks/unsemantic/assets/stylesheets/\',
+                                dynamic: true,
+                                range: [
+                                  \'0 to 767px = unsemantic-grid-mobile-rtl.css\',
+                                  \'767px = unsemantic-grid-desktop-rtl.css\'
+                                ]
+                              };
+                            </script>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/adapt.min.js';
+                        $tmp_file_name = 'adapt.min.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
-
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        $tmp_str_array[] = '<meta name="viewport" content="width=device-width">
+                            <!-- a grid framework in 250 bytes? are you kidding me?! -->
 ';
 
-                        }else{
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/dead_simple_grid/css/grid.css';
+                        $tmp_file_name = 'grid.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        */
+
+                        $tmp_str_array[] = '<!-- all the important responsive layout stuff -->
+                            <style>
+                                .container { max-width: 90em; }
+                        
+                                /* you only need width to set up columns; all columns are 100%-width by default, so we start
+                                   from a one-column mobile layout and gradually improve it according to available screen space */
+                        
+                                @media only screen and (min-width: 34em) {
+                                        .feature, .info { width: 50%; }
+                                }
+                        
+                                @media only screen and (min-width: 54em) {
+                                                .content { width: 66.66%; }
+                                    .sidebar { width: 33.33%; }
+                                    .info    { width: 100%;   }
+                                }
+                        
+                                @media only screen and (min-width: 76em) {
+                                                .content { width: 58.33%; } /* 7/12 */
+                                    .sidebar { width: 41.66%; } /* 5/12 */
+                                    .info    { width: 50%;    }
+                                }
+                            </style>
+                        
+                            <!-- general boring stuff and some visual tweaks -->
 ';
 
-                        }
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/dead_simple_grid/css/screen.css';
+                        $tmp_file_name = 'screen.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_SKELETON:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
-
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        $tmp_str_array[] = '<!-- Mobile Specific Metas
+                          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                          <meta name="viewport" content="width=device-width, initial-scale=1">
+                        
+                          <!-- FONT
+                          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                          <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+                        
+                          <!-- CSS
+                          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 ';
 
-                        }else{
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/skeleton/2.0.4/css/normalize.css';
+                        $tmp_file_name = '2.0.4/css/normalize.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/skeleton/2.0.4/css/skeleton.css';
+                        $tmp_file_name = 'skeleton.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                        }
+                        */
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+                        $tmp_str_array[] = '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">';
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/rwdgrid/css/rwdgrid.min.css';
+                        $tmp_file_name = 'rwdgrid.min.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = true;
+                        $tmp_asset_minimization_mode_is_active = true;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/rwdgrid/css/rwdgrid.css';
+                        $tmp_file_name = 'rwdgrid.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = true;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/rwdgrid/css/style.css';
+                        $tmp_file_name = 'style.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<!--[if lt IE 9]>
+                            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                            <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+                            <![endif]-->
 ';
-
-                        }else{
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
-
-                        }
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/thisisdallas_simple_grid/simplegrid.css';
+                        $tmp_file_name = 'simplegrid.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
-
-                        }else{
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
-
-                        }
+                        */
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
-                        $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_UI_CSS_MAIN_DESKTOP);
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/crnrstn.main_desktop.css';
+                        $tmp_file_name = 'crnrstn.main_desktop.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                        $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-                        $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-
-                        $tmp_cache_crnrstnmain_desktopcss = $this->oCRNRSTN->resource_filecache_version($tmp_path_css . '/crnrstn.main_desktop.css');
-
-                        $tmp_http_path_css = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_css);
-
-                        $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
-
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
-
-                                $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_desktop.css&v=420.0.' . $tmp_cache_crnrstnmain_desktopcss . '">
-';
-
-                                return $tmp_str_array;
-
-                            }
-
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-    <link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_desktop.css?v=420.00.' . $tmp_cache_crnrstnmain_desktopcss . '">
-';
-
-                            return $tmp_str_array;
-
-                        }else{
-
-                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
-
-                                $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_desktop.css&v=420.0.' . $tmp_cache_crnrstnmain_desktopcss . '">
-';
-
-                                return $tmp_str_array;
-
-                            }
-
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-    <link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_desktop.css?v=420.00.' . $tmp_cache_crnrstnmain_desktopcss . '">
-';
-
-                            return $tmp_str_array;
-
-                        }
+                        */
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_TABLET:
 
-                        $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_UI_CSS_MAIN_TABLET);
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/crnrstn.main_tablet.css';
+                        $tmp_file_name = 'crnrstn.main_tablet.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                        $tmp_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-                        $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
-
-                        $tmp_cache_crnrstnmain_tabletcss = $this->oCRNRSTN->resource_filecache_version($tmp_path_css . '/crnrstn.main_tablet.css');
-
-                        $tmp_http_path_css = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_css);
-
-                        $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
-
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
-
-                                $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_tablet.css&v=420.0.' . $tmp_cache_crnrstnmain_tabletcss . '">
-';
-
-                                return $tmp_str_array;
-
-                            }
-
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-    <link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_tablet.css?v=420.0.' . $tmp_cache_crnrstnmain_tabletcss . '">
-';
-
-                            return $tmp_str_array;
-
-                        }else{
-
-                            if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
-
-                                $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-    <link rel="stylesheet" href="' . $tmp_http_path . '?' . $this->oCRNRSTN->session_salt() . '=crnrstn.main_tablet.css&v=420.0.' . $tmp_cache_crnrstnmain_tabletcss . '">
-';
-
-                                return $tmp_str_array;
-
-                            }
-
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-    <link rel="stylesheet" href="' . $tmp_http_path_css . 'crnrstn.main_tablet.css?v=420.0.' . $tmp_cache_crnrstnmain_tabletcss . '">
-';
-                            return $tmp_str_array;
-
-                        }
+                        */
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_MOBILE:
@@ -5732,164 +5992,697 @@ class crnrstn_system_image_asset_manager {
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
-
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        $tmp_str_array[] = '<!-- Responsive and mobile friendly stuff -->
+                        <meta name="HandheldFriendly" content="True">
+                        <meta name="MobileOptimized" content="320">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ';
 
-                        }else{
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/html5reset.css';
+                        $tmp_file_name = 'html5reset.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/col.css';
+                        $tmp_file_name = 'col.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
-                        }
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/2cols.css';
+                        $tmp_file_name = '2cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/3cols.css';
+                        $tmp_file_name = '3cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/4cols.css';
+                        $tmp_file_name = '4cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/5cols.css';
+                        $tmp_file_name = '5cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/6cols.css';
+                        $tmp_file_name = '6cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/7cols.css';
+                        $tmp_file_name = '7cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/8cols.css';
+                        $tmp_file_name = '8cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/9cols.css';
+                        $tmp_file_name = '9cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/10cols.css';
+                        $tmp_file_name = '10cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/11cols.css';
+                        $tmp_file_name = '11cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/responsivegridsystem/css/12cols.css';
+                        $tmp_file_name = '12cols.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+                        $tmp_str_array[] = '<meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <!--[if lt IE 9]>';
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/html5.js';
+                        $tmp_file_name = 'html5.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->
+                            <!--[if (gt IE 8) | (IEMobile)]><!-->';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-responsive.css';
+                        $tmp_file_name = 'unsemantic-grid-responsive.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<!--<![endif]-->
+                            <!--[if (lt IE 9) & (!IEMobile)]>';
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/ie.css';
+                        $tmp_file_name = 'unsemantic-grid-responsive.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->';
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL:
+
+                        $tmp_str_array[] = '<meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <!--[if lt IE 9]>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/html5.js';
+                        $tmp_file_name = 'html5.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = true;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->
+                            <!--[if (gt IE 8) | (IEMobile)]><!-->';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-responsive-rtl.css';
+                        $tmp_file_name = 'unsemantic-grid-responsive-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<!--<![endif]-->
+                            <!--[if (lt IE 9) & (!IEMobile)]>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/ie-rtl.css';
+                        $tmp_file_name = 'ie-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->';
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET:
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/reset.css';
+                        $tmp_file_name = 'unsemantic/assets/stylesheets/reset.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL:
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/reset-rtl.css';
+                        $tmp_file_name = 'unsemantic/assets/stylesheets/reset-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT:
+
+                        $tmp_str_array[] = '<meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <!--[if lt IE 9]>
 ';
 
-                        }else{
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/html5.js';
+                        $tmp_file_name = 'html5.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-base.css';
+                        $tmp_file_name = 'unsemantic-grid-base.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<noscript>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-mobile.css';
+                        $tmp_file_name = 'unsemantic-grid-mobile.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '</noscript>
+                            <script>
+                              var ADAPT_CONFIG = {
+                                path: \'./assets/stylesheets/\',
+                                dynamic: true,
+                                range: [
+                                  \'0 to 767px = unsemantic-grid-mobile.css\',
+                                  \'767px = unsemantic-grid-desktop.css\'
+                                ]
+                              };
+                            </script>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/adapt.min.js';
+                        $tmp_file_name = 'adapt.min.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                    break;
+                    case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL:
+
+                        $tmp_str_array[] = '<meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <!--[if lt IE 9]>
 ';
 
-                        }
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/html5.js';
+                        $tmp_file_name = 'html5.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<![endif]-->';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-base-rtl.css';
+                        $tmp_file_name = 'unsemantic-grid-base-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<noscript>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-mobile-rtl.css';
+                        $tmp_file_name = 'unsemantic-grid-mobile-rtl.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_http_path_css = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                        $tmp_http_path_css = $this->oCRNRSTN->crnrstn_http_endpoint($tmp_http_path_css);
+
+                        $tmp_str_array[] = '</noscript>
+                            <script>
+                              var ADAPT_CONFIG = {
+                                path: \'' . $tmp_http_path_css . '_lib/frameworks/unsemantic/assets/stylesheets/\',
+                                dynamic: true,
+                                range: [
+                                  \'0 to 767px = unsemantic-grid-mobile-rtl.css\',
+                                  \'767px = unsemantic-grid-desktop-rtl.css\'
+                                ]
+                              };
+                            </script>';
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/unsemantic/assets/javascripts/adapt.min.js';
+                        $tmp_file_name = 'adapt.min.js';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
-
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        $tmp_str_array[] = '<meta name="viewport" content="width=device-width">
+                            <!-- a grid framework in 250 bytes? are you kidding me?! -->
 ';
 
-                        }else{
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/dead_simple_grid/css/grid.css';
+                        $tmp_file_name = 'grid.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        */
+
+                        $tmp_str_array[] = '<!-- all the important responsive layout stuff -->
+                            <style>
+                                .container { max-width: 90em; }
+                        
+                                /* you only need width to set up columns; all columns are 100%-width by default, so we start
+                                   from a one-column mobile layout and gradually improve it according to available screen space */
+                        
+                                @media only screen and (min-width: 34em) {
+                                        .feature, .info { width: 50%; }
+                                }
+                        
+                                @media only screen and (min-width: 54em) {
+                                                .content { width: 66.66%; }
+                                    .sidebar { width: 33.33%; }
+                                    .info    { width: 100%;   }
+                                }
+                        
+                                @media only screen and (min-width: 76em) {
+                                                .content { width: 58.33%; } /* 7/12 */
+                                    .sidebar { width: 41.66%; } /* 5/12 */
+                                    .info    { width: 50%;    }
+                                }
+                            </style>
+                        
+                            <!-- general boring stuff and some visual tweaks -->
 ';
 
-                        }
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/dead_simple_grid/css/screen.css';
+                        $tmp_file_name = 'screen.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_SKELETON:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
-
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        $tmp_str_array[] = '<!-- Mobile Specific Metas
+                          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                          <meta name="viewport" content="width=device-width, initial-scale=1">
+                        
+                          <!-- FONT
+                          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                          <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+                        
+                          <!-- CSS
+                          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 ';
 
-                        }else{
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/skeleton/2.0.4/css/normalize.css';
+                        $tmp_file_name = '2.0.4/css/normalize.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/skeleton/2.0.4/css/skeleton.css';
+                        $tmp_file_name = 'skeleton.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                        }
+                        */
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+                        $tmp_str_array[] = '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">';
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/rwdgrid/css/rwdgrid.min.css';
+                        $tmp_file_name = 'rwdgrid.min.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = true;
+                        $tmp_asset_minimization_mode_is_active = true;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
 
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/rwdgrid/css/rwdgrid.css';
+                        $tmp_file_name = 'rwdgrid.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = true;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/rwdgrid/css/style.css';
+                        $tmp_file_name = 'style.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
+
+                        */
+
+                        $tmp_str_array[] = '<!--[if lt IE 9]>
+                            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                            <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+                            <![endif]-->
 ';
-
-                        }else{
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
-
-                        }
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID:
 
-                        $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/_lib/frameworks/thisisdallas_simple_grid/simplegrid.css';
+                        $tmp_file_name = 'simplegrid.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
-
-                        }else{
-
-                            $tmp_str_array[] = '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: IMPLEMENTATION PENDING. -->
-';
-
-                        }
+                        */
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/crnrstn.main_desktop.css';
+                        $tmp_file_name = 'crnrstn.main_desktop.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<style>
-    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_desktop.css') . '
-</style>
-';
-
-                        }else{
-
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: DESKTOP CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-<style>
-    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_desktop.css') . '
-</style>
-';
-
-                        }
+                        */
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_TABLET:
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/crnrstn.main_tablet.css';
+                        $tmp_file_name = 'crnrstn.main_tablet.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = NULL;
+                        $this->spool_resource($const, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources($const);
+                        /*//////////
+                        //////////
 
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
-    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_tablet.css') . '
-</style>
-';
-
-                        }else{
-
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: TABLET CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
-    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_tablet.css') . '
-</style>
-';
-
-                        }
+                        */
 
                     break;
                     case CRNRSTN_UI_CSS_MAIN_MOBILE:
 
-                        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+                        $this->oCRNRSTN->flag_built_head_resource($const);
 
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
-    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_mobile.css') . '
-</style>
-';
+                        /////
+                        // R :: RESOURCE //
+                        $tmp_file_path = '/crnrstn.main_mobile.css';
+                        $tmp_file_name = 'crnrstn.main_mobile.css';
+                        $tmp_file_type_const = CRNRSTN_UI_CSS & CRNRSTN_ASSET_MODE_BASE64;
+                        $tmp_file_is_minimized = false;
+                        $tmp_asset_minimization_mode_is_active = false;
+                        $tmp_resource_dependency_constant = $const;
+                        $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant);
+                        $tmp_str_array[] = $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY);
+                        /*//////////
+                        //////////
 
-                        }else{
-
-                            $tmp_str_array[] = '    <!-- CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: MOBILE CSS :: ' . $this->oCRNRSTN->return_micro_time() . ' --><style>
-    ' . file_get_contents(CRNRSTN_ROOT . '/_crnrstn/ui/css/crnrstn.main_mobile.css') . '
-</style>
-';
-
-                        }
-
+                        */
                     break;
 
                 }
@@ -6061,7 +6854,7 @@ class crnrstn_system_image_asset_manager {
             break;
             case 'js':
 
-                error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
                 return $this->return_asset_data();
 
             break;

@@ -578,7 +578,7 @@ CRNRSTN_ASSET_MODE_BASE64 (WILL CAUSE JS AND CSS META TO BE INJECTED DIRECTLY IN
 //
 // $env_key = CRNRSTN_RESOURCE_ALL, $format_default = CRNRSTN_ASSET_MODE_BASE64
 $oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG);
-$oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
+//$oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
 
 // 
 // $env_key = CRNRSTN_RESOURCE_ALL, $is_HTML = true. If false, text email only for system communications (e.g. exception handling).

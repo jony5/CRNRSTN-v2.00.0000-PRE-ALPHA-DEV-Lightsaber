@@ -693,39 +693,65 @@ function crnrstn_constants_init($const_nom){
             return (int) 7333;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET':
 
             return (int) 7334;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL':
 
             return (int) 7335;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL':
 
             return (int) 7336;
 
         break;
-        case 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT':
 
             return (int) 7337;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+        case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL':
 
             return (int) 7338;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+
+        case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
 
             return (int) 7339;
 
         break;
-        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+        case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
 
             return (int) 7340;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
+
+            return (int) 7341;
+
+        break;
+        case 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID':
+
+            return (int) 7342;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
+
+            return (int) 7343;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_TABLET':
+
+            return (int) 7344;
+
+        break;
+        case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
+
+            return (int) 7345;
 
         break;
 

@@ -2172,6 +2172,7 @@ class crnrstn {
     <IMG SRC="http://jony5.com/?crnrstn_0010111011=powered_by_apache_2_4.png" width="102" height="35" alt="Powered by Apache" title="Powered by Apache">
 
     CRNRSTN_SYSTEM_EMAIL_IS_HTML
+
     */
     public function config_init_html_mode_email($env_key = CRNRSTN_RESOURCE_ALL, $is_HTML = true){
 
@@ -2205,15 +2206,6 @@ class crnrstn {
 
     }
 
-    /*
-    $oCRNRSTN->config_init_asset_mapping_favicon();
-    $oCRNRSTN->config_init_asset_mapping_css();
-    $oCRNRSTN->config_init_asset_mapping_js();
-    $oCRNRSTN->config_init_asset_mapping_system_img();
-    $oCRNRSTN->config_init_asset_mapping_social_img();
-
-    */
-
     public function config_init_js_css_minimization($env_key = CRNRSTN_RESOURCE_ALL, $production_min_js = true){
 
         $tmp_env_key_hash = $this->hash($env_key);
@@ -2245,8 +2237,6 @@ class crnrstn {
         }
 
         return true;
-
-
 
     }
 
@@ -3375,6 +3365,7 @@ class crnrstn {
             'mootools-core-1.6.0.js' => '_lib/frameworks/mootools/core/1.6.0',
             'mootools-core-1.6.0-min.js' => '_lib/frameworks/mootools/core/1.6.0'
 
+
         );
 
         /*
@@ -3385,28 +3376,43 @@ class crnrstn {
         $this->asset_routing_data_key_lookup_ARRAY['js'] = $tmp_ARRAY;
 
         $tmp_ARRAY = array('crnrstn.main_desktop.css' => '/', 'crnrstn.main_tablet.css' => '/', 'crnrstn.main_mobi.css' => '/',
-            'crnrstn.lightbox.min.css' => $this->session_salt(),
-            'simple-grid.min.css' => '_lib/frameworks/simple_grid',
-            'simple-grid.css' => '_lib/frameworks/simple_grid',
-
+            'crnrstn.lightbox.min.css' => $this->session_salt(), 'simple-grid.min.css' => '_lib/frameworks/simple_grid',
+            'simple-grid.css' => '_lib/frameworks/simple_grid', '12cols.css' => '_lib/frameworks/responsivegridsystem/css',
+            '11cols.css' => '_lib/frameworks/responsivegridsystem/css', '10cols.css' => '_lib/frameworks/responsivegridsystem/css',
+            '9cols.css' => '_lib/frameworks/responsivegridsystem/css', '8cols.css' => '_lib/frameworks/responsivegridsystem/css',
+            '7cols.css' => '_lib/frameworks/responsivegridsystem/css', '6cols.css' => '_lib/frameworks/responsivegridsystem/css',
+            '5cols.css' => '_lib/frameworks/responsivegridsystem/css', '4cols.css' => '_lib/frameworks/responsivegridsystem/css',
+            '3cols.css' => '_lib/frameworks/responsivegridsystem/css', '2cols.css' => '_lib/frameworks/responsivegridsystem/css',
+            'col.css' => '_lib/frameworks/responsivegridsystem/css', 'html5reset.css' => '_lib/frameworks/responsivegridsystem/css',
+            'main.js' => '_lib/frameworks/html5_boilerplate/8.0.0/js', 'plugins.js' => '_lib/frameworks/html5_boilerplate/8.0.0/js',
+            'modernizr-3.11.2.min.js' => '_lib/frameworks/html5_boilerplate/8.0.0/js/vendor', 'main.css' => '_lib/frameworks/html5_boilerplate/8.0.0/css',
+            'normalize.css' => '_lib/frameworks/html5_boilerplate/8.0.0/css', 'foundation.js' => '_lib/frameworks/foundation/js/vendor',
+            'foundation.min.js' => '_lib/frameworks/foundation/js/vendor', 'what-input.js' => '_lib/frameworks/foundation/js/vendor',
+            '960_rtl.css' => '_lib/frameworks/960_grid_system/code/css', 'min/960_rtl.css' => '_lib/frameworks/960_grid_system/code/css',
+            'text.css' => '_lib/frameworks/960_grid_system/code/css', 'min/text.css' => '_lib/frameworks/960_grid_system/code/css',
+            'reset.css' => '_lib/frameworks/960_grid_system/code/css', 'min/reset.css' => '_lib/frameworks/960_grid_system/code/css',
+            '960_12_col_rtl.css' => '_lib/frameworks/960_grid_system/code/css', 'min/960_12_col_rtl.css' => '_lib/frameworks/960_grid_system/code/css',
+            '960_16_col_rtl.css' => '_lib/frameworks/960_grid_system/code/css', 'min/960_16_col_rtl.css' => '_lib/frameworks/960_grid_system/code/css',
+            '960_24_col_rtl.css' => '_lib/frameworks/960_grid_system/code/css', 'min/960_24_col_rtl.css' => '_lib/frameworks/960_grid_system/code/css',
+            '960_16_col.css' => '_lib/frameworks/960_grid_system/code/css', 'min/960_16_col.css' => '_lib/frameworks/960_grid_system/code/css',
+            '960_24_col.css' => '_lib/frameworks/960_grid_system/code/css', '960.css' => '_lib/frameworks/960_grid_system/code/css',
+            'min/960.css' => '_lib/frameworks/960_grid_system/code/css', 'simplegrid.css' => '_lib/frameworks/thisisdallas_simple_grid',
+            'style.css' => '_lib/frameworks/rwdgrid/css', 'rwdgrid.css' => '_lib/frameworks/rwdgrid/css/rwdgrid.css',
+            'rwdgrid.min.css' => '_lib/frameworks/rwdgrid/css/rwdgrid.min.css', 'skeleton.css' => '_lib/frameworks/skeleton/2.0.4/css/skeleton.css',
+            '2.0.4/css/normalize.css' => '_lib/frameworks/skeleton/2.0.4/css/normalize.css', 'screen.css' => '_lib/frameworks/dead_simple_grid/css/screen.css', 'grid.css' => '_lib/frameworks/dead_simple_grid/css/grid.css',
+            'unsemantic-grid-mobile-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-mobile-rtl.css',
+            'unsemantic-grid-base-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-base-rtl.css',
+            'html5.js' => '_lib/frameworks/unsemantic/assets/javascripts/html5.js', 'adapt.min.js' => '_lib/frameworks/unsemantic/assets/javascripts',
+            'unsemantic-grid-mobile.css' => '_lib/frameworks/unsemantic/assets/stylesheets', 'unsemantic-grid-base.css' => '_lib/frameworks/unsemantic/assets/stylesheets',
+            'unsemantic/assets/stylesheets/reset-rtl.css' => '_lib/frameworks', 'unsemantic/assets/stylesheets/reset.css' => '_lib/frameworks',
+            'ie-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets', 'unsemantic-grid-responsive-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets',
+            'ie.css' => '_lib/frameworks/unsemantic/assets/stylesheets', 'unsemantic-grid-responsive.css' => '_lib/frameworks/unsemantic/assets/stylesheets'
 
 
             );
 
         /*
-        _lib/frameworks/responsivegridsystem/css/html5reset.css
-        _lib/frameworks/responsivegridsystem/css/col.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/2cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/3cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/4cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/5cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/6cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/7cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/8cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/9cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/10cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/11cols.css" media="all">
-        _lib/frameworks/responsivegridsystem/css/12cols.css" media="all">
+
 
          */
 

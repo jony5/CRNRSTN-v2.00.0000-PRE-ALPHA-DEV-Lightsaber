@@ -7422,6 +7422,87 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
 
             break;
+            case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL':
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL';
+                $tmp_output_ARRAY['TITLE'] = 'unsemantic';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
+                            Grid System. It works in a similar way, but instead of being a set number of columns, 
+                            it\'s entirely based on percentages.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/unsemantic/');
+                $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET':
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET';
+                $tmp_output_ARRAY['TITLE'] = 'unsemantic';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
+                            Grid System. It works in a similar way, but instead of being a set number of columns, 
+                            it\'s entirely based on percentages.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/unsemantic/');
+                $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
+
+            break;
+
+            case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL':
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL';
+                $tmp_output_ARRAY['TITLE'] = 'unsemantic';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
+                            Grid System. It works in a similar way, but instead of being a set number of columns, 
+                            it\'s entirely based on percentages.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/unsemantic/');
+                $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT':
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT';
+                $tmp_output_ARRAY['TITLE'] = 'unsemantic';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
+                            Grid System. It works in a similar way, but instead of being a set number of columns, 
+                            it\'s entirely based on percentages.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/unsemantic/');
+                $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
+
+            break;
+            case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL':
+            case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL:
+
+                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL';
+                $tmp_output_ARRAY['TITLE'] = 'unsemantic';
+                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
+                            Grid System. It works in a similar way, but instead of being a set number of columns, 
+                            it\'s entirely based on percentages.
+                            <br><br>
+                            ' . $this->oCRNRSTN->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/nathansmith/unsemantic/');
+                $tmp_output_ARRAY['URL'][] = 'https://unsemantic.com/';
+
+            break;
             case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
             case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
 
@@ -8934,9 +9015,11 @@ between the server and client can be achieved with minimal effort and maximum da
                     CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL,  CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL,
                     CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL,
                     CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL,
-                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL,
-                    CRNRSTN_CSS_FRAMEWORK_FOUNDATION, CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE,
-                    CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC,
+                    CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL, CRNRSTN_CSS_FRAMEWORK_FOUNDATION,
+                    CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE, CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM,
+                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL,
+                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL,
+                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL,
                     CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_SKELETON,
                     CRNRSTN_CSS_FRAMEWORK_RWDGRID, CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID,
                     CRNRSTN_UI_CSS_MAIN_DESKTOP, CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE);
