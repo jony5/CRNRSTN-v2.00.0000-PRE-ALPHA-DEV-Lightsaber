@@ -138,7 +138,7 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
  *
  * @var string
  */
-$CRNRSTN_config_serial='';
+$CRNRSTN_config_serial = '';
 
 /**
  *
@@ -626,9 +626,10 @@ returned to this authenticated user, alone.
 */
 
 //
-// ACTIVATE MINIMIZATION OF CSS AND JS FRAMEWORKS (PRODUCTION VERSION vs DEVELOPMENT)
-//$oCRNRSTN->config_init_js_css_minimization();
-//$oCRNRSTN->config_init_js_css_minimization(CRNRSTN_RESOURCE_ALL);
+// ENABLE RETURN OF min.js AND min.css WHERE AVAILABLE.
+// FALSE = DEVELOPMENT JS + CSS; TRUE = MINIMIZATION (PRODUCTION VERSION), WHEN AVAILABLE.
+$oCRNRSTN->config_init_js_css_minimization();
+// $oCRNRSTN->config_init_js_css_minimization(CRNRSTN_RESOURCE_ALL, true);
 // $oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
 
 //

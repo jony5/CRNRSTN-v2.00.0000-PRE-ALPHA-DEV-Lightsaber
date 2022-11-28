@@ -3978,19 +3978,19 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                    if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI])){
 
-                       $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
+                       $this->system_head_html_constants_spool_ARRAY[] = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
 
                    }
 
                    if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP])){
 
-                       $this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP] = 1;
+                       $this->system_head_html_constants_spool_ARRAY[] = CRNRSTN_UI_CSS_MAIN_DESKTOP;
 
                    }
 
                    if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
 
-                       $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
+                       $this->system_head_html_constants_spool_ARRAY[] = CRNRSTN_UI_JS_MAIN;
 
                    }
 
@@ -4081,7 +4081,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // JQUERY + JQUERY UI
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4]) &&!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])){
+            if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
+                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
+                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
+                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                 $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
                 $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY_UI);

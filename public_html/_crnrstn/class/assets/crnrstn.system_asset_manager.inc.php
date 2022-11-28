@@ -238,7 +238,7 @@ class crnrstn_system_image_asset_manager {
 
             //
             // IF NO DELAY FOR OUTPUT...RUN. IF OUTPUT IS FOR FOOTER,...RUN.
-            if(!$resource_ARRAY['asset_spool_delay_html_output_for_footer'] === 'TRUE' || $footer_html_output === true){
+            if($resource_ARRAY['asset_spool_delay_html_output_for_footer'] !== 'TRUE' || $footer_html_output === true){
 
                 $tmp_build_html = true;
 
@@ -295,11 +295,15 @@ class crnrstn_system_image_asset_manager {
 <script src="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>
 ';
 
+                                    //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
+
                                 }else{
 
                                     $tmp_str .= $resource_ARRAY['resource_version_nom'][0] . '
 <script src="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>
 ';
+
+                                    //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                                 }
 
@@ -310,11 +314,13 @@ class crnrstn_system_image_asset_manager {
                                     $tmp_str .= '  
 <link rel="stylesheet" href="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '">
 ';
+                                    //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                                 }else{
 
                                     $tmp_str .= '    <link rel="stylesheet" href="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/css' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '">
 ';
+                                    //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                                 }
 
@@ -332,12 +338,14 @@ class crnrstn_system_image_asset_manager {
                                     $tmp_str .= $resource_ARRAY['resource_version_nom'][0] . '
 <link rel="stylesheet" href="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '">
 ';
+                                    //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                                 }else{
 
                                     $tmp_str .= $resource_ARRAY['resource_version_nom'][0] . '
 <link rel="stylesheet" href="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '">
 ';
+                                    //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                                 }
 
@@ -351,12 +359,14 @@ class crnrstn_system_image_asset_manager {
                                     $tmp_str .= $resource_ARRAY['resource_version_nom'][0] . '
 <script src="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>
 ';
+                                    //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                                 }else{
 
                                     $tmp_str .= $resource_ARRAY['resource_version_nom'][0] . '
 <script src="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>
 ';
+                                    //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                                 }
 
@@ -375,6 +385,7 @@ class crnrstn_system_image_asset_manager {
 // --> 
 </script>
 ';
+                                //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                             }else{
 
@@ -383,6 +394,8 @@ class crnrstn_system_image_asset_manager {
 ' . file_get_contents($resource_ARRAY['file_path'][0]) . '
 </style>
 ';
+                                //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
+
                             }
 
                         break;
@@ -397,6 +410,8 @@ class crnrstn_system_image_asset_manager {
 ' . file_get_contents($resource_ARRAY['file_path'][0]) . '
 </style>
 ';
+                                //error_log(__LINE__ . ' asset mgr file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
+
                             }else{
 
                                 $tmp_str .= $resource_ARRAY['resource_version_nom'][0] . '
@@ -405,6 +420,7 @@ class crnrstn_system_image_asset_manager {
 // --> 
 </script>
 ';
+                                //error_log(__LINE__ . ' asset mgr $tmp_str[' . $tmp_str . ']. file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
                             }
 
@@ -421,6 +437,7 @@ class crnrstn_system_image_asset_manager {
                 //system_head_html_asset_array_spool_ARRAY
                 $this->oCRNRSTN->spool_head_html_asset_array($resource_ARRAY, $asst_nom_hash);
 
+                error_log(__LINE__ . ' asset mgr SPOOL THIS ASSET $asst_nom_hash[' . $asst_nom_hash . ']. file_extension[' . $resource_ARRAY['file_extension'][0] . '].');
 
             }
 
@@ -492,7 +509,7 @@ class crnrstn_system_image_asset_manager {
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('The requested resource,' . $tmp_resource_const_profile_ARRAY['INTEGER'] . ' (' .  $tmp_resource_const_profile_ARRAY['STRING'] . ') , has not yet been spooled.');
+                throw new Exception('The requested resource, ' . $tmp_resource_const_profile_ARRAY['INTEGER'] . ' ["' .  $tmp_resource_const_profile_ARRAY['STRING'] . '"], has not been spooled...but, it is being requested.');
 
             }
 
@@ -504,9 +521,12 @@ class crnrstn_system_image_asset_manager {
 
                 foreach($tmpchnkARRAY00 as $asst_nom_hash => $resARRAY){
 
-                    if(!$resARRAY['asset_spool_delay_html_output_for_footer'] === 'TRUE'){
+                    if($resARRAY['asset_spool_delay_html_output_for_footer'][0] != 'TRUE'){
+
+                        //$this->oCRNRSTN->print_r($resARRAY, NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
                         $tmp_str .= $this->mapped_resource_html_output($resARRAY, $asst_nom_hash);
+                        //$this->oCRNRSTN->print_r($resARRAY, NULL, NULL, __LINE__, __METHOD__, __FILE__);
 
                         /*
                         //
@@ -1080,6 +1100,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 /////
@@ -1269,6 +1290,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_JQUERY);
@@ -1480,6 +1502,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1);
@@ -1571,6 +1594,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 /////
@@ -2157,6 +2181,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 /////
@@ -2449,6 +2474,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 /////
@@ -2638,6 +2664,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_JQUERY);
@@ -2849,6 +2876,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 $this->oCRNRSTN->flag_built_head_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1);
@@ -2940,6 +2968,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 /////
@@ -3548,6 +3577,7 @@ class crnrstn_system_image_asset_manager {
                             if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                                 /////
@@ -4361,6 +4391,7 @@ class crnrstn_system_image_asset_manager {
                         if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                             && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                             && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                             && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                             /////
@@ -4663,6 +4694,99 @@ class crnrstn_system_image_asset_manager {
 
                     break;
                     case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
+
+                        /*
+                        <head>
+                            <meta charset="utf-8" />
+                            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <title>Unsemantic CSS Framework</title>
+                            <!--[if lt IE 9]>
+                              <script src="./assets/javascripts/html5.js"></script>
+                            <![endif]-->
+                            <link rel="stylesheet" href="./assets/stylesheets/demo.css" />
+                            <!--[if (gt IE 8) | (IEMobile)]><!-->
+                              <link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-responsive.css" />
+                            <!--<![endif]-->
+                            <!--[if (lt IE 9) & (!IEMobile)]>
+                              <link rel="stylesheet" href="./assets/stylesheets/ie.css" />
+                            <![endif]-->
+                        </head>
+
+
+                        RTL
+                        <head>
+                            <meta charset="utf-8" />
+                            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <title>Unsemantic CSS Framework</title>
+                            <!--[if lt IE 9]>
+                              <script src="./assets/javascripts/html5.js"></script>
+                            <![endif]-->
+                            <link rel="stylesheet" href="./assets/stylesheets/demo.css" />
+                            <!--[if (gt IE 8) | (IEMobile)]><!-->
+                              <link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-responsive-rtl.css" />
+                            <!--<![endif]-->
+                            <!--[if (lt IE 9) & (!IEMobile)]>
+                              <link rel="stylesheet" href="./assets/stylesheets/ie-rtl.css" />
+                            <![endif]-->
+                        </head>
+
+                        ADAPT
+                        <head>
+                            <meta charset="utf-8" />
+                            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <title>Unsemantic CSS Framework</title>
+                            <!--[if lt IE 9]>
+                              <script src="./assets/javascripts/html5.js"></script>
+                            <![endif]-->
+                            <link rel="stylesheet" href="./assets/stylesheets/demo.css" />
+                            <link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-base.css" />
+                            <noscript>
+                              <link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-mobile.css" />
+                            </noscript>
+                            <script>
+                              var ADAPT_CONFIG = {
+                                path: './assets/stylesheets/',
+                                dynamic: true,
+                                range: [
+                                  '0 to 767px = unsemantic-grid-mobile.css',
+                                  '767px = unsemantic-grid-desktop.css'
+                                ]
+                              };
+                            </script>
+                            <script src="./assets/javascripts/adapt.min.js"></script>
+                        </head>
+
+                        ADAPT RTL
+                        <head>
+                            <meta charset="utf-8" />
+                            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+                            <title>Unsemantic CSS Framework</title>
+                            <!--[if lt IE 9]>
+                              <script src="./assets/javascripts/html5.js"></script>
+                            <![endif]-->
+                            <link rel="stylesheet" href="./assets/stylesheets/demo.css" />
+                            <link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-base-rtl.css" />
+                            <noscript>
+                              <link rel="stylesheet" href="./assets/stylesheets/unsemantic-grid-mobile-rtl.css" />
+                            </noscript>
+                            <script>
+                              var ADAPT_CONFIG = {
+                                path: './assets/stylesheets/',
+                                dynamic: true,
+                                range: [
+                                  '0 to 767px = unsemantic-grid-mobile-rtl.css',
+                                  '767px = unsemantic-grid-desktop-rtl.css'
+                                ]
+                              };
+                            </script>
+                            <script src="./assets/javascripts/adapt.min.js"></script>
+                        </head>
+
+                        */
 
                         $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
 
@@ -5480,6 +5604,7 @@ class crnrstn_system_image_asset_manager {
                         if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
                             && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
                             && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                             && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
                             /////
@@ -5936,7 +6061,7 @@ class crnrstn_system_image_asset_manager {
             break;
             case 'js':
 
-                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
+                error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
                 return $this->return_asset_data();
 
             break;
