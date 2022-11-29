@@ -3159,6 +3159,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 // });
 
             break;
+            case 'crnrstn_interact_ui_documentation_view_source_src':
+
+                alert('[lnum 3164] [VIEW-SOURCE DYN FOOTER] we have arrived. throw animation. load content.');
+
+            break;
             case 'crnrstn_interact_ui_documentation_side_nav_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
@@ -3219,6 +3224,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     case 'crnrstn_interact_ui_system_footer_src':
                     case 'crnrstn_interact_ui_search_src':
                     case 'crnrstn_interact_ui_messenger_src':
+                    crnrstn_interact_ui_documentation_view_source_src
 
                     interact_ui_animation_sequence = function(module_key){
 
@@ -7071,6 +7077,20 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    CRNRSTN_JS.prototype.launch_framework_resources_integration_report = function(string_constant){
+
+        this.log_activity('[lnum 7076] Launch view source for ' + string_constant + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+
+        //
+        // SET THE LINK
+        // string_constant SHOULD HAVE IT'S OWN FORM FIELD. THIS (SSDTLA) IS GONNA BE KINDA DUCT TAPE ATM
+        // BECAUSE CRNRSTN :: FORM HANDLING IS NOT 100% ONTO LIGHTSABER, YET.
+        $('#crnrstn_interact_ui_link_text_click').val('framework_view_source|' + string_constant);
+
+        this.fire_dom_state_controller();
+
+    };
+
     CRNRSTN_JS.prototype.close_overlay_mit = function(element_id){
 
         this.toggle_full_overlay(element_id);
@@ -7198,9 +7218,23 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.crnrstn_interact_ui_ux = function(ux_action, elem){
 
+        //
+        // MIT LICENSE MODAL
         if(ux_action === 'mit_license_modal'){
 
             this.launch_overlay_mit(elem.id);
+
+            return false;
+
+        }
+
+        //
+        // DOCUMENTATION VIEW SOURCE RESOURCES :: FOOTER INTEGRATION
+        if(ux_action === 'resource_constant_view_source'){
+
+            //
+            // WHERE elem = STRING_CONSTANT OF THE RESOURCE INTEGER CONSTANT.
+            this.launch_framework_resources_integration_report(elem);
 
             return false;
 

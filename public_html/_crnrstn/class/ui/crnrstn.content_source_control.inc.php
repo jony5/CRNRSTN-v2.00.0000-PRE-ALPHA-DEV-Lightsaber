@@ -247,7 +247,7 @@ class crnrstn_content_source_controller {
                         <div class="crnrstn_resource_constant_nom"><span style="font-weight: normal;">' . $profile_ARRAY['INTEGER'] . '</span>&nbsp;&nbsp;&nbsp;' . $profile_ARRAY['STRING'] . '</div>                        
                         <div class="crnrstn_resource_constant_version"><p>' . $profile_ARRAY['TITLE'] . $tmp_version . '</p></div>
                         <div class="crnrstn_resource_constant_www">
-                            <div class="crnrstn_resource_constant_www_source"><a href="#" target="_self">view source</a></div>
+                            <div class="crnrstn_resource_constant_www_source"><a href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'resource_constant_view_source\', \'' . $profile_ARRAY['STRING'] . '\');" target="_self">view source</a></div>
                             <div class="crnrstn_resource_constant_www_website">' . $tmp_www_link . '</div>
                             <div class="crnrstn_cb"></div>
                         </div>' . $tmp_browser_support_html . '
@@ -6680,7 +6680,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY':
             case CRNRSTN_JS_FRAMEWORK_JQUERY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_JQUERY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '3.6.1';
@@ -6705,7 +6705,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '2.2.4';
@@ -6729,7 +6729,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '1.12.4';
@@ -6753,7 +6753,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery';
                 $tmp_output_ARRAY['VERSION'] = '1.11.1';
@@ -6777,7 +6777,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_UI:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
                 $tmp_output_ARRAY['VERSION'] = '1.13.2';
@@ -6796,7 +6796,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_12_1';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery UI';
                 $tmp_output_ARRAY['VERSION'] = '1.12.1';
@@ -6815,7 +6815,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE':
             case CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE';
                 $tmp_output_ARRAY['TITLE'] = 'jQuery Mobile';
                 $tmp_output_ARRAY['VERSION'] = '1.4.5';
@@ -6841,7 +6841,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS':
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS';
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3';
@@ -6873,7 +6873,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY':
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY';
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX + JQUERY';
                 $tmp_output_ARRAY['VERSION'] = '2.11.3/v3.4.1';
@@ -6905,7 +6905,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_REACT':
             case CRNRSTN_JS_FRAMEWORK_REACT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_REACT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_REACT';
                 $tmp_output_ARRAY['TITLE'] = 'React';
                 $tmp_output_ARRAY['VERSION'] = '18.2.0';
@@ -6930,7 +6930,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_REACT_DOM':
             case CRNRSTN_JS_FRAMEWORK_REACT_DOM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_REACT_DOM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_REACT_DOM';
                 $tmp_output_ARRAY['TITLE'] = 'ReactDOM';
                 $tmp_output_ARRAY['VERSION'] = '18.2.0';
@@ -6957,7 +6957,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_MITHRIL':
             case CRNRSTN_JS_FRAMEWORK_MITHRIL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_MITHRIL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MITHRIL';
                 $tmp_output_ARRAY['TITLE'] = 'Mithril.js';
                 $tmp_output_ARRAY['VERSION'] = '2.2.2';
@@ -6984,7 +6984,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_BACKBONE':
             case CRNRSTN_JS_FRAMEWORK_BACKBONE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_BACKBONE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_BACKBONE';
                 $tmp_output_ARRAY['TITLE'] = 'BACKBONE.JS';
                 $tmp_output_ARRAY['VERSION'] = '1.4.1';
@@ -7013,7 +7013,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
             case CRNRSTN_JS_FRAMEWORK_PROTOTYPE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_PROTOTYPE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE';
                 $tmp_output_ARRAY['TITLE'] = 'Prototype';
                 $tmp_output_ARRAY['VERSION'] = '1.7.3';
@@ -7039,7 +7039,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS':
             case CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS';
                 $tmp_output_ARRAY['TITLE'] = 'script.aculo.us';
                 $tmp_output_ARRAY['VERSION'] = '1.9.0';
@@ -7060,7 +7060,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX':
             case CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX';
                 $tmp_output_ARRAY['TITLE'] = 'moo.fx';
                 $tmp_output_ARRAY['VERSION'] = '2.0';
@@ -7081,7 +7081,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3':
             case CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3';
                 $tmp_output_ARRAY['TITLE'] = 'LIGHTBOX';
                 $tmp_output_ARRAY['VERSION'] = '2.03.3';
@@ -7096,7 +7096,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE':
             case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE';
                 $tmp_output_ARRAY['TITLE'] = 'MooTools MORE (all boxes checked + full core)';
                 $tmp_output_ARRAY['VERSION'] = '1.6.0';
@@ -7127,7 +7127,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE':
             case CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE';
                 $tmp_output_ARRAY['TITLE'] = 'MooTools CORE';
                 $tmp_output_ARRAY['VERSION'] = '1.6.0';
@@ -7152,7 +7152,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_JS_MAIN':
             case CRNRSTN_UI_JS_MAIN:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_JS_MAIN;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_JS_MAIN';
                 $tmp_output_ARRAY['TITLE'] = 'CRNRSTN :: INTERACT UI/UX JS';
                 $tmp_output_ARRAY['TITLE_DISPLAY'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI/UX JS';
@@ -7169,7 +7169,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
             case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID';
                 $tmp_output_ARRAY['TITLE'] = 'Simple Grid';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7193,7 +7193,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7213,7 +7213,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7233,7 +7233,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7253,7 +7253,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7273,7 +7273,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_24COL_RTL';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7293,7 +7293,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7313,7 +7313,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7333,7 +7333,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL':
             case CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL';
                 $tmp_output_ARRAY['TITLE'] = '960 Grid System';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7353,7 +7353,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION':
             case CRNRSTN_CSS_FRAMEWORK_FOUNDATION:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_FOUNDATION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION';
                 $tmp_output_ARRAY['TITLE'] = 'Foundation';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7374,7 +7374,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE':
             case CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE';
                 $tmp_output_ARRAY['TITLE'] = 'HTML5 Boilerplate';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7392,7 +7392,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM':
             case CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
                 $tmp_output_ARRAY['TITLE'] = 'Responsive Grid System';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7409,7 +7409,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC':
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7425,7 +7425,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL':
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7441,7 +7441,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET':
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7458,7 +7458,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL':
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7474,7 +7474,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT':
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7490,7 +7490,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL':
             case CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7506,7 +7506,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID':
             case CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID';
                 $tmp_output_ARRAY['TITLE'] = 'Dead Simple Grid';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7527,7 +7527,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_SKELETON':
             case CRNRSTN_CSS_FRAMEWORK_SKELETON:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_SKELETON;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_SKELETON';
                 $tmp_output_ARRAY['TITLE'] = 'SKELETON';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7552,7 +7552,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_RWDGRID':
             case CRNRSTN_CSS_FRAMEWORK_RWDGRID:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_RWDGRID;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_RWDGRID';
                 $tmp_output_ARRAY['TITLE'] = 'RWD GRID';
                 $tmp_output_ARRAY['VERSION'] = '0.00.0000';
@@ -7571,7 +7571,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID':
             case CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID';
                 $tmp_output_ARRAY['TITLE'] = 'Simple Grid (ThisIsDallas)';
                 $tmp_output_ARRAY['VERSION'] = '';
@@ -7597,7 +7597,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_CSS_MAIN_DESKTOP':
             case CRNRSTN_UI_CSS_MAIN_DESKTOP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_CSS_MAIN_DESKTOP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_CSS_MAIN_DESKTOP';
                 $tmp_output_ARRAY['TITLE'] = 'CRNRSTN :: INTERACT UI Desktop Stylesheet';
                 $tmp_output_ARRAY['TITLE_DISPLAY'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Desktop Stylesheet';
@@ -7612,7 +7612,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_CSS_MAIN_TABLET':
             case CRNRSTN_UI_CSS_MAIN_TABLET:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_CSS_MAIN_TABLET;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_CSS_MAIN_TABLET';
                 $tmp_output_ARRAY['TITLE'] = 'CRNRSTN :: INTERACT UI Tablet Device Stylesheet';
                 $tmp_output_ARRAY['TITLE_DISPLAY'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Tablet Device Stylesheet';
@@ -7627,7 +7627,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_CSS_MAIN_MOBILE':
             case CRNRSTN_UI_CSS_MAIN_MOBILE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_CSS_MAIN_MOBILE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_CSS_MAIN_MOBILE';
                 $tmp_output_ARRAY['TITLE'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI Mobile 
                             Device Stylesheet';
@@ -7644,7 +7644,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DEBUG_OFF':
             case CRNRSTN_DEBUG_OFF:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DEBUG_OFF;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DEBUG_OFF';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7653,7 +7653,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DEBUG_NATIVE_ERR_LOG':
             case CRNRSTN_DEBUG_NATIVE_ERR_LOG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DEBUG_NATIVE_ERR_LOG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DEBUG_NATIVE_ERR_LOG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7662,7 +7662,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DEBUG_AGGREGATION_ON':
             case CRNRSTN_DEBUG_AGGREGATION_ON:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DEBUG_AGGREGATION_ON;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DEBUG_AGGREGATION_ON';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7671,7 +7671,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_NONE':
             case CRNRSTN_LOG_NONE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_NONE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_NONE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7680,7 +7680,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_ALL':
             case CRNRSTN_LOG_ALL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_ALL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_ALL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7689,7 +7689,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZED_ACCOUNT':
             case CRNRSTN_AUTHORIZED_ACCOUNT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZED_ACCOUNT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZED_ACCOUNT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7698,7 +7698,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INTEGER_LENGTH':
             case CRNRSTN_INTEGER_LENGTH:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INTEGER_LENGTH;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INTEGER_LENGTH';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7707,7 +7707,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SETTINGS_APACHE':
             case CRNRSTN_SETTINGS_APACHE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SETTINGS_APACHE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_APACHE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7716,7 +7716,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SETTINGS_MYSQLI':
             case CRNRSTN_SETTINGS_MYSQLI:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SETTINGS_MYSQLI;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_MYSQLI';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7725,7 +7725,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SETTINGS_PHP':
             case CRNRSTN_SETTINGS_PHP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SETTINGS_PHP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_PHP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7734,7 +7734,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SETTINGS_CRNRSTN':
             case CRNRSTN_SETTINGS_CRNRSTN:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SETTINGS_CRNRSTN;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_CRNRSTN';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7743,7 +7743,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SETTINGS_WORDPRESS':
             case CRNRSTN_SETTINGS_WORDPRESS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SETTINGS_WORDPRESS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_WORDPRESS';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7752,7 +7752,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SETTINGS_CLIENT':
             case CRNRSTN_SETTINGS_CLIENT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SETTINGS_CLIENT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SETTINGS_CLIENT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7761,7 +7761,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_OPTIONAL':
             case CRNRSTN_INPUT_OPTIONAL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_OPTIONAL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_OPTIONAL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7770,7 +7770,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_REQUIRED':
             case CRNRSTN_INPUT_REQUIRED:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_REQUIRED;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_REQUIRED';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7779,7 +7779,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_PASSWORD':
             case CRNRSTN_INPUT_PASSWORD:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_PASSWORD;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_PASSWORD';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7788,7 +7788,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_IS_EMAIL':
             case CRNRSTN_INPUT_IS_EMAIL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_IS_EMAIL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_EMAIL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7797,7 +7797,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_CHAR_RESTRICTIONS':
             case CRNRSTN_INPUT_CHAR_RESTRICTIONS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_CHAR_RESTRICTIONS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_CHAR_RESTRICTIONS';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7806,7 +7806,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_CHAR_LIMITS':
             case CRNRSTN_INPUT_CHAR_LIMITS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_CHAR_LIMITS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_CHAR_LIMITS';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7815,7 +7815,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_IS_FILE_IMAGE':
             case CRNRSTN_INPUT_IS_FILE_IMAGE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_IS_FILE_IMAGE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_IMAGE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7824,7 +7824,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_IS_FILE_IMAGE_PNG':
             case CRNRSTN_INPUT_IS_FILE_IMAGE_PNG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_IS_FILE_IMAGE_PNG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_IMAGE_PNG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7833,7 +7833,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG':
             case CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_IMAGE_JPEG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7842,7 +7842,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_IS_FILE_IMAGE_GIF':
             case CRNRSTN_INPUT_IS_FILE_IMAGE_GIF:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_IS_FILE_IMAGE_GIF;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_IMAGE_GIF';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7851,7 +7851,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_IS_FILE_DOCUMENT':
             case CRNRSTN_INPUT_IS_FILE_DOCUMENT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_IS_FILE_DOCUMENT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_DOCUMENT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7860,7 +7860,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_INPUT_IS_FILE_ZIP':
             case CRNRSTN_INPUT_IS_FILE_ZIP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_INPUT_IS_FILE_ZIP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_INPUT_IS_FILE_ZIP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7869,7 +7869,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DATABASE':
             case CRNRSTN_DATABASE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DATABASE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7878,7 +7878,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DATABASE_CONNECTION':
             case CRNRSTN_DATABASE_CONNECTION:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DATABASE_CONNECTION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_CONNECTION';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7887,7 +7887,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DATABASE_QUERY':
             case CRNRSTN_DATABASE_QUERY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DATABASE_QUERY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_QUERY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7896,7 +7896,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DATABASE_QUERY_SILO':
             case CRNRSTN_DATABASE_QUERY_SILO:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DATABASE_QUERY_SILO;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_QUERY_SILO';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7905,7 +7905,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DATABASE_QUERY_DYNAMIC':
             case CRNRSTN_DATABASE_QUERY_DYNAMIC:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DATABASE_QUERY_DYNAMIC;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_QUERY_DYNAMIC';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7914,7 +7914,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_DATABASE_RESULT':
             case CRNRSTN_DATABASE_RESULT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DATABASE_RESULT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DATABASE_RESULT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7923,7 +7923,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_GABRIEL':
             case CRNRSTN_GABRIEL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_GABRIEL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_GABRIEL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7932,7 +7932,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SMTP_AUTHENTICATION':
             case CRNRSTN_SMTP_AUTHENTICATION:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SMTP_AUTHENTICATION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SMTP_AUTHENTICATION';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7941,7 +7941,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_EMAIL_CRNRSTN_SOURCE':
             case CRNRSTN_EMAIL_CRNRSTN_SOURCE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_EMAIL_CRNRSTN_SOURCE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_EMAIL_CRNRSTN_SOURCE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7950,7 +7950,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_EMAIL_USER_SOURCE':
             case CRNRSTN_EMAIL_USER_SOURCE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_EMAIL_USER_SOURCE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_EMAIL_USER_SOURCE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7959,7 +7959,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ELECTRUM':
             case CRNRSTN_ELECTRUM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ELECTRUM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7968,7 +7968,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ELECTRUM_THREAD':
             case CRNRSTN_ELECTRUM_THREAD:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ELECTRUM_THREAD;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM_THREAD';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7977,7 +7977,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ELECTRUM_COMM':
             case CRNRSTN_ELECTRUM_COMM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ELECTRUM_COMM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM_COMM';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7986,7 +7986,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ELECTRUM_FTP':
             case CRNRSTN_ELECTRUM_FTP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ELECTRUM_FTP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM_FTP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -7995,7 +7995,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ELECTRUM_LOCALDIR':
             case CRNRSTN_ELECTRUM_LOCALDIR:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ELECTRUM_LOCALDIR;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ELECTRUM_LOCALDIR';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8004,7 +8004,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_FILE_MANAGEMENT':
             case CRNRSTN_FILE_MANAGEMENT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_FILE_MANAGEMENT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_FILE_MANAGEMENT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8013,7 +8013,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SOAP':
             case CRNRSTN_SOAP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SOAP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOAP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8022,7 +8022,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SOAP_SERVER':
             case CRNRSTN_SOAP_SERVER:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SOAP_SERVER;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOAP_SERVER';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8031,7 +8031,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SOAP_CLIENT':
             case CRNRSTN_SOAP_CLIENT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SOAP_CLIENT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOAP_CLIENT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8040,7 +8040,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_PROXY_KINGS_HIGHWAY':
             case CRNRSTN_PROXY_KINGS_HIGHWAY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_PROXY_KINGS_HIGHWAY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PROXY_KINGS_HIGHWAY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8049,7 +8049,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_PROXY_EMAIL':
             case CRNRSTN_PROXY_EMAIL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_PROXY_EMAIL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PROXY_EMAIL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8058,7 +8058,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_PROXY_ELECTRUM':
             case CRNRSTN_PROXY_ELECTRUM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_PROXY_ELECTRUM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PROXY_ELECTRUM';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8067,7 +8067,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_PROXY_AUTHENTICATE':
             case CRNRSTN_PROXY_AUTHENTICATE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_PROXY_AUTHENTICATE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PROXY_AUTHENTICATE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8076,7 +8076,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_PHPNIGHT':
             case CRNRSTN_UI_PHPNIGHT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_PHPNIGHT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_PHPNIGHT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8085,7 +8085,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_DARKNIGHT':
             case CRNRSTN_UI_DARKNIGHT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_DARKNIGHT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_DARKNIGHT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8094,7 +8094,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_PHP':
             case CRNRSTN_UI_PHP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_PHP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_PHP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8103,7 +8103,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_GREYSKYS':
             case CRNRSTN_UI_GREYSKYS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_GREYSKYS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GREYSKYS';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8112,7 +8112,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_HTML':
             case CRNRSTN_UI_HTML:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_HTML;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_HTML';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8121,7 +8121,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_DAYLIGHT':
             case CRNRSTN_UI_DAYLIGHT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_DAYLIGHT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_DAYLIGHT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8130,7 +8130,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_FEATHER':
             case CRNRSTN_UI_FEATHER:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_FEATHER;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_FEATHER';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8139,7 +8139,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_GLASS_LIGHT_COPY':
             case CRNRSTN_UI_GLASS_LIGHT_COPY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_GLASS_LIGHT_COPY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GLASS_LIGHT_COPY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8148,7 +8148,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_GLASS_DARK_COPY':
             case CRNRSTN_UI_GLASS_DARK_COPY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_GLASS_DARK_COPY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GLASS_DARK_COPY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8157,7 +8157,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_TERMINAL':
             case CRNRSTN_UI_TERMINAL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_TERMINAL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TERMINAL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8166,7 +8166,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_DESKTOP':
             case CRNRSTN_UI_DESKTOP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_DESKTOP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_DESKTOP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8175,7 +8175,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_TABLET':
             case CRNRSTN_UI_TABLET:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_TABLET;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TABLET';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8184,7 +8184,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_MOBILE':
             case CRNRSTN_UI_MOBILE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_MOBILE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_MOBILE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8193,7 +8193,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_SOAP_DATA_TUNNEL':
             case CRNRSTN_UI_SOAP_DATA_TUNNEL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_SOAP_DATA_TUNNEL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_SOAP_DATA_TUNNEL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8202,7 +8202,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL':
             case CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8211,7 +8211,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_IMG_BASE64':
             case CRNRSTN_UI_IMG_BASE64:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG_BASE64;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_BASE64';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8220,7 +8220,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_IMG_BASE64_PNG':
             case CRNRSTN_UI_IMG_BASE64_PNG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG_BASE64_PNG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_BASE64_PNG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8229,7 +8229,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_IMG_HTML_WRAPPED':
             case CRNRSTN_UI_IMG_HTML_WRAPPED:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG_HTML_WRAPPED;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_HTML_WRAPPED';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8238,7 +8238,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_IMG_BASE64_JPEG':
             case CRNRSTN_UI_IMG_BASE64_JPEG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG_BASE64_JPEG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_BASE64_JPEG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8247,7 +8247,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_IMG_JPEG':
             case CRNRSTN_UI_IMG_JPEG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG_JPEG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_JPEG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8256,7 +8256,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_IMG_PNG':
             case CRNRSTN_UI_IMG_PNG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG_PNG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_PNG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8265,7 +8265,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_IMG':
             case CRNRSTN_UI_IMG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8274,7 +8274,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_CSS':
             case CRNRSTN_UI_CSS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_CSS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_CSS';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8283,7 +8283,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_JS':
             case CRNRSTN_UI_JS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_JS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_JS';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8292,7 +8292,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS':
             case CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8301,7 +8301,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_TAG_ANALYTICS':
             case CRNRSTN_UI_TAG_ANALYTICS:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_TAG_ANALYTICS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TAG_ANALYTICS';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8310,7 +8310,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_TAG_ENGAGEMENT':
             case CRNRSTN_UI_TAG_ENGAGEMENT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_TAG_ENGAGEMENT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TAG_ENGAGEMENT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8319,7 +8319,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_FORM_INTEGRATION_PACKET':
             case CRNRSTN_UI_FORM_INTEGRATION_PACKET:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_FORM_INTEGRATION_PACKET;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_FORM_INTEGRATION_PACKET';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8328,7 +8328,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_COOKIE_PREFERENCE':
             case CRNRSTN_UI_COOKIE_PREFERENCE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_COOKIE_PREFERENCE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_COOKIE_PREFERENCE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8337,7 +8337,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_COOKIE_YESNO':
             case CRNRSTN_UI_COOKIE_YESNO:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_COOKIE_YESNO;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_COOKIE_YESNO';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8346,7 +8346,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_COOKIE_NOTICE':
             case CRNRSTN_UI_COOKIE_NOTICE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_COOKIE_NOTICE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_COOKIE_NOTICE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8355,7 +8355,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_INTERACT':
             case CRNRSTN_UI_INTERACT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_INTERACT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_INTERACT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8364,7 +8364,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ASSET_MODE_BASE64':
             case CRNRSTN_ASSET_MODE_BASE64:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ASSET_MODE_BASE64;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MODE_BASE64';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8373,7 +8373,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ASSET_MODE_PNG':
             case CRNRSTN_ASSET_MODE_PNG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ASSET_MODE_PNG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MODE_PNG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8382,7 +8382,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ASSET_MODE_JPEG':
             case CRNRSTN_ASSET_MODE_JPEG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ASSET_MODE_JPEG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MODE_JPEG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8391,7 +8391,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ASSET_MODE_ICO':
             case CRNRSTN_ASSET_MODE_ICO:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ASSET_MODE_ICO;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MODE_ICO';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8400,7 +8400,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_EMAIL':
             case CRNRSTN_LOG_EMAIL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_EMAIL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_EMAIL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8409,7 +8409,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_EMAIL_PROXY':
             case CRNRSTN_LOG_EMAIL_PROXY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_EMAIL_PROXY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_EMAIL_PROXY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8418,7 +8418,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_FILE':
             case CRNRSTN_LOG_FILE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_FILE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_FILE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8427,7 +8427,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_FILE_PROXY':
             case CRNRSTN_LOG_FILE_PROXY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_FILE_PROXY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_FILE_PROXY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8436,7 +8436,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_FILE_FTP':
             case CRNRSTN_LOG_FILE_FTP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_FILE_FTP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_FILE_FTP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8445,7 +8445,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_SCREEN_TEXT':
             case CRNRSTN_LOG_SCREEN_TEXT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_SCREEN_TEXT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_SCREEN_TEXT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8454,7 +8454,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_SCREEN':
             case CRNRSTN_LOG_SCREEN:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_SCREEN;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_SCREEN';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8463,7 +8463,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_SCREEN_HTML':
             case CRNRSTN_LOG_SCREEN_HTML:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_SCREEN_HTML;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_SCREEN_HTML';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8472,7 +8472,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN':
             case CRNRSTN_LOG_SCREEN_HTML_HIDDEN:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_SCREEN_HTML_HIDDEN;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8481,7 +8481,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_DEFAULT':
             case CRNRSTN_LOG_DEFAULT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_DEFAULT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_DEFAULT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8490,7 +8490,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_DEFAULT_PROXY':
             case CRNRSTN_LOG_DEFAULT_PROXY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_DEFAULT_PROXY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_DEFAULT_PROXY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8499,7 +8499,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_LOG_ELECTRUM':
             case CRNRSTN_LOG_ELECTRUM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_LOG_ELECTRUM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_LOG_ELECTRUM';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8508,7 +8508,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY':
             case CRNRSTN_AUTHORIZE_RUNTIME_ONLY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_RUNTIME_ONLY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_RUNTIME_ONLY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8517,7 +8517,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_ALL':
             case CRNRSTN_AUTHORIZE_ALL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_ALL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_ALL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8526,7 +8526,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_DATABASE':
             case CRNRSTN_AUTHORIZE_DATABASE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_DATABASE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_DATABASE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8535,7 +8535,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_SSDTLA':
             case CRNRSTN_AUTHORIZE_SSDTLA:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_SSDTLA;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_SSDTLA';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8544,7 +8544,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_PSSDTLA':
             case CRNRSTN_AUTHORIZE_PSSDTLA:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_PSSDTLA;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_PSSDTLA';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8553,7 +8553,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_SESSION':
             case CRNRSTN_AUTHORIZE_SESSION:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_SESSION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_SESSION';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8562,7 +8562,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_COOKIE':
             case CRNRSTN_AUTHORIZE_COOKIE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_COOKIE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_COOKIE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8571,7 +8571,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_SOAP':
             case CRNRSTN_AUTHORIZE_SOAP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_SOAP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_SOAP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8580,7 +8580,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_GET':
             case CRNRSTN_AUTHORIZE_GET:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_GET;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_GET';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8589,7 +8589,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_ISEMAIL':
             case CRNRSTN_AUTHORIZE_ISEMAIL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_ISEMAIL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_ISEMAIL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8598,7 +8598,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_AUTHORIZE_ISPASSWORD':
             case CRNRSTN_AUTHORIZE_ISPASSWORD:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_AUTHORIZE_ISPASSWORD;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_AUTHORIZE_ISPASSWORD';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8607,7 +8607,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ENCRYPT_TUNNEL':
             case CRNRSTN_ENCRYPT_TUNNEL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ENCRYPT_TUNNEL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_TUNNEL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8616,7 +8616,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ENCRYPT_DATABASE':
             case CRNRSTN_ENCRYPT_DATABASE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ENCRYPT_DATABASE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_DATABASE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8625,7 +8625,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ENCRYPT_SESSION':
             case CRNRSTN_ENCRYPT_SESSION:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ENCRYPT_SESSION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_SESSION';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8634,7 +8634,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ENCRYPT_COOKIE':
             case CRNRSTN_ENCRYPT_COOKIE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ENCRYPT_COOKIE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_COOKIE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8643,7 +8643,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ENCRYPT_SOAP':
             case CRNRSTN_ENCRYPT_SOAP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ENCRYPT_SOAP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_SOAP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8652,7 +8652,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ENCRYPT_OERSL':
             case CRNRSTN_ENCRYPT_OERSL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ENCRYPT_OERSL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ENCRYPT_OERSL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8661,7 +8661,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_FAVICON_ASSET_MAPPING':
             case CRNRSTN_FAVICON_ASSET_MAPPING:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_FAVICON_ASSET_MAPPING;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_FAVICON_ASSET_MAPPING';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8670,7 +8670,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SYSTEM_IMG_ASSET_MAPPING':
             case CRNRSTN_SYSTEM_IMG_ASSET_MAPPING:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SYSTEM_IMG_ASSET_MAPPING;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SYSTEM_IMG_ASSET_MAPPING';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8679,7 +8679,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING':
             case CRNRSTN_SOCIAL_IMG_ASSET_MAPPING:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SOCIAL_IMG_ASSET_MAPPING;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8688,7 +8688,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_JS_ASSET_MAPPING':
             case CRNRSTN_JS_ASSET_MAPPING:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JS_ASSET_MAPPING;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JS_ASSET_MAPPING';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8697,7 +8697,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_ASSET_MAPPING':
             case CRNRSTN_CSS_ASSET_MAPPING:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_ASSET_MAPPING;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_ASSET_MAPPING';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8706,7 +8706,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_SYSTEM_EMAIL_IS_HTML':
             case CRNRSTN_SYSTEM_EMAIL_IS_HTML:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SYSTEM_EMAIL_IS_HTML;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SYSTEM_EMAIL_IS_HTML';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8715,7 +8715,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ASSET_MAPPING':
             case CRNRSTN_ASSET_MAPPING:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ASSET_MAPPING;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MAPPING';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8724,7 +8724,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_ASSET_MAPPING_PROXY':
             case CRNRSTN_ASSET_MAPPING_PROXY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_ASSET_MAPPING_PROXY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_ASSET_MAPPING_PROXY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8733,7 +8733,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_ALL':
             case CRNRSTN_RESOURCE_ALL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_ALL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_ALL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8742,7 +8742,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_BASSDRIVE':
             case CRNRSTN_RESOURCE_BASSDRIVE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_BASSDRIVE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_BASSDRIVE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8751,7 +8751,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE':
             case CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8760,7 +8760,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_CSS_VALIDATOR':
             case CRNRSTN_RESOURCE_CSS_VALIDATOR:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_CSS_VALIDATOR;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_CSS_VALIDATOR';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8769,7 +8769,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_DOCUMENTATION':
             case CRNRSTN_RESOURCE_DOCUMENTATION:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_DOCUMENTATION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_DOCUMENTATION';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8778,7 +8778,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_IMAGE':
             case CRNRSTN_RESOURCE_IMAGE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_IMAGE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_IMAGE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8787,7 +8787,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_DOCUMENT':
             case CRNRSTN_RESOURCE_DOCUMENT:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_DOCUMENT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_DOCUMENT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8796,7 +8796,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_OPENSOURCE':
             case CRNRSTN_RESOURCE_OPENSOURCE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_OPENSOURCE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_OPENSOURCE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8805,7 +8805,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
             case CRNRSTN_RESOURCE_NEWS_SYNDICATION:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_NEWS_SYNDICATION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_NEWS_SYNDICATION';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8814,7 +8814,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_RESOURCE_ELECTRUM':
             case CRNRSTN_RESOURCE_ELECTRUM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_ELECTRUM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_ELECTRUM';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8823,7 +8823,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_BARNEY':
             case CRNRSTN_BARNEY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_BARNEY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8832,7 +8832,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_BARNEY_DATABASE':
             case CRNRSTN_BARNEY_DATABASE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_BARNEY_DATABASE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_DATABASE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8841,7 +8841,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_BARNEY_FILE':
             case CRNRSTN_BARNEY_FILE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_BARNEY_FILE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_FILE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8850,7 +8850,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_BARNEY_FTP':
             case CRNRSTN_BARNEY_FTP:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_BARNEY_FTP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_FTP';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8859,7 +8859,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_BARNEY_ELECTRUM':
             case CRNRSTN_BARNEY_ELECTRUM:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_BARNEY_ELECTRUM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_ELECTRUM';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8868,7 +8868,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_BARNEY_GABRIEL':
             case CRNRSTN_BARNEY_GABRIEL:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_BARNEY_GABRIEL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_GABRIEL';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8877,7 +8877,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_BARNEY_DISK':
             case CRNRSTN_BARNEY_DISK:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_BARNEY_DISK;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_BARNEY_DISK';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8886,7 +8886,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_PERFORMANCE_MONITOR':
             case CRNRSTN_PERFORMANCE_MONITOR:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_PERFORMANCE_MONITOR;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_PERFORMANCE_MONITOR';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8895,7 +8895,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_WORDPRESS_DEBUG':
             case CRNRSTN_WORDPRESS_DEBUG:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_WORDPRESS_DEBUG;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_WORDPRESS_DEBUG';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8904,7 +8904,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_IP_SECURITY':
             case CRNRSTN_IP_SECURITY:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_IP_SECURITY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_IP_SECURITY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
@@ -8913,7 +8913,7 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE':
             case CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE:
 
-                $tmp_output_ARRAY['INTEGER'] = $resource_constant;
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';

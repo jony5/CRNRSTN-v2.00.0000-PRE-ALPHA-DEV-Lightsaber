@@ -336,6 +336,62 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     }
 
+    public function out_ui_module_html_system_footer_content_container(){
+
+	    $tmp_framework_link_value = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+
+	    $tmp_string_constant_ARRAY = explode('|', $tmp_framework_link_value);
+
+	    if(!isset($tmp_string_constant_ARRAY[1])){
+
+            //
+            // MISSING PIPE DELIMITED SITUATION, FOR SOME REASON.
+	        return '';
+
+        }
+
+	    $tmp_resource_constant = $this->oCRNRSTN->return_resource_profile($tmp_string_constant_ARRAY[1], 'DESCRIPTION');
+
+        $tmp_html_out = '<div id="crnrstn_ui_system_footer_content_container_wrapper" class="crnrstn_ui_system_footer_content_container_wrapper">
+
+            <div class="crnrstn_ui_system_footer_rel">
+        
+                <div id="crnrstn_ui_system_footer_content_container" class="crnrstn_ui_system_footer">
+                    
+                        <div class="crnrstn_ui_system_footer_content">
+                            <div id="crnrstn_ui_system_footer_content_container_stache" class="crnrstn_ui_system_footer_stache">' . $this->oCRNRSTN->return_system_image('STACHE','', 17, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+
+                            <div id="crnrstn_ui_system_footer_content_container_mit" class="crnrstn_ui_system_footer_mit"><a id="crnrstn_ui_system_footer_content_container_mit_lnk" href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);" target="_self">' . $this->oCRNRSTN->multi_lang_content_return('COPY_ALL_RIGHTS_PART_MIT') . '</a></div>
+                            <div id="crnrstn_ui_system_footer_content_container_download" class="crnrstn_ui_system_footer_download"><a style="font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px;" href="'. $this->oCRNRSTN->return_sticky_link('https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber', 'crnrstn_text_lnk_download') .'" target="_blank">' . $this->oCRNRSTN->multi_lang_content_return('LNK_DOWNLOAD_TXT_FOOTER') . '</a></div>
+                            
+                            <div class="crnrstn_ui_system_footer_stats_wrapper">
+                                <div id="crnrstn_ui_system_footer_content_container_stat_stime" class="crnrstn_ui_system_footer_stat">[' . $this->oCRNRSTN->return_micro_time() . ']</div>
+                                <div id="crnrstn_ui_system_footer_content_container_stat_rtime" class="crnrstn_ui_system_footer_stat">[rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</div>
+                                <div id="crnrstn_ui_system_footer_content_container_stat_wtime" class="crnrstn_ui_system_footer_stat">[' . $tmp_resource_constant . ']</div>
+                                <div id="crnrstn_ui_system_footer_content_container_stat_meta" class="crnrstn_ui_system_footer_stat"></div>
+                            </div>
+                                    
+                            <div class="crnrstn_ui_system_footer_5">' . $this->oCRNRSTN->return_system_image('FIVE', 20, 20, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+
+                            <div class="crnrstn_cb"></div>
+                            
+                        </div>
+                    
+                    <div class="crnrstn_cb"></div>
+                    
+               </div>
+               
+            </div>
+            
+        </div>';
+
+        error_log(__LINE__ . ' html mgr RETURN SSDTLA XML data for [' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '].');
+
+        return $tmp_html_out;
+
+
+    }
+
     public function out_ui_module_html_system_footer_generic(){
 
         $tmp_html_out = '<div id="crnrstn_ui_system_footer_wrapper" class="crnrstn_ui_system_footer_wrapper">

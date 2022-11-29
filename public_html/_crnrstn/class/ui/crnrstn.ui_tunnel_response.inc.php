@@ -170,6 +170,14 @@ class crnrstn_ui_tunnel_response_manager {
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_messenger_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_messenger_src'] = 90;
 
+        //
+        // CRNRSTN :: LIGHTSABER DOCUMENTATION VIEW SOURCE FOOTER INTEGRATION
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = 1;
+        $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = 1;
+        $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = -1;
+
+        //        $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+
     }
 
     private function return_interact_ui_ux_profile($output_format = 'xml'){
@@ -200,9 +208,22 @@ class crnrstn_ui_tunnel_response_manager {
 
             }
 
+            $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
+            if($pos_docs_view_source !== false && $module_nom == 'crnrstn_interact_ui_documentation_view_source_src'){
+
+                error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
+                $tmp_xml_concat = true;
+
+            }
+
+            error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
+
             if(strlen($tmp_module_page_key) > 0 && $module_nom == 'crnrstn_interact_ui_documentation_content_src'){
 
-                if($tmp_module_page_key != 'mit_license'){
+                //
+                // MUTE DOCUMENTATION PAGE RESPONSE IF LINK CLICKED IS (1) MIT LICENSE OR (2) VIEW
+                // FRAMEWORK SOURCE,...A FOOTER COMPONENT INTEGRATION...AT LEAST FOR STARTERS.
+                if($tmp_module_page_key != 'mit_license' && $pos_docs_view_source === false){
 
                     //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                     $tmp_xml_concat = true;
@@ -243,6 +264,11 @@ class crnrstn_ui_tunnel_response_manager {
                     case 'crnrstn_interact_ui_system_footer_src':
 
                         $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer_generic();
+
+                    break;
+                    case 'crnrstn_interact_ui_documentation_view_source_src':
+
+                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer_content_container();
 
                     break;
                     case 'crnrstn_interact_ui_search_src':
@@ -313,8 +339,6 @@ class crnrstn_ui_tunnel_response_manager {
     }
 
     public function return_crnrstn_data_packet_json($output_channel_constant = CRNRSTN_OUTPUT_RUNTIME){
-
-        //http_data_services_initialize
 
         //if(no session data to honor...)
         $tmp_client_ip = $this->oCRNRSTN->return_client_ip();                   // TAKE THIS FROM SESSION IF PRESENT
