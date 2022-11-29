@@ -3085,9 +3085,17 @@ class crnrstn {
 
         if(isset($this->terminate_configuration_error_ARRAY)){
 
-            $this->system_terminate();
+            foreach($this->terminate_configuration_error_ARRAY as $key => $msg){
 
-            exit();
+                if(strlen($key) > 0){
+
+                    $this->system_terminate();
+
+                    exit();
+
+                }
+
+            }
 
         }
 
@@ -3762,9 +3770,17 @@ class crnrstn {
 
                     if(isset($this->terminate_configuration_error_ARRAY)){
 
-                        $this->system_terminate('detection');
+                        foreach($this->terminate_configuration_error_ARRAY as $key => $msg){
 
-                        exit();
+                            if(strlen($key) > 0){
+
+                                $this->system_terminate('detection');
+
+                                exit();
+
+                            }
+
+                        }
 
                     }
 
@@ -3831,9 +3847,17 @@ class crnrstn {
 
                     if(isset($this->terminate_configuration_error_ARRAY)){
 
-                        $this->system_terminate('detection');
+                        foreach($this->terminate_configuration_error_ARRAY as $key => $msg){
 
-                        exit();
+                            if(strlen($key) > 0){
+
+                                $this->system_terminate('detection');
+
+                                exit();
+
+                            }
+
+                        }
 
                     }
 
