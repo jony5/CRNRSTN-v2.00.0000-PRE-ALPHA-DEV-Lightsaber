@@ -48,8 +48,7 @@
 // FIRST GLOBAL SCOPE FUNCTION IN CRNRSTN ::
 // Wednesday April 7, 2021 @ 1424 hrs
 
-SUCCESSFUL INSTALL OF NEW INTEGER CONSTANTS REQUIRES PERFECT INSERTION AT THESE
-TEN (10) LOCATIONS ACROSS FIVE (5) FILES:
+TOUCHPOINTS FOR SUCCESSFUL INSTALLATION OF CRNRSTN :: INTEGER CONSTANTS ::
 _crnrstn/class/crnrstn/crnrstn.constants_initialize.inc.php [THIS FILE]
     function crnrstn_constants_init($const_nom)
 
@@ -57,14 +56,14 @@ _crnrstn/class/crnrstn/crnrstn.constants_load.inc.php
     $CRNRSTN_CONSTANTS_ARRAY = array(...{ADD NEW CONSTANT}...);
     @define('DEFINE NEW CONSTANT HERE', (int) crnrstn_constants_init('DEFINE NEW CONSTANT HERE'));
 
-_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [CHECK IF ADDING FRAMEWORK RESOURCE]
+_crnrstn/class/ui/crnrstn.content_source_control.inc.php
+    private function return_resource_profile($resource_constant)
+    public function return_integer_constant_profiles($module_key)
+
+_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [FOR ADDING FRAMEWORK JS/CSS RESOURCE]
     public function return_html_head_asset($const){
     private function return_output_CRNRSTN_UI_JS($const){
     private function return_output_CRNRSTN_UI_CSS($const){
-
-_crnrstn/class/ui/crnrstn.content_source_control.inc.php [CHECK HERE FOR ADDING CONSTANT DOCUMENTATION]
-    private function return_resource_profile($resource_constant)
-    public function return_integer_constant_profiles($module_key)
 
 */
 
@@ -402,29 +401,34 @@ function crnrstn_constants_init($const_nom){
             return (int) 7059;
 
         break;
-        case 'CRNRSTN_UI_TERMINAL':
+        case 'CRNRSTN_UI_WOOD':
 
             return (int) 7060;
 
         break;
-        case 'CRNRSTN_UI_RANDOM':
+        case 'CRNRSTN_UI_TERMINAL':
 
             return (int) 7061;
 
         break;
-        case 'CRNRSTN_UI_DESKTOP':
+        case 'CRNRSTN_UI_RANDOM':
 
             return (int) 7062;
 
         break;
-        case 'CRNRSTN_UI_TABLET':
+        case 'CRNRSTN_UI_DESKTOP':
 
             return (int) 7063;
 
         break;
-        case 'CRNRSTN_UI_MOBILE':
+        case 'CRNRSTN_UI_TABLET':
 
             return (int) 7064;
+
+        break;
+        case 'CRNRSTN_UI_MOBILE':
+
+            return (int) 7065;
 
         break;
 

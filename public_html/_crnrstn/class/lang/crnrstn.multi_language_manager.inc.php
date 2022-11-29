@@ -2971,8 +2971,6 @@ class crnrstn_multi_language_manager {
 
 	public function initialize_client_language_profile(){
 
-        //$this->oCRNRSTN = $oCRNRSTN;
-
         $this->country_iso_code = $this->oCRNRSTN->country_iso_code();
 
         $header_language_attribute = $this->oCRNRSTN->return_client_header_value('Accept-Language');

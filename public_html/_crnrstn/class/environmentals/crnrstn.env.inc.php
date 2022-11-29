@@ -523,13 +523,6 @@ class crnrstn_environment {
 
     }
 
-//    public function return_crnrstn_language_manager($oCRNRSTN){
-//
-//        $this->oCRNRSTN_LANG_MGR->initialize_oCRNRSTN($oCRNRSTN);
-//
-//        return $this->oCRNRSTN_LANG_MGR;
-//
-//    }
 
 //    public function return_client_accept_language_array($header_accept_language){
 //
@@ -715,6 +708,8 @@ class crnrstn_environment {
          $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form>
     <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
     <div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div>
+    <div id="crnrstn_interact_ui_theme_profile_key" class="crnrstn_hidden"></div>
+    <div id="crnrstn_interact_ui_theme_profile_data" class="crnrstn_hidden"></div>
 </div>';
 
         $tmp_str_array[] = '<!-- END ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT -->
@@ -11490,22 +11485,22 @@ class crnrstn_logging_oprofile{
                     switch($data_attribute){
                         case 'FTP_SERVER':
 
-                            $tmp_FTP_SERVER = $oDDO->preach('value', $data_attribute);;
+                            $tmp_FTP_SERVER = $oDDO->preach('value', $data_attribute);
 
                         break;
                         case 'FTP_USERNAME':
 
-                            $tmp_FTP_USERNAME = $oDDO->preach('value', $data_attribute);;
+                            $tmp_FTP_USERNAME = $oDDO->preach('value', $data_attribute);
 
                         break;
                         case 'FTP_PASSWORD':
 
-                            $tmp_FTP_PASSWORD = $oDDO->preach('value', $data_attribute);;
+                            $tmp_FTP_PASSWORD = $oDDO->preach('value', $data_attribute);
 
                         break;
                         case 'FTP_PORT':
 
-                            $tmp_FTP_PORT = $oDDO->preach('value', $data_attribute);;
+                            $tmp_FTP_PORT = $oDDO->preach('value', $data_attribute);
 
                         break;
                         case 'FTP_TIMEOUT':

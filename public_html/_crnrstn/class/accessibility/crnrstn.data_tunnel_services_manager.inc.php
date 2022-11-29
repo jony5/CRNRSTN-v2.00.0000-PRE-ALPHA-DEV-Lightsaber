@@ -284,6 +284,16 @@ class crnrstn_data_tunnel_services_manager{
     public function retrieve_interact_ui_module_hash($module_nom){
 
         switch($module_nom) {
+            case  'crnrstn_interact_ui_theme_profile_key':
+
+                $tmp_module_data = $this->oCRNRSTN->output_ssdtla_data_object('theme_profile_key');
+
+            break;
+            case  'crnrstn_interact_ui_theme_profile_data':
+
+                $tmp_module_data = $this->oCRNRSTN->output_ssdtla_data_object('theme_profile_data');
+
+            break;
             case 'crnrstn_interact_ui_documentation_content_src':
 
                 $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];

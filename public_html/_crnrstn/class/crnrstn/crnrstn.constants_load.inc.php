@@ -44,25 +44,25 @@
 # # C # R # N # R # S # T # N # : : # # ##
 #
 /*
-SUCCESSFUL INSTALL OF NEW INTEGER CONSTANTS REQUIRES PERFECT INSERTION AT THESE
-TEN (10) LOCATIONS ACROSS FIVE (5) FILES:
-_crnrstn/class/crnrstn/crnrstn.constants_initialize.inc.php
+TOUCHPOINTS FOR SUCCESSFUL INSTALLATION OF CRNRSTN :: INTEGER CONSTANTS ::
+_crnrstn/class/crnrstn/crnrstn.constants_initialize.inc.php [THIS FILE]
     function crnrstn_constants_init($const_nom)
 
-_crnrstn/class/crnrstn/crnrstn.constants_load.inc.php [THIS FILE]
+_crnrstn/class/crnrstn/crnrstn.constants_load.inc.php
     $CRNRSTN_CONSTANTS_ARRAY = array(...{ADD NEW CONSTANT}...);
     @define('DEFINE NEW CONSTANT HERE', (int) crnrstn_constants_init('DEFINE NEW CONSTANT HERE'));
 
-_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [CHECK IF ADDING FRAMEWORK RESOURCE]
+_crnrstn/class/ui/crnrstn.content_source_control.inc.php
+    private function return_resource_profile($resource_constant)
+    public function return_integer_constant_profiles($module_key)
+
+_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [FOR ADDING FRAMEWORK JS/CSS RESOURCE]
     public function return_html_head_asset($const){
     private function return_output_CRNRSTN_UI_JS($const){
     private function return_output_CRNRSTN_UI_CSS($const){
 
-_crnrstn/class/ui/crnrstn.content_source_control.inc.php [CHECK HERE FOR ADDING CONSTANT DOCUMENTATION]
-    private function return_resource_profile($resource_constant)
-    public function return_integer_constant_profiles($module_key)
-
 */
+
 if(isset($crnrstn_initialize_bits)){
 
     $CRNRSTN_CONSTANTS_ARRAY = array('CRNRSTN_DEBUG_OFF', 'CRNRSTN_DEBUG_NATIVE_ERR_LOG',
@@ -84,8 +84,8 @@ if(isset($crnrstn_initialize_bits)){
         'CRNRSTN_LOG_SCREEN_TEXT', 'CRNRSTN_LOG_SCREEN', 'CRNRSTN_LOG_SCREEN_HTML', 'CRNRSTN_LOG_SCREEN_HTML_HIDDEN',
         'CRNRSTN_LOG_DEFAULT', 'CRNRSTN_LOG_DEFAULT_PROXY', 'CRNRSTN_LOG_ELECTRUM', 'CRNRSTN_UI_PHPNIGHT',
         'CRNRSTN_UI_DARKNIGHT', 'CRNRSTN_UI_PHP', 'CRNRSTN_UI_GREYSKYS', 'CRNRSTN_UI_HTML', 'CRNRSTN_UI_DAYLIGHT',
-        'CRNRSTN_UI_FEATHER', 'CRNRSTN_UI_GLASS_LIGHT_COPY', 'CRNRSTN_UI_GLASS_DARK_COPY', 'CRNRSTN_UI_TERMINAL',
-        'CRNRSTN_UI_RANDOM', 'CRNRSTN_UI_DESKTOP', 'CRNRSTN_UI_TABLET', 'CRNRSTN_UI_MOBILE',
+        'CRNRSTN_UI_FEATHER', 'CRNRSTN_UI_GLASS_LIGHT_COPY', 'CRNRSTN_UI_GLASS_DARK_COPY', 'CRNRSTN_UI_WOOD',
+        'CRNRSTN_UI_TERMINAL', 'CRNRSTN_UI_RANDOM', 'CRNRSTN_UI_DESKTOP', 'CRNRSTN_UI_TABLET', 'CRNRSTN_UI_MOBILE',
         'CRNRSTN_UI_SOAP_DATA_TUNNEL', 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL', 'CRNRSTN_UI_IMG',
         'CRNRSTN_UI_IMG_HTML_WRAPPED', 'CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL', 'CRNRSTN_UI_IMG_BASE64',
         'CRNRSTN_UI_IMG_BASE64_PNG', 'CRNRSTN_UI_IMG_BASE64_JPEG', 'CRNRSTN_UI_IMG_PNG', 'CRNRSTN_UI_IMG_JPEG',
@@ -238,6 +238,7 @@ if(isset($crnrstn_initialize_bits)){
     @define('CRNRSTN_UI_FEATHER', (int) crnrstn_constants_init('CRNRSTN_UI_FEATHER'));
     @define('CRNRSTN_UI_GLASS_LIGHT_COPY', (int) crnrstn_constants_init('CRNRSTN_UI_GLASS_LIGHT_COPY'));
     @define('CRNRSTN_UI_GLASS_DARK_COPY', (int) crnrstn_constants_init('CRNRSTN_UI_GLASS_DARK_COPY'));
+    @define('CRNRSTN_UI_WOOD', (int) crnrstn_constants_init('CRNRSTN_UI_WOOD'));
     @define('CRNRSTN_UI_TERMINAL', (int) crnrstn_constants_init('CRNRSTN_UI_TERMINAL'));
     @define('CRNRSTN_UI_RANDOM', (int) crnrstn_constants_init('CRNRSTN_UI_RANDOM'));
 

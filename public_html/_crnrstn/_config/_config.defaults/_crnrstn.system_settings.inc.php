@@ -1,5 +1,9 @@
 <?php
 
+$tmp_crnrstn_settings_ARRAY = array();
+$tmp_str_settings = $this->generate_new_key(250);
+$tmp_crnrstn_settings_ARRAY[] = $tmp_str_settings;
+
 /*
 SYSTEM DEFAULTS TO SUPPORT ::
 PAGE LOAD TTL = 2;
@@ -65,5 +69,5 @@ $oWCR->add_attribute('FTP_MKDIR_MODE', 777);
 */
 
 // BEGIN DEFAULTS FOR ALL ENVIRONMENTS :: AS DESIGNATED BY PASSING CRNRSTN_RESOURCE_ALL AS ENV KEY PARAMETER
-$this->config_set_QWERTY(CRNRSTN_RESOURCE_ALL, 'WSDL_CACHE_TTL', '80');	# REQUIRED BY CRNRSTN :: SOAP CONNECTION MANAGER
-$this->config_set_QWERTY(CRNRSTN_RESOURCE_ALL, 'SOA_NAMESPACE', 'http://www.w3.org/2003/05/soap-encoding');   # USED BY CRNRSTN :: SOAP CONNECTION MANAGER
+//$this->config_set_QWERTY(CRNRSTN_RESOURCE_ALL, 'WSDL_CACHE_TTL', '80');	# REQUIRED BY CRNRSTN :: SOAP CONNECTION MANAGER
+//$this->config_set_QWERTY(CRNRSTN_RESOURCE_ALL, 'SOA_NAMESPACE', 'http://www.w3.org/2003/05/soap-encoding');   # USED BY CRNRSTN :: SOAP CONNECTION MANAGER

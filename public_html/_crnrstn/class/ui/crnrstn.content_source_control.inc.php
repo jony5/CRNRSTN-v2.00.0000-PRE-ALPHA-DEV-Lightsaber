@@ -6658,6 +6658,228 @@ between the server and client can be achieved with minimal effort and maximum da
 //
 //    }
 
+    /*
+    REFERENCE OF SYSTEM CONSTANTS ::
+    // CRNRSTN :: DEBUG MODE
+    CRNRSTN_DEBUG_OFF               // DEBUG MODE OFF.
+    CRNRSTN_DEBUG_NATIVE_ERR_LOG    // DEBUG MODE REAL-TIME NATIVE PHP error_log() OUT.
+    CRNRSTN_DEBUG_AGGREGATION_ON    // DEBUG MODE IS ON, BUT SAY NOTHING UNTIL THE END.
+    * * WHAT YOU SAY AND HOW WILL BE ACCORDING TO THE LOGGING PROFILE.
+    * * IF CRNRSTN :: IS CONFIGURED TO HANDLE ALL ERRORS, THIS WILL AFFECT HOW NATIVE PHP ERRORS ARE HANDLED AS WELL.
+
+    // CRNRSTN :: OPENSSL ENCRYPTION PROFILE INTEGER CONSTANT
+    CRNRSTN_ENCRYPT_TUNNEL
+    * * DETAILS ::
+    * * TUNNEL ENCRYPTION IS USED BY CRNRSTN :: FOR POINT TO POINT COMMUNICATIONS
+    * * AFFECTS ::
+    * * ~ THE CRNRSTN :: FORM INTEGRATIONS HANDLER PACKET.
+    * *       ENCRYPTED DATA INJECTED AS HIDDEN FIELDS INTO FORMS TO FACILITATE CRNRSTN :: (1) RECEIVING, VALIDATING
+    * *       AND STORING THE FORM DATA FOR ACCESS BY METHOD CALL, (2) HANDLING ANY REDIRECT OF THE USER AFTER FORM
+    * *       SUBMISSION, (3) SUPPORT PRE-POPULATION OF FORM INPUT DATA ON RELOAD.
+    * * ~ STICKY LINKS
+    * * ~ SYSTEM GET DATA
+    * * ~ CRNRSTN :: PSEUDO-SOAP SERVICES DATA TUNNEL LAYER PACKET. A SESSION CONFIGURATION OBJECT (JSON) OUTPUTTED FROM
+    * *       THE SYSTEM CONFIG DDO WITH DATA FLAGGED AS AUTHORIZED FOR OUTPUT TO THE PSEUDO-SOAP SERVICES DATA TUNNEL
+    * *       LAYER ARCHITECTURE (PSSDTLA) [CRNRSTN_AUTHORIZE_PSSDTLA].
+
+    // CRNRSTN :: OPENSSL ENCRYPTION PROFILE INTEGER CONSTANT
+    CRNRSTN_ENCRYPT_DATABASE
+    * * DETAILS ::
+    * * DATABASE ENCRYPTION IS USED BY CRNRSTN :: WHEN SENDING TO DATABASE FOR STORAGE
+    * * AFFECTS ::
+    * * ~ THE SYSTEM SESSION CONFIGURATION OBJECT. OUTPUT FROM THE SYSTEM CONFIG DDO FLAGGED AS AUTHORIZED FOR OUTPUT TO
+    * *   DATABASE [CRNRSTN_AUTHORIZE_DATABASE].
+
+    // CRNRSTN :: OPENSSL ENCRYPTION PROFILE INTEGER CONSTANTS
+    CRNRSTN_ENCRYPT_SESSION
+    CRNRSTN_ENCRYPT_COOKIE
+    CRNRSTN_ENCRYPT_SOAP
+    CRNRSTN_ENCRYPT_OERSL
+
+    // CRNRSTN :: LOG PROFILES OF THE DEBUG MODE (OR PERSUASIONS OF THE KINDS OF THINGS THAT SHOULD BE REPORTED)
+    CRNRSTN_LOG_ALL                 // REPORT ON EVERYTHING. 100% RETURN ON ALL CALLS OF $oCRNRSTN->error_log().
+    CRNRSTN_LOG_NONE                // REPORT ON NOTHING. 0% RETURN ON ALL CALLS OF $oCRNRSTN->error_log().
+
+    CRNRSTN_LOG_ELECTRUM            // REPORT ON ELECTRUM. ELECTRUM IS A DATA TRANSFORM SERVICE FOR MOVING FILES.
+    CRNRSTN_DATABASE                // REPORT ON DATABASE.
+    CRNRSTN_DATABASE_CONNECTION     // REPORT ON DATABASE CONNECTION.
+    CRNRSTN_DATABASE_QUERY          // REPORT ON DATABASE QUERY.
+    CRNRSTN_DATABASE_QUERY_SILO     // REPORT ON DATABASE QUERY SILO.
+    CRNRSTN_DATABASE_QUERY_DYNAMIC  // REPORT ON DYNAMICALLY ASSEMBLED DATABASE QUERY. THINK DYNAMIC SERIALIZED SHARDS.
+    CRNRSTN_DATABASE_RESULT         // REPORT ON DATABASE RESULT SET PROCESSING.
+
+    CRNRSTN_BARNEY                  // REPORT ON ALL ERROR.
+    CRNRSTN_BARNEY_DATABASE         // REPORT ON ALL DATABASE ERROR.
+    CRNRSTN_BARNEY_FILE             // REPORT ON ALL FILE RELATED ERROR.
+    CRNRSTN_BARNEY_FTP              // REPORT ON ALL FTP ERROR.
+    CRNRSTN_BARNEY_ELECTRUM         // REPORT ON ALL ELECTRUM ERROR (ELECTRUM IS A DATA TRANSFORM SERVICE FOR MOVING FILES).
+    CRNRSTN_BARNEY_GABRIEL          // REPORT ON ALL EMAIL ERROR.
+    CRNRSTN_BARNEY_DISK             // REPORT ON ALL DISK RELATED ERROR (READ/WRITE).
+
+    // OUTPUT FORMAT PROFILE FLAGS FOR CRNRSTN :: LOGGING
+    CRNRSTN_LOG_EMAIL                   // LOG TO EMAIL.
+    CRNRSTN_LOG_EMAIL_PROXY             // LOG TO EMAIL. SEND THE MULTI-PART HTML EMAIL THROUGH ANOTHER SERVER.
+    CRNRSTN_LOG_FILE                    // LOG TO FILE.
+    CRNRSTN_LOG_FILE_FTP                // LOG TO FILE. SEND THE FILE TO ANOTHER SERVER VIA FTP.
+    CRNRSTN_LOG_SCREEN_TEXT             // LOG TO SCREEN. OUTPUT LOG DATA WITH \n LINE BREAKS.
+    CRNRSTN_LOG_SCREEN                  // LOG TO SCREEN. OUTPUT LOG DATA WITH \n<br> LINE BREAKS.
+    CRNRSTN_LOG_SCREEN_HTML             // LOG TO SCREEN. OUTPUT LOG DATA WITH <br> LINE BREAKS.
+    CRNRSTN_LOG_SCREEN_HTML_HIDDEN      // LOG TO SCREEN. OUTPUT LOG DATA WITH \n LINE BREAKS WITHIN <!-- --> TAGS.
+    CRNRSTN_LOG_DEFAULT                 // LOG TO PHP NATIVE error_log().
+
+    // FLAGS FOR USER INTERFACE THEME STYLES
+    CRNRSTN_UI_PHPNIGHT                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+    CRNRSTN_UI_DARKNIGHT                // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER. NOTHING COULD BE DARKER. NOTHING.
+    CRNRSTN_UI_PHP                      // ALL ABOUT THE BUSINESS.
+    CRNRSTN_UI_GREYSKYS                 // // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
+    CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY.
+    CRNRSTN_UI_DAYLIGHT                 // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+    CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT.
+
+    // DEVICE TYPE FLAGS
+    CRNRSTN_UI_DESKTOP
+    CRNRSTN_UI_TABLET
+    CRNRSTN_UI_MOBILE
+
+    // CONTENT INCLUDE CONSTANTS :: CRNRSTN :: SYSTEM JAVASCRIPT FILE
+    CRNRSTN_UI_JS_MAIN
+    * * RECEIVED BY $oCRNRSTN->ui_content_module_out().
+    * * PRODUCES, oCRNRSTN_JS IN THE DOM. A REPLICATION
+    * * * * OF CRNRSTN :: ON THE CLIENT...BUT WITH METHODS
+    * * * * SUPPORTING ANIMATIONS AND EFFECTS.
+
+    // CONTENT INCLUDE CONSTANTS :: CRNRSTN :: SYSTEM CSS FILE
+    CRNRSTN_UI_CSS_MAIN_DESKTOP
+    CRNRSTN_UI_CSS_MAIN_TABLET
+    CRNRSTN_UI_CSS_MAIN_MOBILE
+    * * RECEIVED BY $oCRNRSTN->ui_content_module_out().
+    * * RETURN CSS CONTENT BY DEVICE TYPE
+
+    // CONTENT INCLUDE CONSTANTS :: JS + CSS
+    CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1                     // RETURN JQUERY 1.11.1 (ASSET IS HERE. LACKS IMPLEMENTATION.).
+    CRNRSTN_JS_FRAMEWORK_JQUERY                            // RETURN JQUERY.
+    CRNRSTN_JS_FRAMEWORK_JQUERY_UI                         // RETURN JQUERY UI.
+    CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE                     // RETURN JQUERY MOBILE.
+    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY       // RETURN LIGHTBOX.JS (BUILT ON JQUERY) WITH JQUERY ALONG SIDE.
+    CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS                   // RETURN LIGHTBOX.JS (BUILT ON JQUERY) WITHOUT JQUERY ALONG SIDE.
+    * * RECEIVED BY $oCRNRSTN->ui_content_module_out().
+    * * RETURN JAVASCRIPT FRAMEWORK.
+
+    // CONTENT RETURN CONSTANT :: CRNRSTN :: SSDTLA SYSTEMS INTEGRATIONS FORM PACKET
+    CRNRSTN_UI_SOAP_DATA_TUNNEL
+    * * RECEIVED BY $oCRNRSTN->ui_content_module_out().
+
+    // CONTENT RETURN CONSTANT :: CRNRSTN :: SYSTEM FORM HANDLING CONTENT INJECTION
+    CRNRSTN_UI_FORM_INTEGRATION_PACKET
+    * * RECEIVED BY $oCRNRSTN->ui_content_module_out().
+    * * RETURN ENCRYPTED FORM INPUT DATA TO INTEGRATE THE FORM INTO CRNRSTN ::.
+
+    // CONTENT RETURN CONSTANT :: CRNRSTN :: SYSTEM UI CONTENT RETURN ::
+    CRNRSTN_UI_COOKIE_PREFERENCE
+    * * RECEIVED BY $oCRNRSTN->ui_content_module_out().
+    * * RETURN UI FOR MANAGEMENT OF THE COOKIE PREFERENCES OF THE SESSION.
+
+    // CONTENT RETURN CONSTANT :: CRNRSTN :: SYSTEM UI CONTENT RETURN ::
+    CRNRSTN_UI_COOKIE_YESNO
+    * * RECEIVED BY $oCRNRSTN->ui_content_module_out().
+    * * RETURN UI FOR MANAGEMENT OF COOKIE PREFERENCES "ACCEPT/REJECT" FOR THE SESSION.
+
+    // CONTENT RETURN CONSTANT :: CRNRSTN :: SYSTEM UI CONTENT RETURN
+    CRNRSTN_UI_COOKIE_NOTICE
+    * * RECEIVED BY $oCRNRSTN->ui_content_module_out().
+    * * RETURN UI FOR NOTICE OF COOKIE MANAGEMENT POLICY FOR THE SESSION.
+
+    // CRNRSTN :: ASSET HANDLING POLICY (ALL SYSTEM IMAGES, SYSTEM CSS, SYSTEM JS)
+    CRNRSTN_ASSET_MODE_PNG
+    * * E.G. RECEIVED BY $oCRNRSTN->config_init_images_transport_mode(). CAN ALSO BE OVERRIDDEN ELSEWHERE.
+    * * RETURN SYSTEM IMAGES AS PNG.
+    * * RETURN SYSTEM CSS BY URL REFERENCE TO SERIALIZED FILE NAME.
+    * * RETURN SYSTEM JS BY URL REFERENCE TO SERIALIZED FILE NAME.
+
+    // CRNRSTN :: ASSET HANDLING POLICY (ALL SYSTEM IMAGES, SYSTEM CSS, SYSTEM JS)
+    CRNRSTN_ASSET_MODE_JPEG
+    * * E.G. RECEIVED BY $oCRNRSTN->config_init_images_transport_mode(). CAN ALSO BE OVERRIDDEN ELSEWHERE.
+    * * RETURN SYSTEM IMAGES AS JPG.
+    * * RETURN SYSTEM CSS BY URL REFERENCE TO SERIALIZED FILE NAME.
+    * * RETURN SYSTEM JS BY URL REFERENCE TO SERIALIZED FILE NAME.
+
+    // CRNRSTN :: ASSET HANDLING POLICY (ALL SYSTEM IMAGES, SYSTEM CSS, SYSTEM JS)
+    CRNRSTN_ASSET_MODE_BASE64
+    * * E.G. RECEIVED BY $oCRNRSTN->config_init_images_transport_mode(). CAN ALSO BE OVERRIDDEN ELSEWHERE.
+    * * RETURN SYSTEM IMAGES BASE64 ENCODED.
+    * * RETURN SYSTEM CSS BY DIRECT INJECTION OF THE RAW CSS INTO DOM.
+    * * RETURN SYSTEM JS BY DIRECT INJECTION OF THE RAW JAVASCRIPT INTO DOM.
+
+    // CRNRSTN :: ASSET HANDLING POLICY FOR SINGLE SERVING REQUEST FOR DATA
+    CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL                 // RETURN SYSTEM IMAGE FOR EXPOSURE TO SOAP TRANSPORT. SOAP = 65,535 CHAR LIMIT.
+    CRNRSTN_UI_IMG_BASE64                           // RETURN BASE64 ENCODE OF PNG FORMAT.
+    CRNRSTN_UI_IMG_BASE64_PNG                       // RETURN BASE64 ENCODE OF PNG FORMAT.
+    CRNRSTN_UI_IMG_BASE64_JPEG                      // RETURN BASE64 ENCODE OF JPEG FORMAT.
+    CRNRSTN_UI_IMG_HTML_WRAPPED              // RETURN SYSTEM IMAGE BASE64 ENCODED WITHIN <IMG> DOM TAGS.
+    CRNRSTN_UI_IMG_JPEG                             // RETURN HTTP URI OF SYSTEM IMAGE IN JPEG FORMAT.
+    CRNRSTN_UI_IMG_HTML_WRAPPED                // RETURN SYSTEM IMAGE AS JPEG WITHIN <IMG> DOM TAGS.
+    CRNRSTN_UI_IMG_PNG                              // RETURN HTTP URI OF SYSTEM IMAGE IN PNG FORMAT.
+    CRNRSTN_UI_IMG_HTML_WRAPPED                 // RETURN SYSTEM IMAGE AS PNG WITHIN <IMG> DOM TAGS.
+    * * E.G. RECEIVED BY $oCRNRSTN->return_creative().
+
+    // CONTENT INCLUDE CONSTANT :: UGC ANALYTICS
+    CRNRSTN_UI_TAG_ANALYTICS
+    * * RETURN UGC ANALYTICS TAG(S).
+
+    // CONTENT INCLUDE CONSTANT :: UGC ENGAGEMENT
+    CRNRSTN_UI_TAG_ENGAGEMENT
+    * * RETURN UGC ENGAGEMENT TAG(S).
+
+    /////////// STILL MORE
+    CRNRSTN_PERFORMANCE_MONITOR
+    CRNRSTN_IP_SECURITY
+    CRNRSTN_GABRIEL
+    CRNRSTN_SMTP_AUTHENTICATION
+    CRNRSTN_EMAIL_CRNRSTN_SOURCE
+    CRNRSTN_EMAIL_USER_SOURCE
+    CRNRSTN_ELECTRUM
+    CRNRSTN_ELECTRUM_THREAD
+    CRNRSTN_ELECTRUM_COMM
+    CRNRSTN_ELECTRUM_FTP
+    CRNRSTN_ELECTRUM_LOCALDIR
+    CRNRSTN_FILE_MANAGEMENT
+    CRNRSTN_CREATIVE_EMBED
+    CRNRSTN_FILE_RECEIVE
+    CRNRSTN_FILE_LOCALDIR_MOVE
+    CRNRSTN_FILE_FTP_SEND
+    CRNRSTN_FILE_FTP_RECEIVE
+    CRNRSTN_FILE_SOAP_SEND
+    CRNRSTN_FILE_SOAP_RECEIVE
+    CRNRSTN_FILE_CURL_SEND
+    CRNRSTN_FILE_CURL_RECEIVE
+    CRNRSTN_CSS_EMAIL_CLIENT_VALIDATE
+    CRNRSTN_SOAP
+    CRNRSTN_SOAP_SERVER
+    CRNRSTN_SOAP_CLIENT
+    CRNRSTN_PROXY_KINGS_HIGHWAY
+    CRNRSTN_PROXY_EMAIL
+    CRNRSTN_PROXY_ELECTRUM
+    CRNRSTN_PROXY_AUTHENTICATE
+
+    CRNRSTN_UI_INTERACT
+    CRNRSTN_AUTHORIZE_ALL
+    CRNRSTN_AUTHORIZE_DATABASE
+    CRNRSTN_AUTHORIZE_SSDTLA
+    CRNRSTN_AUTHORIZE_PSSDTLA
+    CRNRSTN_AUTHORIZE_SESSION
+    CRNRSTN_AUTHORIZE_COOKIE
+    CRNRSTN_AUTHORIZE_SOAP
+    CRNRSTN_AUTHORIZE_GET
+    CRNRSTN_AUTHORIZE_ISEMAIL
+    CRNRSTN_AUTHORIZE_ISPASSWORD
+
+    CRNRSTN_RESOURCE_ALL
+    CRNRSTN_RESOURCE_OPENSOURCE
+    CRNRSTN_RESOURCE_NEWS_SYNDICATION
+    CRNRSTN_WORDPRESS_DEBUG
+
+    */
+
     public function return_resource_profile($resource_constant, $attribute = 'ARRAY'){
 
         $tmp_output_ARRAY = array();
@@ -8076,10 +8298,25 @@ between the server and client can be achieved with minimal effort and maximum da
             case 'CRNRSTN_UI_PHPNIGHT':
             case CRNRSTN_UI_PHPNIGHT:
 
+                /*
+                // CRNRSTN_UI_PHPNIGHT              //
+                // CRNRSTN_UI_DARKNIGHT             //
+                // CRNRSTN_UI_PHP                   //
+                // CRNRSTN_UI_GREYSKYS              //
+                // CRNRSTN_UI_HTML                  //
+                // CRNRSTN_UI_DAYLIGHT              //
+                // CRNRSTN_UI_FEATHER               //
+                // CRNRSTN_UI_GLASS_LIGHT_COPY      //
+                // CRNRSTN_UI_GLASS_DARK_COPY       // UI EXPERIMENTAL
+                // CRNRSTN_UI_WOOD                  // UI EXPERIMENTAL
+                // CRNRSTN_UI_TERMINAL              //
+
+                */
+
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_PHPNIGHT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_PHPNIGHT';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'PHP Night';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.';
 
             break;
             case 'CRNRSTN_UI_DARKNIGHT':
@@ -8087,8 +8324,8 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_DARKNIGHT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_DARKNIGHT';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'Dark Night';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'SIMILAR TO CRNRSTN_UI_PHPNIGHT, BUT DARKER. NOTHING COULD BE DARKER. NOTHING.';
 
             break;
             case 'CRNRSTN_UI_PHP':
@@ -8096,8 +8333,8 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_PHP;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_PHP';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'PHP';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'ALL ABOUT THE BUSINESS.';
 
             break;
             case 'CRNRSTN_UI_GREYSKYS':
@@ -8105,8 +8342,8 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_GREYSKYS;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GREYSKYS';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'Grey Skys';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.';
 
             break;
             case 'CRNRSTN_UI_HTML':
@@ -8114,8 +8351,8 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_HTML;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_HTML';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'HTML';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'BE LIGHT AND HAPPY.';
 
             break;
             case 'CRNRSTN_UI_DAYLIGHT':
@@ -8123,8 +8360,8 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_DAYLIGHT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_DAYLIGHT';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'Daylight';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'SIMILAR TO CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.';
 
             break;
             case 'CRNRSTN_UI_FEATHER':
@@ -8132,8 +8369,8 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_FEATHER;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_FEATHER';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'Feather';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'LIGHTER THAN DAYLIGHT.';
 
             break;
             case 'CRNRSTN_UI_GLASS_LIGHT_COPY':
@@ -8141,8 +8378,8 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_GLASS_LIGHT_COPY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GLASS_LIGHT_COPY';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'Glass (light text)';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'UI EXPERIMENTAL';
 
             break;
             case 'CRNRSTN_UI_GLASS_DARK_COPY':
@@ -8150,8 +8387,17 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_GLASS_DARK_COPY;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_GLASS_DARK_COPY';
-                $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['TITLE'] = 'Glass (dark text)';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'UI EXPERIMENTAL';
+
+            break;
+            case 'CRNRSTN_UI_WOOD':
+            case CRNRSTN_UI_WOOD:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_WOOD;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_WOOD';
+                $tmp_output_ARRAY['TITLE'] = 'Wood';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'GOT WOOD?';
 
             break;
             case 'CRNRSTN_UI_TERMINAL':
@@ -8160,7 +8406,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_TERMINAL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_TERMINAL';
                 $tmp_output_ARRAY['TITLE'] = '';
-                $tmp_output_ARRAY['DESCRIPTION'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'GREEN TEXT. BLACK BACKGROUND. HARDCORE.';
 
             break;
             case 'CRNRSTN_UI_DESKTOP':
@@ -8924,7 +9170,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
                 $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
                 $tmp_output_ARRAY['TITLE'] = 'UNKNOWN RESOURCE';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'UNKNOWN RESOURCE';
                 $tmp_output_ARRAY['URL'][] = '';
@@ -8950,7 +9196,7 @@ between the server and client can be achieved with minimal effort and maximum da
 
     }
 
-    public function return_integer_constant_profiles($module_key){
+    public function return_integer_constant_profiles($module_key = NULL){
 
         /*
         CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID
@@ -9029,7 +9275,19 @@ between the server and client can be achieved with minimal effort and maximum da
             break;
             case 'system_output_footer_html':
 
+                //
+                //CRNRSTN_RESOURCE_DOCUMENTATION
+                //CRNRSTN_UI_TAG_ENGAGEMENT
+                //CRNRSTN_UI_TAG_ANALYTICS
+                //CRNRSTN_UI_SOAP_DATA_TUNNEL
                 $tmp_output_ARRAY = array();
+
+            break;
+            default:
+
+                //
+                // ALL CONSTANTS
+                $tmp_output_ARRAY = $this->oCRNRSTN->return_global_constants_string_ARRAY();
 
             break;
 

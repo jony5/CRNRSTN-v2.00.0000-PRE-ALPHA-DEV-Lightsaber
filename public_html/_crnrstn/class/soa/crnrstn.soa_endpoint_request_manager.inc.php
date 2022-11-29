@@ -1153,7 +1153,7 @@ class crnrstn_soa_endpoint_request_manager {
                                 break;
                             case 'SMTP_KEEPALIVE':
 
-                                $tmp_SMTP_KEEPALIVE = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);;
+                                $tmp_SMTP_KEEPALIVE = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
                                 break;
                             case 'DUP_SUPPRESS':

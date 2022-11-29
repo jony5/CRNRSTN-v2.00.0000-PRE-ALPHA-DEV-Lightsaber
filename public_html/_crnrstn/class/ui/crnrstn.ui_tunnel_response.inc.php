@@ -176,8 +176,15 @@ class crnrstn_ui_tunnel_response_manager {
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = -1;
 
-        //        $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        //
+        // CRNRSTN :: LIGHTSABER THEME
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_theme_profile_key'] = 'GLOBAL';
+        $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_theme_profile_key'] = 1;
+        $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_theme_profile_key'] = -1;
 
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_theme_profile_data'] = 'GLOBAL';
+        $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_theme_profile_data'] = 1;
+        $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_theme_profile_data'] = -1;
     }
 
     private function return_interact_ui_ux_profile($output_format = 'xml'){
@@ -211,12 +218,12 @@ class crnrstn_ui_tunnel_response_manager {
             $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
             if($pos_docs_view_source !== false && $module_nom == 'crnrstn_interact_ui_documentation_view_source_src'){
 
-                error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
+                //error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
                 $tmp_xml_concat = true;
 
             }
 
-            error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
+            //error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
 
             if(strlen($tmp_module_page_key) > 0 && $module_nom == 'crnrstn_interact_ui_documentation_content_src'){
 
@@ -241,12 +248,38 @@ class crnrstn_ui_tunnel_response_manager {
 
             if($tmp_xml_concat){
 
-                $tmp_out_str .= '
+                $tmp_node_open = '
                 <' . $module_nom . '_HASH>' . $tmp_module_hash . '</' . $module_nom . '_HASH>
                 <' . $module_nom . '><![CDATA[';
 
+                $tmp_node_close = ']]></' . $module_nom . '>
+';
+
+                if($module_nom == 'crnrstn_interact_ui_theme_profile_key' || $module_nom == 'crnrstn_interact_ui_theme_profile_data'){
+
+                    $tmp_node_open = '
+                <' . $module_nom . '_HASH>' . $tmp_module_hash . '</' . $module_nom . '_HASH>
+                <' . $module_nom . '>';
+
+                    $tmp_node_close = '</' . $module_nom . '>
+';
+
+                }
+
+                $tmp_out_str .= $tmp_node_open;
+
                 //error_log(__LINE__ . ' ui tunnel $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . print_r($tmp_module_ARRAY,true) . '].');
                 switch($module_nom){
+                    case 'crnrstn_interact_ui_theme_profile_data':
+
+                        $tmp_out_str .= $this->oCRNRSTN->output_ssdtla_data_object('theme_profile_data');  //php
+
+                    break;
+                    case 'crnrstn_interact_ui_theme_profile_key':
+
+                        $tmp_out_str .= $this->oCRNRSTN->output_ssdtla_data_object('theme_profile_key');  //php
+
+                    break;
                     case 'crnrstn_interact_ui_documentation_content_src':
 
                         $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();  //php
@@ -289,8 +322,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                 }
 
-                $tmp_out_str .= ']]></' . $module_nom . '>
-';
+                $tmp_out_str .= $tmp_node_close;
 
             }
 
@@ -1268,11 +1300,19 @@ class crnrstn_ui_tunnel_response_manager {
         $output_string = '';
         $output_type = strtolower($output_type);
 
-        //en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
-        $tmp_header_language_attribute = $this->oCRNRSTN->return_client_header_value('Accept-Language');
+        $tmp_lang_pref_cnt = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_count();
 
-        $oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager($tmp_header_language_attribute);
-        $oCRNRSTN_LANG_MGR->initialize_client_language_profile();
+        if($tmp_lang_pref_cnt < 1){
+
+            $this->oCRNRSTN->oCRNRSTN_LANG_MGR->initialize_client_language_profile();
+            $tmp_lang_pref_cnt = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_count();
+
+        }
+
+        //en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
+        //$tmp_header_language_attribute = $this->oCRNRSTN->return_client_header_value('Accept-Language');
+
+        //$oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager($tmp_header_language_attribute);
 
         //$oCRNRSTN_LANG_MGR = $this->oCRNRSTN->return_crnrstn_language_manager();
 
@@ -1283,19 +1323,17 @@ class crnrstn_ui_tunnel_response_manager {
 
                 $tmp_ARRAY = array();
 
-                $tmp_lang_pref_cnt = $oCRNRSTN_LANG_MGR->return_lang_pref_count();
-
                 for($i = 0; $i < $tmp_lang_pref_cnt; $i++){
 
-                    $tmp_ARRAY[$i]['locale_identifier'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
-                    $tmp_ARRAY[$i]['region_variant'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i);
-                    $tmp_ARRAY[$i]['factor_weighting'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i);
-                    $tmp_ARRAY[$i]['iso_language_nomination'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i);
-                    $tmp_ARRAY[$i]['native_nomination'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i);
-                    $tmp_ARRAY[$i]['iso_639-1_2002'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i);
-                    $tmp_ARRAY[$i]['iso_639-2_1998'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i);
-                    $tmp_ARRAY[$i]['iso_639-3_2007'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i);
-                    $tmp_ARRAY[$i]['locale_identifier'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+                    $tmp_ARRAY[$i]['locale_identifier'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+                    $tmp_ARRAY[$i]['region_variant'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i);
+                    $tmp_ARRAY[$i]['factor_weighting'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i);
+                    $tmp_ARRAY[$i]['iso_language_nomination'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i);
+                    $tmp_ARRAY[$i]['native_nomination'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i);
+                    $tmp_ARRAY[$i]['iso_639-1_2002'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i);
+                    $tmp_ARRAY[$i]['iso_639-2_1998'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i);
+                    $tmp_ARRAY[$i]['iso_639-3_2007'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i);
+                    $tmp_ARRAY[$i]['locale_identifier'] = $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
 
                 }
 
@@ -1305,23 +1343,21 @@ class crnrstn_ui_tunnel_response_manager {
             case 'xml':
             default:
 
-                $tmp_lang_pref_cnt = $oCRNRSTN_LANG_MGR->return_lang_pref_count();
-
                 for($i = 0; $i < $tmp_lang_pref_cnt; $i++){
 
                     $output_string .= '<language_preference>
-                        <request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $oCRNRSTN_LANG_MGR->return_lang_pref_serial($i) . '</request_id>
+                        <request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_serial($i) . '</request_id>
                         <request_referer>' . $_SERVER['HTTP_REFERER'] . '</request_referer>';
 
                     $output_string .= '
-                        <locale_identifier>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i) . '</locale_identifier>
-                        <region_variant>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i) . '</region_variant>
-                        <factor_weighting>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i) . '</factor_weighting>
-                        <iso_language_nomination>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i) . '</iso_language_nomination>
-                        <native_nomination><![CDATA[' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i) . ']]></native_nomination>
-                        <iso_639-1_2002>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i) . '</iso_639-1_2002>
-                        <iso_639-2_1998>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i) . '</iso_639-2_1998>
-                        <iso_639-3_2007>' . $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i) . '</iso_639-3_2007>';
+                        <locale_identifier>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i) . '</locale_identifier>
+                        <region_variant>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i) . '</region_variant>
+                        <factor_weighting>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i) . '</factor_weighting>
+                        <iso_language_nomination>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i) . '</iso_language_nomination>
+                        <native_nomination><![CDATA[' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i) . ']]></native_nomination>
+                        <iso_639-1_2002>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i) . '</iso_639-1_2002>
+                        <iso_639-2_1998>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i) . '</iso_639-2_1998>
+                        <iso_639-3_2007>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i) . '</iso_639-3_2007>';
 
                     if($i < $tmp_lang_pref_cnt - 1){
 

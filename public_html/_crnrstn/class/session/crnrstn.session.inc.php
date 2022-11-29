@@ -394,7 +394,7 @@ class crnrstn_session_manager {
                 $this->consume_session_meta('crnrstn_soap_srvc_user_agent', $this->oCRNRSTN_USR->return_form_submitted_value('crnrstn_soap_srvc_user_agent'));
                 $this->consume_session_meta('crnrstn_soap_srvc_ttl', $this->oCRNRSTN_USR->return_form_submitted_value('crnrstn_soap_srvc_ttl'));
                 $this->consume_session_meta('crnrstn_soap_srvc_form_serial', $this->oCRNRSTN_USR->return_form_submitted_value('crnrstn_soap_srvc_form_serial'));
-                $this->consume_session_meta('crnrstn_request_serialization_key', $this->oCRNRSTN_USR->return_form_submitted_value('crnrstn_request_serialization_key'));;
+                $this->consume_session_meta('crnrstn_request_serialization_key', $this->oCRNRSTN_USR->return_form_submitted_value('crnrstn_request_serialization_key'));
                 $this->consume_session_meta('crnrstn_request_serialization_hash', $this->oCRNRSTN_USR->return_form_submitted_value('crnrstn_request_serialization_hash'));
 
                 // = = = = = = = =
