@@ -8,9 +8,10 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 //
 // PASS TRUE TO SPOOL DESIRED CONTENT TO BE OUTPUTTED LATER
 // INTO THE HTML FOOTER VIA system_output_footer_html()
-$oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
+//$oCRNRSTN->system_output_head_html(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
+//$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY, true, true, true);
 //$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, true);
-//$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3, true);
+$oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
 
 ?>
 <!DOCTYPE html>
@@ -20,6 +21,7 @@ $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON', CRNRSTN_UI_IMG_HTML_WRAPPED); ?>
     <?php echo $oCRNRSTN->system_output_head_html(); ?>
+    <?php echo $oCRNRSTN->system_output_head_html(CRNRSTN_UI_CSS_MAIN_DESKTOP); ?>
 
 </head>
 <body>
@@ -143,8 +145,12 @@ $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
     </div>
 </div>
 
-<?php 
+<?php
     echo $oCRNRSTN->system_output_footer_html();
+    echo '<!--';
+    echo $oCRNRSTN->system_output_footer_html(CRNRSTN_REPORT_RESPONSE_RETURN);
+    echo '-->
+';
 ?>
 </body>
 </html>

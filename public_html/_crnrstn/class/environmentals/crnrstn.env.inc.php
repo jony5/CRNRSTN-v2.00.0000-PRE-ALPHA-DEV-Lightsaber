@@ -542,7 +542,7 @@ class crnrstn_environment {
 
     }
 
-    public function ui_content_module_out($integer_constant){
+    public function ui_content_module_out($integer_constant, $output_format = 'HTML'){
 
         switch($integer_constant){
             case CRNRSTN_UI_INTERACT:
@@ -643,6 +643,22 @@ class crnrstn_environment {
                 return $tmp_output;
 
             break;
+            case CRNRSTN_REPORT_RESPONSE_RETURN:
+                
+                $tmp_array = $this->return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN($output_format);
+                $tmp_output = '';
+
+                //
+                // LOAD OUTPUT
+                foreach($tmp_array as $key => $resource_content){
+
+                    $tmp_output .= $resource_content;
+
+                }
+
+                return $tmp_output;
+                
+            break;
             default:
 
                 $this->error_log('The requested UI content module...honoring the provided integer constant, "' . $integer_constant . '", could not be found.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
@@ -696,7 +712,14 @@ class crnrstn_environment {
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden">
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden"><form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea><button type="submit">SUBMIT</button><input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '"><input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '"><input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
+            $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form><div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div><div id="crnrstn_interact_ui_theme_profile" class="crnrstn_hidden"></div></div>';
+
+        }else{
+
+            $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden">
     <form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data">
         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea>
         <button type="submit">SUBMIT</button>
@@ -705,12 +728,14 @@ class crnrstn_environment {
         <input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">
 ' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
 
-         $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form>
+            $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form>
     <div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
     <div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div>
-    <div id="crnrstn_interact_ui_theme_profile_key" class="crnrstn_hidden"></div>
-    <div id="crnrstn_interact_ui_theme_profile_data" class="crnrstn_hidden"></div>
-</div>';
+    <div id="crnrstn_interact_ui_theme_profile" class="crnrstn_hidden"></div>
+</div>
+';
+
+        }
 
         $tmp_str_array[] = '<!-- END ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT -->
 ';
@@ -720,46 +745,409 @@ class crnrstn_environment {
 
     private function return_output_CRNRSTN_UI_TAG_ANALYTICS(){
 
-        // # # # # # # # # # # # # # # # # # # # # # # # # # #
-        $tmp_str_array[] = '
+        $tmp_str_array = array();
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ANALYTICS SEO MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->';
+            $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_analytics();
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ANALYTICS SEO MODULE OUTPUT -->';
+
+        }else{
+
+            $tmp_str_array[] = '
 <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ANALYTICS SEO MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_analytics();
+            $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_analytics();
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ANALYTICS SEO MODULE OUTPUT -->
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ANALYTICS SEO MODULE OUTPUT -->
 ';
+
+        }
+
         return $tmp_str_array;
 
     }
 
     private function return_output_CRNRSTN_UI_TAG_ENGAGEMENT(){
 
-        // # # # # # # # # # # # # # # # # # # # # # # # # # #
-        $tmp_str_array[] = '
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ENGAGEMENT MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->';
+            $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_engagement();
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT MODULE OUTPUT -->';
+
+        }else{
+
+            $tmp_str_array[] = '
 <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI ENGAGEMENT MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
-        $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_engagement();
+            $tmp_str_array[] = $this->oCRNRSTN->return_module_content_seo_engagement();
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT MODULE OUTPUT -->
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: UI ENGAGEMENT MODULE OUTPUT -->
 ';
+
+        }
+
         return $tmp_str_array;
 
     }
 
     private function return_output_CRNRSTN_UI_SYSTEM_FOOTER(){
 
-        // # # # # # # # # # # # # # # # # # # # # # # # # # #
-        $tmp_str_array[] = '
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SYSTEM FOOTER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->';
+            $tmp_str_array[] = '<div id="crnrstn_interact_ui_system_footer_src" class="crnrstn_hidden"></div><div id="crnrstn_ui_system_footer_shell" class="crnrstn_ui_system_footer_shell"></div>';
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SYSTEM FOOTER MODULE OUTPUT -->';
+
+        }else{
+
+            $tmp_str_array[] = '
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SYSTEM FOOTER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_system_footer_src" class="crnrstn_hidden"></div>
+            $tmp_str_array[] = '        <div id="crnrstn_interact_ui_system_footer_src" class="crnrstn_hidden"></div>
         <div id="crnrstn_ui_system_footer_shell" class="crnrstn_ui_system_footer_shell"></div>
         ';
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SYSTEM FOOTER MODULE OUTPUT -->
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SYSTEM FOOTER MODULE OUTPUT -->
 ';
+
+        }
+
+        return $tmp_str_array;
+
+    }
+
+    private function return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN($output_format = 'HTML'){
+
+        $tmp_str_array = array();
+
+        switch($output_format){
+            case 'HTML':
+
+                $tmp_min_version = false;
+                if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                    $tmp_min_version = true;
+
+                }
+
+                $tmp_str_array[] = '
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SYSTEM REPORT OUTPUT :: RESPONSE RETURN RESOURCES CONSUMPTION :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+';
+
+                $tmp_hashed_html = '';
+                $tmp_hashed_html_out = '';
+                $tmp_SSL_ENABLED = 'FALSE';
+                if($this->oCRNRSTN->is_SSL){
+
+                    $tmp_SSL_ENABLED = 'TRUE';
+
+                }
+
+                /*
+                $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+                $tmp_ARRAY[$i]['region_variant>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i);
+                $tmp_ARRAY[$i]['factor_weighting>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i);
+                $tmp_ARRAY[$i]['iso_language_nomination>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i);
+                $tmp_ARRAY[$i]['native_nomination>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i);
+                $tmp_ARRAY[$i]['iso_639-1_2002>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i);
+                $tmp_ARRAY[$i]['iso_639-2_1998>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i);
+                $tmp_ARRAY[$i]['iso_639-3_2007>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i);
+                $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+
+                <language>
+                    <language_preference>
+                        <request_id timestamp="2022-11-11 14:21:01.974633">xzPlvuvDL2</request_id>
+                        <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
+                        <locale_identifier>en</locale_identifier>
+                        <region_variant>US</region_variant>
+                        <factor_weighting>0.9</factor_weighting>
+                        <iso_language_nomination>English</iso_language_nomination>
+                        <native_nomination><![CDATA[English]]></native_nomination>
+                        <iso_639-1_2002>en</iso_639-1_2002>
+                        <iso_639-2_1998>eng</iso_639-2_1998>
+                        <iso_639-3_2007>eng</iso_639-3_2007>
+                    </language_preference>
+                    <language_preference>
+                        <request_id timestamp="2022-11-11 14:21:01.974841">0McMrF9QOg</request_id>
+                        <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
+                        <locale_identifier>zh</locale_identifier>
+                        <region_variant>CN</region_variant>
+                        <factor_weighting>0.8</factor_weighting>
+                        <iso_language_nomination>Chinese</iso_language_nomination>
+                        <native_nomination><![CDATA[中文 (Zhōngwén), 汉语, 漢語]]></native_nomination>
+                        <iso_639-1_2002>zh</iso_639-1_2002>
+                        <iso_639-2_1998>zho</iso_639-2_1998>
+                        <iso_639-3_2007>zho</iso_639-3_2007>
+                    </language_preference>
+                    <language_preference>
+                        <request_id timestamp="2022-11-11 14:21:01.974927">3oU3N6Eyiy</request_id>
+                        <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
+                        <locale_identifier>zh</locale_identifier>
+                        <region_variant></region_variant>
+                        <factor_weighting>0.7</factor_weighting>
+                        <iso_language_nomination>Chinese</iso_language_nomination>
+                        <native_nomination><![CDATA[中文 (Zhōngwén), 汉语, 漢語]]></native_nomination>
+                        <iso_639-1_2002>zh</iso_639-1_2002>
+                        <iso_639-2_1998>zho</iso_639-2_1998>
+                        <iso_639-3_2007>zho</iso_639-3_2007>
+                    </language_preference>
+                </language>
+
+                */
+
+                $tmp_lang_ARRAY = $this->oCRNRSTN->return_client_language_preference_profile();
+                $tmp_lang_cnt = count($tmp_lang_ARRAY);
+
+                $tmp_lang_report = '';
+                if($tmp_lang_cnt > 0){
+
+                    $tmp_lang_report = 'Accept-Language: ';
+
+                    //
+                    // BUILD LANGUAGE REPORT
+                    for($ii = 0; $ii < $tmp_lang_cnt; $ii++){
+
+                        $tmp_lang_report .= $tmp_lang_ARRAY[$ii]['native_nomination'] . '[' . $tmp_lang_ARRAY[$ii]['locale_identifier'] . '], ';
+
+                    }
+
+                    $tmp_lang_report = $this->oCRNRSTN->strrtrim($tmp_lang_report, ', ');
+                    $tmp_lang_report .= '.';
+
+
+                }
+
+                //
+                // BYTES HASH REPORT
+                $tmp_total_bytes = 0;
+                foreach($this->oCRNRSTN->total_bytes_hashed_ARRAY as $algo => $bytes){
+
+                    $tmp_star_char = '&nbsp;';
+                    $tmp_total_bytes += $bytes;
+
+                    if($algo == $this->oCRNRSTN->system_hash_algo()){
+
+                        $tmp_star_char = '*';
+
+                    }
+
+                    if($tmp_min_version){
+
+                        $tmp_hashed_html .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
+                        $tmp_hashed_html .= '<div class="crnrstn_documentation_page_stats_hash_algo">' . $tmp_star_char . $algo . ':</div><div class="crnrstn_documentation_page_stats_hash_algo_bytes">'. $this->oCRNRSTN->format_bytes($bytes) . '</div>';
+                        $tmp_hashed_html .= '</div><div class="crnrstn_cb"></div>';
+
+                    }else{
+
+                        $tmp_hashed_html .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
+                        $tmp_hashed_html .= '   <div class="crnrstn_documentation_page_stats_hash_algo">' . $tmp_star_char . $algo . ':</div>
+                                                                    <div class="crnrstn_documentation_page_stats_hash_algo_bytes">'. $this->oCRNRSTN->format_bytes($bytes) . '</div>';
+                        $tmp_hashed_html .= '</div><div class="crnrstn_cb"></div>';
+
+                    }
+
+                }
+
+                $tmp_hashed_html_out .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
+                $tmp_hashed_html_out .= '<div class="crnrstn_documentation_page_stats_hash_total">Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>hashed: ' . $this->oCRNRSTN->format_bytes($tmp_total_bytes, 5) . '</div>';
+                $tmp_hashed_html_out .= '</div>';
+                $tmp_hashed_html_out .= $tmp_hashed_html;
+
+                $tmp_referer = '';
+                if($tmp_min_version){
+
+                    if(isset($_SERVER['HTTP_REFERER'])){
+
+                        $tmp_referer = 'Referer: ' . $_SERVER['HTTP_REFERER'] . '<br>';
+
+                    }
+
+                }else{
+
+                    if(isset($_SERVER['HTTP_REFERER'])){
+
+                        $tmp_referer = 'Referer: ' . $_SERVER['HTTP_REFERER'] . '<br>
+';
+
+                    }
+
+                }
+
+                if($tmp_min_version){
+
+                    $tmp_report = '<p style="margin-bottom:0;">Response returned in {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}.<br><br>CLIENT ::<br>Returned page size (in text data): {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}.<br>' . $tmp_referer . 'Device type: ' . $this->oCRNRSTN->device_type() . '<br>Accept-Language: ' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . '<br>' . $tmp_lang_report . '<br><br>SERVER ::<br>Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>stored: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->return_total_bytes_stored(), 5) . '</p>' . $tmp_hashed_html_out . '<p style="margin-top:0;">Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>encrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_encrypted, 5) . '<br>Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>decrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_decrypted, 5) . '<br>Server name: ' . $_SERVER['SERVER_NAME'] . '<br>Server address: ' . $_SERVER['SERVER_ADDR'] . '<br>SSL enabled: ' . $tmp_SSL_ENABLED . '<br>Request time: ' . $this->oCRNRSTN->start_time() . '</p><div class="crnrstn_cb_20"></div><div class="crnrstn_documentation_page_stats_dagger_key_shell"><div class="crnrstn_documentation_page_stats_dagger_key_dag">&dagger;</div><div class="crnrstn_documentation_page_stats_dagger_key_description"><p>A statistic reflecting server resource consumption and performance requirements related to returning the content for this request.</p></div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb_10"></div><div class="crnrstn_documentation_page_stats_dagger_key_shell"><div class="crnrstn_documentation_page_stats_dagger_key_dag">*</div><div class="crnrstn_documentation_page_stats_dagger_key_description"><p>System default hashing algorithm.</p></div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb_40"></div><p>[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</p>';
+                    $tmp_str_array[] = $tmp_report;
+                    $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SYSTEM REPORT OUTPUT -->';
+
+                }else{
+
+                    $tmp_report = '<p style="margin-bottom:0;">Response returned in {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}.<br><br>
+
+CLIENT ::<br>
+Returned page size (in text data): {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}.<br>
+' . $tmp_referer . 'Device type: ' . $this->oCRNRSTN->device_type() . '<br>
+Accept-Language: ' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . '<br>
+' . $tmp_lang_report . '<br><br>
+
+SERVER ::<br>
+Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>stored: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->return_total_bytes_stored(), 5) . '
+</p>
+' . $tmp_hashed_html_out . '
+<p style="margin-top:0;">
+Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>encrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_encrypted, 5) . '<br>
+Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>decrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_decrypted, 5) . '<br>
+Server name: ' . $_SERVER['SERVER_NAME'] . '<br>
+Server address: ' . $_SERVER['SERVER_ADDR'] . '<br>
+SSL enabled: ' . $tmp_SSL_ENABLED . '<br>
+Request time: ' . $this->oCRNRSTN->start_time() . '</p>
+
+<div class="crnrstn_cb_20"></div>
+<div class="crnrstn_documentation_page_stats_dagger_key_shell">
+    <div class="crnrstn_documentation_page_stats_dagger_key_dag">&dagger;</div>
+    <div class="crnrstn_documentation_page_stats_dagger_key_description"><p>A statistic reflecting server resource consumption and performance requirements related to returning the content for this request.</p></div>
+    <div class="crnrstn_cb"></div>
+    
+</div>
+<div class="crnrstn_cb_10"></div>
+<div class="crnrstn_documentation_page_stats_dagger_key_shell">
+    <div class="crnrstn_documentation_page_stats_dagger_key_dag">*</div>
+    <div class="crnrstn_documentation_page_stats_dagger_key_description"><p>System default hashing algorithm.</p></div>
+    <div class="crnrstn_cb"></div>
+    
+</div>
+<div class="crnrstn_cb_40"></div>
+<p>[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</p>
+';
+                    $tmp_str_array[] = $tmp_report;
+
+                    $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SYSTEM REPORT OUTPUT -->
+';
+
+                }
+
+            break;
+            case 'TEXT':
+            default:
+
+                // # # # # # # # # # # # # # # # # # # # # # # # # # #
+                $tmp_str_array[] = ' BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SYSTEM REPORT OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . '
+= = = = = = = = = = 
+RESPONSE RETURN RESOURCES CONSUMPTION
+';
+
+                $tmp_hashed_html = '';
+                $tmp_hashed_html_out = '';
+                $tmp_SSL_ENABLED = 'FALSE';
+                if($this->oCRNRSTN->is_SSL){
+
+                    $tmp_SSL_ENABLED = 'TRUE';
+
+                }
+
+                $tmp_lang_ARRAY = $this->oCRNRSTN->return_client_language_preference_profile();
+                $tmp_lang_cnt = count($tmp_lang_ARRAY);
+
+                $tmp_lang_report = '';
+                if($tmp_lang_cnt > 0){
+
+                    $tmp_lang_report = 'Accept-Language: ';
+
+                    //
+                    // BUILD LANGUAGE REPORT
+                    for($ii = 0; $ii < $tmp_lang_cnt; $ii++){
+
+                        $tmp_lang_report .= $tmp_lang_ARRAY[$ii]['native_nomination'] . '[' . $tmp_lang_ARRAY[$ii]['locale_identifier'] . '], ';
+
+                    }
+
+                    $tmp_lang_report = $this->oCRNRSTN->strrtrim($tmp_lang_report, ', ');
+                    $tmp_lang_report .= '.';
+
+
+                }
+
+                //
+                // BYTES HASH REPORT
+                $tmp_total_bytes = 0;
+                foreach($this->oCRNRSTN->total_bytes_hashed_ARRAY as $algo => $bytes){
+
+                    $tmp_star_char = '  ';
+                    $tmp_br_char = '
+';
+                    $tmp_total_bytes += $bytes;
+
+                    if($algo == $this->oCRNRSTN->system_hash_algo()){
+
+                        $tmp_star_char = '**';
+
+                    }
+
+                    $tmp_hashed_html .= '';
+                    $tmp_hashed_html .= ' ' . $tmp_star_char . $algo . ': ' . $this->oCRNRSTN->format_bytes($bytes);
+                    $tmp_hashed_html .= '
+';
+
+                }
+
+                $tmp_hashed_html = $this->oCRNRSTN->strrtrim($tmp_hashed_html, $tmp_br_char);
+
+                $tmp_hashed_html_out .= '';
+                $tmp_hashed_html_out .= 'Bytes *hashed: ' . $this->oCRNRSTN->format_bytes($tmp_total_bytes, 5);
+                $tmp_hashed_html_out .= '
+';
+
+                // REQUIRES OUTPUT BUFFERING AT THE START...WHICH FOR THIS ONE REPORT...IS NOT WORTH...JUST.
+                //$tmp_output = ob_get_contents();
+                //$tmp_output_size = strlen($tmp_output);
+
+                $tmp_hashed_html_out  .= $tmp_hashed_html;
+
+                $tmp_referer = '';
+                if(isset($_SERVER['HTTP_REFERER'])){
+
+                    $tmp_referer = 'Referer: ' . $_SERVER['HTTP_REFERER'] .'
+';
+
+                }
+
+                $tmp_report = 'Response returned in ' . $this->oCRNRSTN->wall_time() . ' seconds.
+    
+CLIENT ::
+' . $tmp_referer . 'Device type: ' . $this->oCRNRSTN->device_type() . '
+Accept-Language: ' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . '
+' . $tmp_lang_report . '
+
+SERVER ::
+Bytes *stored: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->return_total_bytes_stored(), 5) . '
+' . $tmp_hashed_html_out . '
+Bytes *encrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_encrypted, 5) . '
+Bytes *decrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_decrypted, 5) . '
+Server name: ' . $_SERVER['SERVER_NAME'] . '
+Server address: ' . $_SERVER['SERVER_ADDR'] . '
+SSL enabled: ' . $tmp_SSL_ENABLED . '
+Request time: ' . $this->oCRNRSTN->start_time() . '
+    
+* A statistic reflecting server resource consumption and performance 
+requirements related to returning the content for this request.
+
+** System default hashing algorithm.
+        
+[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]
+
+';
+                $tmp_str_array[] = $tmp_report;
+                $tmp_str_array[] = '= = = = = = = = = = 
+END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SYSTEM REPORT OUTPUT
+';
+
+            break;
+
+        }
 
         return $tmp_str_array;
 
@@ -767,19 +1155,29 @@ class crnrstn_environment {
 
     private function return_output_CRNRSTN_UI_DOCUMENTATION(){
 
-        //echo $oCRNRSTN->return_creative('SEARCH_MAGNIFY_GLASS');
-        // # # # # # # # # # # # # # # # # # # # # # # # # # #
-        $tmp_str_array[] = '
+        $tmp_str_array = array();
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->';
+            $tmp_str_array[] = '<div id="crnrstn_interact_ui_documentation_side_nav_src" class="crnrstn_hidden"></div><div id="crnrstn_interact_ui_documentation_content_src" class="crnrstn_hidden"></div><div id="crnrstn_interact_ui_search_src" class="crnrstn_hidden"></div>';
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DOCUMENTATION MODULE OUTPUT -->';
+
+        }else{
+
+            $tmp_str_array[] = '
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI DOCUMENTATION MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_documentation_side_nav_src" class="crnrstn_hidden"></div>
+            $tmp_str_array[] = '        <div id="crnrstn_interact_ui_documentation_side_nav_src" class="crnrstn_hidden"></div>
         <div id="crnrstn_interact_ui_documentation_content_src" class="crnrstn_hidden"></div>
         <div id="crnrstn_interact_ui_search_src" class="crnrstn_hidden"></div>
         ';
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DOCUMENTATION MODULE OUTPUT -->
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DOCUMENTATION MODULE OUTPUT -->
 ';
+
+        }
 
         return $tmp_str_array;
 
@@ -787,16 +1185,25 @@ class crnrstn_environment {
 
     private function return_output_CRNRSTN_UI_MESSENGER(){
 
-        // # # # # # # # # # # # # # # # # # # # # # # # # # #
-        $tmp_str_array[] = '
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: CMESSENGER MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->';
+            $tmp_str_array[] = '<div id="crnrstn_interact_ui_messenger_src" class="crnrstn_hidden"></div>';
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI MESSENGER MODULE OUTPUT -->';
+
+        }else{
+
+            $tmp_str_array[] = '
 <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: CMESSENGER MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_messenger_src" class="crnrstn_hidden"></div>
+            $tmp_str_array[] = '        <div id="crnrstn_interact_ui_messenger_src" class="crnrstn_hidden"></div>
         ';
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI MESSENGER MODULE OUTPUT -->
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI MESSENGER MODULE OUTPUT -->
 ';
+
+        }
 
         return $tmp_str_array;
 
@@ -804,16 +1211,25 @@ class crnrstn_environment {
 
     private function return_output_CRNRSTN_UI_SEARCH(){
 
-        // # # # # # # # # # # # # # # # # # # # # # # # # # #
-        $tmp_str_array[] = '
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SEARCH MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->';
+            $tmp_str_array[] = '<div id="crnrstn_interact_ui_messenger_src" class="crnrstn_hidden"></div>';
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SEARCH MODULE OUTPUT -->';
+
+        }else{
+
+
+            $tmp_str_array[] = '
 <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SEARCH MODULE OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
 ';
 
-        $tmp_str_array[] = '        <div id="crnrstn_interact_ui_messenger_src" class="crnrstn_hidden"></div>
+            $tmp_str_array[] = '        <div id="crnrstn_interact_ui_messenger_src" class="crnrstn_hidden"></div>
         ';
 
-        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SEARCH MODULE OUTPUT -->
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SEARCH MODULE OUTPUT -->
 ';
+        }
 
         return $tmp_str_array;
 

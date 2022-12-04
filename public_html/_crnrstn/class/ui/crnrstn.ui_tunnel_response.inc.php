@@ -176,15 +176,9 @@ class crnrstn_ui_tunnel_response_manager {
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = -1;
 
-        //
-        // CRNRSTN :: LIGHTSABER THEME
-        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_theme_profile_key'] = 'GLOBAL';
-        $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_theme_profile_key'] = 1;
-        $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_theme_profile_key'] = -1;
-
-        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_theme_profile_data'] = 'GLOBAL';
-        $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_theme_profile_data'] = 1;
-        $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_theme_profile_data'] = -1;
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_theme_profile'] = 'GLOBAL';
+        $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_theme_profile'] = 1;
+        $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_theme_profile'] = -1;
     }
 
     private function return_interact_ui_ux_profile($output_format = 'xml'){
@@ -248,21 +242,37 @@ class crnrstn_ui_tunnel_response_manager {
 
             if($tmp_xml_concat){
 
-                $tmp_node_open = '
-                <' . $module_nom . '_HASH>' . $tmp_module_hash . '</' . $module_nom . '_HASH>
-                <' . $module_nom . '><![CDATA[';
+                if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                $tmp_node_close = ']]></' . $module_nom . '>
-';
+                    $tmp_node_open = '<' . $module_nom . '_HASH>' . $tmp_module_hash . '</' . $module_nom . '_HASH><' . $module_nom . '><![CDATA[';
+                    $tmp_node_close = ']]></' . $module_nom . '>';
 
-                if($module_nom == 'crnrstn_interact_ui_theme_profile_key' || $module_nom == 'crnrstn_interact_ui_theme_profile_data'){
+                    if($module_nom == 'crnrstn_interact_ui_theme_profile'){
+
+                        $tmp_node_open = '<' . $module_nom . '_HASH>' . $tmp_module_hash . '</' . $module_nom . '_HASH><' . $module_nom . '>';
+                        $tmp_node_close = '</' . $module_nom . '>';
+
+                    }
+
+                }else{
 
                     $tmp_node_open = '
                 <' . $module_nom . '_HASH>' . $tmp_module_hash . '</' . $module_nom . '_HASH>
+                <' . $module_nom . '><![CDATA[';
+
+                    $tmp_node_close = ']]></' . $module_nom . '>
+';
+
+                    if($module_nom == 'crnrstn_interact_ui_theme_profile'){
+
+                        $tmp_node_open = '
+                <' . $module_nom . '_HASH>' . $tmp_module_hash . '</' . $module_nom . '_HASH>
                 <' . $module_nom . '>';
 
-                    $tmp_node_close = '</' . $module_nom . '>
+                        $tmp_node_close = '</' . $module_nom . '>
 ';
+
+                    }
 
                 }
 
@@ -270,14 +280,9 @@ class crnrstn_ui_tunnel_response_manager {
 
                 //error_log(__LINE__ . ' ui tunnel $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . print_r($tmp_module_ARRAY,true) . '].');
                 switch($module_nom){
-                    case 'crnrstn_interact_ui_theme_profile_data':
+                    case 'crnrstn_interact_ui_theme_profile':
 
                         $tmp_out_str .= $this->oCRNRSTN->output_ssdtla_data_object('theme_profile_data');  //php
-
-                    break;
-                    case 'crnrstn_interact_ui_theme_profile_key':
-
-                        $tmp_out_str .= $this->oCRNRSTN->output_ssdtla_data_object('theme_profile_key');  //php
 
                     break;
                     case 'crnrstn_interact_ui_documentation_content_src':
@@ -333,6 +338,10 @@ class crnrstn_ui_tunnel_response_manager {
     }
 
     public function return_interact_ui_request_response($output_mode = 'xml', $data_ARRAY = NULL){
+
+        //
+        // LOAD INTERACT UI THEMES
+        //$this->oCRNRSTN->load_theme_style_profiles();
 
         //
         // NOT SURE IF THIS WILL STILL BE NECESSARY (E.G. DO WE NEED HTTP RESPONSE
@@ -1343,13 +1352,25 @@ class crnrstn_ui_tunnel_response_manager {
             case 'xml':
             default:
 
-                for($i = 0; $i < $tmp_lang_pref_cnt; $i++){
+                if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                    $output_string .= '<language_preference>
+                    for($i = 0; $i < $tmp_lang_pref_cnt; $i++){
+
+                        $output_string .= '<language_preference><request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_serial($i) . '</request_id><request_referer>' . $_SERVER['HTTP_REFERER'] . '</request_referer>';
+                        $output_string .= '<locale_identifier>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i) . '</locale_identifier><region_variant>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i) . '</region_variant><factor_weighting>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i) . '</factor_weighting><iso_language_nomination>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i) . '</iso_language_nomination><native_nomination><![CDATA[' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i) . ']]></native_nomination><iso_639-1_2002>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i) . '</iso_639-1_2002><iso_639-2_1998>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i) . '</iso_639-2_1998><iso_639-3_2007>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i) . '</iso_639-3_2007>';
+                        $output_string .= '</language_preference>';
+
+                    }
+
+                }else{
+
+                    for($i = 0; $i < $tmp_lang_pref_cnt; $i++){
+
+                        $output_string .= '<language_preference>
                         <request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_serial($i) . '</request_id>
                         <request_referer>' . $_SERVER['HTTP_REFERER'] . '</request_referer>';
 
-                    $output_string .= '
+                        $output_string .= '
                         <locale_identifier>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i) . '</locale_identifier>
                         <region_variant>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i) . '</region_variant>
                         <factor_weighting>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i) . '</factor_weighting>
@@ -1359,16 +1380,18 @@ class crnrstn_ui_tunnel_response_manager {
                         <iso_639-2_1998>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i) . '</iso_639-2_1998>
                         <iso_639-3_2007>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i) . '</iso_639-3_2007>';
 
-                    if($i < $tmp_lang_pref_cnt - 1){
+                        if($i < $tmp_lang_pref_cnt - 1){
 
-                        $output_string .= '
+                            $output_string .= '
                     </language_preference>
                     ';
 
-                    }else{
+                        }else{
 
-                        $output_string .= '
+                            $output_string .= '
                     </language_preference>';
+
+                        }
 
                     }
 
@@ -1837,11 +1860,19 @@ class crnrstn_ui_tunnel_response_manager {
         switch($config_profile_key){
             case 'CANVAS_DIMENSIONS_AND_POSITIONS':
 
-                $tmp_content_str = '<mini_canvas left="84%" width="118" height="179" checksum="' . $this->oCRNRSTN->hash('84%118179') . '"></mini_canvas>
+                if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                    $tmp_content_str = '<mini_canvas left="84%" width="118" height="179" checksum="' . $this->oCRNRSTN->hash('84%118179') . '"></mini_canvas><signin_canvas width="260" height="305" checksum="' . $this->oCRNRSTN->hash('260305') . '"></signin_canvas><main_canvas width="1080" height="760" checksum="' . $this->oCRNRSTN->hash('1080760') . '"></main_canvas><eula_canvas width="700" height="400" checksum="' . $this->oCRNRSTN->hash('700400') . '"></eula_canvas><mit_license_canvas width="500" height="400" checksum="' . $this->oCRNRSTN->hash('500400') . '"></mit_license_canvas>';
+
+                }else{
+
+                    $tmp_content_str = '<mini_canvas left="84%" width="118" height="179" checksum="' . $this->oCRNRSTN->hash('84%118179') . '"></mini_canvas>
                 <signin_canvas width="260" height="305" checksum="' . $this->oCRNRSTN->hash('260305') . '"></signin_canvas>
                 <main_canvas width="1080" height="760" checksum="' . $this->oCRNRSTN->hash('1080760') . '"></main_canvas>
                 <eula_canvas width="700" height="400" checksum="' . $this->oCRNRSTN->hash('700400') . '"></eula_canvas>
                 <mit_license_canvas width="500" height="400" checksum="' . $this->oCRNRSTN->hash('500400') . '"></mit_license_canvas>';
+
+                }
 
                 return $tmp_content_str;
 
@@ -1920,7 +1951,13 @@ class crnrstn_ui_tunnel_response_manager {
 
                 */
 
-                return '<is_enabled>' . $this->oCRNRSTN->tidy_boolean($this->oCRNRSTN->get_resource('CRNRSTN_UI_INTERACT_ENABLED'), 'string') . '</is_enabled>
+                if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                    return '<is_enabled>' . $this->oCRNRSTN->tidy_boolean($this->oCRNRSTN->get_resource('CRNRSTN_UI_INTERACT_ENABLED'), 'string') . '</is_enabled><is_visible>' . $this->oCRNRSTN->tidy_boolean($this->oCRNRSTN->get_resource('CRNRSTN_UI_INTERACT_ISVISIBLE'), 'string') . '</is_visible><theme_configuration><canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" hash="' . $this->oCRNRSTN->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas><mini_canvas left="84%" width="118" height="179" hash="' . $this->oCRNRSTN->hash('118179') . '"></mini_canvas><signin_canvas width="260" height="305" hash="' . $this->oCRNRSTN->hash('260305') . '"></signin_canvas><main_canvas width="1080" height="760" hash="' . $this->oCRNRSTN->hash('1080760') . '"></main_canvas><eula_canvas width="700" height="400" hash="' . $this->oCRNRSTN->hash('700400') . '"></eula_canvas><mit_license_canvas width="500" height="400" hash="' . $this->oCRNRSTN->hash('500400') . '"></mit_license_canvas></theme_configuration><navigation><primary><nav_link dom_elem_id="crnrstn_interact_ui_primary_nav_img_shell_menu_glass_case" dom_elem_class="crnrstn_interact_ui_primary_nav_img_shell">menu</nav_link><nav_link dom_elem_id="crnrstn_interact_ui_primary_nav_img_shell_close_x_glass_case" dom_elem_class="crnrstn_interact_ui_primary_nav_img_shell">close_x</nav_link><nav_link dom_elem_id="crnrstn_interact_ui_primary_nav_img_shell_fs_expand_glass_case" dom_elem_class="crnrstn_interact_ui_primary_nav_img_shell">fs_expand</nav_link><nav_link dom_elem_id="crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case" dom_elem_class="crnrstn_interact_ui_primary_nav_img_shell">minimize</nav_link></primary></navigation>';
+
+                }else{
+
+                    return '<is_enabled>' . $this->oCRNRSTN->tidy_boolean($this->oCRNRSTN->get_resource('CRNRSTN_UI_INTERACT_ENABLED'), 'string') . '</is_enabled>
                 <is_visible>' . $this->oCRNRSTN->tidy_boolean($this->oCRNRSTN->get_resource('CRNRSTN_UI_INTERACT_ISVISIBLE'), 'string') . '</is_visible>
                 <theme_configuration>
                     <canvas z_index="60" window_edge_padding="20" outline_border_edge_line_width="2" outline_border_edge_line_style="solid" outline_border_edge_line_color="#767676" border_width="10" border_color="#FFF" border_opacity="0.3" background_color="#FFF" background_opacity="1" inner_content_edge_padding="25" hash="' . $this->oCRNRSTN->hash('60202solid#76767610#FFF0.3#FFF125') . '"></canvas>
@@ -1938,6 +1975,8 @@ class crnrstn_ui_tunnel_response_manager {
                         <nav_link dom_elem_id="crnrstn_interact_ui_primary_nav_img_shell_minimize_glass_case" dom_elem_class="crnrstn_interact_ui_primary_nav_img_shell">minimize</nav_link>
                     </primary>
                 </navigation>';
+
+                }
 
             break;
 
@@ -2229,13 +2268,21 @@ class crnrstn_ui_tunnel_response_manager {
 
         }
 
-        $tmp_output = '<status_report>
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_output = '<status_report><target_element>' . $tmp_target_element . '</target_element><status_code>' . $tmp_status_code . '</status_code><status_message>' . $tmp_status_message . '</status_message><is_error_code>' . $tmp_is_error_code . '</is_error_code><is_error_message>' . $tmp_is_error_message . '</is_error_message></status_report>';
+
+        }else{
+
+            $tmp_output = '<status_report>
                     <target_element>' . $tmp_target_element . '</target_element>
                     <status_code>' . $tmp_status_code . '</status_code>
                     <status_message>' . $tmp_status_message . '</status_message>
                     <is_error_code>' . $tmp_is_error_code . '</is_error_code>
                     <is_error_message>' . $tmp_is_error_message . '</is_error_message>
                 </status_report>';
+
+        }
 
         return $tmp_output;
 
@@ -2334,7 +2381,15 @@ class crnrstn_ui_tunnel_response_manager {
 
         $tmp_status_report = $this->return_sdtl_status_report();
 
-        $tmp_xml_response = '<?xml version="1.0" encoding="iso-8859-1"?>
+        $tmp_xml_response_ARRAY = array();
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_xml_response_ARRAY[] = '<?xml version="1.0" encoding="iso-8859-1"?><crnrstn_client_response><client_response timestamp="' . $this->oCRNRSTN->return_micro_time() . '"><data_signature><request_serial><![CDATA[' . $tmp_request_serialization_key . ']]></request_serial><request_hash><![CDATA[' . $tmp_request_serialization_hash . ']]></request_hash><jesus_christ_is_lord source="Philippians 2:9-11">TRUE</jesus_christ_is_lord><satan_is_a_liar source="Genesis 3:4">TRUE</satan_is_a_liar></data_signature>';
+
+        }else{
+
+            $tmp_xml_response_ARRAY[] = '<?xml version="1.0" encoding="iso-8859-1"?>
 <crnrstn_client_response>
     <client_response timestamp="' . $this->oCRNRSTN->return_micro_time() . '">
         <data_signature>
@@ -2342,7 +2397,17 @@ class crnrstn_ui_tunnel_response_manager {
             <request_hash><![CDATA[' . $tmp_request_serialization_hash . ']]></request_hash>
             <jesus_christ_is_lord source="Philippians 2:9-11">TRUE</jesus_christ_is_lord>
             <satan_is_a_liar source="Genesis 3:4">TRUE</satan_is_a_liar>
-        </data_signature>
+        </data_signature>';
+
+        }
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_xml_response_ARRAY[] = '<state_synchronization_data><serial_id><![CDATA[' . $tmp_serial_id . ']]></serial_id><serial>' . $tmp_serial . '</serial><request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $tmp_request_id . '</request_id><server_runtime>' . $this->oCRNRSTN->pretty_elapsed_time() . '</server_runtime><request_authorization_key>' . $this->oCRNRSTN->generate_new_key(64) . '</request_authorization_key><request_locale_identifier><![CDATA[' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . ']]></request_locale_identifier><request_referer>' . $_SERVER['HTTP_REFERER'] . '</request_referer><client_id>' . $tmp_client_id . '</client_id><client_auth_key>' . $tmp_client_auth_key. '</client_auth_key><server_name>' . $_SERVER['SERVER_NAME'] . '</server_name><server_ip_address>' . $_SERVER['SERVER_ADDR'] . '</server_ip_address><client_ip_address>' . $this->oCRNRSTN->return_client_ip() . '</client_ip_address><response_status>' . $tmp_status_report . '</response_status><client_profile><global_privacy_control><sec_gpc>null</sec_gpc></global_privacy_control><device_type>' . $this->oCRNRSTN->device_type_bit() . '|' . $this->oCRNRSTN->device_type() . '</device_type><language>' . $this->ssdtl_response_http_language_preference('xml') . '</language></client_profile>';
+
+        }else{
+
+            $tmp_xml_response_ARRAY[] = '
         <state_synchronization_data>
             <serial_id><![CDATA[' . $tmp_serial_id . ']]></serial_id>
             <serial>' . $tmp_serial . '</serial>
@@ -2367,9 +2432,29 @@ class crnrstn_ui_tunnel_response_manager {
                 <language>
                     ' . $this->ssdtl_response_http_language_preference('xml') . '
                 </language>
-            </client_profile>
+            </client_profile>';
+
+        }
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_xml_response_ARRAY[] = '<crnrstn_interact_ui_profile>' . $tmp_CRNRSTN_UI_INTERACT . '</crnrstn_interact_ui_profile>';
+
+        }else{
+
+            $tmp_xml_response_ARRAY[] = '
             <crnrstn_interact_ui_profile>' . $tmp_CRNRSTN_UI_INTERACT . '
-            </crnrstn_interact_ui_profile>
+            </crnrstn_interact_ui_profile>';
+
+        }
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_xml_response_ARRAY[] = '<bassdrive><json_log_id url="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_proxy/bassdrive/?log_id=' . $tmp_BASSDRIVE_LOG_ID . '" timestamp="' . $tmp_DATEMODIFIED . '">' . $tmp_BASSDRIVE_LOG_ID . '</json_log_id><web_player_url>http://www.bassdrive.com/pop-up/</web_player_url><is_live ttl="45">' . $tmp_show_title_ARRAY['is_live'] . '</is_live><the_situation_with_bassdrive ttl="30"><likely_status><![CDATA[' . $tmp_bassdrive_situation_ARRAY[0] . ']]></likely_status><likely_status><![CDATA[' . $tmp_bassdrive_situation_ARRAY[1] . ']]></likely_status><likely_status><![CDATA[' . $tmp_bassdrive_situation_ARRAY[2] . ']]></likely_status></the_situation_with_bassdrive><stream_key>' . $tmp_STREAM_KEY . '</stream_key>' . $tmp_title . $tmp_locale_city_state . $tmp_locale_nation . '<title_html><![CDATA[' . $tmp_SSDTL_TITLE_CONTENT . ']]></title_html><locale_html><![CDATA[' . $tmp_SSDTL_COLORS_CONTENT . ']]></locale_html><social_html><![CDATA[' . $tmp_SSDTL_SOCIAL_CONTENT . ']]></social_html><stream_relays ttl="45">' . $tmp_STREAM_RELAY_ARRAY['RELAY'] . '</stream_relays><social_media_connects ttl="45">' . $tmp_social_endpoint . '</social_media_connects><performance ttl="45">' . $tmp_STREAM_RELAY_ARRAY['RELAY_CURRENT_STATS'] . $tmp_STREAM_RELAY_RECENT_ARRAY['RELAY_RECENT_STATS'] . $tmp_STREAM_RELAY_HISTORY_ARRAY['RELAY_HISTORICAL_STATS'] . '</performance></bassdrive>';
+
+        }else{
+
+            $tmp_xml_response_ARRAY[] = '
             <bassdrive>
                 <json_log_id url="' . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP') . $this->oCRNRSTN->get_resource('ROOT_PATH_CLIENT_HTTP_DIR') . '_proxy/bassdrive/?log_id=' . $tmp_BASSDRIVE_LOG_ID . '" timestamp="' . $tmp_DATEMODIFIED . '">' . $tmp_BASSDRIVE_LOG_ID . '</json_log_id>
                 <web_player_url>http://www.bassdrive.com/pop-up/</web_player_url>
@@ -2403,7 +2488,17 @@ class crnrstn_ui_tunnel_response_manager {
                     ' . $tmp_STREAM_RELAY_RECENT_ARRAY['RELAY_RECENT_STATS'] . '
                     ' . $tmp_STREAM_RELAY_HISTORY_ARRAY['RELAY_HISTORICAL_STATS'] . '
                 </performance>
-            </bassdrive>
+            </bassdrive>';
+
+        }
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_xml_response_ARRAY[] = $tmp_jony5_lifestyle_images . '</state_synchronization_data><soap_data_transport_layer_fih_packet><![CDATA[' . $tmp_SOAP_DATA_TUNNEL_PACKET . ']]></soap_data_transport_layer_fih_packet><runtime>' . $this->oCRNRSTN->wall_time() . ' seconds</runtime></client_response></crnrstn_client_response>';
+
+        }else{
+
+            $tmp_xml_response_ARRAY[] = '
             ' . $tmp_jony5_lifestyle_images . '
         </state_synchronization_data>
         <soap_data_transport_layer_fih_packet><![CDATA[
@@ -2413,6 +2508,14 @@ class crnrstn_ui_tunnel_response_manager {
     </client_response>
 </crnrstn_client_response>';
 
+        }
+
+        $tmp_xml_response = '';
+        foreach($tmp_xml_response_ARRAY as $index => $str_data){
+
+            $tmp_xml_response .= $str_data;
+
+        }
 
         $tmp_date_expire = date('D, M j Y G:i:s T');
         //$tmp_date_lastmod = date('D, M j Y G:i:s T', strtotime('- 420 seconds'));
@@ -2691,7 +2794,13 @@ class crnrstn_ui_tunnel_response_manager {
                 $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BANDWIDTH', $i);
                 $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_RECENT_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT', $i);
 
-                $tmp_output_relay_recent_stats .= '
+                if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                    $tmp_output_relay_recent_stats .= '<connection_stat timestamp="' . $tmp_RELAY_TIMESTAMP . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '"><stream_stat type="total"><connections capacity="' . $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] . '</bandwidth></stream_stat><stream_stat type="totalunique"><connections capacity="' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] . '">' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] . '</bandwidth></stream_stat><stream_stat type="premium"><connections capacity="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] . '</bitrate></stream_stat><stream_stat type="midgrade"><connections capacity="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] . '</bitrate></stream_stat><stream_stat type="aacplus"><connections capacity="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] . '</bitrate></stream_stat><stream_stat type="random"><connections capacity="' . $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] . '</bitrate></stream_stat></connection_stat>';
+
+                }else{
+
+                    $tmp_output_relay_recent_stats .= '
                 <connection_stat timestamp="' . $tmp_RELAY_TIMESTAMP . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '">
                     <stream_stat type="total">
                         <connections capacity="' . $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] . '</connections>
@@ -2722,6 +2831,8 @@ class crnrstn_ui_tunnel_response_manager {
                         <bitrate format="' . $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] . '</bitrate>
                     </stream_stat>
                 </connection_stat>';
+
+                }
 
             }
 
@@ -2794,7 +2905,13 @@ class crnrstn_ui_tunnel_response_manager {
                 $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BANDWIDTH', $i);
                 $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_HISTORICAL_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT', $i);
 
-                $tmp_output_relay_historical_stats .= '<connection_stat timestamp="' . $tmp_RELAY_TIMESTAMP . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '">
+                if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                    $tmp_output_relay_historical_stats .= '<connection_stat timestamp="' . $tmp_RELAY_TIMESTAMP . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '"><stream_stat type="total"><connections capacity="' . $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] . '</bandwidth></stream_stat><stream_stat type="totalunique"><connections capacity="' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] . '">' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] . '</bandwidth></stream_stat><stream_stat type="premium"><connections capacity="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] . '</bitrate></stream_stat><stream_stat type="midgrade"><connections capacity="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] . '</bitrate></stream_stat><stream_stat type="aacplus"><connections capacity="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] . '</bitrate></stream_stat><stream_stat type="random"><connections capacity="' . $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] . '</bitrate></stream_stat></connection_stat>';
+
+                }else{
+
+                    $tmp_output_relay_historical_stats .= '<connection_stat timestamp="' . $tmp_RELAY_TIMESTAMP . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '">
                     <stream_stat type="total">
                         <connections capacity="' . $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] . '</connections>
                         <bandwidth format="' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] . '</bandwidth>
@@ -2825,6 +2942,8 @@ class crnrstn_ui_tunnel_response_manager {
                     </stream_stat>
                 </connection_stat>';
 
+                }
+
             }
 
         }
@@ -2853,22 +2972,38 @@ class crnrstn_ui_tunnel_response_manager {
             $tmp_LISTENER_COUNT_PERCENTAGE = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'LISTENER_COUNT_PERCENTAGE', $i);
             //$tmp_IS_REPLAY = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'IS_REPLAY', $i);
 
-            $tmp_output_relay .= '<stream url="' . $tmp_STREAM_URL . '" url_ios="' . $tmp_streamURLios . '">
+            if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                $tmp_output_relay .= '<stream url="' . $tmp_STREAM_URL . '" url_ios="' . $tmp_streamURLios . '"><bitrate>' . $tmp_BITRATE . '</bitrate><audio_format>' . $tmp_AUDIO_FORMAT . '</audio_format><listener_count>' . $tmp_LISTENER_COUNT . '</listener_count><listener_count_percentage>' . $tmp_LISTENER_COUNT_PERCENTAGE . '</listener_count_percentage>';
+
+            }else{
+
+                $tmp_output_relay .= '<stream url="' . $tmp_STREAM_URL . '" url_ios="' . $tmp_streamURLios . '">
                         <bitrate>' . $tmp_BITRATE . '</bitrate>
                         <audio_format>' . $tmp_AUDIO_FORMAT . '</audio_format>
                         <listener_count>' . $tmp_LISTENER_COUNT . '</listener_count>
                         <listener_count_percentage>' . $tmp_LISTENER_COUNT_PERCENTAGE . '</listener_count_percentage>';
 
-            if($i < $tmp_RELAY_CURRENT_DATA-1){
+            }
 
-                $tmp_output_relay .= '
-                    </stream>
-                    ';
+            if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                $tmp_output_relay .= '</stream>';
 
             }else{
 
-                $tmp_output_relay .= '
+                if($i < $tmp_RELAY_CURRENT_DATA-1){
+
+                    $tmp_output_relay .= '
+                    </stream>
+                    ';
+
+                }else{
+
+                    $tmp_output_relay .= '
                     </stream>';
+
+                }
 
             }
 
@@ -2922,7 +3057,17 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BANDWIDTH');
         $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] = $this->oCRNRSTN->return_database_value('RELAY_CURRENT_DATA', 'STATS_RANDOM_BANDWIDTH_FORMAT');
 
-        $tmp_output_relay_current_stats = '             <connection_stat timestamp="' . $tmp_DATEMODIFIED . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '">
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_output_relay_current_stats = '             <connection_stat timestamp="' . $tmp_DATEMODIFIED . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '"><stream_stat type="total"><connections capacity="' . $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] . '</bandwidth></stream_stat><stream_stat type="totalunique"><connections capacity="' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CAPACITY'] . '">' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_TOTAL_UNIQUE['STATS_TOTAL_UNIQUE_BANDWIDTH'] . '</bandwidth></stream_stat><stream_stat type="premium"><connections capacity="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_CAPACITY'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE_FORMAT'] . '">' . $tmp_STATS_PREMIUM['STATS_PREMIUM_BITRATE'] . '</bitrate></stream_stat><stream_stat type="midgrade"><connections capacity="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CAPACITY'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE_FORMAT'] . '">' . $tmp_STATS_MIDGRADE['STATS_MIDGRADE_BITRATE'] . '</bitrate></stream_stat><stream_stat type="aacplus"><connections capacity="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CAPACITY'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE_FORMAT'] . '">' . $tmp_STATS_AACPLUS['STATS_AAC_PLUS_BITRATE'] . '</bitrate></stream_stat><stream_stat type="random"><connections capacity="' . $tmp_STATS_RANDOM['STATS_RANDOM_CAPACITY'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_CONNECTIONS'] . '</connections><bandwidth format="' . $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_BANDWIDTH'] . '</bandwidth><bitrate format="' . $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE_FORMAT'] . '">' . $tmp_STATS_RANDOM['STATS_RANDOM_BITRATE'] . '</bitrate></stream_stat></connection_stat>';
+
+            $tmp_output_ARRAY = array();
+            $tmp_output_ARRAY['RELAY'] = $tmp_output_relay;
+            $tmp_output_ARRAY['RELAY_CURRENT_STATS'] = '<current_statistics>' . $tmp_output_relay_current_stats . '</current_statistics>';
+
+        }else{
+
+            $tmp_output_relay_current_stats = '             <connection_stat timestamp="' . $tmp_DATEMODIFIED . '" json_log_id="' . $tmp_BASSDRIVE_LOG_ID . '">
                             <stream_stat type="total">
                                 <connections capacity="' . $tmp_STATS_TOTAL['STATS_TOTAL_CAPACITY'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_CONNECTIONS'] . '</connections>
                                 <bandwidth format="' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH_FORMAT'] . '">' . $tmp_STATS_TOTAL['STATS_TOTAL_BANDWIDTH'] . '</bandwidth>
@@ -2953,12 +3098,14 @@ class crnrstn_ui_tunnel_response_manager {
                             </stream_stat>
                         </connection_stat>';
 
-        $tmp_output_ARRAY = array();
+            $tmp_output_ARRAY = array();
 
-        $tmp_output_ARRAY['RELAY'] = $tmp_output_relay;
-        $tmp_output_ARRAY['RELAY_CURRENT_STATS'] = '<current_statistics>
+            $tmp_output_ARRAY['RELAY'] = $tmp_output_relay;
+            $tmp_output_ARRAY['RELAY_CURRENT_STATS'] = '<current_statistics>
             ' . $tmp_output_relay_current_stats . '
                     </current_statistics>';
+
+        }
 
         return $tmp_output_ARRAY;
 
@@ -2981,77 +3128,77 @@ class crnrstn_ui_tunnel_response_manager {
 
                 $social_channel = ' for the ' . $show_title . ' SoundCloud playlist';
 
-                break;
+            break;
             case 'stream_facebook':
 
                 $social_channel = ' for the ' . $show_title . ' Facebook page';
 
-                break;
+            break;
             case 'stream_instagram':
 
                 $social_channel = ' for the ' . $show_title . ' Instagram feed';
 
-                break;
+            break;
             case 'stream_twitter':
 
                 $social_channel = ' for the ' . $show_title . ' Twitter feed';
 
-                break;
+            break;
             case 'stream_mixcloud':
 
                 $social_channel = ' for the ' . $show_title . ' Mixcloud community';
 
-                break;
+            break;
             case 'stream_discogs':
 
                 $social_channel = ' for the ' . $show_title . ' Discogs music selection';
 
-                break;
+            break;
             case 'stream_beatport':
 
                 $social_channel = ' for the ' . $show_title . ' Beatport featured tracks';
 
-                break;
+            break;
             case 'stream_bandcamp':
 
                 $social_channel = ' for the ' . $show_title . ' Bandcamp music page';
 
-                break;
+            break;
             case 'stream_spotify':
 
                 $social_channel = ' for the ' . $show_title . ' Spotify community';
 
-                break;
+            break;
             case 'stream_rolldabeats':
 
                 $social_channel = ' for the ' . $show_title . ' RollDaBeats catalog';
 
-                break;
+            break;
             case 'stream_youtube':
 
                 $social_channel = ' for the ' . $show_title . ' YouTube channel';
 
-                break;
+            break;
             case 'stream_www':
 
                 $social_channel = ' for the website of ' . $show_title;
 
-                break;
+            break;
             case 'stream_profile':
 
                 $social_channel = ' for the ' . $show_title . ' Bassdrive show profile';
 
-                break;
+            break;
             case 'stream_archives':
 
                 $social_channel = ' for the archives of ' . $show_title;
 
-                break;
+            break;
             case 'stream_paypal':
 
                 $social_channel = ' to make a donation to Bassdrive';
 
-                break;
+            break;
 
         }
 
@@ -3087,7 +3234,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                 }
 
-                break;
+            break;
             case 'stream_json':
 
                 if($channel == 'stream_json' && self::$social_lnk_cnt == 8){
@@ -3116,7 +3263,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                 }
 
-                break;
+            break;
             case 'stream_history':
 
                 //
@@ -3139,12 +3286,12 @@ class crnrstn_ui_tunnel_response_manager {
 
                 }
 
-                break;
+            break;
             default:
 
                 return '';
 
-                break;
+            break;
 
         }
 
@@ -3756,25 +3903,25 @@ class crnrstn_ui_tunnel_response_manager {
                 //error_log(__LINE__ . ' ui tunnel $element_type=[' . $element_type . ']');
                 return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'TITLE_CONTENT');
 
-                break;
+            break;
             case 'stream_social':
 
                 //error_log(__LINE__ . ' ui tunnel $element_type=[' . $element_type . ']');
                 return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'SOCIAL_CONTENT');
 
-                break;
+            break;
             case 'stream_colors':
 
                 //error_log(__LINE__ . ' ui tunnel $element_type=[' . $element_type . ']');
                 return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'COLORS_CONTENT');
 
-                break;
+            break;
             case 'stream_stats':
 
                 //error_log(__LINE__ . ' ui tunnel $element_type=[' . $element_type . ']');
                 return $this->oCRNRSTN->return_database_value('CRNRSTN_CACHE_CHECKSUM_TTL_DATA', 'STATS_CONTENT');
 
-                break;
+            break;
 
         }
 

@@ -2056,159 +2056,161 @@ class crnrstn_content_generator {
 
                                 */
 
-                                switch($val) {
-                                    case 'STANDARD_REPORT':
-
-                                        $tmp_hashed_html = '';
-                                        $tmp_hashed_html_out = '';
-                                        $tmp_SSL_ENABLED = 'FALSE';
-                                        if($this->oCRNRSTN->is_SSL){
-
-                                            $tmp_SSL_ENABLED = 'TRUE';
-
-                                        }
-
-                                        /*
-                                        $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
-                                        $tmp_ARRAY[$i]['region_variant>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i);
-                                        $tmp_ARRAY[$i]['factor_weighting>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i);
-                                        $tmp_ARRAY[$i]['iso_language_nomination>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i);
-                                        $tmp_ARRAY[$i]['native_nomination>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i);
-                                        $tmp_ARRAY[$i]['iso_639-1_2002>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i);
-                                        $tmp_ARRAY[$i]['iso_639-2_1998>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i);
-                                        $tmp_ARRAY[$i]['iso_639-3_2007>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i);
-                                        $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
-
-                                        <language>
-                                            <language_preference>
-                                                <request_id timestamp="2022-11-11 14:21:01.974633">xzPlvuvDL2</request_id>
-                                                <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
-                                                <locale_identifier>en</locale_identifier>
-                                                <region_variant>US</region_variant>
-                                                <factor_weighting>0.9</factor_weighting>
-                                                <iso_language_nomination>English</iso_language_nomination>
-                                                <native_nomination><![CDATA[English]]></native_nomination>
-                                                <iso_639-1_2002>en</iso_639-1_2002>
-                                                <iso_639-2_1998>eng</iso_639-2_1998>
-                                                <iso_639-3_2007>eng</iso_639-3_2007>
-                                            </language_preference>
-                                            <language_preference>
-                                                <request_id timestamp="2022-11-11 14:21:01.974841">0McMrF9QOg</request_id>
-                                                <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
-                                                <locale_identifier>zh</locale_identifier>
-                                                <region_variant>CN</region_variant>
-                                                <factor_weighting>0.8</factor_weighting>
-                                                <iso_language_nomination>Chinese</iso_language_nomination>
-                                                <native_nomination><![CDATA[中文 (Zhōngwén), 汉语, 漢語]]></native_nomination>
-                                                <iso_639-1_2002>zh</iso_639-1_2002>
-                                                <iso_639-2_1998>zho</iso_639-2_1998>
-                                                <iso_639-3_2007>zho</iso_639-3_2007>
-                                            </language_preference>
-                                            <language_preference>
-                                                <request_id timestamp="2022-11-11 14:21:01.974927">3oU3N6Eyiy</request_id>
-                                                <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
-                                                <locale_identifier>zh</locale_identifier>
-                                                <region_variant></region_variant>
-                                                <factor_weighting>0.7</factor_weighting>
-                                                <iso_language_nomination>Chinese</iso_language_nomination>
-                                                <native_nomination><![CDATA[中文 (Zhōngwén), 汉语, 漢語]]></native_nomination>
-                                                <iso_639-1_2002>zh</iso_639-1_2002>
-                                                <iso_639-2_1998>zho</iso_639-2_1998>
-                                                <iso_639-3_2007>zho</iso_639-3_2007>
-                                            </language_preference>
-                                        </language>
-
-                                        */
-
-                                        $tmp_lang_ARRAY = $this->oCRNRSTN->return_client_language_preference_profile();
-                                        $tmp_lang_cnt = count($tmp_lang_ARRAY);
-
-                                        $tmp_lang_report = 'Accept-Language: ';
-//                                        if($tmp_lang_cnt > 0){
+//                                switch($val) {
+//                                    case 'STANDARD_REPORT':
 //
-//                                            $tmp_lang_report = 'Accept-Language: ';
+//                                        $tmp_hashed_html = '';
+//                                        $tmp_hashed_html_out = '';
+//                                        $tmp_SSL_ENABLED = 'FALSE';
+//                                        if($this->oCRNRSTN->is_SSL){
+//
+//                                            $tmp_SSL_ENABLED = 'TRUE';
 //
 //                                        }
+//
+//                                        /*
+//                                        $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+//                                        $tmp_ARRAY[$i]['region_variant>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i);
+//                                        $tmp_ARRAY[$i]['factor_weighting>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i);
+//                                        $tmp_ARRAY[$i]['iso_language_nomination>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i);
+//                                        $tmp_ARRAY[$i]['native_nomination>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i);
+//                                        $tmp_ARRAY[$i]['iso_639-1_2002>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i);
+//                                        $tmp_ARRAY[$i]['iso_639-2_1998>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i);
+//                                        $tmp_ARRAY[$i]['iso_639-3_2007>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i);
+//                                        $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
+//
+//                                        <language>
+//                                            <language_preference>
+//                                                <request_id timestamp="2022-11-11 14:21:01.974633">xzPlvuvDL2</request_id>
+//                                                <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
+//                                                <locale_identifier>en</locale_identifier>
+//                                                <region_variant>US</region_variant>
+//                                                <factor_weighting>0.9</factor_weighting>
+//                                                <iso_language_nomination>English</iso_language_nomination>
+//                                                <native_nomination><![CDATA[English]]></native_nomination>
+//                                                <iso_639-1_2002>en</iso_639-1_2002>
+//                                                <iso_639-2_1998>eng</iso_639-2_1998>
+//                                                <iso_639-3_2007>eng</iso_639-3_2007>
+//                                            </language_preference>
+//                                            <language_preference>
+//                                                <request_id timestamp="2022-11-11 14:21:01.974841">0McMrF9QOg</request_id>
+//                                                <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
+//                                                <locale_identifier>zh</locale_identifier>
+//                                                <region_variant>CN</region_variant>
+//                                                <factor_weighting>0.8</factor_weighting>
+//                                                <iso_language_nomination>Chinese</iso_language_nomination>
+//                                                <native_nomination><![CDATA[中文 (Zhōngwén), 汉语, 漢語]]></native_nomination>
+//                                                <iso_639-1_2002>zh</iso_639-1_2002>
+//                                                <iso_639-2_1998>zho</iso_639-2_1998>
+//                                                <iso_639-3_2007>zho</iso_639-3_2007>
+//                                            </language_preference>
+//                                            <language_preference>
+//                                                <request_id timestamp="2022-11-11 14:21:01.974927">3oU3N6Eyiy</request_id>
+//                                                <request_referer>http://172.16.225.139/lightsaber.crnrstn.evifweb.com/</request_referer>
+//                                                <locale_identifier>zh</locale_identifier>
+//                                                <region_variant></region_variant>
+//                                                <factor_weighting>0.7</factor_weighting>
+//                                                <iso_language_nomination>Chinese</iso_language_nomination>
+//                                                <native_nomination><![CDATA[中文 (Zhōngwén), 汉语, 漢語]]></native_nomination>
+//                                                <iso_639-1_2002>zh</iso_639-1_2002>
+//                                                <iso_639-2_1998>zho</iso_639-2_1998>
+//                                                <iso_639-3_2007>zho</iso_639-3_2007>
+//                                            </language_preference>
+//                                        </language>
+//
+//                                        */
+//
+//                                        $tmp_lang_ARRAY = $this->oCRNRSTN->return_client_language_preference_profile();
+//                                        $tmp_lang_cnt = count($tmp_lang_ARRAY);
+//
+//                                        $tmp_lang_report = 'Accept-Language: ';
+////                                        if($tmp_lang_cnt > 0){
+////
+////                                            $tmp_lang_report = 'Accept-Language: ';
+////
+////                                        }
+//
+//                                        //
+//                                        // BUILD LANGUAGE REPORT
+//                                        for($ii = 0; $ii < $tmp_lang_cnt; $ii++){
+//
+//                                            $tmp_lang_report .= $tmp_lang_ARRAY[$ii]['native_nomination'] . '[' . $tmp_lang_ARRAY[$ii]['locale_identifier'] . '], ';
+//
+//                                        }
+//
+//                                        $tmp_lang_report = $this->oCRNRSTN->strrtrim($tmp_lang_report, ', ');
+//                                        $tmp_lang_report .= '.';
+//
+//                                        //
+//                                        // BYTES HASH REPORT
+//                                        $tmp_total_bytes = 0;
+//                                        foreach($this->oCRNRSTN->total_bytes_hashed_ARRAY as $algo => $bytes){
+//
+//                                            $tmp_star_char = '&nbsp;';
+//                                            $tmp_total_bytes += $bytes;
+//
+//                                            if($algo == $this->oCRNRSTN->system_hash_algo()){
+//
+//                                                $tmp_star_char = '*';
+//
+//                                            }
+//
+//                                            $tmp_hashed_html .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
+//                                            $tmp_hashed_html .= '   <div class="crnrstn_documentation_page_stats_hash_algo">' . $tmp_star_char . $algo . ':</div>
+//                                                                    <div class="crnrstn_documentation_page_stats_hash_algo_bytes">'. $this->oCRNRSTN->format_bytes($bytes) . '</div>';
+//                                            $tmp_hashed_html .= '</div><div class="crnrstn_cb"></div>';
+//
+//                                        }
+//
+//                                        $tmp_hashed_html_out .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
+//                                        $tmp_hashed_html_out .= '<div class="crnrstn_documentation_page_stats_hash_total">Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>hashed: ' . $this->oCRNRSTN->format_bytes($tmp_total_bytes, 5) . '</div>';
+//                                        $tmp_hashed_html_out .= '</div>';
+//
+//                                        $tmp_hashed_html_out  .= $tmp_hashed_html;
+//
+//                                        $tmp_report = '<p style="margin-bottom:0;">Response returned in {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}.<br><br>
+//
+//CLIENT ::<br>
+//Returned page size (in text data): {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}.<br>
+//Referer: ' . $_SERVER['HTTP_REFERER'] . '<br>
+//Device type: ' . $this->oCRNRSTN->device_type() . '<br>
+//Accept-Language: ' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . '<br>
+//' . $tmp_lang_report . '<br><br>
+//
+//SERVER ::<br>
+//Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>stored: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->return_total_bytes_stored(), 5) . '
+//</p>
+//' . $tmp_hashed_html_out . '
+//<p style="margin-top:0;">
+//Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>encrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_encrypted, 5) . '<br>
+//Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>decrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_decrypted, 5) . '<br>
+//Server name: ' . $_SERVER['SERVER_NAME'] . '<br>
+//Server address: ' . $_SERVER['SERVER_ADDR'] . '<br>
+//SSL enabled: ' . $tmp_SSL_ENABLED . '<br>
+//Request time: ' . $this->oCRNRSTN->start_time() . '</p>
+//
+//<div class="crnrstn_cb_20"></div>
+//<div class="crnrstn_documentation_page_stats_dagger_key_shell">
+//    <div class="crnrstn_documentation_page_stats_dagger_key_dag">&dagger;</div>
+//    <div class="crnrstn_documentation_page_stats_dagger_key_description"><p>A statistic reflecting server resource consumption and performance requirements related to returning the content for this request.</p></div>
+//    <div class="crnrstn_cb"></div>
+//
+//</div>
+//<div class="crnrstn_cb_10"></div>
+//<div class="crnrstn_documentation_page_stats_dagger_key_shell">
+//    <div class="crnrstn_documentation_page_stats_dagger_key_dag">*</div>
+//    <div class="crnrstn_documentation_page_stats_dagger_key_description"><p>System default hashing algorithm.</p></div>
+//    <div class="crnrstn_cb"></div>
+//
+//</div>
+//<div class="crnrstn_cb_40"></div>
+//<p>[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</p>';
+//
+//                                    break;
+//
+//                                }
 
-                                        //
-                                        // BUILD LANGUAGE REPORT
-                                        for($ii = 0; $ii < $tmp_lang_cnt; $ii++){
-
-                                            $tmp_lang_report .= $tmp_lang_ARRAY[$ii]['native_nomination'] . '[' . $tmp_lang_ARRAY[$ii]['locale_identifier'] . '], ';
-
-                                        }
-
-                                        $tmp_lang_report = $this->oCRNRSTN->strrtrim($tmp_lang_report, ', ');
-                                        $tmp_lang_report .= '.';
-
-                                        //
-                                        // BYTES HASH REPORT
-                                        $tmp_total_bytes = 0;
-                                        foreach($this->oCRNRSTN->total_bytes_hashed_ARRAY as $algo => $bytes){
-
-                                            $tmp_star_char = '&nbsp;';
-                                            $tmp_total_bytes += $bytes;
-
-                                            if($algo == $this->oCRNRSTN->system_hash_algo()){
-
-                                                $tmp_star_char = '*';
-
-                                            }
-
-                                            $tmp_hashed_html .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
-                                            $tmp_hashed_html .= '   <div class="crnrstn_documentation_page_stats_hash_algo">' . $tmp_star_char . $algo . ':</div>
-                                                                    <div class="crnrstn_documentation_page_stats_hash_algo_bytes">'. $this->oCRNRSTN->format_bytes($bytes) . '</div>';
-                                            $tmp_hashed_html .= '</div><div class="crnrstn_cb"></div>';
-
-                                        }
-
-                                        $tmp_hashed_html_out .= '<div class="crnrstn_documentation_page_stats_hash_shell">';
-                                        $tmp_hashed_html_out .= '<div class="crnrstn_documentation_page_stats_hash_total">Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>hashed: ' . $this->oCRNRSTN->format_bytes($tmp_total_bytes, 5) . '</div>';
-                                        $tmp_hashed_html_out .= '</div>';
-
-                                        $tmp_hashed_html_out  .= $tmp_hashed_html;
-
-                                        $tmp_report = '<p style="margin-bottom:0;">Response returned in {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}.<br><br>
-
-CLIENT ::<br>
-Returned page size (in text data): {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}.<br>
-Referer: ' . $_SERVER['HTTP_REFERER'] . '<br>
-Device type: ' . $this->oCRNRSTN->device_type() . '<br>
-Accept-Language: ' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . '<br>
-' . $tmp_lang_report . '<br><br>
-
-SERVER ::<br>
-Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>stored: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->return_total_bytes_stored(), 5) . '
-</p>
-' . $tmp_hashed_html_out . '
-<p style="margin-top:0;">
-Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>encrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_encrypted, 5) . '<br>
-Bytes <sup class="crnrstn_documentation_page_stats_sup">&dagger;</sup>decrypted: ' . $this->oCRNRSTN->format_bytes($this->oCRNRSTN->total_bytes_decrypted, 5) . '<br>
-Server name: ' . $_SERVER['SERVER_NAME'] . '<br>
-Server address: ' . $_SERVER['SERVER_ADDR'] . '<br>
-SSL enabled: ' . $tmp_SSL_ENABLED . '<br>
-Request time: ' . $this->oCRNRSTN->start_time() . '</p>
-
-<div class="crnrstn_cb_20"></div>
-<div class="crnrstn_documentation_page_stats_dagger_key_shell">
-    <div class="crnrstn_documentation_page_stats_dagger_key_dag">&dagger;</div>
-    <div class="crnrstn_documentation_page_stats_dagger_key_description"><p>A statistic reflecting server resource consumption and performance requirements related to returning the content for this request.</p></div>
-    <div class="crnrstn_cb"></div>
-    
-</div>
-<div class="crnrstn_cb_10"></div>
-<div class="crnrstn_documentation_page_stats_dagger_key_shell">
-    <div class="crnrstn_documentation_page_stats_dagger_key_dag">*</div>
-    <div class="crnrstn_documentation_page_stats_dagger_key_description"><p>System default hashing algorithm.</p></div>
-    <div class="crnrstn_cb"></div>
-    
-</div>
-<div class="crnrstn_cb_40"></div>
-<p>[' . $this->oCRNRSTN->return_micro_time() . '] [rtime ' . $this->oCRNRSTN->wall_time() . ' secs]</p>';
-
-                                    break;
-
-                                }
+                                $tmp_report = $this->oCRNRSTN->return_report_module_out(CRNRSTN_REPORT_RESPONSE_RETURN);
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 

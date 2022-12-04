@@ -102,8 +102,10 @@ class crnrstn_content_source_controller {
                     // system_output_head_html($resource_constant = NULL, $spool_for_output = false)
                     // METHOD DEFINITION
                     $tmp_method_definition = 'system_output_head_html(<br>
-                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $integer_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
-                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $spool_for_output = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $integer_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>,<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $spool_for_output = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $footer_html_output = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean|NULL</span> $is_dev_mode = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
                     ): <span class="crnrstn_documentation_method_data_type">string|boolean</span>';
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
@@ -128,6 +130,23 @@ class crnrstn_content_source_controller {
                     When spooling is TRUE, the method will return boolean TRUE after storing the request for return at 
                     a later time.';
                     $tmp_param_def[1]['param_required'] = false;
+
+                    $tmp_param_def[2]['param_name'] = '$footer_html_output';
+                    $tmp_param_def[2]['param_definition'] = 'Passing in TRUE will cause the requested JS or CSS resource 
+                    HTML output to be returned at the end of the HTML document by <span class="crnrstn_general_post_code_copy">system_output_footer_html().</span>';
+                    $tmp_param_def[2]['param_required'] = false;
+
+                    $tmp_param_def[3]['param_name'] = '$is_dev_mode';
+                    $tmp_param_def[3]['param_definition'] = 'When min.js or min.css are available within the JS or CSS 
+                    framework source files, passing in TRUE or FALSE will toggle the returned HTML string content 
+                    between the production minimized version (e.g. simple-grid.min.css) of a framework and the 
+                    development version (e.g. simple-grid.css).<br><br>
+                    
+                    This will override any configuration file settings that were established when calling 
+                    <span class="crnrstn_general_post_code_copy">config_init_js_css_minimization().</span> Currently, if 
+                    no minimized version is available, only the development version of the JS or CSS framework will be 
+                    returned...and vice versa.';
+                    $tmp_param_def[3]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
 
@@ -280,10 +299,14 @@ class crnrstn_content_source_controller {
                     //
                     // METHOD DEFINITION
                     $tmp_method_definition = 'system_output_footer_html(<br>
-                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $resource_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>, <br>
-                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $spool_for_output = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $resource_constant = <span class="crnrstn_documentation_method_data_system_val">NULL</span>,<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $spool_for_output = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean|NULL</span> $is_dev_mode = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
+
                     ): <span class="crnrstn_documentation_method_data_type">string|boolean</span>';
 
+                    
+                    //    public function system_output_footer_html($resource_constant = NULL, $spool_for_output = false, $is_dev_mode = NULL){
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
                     //
@@ -305,7 +328,18 @@ class crnrstn_content_source_controller {
                     When spooling is TRUE, the method will return boolean TRUE after storing the request for return at 
                     a later time.';
                     $tmp_param_def[1]['param_required'] = false;
-
+                    
+                    $tmp_param_def[2]['param_name'] = '$is_dev_mode';
+                    $tmp_param_def[2]['param_definition'] = 'When min.js or min.css are available within the JS or CSS 
+                    framework source files, passing in TRUE or FALSE will toggle the returned HTML string content 
+                    between the production minimized version (e.g. simple-grid.min.css) of a framework and the 
+                    development version (e.g. simple-grid.css).<br><br>
+                    
+                    This will override any configuration file settings that were established when calling 
+                    <span class="crnrstn_general_post_code_copy">config_init_js_css_minimization().</span> Currently, if 
+                    no minimized version is available, only the development version of the JS or CSS framework will be 
+                    returned...and vice versa.';
+                    $tmp_param_def[2]['param_required'] = false;
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
 
                     //
@@ -8409,6 +8443,15 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = 'GREEN TEXT. BLACK BACKGROUND. HARDCORE.';
 
             break;
+            case 'CRNRSTN_UI_RANDOM':
+            case CRNRSTN_UI_RANDOM:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_RANDOM;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_RANDOM';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = 'GREEN TEXT. BLACK BACKGROUND. HARDCORE.';
+
+            break;
             case 'CRNRSTN_UI_DESKTOP':
             case CRNRSTN_UI_DESKTOP:
 
@@ -8441,6 +8484,15 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_SOAP_DATA_TUNNEL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_SOAP_DATA_TUNNEL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_REPORT_RESPONSE_RETURN':
+            case CRNRSTN_REPORT_RESPONSE_RETURN:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_REPORT_RESPONSE_RETURN;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_REPORT_RESPONSE_RETURN';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
 
@@ -9165,10 +9217,208 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
                 
             break;
+            case 'CRNRSTN_OUTPUT_RUNTIME':
+            case CRNRSTN_OUTPUT_RUNTIME:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_RUNTIME;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_RUNTIME';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_ALL':
+            case CRNRSTN_OUTPUT_ALL:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_ALL;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_ALL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_DATABASE':
+            case CRNRSTN_OUTPUT_DATABASE:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_DATABASE;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_DATABASE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_SSDTLA':
+            case CRNRSTN_OUTPUT_SSDTLA:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_SSDTLA;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_SSDTLA';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_PSSDTLA':
+            case CRNRSTN_OUTPUT_PSSDTLA:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_PSSDTLA;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_PSSDTLA';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_SESSION':
+            case CRNRSTN_OUTPUT_SESSION:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_SESSION;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_SESSION';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_COOKIE':
+            case CRNRSTN_OUTPUT_COOKIE:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_COOKIE;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_COOKIE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_SOAP':
+            case CRNRSTN_OUTPUT_SOAP:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_SOAP;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_SOAP';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_GET':
+            case CRNRSTN_OUTPUT_GET:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_GET;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_GET';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_ISEMAIL':
+            case CRNRSTN_OUTPUT_ISEMAIL:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_ISEMAIL;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_ISEMAIL';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_ISPASSWORD':
+            case CRNRSTN_OUTPUT_ISPASSWORD:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_ISPASSWORD;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_ISPASSWORD';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_OUTPUT_FORM_INTEGRATIONS':
+            case CRNRSTN_OUTPUT_FORM_INTEGRATIONS:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_OUTPUT_FORM_INTEGRATIONS;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_OUTPUT_FORM_INTEGRATIONS';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_HTTP_REDIRECT':
+            case CRNRSTN_HTTP_REDIRECT:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_HTTP_REDIRECT;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_HTTP_REDIRECT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_HTTPS_REDIRECT':
+            case CRNRSTN_HTTPS_REDIRECT:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_HTTPS_REDIRECT;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_HTTPS_REDIRECT';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_HTTP_DATA_RETURN':
+            case CRNRSTN_HTTP_DATA_RETURN:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_HTTP_DATA_RETURN;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_HTTP_DATA_RETURN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_HTTPS_DATA_RETURN':
+            case CRNRSTN_HTTPS_DATA_RETURN:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_HTTPS_DATA_RETURN;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_HTTPS_DATA_RETURN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_JSON_RETURN':
+            case CRNRSTN_JSON_RETURN:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_JSON_RETURN;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_JSON_RETURN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_XML_RETURN':
+            case CRNRSTN_XML_RETURN:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_XML_RETURN;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_XML_RETURN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SOAP_RETURN':
+            case CRNRSTN_SOAP_RETURN:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SOAP_RETURN;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOAP_RETURN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_HTML_TEXT_RETURN':
+            case CRNRSTN_HTML_TEXT_RETURN:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_HTML_TEXT_RETURN;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_HTML_TEXT_RETURN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_DOCUMENT_FILE_RETURN':
+            case CRNRSTN_DOCUMENT_FILE_RETURN:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_DOCUMENT_FILE_RETURN;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_DOCUMENT_FILE_RETURN';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_SERVER_RESPONSE_CODE':
+            case CRNRSTN_SERVER_RESPONSE_CODE:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SERVER_RESPONSE_CODE;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SERVER_RESPONSE_CODE';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
             default:
 
                 $tmp_output_ARRAY['INTEGER'] = $resource_constant;
-                $tmp_output_ARRAY['STRING'] = $this->oCRNRSTN->return_constant_profile_ARRAY($resource_constant, 'string');
+                $tmp_output_ARRAY['STRING'] = 'UNKNOWN RESOURCE';
                 $tmp_output_ARRAY['TITLE'] = 'UNKNOWN RESOURCE';
                 $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
@@ -9199,6 +9449,20 @@ between the server and client can be achieved with minimal effort and maximum da
     public function return_integer_constant_profiles($module_key = NULL){
 
         /*
+        $this->system_theme_style_constants_ARRAY = array(
+        CRNRSTN_UI_PHPNIGHT,
+        CRNRSTN_UI_DARKNIGHT,
+        CRNRSTN_UI_PHP,
+        CRNRSTN_UI_GREYSKYS,
+        CRNRSTN_UI_HTML,
+        CRNRSTN_UI_DAYLIGHT,
+        CRNRSTN_UI_FEATHER,
+        CRNRSTN_UI_GLASS_LIGHT_COPY,
+        CRNRSTN_UI_GLASS_DARK_COPY,
+        CRNRSTN_UI_WOOD,
+        CRNRSTN_UI_TERMINAL,
+        CRNRSTN_UI_RANDOM);
+
         CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID
         CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM
         CRNRSTN_CSS_FRAMEWORK_FOUNDATION
@@ -9263,8 +9527,8 @@ between the server and client can be achieved with minimal effort and maximum da
                     CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_16COL_RTL, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_12COL_RTL,
                     CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM_RTL, CRNRSTN_CSS_FRAMEWORK_FOUNDATION,
                     CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE, CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM,
-                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL,
-                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL,
+                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET,
+                    CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL,
                     CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT, CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL,
                     CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_SKELETON,
                     CRNRSTN_CSS_FRAMEWORK_RWDGRID, CRNRSTN_CSS_FRAMEWORK_THISISDALLAS_SIMPLEGRID,
@@ -9280,7 +9544,13 @@ between the server and client can be achieved with minimal effort and maximum da
                 //CRNRSTN_UI_TAG_ENGAGEMENT
                 //CRNRSTN_UI_TAG_ANALYTICS
                 //CRNRSTN_UI_SOAP_DATA_TUNNEL
+                //CRNRSTN_REPORT_RESPONSE_RETURN
                 $tmp_output_ARRAY = array();
+
+            break;
+            case 'system_theme_profiles':
+
+                $tmp_output_ARRAY = $this->oCRNRSTN->system_theme_style_constants_ARRAY;
 
             break;
             default:

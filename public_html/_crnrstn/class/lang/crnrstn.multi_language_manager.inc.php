@@ -3481,7 +3481,7 @@ photo album
                 }
 
             break;
-            case  'PLEASE_ENTER_VALID_ENV_DETECTION':
+            case 'PLEASE_ENTER_VALID_ENV_DETECTION':
 
                 switch($this->country_iso_code) {
                     case 'es':
@@ -3754,7 +3754,7 @@ environment within the configuration file.';
                 }
 
             break;
-            case  'FORM_LABEL_USERNAME':
+            case 'FORM_LABEL_USERNAME':
 
                 switch($this->country_iso_code) {
                     case 'es':

@@ -97,7 +97,9 @@ class crnrstn {
     public $process_id;
     protected $system_hash_algo = 'sha256';
     public $operating_system;
+    public $config_queue_theme;
     public $theme_attributes_ARRAY = array();
+    public $random_theme_constant;
 
     public $opensslSessEncryptCipher = array();
     public $opensslSessEncryptSecretKey = array();
@@ -141,8 +143,13 @@ class crnrstn {
     protected $system_resource_constants = array();
     protected $system_ui_module_constants_ARRAY = array();
     protected $system_head_html_asset_array_spool_ARRAY = array();
-    protected $system_head_html_constants_spool_ARRAY = array();
-    protected $system_footer_html_constants_spool_ARRAY = array();
+    
+    protected $head_asset_footer_spool_ARRAY = array();
+    protected $head_asset_head_spool_ARRAY = array();
+    public $asset_spool_DEVPROD_meta_ARRAY = array();
+    protected $footer_asset_footer_spool_DEVPROD_meta_ARRAY = array();
+    protected $footer_asset_footer_spool_ARRAY = array();
+
     protected $system_data_profile_constants_ARRAY = array();
     public $system_theme_style_constants_ARRAY = array();
     protected $current_theme_style_ARRAY = array();
@@ -275,7 +282,7 @@ class crnrstn {
         //
         // INITIALIZE GROUPED CONSTANTS ARRAYS
         $this->system_data_profile_constants_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME_ONLY, CRNRSTN_AUTHORIZE_ALL, CRNRSTN_AUTHORIZE_DATABASE, CRNRSTN_AUTHORIZE_SSDTLA, CRNRSTN_AUTHORIZE_PSSDTLA, CRNRSTN_AUTHORIZE_SESSION, CRNRSTN_AUTHORIZE_COOKIE, CRNRSTN_AUTHORIZE_SOAP, CRNRSTN_AUTHORIZE_GET);
-        $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL => 'CRNRSTN_RESOURCE_ALL', CRNRSTN_RESOURCE_BASSDRIVE => 'CRNRSTN_RESOURCE_BASSDRIVE', CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE => 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', CRNRSTN_RESOURCE_CSS_VALIDATOR => 'CRNRSTN_RESOURCE_CSS_VALIDATOR', CRNRSTN_RESOURCE_DOCUMENTATION => 'CRNRSTN_RESOURCE_DOCUMENTATION', CRNRSTN_RESOURCE_IMAGE => 'CRNRSTN_RESOURCE_IMAGE', CRNRSTN_RESOURCE_DOCUMENT => 'CRNRSTN_RESOURCE_DOCUMENT', CRNRSTN_RESOURCE_OPENSOURCE => 'CRNRSTN_RESOURCE_OPENSOURCE', CRNRSTN_RESOURCE_ELECTRUM => 'CRNRSTN_RESOURCE_ELECTRUM', CRNRSTN_RESOURCE_NEWS_SYNDICATION => 'CRNRSTN_RESOURCE_NEWS_SYNDICATION', CRNRSTN_LOG_DEFAULT => 'CRNRSTN_LOG_DEFAULT', CRNRSTN_UI_TAG_ANALYTICS => 'CRNRSTN_UI_TAG_ANALYTICS', CRNRSTN_UI_TAG_ENGAGEMENT => 'CRNRSTN_UI_TAG_ENGAGEMENT', CRNRSTN_UI_COOKIE_PREFERENCE => 'CRNRSTN_UI_COOKIE_PREFERENCE',CRNRSTN_UI_COOKIE_YESNO => 'CRNRSTN_UI_COOKIE_YESNO', CRNRSTN_UI_COOKIE_NOTICE => 'CRNRSTN_UI_COOKIE_NOTICE', CRNRSTN_PROXY_KINGS_HIGHWAY => 'CRNRSTN_PROXY_KINGS_HIGHWAY', CRNRSTN_PROXY_EMAIL => 'CRNRSTN_PROXY_EMAIL', CRNRSTN_PROXY_ELECTRUM => 'CRNRSTN_PROXY_ELECTRUM', CRNRSTN_PROXY_AUTHENTICATE => 'CRNRSTN_PROXY_AUTHENTICATE');
+        $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL => 'CRNRSTN_RESOURCE_ALL', CRNRSTN_RESOURCE_BASSDRIVE => 'CRNRSTN_RESOURCE_BASSDRIVE', CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE => 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', CRNRSTN_RESOURCE_CSS_VALIDATOR => 'CRNRSTN_RESOURCE_CSS_VALIDATOR', CRNRSTN_RESOURCE_DOCUMENTATION => 'CRNRSTN_RESOURCE_DOCUMENTATION', CRNRSTN_RESOURCE_IMAGE => 'CRNRSTN_RESOURCE_IMAGE', CRNRSTN_RESOURCE_DOCUMENT => 'CRNRSTN_RESOURCE_DOCUMENT', CRNRSTN_RESOURCE_OPENSOURCE => 'CRNRSTN_RESOURCE_OPENSOURCE', CRNRSTN_RESOURCE_ELECTRUM => 'CRNRSTN_RESOURCE_ELECTRUM', CRNRSTN_RESOURCE_NEWS_SYNDICATION => 'CRNRSTN_RESOURCE_NEWS_SYNDICATION', CRNRSTN_LOG_DEFAULT => 'CRNRSTN_LOG_DEFAULT', CRNRSTN_UI_TAG_ANALYTICS => 'CRNRSTN_UI_TAG_ANALYTICS', CRNRSTN_UI_TAG_ENGAGEMENT => 'CRNRSTN_UI_TAG_ENGAGEMENT', CRNRSTN_UI_COOKIE_PREFERENCE => 'CRNRSTN_UI_COOKIE_PREFERENCE', CRNRSTN_UI_COOKIE_YESNO => 'CRNRSTN_UI_COOKIE_YESNO', CRNRSTN_UI_COOKIE_NOTICE => 'CRNRSTN_UI_COOKIE_NOTICE', CRNRSTN_PROXY_KINGS_HIGHWAY => 'CRNRSTN_PROXY_KINGS_HIGHWAY', CRNRSTN_PROXY_EMAIL => 'CRNRSTN_PROXY_EMAIL', CRNRSTN_PROXY_ELECTRUM => 'CRNRSTN_PROXY_ELECTRUM', CRNRSTN_PROXY_AUTHENTICATE => 'CRNRSTN_PROXY_AUTHENTICATE', CRNRSTN_REPORT_RESPONSE_RETURN => 'CRNRSTN_REPORT_RESPONSE_RETURN');
         $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
         $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_WOOD, CRNRSTN_UI_TERMINAL, CRNRSTN_UI_RANDOM);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
@@ -1941,11 +1948,11 @@ class crnrstn {
                         $this->error_log('Including and evaluating file [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         $tmp_theme_style = $this->get_ui_theme_style();
-                        $this->apply_theme_style_profile($tmp_theme_style, $crnrstn_resource_config_file_path);
-
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_system_defaults_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                        //self::$oCRNRSTN_CONFIG_MGR->input_data_value($dir_path, 'crnrstn_favicon_asset_tunnel_route_dir_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_system_defaults_config_file_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH', 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
                         //error_log(__LINE__ . ' LOADED $tmp_theme_attributes_ARRAY[' . print_r($tmp_theme_attributes_ARRAY, true) . '].');
                         //error_log(__LINE__ . ' LOADED $tmp_crnrstn_settings_ARRAY[' . print_r($tmp_crnrstn_settings_ARRAY, true) . '].');
+                        $this->apply_theme_style_profile($tmp_theme_style, $crnrstn_resource_config_file_path);
 
                     }else{
 
@@ -2204,7 +2211,7 @@ class crnrstn {
 
         if(!isset($crnrstn_resource_config_file_path)){
 
-            $crnrstn_resource_config_file_path = $this->get_resource('crnrstn_system_defaults_config_file_path');
+            $crnrstn_resource_config_file_path = $this->get_resource('crnrstn_system_defaults_config_file_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
         }
 
@@ -2216,16 +2223,22 @@ class crnrstn {
                 // EXTRACT RESOURCE CONFIGURATION FROM FILE
                 $this->error_log('Including and evaluating file [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                include_once($crnrstn_resource_config_file_path);
+                //foreach($this->system_theme_style_constants_ARRAY as $index => $theme_profile_constant){
 
-                $tmp_resource_meta_ARRAY = $this->return_resource_profile($theme_style);
+                    //$this->config_queue_theme = $theme_profile_constant;
+                    //error_log(__LINE__ . ' crnrstn $index[' . $index . ']. [' . $this->config_queue_theme . '].');
+                    $tmp_theme_attributes_ARRAY = array();
+                    require($crnrstn_resource_config_file_path);
 
-                $tmp_theme_attributes_ARRAY['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-                $tmp_theme_attributes_ARRAY['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
-                $tmp_theme_attributes_ARRAY['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
-                $tmp_theme_attributes_ARRAY['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
+                    $this->theme_attributes_ARRAY = $tmp_theme_attributes_ARRAY;
 
-                $this->theme_attributes_ARRAY = $tmp_theme_attributes_ARRAY;
+                    //error_log(__LINE__ . ' crnrstn $index[' . print_r($this->theme_attributes_ARRAY, true) . '].');
+                    //die();
+                    //
+                    // CLEAR ARRAY
+                    //array_splice($tmp_theme_attributes_ARRAY, 0);
+
+                //}
 
             }else{
 
@@ -2234,6 +2247,8 @@ class crnrstn {
                 $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             }
+
+            return true;
 
         }catch(Exception $e){
 
@@ -3437,9 +3452,13 @@ class crnrstn {
 
         $this->asset_routing_data_key_lookup_ARRAY['favicon'] = array('crnrstn/favicon.ico' => 'crnrstn/favicon.ico', 'jony5/favicon.ico' => 'jony5/favicon.ico', 'bassdrive/favicon.ico' => 'bassdrive/favicon.ico');
 
+        // http://172.16.225.139/lightsaber.crnrstn.evifweb.com/?crnrstn_0010111011=
+        // jquery-3.6.1.js
+        //&crnrstn_=420.00.289812.1670066826.0
+
         $tmp_ARRAY = array(
             'crnrstn.main.js' => '/',
-            'jquery-3.6.1.js '=> '_lib/frameworks/jquery/3.6.1' ,
+            'jquery-3.6.1.js'=> '_lib/frameworks/jquery/3.6.1',
             'jquery-3.6.1.min.map' => '_lib/frameworks/jquery/3.6.1',
             'jquery-3.6.1.min.js' => '_lib/frameworks/jquery/3.6.1',
             'jquery-2.2.4.min.js' => '_lib/frameworks/jquery/2.2.4',
@@ -3507,7 +3526,6 @@ class crnrstn {
             'mootools-more-1.6.0-min.js' => '_lib/frameworks/mootools/more/1.6.0',
             'mootools-core-1.6.0.js' => '_lib/frameworks/mootools/core/1.6.0',
             'mootools-core-1.6.0-min.js' => '_lib/frameworks/mootools/core/1.6.0'
-
 
         );
 
@@ -3902,32 +3920,54 @@ class crnrstn {
     public function output_ssdtla_data_object($type){
 
         switch($type){
-            case 'theme_profile_key':
-
-
-
-            break;
             case 'theme_profile_data':
 
                 $tmp_str = '';
+                $tmp_cnt = 0;
+                $tmp_min_mode_active = $this->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS);
 
-                error_log(__LINE__ . ' crnstn [theme_profile_data]=>' . print_r($this->theme_attributes_ARRAY, true));
+                //
+                // FOR ARRAY DATA AND STRUCTURE, SEE:
+                // ./_crnrstn/_config/_config.defaults/_crnrstn.themes.inc.php
+                foreach($this->theme_attributes_ARRAY as $theme_constant => $theme_const_ARRAY){
 
-                foreach($this->theme_attributes_ARRAY as $name => $val){
+                    foreach($theme_const_ARRAY as $param_name => $param_value){
 
-                    $tmp_value = $val;
+                        $tmp_value = $param_value;
 
-                    if(is_array($val)){
+                        if(is_array($param_value)){
 
-                        $tmp_value = $val[0];
+                            $tmp_value = $param_value[0];
+
+                        }
+
+                        if($tmp_min_mode_active){
+
+                            $tmp_str .= '<theme_profile_attribute><theme_position>' . $tmp_cnt . '</theme_position><theme_nom is_active="' . $theme_const_ARRAY['IS_ACTIVE'] . '" display_position="' . $theme_const_ARRAY['DISPLAY_POSITION'] . '">' . $theme_const_ARRAY['NOM_STRING'] .  '</theme_nom><theme_integer>' . $theme_constant . '</theme_integer><attribute_name><![CDATA[' . $param_name . ']]></attribute_name><attribute_value><![CDATA[' . $tmp_value . ']]></attribute_value></theme_profile_attribute>';
+
+                        }else{
+
+                            //
+                            // DON'T FORGET TO REPLICATE ANY UPDATES TO THE ABOVE.
+                            // IF I GET BURNED BY THIS AGAIN, WE CAN IMPLEMENT A (DEV MODE ONLY)
+                            // STRING COMPARISON CHECK TO APPLY TO ALL OF THESE DEV/MIN VERSIONS
+                            $tmp_str .= '<theme_profile_attribute>
+                    <theme_position>' . $tmp_cnt . '</theme_position>
+                    <theme_nom display_position="' . $theme_const_ARRAY['DISPLAY_POSITION'] . '">' . $theme_const_ARRAY['NOM_STRING'] .  '</theme_nom>
+                    <theme_integer>' . $theme_constant . '</theme_integer>
+                    <attribute_name><![CDATA[' . $param_name . ']]></attribute_name>
+                    <attribute_value><![CDATA[' . $tmp_value . ']]></attribute_value>
+                </theme_profile_attribute>
+                ';
+
+                        }
+
+                        //$this->print_r($val, NULL, NULL, __LINE__, __METHOD__, __FILE__);
+                        //die();
 
                     }
 
-                    $tmp_str .= '<theme_profile_attribute>
-                    <name><![CDATA[' . $name . ']]></name>
-                    <value><![CDATA[' . $tmp_value . ']]></value>
-                </theme_profile_attribute>
-                ';
+                    $tmp_cnt++;
 
                 }
 
@@ -3962,6 +4002,7 @@ class crnrstn {
                             $tmp_str_in = '$CRNRSTN_config_serial = \'' . $tmp_serial . '\';';
 
                             $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
+                            $theme_style = $this->random_theme_constant;
 
                             $this->error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
                             error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].');
@@ -3970,6 +4011,12 @@ class crnrstn {
                         case 'FAILED_ENVIRONMENTAL_DETECTION':
 
                             $message_type = 'detection';
+
+                            $tmp_str_in = '$oCRNRSTN->config_add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
+$oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');';
+
+                            $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
+                            $theme_style = $this->random_theme_constant;
 
                             $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
                             error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.');
@@ -3989,11 +4036,6 @@ class crnrstn {
 
                     $this->config_init_images_format_default();
                     $this->config_init_http(CRNRSTN_RESOURCE_ALL, '', CRNRSTN_ROOT);
-
-                    $tmp_str_in = '$oCRNRSTN->config_add_environment(\'APACHE_WOLF_PUP\', E_ALL & ~E_NOTICE & ~E_STRICT);
-$oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');';
-
-                    $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
 
                     // FYI,...COULD ALSO CALL: $this->spool_destruct_output($str);
                     $tmp_str = '<!DOCTYPE html>
@@ -4021,7 +4063,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
 
     <div style="display:block; clear:both; height:1px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->theme_attributes_ARRAY['NOM_STRING'] .']</div>
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->theme_attributes_ARRAY[$theme_style]['NOM_STRING'] .']</div>
 
 </div>
 
@@ -4078,7 +4120,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
     
     <div style="display:block; clear:both; height:5px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->theme_attributes_ARRAY['NOM_STRING'] .']</div>
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->theme_attributes_ARRAY[$theme_style]['NOM_STRING'] .']</div>
 
 </div>
 
@@ -4198,64 +4240,93 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         $resource_ARRAY['footer_delay_crumb_path_hash'] = $asst_nom_hash;
         $this->system_head_html_asset_array_spool_ARRAY[] = $resource_ARRAY;
 
+        //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' $resource_ARRAY[' . print_r($resource_ARRAY, true) . '].');
         return true;
 
     }
 
-    public function system_output_head_html($resource_constant = NULL, $spool_for_output = false){
+    public function system_output_head_html($resource_constant = NULL, $spool_for_output = false, $footer_html_output = false, $is_dev_mode = NULL){
 
         $tmp_head_html_output = '';
 
         //
         // CHECK FOR SPOOL REQUEST...NO OUTPUT. NO FLAG.
-        if($spool_for_output){
+        if($spool_for_output || $footer_html_output){
 
-            $this->system_head_html_constants_spool_ARRAY[] = $resource_constant;
+            if($footer_html_output){
 
-            return true;
+                if(isset($is_dev_mode)){
 
-        }
+                    //
+                    // SPOOL CONTENT FOR FOOTER IN DEV MODE?
+                    $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'PROD';
+                    if($is_dev_mode){
 
-        //
-        // CHECK *FOOTER* SPOOL ARRAY FOR CSS/JS DEPENDENCIES...AND FLAG FOR OUTPUT.
-        foreach($this->system_footer_html_constants_spool_ARRAY as $index => $int_const){
+                        error_log(__LINE__ . ' crnrstn DEV $resource_constant[' . $resource_constant . '].');
+                        $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'DEV';
 
-            switch($int_const){
-               case CRNRSTN_RESOURCE_DOCUMENTATION:
+                    }
 
-                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI])){
+                    error_log(__LINE__ .  ' crnrstn PROD [' . $resource_constant . ']. [' . print_r($this->asset_spool_DEVPROD_meta_ARRAY, true) . '].');
 
-                       $this->system_head_html_constants_spool_ARRAY[] = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
+                }
 
-                   }
+                if(isset($resource_constant)){
 
-                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP])){
+                    if(!isset($this->html_head_build_flag_ARRAY[$resource_constant])){
 
-                       $this->system_head_html_constants_spool_ARRAY[] = CRNRSTN_UI_CSS_MAIN_DESKTOP;
+                        $this->head_asset_footer_spool_ARRAY[] = $resource_constant;
+                        //$this->html_head_build_flag_ARRAY[$resource_constant] = 1;
 
-                   }
+                    }
 
-                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+                }
 
-                       $this->system_head_html_constants_spool_ARRAY[] = CRNRSTN_UI_JS_MAIN;
-
-                   }
-
-               break;
-
-           }
-
-        }
-
-        //
-        // CHECK *HEAD* SPOOL ARRAY...AND FLAG FOR OUTPUT.
-        foreach($this->system_head_html_constants_spool_ARRAY as $index => $int_const){
-
-            if(!isset($this->html_head_build_flag_ARRAY[$int_const])){
-
-                $this->html_head_build_flag_ARRAY[$int_const] = 1;
+                return true;
 
             }
+
+            if(isset($resource_constant)){
+
+                if(isset($is_dev_mode)){
+
+                    //error_log(__LINE__ .  ' crnrstn PROD [' . $resource_constant . ']. [' . print_r($this->asset_spool_DEVPROD_meta_ARRAY, true) . '].');
+                    $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'PROD';
+                    if($is_dev_mode){
+
+                        //
+                        // SPOOL CONTENT FOR FOOTER IN DEV MODE
+                        //error_log(__LINE__ . ' crnrstn DEV $resource_constant[' . $resource_constant . '].');
+                        $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'DEV';
+
+                    }
+
+                }
+
+                if(!isset($this->html_head_build_flag_ARRAY[$resource_constant])){
+
+                    if(isset($is_dev_mode)){
+
+                        //error_log(__LINE__ . ' crnrstn PROD $resource_constant[' . $resource_constant . '].');
+
+                        $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'PROD';
+                        if($is_dev_mode){
+                            //error_log(__LINE__ . ' crnrstn DEV $resource_constant[' . $resource_constant . '].');
+
+                            $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'DEV';
+
+                        }
+
+                    }
+
+                    $this->head_asset_head_spool_ARRAY[] = $resource_constant;
+                    //$this->html_head_build_flag_ARRAY[$resource_constant] = 1;
+
+                }
+
+            }
+
+            return true;
 
         }
 
@@ -4265,6 +4336,22 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             if(!isset($this->html_head_build_flag_ARRAY[$resource_constant])){
 
+                if(isset($is_dev_mode)){
+
+                    //error_log(__LINE__ . ' crnrstn PROD $resource_constant[' . $resource_constant . '].');
+                    $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'PROD';
+                    if($is_dev_mode){
+
+                        //
+                        // SPOOL CONTENT FOR FOOTER IN DEV MODE
+                        //error_log(__LINE__ . ' crnrstn DEV $resource_constant[' . $resource_constant . '].');
+                        $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'DEV';
+
+                    }
+
+                }
+
+                $this->head_asset_head_spool_ARRAY[] = $resource_constant;
                 $this->html_head_build_flag_ARRAY[$resource_constant] = 1;
 
             }
@@ -4272,80 +4359,196 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         //
-        // HO!...ASSEMBLE!...ALL FLAGGED RESOURCES.
-        foreach($this->html_head_build_flag_ARRAY as $const => $val){
+        // CHECK *FOOTER* SPOOL ARRAY FOR CSS/JS DEPENDENCIES...AND FLAG FOR OUTPUT.
+        foreach($this->footer_asset_footer_spool_ARRAY as $index => $int_const){
 
-            $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($const);
+            switch($int_const){
+               case CRNRSTN_RESOURCE_DOCUMENTATION:
+
+                    //
+                    // CRNRSTN :: CSS
+                    if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP])
+                        && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET])
+                        && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
+
+                        switch($this->device_type_bit()){
+                            case CRNRSTN_UI_MOBILE:
+
+                                $tmp_res_const = CRNRSTN_UI_CSS_MAIN_MOBILE;
+
+                                if(isset($is_dev_mode)){
+
+                                    $this->asset_spool_DEVPROD_meta_ARRAY[$tmp_res_const] = 'PROD';
+                                    if($is_dev_mode){
+
+                                        //
+                                        // SPOOL CONTENT FOR FOOTER IN DEV MODE
+                                        $this->asset_spool_DEVPROD_meta_ARRAY[$tmp_res_const] = 'DEV';
+
+                                    }
+
+                                }
+
+                                $this->head_asset_head_spool_ARRAY[] = $tmp_res_const;
+                                $this->html_head_build_flag_ARRAY[$tmp_res_const] = 1;
+
+                            break;
+                            case CRNRSTN_UI_TABLET:
+
+                                $tmp_res_const = CRNRSTN_UI_CSS_MAIN_TABLET;
+
+                                if(isset($is_dev_mode)){
+
+                                    $this->asset_spool_DEVPROD_meta_ARRAY[$tmp_res_const] = 'PROD';
+                                    if($is_dev_mode){
+
+                                        //
+                                        // SPOOL CONTENT FOR FOOTER IN DEV MODE
+                                        $this->asset_spool_DEVPROD_meta_ARRAY[$tmp_res_const] = 'DEV';
+
+                                    }
+
+                                }
+
+                                $this->head_asset_head_spool_ARRAY[] = $tmp_res_const;
+                                $this->html_head_build_flag_ARRAY[$tmp_res_const] = 1;
+
+                            break;
+                            case CRNRSTN_UI_DESKTOP:
+                            default:
+
+                                $tmp_res_const = CRNRSTN_UI_CSS_MAIN_DESKTOP;
+
+                                if(isset($is_dev_mode)){
+
+                                    $this->asset_spool_DEVPROD_meta_ARRAY[$tmp_res_const] = 'PROD';
+                                    if($is_dev_mode){
+
+                                        //
+                                        // SPOOL CONTENT FOR FOOTER IN DEV MODE
+                                        $this->asset_spool_DEVPROD_meta_ARRAY[$tmp_res_const] = 'DEV';
+
+                                    }
+
+                                }
+
+                                $this->head_asset_head_spool_ARRAY[] = $tmp_res_const;
+                                $this->html_head_build_flag_ARRAY[$tmp_res_const] = 1;
+
+                            break;
+
+                        }
+
+                    }
+
+                   //
+                   // JQUERY
+                   if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
+                       && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
+                       && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+                       && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
+                       && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
+
+                       if(isset($is_dev_mode)){
+
+                           $this->asset_spool_DEVPROD_meta_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY] = 'PROD';
+                           if($is_dev_mode){
+
+                               //
+                               // SPOOL CONTENT FOR FOOTER IN DEV MODE
+                               $this->asset_spool_DEVPROD_meta_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY] = 'DEV';
+
+                           }
+
+                       }
+
+                       $this->head_asset_head_spool_ARRAY[] = CRNRSTN_JS_FRAMEWORK_JQUERY;
+                       $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY] = 1;
+
+                   }
+
+                    //
+                    // CRNRSTN :: JS
+                    if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+
+                        if(isset($is_dev_mode)){
+
+                            $this->asset_spool_DEVPROD_meta_ARRAY[CRNRSTN_UI_JS_MAIN] = 'PROD';
+                            if($is_dev_mode){
+
+                                //
+                                // SPOOL CONTENT FOR FOOTER IN DEV MODE
+                                $this->asset_spool_DEVPROD_meta_ARRAY[CRNRSTN_UI_JS_MAIN] = 'DEV';
+
+                            }
+
+                        }
+
+                        $this->head_asset_head_spool_ARRAY[] = CRNRSTN_UI_JS_MAIN;
+                        $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
+
+                    }
+
+                    if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI])){
+
+                        if(isset($is_dev_mode)){
+
+                            $this->asset_spool_DEVPROD_meta_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 'PROD';
+                            if($is_dev_mode){
+
+                                //
+                                // SPOOL CONTENT FOR FOOTER IN DEV MODE
+                                $this->asset_spool_DEVPROD_meta_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 'DEV';
+
+                            }
+
+                        }
+
+                        $this->head_asset_head_spool_ARRAY[] = CRNRSTN_JS_FRAMEWORK_JQUERY_UI;
+                        //$this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
+
+                    }
+
+//
+//                   error_log(__LINE__ . ' crnrstn die();');
+//                   die();
+               break;
+
+           }
 
         }
-
-        $tmp_load_crnrstn_interact_ui = true;
-        $tmp_crnrstn_noncompatible_ARRAY = array(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
-            CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE,
-            CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3);
-
-        foreach($tmp_crnrstn_noncompatible_ARRAY as $index => $non_compatible){
-
-            if(isset($this->html_head_build_flag_ARRAY[$non_compatible])){
-
-                $tmp_load_crnrstn_interact_ui = false;
-
-            }
-
-        }
-
+        
         //
-        // CRNRSTN :: INTERACT UI
-        if($tmp_load_crnrstn_interact_ui){
+        // HO!...ASSEMBLE!...ALL SPOOLED HEAD RESOURCES.
+        foreach($this->head_asset_head_spool_ARRAY as $index => $int_const){
 
-            //
-            // CRNRSTN :: CSS
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
+            if(!isset($this->asset_spool_DEVPROD_meta_ARRAY[$int_const])){
 
-                $this->html_footer_build_flag_ARRAY[$this->device_type_bit()] = 1;
-
-                switch($this->device_type_bit()){
-                    case CRNRSTN_UI_MOBILE:
-
-                        $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
-
-                    break;
-                    case CRNRSTN_UI_TABLET:
-
-                        $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
-
-                    break;
-                    case CRNRSTN_UI_DESKTOP:
-                    default:
-
-                        $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
-
-                    break;
-
-                }
-
+                $this->asset_spool_DEVPROD_meta_ARRAY[$int_const] = 'NULL';
+                
             }
 
-            //
-            // JQUERY + JQUERY UI
-            if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
-                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
-                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
-                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
-                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
+            switch($this->asset_spool_DEVPROD_meta_ARRAY[$int_const]){
+                case 'DEV':
 
-                $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
-                $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY_UI);
+                    //error_log(__LINE__ . ' crnrstn DEV [' . $int_const . '].');
+                    $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($int_const, false, true);
 
-            }
+                break;
+                case 'PROD':
 
-            //
-            // CRNRSTN :: JS
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+                    //error_log(__LINE__ . ' crnrstn PROD [' . $int_const . ']. [' . print_r($this->asset_spool_DEVPROD_meta_ARRAY, true) . '].');
+                    $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($int_const, false, false);
 
-                $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
-                $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_JS_MAIN);
+                break;
+                default:
+                    // NULL
 
+                    //error_log(__LINE__ . ' crnrstn NULL [' . $int_const . ']. [' . print_r($this->asset_spool_DEVPROD_meta_ARRAY, true) . '].');
+                    $tmp_head_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($int_const, false);
+
+                break;
+                
             }
 
         }
@@ -4354,30 +4557,71 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function system_output_footer_html($resource_constant = NULL, $spool_for_output = false){
+    public function system_output_footer_html($resource_constant = NULL, $spool_for_output = false, $is_dev_mode = NULL){
 
         //
         // CHECK FOR SPOOL REQUEST...NO OUTPUT. NO FLAG.
         if($spool_for_output){
 
-            $this->system_footer_html_constants_spool_ARRAY[] = $resource_constant;
+            if(isset($is_dev_mode)){
+
+                //
+                // SPOOL CONTENT FOR FOOTER IN DEV MODE?
+                $this->footer_asset_footer_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'PROD';
+                if($is_dev_mode){
+
+                    $this->footer_asset_footer_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'DEV';
+
+                }
+
+                $this->footer_asset_footer_spool_ARRAY[] = $resource_constant;
+
+                return true;
+
+            }
+
+            $this->footer_asset_footer_spool_ARRAY[] = $resource_constant;
 
             return true;
 
         }
 
-        $tmp_client_packet_output = '';
+        $tmp_footer_html_output = '';
 
         //
-        // BASIC CLEAN UP FOR UNBUILT RESOURCES SPOOLED FOR <HEAD>. NOT YET OUTPUTTED...BUT COULD HAVE BEEN.
-        foreach($this->system_head_html_constants_spool_ARRAY as $index => $int_const){
+        // <HEAD> RESOURCES SPOOLED FOR FOOTER.
+        foreach($this->head_asset_footer_spool_ARRAY as $index => $int_const){
 
-            //
-            // QUICK CHECK WITH <HEAD> BUILD FLAG ARRAY
+            //error_log(__LINE__ . ' crnrstn head_asset_footer_spool_ARRAY[' . $int_const . '].');
             if(!isset($this->html_head_build_flag_ARRAY[$int_const])){
 
                 $this->html_head_build_flag_ARRAY[$int_const] = 1;
-                $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($int_const);
+
+                if(!isset($this->asset_spool_DEVPROD_meta_ARRAY[$int_const])){
+
+                    $this->asset_spool_DEVPROD_meta_ARRAY[$int_const] = 'NULL';
+
+                }
+
+                switch($this->asset_spool_DEVPROD_meta_ARRAY[$int_const]){
+                    case 'DEV':
+
+                        $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($int_const, false, true);
+
+                    break;
+                    case 'PROD':
+
+                        $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($int_const, false, false);
+
+                    break;
+                    default:
+                        // NULL
+
+                        $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($int_const, false);
+
+                    break;
+
+                }
 
             }
 
@@ -4385,54 +4629,103 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //
         // PROCESS ALL SPOOLED FOOTER RESOURCES
-        foreach($this->system_footer_html_constants_spool_ARRAY as $index => $int_const){
+        foreach($this->footer_asset_footer_spool_ARRAY as $index => $int_const){
 
             //
             // IF VALID CONSTANT
             if(isset($this->system_ui_module_constants_ARRAY[$int_const])){
 
                 //
-                // IF RESOURCE NOT BUILT
-                if(!isset($this->html_footer_build_flag_ARRAY[$int_const])){
+                // CHECK FOR SATISFACTION OF ALL <HEAD> DEPENDENCIES
+                switch($int_const){
+                    case CRNRSTN_RESOURCE_DOCUMENTATION:
 
-                    //
-                    // CHECK FOR SATISFACTION OF ALL <HEAD> DEPENDENCIES
-                    switch($int_const){
-                        case CRNRSTN_RESOURCE_DOCUMENTATION:
+                        //
+                        // CRNRSTN :: INTERACT UI :: CSS
+                        if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP])
+                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET])
+                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
 
-                            //
-                            // <HEAD> DEPENDENCIES
-                            $tmp_ARRAY = array(CRNRSTN_UI_CSS_MAIN_DESKTOP, CRNRSTN_JS_FRAMEWORK_JQUERY , CRNRSTN_UI_JS_MAIN);
+                            switch($this->device_type_bit()){
+                                case CRNRSTN_UI_MOBILE:
 
-                            foreach($tmp_ARRAY as $index => $head_resource_constant){
+                                    $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
 
-                                if(!isset($this->html_head_build_flag_ARRAY[$head_resource_constant])){
+                                break;
+                                case CRNRSTN_UI_TABLET:
 
-                                    $this->html_head_build_flag_ARRAY[$head_resource_constant] = 1;
-                                    $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset($head_resource_constant);
+                                    $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
 
-                                }
+                                break;
+                                case CRNRSTN_UI_DESKTOP:
+                                default:
 
-                            }
+                                    $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
 
-                            //
-                            // RETURN MODULE RESOURCE NOW THAT ALL <HEAD> DEPENDENCIES HAVE BEEN CHECKED
-                            $this->html_footer_build_flag_ARRAY[$int_const] = 1;
-                            $tmp_client_packet_output .= $this->ui_content_module_out($int_const);
-
-                            //
-                            // RESOURCE DEPENDENCIES :: SYSTEM FOOTER
-                            if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER])){
-
-                                $this->html_footer_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER] = 1;
-                                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_RESOURCE_FOOTER);
+                                break;
 
                             }
 
-                        break;
+                        }
 
-                    }
+//                        //
+//                        // JQUERY
+//                        if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
+//                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
+//                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
+//                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
+//                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
+//
+//                            $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY] = 1;
+//                            $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY, true);
+//
+//                        }
 
+                        //
+                        // CRNRSTN :: INTERACT UI :: JS
+                        if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+
+                            $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
+                            $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_JS_MAIN, true);
+
+                        }
+
+//                        //
+//                        // JQUERY UI
+//                        if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI])){
+//
+//                            $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
+//                            $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, true);
+//
+//                        }
+
+                        //
+                        // RESOURCE DEPENDENCIES :: SYSTEM FOOTER
+                        if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER])){
+
+                            $this->html_footer_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER] = 1;
+                            $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_RESOURCE_FOOTER);
+
+                        }
+
+                        $tmp_footer_html_output .= $this->ui_content_module_out($int_const);
+
+                        //
+                        // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)
+                        if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL]) ){
+
+                            $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+                            $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+                        }
+
+                    break;
+                    default:
+
+                        //
+                        // SILENCE IS GOLDEN
+
+                    break;
                 }
 
             }
@@ -4448,7 +4741,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 if(!isset($this->html_footer_build_flag_ARRAY[$resource_constant])){
 
                     $this->html_footer_build_flag_ARRAY[$resource_constant] = 1;
-                    $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
+                    $tmp_footer_html_output .= $this->ui_content_module_out($resource_constant);
 
                 }
 
@@ -4460,7 +4753,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 if($this->destruct_output != ''){
 
-                    $tmp_client_packet_output .= $this->destruct_output;
+                    $tmp_footer_html_output .= $this->destruct_output;
 
                     $this->destruct_output = '';
 
@@ -4479,149 +4772,25 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             if(!isset($this->html_footer_build_flag_ARRAY[$resource_constant])){
 
                 $this->html_footer_build_flag_ARRAY[$resource_constant] = 1;
-                $tmp_client_packet_output .= $this->ui_content_module_out($resource_constant);
+                $tmp_footer_html_output .= $this->ui_content_module_out($resource_constant);
 
             }
 
         }
-
-        $tmp_load_crnrstn_interact_ui = true;
-        $tmp_crnrstn_noncompatible_ARRAY = array(CRNRSTN_JS_FRAMEWORK_PROTOTYPE, CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS,
-        CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE, CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE,
-        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3);
-
-        foreach($tmp_crnrstn_noncompatible_ARRAY as $index => $non_compatible){
-
-            if(isset($this->html_head_build_flag_ARRAY[$non_compatible])){
-
-                $tmp_load_crnrstn_interact_ui = false;
-
-            }
-
-        }
-
-        /*
-        REASONS NOT TO LOAD CRNRSTN ::
-        [JQUERY AND PROTOTYPE FRAMEWORKS SHOULD NOT BE RUN TOGETHER.]
-
-        CRNRSTN_JS_FRAMEWORK_PROTOTYPE
-        CRNRSTN_JS_FRAMEWORK_SCRIPTACULOUS
-        CRNRSTN_JS_FRAMEWORK_PROTOTYPE_MOOFX
-        CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE
-        CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE
-        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_03_3
-
-
-        =====
-        JQUERY [AT MOST...ONLY NEED ONE OF THESE TO LOAD AT ANY TIME...EVER]
-        CRNRSTN_JS_FRAMEWORK_JQUERY,
-        CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4,
-        CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1,
-        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY
-
-        =====
-        CRNRSTN_UI_JS_MAIN,
-
-        CRNRSTN_JS_FRAMEWORK_JQUERY_UI,
-        CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE,
-        CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS,
-        ,
-        CRNRSTN_JS_FRAMEWORK_REACT, CRNRSTN_JS_FRAMEWORK_MITHRIL, CRNRSTN_JS_FRAMEWORK_BACKBONE,
-        CRNRSTN_UI_CSS_MAIN_DESKTOP, CRNRSTN_UI_CSS_MAIN_TABLET, CRNRSTN_UI_CSS_MAIN_MOBILE,
-        CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID, CRNRSTN_CSS_FRAMEWORK_960_GRID_SYSTEM, CRNRSTN_CSS_FRAMEWORK_FOUNDATION,
-        CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE, CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM,
-        CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC, CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID,
-        CRNRSTN_CSS_FRAMEWORK_SKELETON, CRNRSTN_CSS_FRAMEWORK_RWDGRID
-
-        */
 
         //
-        // CRNRSTN :: INTERACT UI
-        if($tmp_load_crnrstn_interact_ui){
-
-            //
-            // CRNRSTN :: CSS
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
-
-                $this->html_footer_build_flag_ARRAY[$this->device_type_bit()] = 1;
-
-                switch($this->device_type_bit()){
-                    case CRNRSTN_UI_MOBILE:
-
-                        $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
-
-                    break;
-                    case CRNRSTN_UI_TABLET:
-
-                        $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
-
-                    break;
-                    case CRNRSTN_UI_DESKTOP:
-                    default:
-
-                        $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP);
-
-                    break;
-
-                }
-
-            }
-
-            //
-            // JQUERY + JQUERY UI
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4]) &&!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1]) && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])){
-
-                $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
-
-                $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY_UI);
-
-            }
-
-            //
-            // CRNRSTN :: JS
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
-
-                $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
-                $tmp_client_packet_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_JS_MAIN);
-
-            }
-
-            //
-            // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)
-            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL]) ){
-
-                $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
-                $tmp_client_packet_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
-
-            }
-
-
-        }
-
-        /*
-        //
-        // DO WE BUILD?
-        if($tmp_build_html && !isset($this->framework_file_output_serial_ARRAY[$file_path_nom_hash])){
-
-        foreach($this->framework_resource_ARRAY[$resource_constant] as $index0 => $tmpchnkARRAY00){
-
-        foreach($tmpchnkARRAY00 as $file_path_nom_hash => $resARRAY){
-
-        if(!$resARRAY['asset_spool_delay_html_output_for_footer'] === 'TRUE'){
-
-        */
-
+        // PROCESS ANY MAPPED ASSET SPECIFIC EXCLUSIONS
         foreach($this->system_head_html_asset_array_spool_ARRAY as $asset_hash => $resource_ARRAY){
 
-            $tmp_client_packet_output .= $this->mapped_resource_html_output($resource_ARRAY, $asset_hash);
+            $tmp_footer_html_output .= $this->mapped_resource_html_output($resource_ARRAY, $asset_hash, true);
 
         }
 
-        return $tmp_client_packet_output;
+        return $tmp_footer_html_output;
 
     }
 
-    private function mapped_resource_html_output($resource_ARRAY, $asset_hash, $footer_html_output = true){
+    private function mapped_resource_html_output($resource_ARRAY, $asset_hash, $footer_html_output = false){
 
         return $this->oCRNRSTN_ASSET_MGR->mapped_resource_html_output($resource_ARRAY, $asset_hash, $footer_html_output);
 
@@ -4645,6 +4814,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             break;
 
         }
+
+    }
+
+    public function return_report_module_out($resource_constant, $output_format = 'HTML'){
+
+        return $this->oCRNRSTN_USR->ui_content_module_out($resource_constant, $output_format);
 
     }
 
@@ -7151,20 +7326,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         if($theme_style == CRNRSTN_UI_RANDOM){
 
             $theme_style = $this->return_random_theme_style();
+            $this->random_theme_constant = $theme_style;
 
         }
 
-        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY['stage.canvas.box-shadow.offset-x']);
+        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-x']);
         $tmp_box_shadow_str = '';
 
         for($i = 0; $i < $tmp_box_shadow_cnt; $i++){
 
-            $tmp_00 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.inset'][$i];
-            $tmp_01 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.offset-x'][$i];
-            $tmp_02 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.offset-y'][$i];
-            $tmp_03 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.blur-radius'][$i];
-            $tmp_04 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.spread-radius'][$i];
-            $tmp_05 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.color'][$i];
+            $tmp_00 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.inset'][$i];
+            $tmp_01 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-x'][$i];
+            $tmp_02 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-y'][$i];
+            $tmp_03 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.blur-radius'][$i];
+            $tmp_04 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.spread-radius'][$i];
+            $tmp_05 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.color'][$i];
 
             $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' ' . $tmp_02 . ' ' . $tmp_03 . ' ' . $tmp_04 . ' ' . $tmp_05 . ', ';
 
@@ -7204,7 +7380,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_hash = $this->salt(42, '01');
 
-        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
+        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
         if(!isset($title)){
 
@@ -7260,11 +7436,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             
             /* Alert the copied text */
             //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY['stage.content.highlight-color'] . '";
+            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.highlight-color'] . '";
     
         }
         </script>';
 
+        $tmp_top_link_str = '';
         $tmp_module_page_key = $this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
         if(strlen($tmp_module_page_key) > 0){
 
@@ -7273,6 +7450,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             //$tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="oCRNRSTN_JS.copy_to_clipboard(\'' . $tmp_hash . '\'); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
             $tmp_copy_clipboard_func_call_str = '';
             $tmp_copy_clipboard_func_def_str = '';
+            $tmp_top_link_str = '<a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>';
 
         }
 
@@ -7288,27 +7466,27 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         $tmp_out = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
-        ' . $tmp_copy_clipboard_func_def_str . '
+        ' .  $tmp_copy_clipboard_func_def_str . '
         <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
             <div style="width:100%;">
                 <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:180px;">
-                    <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>' . $tmp_copy_clipboard_func_call_str . '
+                    ' . $tmp_top_link_str . $tmp_copy_clipboard_func_call_str . '
                 </div>
                 ' . $tmp_title_content . '
                 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
             </div>
-            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY['stage.content.highlight-color'] . '</div>
+            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.highlight-color'] . '</div>
 
             <div>
                 <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
                 <div style="border: 3px solid #FFF;">
                 <div style="margin: 3px 6px 0 0;">
-                    <div style="' . $this->theme_attributes_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
+                    <div style="' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
                     
                     <div style="width:100%; overflow:scroll;">
                 
-                        <div style="' . $this->theme_attributes_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <div style="' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                         <code>';
 
         $tmp_str_out = '<div style="padding: 10px 10px 10px 10px;">';
@@ -7330,7 +7508,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY['highlight.html'] . ';">';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_style]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_style]['highlight.html'] . ';">';
         $tmp_str_out .= print_r($output, true);
 
         $tmp_str_out .= '</pre>';
@@ -7406,20 +7584,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         if($theme_style == CRNRSTN_UI_RANDOM){
 
             $theme_style = $this->return_random_theme_style();
+            $this->random_theme_constant = $theme_style;
 
         }
 
-        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY['stage.canvas.box-shadow.offset-x']);
+        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-x']);
         $tmp_box_shadow_str = '';
 
         for($i = 0; $i < $tmp_box_shadow_cnt; $i++){
 
-            $tmp_00 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.inset'][$i];
-            $tmp_01 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.offset-x'][$i];
-            $tmp_02 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.offset-y'][$i];
-            $tmp_03 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.blur-radius'][$i];
-            $tmp_04 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.spread-radius'][$i];
-            $tmp_05 = $this->theme_attributes_ARRAY['stage.canvas.box-shadow.color'][$i];
+            $tmp_00 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.inset'][$i];
+            $tmp_01 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-x'][$i];
+            $tmp_02 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-y'][$i];
+            $tmp_03 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.blur-radius'][$i];
+            $tmp_04 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.spread-radius'][$i];
+            $tmp_05 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.color'][$i];
 
             $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' ' . $tmp_02 . ' ' . $tmp_03 . ' ' . $tmp_04 . ' ' . $tmp_05 . ', ';
 
@@ -7462,7 +7641,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //
         // NOTHING COULD BE DARKER. NOTHING.
-        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
+        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
         if(!isset($title)){
 
@@ -7517,11 +7696,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             
             /* Alert the copied text */
             //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY['stage.content.highlight-color'] . '";
+            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.highlight-color'] . '";
     
         }
         </script>';
 
+        $tmp_top_link_str = '';
         $tmp_module_page_key = $this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
         if(strlen($tmp_module_page_key) > 0){
 
@@ -7530,6 +7710,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             //$tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="oCRNRSTN_JS.copy_to_clipboard(\'' . $tmp_hash . '\'); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
             $tmp_copy_clipboard_func_call_str = '';
             $tmp_copy_clipboard_func_def_str = '';
+            $tmp_top_link_str = '<a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>';
 
         }
 
@@ -7548,24 +7729,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         ' . $tmp_copy_clipboard_func_def_str . '
         <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
             <div style="width:100%;">
-                <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:180px;">
-                    <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>' . $tmp_copy_clipboard_func_call_str . '
+                <div style="text-align:right; height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:180px;">
+                    ' . $tmp_top_link_str . $tmp_copy_clipboard_func_call_str . '
                 </div>
                 ' . $tmp_title_content . '
                 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
             </div>
-            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY['stage.content.highlight-color'] . '</div>
+            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.highlight-color'] . '</div>
 
             <div>
                 <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
                 <div style="border: 3px solid #FFF;">
                 <div style="margin:3px 6px 0 0;">
-                    <div style="' . $this->theme_attributes_ARRAY['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
+                    <div style="' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
                     
                     <div style="width:100%; overflow:scroll;">
                 
-                        <div style="' . $this->theme_attributes_ARRAY['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <div style="' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                         <code>';
 
         echo '<div style="padding: 10px 10px 10px 10px;">';
@@ -7587,7 +7768,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression,true)) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY['highlight.html'] . ';">';
+        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression,true)) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_style]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_style]['highlight.html'] . ';">';
         print_r($output);
         echo '</pre>';
 
@@ -8717,11 +8898,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 //
                 // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
                 // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
-                ini_set('highlight.comment', $this->theme_attributes_ARRAY['highlight.comment']);
-                ini_set('highlight.default', $this->theme_attributes_ARRAY['highlight.default']);
-                ini_set('highlight.html', $this->theme_attributes_ARRAY['highlight.html']);
-                ini_set('highlight.keyword', $this->theme_attributes_ARRAY['highlight.keyword']);
-                ini_set('highlight.string', $this->theme_attributes_ARRAY['highlight.string']);
+                ini_set('highlight.comment', $this->theme_attributes_ARRAY[$theme_style]['highlight.comment']);
+                ini_set('highlight.default', $this->theme_attributes_ARRAY[$theme_style]['highlight.default']);
+                ini_set('highlight.html', $this->theme_attributes_ARRAY[$theme_style]['highlight.html']);
+                ini_set('highlight.keyword', $this->theme_attributes_ARRAY[$theme_style]['highlight.keyword']);
+                ini_set('highlight.string', $this->theme_attributes_ARRAY[$theme_style]['highlight.string']);
 
             break;
 

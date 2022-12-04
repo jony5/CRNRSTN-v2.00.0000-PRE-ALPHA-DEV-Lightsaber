@@ -603,6 +603,8 @@ class crnrstn_http_manager {
 
                                 }
 
+//                                error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . ']. [' . $tmp_salt_ugc_val . '].');
+
                                 if($this->oCRNRSTN->asset_routing_data_key_lookup('js', $tmp_salt_ugc_val)){
 
                                     $this->crnrstn_ssdtla_enabled = true;
@@ -611,7 +613,8 @@ class crnrstn_http_manager {
                                     $this->crnrstn_asset_meta_path = $this->oCRNRSTN->asset_return_method_key('js', $tmp_salt_ugc_val);
 //
 //                                    error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
-
+//
+//                                    die();
                                     return true;
 
                                 }
