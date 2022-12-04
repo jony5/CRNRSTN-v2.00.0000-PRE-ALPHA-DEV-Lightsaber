@@ -106,7 +106,7 @@ class crnrstn_content_source_controller {
 
                     //
                     // RETURN VALUE
-                    $tmp_str = 'Returns BOOLEAN TRUE on successful mobile match.<br><br>
+                    $tmp_str = 'Returns boolean TRUE on successful mobile match.<br><br>
                     If <span class="crnrstn_general_post_code_copy">$tablet_is_mobile = TRUE</span> and the User-Agent 
                     and HTTP headers indicate that the client is a tablet computer, TRUE will also be returned.<br><br>
                     FALSE is returned for unsuccessful matches.';
@@ -122,6 +122,15 @@ class crnrstn_content_source_controller {
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/is_mobile/examples/is_mobile_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/is_mobile/examples/is_mobile_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                     $tmp_str = 'This functionality stands on top of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
                     project which has been fully incorporated into the HTTP Manager class of 
@@ -155,12 +164,11 @@ class crnrstn_content_source_controller {
                     //
                     // RELATED METHODS
                     $tmp_related_array = array();
-                    $tmp_related_array[0] = 'is_mobile';
-                    $tmp_related_array[1] = 'is_tablet';
-                    $tmp_related_array[2] = 'set_mobile';
-                    $tmp_related_array[3] = 'set_tablet';
-                    $tmp_related_array[4] = 'set_mobile_custom';
-                    $tmp_related_array[5] = 'is_mobile_custom';
+                    $tmp_related_array[0] = 'is_tablet';
+                    $tmp_related_array[1] = 'set_mobile';
+                    $tmp_related_array[2] = 'set_tablet';
+                    $tmp_related_array[3] = 'set_mobile_custom';
+                    $tmp_related_array[4] = 'is_mobile_custom';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
@@ -202,6 +210,15 @@ class crnrstn_content_source_controller {
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
 
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/is_tablet/examples/is_tablet_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/is_tablet/examples/is_tablet_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
                     $tmp_str = 'This functionality stands on top of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
                     project which has been fully incorporated into the HTTP Manager class of 
                     C<span class="the_R_in_crnrstn">R</span>NRSTN ::. <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home2') . '" target="_blank">Mobile Detect</a> 
@@ -235,9 +252,9 @@ class crnrstn_content_source_controller {
                     // RELATED METHODS
                     $tmp_related_array = array();
                     $tmp_related_array[0] = 'is_mobile';
-                    $tmp_related_array[1] = 'is_tablet';
-                    $tmp_related_array[2] = 'set_mobile';
-                    $tmp_related_array[3] = 'set_tablet';
+                    $tmp_related_array[1] = 'set_mobile';
+                    $tmp_related_array[2] = 'set_tablet';
+                    $tmp_related_array[3] = 'set_desktop';
                     $tmp_related_array[4] = 'set_mobile_custom';
                     $tmp_related_array[5] = 'is_mobile_custom';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
@@ -266,6 +283,15 @@ class crnrstn_content_source_controller {
                     $tmp_str = 'Returns boolean TRUE.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
 
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/set_mobile/examples/set_mobile_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/set_mobile/examples/set_mobile_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
                     $tmp_str = 'This functionality stands on top of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
                     project which has been fully incorporated into the HTTP Manager class of 
                     C<span class="the_R_in_crnrstn">R</span>NRSTN ::. <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home2') . '" target="_blank">Mobile Detect</a> 
@@ -289,8 +315,8 @@ class crnrstn_content_source_controller {
                     $tmp_related_array = array();
                     $tmp_related_array[0] = 'is_mobile';
                     $tmp_related_array[1] = 'is_tablet';
-                    $tmp_related_array[2] = 'set_mobile';
-                    $tmp_related_array[3] = 'set_tablet';
+                    $tmp_related_array[2] = 'set_tablet';
+                    $tmp_related_array[3] = 'set_desktop';
                     $tmp_related_array[4] = 'set_mobile_custom';
                     $tmp_related_array[5] = 'is_mobile_custom';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
@@ -319,6 +345,15 @@ class crnrstn_content_source_controller {
                     $tmp_str = 'Returns boolean TRUE.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
 
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/set_tablet/examples/set_tablet_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/set_tablet/examples/set_tablet_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
                     $tmp_str = 'This functionality stands on top of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
                     project which has been fully incorporated into the HTTP Manager class of 
                     C<span class="the_R_in_crnrstn">R</span>NRSTN ::. <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home2') . '" target="_blank">Mobile Detect</a> 
@@ -343,7 +378,7 @@ class crnrstn_content_source_controller {
                     $tmp_related_array[0] = 'is_mobile';
                     $tmp_related_array[1] = 'is_tablet';
                     $tmp_related_array[2] = 'set_mobile';
-                    $tmp_related_array[3] = 'set_tablet';
+                    $tmp_related_array[3] = 'set_desktop';
                     $tmp_related_array[4] = 'set_mobile_custom';
                     $tmp_related_array[5] = 'is_mobile_custom';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
@@ -371,7 +406,16 @@ class crnrstn_content_source_controller {
                     // RETURN VALUE
                     $tmp_str = 'Returns boolean TRUE.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
-    
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/set_desktop/examples/set_desktop_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/set_desktop/examples/set_desktop_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
                     $tmp_str = 'This functionality stands on top of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
                         project which has been fully incorporated into the HTTP Manager class of 
                         C<span class="the_R_in_crnrstn">R</span>NRSTN ::. <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home2') . '" target="_blank">Mobile Detect</a> 
@@ -397,7 +441,6 @@ class crnrstn_content_source_controller {
                     $tmp_related_array[1] = 'is_tablet';
                     $tmp_related_array[2] = 'set_mobile';
                     $tmp_related_array[3] = 'set_tablet';
-                    $tmp_related_array[3] = 'set_desktop';
                     $tmp_related_array[4] = 'set_mobile_custom';
                     $tmp_related_array[5] = 'is_mobile_custom';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
@@ -413,30 +456,180 @@ class crnrstn_content_source_controller {
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Designate a custom device type indication string for 
-                    the client. A list of strings can be found at ';
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Force a custom device type (or magic method) profile onto a 
+                    request. To perform actual device type validation, pass the same magic method parameter to <span class="crnrstn_general_post_code_copy">is_mobile_custom</span> 
+                    instead.
+                    <br><br>
+                    Mobile Detect has a suite of over 150 <a href="' . $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_mobile_detect_magic_method_demo00') . '" target="_blank">custom detection methods</a> 
+                    (or magic methods) which can be used for a more granular approach to device detection. Designate a 
+                    custom device type indication string for the client by passing the desired case-insensitive 
+                    method name. ';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
                     // METHOD DEFINITION
-                    $tmp_method_definition = 'set_mobile_custom(<span class="crnrstn_documentation_method_data_type">string</span> $device_type_algorithm = <span class="crnrstn_documentation_method_data_system_val">NULL</span>): <span class="crnrstn_documentation_method_data_type">boolean</span>';
+                    $tmp_method_definition = 'set_mobile_custom(<span class="crnrstn_documentation_method_data_type">string</span> $magic_method = \'<span class="crnrstn_documentation_method_string_data">isMobile</span>\'): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
                     //
                     // RETURN VALUE
-                    $tmp_str = 'Returns boolean TRUE on successful tablet match.<br><br>
-                    If <span class="crnrstn_general_post_code_copy">$mobile_is_tablet = TRUE</span> and the User-Agent 
-                    and HTTP headers indicate that the client is a mobile device, TRUE will also be returned.<br><br>
-                    FALSE is returned for unsuccessful matches.';
+                    $tmp_str = 'Returns boolean TRUE.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
 
                     //
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
-                    $tmp_param_def[0]['param_name'] = '$mobile_is_tablet';
-                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE.  If <span class="crnrstn_general_post_code_copy">$mobile_is_tablet = TRUE</span> 
-                    and the User-Agent and HTTP headers indicate that the client is a mobile device, TRUE will 
-                    be returned.';
+                    $tmp_param_def[0]['param_name'] = '$magic_method';
+                    $tmp_param_def[0]['param_definition'] = 'The name of a basic, custom, or experimental detection 
+                    method. Method names can be taken from from a list of predefined suggestions 
+                    on the <a href="'. $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_magic_method_demo01') . '" target="_blank">Mobile Detect</a> 
+                    website or the latest revision as of Mobile Detect v' . $this->oCRNRSTN->oCRNRSTN_ENV->oHTTP_MGR->oMOBI_DETECT->VERSION . ' 
+                    can be reviewed below by scrolling down.';
+                    $tmp_param_def[0]['param_required'] = false;
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+
+                    $tmp_str = 'This functionality stands on top of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
+                    project which has been fully incorporated into the HTTP Manager class of 
+                    C<span class="the_R_in_crnrstn">R</span>NRSTN ::. <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home2') . '" target="_blank">Mobile Detect</a> 
+                    is a lightweight PHP class for detecting mobile devices (including tablets).<br><br>
+                    
+                    It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment. 
+                    <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_mobile_detect_home3') . '" target="_blank">Mobile Detect</a> 
+                    is sponsored by it\'s developers and community, and they send thanks to the <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.jetbrains.com/', 'crnrstn_documentation_mobile_detect_jetbrains') . '" target="_blank">JetBrains</a> 
+                    team for providing <a href="'.$this->oCRNRSTN->return_sticky_link('https://www.jetbrains.com/phpstorm/', 'crnrstn_documentation_mobile_detect_phpstorm') . '" target="_blank">PHPStorm</a> 
+                    and <a href="'.$this->oCRNRSTN->return_sticky_link('https://www.jetbrains.com/phpstorm/', 'crnrstn_documentation_mobile_detect_datagrip') . '" target="_blank">DataGrip</a> 
+                    licenses for said project.';
+
+                    //
+                    // NOTE
+                    $tmp_note_array = array();
+                    $tmp_note_array['NOTE_COPY'] = $tmp_str;
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE', $tmp_note_array);
+
+                    $tmp_predefined_constants_html = '<div class="crnrstn_predefined_constant_title"><h2>Mobile Detect 
+                    Magic Methods for Device Detection ::</h2></div>';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title_description"><p>The 
+                    magic methods below were taken from the <a href="'. $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_demo02') . '" target="_blank">demo page</a> 
+                    of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
+                    website.
+</p></div>';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_content">
+';
+
+                    // Basic methods
+                    $tmp_ARRAY_basic = array('isMobile()', 'isTablet()');
+
+                    //Custom detection methods
+                    $tmp_ARRAY_custom = array('isiPhone()', 'isBlackBerry()', 'isPixel()', 'isHTC()',
+                    'isNexus()', 'isDell()', 'isMotorola()', 'isSamsung()', 'isLG()', 'isSony()', 'isAsus()', 'isXiaomi()', 'isNokiaLumia()', 'isMicromax()', 'isPalm()', 'isVertu()', 'isPantech()', 'isFly()', 'isWiko()',
+                    'isiMobile()', 'isSimValley()', 'isWolfgang()', 'isAlcatel()', 'isNintendo()', 'isAmoi()', 'isINQ()', 'isOnePlus()', 'isGenericPhone()', 'isiPad()', 'isNexusTablet()', 'isGoogleTablet()', 'isSamsungTablet()',
+                    'isKindle()', 'isSurfaceTablet()', 'isHPTablet()', 'isAsusTablet()', 'isBlackBerryTablet()', 'isHTCtablet()',
+                    'isMotorolaTablet()', 'isNookTablet()', 'isAcerTablet()', 'isToshibaTablet()', 'isLGTablet()', 'isFujitsuTablet()', 'isPrestigioTablet()', 'isLenovoTablet()',
+                    'isDellTablet()', 'isXiaomiTablet()', 'isYarvikTablet()', 'isMedionTablet()', 'isArnovaTablet()', 'isIntensoTablet()', 'isIRUTablet()', 'isMegafonTablet()', 'isEbodaTablet()', 'isAllViewTablet()',
+                    'isArchosTablet()', 'isAinolTablet()', 'isNokiaLumiaTablet()', 'isSonyTablet()', 'isPhilipsTablet()', 'isCubeTablet()', 'isCobyTablet()', 'isMIDTablet()',
+                    'isMSITablet()', 'isSMiTTablet()', 'isRockChipTablet()', 'isFlyTablet()', 'isbqTablet()', 'isHuaweiTablet()', 'isNecTablet()',
+                    'isPantechTablet()', 'isBronchoTablet()', 'isVersusTablet()', 'isZyncTablet()', 'isPositivoTablet()', 'isNabiTablet()',
+                    'isKoboTablet()', 'isDanewTablet()', 'isTexetTablet()', 'isPlaystationTablet()', 'isTrekstorTablet()', 'isPyleAudioTablet()',
+                    'isAdvanTablet()', 'isDanyTechTablet()', 'isGalapadTablet()', 'isMicromaxTablet()', 'isKarbonnTablet()', 'isAllFineTablet()', 'isPROSCANTablet()', 'isYONESTablet()',
+                    'isChangJiaTablet()', 'isDPSTablet()', 'isVistureTablet()', 'isCrestaTablet()', 'isMediatekTablet()', 'isConcordeTablet()', 'isGoCleverTablet()', 'isModecomTablet()', 'isVoninoTablet()', 'isECSTablet()', 'isStorexTablet()',
+                    'isVodafoneTablet()', 'isEssentielBTablet()', 'isRossMoorTablet()', 'isiMobileTablet()', 'isTolinoTablet()', 'isAudioSonicTablet()', 'isAMPETablet()', 'isSkkTablet()', 'isTecnoTablet()', 'isJXDTablet()',
+                    'isiJoyTablet()', 'isFX2Tablet()', 'isXoroTablet()', 'isViewsonicTablet()', 'isVerizonTablet()', 'isOdysTablet()', 'isCaptivaTablet()', 'isIconbitTablet()',
+                    'isTeclastTablet()', 'isOndaTablet()', 'isJaytechTablet()', 'isBlaupunktTablet()', 'isDigmaTablet()', 'isEvolioTablet()', 'isLavaTablet()', 'isAocTablet()', 'isMpmanTablet()', 'isCelkonTablet()', 'isWolderTablet()', 'isMediacomTablet()', 'isMiTablet()',
+                    'isNibiruTablet()', 'isNexoTablet()', 'isLeaderTablet()', 'isUbislateTablet()', 'isPocketBookTablet()', 'isKocasoTablet()', 'isHisenseTablet()', 'isHudl()', 'isTelstraTablet()', 'isGenericTablet()', 'isAndroidOS()', 'isBlackBerryOS()',
+                    'isPalmOS()', 'isSymbianOS()', 'isWindowsMobileOS()', 'isWindowsPhoneOS()', 'isiOS()', 'isiPadOS()', 'isSailfishOS()', 'isMeeGoOS()', 'isMaemoOS()',
+                    'isJavaOS()', 'iswebOS()', 'isbadaOS()', 'isBREWOS()', 'isChrome()', 'isDolfin()', 'isOpera()', 'isSkyfire()', 'isEdge()', 'isIE()', 'isFirefox()', 'isBolt()', 'isTeaShark()', 'isBlazer()', 'isSafari()',
+                    'isWeChat()', 'isUCBrowser()', 'isbaiduboxapp()', 'isbaidubrowser()', 'isDiigoBrowser()', 'isMercury()', 'isObigoBrowser()',
+                    'isNetFront()', 'isGenericBrowser()', 'isPaleMoon()');
+
+                    //Other tests
+                    $tmp_ARRAY_other = array('isiphone()', 'isIphone()', 'istablet()', 'isIOS()', 'isWhateverYouWant()');
+                    $tmp_str = '';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Basic detection methods</h3></div>';
+                    foreach($tmp_ARRAY_basic as $index => $method_name){
+
+                        $tmp_str .= $method_name . '<br>';
+
+                    }
+
+                    $tmp_str = $this->oCRNRSTN->strrtrim($tmp_str, '<br>');
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_documentation_dyn_content_description"><p>' . $tmp_str . '</p></div>';
+
+                    $tmp_str = '';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Custom detection methods</h3></div>';
+                    foreach($tmp_ARRAY_custom as $index => $method_name){
+
+                        $tmp_str .= $method_name . '<br>';
+
+                    }
+                    $tmp_str = $this->oCRNRSTN->strrtrim($tmp_str, '<br>');
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_documentation_dyn_content_description">' . $tmp_str . '</div>';
+
+                    $tmp_str = '';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Other tests</h3></div>';
+                    foreach($tmp_ARRAY_other as $index => $method_name){
+
+                        $tmp_str .= $method_name . '<br>';
+
+                    }
+                    $tmp_str = $this->oCRNRSTN->strrtrim($tmp_str, '<br>');
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_documentation_dyn_content_description">' . $tmp_str . '</div>';
+
+                    $tmp_predefined_constants_html .= '</div>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', $tmp_predefined_constants_html);
+
+
+                    //
+                    // RELATED METHODS
+                    $tmp_related_array = array();
+                    $tmp_related_array[0] = 'is_mobile';
+                    $tmp_related_array[1] = 'is_tablet';
+                    $tmp_related_array[2] = 'set_mobile';
+                    $tmp_related_array[3] = 'set_tablet';
+                    $tmp_related_array[4] = 'set_desktop';
+                    $tmp_related_array[5] = 'is_mobile_custom';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
+                case 'is_mobile_custom':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Check for successful match of custom device type (or magic 
+                    method) profile against the current User-Agent string. 
+                    <br><br>
+                    Mobile Detect has a suite of over 150 <a href="' . $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_is_mobile_custom_magic_method_demo00') . '" target="_blank">custom detection methods</a> 
+                    (or magic methods) which can be used for a more granular approach to device detection. Designate a 
+                    custom device type indication string for the client by passing the desired case-insensitive 
+                    method name. A list of these methods is also below.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = 'is_mobile_custom(<span class="crnrstn_documentation_method_data_type">string</span> $magic_method = \'<span class="crnrstn_documentation_method_string_data">isMobile</span>\'): <span class="crnrstn_documentation_method_data_type">boolean</span>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // RETURN VALUE
+                    $tmp_str = 'Returns boolean TRUE.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
+
+                    //
+                    // PARAMETER DEFINITION
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$magic_method';
+                    $tmp_param_def[0]['param_definition'] = 'The name of a basic, custom, or experimental detection 
+                    method. Method names can be taken from from a list of predefined suggestions 
+                    on the <a href="'. $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_is_mobile_custom_mobile_detect_magic_method_demo01') . '" target="_blank">Mobile Detect</a> 
+                    website or the latest revision as of Mobile Detect v' . $this->oCRNRSTN->oCRNRSTN_ENV->oHTTP_MGR->oMOBI_DETECT->VERSION . ' 
+                    can be reviewed below by scrolling down.';
                     $tmp_param_def[0]['param_required'] = false;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
@@ -459,6 +652,79 @@ class crnrstn_content_source_controller {
                     $tmp_note_array['NOTE_COPY'] = $tmp_str;
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE', $tmp_note_array);
 
+                    $tmp_predefined_constants_html = '<div class="crnrstn_predefined_constant_title"><h2>Mobile Detect 
+                    Magic Methods for Device Detection ::</h2></div>';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title_description"><p>The 
+                    magic methods below were taken from the <a href="'. $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_mobile_detect_demo02') . '" target="_blank">demo page</a> 
+                    of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
+                    website.
+</p></div>';
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_content">
+';
+
+                    //
+                    $tmp_ARRAY_basic = array('isMobile()', 'isTablet()');
+
+
+                    //Custom detection methods
+                    $tmp_ARRAY_custom = array('isiPhone()', 'isBlackBerry()', 'isPixel()', 'isHTC()',
+                        'isNexus()', 'isDell()', 'isMotorola()', 'isSamsung()', 'isLG()', 'isSony()', 'isAsus()', 'isXiaomi()', 'isNokiaLumia()', 'isMicromax()', 'isPalm()', 'isVertu()', 'isPantech()', 'isFly()', 'isWiko()',
+                        'isiMobile()', 'isSimValley()', 'isWolfgang()', 'isAlcatel()', 'isNintendo()', 'isAmoi()', 'isINQ()', 'isOnePlus()', 'isGenericPhone()', 'isiPad()', 'isNexusTablet()', 'isGoogleTablet()', 'isSamsungTablet()',
+                        'isKindle()', 'isSurfaceTablet()', 'isHPTablet()', 'isAsusTablet()', 'isBlackBerryTablet()', 'isHTCtablet()',
+                        'isMotorolaTablet()', 'isNookTablet()', 'isAcerTablet()', 'isToshibaTablet()', 'isLGTablet()', 'isFujitsuTablet()', 'isPrestigioTablet()', 'isLenovoTablet()',
+                        'isDellTablet()', 'isXiaomiTablet()', 'isYarvikTablet()', 'isMedionTablet()', 'isArnovaTablet()', 'isIntensoTablet()', 'isIRUTablet()', 'isMegafonTablet()', 'isEbodaTablet()', 'isAllViewTablet()',
+                        'isArchosTablet()', 'isAinolTablet()', 'isNokiaLumiaTablet()', 'isSonyTablet()', 'isPhilipsTablet()', 'isCubeTablet()', 'isCobyTablet()', 'isMIDTablet()',
+                        'isMSITablet()', 'isSMiTTablet()', 'isRockChipTablet()', 'isFlyTablet()', 'isbqTablet()', 'isHuaweiTablet()', 'isNecTablet()',
+                        'isPantechTablet()', 'isBronchoTablet()', 'isVersusTablet()', 'isZyncTablet()', 'isPositivoTablet()', 'isNabiTablet()',
+                        'isKoboTablet()', 'isDanewTablet()', 'isTexetTablet()', 'isPlaystationTablet()', 'isTrekstorTablet()', 'isPyleAudioTablet()',
+                        'isAdvanTablet()', 'isDanyTechTablet()', 'isGalapadTablet()', 'isMicromaxTablet()', 'isKarbonnTablet()', 'isAllFineTablet()', 'isPROSCANTablet()', 'isYONESTablet()',
+                        'isChangJiaTablet()', 'isDPSTablet()', 'isVistureTablet()', 'isCrestaTablet()', 'isMediatekTablet()', 'isConcordeTablet()', 'isGoCleverTablet()', 'isModecomTablet()', 'isVoninoTablet()', 'isECSTablet()', 'isStorexTablet()',
+                        'isVodafoneTablet()', 'isEssentielBTablet()', 'isRossMoorTablet()', 'isiMobileTablet()', 'isTolinoTablet()', 'isAudioSonicTablet()', 'isAMPETablet()', 'isSkkTablet()', 'isTecnoTablet()', 'isJXDTablet()',
+                        'isiJoyTablet()', 'isFX2Tablet()', 'isXoroTablet()', 'isViewsonicTablet()', 'isVerizonTablet()', 'isOdysTablet()', 'isCaptivaTablet()', 'isIconbitTablet()',
+                        'isTeclastTablet()', 'isOndaTablet()', 'isJaytechTablet()', 'isBlaupunktTablet()', 'isDigmaTablet()', 'isEvolioTablet()', 'isLavaTablet()', 'isAocTablet()', 'isMpmanTablet()', 'isCelkonTablet()', 'isWolderTablet()', 'isMediacomTablet()', 'isMiTablet()',
+                        'isNibiruTablet()', 'isNexoTablet()', 'isLeaderTablet()', 'isUbislateTablet()', 'isPocketBookTablet()', 'isKocasoTablet()', 'isHisenseTablet()', 'isHudl()', 'isTelstraTablet()', 'isGenericTablet()', 'isAndroidOS()', 'isBlackBerryOS()',
+                        'isPalmOS()', 'isSymbianOS()', 'isWindowsMobileOS()', 'isWindowsPhoneOS()', 'isiOS()', 'isiPadOS()', 'isSailfishOS()', 'isMeeGoOS()', 'isMaemoOS()',
+                        'isJavaOS()', 'iswebOS()', 'isbadaOS()', 'isBREWOS()', 'isChrome()', 'isDolfin()', 'isOpera()', 'isSkyfire()', 'isEdge()', 'isIE()', 'isFirefox()', 'isBolt()', 'isTeaShark()', 'isBlazer()', 'isSafari()',
+                        'isWeChat()', 'isUCBrowser()', 'isbaiduboxapp()', 'isbaidubrowser()', 'isDiigoBrowser()', 'isMercury()', 'isObigoBrowser()',
+                        'isNetFront()', 'isGenericBrowser()', 'isPaleMoon()');
+
+                    //Other tests
+                    $tmp_ARRAY_other = array('isiphone()', 'isIphone()', 'istablet()', 'isIOS()', 'isWhateverYouWant()');
+
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Basic detection methods</h3></div>';
+                    foreach($tmp_ARRAY_basic as $index => $method_name){
+
+                        $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_demo_shell">
+                        <div class="crnrstn_predefined_constant_demo_name">' . $method_name . '</div>
+                        <div class="crnrstn_cb_5"></div>
+                        </div>';
+
+                    }
+
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Custom detection methods</h3></div>';
+                    foreach($tmp_ARRAY_custom as $index => $method_name){
+
+                        $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_demo_shell">
+                        <div class="crnrstn_predefined_constant_demo_name">' . $method_name . '</div>
+                        <div class="crnrstn_cb_5"></div>
+                        </div>';
+
+                    }
+
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Other tests</h3></div>';
+                    foreach($tmp_ARRAY_other as $index => $method_name){
+
+                        $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_demo_shell">
+                        <div class="crnrstn_predefined_constant_demo_name">' . $method_name . '</div>
+                        <div class="crnrstn_cb_5"></div>
+                        </div>';
+
+                    }
+
+                    $tmp_predefined_constants_html .= '</div>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', $tmp_predefined_constants_html);
+
+
                     //
                     // RELATED METHODS
                     $tmp_related_array = array();
@@ -466,8 +732,8 @@ class crnrstn_content_source_controller {
                     $tmp_related_array[1] = 'is_tablet';
                     $tmp_related_array[2] = 'set_mobile';
                     $tmp_related_array[3] = 'set_tablet';
-                    $tmp_related_array[4] = 'set_mobile_custom';
-                    $tmp_related_array[5] = 'is_mobile_custom';
+                    $tmp_related_array[4] = 'set_desktop';
+                    $tmp_related_array[5] = 'set_mobile_custom';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $tmp_related_array);
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
@@ -1969,7 +2235,7 @@ class crnrstn_content_source_controller {
                     environmentally specific WCR objects. However, one could still respect environmental alignment through the 
                     use of 1) switch() or other conditional statements and 2) methods such 
                     as: <span class="phpvar_copy">$oC<span class="the_R">R</span>NRSTN_USR->isCurrentEnvironment(\'LOCALHOST_MACBOOKPRO\')</span>, which will return 
-                    BOOLEAN TRUE for successful match between the C<span class="the_R">R</span>NRSTN :: configuration 
+                    boolean TRUE for successful match between the C<span class="the_R">R</span>NRSTN :: configuration 
                     of the running environment and the provided key, \'LOCALHOST_MACBOOKPRO\'. Also, there is  
                     <span class="phpvar_copy">$oC<span class="the_R">R</span>NRSTN_USR->currentEnvironment()</span>, 
                     which could return a string such as \'LOCALHOST_MACBOOKPRO\' 
@@ -3022,7 +3288,7 @@ isiPhone(), isBlackBerry(), isHTC(), isNexus(), isDell(), isMotorola(), isSamsun
                     $tmp_param_def[0]['param_required'] = true;
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'PARAMETER_DEFINITION', $tmp_param_def);
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'RETURNED_VALUE','Returns BOOLEAN TRUE if the algorithm aligns to the connecting client device or FALSE for no match.');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial,'RETURNED_VALUE','Returns boolean TRUE if the algorithm aligns to the connecting client device or FALSE for no match.');
 
                     $tmp_example_title_str = 'Example 1';
                     $tmp_example_description_str = 'Retrieve BOOLEAN response as an indication of the existence of conditions which confirm or deny that this is a request originating from a mobile device or tablet computer matching the provided algorithm.';

@@ -4287,15 +4287,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function set_mobile_custom($target_device = NULL){
+    public function set_mobile_custom($magic_method = 'isMobile'){
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile_custom($target_device);
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile_custom($magic_method);
 
     }
 
-    public function is_mobile_custom($target_device = NULL){
+    public function is_mobile_custom($magic_method = 'isMobile'){
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile_custom($target_device);
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile_custom($magic_method);
 
     }
 
