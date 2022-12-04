@@ -483,7 +483,7 @@ class crnrstn_content_source_controller {
                     $tmp_param_def[0]['param_definition'] = 'The name of a basic, custom, or experimental detection 
                     method. Method names can be taken from from a list of predefined suggestions 
                     on the <a href="'. $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_magic_method_demo01') . '" target="_blank">Mobile Detect</a> 
-                    website or the latest revision as of Mobile Detect v' . $this->oCRNRSTN->oCRNRSTN_ENV->oHTTP_MGR->oMOBI_DETECT->VERSION . ' 
+                    website or the latest revision as of Mobile Detect v' . $this->oCRNRSTN->oCRNRSTN_ENV->oHTTP_MGR->oMOBI_DETECT->getScriptVersion() . ' 
                     can be reviewed below by scrolling down.';
                     $tmp_param_def[0]['param_required'] = false;
 
@@ -513,14 +513,16 @@ class crnrstn_content_source_controller {
                     $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title_description"><p>The 
                     magic methods below were taken from the <a href="'. $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_demo02') . '" target="_blank">demo page</a> 
                     of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
-                    website.
-</p></div>';
+                    website.</p></div>';
+
                     $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_content">
 ';
 
+                    //
                     // Basic methods
                     $tmp_ARRAY_basic = array('isMobile()', 'isTablet()');
 
+                    //
                     //Custom detection methods
                     $tmp_ARRAY_custom = array('isiPhone()', 'isBlackBerry()', 'isPixel()', 'isHTC()',
                     'isNexus()', 'isDell()', 'isMotorola()', 'isSamsung()', 'isLG()', 'isSony()', 'isAsus()', 'isXiaomi()', 'isNokiaLumia()', 'isMicromax()', 'isPalm()', 'isVertu()', 'isPantech()', 'isFly()', 'isWiko()',
@@ -579,7 +581,6 @@ class crnrstn_content_source_controller {
                     $tmp_predefined_constants_html .= '</div>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', $tmp_predefined_constants_html);
 
-
                     //
                     // RELATED METHODS
                     $tmp_related_array = array();
@@ -628,7 +629,7 @@ class crnrstn_content_source_controller {
                     $tmp_param_def[0]['param_definition'] = 'The name of a basic, custom, or experimental detection 
                     method. Method names can be taken from from a list of predefined suggestions 
                     on the <a href="'. $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_is_mobile_custom_mobile_detect_magic_method_demo01') . '" target="_blank">Mobile Detect</a> 
-                    website or the latest revision as of Mobile Detect v' . $this->oCRNRSTN->oCRNRSTN_ENV->oHTTP_MGR->oMOBI_DETECT->VERSION . ' 
+                    website or the latest revision as of Mobile Detect v' . $this->oCRNRSTN->oCRNRSTN_ENV->oHTTP_MGR->oMOBI_DETECT->getScriptVersion() . ' 
                     can be reviewed below by scrolling down.';
                     $tmp_param_def[0]['param_required'] = false;
 
@@ -657,15 +658,17 @@ class crnrstn_content_source_controller {
                     $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title_description"><p>The 
                     magic methods below were taken from the <a href="'. $this->oCRNRSTN->return_sticky_link('http://demo.mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_mobile_detect_demo02') . '" target="_blank">demo page</a> 
                     of the <a href="' . $this->oCRNRSTN->return_sticky_link('http://mobiledetect.net/', 'crnrstn_documentation_set_mobile_custom_mobile_detect_home') . '" target="_blank">Mobile Detect</a> 
-                    website.
-</p></div>';
+                    website.</p></div>';
+
+
                     $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_content">
 ';
 
                     //
+                    // Basic methods
                     $tmp_ARRAY_basic = array('isMobile()', 'isTablet()');
 
-
+                    //
                     //Custom detection methods
                     $tmp_ARRAY_custom = array('isiPhone()', 'isBlackBerry()', 'isPixel()', 'isHTC()',
                         'isNexus()', 'isDell()', 'isMotorola()', 'isSamsung()', 'isLG()', 'isSony()', 'isAsus()', 'isXiaomi()', 'isNokiaLumia()', 'isMicromax()', 'isPalm()', 'isVertu()', 'isPantech()', 'isFly()', 'isWiko()',
@@ -690,40 +693,39 @@ class crnrstn_content_source_controller {
 
                     //Other tests
                     $tmp_ARRAY_other = array('isiphone()', 'isIphone()', 'istablet()', 'isIOS()', 'isWhateverYouWant()');
-
+                    $tmp_str = '';
                     $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Basic detection methods</h3></div>';
                     foreach($tmp_ARRAY_basic as $index => $method_name){
 
-                        $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_demo_shell">
-                        <div class="crnrstn_predefined_constant_demo_name">' . $method_name . '</div>
-                        <div class="crnrstn_cb_5"></div>
-                        </div>';
+                        $tmp_str .= $method_name . '<br>';
 
                     }
 
+                    $tmp_str = $this->oCRNRSTN->strrtrim($tmp_str, '<br>');
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_documentation_dyn_content_description"><p>' . $tmp_str . '</p></div>';
+
+                    $tmp_str = '';
                     $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Custom detection methods</h3></div>';
                     foreach($tmp_ARRAY_custom as $index => $method_name){
 
-                        $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_demo_shell">
-                        <div class="crnrstn_predefined_constant_demo_name">' . $method_name . '</div>
-                        <div class="crnrstn_cb_5"></div>
-                        </div>';
+                        $tmp_str .= $method_name . '<br>';
 
                     }
+                    $tmp_str = $this->oCRNRSTN->strrtrim($tmp_str, '<br>');
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_documentation_dyn_content_description">' . $tmp_str . '</div>';
 
+                    $tmp_str = '';
                     $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_title"><h3>Other tests</h3></div>';
                     foreach($tmp_ARRAY_other as $index => $method_name){
 
-                        $tmp_predefined_constants_html .= '<div class="crnrstn_predefined_constant_demo_shell">
-                        <div class="crnrstn_predefined_constant_demo_name">' . $method_name . '</div>
-                        <div class="crnrstn_cb_5"></div>
-                        </div>';
+                        $tmp_str .= $method_name . '<br>';
 
                     }
+                    $tmp_str = $this->oCRNRSTN->strrtrim($tmp_str, '<br>');
+                    $tmp_predefined_constants_html .= '<div class="crnrstn_documentation_dyn_content_description">' . $tmp_str . '</div>';
 
                     $tmp_predefined_constants_html .= '</div>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'GENERAL_COPY_R_STONE', $tmp_predefined_constants_html);
-
 
                     //
                     // RELATED METHODS
