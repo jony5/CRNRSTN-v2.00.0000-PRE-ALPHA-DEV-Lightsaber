@@ -3933,49 +3933,49 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
     
-    public function is_client_mobile($tablet_is_mobile = false){
+    public function is_mobile($tablet_is_mobile = false){
 
         error_log(__LINE__ . ' user ' . __METHOD__ . ':: has fired.');
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_client_mobile($tablet_is_mobile);
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile($tablet_is_mobile);
 
     }
 
-    public function is_client_tablet($mobile_is_tablet = false){
+    public function is_tablet($mobile_is_tablet = false){
 
         error_log(__LINE__ . ' user ' . __METHOD__ . ':: has fired.');
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_client_tablet($mobile_is_tablet);
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_tablet($mobile_is_tablet);
 
     }
 
-    public function is_client_mobile_custom($target_device = NULL){
+    public function is_mobile_custom($target_device = NULL){
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_client_mobile_custom($target_device);
-
-    }
-    
-    public function set_client_mobile(){
-
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_client_tablet();
-
-    }
-
-    public function set_client_tablet(){
-
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_client_tablet();
-
-    }
-
-    public function set_client_desktop(){
-
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_client_desktop();
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile_custom($target_device);
 
     }
     
-    public function set_client_mobile_custom($target_device = NULL){
+    public function set_mobile(){
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_client_mobile_custom($target_device);
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_tablet();
+
+    }
+
+    public function set_tablet(){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_tablet();
+
+    }
+
+    public function set_desktop(){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_desktop();
+
+    }
+    
+    public function set_mobile_custom($target_device = NULL){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile_custom($target_device);
 
     }
 

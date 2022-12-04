@@ -63,7 +63,7 @@ require(CRNRSTN_ROOT . '/_crnrstn/class/thirdparty/phpmailer/src/crnrstn_OAuth.p
 require(CRNRSTN_ROOT . '/_crnrstn/class/thirdparty/phpmailer/src/crnrstn_POP3.php');			        // PHPMAILER (3RD PARTY MAIL FUNCTIONALITY)
 require(CRNRSTN_ROOT . '/_crnrstn/class/thirdparty/nusoap/nusoap.php');						            // NUSOAP (3RD PARTY CLIENT/SERVER SOAP)
 require(CRNRSTN_ROOT . '/_crnrstn/class/thirdparty/nusoap/class.wsdlcache.php');				        // NUSOAP (3RD PARTY CLIENT/SERVER SOAP)
-require(CRNRSTN_ROOT . '/_crnrstn/class/thirdparty/mobiledetect/crnrstn_Mobile_Detect.php');	        // MOBILE DETECT (3RD PARTY CLIENT/SERVER SOAP)
+require(CRNRSTN_ROOT . '/_crnrstn/class/thirdparty/mobiledetect/2.8.41/crnrstn_Mobile_Detect.php');	    // MOBILE DETECT (3RD PARTY CLIENT/SERVER SOAP)
 require(CRNRSTN_ROOT . '/_crnrstn/class/soa/crnrstn.soap_client.inc.php');						        // SOAP CLIENT
 require(CRNRSTN_ROOT . '/_crnrstn/class/soa/crnrstn.soa_endpoint_request_manager.inc.php');             // SOAP SERVER RESPONSE MANAGER
 require(CRNRSTN_ROOT . '/_crnrstn/class/session/crnrstn.session.inc.php');						        // SESSION MANAGEMENT

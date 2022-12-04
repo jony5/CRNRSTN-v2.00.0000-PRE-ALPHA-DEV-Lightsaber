@@ -349,6 +349,10 @@ class crnrstn_system_image_asset_manager {
                     switch($resource_ARRAY['file_type_constant'][0]){
                         case CRNRSTN_UI_CSS:
 
+                            // SORRY.
+                            // TONS OF REDUNDANCY HERE AS I AM EXPERIMENTING WITH DIFFERENT LINE BREAK
+                            // TREATMENTS HAVING RESPECT TO CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS.
+
                             //
                             // IS THIS JS?
                             if($resource_ARRAY['file_extension'][0] === 'js'){
@@ -357,11 +361,15 @@ class crnrstn_system_image_asset_manager {
 
                                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
-                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' --><script src="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>';
+                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' -->
+    <script src="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>
+';
 
                                     }else{
 
-                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' --><script src="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>';
+                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' -->
+    <script src="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>
+';
 
                                     }
 
@@ -393,11 +401,15 @@ class crnrstn_system_image_asset_manager {
 
                                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
 
-                                        $tmp_str .= '    <link rel="stylesheet" href="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '">';
+                                        $tmp_str .= '    
+    <link rel="stylesheet" href="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '">
+';
 
                                     }else{
 
-                                        $tmp_str .= '    <link rel="stylesheet" href="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/css' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '">';
+                                        $tmp_str .= '    
+    <link rel="stylesheet" href="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/css' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '">
+';
 
                                     }
 
@@ -434,11 +446,15 @@ class crnrstn_system_image_asset_manager {
 
                                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
-                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' --><link rel="stylesheet" href="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '">';
+                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' -->
+    <link rel="stylesheet" href="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '">
+';
 
                                     }else{
 
-                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' --><link rel="stylesheet" href="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '">';
+                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' -->
+    <link rel="stylesheet" href="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '">
+';
 
                                     }
 
@@ -471,11 +487,15 @@ class crnrstn_system_image_asset_manager {
 
                                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
 
-                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' --><script src="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>';
+                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' -->
+    <script src="' . $resource_ARRAY['system_http_root'][0] . '?' . $this->oCRNRSTN->session_salt() . '=' . $resource_ARRAY['file_name'][0] . '&crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>
+';
 
                                     }else{
 
-                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' --><script src="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>';
+                                        $tmp_str .= '    <!-- ' . $resource_ARRAY['resource_version_nom'][0] . ' -->
+    <script src="' .  $resource_ARRAY['system_http_root'][0] . $resource_ARRAY['system_directory'][0] . DIRECTORY_SEPARATOR . 'ui/js' . $resource_ARRAY['file_path_original'][0] . '?crnrstn_=' . $resource_ARRAY['cache'][0] . '"></script>
+';
 
                                     }
 
@@ -4084,8 +4104,8 @@ class crnrstn_system_image_asset_manager {
 
                             /////
                             // R :: RESOURCE //
-                            $tmp_file_path = '/crnrstn.main_mobile.css';
-                            $tmp_file_name = 'crnrstn.main_mobile.css';
+                            $tmp_file_path = '/crnrstn.main_mobi.css';
+                            $tmp_file_name = 'crnrstn.main_mobi.css';
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = false;
                             $tmp_resource_dependency_constant = $const;

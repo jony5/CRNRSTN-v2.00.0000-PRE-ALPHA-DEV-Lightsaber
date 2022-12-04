@@ -5,7 +5,7 @@
 $channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_output_channel_constants);
 
 switch($channel_constant[0]){
-    case CRNRSTN_UI_MOBILE:
+    case CRNRSTN_CHANNEL_MOBILE:
 
         //
         // MOBILE DEVICE EXPERIENCE
@@ -14,7 +14,7 @@ switch($channel_constant[0]){
         //exit();
 
     break;
-    case CRNRSTN_UI_TABLET:
+    case CRNRSTN_CHANNEL_TABLET:
 
         //
         // TABLET DEVICE EXPERIENCE
@@ -99,7 +99,7 @@ switch($channel_constant[0]){
 
     break;
     default:
-        // CRNRSTN_UI_DESKTOP:
+        // CRNRSTN_CHANNEL_DESKTOP:
 
         //
         // DESKTOP EXPERIENCE

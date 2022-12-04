@@ -352,6 +352,25 @@ function crnrstn_constants_init($const_nom){
 
         break;
 
+
+        //
+        // 6900-6950
+        case 'CRNRSTN_CHANNEL_DESKTOP':
+
+            return (int) 6900;
+
+        break;
+        case 'CRNRSTN_CHANNEL_TABLET':
+
+            return (int) 6901;
+
+        break;
+        case 'CRNRSTN_CHANNEL_MOBILE':
+
+            return (int) 6902;
+
+        break;
+
         //
         // 7051-7300
         // CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS,
@@ -414,21 +433,6 @@ function crnrstn_constants_init($const_nom){
         case 'CRNRSTN_UI_RANDOM':
 
             return (int) 7062;
-
-        break;
-        case 'CRNRSTN_UI_DESKTOP':
-
-            return (int) 7063;
-
-        break;
-        case 'CRNRSTN_UI_TABLET':
-
-            return (int) 7064;
-
-        break;
-        case 'CRNRSTN_UI_MOBILE':
-
-            return (int) 7065;
 
         break;
 

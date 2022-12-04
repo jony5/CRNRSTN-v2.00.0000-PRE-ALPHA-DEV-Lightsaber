@@ -7,7 +7,7 @@ include_once($CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 //
 // PASSING TRUE ALLOWS TABLET COMPUTERS TO BE DETECTED AS MOBILE.
-$iAmMobile = $oCRNRSTN_USR->is_client_mobile(true);
+$iAmMobile = $oCRNRSTN_USR->is_mobile(true);
 
 if($iAmMobile){
     //

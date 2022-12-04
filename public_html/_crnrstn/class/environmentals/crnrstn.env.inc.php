@@ -644,7 +644,8 @@ class crnrstn_environment {
 
             break;
             case CRNRSTN_REPORT_RESPONSE_RETURN:
-                
+
+                error_log(__LINE__ . ' env return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN ['. $output_format . '].');
                 $tmp_array = $this->return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN($output_format);
                 $tmp_output = '';
 
@@ -1034,8 +1035,8 @@ Request time: ' . $this->oCRNRSTN->start_time() . '</p>
             case 'TEXT':
             default:
 
-                // # # # # # # # # # # # # # # # # # # # # # # # # # #
-                $tmp_str_array[] = ' BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SYSTEM REPORT OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . '
+                $tmp_str_array[] = ' 
+BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SYSTEM REPORT OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . '
 = = = = = = = = = = 
 RESPONSE RETURN RESOURCES CONSUMPTION
 ';

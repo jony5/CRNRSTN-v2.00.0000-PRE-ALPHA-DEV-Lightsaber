@@ -126,10 +126,10 @@ switch($channel_constant){
         }
 
     break;
-    case CRNRSTN_UI_MOBILE:
-    case CRNRSTN_UI_TABLET:
+    case CRNRSTN_CHANNEL_MOBILE:
+    case CRNRSTN_CHANNEL_TABLET:
     default:
-        // CRNRSTN_UI_DESKTOP:
+        // CRNRSTN_CHANNEL_DESKTOP:
 
         //
         // DESKTOP EXPERIENCE

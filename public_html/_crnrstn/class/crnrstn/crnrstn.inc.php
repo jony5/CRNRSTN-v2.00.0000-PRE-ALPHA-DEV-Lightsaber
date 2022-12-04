@@ -286,7 +286,7 @@ class crnrstn {
         $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
         $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_WOOD, CRNRSTN_UI_TERMINAL, CRNRSTN_UI_RANDOM);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
-        $this->system_output_channel_constants = array(CRNRSTN_UI_DESKTOP, CRNRSTN_UI_TABLET, CRNRSTN_UI_MOBILE);
+        $this->system_output_channel_constants = array(CRNRSTN_CHANNEL_DESKTOP, CRNRSTN_CHANNEL_TABLET, CRNRSTN_CHANNEL_MOBILE);
         $this->system_creative_element_keys_ARRAY = array('STACHE', 'CRNRSTN ::', 'LINUX_PENGUIN_SMALL', 'REDHAT_LOGO', 'APACHE_FEATHER', 'APACHE_POWER_VERSION', 'CRNRSTN_R', 'FIVE', 'MYSQL_DOLPHIN', 'PHP_ELLIPSE', 'POWER_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
         $this->generate_weighted_elements_keys(count($this->system_creative_element_keys_ARRAY));
 
@@ -1026,7 +1026,7 @@ class crnrstn {
 
         if($this->oCRNRSTN_USR->device_type_bit == 0){
 
-            return CRNRSTN_UI_DESKTOP;
+            return CRNRSTN_CHANNEL_DESKTOP;
 
         }
 
@@ -1656,6 +1656,28 @@ class crnrstn {
         }
 
         return false;
+
+    }
+
+    public function clear_all_bits_set_one($int_const_final, $is_bit_set = true, $integer_clear_ARRAY = array()){
+
+        //
+        // CLEAR ALL
+        foreach($integer_clear_ARRAY as $index => $const){
+
+            //
+            // IF BIT IS FLIPPED...TURN IT OFF.
+            if($this->is_bit_set($const)){
+
+                $this->initialize_bit($const, false);
+
+            }
+
+        }
+
+        $this->initialize_bit($int_const_final, $is_bit_set);
+
+        return true;
 
     }
 
@@ -4235,6 +4257,48 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    public function is_mobile($tablet_is_mobile = false){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile($tablet_is_mobile);
+
+    }
+
+    public function is_tablet($mobile_is_tablet = false){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_tablet($mobile_is_tablet);
+
+    }
+
+    public function set_desktop(){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_desktop();
+
+    }
+
+    public function set_mobile(){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile();
+
+    }
+
+    public function set_tablet(){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_tablet();
+
+    }
+
+    public function set_mobile_custom($target_device = NULL){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile_custom($target_device);
+
+    }
+
+    public function is_mobile_custom($target_device = NULL){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile_custom($target_device);
+
+    }
+
     public function spool_head_html_asset_array($resource_ARRAY, $asst_nom_hash){
 
         $resource_ARRAY['footer_delay_crumb_path_hash'] = $asst_nom_hash;
@@ -4372,7 +4436,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
 
                         switch($this->device_type_bit()){
-                            case CRNRSTN_UI_MOBILE:
+                            case CRNRSTN_CHANNEL_MOBILE:
 
                                 $tmp_res_const = CRNRSTN_UI_CSS_MAIN_MOBILE;
 
@@ -4393,7 +4457,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                                 $this->html_head_build_flag_ARRAY[$tmp_res_const] = 1;
 
                             break;
-                            case CRNRSTN_UI_TABLET:
+                            case CRNRSTN_CHANNEL_TABLET:
 
                                 $tmp_res_const = CRNRSTN_UI_CSS_MAIN_TABLET;
 
@@ -4414,7 +4478,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                                 $this->html_head_build_flag_ARRAY[$tmp_res_const] = 1;
 
                             break;
-                            case CRNRSTN_UI_DESKTOP:
+                            case CRNRSTN_CHANNEL_DESKTOP:
                             default:
 
                                 $tmp_res_const = CRNRSTN_UI_CSS_MAIN_DESKTOP;
@@ -4647,17 +4711,17 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                             && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
 
                             switch($this->device_type_bit()){
-                                case CRNRSTN_UI_MOBILE:
+                                case CRNRSTN_CHANNEL_MOBILE:
 
                                     $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
 
                                 break;
-                                case CRNRSTN_UI_TABLET:
+                                case CRNRSTN_CHANNEL_TABLET:
 
                                     $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
 
                                 break;
-                                case CRNRSTN_UI_DESKTOP:
+                                case CRNRSTN_CHANNEL_DESKTOP:
                                 default:
 
                                     $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
@@ -4668,19 +4732,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                         }
 
-//                        //
-//                        // JQUERY
-//                        if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
-//                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
-//                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
-//                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
-//                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
-//
-//                            $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY] = 1;
-//                            $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY, true);
-//
-//                        }
-
                         //
                         // CRNRSTN :: INTERACT UI :: JS
                         if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
@@ -4689,15 +4740,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                             $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_JS_MAIN, true);
 
                         }
-
-//                        //
-//                        // JQUERY UI
-//                        if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI])){
-//
-//                            $this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_UI] = 1;
-//                            $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, true);
-//
-//                        }
 
                         //
                         // RESOURCE DEPENDENCIES :: SYSTEM FOOTER
@@ -4716,6 +4758,16 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                             $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
                             $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+                        }
+
+                    break;
+                    case CRNRSTN_REPORT_RESPONSE_RETURN:
+
+                        if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_REPORT_RESPONSE_RETURN])){
+
+                            $this->html_footer_build_flag_ARRAY[CRNRSTN_REPORT_RESPONSE_RETURN] = 1;
+                            //$tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_REPORT_RESPONSE_RETURN, 'TEXT');
 
                         }
 
@@ -4783,6 +4835,14 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         foreach($this->system_head_html_asset_array_spool_ARRAY as $asset_hash => $resource_ARRAY){
 
             $tmp_footer_html_output .= $this->mapped_resource_html_output($resource_ARRAY, $asset_hash, true);
+
+        }
+
+        if(isset($this->html_footer_build_flag_ARRAY[CRNRSTN_REPORT_RESPONSE_RETURN])){
+
+            $tmp_footer_html_output .= '
+<!-- ' . $this->ui_content_module_out(CRNRSTN_REPORT_RESPONSE_RETURN, 'TEXT') . '-->
+';
 
         }
 

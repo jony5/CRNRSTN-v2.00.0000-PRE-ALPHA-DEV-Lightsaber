@@ -74,7 +74,7 @@ class crnrstn_http_manager {
     public $crnrstn_asset_return_method_key;
     public $crnrstn_asset_meta_path;
 
-    public $customClientDevice = array();
+    public $custom_device_ARRAY = array();
 
     public $form_integration_isset_ARRAY = array();
     public $response_header_attribute_ARRAY = array();
@@ -347,91 +347,21 @@ class crnrstn_http_manager {
 
     public function sync_device_detected(){
 
-        if($this->oCRNRSTN->isset_data_key('CRNRSTN_DEVICE_DETECTED')){
-        //if($this->oCRNRSTN_USR->isset_session_param('CRNRSTN_DEVICE_DETECTED')){
+        //
+        // DETECT APPROPRIATE CHANNEL AND SYNC SESSION
+        if($this->is_mobile()){
 
-            //oCRNRSTN->get_resource($data_key, $index = 0, $data_type_family = NULL, $soap_transport = false)
-
-            $tmp_channel_int_constant = (int) $this->oCRNRSTN->get_resource('CRNRSTN_DEVICE_DETECTED');  // , $data_family_str
-            //$tmp_channel_int_constant = (int) $this->oCRNRSTN_USR->get_session_param('CRNRSTN_DEVICE_DETECTED');
-
-            //error_log(__LINE__ . ' http CRNRSTN_DEVICE_DETECTED [' . $tmp_channel_int_constant.']');
-
-            //$this->oCRNRSTN_USR->toggle_bit($tmp_channel_int_constant, true);
-
-            return $this->set_client($tmp_channel_int_constant);
+            return true;
 
         }else{
 
-            //
-            // DETECT APPROPRIATE CHANNEL AND SYNC SESSION
-            if($this->is_client_mobile()){
+            if($this->is_tablet()){
 
-                //error_log(__LINE__ . ' http is_client_mobile [' . CRNRSTN_UI_MOBILE . ']');
-
-                return $this->set_client_mobile();
+                return true;
 
             }else{
 
-                if($this->is_client_tablet()){
-
-                    //error_log(__LINE__ . ' http is_client_tablet [' . CRNRSTN_UI_TABLET . ']');
-
-                    return $this->set_client_tablet();
-
-                }else{
-
-                    //error_log(__LINE__ . ' http set_client_desktop [' . CRNRSTN_UI_DESKTOP . ']');
-
-                    return $this->set_client_desktop();
-
-                }
-
-            }
-
-        }
-
-    }
-
-    public function __sync_device_detected(){
-
-        //$this->oCRNRSTN_USR = $oCRNRSTN_USR;
-
-        if($this->oCRNRSTN_USR->isset_session_param('CRNRSTN_DEVICE_DETECTED')){
-
-            $tmp_channel_int_constant = (int) $this->oCRNRSTN->get_resource('CRNRSTN_DEVICE_DETECTED');
-
-            //error_log(__LINE__ . ' http CRNRSTN_DEVICE_DETECTED [' . $tmp_channel_int_constant.']');
-
-            //$this->oCRNRSTN_USR->toggle_bit($tmp_channel_int_constant, true);
-
-            return $this->set_client($tmp_channel_int_constant);
-
-        }else{
-
-            //
-            // DETECT APPROPRIATE CHANNEL AND SYNC SESSION
-            if($this->is_client_mobile()){
-
-                error_log(__LINE__ . ' http is_client_mobile ['.CRNRSTN_UI_MOBILE.']');
-
-                return $this->set_client_mobile();
-
-            }else{
-
-                if($this->is_client_tablet()){
-
-                    error_log(__LINE__ . ' http is_client_tablet ['.CRNRSTN_UI_TABLET.']');
-
-                    return $this->set_client_tablet();
-
-                }else{
-
-                    //error_log(__LINE__ . ' http set_client_desktop ['.CRNRSTN_UI_DESKTOP.']');
-
-                    return $this->set_client_desktop();
-
-                }
+                return $this->set_desktop();
 
             }
 
@@ -536,7 +466,7 @@ class crnrstn_http_manager {
 
                     //
                     // DO WE HAVE GET DATA?
-                    if($this->issetHTTP($_GET)) {
+                    if($this->issetHTTP($_GET)){
 
                         //
                         // CRNRSTN :: WILL ALWAYS PROCESS DATA SENT THROUGH CRNRSTN ::
@@ -1298,7 +1228,7 @@ class crnrstn_http_manager {
                 switch($http_protocol){
                     case 'POST':
 
-                        if(isset($_POST[$getpost_input_name])) {
+                        if(isset($_POST[$getpost_input_name])){
 
                             return $_POST[$getpost_input_name];
 
@@ -1311,7 +1241,7 @@ class crnrstn_http_manager {
                     break;
                     case 'GET':
 
-                        if(isset($_GET[$getpost_input_name])) {
+                        if(isset($_GET[$getpost_input_name])){
 
                             return $_GET[$getpost_input_name];
 
@@ -1535,7 +1465,7 @@ class crnrstn_http_manager {
             switch ($value) {
                 case 'G':
 
-                    if (isset(self::$formIntegrationErr_ARRAY['GET'])) {
+                    if(isset(self::$formIntegrationErr_ARRAY['GET'])){
 
                         $tmp_array[] = self::$formIntegrationErr_ARRAY['GET'];
                         $tmp_array[] = self::$formIntegrationIcon_ARRAY['GET'];
@@ -1545,7 +1475,7 @@ class crnrstn_http_manager {
                     break;
                 case 'P':
 
-                    if (isset(self::$formIntegrationErr_ARRAY['POST'])) {
+                    if(isset(self::$formIntegrationErr_ARRAY['POST'])){
 
                         $tmp_array[] = self::$formIntegrationErr_ARRAY['POST'];
                         $tmp_array[] = self::$formIntegrationIcon_ARRAY['POST'];
@@ -1579,17 +1509,17 @@ class crnrstn_http_manager {
             $this->oCRNRSTN_USR->device_type_bit = $tmp_bit;
 
             switch($tmp_bit){
-                case CRNRSTN_UI_DESKTOP:
+                case CRNRSTN_CHANNEL_DESKTOP:
 
                     $this->oCRNRSTN_USR->device_type = 'DESKTOP';
 
                 break;
-                case CRNRSTN_UI_TABLET:
+                case CRNRSTN_CHANNEL_TABLET:
 
                     $this->oCRNRSTN_USR->device_type = 'TABLET';
 
                 break;
-                case CRNRSTN_UI_MOBILE:
+                case CRNRSTN_CHANNEL_MOBILE:
 
                     $this->oCRNRSTN_USR->device_type = 'MOBILE';
 
@@ -1689,7 +1619,7 @@ class crnrstn_http_manager {
 
 	}
 	
-	public function getHeaders ($returnType = 'array'){
+	public function getHeaders($returnType = 'array'){
 
 		switch(strtolower($returnType)){
 			case 'array':
@@ -1762,327 +1692,232 @@ class crnrstn_http_manager {
 	
 	}
 
-    /**
-     * Retrieves an environmental parameter. If it doesn't exist, no exception/error is caused.
-     * Simply null is returned.
-     *
-     * Note ::
-     *
-     * @param string $resource_key The resource key.
-     * @return string|null|mixed The value of the header.
-     * @access  private
-     */
-    public function is_client_mobile($tabletIsMobile = false){
+    public function is_mobile($tablet_is_mobile = false){
 
         //
         // CHECK SESSION FOR EXISTING CONFIGURATION
-        $tmp_custom_device = $this->oCRNRSTN->get_resource('CRNRSTN_DEVICE_CUSTOM'); //$this->oCRNRSTN_USR->get_session_param('CUSTOM_DEVICE');
-        $tmp_ismobile = $this->oCRNRSTN->get_resource('isMobile'); //$this->oCRNRSTN_USR->get_session_param('isMobile');  // BOOLEAN
-        $tmp_istablet = $this->oCRNRSTN->get_resource('isTablet'); //$this->oCRNRSTN_USR->get_session_param('isTablet');  // BOOLEAN
-
-        //
-        // MAY USE FALSE vs NULL TO CLEAR ISMOBILE IN SESSION. CRNRSTN :: ONLY SETS THIS TO TRUE.
-        if(isset($tmp_ismobile)){
-
-            if($tmp_ismobile != $this->oCRNRSTN->session_salt()){
-
-                if($tmp_ismobile){
-
-                    return 'isMobile';
-
-                }
-
-            }
+        $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_device_type', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+        
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_MOBILE)){
+            
+            return true;
 
         }
 
-        //
-        // MAY USE FALSE vs NULL TO CLEAR ISTABLET IN SESSION. CRNRSTN :: ONLY SETS THIS TO TRUE.
-        if(isset($tmp_istablet)){
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_TABLET)){
+            
+            //
+            // DO WE CONSIDER TABLETS AS MOBILE?
+            if($tablet_is_mobile){
 
-            if($tmp_ismobile != $this->oCRNRSTN->session_salt()){
+                return true;
 
-                if($tmp_istablet && $tabletIsMobile){
-
-                    return 'isTablet';
-
-                }
-
+            }else{
+                
+                return false;
+                
             }
+                
+        }
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_DESKTOP)){
+
+            return false;
 
         }
 
         if($tmp_custom_device != '' && ($tmp_custom_device != $this->oCRNRSTN->session_salt())){
 
             # NOTE :: $tmp_custom_device HAS BOTH MOBILE AND TABLET OPPORTUNITIES
+            # NOTE :: CUSTOM NEEDS MORE CONSIDERATION FOR RETURN TYPE? JUST RETURN THE DEVICE STRING FOR NOW.
 
             //
             // MOBILE HAS BEEN PERSISTED IN SESSION. STICK WITH IT.
             return $tmp_custom_device;
 
-        }else{
+        }
+        
+        //
+        // THERE IS NO CONFIRMATION OF MOBILE STATE. LET'S DO THE WORK TO ANSWER THE QUESTION.
+        // NEED TO DETERMINE DEVICE TYPE.
+        if(!isset($this->oMOBI_DETECT)){
+            
+            //
+            //  INITIALIZE MOBILE DETECT (3RD PARTY OPEN SOURCE).
+            $this->oMOBI_DETECT = new crnrstn_Mobile_Detect();
+
+        }
+
+        //
+        // IS MOBILE?
+        if($this->oMOBI_DETECT->isMobile($this->http_headers_string)){
+
+            $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_CHANNEL_MOBILE, true);
+            return true;
+
+        }
+
+        if($tablet_is_mobile){
 
             //
-            // SESSION PROVIDES NO CONFIRMATION OF MOBILE STATE. LET'S DO THE WORK TO ANSWER THE QUESTION.
-            if(!isset($this->isMobile)){
+            // HANDLE TABLETS AS MOBILE
+            if($this->oMOBI_DETECT->isTablet($this->http_headers_string)){
 
-                //
-                // NEED TO DETERMINE DEVICE TYPE.
-                if(!isset($this->mobi_detect)){
-
-                    //
-                    //  INITIALIZE MOBILE DETECT 3RD PARTY SERVICE.
-                    $this->mobi_detect = new crnrstn_Mobile_Detect();
-
-                }
-
-                if($tabletIsMobile){
-
-                    //
-                    // HANDLE TABLETS AS MOBILE
-                    if($this->mobi_detect->isMobile($this->http_headers_string) || $this->mobi_detect->isTablet($this->http_headers_string)){
-
-                        $this->isMobile = true;
-
-                    }else{
-
-                        $this->isMobile = false;
-
-                    }
-
-                }else{
-
-                    //
-                    // EXCLUDE TABLETS FROM POSITIVE MOBILE IDENTIFICATION
-                    if($this->mobi_detect->isMobile($this->http_headers_string) && !$this->mobi_detect->isTablet($this->http_headers_string)){
-
-                        $this->isMobile = true;
-
-                    } else {
-
-                        $this->isMobile = false;
-                    }
-
-                }
+                $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_CHANNEL_TABLET, true);
+                return true;
 
             }
 
         }
 
-        if($this->isMobile){
-
-            return 'isMobile';
-
-        }else{
-
-            return false;
-
-        }
+        return false;
 
     }
 
-    /**
-     * Retrieves an environmental parameter. If it doesn't exist, no exception/error is caused.
-     * Simply null is returned.
-     *
-     * Note ::
-     *
-     * @param string $resource_key The resource key.
-     * @return string|null|mixed The value of the header.
-     * @access  private
-     */
-    public function is_client_tablet($mobileIsTablet = false){
+    public function is_tablet($mobile_is_tablet = false){
 
         //
         // CHECK SESSION FOR EXISTING CONFIGURATION
-        $tmp_custom_device = $this->oCRNRSTN->get_resource('CRNRSTN_DEVICE_CUSTOM'); //$this->oCRNRSTN_USR->get_session_param('CUSTOM_DEVICE');
-        $tmp_ismobile = $this->oCRNRSTN->get_resource('isMobile'); //$this->oCRNRSTN_USR->get_session_param('isMobile');  // BOOLEAN
-        $tmp_istablet = $this->oCRNRSTN->get_resource('isTablet'); //$this->oCRNRSTN_USR->get_session_param('isTablet');  // BOOLEAN
+        $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_device_type', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-        //
-        // MAY USE FALSE vs NULL TO CLEAR ISTABLET IN SESSION. CRNRSTN ONLY SETS THIS TO TRUE.
-        if(isset($tmp_istablet)){
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_TABLET)){
 
-            if($tmp_istablet != $this->oCRNRSTN->session_salt()){
+            return true;
 
-                if($tmp_istablet){
+        }
 
-                    return 'isTablet';
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_MOBILE)){
 
-                }
+            //
+            // DO WE CONSIDER TABLETS AS MOBILE?
+            if($mobile_is_tablet){
+
+                return true;
+
+            }else{
+
+                return false;
 
             }
 
         }
 
-        //
-        // MAY USE FALSE vs NULL TO CLEAR ISMOBILE IN SESSION. CRNRSTN ONLY SETS THIS TO TRUE.
-        if(isset($tmp_ismobile)){
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_DESKTOP)){
 
-            if($tmp_ismobile != $this->oCRNRSTN->session_salt()){
-
-                if($tmp_ismobile && $mobileIsTablet){
-
-                    return 'isMobile';
-
-                }
-
-            }
+            return false;
 
         }
 
         if($tmp_custom_device != '' && ($tmp_custom_device != $this->oCRNRSTN->session_salt())){
 
             # NOTE :: $tmp_custom_device HAS BOTH MOBILE AND TABLET OPPORTUNITIES
+            # NOTE :: CUSTOM NEEDS MORE CONSIDERATION FOR RETURN TYPE? JUST RETURN THE DEVICE STRING FOR NOW.
 
             //
-            // MOBILE/TABLET HAS BEEN PERSISTED IN SESSION. STICK WITH IT. RETURN STRING FOR DEVICE TYPE.
+            // MOBILE HAS BEEN PERSISTED IN SESSION. STICK WITH IT.
             return $tmp_custom_device;
 
-        }else{
+        }
 
-            if(!isset($this->isTablet)){
+        //
+        // NEED TO DETERMINE DEVICE TYPE.
+        if(!isset($this->oMOBI_DETECT)){
 
-                //
-                // NEED TO DETERMINE DEVICE TYPE.
-                if(!isset($this->mobi_detect)){
+            //
+            //  INITIALIZE MOBILE DETECT (3RD PARTY OPEN SOURCE).
+            $this->oMOBI_DETECT = new crnrstn_Mobile_Detect();
 
-                    //
-                    //  INITIALIZE MOBILE DETECT (3RD PARTY OPEN SOURCE).
-                    $this->mobi_detect = new crnrstn_Mobile_Detect();
-                }
+        }
 
-                if($mobileIsTablet){
+        //
+        // IS TABLET?
+        if($this->oMOBI_DETECT->isTablet($this->http_headers_string)){
 
-                    if($this->mobi_detect->isMobile($this->http_headers_string) || $this->mobi_detect->isTablet($this->http_headers_string)){
+            $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_CHANNEL_TABLET, true);
+            return true;
 
-                        $this->isTablet = true;
+        }
+        
+        //
+        // HANDLE MOBILE AS TABLETS
+        // IS MOBILE?
+        if($this->oMOBI_DETECT->isMobile($this->http_headers_string)){
 
-                    }else{
+            $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_CHANNEL_MOBILE, true);
 
-                        $this->isTablet = false;
+            if($mobile_is_tablet){
 
-                    }
-
-                }else{
-
-                    if(!$this->mobi_detect->isMobile($this->http_headers_string) && $this->mobi_detect->isTablet($this->http_headers_string)){
-
-                        $this->isTablet = true;
-
-                    }else{
-
-                        $this->isTablet = false;
-
-                    }
-
-                }
+                return true;
 
             }
 
         }
 
-        if($this->isTablet){
-
-            return 'isTablet';
-
-        }else{
-
-            return false;
-
-        }
+        return false;
 
     }
 
-    public function set_client_desktop(){
+    public function set_desktop(){
 
-//        error_log(__LINE__ . ' http ' . __METHOD__ . ' ['.CRNRSTN_UI_DESKTOP.']');
-//
-//        error_log(__LINE__ . ' http $this->oCRNRSTN_USR is [' . get_class($this->oCRNRSTN_USR) . '] $this->oCRNRSTN is [' . get_class($this->oCRNRSTN) . '].');
-//        die();
-        //$this->oCRNRSTN->add_system_resource($env_key, 'host',  $host, 0, 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
-        $this->oCRNRSTN->input_data_value(CRNRSTN_UI_DESKTOP, 'CRNRSTN_DEVICE_DETECTED', NULL, 0);
-        //$this->oCRNRSTN_USR->set_session_param('CRNRSTN_DEVICE_DETECTED', CRNRSTN_UI_DESKTOP);
-        $this->oCRNRSTN_USR->toggle_bit(CRNRSTN_UI_DESKTOP, true);
+        $tmp_ARRAY = array(CRNRSTN_CHANNEL_TABLET, CRNRSTN_CHANNEL_MOBILE);
+        $this->oCRNRSTN->clear_all_bits_set_one(CRNRSTN_CHANNEL_DESKTOP, true, $tmp_ARRAY);
 
-        return CRNRSTN_UI_DESKTOP;
+        return true;
 
     }
 
-    public function set_client_tablet(){
+    public function set_tablet(){
 
-        $this->oCRNRSTN_USR->input_data_value(CRNRSTN_UI_TABLET, 'CRNRSTN_DEVICE_DETECTED', NULL, 0);
-        //$this->oCRNRSTN_USR->set_session_param('CRNRSTN_DEVICE_DETECTED', CRNRSTN_UI_TABLET);
-        $this->oCRNRSTN_USR->toggle_bit(CRNRSTN_UI_TABLET, true);
+        $tmp_ARRAY = array(CRNRSTN_CHANNEL_DESKTOP, CRNRSTN_CHANNEL_MOBILE);
+        $this->oCRNRSTN->clear_all_bits_set_one(CRNRSTN_CHANNEL_TABLET, true, $tmp_ARRAY);
 
-        return CRNRSTN_UI_TABLET;
+        return true;
 
     }
 
-    public function set_client_mobile(){
+    public function set_mobile(){
 
-        $this->oCRNRSTN_USR->input_data_value(CRNRSTN_UI_MOBILE, 'CRNRSTN_DEVICE_DETECTED', NULL, 0);
-        //$this->oCRNRSTN_USR->set_session_param('CRNRSTN_DEVICE_DETECTED', CRNRSTN_UI_MOBILE);
-        $this->oCRNRSTN_USR->toggle_bit(CRNRSTN_UI_MOBILE, true);
+        $tmp_ARRAY = array(CRNRSTN_CHANNEL_DESKTOP, CRNRSTN_CHANNEL_TABLET);
+        $this->oCRNRSTN->clear_all_bits_set_one(CRNRSTN_CHANNEL_MOBILE, true, $tmp_ARRAY);
 
-        return CRNRSTN_UI_MOBILE;
+        return true;
 
     }
 
     public function set_client($channel_constant){
 
-        error_log(__LINE__ . ' http set_client [' . $channel_constant.']');
-        // public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL){
-        $this->oCRNRSTN_USR->input_data_value($channel_constant, 'CRNRSTN_DEVICE_DETECTED', NULL, 0);
-        //$this->oCRNRSTN_USR->set_session_param('CRNRSTN_DEVICE_DETECTED', $channel_constant);
-        $this->oCRNRSTN_USR->toggle_bit($channel_constant, true);
+        $tmp_ARRAY = array(CRNRSTN_CHANNEL_DESKTOP, CRNRSTN_CHANNEL_TABLET, CRNRSTN_CHANNEL_MOBILE);
+        $this->oCRNRSTN->clear_all_bits_set_one($channel_constant, true, $tmp_ARRAY);
 
-        return $channel_constant;
+        return true;
 
     }
 
-    /**
-     * Retrieves an environmental parameter. If it doesn't exist, no exception/error is caused.
-     * Simply null is returned.
-     *
-     * Note ::
-     *
-     * @param string $resource_key The resource key.
-     * @return string|null|mixed The value of the header.
-     * @access  private
-     */
-    public function set_client_mobile_custom($target_device = NULL){
+    public function set_mobile_custom($device_type = NULL){
 
         try {
 
-            if (isset($target_device)) {
+            if(isset($device_type)){
 
-                $target_device = trim($target_device);
-                $target_device = $this->oCRNRSTN_USR->string_sanitize($target_device, 'custom_mobi_detect_alg');
+                //$device_type = trim($device_type);
+                //$device_type = $this->oCRNRSTN_USR->string_sanitize($device_type, 'custom_mobi_detect_alg');
+                $this->oCRNRSTN->input_data_value($device_type, 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                error_log(__LINE__ . ' http  $this->oCRNRSTN_USR is [' . get_class($this->oCRNRSTN_USR) . '][' . $target_device . ']. die();');
-                die();
+                $this->oCRNRSTN_USR->toggle_bit(CRNRSTN_CHANNEL_MOBILE, true);
 
-                $this->oCRNRSTN_USR->input_data_value($target_device, 'CRNRSTN_DEVICE_CUSTOM', NULL, 0, '');
-                $this->oCRNRSTN_USR->input_data_value(CRNRSTN_UI_MOBILE, 'CRNRSTN_DEVICE_DETECTED', NULL, 0);
-
-                //$this->oCRNRSTN_USR->set_session_param('CRNRSTN_DEVICE_CUSTOM', $target_device);
-                //$this->oCRNRSTN_USR->set_session_param('CRNRSTN_DEVICE_DETECTED', CRNRSTN_UI_MOBILE);
-                $this->oCRNRSTN_USR->toggle_bit(CRNRSTN_UI_MOBILE, true);
-
-            } else {
+            }else{
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('set_client_mobile_custom() requires a detection method string (e.g. $target_device); this value cannot be NULL. See http://demo.mobiledetect.net/ for a current list of custom detection methods.');
+                throw new Exception('set_mobile_custom() requires a detection method string (e.g. $device_type); this value cannot be NULL. See http://demo.mobiledetect.net/ for a current list of custom detection methods.');
 
             }
 
-        } catch (Exception $e) {
+        }catch (Exception $e){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -2091,35 +1926,25 @@ class crnrstn_http_manager {
         return true;
 
     }
-
-    /**
-     * Retrieves an environmental parameter. If it doesn't exist, no exception/error is caused.
-     * Simply null is returned.
-     *
-     * Note ::
-     *
-     * @param string $resource_key The resource key.
-     * @return string|null|mixed The value of the header.
-     * @access  private
-     */
-    public function is_client_mobile_custom($target_device = NULL){
+    
+    public function is_mobile_custom($custom_detection_method = NULL){
 
         //
-        // NULL $target_device EVOKES BASIC SESSION CHECK ONLY.
-        if (!isset($target_device)) {
+        // NULL $custom_detection_method EVOKES BASIC SESSION CHECK ONLY.
+        if(!isset($custom_detection_method)){
 
             //
             // CHECK SESSION FOR EXISTING CONFIGURATION
-            $tmp_custom_device = $this->oCRNRSTN_USR->get_resource('CRNRSTN_DEVICE_CUSTOM');
+            $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_device_type', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-            if ($tmp_custom_device != '') {
+            if($tmp_custom_device != ''){
 
                 //
                 // WILL RETURN DEVICE STRING IF SESSION IS CONFIGURED WITH CUSTOM DEVICE AND NO
                 // TARGET_DEVICE PROVIDED.
                 return $tmp_custom_device;
 
-            } else {
+            }else{
 
                 //
                 // NO CUSTOM CONFIGURATION AVAILABLE
@@ -2127,30 +1952,30 @@ class crnrstn_http_manager {
 
             }
 
-        } else {
+        }else{
 
             //
             // CHECK THE PROVIDED TARGET DEVICE AGAINST SESSION...AND THEN, DO WORK IF NO MATCH.
-            $tmp_detection_algorithm = trim(strtolower($target_device));
+            $tmp_detection_algorithm = trim(strtolower($custom_detection_method));
             $tmp_detection_algorithm = $this->oCRNRSTN_USR->string_sanitize($tmp_detection_algorithm, 'custom_mobi_detect_alg');
 
             //
             // CHECK SESSION FOR EXISTING CONFIGURATION
-            $tmp_custom_device = $this->oCRNRSTN_USR->get_resource('CRNRSTN_DEVICE_CUSTOM');
+            $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_device_type', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
             $tmp_custom_device = strtolower($tmp_custom_device);
 
             //
             // IF DEVICE PROVIDED, WILL CHECK FOR SESSION MATCH AND RETURN STRING REPRESENTING
             // THE SUCCESSFULLY DETECTED ALGORITHM IF SO.
-            if ($tmp_custom_device != '' && $tmp_custom_device == $tmp_detection_algorithm) {
+            if($tmp_custom_device != '' && $tmp_custom_device == $tmp_detection_algorithm){
 
                 return $tmp_custom_device;
 
-            } else {
+            }else{
 
                 //
                 // NO SESSION MATCH. FURTHER DISCOVERY NEEDED.
-                if (!isset($this->oMOBI_DETECT)) {
+                if(!isset($this->oMOBI_DETECT)){
 
                     //
                     //  INITIALIZE MOBILE DETECT (3RD PARTY OPEN SOURCE).
@@ -2158,3203 +1983,2412 @@ class crnrstn_http_manager {
 
                 }
 
-                try {
+                try{
 
-                    switch ($tmp_detection_algorithm) {
+                    switch($tmp_detection_algorithm){
                         case 'ismobile':
 
-                            if (!isset($this->customClientDevice['isMobile'])) {
+                            if($this->oMOBI_DETECT->isMobile($this->http_headers_string)){
 
-                                if ($this->oMOBI_DETECT->isMobile($this->http_headers_string)) {
+                                $this->oCRNRSTN->input_data_value('isMobile', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMobile'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMobile'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMobile'];
+                            return false;
 
                         break;
                         case 'istablet':
 
-                            if (!isset($this->customClientDevice['isTablet'])) {
+                            if($this->oMOBI_DETECT->isTablet($this->http_headers_string)){
 
-                                if ($this->oMOBI_DETECT->isTablet($this->http_headers_string)) {
+                                $this->oCRNRSTN->input_data_value('isTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isTablet'];
+                            return false;
 
                         break;
                         case 'isiphone':
 
-                            if (!isset($this->customClientDevice['isiPhone'])) {
+                            if($this->oMOBI_DETECT->isiPhone()){
 
-                                if ($this->oMOBI_DETECT->isiPhone()) {
+                                $this->oCRNRSTN->input_data_value('isiPhone', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isiPhone'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isiPhone'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isiPhone'];
+                            return false;
 
                         break;
                         case 'isblackberry':
 
-                            if (!isset($this->customClientDevice['isBlackBerry'])) {
+                            if($this->oMOBI_DETECT->isBlackBerry()){
 
-                                if ($this->oMOBI_DETECT->isBlackBerry()) {
+                                $this->oCRNRSTN->input_data_value('isBlackBerry', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isBlackBerry'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isBlackBerry'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isBlackBerry'];
+                            return false;
+
+                        break;
+                        case 'ispixel':
+
+                            if($this->oMOBI_DETECT->isPixel()){
+
+                                $this->oCRNRSTN->input_data_value('isPixel', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+
+                                return true;
+
+                            }
+
+                            return false;
 
                         break;
                         case 'ishtc':
 
-                            if (!isset($this->customClientDevice['isHTC'])) {
+                            if($this->oMOBI_DETECT->isHTC()){
 
-                                if ($this->oMOBI_DETECT->isHTC()) {
+                                $this->oCRNRSTN->input_data_value('isHTC', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isHTC'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isHTC'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isHTC'];
+                            return false;
 
                         break;
                         case 'isnexus':
 
-                            if (!isset($this->customClientDevice['isNexus'])) {
+                            if($this->oMOBI_DETECT->isNexus()){
 
-                                if ($this->oMOBI_DETECT->isNexus()) {
+                                $this->oCRNRSTN->input_data_value('isNexus', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNexus'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isNexus'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isNexus'];
+                            return false;
 
                         break;
                         case 'isdell':
 
-                            if (!isset($this->customClientDevice['isDell'])) {
+                            if($this->oMOBI_DETECT->isDell()){
 
-                                if ($this->oMOBI_DETECT->isDell()) {
+                                $this->oCRNRSTN->input_data_value('isDell', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isDell'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isDell'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isDell'];
+                            return false;
 
                         break;
                         case 'ismotorola':
 
-                            if (!isset($this->customClientDevice['isMotorola'])) {
+                            if($this->oMOBI_DETECT->isMotorola()){
 
-                                if ($this->oMOBI_DETECT->isMotorola()) {
+                                $this->oCRNRSTN->input_data_value('isMotorola', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMotorola'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMotorola'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMotorola'];
+                            return false;
 
                         break;
                         case 'issamsung':
 
-                            if (!isset($this->customClientDevice['isSamsung'])) {
+                            if($this->oMOBI_DETECT->isSamsung()){
 
-                                if ($this->oMOBI_DETECT->isSamsung()) {
+                                $this->oCRNRSTN->input_data_value('isSamsung', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSamsung'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isSamsung'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isSamsung'];
+                            return false;
 
                         break;
                         case 'islg':
 
-                            if (!isset($this->customClientDevice['isLG'])) {
+                            if($this->oMOBI_DETECT->isLG()){
 
-                                if ($this->oMOBI_DETECT->isLG()) {
+                                $this->oCRNRSTN->input_data_value('isLG', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isLG'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isLG'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isLG'];
+                            return false;
 
                         break;
                         case 'issony':
 
-                            if (!isset($this->customClientDevice['isSony'])) {
+                            if($this->oMOBI_DETECT->isSony()){
 
-                                if ($this->oMOBI_DETECT->isSony()) {
+                                $this->oCRNRSTN->input_data_value('isSony', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSony'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isSony'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isSony'];
+                            return false;
 
                         break;
                         case 'isasus':
 
-                            if (!isset($this->customClientDevice['isAsus'])) {
+                            if($this->oMOBI_DETECT->isAsus()){
 
-                                if ($this->oMOBI_DETECT->isAsus()) {
+                                $this->oCRNRSTN->input_data_value('isAsus', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAsus'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAsus'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAsus'];
+                            return false;
+
+                        break;
+                        case 'isxiaomi':
+
+                            if($this->oMOBI_DETECT->isXiaomi()){
+
+                                $this->oCRNRSTN->input_data_value('isXiaomi', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+
+                                return true;
+
+                            }
+
+                            return false;
 
                         break;
                         case 'isnokialumia':
 
-                            if (!isset($this->customClientDevice['isNokiaLumia'])) {
+                            if($this->oMOBI_DETECT->isNokiaLumia()){
 
-                                if ($this->oMOBI_DETECT->isNokiaLumia()) {
+                                $this->oCRNRSTN->input_data_value('isNokiaLumia', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNokiaLumia'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isNokiaLumia'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isNokiaLumia'];
+                            return false;
 
                         break;
                         case 'ismicromax':
 
-                            if (!isset($this->customClientDevice['isMicromax'])) {
+                            if($this->oMOBI_DETECT->isMicromax()){
 
-                                if ($this->oMOBI_DETECT->isMicromax()) {
+                                $this->oCRNRSTN->input_data_value('isMicromax', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMicromax'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMicromax'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMicromax'];
+                            return false;
 
                         break;
                         case 'ispalm':
 
-                            if (!isset($this->customClientDevice['isPalm'])) {
+                            if($this->oMOBI_DETECT->isPalm()){
 
-                                if ($this->oMOBI_DETECT->isPalm()) {
+                                $this->oCRNRSTN->input_data_value('isPalm', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPalm'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPalm'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPalm'];
+                            return false;
 
                         break;
                         case 'isvertu':
 
-                            if (!isset($this->customClientDevice['isVertu'])) {
+                            if($this->oMOBI_DETECT->isVertu()){
 
-                                if ($this->oMOBI_DETECT->isVertu()) {
+                                $this->oCRNRSTN->input_data_value('isVertu', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isVertu'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isVertu'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isVertu'];
+                            return false;
 
                         break;
                         case 'ispantech':
 
-                            if (!isset($this->customClientDevice['isPantech'])) {
+                            if($this->oMOBI_DETECT->isPantech()){
 
-                                if ($this->oMOBI_DETECT->isPantech()) {
+                                $this->oCRNRSTN->input_data_value('isPantech', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPantech'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPantech'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPantech'];
+                            return false;
 
                         break;
                         case 'isfly':
 
-                            if (!isset($this->customClientDevice['isFly'])) {
+                            if($this->oMOBI_DETECT->isFly()){
 
-                                if ($this->oMOBI_DETECT->isFly()) {
+                                $this->oCRNRSTN->input_data_value('isFly', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isFly'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isFly'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isFly'];
+                            return false;
 
                         break;
                         case 'iswiko':
 
-                            if (!isset($this->customClientDevice['isWiko'])) {
+                            if($this->oMOBI_DETECT->isWiko()){
 
-                                if ($this->oMOBI_DETECT->isWiko()) {
+                                $this->oCRNRSTN->input_data_value('isWiko', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isWiko'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isWiko'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isWiko'];
+                            return false;
 
                         break;
                         case 'isimobile':
 
-                            if (!isset($this->customClientDevice['isiMobile'])) {
+                            if($this->oMOBI_DETECT->isiMobile()){
 
-                                if ($this->oMOBI_DETECT->isiMobile()) {
+                                $this->oCRNRSTN->input_data_value('isiMobile', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isiMobile'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isiMobile'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isiMobile'];
+                            return false;
 
                         break;
                         case 'issimvalley':
 
-                            if (!isset($this->customClientDevice['isSimValley'])) {
+                            if($this->oMOBI_DETECT->isSimValley()){
 
-                                if ($this->oMOBI_DETECT->isSimValley()) {
+                                $this->oCRNRSTN->input_data_value('isSimValley', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSimValley'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isSimValley'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isSimValley'];
+                            return false;
 
                         break;
                         case 'iswolfgang':
 
-                            if (!isset($this->customClientDevice['isWolfgang'])) {
+                            if($this->oMOBI_DETECT->isWolfgang()){
 
-                                if ($this->oMOBI_DETECT->isWolfgang()) {
+                                $this->oCRNRSTN->input_data_value('isWolfgang', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isWolfgang'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isWolfgang'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isWolfgang'];
+                            return false;
 
                         break;
                         case 'isalcatel':
 
-                            if (!isset($this->customClientDevice['isAlcatel'])) {
+                            if($this->oMOBI_DETECT->isAlcatel()){
 
-                                if ($this->oMOBI_DETECT->isAlcatel()) {
+                                $this->oCRNRSTN->input_data_value('isAlcatel', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAlcatel'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAlcatel'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAlcatel'];
+                            return false;
 
                         break;
                         case 'isnintendo':
 
-                            if (!isset($this->customClientDevice['isNintendo'])) {
+                            if($this->oMOBI_DETECT->isNintendo()){
 
-                                if ($this->oMOBI_DETECT->isNintendo()) {
+                                $this->oCRNRSTN->input_data_value('isNintendo', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNintendo'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isNintendo'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isNintendo'];
+                            return false;
 
                         break;
                         case 'isamoi':
 
-                            if (!isset($this->customClientDevice['isAmoi'])) {
+                            if($this->oMOBI_DETECT->isAmoi()){
 
-                                if ($this->oMOBI_DETECT->isAmoi()) {
+                                $this->oCRNRSTN->input_data_value('isAmoi', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAmoi'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAmoi'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAmoi'];
+                            return false;
 
                         break;
                         case 'isinq':
 
-                            if (!isset($this->customClientDevice['isINQ'])) {
+                            if($this->oMOBI_DETECT->isINQ()){
 
-                                if ($this->oMOBI_DETECT->isINQ()) {
+                                $this->oCRNRSTN->input_data_value('isINQ', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isINQ'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isINQ'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isINQ'];
+                            return false;
 
                         break;
                         case 'isoneplus':
 
-                            if (!isset($this->customClientDevice['isOnePlus'])) {
+                            if($this->oMOBI_DETECT->isOnePlus()){
 
-                                if ($this->oMOBI_DETECT->isOnePlus()) {
+                                $this->oCRNRSTN->input_data_value('isOnePlus', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isOnePlus'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isOnePlus'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isOnePlus'];
+                            return false;
 
                         break;
                         case 'isgenericphone':
 
-                            if (!isset($this->customClientDevice['isGenericPhone'])) {
+                            if($this->oMOBI_DETECT->isGenericPhone()){
 
-                                if ($this->oMOBI_DETECT->isGenericPhone()) {
+                                $this->oCRNRSTN->input_data_value('isGenericPhone', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isGenericPhone'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isGenericPhone'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isGenericPhone'];
+                            return false;
 
                         break;
                         case 'isipad':
 
-                            if (!isset($this->customClientDevice['isiPad'])) {
+                            if($this->oMOBI_DETECT->isiPad()){
 
-                                if ($this->oMOBI_DETECT->isiPad()) {
+                                $this->oCRNRSTN->input_data_value('isiPad', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isiPad'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isiPad'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isiPad'];
+                            return false;
 
                         break;
                         case 'isnexustablet':
 
-                            if (!isset($this->customClientDevice['isNexusTablet'])) {
+                            if($this->oMOBI_DETECT->isNexusTablet()){
 
-                                if ($this->oMOBI_DETECT->isNexusTablet()) {
+                                $this->oCRNRSTN->input_data_value('isNexusTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNexusTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isNexusTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isNexusTablet'];
+                            return false;
 
                         break;
                         case 'isgoogletablet':
 
-                            if (!isset($this->customClientDevice['isGoogleTablet'])) {
+                            if($this->oMOBI_DETECT->isGoogleTablet()){
 
-                                if ($this->oMOBI_DETECT->isGoogleTablet()) {
+                                $this->oCRNRSTN->input_data_value('isGoogleTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isGoogleTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isGoogleTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isGoogleTablet'];
+                            return false;
 
                         break;
                         case 'issamsungtablet':
 
-                            if (!isset($this->customClientDevice['isSamsungTablet'])) {
+                            if($this->oMOBI_DETECT->isSamsungTablet()){
 
-                                if ($this->oMOBI_DETECT->isSamsungTablet()) {
+                                $this->oCRNRSTN->input_data_value('isSamsungTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSamsungTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isSamsungTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isSamsungTablet'];
+                            return false;
 
                         break;
                         case 'iskindle':
 
-                            if (!isset($this->customClientDevice['isKindle'])) {
+                            if($this->oMOBI_DETECT->isKindle()){
 
-                                if ($this->oMOBI_DETECT->isKindle()) {
+                                $this->oCRNRSTN->input_data_value('isKindle', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isKindle'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isKindle'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isKindle'];
+                            return false;
 
                         break;
                         case 'issurfacetablet':
 
-                            if (!isset($this->customClientDevice['isSurfaceTablet'])) {
+                            if($this->oMOBI_DETECT->isSurfaceTablet()){
 
-                                if ($this->oMOBI_DETECT->isSurfaceTablet()) {
+                                $this->oCRNRSTN->input_data_value('isSurfaceTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSurfaceTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isSurfaceTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isSurfaceTablet'];
+                            return false;
 
                         break;
                         case 'ishptablet':
 
-                            if (!isset($this->customClientDevice['isHPTablet'])) {
+                            if($this->oMOBI_DETECT->isHPTablet()){
 
-                                if ($this->oMOBI_DETECT->isHPTablet()) {
+                                $this->oCRNRSTN->input_data_value('isHPTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isHPTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isHPTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isHPTablet'];
+                            return false;
 
                         break;
                         case 'isasustablet':
 
-                            if (!isset($this->customClientDevice['isAsusTablet'])) {
+                            if($this->oMOBI_DETECT->isAsusTablet()){
 
-                                if ($this->oMOBI_DETECT->isAsusTablet()) {
+                                $this->oCRNRSTN->input_data_value('isAsusTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAsusTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isAsusTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isAsusTablet'];
+                            return false;
 
                         break;
                         case 'isblackberrytablet':
 
-                            if (!isset($this->customClientDevice['isBlackBerryTablet'])) {
+                            if($this->oMOBI_DETECT->isBlackBerryTablet()){
 
-                                if ($this->oMOBI_DETECT->isBlackBerryTablet()) {
+                                $this->oCRNRSTN->input_data_value('isBlackBerryTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isBlackBerryTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isBlackBerryTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isBlackBerryTablet'];
+                            return false;
 
                         break;
                         case 'ishtctablet':
 
-                            if (!isset($this->customClientDevice['isHTCtablet'])) {
+                            if($this->oMOBI_DETECT->isHTCtablet()){
 
-                                if ($this->oMOBI_DETECT->isHTCtablet()) {
+                                $this->oCRNRSTN->input_data_value('isHTCtablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isHTCtablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isHTCtablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isHTCtablet'];
+                            return false;
 
                         break;
                         case 'ismotorolatablet':
 
-                            if (!isset($this->customClientDevice['isMotorolaTablet'])) {
+                            if($this->oMOBI_DETECT->isMotorolaTablet()){
 
-                                if ($this->oMOBI_DETECT->isMotorolaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMotorolaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMotorolaTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMotorolaTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMotorolaTablet'];
+                            return false;
 
                         break;
                         case 'isnooktablet':
 
-                            if (!isset($this->customClientDevice['isNookTablet'])) {
+                            if($this->oMOBI_DETECT->isNookTablet()){
 
-                                if ($this->oMOBI_DETECT->isNookTablet()) {
+                                $this->oCRNRSTN->input_data_value('isNookTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNookTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isNookTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isNookTablet'];
+                            return false;
 
                         break;
                         case 'isacertablet':
 
-                            if (!isset($this->customClientDevice['isAcerTablet'])) {
+                            if($this->oMOBI_DETECT->isAcerTablet()){
 
-                                if ($this->oMOBI_DETECT->isAcerTablet()) {
+                                $this->oCRNRSTN->input_data_value('isAcerTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAcerTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAcerTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAcerTablet'];
+                            return false;
 
                         break;
                         case 'istoshibatablet':
 
-                            if (!isset($this->customClientDevice['isToshibaTablet'])) {
+                            if($this->oMOBI_DETECT->isToshibaTablet()){
 
-                                if ($this->oMOBI_DETECT->isToshibaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isToshibaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isToshibaTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isToshibaTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isToshibaTablet'];
+                            return false;
 
                         break;
                         case 'islgtablet':
 
-                            if (!isset($this->customClientDevice['isLGTablet'])) {
+                            if($this->oMOBI_DETECT->isLGTablet()){
 
-                                if ($this->oMOBI_DETECT->isLGTablet()) {
+                                $this->oCRNRSTN->input_data_value('isLGTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isLGTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isLGTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isLGTablet'];
+                            return false;
 
                         break;
                         case 'isfujitsutablet':
 
-                            if (!isset($this->customClientDevice['isFujitsuTablet'])) {
+                            if($this->oMOBI_DETECT->isFujitsuTablet()){
 
-                                if ($this->oMOBI_DETECT->isFujitsuTablet()) {
+                                $this->oCRNRSTN->input_data_value('isFujitsuTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isFujitsuTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isFujitsuTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isFujitsuTablet'];
+                            return false;
 
                         break;
                         case 'isprestigiotablet':
 
-                            if (!isset($this->customClientDevice['isPrestigioTablet'])) {
+                            if($this->oMOBI_DETECT->isPrestigioTablet()){
 
-                                if ($this->oMOBI_DETECT->isPrestigioTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPrestigioTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPrestigioTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPrestigioTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPrestigioTablet'];
+                            return false;
 
                         break;
                         case 'islenovotablet':
 
-                            if (!isset($this->customClientDevice['isLenovoTablet'])) {
+                            if($this->oMOBI_DETECT->isLenovoTablet()){
 
-                                if ($this->oMOBI_DETECT->isLenovoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isLenovoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isLenovoTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isLenovoTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isLenovoTablet'];
+                            return false;
 
                         break;
                         case 'isdelltablet':
 
-                            if (!isset($this->customClientDevice['isDellTablet'])) {
+                            if($this->oMOBI_DETECT->isDellTablet()){
 
-                                if ($this->oMOBI_DETECT->isDellTablet()) {
+                                $this->oCRNRSTN->input_data_value('isDellTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isDellTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isDellTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isDellTablet'];
+                            return false;
+
+                        break;
+                        case 'isxiaomitablet':
+
+                            if($this->oMOBI_DETECT->isXiaomiTablet()){
+
+                                $this->oCRNRSTN->input_data_value('isXiaomiTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+
+                                return true;
+
+                            }
+
+                            return false;
 
                         break;
                         case 'isyarviktablet':
 
-                            if (!isset($this->customClientDevice['isYarvikTablet'])) {
+                            if($this->oMOBI_DETECT->isYarvikTablet()){
 
-                                if ($this->oMOBI_DETECT->isYarvikTablet()) {
+                                $this->oCRNRSTN->input_data_value('isYarvikTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isYarvikTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isYarvikTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isYarvikTablet'];
+                            return false;
 
                         break;
                         case 'ismediontablet':
 
-                            if (!isset($this->customClientDevice['isMedionTablet'])) {
+                            if($this->oMOBI_DETECT->isMedionTablet()){
 
-                                if ($this->oMOBI_DETECT->isMedionTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMedionTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMedionTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMedionTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMedionTablet'];
+                            return false;
 
                         break;
                         case 'isarnovatablet':
 
-                            if (!isset($this->customClientDevice['isArnovaTablet'])) {
+                            if($this->oMOBI_DETECT->isArnovaTablet()){
 
-                                if ($this->oMOBI_DETECT->isArnovaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isArnovaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isArnovaTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isArnovaTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isArnovaTablet'];
+                            return false;
 
                         break;
                         case 'isintensotablet':
 
-                            if (!isset($this->customClientDevice['isIntensoTablet'])) {
+                            if($this->oMOBI_DETECT->isIntensoTablet()){
 
-                                if ($this->oMOBI_DETECT->isIntensoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isIntensoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isIntensoTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isIntensoTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isIntensoTablet'];
+                            return false;
 
                         break;
                         case 'isirutablet':
 
-                            if (!isset($this->customClientDevice['isIRUTablet'])) {
+                            if($this->oMOBI_DETECT->isIRUTablet()){
 
-                                if ($this->oMOBI_DETECT->isIRUTablet()) {
+                                $this->oCRNRSTN->input_data_value('isIRUTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isIRUTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isIRUTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isIRUTablet'];
+                            return false;
 
                         break;
                         case 'ismegafontablet':
 
-                            if (!isset($this->customClientDevice['isMegafonTablet'])) {
+                            if($this->oMOBI_DETECT->isMegafonTablet()){
 
-                                if ($this->oMOBI_DETECT->isMegafonTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMegafonTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMegafonTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMegafonTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMegafonTablet'];
+                            return false;
 
                         break;
                         case 'isebodatablet':
 
-                            if (!isset($this->customClientDevice['isEbodaTablet'])) {
+                            if($this->oMOBI_DETECT->isEbodaTablet()){
 
-                                if ($this->oMOBI_DETECT->isEbodaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isEbodaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isEbodaTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isEbodaTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isEbodaTablet'];
+                            return false;
 
                         break;
                         case 'isallviewtablet':
 
-                            if (!isset($this->customClientDevice['isAllViewTablet'])) {
+                            if($this->oMOBI_DETECT->isAllViewTablet()){
 
-                                if ($this->oMOBI_DETECT->isAllViewTablet()) {
+                                $this->oCRNRSTN->input_data_value('isAllViewTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAllViewTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAllViewTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAllViewTablet'];
+                            return false;
 
                         break;
                         case 'isarchostablet':
 
-                            if (!isset($this->customClientDevice['isArchosTablet'])) {
+                            if($this->oMOBI_DETECT->isArchosTablet()){
 
-                                if ($this->oMOBI_DETECT->isArchosTablet()) {
+                                $this->oCRNRSTN->input_data_value('isArchosTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isArchosTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isArchosTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isArchosTablet'];
+                            return false;
 
                         break;
                         case 'isainoltablet':
 
-                            if (!isset($this->customClientDevice['isAinolTablet'])) {
+                            if($this->oMOBI_DETECT->isAinolTablet()){
 
-                                if ($this->oMOBI_DETECT->isAinolTablet()) {
+                                $this->oCRNRSTN->input_data_value('isAinolTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAinolTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAinolTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAinolTablet'];
+                            return false;
 
                         break;
                         case 'isnokialumiatablet':
 
-                            if (!isset($this->customClientDevice['isNokiaLumiaTablet'])) {
+                            if($this->oMOBI_DETECT->isNokiaLumiaTablet()){
 
-                                if ($this->oMOBI_DETECT->isNokiaLumiaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isNokiaLumiaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNokiaLumiaTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isNokiaLumiaTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isNokiaLumiaTablet'];
+                            return false;
 
                         break;
                         case 'issonytablet':
 
-                            if (!isset($this->customClientDevice['isSonyTablet'])) {
+                            if($this->oMOBI_DETECT->isSonyTablet()){
 
-                                if ($this->oMOBI_DETECT->isSonyTablet()) {
+                                $this->oCRNRSTN->input_data_value('isSonyTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSonyTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isSonyTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isSonyTablet'];
+                            return false;
 
                         break;
                         case 'isphilipstablet':
 
-                            if (!isset($this->customClientDevice['isPhilipsTablet'])) {
+                            if($this->oMOBI_DETECT->isPhilipsTablet()){
 
-                                if ($this->oMOBI_DETECT->isPhilipsTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPhilipsTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPhilipsTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPhilipsTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPhilipsTablet'];
+                            return false;
 
                         break;
                         case 'iscubetablet':
 
-                            if (!isset($this->customClientDevice['isCubeTablet'])) {
+                            if($this->oMOBI_DETECT->isCubeTablet()){
 
-                                if ($this->oMOBI_DETECT->isCubeTablet()) {
+                                $this->oCRNRSTN->input_data_value('isCubeTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isCubeTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isCubeTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isCubeTablet'];
+                            return false;
 
                         break;
                         case 'iscobytablet':
 
-                            if (!isset($this->customClientDevice['isCobyTablet'])) {
+                            if($this->oMOBI_DETECT->isCobyTablet()){
 
-                                if ($this->oMOBI_DETECT->isCobyTablet()) {
+                                $this->oCRNRSTN->input_data_value('isCobyTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isCobyTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isCobyTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isCobyTablet'];
+                            return false;
 
                         break;
                         case 'ismidtablet':
 
-                            if (!isset($this->customClientDevice['isMIDTablet'])) {
+                            if($this->oMOBI_DETECT->isMIDTablet()){
 
-                                if ($this->oMOBI_DETECT->isMIDTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMIDTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMIDTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMIDTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMIDTablet'];
+                            return false;
 
                         break;
                         case 'ismsitablet':
 
-                            if (!isset($this->customClientDevice['isMSITablet'])) {
+                            if($this->oMOBI_DETECT->isMSITablet()){
 
-                                if ($this->oMOBI_DETECT->isMSITablet()) {
+                                $this->oCRNRSTN->input_data_value('isMSITablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMSITablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMSITablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMSITablet'];
+                            return false;
 
                         break;
                         case 'issmittablet':
 
-                            if (!isset($this->customClientDevice['isSMiTTablet'])) {
+                            if($this->oMOBI_DETECT->isSMiTTablet()){
 
-                                if ($this->oMOBI_DETECT->isSMiTTablet()) {
+                                $this->oCRNRSTN->input_data_value('isSMiTTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSMiTTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isSMiTTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isSMiTTablet'];
+                            return false;
 
                         break;
                         case 'isrockchiptablet':
 
-                            if (!isset($this->customClientDevice['isRockChipTablet'])) {
+                            if($this->oMOBI_DETECT->isRockChipTablet()){
 
-                                if ($this->oMOBI_DETECT->isRockChipTablet()) {
+                                $this->oCRNRSTN->input_data_value('isRockChipTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isRockChipTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isRockChipTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isRockChipTablet'];
+                            return false;
 
                         break;
                         case 'isflytablet':
 
-                            if (!isset($this->customClientDevice['isFlyTablet'])) {
+                            if($this->oMOBI_DETECT->isFlyTablet()){
 
-                                if ($this->oMOBI_DETECT->isFlyTablet()) {
+                                $this->oCRNRSTN->input_data_value('isFlyTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isFlyTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isFlyTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isFlyTablet'];
+                            return false;
 
                         break;
                         case 'isbqtablet':
 
-                            if (!isset($this->customClientDevice['isbqTablet'])) {
+                            if($this->oMOBI_DETECT->isbqTablet()){
 
-                                if ($this->oMOBI_DETECT->isbqTablet()) {
+                                $this->oCRNRSTN->input_data_value('isbqTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isbqTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isbqTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isbqTablet'];
+                            return false;
 
                         break;
                         case 'ishuaweitablet':
 
-                            if (!isset($this->customClientDevice['isHuaweiTablet'])) {
+                            if($this->oMOBI_DETECT->isHuaweiTablet()){
 
-                                if ($this->oMOBI_DETECT->isHuaweiTablet()) {
+                                $this->oCRNRSTN->input_data_value('isHuaweiTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isHuaweiTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isHuaweiTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isHuaweiTablet'];
+                            return false;
 
                         break;
                         case 'isnectablet':
 
-                            if (!isset($this->customClientDevice['isNecTablet'])) {
+                            if($this->oMOBI_DETECT->isNecTablet()){
 
-                                if ($this->oMOBI_DETECT->isNecTablet()) {
+                                $this->oCRNRSTN->input_data_value('isNecTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNecTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isNecTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isNecTablet'];
+                            return false;
 
                         break;
                         case 'ispantechtablet':
 
-                            if (!isset($this->customClientDevice['isPantechTablet'])) {
+                            if($this->oMOBI_DETECT->isPantechTablet()){
 
-                                if ($this->oMOBI_DETECT->isPantechTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPantechTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPantechTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPantechTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPantechTablet'];
+                            return false;
 
                         break;
                         case 'isbronchotablet':
 
-                            if (!isset($this->customClientDevice['isBronchoTablet'])) {
+                            if($this->oMOBI_DETECT->isBronchoTablet()){
 
-                                if ($this->oMOBI_DETECT->isBronchoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isBronchoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isBronchoTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isBronchoTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isBronchoTablet'];
+                            return false;
 
                         break;
                         case 'isversustablet':
 
-                            if (!isset($this->customClientDevice['isVersusTablet'])) {
+                            if($this->oMOBI_DETECT->isVersusTablet()){
 
-                                if ($this->oMOBI_DETECT->isVersusTablet()) {
+                                $this->oCRNRSTN->input_data_value('isVersusTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isVersusTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isVersusTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isVersusTablet'];
+                            return false;
 
                         break;
                         case 'iszynctablet':
 
-                            if (!isset($this->customClientDevice['isZyncTablet'])) {
+                            if($this->oMOBI_DETECT->isZyncTablet()){
 
-                                if ($this->oMOBI_DETECT->isZyncTablet()) {
+                                $this->oCRNRSTN->input_data_value('isZyncTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isZyncTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isZyncTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isZyncTablet'];
+                            return false;
 
                         break;
                         case 'ispositivotablet':
 
-                            if (!isset($this->customClientDevice['isPositivoTablet'])) {
+                            if($this->oMOBI_DETECT->isPositivoTablet()){
 
-                                if ($this->oMOBI_DETECT->isPositivoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPositivoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPositivoTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isPositivoTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isPositivoTablet'];
+                            return false;
 
                         break;
                         case 'isnabitablet':
 
-                            if (!isset($this->customClientDevice['isNabiTablet'])) {
+                            if($this->oMOBI_DETECT->isNabiTablet()){
 
-                                if ($this->oMOBI_DETECT->isNabiTablet()) {
+                                $this->oCRNRSTN->input_data_value('isNabiTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNabiTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isNabiTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isNabiTablet'];
+                            return false;
 
                         break;
                         case 'iskobotablet':
 
-                            if (!isset($this->customClientDevice['isKoboTablet'])) {
+                            if($this->oMOBI_DETECT->isKoboTablet()){
 
-                                if ($this->oMOBI_DETECT->isKoboTablet()) {
+                                $this->oCRNRSTN->input_data_value('isKoboTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isKoboTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isKoboTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isKoboTablet'];
+                            return false;
 
                         break;
                         case 'isdanewtablet':
 
-                            if (!isset($this->customClientDevice['isDanewTablet'])) {
+                            if($this->oMOBI_DETECT->isDanewTablet()){
 
-                                if ($this->oMOBI_DETECT->isDanewTablet()) {
+                                $this->oCRNRSTN->input_data_value('isDanewTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isDanewTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isDanewTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isDanewTablet'];
+                            return false;
 
                         break;
                         case 'istexettablet':
 
-                            if (!isset($this->customClientDevice['isTexetTablet'])) {
+                            if($this->oMOBI_DETECT->isTexetTablet()){
 
-                                if ($this->oMOBI_DETECT->isTexetTablet()) {
+                                $this->oCRNRSTN->input_data_value('isTexetTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isTexetTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isTexetTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isTexetTablet'];
+                            return false;
 
                         break;
                         case 'isplaystationtablet':
 
-                            if (!isset($this->customClientDevice['isPlaystationTablet'])) {
+                            if($this->oMOBI_DETECT->isPlaystationTablet()){
 
-                                if ($this->oMOBI_DETECT->isPlaystationTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPlaystationTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPlaystationTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isPlaystationTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isPlaystationTablet'];
+                            return false;
 
                         break;
                         case 'istrekstortablet':
 
-                            if (!isset($this->customClientDevice['isTrekstorTablet'])) {
+                            if($this->oMOBI_DETECT->isTrekstorTablet()){
 
-                                if ($this->oMOBI_DETECT->isTrekstorTablet()) {
+                                $this->oCRNRSTN->input_data_value('isTrekstorTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isTrekstorTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isTrekstorTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isTrekstorTablet'];
+                            return false;
 
                         break;
                         case 'ispyleaudiotablet':
 
-                            if (!isset($this->customClientDevice['isPyleAudioTablet'])) {
+                            if($this->oMOBI_DETECT->isPyleAudioTablet()){
 
-                                if ($this->oMOBI_DETECT->isPyleAudioTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPyleAudioTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPyleAudioTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPyleAudioTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPyleAudioTablet'];
+                            return false;
 
                         break;
                         case 'isadvantablet':
 
-                            if (!isset($this->customClientDevice['isAdvanTablet'])) {
+                            if($this->oMOBI_DETECT->isAdvanTablet()){
 
-                                if ($this->oMOBI_DETECT->isAdvanTablet()) {
+                                $this->oCRNRSTN->input_data_value('isAdvanTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAdvanTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAdvanTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAdvanTablet'];
+                            return false;
 
                         break;
                         case 'isdanytechtablet':
 
-                            if (!isset($this->customClientDevice['isDanyTechTablet'])) {
+                            if($this->oMOBI_DETECT->isDanyTechTablet()){
 
-                                if ($this->oMOBI_DETECT->isDanyTechTablet()) {
+                                $this->oCRNRSTN->input_data_value('isDanyTechTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isDanyTechTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isDanyTechTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isDanyTechTablet'];
+                            return false;
 
                         break;
                         case 'isgalapadtablet':
 
-                            if (!isset($this->customClientDevice['isGalapadTablet'])) {
+                            if($this->oMOBI_DETECT->isGalapadTablet()){
 
-                                if ($this->oMOBI_DETECT->isGalapadTablet()) {
+                                $this->oCRNRSTN->input_data_value('isGalapadTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isGalapadTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isGalapadTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isGalapadTablet'];
+                            return false;
 
                         break;
                         case 'ismicromaxtablet':
 
-                            if (!isset($this->customClientDevice['isMicromaxTablet'])) {
+                            if($this->oMOBI_DETECT->isMicromaxTablet()){
 
-                                if ($this->oMOBI_DETECT->isMicromaxTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMicromaxTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMicromaxTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isMicromaxTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isMicromaxTablet'];
+                            return false;
 
                         break;
                         case 'iskarbonntablet':
 
-                            if (!isset($this->customClientDevice['isKarbonnTablet'])) {
+                            if($this->oMOBI_DETECT->isKarbonnTablet()){
 
-                                if ($this->oMOBI_DETECT->isKarbonnTablet()) {
+                                $this->oCRNRSTN->input_data_value('isKarbonnTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isKarbonnTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isKarbonnTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isKarbonnTablet'];
+                            return false;
 
                         break;
                         case 'isallfinetablet':
 
-                            if (!isset($this->customClientDevice['isAllFineTablet'])) {
+                            if($this->oMOBI_DETECT->isAllFineTablet()){
 
-                                if ($this->oMOBI_DETECT->isAllFineTablet()) {
+                                $this->oCRNRSTN->input_data_value('isAllFineTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAllFineTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAllFineTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAllFineTablet'];
+                            return false;
 
                         break;
                         case 'isproscantablet':
 
-                            if (!isset($this->customClientDevice['isPROSCANTablet'])) {
+                            if($this->oMOBI_DETECT->isPROSCANTablet()){
 
-                                if ($this->oMOBI_DETECT->isPROSCANTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPROSCANTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPROSCANTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isPROSCANTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isPROSCANTablet'];
+                            return false;
 
                         break;
                         case 'isyonestablet':
 
-                            if (!isset($this->customClientDevice['isYONESTablet'])) {
+                            if($this->oMOBI_DETECT->isYONESTablet()){
 
-                                if ($this->oMOBI_DETECT->isYONESTablet()) {
+                                $this->oCRNRSTN->input_data_value('isYONESTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isYONESTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isYONESTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isYONESTablet'];
+                            return false;
 
                         break;
                         case 'ischangjiatablet':
 
-                            if (!isset($this->customClientDevice['isChangJiaTablet'])) {
+                            if($this->oMOBI_DETECT->isChangJiaTablet()){
 
-                                if ($this->oMOBI_DETECT->isChangJiaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isChangJiaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isChangJiaTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isChangJiaTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isChangJiaTablet'];
+                            return false;
 
                         break;
                         case 'isgutablet':
 
-                            if (!isset($this->customClientDevice['isGUTablet'])) {
+                            if($this->oMOBI_DETECT->isGUTablet()){
 
-                                if ($this->oMOBI_DETECT->isGUTablet()) {
+                                $this->oCRNRSTN->input_data_value('isGUTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isGUTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isGUTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isGUTablet'];
+                            return false;
 
                         break;
                         case 'ispointofviewtablet':
 
-                            if (!isset($this->customClientDevice['isPointOfViewTablet'])) {
+                            if($this->oMOBI_DETECT->isPointOfViewTablet()){
 
-                                if ($this->oMOBI_DETECT->isPointOfViewTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPointOfViewTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPointOfViewTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPointOfViewTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPointOfViewTablet'];
+                            return false;
 
                         break;
                         case 'isovermaxtablet':
 
-                            if (!isset($this->customClientDevice['isOvermaxTablet'])) {
+                            if($this->oMOBI_DETECT->isOvermaxTablet()){
 
-                                if ($this->oMOBI_DETECT->isOvermaxTablet()) {
+                                $this->oCRNRSTN->input_data_value('isOvermaxTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isOvermaxTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isOvermaxTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isOvermaxTablet'];
+                            return false;
 
                         break;
                         case 'ishcltablet':
 
-                            if (!isset($this->customClientDevice['isHCLTablet'])) {
+                            if($this->oMOBI_DETECT->isHCLTablet()){
 
-                                if ($this->oMOBI_DETECT->isHCLTablet()) {
+                                $this->oCRNRSTN->input_data_value('isHCLTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isHCLTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isHCLTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isHCLTablet'];
+                            return false;
 
                         break;
                         case 'isdpstablet':
 
-                            if (!isset($this->customClientDevice['isDPSTablet'])) {
+                            if($this->oMOBI_DETECT->isDPSTablet()){
 
-                                if ($this->oMOBI_DETECT->isDPSTablet()) {
+                                $this->oCRNRSTN->input_data_value('isDPSTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isDPSTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isDPSTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isDPSTablet'];
+                            return false;
 
                         break;
                         case 'isvisturetablet':
 
-                            if (!isset($this->customClientDevice['isVistureTablet'])) {
+                            if($this->oMOBI_DETECT->isVistureTablet()){
 
-                                if ($this->oMOBI_DETECT->isVistureTablet()) {
+                                $this->oCRNRSTN->input_data_value('isVistureTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isVistureTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isVistureTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isVistureTablet'];
+                            return false;
 
                         break;
                         case 'iscrestatablet':
 
-                            if (!isset($this->customClientDevice['isCrestaTablet'])) {
+                            if($this->oMOBI_DETECT->isCrestaTablet()){
 
-                                if ($this->oMOBI_DETECT->isCrestaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isCrestaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isCrestaTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isCrestaTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isCrestaTablet'];
+                            return false;
 
                         break;
                         case 'ismediatektablet':
 
-                            if (!isset($this->customClientDevice['isMediatekTablet'])) {
+                            if($this->oMOBI_DETECT->isMediatekTablet()){
 
-                                if ($this->oMOBI_DETECT->isMediatekTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMediatekTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMediatekTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isMediatekTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isMediatekTablet'];
+                            return false;
 
                         break;
                         case 'isconcordetablet':
 
-                            if (!isset($this->customClientDevice['isConcordeTablet'])) {
+                            if($this->oMOBI_DETECT->isConcordeTablet()){
 
-                                if ($this->oMOBI_DETECT->isConcordeTablet()) {
+                                $this->oCRNRSTN->input_data_value('isConcordeTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isConcordeTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isConcordeTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isConcordeTablet'];
+                            return false;
 
                         break;
                         case 'isgoclevertablet':
 
-                            if (!isset($this->customClientDevice['isGoCleverTablet'])) {
+                            if($this->oMOBI_DETECT->isGoCleverTablet()){
 
-                                if ($this->oMOBI_DETECT->isGoCleverTablet()) {
+                                $this->oCRNRSTN->input_data_value('isGoCleverTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isGoCleverTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isGoCleverTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isGoCleverTablet'];
+                            return false;
 
                         break;
                         case 'ismodecomtablet':
 
-                            if (!isset($this->customClientDevice['isModecomTablet'])) {
+                            if($this->oMOBI_DETECT->isModecomTablet()){
 
-                                if ($this->oMOBI_DETECT->isModecomTablet()) {
+                                $this->oCRNRSTN->input_data_value('isModecomTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isModecomTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isModecomTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isModecomTablet'];
+                            return false;
 
                         break;
                         case 'isvoninotablet':
 
-                            if (!isset($this->customClientDevice['isVoninoTablet'])) {
+                            if($this->oMOBI_DETECT->isVoninoTablet()){
 
-                                if ($this->oMOBI_DETECT->isVoninoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isVoninoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isVoninoTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isVoninoTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isVoninoTablet'];
+                            return false;
 
                         break;
                         case 'isecstablet':
 
-                            if (!isset($this->customClientDevice['isECSTablet'])) {
+                            if($this->oMOBI_DETECT->isECSTablet()){
 
-                                if ($this->oMOBI_DETECT->isECSTablet()) {
+                                $this->oCRNRSTN->input_data_value('isECSTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isECSTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isECSTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isECSTablet'];
+                            return false;
 
                         break;
                         case 'isstorextablet':
 
-                            if (!isset($this->customClientDevice['isStorexTablet'])) {
+                            if($this->oMOBI_DETECT->isStorexTablet()){
 
-                                if ($this->oMOBI_DETECT->isStorexTablet()) {
+                                $this->oCRNRSTN->input_data_value('isStorexTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isStorexTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isStorexTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isStorexTablet'];
+                            return false;
 
                         break;
                         case 'isvodafonetablet':
 
-                            if (!isset($this->customClientDevice['isVodafoneTablet'])) {
+                            if($this->oMOBI_DETECT->isVodafoneTablet()){
 
-                                if ($this->oMOBI_DETECT->isVodafoneTablet()) {
+                                $this->oCRNRSTN->input_data_value('isVodafoneTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isVodafoneTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isVodafoneTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isVodafoneTablet'];
+                            return false;
 
                         break;
                         case 'isessentielbtablet':
 
-                            if (!isset($this->customClientDevice['isEssentielBTablet'])) {
+                            if($this->oMOBI_DETECT->isEssentielBTablet()){
 
-                                if ($this->oMOBI_DETECT->isEssentielBTablet()) {
+                                $this->oCRNRSTN->input_data_value('isEssentielBTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isEssentielBTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isEssentielBTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isEssentielBTablet'];
+                            return false;
 
                         break;
                         case 'isrossmoortablet':
 
-                            if (!isset($this->customClientDevice['isRossMoorTablet'])) {
+                            if($this->oMOBI_DETECT->isRossMoorTablet()){
 
-                                if ($this->oMOBI_DETECT->isRossMoorTablet()) {
+                                $this->oCRNRSTN->input_data_value('isRossMoorTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isRossMoorTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isRossMoorTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isRossMoorTablet'];
+                            return false;
 
                         break;
                         case 'isimobiletablet':
 
-                            if (!isset($this->customClientDevice['isiMobileTablet'])) {
+                            if($this->oMOBI_DETECT->isiMobileTablet()){
 
-                                if ($this->oMOBI_DETECT->isiMobileTablet()) {
+                                $this->oCRNRSTN->input_data_value('isiMobileTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isiMobileTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isiMobileTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isiMobileTablet'];
+                            return false;
 
                         break;
                         case 'istolinotablet':
 
-                            if (!isset($this->customClientDevice['isTolinoTablet'])) {
+                            if($this->oMOBI_DETECT->isTolinoTablet()){
 
-                                if ($this->oMOBI_DETECT->isTolinoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isTolinoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isTolinoTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isTolinoTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isTolinoTablet'];
+                            return false;
 
                         break;
                         case 'isaudiosonictablet':
 
-                            if (!isset($this->customClientDevice['isAudioSonicTablet'])) {
+                            if($this->oMOBI_DETECT->isAudioSonicTablet()){
 
-                                if ($this->oMOBI_DETECT->isAudioSonicTablet()) {
+                                $this->oCRNRSTN->input_data_value('isAudioSonicTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAudioSonicTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAudioSonicTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAudioSonicTablet'];
+                            return false;
 
                         break;
                         case 'isampetablet':
 
-                            if (!isset($this->customClientDevice['isAMPETablet'])) {
+                            if($this->oMOBI_DETECT->isAMPETablet()){
 
-                                if ($this->oMOBI_DETECT->isAMPETablet()) {
+                                $this->oCRNRSTN->input_data_value('isAMPETablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAMPETablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAMPETablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAMPETablet'];
+                            return false;
 
                         break;
                         case 'isskktablet':
 
-                            if (!isset($this->customClientDevice['isSkkTablet'])) {
+                            if($this->oMOBI_DETECT->isSkkTablet()){
 
-                                if ($this->oMOBI_DETECT->isSkkTablet()) {
+                                $this->oCRNRSTN->input_data_value('isSkkTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSkkTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isSkkTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isSkkTablet'];
+                            return false;
 
                         break;
                         case 'istecnotablet':
 
-                            if (!isset($this->customClientDevice['isTecnoTablet'])) {
+                            if($this->oMOBI_DETECT->isTecnoTablet()){
 
-                                if ($this->oMOBI_DETECT->isTecnoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isTecnoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isTecnoTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isTecnoTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isTecnoTablet'];
+                            return false;
 
                         break;
                         case 'isjxdtablet':
 
-                            if (!isset($this->customClientDevice['isJXDTablet'])) {
+                            if($this->oMOBI_DETECT->isJXDTablet()){
 
-                                if ($this->oMOBI_DETECT->isJXDTablet()) {
+                                $this->oCRNRSTN->input_data_value('isJXDTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isJXDTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isJXDTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isJXDTablet'];
+                            return false;
 
                         break;
                         case 'isijoytablet':
 
-                            if (!isset($this->customClientDevice['isiJoyTablet'])) {
+                            if($this->oMOBI_DETECT->isiJoyTablet()){
 
-                                if ($this->oMOBI_DETECT->isiJoyTablet()) {
+                                $this->oCRNRSTN->input_data_value('isiJoyTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isiJoyTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isiJoyTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isiJoyTablet'];
+                            return false;
 
                         break;
                         case 'isfx2tablet':
 
-                            if (!isset($this->customClientDevice['isFX2Tablet'])) {
+                            if($this->oMOBI_DETECT->isFX2Tablet()){
 
-                                if ($this->oMOBI_DETECT->isFX2Tablet()) {
+                                $this->oCRNRSTN->input_data_value('isFX2Tablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isFX2Tablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isFX2Tablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isFX2Tablet'];
+                            return false;
 
                         break;
                         case 'isxorotablet':
 
-                            if (!isset($this->customClientDevice['isXoroTablet'])) {
+                            if($this->oMOBI_DETECT->isXoroTablet()){
 
-                                if ($this->oMOBI_DETECT->isXoroTablet()) {
+                                $this->oCRNRSTN->input_data_value('isXoroTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isXoroTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isXoroTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isXoroTablet'];
+                            return false;
 
                         break;
                         case 'isviewsonictablet':
 
-                            if (!isset($this->customClientDevice['isViewsonicTablet'])) {
+                            if($this->oMOBI_DETECT->isViewsonicTablet()){
 
-                                if ($this->oMOBI_DETECT->isViewsonicTablet()) {
+                                $this->oCRNRSTN->input_data_value('isViewsonicTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isViewsonicTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isViewsonicTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isViewsonicTablet'];
+                            return false;
 
                         break;
                         case 'isverizontablet':
 
-                            if (!isset($this->customClientDevice['isVerizonTablet'])) {
+                            if($this->oMOBI_DETECT->isVerizonTablet()){
 
-                                if ($this->oMOBI_DETECT->isVerizonTablet()) {
+                                $this->oCRNRSTN->input_data_value('isVerizonTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isVerizonTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isVerizonTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isVerizonTablet'];
+                            return false;
 
                         break;
                         case 'isodystablet':
 
-                            if (!isset($this->customClientDevice['isOdysTablet'])) {
+                            if($this->oMOBI_DETECT->isOdysTablet()){
 
-                                if ($this->oMOBI_DETECT->isOdysTablet()) {
+                                $this->oCRNRSTN->input_data_value('isOdysTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isOdysTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isOdysTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isOdysTablet'];
+                            return false;
 
                         break;
                         case 'iscaptivatablet':
 
-                            if (!isset($this->customClientDevice['isCaptivaTablet'])) {
+                            if($this->oMOBI_DETECT->isCaptivaTablet()){
 
-                                if ($this->oMOBI_DETECT->isCaptivaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isCaptivaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isCaptivaTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isCaptivaTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isCaptivaTablet'];
+                            return false;
 
                         break;
                         case 'isiconbittablet':
 
-                            if (!isset($this->customClientDevice['isIconbitTablet'])) {
+                            if($this->oMOBI_DETECT->isIconbitTablet()){
 
-                                if ($this->oMOBI_DETECT->isIconbitTablet()) {
+                                $this->oCRNRSTN->input_data_value('isIconbitTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isIconbitTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isIconbitTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isIconbitTablet'];
+                            return false;
 
                         break;
                         case 'isteclasttablet':
 
-                            if (!isset($this->customClientDevice['isTeclastTablet'])) {
+                            if($this->oMOBI_DETECT->isTeclastTablet()){
 
-                                if ($this->oMOBI_DETECT->isTeclastTablet()) {
+                                $this->oCRNRSTN->input_data_value('isTeclastTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isTeclastTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isTeclastTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isTeclastTablet'];
+                            return false;
 
                         break;
                         case 'isondatablet':
 
-                            if (!isset($this->customClientDevice['isOndaTablet'])) {
+                            if($this->oMOBI_DETECT->isOndaTablet()){
 
-                                if ($this->oMOBI_DETECT->isOndaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isOndaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isOndaTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isOndaTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isOndaTablet'];
+                            return false;
 
                         break;
                         case 'isjaytechtablet':
 
-                            if (!isset($this->customClientDevice['isJaytechTablet'])) {
+                            if($this->oMOBI_DETECT->isJaytechTablet()){
 
-                                if ($this->oMOBI_DETECT->isJaytechTablet()) {
+                                $this->oCRNRSTN->input_data_value('isJaytechTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isJaytechTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isJaytechTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isJaytechTablet'];
+                            return false;
 
                         break;
                         case 'isblaupunkttablet':
 
-                            if (!isset($this->customClientDevice['isBlaupunktTablet'])) {
+                            if($this->oMOBI_DETECT->isBlaupunktTablet()){
 
-                                if ($this->oMOBI_DETECT->isBlaupunktTablet()) {
+                                $this->oCRNRSTN->input_data_value('isBlaupunktTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isBlaupunktTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isBlaupunktTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isBlaupunktTablet'];
+                            return false;
 
                         break;
                         case 'isdigmatablet':
 
-                            if (!isset($this->customClientDevice['isDigmaTablet'])) {
+                            if($this->oMOBI_DETECT->isDigmaTablet()){
 
-                                if ($this->oMOBI_DETECT->isDigmaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isDigmaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isDigmaTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isDigmaTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isDigmaTablet'];
+                            return false;
 
                         break;
                         case 'isevoliotablet':
 
-                            if (!isset($this->customClientDevice['isEvolioTablet'])) {
+                            if($this->oMOBI_DETECT->isEvolioTablet()){
 
-                                if ($this->oMOBI_DETECT->isEvolioTablet()) {
+                                $this->oCRNRSTN->input_data_value('isEvolioTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isEvolioTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isEvolioTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isEvolioTablet'];
+                            return false;
 
                         break;
                         case 'islavatablet':
 
-                            if (!isset($this->customClientDevice['isLavaTablet'])) {
+                            if($this->oMOBI_DETECT->isLavaTablet()){
 
-                                if ($this->oMOBI_DETECT->isLavaTablet()) {
+                                $this->oCRNRSTN->input_data_value('isLavaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isLavaTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isLavaTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isLavaTablet'];
+                            return false;
 
                         break;
                         case 'isaoctablet':
 
-                            if (!isset($this->customClientDevice['isAocTablet'])) {
+                            if($this->oMOBI_DETECT->isAocTablet()){
 
-                                if ($this->oMOBI_DETECT->isAocTablet()) {
+                                $this->oCRNRSTN->input_data_value('isAocTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAocTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isAocTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isAocTablet'];
+                            return false;
 
                         break;
                         case 'ismpmantablet':
 
-                            if (!isset($this->customClientDevice['isMpmanTablet'])) {
+                            if($this->oMOBI_DETECT->isMpmanTablet()){
 
-                                if ($this->oMOBI_DETECT->isMpmanTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMpmanTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMpmanTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isMpmanTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isMpmanTablet'];
+                            return false;
 
                         break;
                         case 'iscelkontablet':
 
-                            if (!isset($this->customClientDevice['isCelkonTablet'])) {
+                            if($this->oMOBI_DETECT->isCelkonTablet()){
 
-                                if ($this->oMOBI_DETECT->isCelkonTablet()) {
+                                $this->oCRNRSTN->input_data_value('isCelkonTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isCelkonTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isCelkonTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isCelkonTablet'];
+                            return false;
 
                         break;
                         case 'iswoldertablet':
 
-                            if (!isset($this->customClientDevice['isWolderTablet'])) {
+                            if($this->oMOBI_DETECT->isWolderTablet()){
 
-                                if ($this->oMOBI_DETECT->isWolderTablet()) {
+                                $this->oCRNRSTN->input_data_value('isWolderTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isWolderTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isWolderTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isWolderTablet'];
+                            return false;
 
                         break;
                         case 'ismediacomtablet':
 
-                            if (!isset($this->customClientDevice['isMediacomTablet'])) {
+                            if($this->oMOBI_DETECT->isMediacomTablet()){
 
-                                if ($this->oMOBI_DETECT->isMediacomTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMediacomTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMediacomTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMediacomTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMediacomTablet'];
+                            return false;
 
                         break;
                         case 'ismitablet':
 
-                            if (!isset($this->customClientDevice['isMiTablet'])) {
+                            if($this->oMOBI_DETECT->isMiTablet()){
 
-                                if ($this->oMOBI_DETECT->isMiTablet()) {
+                                $this->oCRNRSTN->input_data_value('isMiTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMiTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isMiTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isMiTablet'];
+                            return false;
 
                         break;
                         case 'isnibirutablet':
 
-                            if (!isset($this->customClientDevice['isNibiruTablet'])) {
+                            if($this->oMOBI_DETECT->isNibiruTablet()){
 
-                                if ($this->oMOBI_DETECT->isNibiruTablet()) {
+                                $this->oCRNRSTN->input_data_value('isNibiruTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNibiruTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isNibiruTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isNibiruTablet'];
+                            return false;
 
                         break;
                         case 'isnexotablet':
 
-                            if (!isset($this->customClientDevice['isNexoTablet'])) {
+                            if($this->oMOBI_DETECT->isNexoTablet()){
 
-                                if ($this->oMOBI_DETECT->isNexoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isNexoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNexoTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isNexoTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isNexoTablet'];
+                            return false;
 
                         break;
                         case 'isleadertablet':
 
-                            if (!isset($this->customClientDevice['isLeaderTablet'])) {
+                            if($this->oMOBI_DETECT->isLeaderTablet()){
 
-                                if ($this->oMOBI_DETECT->isLeaderTablet()) {
+                                $this->oCRNRSTN->input_data_value('isLeaderTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isLeaderTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isLeaderTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isLeaderTablet'];
+                            return false;
 
                         break;
                         case 'isubislatetablet':
 
-                            if (!isset($this->customClientDevice['isUbislateTablet'])) {
+                            if($this->oMOBI_DETECT->isUbislateTablet()){
 
-                                if ($this->oMOBI_DETECT->isUbislateTablet()) {
+                                $this->oCRNRSTN->input_data_value('isUbislateTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isUbislateTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isUbislateTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isUbislateTablet'];
+                            return false;
 
                         break;
                         case 'ispocketbooktablet':
 
-                            if (!isset($this->customClientDevice['isPocketBookTablet'])) {
+                            if($this->oMOBI_DETECT->isPocketBookTablet()){
 
-                                if ($this->oMOBI_DETECT->isPocketBookTablet()) {
+                                $this->oCRNRSTN->input_data_value('isPocketBookTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPocketBookTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPocketBookTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPocketBookTablet'];
+                            return false;
 
                         break;
                         case 'iskocasotablet':
 
-                            if (!isset($this->customClientDevice['isKocasoTablet'])) {
+                            if($this->oMOBI_DETECT->isKocasoTablet()){
 
-                                if ($this->oMOBI_DETECT->isKocasoTablet()) {
+                                $this->oCRNRSTN->input_data_value('isKocasoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isKocasoTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isKocasoTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isKocasoTablet'];
+                            return false;
 
                         break;
                         case 'ishisensetablet':
 
-                            if (!isset($this->customClientDevice['isHisenseTablet'])) {
+                            if($this->oMOBI_DETECT->isHisenseTablet()){
 
-                                if ($this->oMOBI_DETECT->isHisenseTablet()) {
+                                $this->oCRNRSTN->input_data_value('isHisenseTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isHisenseTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isHisenseTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isHisenseTablet'];
+                            return false;
 
                         break;
                         case 'ishudl':
 
-                            if (!isset($this->customClientDevice['isHudl'])) {
+                            if($this->oMOBI_DETECT->isHudl()){
 
-                                if ($this->oMOBI_DETECT->isHudl()) {
+                                $this->oCRNRSTN->input_data_value('isHudl', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isHudl'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isHudl'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isHudl'];
+                            return false;
 
                         break;
                         case 'istelstratablet':
 
-                            if (!isset($this->customClientDevice['isTelstraTablet'])) {
+                            if($this->oMOBI_DETECT->isTelstraTablet()){
 
-                                if ($this->oMOBI_DETECT->isTelstraTablet()) {
+                                $this->oCRNRSTN->input_data_value('isTelstraTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isTelstraTablet'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isTelstraTablet'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isTelstraTablet'];
+                            return false;
 
                         break;
                         case 'isgenerictablet':
 
-                            if (!isset($this->customClientDevice['isGenericTablet'])) {
+                            if($this->oMOBI_DETECT->isGenericTablet()){
 
-                                if ($this->oMOBI_DETECT->isGenericTablet()) {
+                                $this->oCRNRSTN->input_data_value('isGenericTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isGenericTablet'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isGenericTablet'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isGenericTablet'];
+                            return false;
 
                         break;
                         case 'isandroidos':
 
-                            if (!isset($this->customClientDevice['isAndroidOS'])) {
+                            if($this->oMOBI_DETECT->isAndroidOS()){
 
-                                if ($this->oMOBI_DETECT->isAndroidOS()) {
+                                $this->oCRNRSTN->input_data_value('isAndroidOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isAndroidOS'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isAndroidOS'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isAndroidOS'];
+                            return false;
 
                         break;
                         case 'isblackberryos':
 
-                            if (!isset($this->customClientDevice['isBlackBerryOS'])) {
+                            if($this->oMOBI_DETECT->isBlackBerryOS()){
 
-                                if ($this->oMOBI_DETECT->isBlackBerryOS()) {
+                                $this->oCRNRSTN->input_data_value('isBlackBerryOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isBlackBerryOS'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isBlackBerryOS'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isBlackBerryOS'];
+                            return false;
 
                         break;
                         case 'ispalmos':
 
-                            if (!isset($this->customClientDevice['isPalmOS'])) {
+                            if($this->oMOBI_DETECT->isPalmOS()){
 
-                                if ($this->oMOBI_DETECT->isPalmOS()) {
+                                $this->oCRNRSTN->input_data_value('isPalmOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPalmOS'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isPalmOS'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isPalmOS'];
+                            return false;
 
                         break;
                         case 'issymbianos':
 
-                            if (!isset($this->customClientDevice['isSymbianOS'])) {
+                            if($this->oMOBI_DETECT->isSymbianOS()){
 
-                                if ($this->oMOBI_DETECT->isSymbianOS()) {
+                                $this->oCRNRSTN->input_data_value('isSymbianOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSymbianOS'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isSymbianOS'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isSymbianOS'];
+                            return false;
 
                         break;
                         case 'iswindowsmobileos':
 
-                            if (!isset($this->customClientDevice['isWindowsMobileOS'])) {
+                            if($this->oMOBI_DETECT->isWindowsMobileOS()){
 
-                                if ($this->oMOBI_DETECT->isWindowsMobileOS()) {
+                                $this->oCRNRSTN->input_data_value('isWindowsMobileOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isWindowsMobileOS'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isWindowsMobileOS'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isWindowsMobileOS'];
+                            return false;
 
                         break;
                         case 'iswindowsphoneos':
 
-                            if (!isset($this->customClientDevice['isWindowsPhoneOS'])) {
+                            if($this->oMOBI_DETECT->isWindowsPhoneOS()){
 
-                                if ($this->oMOBI_DETECT->isWindowsPhoneOS()) {
+                                $this->oCRNRSTN->input_data_value('isWindowsPhoneOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isWindowsPhoneOS'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isWindowsPhoneOS'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isWindowsPhoneOS'];
+                            return false;
 
                         break;
                         case 'isios':
 
-                            if (!isset($this->customClientDevice['isiOS'])) {
+                            if($this->oMOBI_DETECT->isiOS()){
 
-                                if ($this->oMOBI_DETECT->isiOS()) {
+                                $this->oCRNRSTN->input_data_value('isiOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isiOS'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isiOS'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isiOS'];
+                            return false;
 
                         break;
                         case 'isipados':
 
-                            if (!isset($this->customClientDevice['isiPadOS'])) {
+                            if($this->oMOBI_DETECT->isiPadOS()){
 
-                                if ($this->oMOBI_DETECT->isiPadOS()) {
+                                $this->oCRNRSTN->input_data_value('isiPadOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isiPadOS'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isiPadOS'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isiPadOS'];
+                            return false;
+
+                        break;
+                        case 'issailfishos':
+
+                            if($this->oMOBI_DETECT->isSailfishOS()){
+
+                                $this->oCRNRSTN->input_data_value('isSailfishOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+
+                                return true;
+
+                            }
+
+                            return false;
 
                         break;
                         case 'ismeegoos':
 
-                            if (!isset($this->customClientDevice['isMeeGoOS'])) {
+                            if($this->oMOBI_DETECT->isMeeGoOS()){
 
-                                if ($this->oMOBI_DETECT->isMeeGoOS()) {
+                                $this->oCRNRSTN->input_data_value('isMeeGoOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMeeGoOS'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isMeeGoOS'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isMeeGoOS'];
+                            return false;
 
                         break;
                         case 'ismaemoos':
 
-                            if (!isset($this->customClientDevice['isMaemoOS'])) {
+                            if($this->oMOBI_DETECT->isMaemoOS()){
 
-                                if ($this->oMOBI_DETECT->isMaemoOS()) {
+                                $this->oCRNRSTN->input_data_value('isMaemoOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMaemoOS'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isMaemoOS'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isMaemoOS'];
+                            return false;
 
                         break;
                         case 'isjavaos':
 
-                            if (!isset($this->customClientDevice['isJavaOS'])) {
+                            if($this->oMOBI_DETECT->isJavaOS()){
 
-                                if ($this->oMOBI_DETECT->isJavaOS()) {
+                                $this->oCRNRSTN->input_data_value('isJavaOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isJavaOS'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isJavaOS'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isJavaOS'];
+                            return false;
 
                         break;
                         case 'iswebos':
 
-                            if (!isset($this->customClientDevice['iswebOS'])) {
+                            if($this->oMOBI_DETECT->iswebOS()){
 
-                                if ($this->oMOBI_DETECT->iswebOS()) {
+                                $this->oCRNRSTN->input_data_value('iswebOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['iswebOS'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['iswebOS'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['iswebOS'];
+                            return false;
 
                         break;
                         case 'isbadaos':
 
-                            if (!isset($this->customClientDevice['isbadaOS'])) {
+                            if($this->oMOBI_DETECT->isbadaOS()){
 
-                                if ($this->oMOBI_DETECT->isbadaOS()) {
+                                $this->oCRNRSTN->input_data_value('isbadaOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isbadaOS'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isbadaOS'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isbadaOS'];
+                            return false;
 
                         break;
                         case 'isbrewos':
 
-                            if (!isset($this->customClientDevice['isBREWOS'])) {
+                            if($this->oMOBI_DETECT->isBREWOS()){
 
-                                if ($this->oMOBI_DETECT->isBREWOS()) {
+                                $this->oCRNRSTN->input_data_value('isBREWOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isBREWOS'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isBREWOS'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isBREWOS'];
+                            return false;
 
                         break;
                         case 'ischrome':
 
-                            if (!isset($this->customClientDevice['isChrome'])) {
+                            if($this->oMOBI_DETECT->isChrome()){
 
-                                if ($this->oMOBI_DETECT->isChrome()) {
+                                $this->oCRNRSTN->input_data_value('isChrome', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isChrome'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isChrome'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isChrome'];
+                            return false;
 
                         break;
                         case 'isdolfin':
 
-                            if (!isset($this->customClientDevice['isDolfin'])) {
+                            if($this->oMOBI_DETECT->isDolfin()){
 
-                                if ($this->oMOBI_DETECT->isDolfin()) {
+                                $this->oCRNRSTN->input_data_value('isDolfin', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isDolfin'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isDolfin'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isDolfin'];
+                            return false;
 
                         break;
                         case 'isopera':
 
-                            if (!isset($this->customClientDevice['isOpera'])) {
+                            if($this->oMOBI_DETECT->isOpera()){
 
-                                if ($this->oMOBI_DETECT->isOpera()) {
+                                $this->oCRNRSTN->input_data_value('isOpera', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isOpera'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isOpera'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isOpera'];
+                            return false;
 
                         break;
                         case 'isskyfire':
 
-                            if (!isset($this->customClientDevice['isSkyfire'])) {
+                            if($this->oMOBI_DETECT->isSkyfire()){
 
-                                if ($this->oMOBI_DETECT->isSkyfire()) {
+                                $this->oCRNRSTN->input_data_value('isSkyfire', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSkyfire'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isSkyfire'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isSkyfire'];
+                            return false;
 
                         break;
                         case 'isedge':
 
-                            if (!isset($this->customClientDevice['isEdge'])) {
+                            if($this->oMOBI_DETECT->isEdge()){
 
-                                if ($this->oMOBI_DETECT->isEdge()) {
+                                $this->oCRNRSTN->input_data_value('isEdge', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isEdge'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isEdge'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isEdge'];
+                            return false;
 
                         break;
                         case 'isie':
 
-                            if (!isset($this->customClientDevice['isIE'])) {
+                            if($this->oMOBI_DETECT->isIE()){
 
-                                if ($this->oMOBI_DETECT->isIE()) {
+                                $this->oCRNRSTN->input_data_value('isIE', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isIE'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isIE'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isIE'];
+                            return false;
 
                         break;
                         case 'isfirefox':
 
-                            if (!isset($this->customClientDevice['isFirefox'])) {
+                            if($this->oMOBI_DETECT->isFirefox()){
 
-                                if ($this->oMOBI_DETECT->isFirefox()) {
+                                $this->oCRNRSTN->input_data_value('isFirefox', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isFirefox'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isFirefox'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isFirefox'];
+                            return false;
 
                         break;
                         case 'isbolt':
 
-                            if (!isset($this->customClientDevice['isBolt'])) {
+                            if($this->oMOBI_DETECT->isBolt()){
 
-                                if ($this->oMOBI_DETECT->isBolt()) {
+                                $this->oCRNRSTN->input_data_value('isBolt', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isBolt'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isBolt'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isBolt'];
+                            return false;
 
                         break;
                         case 'isteashark':
 
-                            if (!isset($this->customClientDevice['isTeaShark'])) {
+                            if($this->oMOBI_DETECT->isTeaShark()){
 
-                                if ($this->oMOBI_DETECT->isTeaShark()) {
+                                $this->oCRNRSTN->input_data_value('isTeaShark', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isTeaShark'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isTeaShark'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isTeaShark'];
+                            return false;
 
                         break;
                         case 'isblazer':
 
-                            if (!isset($this->customClientDevice['isBlazer'])) {
+                            if($this->oMOBI_DETECT->isBlazer()){
 
-                                if ($this->oMOBI_DETECT->isBlazer()) {
+                                $this->oCRNRSTN->input_data_value('isBlazer', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isBlazer'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isBlazer'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isBlazer'];
+                            return false;
 
                         break;
                         case 'issafari':
 
-                            if (!isset($this->customClientDevice['isSafari'])) {
+                            if($this->oMOBI_DETECT->isSafari()){
 
-                                if ($this->oMOBI_DETECT->isSafari()) {
+                                $this->oCRNRSTN->input_data_value('isSafari', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isSafari'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isSafari'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isSafari'];
+                            return false;
 
                         break;
                         case 'iswechat':
 
-                            if (!isset($this->customClientDevice['isWeChat'])) {
+                            if($this->oMOBI_DETECT->isWeChat()){
 
-                                if ($this->oMOBI_DETECT->isWeChat()) {
+                                $this->oCRNRSTN->input_data_value('isWeChat', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isWeChat'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isWeChat'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isWeChat'];
+                            return false;
 
                         break;
                         case 'isucbrowser':
 
-                            if (!isset($this->customClientDevice['isUCBrowser'])) {
+                            if($this->oMOBI_DETECT->isUCBrowser()){
 
-                                if ($this->oMOBI_DETECT->isUCBrowser()) {
+                                $this->oCRNRSTN->input_data_value('isUCBrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isUCBrowser'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isUCBrowser'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isUCBrowser'];
+                            return false;
 
                         break;
                         case 'isbaiduboxapp':
 
-                            if (!isset($this->customClientDevice['isbaiduboxapp'])) {
+                            if($this->oMOBI_DETECT->isbaiduboxapp()){
 
-                                if ($this->oMOBI_DETECT->isbaiduboxapp()) {
+                                $this->oCRNRSTN->input_data_value('isbaiduboxapp', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isbaiduboxapp'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isbaiduboxapp'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isbaiduboxapp'];
+                            return false;
 
                         break;
                         case 'isbaidubrowser':
 
-                            if (!isset($this->customClientDevice['isbaidubrowser'])) {
+                            if($this->oMOBI_DETECT->isbaidubrowser()){
 
-                                if ($this->oMOBI_DETECT->isbaidubrowser()) {
+                                $this->oCRNRSTN->input_data_value('isbaidubrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isbaidubrowser'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isbaidubrowser'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isbaidubrowser'];
+                            return false;
 
                         break;
                         case 'isdiigobrowser':
 
-                            if (!isset($this->customClientDevice['isDiigoBrowser'])) {
+                            if($this->oMOBI_DETECT->isDiigoBrowser()){
 
-                                if ($this->oMOBI_DETECT->isDiigoBrowser()) {
+                                $this->oCRNRSTN->input_data_value('isDiigoBrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isDiigoBrowser'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isDiigoBrowser'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isDiigoBrowser'];
+                            return false;
 
                         break;
                         case 'ismercury':
 
-                            if (!isset($this->customClientDevice['isMercury'])) {
+                            if($this->oMOBI_DETECT->isMercury()){
 
-                                if ($this->oMOBI_DETECT->isMercury()) {
+                                $this->oCRNRSTN->input_data_value('isMercury', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isMercury'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isMercury'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isMercury'];
+                            return false;
 
                         break;
                         case 'isobigobrowser':
 
-                            if (!isset($this->customClientDevice['isObigoBrowser'])) {
+                            if($this->oMOBI_DETECT->isObigoBrowser()){
 
-                                if ($this->oMOBI_DETECT->isObigoBrowser()) {
+                                $this->oCRNRSTN->input_data_value('isObigoBrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isObigoBrowser'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isObigoBrowser'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isObigoBrowser'];
+                            return false;
 
                         break;
                         case 'isnetfront':
 
-                            if (!isset($this->customClientDevice['isNetFront'])) {
+                            if($this->oMOBI_DETECT->isNetFront()){
 
-                                if ($this->oMOBI_DETECT->isNetFront()) {
+                                $this->oCRNRSTN->input_data_value('isNetFront', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isNetFront'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isNetFront'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isNetFront'];
+                            return false;
 
                         break;
                         case 'isgenericbrowser':
 
-                            if (!isset($this->customClientDevice['isGenericBrowser'])) {
+                            if($this->oMOBI_DETECT->isGenericBrowser()){
 
-                                if ($this->oMOBI_DETECT->isGenericBrowser()) {
+                                $this->oCRNRSTN->input_data_value('isGenericBrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isGenericBrowser'] = true;
-
-                                } else {
-
-                                    $this->customClientDevice['isGenericBrowser'] = false;
-                                }
+                                return true;
 
                             }
 
-                            return $this->customClientDevice['isGenericBrowser'];
+                            return false;
 
                         break;
                         case 'ispalemoon':
 
-                            if (!isset($this->customClientDevice['isPaleMoon'])) {
+                            if($this->oMOBI_DETECT->isPaleMoon()){
 
-                                if ($this->oMOBI_DETECT->isPaleMoon()) {
+                                $this->oCRNRSTN->input_data_value('isPaleMoon', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
-                                    $this->customClientDevice['isPaleMoon'] = true;
+                                return true;
 
-                                } else {
-
-                                    $this->customClientDevice['isPaleMoon'] = false;
-                                }
                             }
 
-                            return $this->customClientDevice['isPaleMoon'];
+                            return false;
 
                         break;
                         default:
@@ -5362,17 +4396,17 @@ class crnrstn_http_manager {
                             //
                             // NO CUSTOM DEVICE CONFIG MATCH.
                             // HOOOSTON...VE HAF PROBLEM!
-                            throw new Exception('CRNRSTN :: found no detection method string matching the provided input of [' . $target_device . ']. See http://demo.mobiledetect.net/ for a current list of custom detection methods.');
+                            throw new Exception('CRNRSTN :: found no detection method string matching the provided input of [' . $custom_detection_method . ']. See http://demo.mobiledetect.net/ for a current list of custom detection methods.');
 
                         break;
 
                     }
 
-                } catch (Exception $e) {
+                }catch (Exception $e){
 
                     //
                     // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-                    $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+                    $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
                     return false;
 
@@ -5386,7 +4420,7 @@ class crnrstn_http_manager {
 
     public function is($key, $userAgent = null, $httpHeaders = null){
 
-        if (!isset($this->oMOBI_DETECT)) {
+        if(!isset($this->oMOBI_DETECT)){
 
             //
             //  INITIALIZE MOBILE DETECT (3RD PARTY OPEN SOURCE).
