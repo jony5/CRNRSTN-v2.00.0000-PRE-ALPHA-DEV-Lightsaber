@@ -1485,7 +1485,7 @@ class crnrstn_soa_endpoint_request_manager {
 
                             }
 
-                            error_log(__LINE__ . ' env - Adding Recipient:' . $tmp_name . ' ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private'));
+                            error_log(__LINE__ . ' env - Adding Recipient:' . $tmp_name . ' ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private'));
                             $crnrstn_phpmailer->AddAddress($tmp_RECIPIENT_EMAIL[$i], $tmp_name);
 
                             //
@@ -1530,26 +1530,26 @@ class crnrstn_soa_endpoint_request_manager {
 
                                 if($tmp_TRY_OTHER_EMAIL_METHODS_ON_ERR){
 
-                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                     $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                     if(!$crnrstn_phpmailer->Send()){
 
-                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                         $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                         if(!$crnrstn_phpmailer->Send()){
 
-                                            $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                            error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                            $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                            error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                             $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                             if(!$crnrstn_phpmailer->Send()){
 
-                                                $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                                error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                                $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                                error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                 $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                                 if(!$crnrstn_phpmailer->Send()) {
@@ -1582,14 +1582,14 @@ class crnrstn_soa_endpoint_request_manager {
                                                     // St. Petersburg State University,
                                                     // Dept. of Computational Mathematics
 
-                                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                                    error_log(__LINE__ . 'An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo);
+                                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                                    error_log(__LINE__ . 'An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                     $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                                     if (!$crnrstn_phpmailer->Send()) {
 
-                                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                     }
 
@@ -1599,26 +1599,26 @@ class crnrstn_soa_endpoint_request_manager {
 
                                         }else{
 
-                                            error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                                            error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                                         }
 
                                     }else{
 
-                                        error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                                        error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                                     }
 
                                 }else{
 
-                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                 }
 
                             }else{
 
-                                error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                                error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                             }
 

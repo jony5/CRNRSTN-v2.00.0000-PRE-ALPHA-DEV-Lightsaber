@@ -9,6 +9,16 @@ SYSTEM DEFAULTS TO SUPPORT ::
 PAGE LOAD TTL = 2;
 this.max_xhr_retrys = 5;
 
+public function add_system_resource(
+                        $data_key,
+                        $data_value,
+                        $data_type_family = 'CRNRSTN::RESOURCE',
+                        $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY,
+                        $data_index = NULL,
+                        $env_key = NULL,
+              = = = = > $default_ttl = 60){
+
+
 this.content_stage_max_width = 850;
 
 $tmp_header_options_ARRAY[] = 'Cache-Control: public, max-age=604800';

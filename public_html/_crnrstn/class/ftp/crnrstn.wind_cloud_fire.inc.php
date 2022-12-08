@@ -1100,7 +1100,7 @@ class crnrstn_wind_cloud_fire {
 
     public function localStorageUse_doNotPassUsagePercent($maxStorageUse){
 
-        $tmp_maxStorage = $this->oCRNRSTN_USR->string_sanitize($maxStorageUse, 'max_storage_utilization');
+        $tmp_maxStorage = $this->oCRNRSTN_USR->str_sanitize($maxStorageUse, 'max_storage_utilization');
 
         $tmp_maxStorage = (int) $tmp_maxStorage * 1;
 

@@ -497,12 +497,6 @@ class crnrstn {
 
     }
 
-    public function system_hash_algorithm(){
-
-        return $this->system_hash_algo;
-
-    }
-
     public function isset_auth_profile(){
 
         return true;
@@ -811,7 +805,7 @@ class crnrstn {
         }
 
         $http_protocol = strtoupper($transport_protocol);
-        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+        $http_protocol = $this->str_sanitize($http_protocol, 'http_protocol_simple');
 
         try{
 
@@ -866,7 +860,7 @@ class crnrstn {
         }
 
         $http_protocol = strtoupper($transport_protocol);
-        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+        $http_protocol = $this->str_sanitize($http_protocol, 'http_protocol_simple');
 
         return $this->oCRNRSTN_ENV->issetHTTP($http_protocol);
 
@@ -884,7 +878,7 @@ class crnrstn {
         }
 
         $http_protocol = strtoupper($transport_protocol);
-        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+        $http_protocol = $this->str_sanitize($http_protocol, 'http_protocol_simple');
 
         try{
 
@@ -993,9 +987,9 @@ class crnrstn {
 
     }
 
-    public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_tunnel = false){
+    public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $env_key = NULL, $soap_tunnel = false){
 
-        //$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_tunnel = false)
+        //$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $env_key = NULL, $soap_tunnel = false)
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, $env_key, $soap_tunnel);
 
     }
@@ -1006,7 +1000,7 @@ class crnrstn {
 //
 //    }
 
-//    public function isset_data_key($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $env_key = NULL){
+//    public function isset_data_key($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
 //
 //        if(!isset($env_key)){
 //
@@ -1103,6 +1097,12 @@ class crnrstn {
     public function version_php(){
 
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('version_php');
+
+    }
+
+    public function version_mobile_detect(){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->oMOBI_DETECT->getScriptVersion();
 
     }
 
@@ -1252,7 +1252,7 @@ class crnrstn {
 
     }
 
-    public function return_prefixed_ddo_key($data_key, $env_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL'){
+    public function return_prefixed_ddo_key($data_key, $env_key, $data_type_family = 'CRNRSTN::RESOURCE'){
 
         $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
 
@@ -1307,6 +1307,73 @@ class crnrstn {
     public function is_bit_set($integer_const){
 
         return $this->oCRNRSTN_BITFLIP_MGR->is_bit_set($integer_const);
+
+    }
+
+    public function toggle_bit($integer_const, $target_state = NULL){
+
+        //
+        // WILL ALSO (AND FOREVER) RETURN FALSE IF THE BIT REPRESENTED BY THE INTEGER CONSTANT IS NOT INITIALIZED.
+        return $this->oCRNRSTN_ENV->toggle_bit($integer_const, $target_state);
+
+    }
+
+    public function clear_all_bits_set_one($int_const_final, $is_bit_set = true, $integer_clear_ARRAY = array()){
+
+        //
+        // CLEAR ALL
+        foreach($integer_clear_ARRAY as $index => $const){
+
+            //
+            // IF BIT IS FLIPPED...TURN IT OFF.
+            if($this->is_bit_set($const)){
+
+                $this->initialize_bit($const, false);
+
+            }
+
+        }
+
+        $this->initialize_bit($int_const_final, $is_bit_set);
+
+        return true;
+
+    }
+
+    public function return_set_bits($constants_int_ARRAY, $first_match = false){
+
+        //$this->oCRNRSTN_BITWISE->set($integer_constant);
+        //$this->oCRNRSTN_BITWISE->toggle($integer_constant);
+        //$this->oCRNRSTN_BITWISE->read($integer_constant);
+        //$this->oCRNRSTN_BITWISE->remove($integer_constant)
+        //$this->oCRNRSTN_BITWISE->stringout()
+        //$this->oCRNRSTN_BITFLIP_MGR->set($integer_constant, true);
+
+        $tmp_array = array();
+
+        foreach($constants_int_ARRAY as $index => $int_constant){
+
+            if(is_string($int_constant)){
+
+                $int_constant = $index;
+
+            }
+
+            if($this->oCRNRSTN_BITFLIP_MGR->is_bit_set($int_constant)){
+
+                $tmp_array[] = $int_constant;
+
+                if($first_match){
+
+                    return $tmp_array;
+
+                }
+
+            }
+
+        }
+
+        return $tmp_array;
 
     }
 
@@ -1449,7 +1516,7 @@ class crnrstn {
         foreach($_SERVER as $data_key => $data_value){
 
             // WE DON'T HAVE ENV KEY HERE. DO WE USE CRNRSTN_RESOURCE_ALL?
-            // input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL)
+            // input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL)
             //self::$oCRNRSTN_CONFIG_MGR->input_data_value($value, $data_key);
             $this->input_data_value($data_value, $data_key);
 
@@ -1656,28 +1723,6 @@ class crnrstn {
         }
 
         return false;
-
-    }
-
-    public function clear_all_bits_set_one($int_const_final, $is_bit_set = true, $integer_clear_ARRAY = array()){
-
-        //
-        // CLEAR ALL
-        foreach($integer_clear_ARRAY as $index => $const){
-
-            //
-            // IF BIT IS FLIPPED...TURN IT OFF.
-            if($this->is_bit_set($const)){
-
-                $this->initialize_bit($const, false);
-
-            }
-
-        }
-
-        $this->initialize_bit($int_const_final, $is_bit_set);
-
-        return true;
 
     }
 
@@ -2229,7 +2274,7 @@ class crnrstn {
 //
 //    }
 
-    private function apply_theme_style_profile($theme_style, $crnrstn_resource_config_file_path = NULL){
+    private function apply_theme_style_profile($theme_profile, $crnrstn_resource_config_file_path = NULL){
 
         if(!isset($crnrstn_resource_config_file_path)){
 
@@ -3360,6 +3405,66 @@ class crnrstn {
 
     }
 
+    public function return_mobile_detect_magic_methods($type){
+
+        $tmp_ARRAY = array();
+
+        $type = strtolower($type);
+        switch($type){
+            case 'basic':
+
+                //
+                // Basic methods
+                $tmp_ARRAY = array('isMobile()', 'isTablet()');
+
+            break;
+            case 'custom':
+
+                //
+                // Custom detection methods
+                $tmp_ARRAY = array('isiPhone()', 'isBlackBerry()', 'isPixel()', 'isHTC()',
+                    'isNexus()', 'isDell()', 'isMotorola()', 'isSamsung()', 'isLG()', 'isSony()', 'isAsus()', 'isXiaomi()', 'isNokiaLumia()', 'isMicromax()', 'isPalm()', 'isVertu()', 'isPantech()', 'isFly()', 'isWiko()',
+                    'isiMobile()', 'isSimValley()', 'isWolfgang()', 'isAlcatel()', 'isNintendo()', 'isAmoi()', 'isINQ()', 'isOnePlus()', 'isGenericPhone()', 'isiPad()', 'isNexusTablet()', 'isGoogleTablet()', 'isSamsungTablet()',
+                    'isKindle()', 'isSurfaceTablet()', 'isHPTablet()', 'isAsusTablet()', 'isBlackBerryTablet()', 'isHTCtablet()',
+                    'isMotorolaTablet()', 'isNookTablet()', 'isAcerTablet()', 'isToshibaTablet()', 'isLGTablet()', 'isFujitsuTablet()', 'isPrestigioTablet()', 'isLenovoTablet()',
+                    'isDellTablet()', 'isXiaomiTablet()', 'isYarvikTablet()', 'isMedionTablet()', 'isArnovaTablet()', 'isIntensoTablet()', 'isIRUTablet()', 'isMegafonTablet()', 'isEbodaTablet()', 'isAllViewTablet()',
+                    'isArchosTablet()', 'isAinolTablet()', 'isNokiaLumiaTablet()', 'isSonyTablet()', 'isPhilipsTablet()', 'isCubeTablet()', 'isCobyTablet()', 'isMIDTablet()',
+                    'isMSITablet()', 'isSMiTTablet()', 'isRockChipTablet()', 'isFlyTablet()', 'isbqTablet()', 'isHuaweiTablet()', 'isNecTablet()',
+                    'isPantechTablet()', 'isBronchoTablet()', 'isVersusTablet()', 'isZyncTablet()', 'isPositivoTablet()', 'isNabiTablet()',
+                    'isKoboTablet()', 'isDanewTablet()', 'isTexetTablet()', 'isPlaystationTablet()', 'isTrekstorTablet()', 'isPyleAudioTablet()',
+                    'isAdvanTablet()', 'isDanyTechTablet()', 'isGalapadTablet()', 'isMicromaxTablet()', 'isKarbonnTablet()', 'isAllFineTablet()', 'isPROSCANTablet()', 'isYONESTablet()',
+                    'isChangJiaTablet()', 'isDPSTablet()', 'isVistureTablet()', 'isCrestaTablet()', 'isMediatekTablet()', 'isConcordeTablet()', 'isGoCleverTablet()', 'isModecomTablet()', 'isVoninoTablet()', 'isECSTablet()', 'isStorexTablet()',
+                    'isVodafoneTablet()', 'isEssentielBTablet()', 'isRossMoorTablet()', 'isiMobileTablet()', 'isTolinoTablet()', 'isAudioSonicTablet()', 'isAMPETablet()', 'isSkkTablet()', 'isTecnoTablet()', 'isJXDTablet()',
+                    'isiJoyTablet()', 'isFX2Tablet()', 'isXoroTablet()', 'isViewsonicTablet()', 'isVerizonTablet()', 'isOdysTablet()', 'isCaptivaTablet()', 'isIconbitTablet()',
+                    'isTeclastTablet()', 'isOndaTablet()', 'isJaytechTablet()', 'isBlaupunktTablet()', 'isDigmaTablet()', 'isEvolioTablet()', 'isLavaTablet()', 'isAocTablet()', 'isMpmanTablet()', 'isCelkonTablet()', 'isWolderTablet()', 'isMediacomTablet()', 'isMiTablet()',
+                    'isNibiruTablet()', 'isNexoTablet()', 'isLeaderTablet()', 'isUbislateTablet()', 'isPocketBookTablet()', 'isKocasoTablet()', 'isHisenseTablet()', 'isHudl()', 'isTelstraTablet()', 'isGenericTablet()', 'isAndroidOS()', 'isBlackBerryOS()',
+                    'isPalmOS()', 'isSymbianOS()', 'isWindowsMobileOS()', 'isWindowsPhoneOS()', 'isiOS()', 'isiPadOS()', 'isSailfishOS()', 'isMeeGoOS()', 'isMaemoOS()',
+                    'isJavaOS()', 'iswebOS()', 'isbadaOS()', 'isBREWOS()', 'isChrome()', 'isDolfin()', 'isOpera()', 'isSkyfire()', 'isEdge()', 'isIE()', 'isFirefox()', 'isBolt()', 'isTeaShark()', 'isBlazer()', 'isSafari()',
+                    'isWeChat()', 'isUCBrowser()', 'isbaiduboxapp()', 'isbaidubrowser()', 'isDiigoBrowser()', 'isMercury()', 'isObigoBrowser()',
+                    'isNetFront()', 'isGenericBrowser()', 'isPaleMoon()');
+
+            break;
+            case 'experimental':
+
+                //
+                // Experimental version() method
+                $tmp_ARRAY = array('version(Chrome)', 'version(Safari)', 'version(Webkit)', 'version(iOS)');
+
+            break;
+            case 'other':
+
+                //
+                // Other tests
+                $tmp_ARRAY = array('isiphone()', 'isIphone()', 'istablet()', 'isIOS()', 'isWhateverYouWant()');
+
+            break;
+
+        }
+
+        return $tmp_ARRAY;
+
+    }
+
     private function initialize_asset_management(){
 
         //
@@ -3395,7 +3500,8 @@ class crnrstn {
             'beatport_hq' => 'SOCIAL_BEATPORT_HQ', 'blogspot' => 'SOCIAL_BLOGSPOT', 'blogspot_hq' => 'SOCIAL_BLOGSPOT_HQ',
             'bluehost_icon' => 'SOCIAL_BLUEHOST_ICON', 'bluehost_icon_hq' => 'SOCIAL_BLUEHOST_ICON_HQ', 'bluehost_wordmark' => 'SOCIAL_BLUEHOST_WORDMARK',
             'bluehost_wordmark_hq' => 'SOCIAL_BLUEHOST_WORDMARK_HQ', 'discogs' => 'SOCIAL_DISCOGS', 'discogs_hq' => 'SOCIAL_DISCOGS_HQ',
-            'ebay' => 'SOCIAL_EBAY', 'ebay_hq' => 'SOCIAL_EBAY_HQ', 'etsy' => 'SOCIAL_ETSY', 'etsy_hq' => 'SOCIAL_ETSY_HQ', 'facebook' => 'SOCIAL_FACEBOOK',
+            'dribble' => 'SOCIAL_DRIBBLE', 'dribble_hq' => 'SOCIAL_DRIBBLE_HQ', 'ebay' => 'SOCIAL_EBAY', 'ebay_hq' => 'SOCIAL_EBAY_HQ',
+            'etsy' => 'SOCIAL_ETSY', 'etsy_hq' => 'SOCIAL_ETSY_HQ', 'facebook' => 'SOCIAL_FACEBOOK',
             'facebook_hq' => 'SOCIAL_FACEBOOK_HQ', 'feedburner' => 'SOCIAL_FEEDBURNER', 'feedburner_hq' => 'SOCIAL_FEEDBURNER_HQ',
             'flickr' => 'SOCIAL_FLICKR', 'flickr_hq' => 'SOCIAL_FLICKR_HQ', 'github' => 'SOCIAL_GITHUB', 'github_hq' => 'SOCIAL_GITHUB_HQ',
             'google_drive' => 'SOCIAL_GOOGLE_DRIVE', 'google_drive_hq' => 'SOCIAL_GOOGLE_DRIVE_HQ', 'google_maps' => 'SOCIAL_GOOGLE_MAPS',
@@ -3467,8 +3573,9 @@ class crnrstn {
             'primary_nav_seriesblue00_120x120_minimize_inactive' => 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE',
             'r_stone_giant_pillar' => 'R_STONE_GIANT_PILLAR', 'r_stone_pillar' => 'R_STONE_PILLAR', 'redhat_hat_logo' => 'REDHAT_HAT_LOGO',
             'redhat_logo' => 'REDHAT_LOGO', 'signin_frm_reflection' => 'BG_ELEMENT_REFLECTION_SIGNIN', 'stache' => 'STACHE',
-            'success_chk' => 'SUCCESS_CHECK', 'triangle_alert' => 'NOTICE_TRI_ALERT', 'wood' => 'WOOD', 'x' => 'TRANSPARENT_1X1',
-            'zend_framework' => 'ZEND_FRAMEWORK', 'zend_framework_3' => 'ZEND_FRAMEWORK_3', 'zend_logo' => 'ZEND_LOGO');
+            'success_chk' => 'SUCCESS_CHECK', 'triangle_alert' => 'NOTICE_TRI_ALERT', 'triangle_alert_hq' => 'NOTICE_TRI_ALERT_HQ',
+            'wood' => 'WOOD', 'x' => 'TRANSPARENT_1X1', 'zend_framework' => 'ZEND_FRAMEWORK',
+            'zend_framework_3' => 'ZEND_FRAMEWORK_3', 'zend_logo' => 'ZEND_LOGO');
 
         $this->asset_routing_data_key_lookup_ARRAY['system'] = $tmp_ARRAY;
 
@@ -3625,7 +3732,10 @@ class crnrstn {
 
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
-        $tmp_ARRAY = array('add_system_resource' => 'DISABLED', 'config_add_administration' => 'DISABLED',
+        //
+        // 'is_mobile_custom'=> 'DISABLED', 'set_mobile_custom'=> 'DISABLED', 'return_system_image' => 'DISABLED',
+        // 'print_r' => 'DISABLED', 'print_r_str' => 'DISABLED', 'get_resource' => 'DISABLED','add_system_resource' => 'DISABLED',
+        $tmp_ARRAY = array('config_add_administration' => 'DISABLED',
             'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED', 'config_add_seo_analytics' => 'DISABLED',
             'config_add_seo_engagement' => 'DISABLED', 'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
             'config_grant_exclusive_access' => 'DISABLED', 'config_include_encryption' => 'DISABLED',
@@ -3634,9 +3744,8 @@ class crnrstn {
             'config_init_images_http_dir' => 'DISABLED', 'config_init_images_transport_mode' => 'DISABLED',
             'config_init_logging' => 'DISABLED', 'error_log' => 'DISABLED', 'form_hidden_input_add' => 'DISABLED',
             'form_input_add' => 'DISABLED', 'form_input_feedback_copy_add' => 'DISABLED',
-            'form_integration_html_packet_output' => 'DISABLED', 'form_response_add' => 'DISABLED', 'get_resource' => 'DISABLED',
+            'form_integration_html_packet_output' => 'DISABLED', 'form_response_add' => 'DISABLED',
             'grant_permissions_fwrite' => 'DISABLED', 'ini_set' => 'DISABLED', 'is_configured' => 'DISABLED',
-            'print_r' => 'DISABLED', 'print_r_str' => 'DISABLED', 'return_system_image' => 'DISABLED',
             'return_youtube_embed' => 'DISABLED', 'set_crnrstn_as_err_handler' => 'DISABLED', 'set_max_login_attempts' => 'DISABLED',
             'set_timeout_user_inactive' => 'DISABLED', 'set_timezone_default' => 'DISABLED', 'set_ui_theme_style' => 'DISABLED'
             );
@@ -3711,11 +3820,38 @@ class crnrstn {
 
     }
 
-    public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
+    private function auth_data_input($auth_type){
+
+        switch($auth_type){
+            case 'detection':
+
+                if(isset($this->terminate_configuration_error_ARRAY)){
+
+                    foreach($this->terminate_configuration_error_ARRAY as $key => $msg){
+
+                        if(strlen($key) > 0){
+
+                            $this->system_terminate($auth_type);
+
+                            exit();
+
+                        }
+
+                    }
+
+                }
+
+            break;
+
+        }
+
+    }
+
+    public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
 
         //$this->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $soap_tunnel=[' . $soap_tunnel . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
         //error_log(__LINE__ . '[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $soap_tunnel=[' . $data_auth_request . '].');
-        // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $soap_tunnel = false){
+        // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $env_key = NULL, $soap_tunnel = false){
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $data_auth_request);
 
         // was here ->  return $this->oCRNRSTN_USR->get_resource($data_key, $index, $data_type_family, $soap_tunnel);   //<--  previous call
@@ -3732,13 +3868,19 @@ class crnrstn {
 
     }
 
-    public function get_resource_count($data_key, $data_type_family, $env_key){
+    public function get_resource_count($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
+
+        if(!isset($env_key)){
+
+            $env_key = $this->get_server_env();
+
+        }
 
         return self::$oCRNRSTN_CONFIG_MGR->get_resource_count($data_key, $data_type_family, $env_key);
 
     }
 
-    public function isset_data_key($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $env_key = NULL){
+    public function isset_data_key($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
 
         if(!isset($env_key)){
 
@@ -3773,7 +3915,7 @@ class crnrstn {
 
     }
 
-    private function config_add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
+    private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $index = NULL, $default_ttl = 60){
 
         try{
 
@@ -3793,6 +3935,8 @@ class crnrstn {
 
             }else{
 
+                //
+                // A CATCH FOR THROWBACK (PRE-BITFLIP ERA) CONFIG DATA
                 if($env_key === '*'){
 
                     $env_key = CRNRSTN_RESOURCE_ALL;
@@ -3808,25 +3952,11 @@ class crnrstn {
 
                     }
 
-                    if(isset($this->terminate_configuration_error_ARRAY)){
-
-                        foreach($this->terminate_configuration_error_ARRAY as $key => $msg){
-
-                            if(strlen($key) > 0){
-
-                                $this->system_terminate('detection');
-
-                                exit();
-
-                            }
-
-                        }
-
-                    }
+                    $this->auth_data_input('detection');
 
                     if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
 
-                        $this->input_data_value($data_value, $data_key, $data_type_family, NULL, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash], $default_ttl);
+                        $this->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash], $default_ttl);
 
                     }
 
@@ -3844,7 +3974,7 @@ class crnrstn {
 
     }
 
-    public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $data_index = NULL, $env_key = NULL, $default_ttl = 60){
+    public function add_system_resource($data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $index = NULL, $env_key = NULL, $default_ttl = 60){
 
         try{
 
@@ -3870,48 +4000,25 @@ class crnrstn {
 
             }else{
 
-                if($env_key === '*'){
-
-                    $env_key = CRNRSTN_RESOURCE_ALL;
-
-                }
-
                 if(($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)){
 
-                    //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ':: input_data_value(), WHERE $data_key=' . $data_key . ' $env_key=[' . $env_key . '/' . self::$server_env_key_ARRAY[$this->config_serial_hash] . '.].');
                     if(!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
 
                         $this->terminate_configuration_error_ARRAY['FAILED_ENVIRONMENTAL_DETECTION'] = 'CRNRSTN :: cannot add resource, ' . print_r($data_key, true) . '. Unable to detect running environment.';
 
                     }
 
-                    if(isset($this->terminate_configuration_error_ARRAY)){
-
-                        foreach($this->terminate_configuration_error_ARRAY as $key => $msg){
-
-                            if(strlen($key) > 0){
-
-                                $this->system_terminate('detection');
-
-                                exit();
-
-                            }
-
-                        }
-
-                    }
+                    $this->auth_data_input('detection');
 
                     if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
 
-                        return $this->input_data_value($data_value, $data_key, $data_type_family, $data_index, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash], $default_ttl);
+                        return $this->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, self::$server_env_key_ARRAY[$this->config_serial_hash], $default_ttl);
 
                     }
 
                 }
 
             }
-
-            return $this->session_salt();
 
         }catch(Exception $e){
 
@@ -3920,6 +4027,8 @@ class crnrstn {
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
+
+        return true;
 
     }
 
@@ -4024,7 +4133,7 @@ class crnrstn {
                             $tmp_str_in = '$CRNRSTN_config_serial = \'' . $tmp_serial . '\';';
 
                             $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
-                            $theme_style = $this->random_theme_constant;
+                            $theme_profile = $this->random_theme_constant;
 
                             $this->error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
                             error_log('Please specify a configuration serial (such as [$CRNRSTN_config_serial=\'' . $tmp_serial . '\']) in the CRNRSTN :: config file. For reference, please see: [lnum 141].');
@@ -4038,7 +4147,7 @@ class crnrstn {
 $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' . $_SERVER['SERVER_NAME'] . '\');';
 
                             $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
-                            $theme_style = $this->random_theme_constant;
+                            $theme_profile = $this->random_theme_constant;
 
                             $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
                             error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.');
@@ -4085,7 +4194,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
 
     <div style="display:block; clear:both; height:1px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->theme_attributes_ARRAY[$theme_style]['NOM_STRING'] .']</div>
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->theme_attributes_ARRAY[$theme_profile]['NOM_STRING'] .']</div>
 
 </div>
 
@@ -4142,7 +4251,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     <pre style="font-size:10px; height:200px; overflow:hidden; padding:0;">' . $this->return_CRNRSTN_ASCII_ART() . '</pre>
     
     <div style="display:block; clear:both; height:5px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;"></div>
-    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->theme_attributes_ARRAY[$theme_style]['NOM_STRING'] .']</div>
+    <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">[' . $this->return_micro_time() . '] [rtime ' . $this->wall_time() . ' secs] [theme ' . $this->theme_attributes_ARRAY[$theme_profile]['NOM_STRING'] .']</div>
 
 </div>
 
@@ -4235,7 +4344,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         if($http_transport_protocol != 'POST'){
 
-            $http_transport_protocol = $this->string_sanitize($http_channel_upper, 'http_protocol_simple');
+            $http_transport_protocol = $this->str_sanitize($http_channel_upper, 'http_protocol_simple');
 
             if($http_transport_protocol != 'GET' && $http_transport_protocol != 'POST'){
 
@@ -4257,15 +4366,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function is_mobile($tablet_is_mobile = false){
+    public function is_mobile($tablet_is_mobile = false, $magic_method = NULL){
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile($tablet_is_mobile);
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile($tablet_is_mobile, $magic_method);
 
     }
 
-    public function is_tablet($mobile_is_tablet = false){
+    public function is_tablet($mobile_is_tablet = false, $magic_method = NULL){
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_tablet($mobile_is_tablet);
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_tablet($mobile_is_tablet, $magic_method);
 
     }
 
@@ -4275,27 +4384,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function set_mobile(){
+    public function set_mobile($magic_method = NULL){
 
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile();
-
-    }
-
-    public function set_tablet(){
-
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_tablet();
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile($magic_method);
 
     }
 
-    public function set_mobile_custom($magic_method = 'isMobile'){
+    public function set_tablet($magic_method = NULL){
+
+        return $this->oCRNRSTN_ENV->oHTTP_MGR->set_tablet($magic_method);
+
+    }
+
+    public function set_mobile_custom($magic_method = 'isMobile()'){
 
         return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile_custom($magic_method);
-
-    }
-
-    public function is_mobile_custom($magic_method = 'isMobile'){
-
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile_custom($magic_method);
 
     }
 
@@ -5069,9 +5172,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL, $default_ttl = 60){
+    public function input_data_value($data_value, $data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key = NULL, $default_ttl = 60){
 
-        //error_log(__LINE__ . ' crnrstn::' . __METHOD__ . '(' . $data_key . '); WHO CALLS ME? WHAT ABOUT add_system_resource()? NEED TO TIDY UP DATA INPUT. NEVER $env_key...ALWAYS self::$server_env_key_ARRAY[$this->config_serial_hash];.');
         return self::$oCRNRSTN_CONFIG_MGR->input_data_value($data_value, $data_key, $data_type_family, $index, $data_auth_profile, $env_key, $default_ttl);
 
     }
@@ -5723,7 +5825,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function return_module_content_seo_analytics($data_key = NULL){
 
         $tmp_str_out = '';
-        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SEO_ANALYTICS';
+        $data_type_family = 'CRNRSTN::RESOURCE::SEO_ANALYTICS';
 
         if(isset($data_key)){
 
@@ -5756,7 +5858,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function return_module_content_seo_engagement($data_key = NULL){
 
         $tmp_str_out = '';
-        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SEO_ENGAGEMENT';
+        $data_type_family = 'CRNRSTN::RESOURCE::SEO_ENGAGEMENT';
 
         if(isset($data_key)){
 
@@ -5789,7 +5891,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         try{
 
-            $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SEO_ANALYTICS';
+            $data_type_family = 'CRNRSTN::RESOURCE::SEO_ANALYTICS';
             $data_type_title = 'CRNRSTN :: ANALYTICS';
             $env_key_hash = $this->hash($env_key);
 
@@ -5858,7 +5960,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         try{
 
-            $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SEO_ENGAGEMENT';
+            $data_type_family = 'CRNRSTN::RESOURCE::SEO_ENGAGEMENT';
             $data_type_title = 'CRNRSTN :: ENGAGEMENT';
             $env_key_hash = $this->hash($env_key);
 
@@ -5928,7 +6030,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_data_profile_ARRAY = array();
 
-        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SESSION_ENCRYPTION';
+        $data_type_family = 'CRNRSTN::RESOURCE::SESSION_ENCRYPTION';
         $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
         $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: SESSION';
         $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_SESSION;
@@ -5939,7 +6041,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function config_init_cookie_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::COOKIE_ENCRYPTION';
+        $data_type_family = 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION';
         $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
         $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: COOKIE';
         $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_COOKIE;
@@ -5950,7 +6052,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function config_init_tunnel_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+        $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
         $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
         $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: TUNNEL';
         $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_TUNNEL;
@@ -5961,7 +6063,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function config_init_database_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::DATABASE_ENCRYPTION';
+        $data_type_family = 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION';
         $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
         $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: DATABASE';
         $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_DATABASE;
@@ -5972,7 +6074,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function config_init_soap_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SOAP_ENCRYPTION';
+        $data_type_family = 'CRNRSTN::RESOURCE::SOAP_ENCRYPTION';
         $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
         $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: SOAP SERVICES';
         $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_SOAP;
@@ -5983,7 +6085,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function config_init_OERSL_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::OERSL_ENCRYPTION';
+        $data_type_family = 'CRNRSTN::RESOURCE::OERSL_ENCRYPTION';
 
         $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
         $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: OpenSSL Encryption Rotation Services Layer (OERSL)';
@@ -6244,11 +6346,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //
         // SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
-        // GENERATION...EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
-        // ASCII) AND NOT SPLITTING HAIRS BETWEEN SEQUENCE \n LINEFEED (LF or
-        // 0x0A (10) in ASCII) AND SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
-        // (13) in ASCII) AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
-        // ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+        // GENERATION...ALL EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
+        // ASCII) AND NOT SPLITTING HAIRS CHOOSING BETWEEN SEQUENCE \n LINEFEED (LF or
+        // 0x0A (10) in ASCII) AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
+        // (13) in ASCII)...AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12)
+        // in ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
         $token = "";
 
@@ -6963,43 +7065,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_set_bits($constants_int_ARRAY, $first_match = false){
-
-        //$this->oCRNRSTN_BITWISE->set($integer_constant);
-        //$this->oCRNRSTN_BITWISE->toggle($integer_constant);
-        //$this->oCRNRSTN_BITWISE->read($integer_constant);
-        //$this->oCRNRSTN_BITWISE->remove($integer_constant)
-        //$this->oCRNRSTN_BITWISE->stringout()
-        //$this->oCRNRSTN_BITFLIP_MGR->set($integer_constant, true);
-
-        $tmp_array = array();
-
-        foreach($constants_int_ARRAY as $index => $int_constant){
-
-            if(is_string($int_constant)){
-
-                $int_constant = $index;
-
-            }
-
-            if($this->oCRNRSTN_BITFLIP_MGR->is_bit_set($int_constant)){
-
-                $tmp_array[] = $int_constant;
-
-                if($first_match){
-
-                    return $tmp_array;
-
-                }
-
-            }
-
-        }
-
-        return $tmp_array;
-
-    }
-
     public function return_random_theme_style(){
 
         $tmp_selection = rand(0, count($this->system_theme_style_constants_ARRAY) - 1);
@@ -7031,7 +7096,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     }
 
 //
-//    private function return_theme_style_profile_meta_ARRAY($theme_style){
+//    private function return_theme_style_profile_meta_ARRAY($theme_profile){
 //
 //        // CHASE THIS DOWN
 //        //$this->current_theme_style_ARRAY['NAME'] = $tmp_meta_ARRAY['NAME'] = $tmp_theme_style_nom;
@@ -7040,7 +7105,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //        //error_log(__LINE__ . ' crnrstn $tmp_theme_style_int=[' . $tmp_theme_style_int . ']. $tmp_theme_style_nom=[' . $tmp_theme_style_nom . '].');
 //
-//        switch($theme_style){
+//        switch($theme_profile){
 //            case CRNRSTN_UI_GLASS_LIGHT_COPY:
 //
 //                // CONCEPT WORK IN PROGRESS.
@@ -7360,22 +7425,22 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 //
 //    }
 
-    public function print_r_str($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
+    public function print_r_str_skinny($data = NULL, $title = NULL, $theme_profile = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
         //
         // TAKE ANY VALUE(GARBAGE==DEFAULT THEME). ...OR LOOK FOR A FLIPPED BIT.
-        if(!isset($theme_style)){
+        if(!isset($theme_profile)){
 
             //
             // INITIALIZE DEFAULT...FOR THE SYSTEM DEFAULT.
-            $theme_style = CRNRSTN_UI_DARKNIGHT;
+            $theme_profile = CRNRSTN_UI_DARKNIGHT;
 
-            $theme_style_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
+            $theme_profile_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
 
-            $tmp_cnt_set_bits = count($theme_style_ARRAY);
+            $tmp_cnt_set_bits = count($theme_profile_ARRAY);
             if($tmp_cnt_set_bits > 0){
 
-                $theme_style = $theme_style_ARRAY[$tmp_cnt_set_bits - 1];   // TAKE LAST FLIPPED BIT. THERE SHOULD ONLY BE ONE AT [0].
+                $theme_profile = $theme_profile_ARRAY[$tmp_cnt_set_bits - 1];   // TAKE LAST FLIPPED BIT. THERE SHOULD ONLY BE ONE AT [0].
 
             }
 
@@ -7383,24 +7448,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //
         // FOR FUN.
-        if($theme_style == CRNRSTN_UI_RANDOM){
+        if($theme_profile == CRNRSTN_UI_RANDOM){
 
-            $theme_style = $this->return_random_theme_style();
-            $this->random_theme_constant = $theme_style;
+            $theme_profile = $this->return_random_theme_style();
+            $this->random_theme_constant = $theme_profile;
 
         }
 
-        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-x']);
+        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-x']);
         $tmp_box_shadow_str = '';
 
         for($i = 0; $i < $tmp_box_shadow_cnt; $i++){
 
-            $tmp_00 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.inset'][$i];
-            $tmp_01 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-x'][$i];
-            $tmp_02 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-y'][$i];
-            $tmp_03 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.blur-radius'][$i];
-            $tmp_04 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.spread-radius'][$i];
-            $tmp_05 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.color'][$i];
+            $tmp_00 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.inset'][$i];
+            $tmp_01 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-x'][$i];
+            $tmp_02 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-y'][$i];
+            $tmp_03 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.blur-radius'][$i];
+            $tmp_04 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.spread-radius'][$i];
+            $tmp_05 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.color'][$i];
 
             $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' ' . $tmp_02 . ' ' . $tmp_03 . ' ' . $tmp_04 . ' ' . $tmp_05 . ', ';
 
@@ -7430,7 +7495,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_print_r = print_r($expression, true);
+        $tmp_print_r = print_r($data, true);
 
         $tmp_print_r = $this->proper_replace('\r\n', '\n', $tmp_print_r);
         $lines = preg_split('#\r?\n#', trim($tmp_print_r));
@@ -7440,7 +7505,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $tmp_hash = $this->salt(42, '01');
 
-        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
+        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
         if(!isset($title)){
 
@@ -7496,7 +7561,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             
             /* Alert the copied text */
             //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.highlight-color'] . '";
+            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.highlight-color'] . '";
     
         }
         </script>';
@@ -7535,24 +7600,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 ' . $tmp_title_content . '
                 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
             </div>
-            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.highlight-color'] . '</div>
+            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.highlight-color'] . '</div>
 
             <div>
                 <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
                 <div style="border: 3px solid #FFF;">
                 <div style="margin: 3px 6px 0 0;">
-                    <div style="' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
+                    <div style="' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
                     
                     <div style="width:100%; overflow:scroll;">
                 
-                        <div style="' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <div style="' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                         <code>';
 
         $tmp_str_out = '<div style="padding: 10px 10px 10px 10px;">';
         $tmp_str_out .= $tmp_out;
 
-        $output = $this->highlight_text($tmp_print_r, $theme_style);
+        $output = $tmp_print_r;
         $output = $this->proper_replace('<br />', '
 ', $output);
 
@@ -7568,7 +7633,250 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_style]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_style]['highlight.html'] . ';">';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($data, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_profile]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_profile]['highlight.html'] . ';">';
+        //$tmp_str_out .= print_r($output, true);
+        $tmp_str_out .= $output;
+
+        $tmp_str_out .= '</pre>';
+
+        if($this->is_system_terminate_enabled()){
+
+            $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_BASE64);
+
+        }else{
+
+            $component_crnrstn_title = $this->return_component_branding_creative(false, CRNRSTN_UI_IMG_HTML_WRAPPED);
+
+        }
+
+        $tmp_str_out .= '</code></div></div></div></div></div></div>
+        <div style="width:100%;">
+            <div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>
+
+            ' . $component_crnrstn_title . '
+
+            <div style="float:right; overflow-wrap: break-word; max-width:75%; padding:4px 0 5px 0; text-align:right; font-family: Courier New, Courier, monospace; line-height: 18px; font-size:11px;">' . $tmp_meta . '</div>
+                
+            <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+        </div>
+        </div></div></div>';
+
+        $tmp_str_out .= '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+';
+
+        return $tmp_str_out;
+
+    }
+
+    public function print_r_str($data = NULL, $title = NULL, $theme_profile = NULL, $line_num = NULL, $method = NULL, $file = NULL){
+
+        //
+        // TAKE ANY VALUE(GARBAGE==DEFAULT THEME). ...OR LOOK FOR A FLIPPED BIT.
+        if(!isset($theme_profile)){
+
+            //
+            // INITIALIZE DEFAULT...FOR THE SYSTEM DEFAULT.
+            $theme_profile = CRNRSTN_UI_DARKNIGHT;
+
+            $theme_profile_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
+
+            $tmp_cnt_set_bits = count($theme_profile_ARRAY);
+            if($tmp_cnt_set_bits > 0){
+
+                $theme_profile = $theme_profile_ARRAY[$tmp_cnt_set_bits - 1];   // TAKE LAST FLIPPED BIT. THERE SHOULD ONLY BE ONE AT [0].
+
+            }
+
+        }
+
+        //
+        // FOR FUN.
+        if($theme_profile == CRNRSTN_UI_RANDOM){
+
+            $theme_profile = $this->return_random_theme_style();
+            $this->random_theme_constant = $theme_profile;
+
+        }
+
+        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-x']);
+        $tmp_box_shadow_str = '';
+
+        for($i = 0; $i < $tmp_box_shadow_cnt; $i++){
+
+            $tmp_00 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.inset'][$i];
+            $tmp_01 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-x'][$i];
+            $tmp_02 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-y'][$i];
+            $tmp_03 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.blur-radius'][$i];
+            $tmp_04 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.spread-radius'][$i];
+            $tmp_05 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.color'][$i];
+
+            $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' ' . $tmp_02 . ' ' . $tmp_03 . ' ' . $tmp_04 . ' ' . $tmp_05 . ', ';
+
+        }
+
+        $tmp_box_shadow_str = $this->strrtrim($tmp_box_shadow_str, ', ');
+
+        $tmp_meta = '[' . $this->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->wall_time() . ' secs]<br>';
+
+        if(!isset($method) || $method == ''){
+
+            if(isset($file)){
+
+                $tmp_meta .= ' [file ' . $file . ']';
+
+            }
+
+        }else{
+
+            $tmp_meta .= ' [methd ' . $method . ']';
+
+        }
+
+        if(isset($line_num)){
+
+            $tmp_meta .= ' [lnum ' . $line_num . ']';
+
+        }
+
+        $tmp_print_r = print_r($data, true);
+
+        $tmp_print_r = $this->proper_replace('\r\n', '\n', $tmp_print_r);
+        $lines = preg_split('#\r?\n#', trim($tmp_print_r));
+        $tmp_line_cnt = sizeof($lines);
+
+        $lineHTML = implode('<br />', range(1, $tmp_line_cnt + 0));
+
+        $tmp_hash = $this->salt(42, '01');
+
+        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
+
+        if(!isset($title)){
+
+            $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+            $tmp_title .= 'Begin ' . __FUNCTION__ . '() output by C<span style="color:#F00;">R</span>NRSTN ::';
+            $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+            $title  = '';
+
+        }else{
+
+            if($title != ''){
+
+                $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                $tmp_title .= $title;
+                $tmp_title .= '</div><div style="display:block; clear:both; height:0px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+            }else{
+
+                $tmp_title = '<div style="display:block; clear:both; height:4px; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div><div style="float:left; padding:5px 0 0 8px; text-align:left; font-family: Courier New, Courier, monospace; font-size:11px;">';
+                $tmp_title .= 'Begin ' . __FUNCTION__ . '() output by C<span style="color:#F00;">R</span>NRSTN ::';
+                $tmp_title .= '</div><div style="display:block; clear:both; height:0; line-height:1px; overflow:hidden; width:100%; font-size:1px;"></div>';
+
+            }
+
+        }
+
+        $tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="copy_output_' . $tmp_hash . '(); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
+        $tmp_copy_clipboard_func_def_str = '<script>
+        function copy_output_' . $tmp_hash . '(){
+    
+            //
+            // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+            // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+            if(document.selection){ // IE
+    
+                var range = document.body.createTextRange();
+                range.moveToElementText(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                range.select();
+    
+            } else if(window.getSelection){
+    
+                var range = document.createRange();
+                range.selectNode(document.getElementById("crnstn_print_r_source_' . $tmp_hash . '"));
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+    
+            }
+    
+            //
+            // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+            /* Copy the text inside the text field */
+            document.execCommand(\'copy\');
+            
+            /* Alert the copied text */
+            //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.highlight-color'] . '";
+    
+        }
+        </script>';
+
+        $tmp_top_link_str = '';
+        $tmp_module_page_key = $this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        if(strlen($tmp_module_page_key) > 0){
+
+            //
+            // REQUIRES HTTPS FOR RELIABLE USE DUE TO AJAX INJECTION
+            //$tmp_copy_clipboard_func_call_str = '&nbsp;&nbsp;&nbsp;<a href="#" onclick="oCRNRSTN_JS.copy_to_clipboard(\'' . $tmp_hash . '\'); return false;" style="font-family: Courier New, Courier, monospace; font-size:12px; color:#06C; text-align: right;">Copy to clipboard</a>';
+            $tmp_copy_clipboard_func_call_str = '';
+            $tmp_copy_clipboard_func_def_str = '';
+            $tmp_top_link_str = '<a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'scrolltop\', this);" rel="crnrstn_top_' . $this->session_salt() . '">Top</a>';
+
+        }
+
+        $tmp_title_content = '';
+
+        if(strlen($tmp_module_page_key) < 1 || (strlen($title) > 0) || (strlen($title) < 1 && __FUNCTION__ == 'print_r')){
+
+            $tmp_title_content = '
+                <div style="padding: 5px 0 0 0; font-family: Courier New, Courier, monospace; overflow-wrap: break-word; font-size:12px; line-height: 20px; float: left; width:74%;">
+                    <span style="font-family: Courier New, Courier, monospace; font-size:12px; color:#333; text-align: left;">' . $tmp_title . '</span>
+                </div>';
+
+        }
+
+        $tmp_out = '<div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+        ' .  $tmp_copy_clipboard_func_def_str . '
+        <div id="crnrstn_print_r_output_' . $tmp_hash . '" class="crnrstn_print_r_output" style="width:100%;">
+            <div style="width:100%;">
+                <div style="height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; float: right; text-align: right; width:180px;">
+                    ' . $tmp_top_link_str . $tmp_copy_clipboard_func_call_str . '
+                </div>
+                ' . $tmp_title_content . '
+                <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
+            </div>
+            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.highlight-color'] . '</div>
+
+            <div>
+                <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
+                <div style="border: 3px solid #FFF;">
+                <div style="margin: 3px 6px 0 0;">
+                    <div style="' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
+                    ' . $tmp_linecnt_html_out . '
+                    
+                    <div style="width:100%; overflow:scroll;">
+                
+                        <div style="' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <code>';
+
+        $tmp_str_out = '<div style="padding: 10px 10px 10px 10px;">';
+        $tmp_str_out .= $tmp_out;
+
+        $output = $this->highlight_text($tmp_print_r, $theme_profile);
+        $output = $this->proper_replace('<br />', '
+', $output);
+
+        if($output == '<span style="color: #DEDECB"></span>' || $output == '<span style="color: #000000"></span>' || $output == '<span style="color: #CC0000"></span>'){
+
+            $output = '<span style="color: #DEDECB">&nbsp;</span>';
+
+        }
+
+        if($tmp_str_out == '<span style="color: #000"></span>'){
+
+            $tmp_str_out = '<span style="color: #000">&nbsp;</span>';
+
+        }
+
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($data, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_profile]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_profile]['highlight.html'] . ';">';
         $tmp_str_out .= print_r($output, true);
 
         $tmp_str_out .= '</pre>';
@@ -7602,10 +7910,10 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function print_r($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
+    public function print_r($data = NULL, $title = NULL, $theme_profile = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
         /*
-        WHERE $theme_style =
+        WHERE $theme_profile =
         CRNRSTN_UI_PHPNIGHT                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
         CRNRSTN_UI_DARKNIGHT                // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
         CRNRSTN_UI_PHP                      // ALL ABOUT THE BUSINESS.
@@ -7621,19 +7929,19 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //
         // TAKE ANY VALUE(GARBAGE==DEFAULT THEME). ...OR LOOK FOR A FLIPPED BIT.
-        if(!isset($theme_style)){
+        if(!isset($theme_profile)){
 
             //
             // SET A DEFAULT
-            $theme_style = CRNRSTN_UI_PHPNIGHT;
+            $theme_profile = CRNRSTN_UI_PHPNIGHT;
 
-            $theme_style_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
-            //error_log(__LINE__ . ' crnrstn $theme_style_ARRAY=[' . print_r($theme_style_ARRAY, true) . '].');
+            $theme_profile_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
+            //error_log(__LINE__ . ' crnrstn $theme_profile_ARRAY=[' . print_r($theme_profile_ARRAY, true) . '].');
 
-            $tmp_cnt_set_bits = count($theme_style_ARRAY);
+            $tmp_cnt_set_bits = count($theme_profile_ARRAY);
             if($tmp_cnt_set_bits > 0){
 
-                $theme_style = $theme_style_ARRAY[$tmp_cnt_set_bits - 1];   // TAKE LAST FLIPPED BIT.
+                $theme_profile = $theme_profile_ARRAY[$tmp_cnt_set_bits - 1];   // TAKE LAST FLIPPED BIT.
 
             }
 
@@ -7641,24 +7949,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //
         // FOR FUN.
-        if($theme_style == CRNRSTN_UI_RANDOM){
+        if($theme_profile == CRNRSTN_UI_RANDOM){
 
-            $theme_style = $this->return_random_theme_style();
-            $this->random_theme_constant = $theme_style;
+            $theme_profile = $this->return_random_theme_style();
+            $this->random_theme_constant = $theme_profile;
 
         }
 
-        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-x']);
+        $tmp_box_shadow_cnt = count($this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-x']);
         $tmp_box_shadow_str = '';
 
         for($i = 0; $i < $tmp_box_shadow_cnt; $i++){
 
-            $tmp_00 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.inset'][$i];
-            $tmp_01 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-x'][$i];
-            $tmp_02 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.offset-y'][$i];
-            $tmp_03 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.blur-radius'][$i];
-            $tmp_04 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.spread-radius'][$i];
-            $tmp_05 = $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.box-shadow.color'][$i];
+            $tmp_00 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.inset'][$i];
+            $tmp_01 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-x'][$i];
+            $tmp_02 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.offset-y'][$i];
+            $tmp_03 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.blur-radius'][$i];
+            $tmp_04 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.spread-radius'][$i];
+            $tmp_05 = $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.box-shadow.color'][$i];
 
             $tmp_box_shadow_str .= $tmp_00 . ' ' . $tmp_01 . ' ' . $tmp_02 . ' ' . $tmp_03 . ' ' . $tmp_04 . ' ' . $tmp_05 . ', ';
 
@@ -7676,7 +7984,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             }
 
-
         }else{
 
             $tmp_meta .= ' [methd ' . $method . ']';
@@ -7689,7 +7996,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_print_r = print_r($expression, true);
+        $tmp_print_r = print_r($data, true);
 
         $tmp_print_r = $this->proper_replace('\r\n', '\n', $tmp_print_r);
         $lines = preg_split('#\r?\n#', trim($tmp_print_r));
@@ -7701,7 +8008,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         //
         // NOTHING COULD BE DARKER. NOTHING.
-        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
+        $tmp_linecnt_html_out = '<div style="position: relative;"><div style="line-height:20px; position:absolute; z-index: 2; padding-right:5px; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.color'] . '; border-right:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.right-border-color'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.lnum.css.background-color'] . '; padding-top:25px; padding-bottom:25px; padding-left:4px;">' . $lineHTML . '</div></div>';
 
         if(!isset($title)){
 
@@ -7756,7 +8063,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             
             /* Alert the copied text */
             //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
-            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.highlight-color'] . '";
+            document.getElementById("crnstn_print_r_display_' . $tmp_hash . '").style.backgroundColor = "' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.highlight-color'] . '";
     
         }
         </script>';
@@ -7795,24 +8102,24 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 ' . $tmp_title_content . '
                 <div style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;"></div>
             </div>
-            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.highlight-color'] . '</div>
+            <div id="crnstn_print_r_highlight_color_' . $tmp_hash . '" style="display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;">' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.highlight-color'] . '</div>
 
             <div>
                 <div style="box-shadow: ' . $tmp_box_shadow_str . ';">
                 <div style="border: 3px solid #FFF;">
                 <div style="margin:3px 6px 0 0;">
-                    <div style="' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
+                    <div style="' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-opacity'] . '; background-color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-color'] . '; border:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-width'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-style'] . ' ' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.border-color'] . '; width:100%; padding:0; margin:0; overflow-y:hidden; font-size:14px;">
                     ' . $tmp_linecnt_html_out . '
                     
                     <div style="width:100%; overflow:scroll;">
                 
-                        <div style="' . $this->theme_attributes_ARRAY[$theme_style]['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
+                        <div style="' . $this->theme_attributes_ARRAY[$theme_profile]['stage.content.background-opacity'] . '; width:3000px; padding:10px; margin-top:0; margin-left:10px; padding-left:35px; line-height:20px;">
                         <code>';
 
         echo '<div style="padding: 10px 10px 10px 10px;">';
         echo $tmp_out;
 
-        $output = $this->highlight_text($tmp_print_r, $theme_style);
+        $output = $this->highlight_text($tmp_print_r, $theme_profile);
         $output = $this->proper_replace('<br />', '
 ', $output);
 
@@ -7828,7 +8135,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_style]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($expression,true)) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_style]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_style]['highlight.html'] . ';">';
+        echo '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($data,true)) . '</div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_profile]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_profile]['highlight.html'] . ';">';
         print_r($output);
         echo '</pre>';
 
@@ -8442,7 +8749,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }else{
 
             $http_protocol = strtoupper($transport_protocol);
-            $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+            $http_protocol = $this->str_sanitize($http_protocol, 'http_protocol_simple');
 
             switch ($http_protocol){
                 case 'POST':
@@ -8536,9 +8843,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         $type = strtolower($type);
 
-        try{
+        try {
 
-            switch ($type){
+            switch ($type) {
                 case 'index':
 
                     $patterns[0] = '&nbsp;';
@@ -8659,13 +8966,83 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $replacements[2] = '';
 
                 break;
+                case 'max_storage_utilization':
+
+                    $patterns[0] = '%';
+                    $patterns[1] = 'percent';
+                    $patterns[2] = ' ';
+                    $patterns[3] = '!';
+
+                    $replacements[0] = '';
+                    $replacements[1] = '';
+                    $replacements[2] = '';
+                    $replacements[3] = '';
+
+                break;
+                case 'custom_mobi_detect_alg':
+
+                    $patterns[0] = '(';
+                    $patterns[1] = ')';
+                    $replacements[0] = '';
+                    $replacements[1] = '';
+
+                break;
+                case 'select_statement':
+
+                    $patterns[0] = "`";
+                    $replacements[0] = '';
+
+                break;
+                case 'select_field_name':
+
+                    $patterns[0] = "
+";
+                    $patterns[1] = '"';
+                    $patterns[2] = '=';
+                    $patterns[3] = '{';
+                    $patterns[4] = '}';
+                    $patterns[5] = '(';
+                    $patterns[6] = ')';
+                    $patterns[7] = ' ';
+                    $patterns[8] = '    ';
+                    $patterns[9] = ',';
+                    $patterns[10] = '\n';
+                    $patterns[11] = '\r';
+                    $patterns[12] = '\'';
+                    $patterns[13] = '/';
+                    $patterns[14] = '#';
+                    $patterns[15] = ';';
+                    $patterns[16] = ':';
+                    $patterns[17] = '>';
+
+                    $replacements = array();
+                    $replacements[0] = '';
+                    $replacements[1] = '';
+                    $replacements[2] = '';
+                    $replacements[3] = '';
+                    $replacements[4] = '';
+                    $replacements[5] = '';
+                    $replacements[6] = '';
+                    $replacements[7] = '';
+                    $replacements[8] = '';
+                    $replacements[9] = '';
+                    $replacements[10] = '';
+                    $replacements[11] = '';
+                    $replacements[12] = '';
+                    $replacements[13] = '';
+                    $replacements[14] = '';
+                    $replacements[15] = '';
+                    $replacements[16] = '';
+                    $replacements[17] = '';
+
+                break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     throw new Exception('Unable to determine string sanitization algorithm [' . $type . '] for the content[' . $str . '].');
 
-                    break;
+                break;
 
             }
 
@@ -8673,7 +9050,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             return $str;
 
-        }catch(Exception $e){
+        } catch (Exception $e) {
 
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -8682,6 +9059,40 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
     }
+
+//    public function str_sanitize($str, $type){
+//
+//        $patterns = array();
+//        $replacements = array();
+//
+//        $type = strtolower($type);
+//
+//        try{
+//
+//            switch ($type){
+//                default:
+//
+//                    //
+//                    // HOOOSTON...VE HAF PROBLEM!
+//                    throw new Exception('Unable to determine string sanitization algorithm [' . $type . '] for the content[' . $str . '].');
+//
+//                    break;
+//
+//            }
+//
+//            $str = str_replace($patterns, $replacements, $str);
+//
+//            return $str;
+//
+//        }catch(Exception $e){
+//
+//            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+//
+//            return false;
+//
+//        }
+//
+//    }
 
     /*
     CRNRSTN :: R&D (read as "messy kitchen below"...and this right here is by no means the end of it.)
@@ -8741,21 +9152,15 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     */
 
-    public function return_system_image($media_element_key, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $image_output_mode = NULL){
+    public function return_system_image($system_asset_constant, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $image_output_mode = NULL){
 
-        return $this->oCRNRSTN_ASSET_MGR->return_system_image($media_element_key, $width, $height, $hyperlink, $alt, $title, $target, $image_output_mode);
+        return $this->oCRNRSTN_ASSET_MGR->return_system_image($system_asset_constant, $width, $height, $hyperlink, $alt, $title, $target, $image_output_mode);
 
     }
 
     public function return_creative($media_element_key, $image_output_mode = NULL, $creative_mode = NULL){
 
         return $this->oCRNRSTN_ASSET_MGR->return_creative($media_element_key, $image_output_mode, $creative_mode);
-
-    }
-
-    public function string_sanitize($str, $type){
-
-        return $this->str_sanitize($str, $type);
 
     }
 
@@ -8939,9 +9344,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     //
     // SOURCE :: https://www.php.net/manual/en/function.highlight-string.php
     // AUTHOR :: stanislav dot eckert at vizson dot de :: https://www.php.net/manual/en/function.highlight-string.php#118550
-    public function highlight_text($text, $theme_style = NULL){
+    public function highlight_text($text, $theme_profile = NULL){
 
-        switch ($theme_style){
+        switch ($theme_profile){
             case CRNRSTN_UI_GLASS_DARK_COPY:
             case CRNRSTN_UI_GLASS_LIGHT_COPY:
             case CRNRSTN_UI_TERMINAL:
@@ -8958,11 +9363,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 //
                 // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
                 // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
-                ini_set('highlight.comment', $this->theme_attributes_ARRAY[$theme_style]['highlight.comment']);
-                ini_set('highlight.default', $this->theme_attributes_ARRAY[$theme_style]['highlight.default']);
-                ini_set('highlight.html', $this->theme_attributes_ARRAY[$theme_style]['highlight.html']);
-                ini_set('highlight.keyword', $this->theme_attributes_ARRAY[$theme_style]['highlight.keyword']);
-                ini_set('highlight.string', $this->theme_attributes_ARRAY[$theme_style]['highlight.string']);
+                ini_set('highlight.comment', $this->theme_attributes_ARRAY[$theme_profile]['highlight.comment']);
+                ini_set('highlight.default', $this->theme_attributes_ARRAY[$theme_profile]['highlight.default']);
+                ini_set('highlight.html', $this->theme_attributes_ARRAY[$theme_profile]['highlight.html']);
+                ini_set('highlight.keyword', $this->theme_attributes_ARRAY[$theme_profile]['highlight.keyword']);
+                ini_set('highlight.string', $this->theme_attributes_ARRAY[$theme_profile]['highlight.string']);
 
             break;
 
@@ -10893,6 +11298,33 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     }
 
+    /**
+     * TAKEN FROM /_crnrstn/class/thirdparty/nusoap/class.nusoap_base.php [lnum 872]
+     * Returns a string with the output of var_dump
+     *
+     * @param mixed $data The variable to var_dump
+     * @return string The output of var_dump
+     * @access public
+     */
+    public function var_dump($data, $string_output = true){
+
+        if($string_output){
+
+            ob_start();
+            var_dump($data);
+            $ret_val = ob_get_contents();
+            ob_end_clean();
+
+            return $this->print_r_str_skinny($ret_val, NULL, NULL, NULL, NULL, NULL);
+
+        }
+
+        var_dump($data);
+
+        return NULL;
+
+    }
+
     private function output_agg_destruct_str(){
 
         if($this->destruct_output != ''){
@@ -10971,7 +11403,7 @@ class crnrstn_config_manager {
         $this->oCRNRSTN = $oCRNRSTN;
 
         $this->config_serial_hash = $oCRNRSTN->get_server_config_serial('hash');
-        $this->system_hash_algo = $oCRNRSTN->system_hash_algorithm();
+        $this->system_hash_algo = $oCRNRSTN->system_hash_algo();
         $this->init_data_profile_constants();
 
         //
@@ -11008,7 +11440,7 @@ class crnrstn_config_manager {
 
     }
 
-    private function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL'){
+    private function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN::RESOURCE'){
 
         $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
         //return $tmp_dataset_prefix_str . $resource_key;
@@ -11035,11 +11467,11 @@ class crnrstn_config_manager {
         lnum 860
         oCRNRSTN_BITFLIP_MGR->initialize_bit(CRNRSTN_INT_CONST, true);
 
-        $theme_style_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
+        $theme_profile_ARRAY = $this->return_set_bits($this->system_theme_style_constants_ARRAY);
 
-        if(count($theme_style_ARRAY) > 0){
+        if(count($theme_profile_ARRAY) > 0){
 
-            $theme_style = $theme_style_ARRAY[0];   // FIRST MATCH
+            $theme_profile = $theme_profile_ARRAY[0];   // FIRST MATCH
 
         }
 
@@ -11055,7 +11487,7 @@ class crnrstn_config_manager {
 
     }
 
-    public function input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL, $default_ttl = 60){
+    public function input_data_value($data_val, $data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_ALL, $env_key = NULL, $default_ttl = 60){
 
         try{
 
@@ -11129,7 +11561,7 @@ class crnrstn_config_manager {
 
     }
 
-    public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $index = NULL, $env_key = NULL, $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
+    public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $env_key = NULL, $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
 
         //
         // ESTABLISH AND RETURN MYSQLI CONNECTION
@@ -11149,8 +11581,13 @@ class crnrstn_config_manager {
 
             $tmp_return_data_spec_a = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $data_auth_request, $index);
 
+            //
+            // IMPLEMENTATION OF SERIALIZED "NO MATCH" RETURN TO DEFINITIVELY INDICATE WHETHER
+            // OR NOT WE SHOULD CHECK THE DATA_KEY AGAINST CRNRSTN_RESOURCE_ALL.
             if($tmp_return_data_spec_a == $this->oCRNRSTN->session_salt()){
 
+                //
+                // WE NOW HAVE TO CHECK CRNRSTN_RESOURCE_ALL WITH THIS DATA KEY.
                 $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, CRNRSTN_RESOURCE_ALL, $data_type_family), $data_auth_request, $index);
 
                 if($tmp_return_data_spec_b != $this->oCRNRSTN->session_salt()){
@@ -11170,19 +11607,17 @@ class crnrstn_config_manager {
 
             //
             // STILL NEED THIS FOR NULL OR EMPTY STRING VALUES THAT NEED TO BE SENT BACK.
-            // IMPLEMENTATION OF A CUSTOM (OR SERIALIZED) "NO MATCH" RETURN WOULD DEFINITIVELY INDICATE WHETHER
-            // OR NOT WE SHOULD CHECK THE DATA_KEY AGAINST CRNRSTN_RESOURCE_ALL.
             return $tmp_return_data_spec_a;
 
-        } catch( Exception $e ){
+        }catch( Exception $e ){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
             $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
-            return false;
+            // RETURN NULL
+            return NULL;
 
         }
 
@@ -11913,11 +12348,11 @@ class crnrstn_bitflip_manager {
 
         //
         // SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
-        // GENERATION...EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
-        // ASCII) AND NOT SPLITTING HAIRS BETWEEN SEQUENCE \n LINEFEED (LF or
-        // 0x0A (10) in ASCII) AND SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
-        // (13) in ASCII) AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
-        // ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+        // GENERATION...ALL EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
+        // ASCII) AND NOT SPLITTING HAIRS CHOOSING BETWEEN SEQUENCE \n LINEFEED (LF or
+        // 0x0A (10) in ASCII) AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
+        // (13) in ASCII)...AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12)
+        // in ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
         $token = "";
 

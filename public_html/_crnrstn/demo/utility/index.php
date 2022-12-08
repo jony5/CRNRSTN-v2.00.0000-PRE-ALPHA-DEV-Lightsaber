@@ -151,14 +151,14 @@ $tmp_str = '$tmp_data_key = \'crnrstn_pssdtl_packet\';
 $tmp_data_type_family = \'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::\' . md5($crnrstn_form_handle);
 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
 
-    // add_system_resource($data_key, $data_value, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+    // add_system_resource($data_key, $data_value, $data_type_family = \'CRNRSTN::RESOURCE\', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
     $this->oCRNRSTN->add_system_resource($tmp_data_key, \'data_value_here\', $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
     
 }';
 
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::form_serialize_new()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$tmp_str = '$oCRNRSTN->get_resource($data_key, $index = NULL, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME);';
+$tmp_str = '$oCRNRSTN->get_resource($data_key, $index = NULL, $data_type_family = \'CRNRSTN::RESOURCE\', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME);';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::retrieve_data_value()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '$this->oCRNRSTN->retrieve_data_count(\'FORM_INPUT_FIELD_NAME\', $tmp_data_type_family)';
@@ -166,7 +166,7 @@ $oCRNRSTN->print_r($tmp_str, 'crnrstn::retrieve_data_count()', $tmp_theme_style_
 
 $tmp_str = 'if($oCRNRSTN->isset_data_key($data_key, $data_type_family){
 
-// where, public function isset_data_key($data_key, $data_type_family = \'CRNRSTN_SYSTEM_CHANNEL\', $env_key = NULL){}
+// where, public function isset_data_key($data_key, $data_type_family = \'CRNRSTN::RESOURCE\', $env_key = NULL){}
 
 }
 ';
@@ -255,11 +255,11 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
 
 //
 // SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
-// GENERATION...EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
-// ASCII) AND NOT SPLITTING HAIRS BETWEEN SEQUENCE \n LINEFEED (LF or
-// 0x0A (10) in ASCII) AND SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
-// (13) in ASCII) AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
-// ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+// GENERATION...ALL EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
+// ASCII) AND NOT SPLITTING HAIRS CHOOSING BETWEEN SEQUENCE \n LINEFEED (LF or
+// 0x0A (10) in ASCII) AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
+// (13) in ASCII)...AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12)
+// in ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
 //
 // ALSO, CHECK OUT $char_selection=-2, AND $char_selection=-3.
 // $char_selection=-3 IS THE NICEST(NO: QUOTES, COMMAS,...ETC.)...WITH

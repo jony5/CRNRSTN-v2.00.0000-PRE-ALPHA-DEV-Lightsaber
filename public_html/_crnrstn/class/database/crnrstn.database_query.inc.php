@@ -2497,7 +2497,7 @@ class crnrstn_database_query {
             // BREAK OUT FROM EXPRESSION SO THAT SQL CAN BE CHECKSUMMED
             $tmp_field_chop_array = preg_split('/ FROM /i', $this->raw_query);  // CASE INSENSITIVE
 
-            $this->select_query = $this->oCRNRSTN_USR->string_sanitize($tmp_field_chop_array[0],'select_statement');
+            $this->select_query = $this->oCRNRSTN_USR->str_sanitize($tmp_field_chop_array[0],'select_statement');
 
             //
             // EXPLODE BY COMMA TO BREAK OUT FIELDS
@@ -2522,7 +2522,7 @@ class crnrstn_database_query {
                     // TRIM SPACES
                     $tmp_single_field_array[1] = trim($tmp_single_field_array[1]);
 
-                    $tmp_single_field_array[1] = $this->oCRNRSTN_USR->string_sanitize($tmp_single_field_array[1],'select_field_name');
+                    $tmp_single_field_array[1] = $this->oCRNRSTN_USR->str_sanitize($tmp_single_field_array[1],'select_field_name');
 
                     $this->oSqlSelect_tracker->addFieldName($tmp_single_field_array[1]);
 
@@ -2551,7 +2551,7 @@ class crnrstn_database_query {
                     //
                     // FOR EACH FIELD
                     # array[serial][select_CNT][field_position] = fieldname;
-                    $tmp_single_field_array[1] = $this->oCRNRSTN_USR->string_sanitize($tmp_single_field_array[1],'select_field_name');
+                    $tmp_single_field_array[1] = $this->oCRNRSTN_USR->str_sanitize($tmp_single_field_array[1],'select_field_name');
 
                     $this->oSqlSelect_tracker->addFieldName($tmp_single_field_array[1]);
 

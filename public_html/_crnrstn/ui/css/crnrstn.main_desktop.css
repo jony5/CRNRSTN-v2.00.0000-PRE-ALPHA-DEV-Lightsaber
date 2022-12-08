@@ -111,6 +111,7 @@
 .crnrstn_documentation_r_icon_shell                         { position: relative; height: 0; float: right; width: 30px; padding: 0; }
 .crnrstn_documentation_r_icon_rel                           { position: relative; float: right; height: 0; width: 30px; }
 .crnrstn_documentation_r_icon                               { position: absolute; margin: 0; top:-50px; left:-14px;}
+.crnrstn_the_r_text_link_sup                                { padding: 0 0 0 3px; line-height: 1px;}
 .crnrstn_documentation_lnk_top_rel                          { position: relative; float: right; width:65px; }
 .crnrstn_documentation_lnk_top                              { position: absolute; width:50px; height:15px; padding: 14px 10px 3px 0; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px;text-align: right;}
 .crnrstn_documentation_dyn_content_shell                    { /*width: 64%;*/min-width: 400px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
@@ -119,7 +120,9 @@
 .crnrstn_documentation_dyn_content_title h2                 { font-size: 35px; margin-bottom:0;}
 .crnrstn_documentation_dyn_content_title h3                 { font-size: 25px; margin-bottom:0;}
 .crnrstn_documentation_dyn_content_description              { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
-.crnrstn_documentation_dyn_content_description p            { padding: 0; margin: 0;}
+.crnrstn_documentation_dyn_content_description p            { padding: 0; margin: 0; text-align: left; display: inline-block;}
+.crnrstn_documentation_dyn_content_description a            { text-decoration: none; color:#0066CC;}
+.crnrstn_documentation_dyn_content_description .crnrstn_text_embedded_image { padding: 0px 6px 0 0px; line-height: 90px;}
 .crnrstn_documentation_dyn_content_example                  { width: 98%; padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
 .crnrstn_documentation_example_output                       { padding: 20px 10px 20px 10px;}
 .crnrstn_documentation_dyn_content_method_definition        { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 0 25px 20px; font-family: "Courier New", Courier, monospace; color:#333; line-height: 33px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
@@ -135,6 +138,9 @@
 .crnrstn_documentation_param_require_optional               { font-family: "Courier New", Courier, monospace; }
 .crnrstn_documentation_param_definition_shell               { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 5px 10px 0 30px; color:#333; line-height: 33px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_documentation_param_definition_shell p             { padding: 0; margin: 0; }
+.crnrstn_documentation_param_definition_param_shell         { }
+.crnrstn_documentation_param_definition_param               { float: left; width: 200px; }
+.crnrstn_documentation_param_definition_param_description   { float: left; }
 .crnrstn_documentation_related_method                       { padding: 0 0 5px 0; }
 .crnrstn_documentation_related_method a                     { text-decoration: none; color:#0066CC; }
 .crnrstn_predefined_constant_demo_shell                     { padding: 0 0 70px 0;}
@@ -154,6 +160,16 @@
 .crnrstn_resource_constant_title_description                { font-size: 16px; line-height: 25px; font-weight: normal; padding: 0 0 10px 0; }
 .crnrstn_resource_constant_content                          { padding: 10px 0 0 0;}
 
+.crnrstn_documentation_caution_copy_shell                   { text-align: center; margin: 0 auto; width: 90%; padding: 10px 0 10px 0;}
+.crnrstn_documentation_caution_copy_border_wrap             { text-align: center; padding: 10px 0 10px 0; margin: 10px 20px 10px 20px; border:1px solid #A5B9D8; overflow: hidden;}
+.crnrstn_documentation_bg_caution_icon_wrapper_rel          { position: relative; text-align: right; height: 0; }
+.crnrstn_documentation_bg_caution_icon_wrapper              { position: absolute; z-index: 3; top:-120px; left: 48%;}
+.crnrstn_documentation_bg_caution_icon                      { float:right; padding: 4px 15px 0 10px;}
+.crnrstn_documentation_caution_copy_wrap_rel                { position: relative;}
+.crnrstn_documentation_caution_copy_wrap                    { position: absolute; z-index: 4;}
+.crnrstn_documentation_caution_copy                         { width: 85%; text-align: left; }
+.crnrstn_documentation_caution_copy p                       { padding: 0 10px 0 20px; background-color: rgba(255, 255, 255, 0.67); }
+
 .crnrstn_resource_constant_nom                              { width: 78%; text-align: left; font-size: 18px; font-weight: bold; padding: 0; margin:0; line-height: 24px; overflow-wrap: break-word; }
 .crnrstn_resource_constant_version                          { font-size: 17px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: transparent; padding: 10px 0 0 0; }
 .crnrstn_resource_constant_version p                        { padding:0; margin:0; }
@@ -167,7 +183,6 @@
 .crnrstn_resource_constant_description p                    { padding: 0; margin:0;}
 .crnrstn_resource_constant_description a                    { text-decoration: none; color: #0066CC;}
 .crnrstn_resource_constant_browser_support                  { font-size: 13px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: transparent; padding:0 0 15px 0;}
-
 
 .crnrstn_documentation_page_stats_content                                   { width:98%; }
 .crnrstn_documentation_page_stats_content p                                 { padding: 0 10px 0 20px; overflow-wrap: break-word; font-family: Courier New, Courier, monospace; font-size:12px; line-height: 20px; color: #333; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
@@ -187,7 +202,10 @@
 .crnrstn_documentation_dyn_content_note_copy p              { padding: 0; margin: 0;}
 .crnrstn_documentation_dyn_content_note_copy a              { font-weight: normal; text-decoration: none; color: #0066CC;}
 .crnrstn_documentation_dyn_content_tech_specs_wrapper       { padding: 10px 0 0 10px; color:#333;}
+ul.crnrstn_documentation_dyn_content_note_copy              { list-style-type:upper-roman; font-weight: bold; list-style-position: outside; font-size: 20px; line-height:30px; padding: 0 10px 10px 20px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+ul.crnrstn_documentation_dyn_content_note_copy li           { padding: 0 0 5px 0;}
 ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: square; list-style-position: outside; font-size: 20px; line-height:30px; padding: 0 10px 10px 20px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
+
 .crnrstn_documentation_dyn_content_tech_specs li            { padding: 0 0 10px 0;}
 .crnrstn_documentation_dyn_content_module_bg_rel            { position: relative; width: 100%; overflow: hidden;}
 .crnrstn_documentation_dyn_content_module_bg                { position: absolute; z-index: 2; top:0; left:0; width: 100%; height:2000px; background-color: #FFF; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0; }
@@ -201,7 +219,8 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_documentation_dyn_content_module_wrap_s1_rel       { position: relative; padding: 2px 0 2px 0;}
 
 .crnrstn_documentation_dyn_content_module_wrap_s1           { width: 100%; position: absolute; z-index: 4; top:0; left:0;}
-.crnrstn_interact_ui_r_stone_pillar                         { float: right; padding: 10px 20px 0 0; }
+.crnrstn_interact_ui_bg_r_stone_pillar_small                { float: right; padding: 40px 14px 0 0; }
+.crnrstn_interact_ui_bg_r_stone_pillar                      { float: right; padding: 40px 20px 0 0; }
 .crnrstn_interact_ui_bg_title_note                          { position: absolute; font-size: 140px; color: #F8F8F8; font-weight: bold; float:left; left:0; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
 .crnrstn_interact_ui_bg_title_tech_spec                     { position: absolute; font-size: 80px; padding: 0 10px 0 10px; color: #F8F8F8; text-align: right; font-weight: bold; float:left; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
 .crnrstn_interact_ui_documentation_j5_wolf_pup              { width: 98%; float:right; padding:120px 268px 0 0; margin:0; text-align: right; }
@@ -389,6 +408,7 @@ body.crnrstn-disable-scrolling              { overflow: hidden;}
 
 /*UTILITY*/
 .crnrstn_hidden						        { width:0; height:0; position:absolute; left:-2000px; overflow:hidden;}
+.crnrstn_br_shell                           { line-height: 5px;}
 .crnrstn_cb 								{ display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;}
 .crnrstn_cb_3                               { display:block; clear:both; height:3px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
 .crnrstn_cb_5	 							{ display:block; clear:both; height:5px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}

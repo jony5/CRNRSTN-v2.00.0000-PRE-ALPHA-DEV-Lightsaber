@@ -997,7 +997,7 @@ class crnrstn_messenger_from_north {
                 //
                 // FOR CRNRSTN SUPPRESSION FILTER AND SEND
                 $this->to_email_ARRAY[$email_experience_tracker]['sys_email'][] = $this->clean_system_email($recipient_email);
-                self::$oCRNRSTN_n->error_log('Adding BULK email '.self::$oCRNRSTN_n->string_sanitize($recipient_email, 'email_private').' to to_email_ARRAY['.substr($email_experience_tracker, 0, 5).'...][ ].', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                self::$oCRNRSTN_n->error_log('Adding BULK email '.self::$oCRNRSTN_n->str_sanitize($recipient_email, 'email_private').' to to_email_ARRAY['.substr($email_experience_tracker, 0, 5).'...][ ].', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
             }
 
@@ -1652,7 +1652,7 @@ class crnrstn_messenger_from_north {
             //
             // INITIALIZE SENDER/FROM
             $oCRNRSTN_PROXYMailer->setFrom($this->sender_email, $this->sender_name);
-            self::$oCRNRSTN_n->error_log('oGabriel [PROXY] INITIALIZE SENDER/FROM setFrom['.self::$oCRNRSTN_n->string_sanitize($this->sender_email, 'email_private').' - ' . $this->sender_name.']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+            self::$oCRNRSTN_n->error_log('oGabriel [PROXY] INITIALIZE SENDER/FROM setFrom['.self::$oCRNRSTN_n->str_sanitize($this->sender_email, 'email_private').' - ' . $this->sender_name.']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
             //
             // INITIALIZE TO
@@ -1686,7 +1686,7 @@ class crnrstn_messenger_from_north {
 
                         }
 
-                        self::$oCRNRSTN_n->error_log('oGabriel [PROXY] addAddress['.self::$oCRNRSTN_n->string_sanitize($this->to_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->to_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                        self::$oCRNRSTN_n->error_log('oGabriel [PROXY] addAddress['.self::$oCRNRSTN_n->str_sanitize($this->to_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->to_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                         //$oCRNRSTN_PHPMailer->addAddress($this->to_email_ARRAY['sys_email'][$i], $this->to_email_ARRAY['name'][$i]);
                         $oCRNRSTN_PROXYMailer->addAddress($this->to_email_ARRAY['sys_email'][$i], $this->to_email_ARRAY['name'][$i]);
 
@@ -1699,7 +1699,7 @@ class crnrstn_messenger_from_north {
             if($tmp_replyto_email_cnt>0){
 
                 for($i=0; $i<$tmp_replyto_email_cnt; $i++){
-                    self::$oCRNRSTN_n->error_log('oGabriel [PROXY] addReplyTo['.self::$oCRNRSTN_n->string_sanitize($this->replyto_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->replyto_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                    self::$oCRNRSTN_n->error_log('oGabriel [PROXY] addReplyTo['.self::$oCRNRSTN_n->str_sanitize($this->replyto_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->replyto_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                     //$oCRNRSTN_PHPMailer->addReplyTo($this->replyto_email_ARRAY['sys_email'][$i], $this->replyto_email_ARRAY['name'][$i]);
                     $oCRNRSTN_PROXYMailer->addReplyTo($this->replyto_email_ARRAY['sys_email'][$i], $this->replyto_email_ARRAY['name'][$i]);
                 }
@@ -1710,7 +1710,7 @@ class crnrstn_messenger_from_north {
             if($tmp_cc_email_cnt>0){
 
                 for($i=0; $i<$tmp_cc_email_cnt; $i++){
-                    self::$oCRNRSTN_n->error_log('oGabriel [PROXY] addCC['.self::$oCRNRSTN_n->string_sanitize($this->cc_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->cc_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                    self::$oCRNRSTN_n->error_log('oGabriel [PROXY] addCC['.self::$oCRNRSTN_n->str_sanitize($this->cc_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->cc_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                     //$oCRNRSTN_PHPMailer->addCC($this->cc_email_ARRAY['sys_email'][$i], $this->cc_email_ARRAY['name'][$i]);
                     $oCRNRSTN_PROXYMailer->addCC($this->cc_email_ARRAY['sys_email'][$i], $this->cc_email_ARRAY['name'][$i]);
                 }
@@ -1721,7 +1721,7 @@ class crnrstn_messenger_from_north {
             if($tmp_bcc_email_cnt>0){
 
                 for($i=0; $i<$tmp_bcc_email_cnt; $i++){
-                    self::$oCRNRSTN_n->error_log('oGabriel [PROXY] addBCC['.self::$oCRNRSTN_n->string_sanitize($this->bcc_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->bcc_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                    self::$oCRNRSTN_n->error_log('oGabriel [PROXY] addBCC['.self::$oCRNRSTN_n->str_sanitize($this->bcc_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->bcc_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                     //$oCRNRSTN_PHPMailer->addBCC($this->bcc_email_ARRAY['sys_email'][$i], $this->bcc_email_ARRAY['name'][$i]);
                     $oCRNRSTN_PROXYMailer->addBCC($this->bcc_email_ARRAY['sys_email'][$i], $this->bcc_email_ARRAY['name'][$i]);
                 }
@@ -1781,7 +1781,7 @@ class crnrstn_messenger_from_north {
                     }
 
                     if(isset($this->sender_Bulk[$tmp_exp_tracker]['email'])){
-                        self::$oCRNRSTN_n->error_log('oGabriel [PROXY] WE HAVE BULK SENDER/FROM sender_Bulk('.self::$oCRNRSTN_n->string_sanitize($this->sender_Bulk[$tmp_exp_tracker]['email'], 'email_private').' ' . $this->sender_Bulk[$tmp_exp_tracker]['name'].')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                        self::$oCRNRSTN_n->error_log('oGabriel [PROXY] WE HAVE BULK SENDER/FROM sender_Bulk('.self::$oCRNRSTN_n->str_sanitize($this->sender_Bulk[$tmp_exp_tracker]['email'], 'email_private').' ' . $this->sender_Bulk[$tmp_exp_tracker]['name'].')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                     }
 
@@ -1822,7 +1822,7 @@ class crnrstn_messenger_from_north {
                                 }
 
                                 $oCRNRSTN_PROXYMailer->addAddress($tmp_to_sys_email, $tmp_to_name);
-                                self::$oCRNRSTN_n->error_log('oGabriel [PROXY] WE HAVE BULK RECIPIENT addAddress('.self::$oCRNRSTN_n->string_sanitize($tmp_to_sys_email, 'email_private').', ' . $tmp_to_name.')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                self::$oCRNRSTN_n->error_log('oGabriel [PROXY] WE HAVE BULK RECIPIENT addAddress('.self::$oCRNRSTN_n->str_sanitize($tmp_to_sys_email, 'email_private').', ' . $tmp_to_name.')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                             }
                         }
@@ -1833,7 +1833,7 @@ class crnrstn_messenger_from_north {
                     $tmp_from_email_bulk_cnt = 1;
 
                     $oCRNRSTN_PROXYMailer->setFrom($this->sender_Bulk[$tmp_exp_tracker]['email'], $this->sender_Bulk[$tmp_exp_tracker]['name']);
-                    self::$oCRNRSTN_n->error_log('oGabriel [PROXY] setFrom('.self::$oCRNRSTN_n->string_sanitize($this->sender_Bulk[$tmp_exp_tracker]['email'], 'email_private').', ' . $this->sender_Bulk[$tmp_exp_tracker]['name'].')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                    self::$oCRNRSTN_n->error_log('oGabriel [PROXY] setFrom('.self::$oCRNRSTN_n->str_sanitize($this->sender_Bulk[$tmp_exp_tracker]['email'], 'email_private').', ' . $this->sender_Bulk[$tmp_exp_tracker]['name'].')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                     //
                     // INITIALIZE REPLYTO
@@ -1937,7 +1937,7 @@ class crnrstn_messenger_from_north {
             //
             // INITIALIZE SENDER/FROM
             $oCRNRSTN_PHPMailer->setFrom($this->sender_email, $this->sender_name);
-            self::$oCRNRSTN_n->error_log('oGabriel INITIALIZE SENDER/FROM setFrom['.self::$oCRNRSTN_n->string_sanitize($this->sender_email, 'email_private').' - ' . $this->sender_name.']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+            self::$oCRNRSTN_n->error_log('oGabriel INITIALIZE SENDER/FROM setFrom['.self::$oCRNRSTN_n->str_sanitize($this->sender_email, 'email_private').' - ' . $this->sender_name.']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
             //
             // INITIALIZE TO
@@ -1971,7 +1971,7 @@ class crnrstn_messenger_from_north {
 
                         }
 
-                        self::$oCRNRSTN_n->error_log('oGabriel addAddress['.self::$oCRNRSTN_n->string_sanitize($this->to_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->to_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                        self::$oCRNRSTN_n->error_log('oGabriel addAddress['.self::$oCRNRSTN_n->str_sanitize($this->to_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->to_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                         $oCRNRSTN_PHPMailer->addAddress($this->to_email_ARRAY['sys_email'][$i], $this->to_email_ARRAY['name'][$i]);
 
                     }
@@ -1983,7 +1983,7 @@ class crnrstn_messenger_from_north {
             if($tmp_replyto_email_cnt>0){
 
                 for($i=0; $i<$tmp_replyto_email_cnt; $i++){
-                    self::$oCRNRSTN_n->error_log('oGabriel addReplyTo['.self::$oCRNRSTN_n->string_sanitize($this->replyto_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->replyto_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                    self::$oCRNRSTN_n->error_log('oGabriel addReplyTo['.self::$oCRNRSTN_n->str_sanitize($this->replyto_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->replyto_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                     $oCRNRSTN_PHPMailer->addReplyTo($this->replyto_email_ARRAY['sys_email'][$i], $this->replyto_email_ARRAY['name'][$i]);
 
                 }
@@ -1994,7 +1994,7 @@ class crnrstn_messenger_from_north {
             if($tmp_cc_email_cnt>0){
 
                 for($i=0; $i<$tmp_cc_email_cnt; $i++){
-                    self::$oCRNRSTN_n->error_log('oGabriel addCC['.self::$oCRNRSTN_n->string_sanitize($this->cc_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->cc_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                    self::$oCRNRSTN_n->error_log('oGabriel addCC['.self::$oCRNRSTN_n->str_sanitize($this->cc_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->cc_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                     $oCRNRSTN_PHPMailer->addCC($this->cc_email_ARRAY['sys_email'][$i], $this->cc_email_ARRAY['name'][$i]);
 
                 }
@@ -2005,7 +2005,7 @@ class crnrstn_messenger_from_north {
             if($tmp_bcc_email_cnt>0){
 
                 for($i=0; $i<$tmp_bcc_email_cnt; $i++){
-                    self::$oCRNRSTN_n->error_log('oGabriel addBCC['.self::$oCRNRSTN_n->string_sanitize($this->bcc_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->bcc_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                    self::$oCRNRSTN_n->error_log('oGabriel addBCC['.self::$oCRNRSTN_n->str_sanitize($this->bcc_email_ARRAY['sys_email'][$i], 'email_private').' - ' . $this->bcc_email_ARRAY['name'][$i].']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                     $oCRNRSTN_PHPMailer->addBCC($this->bcc_email_ARRAY['sys_email'][$i], $this->bcc_email_ARRAY['name'][$i]);
 
                 }
@@ -2065,7 +2065,7 @@ class crnrstn_messenger_from_north {
                     }
 
                     if(isset($this->sender_Bulk[$tmp_exp_tracker]['email'])){
-                        self::$oCRNRSTN_n->error_log('oGabriel WE HAVE BULK SENDER/FROM sender_Bulk('.self::$oCRNRSTN_n->string_sanitize($this->sender_Bulk[$tmp_exp_tracker]['email'], 'email_private').' ' . $this->sender_Bulk[$tmp_exp_tracker]['name'].')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                        self::$oCRNRSTN_n->error_log('oGabriel WE HAVE BULK SENDER/FROM sender_Bulk('.self::$oCRNRSTN_n->str_sanitize($this->sender_Bulk[$tmp_exp_tracker]['email'], 'email_private').' ' . $this->sender_Bulk[$tmp_exp_tracker]['name'].')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                     }
 
@@ -2106,7 +2106,7 @@ class crnrstn_messenger_from_north {
                                 }
 
                                 $oCRNRSTN_PHPMailer->addAddress($tmp_to_sys_email, $tmp_to_name);
-                                self::$oCRNRSTN_n->error_log('oGabriel WE HAVE BULK RECIPIENT addAddress('.self::$oCRNRSTN_n->string_sanitize($tmp_to_sys_email, 'email_private').', ' . $tmp_to_name.')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                self::$oCRNRSTN_n->error_log('oGabriel WE HAVE BULK RECIPIENT addAddress('.self::$oCRNRSTN_n->str_sanitize($tmp_to_sys_email, 'email_private').', ' . $tmp_to_name.')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                             }
                         }
@@ -2117,7 +2117,7 @@ class crnrstn_messenger_from_north {
                     $tmp_from_email_bulk_cnt = 1;
 
                     $oCRNRSTN_PHPMailer->setFrom($this->sender_Bulk[$tmp_exp_tracker]['email'], $this->sender_Bulk[$tmp_exp_tracker]['name']);
-                    self::$oCRNRSTN_n->error_log('oGabriel setFrom('.self::$oCRNRSTN_n->string_sanitize($this->sender_Bulk[$tmp_exp_tracker]['email'], 'email_private').', ' . $this->sender_Bulk[$tmp_exp_tracker]['name'].')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                    self::$oCRNRSTN_n->error_log('oGabriel setFrom('.self::$oCRNRSTN_n->str_sanitize($this->sender_Bulk[$tmp_exp_tracker]['email'], 'email_private').', ' . $this->sender_Bulk[$tmp_exp_tracker]['name'].')...', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                     //
                     // INITIALIZE REPLYTO
@@ -2215,14 +2215,14 @@ class crnrstn_messenger_from_north {
                                 $oCRNRSTN_PHPMailer->SMTPAuth = true;
                                 $oCRNRSTN_PHPMailer->Username = $this->username;    // SMTP USERNAME
                                 $oCRNRSTN_PHPMailer->Password = $this->password;    // SMTP PASSWORD
-                                self::$oCRNRSTN_n->error_log('oGabriel ' . $this->mail_protocol . ' - ACTIVATE SMTP SMTPAuth=TRUE [UN='.self::$oCRNRSTN_n->string_sanitize($oCRNRSTN_PHPMailer->Username, 'email_private').'][' . $oCRNRSTN_PHPMailer->Host.']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                self::$oCRNRSTN_n->error_log('oGabriel ' . $this->mail_protocol . ' - ACTIVATE SMTP SMTPAuth=TRUE [UN='.self::$oCRNRSTN_n->str_sanitize($oCRNRSTN_PHPMailer->Username, 'email_private').'][' . $oCRNRSTN_PHPMailer->Host.']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                             }else{
 
                                 $oCRNRSTN_PHPMailer->SMTPAuth = false;
                                 $oCRNRSTN_PHPMailer->Username = '';
                                 $oCRNRSTN_PHPMailer->Password = '';
-                                self::$oCRNRSTN_n->error_log('oGabriel ' . $this->mail_protocol . ' - NO SMTP SMTPAuth=FALSE [UN='.self::$oCRNRSTN_n->string_sanitize($oCRNRSTN_PHPMailer->Username, 'email_private').'][' . $oCRNRSTN_PHPMailer->Host.']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                self::$oCRNRSTN_n->error_log('oGabriel ' . $this->mail_protocol . ' - NO SMTP SMTPAuth=FALSE [UN='.self::$oCRNRSTN_n->str_sanitize($oCRNRSTN_PHPMailer->Username, 'email_private').'][' . $oCRNRSTN_PHPMailer->Host.']', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
                             }
 
@@ -2922,7 +2922,7 @@ class crnrstn_messenger_from_north {
 
     public function sendStatusReportEmail($recipient_email, $recipient_name){
 
-        self::$oCRNRSTN_n->error_log('Trigger status report email to ' . $recipient_name.' at '.self::$oCRNRSTN_n->string_sanitize($recipient_email, 'email_private').'.', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+        self::$oCRNRSTN_n->error_log('Trigger status report email to ' . $recipient_name.' at '.self::$oCRNRSTN_n->str_sanitize($recipient_email, 'email_private').'.', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
     }
 

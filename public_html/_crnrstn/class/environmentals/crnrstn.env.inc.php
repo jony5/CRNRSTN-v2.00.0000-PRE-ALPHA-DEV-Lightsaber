@@ -126,7 +126,7 @@ class crnrstn_environment {
         $this->oCRNRSTN = $oCRNRSTN;
         $this->env_key = $oCRNRSTN->get_server_env();
         $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
-        $this->system_hash_algo = $oCRNRSTN->system_hash_algorithm();
+        $this->system_hash_algo = $oCRNRSTN->system_hash_algo();
         $this->starttime = $oCRNRSTN->starttime;
         self::$system_database_table_prefix = $oCRNRSTN->system_database_table_prefix;
         $this->oCRNRSTN_BITFLIP_MGR = $oCRNRSTN->oCRNRSTN_BITFLIP_MGR;
@@ -468,7 +468,7 @@ class crnrstn_environment {
 
     }
 
-    private function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL'){
+    private function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN::RESOURCE'){
 
         error_log(__LINE__ . ' env ' . __METHOD__ . ' die();');
         die();
@@ -645,7 +645,7 @@ class crnrstn_environment {
             break;
             case CRNRSTN_REPORT_RESPONSE_RETURN:
 
-                error_log(__LINE__ . ' env return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN ['. $output_format . '].');
+                //error_log(__LINE__ . ' env return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN ['. $output_format . '].');
                 $tmp_array = $this->return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN($output_format);
                 $tmp_output = '';
 
@@ -3482,32 +3482,32 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
             switch($encryption_channel){
                 case CRNRSTN_ENCRYPT_TUNNEL:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_DATABASE:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::DATABASE_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_SESSION:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SESSION_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::SESSION_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_COOKIE:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::COOKIE_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_SOAP:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SOAP_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::SOAP_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_OERSL:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::OERSL_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::OERSL_ENCRYPTION';
 
                 break;
                 default:
@@ -3516,8 +3516,8 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
                     //
                     // RETRIEVE DATA
-                    // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                    // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                    $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
                     $this->error_log('Unknown encryption channel constant provided to ' . __METHOD__ .'. Tunnel encryption profile has been applied.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 break;
@@ -3659,32 +3659,32 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
             switch($encryption_channel){
                 case CRNRSTN_ENCRYPT_TUNNEL:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_DATABASE:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::DATABASE_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_SESSION:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SESSION_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::SESSION_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_COOKIE:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::COOKIE_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_SOAP:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SOAP_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::SOAP_ENCRYPTION';
 
                 break;
                 case CRNRSTN_ENCRYPT_OERSL:
 
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::OERSL_ENCRYPTION';
+                    $data_type_family = 'CRNRSTN::RESOURCE::OERSL_ENCRYPTION';
 
                 break;
                 default:
@@ -3693,8 +3693,8 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
                     //
                     // RETRIEVE DATA
-                    // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                    $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                    // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                    $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
                     $this->error_log('Unknown decryption channel constant provided to ' . __METHOD__ .'. Tunnel encryption profile has been applied.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 break;
@@ -3941,32 +3941,32 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
         switch($encryption_channel){
             case CRNRSTN_ENCRYPT_TUNNEL:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_DATABASE:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::DATABASE_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_SESSION:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SESSION_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::SESSION_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_COOKIE:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::COOKIE_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_SOAP:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SOAP_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::SOAP_ENCRYPTION';
 
                 break;
             case CRNRSTN_ENCRYPT_OERSL:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::OERSL_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::OERSL_ENCRYPTION';
 
             break;
             default:
@@ -3975,8 +3975,8 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
                 //
                 // RETRIEVE DATA
-                // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
                 $this->error_log('Unknown encryption channel constant provided to ' . __METHOD__ .'. Tunnel encryption profile has been applied.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             break;
@@ -4128,32 +4128,32 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
         switch($encryption_channel){
             case CRNRSTN_ENCRYPT_TUNNEL:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_DATABASE:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::DATABASE_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_SESSION:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SESSION_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::SESSION_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_COOKIE:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::COOKIE_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_SOAP:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::SOAP_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::SOAP_ENCRYPTION';
 
             break;
             case CRNRSTN_ENCRYPT_OERSL:
 
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::OERSL_ENCRYPTION';
+                $data_type_family = 'CRNRSTN::RESOURCE::OERSL_ENCRYPTION';
 
             break;
             default:
@@ -4162,8 +4162,8 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
                 //
                 // RETRIEVE DATA
-                // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL::TUNNEL_ENCRYPTION';
+                // self::$oCRNRSTN_CONFIG_MGR->input_data_value($encrypt_cipher, 'encrypt_cipher','CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION',NULL,CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
                 $this->error_log('Unknown encryption channel constant provided to ' . __METHOD__ .'. Tunnel encryption profile has been applied.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             break;
@@ -4423,7 +4423,7 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
     }
 
-    public function retrieve_data_value($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $env_key = NULL, $soap_transport = false){
+    public function retrieve_data_value($data_key, $index = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL, $soap_transport = false){
 
         return $this->oCRNRSTN->retrieve_data_value($data_key, $data_type_family, $index, $env_key, $soap_transport);
 
@@ -4816,11 +4816,11 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
         //
         // SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
-        // GENERATION...EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
-        // ASCII) AND NOT SPLITTING HAIRS BETWEEN SEQUENCE \n LINEFEED (LF or
-        // 0x0A (10) in ASCII) AND SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
-        // (13) in ASCII) AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
-        // ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+        // GENERATION...ALL EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
+        // ASCII) AND NOT SPLITTING HAIRS CHOOSING BETWEEN SEQUENCE \n LINEFEED (LF or
+        // 0x0A (10) in ASCII) AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
+        // (13) in ASCII)...AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12)
+        // in ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
         //
         // ALSO, CHECK OUT $char_selection=-2, AND $char_selection=-3.
         // $char_selection=-3 IS THE NICEST(NO: QUOTES, COMMAS,...ETC.)...WITH
@@ -5699,182 +5699,6 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
     }
 
-    public function str_sanitize($str, $type){
-
-        $patterns = array();
-        $replacements = array();
-
-        $type = strtolower($type);
-
-        try {
-
-            switch ($type) {
-                case 'max_storage_utilization':
-
-                    $patterns[0] = '%';
-                    $patterns[1] = 'percent';
-                    $patterns[2] = ' ';
-                    $patterns[3] = '!';
-
-                    $replacements[0] = '';
-                    $replacements[1] = '';
-                    $replacements[2] = '';
-                    $replacements[3] = '';
-
-                break;
-                case 'email_private':
-                    $tmp_new_post_at_ARRAY = array();
-                    $clean_str = '';
-                    $last_dot_flag = false;
-                    $tmp_at_split_ARRAY = explode('@', $str);
-                    $tmp_post_at_len = strlen($tmp_at_split_ARRAY[1]);
-                    $tmp_str_ARRAY = $this->str_split_unicode($str);
-                    $tmp_post_at_str_ARRAY = $this->str_split_unicode($tmp_at_split_ARRAY[1]);
-                    $tmp_post_at_str_rev_ARRAY = array_reverse($tmp_post_at_str_ARRAY);
-
-                    //
-                    // PREP POST @ SITUATION
-                    for($i = 0; $i < $tmp_post_at_len; $i++){
-
-                        if(!$last_dot_flag){
-
-                            if($tmp_post_at_str_rev_ARRAY[$i] == '.'){
-
-                                $last_dot_flag = true;
-
-                            }
-
-                            $tmp_new_post_at_ARRAY[] = $tmp_post_at_str_rev_ARRAY[$i];
-
-                            if($last_dot_flag){
-
-                                $i = $tmp_post_at_len + 420;
-                                $tmp_new_post_at_ARRAY = array_reverse($tmp_new_post_at_ARRAY);
-
-                            }
-
-                        }
-
-                    }
-
-                    $tmp_str_len = sizeof($tmp_str_ARRAY);
-
-                    for($i = 0; $i < $tmp_str_len; $i++){
-
-                        if($i == 0){
-
-                            $clean_str .= $tmp_str_ARRAY[$i] . '*****';
-
-                        }else{
-
-                            if($tmp_str_ARRAY[$i] == '@'){
-
-                                $at_flag = true;
-                                $tmp_plus_one = $i + 1;
-                                $clean_str .= $tmp_str_ARRAY[$i].$tmp_str_ARRAY[$tmp_plus_one] . '*****';
-                                $clean_str .= implode($tmp_new_post_at_ARRAY);
-                                $i = $tmp_str_len + 420;
-
-                            }
-
-                        }
-
-                    }
-
-                    return $clean_str;
-
-                break;
-                case 'custom_mobi_detect_alg':
-
-                    $patterns[0] = '(';
-                    $patterns[1] = ')';
-                    $replacements[0] = '';
-                    $replacements[1] = '';
-
-                break;
-                case 'http_protocol_simple':
-
-                    $patterns[0] = '_';
-                    $patterns[1] = '$';
-                    $patterns[2] = ' ';
-                    $replacements[0] = '';
-                    $replacements[1] = '';
-                    $replacements[2] = '';
-
-                break;
-                case 'select_statement':
-
-                    $patterns[0] = "`";
-                    $replacements[0] = '';
-
-                break;
-                case 'select_field_name':
-
-                    $patterns[0] = "
-";
-                    $patterns[1] = '"';
-                    $patterns[2] = '=';
-                    $patterns[3] = '{';
-                    $patterns[4] = '}';
-                    $patterns[5] = '(';
-                    $patterns[6] = ')';
-                    $patterns[7] = ' ';
-                    $patterns[8] = '    ';
-                    $patterns[9] = ',';
-                    $patterns[10] = '\n';
-                    $patterns[11] = '\r';
-                    $patterns[12] = '\'';
-                    $patterns[13] = '/';
-                    $patterns[14] = '#';
-                    $patterns[15] = ';';
-                    $patterns[16] = ':';
-                    $patterns[17] = '>';
-
-                    $replacements = array();
-                    $replacements[0] = '';
-                    $replacements[1] = '';
-                    $replacements[2] = '';
-                    $replacements[3] = '';
-                    $replacements[4] = '';
-                    $replacements[5] = '';
-                    $replacements[6] = '';
-                    $replacements[7] = '';
-                    $replacements[8] = '';
-                    $replacements[9] = '';
-                    $replacements[10] = '';
-                    $replacements[11] = '';
-                    $replacements[12] = '';
-                    $replacements[13] = '';
-                    $replacements[14] = '';
-                    $replacements[15] = '';
-                    $replacements[16] = '';
-                    $replacements[17] = '';
-
-                break;
-                default:
-
-                    //
-                    // HOOOSTON...VE HAF PROBLEM!
-                    throw new Exception('Unable to determine string sanitization algorithm [' . $type . '] for the content[' . $str . '].');
-
-                break;
-            }
-
-            $str = str_replace($patterns, $replacements, $str);
-
-            return $str;
-
-
-        } catch (Exception $e) {
-
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
-        }
-
-    }
-
     public function return_logPriorityPretty($logPriority, $format = 'TEXT'){
 
         $tmp_output_format = trim(strtoupper($format));
@@ -6048,7 +5872,7 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
     }
 
-    public function string_sanitize($str, $type){
+    public function __str_sanitize($str, $type){
 
         $patterns = array();
         $replacements = array();
@@ -6058,6 +5882,148 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
         try {
 
             switch ($type) {
+                case 'max_storage_utilization':
+
+                    $patterns[0] = '%';
+                    $patterns[1] = 'percent';
+                    $patterns[2] = ' ';
+                    $patterns[3] = '!';
+
+                    $replacements[0] = '';
+                    $replacements[1] = '';
+                    $replacements[2] = '';
+                    $replacements[3] = '';
+
+                break;
+                case 'email_private':
+                    $tmp_new_post_at_ARRAY = array();
+                    $clean_str = '';
+                    $last_dot_flag = false;
+                    $tmp_at_split_ARRAY = explode('@', $str);
+                    $tmp_post_at_len = strlen($tmp_at_split_ARRAY[1]);
+                    $tmp_str_ARRAY = $this->str_split_unicode($str);
+                    $tmp_post_at_str_ARRAY = $this->str_split_unicode($tmp_at_split_ARRAY[1]);
+                    $tmp_post_at_str_rev_ARRAY = array_reverse($tmp_post_at_str_ARRAY);
+
+                    //
+                    // PREP POST @ SITUATION
+                    for($i = 0; $i < $tmp_post_at_len; $i++){
+
+                        if(!$last_dot_flag){
+
+                            if($tmp_post_at_str_rev_ARRAY[$i] == '.'){
+
+                                $last_dot_flag = true;
+
+                            }
+
+                            $tmp_new_post_at_ARRAY[] = $tmp_post_at_str_rev_ARRAY[$i];
+
+                            if($last_dot_flag){
+
+                                $i = $tmp_post_at_len + 420;
+                                $tmp_new_post_at_ARRAY = array_reverse($tmp_new_post_at_ARRAY);
+
+                            }
+
+                        }
+
+                    }
+
+                    $tmp_str_len = sizeof($tmp_str_ARRAY);
+
+                    for($i = 0; $i < $tmp_str_len; $i++){
+
+                        if($i == 0){
+
+                            $clean_str .= $tmp_str_ARRAY[$i] . '*****';
+
+                        }else{
+
+                            if($tmp_str_ARRAY[$i] == '@'){
+
+                                $at_flag = true;
+                                $tmp_plus_one = $i + 1;
+                                $clean_str .= $tmp_str_ARRAY[$i].$tmp_str_ARRAY[$tmp_plus_one] . '*****';
+                                $clean_str .= implode($tmp_new_post_at_ARRAY);
+                                $i = $tmp_str_len + 420;
+
+                            }
+
+                        }
+
+                    }
+
+                    return $clean_str;
+
+                break;
+                case 'custom_mobi_detect_alg':
+
+                    $patterns[0] = '(';
+                    $patterns[1] = ')';
+                    $replacements[0] = '';
+                    $replacements[1] = '';
+
+                break;
+                case 'http_protocol_simple':
+
+                    $patterns[0] = '_';
+                    $patterns[1] = '$';
+                    $patterns[2] = ' ';
+                    $replacements[0] = '';
+                    $replacements[1] = '';
+                    $replacements[2] = '';
+
+                break;
+                case 'select_statement':
+
+                    $patterns[0] = "`";
+                    $replacements[0] = '';
+
+                break;
+                case 'select_field_name':
+
+                    $patterns[0] = "
+";
+                    $patterns[1] = '"';
+                    $patterns[2] = '=';
+                    $patterns[3] = '{';
+                    $patterns[4] = '}';
+                    $patterns[5] = '(';
+                    $patterns[6] = ')';
+                    $patterns[7] = ' ';
+                    $patterns[8] = '    ';
+                    $patterns[9] = ',';
+                    $patterns[10] = '\n';
+                    $patterns[11] = '\r';
+                    $patterns[12] = '\'';
+                    $patterns[13] = '/';
+                    $patterns[14] = '#';
+                    $patterns[15] = ';';
+                    $patterns[16] = ':';
+                    $patterns[17] = '>';
+
+                    $replacements = array();
+                    $replacements[0] = '';
+                    $replacements[1] = '';
+                    $replacements[2] = '';
+                    $replacements[3] = '';
+                    $replacements[4] = '';
+                    $replacements[5] = '';
+                    $replacements[6] = '';
+                    $replacements[7] = '';
+                    $replacements[8] = '';
+                    $replacements[9] = '';
+                    $replacements[10] = '';
+                    $replacements[11] = '';
+                    $replacements[12] = '';
+                    $replacements[13] = '';
+                    $replacements[14] = '';
+                    $replacements[15] = '';
+                    $replacements[16] = '';
+                    $replacements[17] = '';
+
+                break;
                 case 'max_storage_utilization':
 
                     $patterns[0] = '%';
@@ -6201,6 +6167,41 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
                     $replacements[17] = '';
 
                 break;
+                default:
+
+                    //
+                    // HOOOSTON...VE HAF PROBLEM!
+                    throw new Exception('Unable to determine string sanitization algorithm [' . $type . '] for the content[' . $str . '].');
+
+                    break;
+            }
+
+            $str = str_replace($patterns, $replacements, $str);
+
+            return $str;
+
+
+        } catch (Exception $e) {
+
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+    }
+
+    public function ___str_sanitize($str, $type){
+
+        $patterns = array();
+        $replacements = array();
+
+        $type = strtolower($type);
+
+        try {
+
+            switch ($type) {
+
                 default:
 
                     //
@@ -6827,7 +6828,7 @@ class crnrstn_administrative_account {
 
         $this->serial = $this->oCRNRSTN_n->hash(trim(strtolower($email)), 'md5');
 
-        $this->oCRNRSTN_n->oLog_output_ARRAY[] = $this->oCRNRSTN_n->error_log('Instantiating an administrative account with email=' . $this->oCRNRSTN_n->string_sanitize($this->email, 'email_private') . ' for the ' . $this->oCRNRSTN_n->env_key . ' environment.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+        $this->oCRNRSTN_n->oLog_output_ARRAY[] = $this->oCRNRSTN_n->error_log('Instantiating an administrative account with email=' . $this->oCRNRSTN_n->str_sanitize($this->email, 'email_private') . ' for the ' . $this->oCRNRSTN_n->env_key . ' environment.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         $this->refresh_modified_date();
 
@@ -10594,7 +10595,7 @@ class crnrstn_logging_oprofile{
         //for($i=0; $i<$tmp_recipient_email_cnt; $i++){
         // $tmp_email = $this->oSoapDataTransportLayer->preach('value', 'RECIPIENT_EMAIL', false, $i);
         // $tmp_name = $this->oSoapDataTransportLayer->preach('value', 'RECIPIENT_NAME', false, $i);
-        // error_log(__LINE__ .' env - ['.$tmp_name . '] ['.self::$oCRNRSTN_n->string_sanitize($tmp_email, 'email_private').']');
+        // error_log(__LINE__ .' env - ['.$tmp_name . '] ['.self::$oCRNRSTN_n->str_sanitize($tmp_email, 'email_private').']');
         //}
 
         //
@@ -10623,7 +10624,7 @@ class crnrstn_logging_oprofile{
                     $oCRNRSTN_GABRIEL = new crnrstn_messenger_from_north($i, 'mail', NULL, NULL, NULL, $oCRNRSTN_n);
                     $tmp_email = $this->oSoapDataTransportLayer->preach('value', 'RECIPIENT_EMAIL', false, $i);
 
-                    //error_log(__LINE__ . ' env - building [' . $i . '] of [' . $tmp_recipient_email_cnt . '] message for ' . self::$oCRNRSTN_n->string_sanitize($tmp_email, 'email_private'));
+                    //error_log(__LINE__ . ' env - building [' . $i . '] of [' . $tmp_recipient_email_cnt . '] message for ' . self::$oCRNRSTN_n->str_sanitize($tmp_email, 'email_private'));
 
                     //
                     // PREPARE TEXT VERSION
@@ -11615,7 +11616,7 @@ class crnrstn_logging_oprofile{
 
                             }
 
-                            error_log(__LINE__ . ' env - Adding Recipient:' . $tmp_name . ' ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private'));
+                            error_log(__LINE__ . ' env - Adding Recipient:' . $tmp_name . ' ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private'));
                             $crnrstn_phpmailer->AddAddress($tmp_RECIPIENT_EMAIL[$i], $tmp_name);
 
                             //
@@ -11660,26 +11661,26 @@ class crnrstn_logging_oprofile{
 
                                 if($tmp_TRY_OTHER_EMAIL_METHODS_ON_ERR){
 
-                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to secondary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                     $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                     if(!$crnrstn_phpmailer->Send()){
 
-                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to tertiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                         $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                         if(!$crnrstn_phpmailer->Send()){
 
-                                            $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                            error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                            $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                            error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to quatiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                             $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                             if(!$crnrstn_phpmailer->Send()){
 
-                                                $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                                error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                                $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                                error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                 $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                                 if(!$crnrstn_phpmailer->Send()) {
@@ -11713,14 +11714,14 @@ class crnrstn_logging_oprofile{
                                                     // St. Petersburg State University,
                                                     // Dept. of Computational Mathematics
 
-                                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                                    error_log(__LINE__ . 'An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo);
+                                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                                    error_log(__LINE__ . 'An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                     $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
                                                     if (!$crnrstn_phpmailer->Send()) {
 
-                                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                                        $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                                        error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                     }
 
@@ -11730,26 +11731,26 @@ class crnrstn_logging_oprofile{
 
                                         }else{
 
-                                            error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                                            error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                                         }
 
                                     }else{
 
-                                        error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                                        error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                                     }
 
                                 }else{
 
-                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to '.$oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
-                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
+                                    $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to '.$oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
+                                    error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                 }
 
                             }else{
 
-                                error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->string_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
+                                error_log(__LINE__ . ' - A SUCCESS was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '.');
 
                             }
 
@@ -12678,7 +12679,7 @@ class crnrstn_logging_oprofile{
             switch($param_key){
                 case 'RECIPIENTS_EMAIL_PIPED':
 
-                    //error_log(__LINE__ . ' env - storing RECIPIENT_EMAIL [' . $this->wcr_profiles_cnt . '][' . $param_key . '][' . self::$oCRNRSTN_n->string_sanitize($tmp_email_name_ARRAY['email'][$i], 'email_private') . ']');
+                    //error_log(__LINE__ . ' env - storing RECIPIENT_EMAIL [' . $this->wcr_profiles_cnt . '][' . $param_key . '][' . self::$oCRNRSTN_n->str_sanitize($tmp_email_name_ARRAY['email'][$i], 'email_private') . ']');
                     $this->profile_endpoint_data_ARRAY[$this->wcr_profiles_cnt]['RECIPIENT_EMAIL'][] = $tmp_email_name_ARRAY['email'][$i];
                     $this->profile_endpoint_set_flag_ARRAY[$this->wcr_profiles_cnt]['RECIPIENT_EMAIL'][] = 1;
 
@@ -12733,7 +12734,7 @@ class crnrstn_logging_oprofile{
                 break;
                 case 'REPLYTO_EMAIL_PIPED':
 
-                    //error_log(__LINE__ . ' env - storing REPLYTO_EMAIL_PIPED [' . $this->wcr_profiles_cnt . '][' . $param_key . '][' . self::$oCRNRSTN_n->string_sanitize($tmp_email_name_ARRAY['email'][$i], 'email_private') . ']');
+                    //error_log(__LINE__ . ' env - storing REPLYTO_EMAIL_PIPED [' . $this->wcr_profiles_cnt . '][' . $param_key . '][' . self::$oCRNRSTN_n->str_sanitize($tmp_email_name_ARRAY['email'][$i], 'email_private') . ']');
                     $this->profile_endpoint_data_ARRAY[$this->wcr_profiles_cnt]['REPLYTO_EMAIL'][] = $tmp_email_name_ARRAY['email'][$i];
                     $this->profile_endpoint_set_flag_ARRAY[$this->wcr_profiles_cnt]['REPLYTO_EMAIL'][] = 1;
 

@@ -1057,10 +1057,8 @@ class crnrstn_http_manager {
             $tmp_version_soap .= $this->oNUSOAP_BASE->version;          //' v0.9.5';
             $tmp_version_soap .= $this->oNUSOAP_BASE->revision;         //' $Revision: 1.123 $';
 
-            $this->oCRNRSTN->input_data_value($tmp_version_soap, 'version_soap', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
-            $this->oCRNRSTN->input_data_value($this->oNUSOAP_BASE->soap_defencoding, 'soap_defencoding', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
-            //$this->consume_ddo_system_param($tmp_version_soap, 'version_soap');
-            //self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_version_soap, 'version_soap');
+            $this->oCRNRSTN->add_system_resource('version_soap', $tmp_version_soap, NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
+            $this->oCRNRSTN->add_system_resource('soap_defencoding', $this->oNUSOAP_BASE->soap_defencoding, NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
 
             $tmp_revision_soap = $this->proper_replace('Revision:','', $this->oNUSOAP_BASE->revision);
             $tmp_revision_soap .= $this->proper_replace('$','', $tmp_revision_soap);
@@ -1223,7 +1221,7 @@ class crnrstn_http_manager {
             }else{
 
                 $http_protocol = strtoupper($transport_protocol);
-                $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+                $http_protocol = $this->oCRNRSTN->str_sanitize($http_protocol, 'http_protocol_simple');
 
                 switch($http_protocol){
                     case 'POST':
@@ -1388,7 +1386,7 @@ class crnrstn_http_manager {
     public function isvalid_data_validation_check($transport_protocol = 'POST'){
 
         $http_protocol = strtoupper($transport_protocol);
-        $http_protocol = $this->oCRNRSTN->string_sanitize($http_protocol, 'http_protocol_simple');
+        $http_protocol = $this->oCRNRSTN->str_sanitize($http_protocol, 'http_protocol_simple');
 
         if(isset($this->form_integration_isset_ARRAY[$http_protocol])){
 
@@ -1499,7 +1497,7 @@ class crnrstn_http_manager {
 
         //
         // MAINTAIN INTEGRITY OF DEVICE DETECTION SITUATION
-        if( $tmp_sel_cnt == 0 || $tmp_sel_cnt > 1){
+        if($tmp_sel_cnt == 0 || $tmp_sel_cnt > 1){
 
             //
             // SET (OR RESET) THIS DATA. THERE SHOULD ALWAYS AND ONLY BE ONE.
@@ -1692,11 +1690,42 @@ class crnrstn_http_manager {
 	
 	}
 
-    public function is_mobile($tablet_is_mobile = false){
+    public function is_mobile($tablet_is_mobile = false, $magic_method = NULL){
+
+        //
+        // CUSTOM METHOD
+        if(isset($magic_method)){
+
+            $tmp_custom_profile_ARRAY = $this->is_mobile_custom($magic_method);
+
+            $tmp_detection_algorithm = trim(strtolower($magic_method));
+            $tmp_detection_algorithm = $this->oCRNRSTN->str_sanitize($tmp_detection_algorithm, 'custom_mobi_detect_alg');
+            
+            if(isset($tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'])){
+                
+                if($tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] === 'TRUE'){
+
+                    $this->oCRNRSTN->add_system_resource('custom_mobi_name', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'], 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE', NULL, 0);
+                    $this->oCRNRSTN->add_system_resource('custom_mobi_integer', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'], 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE', NULL, 0);
+                    $this->oCRNRSTN->add_system_resource('custom_mobi_detection_result', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'], 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE', NULL, 0);
+
+                    return true;
+                    
+                }else{
+                    
+                    return false;
+                    
+                }
+                
+            }
+
+            return false;
+
+        }
 
         //
         // CHECK SESSION FOR EXISTING CONFIGURATION
-        $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_device_type', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+        $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_name', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
         
         if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_MOBILE)){
             
@@ -1725,17 +1754,6 @@ class crnrstn_http_manager {
             return false;
 
         }
-
-        if($tmp_custom_device != '' && ($tmp_custom_device != $this->oCRNRSTN->session_salt())){
-
-            # NOTE :: $tmp_custom_device HAS BOTH MOBILE AND TABLET OPPORTUNITIES
-            # NOTE :: CUSTOM NEEDS MORE CONSIDERATION FOR RETURN TYPE? JUST RETURN THE DEVICE STRING FOR NOW.
-
-            //
-            // MOBILE HAS BEEN PERSISTED IN SESSION. STICK WITH IT.
-            return $tmp_custom_device;
-
-        }
         
         //
         // THERE IS NO CONFIRMATION OF MOBILE STATE. LET'S DO THE WORK TO ANSWER THE QUESTION.
@@ -1746,13 +1764,14 @@ class crnrstn_http_manager {
             //  INITIALIZE MOBILE DETECT (3RD PARTY OPEN SOURCE).
             $this->oMOBI_DETECT = new crnrstn_Mobile_Detect();
 
+
         }
 
         //
         // IS MOBILE?
         if($this->oMOBI_DETECT->isMobile($this->http_headers_string)){
 
-            $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_CHANNEL_MOBILE, true);
+            $this->set_mobile();
             return true;
 
         }
@@ -1763,22 +1782,57 @@ class crnrstn_http_manager {
             // HANDLE TABLETS AS MOBILE
             if($this->oMOBI_DETECT->isTablet($this->http_headers_string)){
 
-                $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_CHANNEL_TABLET, true);
+                $this->set_tablet();
                 return true;
 
             }
 
         }
 
+        //
+        // IF NEITHER MOBILE NOR TABLET, THEN DESKTOP.
+        $this->set_desktop();
+
         return false;
 
     }
 
-    public function is_tablet($mobile_is_tablet = false){
+    public function is_tablet($mobile_is_tablet = false, $magic_method = NULL){
+
+        //
+        // CUSTOM METHOD
+        if(isset($magic_method)){
+
+            $tmp_custom_profile_ARRAY = $this->is_mobile_custom($magic_method);
+
+            $tmp_detection_algorithm = trim(strtolower($magic_method));
+            $tmp_detection_algorithm = $this->oCRNRSTN->str_sanitize($tmp_detection_algorithm, 'custom_mobi_detect_alg');
+
+            if(isset($tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'])){
+
+                if($tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] === 'TRUE'){
+
+                    $this->oCRNRSTN->add_system_resource('custom_mobi_name', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'], 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE', NULL, 0);
+                    $this->oCRNRSTN->add_system_resource('custom_mobi_integer', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'], 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE', NULL, 0);
+                    $this->oCRNRSTN->add_system_resource('custom_mobi_detection_result', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'], 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE', NULL, 0);
+
+                    return true;
+
+                }else{
+
+                    return false;
+
+                }
+
+            }
+
+            return false;
+
+        }
 
         //
         // CHECK SESSION FOR EXISTING CONFIGURATION
-        $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_device_type', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+        $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_name', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
         if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_TABLET)){
 
@@ -1808,17 +1862,6 @@ class crnrstn_http_manager {
 
         }
 
-        if($tmp_custom_device != '' && ($tmp_custom_device != $this->oCRNRSTN->session_salt())){
-
-            # NOTE :: $tmp_custom_device HAS BOTH MOBILE AND TABLET OPPORTUNITIES
-            # NOTE :: CUSTOM NEEDS MORE CONSIDERATION FOR RETURN TYPE? JUST RETURN THE DEVICE STRING FOR NOW.
-
-            //
-            // MOBILE HAS BEEN PERSISTED IN SESSION. STICK WITH IT.
-            return $tmp_custom_device;
-
-        }
-
         //
         // NEED TO DETERMINE DEVICE TYPE.
         if(!isset($this->oMOBI_DETECT)){
@@ -1833,7 +1876,8 @@ class crnrstn_http_manager {
         // IS TABLET?
         if($this->oMOBI_DETECT->isTablet($this->http_headers_string)){
 
-            $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_CHANNEL_TABLET, true);
+            $this->set_tablet();
+
             return true;
 
         }
@@ -1843,7 +1887,7 @@ class crnrstn_http_manager {
         // IS MOBILE?
         if($this->oMOBI_DETECT->isMobile($this->http_headers_string)){
 
-            $this->oCRNRSTN->oCRNRSTN_BITFLIP_MGR->toggle_bit(CRNRSTN_CHANNEL_MOBILE, true);
+            $this->set_mobile();
 
             if($mobile_is_tablet){
 
@@ -1853,6 +1897,8 @@ class crnrstn_http_manager {
 
         }
 
+        $this->set_desktop();
+
         return false;
 
     }
@@ -1861,49 +1907,99 @@ class crnrstn_http_manager {
 
         $tmp_ARRAY = array(CRNRSTN_CHANNEL_TABLET, CRNRSTN_CHANNEL_MOBILE);
         $this->oCRNRSTN->clear_all_bits_set_one(CRNRSTN_CHANNEL_DESKTOP, true, $tmp_ARRAY);
+        $this->oCRNRSTN_USR->device_type = 'DESKTOP';
 
         return true;
 
     }
 
-    public function set_tablet(){
+    public function set_tablet($magic_method = NULL){
+
+        if(isset($magic_method)){
+
+            $this->set_mobile_custom($magic_method);
+
+            return true;
+
+        }
 
         $tmp_ARRAY = array(CRNRSTN_CHANNEL_DESKTOP, CRNRSTN_CHANNEL_MOBILE);
         $this->oCRNRSTN->clear_all_bits_set_one(CRNRSTN_CHANNEL_TABLET, true, $tmp_ARRAY);
+        $this->oCRNRSTN_USR->device_type = 'TABLET';
 
         return true;
 
     }
 
-    public function set_mobile(){
+    public function set_mobile($magic_method = NULL){
+
+        if(isset($magic_method)){
+
+            $this->set_mobile_custom($magic_method);
+
+            return true;
+
+        }
 
         $tmp_ARRAY = array(CRNRSTN_CHANNEL_DESKTOP, CRNRSTN_CHANNEL_TABLET);
         $this->oCRNRSTN->clear_all_bits_set_one(CRNRSTN_CHANNEL_MOBILE, true, $tmp_ARRAY);
+        $this->oCRNRSTN_USR->device_type = 'MOBILE';
 
         return true;
 
     }
 
-    public function set_client($channel_constant){
+    private function set_mobile_custom($magic_method = NULL, $force_override = true){
 
-        $tmp_ARRAY = array(CRNRSTN_CHANNEL_DESKTOP, CRNRSTN_CHANNEL_TABLET, CRNRSTN_CHANNEL_MOBILE);
-        $this->oCRNRSTN->clear_all_bits_set_one($channel_constant, true, $tmp_ARRAY);
+        try{
 
-        return true;
+            if(isset($magic_method)){
 
-    }
+                $tmp_custom_profile_ARRAY = $this->is_mobile_custom($magic_method, $force_override);
 
-    public function set_mobile_custom($device_type = NULL){
+                $tmp_detection_algorithm = trim(strtolower($magic_method));
+                $tmp_detection_algorithm = $this->oCRNRSTN->str_sanitize($tmp_detection_algorithm, 'custom_mobi_detect_alg');
 
-        try {
+                switch($tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER']){
+                    case 0:
+                        // Experimental version() method
 
-            if(isset($device_type)){
+                        /*
+                        ['NAME'] = 'version(Chrome)';
+                        ['INTEGER'] = 0;
+                        ['DETECTION_RESULT'] = $this->oMOBI_DETECT->version('Chrome');
+                        
+                        */
+                                                
+                    break;
+                    case CRNRSTN_CHANNEL_MOBILE:
+
+                        $this->set_mobile();
+
+                    break;
+                    case CRNRSTN_CHANNEL_TABLET:
+
+                        $this->set_tablet();
+
+                    break;
+                    default:
+                        // CRNRSTN_CHANNEL_DESKTOP
+                        $this->set_desktop();
+
+                    break;
+
+                }
 
                 //$device_type = trim($device_type);
-                //$device_type = $this->oCRNRSTN_USR->string_sanitize($device_type, 'custom_mobi_detect_alg');
-                $this->oCRNRSTN->input_data_value($device_type, 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                //$device_type = $this->oCRNRSTN_USR->str_sanitize($device_type, 'custom_mobi_detect_alg');
 
-                $this->oCRNRSTN_USR->toggle_bit(CRNRSTN_CHANNEL_MOBILE, true);
+                $this->oCRNRSTN->add_system_resource('custom_mobi_name', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'], 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE', NULL, 0);
+
+                if(isset($tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'])){
+
+                    $this->oCRNRSTN->add_system_resource('custom_mobi_detection_result', $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'], 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE', NULL, 0);
+
+                }
 
             }else{
 
@@ -1927,7 +2023,7 @@ class crnrstn_http_manager {
 
     }
     
-    public function is_mobile_custom($custom_detection_method = NULL){
+    private function is_mobile_custom($custom_detection_method = NULL, $force_override = false){
 
         //
         // NULL $custom_detection_method EVOKES BASIC SESSION CHECK ONLY.
@@ -1935,7 +2031,7 @@ class crnrstn_http_manager {
 
             //
             // CHECK SESSION FOR EXISTING CONFIGURATION
-            $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_device_type', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+            $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_name', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
 
             if($tmp_custom_device != ''){
 
@@ -1954,14 +2050,16 @@ class crnrstn_http_manager {
 
         }else{
 
+            $tmp_custom_profile_ARRAY = array();
+
             //
             // CHECK THE PROVIDED TARGET DEVICE AGAINST SESSION...AND THEN, DO WORK IF NO MATCH.
             $tmp_detection_algorithm = trim(strtolower($custom_detection_method));
-            $tmp_detection_algorithm = $this->oCRNRSTN_USR->string_sanitize($tmp_detection_algorithm, 'custom_mobi_detect_alg');
+            $tmp_detection_algorithm = $this->oCRNRSTN->str_sanitize($tmp_detection_algorithm, 'custom_mobi_detect_alg');
 
             //
             // CHECK SESSION FOR EXISTING CONFIGURATION
-            $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_device_type', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+            $tmp_custom_device = $this->oCRNRSTN->get_resource('custom_mobi_name', 0, 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
             $tmp_custom_device = strtolower($tmp_custom_device);
 
             //
@@ -1986,2409 +2084,5035 @@ class crnrstn_http_manager {
                 try{
 
                     switch($tmp_detection_algorithm){
+                        case 'versionchrome':
+
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'version(Chrome)';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = 0;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = $this->oMOBI_DETECT->version('Chrome');
+
+                            return $tmp_custom_profile_ARRAY;
+
+                        break;
+                        case 'versionsafari':
+
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'version(Safari)';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = 0;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = $this->oMOBI_DETECT->version('Safari');
+
+                            return $tmp_custom_profile_ARRAY;
+
+                        break;
+                        case 'versionwebkit':
+
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'version(Webkit)';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = 0;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = $this->oMOBI_DETECT->version('Webkit');
+
+                            return $tmp_custom_profile_ARRAY;
+
+                        break;
+                        case 'versionios':
+
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'version(iOS)';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = 0;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = $this->oMOBI_DETECT->version('iOS');
+
+                            return $tmp_custom_profile_ARRAY;
+
+                        break;
                         case 'ismobile':
+
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMobile';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isMobile($this->http_headers_string)){
 
-                                $this->oCRNRSTN->input_data_value('isMobile', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'istablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isTablet($this->http_headers_string)){
 
-                                $this->oCRNRSTN->input_data_value('isTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isiphone':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isiPhone';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isiPhone()){
 
-                                $this->oCRNRSTN->input_data_value('isiPhone', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isblackberry':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isBlackBerry';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isBlackBerry()){
 
-                                $this->oCRNRSTN->input_data_value('isBlackBerry', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
 
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
+                            
                         break;
                         case 'ispixel':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPixel';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isPixel()){
 
-                                $this->oCRNRSTN->input_data_value('isPixel', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
 
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
+                            
                         break;
                         case 'ishtc':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isHTC';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isHTC()){
 
-                                $this->oCRNRSTN->input_data_value('isHTC', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
 
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
+                            
                         break;
                         case 'isnexus':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNexus';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNexus()){
 
-                                $this->oCRNRSTN->input_data_value('isNexus', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isdell':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isDell';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isDell()){
 
-                                $this->oCRNRSTN->input_data_value('isDell', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismotorola':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMotorola';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMotorola()){
 
-                                $this->oCRNRSTN->input_data_value('isMotorola', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issamsung':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSamsung';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSamsung()){
 
-                                $this->oCRNRSTN->input_data_value('isSamsung', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'islg':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isLG';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isLG()){
 
-                                $this->oCRNRSTN->input_data_value('isLG', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issony':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSony';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSony()){
 
-                                $this->oCRNRSTN->input_data_value('isSony', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isasus':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAsus';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAsus()){
 
-                                $this->oCRNRSTN->input_data_value('isAsus', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isxiaomi':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isXiaomi';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isXiaomi()){
 
-                                $this->oCRNRSTN->input_data_value('isXiaomi', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnokialumia':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNokiaLumia';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNokiaLumia()){
 
-                                $this->oCRNRSTN->input_data_value('isNokiaLumia', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismicromax':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMicromax';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMicromax()){
 
-                                $this->oCRNRSTN->input_data_value('isMicromax', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispalm':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPalm';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPalm()){
 
-                                $this->oCRNRSTN->input_data_value('isPalm', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isvertu':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isVertu';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isVertu()){
 
-                                $this->oCRNRSTN->input_data_value('isVertu', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispantech':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPantech';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPantech()){
 
-                                $this->oCRNRSTN->input_data_value('isPantech', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isfly':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isFly';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isFly()){
 
-                                $this->oCRNRSTN->input_data_value('isFly', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iswiko':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isWiko';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isWiko()){
 
-                                $this->oCRNRSTN->input_data_value('isWiko', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isimobile':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isiMobile';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isiMobile()){
 
-                                $this->oCRNRSTN->input_data_value('isiMobile', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issimvalley':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSimValley';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSimValley()){
 
-                                $this->oCRNRSTN->input_data_value('isSimValley', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iswolfgang':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isWolfgang';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isWolfgang()){
 
-                                $this->oCRNRSTN->input_data_value('isWolfgang', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isalcatel':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAlcatel';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAlcatel()){
 
-                                $this->oCRNRSTN->input_data_value('isAlcatel', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnintendo':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNintendo';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNintendo()){
 
-                                $this->oCRNRSTN->input_data_value('isNintendo', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isamoi':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAmoi';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAmoi()){
 
-                                $this->oCRNRSTN->input_data_value('isAmoi', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isinq':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isINQ';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isINQ()){
 
-                                $this->oCRNRSTN->input_data_value('isINQ', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isoneplus':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isOnePlus';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isOnePlus()){
 
-                                $this->oCRNRSTN->input_data_value('isOnePlus', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isgenericphone':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isGenericPhone';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isGenericPhone()){
 
-                                $this->oCRNRSTN->input_data_value('isGenericPhone', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isipad':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isiPad';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isiPad()){
 
-                                $this->oCRNRSTN->input_data_value('isiPad', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnexustablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNexusTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNexusTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isNexusTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isgoogletablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isGoogleTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isGoogleTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isGoogleTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issamsungtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSamsungTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSamsungTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isSamsungTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iskindle':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isKindle';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isKindle()){
 
-                                $this->oCRNRSTN->input_data_value('isKindle', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issurfacetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSurfaceTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSurfaceTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isSurfaceTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ishptablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isHPTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isHPTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isHPTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isasustablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAsusTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAsusTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAsusTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isblackberrytablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isBlackBerryTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isBlackBerryTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isBlackBerryTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ishtctablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isHTCtablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isHTCtablet()){
 
-                                $this->oCRNRSTN->input_data_value('isHTCtablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismotorolatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMotorolaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMotorolaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMotorolaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnooktablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNookTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNookTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isNookTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isacertablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAcerTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAcerTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAcerTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'istoshibatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isToshibaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isToshibaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isToshibaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'islgtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isLGTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isLGTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isLGTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isfujitsutablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isFujitsuTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isFujitsuTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isFujitsuTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isprestigiotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPrestigioTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPrestigioTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPrestigioTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'islenovotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isLenovoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isLenovoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isLenovoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isdelltablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isDellTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isDellTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isDellTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isxiaomitablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isXiaomiTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isXiaomiTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isXiaomiTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isyarviktablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isYarvikTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isYarvikTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isYarvikTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismediontablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMedionTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMedionTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMedionTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isarnovatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isArnovaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isArnovaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isArnovaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isintensotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isIntensoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isIntensoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isIntensoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isirutablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isIRUTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isIRUTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isIRUTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismegafontablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMegafonTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMegafonTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMegafonTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isebodatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isEbodaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isEbodaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isEbodaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isallviewtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAllViewTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAllViewTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAllViewTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isarchostablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isArchosTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isArchosTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isArchosTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isainoltablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAinolTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAinolTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAinolTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnokialumiatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNokiaLumiaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNokiaLumiaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isNokiaLumiaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issonytablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSonyTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSonyTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isSonyTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isphilipstablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPhilipsTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPhilipsTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPhilipsTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iscubetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isCubeTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isCubeTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isCubeTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iscobytablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isCobyTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isCobyTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isCobyTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismidtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMIDTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMIDTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMIDTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismsitablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMSITablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMSITablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMSITablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issmittablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSMiTTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSMiTTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isSMiTTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isrockchiptablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isRockChipTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isRockChipTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isRockChipTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isflytablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isFlyTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isFlyTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isFlyTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isbqtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isbqTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isbqTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isbqTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ishuaweitablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isHuaweiTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isHuaweiTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isHuaweiTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnectablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNecTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNecTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isNecTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispantechtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPantechTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPantechTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPantechTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isbronchotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isBronchoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isBronchoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isBronchoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isversustablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isVersusTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isVersusTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isVersusTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iszynctablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isZyncTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isZyncTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isZyncTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispositivotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPositivoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPositivoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPositivoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnabitablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNabiTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNabiTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isNabiTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iskobotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isKoboTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isKoboTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isKoboTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isdanewtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isDanewTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isDanewTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isDanewTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'istexettablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isTexetTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isTexetTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isTexetTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isplaystationtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPlaystationTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPlaystationTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPlaystationTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'istrekstortablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isTrekstorTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isTrekstorTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isTrekstorTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispyleaudiotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPyleAudioTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPyleAudioTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPyleAudioTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isadvantablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAdvanTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAdvanTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAdvanTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isdanytechtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isDanyTechTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isDanyTechTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isDanyTechTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isgalapadtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isGalapadTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isGalapadTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isGalapadTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismicromaxtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMicromaxTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMicromaxTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMicromaxTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iskarbonntablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isKarbonnTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isKarbonnTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isKarbonnTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isallfinetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAllFineTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAllFineTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAllFineTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isproscantablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPROSCANTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPROSCANTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPROSCANTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isyonestablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isYONESTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isYONESTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isYONESTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ischangjiatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isChangJiaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isChangJiaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isChangJiaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isgutablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isGUTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isGUTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isGUTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispointofviewtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPointOfViewTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPointOfViewTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPointOfViewTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isovermaxtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isOvermaxTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isOvermaxTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isOvermaxTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ishcltablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isHCLTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isHCLTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isHCLTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isdpstablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isDPSTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isDPSTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isDPSTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isvisturetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isVistureTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isVistureTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isVistureTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iscrestatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isCrestaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isCrestaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isCrestaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismediatektablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMediatekTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMediatekTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMediatekTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isconcordetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isConcordeTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isConcordeTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isConcordeTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isgoclevertablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isGoCleverTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isGoCleverTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isGoCleverTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismodecomtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isModecomTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isModecomTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isModecomTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isvoninotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isVoninoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isVoninoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isVoninoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isecstablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isECSTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isECSTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isECSTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isstorextablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isStorexTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isStorexTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isStorexTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isvodafonetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isVodafoneTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isVodafoneTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isVodafoneTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isessentielbtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isEssentielBTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isEssentielBTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isEssentielBTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isrossmoortablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isRossMoorTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isRossMoorTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isRossMoorTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isimobiletablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isiMobileTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isiMobileTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isiMobileTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'istolinotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isTolinoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isTolinoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isTolinoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isaudiosonictablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAudioSonicTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAudioSonicTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAudioSonicTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isampetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAMPETablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAMPETablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAMPETablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isskktablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSkkTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSkkTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isSkkTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'istecnotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isTecnoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isTecnoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isTecnoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isjxdtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isJXDTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isJXDTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isJXDTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isijoytablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isiJoyTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isiJoyTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isiJoyTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isfx2tablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isFX2Tablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isFX2Tablet()){
 
-                                $this->oCRNRSTN->input_data_value('isFX2Tablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isxorotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isXoroTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isXoroTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isXoroTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isviewsonictablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isViewsonicTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isViewsonicTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isViewsonicTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isverizontablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isVerizonTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isVerizonTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isVerizonTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isodystablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isOdysTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isOdysTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isOdysTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iscaptivatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isCaptivaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isCaptivaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isCaptivaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isiconbittablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isIconbitTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isIconbitTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isIconbitTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isteclasttablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isTeclastTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isTeclastTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isTeclastTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isondatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isOndaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isOndaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isOndaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isjaytechtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isJaytechTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isJaytechTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isJaytechTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isblaupunkttablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isBlaupunktTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isBlaupunktTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isBlaupunktTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isdigmatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isDigmaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isDigmaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isDigmaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isevoliotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isEvolioTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isEvolioTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isEvolioTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'islavatablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isLavaTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isLavaTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isLavaTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isaoctablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAocTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAocTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isAocTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismpmantablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMpmanTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMpmanTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMpmanTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iscelkontablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isCelkonTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isCelkonTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isCelkonTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iswoldertablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isWolderTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isWolderTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isWolderTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismediacomtablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMediacomTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMediacomTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMediacomTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismitablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMiTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMiTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isMiTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnibirutablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNibiruTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNibiruTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isNibiruTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnexotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNexoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNexoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isNexoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isleadertablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isLeaderTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isLeaderTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isLeaderTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isubislatetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isUbislateTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isUbislateTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isUbislateTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispocketbooktablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPocketBookTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPocketBookTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isPocketBookTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iskocasotablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isKocasoTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isKocasoTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isKocasoTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ishisensetablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isHisenseTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isHisenseTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isHisenseTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ishudl':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isHudl';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isHudl()){
 
-                                $this->oCRNRSTN->input_data_value('isHudl', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'istelstratablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isTelstraTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isTelstraTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isTelstraTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isgenerictablet':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isGenericTablet';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isGenericTablet()){
 
-                                $this->oCRNRSTN->input_data_value('isGenericTablet', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isandroidos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isAndroidOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isAndroidOS()){
 
-                                $this->oCRNRSTN->input_data_value('isAndroidOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isblackberryos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isBlackBerryOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isBlackBerryOS()){
 
-                                $this->oCRNRSTN->input_data_value('isBlackBerryOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispalmos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPalmOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPalmOS()){
 
-                                $this->oCRNRSTN->input_data_value('isPalmOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issymbianos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSymbianOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSymbianOS()){
 
-                                $this->oCRNRSTN->input_data_value('isSymbianOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iswindowsmobileos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isWindowsMobileOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isWindowsMobileOS()){
 
-                                $this->oCRNRSTN->input_data_value('isWindowsMobileOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iswindowsphoneos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isWindowsPhoneOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isWindowsPhoneOS()){
 
-                                $this->oCRNRSTN->input_data_value('isWindowsPhoneOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isios':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isiOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isiOS()){
 
-                                $this->oCRNRSTN->input_data_value('isiOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isipados':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isiPadOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_TABLET;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isiPadOS()){
 
-                                $this->oCRNRSTN->input_data_value('isiPadOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issailfishos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSailfishOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSailfishOS()){
 
-                                $this->oCRNRSTN->input_data_value('isSailfishOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismeegoos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMeeGoOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMeeGoOS()){
 
-                                $this->oCRNRSTN->input_data_value('isMeeGoOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismaemoos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMaemoOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMaemoOS()){
 
-                                $this->oCRNRSTN->input_data_value('isMaemoOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isjavaos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isJavaOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isJavaOS()){
 
-                                $this->oCRNRSTN->input_data_value('isJavaOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iswebos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'iswebOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->iswebOS()){
 
-                                $this->oCRNRSTN->input_data_value('iswebOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isbadaos':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isbadaOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isbadaOS()){
 
-                                $this->oCRNRSTN->input_data_value('isbadaOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isbrewos':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isBREWOS';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isBREWOS()){
 
-                                $this->oCRNRSTN->input_data_value('isBREWOS', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ischrome':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isChrome';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isChrome()){
 
-                                $this->oCRNRSTN->input_data_value('isChrome', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isdolfin':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isDolfin';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isDolfin()){
 
-                                $this->oCRNRSTN->input_data_value('isDolfin', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isopera':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isOpera';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isOpera()){
 
-                                $this->oCRNRSTN->input_data_value('isOpera', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isskyfire':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSkyfire';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isSkyfire()){
 
-                                $this->oCRNRSTN->input_data_value('isSkyfire', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isedge':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isEdge';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isEdge()){
 
-                                $this->oCRNRSTN->input_data_value('isEdge', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isie':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isIE';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isIE()){
 
-                                $this->oCRNRSTN->input_data_value('isIE', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isfirefox':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isFirefox';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isFirefox()){
 
-                                $this->oCRNRSTN->input_data_value('isFirefox', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isbolt':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isBolt';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isBolt()){
 
-                                $this->oCRNRSTN->input_data_value('isBolt', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isteashark':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isTeaShark';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isTeaShark()){
 
-                                $this->oCRNRSTN->input_data_value('isTeaShark', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isblazer':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isBlazer';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isBlazer()){
 
-                                $this->oCRNRSTN->input_data_value('isBlazer', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'issafari':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isSafari';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isSafari()){
 
-                                $this->oCRNRSTN->input_data_value('isSafari', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'iswechat':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isWeChat';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isWeChat()){
 
-                                $this->oCRNRSTN->input_data_value('isWeChat', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isucbrowser':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isUCBrowser';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isUCBrowser()){
 
-                                $this->oCRNRSTN->input_data_value('isUCBrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isbaiduboxapp':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isbaiduboxapp';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isbaiduboxapp()){
 
-                                $this->oCRNRSTN->input_data_value('isbaiduboxapp', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isbaidubrowser':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isbaidubrowser';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isbaidubrowser()){
 
-                                $this->oCRNRSTN->input_data_value('isbaidubrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isdiigobrowser':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isDiigoBrowser';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isDiigoBrowser()){
 
-                                $this->oCRNRSTN->input_data_value('isDiigoBrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ismercury':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isMercury';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isMercury()){
 
-                                $this->oCRNRSTN->input_data_value('isMercury', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isobigobrowser':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isObigoBrowser';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isObigoBrowser()){
 
-                                $this->oCRNRSTN->input_data_value('isObigoBrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isnetfront':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isNetFront';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isNetFront()){
 
-                                $this->oCRNRSTN->input_data_value('isNetFront', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'isgenericbrowser':
+                            
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isGenericBrowser';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
 
                             if($this->oMOBI_DETECT->isGenericBrowser()){
 
-                                $this->oCRNRSTN->input_data_value('isGenericBrowser', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         case 'ispalemoon':
 
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['NAME'] = 'isPaleMoon';
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['INTEGER'] = CRNRSTN_CHANNEL_MOBILE;
+                            $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'FALSE';
+
                             if($this->oMOBI_DETECT->isPaleMoon()){
 
-                                $this->oCRNRSTN->input_data_value('isPaleMoon', 'custom_mobi_device_type', 'CRNRSTN_SYSTEM_CONFIG::DEVICE_TYPE');
+                                $tmp_custom_profile_ARRAY[$tmp_detection_algorithm]['DETECTION_RESULT'] = 'TRUE';
 
-                                return true;
+                                if(!$force_override){
+
+                                    return $tmp_custom_profile_ARRAY;
+
+                                }
 
                             }
 
-                            return false;
+                            if($force_override){
+
+                                return $tmp_custom_profile_ARRAY;
+
+                            }
+
+                            return $tmp_custom_profile_ARRAY;
 
                         break;
                         default:
@@ -4396,7 +7120,8 @@ class crnrstn_http_manager {
                             //
                             // NO CUSTOM DEVICE CONFIG MATCH.
                             // HOOOSTON...VE HAF PROBLEM!
-                            throw new Exception('CRNRSTN :: found no detection method string matching the provided input of [' . $custom_detection_method . ']. See http://demo.mobiledetect.net/ for a current list of custom detection methods.');
+                            //throw new Exception('CRNRSTN :: found no detection method string matching the provided input of [' . $custom_detection_method . ']. See http://demo.mobiledetect.net/ for a current list of custom detection methods.');
+                            $this->oCRNRSTN->error_log('CRNRSTN :: found no magic method string matching the provided input of [' . $custom_detection_method . ']. See http://demo.mobiledetect.net/ for a current list of custom detection methods.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
 
                         break;
 
@@ -4415,6 +7140,8 @@ class crnrstn_http_manager {
             }
 
         }
+        
+        return false;
 
     }
 

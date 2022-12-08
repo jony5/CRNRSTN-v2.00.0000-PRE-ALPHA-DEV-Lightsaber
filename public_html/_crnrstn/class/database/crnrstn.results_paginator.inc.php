@@ -529,7 +529,7 @@ class crnrstn_results_paginator{
     public function set_pagination_protocol($transport_protocol='get', $pagination_serial=NULL){
 
         $http_transport_protocol = $transport_protocol;
-        $http_transport_protocol = $this->oCRNRSTN_USR->string_sanitize($http_transport_protocol, 'http_protocol_simple');
+        $http_transport_protocol = $this->oCRNRSTN_USR->str_sanitize($http_transport_protocol, 'http_protocol_simple');
 
         if(!isset($pagination_serial)){
 

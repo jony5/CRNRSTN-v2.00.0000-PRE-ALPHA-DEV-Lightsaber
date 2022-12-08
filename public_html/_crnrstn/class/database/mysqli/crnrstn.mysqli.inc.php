@@ -245,7 +245,7 @@ class crnrstn_mysqli_conn_manager {
         // PASSING NULL FOR INDEX ALLOWS FOR N+1 PROFILES...BASICALLY ARRAY APPENDS. PASSING 0, SAYS WRITE TO INDEX 0!
         // SEE CUT OFF IN prepDatabaseConfig() FOR N+1 SUPPORT TESTING. GOT TO CIRCLE BACK AROUND FOR THAT.
 
-        // public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+        // public function add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
         // public function config_add_system_resource($env_key,......);
         $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE';
         $this->config_add_system_resource($env_key, 'env_key',  $env_key, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
@@ -260,7 +260,7 @@ class crnrstn_mysqli_conn_manager {
 
 	}
 
-	private function config_add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+	private function config_add_system_resource($env_key, $data_key, $data_value, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
 
 	    //$this->oCRNRSTN->print_r('$env_key=[' . $env_key . ']. $data_key=[' . $data_key . ']. $data_type_family=[' . $data_type_family . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 

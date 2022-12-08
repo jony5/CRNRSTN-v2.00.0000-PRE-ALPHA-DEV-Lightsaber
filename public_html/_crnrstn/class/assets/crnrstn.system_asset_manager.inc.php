@@ -4171,11 +4171,11 @@ class crnrstn_system_image_asset_manager {
 
     }
 
-    public function return_system_image($asset_data_key, $width_override = NULL, $height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $output_mode = NULL){
+    public function return_system_image($system_asset_constant, $width_override = NULL, $height_override = NULL, $link_override = NULL, $alt_override = NULL, $title_override = NULL, $target_override = NULL, $output_mode = NULL){
 
         // THE TARGET
         // https://jony5.com/?crnrstn_0010111011=x.gif
-        return $this->asset_data($asset_data_key, $width_override, $height_override, $link_override, $alt_override, $title_override, $target_override, $output_mode);
+        return $this->asset_data($system_asset_constant, $width_override, $height_override, $link_override, $alt_override, $title_override, $target_override, $output_mode);
 
     }
 
@@ -4958,6 +4958,32 @@ class crnrstn_system_image_asset_manager {
                 $tmp_height = 75;
                 $tmp_alt_text = 'Discogs';
                 $tmp_title_text = 'Link to Discogs music selection.';
+                $tmp_link = '';
+                $tmp_target = '';
+                $tmp_asset_family = 'social';
+                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+
+            break;
+            case 'SOCIAL_DRIBBLE':
+
+                $tmp_filename = 'dribble';
+                $tmp_width = '';
+                $tmp_height = 25;
+                $tmp_alt_text = 'Dribble';
+                $tmp_title_text = 'Link to Dribble resource.';
+                $tmp_link = '';
+                $tmp_target = '';
+                $tmp_asset_family = 'social';
+                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+
+            break;
+            case 'SOCIAL_DRIBBLE_HQ':
+
+                $tmp_filename = 'dribble_hq';
+                $tmp_width = '';
+                $tmp_height = 75;
+                $tmp_alt_text = 'Dribble';
+                $tmp_title_text = 'Link to Dribble resource.';
                 $tmp_link = '';
                 $tmp_target = '';
                 $tmp_asset_family = 'social';
@@ -7010,6 +7036,19 @@ class crnrstn_system_image_asset_manager {
                 $tmp_width = 19;
                 $tmp_height = 19;
                 $tmp_alt_text = '!';
+                $tmp_title_text = 'alert';
+                $tmp_link = '';
+                $tmp_target = '';
+                $tmp_asset_family = 'system';
+                self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] = CRNRSTN_UI_IMG;
+
+            break;
+            case 'NOTICE_TRI_ALERT_HQ':
+
+                $tmp_filename = 'triangle_alert_hq';
+                $tmp_width = 120;
+                $tmp_height = 120;
+                $tmp_alt_text = 'alert!';
                 $tmp_title_text = 'alert';
                 $tmp_link = '';
                 $tmp_target = '';

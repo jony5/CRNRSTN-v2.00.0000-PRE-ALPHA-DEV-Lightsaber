@@ -1525,7 +1525,7 @@ class crnrstn_content_generator {
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
                                         <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_NOTE') . '</div>
-                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', '', 160, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+                                        <div class="crnrstn_interact_ui_bg_r_stone_pillar_small">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', '', 160, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
                                         
                                     </div>
                                     
@@ -1689,7 +1689,7 @@ class crnrstn_content_generator {
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
-                                        <div class="crnrstn_interact_ui_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', '', 1640, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+                                        <div class="crnrstn_interact_ui_bg_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', '', 1640, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
                                     </div>
                                     
                                     <div class="crnrstn_hidden_void">

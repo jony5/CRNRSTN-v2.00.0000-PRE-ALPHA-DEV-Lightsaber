@@ -791,7 +791,7 @@ class crnrstn_user{
 //        $tmp_null_array = array();
 //
 //        $http_protocol = strtoupper($transport_protocol);
-//        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+//        $http_protocol = $this->str_sanitize($http_protocol, 'http_protocol_simple');
 //
 //        if (isset(self::$formIntegrationErr_ARRAY[$http_protocol])) {
 //
@@ -3904,7 +3904,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         }
 
-        // public function retrieve_data_value($data_key, $index = NULL, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $env_key = NULL, $soap_transport = false){
+        // public function retrieve_data_value($data_key, $index = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL, $soap_transport = false){
         return $this->oCRNRSTN_ENV->retrieve_data_value($data_key, $index, $data_type_family, $this->oCRNRSTN_ENV->env_key, $soap_transport);
 
     }
@@ -3946,12 +3946,6 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         error_log(__LINE__ . ' user ' . __METHOD__ . ':: has fired.');
 
         return $this->oCRNRSTN_ENV->oHTTP_MGR->is_tablet($mobile_is_tablet);
-
-    }
-
-    public function is_mobile_custom($target_device = NULL){
-
-        return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile_custom($target_device);
 
     }
     
@@ -4011,7 +4005,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                 $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash;
                 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
 
-                    // add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
+                    // add_system_resource($data_key, $data_value, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
                     $tmp_serialized_data_key = $this->oCRNRSTN->add_system_resource('crnrstn_pssdtl_packet', $crnrstn_form_handle, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
                     $this->oCRNRSTN->crnrstn_data_packet_data_key_index_ARRAY[$tmp_form_handle_hash][$tmp_data_type_family . 'crnrstn_pssdtl_packet'][] = $tmp_serialized_data_key;
 
@@ -4710,8 +4704,8 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         }else{
 
 //
-//            $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $crnrstn_form_handle);
-//            $tmp_field_input_name_hash = hash($this->oCRNRSTN->system_hash_algorithm(), $field_input_name);
+//            $tmp_form_handle_hash = hash($this->oCRNRSTN->system_hash_algo(), $crnrstn_form_handle);
+//            $tmp_field_input_name_hash = hash($this->oCRNRSTN->system_hash_algo(), $field_input_name);
 
             $tmp_pwd_hashable = $this->hash($pwd);
 
@@ -5481,7 +5475,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         }
 
         $http_protocol = strtoupper($transport_protocol);
-        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+        $http_protocol = $this->str_sanitize($http_protocol, 'http_protocol_simple');
 
         try {
 
@@ -5538,7 +5532,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         }
 
         $http_protocol = strtoupper($transport_protocol);
-        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+        $http_protocol = $this->str_sanitize($http_protocol, 'http_protocol_simple');
 
         try {
 
@@ -6249,7 +6243,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         }
 
         $http_protocol = strtoupper($transport_protocol);
-        $http_protocol = $this->string_sanitize($http_protocol, 'http_protocol_simple');
+        $http_protocol = $this->str_sanitize($http_protocol, 'http_protocol_simple');
 
         return $this->oCRNRSTN_ENV->issetHTTP($http_protocol);
 
@@ -6738,11 +6732,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         //
         // SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
-        // GENERATION...EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
-        // ASCII) AND NOT SPLITTING HAIRS BETWEEN SEQUENCE \n LINEFEED (LF or
-        // 0x0A (10) in ASCII) AND SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
-        // (13) in ASCII) AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12) in
-        // ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
+        // GENERATION...ALL EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
+        // ASCII) AND NOT SPLITTING HAIRS CHOOSING BETWEEN SEQUENCE \n LINEFEED (LF or
+        // 0x0A (10) in ASCII) AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
+        // (13) in ASCII)...AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12)
+        // in ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
         //
         // ALSO, CHECK OUT $char_selection=-2, AND $char_selection=-3.
         // $char_selection=-3 IS THE NICEST(NO: QUOTES, COMMAS,...ETC.)...WITH
@@ -7032,9 +7026,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function string_sanitize($str, $type){
+    public function str_sanitize($str, $type){
 
-        return $this->oCRNRSTN_ENV->string_sanitize($str, $type);
+        return $this->oCRNRSTN->str_sanitize($str, $type);
 
     }
 
@@ -7959,6 +7953,42 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                     $tmp_social_img_alt = 'Discogs';
                     $tmp_social_img_title = 'Link to Discogs music selection.';
+                    $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
+
+                break;
+                case 'DRIBBLE':
+
+                    switch($tmp_icon_family_size){
+                        case 'SMALL':
+
+                            $tmp_social_img_width = 102;
+                            $tmp_social_img_height = 25;
+                            $tmp_social_img_left = -28;
+                            $tmp_social_img_top = -259;
+
+                        break;
+                        case 'MEDIUM':
+
+                            $tmp_social_img_width = 204;
+                            $tmp_social_img_height = 50;
+                            $tmp_social_img_left = -55;
+                            $tmp_social_img_top = -507;
+
+                        break;
+                        default:
+                            // 'LARGE':
+
+                            $tmp_social_img_width = 306;
+                            $tmp_social_img_height = 75;
+                            $tmp_social_img_left = -83;
+                            $tmp_social_img_top = -762;
+
+                        break;
+
+                    }
+
+                    $tmp_social_img_alt = 'Dribble';
+                    $tmp_social_img_title = 'Link to Dribble music selection.';
                     $tmp_sticky_link_meta = strtolower($tmp_social_img_alt) . '_social_media_lnk';
 
                 break;
@@ -10683,7 +10713,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
     }
 
-    public function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN_SYSTEM_CHANNEL'){
+    public function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN::RESOURCE'){
 
         $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
 
