@@ -1656,8 +1656,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns a string with the output of native var_dump.<br><br>
-                    <span class="crnrstn_text_embedded_image">' . $this->text_img_link('PHP_ELLIPSE','https://www.php.net/manual/en/function.var-dump') . '</span>';
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns a string with the output of native var_dump.</p><br><br>
+                    ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.var-dump') . '<p>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
