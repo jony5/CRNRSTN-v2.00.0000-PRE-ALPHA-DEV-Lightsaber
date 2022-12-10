@@ -5,7 +5,7 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-$lang_iso = $oCRNRSTN->country_iso_code();
-echo 'Current language:' . $lang_iso;
+$lang_iso_count = $oCRNRSTN->iso_language_profile_count();
+echo 'Count of language profiles: ' . $lang_iso_count;
 
 ?>

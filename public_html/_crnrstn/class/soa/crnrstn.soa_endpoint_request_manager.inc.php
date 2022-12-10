@@ -1463,14 +1463,14 @@ class crnrstn_soa_endpoint_request_manager {
                             //
                             // CONSTANTS
                             $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                            $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+                            $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
                             $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_TEXT');
                             $crnrstn_phpmailer->Subject = 'Exception Notification from ' . $_SERVER['SERVER_NAME'].' via CRNRSTN ::';
 
                             if($tmp_isHTML){
 
                                 $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
-                                $tmp_log_constant_HTML = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant, 'HTML');
+                                $tmp_log_constant_HTML = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant, 'HTML');
                                 $tmp_crnrstn_trace_HTML = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_HTML');
 
                             }
@@ -1685,7 +1685,7 @@ class crnrstn_soa_endpoint_request_manager {
 
         }
 
-	    return $this->oCRNRSTN_USR->elapsed_delta_time_for($monitor_key);
+	    return $this->oCRNRSTN_USR->elapsed_delta_time($monitor_key);
 
     }
 
@@ -2032,7 +2032,7 @@ class crnrstn_soa_endpoint_request_manager {
                 // TO HANDLE DYNAMIC CONTENT FOR HTML AND TEXT SEPARATELY
                 $this->oCRNRSTN_USR->addDynamicContent_HTML($oCRNRSTN_GABRIEL, $email_experience_tracker, '{SYS_MESSAGE_TITLE_HTML}', $this->return_requestParam('SYS_MESSAGE_TITLE_HTML', __METHOD__));
                 $this->oCRNRSTN_USR->addDynamicContent_HTML($oCRNRSTN_GABRIEL, $email_experience_tracker, '{SYS_MESSAGE_HTML}', $this->return_requestParam('SYS_MESSAGE_HTML', __METHOD__));
-                $this->oCRNRSTN_USR->addDynamicContent_HTML($oCRNRSTN_GABRIEL, $email_experience_tracker, '{SYS_LOG_INTEGER_CONSTANT}', $this->oCRNRSTN_USR->return_logPriorityPretty(LOG_NOTICE, 'HTML'));
+                $this->oCRNRSTN_USR->addDynamicContent_HTML($oCRNRSTN_GABRIEL, $email_experience_tracker, '{SYS_LOG_INTEGER_CONSTANT}', $this->oCRNRSTN_USR->return_log_priority_pretty(LOG_NOTICE, 'HTML'));
                 $this->oCRNRSTN_USR->addDynamicContent_HTML($oCRNRSTN_GABRIEL, $email_experience_tracker, '{ELECTRUM_DATA_SOURCE_HTML}', $this->return_requestParam('ELECTRUM_DATA_SOURCE_HTML', __METHOD__));
                 $this->oCRNRSTN_USR->addDynamicContent_HTML($oCRNRSTN_GABRIEL, $email_experience_tracker, '{ELECTRUM_DATA_DESTINATION_HTML}', $this->return_requestParam('ELECTRUM_DATA_DESTINATION_HTML', __METHOD__));
                 $this->oCRNRSTN_USR->addDynamicContent_HTML($oCRNRSTN_GABRIEL, $email_experience_tracker, '{ELECTRUM_DATA_HANDLING_PROFILE_HTML}', $this->return_requestParam('ELECTRUM_DATA_HANDLING_PROFILE_HTML', __METHOD__));
@@ -2040,7 +2040,7 @@ class crnrstn_soa_endpoint_request_manager {
 
                 $this->oCRNRSTN_USR->addDynamicContent_TEXT($oCRNRSTN_GABRIEL, $email_experience_tracker, '{SYS_MESSAGE_TITLE_TEXT}', $this->return_requestParam('SYS_MESSAGE_TITLE_TEXT', __METHOD__));
                 $this->oCRNRSTN_USR->addDynamicContent_TEXT($oCRNRSTN_GABRIEL, $email_experience_tracker, '{SYS_MESSAGE_TEXT}', $this->return_requestParam('SYS_MESSAGE_TEXT', __METHOD__));
-                $this->oCRNRSTN_USR->addDynamicContent_TEXT($oCRNRSTN_GABRIEL, $email_experience_tracker, '{SYS_LOG_INTEGER_CONSTANT}', $this->oCRNRSTN_USR->return_logPriorityPretty(LOG_NOTICE));
+                $this->oCRNRSTN_USR->addDynamicContent_TEXT($oCRNRSTN_GABRIEL, $email_experience_tracker, '{SYS_LOG_INTEGER_CONSTANT}', $this->oCRNRSTN_USR->return_log_priority_pretty(LOG_NOTICE));
                 $this->oCRNRSTN_USR->addDynamicContent_TEXT($oCRNRSTN_GABRIEL, $email_experience_tracker, '{ELECTRUM_DATA_SOURCE_TEXT}', $this->return_requestParam('ELECTRUM_DATA_SOURCE_TEXT', __METHOD__));
                 $this->oCRNRSTN_USR->addDynamicContent_TEXT($oCRNRSTN_GABRIEL, $email_experience_tracker, '{ELECTRUM_DATA_DESTINATION_TEXT}', $this->return_requestParam('ELECTRUM_DATA_DESTINATION_TEXT', __METHOD__));
                 $this->oCRNRSTN_USR->addDynamicContent_TEXT($oCRNRSTN_GABRIEL, $email_experience_tracker, '{ELECTRUM_DATA_HANDLING_PROFILE_TEXT}', $this->return_requestParam('ELECTRUM_DATA_HANDLING_PROFILE_TEXT', __METHOD__));

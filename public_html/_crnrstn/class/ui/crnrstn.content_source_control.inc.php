@@ -190,33 +190,92 @@ class crnrstn_content_source_controller {
         $tmp_output_ARRAY = array();
 
 	    switch($method_name){
+            case 'return_set_bits':
+            case 'clear_all_bits_set_one':
+            case 'toggle_bit':
+            case 'is_bit_set':
+            case 'serialized_is_bit_set':
+            case 'initialize_bit':
+            case 'initialize_serialized_bit':
+
+                $tmp_ARRAY = array('initialize_bit', 'is_bit_set', 'toggle_bit', 'initialize_serialized_bit',
+                    'serialized_is_bit_set', 'clear_all_bits_set_one', 'return_set_bits');
+
+            break;
+            case 'iso_language_html':
+            case 'iso_language_profile':
+            case 'iso_language_profile_count':
+
+                // header_options_apply
+                $tmp_ARRAY = array('iso_language_html', 'iso_language_profile', 'iso_language_profile_count');
+
+            break;
+            case 'salt':
             case 'system_hash_algo':
             case 'hash':
             case 'generate_new_key':
 
-                $tmp_ARRAY  = array('system_hash_algo', 'hash', 'generate_new_key');
+                // salt
+                $tmp_ARRAY = array('system_hash_algo', 'hash', 'generate_new_key');
 
             break;
+            case 'device_type':
             case 'is_tablet':
             case 'set_mobile':
             case 'set_tablet':
             case 'is_mobile':
 
-                $tmp_ARRAY  = array('is_mobile', 'is_tablet', 'set_mobile', 'set_tablet');
+                // device_type
+                $tmp_ARRAY = array('is_mobile', 'is_tablet', 'set_mobile', 'set_tablet');
 
             break;
             case 'print_r':
             case 'print_r_str':
 
-                $tmp_ARRAY  = array('print_r', 'print_r_str');
+                $tmp_ARRAY = array('print_r', 'print_r_str');
 
             break;
+            case 'return_prefixed_ddo_key':
             case 'config_add_system_resource':
             case 'add_system_resource':
             case 'get_resource':
             case 'get_resource_count':
 
-                $tmp_ARRAY  = array('add_system_resource', 'config_add_system_resource', 'get_resource', 'get_resource_count');
+                // return_prefixed_ddo_key
+                $tmp_ARRAY = array('add_system_resource', 'config_add_system_resource', 'get_resource', 'get_resource_count');
+
+            break;
+            case 'proper_version':
+            case 'version_linux':
+            case 'version_openssl':
+            case 'version_mysqli':
+            case 'version_soap':
+            case 'version_mobile_detect':
+            case 'version_php':
+            case 'version_apache':
+            case 'version_crnrstn':
+
+                $tmp_ARRAY = array('version_linux', 'version_apache', 'version_mysqli', 'version_php',
+                'version_soap', 'version_openssl', 'version_mobile_detect', 'version_crnrstn', 'proper_version');
+
+            break;
+            case 'current_location':
+
+                $tmp_ARRAY = array('current_location');
+
+            break;
+            case 'extract_data_http':
+            case 'isset_http_superglobal':
+            case 'isset_http_param':
+
+                $tmp_ARRAY = array('extract_data_http', 'isset_http_param', 'isset_http_superglobal');
+
+            break;
+            case 'header_options_apply':
+            case 'header_options_add':
+            case 'header_signature_options_return':
+
+                $tmp_ARRAY = array('header_signature_options_return', 'header_options_add', 'header_options_apply');
 
             break;
             default:
@@ -257,13 +316,13 @@ class crnrstn_content_source_controller {
                                 <div class="crnrstn_documentation_bg_caution_icon_wrapper_rel">
                                     <div class="crnrstn_documentation_bg_caution_icon_wrapper">
                                         <div class="crnrstn_documentation_bg_caution_icon">' . $tmp_img . '</div>
-                                    </div>    
+                                    </div>
                                 </div>
                                 
                                 <div class="crnrstn_hidden_void">
                                     <div class="crnrstn_documentation_caution_copy"><p>' . $caution_note . '</p></div>
                                 </div>
-                                                   
+                              
                             </div>
                             <div class="crnrstn_cb"></div>
 
@@ -294,7 +353,9 @@ class crnrstn_content_source_controller {
                 switch($system_asset_constant){
                     case 'PHP_ELLIPSE':
 
-                        return '<a href="https://php.net/manual-lookup.php?pattern=' . $module_key . '" target="_blank">' . $module_key . '</a><sup class="crnrstn_the_r_text_link_sup">' . $tmp_img . '</sup>';
+                        $tmp_url = $this->oCRNRSTN->return_sticky_link('https://php.net/manual-lookup.php?pattern=' . $module_key);
+
+                        return '<a href="'. $tmp_url . '" target="_blank">' . $module_key . '</a><sup class="crnrstn_the_r_text_link_sup">' . $tmp_img . '</sup>';
 
                     break;
 
@@ -315,6 +376,155 @@ class crnrstn_content_source_controller {
 
     }
 
+    /*
+    PHP NATIVE TEXT LINKS
+    METHOD NAME
+    DATA TYPE DECLARATIONS IN METHOD DEF
+
+
+    = = = = =
+    MADE IT
+    public function version_linux(){
+    public function version_openssl(){
+    public function version_mysqli(){
+    public function version_soap(){
+    public function version_mobile_detect(){
+    public function version_php(){
+    public function version_apache(){
+    public function version_crnrstn(){
+    public function proper_version($system = 'CRNRSTN'){
+
+    device_type()
+
+    public function wall_time(){
+    public function return_query_date_time_stamp(){
+    public function pretty_elapsed_time(){
+    public function return_micro_time(){
+    public function return_m_start_time(){
+
+    public function return_prefixed_ddo_key($data_key, $env_key = NULL, $data_type_family = 'CRNRSTN::RESOURCE'){
+
+    public function salt($length = NULL, $chars = NULL){
+
+    public function return_set_bits($constants_int_ARRAY, $first_match = false){
+    public function clear_all_bits_set_one($int_const_final, $is_bit_set = true, $integer_clear_ARRAY = array()){
+    public function toggle_bit($integer_const, $target_state = NULL){
+    public function is_bit_set($integer_const){
+    public function serialized_is_bit_set($const_nom, $integer_const){
+    public function initialize_bit($integer_constant, $default_state = true){
+    public function initialize_serialized_bit($const_nom, $integer_const, $default_state = true){
+
+    public function return_sticky_link($url, $meta_params = NULL){
+
+    public function get_performance_metric($profile_name){
+
+    public function ini_set($ini_setting, $ini_value){
+    public function ini_get($ini_setting){
+    public function return_total_bytes_stored(){
+    public function set_timezone_default($timezone_id){
+    public function return_server_response_code($response_code, $crnrstn_html_burn = NULL){
+    public function return_client_ip(){
+    public function PHPMAILER_debug_mode(){
+    public function CRNRSTN_debug_mode(){
+    public function system_hash_algo(){
+    public function soap_defencoding(){
+    public function return_openssl_digest_method(){
+    public function openssl_get_cipher_methods(){
+
+    public function current_location(){
+    public function extract_data_http($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
+    public function isset_http_superglobal($transport_protocol = 'POST'){
+    public function isset_http_param($param, $transport_protocol = 'POST'){
+
+    public function data_encrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+    public function isset_encryption($encryption_channel){
+    public function data_decrypt($data = NULL, $encryption_channel = CRNRSTN_ENCRYPT_TUNNEL, $cipher_override = NULL, $secret_key_override = NULL, $hmac_algorithm_override = NULL, $options_bitwise_override = NULL){
+
+    public function header_options_apply(){
+    public function header_options_add($header_array, $overwrite_existing = true){
+    public function header_signature_options_return(){
+
+
+==================
+==================
+    2983 multi lang
+    public function device_type_bit(){
+
+        if($this->oCRNRSTN_USR->device_type_bit == 0){
+
+            return CRNRSTN_CHANNEL_DESKTOP;
+
+        }
+
+        return $this->oCRNRSTN_USR->device_type_bit;
+
+    }
+
+    public function device_type(){
+
+        return $this->oCRNRSTN_USR->device_type;
+
+    }
+
+    public function crnrstn_root_directory(){
+    public function crnrstn_path_directory(){
+    public function crnrstn_http_endpoint($url_override = NULL){
+    public function is_configured(){
+
+    // DATE
+    public function return_log_priority_pretty($log_priority, $format = 'TEXT'){
+    public function return_pretty_delta_time($delta_secs, $microsecs = 0, $mode = 'ELAPSED_VERBOSE'){
+    public function elapsed_delta_time($watch_key, $decimal = 8){
+
+    // STRING
+    public function str_sanitize($str, $type){
+    public function proper_replace($pattern, $replacement, $original_str){
+    public function strrtrim($message, $strip){
+    public function str_split_unicode($str, $length = 1){
+
+    // FILE
+    public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
+    public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descnding_arsort = false){
+    public function resource_filecache_version($file_path){
+    public function validate_DIR_endpoint($dir_path, $endpoint_type = 'DESTINATION', $mkdir_mode = 775){
+    public function encode_image($file_path, $filetype = NULL){
+    public function system_base64_synchronize($data_key = NULL, $img_batch_size = 5){
+    public function mkdir_r($dirName, $mode = 777){
+
+    // MATHS
+    public function format_bytes($bytes, $precision = 2, $SI_output = false){
+    public function number_format_keep_precision($number, $dec_places = 0, $dec_point = '.', $thou_separate = ','){
+    public function tidy_boolean($val){
+
+    // HTTP
+
+
+    public function return_resource_profile($resource_constant, $attribute = 'ARRAY'){
+
+    public function return_language_iso_profile($output_type = 'array'){
+
+    public function isSSL(){
+
+    public function append_url_param($param_ARRAY, $tunnel_encrypt = true, $no_encrypt_param_ARRAY = NULL, $include_no_encrypt = true){
+    public function explode_url($uri){
+    public function proper_response_return($response = NULL, $header_options_array = NULL, $crnrstn_response_profile_key = NULL){
+
+    public function return_CRNRSTN_ASCII_ART($index = NULL){
+    public function highlight_text($text, $theme_profile = NULL){
+    public function create_pwd_hash_for_storage($user_submitted_password){
+
+    public function find_filesize($file){
+
+
+    public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
+
+    public function return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true){
+    public function return_sticky_text_link($media_element_key, $url = NULL, $target = '_blank', $email_channel = false){
+
+
+
+    */
+
 	public function load_page($module_key = NULL){
 
 	    if(isset($module_key)){
@@ -329,7 +539,239 @@ class crnrstn_content_source_controller {
         try{
 
             switch($this->module_key){
+                case 'iso_language_html':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Return the best <a href="' . $this->oCRNRSTN->return_sticky_link('https://en.wikipedia.org/wiki/ISO_639', 'crnrstn_documentation_iso_language_html_wikipedia00') . '" target="_blank">ISO 639</a> language value, taking the 
+                    client\'s language preferences into consideration and being limited to the website\'s available 
+                    language options.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = $this->module_key . '(): <span class="crnrstn_documentation_method_data_type">string</span>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // RETURN VALUE
+                    $tmp_str = 'Returns a string with the best <a href="' . $this->oCRNRSTN->return_sticky_link('https://en.wikipedia.org/wiki/ISO_639', 'crnrstn_documentation_iso_language_html_wikipedia01') . '" target="_blank">ISO 639</a> language indicator given the user\'s preferences 
+                    and the available website content.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
+                case 'iso_language_profile':
+
+                    /*
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['locale_identifier'] = $tmp_base_lower;
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['region_variant'] = $region;
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['factor_weighting'] = $weighting;
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['iso_language_nomination'] = 'Abkhazian';
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['native_nomination'] = 'аҧсуа бызшәа, аҧсшәа';
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['iso_639-1_2002'] = 'ab';
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['iso_639-2_1998'] = 'abk';
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['iso_639-3_2007'] = 'abk';
+                    $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['uri'][] = 'https://en.wikipedia.org/wiki/Abkhazian_language';
+
+                    public function iso_language_profile($code_specification = 'iso_639-1_2002', $index = 0){
+                    public function iso_language_profile_count(){
+
+                    */
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Return string or array data of the server\'s detected 
+                    language preferences for the client\'s current session. These language preference profiles are 
+                    indexed in the order of preference from most preferred to least preferred. This can be confirmed by 
+                    comparing,<br>
+                    <span class="crnrstn_general_post_code_copy">$oCRNRSTN->iso_language_profile(\'factor_weighting\', <span class="crnrstn_documentation_method_string_data"><em>n</em></span>)</span>,
+                    <br>where <span class="crnrstn_documentation_method_string_data"><em>n</em></span> is an integer 
+                    derived within the range of:<br> 
+                    <span class="crnrstn_general_post_code_copy">n = 0</span> to <span class="crnrstn_general_post_code_copy">n = $oCRNRSTN->iso_language_profile_count()</span>. 
+                    <br><br>
+                    See ' . $this->return_crnrstn_text_link('iso_language_profile_count') . '.
+                    <br><br> 
+                    C<span class="the_R_in_crnrstn">R</span>NRSTN :: honors <a href="' . $this->oCRNRSTN->return_sticky_link('https://en.wikipedia.org/wiki/ISO_639-1', 'crnrstn_documentation_iso_language_profile_wikipedia00') . '" target="_blank">ISO 639-1:2002</a> 
+                    by default. The header of the client request is processed by the HTTP manager class object in order 
+                    to produce these profiles. This consideration will also apply to SOAP requests where servers are 
+                    talking to other servers...effectively enabling server A to ask server B for content in any language.
+                    This will produce opportunity for the <strong>silo\'d strength in communications</strong> that comes 
+                    (necessarily) with specialization betwixt sister IP distributions (e.g. spanish.abc.com, 
+                    english.abc.com, and korean.abc.com,...etc) to be <strong>effectively broken down and distributed</strong> 
+                    to produce a strong and robust multi-language support singularity behind the scenes that all IP in 
+                    the family can stand upon.
+                    <br><br>
+                    ' . $this->oCRNRSTN->return_sticky_media_link('WIKIPEDIA_SMALL', 'https://en.wikipedia.org/wiki/ISO_639-1', '_blank');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = $this->module_key . '(<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $lang_attribute = \'<span class="crnrstn_documentation_method_string_data">iso_639-1_2002</span>\',<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $index = <span class="crnrstn_documentation_method_data_system_val">0</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">string|array</span>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // RETURN VALUE // The requested language profile The requested language profile
+                    $tmp_str = 'Returns an array with all of the data for a single language preference profile or an 
+                    array with all profiles. See the structure of the return array below. Also will return string data 
+                    for the requested language preference profile attribute.</p>
+                    <br><br>
+                    Structure of the return array:
+                    <div class="crnrstn_cb_5"></div>
+                    <div class="crnrstn_documentation_section_demo_copy">&nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">locale_identifier</span>\'] => \'<span class="crnrstn_documentation_method_string_data">en</span>\'<br>
+                       &nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">region_variant</span>\'] = \'<span class="crnrstn_documentation_method_string_data">US</span>\'<br>
+                       &nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">factor_weighting</span>\'] = <span class="crnrstn_documentation_method_data_system_val">0.9</span><br>
+                       &nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">iso_language_nomination</span>\'] = \'<span class="crnrstn_documentation_method_string_data">English</span>\'<br>
+                       &nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">native_nomination</span>\'] = \'<span class="crnrstn_documentation_method_string_data">English</span>\'<br>
+                       &nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">iso_639-1_2002</span>\'] = \'<span class="crnrstn_documentation_method_string_data">en</span>\'<br>
+                       &nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">iso_639-2_1998</span>\'] = \'<span class="crnrstn_documentation_method_string_data">eng</span>\'<br>
+                       &nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">iso_639-3_2007</span>\'] = \'<span class="crnrstn_documentation_method_string_data">eng</span>\'<br>
+                       &nbsp;&nbsp;$array[\'<span class="crnrstn_documentation_method_string_data">uri</span>\'] => Array<br>
+                           &nbsp;&nbsp;&nbsp;&nbsp;(<br>
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="crnrstn_documentation_method_data_system_val">0</span>] = \'<span class="crnrstn_documentation_method_string_data">https://en.wikipedia.org/wiki/English_language</span>\'<br>
+                          &nbsp;&nbsp;&nbsp;&nbsp;)</div><p>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
+
+                    /*
+                    [Fri Dec 09 04:20:21.757619 2022] [:error] [pid 3020] [client 172.16.225.1:50540] 1051 crnrstn $iso_profile_ARRAY[Array
+                    (
+                       [locale_identifier] => en
+                       [region_variant] => US
+                       [factor_weighting] => 0.9
+                       [iso_language_nomination] => English
+                       [native_nomination] => English
+                       [iso_639-1_2002] => en
+                       [iso_639-2_1998] => eng
+                       [iso_639-3_2007] => eng
+                       [uri] => Array
+                           (
+                               [0] => https://en.wikipedia.org/wiki/English_language
+                           )
+
+                    )].
+
+                    */
+                    //
+                    // PARAMETER DEFINITION
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$lang_attribute';
+                    $tmp_param_def[0]['param_definition'] = 'A string with the name of the desired language preference 
+                    profile attribute or indication of array type.</p><br><br>
+
+                    To return an array:
+                    <div class="crnrstn_cb_5"></div>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = <span class="crnrstn_documentation_method_data_system_val">CRNRSTN_RESOURCE_ALL</span></span>
+                    <div class="crnrstn_documentation_section_demo_copy">Pass the integer constant, 
+                    CRNRSTN_RESOURCE_ALL, to return ALL language profile data in an array.</div>
+                    
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = <span class="crnrstn_documentation_method_data_system_val">NULL</span></span>
+                    <div class="crnrstn_documentation_section_demo_copy">With no attribute specified (NULL), return 
+                    language profile data <strong>for the specified index only</strong> in an array.</div>
+                    <div class="crnrstn_cb_10"></div>
+
+                    Return string data of a specified language profile attribute by providing one of the 
+                    case-insensitive values as follows:<br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">locale_identifier</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">region_variant</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">factor_weighting</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">iso_language_nomination</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">native_nomination</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">iso_639-1_2002</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">iso_639-2_1998</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">iso_639-3_2007</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">$lang_attribute = \'<span class="crnrstn_documentation_method_string_data">uri</span>\'</span><p>';
+                    $tmp_param_def[0]['param_required'] = false;
+
+                    $tmp_param_def[1]['param_name'] = '$index';
+                    $tmp_param_def[1]['param_definition'] = 'The index location of the desired language preference 
+                    profile. Use ' . $this->return_crnrstn_text_link('iso_language_profile_count') . ' to get 
+                    a count of the total number of language preference profiles.';
+                    $tmp_param_def[1]['param_required'] = false;
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
+                case 'iso_language_profile_count':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Return a count of the language preference profiles for the 
+                    current session. The header of the client request is processed in order to establish these 
+                    profiles. C<span class="the_R_in_crnrstn">R</span>NRSTN :: honors <a href="' . $this->oCRNRSTN->return_sticky_link('https://en.wikipedia.org/wiki/ISO_639-1', 'crnrstn_documentation_iso_language_profile_wikipedia00') . '" target="_blank">ISO 639-1:2002</a> 
+                    by default.
+                    <br><br>
+                    ' . $this->oCRNRSTN->return_sticky_media_link('WIKIPEDIA_SMALL', 'https://en.wikipedia.org/wiki/ISO_639-1', '_blank');
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = $this->module_key . '(): <span class="crnrstn_documentation_method_data_type">integer</span>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // RETURN VALUE
+                    $tmp_str = 'Returns an integer.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
                 case 'system_hash_algo':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -434,6 +876,7 @@ class crnrstn_content_source_controller {
 
                     }
                     */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -505,16 +948,16 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     random key. <br><br>
                     There are also a few prepared character sets that can be applied. These are listed below from least problematic to most problematic:<br></p>
                     <span class="crnrstn_general_post_code_copy">$char_selection = NULL</span>
-                    <div style="font-size: 15px; font-family: Courier New, Courier, monospace; padding:0 0 20px 0; margin:0; line-height:18px; overflow-wrap: break-word; ">' . $tmp_description_minus_null . '</div>
+                    <div class="crnrstn_documentation_section_demo_copy">' . $tmp_description_minus_null . '</div>
                     
                     <span class="crnrstn_general_post_code_copy">$char_selection = -3</span>
-                    <div style="font-size: 15px; font-family: Courier New, Courier, monospace; padding:0 0 20px 0; margin:0; line-height:18px; overflow-wrap: break-word; ">' . $tmp_description_minus_3 . '</div>
+                    <div class="crnrstn_documentation_section_demo_copy">' . $tmp_description_minus_3 . '</div>
                     
                     <span class="crnrstn_general_post_code_copy">$char_selection = -2</span>
-                    <div style="font-size: 15px; font-family: Courier New, Courier, monospace; padding:0 0 20px 0; margin:0; line-height:18px; overflow-wrap: break-word; ">' . $tmp_description_minus_2 . '</div>
-                                 
+                    <div class="crnrstn_documentation_section_demo_copy">' . $tmp_description_minus_2 . '</div>
+                    
                     <span class="crnrstn_general_post_code_copy">$char_selection = -1</span>
-                    <div style="font-size: 15px; font-family: Courier New, Courier, monospace; padding:0 0 20px 0; margin:0; line-height:18px; overflow-wrap: break-word; ">' . $tmp_description_minus_1 . '</div>
+                    <div class="crnrstn_documentation_section_demo_copy">' . $tmp_description_minus_1 . '</div>
                     
                     <p>';
                     $tmp_param_def[1]['param_required'] = false;
@@ -535,43 +978,10 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
                 break;
-                case 'country_iso_code':
-
-                    //
-                    // PAGE TITLE
-                    $tmp_title_array = array();
-                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Return the client detected language preferences for the 
-                    current session. C<span class="the_R_in_crnrstn">R</span>NRSTN :: will honor <a href="' . $this->oCRNRSTN->return_sticky_link('https://en.wikipedia.org/wiki/ISO_639-1', 'crnrstn_documentation_country_iso_code_wikipedia') . '" target="_blank">ISO 639-1:2002</a> 
-                    by default.
-                    <br><br>
-                    ' . $this->oCRNRSTN->return_sticky_media_link('WIKIPEDIA_SMALL', 'https://en.wikipedia.org/wiki/ISO_639-1', '_blank');
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
-
-                    //
-                    // METHOD DEFINITION
-                    $tmp_method_definition = $this->module_key . '(): <span class="crnrstn_documentation_method_data_type">string</span>';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
-
-                    //
-                    // RETURN VALUE
-                    $tmp_str = 'Returns a string in accordance with <a href="' . $this->oCRNRSTN->return_sticky_link('https://en.wikipedia.org/wiki/ISO_639-1', 'crnrstn_documentation_country_iso_code_wikipedia') . '" target="_blank">ISO 639-1:2002</a>.';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
-
-                    //
-                    // EXAMPLE
-                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
-                    $tmp_example_title_integrated = NULL;
-                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
-                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
-
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
-
-                break;
                 case 'hash':
 
                     //public function hash($data, $algorithm = NULL){
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -606,6 +1016,14 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $tmp_param_def[1]['param_required'] = false;
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
 
+                    /*
+                    $digests             = openssl_get_md_methods();
+                    $digests_and_aliases = openssl_get_md_methods(true);
+                    $digest_aliases      = array_diff($digests_and_aliases, $digests);
+
+                    */
+
+
                     //
                     // EXAMPLE
                     $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
@@ -624,6 +1042,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                 case 'config_add_system_resource':
 
                     // private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $index, $default_ttl = 60){    private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -653,7 +1072,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // RETURN VALUE
                     $tmp_str = 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled 
-                    Data Object (DDO) key. The DDO key is the pointer to the storage location in memory for this data.                
+                    Data Object (DDO) key. The DDO key is the pointer to the storage location in memory for this data.
                     This won\'t be useful, and it can be disregarded until additional methods which will use this value 
                     can be documented.<br><br>
                     
@@ -788,6 +1207,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                 case 'get_resource_count':
 
                     //public function get_resource_count($data_key, $data_type_family, $env_key){
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -885,6 +1305,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                 case 'config_init_js_css_minimization':
 
                     //    public function config_init_js_css_minimization($env_key = CRNRSTN_RESOURCE_ALL, $production_min_js = true){
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -923,7 +1344,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     $tmp_param_def[1]['param_name'] = '$production_min_js';
                     $tmp_param_def[1]['param_definition'] = 'Passing in FALSE will enable development versions of JS and 
-                    CSS frameworks to be returned to the browser. See the list of integer constants with '  . $this->return_crnrstn_text_link('system_output_head_html') . ', 
+                    CSS frameworks to be returned to the browser. See the list of integer constants with ' . $this->return_crnrstn_text_link('system_output_head_html') . ', 
                     for more on these JS and CSS resources.';
                     $tmp_param_def[1]['param_required'] = false;
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
@@ -975,6 +1396,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     return $this->session_salt();
 
                     */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -1004,7 +1426,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // RETURN VALUE
                     $tmp_str = 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled 
-                    Data Object (DDO) key. The DDO key is the pointer to the storage location in memory for this data.                
+                    Data Object (DDO) key. The DDO key is the pointer to the storage location in memory for this data.
                     This won\'t be useful, and it can be disregarded until additional methods which will use this value 
                     can be documented.<br><br>
                     
@@ -1053,6 +1475,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     provided to ' . $this->return_crnrstn_text_link('get_resource') . ' for data retrieval.';
                     $tmp_param_def[2]['param_required'] = false;
 
+                    //        $this->system_data_profile_constants_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME_ONLY, CRNRSTN_AUTHORIZE_ALL, CRNRSTN_AUTHORIZE_DATABASE, CRNRSTN_AUTHORIZE_SSDTLA, CRNRSTN_AUTHORIZE_PSSDTLA, CRNRSTN_AUTHORIZE_SESSION, CRNRSTN_AUTHORIZE_COOKIE, CRNRSTN_AUTHORIZE_SOAP, CRNRSTN_AUTHORIZE_GET);
                     $tmp_param_def[3]['param_name'] = '$data_auth_profile';
                     $tmp_param_def[3]['param_definition'] = 'Pending development, this value will regulate the data 
                     handling practices for data entrusted to C<span class="the_R_in_crnrstn">R</span>NRSTN ::. 
@@ -1143,6 +1566,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $data_auth_request);
 
                     */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -1228,6 +1652,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     return $this->oCRNRSTN_PERFORMANCE_REGULATOR->grant_permissions_fwrite($filepath, $minimum_bytes_required);
 
                     */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -1255,7 +1680,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$data';
-                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE.  If <span class="crnrstn_general_post_code_copy">$tablet_is_mobile = TRUE</span> 
+                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE. If <span class="crnrstn_general_post_code_copy">$tablet_is_mobile = TRUE</span> 
                     and the User-Agent and HTTP headers indicate that the client is a tablet computer, TRUE will 
                     be returned.';
                     $tmp_param_def[0]['param_required'] = true;
@@ -1284,6 +1709,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     public function print_r($expression, $title = NULL, $theme_profile = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
                     */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -1379,6 +1805,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     public function print_r_str($expression, $title = NULL, $theme_style = NULL, $line_num = NULL, $method = NULL, $file = NULL){
 
                     */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -1474,6 +1901,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     public function return_system_image($media_element_key, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $image_output_mode = NULL){
 
                     */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -1572,8 +2000,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // EXAMPLE
                     $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
                     $tmp_example_title_integrated = NULL;
-                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
-                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
+                    $tmp_example_presentation_file = '';  // '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+                    $tmp_example_execute_file = '';  //'/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                     //
@@ -1588,6 +2016,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     public function return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true){
 
                     */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //
                     // PAGE TITLE
@@ -1656,8 +2085,9 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns a string with the output of native var_dump.</p><br><br>
-                    ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.var-dump') . '<p>';
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns HTML string data, the styled output of native php ' . $this->return_crnrstn_text_link('var_dump', 'PHP_ELLIPSE',CRNRSTN_RESOURCE_OPENSOURCE) . ' 
+                    of the provided <span class="crnrstn_general_post_code_copy">$data</span>.</p><br><br>
+                    ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.var-dump', '') . '<p>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
@@ -1678,12 +2108,14 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$data';
-                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE.  If <span class="crnrstn_general_post_code_copy">$tablet_is_mobile = TRUE</span> 
+                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE. If <span class="crnrstn_general_post_code_copy">$tablet_is_mobile = TRUE</span> 
                     and the User-Agent and HTTP headers indicate that the client is a tablet computer, TRUE will 
                     be returned.';
                     $tmp_param_def[0]['param_required'] = true;
                     $tmp_param_def[1]['param_name'] = '$string_output';
-                    $tmp_param_def[1]['param_definition'] = 'Passing in FALSE will execute ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.var-dump') . ' native <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.php.net/manual/en/function.var-dump', 'crnrstn_documentation_var_dump_php_native') . '" target="_blank">var_dump</a>.';
+                    $tmp_param_def[1]['param_definition'] = 'Passing in FALSE will execute native php ' . $this->return_crnrstn_text_link('var_dump', 'PHP_ELLIPSE',CRNRSTN_RESOURCE_OPENSOURCE) . '.</p>
+                    <br><br>
+                    ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.var-dump');
                     $tmp_param_def[1]['param_required'] = true;
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
 
@@ -1718,7 +2150,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $tmp_method_definition = $this->module_key . '(<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $tablet_is_mobile = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $magic_method = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $magic_method = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
@@ -1736,7 +2168,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$tablet_is_mobile';
-                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE.  If <span class="crnrstn_general_post_code_copy">$tablet_is_mobile = TRUE</span> 
+                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE. If <span class="crnrstn_general_post_code_copy">$tablet_is_mobile = TRUE</span> 
                     and the User-Agent and HTTP headers indicate that the client is a tablet computer, TRUE will 
                     be returned.';
                     $tmp_param_def[0]['param_required'] = false;
@@ -1803,7 +2235,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $tmp_method_definition = $this->module_key . '(<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $mobile_is_tablet = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $magic_method = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $magic_method = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
@@ -1821,7 +2253,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$mobile_is_tablet';
-                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE.  If <span class="crnrstn_general_post_code_copy">$mobile_is_tablet = TRUE</span> 
+                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE. If <span class="crnrstn_general_post_code_copy">$mobile_is_tablet = TRUE</span> 
                     and the User-Agent and HTTP headers indicate that the client is a mobile device, TRUE will 
                     be returned.';
                     $tmp_param_def[0]['param_required'] = false;
@@ -2043,6 +2475,11 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
+                case 'device_type':
+
+
 
                 break;
                 case 'set_mobile_custom':
@@ -2415,7 +2852,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                         // KEEP DESCRIPTION TEXT FROM RUNNING ON TOP OF THE BACKGROUND R PILLAR GRAPHIC
                         if($tmp_element_cnt <= 5 ){
 
-                            $tmp_inline_style =  'style="width:58%;"';
+                            $tmp_inline_style = 'style="width:58%;"';
 
                         }
 
@@ -2449,7 +2886,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                         }
 
                         $tmp_predefined_constants_html .= '<div class="crnrstn_resource_constant_demo_shell">
-                        <div class="crnrstn_resource_constant_nom"><span style="font-weight: normal;">' . $profile_ARRAY['INTEGER'] . '</span>&nbsp;&nbsp;&nbsp;' . $profile_ARRAY['STRING'] . '</div>                        
+                        <div class="crnrstn_resource_constant_nom"><span style="font-weight: normal;">' . $profile_ARRAY['INTEGER'] . '</span>&nbsp;&nbsp;&nbsp;' . $profile_ARRAY['STRING'] . '</div>
                         <div class="crnrstn_resource_constant_version"><p>' . $profile_ARRAY['TITLE'] . $tmp_version . '</p></div>
                         <div class="crnrstn_resource_constant_www">
                             <div class="crnrstn_resource_constant_www_source"><a href="#" target="_self" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'resource_constant_view_source\', \'' . $profile_ARRAY['STRING'] . '\');" target="_self">view source</a></div>

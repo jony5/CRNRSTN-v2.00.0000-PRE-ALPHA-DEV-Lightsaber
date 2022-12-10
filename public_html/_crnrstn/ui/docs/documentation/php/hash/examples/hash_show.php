@@ -12,4 +12,10 @@ $data_hashed = $oCRNRSTN->hash($data);
 echo $data .'<br><br>';
 echo $data_hashed;
 
+//
+// SERVER'S AVAILABLE HASH ALGORITHM :: DISCOVERY DEMONSTRATION
+$methods = $oCRNRSTN->openssl_get_cipher_methods();
+
+echo $oCRNRSTN->var_dump($methods);
+
 ?>

@@ -56,7 +56,8 @@ class crnrstn_multi_language_manager {
 	protected $oLogger;
     public $oCRNRSTN;
 
-    protected $country_iso_code = 'en';
+    protected $iso_language_html;
+    protected $iso_language_html_current;
     protected $lang_pref_serial_ARRAY = array();
     protected $lang_pref_data_ARRAY = array();
 
@@ -70,6 +71,10 @@ class crnrstn_multi_language_manager {
         $this->oCRNRSTN = $oCRNRSTN;
 
         //
+        // AVAILABLE LANGUAGES
+        $this->system_language_is_active_ARRAY = array('en');
+
+        //
         // INSTANTIATE LOGGER
         $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
         
@@ -77,12 +82,38 @@ class crnrstn_multi_language_manager {
 
 	public function return_lang_pref_data($data_element, $i){
 
+        if($data_element === NULL || $data_element === ''){
+
+            //error_log(__LINE__ . ' $data_element[' . $data_element . ']. [' . print_r($this->lang_pref_data_ARRAY, true) . ']');
+
+            $tmp_ARRAY = array();
+            $tmp_ARRAY[] = $this->lang_pref_data_ARRAY[$this->lang_pref_serial_ARRAY[$i]];
+
+            return $tmp_ARRAY;
+
+        }
+
+        if($data_element === CRNRSTN_RESOURCE_ALL){
+
+            //error_log(__LINE__ . ' $data_element[' . $data_element . ']. [' . print_r($this->lang_pref_data_ARRAY, true) . ']');
+
+            return $this->lang_pref_data_ARRAY;
+
+        }
+
+        //$this->lang_pref_data_ARRAY[$this->lang_pref_serial_ARRAY[$i]][$data_element]
+//        error_log(__LINE__ . ' $data_element[' . $data_element . ']. [' . print_r($this->lang_pref_data_ARRAY, true) . ']');
+//        exit();
+        //error_log(__LINE__ . ' $data_element[' . $data_element . ']. [' . print_r($this->lang_pref_data_ARRAY, true) . ']');
+
 	    return $this->lang_pref_data_ARRAY[$this->lang_pref_serial_ARRAY[$i]][$data_element];
 
     }
 
 	public function return_lang_pref_serial($index){
 
+        //
+        // BUILT THIS, BUT "AUTO-INCREMENT" WILL BE FINE
         return $this->lang_pref_serial_ARRAY[$index];
 
     }
@@ -95,7 +126,8 @@ class crnrstn_multi_language_manager {
 
 	private function load_language_preference($base, $region = null, $weighting = null){
 
-        $tmp_lang_pref_serialization = $this->oCRNRSTN->generate_new_key(10);
+        //$tmp_lang_pref_serialization = $this->oCRNRSTN->generate_new_key(10);
+        $tmp_lang_pref_serialization = count($this->lang_pref_data_ARRAY);
 
         $this->lang_pref_serial_ARRAY[] = $tmp_lang_pref_serialization;
 
@@ -2712,6 +2744,9 @@ class crnrstn_multi_language_manager {
 
 	public function consume_accept_language_data($header_accept_language){
 
+        //error_log(__LINE__ . ' multi lang $header_accept_language[' . $header_accept_language . '].');
+        //die();
+
 	    $tmp_len = strlen($header_accept_language);
 
         //
@@ -2721,7 +2756,7 @@ class crnrstn_multi_language_manager {
         $tmp_pos_dash = strpos($header_accept_language,'-');
         $tmp_pos_weight = strpos($header_accept_language,';q=');
 
-        if ($tmp_pos_comma !== false) {
+        if($tmp_pos_comma !== false){
 
             $tmp_lang_str_manip_00 = explode(',', $header_accept_language);
 
@@ -2733,18 +2768,19 @@ class crnrstn_multi_language_manager {
                 $tmp_pos_dash = strpos($value,'-');
                 $tmp_pos_weight = strpos($value,';q=');
 
-                if ($tmp_pos_dash !== false) {
+                if($tmp_pos_dash !== false){
 
-                    if ($tmp_pos_weight !== false) {
+                    if($tmp_pos_weight !== false){
+
                         //zh-CN;q=0.8
                         //de;q=0.7
                         //*;q=0.5
-
                         $tmp_lang_str_manip_02 = explode(';q=', $value);
 
                         $tmp_pos_dash02 = strpos($tmp_lang_str_manip_02[0],'-');
 
-                        if ($tmp_pos_dash02 !== false) {
+                        if($tmp_pos_dash02 !== false){
+
                             //zh-CN
                             $tmp_lang_str_manip_03 = explode('-', $tmp_lang_str_manip_02[0]);
 
@@ -2756,9 +2792,9 @@ class crnrstn_multi_language_manager {
                             $this->store_language_preference($tmp_base, $tmp_weight, 'weight');
 
                         }else{
+
                             //de;q=0.7
                             //*;q=0.5
-
                             $tmp_base = $tmp_lang_str_manip_02[0];
                             $tmp_weight = $tmp_lang_str_manip_02[1];
 
@@ -2767,6 +2803,7 @@ class crnrstn_multi_language_manager {
                         }
 
                     }else{
+
                         //fr-CH
                         $tmp_lang_str_manip_01 = explode('-', $value);
                         $tmp_base = $tmp_lang_str_manip_01[0];
@@ -2778,9 +2815,9 @@ class crnrstn_multi_language_manager {
 
                 }else{
 
-                    if ($tmp_pos_weight !== false) {
-                        // fr;q=0.9
+                    if($tmp_pos_weight !== false){
 
+                        // fr;q=0.9
                         $tmp_lang_str_manip_02 = explode(';q=', $value);
 
                         $tmp_base = $tmp_lang_str_manip_02[0];
@@ -2802,18 +2839,19 @@ class crnrstn_multi_language_manager {
 
         }else{
 
-            if ($tmp_pos_dash !== false) {
+            if($tmp_pos_dash !== false){
 
-                if ($tmp_pos_weight !== false) {
+                if($tmp_pos_weight !== false){
+
                     //zh-CN;q=0.8
                     //de;q=0.7
                     //*;q=0.5
-
                     $tmp_lang_str_manip_02 = explode(';q=', $header_accept_language);
 
                     $tmp_pos_dash02 = strpos($tmp_lang_str_manip_02[0],'-');
 
-                    if ($tmp_pos_dash02 !== false) {
+                    if($tmp_pos_dash02 !== false){
+
                         //zh-CN
                         $tmp_lang_str_manip_03 = explode('-', $tmp_lang_str_manip_02[0]);
 
@@ -2823,6 +2861,7 @@ class crnrstn_multi_language_manager {
                         $this->store_language_preference($tmp_base, $tmp_region, 'region');
 
                     }else{
+
                         //de;q=0.7
                         //*;q=0.5
 
@@ -2834,6 +2873,7 @@ class crnrstn_multi_language_manager {
                     }
 
                 }else{
+
                     //fr-CH
                     $tmp_lang_str_manip_01 = explode('-', $header_accept_language);
                     $tmp_base = $tmp_lang_str_manip_01[0];
@@ -2845,9 +2885,9 @@ class crnrstn_multi_language_manager {
 
             }else{
 
-                if ($tmp_pos_weight !== false) {
-                    // fr;q=0.9
+                if($tmp_pos_weight !== false){
 
+                    // fr;q=0.9
                     $tmp_lang_str_manip_02 = explode(';q=', $header_accept_language);
 
                     $tmp_base = $tmp_lang_str_manip_02[0];
@@ -2954,7 +2994,8 @@ class crnrstn_multi_language_manager {
 
                 }else{
 
-                    //error_log(__LINE__ . ' multi-lang [' . $header_accept_language . '] [' . $tmp_base . '][' . $tmp_region . '][' . $tmp_weight . ']');
+                    //error_log(__LINE__ . ' multi lang [' . $header_accept_language . '] [' . $tmp_base . '][' . $tmp_region . '][' . $tmp_weight . ']');
+                    //die();
                     $this->load_language_preference($tmp_base , $tmp_region , $tmp_weight);
 
                 }
@@ -2967,19 +3008,135 @@ class crnrstn_multi_language_manager {
 
         }
 
+        /*
+        $tmp_ARRAY[$i]['iso_639-1_2002>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i);
+        $tmp_ARRAY[$i]['iso_639-2_1998>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i);
+        $tmp_ARRAY[$i]['iso_639-3_2007>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i);
+
+        */
+
+        $this->oCRNRSTN->set_iso_language_profile($this->return_lang_pref_data(NULL, 0));
+
+    }
+
+    public function isset_iso_language_profile(){
+
+        $tmp_build_lang_profile = false;
+
+        if(!isset($this->lang_pref_data_ARRAY)){
+
+            //error_log(__LINE__ . ' lang data NOT SET');
+            $tmp_build_lang_profile = true;
+
+        }else{
+
+            if(sizeof($this->lang_pref_data_ARRAY) < 1 ){
+
+                $tmp_build_lang_profile = true;
+
+            }
+
+        }
+
+        if($tmp_build_lang_profile){
+
+            //
+            // SORRY THAT THIS FEELS BACKWARDS!
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+    public function iso_language_html(){
+
+        if(isset($this->iso_language_html_current)){
+
+            return $this->iso_language_html_current;
+
+        }
+
+        if(!$this->isset_iso_language_profile()){
+
+            //
+            // LOAD CLIENT HEADER DATA
+            $header_accept_language = $this->oCRNRSTN->return_client_header_value('Accept-Language');
+
+            $this->consume_accept_language_data($header_accept_language);
+
+        }
+
+        //
+        // FOR EACH OF THE CLIENT'S PREFERRED LANGUAGES, LOOP THROUGH THE
+        // AVAILABLE OPTIONS WITHIN CRNRSTN ::. IF THERE ARE NO MATCHES,
+        // RETURN A PREVIOUSLY SPECIFIED DEFAULT.
+        foreach($this->lang_pref_data_ARRAY as $index => $langchunk_ARRAY0){
+
+            if(isset($this->oCRNRSTN->iso_language_html_available_ARRAY[$langchunk_ARRAY0['iso_639-1_2002']])){
+
+                $this->iso_language_html_current = $langchunk_ARRAY0['iso_639-1_2002'];
+
+                return $langchunk_ARRAY0['iso_639-1_2002'];
+
+            }
+            
+        }
+
+        return $this->oCRNRSTN->iso_language_html_default;
+
+    }
+
+    public function iso_language_profile($lang_attribute, $index){
+
+        if(!$this->isset_iso_language_profile()){
+
+            $header_accept_language = $this->oCRNRSTN->return_client_header_value('Accept-Language');
+            $this->consume_accept_language_data($header_accept_language);
+
+        }
+
+        return $this->return_lang_pref_data($lang_attribute, $index);
+
+    }
+
+    public function iso_language_profile_count(){
+
+        if(!$this->isset_iso_language_profile()){
+
+            $header_accept_language = $this->oCRNRSTN->return_client_header_value('Accept-Language');
+
+            //error_log(__LINE__  .  ' multi lang [' . $header_accept_language . '].');
+            $this->consume_accept_language_data($header_accept_language);
+
+        }
+//
+//        error_log(__LINE__  .  ' multi lang [' . print_r($this->lang_pref_data_ARRAY, true) . '].');
+//
+        //die();
+        return sizeof($this->lang_pref_data_ARRAY);
+
     }
 
 	public function initialize_client_language_profile(){
-
-        $this->country_iso_code = $this->oCRNRSTN->country_iso_code();
 
         $header_language_attribute = $this->oCRNRSTN->return_client_header_value('Accept-Language');
 
         $this->consume_accept_language_data($header_language_attribute);
 
+        //$this->iso_language_html_current = $this->oCRNRSTN->iso_language_profile();
+        $this->iso_language_html_current = $this->oCRNRSTN->iso_language_profile();
+
+        //error_log(__LINE__ . ' multi lang iso_language_html_current[' . print_r($this->iso_language_html_current, true) . '].');
+        //die();
+
+        // EXTRACT FROM FORM
+        //$tmp_crnrstn_country_iso_code = $this->oCRNRSTN->get_http_resource('crnrstn_country_iso_code');
+
         //
         // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
+        //$this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
     }
 
@@ -2990,7 +3147,7 @@ class crnrstn_multi_language_manager {
         switch($message_key) {
             case 'TEXT_REDIRECTING_TO':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3006,7 +3163,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE_WELCOME':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3022,7 +3179,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE_DESCRIPTION':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3038,7 +3195,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE_DEMONSTRATION':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3054,7 +3211,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_DEMONSTRATION_DESCRIPTION':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3070,7 +3227,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TEXT_FILE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3086,7 +3243,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TEXT_SEE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3102,7 +3259,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE_RECENT_ACTIVITY':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3118,7 +3275,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_RECENT_ACTIVITY_DESCRIPTION':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3134,7 +3291,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_RECENT_ACTIVITY_CRICKETS_CHIRPING':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3150,7 +3307,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                         break;
@@ -3174,7 +3331,7 @@ photo album
             break;
             case 'DEFAULT_LANDING_TEXT_CHECK_OUT':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3190,7 +3347,7 @@ photo album
             break;
             case 'DEFAULT_LANDING_TEXT_PHOTO_ALBUM':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3206,7 +3363,7 @@ photo album
             break;
             case 'DEFAULT_LANDING_TEXT_ALL_RIGHTS':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3222,7 +3379,7 @@ photo album
             break;
             case 'DOCUMENTATION_MODULE_TOP_TEXT':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3238,7 +3395,7 @@ photo album
             break;
             case 'DOCUMENTATION_TITLE_RELATED_METHODS':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3254,7 +3411,7 @@ photo album
             break;
             case 'DOCUMENTATION_TITLE_RETURN_VALUE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3270,7 +3427,7 @@ photo album
             break;
             case 'DOCUMENTATION_TITLE_PARAMETER_DEFINITION':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3286,7 +3443,7 @@ photo album
             break;
             case 'DOCUMENTATION_TITLE_METHOD_DEFINITION':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3302,7 +3459,7 @@ photo album
             break;
             case 'DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3318,7 +3475,7 @@ photo album
             break;
             case 'DOCUMENTATION_BACKGROUND_COPY_TECH_SPECS':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3345,7 +3502,7 @@ photo album
             break;
             case 'DOCUMENTATION_EXAMPLE_TITLE_TXT':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3366,7 +3523,7 @@ photo album
             break;
             case 'DOCUMENTATION_BACKGROUND_COPY_NOTE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3387,7 +3544,7 @@ photo album
             break;
             case 'LNK_DOWNLOAD_TXT_FOOTER':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3403,7 +3560,7 @@ photo album
             break;
             case 'FOR_CONFIG_REFERENCE_PLEASE_SEE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3419,7 +3576,7 @@ photo album
             break;
             case 'FOR_REFERENCE_PLEASE_SEE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3435,7 +3592,7 @@ photo album
             break;
             case 'TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3451,7 +3608,7 @@ photo album
             break;
             case 'CLICK_HERE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3467,7 +3624,7 @@ photo album
             break;
             case 'TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3483,7 +3640,7 @@ photo album
             break;
             case 'PLEASE_ENTER_VALID_ENV_DETECTION':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3500,7 +3657,7 @@ environment within the configuration file.';
             break;
             case 'PLEASE_ENTER_A_CONFIG_SERIAL':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3516,7 +3673,7 @@ environment within the configuration file.';
             break;
             case 'SYSTEM_IMAGE_SYNC_ENTER_JPG_PNG':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3532,7 +3689,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_MENU':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3548,7 +3705,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_MENU':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3564,7 +3721,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_CLOSE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3580,7 +3737,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_CLOSE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3596,7 +3753,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_FULLSCREEN':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3612,7 +3769,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_FULLSCREEN':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3628,7 +3785,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_MINIMIZE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3644,7 +3801,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_MINIMIZE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3660,7 +3817,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_FIVEDEV':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                         break;
@@ -3676,7 +3833,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_FIVEDEV':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3692,7 +3849,7 @@ environment within the configuration file.';
             break;
             case 'FORM_LNK_TXT_EULA':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3708,7 +3865,7 @@ environment within the configuration file.';
             break;
             case 'CHKBX_TEXT_PROCESS_TO_BATCH':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3724,7 +3881,7 @@ environment within the configuration file.';
             break;
             case 'FORM_BUTTON_TEXT_CONNECT':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3740,7 +3897,7 @@ environment within the configuration file.';
             break;
             case 'FORM_LABEL_PASSWORD_OPTIONAL':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3756,7 +3913,7 @@ environment within the configuration file.';
             break;
             case 'FORM_LABEL_USERNAME':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3772,7 +3929,7 @@ environment within the configuration file.';
             break;
             case 'TEXT_PLACEHOLDER_CHAR_COUNT':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3787,7 +3944,7 @@ environment within the configuration file.';
             break;
             case 'BUTTON_TEXT_SUBMIT':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3803,7 +3960,7 @@ environment within the configuration file.';
             break;
             case 'BUTTON_TEXT_ADD':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3819,7 +3976,7 @@ environment within the configuration file.';
             break;
             case 'CRNRSTN_SESSION_INACTIVE_EXPIRE':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3835,7 +3992,7 @@ environment within the configuration file.';
             break;
             case 'EMAIL_REQUIRED':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3851,7 +4008,7 @@ environment within the configuration file.';
             break;
             case 'PASSWORD_REQUIRED':
 
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3866,7 +4023,7 @@ environment within the configuration file.';
 
             break;
             case 'INPUT_LABEL_PASSWORD':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                         break;
@@ -3881,7 +4038,7 @@ environment within the configuration file.';
 
             break;
             case 'INPUT_LABEL_EMAIL':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3896,7 +4053,7 @@ environment within the configuration file.';
 
             break;
             case 'BTN_TEXT_SIGN_IN':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                         break;
@@ -3911,7 +4068,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_PART1_NEED_TO':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                         break;
@@ -3926,7 +4083,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_PART2_CREATE_ACCOUNT':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3941,7 +4098,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_PART_x_OR':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3956,7 +4113,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_PART3_FORGET_PWD':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3971,7 +4128,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_YOUR_IP':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -3986,7 +4143,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_LOGIN_ATTEMPTS':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -4001,7 +4158,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_ATTEMPTS_REMAINING':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -4016,7 +4173,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_ALL_RIGHTS_PART1':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -4031,7 +4188,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_ALL_RIGHTS_PART2':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -4046,7 +4203,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_ALL_RIGHTS_PART_MIT':
-                switch($this->country_iso_code) {
+                switch($this->iso_language_html_current) {
                     case 'es':
 
                     break;
@@ -4066,8 +4223,6 @@ environment within the configuration file.';
         return NULL;
 
     }
-
-
 
     public function __destruct() {
 

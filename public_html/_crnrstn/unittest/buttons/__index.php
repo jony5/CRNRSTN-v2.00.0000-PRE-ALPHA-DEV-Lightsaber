@@ -368,7 +368,7 @@ openssl_error_return($openssl_err_queue_ARRAY,__LINE__, '--openssl_public_decryp
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $oCRNRSTN_USR->country_iso_code; ?>">
+<html lang="<?php echo $oCRNRSTN->iso_language_html(); ?>">
 <head>
 <title>CRNRSTN :: <?php echo $oCRNRSTN_USR->version_crnrstn(); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

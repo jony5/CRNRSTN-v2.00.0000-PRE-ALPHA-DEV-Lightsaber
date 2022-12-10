@@ -148,7 +148,7 @@ class crnrstn_wind_cloud_fire {
 
             $this->startTime = $this->oCRNRSTN_USR->return_micro_time();
 
-            $this->elapsedTime = $this->oCRNRSTN_USR->elapsed_delta_time_for('ELECTRUM_PERFORMANCE_CLIENT');
+            $this->elapsedTime = $this->oCRNRSTN_USR->elapsed_delta_time('ELECTRUM_PERFORMANCE_CLIENT');
 
             //
             // BATCH EXECUTION SERIALIZATION
@@ -2162,7 +2162,7 @@ class crnrstn_wind_cloud_fire {
                         $this->seeennd_it($execution_serial, $batch_serial);
 
                         $this->endTime = $this->oCRNRSTN_USR->return_micro_time();
-                        $this->elapsedTime = $this->oCRNRSTN_USR->elapsed_delta_time_for('ELECTRUM_PERFORMANCE_CLIENT');
+                        $this->elapsedTime = $this->oCRNRSTN_USR->elapsed_delta_time('ELECTRUM_PERFORMANCE_CLIENT');
 
                         //$this->elapsedTime = $this->elapsedTime + 12600000;
 

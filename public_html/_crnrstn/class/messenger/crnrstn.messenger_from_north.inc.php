@@ -4409,7 +4409,7 @@ class crnrstn_communications_css_standard{
 
         //
         // RETRIEVE URI PARAMETER
-        $tmp_css_validation_pattern = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_valptrn');
+        $tmp_css_validation_pattern = $this->oCRNRSTN_USR->extract_data_http('crnrstn_css_valptrn');
         $tmp_css_validation_pattern_LOWER = trim(strtolower($tmp_css_validation_pattern));
 
         if($tmp_css_validation_pattern_LOWER == 'return_all'){

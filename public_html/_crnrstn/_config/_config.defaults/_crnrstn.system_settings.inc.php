@@ -6,6 +6,17 @@ $tmp_crnrstn_settings_ARRAY[] = $tmp_str_settings;
 
 /*
 SYSTEM DEFAULTS TO SUPPORT ::
+
+======
+    public function salt($length = NULL, $chars = NULL){
+
+        $length = $this->salt_str_length;
+
+======
+country_iso_code
+Return the client detected language preferences for the current
+session. CRNRSTN :: will honor ISO 639-1:2002 ...by default <---???.
+======
 PAGE LOAD TTL = 2;
 this.max_xhr_retrys = 5;
 

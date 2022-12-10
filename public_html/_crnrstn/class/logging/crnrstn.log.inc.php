@@ -2872,7 +2872,7 @@ class crnrstn_log {
         $this->silo_key_profile = $log_silo_key_profile;
         $tmp_serial = self::$oCRNRSTN_n->generate_new_key(26);
         $this->watch_key = $this->transaction_time.$tmp_serial;
-        self::$oCRNRSTN_n->elapsed_delta_time_for($this->watch_key);
+        self::$oCRNRSTN_n->elapsed_delta_time($this->watch_key);
 
     }
 
@@ -2886,7 +2886,7 @@ class crnrstn_log {
 
             //
             // COMPARE OBJECT WATCH SERIALIZATION TO TTL AND DESTROY IF BEYOND TTL
-            if($oCRNRSTN_USR->elapsed_delta_time_for($this->watch_key) > (double) $ttl){
+            if($oCRNRSTN_USR->elapsed_delta_time($this->watch_key) > (double) $ttl){
 
                 $this->is_devoted_to_destruction = true;
                 $this->__destruct();

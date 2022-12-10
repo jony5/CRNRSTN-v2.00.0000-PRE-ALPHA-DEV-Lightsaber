@@ -126,8 +126,6 @@ class crnrstn_user{
 
     private static $lang_content_ARRAY = array();
 
-    public $country_iso_code = 'en';
-
     /*
 
     TYPE HINTS ::
@@ -154,8 +152,18 @@ class crnrstn_user{
         $this->oCRNRSTN_ENV = $oCRNRSTN_ENV;
 
         $this->starttime = $oCRNRSTN->starttime;
-        $this->env_key = $oCRNRSTN->get_server_env();
-        $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
+
+        if($this->oCRNRSTN->is_system_terminate_enabled()){
+
+            $this->env_key = CRNRSTN_RESOURCE_ALL;
+            $this->env_key_hash = $this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL);
+
+        }else{
+
+            $this->env_key = $oCRNRSTN->get_server_env();
+            $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
+
+        }
 
         $this->config_serial_hash = $this->oCRNRSTN_ENV->config_serial_hash;
 
@@ -1597,7 +1605,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                 //
                 // LOGIN SUCCESS PATHWAY
-                $tmp_form_handle = $this->extract_data_HTTP('crnrstn_pssdtl_packet', 'POST', true);
+                $tmp_form_handle = $this->extract_data_http('crnrstn_pssdtl_packet', 'POST', true);
                 switch($tmp_form_handle){
                     case 'signin':
 
@@ -1612,7 +1620,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
                         //
                         // VALIDATE CSS
-                        $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
+                        $raw_html_data = $this->extract_data_http('ugc_html', 'POST');
 
                         $tmp_validation_results_ARRAY = $this->validate_css($raw_html_data);
 
@@ -1750,10 +1758,10 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 //
 //            if($this->isset_http_param('crnrstn_l', 'GET')){
 //
-//                $tmp_req = $this->extract_data_HTTP('crnrstn_l', true);
-//                $tmp_mit = $this->extract_data_HTTP('crnrstn_mit');
-//                //$tmp_crnrstn_kivotos = $this->extract_data_HTTP('crnrstn_kivotos');
-//                $tmp_crnrstn_css_rtime = $this->extract_data_HTTP('crnrstn_css_rtime');
+//                $tmp_req = $this->extract_data_http('crnrstn_l', true);
+//                $tmp_mit = $this->extract_data_http('crnrstn_mit');
+//                //$tmp_crnrstn_kivotos = $this->extract_data_http('crnrstn_kivotos');
+//                $tmp_crnrstn_css_rtime = $this->extract_data_http('crnrstn_css_rtime');
 //
 //                if((strlen($tmp_mit) > 0) || (strlen($tmp_crnrstn_css_rtime) > 0)){
 //
@@ -1903,11 +1911,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function sync_device_detected(){
-
-        return $this->oCRNRSTN_ENV->sync_device_detected();
-
-    }
+//    public function sync_device_detected(){
+//
+//        return $this->oCRNRSTN_ENV->sync_device_detected();
+//
+//    }
 
     public function ui_module_alerts_sync(){
 //
@@ -5520,7 +5528,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function extract_data_HTTP($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
+    public function extract_data_http($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
 
         //
         // WE WILL STILL TAKE $_POST, $_GET, etc...ONLY NEED THIS FOR HTTP AT THE MOMENT.
@@ -5631,7 +5639,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     public function monitoring_delta_time_for($watchKey, $decimal = 8){
 
-        return $this->oCRNRSTN_ENV->monitoringDeltaTimeFor($watchKey, $decimal);
+        return $this->oCRNRSTN_ENV->elapsed_delta_time($watchKey, $decimal);
 
     }
 
@@ -6141,9 +6149,9 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function elapsed_delta_time_for($watchKey, $decimal = 8){
+    public function elapsed_delta_time($watch_key, $decimal = 8){
 
-        return $this->oCRNRSTN_ENV->monitoringDeltaTimeFor($watchKey, $decimal);
+        return $this->oCRNRSTN->elapsed_delta_time($watch_key, $decimal);
 
     }
 
@@ -6885,7 +6893,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     }
 
-    public function return_logPriorityPretty($logPriority, $format = 'TEXT'){
+    public function return_log_priority_pretty($logPriority, $format = 'TEXT'){
 
         $tmp_output_format = trim(strtoupper($format));
 
@@ -12103,8 +12111,8 @@ class crnrstn_user_auth{
         // crnrstn_auth_pwd
         /**
 
-        $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
-        $tmp_crnrstn_css_rtime = $this->extract_data_HTTP('css_rtime');
+        $raw_html_data = $this->extract_data_http('ugc_html', 'POST');
+        $tmp_crnrstn_css_rtime = $this->extract_data_http('css_rtime');
         if($this->isset_http_param('crnrstn_r', 'GET')){
 
          * return_admin_ARRAY

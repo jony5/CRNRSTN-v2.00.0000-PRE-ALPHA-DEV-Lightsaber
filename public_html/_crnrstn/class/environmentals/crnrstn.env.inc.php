@@ -79,7 +79,6 @@ class crnrstn_environment {
     public $oCOOKIE_MGR;
     public $oHTTP_MGR;
     public $oFINITE_EXPRESS;
-    //public $oCRNRSTN_LANG_MGR;
     public $oCRNRSTN_ASSET_MGR;
 
     private static $sess_env_param_ARRAY = array();
@@ -124,9 +123,21 @@ class crnrstn_environment {
     public function __construct($oCRNRSTN, $instanceType = NULL, $WORDPRESS_debug_mode = NULL) {
 
         $this->oCRNRSTN = $oCRNRSTN;
-        $this->env_key = $oCRNRSTN->get_server_env();
-        $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
+
+        if($this->oCRNRSTN->is_system_terminate_enabled()){
+
+            $this->env_key = CRNRSTN_RESOURCE_ALL;
+            $this->env_key_hash = $this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL);
+
+        }else{
+
+            $this->env_key = $oCRNRSTN->get_server_env();
+            $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
+
+        }
+
         $this->system_hash_algo = $oCRNRSTN->system_hash_algo();
+
         $this->starttime = $oCRNRSTN->starttime;
         self::$system_database_table_prefix = $oCRNRSTN->system_database_table_prefix;
         $this->oCRNRSTN_BITFLIP_MGR = $oCRNRSTN->oCRNRSTN_BITFLIP_MGR;
@@ -173,7 +184,7 @@ class crnrstn_environment {
         self::$config_serial = $oCRNRSTN->get_server_config_serial('raw');
         $this->oCRNRSTN_ASSET_MGR = $oCRNRSTN->oCRNRSTN_ASSET_MGR;
 
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this);
+        $this->oLogger = new crnrstn_logging(__CLASS__, $oCRNRSTN);
 
         //
         // TODO :: OBJECT INSTANTIATION REFACTORING TO SUPPORT PERSISTENCE OF STATE
@@ -182,6 +193,7 @@ class crnrstn_environment {
         //$this->oCOOKIE_MGR = new crnrstn_cookie_manager();
 
         $this->oHTTP_MGR = new crnrstn_http_manager($oCRNRSTN, $this);
+
         $this->oFINITE_EXPRESS = new finite_expression();
 
         // August 20, 2022 @ 0418 hrs
@@ -266,7 +278,7 @@ class crnrstn_environment {
                         //error_log(__LINE__ . ' env env_key=[' . $this->env_key . ']. die();');
 
                         if(!$this->oCRNRSTN_IPSECURITY_MGR->authorizeEnvAccess($this, $this->env_key_hash)){
-                            error_log(__LINE__ . ' env authorizeEnvAccess() DENINED ON env_key=[' . $this->env_key . ']. die();');
+                            error_log(__LINE__ . ' env authorizeEnvAccess() DENIED ON env_key=[' . $this->env_key . ']. die();');
 
                             die();
                             //
@@ -468,18 +480,6 @@ class crnrstn_environment {
 
     }
 
-    private function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN::RESOURCE'){
-
-        error_log(__LINE__ . ' env ' . __METHOD__ . ' die();');
-        die();
-
-        // $env_key = CRNRSTN_RESOURCE_ALL
-        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
-
-        return $tmp_dataset_prefix_str . $resource_key;
-
-    }
-
     public function return_openssl_digest_method(){
 
         return self::$openssl_digest_profile;
@@ -517,11 +517,11 @@ class crnrstn_environment {
 
     }
 
-    public function sync_device_detected(){
-
-        return $this->oHTTP_MGR->sync_device_detected();
-
-    }
+//    public function sync_device_detected(){
+//
+//        return $this->oHTTP_MGR->sync_device_detected();
+//
+//    }
 
 
 //    public function return_client_accept_language_array($header_accept_language){
@@ -901,7 +901,7 @@ class crnrstn_environment {
 
                 */
 
-                $tmp_lang_ARRAY = $this->oCRNRSTN->return_client_language_preference_profile();
+                $tmp_lang_ARRAY = $this->oCRNRSTN->return_language_iso_profile();
                 $tmp_lang_cnt = count($tmp_lang_ARRAY);
 
                 $tmp_lang_report = '';
@@ -1050,7 +1050,7 @@ RESPONSE RETURN RESOURCES CONSUMPTION
 
                 }
 
-                $tmp_lang_ARRAY = $this->oCRNRSTN->return_client_language_preference_profile();
+                $tmp_lang_ARRAY = $this->oCRNRSTN->return_language_iso_profile();
                 $tmp_lang_cnt = count($tmp_lang_ARRAY);
 
                 $tmp_lang_report = '';
@@ -1326,6 +1326,7 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
         if(!isset($this->oCRNRSTN_USR)){
 
             $tmp_user_class_file_path = $this->return_file_path_user_class();
+
             require($tmp_user_class_file_path);
 
             $this->oCRNRSTN_USR = new crnrstn_user($this->oCRNRSTN, $this);
@@ -4733,30 +4734,10 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
         
     }
     
-    public function monitoringDeltaTimeFor($watchKey, $decimal = 8){
-        
-        if(!isset(self::$m_starttime[$watchKey])){
+    public function elapsed_delta_time($watch_key, $decimal = 8){
 
-            self::$m_starttime[$watchKey] = $this->microtime_float();
-            $timediff = self::$m_starttime[$watchKey] - self::$m_starttime[$watchKey];
+        return $this->oCRNRSTN->elapsed_delta_time($watch_key, $decimal);
 
-            $len = $decimal * -1;
-
-            return substr($timediff,0, $len);
-
-            //return 0.0;
-
-        }else{
-
-            $timediff = $this->microtime_float() - self::$m_starttime[$watchKey];
-
-            $len = $decimal * -1;
-
-            return substr($timediff,0, $len);
-
-            //return substr($timediff,0,-8);
-
-        }
     }
     
     //
@@ -4860,12 +4841,6 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
     public function return_CRNRSTN_ASCII_ART($index = NULL){
 
         return $this->oCRNRSTN->return_CRNRSTN_ASCII_ART($index);
-
-    }
-
-    public function elapsed_delta_time_for($watchKey, $decimal = 8){
-
-        return $this->monitoringDeltaTimeFor($watchKey, $decimal);
 
     }
 
@@ -5699,7 +5674,7 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
     }
 
-    public function return_logPriorityPretty($logPriority, $format = 'TEXT'){
+    public function return_log_priority_pretty($logPriority, $format = 'TEXT'){
 
         $tmp_output_format = trim(strtoupper($format));
 
@@ -10601,13 +10576,13 @@ class crnrstn_logging_oprofile{
         //
         // CONSTANTS
         $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_TEXT');
 
         if($tmp_ISHTML){
 
             $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
-            $tmp_log_constant_HTML = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant, 'HTML');
+            $tmp_log_constant_HTML = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant, 'HTML');
             $tmp_crnrstn_trace_HTML = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_HTML');
 
         }
@@ -11594,14 +11569,14 @@ class crnrstn_logging_oprofile{
                             //
                             // CONSTANTS
                             $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                            $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+                            $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
                             $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_TEXT');
                             $crnrstn_phpmailer->Subject = 'Exception Notification from ' . $_SERVER['SERVER_NAME'] . ' via CRNRSTN ::';
 
                             if($tmp_isHTML){
 
                                 $tmp_php_trace_HTML = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'HTML');
-                                $tmp_log_constant_HTML = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant, 'HTML');
+                                $tmp_log_constant_HTML = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant, 'HTML');
                                 $tmp_crnrstn_trace_HTML = $this->oLog_output_manager->return_log_trace_output_str('EMAIL_HTML');
 
                             }
@@ -11851,7 +11826,7 @@ class crnrstn_logging_oprofile{
             //
             // CONSTANTS
             $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-            $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+            $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
             $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
             //$tmp_config_version_cnt = sizeof($config_data_ARRAY);
@@ -11975,7 +11950,7 @@ class crnrstn_logging_oprofile{
                 //
                 // CONSTANTS
                 $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
                 //$tmp_config_version_cnt = sizeof($config_data_ARRAY);
@@ -12008,7 +11983,7 @@ class crnrstn_logging_oprofile{
         //
         // CONSTANTS
         $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
         $tmp_log_output = $tmp_crnrstn_trace_TEXT . '
@@ -12030,7 +12005,7 @@ class crnrstn_logging_oprofile{
         //
         // CONSTANTS
         $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+        $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
         $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('SCREEN_TEXT', 74);
 
         $tmp_log_output = $tmp_crnrstn_trace_TEXT . '
@@ -12055,7 +12030,7 @@ class crnrstn_logging_oprofile{
                 //
                 // CONSTANTS
                 $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('FILE', 0);
 
                 $tmp_log_output = $tmp_crnrstn_trace_TEXT . '
@@ -12089,7 +12064,7 @@ class crnrstn_logging_oprofile{
                 //
                 // CONSTANTS
                 $tmp_php_trace_TEXT = $oCRNRSTN_n->return_PHP_exception_trace_pretty($exception_obj->getTraceAsString(), 'TEXT');
-                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_logPriorityPretty($syslog_constant);
+                $tmp_log_constant_TEXT = $oCRNRSTN_n->return_log_priority_pretty($syslog_constant);
                 $tmp_crnrstn_trace_TEXT = $this->oLog_output_manager->return_log_trace_output_str('ERROR_LOG', 0);
 
                 error_log($tmp_crnrstn_trace_TEXT);

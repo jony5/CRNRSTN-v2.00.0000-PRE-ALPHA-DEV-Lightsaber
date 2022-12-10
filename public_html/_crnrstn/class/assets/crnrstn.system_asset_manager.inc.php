@@ -8028,6 +8028,7 @@ class crnrstn_system_image_asset_manager {
 
     private function return_image_html_wrapped($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target, $tmp_asset_family, $tmp_output_mode, $asset_mapping_mode){
 
+        //error_log(__LINE__ . '  $tmp_filename[' . $tmp_filename . ']. $tmp_output_mode[' . $tmp_output_mode . ']  [' . CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_BASE64 . ']');
         $tmp_asset_mapping_is_active = false;
 
         if($asset_mapping_mode == CRNRSTN_ASSET_MAPPING || $asset_mapping_mode == CRNRSTN_ASSET_MAPPING_PROXY){
@@ -8184,6 +8185,8 @@ class crnrstn_system_image_asset_manager {
                 case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_UI_IMG_BASE64:
                 case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_UI_IMG_BASE64_PNG:
                 case CRNRSTN_ASSET_MODE_BASE64:
+
+                    $this->oCRNRSTN->error_log('Processing CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_ASSET_MODE_BASE64.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                     if($this->oCRNRSTN->is_system_terminate_enabled()){
 
@@ -8652,7 +8655,7 @@ class crnrstn_system_image_asset_manager {
 
                     //
                     // IMAGE OUT
-                    $this->oCRNRSTN->error_log(__LINE__ . ' asset mgr ASSET[' . $tmp_filename . ']. $asset_output_mode_ARRAY=[' . self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                    //$this->oCRNRSTN->error_log(__LINE__ . ' asset mgr ASSET[' . $tmp_filename . ']. $asset_output_mode_ARRAY=[' . self::$asset_output_mode_ARRAY[$tmp_asset_family][$tmp_filename] . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                     /*
                     [TUNNEL_ROUTING] THROUGH OUTPUT

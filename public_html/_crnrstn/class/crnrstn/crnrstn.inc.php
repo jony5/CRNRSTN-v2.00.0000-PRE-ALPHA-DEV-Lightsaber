@@ -72,8 +72,12 @@ class crnrstn {
     // THIS CAN BE MORE ROBUST (A PRETTY HTML DOCUMENT), BUT WE SHOULD HANDLE SOAP
     // (RESPONSES TO OTHER SERVERS), AS WELL...RIGHT? ERR HERE ARE SUPER LOW-LEVEL THO.
     public $destruct_output = '';
+    private static $system_terminate_set_jump_point;
     private static $system_termination_flag_ARRAY = array();
 
+    public $iso_language_html_default;
+    public $iso_language_html_available_ARRAY = array();
+    public $iso_profile_ARRAY = array();
     private static $lang_content_ARRAY = array();
     private static $sys_logging_profile_ARRAY = array();
     private static $sys_logging_meta_ARRAY = array();
@@ -228,7 +232,15 @@ class crnrstn {
 
         self::$CRNRSTN_debug_mode = $CRNRSTN_debug_mode;
 
-        //$this->system_ui_module_constants_ARRAY = array(CRNRSTN_UI_TAG_ANALYTICS, CRNRSTN_UI_TAG_ENGAGEMENT, CRNRSTN_ELECTRUM, CRNRSTN_UI_INTERACT, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_UI_INTERACT, CRNRSTN_UI_SOAP_DATA_TUNNEL);
+        //
+        // TODO :: OVERWRITE THIS DEFAULT DURING CONFIGURATION.
+        // THIS DEFAULT DOES NOT CHANGE. FOR THE "WRITABLE" HTML
+        // PAGE LANGUAGE, SEE $this->iso_language_html_current
+        // IN CLASS crnrstn_multi_language_manager
+        $this->iso_language_html_default = 'en';  // DOES NOT CHANGE
+        $this->iso_language_html_available_ARRAY = array('en' => 'en'); // WILL REFLECT OFFICIALLY SUPPORTED LANGUAGES...NOT A DIRECT MIRROR OF CONTENT
+//        $this->iso_language_html_default = 'ko';
+//        $this->iso_language_html_available_ARRAY = array('ko' => 'ko', 'es' => 'es', 'zh' => 'zh');
 
         //
         // INITIALIZE CRNRSTN :: CONFIGURATION MANAGER
@@ -519,7 +531,7 @@ class crnrstn {
             case 'GET':
 
 //                if($oCRNRSTN->isset_http_param('run', $_GET)){
-//                $tmp_run_command = $oCRNRSTN->extract_data_HTTP( 'run', $_GET);
+//                $tmp_run_command = $oCRNRSTN->extract_data_http( 'run', $_GET);
 
                 error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ' TIME TO DO IT. die();');
                 die();
@@ -866,7 +878,7 @@ class crnrstn {
 
     }
 
-    public function extract_data_HTTP($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
+    public function extract_data_http($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
 
         if(is_array($transport_protocol)){
 
@@ -1046,15 +1058,87 @@ class crnrstn {
 
     }
 
-    public function country_iso_code(){
+    public function iso_language_html(){
 
-        if(!is_object($this->oCRNRSTN_USR)){
+        error_log(__LINE__ . ' crnrstn GO TO oCRNRSTN_LANG_MGR->iso_language_html.');
+        return $this->oCRNRSTN_LANG_MGR->iso_language_html();
 
-            return 'en';
+    }
+
+    public function set_iso_language_profile($iso_profile_ARRAY){
+
+        /*
+        [Fri Dec 09 04:20:21.757619 2022] [:error] [pid 3020] [client 172.16.225.1:50540] 1051 crnrstn $iso_profile_ARRAY[Array
+        (
+            [locale_identifier] => en
+            [region_variant] => US
+            [factor_weighting] => 0.9
+            [iso_language_nomination] => English
+            [native_nomination] => English
+            [iso_639-1_2002] => en
+            [iso_639-2_1998] => eng
+            [iso_639-3_2007] => eng
+            [uri] => Array
+                (
+                    [0] => https://en.wikipedia.org/wiki/English_language
+                )
+
+        )
+        ].
+
+        */
+
+        //error_log(__LINE__ . '  crnrstn [' . print_r($iso_profile_ARRAY, true) . '].');
+        $this->iso_profile_ARRAY[0] = $iso_profile_ARRAY[0];
+
+    }
+
+    public function iso_language_profile($lang_attribute = 'iso_639-1_2002', $index = 0){
+
+        /*
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['locale_identifier'] = $tmp_base_lower;
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['region_variant'] = $region;
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['factor_weighting'] = $weighting;
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['iso_language_nomination'] = 'Abkhazian';
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['native_nomination'] = 'аҧсуа бызшәа, аҧсшәа';
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['iso_639-1_2002'] = 'ab';
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['iso_639-2_1998'] = 'abk';
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['iso_639-3_2007'] = 'abk';
+        $this->lang_pref_data_ARRAY[$tmp_lang_pref_serialization]['uri'][] = 'https://en.wikipedia.org/wiki/Abkhazian_language';
+
+        iso_language_profile(CRNRSTN_RESOURCE_ALL)
+        iso_language_profile(NULL)
+        */
+
+        if($lang_attribute === NULL && $index == 0){
+
+            return $this->iso_profile_ARRAY;
 
         }
 
-        return $this->oCRNRSTN_USR->country_iso_code;
+        if($lang_attribute === CRNRSTN_RESOURCE_ALL){
+
+            return $this->oCRNRSTN_LANG_MGR->iso_language_profile($lang_attribute, $index);
+
+        }
+
+        $lang_attribute_lower = strtolower($lang_attribute);
+
+        if($index == 0 && isset($this->iso_profile_ARRAY[0][$lang_attribute]) && $lang_attribute !== NULL){
+
+            return $this->iso_profile_ARRAY[0][$lang_attribute_lower];
+
+        }
+
+        //
+        // GO TO MULTI LANGUAGE MANAGER FOR FULL MULTI-LANG ISO PROFILE. CRNRSTN :: ONLY HOLDS THE WINNER.
+        return $this->oCRNRSTN_LANG_MGR->iso_language_profile($lang_attribute_lower, $index);
+
+    }
+
+    public function iso_language_profile_count(){
+
+        return $this->oCRNRSTN_LANG_MGR->iso_language_profile_count();
 
     }
 
@@ -1252,7 +1336,13 @@ class crnrstn {
 
     }
 
-    public function return_prefixed_ddo_key($data_key, $env_key, $data_type_family = 'CRNRSTN::RESOURCE'){
+    public function return_prefixed_ddo_key($data_key, $env_key = NULL, $data_type_family = 'CRNRSTN::RESOURCE'){
+
+        if(!isset($env_key)){
+
+            $env_key = $this->get_server_env();
+
+        }
 
         $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
 
@@ -3171,7 +3261,8 @@ class crnrstn {
 
                 if(strlen($key) > 0){
 
-                    $this->system_terminate();
+                    $this->error_log(__LINE__ . ' crnrstn [terminate]. [' . __METHOD__ . ']');
+                    $this->system_terminate('detection');
 
                     exit();
 
@@ -3733,9 +3824,10 @@ class crnrstn {
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
         //
+        //'iso_language_profile_count' => 'DISABLED', 'iso_language_profile' => 'DISABLED',
         // 'is_mobile_custom'=> 'DISABLED', 'set_mobile_custom'=> 'DISABLED', 'return_system_image' => 'DISABLED',
         // 'print_r' => 'DISABLED', 'print_r_str' => 'DISABLED', 'get_resource' => 'DISABLED','add_system_resource' => 'DISABLED',
-        $tmp_ARRAY = array('config_add_administration' => 'DISABLED',
+        $tmp_ARRAY = array('return_system_image'=>'DISABLED', 'hash' => 'DISABLED','config_add_administration' => 'DISABLED',
             'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED', 'config_add_seo_analytics' => 'DISABLED',
             'config_add_seo_engagement' => 'DISABLED', 'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
             'config_grant_exclusive_access' => 'DISABLED', 'config_include_encryption' => 'DISABLED',
@@ -3830,6 +3922,7 @@ class crnrstn {
                     foreach($this->terminate_configuration_error_ARRAY as $key => $msg){
 
                         if(strlen($key) > 0){
+                            error_log(__LINE__ . ' crnrstn [terminate].');
 
                             $this->system_terminate($auth_type);
 
@@ -3849,10 +3942,18 @@ class crnrstn {
 
     public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
 
-        //$this->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $soap_tunnel=[' . $soap_tunnel . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-        //error_log(__LINE__ . '[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $soap_tunnel=[' . $data_auth_request . '].');
+        //$this->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $data_auth_request=[' . $data_auth_request . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
+        //error_log(__LINE__ . ' crnrstn  [' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $data_auth_request=[' . $data_auth_request . '].');
         // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $env_key = NULL, $soap_tunnel = false){
-        return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $data_auth_request);
+        if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
+
+            return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, self::$server_env_key_ARRAY[$this->config_serial_hash], $data_auth_request);
+
+        }
+
+        $this->error_log('Environmental detection has failed. Cannot retrieve resource.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
+
+        return '';
 
         // was here ->  return $this->oCRNRSTN_USR->get_resource($data_key, $index, $data_type_family, $soap_tunnel);   //<--  previous call
         //                  return $this->oCRNRSTN_ENV->retrieve_data_value($data_key, $index, $data_type_family, $this->env_key, $soap_tunnel);
@@ -4149,8 +4250,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                             $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
                             $theme_profile = $this->random_theme_constant;
 
-                            $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                            error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 541] in the CRNRSTN :: config file.');
+                            $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 268] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                            error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 268] in the CRNRSTN :: config file.');
 
                         break 2;
 
@@ -4168,9 +4269,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     $this->config_init_images_format_default();
                     $this->config_init_http(CRNRSTN_RESOURCE_ALL, '', CRNRSTN_ROOT);
 
-                    // FYI,...COULD ALSO CALL: $this->spool_destruct_output($str);
                     $tmp_str = '<!DOCTYPE html>
-<html lang="' . $this->country_iso_code() . '">
+<html lang="' . $this->iso_language_html() . '">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
@@ -4225,7 +4325,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     // OR MAYBE DRIVE DEVELOPMENT FORWARD ON INTO ADMIN MANAGEMENT (ACCOUNT CREATION) AND PUSH THE WEB
                     // TEMPLATE FOR SOMETHING ADMIN-NEWY-ISH BACK TO "HERE" FOR CONSISTENCY.
                     $tmp_str = '<!DOCTYPE html>
-<html lang="' . $this->country_iso_code() . '">
+<html lang="' . $this->iso_language_html() . '">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>CRNRSTN :: v' . $this->version_crnrstn() . '</title>
@@ -6178,14 +6278,16 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // WE SHOULD HAVE THIS VALUE BY NOW. IF EMPTY, HOOOSTON...VE HAF PROBLEM!
-            if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == ''){
+            if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == '' && !isset(self::$system_terminate_set_jump_point)){
 
+                self::$system_terminate_set_jump_point = __CLASS__ . '::' . __METHOD__;
+
+                $this->terminate_configuration_error_ARRAY['FAILED_ENVIRONMENTAL_DETECTION'] = 'ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].';
                 $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
                 //throw new Exception('CRNRSTN :: Initialization Error :: Environmental detection failed to match a sufficient number of $_SERVER parameters to the servers configuration and therefore DID NOT successfully initialize CRNRSTN :: on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ')');
-
                 $this->system_terminate('detection');
 
                 exit();
@@ -6302,11 +6404,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function return_client_header_value($header_attribute, $index = 0){
 
+        if(!isset($this->oCRNRSTN_ENV)){
+
+            //
+            // LOW-LEVEL ERROR WILL RUN THIS (E.G. CONFIGURATION ERROR)
+            $this->oCRNRSTN_ENV = new crnrstn_environment($this);
+
+            $this->oCRNRSTN_USR = $this->oCRNRSTN_ENV->return_ENV_oCRNRSTN_USR();
+
+        }
+
         return $this->oCRNRSTN_ENV->return_client_header_value($header_attribute, $index);
 
     }
 
-    public function return_client_language_preference_profile($output_type = 'array'){
+    public function return_language_iso_profile($output_type = 'array'){
 
         /*
         $tmp_ARRAY[$i]['locale_identifier>'] = $oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i);
@@ -6321,7 +6433,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         */
 
-        return $this->oCRNRSTN_TRM->ssdtl_response_http_language_preference('array');
+        return $this->oCRNRSTN_TRM->ssdtl_response_http_language_preference($output_type);
 
     }
 
@@ -6457,19 +6569,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function elapsed_delta_time_for($watchKey, $decimal = 8){
+    public function elapsed_delta_time($watch_key, $decimal = 8){
 
-        return $this->monitoringDeltaTimeFor($watchKey, $decimal);
+        if(!isset(self::$m_starttime[$watch_key])){
 
-    }
+            self::$m_starttime[$watch_key] = $this->microtime_float();
 
-    public function monitoringDeltaTimeFor($watchKey, $decimal = 8){
-
-        if(!isset(self::$m_starttime[$watchKey])){
-
-            self::$m_starttime[$watchKey] = $this->microtime_float();
-
-            $timediff = self::$m_starttime[$watchKey] - self::$m_starttime[$watchKey];
+            $timediff = self::$m_starttime[$watch_key] - self::$m_starttime[$watch_key];
 
             $len = $decimal * -1;
 
@@ -6479,7 +6585,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }else{
 
-            $timediff = $this->microtime_float() - self::$m_starttime[$watchKey];
+            $timediff = $this->microtime_float() - self::$m_starttime[$watch_key];
 
             $len = $decimal * -1;
 
@@ -6499,12 +6605,14 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                 $tmp_output = $this->elapsed($delta_secs, $microsecs);
 
-                break;
+            break;
             case 'ELAPSED_VERBOSE':
 
+                //
+                // SOURCE :: http://php.net/manual/en/function.time.php
                 $tmp_output = $this->elapsed_verbose($delta_secs, $microsecs);
 
-                break;
+            break;
 
         }
 
@@ -6912,7 +7020,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_logPriorityPretty($logPriority, $format = 'TEXT'){
+    public function return_log_priority_pretty($log_priority, $format = 'TEXT'){
 
         $tmp_output_format = trim(strtoupper($format));
 
@@ -6920,11 +7028,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //<span>LOG_EMERG</span><span>:: system is unusable.</span>
 
-            switch($logPriority){
+            switch($log_priority){
                 case 0:
 
                     $tmp_priority_const = 'LOG_EMERG';
-                    $tmp_priority_msg = ':: system is unusable. ';
+                    $tmp_priority_msg = ':: system is unusable.';
 
                 break;
                 case 1:
@@ -6982,7 +7090,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }else{
 
-            switch($logPriority){
+            switch($log_priority){
                 case 0:
 
                     $tmp_priority = 'LOG_EMERG :: system is unusable. ';
@@ -8195,8 +8303,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         $tmp_ARRAY['INTEGER'][] = $int_const;
                         $tmp_ARRAY['STRING'][] = $this->return_resource_profile($int_const, 'STRING');
 
-
-
                     }
 
                 }
@@ -8715,6 +8821,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     public function get_http_resource($param_name, $transport_protocol = NULL){
 
+        //
+        // THIS METHOD HAS BEEN REPLACED...RIGHT? Thursday, December 8, 2022 @ 2011 hrs
+//        error_log(__LINE__.' []. die();');
+//        die();
+
         if(!isset($transport_protocol)){
 
             $tmp_variables_order = $this->ini_get('variables_order');
@@ -8761,14 +8872,14 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     }
 
-                    break;
+                break;
                 default:
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
                     $this->error_log('Unable to determine HTTP protocol from provided value of [' . $transport_protocol . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                    break;
+                break;
 
             }
 
@@ -8781,6 +8892,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function ini_get($ini_setting){
 
         $this->ini_set_ARRAY[$ini_setting] = ini_get($ini_setting);
+
+        self::$oCRNRSTN_CONFIG_MGR->input_data_value($this->ini_set_ARRAY[$ini_setting], $ini_setting, NULL, 0);
 
         return $this->ini_set_ARRAY[$ini_setting];
 
@@ -8810,6 +8923,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             }else{
 
+                //
+                // SOURCE :: https://www.php.net/manual/en/function.is-bool.php
+                // AUTHOR :: Julio Marchi :: https://www.php.net/manual/en/function.is-bool.php#124179
                 return $this->boolean_conversion($val);
 
             }
@@ -9164,7 +9280,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function create_pwd_hash_for_storage($user_submitted_password){
+    public function create_pwd_hash_for_storage($user_submitted_password, $cost = 9){
 
         /**
          * CONSIDER RUNNING benchmark_bestPasswordHashCost() AND THEN UPDATE
@@ -9176,7 +9292,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
          */
 
         $options = [
-            'cost' => 9,
+            'cost' => $cost,
         ];
 
         return password_hash($user_submitted_password, PASSWORD_BCRYPT, $options);
@@ -9346,7 +9462,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     // AUTHOR :: stanislav dot eckert at vizson dot de :: https://www.php.net/manual/en/function.highlight-string.php#118550
     public function highlight_text($text, $theme_profile = NULL){
 
-        switch ($theme_profile){
+        switch($theme_profile){
             case CRNRSTN_UI_GLASS_DARK_COPY:
             case CRNRSTN_UI_GLASS_LIGHT_COPY:
             case CRNRSTN_UI_TERMINAL:

@@ -243,7 +243,7 @@ class crnrstn_view_state_controller {
 
                     //
                     // VALIDATE CSS
-                    $raw_html_data = $this->oCRNRSTN_USR->extract_data_HTTP('ugc_html', 'POST');
+                    $raw_html_data = $this->oCRNRSTN_USR->extract_data_http('ugc_html', 'POST');
 
                     $tmp_validation_results = $this->oCRNRSTN_USR->validate_css($raw_html_data);
 
@@ -302,12 +302,12 @@ class crnrstn_view_state_controller {
                         if($this->oCRNRSTN_USR->isset_http_param('crnrstn_l', 'GET')){
                             //error_log(__LINE__ . ' vsc isset_http_param time...');
 
-                            $tmp_req = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
-                            $tmp_mit = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_mit', 'GET', true);           // GETS YOU LICENSE...ALWAYS
-                            $tmp_crnrstn_r = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_r', 'GET', true);       // INDICATION OF REDIRECT
-                            $tmp_crnrstn_kivotos = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_kivotos');        // YOU ARE SECURELY IN THE BOX..? OR USE SESSION...
-                            $tmp_crnrstn_css_rtime = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_rtime');    // INDICATION OF CSS VALIDATOR RESULTS OUT
-                            $tmp_crnrstn_css_valptrn = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_valptrn');// INDICATION OF CSS VALIDATOR ALGORITHM OUT
+                            $tmp_req = $this->oCRNRSTN_USR->extract_data_http('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
+                            $tmp_mit = $this->oCRNRSTN_USR->extract_data_http('crnrstn_mit', 'GET', true);           // GETS YOU LICENSE...ALWAYS
+                            $tmp_crnrstn_r = $this->oCRNRSTN_USR->extract_data_http('crnrstn_r', 'GET', true);       // INDICATION OF REDIRECT
+                            $tmp_crnrstn_kivotos = $this->oCRNRSTN_USR->extract_data_http('crnrstn_kivotos');        // YOU ARE SECURELY IN THE BOX..? OR USE SESSION...
+                            $tmp_crnrstn_css_rtime = $this->oCRNRSTN_USR->extract_data_http('crnrstn_css_rtime');    // INDICATION OF CSS VALIDATOR RESULTS OUT
+                            $tmp_crnrstn_css_valptrn = $this->oCRNRSTN_USR->extract_data_http('crnrstn_css_valptrn');// INDICATION OF CSS VALIDATOR ALGORITHM OUT
 
                             //error_log(__LINE__ . ' ui snap DIE() $tmp_req=' . $tmp_req);
                             //die();
@@ -465,12 +465,12 @@ class crnrstn_view_state_controller {
 
                     if($this->oCRNRSTN_USR->isset_http_param('crnrstn_l', 'GET')){
 
-                        $tmp_req = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
-                        $tmp_mit = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_mit', 'GET');                 // GETS YOU LICENSE...ALWAYS
+                        $tmp_req = $this->oCRNRSTN_USR->extract_data_http('crnrstn_l', 'GET', true);             // GETS YOU IN THE DOOR
+                        $tmp_mit = $this->oCRNRSTN_USR->extract_data_http('crnrstn_mit', 'GET');                 // GETS YOU LICENSE...ALWAYS
 
                         if($this->oCRNRSTN_USR->isset_http_param('crnrstn_r', 'GET')) {
 
-                            $tmp_crnrstn_r = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_r', 'GET', true);       // INDICATION OF REDIRECT
+                            $tmp_crnrstn_r = $this->oCRNRSTN_USR->extract_data_http('crnrstn_r', 'GET', true);       // INDICATION OF REDIRECT
 
                         }else{
 
@@ -478,9 +478,9 @@ class crnrstn_view_state_controller {
 
                         }
 
-                        $tmp_crnrstn_kivotos = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_kivotos');        // YOU ARE SECURELY IN THE BOX..? OR USE SESSION...
-                        $tmp_crnrstn_css_rtime = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_rtime');    // INDICATION OF CSS VALIDATOR RESULTS OUT
-                        $tmp_crnrstn_css_valptrn = $this->oCRNRSTN_USR->extract_data_HTTP('crnrstn_css_valptrn');// INDICATION OF CSS VALIDATOR ALGORITHM OUT
+                        $tmp_crnrstn_kivotos = $this->oCRNRSTN_USR->extract_data_http('crnrstn_kivotos');        // YOU ARE SECURELY IN THE BOX..? OR USE SESSION...
+                        $tmp_crnrstn_css_rtime = $this->oCRNRSTN_USR->extract_data_http('crnrstn_css_rtime');    // INDICATION OF CSS VALIDATOR RESULTS OUT
+                        $tmp_crnrstn_css_valptrn = $this->oCRNRSTN_USR->extract_data_http('crnrstn_css_valptrn');// INDICATION OF CSS VALIDATOR ALGORITHM OUT
 
                         //error_log(__LINE__ . ' ui snap DIE() $tmp_req=' . $tmp_req);
                         //die();
@@ -705,7 +705,7 @@ class crnrstn_view_state_controller {
     //
     //                            //
     //                            // VALIDATE CSS
-    //                            $raw_html_data = $this->extract_data_HTTP('ugc_html', 'POST');
+    //                            $raw_html_data = $this->extract_data_http('ugc_html', 'POST');
     //
     //                            $tmp_validation_results = $this->validate_css($raw_html_data);
     //                            error_log(__LINE__ . ' user POST CSS $tmp_validation_results cnt = '.strlen($tmp_validation_results));

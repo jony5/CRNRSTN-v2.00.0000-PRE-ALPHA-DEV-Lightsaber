@@ -152,7 +152,7 @@ switch($channel_constant[0]){
         $tmp_http_root = $this->oCRNRSTN_USR->current_location();
 
         $tmp_str = '<!DOCTYPE html>
-        <html lang="' . $this->oCRNRSTN_USR->country_iso_code . '">
+        <html lang="' . $this->oCRNRSTN->iso_language_html() . '">
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             ' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON') . '

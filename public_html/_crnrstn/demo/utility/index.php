@@ -49,7 +49,7 @@ $oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo $oCRNRSTN->country_iso_code(); ?>">
+<html lang="<?php echo $oCRNRSTN->iso_language_profile(); ?>">
 <head>
     <title>CRNRSTN :: <?php echo $oCRNRSTN->version_crnrstn(); ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

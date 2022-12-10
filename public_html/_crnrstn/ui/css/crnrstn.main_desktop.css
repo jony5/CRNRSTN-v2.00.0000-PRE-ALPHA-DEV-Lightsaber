@@ -143,6 +143,9 @@
 .crnrstn_documentation_param_definition_param_description   { float: left; }
 .crnrstn_documentation_related_method                       { padding: 0 0 5px 0; }
 .crnrstn_documentation_related_method a                     { text-decoration: none; color:#0066CC; }
+
+.crnrstn_documentation_section_demo_copy                    { font-size: 15px; font-family: Courier New, Courier, monospace; padding:0 0 20px 0; margin:0; line-height:18px; overflow-wrap: break-word;}
+
 .crnrstn_predefined_constant_demo_shell                     { padding: 0 0 70px 0;}
 .crnrstn_predefined_constant_title h2                       { font-size: 25px; font-weight: bold; margin-bottom:0; line-height: 55px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
 .crnrstn_predefined_constant_title h3                       { font-size: 24px; font-weight: bold; margin-bottom:0; line-height: 35px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }

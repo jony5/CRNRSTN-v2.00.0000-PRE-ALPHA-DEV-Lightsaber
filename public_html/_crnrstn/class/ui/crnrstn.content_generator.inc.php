@@ -207,14 +207,14 @@ class crnrstn_content_generator {
 
                         if($this->oCRNRSTN->isset_http_superglobal('GET')){
 
-                            $tmp_encrypt = $this->oCRNRSTN->extract_data_HTTP('crnrstn_pssdtl_packet_ENCRYPTED', 'POST');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN->extract_data_HTTP('crnrstn_pssdtl_packet', 'POST'));
+                            $tmp_encrypt = $this->oCRNRSTN->extract_data_http('crnrstn_pssdtl_packet_ENCRYPTED', 'POST');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN->extract_data_http('crnrstn_pssdtl_packet', 'POST'));
                             //error_log('154 gen - encode=>packet=' . $tmp_ipacket);
 
                         }else{
 
-                            $tmp_encrypt = $this->oCRNRSTN->extract_data_HTTP('crnrstn_pssdtl_packet_ENCRYPTED');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN->extract_data_HTTP('crnrstn_pssdtl_packet'));
+                            $tmp_encrypt = $this->oCRNRSTN->extract_data_http('crnrstn_pssdtl_packet_ENCRYPTED');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN->extract_data_http('crnrstn_pssdtl_packet'));
                             //error_log('160 gen - packet=' . $tmp_ipacket);
                         }
 
@@ -512,14 +512,14 @@ class crnrstn_content_generator {
 
                         if($this->oCRNRSTN->isset_http_superglobal('POST')){
 
-                            $tmp_encrypt = $this->oCRNRSTN->extract_data_HTTP('crnrstn_pssdtl_packet_ENCRYPTED', 'POST');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN->extract_data_HTTP('crnrstn_pssdtl_packet', 'POST'));
+                            $tmp_encrypt = $this->oCRNRSTN->extract_data_http('crnrstn_pssdtl_packet_ENCRYPTED', 'POST');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN->extract_data_http('crnrstn_pssdtl_packet', 'POST'));
                             //error_log('154 gen - encode=>packet=' . $tmp_ipacket);
 
                         }else{
 
-                            $tmp_encrypt = $this->oCRNRSTN->extract_data_HTTP('crnrstn_pssdtl_packet_ENCRYPTED');
-                            $tmp_ipacket = urlencode($this->oCRNRSTN->extract_data_HTTP('crnrstn_pssdtl_packet'));
+                            $tmp_encrypt = $this->oCRNRSTN->extract_data_http('crnrstn_pssdtl_packet_ENCRYPTED');
+                            $tmp_ipacket = urlencode($this->oCRNRSTN->extract_data_http('crnrstn_pssdtl_packet'));
                             //error_log('160 gen - packet=' . $tmp_ipacket);
                         }
 
@@ -1896,65 +1896,70 @@ class crnrstn_content_generator {
 
                                 $tmp_related_methods = '';
                                 $tmp_related_methods_size = sizeof($val);
-                                for($ii = 0; $ii < $tmp_related_methods_size; $ii++){
 
-                                    if($ii == $tmp_related_methods_size - 1){
+                                if($tmp_related_methods_size > 0){
 
-                                        $tmp_related_methods .= '<div class="crnrstn_documentation_related_method" style="padding-bottom: 0;"><a href="#" onclick="oCRNRSTN_JS.related_link_text_click(\'' . $val[$ii] . '\');">' . $val[$ii] . '</a></div>
+                                    for($ii = 0; $ii < $tmp_related_methods_size; $ii++){
+
+                                        if($ii == $tmp_related_methods_size - 1){
+
+                                            $tmp_related_methods .= '<div class="crnrstn_documentation_related_method" style="padding-bottom: 0;"><a href="#" onclick="oCRNRSTN_JS.related_link_text_click(\'' . $val[$ii] . '\');">' . $val[$ii] . '</a></div>
                     ';
 
-                                    }else{
+                                        }else{
 
-                                        $tmp_related_methods .= '<div class="crnrstn_documentation_related_method"><a href="#" onclick="oCRNRSTN_JS.related_link_text_click(\'' . $val[$ii] . '\');">' . $val[$ii] . '</a></div>
+                                            $tmp_related_methods .= '<div class="crnrstn_documentation_related_method"><a href="#" onclick="oCRNRSTN_JS.related_link_text_click(\'' . $val[$ii] . '\');">' . $val[$ii] . '</a></div>
                     ';
+
+                                        }
 
                                     }
 
-                                }
-
-                                $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
+                                    $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 
-                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
-                        <div class="crnrstn_documentation_dyn_content_module_border">
-                            <div class="crnrstn_hidden_void">
-                                ' . $tmp_html_top_link . '
-                                <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
-                                <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
-                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
-                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+                                    <div class="crnrstn_documentation_dyn_content_module_border_rel">
+                                        <div class="crnrstn_documentation_dyn_content_module_border">
+                                            <div class="crnrstn_hidden_void">
+                                                ' . $tmp_html_top_link . '
+                                                <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
+                                                <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
                                     
-                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
-                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                                        ' . $tmp_html_top_link . '
-                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
-                                        <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
+                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
+                                        <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
+                                        
+                                            <div class="crnrstn_documentation_dyn_content_module_bg_rel">
+                                                    
+                                                <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
+                                               
+                                                    <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
+                                                        ' . $tmp_html_top_link . '
+                                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
+                                                        <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
+                
+                                                    </div>
+                                                    
+                                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
+                                                
+                                                    <div class="crnrstn_hidden_void">
+                                                        ' . $tmp_html_top_link . '
+                                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
+                                                        <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
+                                                    
+                                                    </div>
+                                                    
+                                                </div>
+                                            
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>';
 
-                                    </div>
-                                    
-                                    <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                
-                                    <div class="crnrstn_hidden_void">
-                                        ' . $tmp_html_top_link . '
-                                        <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
-                                        <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
-                                    
-                                    </div>
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>';
+                                }
 
                             break;
                             case 'EXAMPLE_CONTENT':
@@ -2120,7 +2125,7 @@ class crnrstn_content_generator {
 //
 //                                        */
 //
-//                                        $tmp_lang_ARRAY = $this->oCRNRSTN->return_client_language_preference_profile();
+//                                        $tmp_lang_ARRAY = $this->oCRNRSTN->return_language_iso_profile();
 //                                        $tmp_lang_cnt = count($tmp_lang_ARRAY);
 //
 //                                        $tmp_lang_report = 'Accept-Language: ';

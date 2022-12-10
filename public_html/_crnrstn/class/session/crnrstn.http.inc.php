@@ -80,14 +80,18 @@ class crnrstn_http_manager {
     public $response_header_attribute_ARRAY = array();
     
     public $crnrstn_ssdtla_enabled = false;
+    public $country_iso_code = 'en';
 
     public function __construct($oCRNRSTN, $oCRNRSTN_ENV) {
+
+        error_log(__LINE__. ' http mgr HERE.');
 
         $this->oCRNRSTN = $oCRNRSTN;
         $this->oCRNRSTN_ENV = $oCRNRSTN_ENV;
         $this->oCRNRSTN_USR = $oCRNRSTN_ENV->return_oCRNRSTN_USR();
 
         $this->response_header_attribute_ARRAY = $oCRNRSTN_ENV->response_header_attribute_ARRAY;
+        error_log(__LINE__. ' http mgr HERE.');
 
         self::$relevant_header_fields_ARRAY = array('Accept', 'Accept-Charset', 'Accept-Datetime', 'Accept-Encoding', 'Accept-Language',
         'Authorization', 'Cache-Control', 'Connection', 'Content-Encoding', 'Content-Length', 'Content-MD5', 'Content-Type', 'Cookie',
@@ -99,12 +103,15 @@ class crnrstn_http_manager {
             $this->is_SSL = true;
 
         }
+        error_log(__LINE__. ' http mgr HERE.');
 
 	    //
         // LOAD CLIENT HEADERS
 	    $this->http_headers_ARRAY = $this->getHeaders();
         $this->http_headers_string = $this->getHeaders('string');
-        
+
+        error_log(__LINE__. ' http mgr HERE.');
+
 	    //
         // INITIALIZE CLIENT PROFILE
         $this->load_client_profile();
@@ -351,17 +358,19 @@ class crnrstn_http_manager {
         // DETECT APPROPRIATE CHANNEL AND SYNC SESSION
         if($this->is_mobile()){
 
-            return true;
+            return CRNRSTN_CHANNEL_MOBILE;
 
         }else{
 
             if($this->is_tablet()){
 
-                return true;
+                return CRNRSTN_CHANNEL_TABLET;
 
             }else{
 
-                return $this->set_desktop();
+                $this->set_desktop();
+
+                return CRNRSTN_CHANNEL_DESKTOP;
 
             }
 
@@ -682,7 +691,6 @@ class crnrstn_http_manager {
 
         $tmp_str_out = $this->http_data_services_response();
 
-
         //
         // CRNRSTN :: CONSOLE DASHBOARD PORTAL ENTRY POINT
         //$tmp_html = $this->user_request_listener();
@@ -728,10 +736,10 @@ class crnrstn_http_manager {
         if($this->issetParam($_GET,'crnrstn_bst')){
 
             $tmp_tracking_status = $this->oCRNRSTN_ENV->data_decrypt($this->extractData($_GET,'crnrstn_bst', true), CRNRSTN_ENCRYPT_TUNNEL, true);
-            $tmp_social_media_key = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_smk'), CRNRSTN_ENCRYPT_TUNNEL, true);
-            $tmp_social_id = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_sid'), CRNRSTN_ENCRYPT_TUNNEL, true);
-            $tmp_stream_key = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_sk'), CRNRSTN_ENCRYPT_TUNNEL, true);
-            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_HTTP('crnrstn_r'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_social_media_key = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_http('crnrstn_smk'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_social_id = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_http('crnrstn_sid'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_stream_key = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_http('crnrstn_sk'), CRNRSTN_ENCRYPT_TUNNEL, true);
+            $tmp_uri = $this->oCRNRSTN_ENV->data_decrypt($this->extract_data_http('crnrstn_r'), CRNRSTN_ENCRYPT_TUNNEL, true);
 
             //error_log(__LINE__ . ' user sticky[' . $tmp_tracking_status . '][' . $this->oCRNRSTN_ENV->data_decrypt(urldecode($tmp_uri), CRNRSTN_ENCRYPT_TUNNEL, true) . '][' . $tmp_social_media_key . '][' . $tmp_social_id . '][' . $tmp_stream_key . ']');
 
@@ -1032,7 +1040,7 @@ class crnrstn_http_manager {
         $tmp_date_lastmod = date('D, j M Y G:i:s T');
 
         $tmp_array = array();
-        $tmp_array[] = 'Content-Language: ' . $this->oCRNRSTN->country_iso_code();
+        $tmp_array[] = 'Content-Language: ' . $this->oCRNRSTN->iso_language_profile();
         $tmp_array[] = 'Content-Type: text/html; charset=UTF-8';
         $tmp_array[] = 'Date: ' . $tmp_date;
         $tmp_array[] = 'Expires: ' . $tmp_date_expire;
@@ -1492,7 +1500,7 @@ class crnrstn_http_manager {
 
     private function init_channel(){
 
-        $channel_selected_ARRAY = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN->system_output_channel_constants);
+        $channel_selected_ARRAY = $this->oCRNRSTN->return_set_bits($this->oCRNRSTN->system_output_channel_constants);
         $tmp_sel_cnt = count($channel_selected_ARRAY);
 
         //
@@ -1502,7 +1510,6 @@ class crnrstn_http_manager {
             //
             // SET (OR RESET) THIS DATA. THERE SHOULD ALWAYS AND ONLY BE ONE.
             $tmp_bit = $this->sync_device_detected();
-            //error_log(__LINE__ . ' http $tmp_bit=' . print_r($tmp_bit, true));
 
             $this->oCRNRSTN_USR->device_type_bit = $tmp_bit;
 
@@ -1789,10 +1796,6 @@ class crnrstn_http_manager {
 
         }
 
-        //
-        // IF NEITHER MOBILE NOR TABLET, THEN DESKTOP.
-        $this->set_desktop();
-
         return false;
 
     }
@@ -1896,8 +1899,6 @@ class crnrstn_http_manager {
             }
 
         }
-
-        $this->set_desktop();
 
         return false;
 
