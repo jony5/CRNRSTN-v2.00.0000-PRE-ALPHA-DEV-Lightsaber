@@ -2724,7 +2724,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     where this method can be called using <span class="crnrstn_general_post_code_copy">$this</span> 
                     notation. The resource will be added during the initialization and configuration of C<span class="the_R_in_crnrstn">R</span>NRSTN ::. 
                     This will produce a globally accessible and environmentally specific system resource for permanent 
-                    and immediate availability to the entire application.';
+                    and immediate availability.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
