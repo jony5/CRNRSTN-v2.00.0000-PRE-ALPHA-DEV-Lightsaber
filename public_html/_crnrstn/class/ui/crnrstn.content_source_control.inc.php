@@ -863,8 +863,8 @@ class crnrstn_content_source_controller {
                     // RETURN VALUE
                     $tmp_str = 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled 
                     Data Object (DDO) key. The DDO key is the pointer to the storage location in memory for this data.
-                    This won\'t be useful, and it can be disregarded until additional methods which will use this value 
-                    can be documented.<br><br>
+                    This key won\'t be useful at present, so it can be completely disregarded...and this,...until additional methods 
+                    which will need this value can be documented.<br><br>
                     
                     Lower-level data storage and meta reporting controls (e.g. get data type, get data size,...etc.) 
                     will be accessible using the DDO key with some soon-to-be-documented methods. When C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
@@ -932,10 +932,10 @@ class crnrstn_content_source_controller {
 
                     $tmp_caution_note = 'To overwrite or update a value, an integer must be provided for <span class="crnrstn_general_post_code_copy">$index</span>.';
                     $tmp_param_def[4]['param_name'] = '$index';
-                    $tmp_param_def[4]['param_definition'] = 'An iterator to allow any &quot;record&quot; on any &quot;row&quot; 
-                    to be retrieved or updated. All method calls with the same <span class="crnrstn_general_post_code_copy">$data_key</span> 
+                    $tmp_param_def[4]['param_definition'] = 'An iterator to allow any value at any queue position to be 
+                    retrieved or updated. All method calls with the same <span class="crnrstn_general_post_code_copy">$data_key</span> 
                     and <span class="crnrstn_general_post_code_copy">$data_type_family</span> will queue the data, and 
-                    it will not overwrite. To overwrite or update a value, an integer must be provided as index.</p>
+                    they will not overwrite. To overwrite or update a value, an integer must be provided.</p>
                     
                     ' . $this->return_crnrstn_caution_note($tmp_caution_note) . '
 
@@ -1288,10 +1288,10 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $tmp_caution_note = 'To overwrite or update a value, an integer must be provided for <span class="crnrstn_general_post_code_copy">$index</span>.';
 
                     $tmp_param_def[1]['param_name'] = '$index';
-                    $tmp_param_def[1]['param_definition'] = 'An iterator to allow any &quot;record&quot; on any &quot;row&quot; 
-                    to be retrieved or updated. All calls to ' . $this->return_crnrstn_text_link('add_system_resource') . ' 
+                    $tmp_param_def[1]['param_definition'] = 'An iterator to allow any value at any queue position to be 
+                    retrieved or updated. All calls to ' . $this->return_crnrstn_text_link('add_system_resource') . ' 
                     with the same <span class="crnrstn_general_post_code_copy">$data_key</span> and <span class="crnrstn_general_post_code_copy">$data_type_family</span> 
-                    will queue the data; it will not overwrite. To overwrite or update a value, an integer must be provided as index.</p>
+                    will queue the data; they will not overwrite. To overwrite or update a value, an integer must be provided.</p>
                     
                     ' . $this->return_crnrstn_caution_note($tmp_caution_note) . '
 
@@ -2715,12 +2715,16 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $index, $default_ttl = 60){    private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
-                    //
+                    //public_html/_crnrstn/_config/config.system_resource.secure
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Add an environmentally specific and globally accessible 
-                    system resource during the initialization and configuration of C<span class="the_R_in_crnrstn">R</span>NRSTN ::.';
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: has a 
+                    special configuration file within the directory <span class="crnrstn_general_post_code_copy">/_crnrstn/_config/config.system_resource.secure</span>
+                    where this method can be called using <span class="crnrstn_general_post_code_copy">$this</span> 
+                    notation. The resource will be added during the initialization and configuration of C<span class="the_R_in_crnrstn">R</span>NRSTN ::. 
+                    This will produce a globally accessible and environmentally specific system resource for permanent 
+                    and immediate availability to the entire application.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
@@ -2743,17 +2747,19 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     //
                     // RETURN VALUE
                     $tmp_str = 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled 
-                    Data Object (DDO) key. The DDO key is the pointer to the storage location in memory for this data.
-                    This won\'t be useful, and it can be disregarded until additional methods which will use this value 
-                    can be documented.<br><br>
+                    Data Object (DDO) key.<br><br>
                     
+                    The DDO key is the pointer to the storage location in memory for this data.  This won\'t be useful, 
+                    and it can be disregarded until additional methods which will use this value can be documented. 
                     Lower-level data storage and meta reporting controls (e.g. get data type, get data size,...etc.) 
-                    will be accessible using the DDO key with some soon-to-be-documented methods. When C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
-                    retrieves this data (see ' . $this->return_crnrstn_text_link('get_resource') . '),
-                    the DDO key will (internally) allow for direct access to the storage location of the data. The hash is 
-                    derived...in part...from the provided <span class="crnrstn_general_post_code_copy">$data_key</span>
-                    and <span class="crnrstn_general_post_code_copy">$data_type_family</span>. Therefore the same 
-                    two (2) values will need to be provided to ' . $this->return_crnrstn_text_link('get_resource') . ' 
+                    will be accessible using the DDO key.<br><br>
+                    
+                    When C<span class="the_R_in_crnrstn">R</span>NRSTN :: retrieves this data (see ' . $this->return_crnrstn_text_link('get_resource') . '),
+                    the DDO key allows for direct access to the storage location of the data. When these lower level 
+                    methods are documented, this direct access will become standard issue for top tier performance. The 
+                    hash is derived...in part...from the provided <span class="crnrstn_general_post_code_copy">$data_key</span>
+                    and <span class="crnrstn_general_post_code_copy">$data_type_family</span>. Therefore, without DDO 
+                    driven access, the same two (2) values will need to be provided to ' . $this->return_crnrstn_text_link('get_resource') . ' 
                     in order to extract the associated data. A built-in iterator is available to support data updates 
                     and retrieval in n+1 use-case situations where the same <span class="crnrstn_general_post_code_copy">$data_key</span>
                     and <span class="crnrstn_general_post_code_copy">$data_type_family</span> are used repeatedly.</p>
@@ -2824,10 +2830,10 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     $tmp_caution_note = 'To overwrite or update a value, an integer must be provided for <span class="crnrstn_general_post_code_copy">$index</span>.';
                     $tmp_param_def[5]['param_name'] = '$index';
-                    $tmp_param_def[5]['param_definition'] = 'An iterator to allow any &quot;record&quot; on any &quot;row&quot; 
-                    to be retrieved or updated. All method calls with the same <span class="crnrstn_general_post_code_copy">$data_key</span> 
+                    $tmp_param_def[5]['param_definition'] = 'An iterator to allow any value at any queue position to be 
+                    retrieved or updated. All method calls with the same <span class="crnrstn_general_post_code_copy">$data_key</span> 
                     and <span class="crnrstn_general_post_code_copy">$data_type_family</span> will queue the data, and 
-                    it will not overwrite. To overwrite or update a value, an integer must be provided as index.</p>
+                    they will not overwrite. To overwrite or update a value, an integer must be provided.</p>
                     
                     ' . $this->return_crnrstn_caution_note($tmp_caution_note) . '
 
