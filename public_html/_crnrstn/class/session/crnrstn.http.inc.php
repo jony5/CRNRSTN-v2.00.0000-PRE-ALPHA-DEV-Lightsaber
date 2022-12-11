@@ -84,14 +84,11 @@ class crnrstn_http_manager {
 
     public function __construct($oCRNRSTN, $oCRNRSTN_ENV) {
 
-        error_log(__LINE__. ' http mgr HERE.');
-
         $this->oCRNRSTN = $oCRNRSTN;
         $this->oCRNRSTN_ENV = $oCRNRSTN_ENV;
         $this->oCRNRSTN_USR = $oCRNRSTN_ENV->return_oCRNRSTN_USR();
 
         $this->response_header_attribute_ARRAY = $oCRNRSTN_ENV->response_header_attribute_ARRAY;
-        error_log(__LINE__. ' http mgr HERE.');
 
         self::$relevant_header_fields_ARRAY = array('Accept', 'Accept-Charset', 'Accept-Datetime', 'Accept-Encoding', 'Accept-Language',
         'Authorization', 'Cache-Control', 'Connection', 'Content-Encoding', 'Content-Length', 'Content-MD5', 'Content-Type', 'Cookie',
@@ -103,14 +100,11 @@ class crnrstn_http_manager {
             $this->is_SSL = true;
 
         }
-        error_log(__LINE__. ' http mgr HERE.');
 
 	    //
         // LOAD CLIENT HEADERS
 	    $this->http_headers_ARRAY = $this->getHeaders();
         $this->http_headers_string = $this->getHeaders('string');
-
-        error_log(__LINE__. ' http mgr HERE.');
 
 	    //
         // INITIALIZE CLIENT PROFILE
