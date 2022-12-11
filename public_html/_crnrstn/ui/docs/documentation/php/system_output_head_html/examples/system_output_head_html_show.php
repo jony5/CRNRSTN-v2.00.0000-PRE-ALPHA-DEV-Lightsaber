@@ -7,7 +7,7 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 //
 // PASS TRUE TO SPOOL JQUERY UI TO BE OUTPUTTED LATER
-// INTO THE HTML <HEAD> VIA system_output_head_html()
+// INTO THE HTML <HEAD> VIA system_output_head_html().
 $oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, true);
 
 ?>

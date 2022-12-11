@@ -654,7 +654,7 @@ class crnrstn_system_image_asset_manager {
             // HAS THIS RESOURCE BEEN SPOOLED?
             if(!isset($this->framework_resource_ARRAY[$resource_constant])){
 
-                $tmp_resource_const_profile_ARRAY = $this->oCRNRSTN->return_resource_profile($resource_constant);
+                $tmp_resource_const_profile_ARRAY = $this->oCRNRSTN->return_int_const_profile($resource_constant);
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
@@ -820,12 +820,12 @@ class crnrstn_system_image_asset_manager {
         $tmp_cache = $this->oCRNRSTN->resource_filecache_version($tmp_filepath);
         $tmp_file_extension = pathinfo($tmp_filepath, PATHINFO_EXTENSION);
 
-        $tmp_resource_meta_ARRAY = $this->oCRNRSTN->return_resource_profile($resource_constant);
+        $tmp_resource_meta_ARRAY = $this->oCRNRSTN->return_int_const_profile($resource_constant);
 
         $tmp_dependency_str = '';
         if(isset($resource_dependency_constant)){
 
-            $tmp_resource_support_meta_ARRAY = $this->oCRNRSTN->return_resource_profile($resource_dependency_constant);
+            $tmp_resource_support_meta_ARRAY = $this->oCRNRSTN->return_int_const_profile($resource_dependency_constant);
 
             if(isset($tmp_resource_support_meta_ARRAY['TITLE'])){
 
@@ -1685,7 +1685,7 @@ class crnrstn_system_image_asset_manager {
                             // IF $tmp_spool_asset_for_footer_html = true;
                             $this->oCRNRSTN->flag_built_head_resource($const);
 
-                            $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+                            $tmp_ARRAY = $this->oCRNRSTN->return_int_const_profile($const);
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
@@ -1732,7 +1732,7 @@ class crnrstn_system_image_asset_manager {
                             // IF $tmp_spool_asset_for_footer_html = true;
                             $this->oCRNRSTN->flag_built_head_resource($const);
 
-                            $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+                            $tmp_ARRAY = $this->oCRNRSTN->return_int_const_profile($const);
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
@@ -1803,7 +1803,7 @@ class crnrstn_system_image_asset_manager {
 
                             */
 
-                            $tmp_ARRAY = $this->oCRNRSTN->return_resource_profile($const);
+                            $tmp_ARRAY = $this->oCRNRSTN->return_int_const_profile($const);
 
                             if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 

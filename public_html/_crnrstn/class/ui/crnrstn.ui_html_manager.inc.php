@@ -75,9 +75,9 @@ class crnrstn_ui_html_manager {
 
 	}
 
-    public function return_resource_profile($resource_constant){
+    public function return_int_const_profile($resource_constant){
 
-        return $this->oCRNRSTN_UI_ASSEMBLER->return_resource_profile($resource_constant);
+        return $this->oCRNRSTN_UI_ASSEMBLER->return_int_const_profile($resource_constant);
 
     }
 
@@ -406,7 +406,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         }
 
-	    $tmp_resource_constant = $this->oCRNRSTN->return_resource_profile($tmp_string_constant_ARRAY[1], 'DESCRIPTION');
+	    $tmp_resource_constant = $this->oCRNRSTN->return_int_const_profile($tmp_string_constant_ARRAY[1], 'DESCRIPTION');
 
 //        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 //

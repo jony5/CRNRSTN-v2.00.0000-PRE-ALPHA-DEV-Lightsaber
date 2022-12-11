@@ -57,7 +57,7 @@ _crnrstn/class/crnrstn/crnrstn.constants_load.inc.php
     @define('DEFINE NEW CONSTANT HERE', (int) crnrstn_constants_init('DEFINE NEW CONSTANT HERE'));
 
 _crnrstn/class/ui/crnrstn.content_source_control.inc.php
-    private function return_resource_profile($resource_constant)
+    private function return_int_const_profile($resource_constant)
     public function return_integer_constant_profiles($module_key)
 
 _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [FOR ADDING FRAMEWORK JS/CSS RESOURCE]

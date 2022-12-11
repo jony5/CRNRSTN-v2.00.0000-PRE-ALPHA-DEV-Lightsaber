@@ -2,7 +2,6 @@
 /*
 // J5
 // Code is Poetry */
-
 if($this->oCRNRSTN->is_tablet(true)){
 
     $tmp_html_out .= 'YAY. I am TABLET! (...but, I also could be mobile.)<br><br>';
@@ -17,4 +16,3 @@ if(!$this->oCRNRSTN->is_tablet()){
     $tmp_html_out .= 'Well, I surely am not TABLET.';
 
 }
-

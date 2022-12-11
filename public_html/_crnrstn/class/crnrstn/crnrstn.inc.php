@@ -72,7 +72,6 @@ class crnrstn {
     // THIS CAN BE MORE ROBUST (A PRETTY HTML DOCUMENT), BUT WE SHOULD HANDLE SOAP
     // (RESPONSES TO OTHER SERVERS), AS WELL...RIGHT? ERR HERE ARE SUPER LOW-LEVEL THO.
     public $destruct_output = '';
-    private static $system_terminate_set_jump_point;
     private static $system_termination_flag_ARRAY = array();
 
     public $iso_language_html_default;
@@ -3824,10 +3823,10 @@ class crnrstn {
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
         //
-        //'iso_language_profile_count' => 'DISABLED', 'iso_language_profile' => 'DISABLED',
+        // 'iso_language_profile_count' => 'DISABLED', 'iso_language_profile' => 'DISABLED','hash' => 'DISABLED',
         // 'is_mobile_custom'=> 'DISABLED', 'set_mobile_custom'=> 'DISABLED', 'return_system_image' => 'DISABLED',
         // 'print_r' => 'DISABLED', 'print_r_str' => 'DISABLED', 'get_resource' => 'DISABLED','add_system_resource' => 'DISABLED',
-        $tmp_ARRAY = array('return_system_image'=>'DISABLED', 'hash' => 'DISABLED','config_add_administration' => 'DISABLED',
+        $tmp_ARRAY = array('return_system_image'=>'DISABLED', 'config_add_administration' => 'DISABLED',
             'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED', 'config_add_seo_analytics' => 'DISABLED',
             'config_add_seo_engagement' => 'DISABLED', 'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
             'config_grant_exclusive_access' => 'DISABLED', 'config_include_encryption' => 'DISABLED',
@@ -6276,11 +6275,21 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             }
 
+            if($this->is_system_terminate_enabled()){
+
+                if($output_format == 'hash'){
+
+                    return $this->hash(CRNRSTN_RESOURCE_ALL);
+
+                }
+
+                return CRNRSTN_RESOURCE_ALL;
+
+            }
+
             //
             // WE SHOULD HAVE THIS VALUE BY NOW. IF EMPTY, HOOOSTON...VE HAF PROBLEM!
-            if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == '' && !isset(self::$system_terminate_set_jump_point)){
-
-                self::$system_terminate_set_jump_point = __CLASS__ . '::' . __METHOD__;
+            if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == ''){
 
                 $this->terminate_configuration_error_ARRAY['FAILED_ENVIRONMENTAL_DETECTION'] = 'ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].';
                 $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
@@ -7741,7 +7750,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
-        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($data, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_profile]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_profile]['highlight.html'] . ';">';
+        $tmp_str_out .= '<div id="crnstn_print_r_source_' . $tmp_hash . '" style="font-size:1px; color:' . $this->theme_attributes_ARRAY[$theme_profile]['stage.canvas.background-color'] . '; line-height:0; width:1px; height:1px; overflow:hidden;">' . nl2br(print_r($data, true)) . '</div><div></div><pre id="crnstn_print_r_display_' . $tmp_hash . '" class="crnrstn_theme_' . $this->theme_attributes_ARRAY[$theme_profile]['NOM_STRING'] . '" style="color:' . $this->theme_attributes_ARRAY[$theme_profile]['highlight.html'] . '; line-height:19.5px;">';
         //$tmp_str_out .= print_r($output, true);
         $tmp_str_out .= $output;
 
@@ -8267,7 +8276,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function return_resource_profile($resource_constant, $attribute = 'ARRAY'){
+    public function return_int_const_profile($resource_constant, $attribute = 'ARRAY'){
 
         /*
         [Tue Nov 22 18:33:14.786202 2022] [:error] [pid 49942] [client 172.16.225.1:55559]
@@ -8284,7 +8293,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         */
 
-        return $this->oCRNRSTN_CS_CONTROLLER->return_resource_profile($resource_constant, $attribute);
+        return $this->oCRNRSTN_CS_CONTROLLER->return_int_const_profile($resource_constant, $attribute);
 
     }
 
@@ -8301,7 +8310,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                     if(is_integer($int_const)){
 
                         $tmp_ARRAY['INTEGER'][] = $int_const;
-                        $tmp_ARRAY['STRING'][] = $this->return_resource_profile($int_const, 'STRING');
+                        $tmp_ARRAY['STRING'][] = $this->return_int_const_profile($int_const, 'STRING');
 
                     }
 
@@ -8322,7 +8331,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             $tmp_ARRAY['INTEGER'] = $int_constant;
 
-            $tmp_ARRAY['STRING'] = $this->return_resource_profile($int_constant, 'STRING');
+            $tmp_ARRAY['STRING'] = $this->return_int_const_profile($int_constant, 'STRING');
 
         }
 
@@ -10365,9 +10374,9 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     }
 
-    public function openssl_get_cipher_methods(){
+    public function openssl_get_cipher_methods($exclude_weak = true, $exclude_ecb = true){
 
-        return $this->oCRNRSTN_USR->openssl_get_cipher_methods();
+        return $this->oCRNRSTN_ENV->openssl_get_cipher_methods($exclude_weak, $exclude_ecb);
 
     }
 

@@ -73,9 +73,9 @@ class crnrstn_content_generator {
 
 	}
 
-    public function return_resource_profile($resource_constant){
+    public function return_int_const_profile($resource_constant){
 
-        return $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->return_resource_profile($resource_constant);
+        return $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->return_int_const_profile($resource_constant);
 
     }
 

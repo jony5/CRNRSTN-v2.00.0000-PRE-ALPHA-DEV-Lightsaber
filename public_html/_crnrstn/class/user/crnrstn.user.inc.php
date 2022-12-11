@@ -152,18 +152,8 @@ class crnrstn_user{
         $this->oCRNRSTN_ENV = $oCRNRSTN_ENV;
 
         $this->starttime = $oCRNRSTN->starttime;
-
-        if($this->oCRNRSTN->is_system_terminate_enabled()){
-
-            $this->env_key = CRNRSTN_RESOURCE_ALL;
-            $this->env_key_hash = $this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL);
-
-        }else{
-
-            $this->env_key = $oCRNRSTN->get_server_env();
-            $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
-
-        }
+        $this->env_key = $oCRNRSTN->get_server_env();
+        $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
 
         $this->config_serial_hash = $this->oCRNRSTN_ENV->config_serial_hash;
 

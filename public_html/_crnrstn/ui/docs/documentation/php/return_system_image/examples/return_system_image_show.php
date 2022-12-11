@@ -5,7 +5,7 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-$oCRNRSTN->grant_permissions_fwrite();
+//$oCRNRSTN->grant_permissions_fwrite();
 
 //
 // A QUICK CHECK ON THE FLIPPED BIT FOR TABLET.

@@ -2,7 +2,6 @@
 /*
 // J5
 // Code is Poetry */
-
 $data = "The quick brown fox jumped over the lazy dog.";
 
 //

@@ -2,7 +2,6 @@
 /*
 // J5
 // Code is Poetry */
-
 if($this->oCRNRSTN->is_mobile()){
 
     $tmp_html_out .= 'YAY. I am MOBILE!<br><br>';
@@ -26,4 +25,3 @@ if(!$this->oCRNRSTN->is_mobile(true)){
     $tmp_html_out .= 'Well, I am neither TABLET nor MOBILE.';
 
 }
-

@@ -2,7 +2,6 @@
 /*
 // J5
 // Code is Poetry */
-
 $fruit = array('apple', 'orange', 'tomato');
 $veggies = NULL;
 

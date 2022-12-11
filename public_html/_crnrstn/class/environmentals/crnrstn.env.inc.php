@@ -123,19 +123,8 @@ class crnrstn_environment {
     public function __construct($oCRNRSTN, $instanceType = NULL, $WORDPRESS_debug_mode = NULL) {
 
         $this->oCRNRSTN = $oCRNRSTN;
-
-        if($this->oCRNRSTN->is_system_terminate_enabled()){
-
-            $this->env_key = CRNRSTN_RESOURCE_ALL;
-            $this->env_key_hash = $this->oCRNRSTN->hash(CRNRSTN_RESOURCE_ALL);
-
-        }else{
-
-            $this->env_key = $oCRNRSTN->get_server_env();
-            $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
-
-        }
-
+        $this->env_key = $oCRNRSTN->get_server_env();
+        $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
         $this->system_hash_algo = $oCRNRSTN->system_hash_algo();
 
         $this->starttime = $oCRNRSTN->starttime;
@@ -4696,27 +4685,38 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
     /**
     * @see http://php.net/manual/en/function.openssl-encrypt.php
+    * @see https://www.php.net/manual/en/function.openssl-get-cipher-methods.php
     */
-    public function openssl_get_cipher_methods(){
+    public function openssl_get_cipher_methods($exclude_weak, $exclude_ecb){
+
         $ciphers             = openssl_get_cipher_methods();
         $ciphers_and_aliases = openssl_get_cipher_methods(true);
         $cipher_aliases      = array_diff($ciphers_and_aliases, $ciphers);
+
+        if($exclude_ecb){
+
+            //
+            // ECB MODE SHOULD BE AVOIDED
+            $ciphers = array_filter($ciphers, function($n){ return stripos($n, 'ecb') === FALSE; });
+
+        }
+
+        if($exclude_weak){
+
+            //
+            // AT LEAST AS EARLY AS AUG 2016, OPENSSL DECLARED THE FOLLOWING WEAK: RC2, RC4, DES, 3DES, MD5 based
+            $ciphers = array_filter($ciphers, function($c){ return stripos($c, 'des') === FALSE; });
+            $ciphers = array_filter($ciphers, function($c){ return stripos($c, 'rc2') === FALSE; });
+            $ciphers = array_filter($ciphers, function($c){ return stripos($c, 'rc4') === FALSE; });
+            $ciphers = array_filter($ciphers, function($c){ return stripos($c, 'md5') === FALSE; });
+            $cipher_aliases = array_filter($cipher_aliases, function($c){ return stripos($c, 'des') === FALSE; });
+            $cipher_aliases = array_filter($cipher_aliases, function($c){ return stripos($c, 'rc2') === FALSE; });
+
+        }
+
+        $merged_ciphers = array_merge($ciphers, $cipher_aliases);
         
-        //
-        // ECB MODE SHOULD BE AVOIDED
-        $ciphers = array_filter($ciphers, function($n){ return stripos($n, 'ecb') === FALSE; });
-        
-        //
-        // AT LEAST AS EARLY AS AUG 2016, OPENSSL DECLARED THE FOLLOWING WEAK: RC2, RC4, DES, 3DES, MD5 based
-        $ciphers = array_filter($ciphers, function($c){ return stripos($c, 'des') === FALSE; });
-        $ciphers = array_filter($ciphers, function($c){ return stripos($c, 'rc2') === FALSE; });
-        $ciphers = array_filter($ciphers, function($c){ return stripos($c, 'rc4') === FALSE; });
-        $ciphers = array_filter($ciphers, function($c){ return stripos($c, 'md5') === FALSE; });
-        $cipher_aliases = array_filter($cipher_aliases, function($c){ return stripos($c, 'des') === FALSE; });
-        $cipher_aliases = array_filter($cipher_aliases, function($c){ return stripos($c, 'rc2') === FALSE; });
-        $mergedCiphers = array_merge($ciphers, $cipher_aliases);
-        
-        return $mergedCiphers;
+        return $merged_ciphers;
         
     }
 

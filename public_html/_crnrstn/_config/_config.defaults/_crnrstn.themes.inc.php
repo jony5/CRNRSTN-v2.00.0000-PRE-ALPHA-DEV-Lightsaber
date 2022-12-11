@@ -20,7 +20,7 @@ $tmp_pos = 0;
 //
 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
 $int_const = CRNRSTN_UI_PHPNIGHT;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -64,7 +64,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER.
 // NOTHING COULD BE DARKER. NOTHING.
 $int_const = CRNRSTN_UI_DARKNIGHT;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -122,7 +122,7 @@ TEXT COLOR CODE DATA TYPE
 //
 // ALL ABOUT THE BUSINESS.
 $int_const = CRNRSTN_UI_PHP;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -166,7 +166,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
 // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
 $int_const = CRNRSTN_UI_GREYSKYS;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -209,7 +209,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 //
 // BE LIGHT AND HAPPY.
 $int_const = CRNRSTN_UI_HTML;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -252,7 +252,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 //
 // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
 $int_const = CRNRSTN_UI_DAYLIGHT;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -295,7 +295,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 //
 // LIGHTER THAN DAYLIGHT.
 $int_const = CRNRSTN_UI_FEATHER;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -340,7 +340,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 //
 // CONCEPT WORK IN PROGRESS.
 $int_const = CRNRSTN_UI_GLASS_LIGHT_COPY;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -383,7 +383,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 //
 // CONCEPT WORK IN PROGRESS.
 $int_const = CRNRSTN_UI_GLASS_DARK_COPY;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -426,7 +426,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 //
 // GOT WOOD?
 $int_const = CRNRSTN_UI_WOOD;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
@@ -469,7 +469,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 //
 // GREEN TEXT. BLACK BACKGROUND. HARDCORE.
 $int_const = CRNRSTN_UI_TERMINAL;
-$tmp_resource_meta_ARRAY = $this->return_resource_profile($int_const);
+$tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
 $tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
 $tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];

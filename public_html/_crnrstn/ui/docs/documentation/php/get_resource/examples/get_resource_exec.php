@@ -2,7 +2,6 @@
 /*
 // J5
 // Code is Poetry */
-
 //
 // CRNRSTN :: LOADS WITH $_SERVER DATA
 $system_SERVER_NAME = $this->oCRNRSTN->get_resource('SERVER_NAME');
