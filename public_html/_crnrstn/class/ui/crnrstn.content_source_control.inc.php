@@ -2660,8 +2660,9 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns HTML string data, the styled output of native php ' . $this->return_crnrstn_text_link('var_dump', 'PHP_ELLIPSE',CRNRSTN_RESOURCE_OPENSOURCE) . ' 
-                    of the provided <span class="crnrstn_general_post_code_copy">$data</span>.</p><br><br>
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns the native ' . $this->return_crnrstn_text_link('var_dump', 'PHP_ELLIPSE',CRNRSTN_RESOURCE_OPENSOURCE) . ' 
+                    output of the provided <span class="crnrstn_general_post_code_copy">$data</span> after C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
+                    has applied custom styles and meta.</p><br><br>
                     ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.var-dump', '') . '<p>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
@@ -2670,13 +2671,14 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $tmp_method_definition = $this->module_key . '(<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $data,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $string_output = <span class="crnrstn_documentation_method_data_system_val">true</span><br>
-                    ): <span class="crnrstn_documentation_method_data_type">string|output buffer</span>';
+                    ): <span class="crnrstn_documentation_method_data_type">string|display output</span>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
                     //
                     // RETURN VALUE
-                    $tmp_str = 'Returns a string of var_dump output or, when <span class="crnrstn_general_post_code_copy">$string_output = false</span>
-                    will simply execute the native php var_dump.';
+                    $tmp_str = 'Returns a string of ' . $this->return_crnrstn_text_link('var_dump', 'PHP_ELLIPSE',CRNRSTN_RESOURCE_OPENSOURCE) . ' output or, when <span class="crnrstn_general_post_code_copy">$string_output = false</span>,
+                    will simply execute the native ' . $this->return_crnrstn_text_link('var_dump', 'PHP_ELLIPSE',CRNRSTN_RESOURCE_OPENSOURCE) . ' 
+                    with immediate display output.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
 
                     //
