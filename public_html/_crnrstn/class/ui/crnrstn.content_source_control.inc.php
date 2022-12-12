@@ -541,7 +541,7 @@ class crnrstn_content_source_controller {
 
     // FILE
     public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
-    public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descnding_arsort = false){
+    public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descending_arsort = false){
     public function resource_filecache_version($file_path){
     public function validate_DIR_endpoint($dir_path, $endpoint_type = 'DESTINATION', $mkdir_mode = 775){
     public function encode_image($file_path, $filetype = NULL){
@@ -578,8 +578,6 @@ class crnrstn_content_source_controller {
     public function return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true){
     public function return_sticky_text_link($media_element_key, $url = NULL, $target = '_blank', $email_channel = false){
 
-
-
     */
 
 	public function load_page($module_key = NULL){
@@ -598,7 +596,7 @@ class crnrstn_content_source_controller {
             switch($this->module_key){
                 /*
                 public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
-                public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descnding_arsort = false){
+                public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descending_arsort = false){
                 public function resource_filecache_version($file_path){
                 public function validate_DIR_endpoint($dir_path, $endpoint_type = 'DESTINATION', $mkdir_mode = 775){
                 public function encode_image($file_path, $filetype = NULL){
@@ -608,165 +606,77 @@ class crnrstn_content_source_controller {
                 */
                 case 'better_scandir':
 
-                    /*
-                    //
-            // SOURCE :: https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified
-            // AUTHOR :: Giacomo1968 :: https://stackoverflow.com/users/117259/giacomo1968
-            public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descnding_arsort = false){
-
-                /*
-                https://www.php.net/manual/en/function.scandir.php
-
-                WHERE $sorting_order =
-                SCANDIR_SORT_ASCENDING
-                SCANDIR_SORT_DESCENDING
-                SCANDIR_SORT_NONE
-
-                By default, the sorted order is alphabetical in ascending order. If the
-                optional sorting_order is set to SCANDIR_SORT_DESCENDING, then the sort order
-                is alphabetical in descending order. If it is set to SCANDIR_SORT_NONE
-                then the result is unsorted.
-
-                WHERE $secondary_asort =
-                SORT_REGULAR - compare items normally; the details are described in the comparison operators section
-                SORT_NUMERIC - compare items numerically
-                SORT_STRING - compare items as strings
-                SORT_LOCALE_STRING - compare items as strings, based on the current locale. It uses the locale, which can be changed using setlocale()
-                SORT_NATURAL - compare items as strings using "natural ordering" like natsort()
-                SORT_FLAG_CASE - can be combined (bitwise OR) with SORT_STRING or SORT_NATURAL to sort strings case-insensitively
-
-
-                            /***********************************************************************
-                            // Roll through the scandir values.
-                            $files = array();
-                            $tmp_ARRAY = scandir($dir, $sorting_order);
-                            foreach($tmp_ARRAY as $file){
-
-                                if($file[0] === '.'){
-
-                                    continue;
-
-                                }
-
-                                //$files[$file] = filemtime($dir . '/' . $file);
-                                $files[$file] = $file;
-
-                            } // foreach
-
-                            /************************************************************************
-                            // Sort the files array.
-                            if($descnding_arsort){
-
-                                if(isset($secondary_asort)){
-
-                                    arsort($files, $secondary_asort);
-
-                                }else{
-
-                                    arsort($files, SORT_STRING);
-
-                                }
-
-                            }else{
-
-                                if($sorting_order == SCANDIR_SORT_ASCENDING){
-
-                                    asort($files, SORT_STRING);
-
-                                }else{
-
-                                    if(isset($secondary_asort)){
-
-                                        asort($files, $secondary_asort);
-
-                                    }
-
-                                }
-
-                            }
-
-                            /**************************************************************************
-                            // Set the final return value.
-                            $ret = array_keys($files);
-
-                            /**************************************************************************
-                            // Return the final value.
-                            return ($ret) ? $ret : false;
-
-                    } // better_scandir
-
-                    */
-
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
-                    //public_html/_crnrstn/_config/config.system_resource.secure
+                    //
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Scan a directory.';
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Scan a directory, and return an array of the results. This 
+                    is a beefy wrapper for the native ' . $this->return_crnrstn_text_link('scandir', 'PHP_ELLIPSE', CRNRSTN_RESOURCE_OPENSOURCE) . ' 
+                    method. This exposes a robust suite of result set sorting options.
+                    <br><br>
+                    ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.scandir', '_blank') . '&nbsp;&nbsp;&nbsp;
+                    ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified', '_blank');
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
-                    // public function better_scandir(
-                    //  $dir,
-                    //  $sorting_order = SCANDIR_SORT_ASCENDING,
-                    //  $secondary_asort = SORT_STRING,
-                    //  $descnding_arsort = false
-                    //){
+                    //
                     // METHOD DEFINITION
                     $tmp_method_definition = $this->module_key . '(<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $dir,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $sorting_order = <span class="crnrstn_documentation_method_data_system_val">SCANDIR_SORT_ASCENDING</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $secondary_asort = <span class="crnrstn_documentation_method_data_system_val">SORT_STRING</span>,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $data_auth_profile = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $descending_arsort = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
                     ): <span class="crnrstn_documentation_method_data_type">array</span>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
 
                     //
                     // RETURN VALUE
-                    $tmp_str = 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled 
-                    Data Object (DDO) key.<br><br>
-                    
-                    When C<span class="the_R_in_crnrstn">R</span>NRSTN :: retrieves this data (see ' . $this->return_crnrstn_text_link('get_resource') . '),
-                    the DDO key allows for direct access to the storage location of the data. When these lower level 
-                    methods are documented, this direct access will become standard issue for top tier performance. The 
-                    hash is derived...in part...from the provided <span class="crnrstn_general_post_code_copy">$data_key</span>
-                    and <span class="crnrstn_general_post_code_copy">$data_type_family</span>. Therefore, without DDO 
-                    driven access, the same two (2) values will need to be provided to ' . $this->return_crnrstn_text_link('get_resource') . ' 
-                    in order to extract the associated data. A built-in iterator is available to support data updates 
-                    and retrieval in n+1 use-case situations where the same <span class="crnrstn_general_post_code_copy">$data_key</span>
-                    and <span class="crnrstn_general_post_code_copy">$data_type_family</span> are used repeatedly.</p>
-                    
-                    ' . $this->return_crnrstn_caution_note($tmp_caution_note) . '
-                    
-                    <p>This is low-level system data storage with direct exposure to <span class="crnrstn_general_post_code_copy">$_COOKIE</span>, 
-                    database, <span class="crnrstn_general_post_code_copy">$_SESSION</span>, <span class="crnrstn_general_post_code_copy">$_GET</span>, 
-                    the C<span class="the_R_in_crnrstn">R</span>NRSTN :: SSDTLA, and an OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' 
-                    encryption services layer that independently supports each of the aforementioned. C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' 
-                    manages all data portability upon this set of rails.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'Returns the contents of a directory in an array.');
 
                     //
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$dir';
-                    $tmp_param_def[0]['param_definition'] = 'Used exclus.';
+                    $tmp_param_def[0]['param_definition'] = 'The directory that will be scanned.';
                     $tmp_param_def[0]['param_required'] = false;
 
-                    $tmp_param_def[1]['param_name'] = '$data_key';
-                    $tmp_param_def[1]['param_definition'] = 'A key to rep the data.';
+                    $tmp_param_def[1]['param_name'] = '$sorting_order';
+                    $tmp_param_def[1]['param_definition'] = 'By default, the sorted order is alphabetical in ascending 
+                    order.<br><br>
+                    If the optional <span class="crnrstn_general_post_code_copy">$sorting_order = <span class="crnrstn_documentation_method_data_system_val">SCANDIR_SORT_DESCENDING</span></span>, 
+                    then the sort order is alphabetical in descending order. If <span class="crnrstn_general_post_code_copy">$sorting_order = <span class="crnrstn_documentation_method_data_system_val">SCANDIR_SORT_NONE</span></span>,
+                    then the result is unsorted.</p><br><br>
+                    Predefined integer constants received here and used internally by the native ' . $this->return_crnrstn_text_link('scandir', 'PHP_ELLIPSE', CRNRSTN_RESOURCE_OPENSOURCE) . ':<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SCANDIR_SORT_ASCENDING . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SCANDIR_SORT_ASCENDING</span></span><br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SCANDIR_SORT_DESCENDING . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SCANDIR_SORT_DESCENDING</span></span><br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SCANDIR_SORT_NONE . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SCANDIR_SORT_NONE</span></span><p>';
                     $tmp_param_def[1]['param_required'] = true;
 
-                    $tmp_param_def[2]['param_name'] = '$data_value';
-                    $tmp_param_def[2]['param_definition'] = 'The vd.';
+                    $tmp_param_def[2]['param_name'] = '$secondary_asort';
+                    $tmp_param_def[2]['param_definition'] = 'This value becomes the <span class="crnrstn_general_post_code_copy">$flags</span> 
+                    parameter for the native ' . $this->return_crnrstn_text_link('asort', 'PHP_ELLIPSE', CRNRSTN_RESOURCE_OPENSOURCE) . ' 
+                    and ' . $this->return_crnrstn_text_link('arsort','PHP_ELLIPSE', CRNRSTN_RESOURCE_OPENSOURCE) . ' 
+                    methods for secondary instructions which further affect the result set sorting behaviour of C<span class="the_R_in_crnrstn">R</span>NRSTN ::.</p><br><br>
+                    Predefined integer constants received here and used internally by the native ' . $this->return_crnrstn_text_link('scandir', 'PHP_ELLIPSE', CRNRSTN_RESOURCE_OPENSOURCE) . ':<br>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SORT_REGULAR . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SORT_REGULAR</span></span>
+                    <div class="crnrstn_documentation_system_data_description">Compare items normally; the details are described in the comparison operators section.</div>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SORT_NUMERIC . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SORT_NUMERIC</span></span>
+                    <div class="crnrstn_documentation_system_data_description">Compare items numerically.</div>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SORT_STRING . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SORT_STRING</span></span>
+                    <div class="crnrstn_documentation_system_data_description">Compare items as strings.</div>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SORT_LOCALE_STRING . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SORT_LOCALE_STRING</span></span>
+                    <div class="crnrstn_documentation_system_data_description">Compare items as strings, based on the current locale. It uses the locale, which can be changed using ' . $this->return_crnrstn_text_link('setlocale', 'PHP_ELLIPSE', CRNRSTN_RESOURCE_OPENSOURCE) . '.</div>               
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SORT_NATURAL . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SORT_NATURAL</span></span>
+                    <div class="crnrstn_documentation_system_data_description">Compare items as strings using &quot;natural&quot; ordering like ' . $this->return_crnrstn_text_link('natsort', 'PHP_ELLIPSE', CRNRSTN_RESOURCE_OPENSOURCE) . '.</div>
+                    &nbsp;&nbsp;&nbsp;<span class="crnrstn_documentation_system_data_constant">' . SORT_FLAG_CASE . '</span>&nbsp;&nbsp; <span class="crnrstn_general_post_code_copy"><span class="crnrstn_documentation_method_data_system_val">SORT_FLAG_CASE</span></span>
+                    <div class="crnrstn_documentation_system_data_description" style="padding-bottom: 0;">Can be combined (bitwise OR) with SORT_STRING or SORT_NATURAL to sort strings case-insensitively.</div><p>';
                     $tmp_param_def[2]['param_required'] = false;
 
-                    $tmp_param_def[3]['param_name'] = '$data_type_family';
-                    $tmp_param_def[3]['param_definition'] = 'An opieval.';
+                    $tmp_param_def[3]['param_name'] = '$descending_arsort';
+                    $tmp_param_def[3]['param_definition'] = 'Passing TRUE will bring the affect of the native  ' . $this->return_crnrstn_text_link('arsort') . ' 
+                    upon the result set. This will sort the result array in descending order and maintain index association.';
                     $tmp_param_def[3]['param_required'] = false;
-
-                    $tmp_param_def[4]['param_name'] = '$data_auth_profile';
-                    $tmp_param_def[4]['param_definition'] = 'Pending deve of collection.';
-                    $tmp_param_def[4]['param_required'] = false;
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
 
                     //
@@ -783,7 +693,6 @@ class crnrstn_content_source_controller {
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
-                break;
                 break;
                 case 'config_add_seo_analytics':
                     /*
@@ -1267,7 +1176,7 @@ class crnrstn_content_source_controller {
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
-                    break;
+                break;
                 case 'config_init_js_css_minimization':
 
                     //    public function config_init_js_css_minimization($env_key = CRNRSTN_RESOURCE_ALL, $production_min_js = true){
@@ -1360,8 +1269,9 @@ class crnrstn_content_source_controller {
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
                     $tmp_title_array['PAGE_DESCRIPTION'] = 'Generate a random key.</p>
                     <br><br>
-                    ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string', '_blank') . '&nbsp;&nbsp;&nbsp;
-                    ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php#104322', '_blank') . '
+                    
+                    ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php#104322', '_blank') . '&nbsp;&nbsp;&nbsp;
+                    ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string', '_blank') . '
                     <p>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
@@ -1635,7 +1545,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
-                    break;
+                break;
                 case 'get_resource_count':
 
                     //public function get_resource_count($data_key, $data_type_family, $env_key){
@@ -2981,7 +2891,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                             if(strlen($profile_ARRAY['BROWSER_COMPATIBILITY']) > 0){
 
                                 $tmp_browser_support_html = '
-                             <div class="crnrstn_resource_constant_browser_support">Supported Browsers: <span class="crnrstn_documentation_browser_compatability_nom_copy">' . $profile_ARRAY['BROWSER_COMPATIBILITY'] . '</span></div>';
+                             <div class="crnrstn_resource_constant_browser_support">Supported Browsers: <span class="crnrstn_documentation_browser_compatibility_nom_copy">' . $profile_ARRAY['BROWSER_COMPATIBILITY'] . '</span></div>';
 
                             }
 

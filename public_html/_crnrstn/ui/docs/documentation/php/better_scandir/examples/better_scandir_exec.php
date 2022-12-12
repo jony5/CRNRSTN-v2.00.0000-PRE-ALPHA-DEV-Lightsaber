@@ -2,24 +2,9 @@
 /*
 // J5
 // Code is Poetry */
-//
-// HTML STRING DATA FOR A SMALL SOUNDCLOUD MEDIA ICON WITH
-// A STICKY LINK IS RETURNED FOR USE IN EMAIL (OR WHENEVER A
-// SIMPLE ANCHOR TAG WRAPPED <IMG> IS DESIRED).
-$tmp_html_out .= 'HTML Email Compatible (small):<br>';
-$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_SMALL', 'https://soundcloud.com/jonathan-harris-772368100', '_blank', true);
+$file_path = '/_lib/frameworks/960_grid_system';
+$file_path_root = $this->oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
 
-$tmp_html_out .= '<div class="crnrstn_cb_20"></div>';
-$tmp_html_out .= 'Image Sprite (medium):<br>';
+$scan_output = $this->oCRNRSTN->better_scandir($file_path_root . $file_path);
 
-//
-// HTML FOR A MEDIUM SOUNDCLOUD MEDIA ICON WITH A STICKY LINK IS
-// RETURNED WITH A SYSTEM IMAGE SPRITE IN USE. THIS WILL
-// GRACEFULLY DEGRADE TO A SIMPLE ANCHOR TAG WRAPPED <IMG> IF
-// THE SPRITE COORDINATES HAVE NOT YET BEEN APPROVED.
-$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_MEDIUM', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
-
-$tmp_html_out .= '<div class="crnrstn_cb_20"></div>';
-$tmp_html_out .= 'Image Sprite (large):<br>';
-
-$tmp_html_out .= $this->oCRNRSTN->return_sticky_media_link('SOUNDCLOUD_LARGE', 'https://soundcloud.com/jonathan-harris-772368100', '_blank');
+$tmp_html_out .= $this->oCRNRSTN->var_dump($scan_output);

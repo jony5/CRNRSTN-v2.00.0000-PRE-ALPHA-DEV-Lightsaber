@@ -9786,6 +9786,11 @@ class crnrstn_system_image_asset_manager {
                 fwrite($resource_file, $tmp_data_str_out);
                 fclose($resource_file);
 
+                //
+                // TODO :: GET PERMISSIONS FROM SYSTEM DEFAULT.
+                // ADJUST FILE PERMISSIONS
+                chmod($tmp_filepath, 775);
+
                 $this->oCRNRSTN->error_log('Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 
             }else{
@@ -9815,6 +9820,11 @@ class crnrstn_system_image_asset_manager {
 
                         fwrite($resource_file, $tmp_data_str_out);
                         fclose($resource_file);
+
+                        //
+                        // TODO :: GET PERMISSIONS FROM SYSTEM DEFAULT.
+                        // ADJUST FILE PERMISSIONS
+                        chmod($tmp_filepath, 775);
 
                         $this->oCRNRSTN->error_log('Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 

@@ -7,6 +7,10 @@ $tmp_crnrstn_settings_ARRAY[] = $tmp_str_settings;
 /*
 SYSTEM DEFAULTS TO SUPPORT ::
 
+
+===
+chmod($tmp_filepath, 775);
+
 ======
     public function salt($length = NULL, $chars = NULL){
 

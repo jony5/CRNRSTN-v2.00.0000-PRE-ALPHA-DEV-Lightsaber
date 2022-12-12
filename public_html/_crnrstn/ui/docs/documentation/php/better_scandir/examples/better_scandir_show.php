@@ -5,31 +5,11 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-//
-// PASS TRUE TO SPOOL JQUERY UI TO BE OUTPUTTED LATER
-// INTO THE HTML <HEAD> VIA system_output_head_html().
-$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, true);
+$file_path_root = $oCRNRSTN->get_resource('crnrstn_css_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+$file_path = '/_lib/frameworks/960_grid_system';
+
+$scan_output = $oCRNRSTN->better_scandir($file_path_root . $file_path);
+
+echo $oCRNRSTN->var_dump($scan_output);
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>CRNRSTN ::</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <?php
-
-        echo $oCRNRSTN->system_output_head_html();
-
-    ?>
-
-</head>
-<body>
-<p>hello HTML!</p>
-
-<?php
-
-echo $oCRNRSTN->system_output_footer_html();
-
-?>
-</body>
-</html>

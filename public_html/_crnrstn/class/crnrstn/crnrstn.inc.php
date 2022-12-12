@@ -3833,9 +3833,9 @@ class crnrstn {
 
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
-        //
+        //  'better_scandir' => 'DISABLED',
         //  'iso_language_profile' => 'DISABLED','hash' => 'DISABLED',
-        // 'set_mobile_custom'=> 'DISABLED', 'return_system_image' => 'DISABLED',
+        //  'return_system_image' => 'DISABLED',
         $tmp_ARRAY = array('return_system_image'=>'DISABLED', 'config_add_administration' => 'DISABLED',
             'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED', 'config_add_seo_analytics' => 'DISABLED',
             'config_add_seo_engagement' => 'DISABLED', 'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
@@ -3844,7 +3844,7 @@ class crnrstn {
             'config_include_system_resources' => 'DISABLED', 'config_include_wordpress' => 'DISABLED',
             'config_init_images_http_dir' => 'DISABLED', 'config_init_images_transport_mode' => 'DISABLED',
             'config_init_logging' => 'DISABLED', 'error_log' => 'DISABLED', 'form_hidden_input_add' => 'DISABLED',
-            'form_input_add' => 'DISABLED', 'form_input_feedback_copy_add' => 'DISABLED', 'better_scandir' => 'DISABLED',
+            'form_input_add' => 'DISABLED', 'form_input_feedback_copy_add' => 'DISABLED',
             'form_integration_html_packet_output' => 'DISABLED', 'form_response_add' => 'DISABLED',
             'ini_set' => 'DISABLED', 'is_configured' => 'DISABLED', 'grant_permissions_fwrite' => 'DISABLED',
             'set_crnrstn_as_err_handler' => 'DISABLED', 'set_max_login_attempts' => 'DISABLED', 'get_disk_performance_metric' => 'DISABLED',
@@ -11338,7 +11338,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
     //
     // SOURCE :: https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified
     // AUTHOR :: Giacomo1968 :: https://stackoverflow.com/users/117259/giacomo1968
-    public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descnding_arsort = false){
+    public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descending_arsort = false){
 
         /*
         https://www.php.net/manual/en/function.scandir.php
@@ -11384,7 +11384,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         //die();
         /****************************************************************************/
         // Sort the files array.
-        if($descnding_arsort){
+        if($descending_arsort){
 
             if(isset($secondary_asort)){
 
