@@ -488,6 +488,7 @@ class crnrstn_content_source_controller {
     public function openssl_get_cipher_methods(){
 
     public function current_location(){
+    public function explode_url($uri){
     public function extract_data_http($param, $transport_protocol = 'GET', $tunnel_encrypted = false){
     public function isset_http_superglobal($transport_protocol = 'POST'){
     public function isset_http_param($param, $transport_protocol = 'POST'){
@@ -607,47 +608,123 @@ class crnrstn_content_source_controller {
                 */
                 case 'better_scandir':
 
-                    // private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $index, $default_ttl = 60){    private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
+                    /*
+                    //
+            // SOURCE :: https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified
+            // AUTHOR :: Giacomo1968 :: https://stackoverflow.com/users/117259/giacomo1968
+            public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descnding_arsort = false){
+
+                /*
+                https://www.php.net/manual/en/function.scandir.php
+
+                WHERE $sorting_order =
+                SCANDIR_SORT_ASCENDING
+                SCANDIR_SORT_DESCENDING
+                SCANDIR_SORT_NONE
+
+                By default, the sorted order is alphabetical in ascending order. If the
+                optional sorting_order is set to SCANDIR_SORT_DESCENDING, then the sort order
+                is alphabetical in descending order. If it is set to SCANDIR_SORT_NONE
+                then the result is unsorted.
+
+                WHERE $secondary_asort =
+                SORT_REGULAR - compare items normally; the details are described in the comparison operators section
+                SORT_NUMERIC - compare items numerically
+                SORT_STRING - compare items as strings
+                SORT_LOCALE_STRING - compare items as strings, based on the current locale. It uses the locale, which can be changed using setlocale()
+                SORT_NATURAL - compare items as strings using "natural ordering" like natsort()
+                SORT_FLAG_CASE - can be combined (bitwise OR) with SORT_STRING or SORT_NATURAL to sort strings case-insensitively
+
+
+                            /***********************************************************************
+                            // Roll through the scandir values.
+                            $files = array();
+                            $tmp_ARRAY = scandir($dir, $sorting_order);
+                            foreach($tmp_ARRAY as $file){
+
+                                if($file[0] === '.'){
+
+                                    continue;
+
+                                }
+
+                                //$files[$file] = filemtime($dir . '/' . $file);
+                                $files[$file] = $file;
+
+                            } // foreach
+
+                            /************************************************************************
+                            // Sort the files array.
+                            if($descnding_arsort){
+
+                                if(isset($secondary_asort)){
+
+                                    arsort($files, $secondary_asort);
+
+                                }else{
+
+                                    arsort($files, SORT_STRING);
+
+                                }
+
+                            }else{
+
+                                if($sorting_order == SCANDIR_SORT_ASCENDING){
+
+                                    asort($files, SORT_STRING);
+
+                                }else{
+
+                                    if(isset($secondary_asort)){
+
+                                        asort($files, $secondary_asort);
+
+                                    }
+
+                                }
+
+                            }
+
+                            /**************************************************************************
+                            // Set the final return value.
+                            $ret = array_keys($files);
+
+                            /**************************************************************************
+                            // Return the final value.
+                            return ($ret) ? $ret : false;
+
+                    } // better_scandir
+
+                    */
+
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
                     //public_html/_crnrstn/_config/config.system_resource.secure
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: has a 
-                    special configuration file within the directory <span class="crnrstn_general_post_code_copy">/_crnrstn/_config/config.system_resource.secure</span>
-                    where this method can be called using <span class="crnrstn_general_post_code_copy">$this</span> 
-                    notation. The resource will be added during the initialization and configuration of C<span class="the_R_in_crnrstn">R</span>NRSTN ::. 
-                    This will produce a globally accessible and environmentally specific system resource for permanent 
-                    and immediate availability.';
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Scan a directory.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
-                    //
+                    // public function better_scandir(
+                    //  $dir,
+                    //  $sorting_order = SCANDIR_SORT_ASCENDING,
+                    //  $secondary_asort = SORT_STRING,
+                    //  $descnding_arsort = false
+                    //){
                     // METHOD DEFINITION
                     $tmp_method_definition = $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $env_key,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $data_key,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $data_value = <span class="crnrstn_documentation_method_data_system_val">NULL</span>,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $data_type_family = \'<span class="crnrstn_documentation_method_string_data">CRNRSTN::RESOURCE</span>\',<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $data_auth_profile = <span class="crnrstn_documentation_method_data_system_val">CRNRSTN_AUTHORIZE_RUNTIME_ONLY</span>,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $index = <span class="crnrstn_documentation_method_data_system_val">NULL</span>,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $default_ttl = <span class="crnrstn_documentation_method_data_system_val">60</span><br>
-                    ): <span class="crnrstn_documentation_method_data_type">string</span>';
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $dir,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $sorting_order = <span class="crnrstn_documentation_method_data_system_val">SCANDIR_SORT_ASCENDING</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $secondary_asort = <span class="crnrstn_documentation_method_data_system_val">SORT_STRING</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $data_auth_profile = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">array</span>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
-
-                    $tmp_caution_note = 'If only <span class="crnrstn_general_post_code_copy">$data_key</span> 
-                    and <span class="crnrstn_general_post_code_copy">$data_value</span> are provided, then <span class="crnrstn_general_post_code_copy">$data_key</span>
-                    must be globally unique.';
 
                     //
                     // RETURN VALUE
                     $tmp_str = 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled 
                     Data Object (DDO) key.<br><br>
-                    
-                    The DDO key is the pointer to the storage location in memory for this data.  This won\'t be useful, 
-                    and it can be disregarded until additional methods which will use this value can be documented. 
-                    Lower-level data storage and meta reporting controls (e.g. get data type, get data size,...etc.) 
-                    will be accessible using the DDO key.<br><br>
                     
                     When C<span class="the_R_in_crnrstn">R</span>NRSTN :: retrieves this data (see ' . $this->return_crnrstn_text_link('get_resource') . '),
                     the DDO key allows for direct access to the storage location of the data. When these lower level 
@@ -666,82 +743,30 @@ class crnrstn_content_source_controller {
                     the C<span class="the_R_in_crnrstn">R</span>NRSTN :: SSDTLA, and an OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' 
                     encryption services layer that independently supports each of the aforementioned. C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' 
                     manages all data portability upon this set of rails.';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', 'Returns the contents of a directory in an array.');
 
                     //
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
-                    $tmp_param_def[0]['param_name'] = '$env_key';
-                    $tmp_param_def[0]['param_definition'] = 'Used exclusively by lower level operations, capturing <span class="crnrstn_general_post_code_copy">$env_key</span> 
-                    here allows C<span class="the_R_in_crnrstn">R</span>NRSTN :: to employ the DDO to collect data 
-                    before the environment is detected.<br><br>
-                    
-                    This is a user-defined custom string identifying a specific hosting environment or server profile. 
-                    E.g. &quot;LOCALHOST_MY_OLD_MAC_TOWER&quot;, &quot;LOCALHOST_PC&quot; or &quot;PROD_01&quot;.<br><br>
-                    
-                    If ALL environments are to receive the same affects, the predefined integer constant, <span class="crnrstn_general_post_code_copy">CRNRSTN_RESOURCE_ALL</span>,
-                    can be used.';
-                    $tmp_param_def[0]['param_required'] = false;$tmp_param_def[5]['param_name'] = '$env_key';
+                    $tmp_param_def[0]['param_name'] = '$dir';
+                    $tmp_param_def[0]['param_definition'] = 'Used exclus.';
+                    $tmp_param_def[0]['param_required'] = false;
 
                     $tmp_param_def[1]['param_name'] = '$data_key';
-                    $tmp_param_def[1]['param_definition'] = 'A key to represent the data being stored. This will be used 
-                    similar to the use of a variable name when retrieving the data.';
+                    $tmp_param_def[1]['param_definition'] = 'A key to rep the data.';
                     $tmp_param_def[1]['param_required'] = true;
 
                     $tmp_param_def[2]['param_name'] = '$data_value';
-                    $tmp_param_def[2]['param_definition'] = 'The value that is to be stored.';
+                    $tmp_param_def[2]['param_definition'] = 'The vd.';
                     $tmp_param_def[2]['param_required'] = false;
 
                     $tmp_param_def[3]['param_name'] = '$data_type_family';
-                    $tmp_param_def[3]['param_definition'] = 'An optional secondary key to allow data being stored to
-                    be indexed (or silo\'d) separately in logical groups.<br><br>
-                    
-                    Avoid resource contention brought on through the use of redundant variable names by multiple 
-                    developers operating within a narrow name-value-pair ecosystem by providing a custom string here 
-                    that will be hashed internally to arrive at the necessary and sufficient degree of 
-                    data serialization.<br><br>
-                    
-                    The same <span class="crnrstn_general_post_code_copy">$data_type_family</span> value will need to be 
-                    provided to ' . $this->return_crnrstn_text_link('get_resource') . ' for data retrieval.';
+                    $tmp_param_def[3]['param_definition'] = 'An opieval.';
                     $tmp_param_def[3]['param_required'] = false;
 
                     $tmp_param_def[4]['param_name'] = '$data_auth_profile';
-                    $tmp_param_def[4]['param_definition'] = 'Pending development, this value will regulate the data 
-                    handling practices for data entrusted to C<span class="the_R_in_crnrstn">R</span>NRSTN ::. 
-                    Currently, the only supported profile is for runtime only storage. At present, no data is cached 
-                    (encrypted or otherwise) in cookie, session or database.<br><br>
-                    
-                    Even with no session cache operating behind the configuration of C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
-                    at the moment, Lightsaber is still up to a second faster than v1.0.0. This is impressive when 
-                    considering that v1.0.0 of C<span class="the_R_in_crnrstn">R</span>NRSTN :: completely bypasses 
-                    like 80% of the configuration after session initialization, and it is completely dependent upon 
-                    server session.
-                    <br><br>
-                    
-                    By the end of this, ANY value will be able to be shared with ANY server; we lay the foundations for 
-                    the appropriate controls to be put in place at the lowest possible levels now. C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
-                    stores the data permissions profile with the data at the point of collection.';
+                    $tmp_param_def[4]['param_definition'] = 'Pending deve of collection.';
                     $tmp_param_def[4]['param_required'] = false;
-
-                    $tmp_caution_note = 'To overwrite or update a value, an integer must be provided for <span class="crnrstn_general_post_code_copy">$index</span>.';
-                    $tmp_param_def[5]['param_name'] = '$index';
-                    $tmp_param_def[5]['param_definition'] = 'An iterator to allow any value at any queue position to be 
-                    retrieved or updated. All method calls with the same <span class="crnrstn_general_post_code_copy">$data_key</span> 
-                    and <span class="crnrstn_general_post_code_copy">$data_type_family</span> will queue the data, and 
-                    they will not overwrite. To overwrite or update a value, an integer must be provided.</p>
-                    
-                    ' . $this->return_crnrstn_caution_note($tmp_caution_note) . '
-
-                    <p>If there will be multiple writes to the same variable...but, only one value is ever needed or 
-                    desired, pass in zero (0) as <span class="crnrstn_general_post_code_copy">$index</span> for 
-                    every call.';
-                    $tmp_param_def[5]['param_required'] = false;
-
-                    $tmp_param_def[6]['param_name'] = '$default_ttl';
-                    $tmp_param_def[6]['param_definition'] = 'Pending development, this time to live (TTL) will 
-                    play a role in the expiry of session configuration data and the subsequent forced 
-                    refresh of the same once session caching has been implemented in database, cookie, and session.';
-                    $tmp_param_def[6]['param_required'] = false;
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
 
                     //
@@ -753,30 +778,12 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
 
                     //
-                    // NOTE
-                    $tmp_str = 'In support of this storage and retrieval functionality, proprietary underlying 
-                    technology is employed. The C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled Data Object 
-                    (DDO):</p>
-                    <ul class="crnrstn_documentation_dyn_content_note_copy"><li><span style="font-weight:normal;">Provides maximum data integrity (including the flawless data transport of NULL, boolean, 
-                    and empty string values),</span></li>
-                    <li><span style="font-weight:normal;">Provides unrivaled flexibility...store n+1 values in the one parameter name, 
-                    get total counts, and direct access by index through the input of an iterator, and</span></li>
-                    <li><span style="font-weight:normal;">Provides global (cross-application and cross-server) portability through the C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
-                    SOAP services data tunneling layer (SSDTLA) without sacrificing either of the aforementioned.</span></li>
-                    </ul>
-                    <p>ANY data can be stored within the C<span class="the_R_in_crnrstn">R</span>NRSTN :: DDO.';
-                    $tmp_note_array = array();
-                    $tmp_note_array['NOTE_COPY'] = $tmp_str;
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE', $tmp_note_array);
-
-                    //
                     // RELATED METHODS
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
-
-                    break;
+                break;
                 break;
                 case 'config_add_seo_analytics':
                     /*
@@ -1446,7 +1453,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
-                    break;
+                break;
                 case 'get_disk_free_space':
 
                 break;
@@ -3158,7 +3165,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     
                     If ALL environments are to receive the same affects, the predefined integer constant, <span class="crnrstn_general_post_code_copy">CRNRSTN_RESOURCE_ALL</span>,
                     can be used.';
-                    $tmp_param_def[0]['param_required'] = false;$tmp_param_def[5]['param_name'] = '$env_key';
+                    $tmp_param_def[0]['param_required'] = false;
 
                     $tmp_param_def[1]['param_name'] = '$data_key';
                     $tmp_param_def[1]['param_definition'] = 'A key to represent the data being stored. This will be used 
