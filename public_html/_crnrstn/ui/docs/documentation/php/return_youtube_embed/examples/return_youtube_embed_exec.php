@@ -2,11 +2,6 @@
 /*
 // J5
 // Code is Poetry */
+$viral_youtube_video_url = 'https://www.youtube.com/watch?v=NePb9UWK8Yg';
 
-$this->oCRNRSTN->grant_permissions_fwrite();
-
-if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_TABLET)){
-
-    $tmp_html_out .= 'Got tablet?';
-
-}
+$tmp_html_out .= $this->oCRNRSTN->return_youtube_embed($viral_youtube_video_url);

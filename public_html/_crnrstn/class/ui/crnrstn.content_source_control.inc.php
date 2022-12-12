@@ -58,6 +58,8 @@ class crnrstn_content_source_controller {
     public $module_key;
     private static $page_serial;
 
+    protected $link_build_track_ARRAY = array();
+
 	public function __construct($oCRNRSTN, $oCRNRSTN_UI_ASSEMBLER, $module_key = NULL) {
 
         $this->oCRNRSTN = $oCRNRSTN;
@@ -279,6 +281,15 @@ class crnrstn_content_source_controller {
                 $tmp_ARRAY = array('header_signature_options_return', 'header_options_add', 'header_options_apply');
 
             break;
+            case 'get_disk_free_size':
+            case 'get_disk_free_space':
+            case 'get_disk_performance_metric':
+            case 'grant_permissions_fwrite':
+
+                // get_disk_free_size, get_disk_free_space
+                $tmp_ARRAY = array('get_disk_performance_metric', 'grant_permissions_fwrite');
+
+            break;
             default:
 
             break;
@@ -336,6 +347,51 @@ class crnrstn_content_source_controller {
 
     }
 
+    private function return_thirdparty_text_link($system_asset_constant, $link_copy, $url, $resource_constant = CRNRSTN_RESOURCE_THIRDPARTY){
+
+        // 'add_system_resource', CRNRSTN_RESOURCE_DOCUMENTATION
+        switch($resource_constant){
+            case CRNRSTN_RESOURCE_THIRDPARTY:
+
+                $tmp_img = $this->oCRNRSTN->return_system_image($system_asset_constant, '', 10, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
+
+                switch($system_asset_constant){
+                    case 'SOCIAL_YOUTUBE':
+                    default:
+
+                        $tmp_link_id = '';
+                        if(!isset($this->link_build_track_ARRAY[$system_asset_constant])){
+
+                            $this->link_build_track_ARRAY[$system_asset_constant][] = 1;
+
+                        }else{
+
+                            $tmp_link_id = count($this->link_build_track_ARRAY[$system_asset_constant]);
+
+                        }
+
+                        $url = $this->oCRNRSTN->return_sticky_link($url, 'crnrstn_docs_' . $this->module_key . '_' . strtolower($system_asset_constant) . '_' . $tmp_link_id);
+                        return '<a href="'. $url . '" target="_blank">' . $link_copy . '</a><sup class="crnrstn_the_r_text_link_sup">' . $tmp_img . '</sup>';
+
+                    break;
+
+                }
+
+            break;
+            default:
+
+                //
+                // HOOOSTON...VE HAF PROBLEM!
+                $this->oCRNRSTN->error_log('Error building third party text link [' . $system_asset_constant . '] due to unknown $resource_constant [' . $resource_constant . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            break;
+
+        }
+
+        return '';
+
+    }
+
     private function return_crnrstn_text_link($module_key, $system_asset_constant = 'CRNRSTN_R_MD', $resource_constant = CRNRSTN_RESOURCE_DOCUMENTATION){
 
         // 'add_system_resource', CRNRSTN_RESOURCE_DOCUMENTATION
@@ -382,7 +438,6 @@ class crnrstn_content_source_controller {
     METHOD NAME
     DATA TYPE DECLARATIONS IN METHOD DEF
 
-
     = = = = =
     MADE IT
     public function version_linux(){
@@ -417,7 +472,7 @@ class crnrstn_content_source_controller {
 
     public function return_sticky_link($url, $meta_params = NULL){
 
-    public function get_performance_metric($profile_name){
+    public function get_disk_performance_metric($profile_name){
 
     public function ini_set($ini_setting, $ini_value){
     public function ini_get($ini_setting){
@@ -540,6 +595,206 @@ class crnrstn_content_source_controller {
         try{
 
             switch($this->module_key){
+                /*
+                public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
+                public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descnding_arsort = false){
+                public function resource_filecache_version($file_path){
+                public function validate_DIR_endpoint($dir_path, $endpoint_type = 'DESTINATION', $mkdir_mode = 775){
+                public function encode_image($file_path, $filetype = NULL){
+                public function system_base64_synchronize($data_key = NULL, $img_batch_size = 5){
+                public function mkdir_r($dirName, $mode = 777){
+
+                */
+                case 'better_scandir':
+
+                    // private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $index, $default_ttl = 60){    private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //public_html/_crnrstn/_config/config.system_resource.secure
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'C<span class="the_R_in_crnrstn">R</span>NRSTN :: has a 
+                    special configuration file within the directory <span class="crnrstn_general_post_code_copy">/_crnrstn/_config/config.system_resource.secure</span>
+                    where this method can be called using <span class="crnrstn_general_post_code_copy">$this</span> 
+                    notation. The resource will be added during the initialization and configuration of C<span class="the_R_in_crnrstn">R</span>NRSTN ::. 
+                    This will produce a globally accessible and environmentally specific system resource for permanent 
+                    and immediate availability.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $env_key,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $data_key,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $data_value = <span class="crnrstn_documentation_method_data_system_val">NULL</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $data_type_family = \'<span class="crnrstn_documentation_method_string_data">CRNRSTN::RESOURCE</span>\',<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $data_auth_profile = <span class="crnrstn_documentation_method_data_system_val">CRNRSTN_AUTHORIZE_RUNTIME_ONLY</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $index = <span class="crnrstn_documentation_method_data_system_val">NULL</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $default_ttl = <span class="crnrstn_documentation_method_data_system_val">60</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">string</span>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    $tmp_caution_note = 'If only <span class="crnrstn_general_post_code_copy">$data_key</span> 
+                    and <span class="crnrstn_general_post_code_copy">$data_value</span> are provided, then <span class="crnrstn_general_post_code_copy">$data_key</span>
+                    must be globally unique.';
+
+                    //
+                    // RETURN VALUE
+                    $tmp_str = 'Returns a hash string, the C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled 
+                    Data Object (DDO) key.<br><br>
+                    
+                    The DDO key is the pointer to the storage location in memory for this data.  This won\'t be useful, 
+                    and it can be disregarded until additional methods which will use this value can be documented. 
+                    Lower-level data storage and meta reporting controls (e.g. get data type, get data size,...etc.) 
+                    will be accessible using the DDO key.<br><br>
+                    
+                    When C<span class="the_R_in_crnrstn">R</span>NRSTN :: retrieves this data (see ' . $this->return_crnrstn_text_link('get_resource') . '),
+                    the DDO key allows for direct access to the storage location of the data. When these lower level 
+                    methods are documented, this direct access will become standard issue for top tier performance. The 
+                    hash is derived...in part...from the provided <span class="crnrstn_general_post_code_copy">$data_key</span>
+                    and <span class="crnrstn_general_post_code_copy">$data_type_family</span>. Therefore, without DDO 
+                    driven access, the same two (2) values will need to be provided to ' . $this->return_crnrstn_text_link('get_resource') . ' 
+                    in order to extract the associated data. A built-in iterator is available to support data updates 
+                    and retrieval in n+1 use-case situations where the same <span class="crnrstn_general_post_code_copy">$data_key</span>
+                    and <span class="crnrstn_general_post_code_copy">$data_type_family</span> are used repeatedly.</p>
+                    
+                    ' . $this->return_crnrstn_caution_note($tmp_caution_note) . '
+                    
+                    <p>This is low-level system data storage with direct exposure to <span class="crnrstn_general_post_code_copy">$_COOKIE</span>, 
+                    database, <span class="crnrstn_general_post_code_copy">$_SESSION</span>, <span class="crnrstn_general_post_code_copy">$_GET</span>, 
+                    the C<span class="the_R_in_crnrstn">R</span>NRSTN :: SSDTLA, and an OpenSSL v' . $this->oCRNRSTN->version_openssl() . ' 
+                    encryption services layer that independently supports each of the aforementioned. C<span class="the_R_in_crnrstn">R</span>NRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' 
+                    manages all data portability upon this set of rails.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
+
+                    //
+                    // PARAMETER DEFINITION
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$env_key';
+                    $tmp_param_def[0]['param_definition'] = 'Used exclusively by lower level operations, capturing <span class="crnrstn_general_post_code_copy">$env_key</span> 
+                    here allows C<span class="the_R_in_crnrstn">R</span>NRSTN :: to employ the DDO to collect data 
+                    before the environment is detected.<br><br>
+                    
+                    This is a user-defined custom string identifying a specific hosting environment or server profile. 
+                    E.g. &quot;LOCALHOST_MY_OLD_MAC_TOWER&quot;, &quot;LOCALHOST_PC&quot; or &quot;PROD_01&quot;.<br><br>
+                    
+                    If ALL environments are to receive the same affects, the predefined integer constant, <span class="crnrstn_general_post_code_copy">CRNRSTN_RESOURCE_ALL</span>,
+                    can be used.';
+                    $tmp_param_def[0]['param_required'] = false;$tmp_param_def[5]['param_name'] = '$env_key';
+
+                    $tmp_param_def[1]['param_name'] = '$data_key';
+                    $tmp_param_def[1]['param_definition'] = 'A key to represent the data being stored. This will be used 
+                    similar to the use of a variable name when retrieving the data.';
+                    $tmp_param_def[1]['param_required'] = true;
+
+                    $tmp_param_def[2]['param_name'] = '$data_value';
+                    $tmp_param_def[2]['param_definition'] = 'The value that is to be stored.';
+                    $tmp_param_def[2]['param_required'] = false;
+
+                    $tmp_param_def[3]['param_name'] = '$data_type_family';
+                    $tmp_param_def[3]['param_definition'] = 'An optional secondary key to allow data being stored to
+                    be indexed (or silo\'d) separately in logical groups.<br><br>
+                    
+                    Avoid resource contention brought on through the use of redundant variable names by multiple 
+                    developers operating within a narrow name-value-pair ecosystem by providing a custom string here 
+                    that will be hashed internally to arrive at the necessary and sufficient degree of 
+                    data serialization.<br><br>
+                    
+                    The same <span class="crnrstn_general_post_code_copy">$data_type_family</span> value will need to be 
+                    provided to ' . $this->return_crnrstn_text_link('get_resource') . ' for data retrieval.';
+                    $tmp_param_def[3]['param_required'] = false;
+
+                    $tmp_param_def[4]['param_name'] = '$data_auth_profile';
+                    $tmp_param_def[4]['param_definition'] = 'Pending development, this value will regulate the data 
+                    handling practices for data entrusted to C<span class="the_R_in_crnrstn">R</span>NRSTN ::. 
+                    Currently, the only supported profile is for runtime only storage. At present, no data is cached 
+                    (encrypted or otherwise) in cookie, session or database.<br><br>
+                    
+                    Even with no session cache operating behind the configuration of C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
+                    at the moment, Lightsaber is still up to a second faster than v1.0.0. This is impressive when 
+                    considering that v1.0.0 of C<span class="the_R_in_crnrstn">R</span>NRSTN :: completely bypasses 
+                    like 80% of the configuration after session initialization, and it is completely dependent upon 
+                    server session.
+                    <br><br>
+                    
+                    By the end of this, ANY value will be able to be shared with ANY server; we lay the foundations for 
+                    the appropriate controls to be put in place at the lowest possible levels now. C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
+                    stores the data permissions profile with the data at the point of collection.';
+                    $tmp_param_def[4]['param_required'] = false;
+
+                    $tmp_caution_note = 'To overwrite or update a value, an integer must be provided for <span class="crnrstn_general_post_code_copy">$index</span>.';
+                    $tmp_param_def[5]['param_name'] = '$index';
+                    $tmp_param_def[5]['param_definition'] = 'An iterator to allow any value at any queue position to be 
+                    retrieved or updated. All method calls with the same <span class="crnrstn_general_post_code_copy">$data_key</span> 
+                    and <span class="crnrstn_general_post_code_copy">$data_type_family</span> will queue the data, and 
+                    they will not overwrite. To overwrite or update a value, an integer must be provided.</p>
+                    
+                    ' . $this->return_crnrstn_caution_note($tmp_caution_note) . '
+
+                    <p>If there will be multiple writes to the same variable...but, only one value is ever needed or 
+                    desired, pass in zero (0) as <span class="crnrstn_general_post_code_copy">$index</span> for 
+                    every call.';
+                    $tmp_param_def[5]['param_required'] = false;
+
+                    $tmp_param_def[6]['param_name'] = '$default_ttl';
+                    $tmp_param_def[6]['param_definition'] = 'Pending development, this time to live (TTL) will 
+                    play a role in the expiry of session configuration data and the subsequent forced 
+                    refresh of the same once session caching has been implemented in database, cookie, and session.';
+                    $tmp_param_def[6]['param_required'] = false;
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // NOTE
+                    $tmp_str = 'In support of this storage and retrieval functionality, proprietary underlying 
+                    technology is employed. The C<span class="the_R_in_crnrstn">R</span>NRSTN :: Decoupled Data Object 
+                    (DDO):</p>
+                    <ul class="crnrstn_documentation_dyn_content_note_copy"><li><span style="font-weight:normal;">Provides maximum data integrity (including the flawless data transport of NULL, boolean, 
+                    and empty string values),</span></li>
+                    <li><span style="font-weight:normal;">Provides unrivaled flexibility...store n+1 values in the one parameter name, 
+                    get total counts, and direct access by index through the input of an iterator, and</span></li>
+                    <li><span style="font-weight:normal;">Provides global (cross-application and cross-server) portability through the C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
+                    SOAP services data tunneling layer (SSDTLA) without sacrificing either of the aforementioned.</span></li>
+                    </ul>
+                    <p>ANY data can be stored within the C<span class="the_R_in_crnrstn">R</span>NRSTN :: DDO.';
+                    $tmp_note_array = array();
+                    $tmp_note_array['NOTE_COPY'] = $tmp_str;
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'NOTE', $tmp_note_array);
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+
+                    break;
+                break;
+                case 'config_add_seo_analytics':
+                    /*
+                    private function config_add_seo_analytics($env_key, $data_key, $data_value, $is_enabled = true){
+
+                    return true;
+
+                    */
+
+                break;
+                case 'config_add_seo_engagement':
+                    /*
+                    private function config_add_seo_engagement($env_key, $data_key, $data_value, $is_enabled = true){
+
+                    return true;
+
+                    */
+                break;
                 case 'openssl_get_cipher_methods':
 
                     //    public function openssl_get_cipher_methods($exclude_weak = true, $exclude_ecb = true){
@@ -563,7 +818,18 @@ class crnrstn_content_source_controller {
 
                     //
                     // RETURN VALUE
-                    $tmp_str = 'Returns an array of available <a href="'  . $this->oCRNRSTN->return_sticky_link('https://www.openssl.org/', 'crnrstn_docs_' . $this->module_key . '_open_ssl00') . '" target="_blank">OpenSSL</a> cipher methods.';
+                    $tmp_str = 'Returns an array of available <a href="'  . $this->oCRNRSTN->return_sticky_link('https://www.openssl.org/', 'crnrstn_docs_' . $this->module_key . '_open_ssl00') . '" target="_blank">OpenSSL</a> 
+                    cipher methods. Note that prior to OpenSSL 1.1.1, the cipher methods have been returned in upper 
+                    case and lower case spelling; as of OpenSSL 1.1.1 only the lower case variants are returned.';
+
+                    $tmp_openssl_v = $this->oCRNRSTN->version_openssl();
+                    if(strlen($tmp_openssl_v) > 0){
+
+                        $tmp_str .= '<br><br>
+                    This server is running: ' . $this->oCRNRSTN->proper_version('OPENSSL') . '.';
+
+                    }
+
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
 
                     //
@@ -605,8 +871,8 @@ class crnrstn_content_source_controller {
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Return profile meta information for a system integer 
-                    constant.';
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Return profile meta information for a C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
+                    system integer constant.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
@@ -1078,69 +1344,6 @@ class crnrstn_content_source_controller {
                     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
                     public function generate_new_key($len = 32, $char_selection = NULL){
 
-                        //
-                        // SEND -1 AS $char_selection FOR USE OF *ALL* CHARACTERS IN RANDOM KEY
-                        // GENERATION...ALL EXCEPT THE SEQUENCE \e ESCAPE KEY (ESC or 0x1B (27) in
-                        // ASCII) AND NOT SPLITTING HAIRS CHOOSING BETWEEN SEQUENCE \n LINEFEED (LF or
-                        // 0x0A (10) in ASCII) AND THE SEQUENCE \r CARRIAGE RETURN (CR or 0x0D
-                        // (13) in ASCII)...AND ALSO SCREW BOTH \f FORM FEED (FF or 0x0C (12)
-                        // in ASCII) AND \v VERTICAL TAB (VT or 0x0B (11) in ASCII) SEQUENCES.
-                        // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
-                        $token = "";
-
-
-                            $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                            $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
-                            $codeAlphabet .= "0123456789";
-
-                            if($char_selection == -1){
-
-                                $codeAlphabet .= "{}[]:;\"\'|\\+=_- )(*&^%$#@!~
-                                `?/>.<,   '";
-
-                            }
-
-                            //
-                            // ADDED EXCLUSION TO -2 ABOVE WHEN CHECKING FOR $char_selection
-                            if($char_selection == -2){
-
-                                $codeAlphabet .= "{}[]:+=_- )(*&%$#@!~?.";
-
-                            }
-
-                            //
-                            // ADDED EXCLUSION TO -3 ABOVE WHEN CHECKING FOR $char_selection
-                            if($char_selection == -3){
-
-
-
-                            }
-
-                            $max = strlen($codeAlphabet); // edited
-
-                            if(function_exists('random_int')){
-
-                                for($i = 0; $i < $len; $i++){
-
-                                    $token .= $codeAlphabet[random_int(0, $max - 1)];
-
-                                }
-
-                            }else{
-
-                                for($i = 0; $i < $len; $i++){
-
-                                    $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max - 1)];
-
-                                }
-
-                            }
-
-                        }
-
-                        return $token;
-
-                    }
                     */
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
@@ -1244,6 +1447,102 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
                     break;
+                case 'get_disk_free_space':
+
+                break;
+                case 'get_disk_size':
+
+                break;
+                case 'get_disk_performance_metric':
+
+                    /*
+                    public function get_disk_performance_metric($profile_name){
+
+                        $profile_name = strtolower($profile_name);
+
+                        switch($profile_name){
+                            case 'maximum_disk_use_warning':
+
+                                return $this->max_storage_utilization_warning;
+
+                            break;
+                            case 'maximum_disk_use':
+
+                                return $this->max_storage_utilization;
+
+                            break;
+                            case 'disk_free_space':
+
+                                return $this->return_disk_free_space($path);
+
+                            break;
+                            case 'hard_disk_size':
+
+                                return $this->return_hard_disk_size($path);
+
+                            break;
+
+                        }
+
+                        return '';
+
+                    }
+
+                    */
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns TRded.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $profile_name,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $path = <span class="crnrstn_documentation_method_data_system_val">CRNRSTN_ROOT</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">string</span>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // RETURN VALUE
+                    $tmp_str = 'Returns string data of the requested value.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
+
+                    //
+                    // PARAMETER DEFINITION
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$profile_name';
+                    $tmp_param_def[0]['param_definition'] = 'A boolean TRU.</p>
+                    <div class="crnrstn_cb_10"></div>
+                    <span class="crnrstn_general_post_code_copy">\'<span class="crnrstn_documentation_method_string_data">disk_free_space</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">\'<span class="crnrstn_documentation_method_string_data">hard_disk_size</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">\'<span class="crnrstn_documentation_method_string_data">maximum_disk_use</span>\'</span><br>
+                    <span class="crnrstn_general_post_code_copy">\'<span class="crnrstn_documentation_method_string_data">maximum_disk_use_warning</span>\'</span><br>
+                    
+                    <p>';
+                    $tmp_param_def[0]['param_required'] = true;
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
                 case 'get_resource':
                     /*
                     public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
@@ -1428,6 +1727,76 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
                     break;
+                case 'grant_permissions_fwrite':
+                    /*
+                    //
+                    // BE PREPARED TO HOOK UP SYSTEM DEFAULT EXPOSURE FOR DISK WARNING AND DISK FULL.
+                    // WILL NEED TO TALK ABOUT THAT.
+                    public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
+                        return $this->oCRNRSTN_PERFORMANCE_REGULATOR->grant_permissions_fwrite($filepath, $minimum_bytes_required);
+
+                    //
+                    // MAXIMUM PERCENTAGE OF DISK (E.G. "FILL VOLUME UP TO 85% AND STOP. START WARNINGS AT 70.") USAGE
+                    // BEFORE CRNRSTN :: WILL STOP WRITING FILES. 100 *WILL* BRICK YOUR SERVER WITH LOG TO CUSTOM FILE ENABLED.
+                    public $max_storage_utilization = 85;
+                    public $max_storage_utilization_warning = 70;
+
+                    */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns TRUE if there is disk capacity to write the data, 
+                    and will start sending ' . $this->return_crnrstn_text_link('error_log', 'PHP_ELLIPSE',CRNRSTN_RESOURCE_OPENSOURCE) . ' 
+                    warnings when the warning threshold of the C<span class="the_R_in_crnrstn">R</span>NRSTN :: 
+                    disk management configuration profile has been exceeded.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // METHOD DEFINITION
+                    $tmp_method_definition = $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $filepath,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $minimum_bytes_required = <span class="crnrstn_documentation_method_data_system_val">0</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
+
+                    //
+                    // RETURN VALUE
+                    $tmp_str = 'Returns boolean TRUE if maximum disk use will not be reached after the data is written. Will 
+                    start sending error_log when the warning threshold for disk storage has been exceeded.';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
+
+                    //
+                    // PARAMETER DEFINITION
+                    $tmp_param_def = array();
+                    $tmp_param_def[0]['param_name'] = '$filepath';
+                    $tmp_param_def[0]['param_definition'] = 'The directory or file path to the location that is to 
+                    receive the file write. If an existing file is going to be overwritten, this is not taken 
+                    into consideration when calculating net total bytes required for the new data.';
+                    $tmp_param_def[0]['param_required'] = true;
+
+                    $tmp_param_def[1]['param_name'] = '$minimum_bytes_required';
+                    $tmp_param_def[1]['param_definition'] = 'The size of the data to be written in the unit of bytes.';
+                    $tmp_param_def[1]['param_required'] = false;
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
+
+                    //
+                    // EXAMPLE
+                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                    $tmp_example_title_integrated = NULL;
+                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
                 case 'is_mobile':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
@@ -2369,7 +2738,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
-                    break;
+                break;
                 case 'system_output_footer_html':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
@@ -2379,7 +2748,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
                     $tmp_title_array['PAGE_DESCRIPTION'] = 'Output string data to be placed at the end of &lt;BODY&gt; 
-                    content within an HTML document. Pass in TRUE to spool the requested content for output at a later time.';
+                    content within an HTML document. Set <span class="crnrstn_general_post_code_copy">$spool_for_output = <span class="crnrstn_documentation_method_data_system_val">TRUE</span></span>
+                    to spool the requested content for output at a later time.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
@@ -2460,7 +2830,8 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
                     $tmp_title_array['PAGE_DESCRIPTION'] = 'Output string data to be placed within the &lt;HEAD&gt; of 
-                    an HTML document. Pass in TRUE to spool the requested content for output at a later time.';
+                    an HTML document. Set <span class="crnrstn_general_post_code_copy">$spool_for_output = <span class="crnrstn_documentation_method_data_system_val">TRUE</span></span> 
+                    to spool the requested content for output at a later time.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
@@ -2711,7 +3082,6 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
                     break;
-
                 case 'config_add_system_resource':
 
                     // private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $index, $default_ttl = 60){    private function config_add_system_resource($env_key, $data_key, $data_value = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
@@ -2883,65 +3253,6 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
 
                 break;
-                case 'grant_permissions_fwrite':
-                    /*
-                    public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
-
-                    return $this->oCRNRSTN_PERFORMANCE_REGULATOR->grant_permissions_fwrite($filepath, $minimum_bytes_required);
-
-                    */
-                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
-
-                    //
-                    // PAGE TITLE
-                    $tmp_title_array = array();
-                    $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns a string with the output of native <span class="crnrstn_text_embedded_image">' . $this->text_img_link('PHP_ELLIPSE','https://www.php.net/manual/en/function.var-dump') . '</span>
-                    var_dump.';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
-
-                    //
-                    // METHOD DEFINITION
-                    $tmp_method_definition = $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $data,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $string_output = <span class="crnrstn_documentation_method_data_system_val">true</span><br>
-                    ): <span class="crnrstn_documentation_method_data_type">string|output buffer</span>';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition);
-
-                    //
-                    // RETURN VALUE
-                    $tmp_str = 'Returns a string of var_dump output or, when <span class="crnrstn_general_post_code_copy">$string_output = false</span>
-                    will simply execute the native php var_dump.';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
-
-                    //
-                    // PARAMETER DEFINITION
-                    $tmp_param_def = array();
-                    $tmp_param_def[0]['param_name'] = '$data';
-                    $tmp_param_def[0]['param_definition'] = 'A boolean TRUE or FALSE. If <span class="crnrstn_general_post_code_copy">$tablet_is_mobile = TRUE</span> 
-                    and the User-Agent and HTTP headers indicate that the client is a tablet computer, TRUE will 
-                    be returned.';
-                    $tmp_param_def[0]['param_required'] = true;
-                    $tmp_param_def[1]['param_name'] = '$string_output';
-                    $tmp_param_def[1]['param_definition'] = 'Passing in FALSE will execute ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.var-dump') . ' native <a href="' . $this->oCRNRSTN->return_sticky_link('https://www.php.net/manual/en/function.var-dump', 'crnrstn_docs_' . $this->module_key . '_php_native') . '" target="_blank">var_dump</a>.';
-                    $tmp_param_def[1]['param_required'] = true;
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def);
-
-                    //
-                    // EXAMPLE
-                    $tmp_example_title_main = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
-                    $tmp_example_title_integrated = NULL;
-                    $tmp_example_presentation_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
-                    $tmp_example_execute_file = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'EXAMPLE_CONTENT', $tmp_example_title_main, $tmp_example_title_integrated, $tmp_example_presentation_file, $tmp_example_execute_file);
-
-                    //
-                    // RELATED METHODS
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
-
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
-
-                break;
                 case 'return_system_image':
                     /*
                     public function return_system_image($media_element_key, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $image_output_mode = NULL){
@@ -3068,8 +3379,11 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
-                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns the HTML string output of a YouTube IFRAME component 
-                    for HTML embedding.';
+                    $tmp_title_array['PAGE_DESCRIPTION'] = 'Returns the HTML string output of a ' . $this->return_thirdparty_text_link('SOCIAL_YOUTUBE', 'YouTube', 'https://www.youtube.com/') . ' 
+                    IFRAME component for HTML embedding.</p><br><br>
+                    ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.parse-url.php#114704', '_blank') . '
+
+                    <p>';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
 
                     //
@@ -3084,23 +3398,22 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     //
                     // RETURN VALUE
-                    $tmp_str = 'Returns a string of var_dump output or, when <span class="crnrstn_general_post_code_copy">$string_output = false</span>
-                    will simply execute the native php var_dump.';
+                    $tmp_str = 'Returns HTML string output.';
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
 
                     //
                     // PARAMETER DEFINITION
                     $tmp_param_def = array();
                     $tmp_param_def[0]['param_name'] = '$url';
-                    $tmp_param_def[0]['param_definition'] = 'The Youtube video url.';
+                    $tmp_param_def[0]['param_definition'] = 'The ' . $this->return_thirdparty_text_link('SOCIAL_YOUTUBE', 'YouTube', 'https://www.youtube.com/') . ' video url.';
                     $tmp_param_def[0]['param_required'] = true;
 
                     $tmp_param_def[1]['param_name'] = '$width';
-                    $tmp_param_def[1]['param_definition'] = 'The width of the Youtube video thumbnail area.';
+                    $tmp_param_def[1]['param_definition'] = 'The width of the ' . $this->return_thirdparty_text_link('SOCIAL_YOUTUBE', 'YouTube', 'https://www.youtube.com/') . ' video thumbnail area.';
                     $tmp_param_def[1]['param_required'] = false;
 
                     $tmp_param_def[2]['param_name'] = '$height';
-                    $tmp_param_def[2]['param_definition'] = 'The height of the Youtube video thumbnail area.';
+                    $tmp_param_def[2]['param_definition'] = 'The height of the ' . $this->return_thirdparty_text_link('SOCIAL_YOUTUBE', 'YouTube', 'https://www.youtube.com/') . ' video thumbnail area.';
                     $tmp_param_def[2]['param_required'] = false;
 
                     $tmp_param_def[3]['param_name'] = '$fullscreen';
@@ -3148,21 +3461,6 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     */
 
-                case 'config_add_seo_analytics':
-                    /*
-                    private function config_add_seo_analytics($env_key, $data_key, $data_value, $is_enabled = true){
-
-                    return true;
-
-                    */
-
-                case 'config_add_seo_engagement':
-                    /*
-                    private function config_add_seo_engagement($env_key, $data_key, $data_value, $is_enabled = true){
-
-                    return true;
-
-                    */
 
                 case 'config_deny_access':
                     /*
@@ -11680,6 +11978,15 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_ELECTRUM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_ELECTRUM';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_THIRDPARTY':
+            case CRNRSTN_RESOURCE_THIRDPARTY:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_THIRDPARTY;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_THIRDPARTY';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
 

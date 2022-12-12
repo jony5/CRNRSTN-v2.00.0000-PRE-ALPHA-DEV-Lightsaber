@@ -475,9 +475,21 @@ class crnrstn {
 
     }
 
-    public function get_performance_metric($profile_name){
+    public function get_disk_free_space($path = CRNRSTN_ROOT){
 
-        return $this->oCRNRSTN_PERFORMANCE_REGULATOR->get_performance_metric($profile_name);
+        return $this->oCRNRSTN_PERFORMANCE_REGULATOR->get_disk_free_space($path);
+
+    }
+
+    public function get_disk_size($path = CRNRSTN_ROOT){
+
+        return $this->oCRNRSTN_PERFORMANCE_REGULATOR->get_disk_size($path);
+
+    }
+
+    public function get_disk_performance_metric($profile_name){
+
+        return $this->oCRNRSTN_PERFORMANCE_REGULATOR->get_disk_performance_metric($profile_name);
 
     }
 
@@ -1059,7 +1071,6 @@ class crnrstn {
 
     public function iso_language_html(){
 
-        error_log(__LINE__ . ' crnrstn GO TO oCRNRSTN_LANG_MGR->iso_language_html.');
         return $this->oCRNRSTN_LANG_MGR->iso_language_html();
 
     }
@@ -3823,9 +3834,8 @@ class crnrstn {
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
         //
-        // 'iso_language_profile_count' => 'DISABLED', 'iso_language_profile' => 'DISABLED','hash' => 'DISABLED',
-        // 'is_mobile_custom'=> 'DISABLED', 'set_mobile_custom'=> 'DISABLED', 'return_system_image' => 'DISABLED',
-        // 'print_r' => 'DISABLED', 'print_r_str' => 'DISABLED', 'get_resource' => 'DISABLED','add_system_resource' => 'DISABLED',
+        //  'iso_language_profile' => 'DISABLED','hash' => 'DISABLED',
+        // 'set_mobile_custom'=> 'DISABLED', 'return_system_image' => 'DISABLED',
         $tmp_ARRAY = array('return_system_image'=>'DISABLED', 'config_add_administration' => 'DISABLED',
             'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED', 'config_add_seo_analytics' => 'DISABLED',
             'config_add_seo_engagement' => 'DISABLED', 'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
@@ -3834,10 +3844,10 @@ class crnrstn {
             'config_include_system_resources' => 'DISABLED', 'config_include_wordpress' => 'DISABLED',
             'config_init_images_http_dir' => 'DISABLED', 'config_init_images_transport_mode' => 'DISABLED',
             'config_init_logging' => 'DISABLED', 'error_log' => 'DISABLED', 'form_hidden_input_add' => 'DISABLED',
-            'form_input_add' => 'DISABLED', 'form_input_feedback_copy_add' => 'DISABLED',
+            'form_input_add' => 'DISABLED', 'form_input_feedback_copy_add' => 'DISABLED', 'better_scandir' => 'DISABLED',
             'form_integration_html_packet_output' => 'DISABLED', 'form_response_add' => 'DISABLED',
-            'grant_permissions_fwrite' => 'DISABLED', 'ini_set' => 'DISABLED', 'is_configured' => 'DISABLED',
-            'return_youtube_embed' => 'DISABLED', 'set_crnrstn_as_err_handler' => 'DISABLED', 'set_max_login_attempts' => 'DISABLED',
+            'ini_set' => 'DISABLED', 'is_configured' => 'DISABLED', 'grant_permissions_fwrite' => 'DISABLED',
+            'set_crnrstn_as_err_handler' => 'DISABLED', 'set_max_login_attempts' => 'DISABLED', 'get_disk_performance_metric' => 'DISABLED',
             'set_timeout_user_inactive' => 'DISABLED', 'set_timezone_default' => 'DISABLED', 'set_ui_theme_style' => 'DISABLED'
             );
 
@@ -11403,9 +11413,6 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             }
 
         }
-
-//        error_log(__LINE__ . ' $sorting_order=[' . $sorting_order . ']. $files=[' . print_r($files, true) . '].');
-//        die();
 
         /****************************************************************************/
         // Set the final return value.

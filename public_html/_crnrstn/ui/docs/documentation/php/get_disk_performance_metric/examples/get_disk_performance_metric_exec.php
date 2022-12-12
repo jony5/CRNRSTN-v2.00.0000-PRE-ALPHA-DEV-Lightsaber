@@ -14,9 +14,8 @@ $tmp_small_data_size = strlen($tmp_small_data);
 //
 // FAKE SOME BIG DATA. MAYBE PROD IS GOOD FOR IT?
 $tmp_big_data = $this->oCRNRSTN->generate_new_key(50);
-$tmp_massive_data_size = 107374182400;      // 100 GB
-$tmp_massive_data_size = 19327352832;       // 18 GB
-$tmp_big_data_size = 6442450944;            // 6 GB
+$tmp_big_data_size = 107374182400;      // 100 GB
+$tmp_big_data_size = 6442450944;        // 6 GB
 
 //
 // GET WRITE PERMISSIONS FOR SMALL DATA.
@@ -34,22 +33,10 @@ if($this->oCRNRSTN->grant_permissions_fwrite($tmp_write_path, $tmp_small_data_si
 // GET WRITE PERMISSIONS FOR BIG DATA.
 if($this->oCRNRSTN->grant_permissions_fwrite($tmp_write_path, $tmp_big_data_size)){
 
-    $tmp_html_out .= 'Permission granted to write ' . $this->oCRNRSTN->format_bytes($tmp_big_data_size, 4) . '!<br><br>';
+    $tmp_html_out .= 'Permission granted to write ' . $this->oCRNRSTN->format_bytes($tmp_big_data_size, 4) . '!';
 
 }else{
 
-    $tmp_html_out .= 'Permission DENIED to write ' . $this->oCRNRSTN->format_bytes($tmp_big_data_size, 4) . '!<br><br>';
-
-}
-
-//
-// GET WRITE PERMISSIONS FOR MASSIVE DATA.
-if($this->oCRNRSTN->grant_permissions_fwrite($tmp_write_path, $tmp_massive_data_size)){
-
-    $tmp_html_out .= 'Permission granted to write ' . $this->oCRNRSTN->format_bytes($tmp_massive_data_size, 4) . '!';
-
-}else{
-
-    $tmp_html_out .= 'Permission DENIED to write ' . $this->oCRNRSTN->format_bytes($tmp_massive_data_size, 4) . '!';
+    $tmp_html_out .= 'Permission DENIED to write ' . $this->oCRNRSTN->format_bytes($tmp_big_data_size, 4) . '!';
 
 }

@@ -1112,59 +1112,64 @@ function crnrstn_constants_init($const_nom){
             return (int) 8600;
 
         break;
-        case 'CRNRSTN_HTTP_REDIRECT':
+        case 'CRNRSTN_RESOURCE_THIRDPARTY':
 
             return (int) 8601;
 
         break;
-        case 'CRNRSTN_HTTPS_REDIRECT':
+        case 'CRNRSTN_HTTP_REDIRECT':
 
             return (int) 8602;
 
         break;
-        case 'CRNRSTN_HTTP_DATA_RETURN':
+        case 'CRNRSTN_HTTPS_REDIRECT':
 
             return (int) 8603;
 
         break;
-        case 'CRNRSTN_HTTPS_DATA_RETURN':
+        case 'CRNRSTN_HTTP_DATA_RETURN':
 
             return (int) 8604;
 
         break;
-        case 'CRNRSTN_JSON_RETURN':
+        case 'CRNRSTN_HTTPS_DATA_RETURN':
 
             return (int) 8605;
 
         break;
-        case 'CRNRSTN_XML_RETURN':
+        case 'CRNRSTN_JSON_RETURN':
 
             return (int) 8606;
 
         break;
-        case 'CRNRSTN_SOAP_RETURN':
+        case 'CRNRSTN_XML_RETURN':
 
             return (int) 8607;
 
         break;
-        case 'CRNRSTN_HTML_TEXT_RETURN':
+        case 'CRNRSTN_SOAP_RETURN':
 
             return (int) 8608;
 
         break;
-        case 'CRNRSTN_DOCUMENT_FILE_RETURN':
+        case 'CRNRSTN_HTML_TEXT_RETURN':
 
             return (int) 8609;
 
         break;
-        case 'CRNRSTN_SERVER_RESPONSE_CODE':
+        case 'CRNRSTN_DOCUMENT_FILE_RETURN':
 
             return (int) 8610;
 
         break;
-        case 'CRNRSTN_REPORT_RESPONSE_RETURN':
+        case 'CRNRSTN_SERVER_RESPONSE_CODE':
 
             return (int) 8611;
+
+        break;
+        case 'CRNRSTN_REPORT_RESPONSE_RETURN':
+
+            return (int) 8612;
 
         break;
 

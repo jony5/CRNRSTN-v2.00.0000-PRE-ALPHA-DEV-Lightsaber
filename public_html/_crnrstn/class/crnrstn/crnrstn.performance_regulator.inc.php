@@ -229,7 +229,19 @@ class crnrstn_performance_regulator{
 
     }
 
-    public function get_performance_metric($profile_name, $env_key = CRNRSTN_RESOURCE_ALL){
+    public function get_disk_free_space($path = CRNRSTN_ROOT){
+
+        return $this->return_disk_free_space($path);
+
+    }
+
+    public function get_disk_size($path = CRNRSTN_ROOT){
+
+        return $this->return_hard_disk_size($path);
+
+    }
+
+    public function get_disk_performance_metric($profile_name){
 
         $profile_name = strtolower($profile_name);
 
@@ -242,6 +254,16 @@ class crnrstn_performance_regulator{
             case 'maximum_disk_use':
 
                 return $this->max_storage_utilization;
+
+            break;
+            case 'disk_free_space':
+
+                return $this->return_disk_free_space();
+
+            break;
+            case 'hard_disk_size':
+
+                return $this->return_hard_disk_size();
 
             break;
 
@@ -313,32 +335,51 @@ class crnrstn_performance_regulator{
         $this->hard_disk_bytes_volume_size = $this->return_hard_disk_size($filepath);
         $this->hard_disk_bytes_capacity_total_pretty = $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total, 5);
         $required_bytes_pretty = $this->oCRNRSTN->format_bytes($required_bytes, 4);
+//        error_log(__LINE__ . ' perform ***** capacity [' . $this->hard_disk_bytes_capacity_total . ']');
+//        error_log(__LINE__ . ' perform ***** volume_size [' . $this->hard_disk_bytes_volume_size . ']');
+//        error_log(__LINE__ . ' perform ***** required [' . $required_bytes . ']');
+
+        error_log(__LINE__ . ' perform ***** required [' . $required_bytes_pretty . ']. volume_size [' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_volume_size, 5) . ']. capacity [' . $this->hard_disk_bytes_capacity_total_pretty . ']. ');
 
         //
         // CALCULATE PERCENTAGE UTILIZATION OF REQUEST
         $percentage_utilization_ask = 100 - ((($required_bytes + ($this->hard_disk_bytes_volume_size - $this->hard_disk_bytes_capacity_total)) / $this->hard_disk_bytes_volume_size) * 100);
+        //$percentage_utilization_ask =  (($required_bytes + ($this->hard_disk_bytes_volume_size - $this->hard_disk_bytes_capacity_total)) / $this->hard_disk_bytes_volume_size) * 100;
 
+        error_log(__LINE__ . ' perform maths[' . ((($required_bytes + ($this->hard_disk_bytes_volume_size - $this->hard_disk_bytes_capacity_total)) / $this->hard_disk_bytes_volume_size) * 100) . ']');
+        //error_log(__LINE__ . ' perform percentage_utilization_ask [' . $percentage_utilization_ask . ']');
+        
+        if($percentage_utilization_ask < 0){
+
+            $percentage_utilization_ask = $percentage_utilization_ask * (-1);
+
+        }
+
+        if($percentage_utilization_ask > 100){
+
+            $percentage_utilization_ask = 100;
+
+        }
+        
         //
         // DISK FULL WARNING
         if($percentage_utilization_ask > $this->max_storage_utilization_warning){
 
+//            error_log(__LINE__ . ' perform $percentage_utilization_ask[' . $percentage_utilization_ask . ']');
+//
+//            die();
             $this->oCRNRSTN->error_log('WARNING: maximum permitted disk storage will be reached soon. ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% of the disk volume is used. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
             $this->oCRNRSTN->print_r('WARNING: maximum permitted disk storage will be reached soon. ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% of the disk volume is used. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 
-            return false;
-
         }
 
-//        else{
-//
-//            $this->oCRNRSTN->error_log('FAKEY-WARNING: maximum permitted disk storage will NOT be reached soon. ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% of the disk volume is used. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-//            $this->oCRNRSTN->print_r('FAKEY-WARNING: maximum permitted disk storage will NOT be reached soon. ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% of the disk volume is used. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-//
-//        }
+        error_log(__LINE__ . ' perform $percentage_utilization_ask[' . $percentage_utilization_ask . '] fail%[' . $this->max_storage_utilization . ']. warn%['.$this->max_storage_utilization_warning . '].');
 
         //
         // DISK FULL ERROR
         if($percentage_utilization_ask > $this->max_storage_utilization){
+
+            error_log(__LINE__ . ' perform $required_bytes_pretty[' . $required_bytes_pretty . ']');
 
             $this->oCRNRSTN->error_log('DISK FULL ERROR: Maximum storage utilization has been reached with an additional request which would result in ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% usage of the disk volume. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the currently configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
             $this->oCRNRSTN->print_r('DISK FULL ERROR: Maximum storage utilization has been reached with an additional request which would result in ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% usage of the disk volume. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the currently configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
@@ -346,13 +387,6 @@ class crnrstn_performance_regulator{
             return false;
 
         }
-
-//        else{
-//
-//            $this->oCRNRSTN->error_log('FAKEY-DISK FULL ERROR: Maximum storage utilization has NOT been reached with an additional request which would result in ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% usage of the disk volume. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the currently configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-//            $this->oCRNRSTN->print_r('FAKEY-DISK FULL ERROR: Maximum storage utilization has NOT been reached with an additional request which would result in ' . $this->oCRNRSTN->number_format_keep_precision($percentage_utilization_ask, 3) . '% usage of the disk volume. ' . $this->oCRNRSTN->number_format_keep_precision($this->max_storage_utilization, 3) . '% is the currently configured maximum. For the record, ' . $this->oCRNRSTN->format_bytes($this->hard_disk_bytes_capacity_total) . ' are available at ' . $filepath . '.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-//
-//        }
 
         //
         // RETURN PERCENTAGE DISK UTILIZATION...IF THE EXPECTED $required_bytes BYTES WOULD BE BURNED TO DISK

@@ -5,14 +5,8 @@
 require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
-$oCRNRSTN->grant_permissions_fwrite();
+$viral_youtube_video_url = 'https://www.youtube.com/watch?v=NePb9UWK8Yg';
 
-//
-// A QUICK CHECK ON THE FLIPPED BIT FOR TABLET.
-if($oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_TABLET)){
-
-    echo 'Got tablet?';
-
-}
+echo $oCRNRSTN->return_youtube_embed($viral_youtube_video_url);
 
 ?>
