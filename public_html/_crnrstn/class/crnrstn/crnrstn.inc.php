@@ -4184,7 +4184,7 @@ class crnrstn {
 
                         if($tmp_min_mode_active){
 
-                            $tmp_str .= '<theme_profile_attribute><theme_position>' . $tmp_cnt . '</theme_position><theme_nom is_active="' . $theme_const_ARRAY['IS_ACTIVE'] . '" display_position="' . $theme_const_ARRAY['DISPLAY_POSITION'] . '">' . $theme_const_ARRAY['NOM_STRING'] .  '</theme_nom><theme_integer>' . $theme_constant . '</theme_integer><attribute_name><![CDATA[' . $param_name . ']]></attribute_name><attribute_value><![CDATA[' . $tmp_value . ']]></attribute_value></theme_profile_attribute>';
+                            $tmp_str .= '<theme_profile_attribute><theme_position>' . $tmp_cnt . '</theme_position><theme_nom is_active="' . $theme_const_ARRAY['IS_ACTIVE'] . '" display_position="' . $theme_const_ARRAY['DISPLAY_POSITION'] . '" const_str="' . $theme_const_ARRAY['NOM_STRING'] .  '">' . $theme_const_ARRAY['NOM_STRING'] .  '</theme_nom><theme_integer>' . $theme_constant . '</theme_integer><attribute_name><![CDATA[' . $param_name . ']]></attribute_name><attribute_value><![CDATA[' . $tmp_value . ']]></attribute_value><description><![CDATA[' . $theme_const_ARRAY['DESCRIPTION'] . ']]></description></theme_profile_attribute>';
 
                         }else{
 
@@ -4194,10 +4194,11 @@ class crnrstn {
                             // STRING COMPARISON CHECK TO APPLY TO ALL OF THESE DEV/MIN VERSIONS
                             $tmp_str .= '<theme_profile_attribute>
                     <theme_position>' . $tmp_cnt . '</theme_position>
-                    <theme_nom display_position="' . $theme_const_ARRAY['DISPLAY_POSITION'] . '">' . $theme_const_ARRAY['NOM_STRING'] .  '</theme_nom>
+                    <theme_nom is_active="' . $theme_const_ARRAY['IS_ACTIVE'] . '" display_position="' . $theme_const_ARRAY['DISPLAY_POSITION'] . '" const_str="' . $theme_const_ARRAY['NOM_STRING'] .  '">' . $theme_const_ARRAY['TITLE'] .  '</theme_nom>
                     <theme_integer>' . $theme_constant . '</theme_integer>
                     <attribute_name><![CDATA[' . $param_name . ']]></attribute_name>
                     <attribute_value><![CDATA[' . $tmp_value . ']]></attribute_value>
+                    <description><![CDATA[' . $theme_const_ARRAY['DESCRIPTION'] . ']]></description>
                 </theme_profile_attribute>
                 ';
 
@@ -11332,6 +11333,15 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         $file_cache_version_str = '420.00.' . filesize($file_path) . '.' . filemtime($file_path).'.0';
 
         return $file_cache_version_str;
+
+    }
+
+    //
+    // SOURCE :: http://php.net/manual/en/class.recursivedirectoryiterator.php
+    // AUTHOR :: http://php.net/manual/en/class.recursivedirectoryiterator.php#85805
+    public function localdir_list_files_recursive($dir, $oEndpoint_serial, $files_only = false){
+
+        return '';
 
     }
 

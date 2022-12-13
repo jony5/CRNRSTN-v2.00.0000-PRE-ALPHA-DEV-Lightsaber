@@ -614,7 +614,7 @@ class crnrstn_content_source_controller {
                     $tmp_title_array['PAGE_TITLE'] = $this->module_key;
                     $tmp_title_array['PAGE_DESCRIPTION'] = 'Scan a directory, and return an array of the results. This 
                     is a beefy wrapper for the native ' . $this->return_crnrstn_text_link('scandir', 'PHP_ELLIPSE', CRNRSTN_RESOURCE_OPENSOURCE) . ' 
-                    method. This exposes a robust suite of result set sorting options.
+                    method. A robust suite of result set sorting options are exposed.
                     <br><br>
                     ' . $this->oCRNRSTN->return_sticky_media_link('PHP_SMALL', 'https://www.php.net/manual/en/function.scandir', '_blank') . '&nbsp;&nbsp;&nbsp;
                     ' . $this->oCRNRSTN->return_sticky_media_link('STACKOVERFLOW_SMALL', 'https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified', '_blank');

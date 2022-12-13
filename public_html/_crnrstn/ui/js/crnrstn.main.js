@@ -139,6 +139,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.form_input_serialization_hash = 'crnrstn_request_serialization_hash';
         this.received_settings_data = false;
         this.received_theme_data = false;
+        this.current_theme;
+        this.theme_display_position_flag_ARRAY = [];
         this.source_action_ux_element_id = 'page_load';
         this.max_xhr_retrys = 5;
         this.ssdtla_xhr_request_attempt_count_ARRAY = [];
@@ -153,7 +155,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.side_navigation_toggle_max_width = 250;
         this.content_stage_max_width = 850;
         this.docs_page_css_top = -420;
-        this.crnrstn_documentation_dyn_shell_bg_opacity = 0.8;
         this.interact_ui_refresh_state_body = 'SLEEPING';
         this.interact_ui_refresh_state_system_footer = 'SLEEPING';
         this.interact_ui_refresh_state_docs_bg = 'SLEEPING';
@@ -513,10 +514,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         }
 
+        //alert('Color: ' + this.get_theme_attribute('interact.ui.document_bg_overlay_background_color'));
+        //alert('Opacity: ' + this.get_theme_attribute('interact.ui.document_bg_overlay_background_opacity'));
         $('#crnrstn_documentation_dyn_shell_bg').animate({
+            backgroundColor: this.get_theme_attribute('interact.ui.document_bg_overlay_background_color'),
             top: this.docs_page_css_top + 'px',
             left: this.docs_page_css_left + 'px',
-            opacity: this.crnrstn_documentation_dyn_shell_bg_opacity
+            opacity: this.get_theme_attribute('interact.ui.document_bg_overlay_background_opacity')
         }, {
             duration: 1000,
             queue: false,
@@ -1307,8 +1311,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             this.received_theme_data = false;
 
             //
-            // STORE AND APPLY THEME SETTINGS
-            var tmp_highlight_comment_color = this.return_data_tunnel_xml_data('highlight.comment');
+            // STORE AND APPLY THEME SETTINGS....BUT NOT HERE...
+            //var tmp_highlight_comment_color = this.return_data_tunnel_xml_data('highlight.comment');
             //alert('[lnum 1308] The highlight color for comments is: ' + tmp_highlight_comment_color + '.');
 
         }
@@ -1332,6 +1336,222 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             }
 
         });
+
+    };
+
+    CRNRSTN_JS.prototype.consume_data_tunnel_response = function(response_data, data_type, serialize_response = false){
+
+        switch(data_type){
+            case 'XML':
+
+                if(response_data === undefined){
+
+                    this.log_activity('[lnum 2144] ERROR [undefined response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 2145] Resending request SSDTLA request for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                    tmp_cnt = this.ssdtla_xhr_request_attempt_count_ARRAY[data_type];
+                    tmp_cnt = parseInt(tmp_cnt) + 1;
+                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = tmp_cnt;
+
+                    if(tmp_cnt <= this.max_xhr_retrys){
+
+                        this.fire_dom_state_controller();
+
+                    }
+
+                }
+
+                if(response_data === null){
+
+                    this.log_activity('[lnum 2161] ERROR [NULL response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 2162] SSDTLA Response [NULL] ERROR experienced on return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                    tmp_cnt = this.ssdtla_xhr_request_attempt_count_ARRAY[data_type];
+                    tmp_cnt = parseInt(tmp_cnt) + 1;
+                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = tmp_cnt;
+
+                    if(tmp_cnt <= this.max_xhr_retrys){
+
+                        this.fire_dom_state_controller();
+
+                    }
+
+                }
+
+                if(response_data !== undefined && response_data !== null){
+
+                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = 0;
+
+                    var NODE_client_response = response_data.getElementsByTagName('client_response');
+                    if (NODE_client_response.length > 0) {
+
+                        this.log_activity('[lnum 2183] Extracting ' + data_type + ' data from CRNRSTN :: SOAP Services Data Tunnel Layer (SSDTL) response.', this.CRNRSTN_DEBUG_VERBOSE);
+                        this.consume_data_tunnel_xml_node(response_data, 'response_timestamp', 'client_response', 'timestamp' , serialize_response);
+
+                        //
+                        // RECEIVE NEW SOAP SERVICES DATA TUNNEL LAYER FORM PACKET SITUATION....SITUATION
+                        this.consume_data_tunnel_xml_node(response_data, 'ssdtl_packet', 'soap_data_tunnel_layer_fih_packet', '' , serialize_response);
+
+                        //
+                        // IF WE HAVE RESPONSE STATUS REPORT DATA
+                        var NODE_data_signature = response_data.getElementsByTagName('data_signature');
+                        var tmp_node_cnt = NODE_data_signature.length;
+                        if (tmp_node_cnt > 0) {
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('Extracting [data_signature] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_serial', 'request_serial', '' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_hash', 'request_hash', '' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_bool', 'jesus_christ_is_lord', '' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_vv', 'jesus_christ_is_lord', 'source' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_bool', 'satan_is_a_liar', '' , true, i);
+                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_vv', 'satan_is_a_liar', 'source' , true, i);
+
+                            }
+
+                        }
+
+                        //
+                        // IF WE HAVE BROWSER STATE SYNC DATA
+                        var NODE_state_synchronization_data = response_data.getElementsByTagName('state_synchronization_data');
+                        if (NODE_state_synchronization_data.length > 0) {
+
+                            this.log_activity('[lnum 2216] Extracting [state_synchronization_data] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                            this.consume_browser_state_sync_data(NODE_state_synchronization_data[0], serialize_response);
+
+                        }
+
+                        //
+                        // IF WE HAVE RESPONSE STATUS REPORT DATA
+                        var NODE_response_status = response_data.getElementsByTagName('response_status');
+                        var tmp_node_cnt = NODE_response_status.length;
+                        if (tmp_node_cnt > 0) {
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2230] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_response_status_data(NODE_response_status[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // RUNTIME
+                        //
+                        var NODE_runtime = response_data.getElementsByTagName('runtime');
+                        var tmp_node_cnt = NODE_runtime.length;
+                        if(tmp_node_cnt > 0){
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2247] Extracting [runtime] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_response_runtime(NODE_runtime[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // CLIENT PROFILE DATA
+                        var NODE_client_profile = response_data.getElementsByTagName('client_profile');
+                        tmp_node_cnt = NODE_client_profile.length;
+                        if (tmp_node_cnt > 0) {
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2263] Extracting [client_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_response_client_profile_data(NODE_client_profile[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // CRNRSTN :: INTERACT UI THEME PROFILE
+                        var NODE_crnrstn_interact_ui_profile = response_data.getElementsByTagName('theme_profile_attribute');
+                        tmp_node_cnt = NODE_crnrstn_interact_ui_profile.length;
+                        if(tmp_node_cnt > 0){
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                //this.log_activity('[lnum 2194] Extracting [theme_profile_attribute] data from CRNRSTN :: SSDTLA response.', this.CRNRSTN_DEBUG_VERBOSE);
+                                this.consume_response_crnrstn_interact_ui_defaults(NODE_crnrstn_interact_ui_profile[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // CRNRSTN :: INTERACT UI DATA
+                        var NODE_crnrstn_interact_ui_profile = response_data.getElementsByTagName('crnrstn_interact_ui_profile');
+                        tmp_node_cnt = NODE_crnrstn_interact_ui_profile.length;
+                        if(tmp_node_cnt > 0){
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2294] Extracting [crnrstn_interact_ui_profile] data from CRNRSTN :: SSDTLA response.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                                this.consume_response_crnrstn_interact_ui_profile_data(NODE_crnrstn_interact_ui_profile[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // BASSDRIVE DATA
+                        var NODE_bassdrive = response_data.getElementsByTagName('bassdrive');
+                        tmp_node_cnt = NODE_bassdrive.length;
+                        if (tmp_node_cnt > 0) {
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2310] Extracting [bassdrive] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_response_bassdrive_data(NODE_bassdrive[i], serialize_response);
+
+                            }
+
+                        }
+
+                        //
+                        // LIFESTYLE IMAGE BANNER DATA
+                        var NODE_lifestyle_banner = response_data.getElementsByTagName('lifestyle_banner');
+                        tmp_node_cnt = NODE_lifestyle_banner.length;
+                        if (tmp_node_cnt > 0) {
+
+                            for(let i = 0; i < tmp_node_cnt; i++){
+
+                                this.log_activity('[lnum 2326] Extracting [lifestyle_banner] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+
+                                this.consume_response_lifestyle_banner_data(NODE_lifestyle_banner[i], serialize_response);
+
+                            }
+
+                        }
+
+                        this.data_tunnel_ttl_monitor_isactive = true;
+                        this.log_activity('[lnum 2335] CRNRSTN :: SSDTL response consumption is now complete.', this.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 2336] CRNRSTN :: SSDTL TTL monitoring for client state is now active.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                    }
+
+                }
+
+                break;
+            case 'SOAP':
+                //
+                // CRNRSTN :: SOAP SERVICES DATA TUNNEL RAW SOAP RESPONSE TO BROWSER (EXPERIMENTAL)
+
+                break;
+
+        }
 
     };
 
@@ -1657,65 +1877,92 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-
     CRNRSTN_JS.prototype.consume_response_crnrstn_interact_ui_defaults = function(response_data, serialize_response){
 
         //
         // CRNRSTN :: INTERACT UI CONTENT
-        // var NODE_crnrstn_interact_ui_documentation_content_src = response_data.getElementsByTagName('crnrstn_interact_ui_profile');
-        // tmp_node_cnt = NODE_crnrstn_interact_ui_document
+        /*
+        <theme_profile_attribute>
+            <theme_position>0</theme_position>
+            <theme_nom is_active="0" display_position="0" const_str="CRNRSTN_UI_PHPNIGHT">PHP Night</theme_nom>
+            <theme_integer>7051</theme_integer>
+            <attribute_name>
+                <![CDATA[highlight.string]]>
+            </attribute_name>
+            <attribute_value>
+                <![CDATA[#54B33E]]>
+            </attribute_value>
+            <description>
+                <![CDATA[#54B33E]]>
+            </description>
+        </theme_profile_attribute>
+
+        */
+
 
         this.received_theme_data = true;
 
-        //var tmp_name = response_data.getElementsByTagName('name');
-        //var tmp_value = response_data.getElementsByTagName('value');
-        var tmp_name = this.get_xml_response_node_data(response_data, 'attribute_name', '');
-        //var tmp_value = this.get_xml_response_node_data(response_data, 'attribute_value', ''); // DELETE ME WHEN DONE
+        var tmp_theme_position = this.get_xml_response_node_data(response_data, 'theme_position', '');
+        var tmp_theme_title = this.get_xml_response_node_data(response_data, 'theme_nom', '');
+        var tmp_theme_const_str = this.get_xml_response_node_data(response_data, 'theme_nom', 'const_str');
+        var tmp_is_active = this.get_xml_response_node_data(response_data, 'theme_nom', 'is_active');
+        var tmp_display_position = this.get_xml_response_node_data(response_data, 'theme_nom', 'display_position');
+        var tmp_theme_integer = this.get_xml_response_node_data(response_data, 'theme_integer', '');
+        var tmp_attribute_name = this.get_xml_response_node_data(response_data, 'attribute_name', '');
+        var tmp_description = this.get_xml_response_node_data(response_data, 'description', '');
 
-        this.log_activity('[lnum 1675] Reading...' + tmp_name + ' from CRNRSTN :: SSDTLA XML response.', this.CRNRSTN_DEBUG_VERBOSE);
-        //this.consume_data_tunnel_xml_node(response_data, tmp_name + '_key', 'name', '', serialize_response);
-        this.consume_data_tunnel_xml_node(response_data, tmp_name, 'attribute_value', '', serialize_response);
-
-        // for(var i = 0; i < tmp_module_len; i++){
-        //
-        //     module_content_node = tmp_module_ARRAY[i];
-        //     module_hash_node = module_content_node + '_HASH';
-        //
-        //     if($('#' + tmp_module_ARRAY[i]).length){
-        //
-        //         //alert('[lnum 1658] [' + module_content_node + ']. [' + tmp_module_ARRAY[i] + '].');
-        //         this.consume_data_tunnel_xml_node(response_data, module_content_node, module_content_node, '', serialize_response);
-        //         this.consume_data_tunnel_xml_node(response_data, module_hash_node, module_hash_node, '', serialize_response);
-        //
-        //     }
-        //
-        // }
-
+        this.log_activity('[lnum 1675] Reading...' + tmp_theme_title + ': ' + tmp_attribute_name + ' from CRNRSTN :: SSDTLA XML response.', this.CRNRSTN_DEBUG_VERBOSE);
 
         //
-        // //
-        // // CRNRSTN :: INTERACT UI ENABLED
-        // var NODE_crnrstn_interact_ui_is_enabled = response_data.getElementsByTagName('is_enabled');
-        // tmp_node_cnt = NODE_crnrstn_interact_ui_is_enabled.length;
-        // if(tmp_node_cnt > 0) {
-        //
-        //     this.consume_data_tunnel_xml_node(response_data, 'crnrstn_interact_ui_is_enabled', 'is_enabled', '', serialize_response);
-        //
-        // }
-        //
-        // //
-        // // CRNRSTN :: INTERACT UI IS_VISIBLE
-        // var NODE_crnrstn_interact_ui_is_visible = response_data.getElementsByTagName('is_visible');
-        // tmp_node_cnt = NODE_crnrstn_interact_ui_is_visible.length;
-        // if(tmp_node_cnt > 0) {
-        //
-        //     this.consume_data_tunnel_xml_node(response_data, 'crnrstn_interact_ui_is_visible', 'is_visible', '', serialize_response);
-        //
-        // }
+        // CAPTURE DEFAULT FROM SERVER.
+        if(tmp_is_active === '1' && this.current_theme === undefined){
 
+            this.current_theme = tmp_theme_const_str;
+
+        }
+
+        //
+        // INTIALIZATION CHECK :: RECORD THEME DISPLAY POSITION FOR UI SEQUENCE CONTROL IN SETTINGS.
+        if(this.theme_display_position_flag_ARRAY === undefined){
+
+            this.theme_display_position_flag_ARRAY[tmp_theme_const_str] = 1;
+            this.consume_data_tunnel_xml_node(response_data, tmp_theme_const_str + '_display_position', 'theme_nom', 'display_position', serialize_response);
+
+        }else{
+
+            if(this.theme_display_position_flag_ARRAY[tmp_theme_const_str] === undefined){
+
+                this.theme_display_position_flag_ARRAY[tmp_theme_const_str] = 1;
+                this.consume_data_tunnel_xml_node(response_data, tmp_theme_const_str + '_display_position', 'theme_nom', 'display_position', serialize_response);
+
+            }
+
+        }
+
+        tmp_attribute_name = tmp_theme_const_str + '_' + tmp_attribute_name;
+        this.consume_data_tunnel_xml_node(response_data, tmp_attribute_name, 'attribute_value', '', serialize_response);
+
+        /*
+        array['CRNRSTN_UI_DARKNIGHT_stage.canvas.box-shadow.color'] = '#000';
+        array['CRNRSTN_UI_PHPNIGHT_stage.canvas.box-shadow.color'] = '#FFF';
+
+        color = get_theme_attribute('stage.canvas.box-shadow.color');
+
+        function get_theme_attribute(attribute){
+
+            color = this.current_theme + '_' + attribute;
+
+        }
+
+        */
+
+    }
+
+    CRNRSTN_JS.prototype.get_theme_attribute = function(attribute_name){
+
+        return this.return_data_tunnel_xml_data(this.current_theme + '_' + attribute_name);
 
     };
-
 
     CRNRSTN_JS.prototype.consume_response_crnrstn_interact_ui_profile_data = function(response_data, serialize_response){
 
@@ -2129,222 +2376,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 this.consume_data_tunnel_xml_node(NODE_lifestyle_banner[i], 'banner_img_sha1', 'filesize', 'sha1' , serialize_response, i);
 
             }
-
-        }
-
-    };
-
-    CRNRSTN_JS.prototype.consume_data_tunnel_response = function(response_data, data_type, serialize_response = false){
-
-        switch(data_type){
-            case 'XML':
-
-                if(response_data === undefined){
-
-                    this.log_activity('[lnum 2144] ERROR [undefined response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
-                    this.log_activity('[lnum 2145] Resending request SSDTLA request for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
-
-                    tmp_cnt = this.ssdtla_xhr_request_attempt_count_ARRAY[data_type];
-                    tmp_cnt = parseInt(tmp_cnt) + 1;
-                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = tmp_cnt;
-
-                    if(tmp_cnt <= this.max_xhr_retrys){
-
-                        this.fire_dom_state_controller();
-
-                    }
-
-                }
-
-                if(response_data === null){
-
-                    this.log_activity('[lnum 2161] ERROR [NULL response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
-                    this.log_activity('[lnum 2162] SSDTLA Response [NULL] ERROR experienced on return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
-
-                    tmp_cnt = this.ssdtla_xhr_request_attempt_count_ARRAY[data_type];
-                    tmp_cnt = parseInt(tmp_cnt) + 1;
-                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = tmp_cnt;
-
-                    if(tmp_cnt <= this.max_xhr_retrys){
-
-                        this.fire_dom_state_controller();
-
-                    }
-
-                }
-
-                if(response_data !== undefined && response_data !== null){
-
-                    this.ssdtla_xhr_request_attempt_count_ARRAY[data_type] = 0;
-
-                    var NODE_client_response = response_data.getElementsByTagName('client_response');
-                    if (NODE_client_response.length > 0) {
-
-                        this.log_activity('[lnum 2183] Extracting ' + data_type + ' data from CRNRSTN :: SOAP Services Data Tunnel Layer (SSDTL) response.', this.CRNRSTN_DEBUG_VERBOSE);
-                        this.consume_data_tunnel_xml_node(response_data, 'response_timestamp', 'client_response', 'timestamp' , serialize_response);
-
-                        //
-                        // RECEIVE NEW SOAP SERVICES DATA TUNNEL LAYER FORM PACKET SITUATION....SITUATION
-                        this.consume_data_tunnel_xml_node(response_data, 'ssdtl_packet', 'soap_data_tunnel_layer_fih_packet', '' , serialize_response);
-
-                        //
-                        // IF WE HAVE RESPONSE STATUS REPORT DATA
-                        var NODE_data_signature = response_data.getElementsByTagName('data_signature');
-                        var tmp_node_cnt = NODE_data_signature.length;
-                        if (tmp_node_cnt > 0) {
-
-                            for(let i = 0; i < tmp_node_cnt; i++){
-
-                                this.log_activity('Extracting [data_signature] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_serial', 'request_serial', '' , true, i);
-                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'data_signature_request_hash', 'request_hash', '' , true, i);
-                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_bool', 'jesus_christ_is_lord', '' , true, i);
-                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'jesus_christ_is_lord_vv', 'jesus_christ_is_lord', 'source' , true, i);
-                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_bool', 'satan_is_a_liar', '' , true, i);
-                                this.consume_data_tunnel_xml_node(NODE_data_signature[i], 'satan_is_a_liar_vv', 'satan_is_a_liar', 'source' , true, i);
-
-                            }
-
-                        }
-
-                        //
-                        // IF WE HAVE BROWSER STATE SYNC DATA
-                        var NODE_state_synchronization_data = response_data.getElementsByTagName('state_synchronization_data');
-                        if (NODE_state_synchronization_data.length > 0) {
-
-                            this.log_activity('[lnum 2216] Extracting [state_synchronization_data] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                            this.consume_browser_state_sync_data(NODE_state_synchronization_data[0], serialize_response);
-
-                        }
-
-                        //
-                        // IF WE HAVE RESPONSE STATUS REPORT DATA
-                        var NODE_response_status = response_data.getElementsByTagName('response_status');
-                        var tmp_node_cnt = NODE_response_status.length;
-                        if (tmp_node_cnt > 0) {
-
-                            for(let i = 0; i < tmp_node_cnt; i++){
-
-                                this.log_activity('[lnum 2230] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                                this.consume_response_status_data(NODE_response_status[i], serialize_response);
-
-                            }
-
-                        }
-
-                        //
-                        // RUNTIME
-                        //
-                        var NODE_runtime = response_data.getElementsByTagName('runtime');
-                        var tmp_node_cnt = NODE_runtime.length;
-                        if(tmp_node_cnt > 0){
-
-                            for(let i = 0; i < tmp_node_cnt; i++){
-
-                                this.log_activity('[lnum 2247] Extracting [runtime] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                                this.consume_response_runtime(NODE_runtime[i], serialize_response);
-
-                            }
-
-                        }
-
-                        //
-                        // CLIENT PROFILE DATA
-                        var NODE_client_profile = response_data.getElementsByTagName('client_profile');
-                        tmp_node_cnt = NODE_client_profile.length;
-                        if (tmp_node_cnt > 0) {
-
-                            for(let i = 0; i < tmp_node_cnt; i++){
-
-                                this.log_activity('[lnum 2263] Extracting [client_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                                this.consume_response_client_profile_data(NODE_client_profile[i], serialize_response);
-
-                            }
-
-                        }
-
-                        //
-                        // CRNRSTN :: INTERACT UI THEME PROFILE
-                        var NODE_crnrstn_interact_ui_profile = response_data.getElementsByTagName('theme_profile_attribute');
-                        tmp_node_cnt = NODE_crnrstn_interact_ui_profile.length;
-                        if(tmp_node_cnt > 0){
-
-                            for(let i = 0; i < tmp_node_cnt; i++){
-
-                                //this.log_activity('[lnum 2194] Extracting [theme_profile_attribute] data from CRNRSTN :: SSDTLA response.', this.CRNRSTN_DEBUG_VERBOSE);
-                                this.consume_response_crnrstn_interact_ui_defaults(NODE_crnrstn_interact_ui_profile[i], serialize_response);
-
-                            }
-
-                        }
-
-                        //
-                        // CRNRSTN :: INTERACT UI DATA
-                        var NODE_crnrstn_interact_ui_profile = response_data.getElementsByTagName('crnrstn_interact_ui_profile');
-                        tmp_node_cnt = NODE_crnrstn_interact_ui_profile.length;
-                        if(tmp_node_cnt > 0){
-
-                            for(let i = 0; i < tmp_node_cnt; i++){
-
-                                this.log_activity('[lnum 2294] Extracting [crnrstn_interact_ui_profile] data from CRNRSTN :: SSDTLA response.', this.CRNRSTN_DEBUG_VERBOSE);
-
-                                this.consume_response_crnrstn_interact_ui_profile_data(NODE_crnrstn_interact_ui_profile[i], serialize_response);
-
-                            }
-
-                        }
-
-                        //
-                        // BASSDRIVE DATA
-                        var NODE_bassdrive = response_data.getElementsByTagName('bassdrive');
-                        tmp_node_cnt = NODE_bassdrive.length;
-                        if (tmp_node_cnt > 0) {
-
-                            for(let i = 0; i < tmp_node_cnt; i++){
-
-                                this.log_activity('[lnum 2310] Extracting [bassdrive] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                                this.consume_response_bassdrive_data(NODE_bassdrive[i], serialize_response);
-
-                            }
-
-                        }
-
-                        //
-                        // LIFESTYLE IMAGE BANNER DATA
-                        var NODE_lifestyle_banner = response_data.getElementsByTagName('lifestyle_banner');
-                        tmp_node_cnt = NODE_lifestyle_banner.length;
-                        if (tmp_node_cnt > 0) {
-
-                            for(let i = 0; i < tmp_node_cnt; i++){
-
-                                this.log_activity('[lnum 2326] Extracting [lifestyle_banner] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
-
-                                this.consume_response_lifestyle_banner_data(NODE_lifestyle_banner[i], serialize_response);
-
-                            }
-
-                        }
-
-                        this.data_tunnel_ttl_monitor_isactive = true;
-                        this.log_activity('[lnum 2335] CRNRSTN :: SSDTL response consumption is now complete.', this.CRNRSTN_DEBUG_VERBOSE);
-                        this.log_activity('[lnum 2336] CRNRSTN :: SSDTL TTL monitoring for client state is now active.', this.CRNRSTN_DEBUG_VERBOSE);
-
-                    }
-
-                }
-
-            break;
-            case 'SOAP':
-                //
-                // CRNRSTN :: SOAP SERVICES DATA TUNNEL RAW SOAP RESPONSE TO BROWSER (EXPERIMENTAL)
-
-            break;
 
         }
 
@@ -7929,6 +7960,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         $('#crnrstn_interact_ui_full_doc_close').html('');
 
         $('#crnrstn_documentation_dyn_shell_bg').animate({
+            backgroundColor: 'transparent',
             opacity: 0
         }, {
             duration: 500,
