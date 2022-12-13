@@ -55,6 +55,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -157,6 +162,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -201,6 +211,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -244,6 +259,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -287,6 +307,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -332,6 +357,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -375,6 +405,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -418,6 +453,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -461,6 +501,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
@@ -504,6 +549,11 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.offset-y'][] = 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
+
+// CRNRSTN :: INTERACT UI
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
 /*//////////
 //////////
 
