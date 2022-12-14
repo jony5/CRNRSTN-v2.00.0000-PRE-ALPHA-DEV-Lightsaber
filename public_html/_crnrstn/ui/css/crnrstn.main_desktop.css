@@ -38,7 +38,7 @@
 .crnrstn_general_post_recent_activity_datestamp p       { font-family: "Courier New", Courier, monospace; font-size: 14px; padding: 20px 0 0 0;}
 
 .crnrstn_documentation_system_data_constant             { font-family: "Courier New", Courier, monospace; font-size: 90%;}
-.crnrstn_documentation_system_data_description          { font-family: "Courier New", Courier, monospace; font-size: 80%; padding: 0 0 10px 20px; margin: 0;}
+.crnrstn_documentation_system_data_description          { font-family: "Courier New", Courier, monospace; font-size: 80%; padding: 0 0 10px 44px; margin: 0;}
 
 .crnrstn_general_dagger_key_shell                   { width: 100%; padding:0;}
 .crnrstn_general_dagger_key_dag                     { float: left; width:14px;}
@@ -86,7 +86,7 @@
 .crnrstn_interact_ui_full_doc_close                 { position: fixed; margin:10px 0 0 0; padding:0 10px 0 10px; /*z-index: 9999;*/ left:88.5%; top:0; font-family: Arial, Helvetica, sans-serif; font-size: 50px; line-height: 60px; font-weight: normal; color: #f6f6f6;}
 
 .crnrstn_documentation_dyn_shell_rel                { position:relative; }
-.crnrstn_documentation_dyn_shell_bg                 { position: absolute; /*background-color: #003eff;*/ z-index: 1; left:0; top:-8px; width: 0; height: 0; overflow: hidden;}
+.crnrstn_documentation_dyn_shell_bg                 { position: absolute; /*background-color: #003eff;z-index: 1;*/  left:0; top:-8px; width: 0; height: 0; overflow: hidden;}
 .crnrstn_documentation_dyn_shell                    { position: absolute; z-index: 2; left:0; top:-8px; width: 0; overflow: hidden; overflow-y: scroll;}
 
 .crnrstn_ui_element_load_indicator_shell_rel	    { position:relative;}
@@ -119,14 +119,15 @@
 .crnrstn_documentation_lnk_top_rel                          { position: relative; float: right; width:65px; }
 .crnrstn_documentation_lnk_top                              { position: absolute; width:50px; height:15px; padding: 14px 10px 3px 0; font-family: "Courier New", Courier, monospace; font-size:12px; line-height: 20px;text-align: right;}
 .crnrstn_documentation_dyn_content_shell                    { /*width: 64%;*/min-width: 400px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
-.crnrstn_documentation_dyn_content_title                    { font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 55px; padding: 0 10px 0 20px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
-.crnrstn_documentation_dyn_content_title h1                 { font-size: 45px; overflow-wrap: break-word; }
-.crnrstn_documentation_dyn_content_title h2                 { font-size: 35px; margin-bottom:0;}
-.crnrstn_documentation_dyn_content_title h3                 { font-size: 25px; margin-bottom:0;}
-.crnrstn_documentation_dyn_content_description              { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; }
-.crnrstn_documentation_dyn_content_description p            { padding: 0; margin: 0; text-align: left; display: inline-block;}
-.crnrstn_documentation_dyn_content_description a            { text-decoration: none; color:#0066CC;}
-.crnrstn_documentation_dyn_content_description .crnrstn_text_embedded_image { padding: 0px 6px 0 0px; line-height: 90px;}
+.crnrstn_documentation_dyn_content_title                    { }
+.crnrstn_documentation_dyn_content_title h1                 { overflow-wrap: break-word; font-size: 100%; } /*font-size: 45px;*/
+.crnrstn_documentation_dyn_content_title h2                 { margin-bottom:0; font-size: 100%;}
+.crnrstn_documentation_dyn_content_title h3                 { margin-bottom:0; font-size: 100%;}
+.crnrstn_documentation_dyn_content_title h4                 { margin-bottom:0; font-size: 100%;}
+.crnrstn_documentation_dyn_content_description              { /*width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 10px 25px 20px; font-family: Arial, Helvetica, sans-serif; color:#333; line-height: 33px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC; */}
+.crnrstn_documentation_dyn_content_description p            { /*padding: 0; margin: 0; text-align: left; display: inline-block;*/}
+.crnrstn_documentation_dyn_content_description a            { /*text-decoration: none; color:#0066CC;*/}
+.crnrstn_documentation_dyn_content_description .crnrstn_text_embedded_image { /*padding: 0px 6px 0 0px; line-height: 90px;*/}
 .crnrstn_documentation_dyn_content_example                  { width: 98%; padding:0 10px 0 10px; font-family: "Courier New", Courier, monospace;}
 .crnrstn_documentation_example_output                       { padding: 20px 10px 20px 10px;}
 .crnrstn_documentation_dyn_content_method_definition        { width: 90%; font-size: 20px; overflow-wrap: break-word; padding: 12px 0 25px 20px; font-family: "Courier New", Courier, monospace; color:#333; line-height: 33px; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
@@ -168,14 +169,13 @@
 .crnrstn_resource_constant_content                          { padding: 10px 0 0 0;}
 
 .crnrstn_documentation_caution_copy_shell                   { text-align: center; margin: 0 auto; width: 90%; padding: 10px 0 10px 0;}
-.crnrstn_documentation_caution_copy_border_wrap             { text-align: center; padding: 10px 0 10px 0; margin: 10px 20px 10px 20px; border:1px solid #A5B9D8; overflow: hidden;}
+.crnrstn_documentation_caution_copy_border_wrap             { text-align: center; overflow: hidden;}
 .crnrstn_documentation_bg_caution_icon_wrapper_rel          { position: relative; text-align: right; height: 0; }
-.crnrstn_documentation_bg_caution_icon_wrapper              { position: absolute; z-index: 3; top:-120px; left: 48%;}
+.crnrstn_documentation_bg_caution_icon_wrapper              { position: absolute; z-index: 3;}
 .crnrstn_documentation_bg_caution_icon                      { float:right; padding: 4px 15px 0 10px;}
 .crnrstn_documentation_caution_copy_wrap_rel                { position: relative;}
 .crnrstn_documentation_caution_copy_wrap                    { position: absolute; z-index: 4;}
-.crnrstn_documentation_caution_copy                         { width: 85%; text-align: left; }
-.crnrstn_documentation_caution_copy p                       { padding: 0 10px 0 20px; background-color: rgba(255, 255, 255, 0.67); }
+.crnrstn_documentation_caution_copy                         { text-align: left; }
 
 .crnrstn_resource_constant_nom                              { width: 78%; text-align: left; font-size: 18px; font-weight: bold; padding: 0; margin:0; line-height: 24px; overflow-wrap: break-word; }
 .crnrstn_resource_constant_version                          { font-size: 17px; font-weight: normal; line-height: 24px; overflow-wrap: break-word; font-family: "Courier New", Courier, monospace; background-color: transparent; padding: 10px 0 0 0; }
@@ -415,7 +415,7 @@ body.crnrstn-disable-scrolling              { overflow: hidden;}
 
 /*UTILITY*/
 .crnrstn_hidden						        { width:0; height:0; position:absolute; left:-2000px; overflow:hidden;}
-.crnrstn_br_shell                           { line-height: 5px;}
+.crnrstn_br_shell                           { line-height: 12px; overflow: hidden;}
 .crnrstn_cb 								{ display:block; clear:both; height:0; line-height:0; overflow:hidden; width:100%; font-size:1px;}
 .crnrstn_cb_3                               { display:block; clear:both; height:3px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}
 .crnrstn_cb_5	 							{ display:block; clear:both; height:5px; line-height:1px; overflow:hidden; border:0; padding:0; margin:0; font-size:1px;}

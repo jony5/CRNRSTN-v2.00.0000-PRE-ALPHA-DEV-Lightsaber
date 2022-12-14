@@ -1458,8 +1458,8 @@ class crnrstn_content_generator {
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
-                                <div class="crnrstn_documentation_dyn_content_title"><h1>' . $val['PAGE_TITLE'] . '</h1></div>
-                                <div class="crnrstn_documentation_dyn_content_description"><p>' . $val['PAGE_DESCRIPTION'] . '</p></div>
+                                <div class="crnrstn_documentation_dyn_content_title">' . $val['PAGE_TITLE'] . '</div>
+                                <div class="crnrstn_documentation_dyn_content_description">' . $val['PAGE_DESCRIPTION'] . '</div>
                                 
                             </div>
                         </div>
@@ -1474,16 +1474,16 @@ class crnrstn_content_generator {
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                             
-                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $val['PAGE_TITLE'] . '</h1></div>
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val['PAGE_DESCRIPTION'] . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_title">' . $val['PAGE_TITLE'] . '</div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $val['PAGE_DESCRIPTION'] . '</div>
                                         
                                     </div>
                                     
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
                                 
                                     <div class="crnrstn_hidden_void">
-                                        <div class="crnrstn_documentation_dyn_content_title"><h1>' . $val['PAGE_TITLE'] . '</h1></div>
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val['PAGE_DESCRIPTION'] . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_title">' . $val['PAGE_TITLE'] . '</div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $val['PAGE_DESCRIPTION'] . '</div>
                                     
                                     </div>
                                     
@@ -1504,7 +1504,7 @@ class crnrstn_content_generator {
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
-                                <div class="crnrstn_documentation_dyn_content_note_copy"><p>' . $val['NOTE_COPY'] . '</p></div>
+                                <div class="crnrstn_documentation_dyn_content_note_copy">' . $val['NOTE_COPY'] . '</div>
     
                             </div>
                         </div>
@@ -1519,7 +1519,7 @@ class crnrstn_content_generator {
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $tmp_html_top_link . '
-                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>' . $val['NOTE_COPY'] . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_note_copy">' . $val['NOTE_COPY'] . '</div>
                             
                                     </div>
                                     
@@ -1531,7 +1531,7 @@ class crnrstn_content_generator {
                                     
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
-                                        <div class="crnrstn_documentation_dyn_content_note_copy"><p>' . $val['NOTE_COPY'] . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_note_copy">' . $val['NOTE_COPY'] . '</div>
                                     </div>
                                 
                                 </div>
@@ -1626,7 +1626,7 @@ class crnrstn_content_generator {
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
-                                <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
     
                             </div>
                         </div>
@@ -1641,7 +1641,7 @@ class crnrstn_content_generator {
                                
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $tmp_html_top_link . '
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
                             
                                     </div>
                                     
@@ -1649,7 +1649,7 @@ class crnrstn_content_generator {
                                     
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
                                     
                                     </div>
                                 
@@ -1716,7 +1716,7 @@ class crnrstn_content_generator {
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
                                 <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
-                                <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
+                                <div class="crnrstn_documentation_dyn_content_method_definition">' . $val . '</div>
                                 ' .  $tmp_html_the_r . '
                                 
                             </div>
@@ -1733,7 +1733,7 @@ class crnrstn_content_generator {
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
-                                        <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_method_definition">' . $val . '</div>
                                         ' . $tmp_html_the_r . '
                                         
                                     </div>
@@ -1743,7 +1743,7 @@ class crnrstn_content_generator {
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
-                                        <div class="crnrstn_documentation_dyn_content_method_definition"><p>' . $val . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_method_definition">' . $val . '</div>
                                         ' . $tmp_html_the_r . '
                                         
                                     </div>
@@ -1780,7 +1780,7 @@ class crnrstn_content_generator {
                                                 <span class="crnrstn_documentation_param_name">' . $tmp_val['param_name'] . '</span>&nbsp;<span class="crnrstn_documentation_param_require_required">(Required)</span>
                                             </div>
                                             <div class="crnrstn_documentation_param_definition_shell">
-                                                <p>' . $tmp_val['param_definition'] . '</p>
+                                                ' . $tmp_val['param_definition'] . '
                                             </div>
                                         </div>';
 
@@ -1792,7 +1792,7 @@ class crnrstn_content_generator {
                                                 <span class="crnrstn_documentation_param_name">' . $tmp_val['param_name'] . '</span>&nbsp;<span class="crnrstn_documentation_param_require_optional">(Optional)</span>
                                             </div>
                                             <div class="crnrstn_documentation_param_definition_shell">
-                                                <p>' . $tmp_val['param_definition'] . '</p>
+                                                ' . $tmp_val['param_definition'] . '
                                             </div>
                                         </div>';
 
@@ -1854,7 +1854,7 @@ class crnrstn_content_generator {
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
                                 <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
-                                <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
                                 
                             </div>
                         </div>
@@ -1870,7 +1870,7 @@ class crnrstn_content_generator {
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
 
                                     </div>
                                     
@@ -1879,7 +1879,7 @@ class crnrstn_content_generator {
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
-                                        <div class="crnrstn_documentation_dyn_content_description"><p>' . $val . '</p></div>
+                                        <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
                                     
                                     </div>
                                     

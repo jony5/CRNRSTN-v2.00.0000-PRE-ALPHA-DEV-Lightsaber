@@ -3833,7 +3833,7 @@ class crnrstn {
 
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
-        //  'better_scandir' => 'DISABLED',
+        //  'error_log' => 'DISABLED',
         //  'iso_language_profile' => 'DISABLED','hash' => 'DISABLED',
         //  'return_system_image' => 'DISABLED',
         $tmp_ARRAY = array('return_system_image'=>'DISABLED', 'config_add_administration' => 'DISABLED',
@@ -7179,7 +7179,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function error_log($str, $line_num = NULL, $method = NULL, $file = NULL, $log_silo_key = NULL){
+    public function error_log($str = NULL, $line_num = NULL, $method = NULL, $file = NULL, $log_silo_key = NULL){
 
         $tmp_oLog = $this->oLogger->error_log($str, $line_num, $method, $file, $log_silo_key, $this);
 

@@ -60,6 +60,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -105,22 +162,71 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
+//
 // CRNRSTN :: INTERACT UI
+// DOCUMENTATION BACKGROUND OVERLAY
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
 
-/*
-NEED SETTINGS FOR ::
-TEXT COLOR TITLE
-FONT-FAMILY TITLE
-TEXT COLOR COPY
-FONT-FAMILY COPY
-TEXT LINK COLOR
-TEXT COLOR CODE DATA TYPE NAME
-TEXT COLOR CODE STRING DATA
-TEXT COLOR CODE DATA TYPE
-?TECH SPECS BULLET POINT STYLE
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
+/*//////////
+//////////
 
 */
 
@@ -167,6 +273,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -216,6 +379,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -264,6 +484,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -312,6 +589,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -362,6 +696,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -410,6 +801,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -458,6 +906,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -506,6 +1011,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
@@ -554,6 +1116,63 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#B
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_line_height'][] = '55px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h1'][] = '45px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h2'][] = '35px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h3'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_size_h4'][] = '15px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_size'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_overflow_wrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_top'][] = '12px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_right'][] = '10px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_bottom'][] = '25px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_padding_left'][] = '20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_line_height'][] = '33px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_shadow'][] = '1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_padding'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_margin'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_text_decoration'][] = 'none';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_paragraph_anchor_color'][] = '#0066CC';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_top'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_right'][] = '6px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_bottom'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_padding_left'][] = '0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
+
+//
+// CRNRSTN :: INTERACT UI
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_top'][] = '-120px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_bg_icon_wrap_left'][] = '48%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_width'][] = '85%';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_text_align'][] = 'left';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_padding'][] = '0 10px 0 20px';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_copy_paragraph_background_color'][] = 'rgba(255, 255, 255, 0.67)';
 /*//////////
 //////////
 
