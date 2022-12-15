@@ -947,7 +947,7 @@ class crnrstn_system_image_asset_manager {
 
                 if(strlen($tmp_resource_support_meta_ARRAY['TITLE']) > 0){
 
-                    $tmp_dependency_str .= ' [in support of ' . $tmp_resource_support_meta_ARRAY['TITLE'];
+                    $tmp_dependency_str .= ' [autoloaded support for ' . $tmp_resource_support_meta_ARRAY['TITLE'];
 
                     if(isset($tmp_resource_support_meta_ARRAY['VERSION'])){
 
@@ -978,7 +978,7 @@ class crnrstn_system_image_asset_manager {
         //
         // IS THIS A NEW FILE?
         $tmp_resource_hash = $tmp_file_path_hash . $tmp_file_name_hash;
-        $tmp_ARRAY[$tmp_resource_hash]['resource_version_nom'][] = $tmp_resource_meta_ARRAY['TITLE'] . ' v' . $tmp_resource_meta_ARRAY['VERSION'] . ' :: ' . $tmp_str_file_type_nom . $tmp_dependency_str;
+        $tmp_ARRAY[$tmp_resource_hash]['resource_version_nom'][] = $tmp_resource_meta_ARRAY['TITLE'] . ' v' . $tmp_resource_meta_ARRAY['VERSION'] .  $tmp_dependency_str;
         $tmp_ARRAY[$tmp_resource_hash]['system_path_directory'][] = $tmp_path_directory;
         $tmp_ARRAY[$tmp_resource_hash]['asset_mapping_dir_path'][] = $tmp_asset_mapping_dir_path;
         $tmp_ARRAY[$tmp_resource_hash]['system_http_root'][] = $tmp_http_root;
@@ -1020,7 +1020,7 @@ class crnrstn_system_image_asset_manager {
 
                     // # # # # # # # # # # # # # # # # # # # # # # # # # #
                     $tmp_start_str = '
-    <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' JS + CSS MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+    <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' JS MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
                     switch ($const){
@@ -1914,7 +1914,7 @@ class crnrstn_system_image_asset_manager {
 
                                 if($asset_mode_ARRAY[0] === CRNRSTN_ASSET_MODE_BASE64){
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script>
     ' . file_get_contents('https://unpkg.com/react@18.2.0/umd/react.production.min.js') . '
     </script>
@@ -1922,7 +1922,7 @@ class crnrstn_system_image_asset_manager {
 
                                 }else{
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js" crossorigin></script>
 ';
 
@@ -1932,14 +1932,14 @@ class crnrstn_system_image_asset_manager {
 
                                 if($asset_mode_ARRAY[0] === CRNRSTN_ASSET_MODE_BASE64){
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script>
     ' . file_get_contents('https://unpkg.com/react@18.2.0/umd/react.development.js') . '
     </script>
 ';
                                 }else{
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script src="https://unpkg.com/react@18.2.0/umd/react.development.js" crossorigin></script>
 ';
 
@@ -1961,12 +1961,12 @@ class crnrstn_system_image_asset_manager {
 
                                 if($asset_mode_ARRAY[0] === CRNRSTN_ASSET_MODE_BASE64){
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script>
     ' . file_get_contents('https://unpkg.com/react@18.2.0/umd/react.production.min.js') . '
     </script>
     
-    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script>
     ' . file_get_contents('https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js') . '
     </script>
@@ -1974,7 +1974,7 @@ class crnrstn_system_image_asset_manager {
 
                                 }else{
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin></script>
 ';
@@ -1985,12 +1985,12 @@ class crnrstn_system_image_asset_manager {
 
                                 if($asset_mode_ARRAY[0] === CRNRSTN_ASSET_MODE_BASE64){
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script>
     ' . file_get_contents('https://unpkg.com/react@18.2.0/umd/react.development.js') . '
     </script>
     
-    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script>
     ' . file_get_contents('https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js') . '
     </script>
@@ -1998,7 +1998,7 @@ class crnrstn_system_image_asset_manager {
 
                                 }else{
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
 ';
@@ -2032,14 +2032,14 @@ class crnrstn_system_image_asset_manager {
 
                                 if($asset_mode_ARRAY[0] === CRNRSTN_ASSET_MODE_BASE64){
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script>
     ' . file_get_contents('https://cdn.jsdelivr.net/npm/mithril/mithril.min.js') . '
     </script>
 ';
                                 }else{
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
                                 <script src="https://cdn.jsdelivr.net/npm/mithril/mithril.min.js" crossorigin></script>
 ';
 
@@ -2049,7 +2049,7 @@ class crnrstn_system_image_asset_manager {
 
                                 if($asset_mode_ARRAY[0] === CRNRSTN_ASSET_MODE_BASE64){
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
     <script>
     ' . file_get_contents('https://unpkg.com/mithril/mithril.js') . '
     </script>
@@ -2057,7 +2057,7 @@ class crnrstn_system_image_asset_manager {
 
                                 }else{
 
-                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' :: js -->
+                                    $tmp_str .= '    <!-- ' . $tmp_ARRAY['TITLE'] . ' ' . $tmp_ARRAY['VERSION'] . ' -->
                                 <script src="https://unpkg.com/mithril@2.2.2/mithril.js" crossorigin></script>
 ';
 
@@ -2748,7 +2748,7 @@ class crnrstn_system_image_asset_manager {
                 case CRNRSTN_ASSET_MODE_JPEG:
 
                     $tmp_start_str = '
-    <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: JS + CSS MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+    <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: CSS MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
                     switch ($const){
