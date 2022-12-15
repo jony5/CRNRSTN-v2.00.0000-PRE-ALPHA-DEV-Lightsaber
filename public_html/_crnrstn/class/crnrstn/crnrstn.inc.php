@@ -3568,6 +3568,8 @@ class crnrstn {
 
     private function initialize_asset_management(){
 
+        $tmp_session_salt = $this->session_salt();
+
         //
         // SOURCE :: thomas dot sahlin at gmail dot com :: https://www.php.net/manual/en/function.in-array.php#93880
         //
@@ -3688,6 +3690,7 @@ class crnrstn {
 
         $tmp_ARRAY = array(
             'crnrstn.main.js' => '/',
+            'crnrstn.lightbox-2.03.3.js' => $tmp_session_salt,
             'jquery-3.6.1.js'=> '_lib/frameworks/jquery/3.6.1',
             'jquery-3.6.1.min.map' => '_lib/frameworks/jquery/3.6.1',
             'jquery-3.6.1.min.js' => '_lib/frameworks/jquery/3.6.1',
@@ -3767,7 +3770,8 @@ class crnrstn {
         $this->asset_routing_data_key_lookup_ARRAY['js'] = $tmp_ARRAY;
 
         $tmp_ARRAY = array('crnrstn.main_desktop.css' => '/', 'crnrstn.main_tablet.css' => '/', 'crnrstn.main_mobi.css' => '/',
-            'crnrstn.lightbox.min.css' => $this->session_salt(), 'simple-grid.min.css' => '_lib/frameworks/simple_grid',
+            'crnrstn.lightbox.min.css' => $tmp_session_salt, 'crnrstn.lightbox.css' => $tmp_session_salt,
+            'crnrstn.lightbox-2.03.3.css' => $tmp_session_salt, 'simple-grid.min.css' => '_lib/frameworks/simple_grid',
             'simple-grid.css' => '_lib/frameworks/simple_grid', '12cols.css' => '_lib/frameworks/responsivegridsystem/css',
             '11cols.css' => '_lib/frameworks/responsivegridsystem/css', '10cols.css' => '_lib/frameworks/responsivegridsystem/css',
             '9cols.css' => '_lib/frameworks/responsivegridsystem/css', '8cols.css' => '_lib/frameworks/responsivegridsystem/css',
@@ -3799,18 +3803,34 @@ class crnrstn {
             'ie-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets', 'unsemantic-grid-responsive-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets',
             'ie.css' => '_lib/frameworks/unsemantic/assets/stylesheets', 'unsemantic-grid-responsive.css' => '_lib/frameworks/unsemantic/assets/stylesheets'
 
-
             );
 
         /*
 
 
-         */
+        */
 
         $this->asset_routing_data_key_lookup_ARRAY['css'] = $tmp_ARRAY;
 
-        $tmp_ARRAY = array('framework/lightbox/close' => 'LIGHTBOX_CLOSE', 'framework/lightbox/loading' => 'LIGHTBOX_LOADING',
-            'framework/lightbox/next' => 'LIGHTBOX_NEXT', 'framework/lightbox/prev' => 'LIGHTBOX_PREV');
+        /*
+        public_html/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/close.png
+        public_html/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/loading.gif
+        public_html/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/next.png
+        public_html/_crnrstn/ui/js/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/prev.png
+
+        /var/www/html/lightsaber.crnrstn.evifweb.com/_crnrstn/ui/js/lightbox-2.11.3/css/lightbox.min.css
+        */
+
+        $tmp_ARRAY = array(
+            'framework/lightbox/close'  => 'LIGHTBOX_2.11.3_CLOSE',
+            'framework/lightbox/loading'  => 'LIGHTBOX_2.11.3_LOADING',
+            'framework/lightbox/next'  => 'LIGHTBOX_2.11.3_NEXT',
+            'framework/lightbox/prev'  => 'LIGHTBOX_2.11.3_PREV',
+            'framework/lightbox-2.03.3/blank' => 'LIGHTBOX_2.03.3_BLANK',
+            'framework/lightbox-2.03.3/close' => 'LIGHTBOX_2.03.3_CLOSE',
+            'framework/lightbox-2.03.3/loading' => 'LIGHTBOX_2.03.3_LOADING',
+            'framework/lightbox-2.03.3/next' => 'LIGHTBOX_2.03.3_NEXT',
+            'framework/lightbox-2.03.3/prev' => 'LIGHTBOX_2.03.3_PREV');
         $this->asset_routing_data_key_lookup_ARRAY['integrations'] = $tmp_ARRAY;
 
     }

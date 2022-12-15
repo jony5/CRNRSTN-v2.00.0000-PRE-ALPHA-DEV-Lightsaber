@@ -906,18 +906,24 @@ class crnrstn_content_source_controller {
                     //
                     // RETURN VALUE
                     $token = $this->return_content_deep_link_token();
-                    $tmp_str = $token . 'Returns an array of available <a href="'  . $this->oCRNRSTN->return_sticky_link('https://www.openssl.org/', 'crnrstn_docs_' . $this->module_key . '_open_ssl00') . '" target="_blank">OpenSSL</a> 
+                    $tmp_str = '<p>' . $token . 'Returns an array of available <a href="'  . $this->oCRNRSTN->return_sticky_link('https://www.openssl.org/', 'crnrstn_docs_' . $this->module_key . '_open_ssl00') . '" target="_blank">OpenSSL</a> 
                     cipher methods. Note that prior to OpenSSL 1.1.1, the cipher methods have been returned in upper 
                     case and lower case spelling; as of OpenSSL 1.1.1 only the lower case variants are returned.';
 
                     $tmp_openssl_v = $this->oCRNRSTN->version_openssl();
                     if(strlen($tmp_openssl_v) > 0){
 
-                        $tmp_str .= '<br><br>
-                    This server is running: ' . $this->oCRNRSTN->proper_version('OPENSSL') . '.';
+                        $tmp_str .= '</p>
+                        <div class="crnrstn_br_shell"><br><br></div>
+                        <p>This server is running: ' . $this->oCRNRSTN->proper_version('OPENSSL') . '.</p>';
+
+                    }else{
+
+                        $tmp_str .=  '</p>';
 
                     }
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', '<p>' . $tmp_str . '</p>');
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str);
 
                     //
                     // PARAMETER DEFINITION
