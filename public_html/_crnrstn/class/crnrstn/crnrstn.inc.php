@@ -1755,6 +1755,7 @@ class crnrstn {
         // LOAD ALPHABET
         // SOURCE :: https://www.php.net/manual/en/function.range.php
         // SOURCE :: https://stackoverflow.com/questions/431912/way-to-get-all-alphabetic-chars-in-an-array-in-php
+        // COMMENT :: https://stackoverflow.com/a/431930
         // AUTHOR :: PEZ :: https://stackoverflow.com/users/44639/pez
         foreach(range('A', 'Z') as $letter){
 
@@ -1826,7 +1827,13 @@ class crnrstn {
 
     }
 
-    public function config_set_ui_theme_style($env_key = CRNRSTN_RESOURCE_ALL, $theme_profile = CRNRSTN_UI_DARKNIGHT){
+    public function set_ui_theme_style($theme_profile = NULL){
+
+        if(!isset($theme_profile)){
+
+            $theme_profile = CRNRSTN_UI_DARKNIGHT;
+
+        }
 
         //
         // CLEAR ALL THEMES
@@ -1845,6 +1852,38 @@ class crnrstn {
         //
         // FLIP THE CURRENT VALUE
         $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($theme_profile, true);
+
+    }
+
+    public function config_set_ui_theme_style($env_key = CRNRSTN_RESOURCE_ALL, $theme_profile = CRNRSTN_UI_DARKNIGHT){
+
+        $tmp_env_key_hash = $this->hash($env_key);
+
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+
+            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash) {
+
+                //
+                // CLEAR ALL THEMES
+                foreach ($this->system_theme_style_constants_ARRAY as $index => $const) {
+
+                    //
+                    // IF BIT IS FLIPPED...TURN IT OFF.
+                    if ($this->is_bit_set($const)) {
+
+                        $this->initialize_bit($const, false);
+
+                    }
+
+                }
+
+                //
+                // FLIP THE CURRENT VALUE
+                $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($theme_profile, true);
+
+            }
+
+        }
 
     }
 
@@ -2863,7 +2902,7 @@ class crnrstn {
 
         if($crnrstn_http_endpoint == ''){
 
-            if($this->isSSL()){
+            if($this->is_ssl()){
 
                 $crnrstn_http_endpoint = 'https://' . $_SERVER['SERVER_ADDR'] . '/';
 
@@ -3042,7 +3081,8 @@ class crnrstn {
 
             //
             // SOURCE :: https://stackoverflow.com/questions/1241728/can-i-try-catch-a-warning
-            // AUTHOR :: https://stackoverflow.com/users/117260/philippe-gerber
+            // COMMENT :: https://stackoverflow.com/a/1241751
+            // AUTHOR :: Philippe Gerber :: https://stackoverflow.com/users/117260/philippe-gerber
             // SET TO THE USER DEFINED ERROR HANDLER
             $old_error_handler = set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext){
 
@@ -3853,12 +3893,12 @@ class crnrstn {
 
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
-        //  'error_log' => 'DISABLED',
-        //  'iso_language_profile' => 'DISABLED','hash' => 'DISABLED',
-        //  'return_system_image' => 'DISABLED',
+        //  'error_log' => 'DISABLED','config_add_seo_engagement' => 'DISABLED',
+        //  'iso_language_profile' => 'DISABLED','hash' => 'DISABLED', 'ini_set' => 'DISABLED',
+        //  'return_system_image' => 'DISABLED','config_add_seo_analytics' => 'DISABLED','set_ui_theme_style' => 'DISABLED'
         $tmp_ARRAY = array('return_system_image'=>'DISABLED', 'config_add_administration' => 'DISABLED',
-            'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED', 'config_add_seo_analytics' => 'DISABLED',
-            'config_add_seo_engagement' => 'DISABLED', 'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
+            'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED',
+            'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
             'config_grant_exclusive_access' => 'DISABLED', 'config_include_encryption' => 'DISABLED',
             'config_include_seo_analytics' => 'DISABLED', 'config_include_seo_engagement' => 'DISABLED',
             'config_include_system_resources' => 'DISABLED', 'config_include_wordpress' => 'DISABLED',
@@ -3866,9 +3906,9 @@ class crnrstn {
             'config_init_logging' => 'DISABLED', 'error_log' => 'DISABLED', 'form_hidden_input_add' => 'DISABLED',
             'form_input_add' => 'DISABLED', 'form_input_feedback_copy_add' => 'DISABLED',
             'form_integration_html_packet_output' => 'DISABLED', 'form_response_add' => 'DISABLED',
-            'ini_set' => 'DISABLED', 'is_configured' => 'DISABLED', 'grant_permissions_fwrite' => 'DISABLED',
+            'is_configured' => 'DISABLED', 'grant_permissions_fwrite' => 'DISABLED',
             'set_crnrstn_as_err_handler' => 'DISABLED', 'set_max_login_attempts' => 'DISABLED', 'get_disk_performance_metric' => 'DISABLED',
-            'set_timeout_user_inactive' => 'DISABLED', 'set_timezone_default' => 'DISABLED', 'set_ui_theme_style' => 'DISABLED'
+            'set_timeout_user_inactive' => 'DISABLED', 'set_timezone_default' => 'DISABLED',
             );
 
         if(isset($tmp_ARRAY[$method])){
@@ -6492,6 +6532,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     //
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+    // COMMENT :: https://stackoverflow.com/a/13733588
     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
     public function generate_new_key($len = 32, $char_selection = NULL){
 
@@ -6586,6 +6627,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     //
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+    // COMMENT :: https://stackoverflow.com/a/13733588
     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
     private function crypto_rand_secure($min, $max){
 
@@ -7685,6 +7727,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     
             //
             // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+            // COMMENT :: https://stackoverflow.com/a/1173319
             // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
             if(document.selection){ // IE
     
@@ -7928,6 +7971,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     
             //
             // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+            // COMMENT :: https://stackoverflow.com/a/1173319
             // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
             if(document.selection){ // IE
     
@@ -8187,6 +8231,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     
             //
             // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+            // COMMENT :: https://stackoverflow.com/a/1173319
             // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
             if(document.selection){ // IE
     
@@ -9432,6 +9477,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     //
     // SOURCE :: https://stackoverflow.com/questions/2510434/format-bytes-to-kilobytes-megabytes-gigabytes
+    // COMMENT :: https://stackoverflow.com/a/2510459
     // AUTHOR :: Leo :: https://stackoverflow.com/users/227532/leo
     public function format_bytes($bytes, $precision = 2, $SI_output = false){
 
@@ -10620,6 +10666,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     //
     // SOURCE :: https://stackoverflow.com/questions/58058663/how-to-get-the-ubuntu-version-via-php
+    // COMMENT :: https://stackoverflow.com/a/58058896
     // AUTHOR :: Kevin :: https://stackoverflow.com/users/3859027/kevin
     private function initialize_linux_profile(){
 
@@ -10825,7 +10872,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
         //error_log(__LINE__ . ' user append_url_param=' . print_r($param_ARRAY, true));
 
-        if($this->isSSL()){
+        if($this->is_ssl()){
 
             $tmp_lnk = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
@@ -11127,8 +11174,9 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     //
     // SOURCE :: https://stackoverflow.com/questions/5100189/use-php-to-check-if-page-was-accessed-with-ssl
-    // AUTHOR :: https://stackoverflow.com/users/887067/saeven
-    public function isSSL(){
+    // COMMENT :: https://stackoverflow.com/a/10307798
+    // AUTHOR :: Saeven :: https://stackoverflow.com/users/887067/saeven
+    public function is_ssl(){
 
         if(!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] != 'off')){
 
@@ -11366,6 +11414,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     //
     // SOURCE :: https://stackoverflow.com/questions/11923235/scandir-to-sort-by-date-modified
+    // COMMENT :: https://stackoverflow.com/a/56280493
     // AUTHOR :: Giacomo1968 :: https://stackoverflow.com/users/117259/giacomo1968
     public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descending_arsort = false){
 
@@ -12504,6 +12553,7 @@ class crnrstn_bitflip_manager {
 
     //
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+    // COMMENT :: https://stackoverflow.com/a/13733588
     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
     public function generate_new_key($len = 32, $char_selection = NULL){
 
@@ -12606,6 +12656,7 @@ class crnrstn_bitflip_manager {
      */
     //
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+    // COMMENT :: https://stackoverflow.com/a/13733588
     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
     // AUTHOR :: christophe dot weis at statec dot etat dot lu :: https://www.php.net/manual/en/function.openssl-random-pseudo-bytes.php#104322
     private function crypto_rand_secure($min, $max){

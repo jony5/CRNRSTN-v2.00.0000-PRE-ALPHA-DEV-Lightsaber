@@ -2748,8 +2748,7 @@ class crnrstn_system_image_asset_manager {
                 case CRNRSTN_ASSET_MODE_JPEG:
 
                     $tmp_start_str = '
-    <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: CSS MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-';
+    <!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN->version_crnrstn() . ' :: CSS MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->';
 
                     switch ($const){
                         case CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID:
@@ -4776,7 +4775,8 @@ class crnrstn_system_image_asset_manager {
 
                 //
                 // SOURCE :: https://stackoverflow.com/questions/9728269/content-length-and-other-http-headers
-                // AUTHOR :: NeysorN :: https://stackoverflow.com/users/1219121/neysor
+                // COMMENT :: https://stackoverflow.com/a/9728576
+                // AUTHOR :: Neysor :: https://stackoverflow.com/users/1219121/neysor
                 $tmp_filesize = filesize($tmp_filepath);
                 $tmp_header_options_ARRAY[] = 'Content-Type: ' . mime_content_type($tmp_filepath);
                 $tmp_header_options_ARRAY[] = 'Content-length: ' . $tmp_filesize;
@@ -4810,19 +4810,10 @@ class crnrstn_system_image_asset_manager {
 
             break;
             case 'js':
-
-                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
-                return $this->return_asset_data();
-
-            break;
             case 'css':
-
-                //error_log(__LINE__ . ' asset mgr asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
-                return $this->return_asset_data();
-
-            break;
             case 'integrations':
 
+                //error_log(__LINE__ . ' asset mgr $tmp_meta_path[' . $this->asset_meta_path . ']. $this->asset_response_method_key[' . $this->asset_response_method_key . ']. asset_request_data_key=[' . $this->asset_request_data_key . ']. asset_request_asset_family=[' . $this->asset_request_asset_family . '].');
                 return $this->return_asset_data();
 
             break;
@@ -8048,7 +8039,8 @@ class crnrstn_system_image_asset_manager {
 
     //
     // SOURCE :: https://stackoverflow.com/questions/2021624/string-sanitizer-for-filename
-    // AUTHOR :: https://stackoverflow.com/users/489281/sequencedigitale-com
+    // COMMENT :: https://stackoverflow.com/a/19018736
+    // AUTHOR :: SequenceDigitale.com :: https://stackoverflow.com/users/489281/sequencedigitale-com
     private function normalizeString($str = ''){
         $str = strip_tags($str);
         $str = preg_replace('/[\r\n\t ]+/', ' ', $str);
@@ -8150,7 +8142,7 @@ class crnrstn_system_image_asset_manager {
                     // ONLY MAP ROUTE IF BIT IS FLIPPED
                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_SYSTEM_IMG_ASSET_MAPPING) && $this->asset_request_asset_family == 'system'){
 
-                        return $tmp_map_http . '&crnrstn_v=420.0' . $cache_serial;
+                        return $tmp_map_http . '&crnrstn_=420.0' . $cache_serial;
 
                     }
 
@@ -8158,7 +8150,7 @@ class crnrstn_system_image_asset_manager {
                     // ONLY TUNNEL ROUTE IF BIT IS FLIPPED
                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_SOCIAL_IMG_ASSET_MAPPING) && $this->asset_request_asset_family == 'social'){
 
-                        return $tmp_map_http . '&crnrstn_v=420.0' . $cache_serial;
+                        return $tmp_map_http . '&crnrstn_=420.0' . $cache_serial;
 
                     }
 
@@ -8258,7 +8250,8 @@ class crnrstn_system_image_asset_manager {
 
                             //
                             // SOURCE :: https://stackoverflow.com/questions/9728269/content-length-and-other-http-headers
-                            // AUTHOR :: NeysorN :: https://stackoverflow.com/users/1219121/neysor
+                            // COMMENT :: https://stackoverflow.com/a/9728576
+                            // AUTHOR :: Neysor :: https://stackoverflow.com/users/1219121/neysor
                             $tmp_filesize = filesize($tmp_filepath);
                             $tmp_header_options_ARRAY[] = 'Content-Type: ' . mime_content_type($tmp_filepath);
                             $tmp_header_options_ARRAY[] = 'Content-length: ' . $tmp_filesize;
@@ -8400,7 +8393,7 @@ class crnrstn_system_image_asset_manager {
 
                         $tmp_file_extension = 'jpg';
                         $cache_serial = $this->oCRNRSTN->resource_filecache_version($tmp_path . '/jpg/' . $this->asset_request_asset_family . '/' . $this->asset_request_data_key . '.' . $tmp_file_extension);
-                        $tmp_str = $tmp_http . 'jpg/' . $this->asset_request_asset_family . '/' . $this->asset_request_data_key . '.' . $tmp_file_extension . '?crnrstn_v=420.0' . $cache_serial;
+                        $tmp_str = $tmp_http . 'jpg/' . $this->asset_request_asset_family . '/' . $this->asset_request_data_key . '.' . $tmp_file_extension . '?crnrstn_=420.0' . $cache_serial;
 
                         return $tmp_str;
 
@@ -8410,7 +8403,7 @@ class crnrstn_system_image_asset_manager {
                     // RETURN PNG HTTP IF WE GET THIS FAR
                     $tmp_file_extension = 'png';
                     $cache_serial = $this->oCRNRSTN->resource_filecache_version($tmp_path . '/png/' . $this->asset_request_asset_family . '/' . $this->asset_request_data_key . '.' . $tmp_file_extension);
-                    $tmp_str = $tmp_http . 'png/' . $this->asset_request_asset_family . '/' . $this->asset_request_data_key . '.' . $tmp_file_extension . '?crnrstn_v=420.0' . $cache_serial;
+                    $tmp_str = $tmp_http . 'png/' . $this->asset_request_asset_family . '/' . $this->asset_request_data_key . '.' . $tmp_file_extension . '?crnrstn_=420.0' . $cache_serial;
 
                     return $tmp_str;
 
@@ -9199,7 +9192,8 @@ class crnrstn_system_image_asset_manager {
 
                             //
                             // SOURCE :: https://stackoverflow.com/questions/9728269/content-length-and-other-http-headers
-                            // AUTHOR :: NeysorN :: https://stackoverflow.com/users/1219121/neysor
+                            // COMMENT :: https://stackoverflow.com/a/9728576
+                            // AUTHOR :: Neysor :: https://stackoverflow.com/users/1219121/neysor
                             $tmp_filesize = filesize($tmp_filepath);
                             $tmp_header_options_ARRAY[] = 'Content-Type: ' . mime_content_type($tmp_filepath);
                             $tmp_header_options_ARRAY[] = 'Content-length: ' . $tmp_filesize;
@@ -9572,7 +9566,8 @@ class crnrstn_system_image_asset_manager {
 
                             //
                             // SOURCE :: https://stackoverflow.com/questions/9728269/content-length-and-other-http-headers
-                            // AUTHOR :: NeysorN :: https://stackoverflow.com/users/1219121/neysor
+                            // COMMENT :: https://stackoverflow.com/a/9728576
+                            // AUTHOR :: Neysor :: https://stackoverflow.com/users/1219121/neysor
                             $tmp_filesize = filesize($tmp_filepath);
                             $tmp_header_options_ARRAY[] = 'Content-Type: ' . mime_content_type($tmp_filepath);
                             $tmp_header_options_ARRAY[] = 'Content-length: ' . $tmp_filesize;
@@ -9889,7 +9884,11 @@ class crnrstn_system_image_asset_manager {
                 $tmp_cache_ver_next = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/next.png');
                 $tmp_cache_ver_close = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/close.png');
 
-                return '/* lightbox 2.11.3 CSS :: crnrstn.lightbox.css [MODIFIED FROM LIGHTBOX.JS TO HONOR CRNRSTN :: ASSET MAPPING] :: Wednesday, December 14, 2022 @ 1758 hrs */
+                return '/*
+// J5
+// Code is Poetry */
+//
+// lightbox 2.11.3 CSS :: crnrstn.lightbox.css [MODIFIED FROM LIGHTBOX.JS TO HONOR CRNRSTN :: ASSET MAPPING] :: Wednesday, December 14, 2022 @ 1758 hrs */
 body.lb-disable-scrolling {
   overflow: hidden;
 }
@@ -9965,7 +9964,7 @@ body.lb-disable-scrolling {
   width: 32px;
   height: 32px;
   margin: 0 auto;
-  background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/loading&crnrstn_v=' . $tmp_cache_ver_loading . ') no-repeat;
+  background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/loading&crnrstn_=' . $tmp_cache_ver_loading . ') no-repeat;
 }
 
 .lb-nav {
@@ -9996,7 +9995,7 @@ body.lb-disable-scrolling {
             width: 34%;
             left: 0;
             float: left;
-            background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/prev&crnrstn_v=' . $tmp_cache_ver_prev . ') left 48% no-repeat;
+            background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/prev&crnrstn_=' . $tmp_cache_ver_prev . ') left 48% no-repeat;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   -webkit-transition: opacity 0.6s;
@@ -10014,7 +10013,7 @@ body.lb-disable-scrolling {
             width: 64%;
             right: 0;
             float: right;
-            background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/next&crnrstn_v=' . $tmp_cache_ver_next . ') right 48% no-repeat;
+            background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/next&crnrstn_=' . $tmp_cache_ver_next . ') right 48% no-repeat;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   -webkit-transition: opacity 0.6s;
@@ -10078,7 +10077,7 @@ body.lb-disable-scrolling {
             float: right;
             width: 30px;
   height: 30px;
-  background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/close&crnrstn_v=' . $tmp_cache_ver_close . ') top right no-repeat;
+  background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/close&crnrstn_=' . $tmp_cache_ver_close . ') top right no-repeat;
   text-align: right;
   outline: none;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
@@ -10109,8 +10108,12 @@ body.lb-disable-scrolling {
                 $tmp_cache_ver_next = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/next.png');
                 $tmp_cache_ver_close = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/close.png');
 
-                return '/* lightbox 2.11.3 CSS :: crnrstn.lightbox.min.css [MODIFIED FROM LIGHTBOX.JS TO HONOR CRNRSTN :: ASSET MAPPING] :: Monday, November 7, 2022 @ 2324 hrs */
-.lb-loader,.lightbox{text-align:center;line-height:0;position:absolute;left:0}body.lb-disable-scrolling{overflow:hidden}.lightboxOverlay{position:absolute;top:0;left:0;z-index:9999;background-color:#000;filter:alpha(Opacity=80);opacity:.8;display:none}.lightbox{width:100%;z-index:10000;font-weight:400;outline:0}.lightbox .lb-image{display:block;height:auto;max-width:inherit;max-height:none;border-radius:3px;border:4px solid #fff}.lightbox a img{border:none}.lb-outerContainer{position:relative;width:250px;height:250px;margin:0 auto;border-radius:4px;background-color:#fff}.lb-outerContainer:after{content:"";display:table;clear:both}.lb-loader{top:43%;height:25%;width:100%}.lb-cancel{display:block;width:32px;height:32px;margin:0 auto;background:url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/loading&crnrstn_v=' . $tmp_cache_ver_loading . ') no-repeat}.lb-nav{position:absolute;top:0;left:0;height:100%;width:100%;z-index:10}.lb-container>.nav{left:0}.lb-nav a{outline:0;background-image:url(data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==)}.lb-next,.lb-prev{height:100%;cursor:pointer;display:block}.lb-nav a.lb-prev{width:34%;left:0;float:left;background:url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/prev&crnrstn_v=' . $tmp_cache_ver_prev . ') left 48% no-repeat;filter:alpha(Opacity=0);opacity:0;-webkit-transition:opacity .6s;-moz-transition:opacity .6s;-o-transition:opacity .6s;transition:opacity .6s}.lb-nav a.lb-prev:hover{filter:alpha(Opacity=100);opacity:1}.lb-nav a.lb-next{width:64%;right:0;float:right;background:url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/next&crnrstn_v=' . $tmp_cache_ver_next . ') right 48% no-repeat;filter:alpha(Opacity=0);opacity:0;-webkit-transition:opacity .6s;-moz-transition:opacity .6s;-o-transition:opacity .6s;transition:opacity .6s}.lb-nav a.lb-next:hover{filter:alpha(Opacity=100);opacity:1}.lb-dataContainer{margin:0 auto;padding-top:5px;width:100%;border-bottom-left-radius:4px;border-bottom-right-radius:4px}.lb-dataContainer:after{content:"";display:table;clear:both}.lb-data{padding:0 4px;color:#ccc}.lb-data .lb-details{width:85%;float:left;text-align:left;line-height:1.1em}.lb-data .lb-caption{font-size:13px;font-weight:700;line-height:1em}.lb-data .lb-caption a{color:#4ae}.lb-data .lb-number{display:block;clear:left;padding-bottom:1em;font-size:12px;color:#999}.lb-data .lb-close{display:block;float:right;width:30px;height:30px;background:url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/close&crnrstn_v=' . $tmp_cache_ver_close . ') top right no-repeat;text-align:right;outline:0;filter:alpha(Opacity=70);opacity:.7;-webkit-transition:opacity .2s;-moz-transition:opacity .2s;-o-transition:opacity .2s;transition:opacity .2s}.lb-data .lb-close:hover{cursor:pointer;filter:alpha(Opacity=100);opacity:1}
+                return '/*
+// J5
+// Code is Poetry */
+//
+/* lightbox 2.11.3 CSS :: crnrstn.lightbox.min.css [MODIFIED FROM LIGHTBOX.JS TO HONOR CRNRSTN :: ASSET MAPPING] :: Monday, November 7, 2022 @ 2324 hrs */
+.lb-loader,.lightbox{text-align:center;line-height:0;position:absolute;left:0}body.lb-disable-scrolling{overflow:hidden}.lightboxOverlay{position:absolute;top:0;left:0;z-index:9999;background-color:#000;filter:alpha(Opacity=80);opacity:.8;display:none}.lightbox{width:100%;z-index:10000;font-weight:400;outline:0}.lightbox .lb-image{display:block;height:auto;max-width:inherit;max-height:none;border-radius:3px;border:4px solid #fff}.lightbox a img{border:none}.lb-outerContainer{position:relative;width:250px;height:250px;margin:0 auto;border-radius:4px;background-color:#fff}.lb-outerContainer:after{content:"";display:table;clear:both}.lb-loader{top:43%;height:25%;width:100%}.lb-cancel{display:block;width:32px;height:32px;margin:0 auto;background:url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/loading&crnrstn_=' . $tmp_cache_ver_loading . ') no-repeat}.lb-nav{position:absolute;top:0;left:0;height:100%;width:100%;z-index:10}.lb-container>.nav{left:0}.lb-nav a{outline:0;background-image:url(data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==)}.lb-next,.lb-prev{height:100%;cursor:pointer;display:block}.lb-nav a.lb-prev{width:34%;left:0;float:left;background:url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/prev&crnrstn_=' . $tmp_cache_ver_prev . ') left 48% no-repeat;filter:alpha(Opacity=0);opacity:0;-webkit-transition:opacity .6s;-moz-transition:opacity .6s;-o-transition:opacity .6s;transition:opacity .6s}.lb-nav a.lb-prev:hover{filter:alpha(Opacity=100);opacity:1}.lb-nav a.lb-next{width:64%;right:0;float:right;background:url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/next&crnrstn_=' . $tmp_cache_ver_next . ') right 48% no-repeat;filter:alpha(Opacity=0);opacity:0;-webkit-transition:opacity .6s;-moz-transition:opacity .6s;-o-transition:opacity .6s;transition:opacity .6s}.lb-nav a.lb-next:hover{filter:alpha(Opacity=100);opacity:1}.lb-dataContainer{margin:0 auto;padding-top:5px;width:100%;border-bottom-left-radius:4px;border-bottom-right-radius:4px}.lb-dataContainer:after{content:"";display:table;clear:both}.lb-data{padding:0 4px;color:#ccc}.lb-data .lb-details{width:85%;float:left;text-align:left;line-height:1.1em}.lb-data .lb-caption{font-size:13px;font-weight:700;line-height:1em}.lb-data .lb-caption a{color:#4ae}.lb-data .lb-number{display:block;clear:left;padding-bottom:1em;font-size:12px;color:#999}.lb-data .lb-close{display:block;float:right;width:30px;height:30px;background:url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox/close&crnrstn_=' . $tmp_cache_ver_close . ') top right no-repeat;text-align:right;outline:0;filter:alpha(Opacity=70);opacity:.7;-webkit-transition:opacity .2s;-moz-transition:opacity .2s;-o-transition:opacity .2s;transition:opacity .2s}.lb-data .lb-close:hover{cursor:pointer;filter:alpha(Opacity=100);opacity:1}
 ';
 
             break;
@@ -10127,7 +10130,11 @@ body.lb-disable-scrolling {
                 $tmp_cache_ver_next = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.03.3/css/images/nextlabel.gif');
                 $tmp_cache_ver_close = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.03.3/css/images/closelabel.gif');
 
-                return '/* lightbox 2.03.3 CSS :: crnrstn.lightbox-2.03.3.css [MODIFIED FROM LIGHTBOX.JS TO HONOR CRNRSTN :: ASSET MAPPING] :: Wednesday, December 14, 2022 @ 1823 hrs */
+                return '/*
+// J5
+// Code is Poetry */
+//
+// lightbox 2.03.3 CSS :: crnrstn.lightbox-2.03.3.css [MODIFIED FROM LIGHTBOX.JS TO HONOR CRNRSTN :: ASSET MAPPING] :: Wednesday, December 14, 2022 @ 1823 hrs */
 #lightbox{
 	position: absolute;
 	left: 0;
@@ -10174,13 +10181,13 @@ body.lb-disable-scrolling {
 #prevLink, #nextLink{
 	width: 49%;
 	height: 100%;
-	background: transparent url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox-2.03.3/blank&crnrstn_v=' . $tmp_cache_ver_blank . ') no-repeat; /* Trick IE into showing hover */
+	background: transparent url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox-2.03.3/blank&crnrstn_=' . $tmp_cache_ver_blank . ') no-repeat; /* Trick IE into showing hover */
 	display: block;
 	}
 #prevLink { left: 0; float: left;}
 #nextLink { right: 0; float: right;}
-#prevLink:hover, #prevLink:visited:hover { background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox-2.03.3/prev&crnrstn_v=' . $tmp_cache_ver_prev . ') left 15% no-repeat; }
-#nextLink:hover, #nextLink:visited:hover { background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox-2.03.3/next&crnrstn_v=' . $tmp_cache_ver_next . ') right 15% no-repeat; }
+#prevLink:hover, #prevLink:visited:hover { background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox-2.03.3/prev&crnrstn_=' . $tmp_cache_ver_prev . ') left 15% no-repeat; }
+#nextLink:hover, #nextLink:visited:hover { background: url(' . $tmp_http_path . '?' . $tmp_session_salt . '=framework/lightbox-2.03.3/next&crnrstn_=' . $tmp_cache_ver_next . ') right 15% no-repeat; }
 
 #imageDataContainer{
 	font: 10px Verdana, Helvetica, sans-serif;
@@ -10235,7 +10242,11 @@ body.lb-disable-scrolling {
         switch($tmp_key){
             case 'crnrstn.lightbox-2.03.3.js':
 
-                $tmp_code = "/* lightbox 2.03.3 JS :: crnrstn.lightbox-2.03.3.js [MODIFIED FROM LIGHTBOX.JS TO HONOR CRNRSTN :: ASSET MAPPING] :: Wednesday, December 14, 2022 @ 1957 hrs */
+                $tmp_code = "/*
+// J5
+// Code is Poetry */
+//
+// lightbox 2.03.3 JS :: crnrstn.lightbox-2.03.3.js [MODIFIED FROM LIGHTBOX.JS TO HONOR CRNRSTN :: ASSET MAPPING] :: Wednesday, December 14, 2022 @ 1957 hrs */
 // -----------------------------------------------------------------------------------
 //
 //	Lightbox v2.03.3
@@ -11132,14 +11143,31 @@ Event.observe(window, 'load', initLightbox, false);
                 $tmp_process_return = true;
 
                 // lightbox.js css is stored on javascript path
+                // THIS Content-Type DATA IS AVAILABLE HERE ($resource_ARRAY['meta_type']), BUT GETTING THIS
+                // VALUE FOR ONE FILE RESOURCE REQUIRES LOADING ALL THE DATA FOR ALL FILES IN THAT FRAMEWORK.
+                // THE CURRENT ARCHITECTURE: "LOAD EVERYTHING...OR, GET BY PERFECTLY FINE WITH ALMOST NOTHING."
+                //...WE TAKE THE FAST (strpos) WAY RATHER THAN PERFORM THE INTERNAL META LOOKUPS.
                 $pos_css = strpos($this->asset_request_data_key,'.css');
+                $pos_map = strpos($this->asset_request_data_key,'.map');
                 if($pos_css !== false){
 
                     $tmp_header_options_ARRAY[] = 'Content-Type: text/css';
 
                 }else{
 
-                    $tmp_header_options_ARRAY[] = 'Content-Type: text/javascript';
+                    if($pos_map !== false){
+
+                        //
+                        // SOURCE :: https://stackoverflow.com/questions/16384089/jquery-2-0-0-min-map-uncaught-syntaxerror-unexpected-token/
+                        // COMMENT :: https://stackoverflow.com/a/38021461
+                        // AUTHOR :: bylerj :: https://stackoverflow.com/users/2510246/bylerj
+                        $tmp_header_options_ARRAY[] = 'Content-Type: text/json';
+
+                    }else{
+
+                        $tmp_header_options_ARRAY[] = 'Content-Type: text/javascript';
+
+                    }
 
                 }
 

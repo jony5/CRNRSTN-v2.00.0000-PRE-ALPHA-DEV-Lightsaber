@@ -720,7 +720,7 @@ class crnrstn_view_state_controller {
     //                            $tmp_run_time = $this->get_session_param('WALLTIME');
     //                            $tmp_run_time = $tmp_run_time.'secs';
     //
-    //                            if($this->isSSL()){
+    //                            if($this->is_ssl()){
     //
     //                                $tmp_post_uri = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     //

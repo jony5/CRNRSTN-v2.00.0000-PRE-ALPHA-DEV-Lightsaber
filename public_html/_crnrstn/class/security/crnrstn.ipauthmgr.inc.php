@@ -2184,6 +2184,7 @@ class crnrstn_ip_auth_manager {
         // know what you are doing you can use 39 characters, but if you just want to set and forget
         // it, use 45).
         // SOURCE :: https://stackoverflow.com/questions/3003145/how-to-get-the-client-ip-address-in-php
+        // COMMENT :: https://stackoverflow.com/a/3003233
         // AUTHOR :: https://stackoverflow.com/a/3003233
 
         //
@@ -2192,6 +2193,7 @@ class crnrstn_ip_auth_manager {
 
         //
         // SOURCE :: https://stackoverflow.com/questions/12435582/php-serverremote-addr-shows-ipv6/12436099
+        // COMMENT :: https://stackoverflow.com/a/12436099
         // AUTHOR :: https://stackoverflow.com/users/813192/sander-steffann
         // Known prefix
         $v4mapped_prefix_hex = '00000000000000000000ffff';
@@ -2235,8 +2237,9 @@ class crnrstn_ip_auth_manager {
 	*
 	* @param string IP Address in dot notation (192.168.1.100)
 	* @return string IPv6 formatted address or false if invalid input
-	* @see http://stackoverflow.com/questions/444966/working-with-ipv6-addresses-in-php
-	* @author https://stackoverflow.com/users/51021/matpie
+    * @see https://stackoverflow.com/q/444966
+  	* @see http://stackoverflow.com/questions/444966/working-with-ipv6-addresses-in-php
+    * @author https://stackoverflow.com/users/51021/matpie
 	* 
 	* MODIFIED FROM ORIGINAL
 	* 
@@ -2262,11 +2265,13 @@ class crnrstn_ip_auth_manager {
 		$Part7 = base_convert(($Ip[0] * 256) + $Ip[1], 10, 16);
 		$Part8 = base_convert(($Ip[2] * 256) + $Ip[3], 10, 16);
 		return $Mask.$Part7.':' . $Part8;
+
 	}
 	
 	/**
 	* Replace '::' with appropriate number of ':0'
 	* @see http://stackoverflow.com/questions/444966/working-with-ipv6-addresses-in-php
+    * @see https://stackoverflow.com/q/444966
 	* @author https://stackoverflow.com/users/51021/matpie
 	*/
 	public function ExpandIPv6Notation($Ip) {
@@ -2282,6 +2287,7 @@ class crnrstn_ip_auth_manager {
 	* Optionally split in to two parts.
 	*
 	* @see https://stackoverflow.com/questions/444966/working-with-ipv6-addresses-in-php
+    * @see https://stackoverflow.com/q/444966
 	* @author https://stackoverflow.com/users/51021/matpie
 	*
 	* MODIFIED FROM ORIGINAL

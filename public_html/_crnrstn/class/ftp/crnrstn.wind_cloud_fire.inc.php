@@ -3504,7 +3504,8 @@ class crnrstn_wind_cloud_fire {
 
     //
     // SOURCE :: https://stackoverflow.com/questions/36310247/php-ftp-recursive-directory-listing
-    // AUTHOR :: https://stackoverflow.com/users/850848/martin-prikryl
+    // COMMENT :: https://stackoverflow.com/a/36310751
+    // AUTHOR :: Martin Prikryl :: https://stackoverflow.com/users/850848/martin-prikryl
     private function ftp_list_files_recursive($ftp_stream, $path, $oEndpoint_serial){
 
         try{
@@ -3589,6 +3590,7 @@ class crnrstn_wind_cloud_fire {
 
     //
     // SOURCE :: https://stackoverflow.com/questions/36310247/php-ftp-recursive-directory-listing
+    // COMMENT :: https://stackoverflow.com/a/36310751
     // AUTHOR :: https://stackoverflow.com/users/850848/martin-prikryl
     private function _original_ftp_list_files_recursive($ftp_stream, $path){
 

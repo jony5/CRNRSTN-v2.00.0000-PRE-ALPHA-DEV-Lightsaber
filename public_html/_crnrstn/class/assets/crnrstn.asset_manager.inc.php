@@ -1716,7 +1716,8 @@ class crnrstn_asset_manager {
 
         //
         // SOURCE :: https://stackoverflow.com/questions/13596794/resize-images-with-php-support-png-jpg
-        // AUTHOR :: https://stackoverflow.com/users/1059001/p-galbraith
+        // COMMENT :: https://stackoverflow.com/a/13596913
+        // AUTHOR :: P. Galbraith :: https://stackoverflow.com/users/1059001/p-galbraith
         switch($this->assetParams['FILE_MIME_TYPE']){
             case 'image/pjpeg':
             case 'image/jpeg':
@@ -1824,7 +1825,8 @@ class crnrstn_asset_manager {
 	
 	//
 	// SOURCE :: https://stackoverflow.com/questions/2021624/string-sanitizer-for-filename
-	// AUTHOR :: https://stackoverflow.com/users/489281/sequencedigitale-com
+    // COMMENT :: https://stackoverflow.com/a/19018736
+	// AUTHOR :: SequenceDigitale.com :: https://stackoverflow.com/users/489281/sequencedigitale-com
 	private function normalizeString($str = ''){
 		$str = strip_tags($str); 
 		$str = preg_replace('/[\r\n\t ]+/', ' ', $str);

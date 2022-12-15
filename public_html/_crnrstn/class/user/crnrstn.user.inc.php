@@ -913,7 +913,7 @@ class crnrstn_user{
 
         //error_log(__LINE__ . ' user append_url_param=' . print_r($param_ARRAY, true));
 
-        if($this->isSSL()){
+        if($this->oCRNRSTN->is_ssl()){
 
             $tmp_lnk = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
@@ -1424,6 +1424,7 @@ class crnrstn_user{
                     //
                     // STRING PARSE NINJA BACKFLIP INTO PNG FILE PATH FROM JPG/JPEG
                     // SOURCE :: https://stackoverflow.com/questions/3967515/how-to-convert-an-image-to-base64-encoding
+                    // COMMENT :: https://stackoverflow.com/a/13758760
                     // AUTHOR :: Ronny Sherer :: https://stackoverflow.com/users/380561/ronny-sherer
                     $file_extension_jpg = pathinfo($crnrstn_jpg, PATHINFO_EXTENSION);
                     $img_binary = fread(fopen($crnrstn_jpg, 'r'), $this->find_filesize($crnrstn_jpg));
@@ -1625,7 +1626,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
                         $tmp_run_time = $tmp_validation_results_ARRAY['WALLTIME'];
                         $tmp_run_time = $tmp_run_time . 'secs';
 
-                        if ($this->isSSL()) {
+                        if ($this->oCRNRSTN->is_ssl()) {
 
                             $tmp_post_uri = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
@@ -2119,135 +2120,6 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
     public function output_str_append($str){
 
         $this->destruct_output = $str;
-
-    }
-
-    public function set_crnrstn_as_err_handler($crnrstn_is_active = true, $error_types_profile = NULL){
-
-        try{
-
-            if(isset($this->oCRNRSTN_ENV->env_key)){
-
-                $this->oCRNRSTN->input_data_value($crnrstn_is_active, 'CRNRSTN_as_err_handler_is_active', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
-                $this->oCRNRSTN->input_data_value($error_types_profile, 'CRNRSTN_as_err_handler_profile', NULL, 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, NULL);
-
-                if($crnrstn_is_active){
-
-                    $this->error_log('Resetting error handling at this server to the PHP defaults.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
-                    restore_error_handler();
-
-                    if(isset($error_types_profile)) {
-
-                        $this->error_log('Initializing CRNRSTN :: to handle errors at this server per a custom error level constants reporting profile represented as an aggregate by the integer value, ' . $error_types_profile . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
-                        $this->apply_CRNRSTN_asErrorHandler($error_types_profile);
-
-                    }else{
-
-                        $this->error_log('Initializing CRNRSTN :: to handle errors at this server per the default PHP error level constants reporting profile. For PHP 5.3 or later, the default is E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
-                        $this->apply_CRNRSTN_asErrorHandler($error_types_profile);
-
-                    }
-
-                } else {
-
-                    $this->error_log('Resetting error handling at this server to the PHP defaults. For PHP 5.3 or later, the default is E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
-                    restore_error_handler();
-
-                }
-
-
-                return true;
-
-            }
-
-            //
-            // WE DON'T HAVE THE ENVIRONMENT, BUT DETECTION WOULD HAVE ALREADY BEEN COMPLETED.
-            //throw new Exception('Unable to process encryption profile for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
-            $this->error_log('Bypassed initialization of CRNRSTN :: as error handler for environment [' . $this->oCRNRSTN_ENV->env_key . '/' . $this->hash($this->oCRNRSTN_ENV->env_key) . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
-        }catch(Exception $e){
-
-            //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            //
-            // RETURN NOTHING
-            return false;
-
-        }
-
-        return false;
-
-    }
-
-    private function apply_CRNRSTN_asErrorHandler($error_types_profile = NULL){
-
-        if(isset($error_types_profile)){
-
-            //
-            // SOURCE :: https://stackoverflow.com/questions/1241728/can-i-try-catch-a-warning
-            // AUTHOR :: https://stackoverflow.com/users/117260/philippe-gerber
-            // SET TO THE USER DEFINED ERROR HANDLER
-            $old_error_handler = set_error_handler(function($errno, $errstr, $errfile, $errline, $errcontext) {
-
-                try{
-
-                    // error was suppressed with the @-operator
-                    if (0 === error_reporting()) {
-                        return false;
-                    }
-
-                    $errstr = $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] . $errstr;
-                    $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = '';
-
-                    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-
-                } catch (Exception $e) {
-
-                    //
-                    // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-                    $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-                    return false;
-
-                }
-
-            }, (int) $error_types_profile);
-
-        }else{
-
-            $old_error_handler = set_error_handler(function($errno, $errstr, $errfile, $errline, $errcontext){
-
-                try{
-
-                    // error was suppressed with the @-operator
-                    if(0 === error_reporting()){
-
-                        return false;
-
-                    }
-
-                    $errstr = $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] . $errstr;
-                    $_SESSION['CRNRSTN_' . $this->config_serial_hash]['CRNRSTN_EXCEPTION_PREFIX'] = '';
-
-                    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-
-                } catch (Exception $e) {
-
-                    //
-                    // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-                    $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-                    return false;
-
-                }
-
-            });
-
-        }
-
-        return true;
 
     }
 
@@ -6725,6 +6597,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     //
     // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+    // COMMENT :: https://stackoverflow.com/a/13733588
     // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
     public function generate_new_key($len = 32, $char_selection = NULL){
 
@@ -6742,47 +6615,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
         //
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
 
-        return $this->oCRNRSTN->salt($len, $char_selection);
-
-    }
-
-    //
-    // METHOD SOURCE :: Stack Overflow :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
-    // Contributor :: https://stackoverflow.com/users/4895359/yumoji
-    private function crypto_rand_secure($min, $max){
-
-        $range = $max - $min;
-
-        if($range < 1) return $min; // not so random...
-
-        $log = ceil(log($range, 2));
-        $bytes = (int) ($log / 8) + 1; // length in bytes
-        $bits = (int) $log + 1; // length in bits
-        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
-
-        do{
-
-            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
-            $rnd = $rnd & $filter; // discard irrelevant bits
-
-        }while($rnd > $range);
-
-        return $min + $rnd;
-
-    }
-
-    //
-    // SOURCE :: https://stackoverflow.com/questions/5100189/use-php-to-check-if-page-was-accessed-with-ssl
-    // AUTHOR :: https://stackoverflow.com/users/887067/saeven
-    public function isSSL(){
-
-        if(!empty( $_SERVER['HTTPS'] ) && ($_SERVER['HTTPS'] != 'off'))
-            return true;
-
-        if(!empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
-            return true;
-
-        return false;
+        return $this->oCRNRSTN->generate_new_key($len, $char_selection);
 
     }
 
@@ -7126,41 +6959,11 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
     //
     // SOURCE :: https://stackoverflow.com/questions/2510434/format-bytes-to-kilobytes-megabytes-gigabytes
-    // AUTHOR :: https://stackoverflow.com/users/227532/leo
+    // COMMENT :: https://stackoverflow.com/a/2510459
+    // AUTHOR :: Leo :: https://stackoverflow.com/users/227532/leo
     public function format_bytes($bytes, $precision = 2, $SI_output = false) {
 
-        //
-        // CRNRSTN v2.0.0 :: MODS
-        // SEE :: https://en.wikipedia.org/wiki/Binary_prefix
-        // SEE ALSO :: ISO/IEC 80000 family of standards (November 1, 2009)
-        // https://en.wikipedia.org/wiki/ISO/IEC_80000#Information_science_and_technology
-        // SEE COMMENT BY DEVATOR [https://stackoverflow.com/users/659731/devator] JUST
-        // BENEATH THE METHOD [format_bytes()] AUTHOR'S RESPONSE AT SOURCE LINK. THIS IS MY
-        // IMPETUS TO INCLUDE THE ABOVE LINKS TO ADDITIONAL MATERIAL FROM WIKIPEDIA.
-        if($SI_output){
-
-            // SI :: metric prefix
-            $units = array('bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
-            $units_power = 1000;
-
-        }else{
-
-            // IEC :: ISO 80000 or IEC 80000
-            $units = array('bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
-            $units_power = 1024;
-
-        }
-
-        $bytes = max($bytes, 0);
-        $pow = floor(($bytes ? log($bytes) : 0) / log($units_power));
-        $pow = min($pow, count($units) - 1);
-
-        $bytes /= pow($units_power, $pow);
-
-        $tmp_number = round($bytes, $precision);
-        $tmp_number = $this->number_format_keep_precision($tmp_number);
-
-        return $tmp_number . ' ' . $units[$pow];
+        return $this->oCRNRSTN->format_bytes($bytes, $precision, $SI_output);
 
     }
 
@@ -10047,6 +9850,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
         //
         // SOURCE :: https://stackoverflow.com/questions/32962624/convert-rgb-to-hex-color-values-in-php
+        // COMMENT :: https://stackoverflow.com/a/32977705
         // AUTHOR :: https://stackoverflow.com/users/3942918/user3942918
         $color_hex = sprintf('#%02x%02x%02x', $tmp_color_explode[0], $tmp_color_explode[1], $tmp_color_explode[2]);
 
@@ -11418,9 +11222,14 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
         $fp = fopen($url, 'r', false, $context);
 
         $contents = '';
+
+        //
+        // SOURCE :: https://stackoverflow.com/questions/3308388/fopen-returns-resource-id-4
+        // COMMENT :: https://stackoverflow.com/a/3308463
+        // AUTHOR :: PHPology :: https://stackoverflow.com/users/383633/phpology
+        // https://www.php.net/manual/en/function.fread.php
         while (!feof($fp)){
-            // https://stackoverflow.com/questions/3308388/fopen-returns-resource-id-4
-            // https://www.php.net/manual/en/function.fread.php
+
             $contents .= fread($fp, 8192);
 
         }
@@ -11435,7 +11244,7 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
     // CURL URI...SUCH AS BASSDRIVE NOW PLAYING INFO
     public function ___get_url_content($url){
 
-        if($this->isSSL()){
+        if($this->oCRNRSTN->is_ssl()){
 
             $source_url = 'https://' . $_SERVER['SERVER_NAME'];
 

@@ -910,7 +910,7 @@ class crnrstn_stream_manager {
                 if($tmp_feeder_cnt<1){
                     $tmp_feeder_cnt = NULL;
                 }else{
-                    if(!$oUser->isSSL()){
+                    if(!$oUser->is_ssl()){
                         $tmp_curr_uri = urlencode(self::$oUserEnvironment->data_encrypt("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"));
                     }else{
                         $tmp_curr_uri = urlencode(self::$oUserEnvironment->data_encrypt("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"));

@@ -328,7 +328,8 @@ class finite_expression {
         //
         // EXTRACT HOURS MIN SECS FROM TOTAL SECS
         // SOURCE :: https://stackoverflow.com/questions/3172332/convert-seconds-to-hourminutesecond/3172358
-        // AUTHOR :: https://stackoverflow.com/users/51760/aif
+        // COMMENT :: https://stackoverflow.com/a/3172368
+        // AUTHOR :: aif :: https://stackoverflow.com/users/51760/aif
         $hours = floor($secs / 3600);
         $minutes = floor(($secs / 60) % 60);
         $seconds = $secs % 60;

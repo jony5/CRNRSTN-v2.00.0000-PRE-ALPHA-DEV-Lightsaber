@@ -95,7 +95,7 @@ class crnrstn_http_manager {
         'Date', 'Expect', 'Forwarded', 'Host', 'Proxy-Authorization', 'Range', 'Referer', 'User-Agent', 'Warning', 'X-Requested-With',
         'DNT', 'X-Forwarded-For', 'X-Forwarded-Host', 'X-Forwarded-Proto', 'X-Wap-Profile', 'X-UIDH[34][35][36]');
 
-        if($this->oCRNRSTN->isSSL()){
+        if($this->oCRNRSTN->is_ssl()){
 
             $this->is_SSL = true;
 
@@ -397,7 +397,7 @@ class crnrstn_http_manager {
             $tmp_data_ARRAY = array();
 
             //
-            // ASSET URI REQUEST RESPONSE
+            // CRNRSTN :: ASSET MAPPING. PROCESS HTTP REQUEST RESPONSE FOR ASSET.
             if(isset($this->crnrstn_asset_family)){
 
                 $tmp_session_salt = $this->oCRNRSTN->session_salt();

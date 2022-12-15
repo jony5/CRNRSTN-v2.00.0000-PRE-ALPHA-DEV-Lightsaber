@@ -4791,8 +4791,9 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
     }
 
     //
-    // METHOD SOURCE :: Stack Overflow :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
-    // Contributor :: https://stackoverflow.com/users/1698153/scott
+    // SOURCE :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+    // COMMENT :: https://stackoverflow.com/a/13733588
+    // AUTHOR :: Scott :: https://stackoverflow.com/users/1698153/scott
     public function generate_new_key($len = 32, $char_selection = NULL){
 
         //
@@ -4809,13 +4810,14 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
         //
         // https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
 
-        return $this->oCRNRSTN->salt($len, $char_selection);
+        return $this->oCRNRSTN->generate_new_key($len, $char_selection);
 
     }
 
     //
-    // METHOD SOURCE :: Stack Overflow :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
-    // Contributor :: https://stackoverflow.com/users/4895359/yumoji
+    // SOURCE :: Stack Overflow :: https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+    // COMMENT :: https://stackoverflow.com/a/13733588
+    // AUTHOR :: https://stackoverflow.com/users/4895359/yumoji
     private function crypto_rand_secure($min, $max){
 
         $range = $max - $min;
@@ -6458,7 +6460,7 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
         //error_log(__LINE__ . ' user append_url_param=' . print_r($param_ARRAY, true));
 
-        if($this->isSSL()){
+        if($this->oCRNRSTN->is_ssl()){
 
             $tmp_lnk = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
@@ -6684,21 +6686,6 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
         $tmp_array = explode('=', $param_str);
 
         return $tmp_array[0];
-
-    }
-
-    //
-    // SOURCE :: https://stackoverflow.com/questions/5100189/use-php-to-check-if-page-was-accessed-with-ssl
-    // AUTHOR :: https://stackoverflow.com/users/887067/saeven
-    public function isSSL(){
-
-        if(!empty( $_SERVER['HTTPS'] ) && ($_SERVER['HTTPS'] != 'off'))
-            return true;
-
-        if(!empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
-            return true;
-
-        return false;
 
     }
 

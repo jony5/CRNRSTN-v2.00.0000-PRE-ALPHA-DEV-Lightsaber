@@ -595,7 +595,7 @@ class crnrstn_content_source_controller {
 
     public function return_language_iso_profile($output_type = 'array'){
 
-    public function isSSL(){
+    public function is_ssl(){
 
     public function append_url_param($param_ARRAY, $tunnel_encrypt = true, $no_encrypt_param_ARRAY = NULL, $include_no_encrypt = true){
     public function explode_url($uri){
@@ -639,7 +639,99 @@ class crnrstn_content_source_controller {
                 public function mkdir_r($dirName, $mode = 777){
 
                 */
+                case 'salt':
+                case 'ini_set':
+                case 'config_add_seo_analytics':
+                case 'config_add_seo_engagement':
+                case 'config_set_ui_theme_style':
+                case 'set_ui_theme_style':
+                case 'is_ssl':
                 case 'error_log':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    $token = $this->return_content_deep_link_token();
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
+                case 'format_bytes':
+
+                    /*'
+                    //
+                    // SOURCE :: https://stackoverflow.com/questions/2510434/format-bytes-to-kilobytes-megabytes-gigabytes
+                    // COMMENT :: https://stackoverflow.com/a/2510459
+                    // AUTHOR :: Leo :: https://stackoverflow.com/users/227532/leo
+                    public function format_bytes($bytes, $precision = 2, $SI_output = false){
+
+                        //
+                        // CRNRSTN v2.0.0 :: MODS
+                        // SEE :: https://en.wikipedia.org/wiki/Binary_prefix
+                        // SEE ALSO :: ISO/IEC 80000 family of standards (November 1, 2009)
+                        // https://en.wikipedia.org/wiki/ISO/IEC_80000#Information_science_and_technology
+                        // SEE COMMENT BY DEVATOR [https://stackoverflow.com/users/659731/devator] JUST
+                        // BENEATH THE METHOD [format_bytes()] AUTHOR'S RESPONSE AT SOURCE LINK. THIS IS MY
+                        // IMPETUS TO INCLUDE THE ABOVE LINKS TO ADDITIONAL MATERIAL FROM WIKIPEDIA.
+                        if($SI_output){
+
+                            // SI :: metric prefix
+                            $units = array('bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+                            $units_power = 1000;
+
+                        }else{
+
+                            // IEC :: ISO 80000 or IEC 80000
+                            $units = array('bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
+                            $units_power = 1024;
+
+                        }
+
+                        $bytes = max($bytes, 0);
+                        $pow = floor(($bytes ? log($bytes) : 0) / log($units_power));
+                        $pow = min($pow, count($units) - 1);
+
+                        $bytes /= pow($units_power, $pow);
+
+                        $tmp_number = round($bytes, $precision);
+                        $tmp_number = $this->number_format_keep_precision($tmp_number);
+
+                        return $tmp_number . ' ' . $units[$pow];
+
+                    }
+
+                    */
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    $token = $this->return_content_deep_link_token();
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array);
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key));
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT');
+
+                break;
+                case '__error_log':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 

@@ -151,6 +151,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 
         //
         // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+        // COMMENT :: https://stackoverflow.com/a/1173319
         // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
         if (document.selection) { // IE
 

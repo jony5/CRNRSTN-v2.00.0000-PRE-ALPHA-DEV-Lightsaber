@@ -976,6 +976,7 @@ class crnrstn_bassdrive_stream_manager {
 
                             //
                             // SOURCE :: https://stackoverflow.com/questions/8829102/check-if-mysql-table-exists-without-using-select-from-syntax
+                            // COMMENT :: https://stackoverflow.com/a/8829109
                             // AUTHOR :: Sergio Tulentsev :: https://stackoverflow.com/users/125816/sergio-tulentsev
                             // QUICK CHECK TO CONFIRM TABLE CREATION BEFORE INSERT
                             if($this->table_exists('crnrstn_stream_relay_reporting_log_' . $tmp_TABLE_STRING_PATTERN)){
@@ -1889,6 +1890,7 @@ class crnrstn_bassdrive_stream_manager {
 
                             //
                             // SOURCE :: https://stackoverflow.com/questions/8829102/check-if-mysql-table-exists-without-using-select-from-syntax
+                            // COMMENT :: https://stackoverflow.com/a/8829109
                             // AUTHOR :: Sergio Tulentsev :: https://stackoverflow.com/users/125816/sergio-tulentsev
                             // QUICK CHECK TO CONFIRM TABLE CREATION BEFORE INSERT
                             if($this->table_exists('crnrstn_stream_relay_reporting_log_' . $tmp_TABLE_STRING_PATTERN)){
@@ -4199,9 +4201,14 @@ class bassdrive_integration_data {
         $fp = fopen($url, 'r', false, $context);
 
         $contents = '';
+
+        //
+        // SOURCE :: https://stackoverflow.com/questions/3308388/fopen-returns-resource-id-4
+        // COMMENT :: https://stackoverflow.com/a/3308463
+        // AUTHOR :: PHPology :: https://stackoverflow.com/users/383633/phpology
+        // https://www.php.net/manual/en/function.fread.php
         while (!feof($fp)){
-            // https://stackoverflow.com/questions/3308388/fopen-returns-resource-id-4
-            // https://www.php.net/manual/en/function.fread.php
+
             $contents .= fread($fp, 8192);
 
         }
