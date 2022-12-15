@@ -2215,7 +2215,7 @@ class crnrstn_content_generator {
 //
 //                                }
 
-                                $tmp_report = $this->oCRNRSTN->return_report_module_out(CRNRSTN_REPORT_RESPONSE_RETURN);
+                                $tmp_report = $this->oCRNRSTN->return_report_module_out(CRNRSTN_RESPONSE_REPORT);
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 

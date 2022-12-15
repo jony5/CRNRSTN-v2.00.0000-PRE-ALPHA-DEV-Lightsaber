@@ -632,7 +632,7 @@ class crnrstn_environment {
                 return $tmp_output;
 
             break;
-            case CRNRSTN_REPORT_RESPONSE_RETURN:
+            case CRNRSTN_RESPONSE_REPORT:
 
                 //error_log(__LINE__ . ' env return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN ['. $output_format . '].');
                 $tmp_array = $this->return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN($output_format);

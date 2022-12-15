@@ -8,7 +8,7 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 //
 // PASS TRUE TO SPOOL DESIRED CONTENT TO BE OUTPUTTED LATER
 // INTO THE HTML FOOTER VIA system_output_footer_html()
-$oCRNRSTN->system_output_footer_html(CRNRSTN_REPORT_RESPONSE_RETURN, true);
+$oCRNRSTN->system_output_footer_html(CRNRSTN_RESPONSE_REPORT, true);
 $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
 
 //

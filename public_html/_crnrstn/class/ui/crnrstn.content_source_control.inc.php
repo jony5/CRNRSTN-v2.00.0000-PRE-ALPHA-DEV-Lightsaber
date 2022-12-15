@@ -11554,11 +11554,11 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
 
             break;
-            case 'CRNRSTN_REPORT_RESPONSE_RETURN':
-            case CRNRSTN_REPORT_RESPONSE_RETURN:
+            case 'CRNRSTN_RESPONSE_REPORT':
+            case CRNRSTN_RESPONSE_REPORT:
 
-                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_REPORT_RESPONSE_RETURN;
-                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_REPORT_RESPONSE_RETURN';
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESPONSE_REPORT;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESPONSE_REPORT';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
 
@@ -12621,7 +12621,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 //CRNRSTN_UI_TAG_ENGAGEMENT
                 //CRNRSTN_UI_TAG_ANALYTICS
                 //CRNRSTN_UI_SOAP_DATA_TUNNEL
-                //CRNRSTN_REPORT_RESPONSE_RETURN
+                //CRNRSTN_RESPONSE_REPORT
                 $tmp_output_ARRAY = array();
 
             break;

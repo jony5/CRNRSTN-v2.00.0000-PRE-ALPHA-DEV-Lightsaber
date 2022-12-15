@@ -1167,7 +1167,7 @@ function crnrstn_constants_init($const_nom){
             return (int) 8611;
 
         break;
-        case 'CRNRSTN_REPORT_RESPONSE_RETURN':
+        case 'CRNRSTN_RESPONSE_REPORT':
 
             return (int) 8612;
 
