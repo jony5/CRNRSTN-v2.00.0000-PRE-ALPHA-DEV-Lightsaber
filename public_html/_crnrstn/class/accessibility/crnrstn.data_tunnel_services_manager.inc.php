@@ -306,7 +306,6 @@ class crnrstn_data_tunnel_services_manager{
             case 'crnrstn_interact_ui_search_src':
             case 'crnrstn_interact_ui_messenger_src':
             case 'crnrstn_interact_ui_system_footer_src':
-            case 'crnrstn_interact_ui_documentation_side_nav_src':
 
                 //
                 // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME, BUT $module_nom WILL
@@ -314,6 +313,35 @@ class crnrstn_data_tunnel_services_manager{
                 // THE FOOTER RESET DISPLAYED WALL TIME TO ZERO? I THINK THE SSDTLA HOLDS
                 // THE WALL TIME SOURCE...SO SHOULD BE STABLE.
                 $tmp_module_data = $module_nom;
+
+            break;
+            case 'crnrstn_interact_ui_documentation_side_nav_src':
+
+                $tmp_nav_str = '';
+                $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/php/';
+                $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::INTERACT_UI::DOCUMENTATION_NAV';
+
+                $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
+
+                //
+                // SOURCE :: https://www.php.net/manual/en/function.scandir.php
+                // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
+                $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
+
+                foreach($scanned_directory_ARRAY as $index => $dir_resource){
+
+                    $tmp_data_key = 'CRNRSTN_NAV_LINK';
+                    $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
+
+                    if(!$this->oCRNRSTN->tmp_restrict_this_lorem_ipsum_method($dir_resource)){
+
+                        $tmp_nav_str .= $dir_resource;
+
+                    }
+
+                }
+
+                $tmp_module_data = $tmp_nav_str;
 
             break;
             default:

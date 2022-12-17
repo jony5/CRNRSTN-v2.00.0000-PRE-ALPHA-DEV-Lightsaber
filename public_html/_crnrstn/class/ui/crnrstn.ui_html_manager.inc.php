@@ -84,22 +84,51 @@ class crnrstn_ui_html_manager {
     public function return_output_CRNRSTN_UI_DOCS_NAV_LINK($type){
 
         $tmp_str = '';
-        $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/' . $type . '/';
+        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::INTERACT_UI::DOCUMENTATION_NAV';
 
-        $tmp_data_key = 'crnrstn_ui_navigation';
-        $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::INTERACT_UI::' . $this->oCRNRSTN->hash($tmp_data_key);
+        $tmp_nav_cnt = $this->oCRNRSTN->get_resource_count('CRNRSTN_NAV_LINK', $tmp_data_type_family);
+	    if($tmp_nav_cnt < 1){
 
-        $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
+            $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/' . $type . '/';
 
-        //
-        // SOURCE :: https://www.php.net/manual/en/function.scandir.php
-        // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
-        $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
+            $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
 
-        foreach($scanned_directory_ARRAY as $index => $dir_resource){
+            //
+            // SOURCE :: https://www.php.net/manual/en/function.scandir.php
+            // AUTHOR :: dwieeb at gmail dot com :: https://www.php.net/manual/en/function.scandir.php#107215
+            $scanned_directory_ARRAY = array_diff($scanned_directory_ARRAY, array('..', '.', 'index.php'));
 
-            $tmp_data_key = 'CRNRSTN_NAV_LINK';
-            $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
+            foreach($scanned_directory_ARRAY as $index => $dir_resource){
+
+                $tmp_data_key = 'CRNRSTN_NAV_LINK';
+                $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
+
+                if(!$this->oCRNRSTN->tmp_restrict_this_lorem_ipsum_method($dir_resource)){
+
+                    if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+                        $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
+
+                    }else{
+
+                        $tmp_str .= '
+                <li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
+
+                    }
+
+                }
+
+            }
+
+            $this->oCRNRSTN->add_system_resource('DOCUMENTATION_NAV_COMPONENT_HTML', $tmp_str, $tmp_data_type_family);
+
+            return $tmp_str;
+
+        }
+
+	    for($i = 0; $i < $tmp_nav_cnt; $i++){
+
+            $dir_resource = $this->oCRNRSTN->get_resource('CRNRSTN_NAV_LINK', $i, $tmp_data_type_family);
 
             if(!$this->oCRNRSTN->tmp_restrict_this_lorem_ipsum_method($dir_resource)){
 
@@ -117,9 +146,6 @@ class crnrstn_ui_html_manager {
             }
 
         }
-
-        $tmp_data_key = 'DOCUMENTATION_NAV_COMPONENT_HTML';
-        $this->oCRNRSTN->add_system_resource($tmp_data_key, $dir_resource, $tmp_data_type_family);
 
         return $tmp_str;
 

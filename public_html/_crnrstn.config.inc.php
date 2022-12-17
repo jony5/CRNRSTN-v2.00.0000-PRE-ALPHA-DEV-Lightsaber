@@ -338,7 +338,7 @@ $oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_MACBOOKPRO',false);
 $oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO');
 
 /**
- * $oCRNRSTN->config_init_images_format_default()
+ * $oCRNRSTN->config_init_system_asset_mode()
  * DESCRIPTION :: Configure the HTML email image handling profile for CRNRSTN :: system notifications.
  * OPTIONS ::
  * CRNRSTN_ASSET_MODE_PNG
@@ -358,7 +358,7 @@ $oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO');
  *
  */
 /*
-config_init_images_format_default()
+config_init_system_asset_mode()
 CRNRSTN_ASSET_MODE_PNG
 CRNRSTN_ASSET_MODE_JPEG
 CRNRSTN_ASSET_MODE_BASE64 (WILL CAUSE JS AND CSS META TO BE INJECTED DIRECTLY INTO HTML <HEAD>)
@@ -366,8 +366,8 @@ CRNRSTN_ASSET_MODE_BASE64 (WILL CAUSE JS AND CSS META TO BE INJECTED DIRECTLY IN
 */
 //
 // $env_key = CRNRSTN_RESOURCE_ALL, $format_default = CRNRSTN_ASSET_MODE_BASE64
-$oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG);
-//$oCRNRSTN->config_init_images_format_default(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
+$oCRNRSTN->config_init_system_asset_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG);
+//$oCRNRSTN->config_init_system_asset_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
 
 // 
 // $env_key = CRNRSTN_RESOURCE_ALL, $is_HTML = true. If false, text email only for system communications (e.g. exception handling).

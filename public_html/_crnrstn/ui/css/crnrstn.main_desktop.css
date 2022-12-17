@@ -252,7 +252,7 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 /*.crnrstn_interact_ui_side_nav_logo_img_bg           {padding:10px 8px 6px 10px; border-radius: 15px; border-top-left-radius: 0; border-bottom-left-radius: 0; border: 1px solid #e7e7e7; cursor: pointer;} */
 .crnrstn_interact_ui_bg_layer                       { position:absolute; z-index: 9998; background-color: #FFF; width:100%; height:100%; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20); opacity: 0.2;}
 
-.crnrstn_interact_ui_side_nav                       { width:0; max-height: 600px; position: fixed; background-color: #FFF; /*z-index: 1;*/ top: 0; left: 0; overflow-x: hidden; padding: 0; border-right: 1px solid #A5B9D8; }
+.crnrstn_interact_ui_side_nav                       { width:0; /*max-height: 600px;*/ position: fixed; background-color: #FFF; /*z-index: 1;*/ top: 0; left: 0; overflow-x: hidden; padding: 0; border-right: 1px solid #A5B9D8; }
 .crnrstn_interact_ui_side_nav a                     { padding: 3px 8px 3px 7px; text-decoration: none; font-family: "Courier New", Courier, monospace; font-size:12px; line-height: 20px; color: #0066CC; display: block; }
 .crnrstn_interact_ui_side_nav a:hover               { color: #0066CC; }
 .crnrstn_interact_ui_side_nav ul                    { list-style:none; margin: 0; padding: 0;}

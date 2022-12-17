@@ -216,7 +216,7 @@ class crnrstn {
 
     private static $version_crnrstn = '2.00.0000 PRE-ALPHA-DEV (Lightsaber)';
 
-    public function __construct($config_filepath, $CRNRSTN_config_serial, $CRNRSTN_debug_mode = 0, $PHPMAILER_debug_mode = 0, $CRNRSTN_loggingProfile = CRNRSTN_LOG_DEFAULT){
+    public function __construct($config_filepath, $CRNRSTN_config_serial, $CRNRSTN_debug_mode = 0, $PHPMAILER_debug_mode = 0, $profile_constant = CRNRSTN_LOG_DEFAULT){
 
         $this->starttime = $_SERVER['REQUEST_TIME_FLOAT'];
 
@@ -303,7 +303,7 @@ class crnrstn {
 
         //
         // SET BITS FOR LOGGING PROFILE SILO
-        $this->log_silo_profile = $CRNRSTN_loggingProfile;
+        $this->log_silo_profile = $profile_constant;
         $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($this->log_silo_profile, true);
 
         //
@@ -2484,15 +2484,15 @@ class crnrstn {
 
     }
 
-//	public function embryonic_init_logging($CRNRSTN_loggingProfile, $CRNRSTN_loggingMeta = NULL){
+//	public function embryonic_init_logging($profile_constant, $profile_meta = NULL){
 //
-//        $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($CRNRSTN_loggingProfile, true);
+//        $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($profile_constant, true);
 //
-//        self::$sys_logging_profile_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $CRNRSTN_loggingProfile;
+//        self::$sys_logging_profile_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $profile_constant;
 //
-//        if(isset($CRNRSTN_loggingMeta)){
+//        if(isset($profile_meta)){
 //
-//            self::$sys_logging_meta_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $CRNRSTN_loggingMeta;
+//            self::$sys_logging_meta_ARRAY[$this->config_serial_hash][CRNRSTN_LOG_ALL][] = $profile_meta;
 //
 //        }else{
 //
@@ -2502,7 +2502,7 @@ class crnrstn {
 //
 //        //
 //        // PROCESS META DATA
-//        $this->error_log('Embryonic logging profile data (int) ' . $CRNRSTN_loggingProfile . ' has been received.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//        $this->error_log('Embryonic logging profile data (int) ' . $profile_constant . ' has been received.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 //
 //    }
 
@@ -2853,7 +2853,7 @@ class crnrstn {
 
     }
 
-    public function config_init_images_format_default($env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MODE_BASE64){
+    public function config_init_system_asset_mode($env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MODE_BASE64){
 
         /*
         Configure the HTML email image handling profile for CRNRSTN :: system notifications.
@@ -3192,7 +3192,7 @@ class crnrstn {
 
     }
 
-    public function config_init_logging($env_key, $CRNRSTN_loggingProfile = CRNRSTN_LOG_DEFAULT, $CRNRSTN_loggingMeta = NULL){
+    public function config_init_logging($env_key = CRNRSTN_RESOURCE_ALL, $profile_constant = CRNRSTN_LOG_DEFAULT, $profile_meta = NULL){
 
         //
         // LOGGING WILL NEED TO BE REFACTORED SOON. MUCH HAS CHANGED.
@@ -3200,13 +3200,13 @@ class crnrstn {
 
         //
         // PROCESS BITWISE DATA DO THIS AFTER ENVIRONMENTAL DETECTION
-        //$this->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->set($CRNRSTN_loggingProfile, true);
-        //error_log(__LINE__ .' '. __METHOD__ .' crnrstn_environment to receive logging array[' . $this->crcINT($this->config_serial).'][' . $this->crcINT($env_key).']=[' . $CRNRSTN_loggingProfile . ']');
-        self::$sys_logging_profile_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $CRNRSTN_loggingProfile;
+        //$this->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->set($profile_constant, true);
+        //error_log(__LINE__ .' '. __METHOD__ .' crnrstn_environment to receive logging array[' . $this->crcINT($this->config_serial).'][' . $this->crcINT($env_key).']=[' . $profile_constant . ']');
+        self::$sys_logging_profile_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $profile_constant;
 
-        if(isset($CRNRSTN_loggingMeta)){
+        if(isset($profile_meta)){
 
-            self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $CRNRSTN_loggingMeta;
+            self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $profile_meta;
 
         }else{
 
@@ -4065,21 +4065,25 @@ class crnrstn {
 
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
-        // 'config_add_database' => 'DISABLED','config_deny_access' => 'DISABLED',
-        // 'config_detect_environment' => 'DISABLED',
         //
+        // 'config_add_database' => 'DISABLED',
+        // 'config_deny_access' => 'DISABLED',
+        // 'config_detect_environment' => 'DISABLED',
         // 'config_include_encryption' => 'DISABLED',
         // 'config_include_wordpress' => 'DISABLED',
-        // 'is_configured' => 'DISABLED','config_init_images_http_dir' => 'DISABLED',
+        // 'is_configured' => 'DISABLED',
+        // 'config_init_images_http_dir' => 'DISABLED',
         // 'config_set_crnrstn_as_err_handler' => 'DISABLED',
-        // 'return_system_image'=>'DISABLED','config_include_system_resources' => 'DISABLED', 'config_add_environment' => 'DISABLED',
+        // 'return_system_image'=>'DISABLED',
+        // 'config_include_system_resources' => 'DISABLED',
+        // 'config_add_environment' => 'DISABLED','config_init_logging' => 'DISABLED',
         // 'error_log' => 'DISABLED','config_add_seo_engagement' => 'DISABLED', 'get_disk_performance_metric' => 'DISABLED','config_include_seo_engagement' => 'DISABLED',
         // 'iso_language_profile' => 'DISABLED','hash' => 'DISABLED','grant_permissions_fwrite' => 'DISABLED', 'ini_set' => 'DISABLED', 'config_include_seo_analytics' => 'DISABLED',
         // 'return_system_image' => 'DISABLED','config_add_seo_analytics' => 'DISABLED','set_ui_theme_style' => 'DISABLED'
-        $tmp_ARRAY = array('config_add_administration' => 'DISABLED',
+        $tmp_ARRAY = array(
 
+            'config_add_administration' => 'DISABLED',
             'config_init_images_transport_mode' => 'DISABLED',
-            'config_init_logging' => 'DISABLED',
             'form_hidden_input_add' => 'DISABLED',
             'config_deny_access' => 'DISABLED',
             'form_input_add' => 'DISABLED',
@@ -4090,6 +4094,7 @@ class crnrstn {
             'set_max_login_attempts' => 'DISABLED',
             'set_timeout_user_inactive' => 'DISABLED',
             'set_timezone_default' => 'DISABLED'
+
             );
 
         if(isset($tmp_ARRAY[$method])){
@@ -4519,7 +4524,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
 
-                    $this->config_init_images_format_default();
+                    $this->config_init_system_asset_mode();
                     $this->config_init_http(CRNRSTN_RESOURCE_ALL, '', CRNRSTN_ROOT);
 
                     $tmp_str = '<!DOCTYPE html>
@@ -4570,7 +4575,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
 
-                    $this->config_init_images_format_default();
+                    $this->config_init_system_asset_mode();
                     $this->config_init_http(CRNRSTN_RESOURCE_ALL, '', CRNRSTN_ROOT);
 
                     //

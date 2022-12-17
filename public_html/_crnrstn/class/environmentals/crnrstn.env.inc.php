@@ -7394,9 +7394,15 @@ class crnrstn_decoupled_data_object {
 
             //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. . $this->data_value_ARRAY=[' . print_r($this->data_value_ARRAY, true) . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', 'Output title.', NULL, __LINE__, __METHOD__, __FILE__);
 
-            $tmp_cnt = sizeof($this->data_value_ARRAY[$data_key]);
+            if(isset($this->data_value_ARRAY[$data_key])){
 
-            return $tmp_cnt;
+                $tmp_cnt = sizeof($this->data_value_ARRAY[$data_key]);
+
+                return $tmp_cnt;
+
+            }
+
+            $this->oCRNRSTN->error_log('Unable to locate data at position, ' . $data_key . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         }
 
