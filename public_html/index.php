@@ -9,11 +9,11 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 // PASS TRUE TO SPOOL DESIRED CONTENT TO BE OUTPUTTED LATER
 // INTO THE HTML FOOTER VIA system_output_footer_html()
 $oCRNRSTN->system_output_footer_html(CRNRSTN_RESPONSE_REPORT, true);
-$oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
+//$oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
 
-//
+//CRNRSTN_JS_FRAMEWORK_JQUERY
 // HEAD OUTPUT
-//$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY, true, true, true);
+$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE, true);
 //$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, true);
 
 ?>

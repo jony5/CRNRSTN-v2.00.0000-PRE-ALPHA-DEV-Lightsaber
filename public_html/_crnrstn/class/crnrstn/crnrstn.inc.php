@@ -1386,61 +1386,61 @@ class crnrstn {
 
     }
 
-    public function initialize_serialized_bit($const_nom, $integer_const, $default_state = true){
+    public function initialize_serialized_bit($name, $integer_constant, $is_bit_set = true){
 
-        return $this->oCRNRSTN_BITFLIP_MGR->initialize_serialized_bit($const_nom, $integer_const, $default_state);
+        return $this->oCRNRSTN_BITFLIP_MGR->initialize_serialized_bit($name, $integer_constant, $is_bit_set);
+
+    }
+    
+    public function initialize_bit($integer_constant, $is_bit_set = true){
+
+        return $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($integer_constant, $is_bit_set);
 
     }
 
-    public function initialize_bit($integer_constant, $default_state = true){
+    public function is_serialized_bit_set($name, $integer_constant){
 
-        return $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($integer_constant, $default_state);
-
-    }
-
-    public function serialized_is_bit_set($const_nom, $integer_const){
-
-        return $this->oCRNRSTN_BITFLIP_MGR->serialized_is_bit_set($const_nom, $integer_const);
+        return $this->oCRNRSTN_BITFLIP_MGR->is_serialized_bit_set($name, $integer_constant);
 
     }
 
-    public function is_bit_set($integer_const){
+    public function is_bit_set($integer_constant){
 
-        return $this->oCRNRSTN_BITFLIP_MGR->is_bit_set($integer_const);
+        return $this->oCRNRSTN_BITFLIP_MGR->is_bit_set($integer_constant);
 
     }
 
-    public function toggle_bit($integer_const, $target_state = NULL){
+    public function toggle_bit($integer_constant, $is_bit_set = NULL){
 
         //
         // WILL ALSO (AND FOREVER) RETURN FALSE IF THE BIT REPRESENTED BY THE INTEGER CONSTANT IS NOT INITIALIZED.
-        return $this->oCRNRSTN_ENV->toggle_bit($integer_const, $target_state);
+        return $this->oCRNRSTN_ENV->toggle_bit($integer_constant, $is_bit_set);
 
     }
 
-    public function clear_all_bits_set_one($int_const_final, $is_bit_set = true, $integer_clear_ARRAY = array()){
+    public function clear_all_bits_set_one($int_const_the_one, $is_bit_set = true, $integer_clear_ARRAY = array()){
 
         //
         // CLEAR ALL
-        foreach($integer_clear_ARRAY as $index => $const){
+        foreach($integer_clear_ARRAY as $index => $integer_constant){
 
             //
             // IF BIT IS FLIPPED...TURN IT OFF.
-            if($this->is_bit_set($const)){
+            if($this->is_bit_set($integer_constant)){
 
-                $this->initialize_bit($const, false);
+                $this->initialize_bit($integer_constant, false);
 
             }
 
         }
 
-        $this->initialize_bit($int_const_final, $is_bit_set);
+        $this->initialize_bit($int_const_the_one, $is_bit_set);
 
         return true;
 
     }
 
-    public function return_set_bits($constants_int_ARRAY, $first_match = false){
+    public function return_set_bits($integer_constants_ARRAY, $first_match = false){
 
         //$this->oCRNRSTN_BITWISE->set($integer_constant);
         //$this->oCRNRSTN_BITWISE->toggle($integer_constant);
@@ -1451,7 +1451,7 @@ class crnrstn {
 
         $tmp_array = array();
 
-        foreach($constants_int_ARRAY as $index => $int_constant){
+        foreach($integer_constants_ARRAY as $index => $int_constant){
 
             if(is_string($int_constant)){
 
@@ -3009,7 +3009,7 @@ class crnrstn {
 
     }
 
-    public function set_crnrstn_as_err_handler($env_key, $crnrstn_is_active = true, $error_types_profile = NULL){
+    public function config_set_crnrstn_as_err_handler($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_is_active = true, $error_types_profile = NULL){
 
         $tmp_env_key_hash = $this->hash($env_key);
 //	    $this->crnrstn_as_error_handler_ARRAY[$this->config_serial_hash][$tmp_env_key_hash] = $crnrstn_is_active;
@@ -3154,7 +3154,7 @@ class crnrstn {
 
     }
 
-    public function config_add_environment($env_key, $err_reporting_profile){
+    public function config_add_environment($env_key, $err_reporting_profile = E_ALL & ~E_NOTICE & ~E_STRICT){
 
         try{
 
@@ -3234,21 +3234,87 @@ class crnrstn {
 
     }
 
-    public function config_grant_exclusive_access($env_key, $ipOrFile){
+    public function config_grant_exclusive_access($env_key, $ip_or_file){
 
-        $this->grant_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ipOrFile;
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-        $this->error_log('storing grant_exclusive_access IP profile [' . $ipOrFile . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            $this->grant_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ip_or_file;
+
+            $this->error_log('storing grant_exclusive_access IP profile [' . $ip_or_file . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            return true;
+
+            self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+
+            if(is_file($crnrstn_resource_config_file_path)){
+
+                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
+
+                    //
+                    // ACQUIRE FILE VERSIONING CHECKSUM
+                    $tmp_file_md5 = md5_file($crnrstn_resource_config_file_path);
+                    self::$system_files_version_hash_ARRAY[$crnrstn_resource_config_file_path] = $tmp_file_md5;
+
+                    //
+                    // EXTRACT RESOURCE CONFIGURATION FROM FILE
+                    $this->error_log('Including and evaluating file [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    include_once($crnrstn_resource_config_file_path);
+
+                }
+
+            }else{
+
+                //
+                // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
+                $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            }
+
+        }
 
         return true;
 
     }
 
-    public function config_deny_access($env_key, $ipOrFile){
+    public function config_deny_access($env_key, $ip_or_file){
 
-        $this->deny_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ipOrFile;
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-        $this->error_log('storing deny_access IP profile [' . $ipOrFile . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            $this->deny_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ip_or_file;
+
+            $this->error_log('storing deny_access IP profile [' . $ip_or_file . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            return true;
+
+            self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+
+            if(is_file($crnrstn_resource_config_file_path)){
+
+                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
+
+                    //
+                    // ACQUIRE FILE VERSIONING CHECKSUM
+                    $tmp_file_md5 = md5_file($crnrstn_resource_config_file_path);
+                    self::$system_files_version_hash_ARRAY[$crnrstn_resource_config_file_path] = $tmp_file_md5;
+
+                    //
+                    // EXTRACT RESOURCE CONFIGURATION FROM FILE
+                    $this->error_log('Including and evaluating file [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    include_once($crnrstn_resource_config_file_path);
+
+                }
+
+            }else{
+
+                //
+                // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
+                $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            }
+
+        }
 
         return true;
 
@@ -3893,22 +3959,31 @@ class crnrstn {
 
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
-        //  'error_log' => 'DISABLED','config_add_seo_engagement' => 'DISABLED',
-        //  'iso_language_profile' => 'DISABLED','hash' => 'DISABLED', 'ini_set' => 'DISABLED',
-        //  'return_system_image' => 'DISABLED','config_add_seo_analytics' => 'DISABLED','set_ui_theme_style' => 'DISABLED'
-        $tmp_ARRAY = array('return_system_image'=>'DISABLED', 'config_add_administration' => 'DISABLED',
-            'config_add_database' => 'DISABLED', 'config_add_environment' => 'DISABLED',
-            'config_deny_access' => 'DISABLED', 'config_detect_environment' => 'DISABLED',
-            'config_grant_exclusive_access' => 'DISABLED', 'config_include_encryption' => 'DISABLED',
-            'config_include_seo_analytics' => 'DISABLED', 'config_include_seo_engagement' => 'DISABLED',
-            'config_include_system_resources' => 'DISABLED', 'config_include_wordpress' => 'DISABLED',
-            'config_init_images_http_dir' => 'DISABLED', 'config_init_images_transport_mode' => 'DISABLED',
-            'config_init_logging' => 'DISABLED', 'error_log' => 'DISABLED', 'form_hidden_input_add' => 'DISABLED',
-            'form_input_add' => 'DISABLED', 'form_input_feedback_copy_add' => 'DISABLED',
-            'form_integration_html_packet_output' => 'DISABLED', 'form_response_add' => 'DISABLED',
-            'is_configured' => 'DISABLED', 'grant_permissions_fwrite' => 'DISABLED',
-            'set_crnrstn_as_err_handler' => 'DISABLED', 'set_max_login_attempts' => 'DISABLED', 'get_disk_performance_metric' => 'DISABLED',
-            'set_timeout_user_inactive' => 'DISABLED', 'set_timezone_default' => 'DISABLED',
+        // 'config_add_database' => 'DISABLED','config_deny_access' => 'DISABLED',
+        // 'config_detect_environment' => 'DISABLED',
+        //
+        // 'config_include_encryption' => 'DISABLED',
+        // 'config_include_wordpress' => 'DISABLED',
+        // 'is_configured' => 'DISABLED','config_init_images_http_dir' => 'DISABLED',
+        // 'config_set_crnrstn_as_err_handler' => 'DISABLED',
+        // 'return_system_image'=>'DISABLED','config_include_system_resources' => 'DISABLED', 'config_add_environment' => 'DISABLED',
+        // 'error_log' => 'DISABLED','config_add_seo_engagement' => 'DISABLED', 'get_disk_performance_metric' => 'DISABLED','config_include_seo_engagement' => 'DISABLED',
+        // 'iso_language_profile' => 'DISABLED','hash' => 'DISABLED','grant_permissions_fwrite' => 'DISABLED', 'ini_set' => 'DISABLED', 'config_include_seo_analytics' => 'DISABLED',
+        // 'return_system_image' => 'DISABLED','config_add_seo_analytics' => 'DISABLED','set_ui_theme_style' => 'DISABLED'
+        $tmp_ARRAY = array('config_add_administration' => 'DISABLED',
+
+            'config_init_images_transport_mode' => 'DISABLED',
+            'config_init_logging' => 'DISABLED',
+            'form_hidden_input_add' => 'DISABLED',
+            'config_deny_access' => 'DISABLED',
+            'form_input_add' => 'DISABLED',
+            'form_input_feedback_copy_add' => 'DISABLED',
+            'form_integration_html_packet_output' => 'DISABLED',
+            'form_response_add' => 'DISABLED',
+            'config_grant_exclusive_access' => 'DISABLED',
+            'set_max_login_attempts' => 'DISABLED',
+            'set_timeout_user_inactive' => 'DISABLED',
+            'set_timezone_default' => 'DISABLED'
             );
 
         if(isset($tmp_ARRAY[$method])){
@@ -4134,10 +4209,12 @@ class crnrstn {
 
             }
 
+            return true;
+
         }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -6056,7 +6133,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    private function config_add_seo_analytics($env_key, $data_key, $data_value, $is_enabled = true){
+    private function config_add_seo_analytics($env_key, $data_key, $data_value = '', $is_enabled = true){
 
         try{
 
@@ -6125,7 +6202,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    private function config_add_seo_engagement($env_key, $data_key, $data_value, $is_enabled = true){
+    private function config_add_seo_engagement($env_key, $data_key, $data_value = '', $is_enabled = true){
 
         try{
 
@@ -8983,7 +9060,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function ini_set($ini_setting, $ini_value){
+    public function ini_set($ini_setting, $ini_value = NULL){
 
         self::$oCRNRSTN_CONFIG_MGR->input_data_value($ini_value, $ini_setting, NULL, 0);
 
@@ -12146,13 +12223,13 @@ class crnrstn_bitflip_manager {
 
     public function return_serialized_bit_value($bitwise_object_array_index_serial, $integer_constant){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5')])){
 
             return false;
 
         }else{
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5'))];
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($bitwise_object_array_index_serial, 'md5')];
 
             $tmp_val = $this->return_bit_value($integer_constant);
 
@@ -12162,46 +12239,43 @@ class crnrstn_bitflip_manager {
 
     }
 
-    public function return_bit_constant($const_nom){
+    public function return_bit_constant($name){
 
-        //return $this->return_bit_value($const_nom);
+        //return $this->return_bit_value($name);
 
-        return constant($const_nom);
+        return constant($name);
 
     }
 
-    public function serialized_is_bit_set($const_nom, $integer_const){
+    public function is_serialized_bit_set($name, $integer_constant){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             return false;
 
         }else{
 
-            //error_log(__LINE__ .' '. __METHOD__ .' we think the array[' . $const_nom . '] index holds a oCRNRSTN_BITMASK object.');
+            //error_log(__LINE__ .' '. __METHOD__ .' we think the array[' . $name . '] index holds a oCRNRSTN_BITMASK object.');
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
-
-            //return $oCRNRSTN_BITMASK->read(constant($integer_const));
-            return $oCRNRSTN_BITMASK->read($integer_const);
+            return $oCRNRSTN_BITMASK->read($integer_constant);
 
         }
 
     }
 
-    public function serialized_bit_stringout($const_nom){
+    public function serialized_bit_stringout($name){
 
         $tmp_str = '';
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             return false;
 
         }else{
 
-            //error_log(__LINE__ .' '. __METHOD__ .' we think the array['.$const_nom.'] index holds a oCRNRSTN_BITMASK object.');
-
-            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
+            //error_log(__LINE__ .' '. __METHOD__ .' we think the array['.$name.'] index holds a oCRNRSTN_BITMASK object.');
+            $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
             $tmp_str = $oCRNRSTN_BITMASK->stringout();
 
@@ -12211,44 +12285,44 @@ class crnrstn_bitflip_manager {
 
     }
 
-    public function serialized_bit_stringin($const_nom, $bits_stringin){
+    public function serialized_bit_stringin($name, $bits_stringin){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             //
             // SOURCE :: https://www.php.net/manual/en/language.operators.bitwise.php
             // AUTHOR :: icy at digitalitcc dot com :: https://www.php.net/manual/en/language.operators.bitwise.php#50299
             $oCRNRSTN_BITMASK = new crnrstn_bitmask();
 
-            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
         $oCRNRSTN_BITMASK->stringin($bits_stringin);
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         return true;
 
     }
 
-    public function initialize_serialized_bit($const_nom, $integer_const, $default_state = true){
+    public function initialize_serialized_bit($name, $integer_const, $default_state = true){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             //
             // SOURCE :: https://www.php.net/manual/en/language.operators.bitwise.php
             // AUTHOR :: icy at digitalitcc dot com :: https://www.php.net/manual/en/language.operators.bitwise.php#50299
             $oCRNRSTN_BITMASK = new crnrstn_bitmask();
 
-            //error_log(__LINE__ .' '. __METHOD__ .' NEW bitmask object flipping['.$integer_const.'] to array index, '.strtoupper($this->oCRNRSTN->hash($const_nom, 'md5')));
-            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+            //error_log(__LINE__ .' '. __METHOD__ .' NEW bitmask object flipping['.$integer_const.'] to array index, '.strtoupper($this->oCRNRSTN->hash($name, 'md5')));
+            $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
         //
         // WILL BASICALLY RETURN AN INT++ FOR EACH UNIQUE CONSTANT PROVIDED.
@@ -12272,15 +12346,14 @@ class crnrstn_bitflip_manager {
 
         }
 
-        //error_log(__LINE__ .' '. __METHOD__ .' we put back into the array['.strtoupper($this->oCRNRSTN->hash($const_nom, 'md5')).']...a oCRNRSTN_BITMASK object.');
-
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+        //error_log(__LINE__ . ' ' . __METHOD__ . ' we put back into the array[' . strtoupper($this->oCRNRSTN->hash($name, 'md5')) . ']...a oCRNRSTN_BITMASK object.');
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         return $tmp_val;
 
     }
 
-    public function toggle_bit($integer_constant, $target_state = NULL){
+    public function toggle_bit($integer_constant, $is_bit_set = NULL){
 
         if(!isset($this->oCRNRSTN_BITWISE)){
 
@@ -12288,11 +12361,11 @@ class crnrstn_bitflip_manager {
 
         }else{
 
-            if(is_bool($target_state)){
+            if(is_bool($is_bit_set)){
 
                 $this->oCRNRSTN_BITWISE->toggle($integer_constant);
 
-                if($target_state == true){
+                if($is_bit_set == true){
 
                     if(!($this->oCRNRSTN_BITWISE->read($integer_constant))){
 
@@ -12330,19 +12403,19 @@ class crnrstn_bitflip_manager {
 
     }
 
-    public function toggle_serialized_bit($const_nom, $integer_constant, $target_state = NULL){
+    public function toggle_serialized_bit($name, $integer_constant, $is_bit_set = NULL){
 
-        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))])){
+        if(!isset($this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')])){
 
             return false;
 
         }
 
-        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))];
+        $oCRNRSTN_BITMASK = $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')];
 
-        if(is_bool($target_state)){
+        if(is_bool($is_bit_set)){
 
-            if($target_state == true){
+            if($is_bit_set == true){
 
                 if(!($oCRNRSTN_BITMASK->read($integer_constant))){
 
@@ -12374,7 +12447,7 @@ class crnrstn_bitflip_manager {
 
         }
 
-        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . strtoupper($this->oCRNRSTN->hash($const_nom, 'md5'))] = $oCRNRSTN_BITMASK;
+        $this->oCRNRSTN_BITS_ARRAY['CRNRSTN_' . $this->oCRNRSTN->hash($name, 'md5')] = $oCRNRSTN_BITMASK;
 
         return $oCRNRSTN_BITMASK->read($integer_constant);
 
@@ -12423,9 +12496,9 @@ class crnrstn_bitflip_manager {
 
     }
 
-    public function is_bit_set($integer_const){
+    public function is_bit_set($integer_constant){
 
-        return $this->oCRNRSTN_BITWISE->read($integer_const);
+        return $this->oCRNRSTN_BITWISE->read($integer_constant);
 
     }
 

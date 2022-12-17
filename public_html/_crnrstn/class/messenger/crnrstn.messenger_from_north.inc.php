@@ -6311,7 +6311,7 @@ class crnrstn_communications_css_standard{
             //
             // IF BIT IS NOT FLIPPED (E.G. CSS STRING PATTERN IS NOT INITIALIZED VIA $this->css_meta_load), FLIP ICON BIT.
             //error_log(__LINE__ .' '. __METHOD__ .' seed=>'.$tmp_serialized_meta_index_seed);
-            if(!$this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nomination_seed, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+            if(!$this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nomination_seed, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                 //
                 // ERROR ICON
@@ -9977,7 +9977,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     $tmp_serialized_bit_nom = 'META_'.$tmp_array[4].'_'.$css_str_pattern.$mail_client_constant;
 
-                    if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
+                    if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
 
                         //
                         // INFORMATION BANG ICONOGRAPHY
@@ -9990,7 +9990,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // CHECK FOR ERR_X
-                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                        if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                             //
                             // ERROR X ICONOGRAPHY
@@ -10015,7 +10015,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     //
                     // META NOTE INCLUDE CHECK
-                    if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+                    if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                         $tmp_meta_note = $this->css_pattern_meta_note_ARRAY[$tmp_serialized_bit_nom];
 
@@ -10029,7 +10029,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     $tmp_serialized_bit_nom = 'META_'.$css_str_pattern.$mail_client_constant;
 
-                    if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
+                    if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
 
                         //
                         // INFORMATION BANG ICONOGRAPHY
@@ -10040,7 +10040,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // CHECK FOR ERR_X
-                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                        if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                             //
                             // ERROR X ICONOGRAPHY
@@ -10060,7 +10060,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                     //
                     // META NOTE INCLUDE CHECK
-                    if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+                    if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                         $tmp_meta_note = $this->css_pattern_meta_note_ARRAY[$tmp_serialized_bit_nom];
 
@@ -10243,9 +10243,9 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         $tmp_serialized_bit_nom = 'META_'.$tmp_css_species.'_'.$css_str_pattern.$tmp_email_client_CONST_ARRAY[$key_client_d];
 
-                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
+                        if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
 
-                            if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_SUCCESS_CHECK)){  // HAS SUCCESS
+                            if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_SUCCESS_CHECK)){  // HAS SUCCESS
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
@@ -10255,7 +10255,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                                 //
                                 // HAS ERR X
-                                if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                                if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                                     //
                                     // ERROR X ICONOGRAPHY
@@ -10275,7 +10275,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             //
                             // CHECK FOR ERR_X
-                            if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                            if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                                 //
                                 // ERROR X ICONOGRAPHY
@@ -10293,7 +10293,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // META NOTE INCLUDE CHECK
-                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+                        if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                             $tmp_meta_note = $this->css_pattern_meta_note_ARRAY[$tmp_serialized_bit_nom];
 
@@ -10307,9 +10307,9 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         $tmp_serialized_bit_nom = 'META_'.$css_str_pattern.$tmp_email_client_CONST_ARRAY[$key_client_d];
 
-                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
+                        if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)) {
 
-                            if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_SUCCESS_CHECK)){
+                            if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_SUCCESS_CHECK)){
 
                                 //
                                 // SUCCESS CHECK ICONOGRAPHY
@@ -10317,7 +10317,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             }else{
 
-                                if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                                if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                                     //
                                     // ERROR X ICONOGRAPHY
@@ -10337,7 +10337,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                             //
                             // CHECK FOR ERR_X
-                            if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
+                            if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_ICON_ERR_X)){
 
                                 //
                                 // ERROR X ICONOGRAPHY
@@ -10355,7 +10355,7 @@ Formally, the display property sets an element\'s inner and outer display types.
 
                         //
                         // META NOTE INCLUDE CHECK
-                        if($this->oCRNRSTN->serialized_is_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
+                        if($this->oCRNRSTN->is_serialized_bit_set($tmp_serialized_bit_nom, CRNRSTN_CSS_CLIENT_ASSOC_HAS_META)){
 
                             $tmp_meta_note = $this->css_pattern_meta_note_ARRAY[$tmp_serialized_bit_nom];
 

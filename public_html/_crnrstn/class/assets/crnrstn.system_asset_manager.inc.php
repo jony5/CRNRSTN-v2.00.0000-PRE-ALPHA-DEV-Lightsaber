@@ -1404,8 +1404,8 @@ class crnrstn_system_image_asset_manager {
                                 // R :: RESOURCE //
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
-                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_name = 'jquery-3.6.1.min.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
                                 $tmp_resource_dependency_constant = $const;
@@ -1416,8 +1416,8 @@ class crnrstn_system_image_asset_manager {
                                 // R :: RESOURCE //
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.js';
-                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_name = 'jquery-3.6.1.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
                                 $tmp_resource_dependency_constant = $const;
@@ -1647,11 +1647,13 @@ class crnrstn_system_image_asset_manager {
                                 && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
                                 && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
 
+                                error_log(__LINE__ . ' asset mgr spool CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1.');
                                 /////
                                 // R :: RESOURCE //
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js';
                                 $tmp_file_name = 'jquery-1.11.1.min.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = $const;
@@ -1663,31 +1665,9 @@ class crnrstn_system_image_asset_manager {
 
                                 */
 
-                            }
+                            }else{
 
-                            //
-                            // CHECK FOR LOAD OF CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1, CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4, CRNRSTN_JS_FRAMEWORK_JQUERY
-                            if(!isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1])
-                                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_1_12_4])
-                                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY_2_2_4])
-                                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_PLUS_JQUERY])
-                                && !isset($this->oCRNRSTN->html_head_build_flag_ARRAY[CRNRSTN_JS_FRAMEWORK_JQUERY])){
-
-                                /////
-                                // R :: RESOURCE //
-                                $tmp_crnrstn_mod = NULL;
-                                $tmp_file_path = '/_lib/frameworks/jquery/1.11.1/jquery-1.11.1.min.js';
-                                $tmp_file_name = 'jquery-1.11.1.min.js';
-                                $tmp_file_is_minimized = false;
-                                $tmp_asset_minimization_mode_is_active = false;
-                                $tmp_resource_dependency_constant = $const;
-                                $tmp_spool_asset_for_footer_html = $footer_html_output;
-                                $this->spool_resource(CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1, $tmp_meta_type, $tmp_crnrstn_mod, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant, $tmp_spool_asset_for_footer_html);
-                                $tmp_str .= $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1, $footer_html_output);
-                                /*//////////
-                                //////////
-
-                                */
+                                error_log(__LINE__ . ' asset mgr spool CRNRSTN_JS_FRAMEWORK_JQUERY_1_11_1.');
 
                             }
 
@@ -1780,6 +1760,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
                                 $tmp_file_name = 'jquery-3.6.1.min.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
                                 $tmp_resource_dependency_constant = $const;
@@ -1791,6 +1772,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.js';
                                 $tmp_file_name = 'jquery-3.6.1.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
                                 $tmp_resource_dependency_constant = $const;
@@ -2138,6 +2120,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/prototype.js/1.7.3/prototype.js';
                                 $tmp_file_name = 'prototype.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = $const;
@@ -2158,6 +2141,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/scriptaculous.js';
                                 $tmp_file_name = 'scriptaculous.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = NULL;
@@ -2169,6 +2153,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/builder.js';
                                 $tmp_file_name = 'builder.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = NULL;
@@ -2180,6 +2165,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/controls.js';
                                 $tmp_file_name = 'controls.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = NULL;
@@ -2191,6 +2177,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/dragdrop.js';
                                 $tmp_file_name = 'dragdrop.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = NULL;
@@ -2202,6 +2189,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/effects.js';
                                 $tmp_file_name = 'effects.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = NULL;
@@ -2213,6 +2201,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/slider.js';
                                 $tmp_file_name = 'slider.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = NULL;
@@ -2224,6 +2213,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/sound.js';
                                 $tmp_file_name = 'sound.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = NULL;
@@ -2242,6 +2232,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/scriptaculous.js';
                                 $tmp_file_name = 'scriptaculous.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = NULL;
@@ -2270,6 +2261,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/prototype.js/1.7.3/prototype.js';
                                 $tmp_file_name = 'prototype.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = $const;
@@ -2380,6 +2372,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/prototype.js/1.7.3/prototype.js';
                                 $tmp_file_name = 'prototype.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = false;
                                 $tmp_resource_dependency_constant = $const;
@@ -2528,6 +2521,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
                                 $tmp_file_name = 'jquery-3.6.1.min.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
                                 $tmp_resource_dependency_constant = $const;
@@ -2539,6 +2533,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.js';
                                 $tmp_file_name = 'jquery-3.6.1.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
                                 $tmp_resource_dependency_constant = $const;
@@ -3501,6 +3496,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.min.js';
                                 $tmp_file_name = 'jquery-3.6.1.min.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = true;
                                 $tmp_asset_minimization_mode_is_active = true;
                                 $tmp_resource_dependency_constant = $const;
@@ -3512,6 +3508,7 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/jquery/3.6.1/jquery-3.6.1.js';
                                 $tmp_file_name = 'jquery-3.6.1.js';
+                                $tmp_meta_type = 'text/javascript';
                                 $tmp_file_is_minimized = false;
                                 $tmp_asset_minimization_mode_is_active = true;
                                 $tmp_resource_dependency_constant = $const;

@@ -303,7 +303,7 @@ $oCRNRSTN->config_include_system_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . 
 $oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.wp.secure/_crnrstn.wp_config.inc.php');
 
 /**
- * $oCRNRSTN->set_crnrstn_as_err_handler()
+ * $oCRNRSTN->config_set_crnrstn_as_err_handler()
  * DESCRIPTION :: Customize the error handling profile for CRNRSTN :: to absorb between 0% and 100% of
  *  all PHP error/throws from E_ERROR to E_USER_DEPRECATED and everything in between. This profile will
  *  overwrite (on a per environment basis) whatever was established through the call of
@@ -328,14 +328,14 @@ $oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnr
  * @return	boolean TRUE
  *
  * Example ::
- * $oCRNRSTN->set_crnrstn_as_err_handler('LOCALHOST_PC', true, ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
+ * $oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_PC', true, ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
  * The above gives E_NOTICE, E_STRICT, AND E_DEPRECATED throws to native PHP for handling. All else
  * will go through CRNRSTN :: and can be sent as CRNRSTN :: system EMAIL notification if desired.
  */
-$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_JONY5');
-$oCRNRSTN->set_crnrstn_as_err_handler('BLUEHOST_EVIFWEB');
-$oCRNRSTN->set_crnrstn_as_err_handler('LOCALHOST_MACBOOKPRO',false);
-$oCRNRSTN->set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO');
+$oCRNRSTN->config_set_crnrstn_as_err_handler('BLUEHOST_JONY5');
+$oCRNRSTN->config_set_crnrstn_as_err_handler('BLUEHOST_EVIFWEB');
+$oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_MACBOOKPRO',false);
+$oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO');
 
 /**
  * $oCRNRSTN->config_init_images_format_default()

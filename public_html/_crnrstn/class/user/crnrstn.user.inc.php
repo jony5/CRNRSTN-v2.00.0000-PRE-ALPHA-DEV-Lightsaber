@@ -10317,9 +10317,9 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
     }
 
-    public function serialized_is_bit_set($const_nom, $integer_const){
+    public function is_serialized_bit_set($const_nom, $integer_const){
 
-        return $this->oCRNRSTN_ENV->serialized_is_bit_set($const_nom, $integer_const);
+        return $this->oCRNRSTN_ENV->is_serialized_bit_set($const_nom, $integer_const);
 
     }
 

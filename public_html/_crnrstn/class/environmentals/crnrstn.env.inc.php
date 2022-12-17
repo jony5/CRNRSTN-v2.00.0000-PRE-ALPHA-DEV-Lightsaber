@@ -1379,9 +1379,9 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
     }
 
-    public function serialized_is_bit_set($const_nom, $integer_const){
+    public function is_serialized_bit_set($const_nom, $integer_const){
 
-        return $this->oCRNRSTN_BITFLIP_MGR->serialized_is_bit_set($const_nom, $integer_const);
+        return $this->oCRNRSTN_BITFLIP_MGR->is_serialized_bit_set($const_nom, $integer_const);
 
     }
 
@@ -5172,7 +5172,7 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
         foreach($integer_constants_array as $key => $int_constant){
 
-            if($this->oCRNRSTN_BITFLIP_MGR->serialized_is_bit_set($const_nom, $int_constant)){
+            if($this->oCRNRSTN_BITFLIP_MGR->is_serialized_bit_set($const_nom, $int_constant)){
 
                 $tmp_array[] = $int_constant;
 
@@ -8264,7 +8264,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // IF BIT IS SET, ADD TO SOAP OBJECT
-                        if($this->oCRNRSTN_USR->serialized_is_bit_set('CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED', $integer_const)){
+                        if($this->oCRNRSTN_USR->is_serialized_bit_set('CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED', $integer_const)){
 
                             error_log(__LINE__ . ' env ddo A SET GO TO SOAP $integer_const=' . $integer_const);
 
@@ -8278,7 +8278,7 @@ class crnrstn_decoupled_data_object {
 
                         //
                         // IF BIT IS SET, ADD TO SOAP OBJECT
-                        if($this->oCRNRSTN->serialized_is_bit_set('CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED', $integer_const)){
+                        if($this->oCRNRSTN->is_serialized_bit_set('CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED', $integer_const)){
 
                             error_log(__LINE__ . ' env ddo A SET GO TO SOAP $integer_const=' . $integer_const);
 
@@ -14282,7 +14282,7 @@ class crnrstn_soap_services_access_manager{
         // CONVERT STRING BACK INTO BITWISE
         self::$oCRNRSTN_ENV->serialized_bit_stringin('CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED', $CRNRSTN_SOAP_SVC_REQUESTED_RESOURCES);
 
-        if(self::$oCRNRSTN_ENV->serialized_is_bit_set('CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED', CRNRSTN_RESOURCE_OPENSOURCE)){
+        if(self::$oCRNRSTN_ENV->is_serialized_bit_set('CRNRSTN_CLIENT_SOAP_PERMS_REQUESTED', CRNRSTN_RESOURCE_OPENSOURCE)){
 
             error_log(__LINE__ . ' SERVER env - serialized_bit_stringin SET CRNRSTN_RESOURCE_OPENSOURCE=TRUE');
 
