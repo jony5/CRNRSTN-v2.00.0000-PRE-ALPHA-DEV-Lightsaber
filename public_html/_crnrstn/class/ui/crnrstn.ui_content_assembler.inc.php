@@ -77,6 +77,22 @@ class crnrstn_ui_content_assembler {
 
 	}
 
+	public function sauce($resource){
+
+        if(!isset(self::$oContentGen)){
+
+            //
+            // INSTANTIATE CONTENT GENERATOR
+            self::$oContentGen = new crnrstn_content_generator($this->oCRNRSTN, $this, $resource);
+
+        }
+
+	    //
+        // INITIALIZE
+        return self::$oContentGen->sauce($resource);
+
+    }
+
 	public function initialize_page_content(){
 
 	    //
@@ -601,15 +617,22 @@ class crnrstn_ui_content_assembler {
 
     }
 
-	public function add_page_element($serial, $key, $attribute_00, $attribute_01 = NULL, $attribute_02 = NULL, $attribute_03 = NULL, $attribute_04 = NULL){
+	public function add_page_element($serial, $key, $data_ARRAY, $output_type){
 
+	    if($output_type === 'sauce'){
+
+	        return NULL;
+
+        }
+
+	    //error_log(__LINE__ . ' ui cnt mgr $serial[' . $serial . ']. $key[' . $key . '].');
         try {
 
             if(strlen($key)<1){
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('Error adding page element with data [' . $attribute_00.'] from provided key [' . $key.'].');
+                throw new Exception('Error adding [' . $key . '] element with data [' . print_r($data_ARRAY, true) . '].');
 
             }
 
@@ -624,14 +647,15 @@ class crnrstn_ui_content_assembler {
                 case 'RETURN_VALUE':
                 case 'RELATED_METHODS':
                 case 'PAGE_STATISTICS':
-
-                    self::$oContentGen->add_page_element($serial, $key, $attribute_00);
-
-                break;
                 case 'EXAMPLE_CONTENT':
 
+                    self::$oContentGen->add_page_element($serial, $key, $data_ARRAY);
+
+                break;
+                default:
+
                     //$oSideBitch_Usr->add_page_element($tmp_page_serial,'EXAMPLE', $tmp_example_title_str, $tmp_example_description_str, $tmp_example_presentation_file, $tmp_example_execute_file);
-                    self::$oContentGen->add_page_element($serial, $key, $attribute_00, $attribute_01, $attribute_02, $attribute_03);
+                    //self::$oContentGen->add_page_element($serial, $key, $data_ARRAY, $attribute_01, $attribute_02, $attribute_03);
 
                 break;
 

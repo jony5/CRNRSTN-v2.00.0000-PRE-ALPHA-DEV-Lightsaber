@@ -293,7 +293,7 @@ class crnrstn {
         //
         // INITIALIZE GROUPED CONSTANTS ARRAYS
         $this->system_data_profile_constants_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME_ONLY, CRNRSTN_AUTHORIZE_ALL, CRNRSTN_AUTHORIZE_DATABASE, CRNRSTN_AUTHORIZE_SSDTLA, CRNRSTN_AUTHORIZE_PSSDTLA, CRNRSTN_AUTHORIZE_SESSION, CRNRSTN_AUTHORIZE_COOKIE, CRNRSTN_AUTHORIZE_SOAP, CRNRSTN_AUTHORIZE_GET);
-        $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL => 'CRNRSTN_RESOURCE_ALL', CRNRSTN_RESOURCE_BASSDRIVE => 'CRNRSTN_RESOURCE_BASSDRIVE', CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE => 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', CRNRSTN_RESOURCE_CSS_VALIDATOR => 'CRNRSTN_RESOURCE_CSS_VALIDATOR', CRNRSTN_RESOURCE_DOCUMENTATION => 'CRNRSTN_RESOURCE_DOCUMENTATION', CRNRSTN_RESOURCE_IMAGE => 'CRNRSTN_RESOURCE_IMAGE', CRNRSTN_RESOURCE_DOCUMENT => 'CRNRSTN_RESOURCE_DOCUMENT', CRNRSTN_RESOURCE_OPENSOURCE => 'CRNRSTN_RESOURCE_OPENSOURCE', CRNRSTN_RESOURCE_ELECTRUM => 'CRNRSTN_RESOURCE_ELECTRUM', CRNRSTN_RESOURCE_NEWS_SYNDICATION => 'CRNRSTN_RESOURCE_NEWS_SYNDICATION', CRNRSTN_LOG_DEFAULT => 'CRNRSTN_LOG_DEFAULT', CRNRSTN_UI_TAG_ANALYTICS => 'CRNRSTN_UI_TAG_ANALYTICS', CRNRSTN_UI_TAG_ENGAGEMENT => 'CRNRSTN_UI_TAG_ENGAGEMENT', CRNRSTN_UI_COOKIE_PREFERENCE => 'CRNRSTN_UI_COOKIE_PREFERENCE', CRNRSTN_UI_COOKIE_YESNO => 'CRNRSTN_UI_COOKIE_YESNO', CRNRSTN_UI_COOKIE_NOTICE => 'CRNRSTN_UI_COOKIE_NOTICE', CRNRSTN_PROXY_KINGS_HIGHWAY => 'CRNRSTN_PROXY_KINGS_HIGHWAY', CRNRSTN_PROXY_EMAIL => 'CRNRSTN_PROXY_EMAIL', CRNRSTN_PROXY_ELECTRUM => 'CRNRSTN_PROXY_ELECTRUM', CRNRSTN_PROXY_AUTHENTICATE => 'CRNRSTN_PROXY_AUTHENTICATE', CRNRSTN_RESPONSE_REPORT => 'CRNRSTN_RESPONSE_REPORT');
+        $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL => 'CRNRSTN_RESOURCE_ALL', CRNRSTN_RESOURCE_BASSDRIVE => 'CRNRSTN_RESOURCE_BASSDRIVE', CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE => 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', CRNRSTN_RESOURCE_CSS_VALIDATOR => 'CRNRSTN_RESOURCE_CSS_VALIDATOR', CRNRSTN_RESOURCE_DOCUMENTATION => 'CRNRSTN_RESOURCE_DOCUMENTATION', CRNRSTN_RESOURCE_IMAGE => 'CRNRSTN_RESOURCE_IMAGE', CRNRSTN_RESOURCE_DOCUMENT => 'CRNRSTN_RESOURCE_DOCUMENT', CRNRSTN_RESOURCE_OPENSOURCE => 'CRNRSTN_RESOURCE_OPENSOURCE', CRNRSTN_RESOURCE_ELECTRUM => 'CRNRSTN_RESOURCE_ELECTRUM', CRNRSTN_RESOURCE_NEWS_SYNDICATION => 'CRNRSTN_RESOURCE_NEWS_SYNDICATION', CRNRSTN_LOG_DEFAULT => 'CRNRSTN_LOG_DEFAULT', CRNRSTN_UI_TAG_ANALYTICS => 'CRNRSTN_UI_TAG_ANALYTICS', CRNRSTN_UI_TAG_ENGAGEMENT => 'CRNRSTN_UI_TAG_ENGAGEMENT', CRNRSTN_UI_COOKIE_PREFERENCE => 'CRNRSTN_UI_COOKIE_PREFERENCE', CRNRSTN_UI_COOKIE_YESNO => 'CRNRSTN_UI_COOKIE_YESNO', CRNRSTN_UI_COOKIE_NOTICE => 'CRNRSTN_UI_COOKIE_NOTICE', CRNRSTN_PROXY_KINGS_HIGHWAY => 'CRNRSTN_PROXY_KINGS_HIGHWAY', CRNRSTN_PROXY_EMAIL => 'CRNRSTN_PROXY_EMAIL', CRNRSTN_PROXY_ELECTRUM => 'CRNRSTN_PROXY_ELECTRUM', CRNRSTN_PROXY_AUTHENTICATE => 'CRNRSTN_PROXY_AUTHENTICATE', CRNRSTN_RESPONSE_REPORT => 'CRNRSTN_RESPONSE_REPORT', CRNRSTN_CLIENT_SSDTLA_DEBUG => 'CRNRSTN_CLIENT_SSDTLA_DEBUG');
         $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
         $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_WOOD, CRNRSTN_UI_TERMINAL, CRNRSTN_UI_RANDOM);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
@@ -4063,6 +4063,18 @@ class crnrstn {
 
     }
 
+    public function sauce($resource){
+
+        $tmp_sauce = '';
+
+        //
+        // RETURN STRING DATA FOR HASH (OR EVEN POWER FOR SEARCH). NOT FOR DISPLAY.
+        $tmp_sauce .= $this->oCRNRSTN_UI_HTML_MGR->sauce($resource);
+
+        return  $tmp_sauce;
+
+    }
+
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
         //
@@ -4780,19 +4792,20 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             if($footer_html_output){
 
+                $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'PROD';
+
                 if(isset($is_dev_mode)){
 
                     //
                     // SPOOL CONTENT FOR FOOTER IN DEV MODE?
-                    $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'PROD';
                     if($is_dev_mode){
 
-                        error_log(__LINE__ . ' crnrstn DEV $resource_constant[' . $resource_constant . '].');
+                        //error_log(__LINE__ . ' crnrstn DEV $resource_constant[' . $resource_constant . '].');
                         $this->asset_spool_DEVPROD_meta_ARRAY[$resource_constant] = 'DEV';
 
                     }
 
-                    error_log(__LINE__ .  ' crnrstn PROD [' . $resource_constant . ']. [' . print_r($this->asset_spool_DEVPROD_meta_ARRAY, true) . '].');
+                    //error_log(__LINE__ .  ' crnrstn PROD [' . $resource_constant . ']. [' . print_r($this->asset_spool_DEVPROD_meta_ARRAY, true) . '].');
 
                 }
 
@@ -4800,8 +4813,20 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                     if(!isset($this->html_head_build_flag_ARRAY[$resource_constant])){
 
-                        $this->head_asset_footer_spool_ARRAY[] = $resource_constant;
-                        //$this->html_head_build_flag_ARRAY[$resource_constant] = 1;
+                        switch($resource_constant){
+                            case CRNRSTN_CLIENT_SSDTLA_DEBUG:
+
+                                $this->footer_asset_footer_spool_ARRAY[] = $resource_constant;
+
+                            break;
+                            default:
+
+                                $this->head_asset_footer_spool_ARRAY[] = $resource_constant;
+                                //$this->html_head_build_flag_ARRAY[$resource_constant] = 1;
+
+                            break;
+
+                        }
 
                     }
 
@@ -5116,7 +5141,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         // <HEAD> RESOURCES SPOOLED FOR FOOTER.
         foreach($this->head_asset_footer_spool_ARRAY as $index => $int_const){
 
-            //error_log(__LINE__ . ' crnrstn head_asset_footer_spool_ARRAY[' . $int_const . '].');
+            error_log(__LINE__ . ' crnrstn head_asset_footer_spool_ARRAY[' . $int_const . '].');
             if(!isset($this->html_head_build_flag_ARRAY[$int_const])){
 
                 $this->html_head_build_flag_ARRAY[$int_const] = 1;
@@ -5162,6 +5187,64 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 //
                 // CHECK FOR SATISFACTION OF ALL <HEAD> DEPENDENCIES
                 switch($int_const){
+                    case CRNRSTN_CLIENT_SSDTLA_DEBUG:
+
+                        //
+                        // CRNRSTN :: INTERACT UI :: CSS
+                        if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP])
+                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET])
+                            && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
+
+                            switch($this->device_type_bit()){
+                                case CRNRSTN_CHANNEL_MOBILE:
+
+                                    $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
+
+                                break;
+                                case CRNRSTN_CHANNEL_TABLET:
+
+                                    $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
+
+                                break;
+                                case CRNRSTN_CHANNEL_DESKTOP:
+                                default:
+
+                                    $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
+
+                                break;
+
+                            }
+
+                        }
+
+                        //
+                        // CRNRSTN :: INTERACT UI :: JS
+                        if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+
+                            $this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN] = 1;
+                            $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_JS_MAIN, true);
+
+                        }
+
+                        //
+                        // RESOURCE DEPENDENCIES :: SYSTEM FOOTER
+                        if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_CLIENT_SSDTLA_DEBUG])){
+
+                            $this->html_footer_build_flag_ARRAY[CRNRSTN_CLIENT_SSDTLA_DEBUG] = 1;
+                            $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_CLIENT_SSDTLA_DEBUG);
+
+                        }
+
+                        //
+                        // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)
+                        if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL]) ){
+
+                            $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+                            $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+                        }
+
+                    break;
                     case CRNRSTN_RESOURCE_DOCUMENTATION:
 
                         //

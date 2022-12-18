@@ -89,6 +89,11 @@ function crnrstn_constants_init($const_nom){
             return (int) 2;
 
         break;
+        case 'CRNRSTN_CLIENT_SSDTLA_DEBUG':
+
+            return (int) 3;
+
+        break;
 
         //
         // 42-50

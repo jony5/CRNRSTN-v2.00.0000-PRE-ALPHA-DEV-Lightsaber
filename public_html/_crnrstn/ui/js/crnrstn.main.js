@@ -161,6 +161,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.docs_page_css_left = 0;
         this.current_serialization_key = '';
         this.current_serialization_hash = '';
+        this.loaded_content_hash_ARRAY = [];
+        this.expire_content_hash_invalid_ARRAY = [];
+        this.current_page_key = '';
+        this.content_refresh_trigger_source;
         this.crnrstn_interact_ui_mode = 'mini_canvas';
         this.data_tunnel_ttl_monitor_isactive = false;
         this.ttl_tunnel_monitor_seconds = 0;
@@ -475,8 +479,15 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         this.log_activity('[lnum 476] SSDTLA Sending request for data [' + page_key + '].', this.CRNRSTN_DEBUG_VERBOSE);
 
+        this.current_page_key = page_key;
+        this.content_refresh_trigger_source = 'link_text_click';
+
         //
-        // SET THE LINK
+        // SET THE REQUEST SOURCE.
+        $('#crnrstn_request_source').val(this.content_refresh_trigger_source);
+
+        //
+        // SET THE LINK.
         $('#crnrstn_interact_ui_link_text_click').val(page_key);
 
         this.fire_dom_state_controller();
@@ -486,7 +497,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = -1;
 
         //
-        // BEGIN UI PAGE LOAD VISUALIZATION EXPERIENCE
+        // BEGIN UI PAGE LOAD VISUALIZATION EXPERIENCE.
         $('#crnrstn_interact_ui_page_load_progress').val('');
 
         this.start_page_request_visualization();
@@ -774,6 +785,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 },
                 complete: function () {
 
+                    //
+                    // TO ALLOW BODY SCROLL AFTER LOAD.
+                    self.end();
+
                 }
 
             });
@@ -899,35 +914,39 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             }else{
 
-                $('<div id="crnrstn_activity_log_output_wrapper">' +
-                    '<div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 10px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG</div>' +
-                    '<div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper">' +
-                    '   <div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div>' +
-                    '</div>' +
-                    '<div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:100%; text-align: right; line-height: 20px;">' +
-                    '   <div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div>' +
-                    '   <div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div>' +
-                    '</div>' +
-                '</div>').prependTo($('body'));
+                //
+                // THIS IS NOT THE SOLUTION WE NEED...BUT IT WILL WORK FOR NOW. 100% OF CRNRSTN :: JS CONFIGURATION
+                // SHOULD COME FROM THE SERVER CONFIG....IMHO.
+                if($('#crnrstn_client_ssdtla_debug_active').length){
 
-                switch(self.CRNRSTN_LOGGING_OUTPUT){
-                    case 'DOM':
+                    $('<div id="crnrstn_activity_log_output_wrapper">' +
+                        '<div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 10px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG</div>' +
+                        '<div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper">' +
+                        '   <div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div>' +
+                        '</div>' +
+                        '<div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:100%; text-align: right; line-height: 20px;">' +
+                        '   <div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div>' +
+                        '   <div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div>' +
+                        '</div>' +
+                        '</div>').prependTo($('body'));
 
-                        $('#crnrstn_activity_log').animate({
-                            opacity: 1.0
-                        }, {
-                            duration: 1000,
-                            queue: false,
-                            step: function( now, fx ) {
+                    switch(self.CRNRSTN_LOGGING_OUTPUT){
+                        case 'DOM':
 
-                            },
-                            complete: function () {
+                            $('#crnrstn_activity_log').animate({
+                                opacity: 1.0
+                            }, {
+                                duration: 1000,
+                                queue: false,
+                                complete: function () {
 
-                            }
+                                }
 
-                        });
+                            });
 
-                    break;
+                        break;
+
+                    }
 
                 }
 
@@ -3082,15 +3101,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     /*
                     crnrstn_interact_ui_mit_license_src
                     crnrstn_interact_ui_documentation_content_src
-                    case 'crnrstn_interact_ui_documentation_side_nav_src':
-                    case 'crnrstn_interact_ui_system_footer_src':
-                    case 'crnrstn_interact_ui_search_src':
-                    case 'crnrstn_interact_ui_messenger_src':
+                    crnrstn_interact_ui_documentation_side_nav_src
+                    crnrstn_interact_ui_system_footer_src
+                    crnrstn_interact_ui_search_src
+                    crnrstn_interact_ui_messenger_src
                     crnrstn_interact_ui_documentation_view_source_src
 
-                    interact_ui_animation_sequence = function(module_key){
-
-                    case 'crnrstn_interact_ui_documentation_content_src':
+                    interact_ui_animation_sequence = function(module_key)
 
                     */
 
@@ -3099,7 +3116,25 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     //alert('Do we have crnrstn_interact_ui_documentation_content_src? [' + tmp_module_key_ARRAY[i] + ']');
                     if($('#' + tmp_module_key_ARRAY[i]).length){
 
-                        tmp_hash = this.return_data_tunnel_xml_data(tmp_module_key_ARRAY[i] + '_HASH');
+                        //
+                        // INITIALIZE FLAG.
+                        this.expire_content_hash_invalid_ARRAY[tmp_module_key_ARRAY[i] + '_' + this.current_page_key] = false;
+
+                        //
+                        // GET CONTENT HASH FROM SSDTLA XML RESPONSE.
+                        var tmp_hash = this.return_data_tunnel_xml_data(tmp_module_key_ARRAY[i] + '_HASH');
+
+                        if(this.loaded_content_hash_ARRAY[tmp_module_key_ARRAY[i] + '_' + this.current_page_key] !== undefined){
+
+                            var curr_hash = this.loaded_content_hash_ARRAY[tmp_module_key_ARRAY[i] + '_' + this.current_page_key];
+
+                            if(curr_hash !== tmp_hash){
+
+                                this.expire_content_hash_invalid_ARRAY[tmp_module_key_ARRAY[i] + '_' + this.current_page_key] = true;
+
+                            }
+
+                        }
 
                         if(tmp_hash.length > 0){
 
@@ -3115,14 +3150,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 }
 
                 //
-                // SYNC CANVAS THEME
+                // SYNC CANVAS THEME.
                 //this.crnrstn_interact_ui_canvas_theme_sync();
 
                 //
-                // SYNC UI MODE
+                // SYNC UI MODE.
                 //this.crnrstn_interact_ui_canvas_mode_sync();
 
-                break;
+            break;
             case 'bassdrive_title':
 
                 tmp_title_html = this.return_data_tunnel_xml_data('bassdrive_title_html');
@@ -3324,167 +3359,244 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                             }
 
-                            $('#crnrstn_documentation_dyn_shell').animate({
-                                opacity: 0
-                            }, {
-                                duration: 0,
-                                queue: false,
-                                complete: function(){
+                            if((self.expire_content_hash_invalid_ARRAY[module_key + '_' + self.current_page_key] === false && self.content_refresh_trigger_source === 'link_text_click') || (self.content_refresh_trigger_source === 'link_text_click')){
 
-                                    //
-                                    // CHECK FOR {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}
-                                    tmp_pattern = '{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}';
-                                    tmp_pos_pattern = self.strpos(tmp_content, tmp_pattern);
-                                    if(tmp_pos_pattern){
+                                $('#crnrstn_documentation_dyn_shell').animate({
+                                    opacity: 0
+                                }, {
+                                    duration: 0,
+                                    queue: false,
+                                    complete: function(){
 
                                         //
-                                        // SOURCE :: https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
-                                        // COMMENT :: https://stackoverflow.com/a/52254083
-                                        // AUTHOR :: P Roitto :: https://stackoverflow.com/users/9292799/p-roitto
-                                        tmp_size_total = new Blob([tmp_content]).size;
+                                        // CHECK FOR {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}
+                                        tmp_pattern = '{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}';
+                                        tmp_pos_pattern = self.strpos(tmp_content, tmp_pattern);
+                                        if(tmp_pos_pattern){
 
-                                        //
-                                        // SUBTRACT COUNT OF BYTES FROM THE PLACEHOLDER STRING DATA (WILL BE REPLACED)
-                                        tmp_size_filler = new Blob([tmp_pattern]).size;
-                                        tmp_size_clean = parseInt(tmp_size_total) - parseInt(tmp_size_filler);
+                                            //
+                                            // SOURCE :: https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
+                                            // COMMENT :: https://stackoverflow.com/a/52254083
+                                            // AUTHOR :: P Roitto :: https://stackoverflow.com/users/9292799/p-roitto
+                                            tmp_size_total = new Blob([tmp_content]).size;
 
-                                        //
-                                        // USE THIS JUST TO GET AN IDEA OF HOW MANY EXTRA BYTES TO ADD.
-                                        tmp_size_clean_pretty = self.format_bytes(tmp_size_clean, 3);
+                                            //
+                                            // SUBTRACT COUNT OF BYTES FROM THE PLACEHOLDER STRING DATA (WILL BE REPLACED)
+                                            tmp_size_filler = new Blob([tmp_pattern]).size;
+                                            tmp_size_clean = parseInt(tmp_size_total) - parseInt(tmp_size_filler);
 
-                                        //
-                                        // ADD EXTRA BYTES FOR THE TEXT OF THE COUNT OF PAGE BYTES ABOUT TO BE INJECTED
-                                        tmp_size_final = parseInt(tmp_size_clean) + new Blob([tmp_size_clean_pretty]).size;
+                                            //
+                                            // USE THIS JUST TO GET AN IDEA OF HOW MANY EXTRA BYTES TO ADD.
+                                            tmp_size_clean_pretty = self.format_bytes(tmp_size_clean, 3);
 
-                                        //
-                                        // TAKE THIS FINAL NUMBER AND FORMAT IT FOR DISPLAY.
-                                        tmp_size_final_pretty = self.format_bytes(tmp_size_final, 3);
+                                            //
+                                            // ADD EXTRA BYTES FOR THE TEXT OF THE COUNT OF PAGE BYTES ABOUT TO BE INJECTED
+                                            tmp_size_final = parseInt(tmp_size_clean) + new Blob([tmp_size_clean_pretty]).size;
 
-                                        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g, tmp_size_final_pretty);
-                                        //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
+                                            //
+                                            // TAKE THIS FINAL NUMBER AND FORMAT IT FOR DISPLAY.
+                                            tmp_size_final_pretty = self.format_bytes(tmp_size_final, 3);
 
-                                        /*
-                                        tmp_size_total = tmp_content.length;
-                                        tmp_char_count_str_total = this.char
-                                        tmp_size_filler = tmp_pattern.length;
-                                        tmp_size_clean = parseInt(tmp_size_total) - parseInt(tmp_size_filler);
-
-                                        tmp_size_clean_pretty = self.pretty_format_number(tmp_size_clean)
-
-                                        //alert('[lnum 2946] tmp_size_clean[' + tmp_size_clean + ']. tmp_size_clean_pretty/len[' + tmp_size_clean_pretty + ']/[' + tmp_size_clean_pretty.length + '].');
-                                        tmp_size_final = parseInt(tmp_size_clean) + tmp_size_clean_pretty.length;
-                                        //alert('[lnum 2948] tmp_size_final[' + tmp_size_final + '].');
-                                        tmp_size_final_pretty = self.pretty_format_number(tmp_size_final)
-
-                                        tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g, tmp_size_final_pretty + ' chars');
-                                        //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
-
-                                        */
-
-                                    }
-
-                                    tmp_pattern = '{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}';
-                                    tmp_pos_pattern = self.strpos(tmp_content_final, tmp_pattern);
-                                    if(tmp_pos_pattern){
-
-                                        //this.consume_data_tunnel_xml_node(response_data, 'response_server_runtime', 'server_runtime', '' , serialize_response);
-                                        //this.consume_data_tunnel_xml_node(response_data, 'runtime', 'runtime', '' , true);
-
-                                        tmp_server_runtime = self.return_data_tunnel_xml_data('response_server_runtime');
-
-                                        if(self.runtime === ''){
-
-                                            self.runtime = tmp_server_runtime;
+                                            tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g, tmp_size_final_pretty);
+                                            //tmp_content_final = tmp_content.replace(tmp_pattern, tmp_size_final_pretty + ' chars');
 
                                         }
 
-                                        //alert('[lnum 2990] runtime=' + self.runtime);
-                                        //alert('[lnum 2991] response_server_runtime=' + self.return_data_tunnel_xml_data('response_server_runtime'));
-                                        tmp_content_final = tmp_content_final.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}/g, self.runtime);
+                                        tmp_pattern = '{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}';
+                                        tmp_pos_pattern = self.strpos(tmp_content_final, tmp_pattern);
+                                        if(tmp_pos_pattern){
 
-                                    }
+                                            //this.consume_data_tunnel_xml_node(response_data, 'response_server_runtime', 'server_runtime', '' , serialize_response);
+                                            //this.consume_data_tunnel_xml_node(response_data, 'runtime', 'runtime', '' , true);
 
-                                    //
-                                    // INSERT CONTENT FROM CRNRSTN :: SSDTLA INTO DOM OBJECT.
-                                    $("#crnrstn_documentation_dyn_shell").html(tmp_content_final);
+                                            tmp_server_runtime = self.return_data_tunnel_xml_data('response_server_runtime');
 
-                                    //
-                                    // CLEAR THE LAST UI CLICK KEY NOW THAT IT HAS BEEN FULFILLED.
-                                    $('#crnrstn_interact_ui_link_text_click').val('');
+                                            if(self.runtime === ''){
 
-                                    self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
+                                                self.runtime = tmp_server_runtime;
 
-                                    tmp_window_width = $(window).width();
-                                    tmp_new_doc_content_width = (tmp_window_width) * 0.64;
+                                            }
 
-                                    $('#crnrstn_documentation_dyn_content_shell').animate({
-                                        width: tmp_new_doc_content_width
-                                    }, {
-                                        duration: 0,
-                                        queue: false,
-                                        complete: function () {
+                                            tmp_content_final = tmp_content_final.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}/g, self.runtime);
 
-                                            $('#crnrstn_ui_element_load_indicator_shell').animate({
-                                                width: 3
-                                            }, {
-                                                duration: 250,
-                                                queue: false,
-                                                specialEasing: {
-                                                    width: "swing"
-                                                },
-                                                complete: function () {
+                                        }
+
+                                        //
+                                        // INSERT CONTENT FROM CRNRSTN :: SSDTLA INTO DOM OBJECT.
+                                        $("#crnrstn_documentation_dyn_shell").html(tmp_content_final);
+
+                                        //
+                                        // CLEAR THE REQUEST SOURCE.
+                                        $('#crnrstn_request_source').val('');
+
+                                        tmp_hash = self.return_data_tunnel_xml_data(module_key + '_HASH');
+                                        self.loaded_content_hash_ARRAY[module_key] = tmp_hash;
+                                        self.content_refresh_trigger_source = '';
+                                        self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
+
+                                        tmp_window_width = $(window).width();
+                                        tmp_new_doc_content_width = (tmp_window_width) * 0.64;
+
+                                        $('#crnrstn_documentation_dyn_content_shell').animate({
+                                            width: tmp_new_doc_content_width
+                                        }, {
+                                            duration: 0,
+                                            queue: false,
+                                            complete: function () {
+
+                                                $('#crnrstn_ui_element_load_indicator_shell').animate({
+                                                    width: 3
+                                                }, {
+                                                    duration: 250,
+                                                    queue: false,
+                                                    specialEasing: {
+                                                        width: "swing"
+                                                    },
+                                                    complete: function () {
+
+                                                    }
+
+                                                });
+
+                                            }
+
+                                        });
+
+                                        //
+                                        // APPLY CURRENT CSS THEME STYLES
+                                        self.refresh_interact_ui_dom_css();
+
+                                        $('#crnrstn_documentation_dyn_shell').animate({
+                                            opacity: 1.0
+                                        }, {
+                                            duration: 500,
+                                            queue: false,
+                                            specialEasing: {
+                                                opacity: "swing"
+                                            },
+                                            complete: function () {
+
+                                                self.crnrstn_interact_ui_ux('scrolltop', false);
+
+                                                if($("#crnrstn_interact_ui_documentation_j5_wolf_pup").length){
+
+                                                    $('#crnrstn_interact_ui_documentation_j5_wolf_pup').css('visibility', 'visible');
 
                                                 }
 
-                                            });
+                                            }
 
-                                        }
+                                        });
 
-                                    });
+                                    }
+
+                                });
+
+                            }else{
+
+                                //
+                                // HASH INVALIDATION UPDATE :: NO PAGE BLINK OR SCROLL.
+                                //
+                                // CHECK FOR {CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}
+                                tmp_pattern = '{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}';
+                                tmp_pos_pattern = self.strpos(tmp_content, tmp_pattern);
+                                if(tmp_pos_pattern){
 
                                     //
-                                    // APPLY CURRENT CSS THEME STYLES
-                                    self.refresh_interact_ui_dom_css();
+                                    // SOURCE :: https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
+                                    // COMMENT :: https://stackoverflow.com/a/52254083
+                                    // AUTHOR :: P Roitto :: https://stackoverflow.com/users/9292799/p-roitto
+                                    tmp_size_total = new Blob([tmp_content]).size;
 
-                                    $('#crnrstn_documentation_dyn_shell').animate({
-                                        opacity: 1.0
-                                    }, {
-                                        duration: 500,
-                                        queue: false,
-                                        specialEasing: {
-                                            opacity: "swing"
-                                        },
-                                        complete: function () {
+                                    //
+                                    // SUBTRACT COUNT OF BYTES FROM THE PLACEHOLDER STRING DATA (WILL BE REPLACED)
+                                    tmp_size_filler = new Blob([tmp_pattern]).size;
+                                    tmp_size_clean = parseInt(tmp_size_total) - parseInt(tmp_size_filler);
 
-                                            self.crnrstn_interact_ui_ux('scrolltop', false);
+                                    //
+                                    // USE THIS JUST TO GET AN IDEA OF HOW MANY EXTRA BYTES TO ADD.
+                                    tmp_size_clean_pretty = self.format_bytes(tmp_size_clean, 3);
 
-                                        }
+                                    //
+                                    // ADD EXTRA BYTES FOR THE TEXT OF THE COUNT OF PAGE BYTES ABOUT TO BE INJECTED
+                                    tmp_size_final = parseInt(tmp_size_clean) + new Blob([tmp_size_clean_pretty]).size;
 
-                                    });
+                                    //
+                                    // TAKE THIS FINAL NUMBER AND FORMAT IT FOR DISPLAY.
+                                    tmp_size_final_pretty = self.format_bytes(tmp_size_final, 3);
+
+                                    tmp_content_final = tmp_content.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_PAGE_SIZE}/g, tmp_size_final_pretty);
 
                                 }
 
-                            });
+                                tmp_pattern = '{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}';
+                                tmp_pos_pattern = self.strpos(tmp_content_final, tmp_pattern);
+                                if(tmp_pos_pattern){
+
+                                    tmp_server_runtime = self.return_data_tunnel_xml_data('response_server_runtime');
+
+                                    if(self.runtime === ''){
+
+                                        self.runtime = tmp_server_runtime;
+
+                                    }
+
+                                    tmp_content_final = tmp_content_final.replace(/{CRNRSTN_DYNAMIC_CONTENT_MODULE::DOCUMENT_RESPONSE_TIME}/g, self.runtime);
+
+                                }
+
+                                //
+                                // INSERT CONTENT FROM CRNRSTN :: SSDTLA INTO DOM OBJECT.
+                                $("#crnrstn_documentation_dyn_shell").html(tmp_content_final);
+
+                                //
+                                // CLEAR THE REQUEST SOURCE.
+                                $('#crnrstn_request_source').val('');
+
+                                tmp_hash = self.return_data_tunnel_xml_data(module_key + '_HASH');
+                                self.expire_content_hash_invalid_ARRAY[module_key + '_' + self.current_page_key] = false;
+                                self.loaded_content_hash_ARRAY[module_key + '_' + this.current_page_key] = tmp_hash;
+                                self.size_element_x('crnrstn_j5_wolf_pup_outter_wrap');
+
+                                tmp_window_width = $(window).width();
+                                tmp_new_doc_content_width = (tmp_window_width) * 0.64;
+
+                                $('#crnrstn_documentation_dyn_content_shell').animate({
+                                    width: tmp_new_doc_content_width
+                                }, {
+                                    duration: 0,
+                                    queue: false,
+                                    complete: function () {
+
+                                        $('#crnrstn_ui_element_load_indicator_shell').animate({
+                                            width: 3
+                                        }, {
+                                            duration: 250,
+                                            queue: false,
+                                            specialEasing: {
+                                                width: "swing"
+                                            },
+                                            complete: function () {
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                });
+
+                                //
+                                // APPLY CURRENT CSS THEME STYLES
+                                self.refresh_interact_ui_dom_css();
+
+                            }
 
                         }
 
                     }
 
                 });
-                //
-                // $('#crnrstn_ui_element_load_indicator_shell').animate({
-                //     width: 3
-                // }, {
-                //     duration: 250,
-                //     queue: false,
-                //     specialEasing: {
-                //         width: "swing"
-                //     },
-                //     complete: function () {
-                //
-                //     }
-                //
-                // });
 
             break;
             case 'crnrstn_interact_ui_documentation_view_source_src':

@@ -73,6 +73,14 @@ class crnrstn_content_generator {
 
 	}
 
+	public function sauce($resource){
+
+        $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->load_page($resource, 'sauce');
+
+        return $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->return_sauce($resource);
+
+    }
+
     public function return_int_const_profile($resource_constant){
 
         return $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->return_int_const_profile($resource_constant);
@@ -102,7 +110,7 @@ class crnrstn_content_generator {
 
     }
 
-    public function add_page_element($serial, $key, $attribute_00, $attribute_01 = NULL, $attribute_02 = NULL, $attribute_03 = NULL){
+    public function add_page_element($serial, $key, $data_ARRAY){
 
 	    try{
 
@@ -118,15 +126,15 @@ class crnrstn_content_generator {
                 case 'RELATED_METHODS':
                 case 'PAGE_STATISTICS':
 
-                    if($attribute_00 == ''){
+                    if($data_ARRAY === '' || $data_ARRAY === NULL){
 
-                        $attribute_00 = ' ';
+                        $data_ARRAY = ' ';
 
                     }
 
                     $tmp_seq_key = $this->oCRNRSTN->generate_new_key(26);
                     $this->content_load_sequence_ARRAY[] = $tmp_seq_key;
-                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key] = $attribute_00;
+                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key] = $data_ARRAY;
 
                 break;
                 case 'EXAMPLE_CONTENT':
@@ -134,28 +142,36 @@ class crnrstn_content_generator {
                     $tmp_seq_key = $this->oCRNRSTN->generate_new_key(10);
                     $this->content_load_sequence_ARRAY[] = $tmp_seq_key;
 
-                    if($attribute_00 == ''){
+//                    $tmp_ARRAY = array();
+//                   1 $tmp_ARRAY['example_title_main'] = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+//                   2 $tmp_ARRAY['example_title_integrated'] = NULL;
+//                   3 $tmp_ARRAY['example_presentation_file'] = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+//                   4 $tmp_ARRAY['example_execute_file'] = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
 
-                        $attribute_00 = ' ';
+                    $tmp_example_title_main = $data_ARRAY['example_title_main'];
+                    if($tmp_example_title_main === '' || $tmp_example_title_main === NULL){
 
-                    }
-
-                    if($attribute_01 == ''){
-
-                        $attribute_01 = NULL;
-
-                    }
-
-                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['title_string'] = $attribute_00;
-
-                    if(isset($attribute_01)){
-
-                        $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['integrated_title_string'] = $attribute_01;
+                        $tmp_example_title_main = ' ';
 
                     }
 
-                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['pres_file'] = $attribute_02;
-                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['exec_file'] = $attribute_03;
+                    $tmp_example_title_integrated = $data_ARRAY['example_title_integrated'];
+                    if($data_ARRAY['example_title_integrated'] === ''){
+
+                        $tmp_example_title_integrated = NULL;
+
+                    }
+
+                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['title_string'] = $tmp_example_title_main;
+
+                    if(isset($tmp_example_title_integrated)){
+
+                        $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['integrated_title_string'] = $tmp_example_title_integrated;
+
+                    }
+
+                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['pres_file'] = $data_ARRAY['example_presentation_file'];
+                    $this->page_content_ARRAY[$serial][$tmp_seq_key][$key]['exec_file'] = $data_ARRAY['example_execute_file'];
 
                 break;
                 default:
@@ -1963,6 +1979,14 @@ class crnrstn_content_generator {
 
                             break;
                             case 'EXAMPLE_CONTENT':
+
+                                /*
+                                $tmp_ARRAY['example_title_main'] = $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_EXAMPLE_TITLE_TXT') . ' 1 ::';
+                                $tmp_ARRAY['example_title_integrated'] = NULL;
+                                $tmp_ARRAY['example_presentation_file'] = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_show.php';
+                                $tmp_ARRAY['example_execute_file'] = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
+
+                                */
 
                                 //
                                 // EXAMPLE OUTPUT

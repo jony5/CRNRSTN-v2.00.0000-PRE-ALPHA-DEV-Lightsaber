@@ -148,7 +148,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // CRNRSTN :: LIGHTSABER DOCUMENTATION CONTENT
-        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_documentation_content_src'] = 1;
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_documentation_content_src'] = 'GLOBAL';
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_documentation_content_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_documentation_content_src'] = 300;
 
@@ -190,6 +190,8 @@ class crnrstn_ui_tunnel_response_manager {
 
         //error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
 
+        $tmp_crnrstn_request_source = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_request_source');
+
         //
         // THE WAY THIS SHOULD WORK:
         // 1) EACH DOM MODULE SHOULD HAVE A KEY AND A HASH.
@@ -199,6 +201,8 @@ class crnrstn_ui_tunnel_response_manager {
             $tmp_xml_concat = false;
             $tmp_post_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data($module_nom . '_HASH');
             $tmp_module_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->retrieve_interact_ui_module_hash($module_nom);
+
+            //error_log(__LINE__ . ' ui tunn $tmp_crnrstn_request_source[' . $tmp_crnrstn_request_source . ']. $tmp_post_hash[' . $tmp_post_hash . ']. $tmp_module_hash[' . $tmp_module_hash . '].');
 
             //
             // TODO :: TTL CONSIDERATIONS
@@ -217,9 +221,7 @@ class crnrstn_ui_tunnel_response_manager {
 
             }
 
-            //error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
-
-            if(strlen($tmp_module_page_key) > 0 && $module_nom == 'crnrstn_interact_ui_documentation_content_src'){
+            if(($tmp_post_hash != $tmp_module_hash || $tmp_crnrstn_request_source === 'link_text_click') && $module_nom == 'crnrstn_interact_ui_documentation_content_src'){
 
                 //
                 // MUTE DOCUMENTATION PAGE RESPONSE IF LINK CLICKED IS (1) MIT LICENSE OR (2) VIEW

@@ -32,7 +32,7 @@
 .crnrstn_general_post_recent_activity_copy blockquote   { padding: 0 0 10px 0; line-height: 29px; font-size: 90%;}
 
 /*border: 1px solid #2d0404;*/
-.crnrstn_documentation_browser_compatibility_nom_copy p {font-weight: 12px;}
+.crnrstn_documentation_browser_compatibility_nom_copy p { font-size: 12px;}
 .crnrstn_documentation_browser_compatibility_nom_copy   { font-family: "Courier New", Courier, monospace; font-size: 80%; color: #333; margin-right: 3px; padding:3px 4px 3px 4px; background-color: rgba(51, 51, 51, 0.05); border: 1px solid rgba(51, 51, 51, 0.25); border-radius: 5px;}
 .crnrstn_general_post_code_copy                         { font-family: "Courier New", Courier, monospace; font-size: 80%; color: #333; margin-right: 3px; padding:3px 4px 3px 4px; background-color: rgba(51, 51, 51, 0.05); border: 1px solid rgba(51, 51, 51, 0.25); border-radius: 5px;}
 .crnrstn_general_post_recent_activity_datestamp p       { font-family: "Courier New", Courier, monospace; font-size: 14px; padding: 20px 0 0 0;}
@@ -231,7 +231,7 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_interact_ui_bg_r_stone_pillar                      { float: right; padding: 40px 20px 0 0; }
 .crnrstn_interact_ui_bg_title_note                          { position: absolute; font-size: 140px; color: #F8F8F8; font-weight: bold; float:left; left:0; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
 .crnrstn_interact_ui_bg_title_tech_spec                     { position: absolute; font-size: 80px; padding: 0 10px 0 10px; color: #F8F8F8; text-align: right; font-weight: bold; float:left; top:-10px; font-family: Arial, Helvetica, sans-serif; text-shadow: 1px 1px 2px #4C4C4C; }
-.crnrstn_interact_ui_documentation_j5_wolf_pup              { width: 98%; float:right; padding:120px 268px 0 0; margin:0; text-align: right; }
+.crnrstn_interact_ui_documentation_j5_wolf_pup              { width: 98%; float:right; padding:120px 268px 0 0; margin:0; text-align: right; visibility: hidden;}
 .crnrstn_interact_ui_documentation_j5_wolf_pup_inner_wrap   { position: absolute; left:35px; padding:10px 0 0 0; z-index: 2; text-align: right;}
 
 /*<!-- CRNRSTN::FIXED SIDE NAVIGATION

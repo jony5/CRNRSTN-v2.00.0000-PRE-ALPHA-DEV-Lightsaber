@@ -65,7 +65,7 @@ _crnrstn/class/assets/crnrstn.system_asset_manager.inc.php [FOR ADDING FRAMEWORK
 
 if(isset($crnrstn_initialize_bits)){
 
-    $CRNRSTN_CONSTANTS_ARRAY = array('CRNRSTN_DEBUG_OFF', 'CRNRSTN_DEBUG_NATIVE_ERR_LOG',
+    $CRNRSTN_CONSTANTS_ARRAY = array('CRNRSTN_DEBUG_OFF', 'CRNRSTN_DEBUG_NATIVE_ERR_LOG', 'CRNRSTN_CLIENT_SSDTLA_DEBUG',
         'CRNRSTN_DEBUG_AGGREGATION_ON', 'CRNRSTN_LOG_ALL', 'CRNRSTN_AUTHORIZED_ACCOUNT', 'CRNRSTN_LOG_NONE',
         'CRNRSTN_INTEGER_LENGTH', 'CRNRSTN_SETTINGS_APACHE', 'CRNRSTN_SETTINGS_MYSQLI', 'CRNRSTN_SETTINGS_PHP',
         'CRNRSTN_SETTINGS_CRNRSTN', 'CRNRSTN_SETTINGS_CLIENT', 'CRNRSTN_SETTINGS_WORDPRESS', 'CRNRSTN_DATABASE',
@@ -153,6 +153,7 @@ if(isset($crnrstn_initialize_bits)){
     @define('CRNRSTN_DEBUG_OFF', (int) crnrstn_constants_init('CRNRSTN_DEBUG_OFF'));
     @define('CRNRSTN_DEBUG_NATIVE_ERR_LOG', (int) crnrstn_constants_init('CRNRSTN_DEBUG_NATIVE_ERR_LOG'));
     @define('CRNRSTN_DEBUG_AGGREGATION_ON', (int) crnrstn_constants_init('CRNRSTN_DEBUG_AGGREGATION_ON'));
+    @define('CRNRSTN_CLIENT_SSDTLA_DEBUG', (int) crnrstn_constants_init('CRNRSTN_CLIENT_SSDTLA_DEBUG'));
 
     @define('CRNRSTN_LOG_ALL', (int) crnrstn_constants_init('CRNRSTN_LOG_ALL'));
     @define('CRNRSTN_LOG_NONE', (int) crnrstn_constants_init('CRNRSTN_LOG_NONE'));

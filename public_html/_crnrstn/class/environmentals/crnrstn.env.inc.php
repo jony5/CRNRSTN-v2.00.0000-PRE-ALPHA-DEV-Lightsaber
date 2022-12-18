@@ -598,6 +598,22 @@ class crnrstn_environment {
                 return $tmp_output;
 
             break;
+            case CRNRSTN_CLIENT_SSDTLA_DEBUG:
+
+                $tmp_array = $this->return_output_CRNRSTN_CLIENT_SSDTLA_DEBUG();
+                $tmp_output = '';
+
+                //
+                // LOAD OUTPUT
+                foreach($tmp_array as $key => $resource_content){
+
+                    $tmp_output .= $resource_content;
+
+                }
+
+                return $tmp_output;
+
+            break;
             case CRNRSTN_RESOURCE_DOCUMENTATION:
 
                 //$this->oCRNRSTN->print_r_str($integer_constant, 'ui_content_module_out $integer_constant.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
@@ -704,7 +720,7 @@ class crnrstn_environment {
 
         if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-            $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden"><form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea><button type="submit">SUBMIT</button><input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '"><input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '"><input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
+            $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden"><form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea><button type="submit">SUBMIT</button><input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '"><input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '"><input type="hidden" id="crnrstn_request_source" name="crnrstn_request_source" value=""><input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
             $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form><div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div><div id="crnrstn_interact_ui_theme_profile" class="crnrstn_hidden"></div></div>';
 
         }else{
@@ -715,6 +731,7 @@ class crnrstn_environment {
         <button type="submit">SUBMIT</button>
         <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '">
         <input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '">
+        <input type="hidden" id="crnrstn_request_source" name="crnrstn_request_source" value="">
         <input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">
 ' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
 
@@ -1219,6 +1236,29 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
             $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SEARCH MODULE OUTPUT -->
 ';
+        }
+
+        return $tmp_str_array;
+
+    }
+
+    private function return_output_CRNRSTN_CLIENT_SSDTLA_DEBUG(){
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SSDTLA DEBUG OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->';
+            $tmp_str_array[] = '<div id="crnrstn_client_ssdtla_debug_active"></div>';
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SSDTLA DEBUG OUTPUT -->';
+
+        }else{
+
+            $tmp_str_array[] = '
+<!-- BEGIN CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SSDTLA DEBUG OUTPUT :: ' . $this->oCRNRSTN_USR->return_micro_time() . ' -->
+';
+            $tmp_str_array[] = '<div id="crnrstn_client_ssdtla_debug_active"></div>';
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SSDTLA DEBUG OUTPUT -->
+';
+
         }
 
         return $tmp_str_array;

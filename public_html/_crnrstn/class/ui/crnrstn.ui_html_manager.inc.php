@@ -75,11 +75,11 @@ class crnrstn_ui_html_manager {
 
 	}
 
-    public function return_int_const_profile($resource_constant){
-
-        return $this->oCRNRSTN_UI_ASSEMBLER->return_int_const_profile($resource_constant);
-
-    }
+//    public function return_int_const_profile($resource_constant){
+//
+//        return $this->oCRNRSTN_UI_ASSEMBLER->return_int_const_profile($resource_constant);
+//
+//    }
 
     public function return_output_CRNRSTN_UI_DOCS_NAV_LINK($type){
 
@@ -329,6 +329,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
 
         return '';
+
+    }
+
+    public function sauce($resource){
+
+	    return $this->oCRNRSTN_UI_ASSEMBLER->sauce($resource);
 
     }
 

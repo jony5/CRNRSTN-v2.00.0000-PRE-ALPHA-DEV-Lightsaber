@@ -157,6 +157,7 @@ class crnrstn_data_tunnel_services_manager{
         $this->received_data_ARRAY['crnrstn_request_serialization_hash'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_request_serialization_hash');
         $this->received_data_ARRAY['crnrstn_interact_ui_module_programme'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_module_programme');
         $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_link_text_click');
+        $this->received_data_ARRAY['crnrstn_request_source'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_request_source');
         $this->received_data_ARRAY['crnrstn_interact_ui_loadbar_progress'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_loadbar_progress');
         $this->received_data_ARRAY['crnrstn_interact_ui_active_nav_links'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_active_nav_links');
         $this->received_data_ARRAY['crnrstn_ssdtla_form_serial'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_ssdtla_form_serial');
@@ -292,7 +293,10 @@ class crnrstn_data_tunnel_services_manager{
             case 'crnrstn_interact_ui_documentation_content_src':
 
                 $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
-                $tmp_module_data = $module_nom.$tmp_module_page_key;
+
+                $tmp_page_sauce = $this->oCRNRSTN->sauce($tmp_module_page_key);
+
+                $tmp_module_data = $tmp_page_sauce;
 
             break;
             case 'crnrstn_interact_ui_mit_license_src':
