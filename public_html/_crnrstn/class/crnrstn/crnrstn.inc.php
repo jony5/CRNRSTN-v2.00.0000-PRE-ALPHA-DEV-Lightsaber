@@ -3912,7 +3912,7 @@ class crnrstn {
             '2.0.4/css/normalize.css' => '_lib/frameworks/skeleton/2.0.4/css/normalize.css', 'screen.css' => '_lib/frameworks/dead_simple_grid/css/screen.css', 'grid.css' => '_lib/frameworks/dead_simple_grid/css/grid.css',
             'unsemantic-grid-mobile-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-mobile-rtl.css',
             'unsemantic-grid-base-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets/unsemantic-grid-base-rtl.css',
-            'html5.js' => '_lib/frameworks/unsemantic/assets/javascripts/html5.js', 'adapt.min.js' => '_lib/frameworks/unsemantic/assets/javascripts',
+            'html5.js' => '_lib/frameworks/unsemantic/assets/javascripts', 'adapt.min.js' => '_lib/frameworks/unsemantic/assets/javascripts',
             'unsemantic-grid-mobile.css' => '_lib/frameworks/unsemantic/assets/stylesheets', 'unsemantic-grid-base.css' => '_lib/frameworks/unsemantic/assets/stylesheets',
             'unsemantic/assets/stylesheets/reset-rtl.css' => '_lib/frameworks', 'unsemantic/assets/stylesheets/reset.css' => '_lib/frameworks',
             'ie-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets', 'unsemantic-grid-responsive-rtl.css' => '_lib/frameworks/unsemantic/assets/stylesheets',
