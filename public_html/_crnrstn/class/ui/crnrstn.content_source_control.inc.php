@@ -13594,7 +13594,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_FOUNDATION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_FOUNDATION';
                 $tmp_output_ARRAY['TITLE'] = 'Foundation';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The most advanced responsive 
                             front-end framework in the world. A Framework for any device, medium, and accessibility. 
@@ -13615,7 +13615,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_HTML5_BOILERPLATE';
                 $tmp_output_ARRAY['TITLE'] = 'HTML5 Boilerplate';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The web\'s most popular front-end template, HTML5 Boilerplate helps 
                             you build fast, robust, and adaptable web apps or sites. Kick-start your project with the 
@@ -13633,7 +13633,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_RESPONSIVE_GRID_SYSTEM';
                 $tmp_output_ARRAY['TITLE'] = 'Responsive Grid System';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Spectacularly Easy Responsive 
                             Design. The Responsive Grid System isn\'t a framework. It\'s not a boilerplate either. It\'s 
@@ -13650,7 +13650,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
@@ -13666,7 +13666,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RTL';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
@@ -13682,7 +13682,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
@@ -13699,7 +13699,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_RESET_RTL';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
@@ -13715,7 +13715,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
@@ -13731,7 +13731,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_UNSEMANTIC_ADAPT_RTL';
                 $tmp_output_ARRAY['TITLE'] = 'unsemantic';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Unsemantic is a fluid grid system that is the successor to the 960 
                             Grid System. It works in a similar way, but instead of being a set number of columns, 
@@ -13747,7 +13747,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_DEAD_SIMPLE_GRID';
                 $tmp_output_ARRAY['TITLE'] = 'Dead Simple Grid';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'Dead Simple Grid is a responsive CSS 
                             grid micro framework that is just that. Dead simple. It\'s the Malevich\'s Black Square of
@@ -13768,7 +13768,7 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_CSS_FRAMEWORK_SKELETON;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_CSS_FRAMEWORK_SKELETON';
                 $tmp_output_ARRAY['TITLE'] = 'SKELETON';
-                $tmp_output_ARRAY['VERSION'] = '0.00.0000';
+                $tmp_output_ARRAY['VERSION'] = '';
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = 'Chrome, Firefox, Opera, Safari, IE.';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'A dead simple, responsive boilerplate. Light as a feather at ~400 
                             lines &amp; built with mobile in mind. Styles designed to be a starting point, not a UI 

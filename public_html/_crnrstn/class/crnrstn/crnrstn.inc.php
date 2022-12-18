@@ -4913,7 +4913,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         foreach($this->footer_asset_footer_spool_ARRAY as $index => $int_const){
 
             switch($int_const){
-               case CRNRSTN_RESOURCE_DOCUMENTATION:
+                case CRNRSTN_RESOURCE_DOCUMENTATION:
 
                     //
                     // CRNRSTN :: CSS
@@ -5380,6 +5380,49 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $tmp_footer_html_output .= $this->mapped_resource_html_output($resource_ARRAY, $asset_hash, true);
 
         }
+
+        //
+        // PROCESS CRNRSTN_UI_JS_MAIN DEPENDENCIES
+        // CRNRSTN :: INTERACT UI :: JS
+        if(isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_JS_MAIN])){
+
+            //
+            // CRNRSTN :: INTERACT UI :: CSS
+            if(!isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_DESKTOP])
+                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_TABLET])
+                && !isset($this->html_head_build_flag_ARRAY[CRNRSTN_UI_CSS_MAIN_MOBILE])){
+
+                switch($this->device_type_bit()){
+                    case CRNRSTN_CHANNEL_MOBILE:
+
+                        $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
+
+                    break;
+                    case CRNRSTN_CHANNEL_TABLET:
+
+                        $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
+
+                    break;
+                    case CRNRSTN_CHANNEL_DESKTOP:
+                    default:
+
+                        $tmp_footer_html_output .= $this->oCRNRSTN_ASSET_MGR->return_html_head_asset(CRNRSTN_UI_CSS_MAIN_DESKTOP, true);
+
+                    break;
+
+                }
+
+            }
+
+            if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+
+                $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
+                $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+
+            }
+
+        }
+
 
         if(isset($this->html_footer_build_flag_ARRAY[CRNRSTN_RESPONSE_REPORT])){
 

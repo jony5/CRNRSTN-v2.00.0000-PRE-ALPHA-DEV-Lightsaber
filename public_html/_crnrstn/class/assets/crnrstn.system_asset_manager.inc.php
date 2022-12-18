@@ -2158,6 +2158,18 @@ class crnrstn_system_image_asset_manager {
                                 /////
                                 // R :: RESOURCE //
                                 $tmp_crnrstn_mod = NULL;
+                                $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/effects.js';
+                                $tmp_file_name = 'effects.js';
+                                $tmp_meta_type = 'text/javascript';
+                                $tmp_file_is_minimized = false;
+                                $tmp_asset_minimization_mode_is_active = false;
+                                $tmp_resource_dependency_constant = NULL;
+                                $tmp_spool_asset_for_footer_html = $footer_html_output;
+                                $this->spool_resource($const, $tmp_meta_type, $tmp_crnrstn_mod, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant, $tmp_spool_asset_for_footer_html);
+
+                                /////
+                                // R :: RESOURCE //
+                                $tmp_crnrstn_mod = NULL;
                                 $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/controls.js';
                                 $tmp_file_name = 'controls.js';
                                 $tmp_meta_type = 'text/javascript';
@@ -2179,17 +2191,6 @@ class crnrstn_system_image_asset_manager {
                                 $tmp_spool_asset_for_footer_html = $footer_html_output;
                                 $this->spool_resource($const, $tmp_meta_type, $tmp_crnrstn_mod, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant, $tmp_spool_asset_for_footer_html);
 
-                                /////
-                                // R :: RESOURCE //
-                                $tmp_crnrstn_mod = NULL;
-                                $tmp_file_path = '/_lib/frameworks/script.aculo.us/1.9.0/src/effects.js';
-                                $tmp_file_name = 'effects.js';
-                                $tmp_meta_type = 'text/javascript';
-                                $tmp_file_is_minimized = false;
-                                $tmp_asset_minimization_mode_is_active = false;
-                                $tmp_resource_dependency_constant = NULL;
-                                $tmp_spool_asset_for_footer_html = $footer_html_output;
-                                $this->spool_resource($const, $tmp_meta_type, $tmp_crnrstn_mod, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant, $tmp_spool_asset_for_footer_html);
 
                                 /////
                                 // R :: RESOURCE //
@@ -3032,7 +3033,7 @@ class crnrstn_system_image_asset_manager {
                             // R :: RESOURCE //
                             $tmp_crnrstn_mod = NULL;
                             $tmp_file_path = '/_lib/frameworks/960_grid_system/code/css/min/960_16_col.css';
-                            $tmp_file_name = 'min/960_24_col.css';
+                            $tmp_file_name = 'min/960_16_col.css';
                             $tmp_meta_type = 'text/css';
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
@@ -3044,7 +3045,7 @@ class crnrstn_system_image_asset_manager {
                             // R :: RESOURCE //
                             $tmp_crnrstn_mod = NULL;
                             $tmp_file_path = '/_lib/frameworks/960_grid_system/code/css/960_16_col.css';
-                            $tmp_file_name = '960_24_col.css';
+                            $tmp_file_name = '960_16_col.css';
                             $tmp_meta_type = 'text/css';
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
@@ -3115,7 +3116,7 @@ class crnrstn_system_image_asset_manager {
                             // R :: RESOURCE //
                             $tmp_crnrstn_mod = NULL;
                             $tmp_file_path = '/_lib/frameworks/960_grid_system/code/css/min/960_12_col.css';
-                            $tmp_file_name = 'min/960_24_col.css';
+                            $tmp_file_name = 'min/960_12_col.css';
                             $tmp_meta_type = 'text/css';
                             $tmp_file_is_minimized = true;
                             $tmp_asset_minimization_mode_is_active = true;
@@ -3127,7 +3128,7 @@ class crnrstn_system_image_asset_manager {
                             // R :: RESOURCE //
                             $tmp_crnrstn_mod = NULL;
                             $tmp_file_path = '/_lib/frameworks/960_grid_system/code/css/960_12_col.css';
-                            $tmp_file_name = '960_24_col.css';
+                            $tmp_file_name = '960_12_col.css';
                             $tmp_meta_type = 'text/css';
                             $tmp_file_is_minimized = false;
                             $tmp_asset_minimization_mode_is_active = true;
@@ -3552,7 +3553,7 @@ class crnrstn_system_image_asset_manager {
                             $tmp_resource_dependency_constant = NULL;
                             $tmp_spool_asset_for_footer_html = $footer_html_output;
                             $this->spool_resource($const, $tmp_meta_type, $tmp_crnrstn_mod, $tmp_file_path, $tmp_file_name, $tmp_file_type_const, $tmp_file_is_minimized, $tmp_asset_minimization_mode_is_active, $tmp_resource_dependency_constant, $tmp_spool_asset_for_footer_html);
-                            $tmp_str .= $this->return_mapped_resources(CRNRSTN_JS_FRAMEWORK_JQUERY, $footer_html_output);
+                            $tmp_str .= $this->return_mapped_resources($const, $footer_html_output);
                             /*//////////
                             //////////
 
