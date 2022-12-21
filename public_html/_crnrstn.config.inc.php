@@ -420,8 +420,8 @@ returned to this authenticated user, alone.
 //$oCRNRSTN->config_init_js_css_minimization();
 $oCRNRSTN->config_init_js_css_minimization('BLUEHOST_JONY5');
 $oCRNRSTN->config_init_js_css_minimization('BLUEHOST_EVIFWEB', false);
-$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_MACBOOKPRO');
-$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', true);
+$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_MACBOOKPRO', false);
+$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
 
 //
 // CRNRSTN_ASSET_MAPPING

@@ -158,6 +158,7 @@ class crnrstn_data_tunnel_services_manager{
         $this->received_data_ARRAY['crnrstn_interact_ui_module_programme'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_module_programme');
         $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_link_text_click');
         $this->received_data_ARRAY['crnrstn_request_source'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_request_source');
+        $this->received_data_ARRAY['crnrstn_resource_initialize'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_resource_initialize');
         $this->received_data_ARRAY['crnrstn_interact_ui_loadbar_progress'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_loadbar_progress');
         $this->received_data_ARRAY['crnrstn_interact_ui_active_nav_links'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_interact_ui_active_nav_links');
         $this->received_data_ARRAY['crnrstn_ssdtla_form_serial'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_ssdtla_form_serial');
@@ -236,11 +237,11 @@ class crnrstn_data_tunnel_services_manager{
                 */
 
                 //$this->oCRNRSTN->print_r($node, 'CRNRSTN :: DECOUPLED DATA OBJECT ELEMENT :: CLIENT FORM SUBMISSION.', NULL, __LINE__, __METHOD__, __FILE__);
-                error_log(__LINE__ . ' dts mgr [' . __METHOD__ . ']. $node=['. print_r($node, true) .  '].');
+                //error_log(__LINE__ . ' dts mgr [' . __METHOD__ . ']. $node=['. print_r($node, true) .  '].');
 
                 if(!$this->receive_packet_data($node)){
 
-                    error_log(__LINE__ . ' dtsm::' . __METHOD__ . '() ERROR on PSSDTLP NODE[' . print_r($node, true) . '].');
+                    //error_log(__LINE__ . ' dtsm::' . __METHOD__ . '() ERROR on PSSDTLP NODE[' . print_r($node, true) . '].');
 
                     /*
                     pssdtl_packet_profile_ARRAY['STATUS_REPORT'][][]

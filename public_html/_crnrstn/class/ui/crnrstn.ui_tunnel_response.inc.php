@@ -216,7 +216,7 @@ class crnrstn_ui_tunnel_response_manager {
             $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
             if($pos_docs_view_source !== false && $module_nom == 'crnrstn_interact_ui_documentation_view_source_src'){
 
-                //error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
+                //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                 $tmp_xml_concat = true;
 
             }
@@ -289,7 +289,8 @@ class crnrstn_ui_tunnel_response_manager {
                     break;
                     case 'crnrstn_interact_ui_documentation_content_src':
 
-                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page();  //php
+                        $tmp_key_override = $this->oCRNRSTN->return_http_data_services_meta('crnrstn_asset_return_method_key');
+                        $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page($tmp_key_override);  //php
                         //$tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
                         //$tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
 
@@ -299,6 +300,7 @@ class crnrstn_ui_tunnel_response_manager {
                         $tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
                         //$tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('js');
                         //$tmp_out_str .= $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page('technique');
+                        //error_log(__LINE__ . ' ui tunnel XML RETURN $tmp_out_str=[' . $tmp_out_str . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
 
                     break;
                     case 'crnrstn_interact_ui_system_footer_src':
@@ -2307,6 +2309,7 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_client_auth_key = $this->oCRNRSTN->return_form_submitted_value('crnrstn_session_client_auth_key');
 
         $tmp_CRNRSTN_UI_INTERACT = $this->return_interact_ui_ux_profile('xml');
+        //error_log(__LINE__ . ' ui tunnel XML RETURN $tmp_CRNRSTN_UI_INTERACT=[' . $tmp_CRNRSTN_UI_INTERACT . '] [' . $this->oCRNRSTN->request_id . '].');
 
         //
         // LET'S CIRCLE BACK ON THIS ONE.

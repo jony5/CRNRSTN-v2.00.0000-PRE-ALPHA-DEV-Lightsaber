@@ -58,6 +58,8 @@ class crnrstn_ui_html_manager {
     protected $oCRNRSTN_UI_ASSEMBLER;
 
     public $page_serial;
+    protected $docs_nav_link_ARRAY = array();
+    protected $docs_nav_html = '';
 
 	public function __construct($oCRNRSTN){
 
@@ -81,7 +83,23 @@ class crnrstn_ui_html_manager {
 //
 //    }
 
-    public function return_output_CRNRSTN_UI_DOCS_NAV_LINK($type){
+    public function return_output_CRNRSTN_UI_DOCS_NAV_LINK($content_type, $output_type = 'HTML'){
+
+	    if($output_type === 'array'){
+
+	        if(count($this->docs_nav_link_ARRAY) > 0){
+
+	            return $this->docs_nav_link_ARRAY;
+
+            }
+
+        }
+
+	    if(strlen($this->docs_nav_html) > 0 && $output_type === 'HTML'){
+
+	        return $this->docs_nav_html;
+
+        }
 
         $tmp_str = '';
         $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::INTERACT_UI::DOCUMENTATION_NAV';
@@ -89,7 +107,7 @@ class crnrstn_ui_html_manager {
         $tmp_nav_cnt = $this->oCRNRSTN->get_resource_count('CRNRSTN_NAV_LINK', $tmp_data_type_family);
 	    if($tmp_nav_cnt < 1){
 
-            $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/' . $type . '/';
+            $directory = CRNRSTN_ROOT . '/_crnrstn/ui/docs/documentation/' . $content_type . '/';
 
             $scanned_directory_ARRAY = $this->oCRNRSTN->better_scandir($directory);
 
@@ -105,13 +123,15 @@ class crnrstn_ui_html_manager {
 
                 if(!$this->oCRNRSTN->tmp_restrict_this_lorem_ipsum_method($dir_resource)){
 
+                    $this->docs_nav_link_ARRAY[$dir_resource] = 1;
+
                     if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                        $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
+                        $this->docs_nav_html .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
 
                     }else{
 
-                        $tmp_str .= '
+                        $this->docs_nav_html .= '
                 <li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
 
                     }
@@ -120,9 +140,15 @@ class crnrstn_ui_html_manager {
 
             }
 
-            $this->oCRNRSTN->add_system_resource('DOCUMENTATION_NAV_COMPONENT_HTML', $tmp_str, $tmp_data_type_family);
+            if($output_type == 'array'){
 
-            return $tmp_str;
+                return $this->docs_nav_link_ARRAY;
+
+            }
+
+            $this->oCRNRSTN->add_system_resource('DOCUMENTATION_NAV_COMPONENT_HTML', $this->docs_nav_html, $tmp_data_type_family);
+
+            return $this->docs_nav_html;
 
         }
 
@@ -132,13 +158,15 @@ class crnrstn_ui_html_manager {
 
             if(!$this->oCRNRSTN->tmp_restrict_this_lorem_ipsum_method($dir_resource)){
 
+                $this->docs_nav_link_ARRAY[$dir_resource] = 1;
+
                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-                    $tmp_str .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
+                    $this->docs_nav_html .= '<li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
 
                 }else{
 
-                    $tmp_str .= '
+                    $this->docs_nav_html .= '
                 <li><a rel="crnrstn_documentation_side_nav_' . $this->oCRNRSTN->session_salt() . '" data-crnrstn="' . $dir_resource . '" id="crnrstn_text_lnk_' . $this->oCRNRSTN->hash($dir_resource, 'md5') . '" href="#' . $dir_resource . '" title="' . $dir_resource . '">' . $dir_resource . '</a></li>';
 
                 }
@@ -147,7 +175,7 @@ class crnrstn_ui_html_manager {
 
         }
 
-        return $tmp_str;
+        return $this->docs_nav_html;
 
     }
 
@@ -338,9 +366,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     }
 
-    public function out_ui_module_html_system_documentation_page(){
+    public function out_ui_module_html_system_documentation_page($module_key_override = NULL){
 
-        $this->page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page_content();
+        $this->page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page_content($module_key_override);
 
         //
         // SEARCH INTEGRATION
@@ -352,11 +380,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     }
 
-    public function out_ui_module_html_system_documentation_nav($type = 'php'){
+    public function out_ui_module_html_system_documentation_nav($content_type = 'php'){
 
         if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-            $tmp_html_out = '<div id="crnrstn_interact_ui_side_nav_search" class="crnrstn_interact_ui_side_nav_search" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);"><div id="crnrstn_interact_ui_side_nav_search_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div><div class="crnrstn_interact_ui_side_nav_search_bar_rel"><div id="crnrstn_interact_ui_side_nav_search_bar" class="crnrstn_interact_ui_side_nav_search_bar"></div></div><div id="crnrstn_interact_ui_side_nav_search_img_wrapper" class="crnrstn_interact_ui_side_nav_v_img_wrapper"><div id="crnrstn_interact_ui_side_nav_search_img_rel" class="crnrstn_interact_ui_side_nav_search_img_rel" style="width:35px; height:26px;"><div id="crnrstn_interact_ui_side_nav_search_img" class="crnrstn_interact_ui_side_nav_search_img">' . $this->oCRNRSTN->return_system_image('SEARCH_MAGNIFY_GLASS','', 20, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb"></div></div><div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);"><div id="crnrstn_interact_ui_side_nav_logo_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div><div class="crnrstn_interact_ui_side_nav_logo_bar_rel"><div id="crnrstn_interact_ui_side_nav_logo_bar" class="crnrstn_interact_ui_side_nav_logo_bar"></div></div><div id="crnrstn_interact_ui_side_nav_logo_img_wrapper" class="crnrstn_interact_ui_side_nav_logo_img_wrapper"><div id="crnrstn_interact_ui_side_nav_logo_img_rel" class="crnrstn_interact_ui_side_nav_logo_img_rel" style="width:80px; height:50px;"><div id="crnrstn_interact_ui_side_nav_logo_img" class="crnrstn_interact_ui_side_nav_logo_img">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 40, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb"></div></div><nav id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav"><!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp --><ul>' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK($type) . '</ul><div class="crnrstn_cb_20"></div><div class="crnrstn_interact_ui_side_nav_5">' . $this->oCRNRSTN->return_system_image('FIVE', 30, 30, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div class="crnrstn_cb_100"></div></nav></div>';
+            $tmp_html_out = '<div id="crnrstn_interact_ui_side_nav_search" class="crnrstn_interact_ui_side_nav_search" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);"><div id="crnrstn_interact_ui_side_nav_search_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div><div class="crnrstn_interact_ui_side_nav_search_bar_rel"><div id="crnrstn_interact_ui_side_nav_search_bar" class="crnrstn_interact_ui_side_nav_search_bar"></div></div><div id="crnrstn_interact_ui_side_nav_search_img_wrapper" class="crnrstn_interact_ui_side_nav_v_img_wrapper"><div id="crnrstn_interact_ui_side_nav_search_img_rel" class="crnrstn_interact_ui_side_nav_search_img_rel" style="width:35px; height:26px;"><div id="crnrstn_interact_ui_side_nav_search_img" class="crnrstn_interact_ui_side_nav_search_img">' . $this->oCRNRSTN->return_system_image('SEARCH_MAGNIFY_GLASS','', 20, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb"></div></div><div id="crnrstn_interact_ui_side_nav_logo" class="crnrstn_interact_ui_side_nav_logo" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);"><div id="crnrstn_interact_ui_side_nav_logo_img_bg" class="crnrstn_interact_ui_bg_layer" style="width:2000px; height:2000px;"></div><div class="crnrstn_interact_ui_side_nav_logo_bar_rel"><div id="crnrstn_interact_ui_side_nav_logo_bar" class="crnrstn_interact_ui_side_nav_logo_bar"></div></div><div id="crnrstn_interact_ui_side_nav_logo_img_wrapper" class="crnrstn_interact_ui_side_nav_logo_img_wrapper"><div id="crnrstn_interact_ui_side_nav_logo_img_rel" class="crnrstn_interact_ui_side_nav_logo_img_rel" style="width:80px; height:50px;"><div id="crnrstn_interact_ui_side_nav_logo_img" class="crnrstn_interact_ui_side_nav_logo_img">' . $this->oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 40, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb"></div></div><div class="crnrstn_cb"></div></div><nav id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav"><!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp --><ul>' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK($content_type) . '</ul><div class="crnrstn_cb_20"></div><div class="crnrstn_interact_ui_side_nav_5">' . $this->oCRNRSTN->return_system_image('FIVE', 30, 30, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div class="crnrstn_cb_100"></div></nav></div>';
 
         }else{
 
@@ -406,7 +434,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
            
             <div id="crnrstn_interact_ui_side_nav" class="crnrstn_interact_ui_side_nav">
                 <!-- SOURCE :: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp -->
-                <ul>' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK($type) . '
+                <ul>' . $this->return_output_CRNRSTN_UI_DOCS_NAV_LINK($content_type) . '
                 </ul>                
                 <div class="crnrstn_cb_20"></div>
                 <div class="crnrstn_interact_ui_side_nav_5">' . $this->oCRNRSTN->return_system_image('FIVE', 30, 30, '', '', '', '', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>

@@ -97,6 +97,7 @@ class crnrstn {
 
     public $os_bit_size;
     protected $global_constants_string_ARRAY = array();
+    public $request_id;
     public $process_id;
     protected $system_hash_algo = 'sha256';
     public $operating_system;
@@ -226,6 +227,8 @@ class crnrstn {
         // MODIFICATION OF THE CONFIG FILE...E.G. RTM.
         $config_serial = $CRNRSTN_config_serial . '_420.00' . filesize($config_filepath) . '.' . filemtime($config_filepath) . '.0';
 
+        $this->request_id = $this->generate_new_key(64);
+
         self::$config_serial = $config_serial;
         $this->config_serial_hash = $this->hash(self::$config_serial);
 
@@ -294,7 +297,7 @@ class crnrstn {
         // INITIALIZE GROUPED CONSTANTS ARRAYS
         $this->system_data_profile_constants_ARRAY = array(CRNRSTN_AUTHORIZE_RUNTIME_ONLY, CRNRSTN_AUTHORIZE_ALL, CRNRSTN_AUTHORIZE_DATABASE, CRNRSTN_AUTHORIZE_SSDTLA, CRNRSTN_AUTHORIZE_PSSDTLA, CRNRSTN_AUTHORIZE_SESSION, CRNRSTN_AUTHORIZE_COOKIE, CRNRSTN_AUTHORIZE_SOAP, CRNRSTN_AUTHORIZE_GET);
         $this->system_ui_module_constants_ARRAY = array(CRNRSTN_RESOURCE_ALL => 'CRNRSTN_RESOURCE_ALL', CRNRSTN_RESOURCE_BASSDRIVE => 'CRNRSTN_RESOURCE_BASSDRIVE', CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE => 'CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE', CRNRSTN_RESOURCE_CSS_VALIDATOR => 'CRNRSTN_RESOURCE_CSS_VALIDATOR', CRNRSTN_RESOURCE_DOCUMENTATION => 'CRNRSTN_RESOURCE_DOCUMENTATION', CRNRSTN_RESOURCE_IMAGE => 'CRNRSTN_RESOURCE_IMAGE', CRNRSTN_RESOURCE_DOCUMENT => 'CRNRSTN_RESOURCE_DOCUMENT', CRNRSTN_RESOURCE_OPENSOURCE => 'CRNRSTN_RESOURCE_OPENSOURCE', CRNRSTN_RESOURCE_ELECTRUM => 'CRNRSTN_RESOURCE_ELECTRUM', CRNRSTN_RESOURCE_NEWS_SYNDICATION => 'CRNRSTN_RESOURCE_NEWS_SYNDICATION', CRNRSTN_LOG_DEFAULT => 'CRNRSTN_LOG_DEFAULT', CRNRSTN_UI_TAG_ANALYTICS => 'CRNRSTN_UI_TAG_ANALYTICS', CRNRSTN_UI_TAG_ENGAGEMENT => 'CRNRSTN_UI_TAG_ENGAGEMENT', CRNRSTN_UI_COOKIE_PREFERENCE => 'CRNRSTN_UI_COOKIE_PREFERENCE', CRNRSTN_UI_COOKIE_YESNO => 'CRNRSTN_UI_COOKIE_YESNO', CRNRSTN_UI_COOKIE_NOTICE => 'CRNRSTN_UI_COOKIE_NOTICE', CRNRSTN_PROXY_KINGS_HIGHWAY => 'CRNRSTN_PROXY_KINGS_HIGHWAY', CRNRSTN_PROXY_EMAIL => 'CRNRSTN_PROXY_EMAIL', CRNRSTN_PROXY_ELECTRUM => 'CRNRSTN_PROXY_ELECTRUM', CRNRSTN_PROXY_AUTHENTICATE => 'CRNRSTN_PROXY_AUTHENTICATE', CRNRSTN_RESPONSE_REPORT => 'CRNRSTN_RESPONSE_REPORT', CRNRSTN_CLIENT_SSDTLA_DEBUG => 'CRNRSTN_CLIENT_SSDTLA_DEBUG');
-        $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
+        $this->system_resource_constants = array(CRNRSTN_RESOURCE_ALL, CRNRSTN_RESOURCE_BASSDRIVE, CRNRSTN_RESOURCE_NATIONAL_WEATHER_SERVICE, CRNRSTN_RESOURCE_CSS_VALIDATOR, CRNRSTN_RESOURCE_DOCUMENTATION, CRNRSTN_RESOURCE_DEEP_LINK, CRNRSTN_RESOURCE_IMAGE, CRNRSTN_RESOURCE_DOCUMENT, CRNRSTN_RESOURCE_OPENSOURCE, CRNRSTN_RESOURCE_NEWS_SYNDICATION, CRNRSTN_LOG_EMAIL, CRNRSTN_LOG_EMAIL_PROXY, CRNRSTN_LOG_FILE, CRNRSTN_LOG_FILE_FTP, CRNRSTN_LOG_SCREEN_TEXT, CRNRSTN_LOG_SCREEN, CRNRSTN_LOG_SCREEN_HTML, CRNRSTN_LOG_SCREEN_HTML_HIDDEN, CRNRSTN_LOG_DEFAULT, CRNRSTN_LOG_ELECTRUM);
         $this->system_theme_style_constants_ARRAY = array(CRNRSTN_UI_PHPNIGHT, CRNRSTN_UI_DARKNIGHT, CRNRSTN_UI_PHP, CRNRSTN_UI_GREYSKYS, CRNRSTN_UI_HTML, CRNRSTN_UI_DAYLIGHT, CRNRSTN_UI_FEATHER, CRNRSTN_UI_GLASS_LIGHT_COPY, CRNRSTN_UI_GLASS_DARK_COPY, CRNRSTN_UI_WOOD, CRNRSTN_UI_TERMINAL, CRNRSTN_UI_RANDOM);
         $this->system_output_profile_constants = array(CRNRSTN_ASSET_MODE_PNG, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_ASSET_MODE_BASE64);
         $this->system_output_channel_constants = array(CRNRSTN_CHANNEL_DESKTOP, CRNRSTN_CHANNEL_TABLET, CRNRSTN_CHANNEL_MOBILE);
@@ -670,11 +673,29 @@ class crnrstn {
                 }
 
             break;
+            case 'module_key':
+
+                $tmp_ARRAY = $this->return_documentation_navigation_array();
+                //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . print_r($tmp_ARRAY, true) . '].');
+
+                if(isset($tmp_ARRAY[$salt_ugc])){
+
+                    return true;
+
+                }
+
+            break;
 
         }
 
         //error_log(__LINE__ . ' crnrstn [' . $salt_ugc . '] NOT FOUND IN [' . $crnrstn_asset_family . '].');
         return false;
+
+    }
+
+    public function return_http_data_services_meta($name){
+
+        return $this->oCRNRSTN_ENV->return_http_data_services_meta($name);
 
     }
 
@@ -687,6 +708,12 @@ class crnrstn {
         }
 
         return false;
+
+    }
+
+    public function return_documentation_navigation_array(){
+
+        return $this->oCRNRSTN_UI_HTML_MGR->return_output_CRNRSTN_UI_DOCS_NAV_LINK('php', 'array');
 
     }
 
@@ -999,6 +1026,10 @@ class crnrstn {
                 //$this->oCRNRSTN_ENV = new crnrstn_environment($this, 'session_initialization_ping');
                 $this->oCRNRSTN_ENV = new crnrstn_environment($this);
                 $this->oCRNRSTN_USR = $this->oCRNRSTN_ENV->return_ENV_oCRNRSTN_USR();
+
+                //
+                // INITIALIZE HTTP GET SITUATION IN SUPPORT OF INTERACT UI DEEP LINKS, AUTO-SCROLL, ETC.
+                $this->initialize_http_get_params();
 
             }
 
@@ -3612,6 +3643,12 @@ class crnrstn {
 
     }
 
+    private function initialize_http_get_params(){
+
+        $this->oCRNRSTN_ENV->initialize_http_get_params();
+
+    }
+
     public function return_mobile_detect_magic_methods($type){
 
         $tmp_ARRAY = array();
@@ -5274,6 +5311,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
                         }
 
+                        //error_log(__LINE__ . ' crnrstn [DOCUMENTATION].');
+
                         //
                         // RESOURCE DEPENDENCIES :: SYSTEM FOOTER
                         if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_RESOURCE_FOOTER])){
@@ -5311,6 +5350,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         // SILENCE IS GOLDEN
 
                     break;
+                    
                 }
 
             }
@@ -5413,6 +5453,9 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
+        //
+        // DEEP LINK SUPPORT.
+        $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_RESOURCE_DEEP_LINK);
 
         if(isset($this->html_footer_build_flag_ARRAY[CRNRSTN_RESPONSE_REPORT])){
 
@@ -11541,6 +11584,74 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         return $tmp_hash_val;
 
     }
+//
+//    // https://www.php.net/manual/en/function.parse-url.php
+//    public function resolve_url($base, $url, $mb_safe = true) {
+//        if (!strlen($base)) return $url;
+//        // Step 2
+//        if (!strlen($url)) return $base;
+//        // Step 3
+//        if (preg_match('!^[a-z]+:!i', $url)) return $url;
+//
+//        if($mb_safe){
+//
+//            $base = $this->mb_parse_url($base);
+//
+//        }else{
+//
+//            $base = parse_url($base);
+//
+//        }
+//
+//        if ($url{0} == "#") {
+//            // Step 2 (fragment)
+//            $base['fragment'] = substr($url, 1);
+//            return unparse_url($base);
+//        }
+//        unset($base['fragment']);
+//        unset($base['query']);
+//        if (substr($url, 0, 2) == "//") {
+//            // Step 4
+//            return unparse_url(array(
+//                'scheme'=>$base['scheme'],
+//                'path'=>$url,
+//            ));
+//        } else if ($url{0} == "/") {
+//            // Step 5
+//            $base['path'] = $url;
+//        } else {
+//            // Step 6
+//            $path = explode('/', $base['path']);
+//            $url_path = explode('/', $url);
+//            // Step 6a: drop file from base
+//            array_pop($path);
+//            // Step 6b, 6c, 6e: append url while removing "." and ".." from
+//            // the directory portion
+//            $end = array_pop($url_path);
+//            foreach ($url_path as $segment) {
+//                if ($segment == '.') {
+//                    // skip
+//                } else if ($segment == '..' && $path && $path[sizeof($path)-1] != '..') {
+//                    array_pop($path);
+//                } else {
+//                    $path[] = $segment;
+//                }
+//            }
+//            // Step 6d, 6f: remove "." and ".." from file portion
+//            if ($end == '.') {
+//                $path[] = '';
+//            } else if ($end == '..' && $path && $path[sizeof($path)-1] != '..') {
+//                $path[sizeof($path)-1] = '';
+//            } else {
+//                $path[] = $end;
+//            }
+//            // Step 6h
+//            $base['path'] = join('/', $path);
+//
+//        }
+//        // Step 7
+//        return unparse_url($base);
+//    }
 
     /**
      * UTF-8 aware parse_url() replacement.

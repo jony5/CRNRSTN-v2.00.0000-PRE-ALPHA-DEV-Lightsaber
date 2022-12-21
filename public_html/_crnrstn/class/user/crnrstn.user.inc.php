@@ -4492,7 +4492,7 @@ ACCESS TYPE: SYSTEM LEVEL ACCESS
 
         //
         // PERFORM INDEX (FORM_INPUT_NAME) AGGREGATION LAST
-        $tmp_html_out  = '        <input type="hidden" name="crnrstn_session_salt" value="' . $this->oCRNRSTN->session_salt(). '">
+        $tmp_html_out  = '        <input type="hidden" id="crnrstn_session_salt" name="crnrstn_session_salt" value="' . $this->oCRNRSTN->session_salt(). '">
 ';
         $tmp_html_out  .= '        <input type="hidden" name="crnrstn_pssdtlp_clear_text_bytes" value="' . strlen($tmp_pssdtlp_data) . '">
 ';

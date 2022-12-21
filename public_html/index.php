@@ -14,10 +14,116 @@ $oCRNRSTN->system_output_footer_html(CRNRSTN_RESOURCE_DOCUMENTATION, true);
 
 //
 // HTML HEAD OUTPUT.
-//$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY_MOBILE, true);
-//$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_JQUERY_UI, true);
+//$oCRNRSTN->system_output_head_html(CRNRSTN_JS_FRAMEWORK_BACKBONE, true);  // THROWS DOM INIT ERROR. LEAD DEV IS STILL...ADDING FRAMEWORK DEPENDENCIES.
 $oCRNRSTN->system_output_head_html(CRNRSTN_CLIENT_SSDTLA_DEBUG, true, true);
+/*!
+<script type="application/json" src="https://underscorejs.org/underscore-esm-min.js.map"></script>
+<script type="module" src="https://underscorejs.org/underscore-esm-min.js"></script>
 
+https://underscorejs.org/
+https://github.com/jashkenas/underscore
+https://twitter.com/underscoredotjs
+https://www.patreon.com/juliangonggrijp
+https://tidelift.com/subscription/pkg/npm-underscore?utm_source=npm-underscore&utm_medium=referral&utm_campaign=enterprise
+
+Underscore is a JavaScript library that provides a whole mess of useful functional programming helpers without extending any built-in objects. It’s the answer to the question: “If I sit down in front of a blank HTML page, and want to start being productive immediately, what do I need?” … and the tie to go along with jQuery's tux and Backbone's suspenders.
+
+Underscore provides over 100 functions that support both your favorite workaday functional helpers: map, filter, invoke — as well as more specialized goodies: function binding, javascript templating, creating quick indexes, deep equality testing, and so on.
+
+A complete Test Suite is included for your perusal.
+
+https://underscorejs.org/test/
+
+You may also read through the annotated source code. There is a modular version with clickable import references as well.
+
+You may choose between monolithic and modular imports. There is a quick summary of the options below, as well as a more comprehensive discussion in the article.
+
+Enjoying Underscore, and want to turn it up to 11? Try Underscore-contrib.
+
+The project is hosted on GitHub. You can report bugs and discuss features on the issues page or chat in the Gitter channel.
+
+You can support the project by donating on Patreon. Enterprise coverage is available as part of the Tidelift Subscription.
+
+Underscore is an open-source component of DocumentCloud.
+
+Engine Compatibility
+Underscore 1.x is backwards compatible with any engine that fully supports ES3, while also utilizing newer features when available, such as Object.keys, typed arrays and ES modules. We routinely run our unittests against the JavaScript engines listed below:
+
+Chrome 26–latest
+Edge 13, 18 and latest
+Firefox 11–latest
+Internet Explorer 9–11
+Node.js 8–latest LTS
+Safari 8–latest
+In addition:
+
+We have recent confirmation that the library is compatible with Adobe ExtendScript.
+There is support code present for IE 8, which we will retain in future Underscore 1.x updates.
+Patches to enhance support for other ES3-compatible environments are always welcome.
+Underscore 2.x will likely remove support for some outdated environments.
+
+ASSET MAPPED ::
+//==== ==== ==== ==== ==== ==== ==== ==== ====
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_UMD
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_ESM
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM
+
+EDGE ::
+//==== ==== ==== ==== ==== ==== ==== ==== ====
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_UMD_EDGE
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_ESM_EDGE
+
+CDN ::
+//==== ==== ==== ==== ==== ==== ==== ==== ====
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_CDN
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_CDN
+
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_UNPKG
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_UNPKG
+
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_PAGECDN
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_PAGECDN
+
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_CDNJS
+CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_CDNJS
+
+OTHER ::
+//==== ==== ==== ==== ==== ==== ==== ==== ====
+CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_1
+CRNRSTN_JS_FRAMEWORK_JQUERY_UI_1_13_2
+CRNRSTN_JS_FRAMEWORK_LIGHTBOX_DOT_JS_2_11_3
+CRNRSTN_JS_FRAMEWORK_REACT_18.2.0
+CRNRSTN_JS_FRAMEWORK_REACT_DOM_18.2.0
+CRNRSTN_JS_FRAMEWORK_MITHRIL_2.2.2
+CRNRSTN_JS_FRAMEWORK_BACKBONE_1.4.1
+CRNRSTN_JS_FRAMEWORK_PROTOTYPE_1.7.3
+CRNRSTN_JS_FRAMEWORK_MOOTOOLS_MORE_1.6.0
+CRNRSTN_JS_FRAMEWORK_MOOTOOLS_CORE_1.6.0
+CRNRSTN_CSS_FRAMEWORK_RWDGRID_2_0
+CRNRSTN_UI_JS_MAIN_1_00_0000
+CRNRSTN_UI_CSS_MAIN_1_00_0000
+
+v1.13.6 CDN URLs (Use with <script src="..."></script>)
+https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js
+https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-esm-min.js
+
+https://unpkg.com/underscore@1.13.6/underscore-umd-min.js
+https://unpkg.com/underscore@1.13.6/underscore-esm-min.js
+
+https://pagecdn.io/lib/underscore/1.13.6/underscore-umd-min.js
+https://pagecdn.io/lib/underscore/1.13.6/underscore-esm-min.js
+
+https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-umd-min.js
+https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-esm-min.js
+
+In most cases, you can replace the version number above by latest so that your embed will automatically use the latest version, or stable if you want to delay updating until an update has proven to be free of accidental breaking changes. Example:
+https://cdn.jsdelivr.net/npm/underscore@latest/underscore-umd-min.js
+
+
+
+
+*/
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $oCRNRSTN->iso_language_html(); ?>">

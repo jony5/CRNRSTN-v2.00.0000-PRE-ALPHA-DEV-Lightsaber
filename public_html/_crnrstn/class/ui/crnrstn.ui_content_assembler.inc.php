@@ -93,12 +93,32 @@ class crnrstn_ui_content_assembler {
 
     }
 
-	public function initialize_page_content(){
+	public function initialize_page_content($module_key_override = NULL){
 
-	    //
-        // SSDTLA PARAMETER EXTRACTION.
-        // CURRENTLY, ALL CRNRSTN :: LIGHTSABER LINK CLICKS ARE crnrstn_interact_ui_link_text_click
-        $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+	    $tmp_override = false;
+        if(isset($module_key_override)){
+
+            if(strlen($module_key_override) > 0){
+
+                $tmp_override = true;
+
+            }
+
+        }
+
+        if($tmp_override){
+
+            //
+            // DEEP LINK OVERRIDE.
+            $tmp_module_page_key = $module_key_override;
+
+        }else{
+
+            //
+            // SSDTLA PARAMETER EXTRACTION.
+            $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+
+        }
 
         if(!isset(self::$oContentGen)){
 

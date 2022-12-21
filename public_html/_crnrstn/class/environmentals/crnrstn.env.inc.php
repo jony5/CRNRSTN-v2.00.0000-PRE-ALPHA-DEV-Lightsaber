@@ -475,6 +475,12 @@ class crnrstn_environment {
 
     }
 
+    public function initialize_http_get_params(){
+
+        $this->oHTTP_MGR->initialize_http_get_params();
+
+    }
+
     private function init_encrypt_profile($oCRNRSTN){
 
         //
@@ -648,6 +654,23 @@ class crnrstn_environment {
                 return $tmp_output;
 
             break;
+            case CRNRSTN_RESOURCE_DEEP_LINK:
+
+                //error_log(__LINE__ . ' env return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN ['. $output_format . '].');
+                $tmp_array = $this->return_output_CRNRSTN_RESOURCE_DEEP_LINK($output_format);
+                $tmp_output = '';
+
+                //
+                // LOAD OUTPUT
+                foreach($tmp_array as $key => $resource_content){
+
+                    $tmp_output .= $resource_content;
+
+                }
+
+                return $tmp_output;
+
+            break;
             case CRNRSTN_RESPONSE_REPORT:
 
                 //error_log(__LINE__ . ' env return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN ['. $output_format . '].');
@@ -692,11 +715,63 @@ class crnrstn_environment {
 
     }
 
+    public function return_http_data_services_meta($name){
+
+        switch($name){
+            case 'crnrstn_ssdtla_enabled':
+
+                return $this->oHTTP_MGR->crnrstn_ssdtla_enabled;
+
+            break;
+            case 'crnrstn_asset_family':
+
+                return $this->oHTTP_MGR->crnrstn_asset_family;
+
+            break;
+            case 'crnrstn_asset_return_method_key':
+
+                return $this->oHTTP_MGR->crnrstn_asset_return_method_key;
+
+            break;
+            case 'get':
+
+                $tmp_crnrstn_interact_data_transport_get_str = '';
+                $tmp_get_param_cnt = $this->oCRNRSTN->get_resource_count('crnrstn_interact_data_transport_get_param', 'CRNRSTN::RESOURCE::GET_DATA');
+                //error_log(__LINE__ . ' env GET[' . $tmp_get_param_cnt . '].');
+
+                for($i = 0; $i < $tmp_get_param_cnt; $i++){
+
+                    //error_log(__LINE__ . ' env GET[' . $i . '].');
+                    $tmp_crnrstn_interact_data_transport_get_str .= $this->oCRNRSTN->get_resource('crnrstn_interact_data_transport_get_param', $i, 'CRNRSTN::RESOURCE::GET_DATA') . '|';
+
+                }
+
+                if(strlen($tmp_crnrstn_interact_data_transport_get_str) > 0){
+
+                    $tmp_crnrstn_interact_data_transport_get_str = $this->oCRNRSTN->strrtrim($tmp_crnrstn_interact_data_transport_get_str, '|');
+
+                }
+
+                return $tmp_crnrstn_interact_data_transport_get_str;
+
+            break;
+            default:
+
+                return '';
+
+            break;
+
+        }
+
+    }
+
     private function return_output_CRNRSTN_UI_SOAP_DATA_TUNNEL(){
 
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_xhr_root', 'crnrstn_xhr_root');
 
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', 'crnrstn_interact_ui_link_text_click');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_source', 'crnrstn_request_source');
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_resource_initialize', 'crnrstn_resource_initialize');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_loadbar_progress', 'crnrstn_interact_ui_loadbar_progress');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_active_nav_links', 'crnrstn_interact_ui_active_nav_links');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_pssdtl_packet', 'crnrstn_pssdtl_packet', $this->oCRNRSTN->return_crnrstn_data_packet(CRNRSTN_OUTPUT_PSSDTLA), CRNRSTN_INPUT_REQUIRED);
@@ -718,9 +793,20 @@ class crnrstn_environment {
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
+        $tmp_resource_initialize = '';
+        if($this->return_http_data_services_meta('crnrstn_asset_family') === 'module_key'){
+
+            $tmp_resource_initialize = $this->return_http_data_services_meta('crnrstn_asset_return_method_key');
+            //error_log(__LINE__ . ' env $tmp_resource_initialize[' . $tmp_resource_initialize . '].');
+
+        }
+
+        $tmp_http_get_data_params = $this->return_http_data_services_meta('get');
+       //error_log(__LINE__ . ' env $tmp_http_get_data_params[' . $tmp_http_get_data_params . '].');
+
         if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-            $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden"><form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea><button type="submit">SUBMIT</button><input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '"><input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '"><input type="hidden" id="crnrstn_request_source" name="crnrstn_request_source" value=""><input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
+            $tmp_str_array[] = '<div id="crnrstn_soap_data_tunnel_form_shell" class="crnrstn_hidden"><form action="#" method="post" id="crnrstn_soap_data_tunnel_frm" name="crnrstn_soap_data_tunnel_frm" enctype="multipart/form-data"><textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea><button type="submit">SUBMIT</button><input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '"><input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '"><input type="hidden" id="crnrstn_request_source" name="crnrstn_request_source" value=""><input type="hidden" id="crnrstn_resource_initialize" name="crnrstn_resource_initialize" value="' . $tmp_resource_initialize . '"><input type="hidden" id="crnrstn_interact_data_transport_get_params" name="crnrstn_interact_data_transport_get_params" value="' . $tmp_http_get_data_params . '"><input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
             $tmp_str_array[] = $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_OUTPUT_SSDTLA, 'crnrstn_soap_data_tunnel_form') . '</form><div id="crnrstn_interact_ui_loadbar_IMAGE_CACHE">' . $this->oCRNRSTN->return_creative('UI_PAGELOAD_INDICATOR', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div><div id="crnrstn_interact_ui_mit_license_src" class="crnrstn_hidden"></div><div id="crnrstn_interact_ui_theme_profile" class="crnrstn_hidden"></div></div>';
 
         }else{
@@ -732,6 +818,8 @@ class crnrstn_environment {
         <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '">
         <input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '">
         <input type="hidden" id="crnrstn_request_source" name="crnrstn_request_source" value="">
+        <input type="hidden" id="crnrstn_resource_initialize" name="crnrstn_resource_initialize" value="' . $tmp_resource_initialize . '">
+        <input type="hidden" id="crnrstn_interact_data_transport_get_params" name="crnrstn_interact_data_transport_get_params" value="' . $tmp_http_get_data_params . '">
         <input type="hidden" id="crnrstn_soap_service_client_ip" name="crnrstn_soap_service_client_ip" value="' . $this->oCRNRSTN->data_encrypt($this->oCRNRSTN->return_client_ip()) . '">
 ' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme('hidden_hash_input_array');
 
@@ -798,6 +886,41 @@ class crnrstn_environment {
         }
 
         return $tmp_str_array;
+
+    }
+
+    private function return_output_CRNRSTN_RESOURCE_DEEP_LINK(){
+
+        $tmp_str = '';
+        $tmp_crnrstn_asset_return_method_key = $this->return_http_data_services_meta('crnrstn_asset_return_method_key');
+        if(strlen($tmp_crnrstn_asset_return_method_key) > 0){
+
+            $tmp_str = $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page($tmp_crnrstn_asset_return_method_key);
+
+        }
+
+        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+
+            $tmp_str_array[] = '<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->';
+            $tmp_str_array[] = '<div id="crnrstn_interact_ui_deep_link_src" class="crnrstn_hidden">' . $tmp_str . '</div>';
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT -->';
+
+        }else{
+
+            $tmp_str_array[] = '
+<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
+';
+
+            $tmp_str_array[] = '        <div id="crnrstn_interact_ui_deep_link_src" class="crnrstn_hidden">' . $tmp_str . '</div>
+        ';
+
+            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT -->
+';
+
+        }
+
+        return $tmp_str_array;
+
 
     }
 

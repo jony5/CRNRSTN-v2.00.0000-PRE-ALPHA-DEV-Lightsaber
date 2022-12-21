@@ -10362,7 +10362,7 @@ class crnrstn_system_image_asset_manager {
                     default:
 
                         //error_log(__LINE__ . ' asste mgr [' . $tmp_asset_family . '].');
-                        return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '?' . $this->oCRNRSTN->session_salt() . '=' . $tmp_asset_family . '/' . $tmp_filename . '.ico&v=420.00" />';
+                        return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '?' . $this->oCRNRSTN->session_salt() . '=' . $tmp_asset_family . '/' . $tmp_filename . '.ico&crnrstn_=420.00" />';
 
                     break;
 
@@ -11878,7 +11878,7 @@ class crnrstn_system_image_asset_manager {
                             case 'baasdrive':
                             case 'jony5':
 
-                                return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '?' . $this->oCRNRSTN->session_salt() . '=' . $tmp_asset_family . '/' . $tmp_filename . '.ico&v=420.00" />';
+                                return '<link rel="shortcut icon" type="image/x-icon" href="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '?' . $this->oCRNRSTN->session_salt() . '=' . $tmp_asset_family . '/' . $tmp_filename . '.ico&crnrstn_=420.00" />';
 
                             break;
                             default:

@@ -542,6 +542,7 @@ function crnrstn_constants_init($const_nom){
 
         break;
         case 'CRNRSTN_JS_FRAMEWORK_JQUERY':
+        case 'CRNRSTN_JS_FRAMEWORK_JQUERY_3_6_1':
 
             return (int) 7301;
 
@@ -606,6 +607,34 @@ function crnrstn_constants_init($const_nom){
             return (int) 7313;
 
         break;
+        /*!
+        ASSET MAPPED ::
+        //==== ==== ==== ==== ==== ==== ==== ==== ====
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_UMD
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_ESM
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM
+
+        EDGE ::
+        //==== ==== ==== ==== ==== ==== ==== ==== ====
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_UMD_EDGE
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_ESM_EDGE
+
+        CDN ::
+        //==== ==== ==== ==== ==== ==== ==== ==== ====
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_CDN
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_CDN
+
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_UNPKG
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_UNPKG
+
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_PAGECDN
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_PAGECDN
+
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_UMD_CDNJS
+        CRNRSTN_JS_FRAMEWORK_UNDERSCORE_1_13_6_ESM_CDNJS
+
+        */
         case 'CRNRSTN_JS_FRAMEWORK_PROTOTYPE':
 
             return (int) 7314;
@@ -1087,101 +1116,107 @@ function crnrstn_constants_init($const_nom){
             return (int) 8594;
 
         break;
-        case 'CRNRSTN_RESOURCE_FOOTER':
+        case 'CRNRSTN_RESOURCE_DEEP_LINK':
 
             return (int) 8595;
 
         break;
-        case 'CRNRSTN_RESOURCE_IMAGE':
+        case 'CRNRSTN_RESOURCE_FOOTER':
 
             return (int) 8596;
 
         break;
-        case 'CRNRSTN_RESOURCE_DOCUMENT':
+        case 'CRNRSTN_RESOURCE_IMAGE':
 
             return (int) 8597;
 
         break;
-        case 'CRNRSTN_RESOURCE_OPENSOURCE':
+        case 'CRNRSTN_RESOURCE_DOCUMENT':
 
             return (int) 8598;
 
         break;
-        case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
+        case 'CRNRSTN_RESOURCE_OPENSOURCE':
 
             return (int) 8599;
 
         break;
-        case 'CRNRSTN_RESOURCE_ELECTRUM':
+        case 'CRNRSTN_RESOURCE_NEWS_SYNDICATION':
 
             return (int) 8600;
 
         break;
-        case 'CRNRSTN_RESOURCE_THIRDPARTY':
+        case 'CRNRSTN_RESOURCE_ELECTRUM':
 
             return (int) 8601;
 
         break;
-        case 'CRNRSTN_HTTP_REDIRECT':
+        case 'CRNRSTN_RESOURCE_THIRDPARTY':
 
             return (int) 8602;
 
         break;
-        case 'CRNRSTN_HTTPS_REDIRECT':
+        case 'CRNRSTN_HTTP_REDIRECT':
 
             return (int) 8603;
 
         break;
-        case 'CRNRSTN_HTTP_DATA_RETURN':
+        case 'CRNRSTN_HTTPS_REDIRECT':
 
             return (int) 8604;
 
         break;
-        case 'CRNRSTN_HTTPS_DATA_RETURN':
+        case 'CRNRSTN_HTTP_DATA_RETURN':
 
             return (int) 8605;
 
         break;
-        case 'CRNRSTN_JSON_RETURN':
+        case 'CRNRSTN_HTTPS_DATA_RETURN':
 
             return (int) 8606;
 
         break;
-        case 'CRNRSTN_XML_RETURN':
+        case 'CRNRSTN_JSON_RETURN':
 
             return (int) 8607;
 
         break;
-        case 'CRNRSTN_SOAP_RETURN':
+        case 'CRNRSTN_XML_RETURN':
 
             return (int) 8608;
 
         break;
-        case 'CRNRSTN_HTML_TEXT_RETURN':
+        case 'CRNRSTN_SOAP_RETURN':
 
             return (int) 8609;
 
         break;
-        case 'CRNRSTN_DOCUMENT_FILE_RETURN':
+        case 'CRNRSTN_HTML_TEXT_RETURN':
 
             return (int) 8610;
 
         break;
-        case 'CRNRSTN_SERVER_RESPONSE_CODE':
+        case 'CRNRSTN_DOCUMENT_FILE_RETURN':
 
             return (int) 8611;
 
         break;
-        case 'CRNRSTN_RESPONSE_REPORT':
+        case 'CRNRSTN_SERVER_RESPONSE_CODE':
 
             return (int) 8612;
+
+        break;
+        case 'CRNRSTN_RESPONSE_REPORT':
+
+            return (int) 8613;
 
         break;
 
 
         //
         // 9051
-        // 'CRNRSTN_BARNEY', 'CRNRSTN_BARNEY_DATABASE', 'CRNRSTN_BARNEY_FILE', 'CRNRSTN_BARNEY_FTP', 'CRNRSTN_BARNEY_ELECTRUM',
+        // 'CRNRSTN_BARNEY', 'CRNRSTN_BARNEY_DATABASE', 'CRNRSTN_BARNEY_FILE',
+        // 'CRNRSTN_BARNEY_FTP', 'CRNRSTN_BARNEY_ELECTRUM',
         // 'CRNRSTN_BARNEY_GABRIEL', 'CRNRSTN_BARNEY_DISK'
         case 'CRNRSTN_BARNEY':
 

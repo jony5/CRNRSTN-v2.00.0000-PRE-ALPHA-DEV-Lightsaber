@@ -9608,12 +9608,12 @@ Formally, the display property sets an element\'s inner and outer display types.
         <meta property="og:url" content="http://css.validate.jony5.com/"/>
         <meta property="og:site_name" content="CRNRSTN :: CSS Validator for HTML Email v2.00.0000"/>
         <meta property="og:title" content="Only email pros can score over 92.5%. The CRNRSTN :: CSS Validator will assess the use of CSS within HTML email code and score the situation from a high level and then down to each email client."/>
-        <meta property="og:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?v=420.00"/>
+        <meta property="og:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?crnrstn_=420.00"/>
         <meta property="og:description" content="Only email pros can score over 92.5%.  Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of  the Email Standards Project." />
         <meta property="og:type" content="website"/>
         <meta name="twitter:card" content="summary"/>
         <meta name="twitter:title" content="CRNRSTN :: CSS Validator for HTML Email v2.00.0000"/>
-        <meta name="twitter:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?v=420.00"/>
+        <meta name="twitter:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?crnrstn_=420.00"/>
         <meta name="twitter:description" content="Only email pros can score over 92.5%. Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support!" />
         <meta name="description" content="Only email pros can score over 92.5%. Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of  the Email Standards Project." />
         <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />
@@ -9774,12 +9774,12 @@ Formally, the display property sets an element\'s inner and outer display types.
         <meta property="og:url" content="http://css.validate.jony5.com/"/>
         <meta property="og:site_name" content="CRNRSTN :: CSS Validator for HTML Email v2.00.0000"/>
         <meta property="og:title" content="Only email pros can score over 92.5%. The CRNRSTN :: CSS Validator will assess the use of CSS within HTML email code and score the situation from a high level and then down to each email client."/>
-        <meta property="og:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?v=420.00"/>
+        <meta property="og:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?crnrstn_=420.00"/>
         <meta property="og:description" content="Only email pros can score over 92.5%.  Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of  the Email Standards Project." />
         <meta property="og:type" content="website"/>
         <meta name="twitter:card" content="summary"/>
         <meta name="twitter:title" content="CRNRSTN :: CSS Validator for HTML Email v2.00.0000"/>
-        <meta name="twitter:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?v=420.00"/>
+        <meta name="twitter:image" content="http://css.validate.jony5.com/_crnrstn/ui/imgs/jpg/crnrstn_css_validator_logo_smedia.jpg?crnrstn_=420.00"/>
         <meta name="twitter:description" content="Only email pros can score over 92.5%. Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support!" />
         <meta name="description" content="Only email pros can score over 92.5%. Special thanks to the folks  at WaSP and Campaign Monitor for  their Ultimate Guide to CSS breaking  down a host of the nitty-gritty with  respect to CSS support for many popular mobile, web, and desktop email clients and for their creation of  the Email Standards Project." />
         <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web programming, marketing, CSS, XHTML, php, ajax" />

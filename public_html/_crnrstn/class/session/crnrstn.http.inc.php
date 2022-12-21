@@ -78,7 +78,7 @@ class crnrstn_http_manager {
 
     public $form_integration_isset_ARRAY = array();
     public $response_header_attribute_ARRAY = array();
-    
+
     public $crnrstn_ssdtla_enabled = false;
     public $country_iso_code = 'en';
 
@@ -388,6 +388,61 @@ class crnrstn_http_manager {
 
     }
 
+    public function initialize_http_get_params(){
+
+        //
+        // LOAD GET DATA
+        if($this->issetHTTP($_GET)){
+
+            //
+            // GET URL
+            $tmp_url = $this->oCRNRSTN->current_location();
+
+            /*
+            $tmp_url = 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/?crnrstn_0010111011=is_mobile&crnrstn_autoscroll=related';
+
+            $this->oCRNRSTN->explode_url($tmp_url)
+            Array
+            (
+                [root] => http://172.16.225.139/lightsaber.crnrstn.evifweb.com/
+                [param] => Array
+                    (
+                        [crnrstn_0010111011] => is_mobile
+                        [crnrstn_autoscroll] => related
+                    )
+
+            )
+
+            */
+            //
+            // URL BREAK DOWN
+            $tmp_ARRAY_explode = $this->oCRNRSTN->explode_url($tmp_url);
+
+            //error_log(__LINE__  . ' http mgr [' . print_r($tmp_ARRAY_explode, true) . ']');
+
+            if(isset($tmp_ARRAY_explode['param'])){
+
+                foreach($tmp_ARRAY_explode['param'] as $index => $data){
+
+                    if($index !== $this->oCRNRSTN->session_salt()){
+
+                        $this->oCRNRSTN->add_system_resource('crnrstn_interact_data_transport_get_param', $index, 'CRNRSTN::RESOURCE::GET_DATA');
+
+                    }
+
+                    //error_log(__LINE__  . ' http mgr [' . print_r($index, true) . ']');
+                    //error_log(__LINE__  . ' http mgr [' . print_r($data, true) . ']');
+
+                    $this->oCRNRSTN->add_system_resource($index, $data, 'CRNRSTN::RESOURCE::GET_DATA');
+
+                }
+
+            }
+
+        }
+
+    }
+
     public function http_data_services_response($output_format = 'xml'){
 
         //
@@ -471,6 +526,8 @@ class crnrstn_http_manager {
                     // DO WE HAVE GET DATA?
                     if($this->issetHTTP($_GET)){
 
+                        //error_log(__LINE__ . ' http mgr [' . $this->oCRNRSTN->request_id . '].');
+
                         //
                         // CRNRSTN :: WILL ALWAYS PROCESS DATA SENT THROUGH CRNRSTN ::
                         // ...THERE WILL STILL BE SUPPORT FOR DIRECT HTTP POST/GET ACCESS.
@@ -485,6 +542,7 @@ class crnrstn_http_manager {
                         if($this->issetParam($_GET, $this->oCRNRSTN->session_salt())){
 
                             $tmp_salt_ugc_val = $_GET[$this->oCRNRSTN->session_salt()];
+                            //error_log(__LINE__ . ' http mgr [' . $tmp_salt_ugc_val . '][' . $this->oCRNRSTN->request_id . '].');
 
                             if(strlen($tmp_salt_ugc_val) > 0){
 
@@ -495,7 +553,7 @@ class crnrstn_http_manager {
 
                                     //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
 
-                                    return true;
+                                    //return true;
 
                                 }
 
@@ -507,7 +565,7 @@ class crnrstn_http_manager {
 
                                     //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
 
-                                    return true;
+                                    //return true;
 
                                 }
 
@@ -519,7 +577,7 @@ class crnrstn_http_manager {
 
                                     //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . ']  asset HOOKED[' . $tmp_salt_ugc_val . '].');
 
-                                    return true;
+                                    //return true;
 
                                 }
 
@@ -532,7 +590,7 @@ class crnrstn_http_manager {
 
                                     //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . ']  asset HOOKED[' . $tmp_salt_ugc_val . '].');
 
-                                    return true;
+                                    //return true;
 
                                 }
 
@@ -548,7 +606,7 @@ class crnrstn_http_manager {
 //                                    error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
 //
 //                                    die();
-                                    return true;
+                                    //return true;
 
                                 }
 
@@ -560,7 +618,20 @@ class crnrstn_http_manager {
 
                                     //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
 
-                                    return true;
+                                    //return true;
+
+                                }
+
+                                if($this->oCRNRSTN->asset_routing_data_key_lookup('module_key', $tmp_salt_ugc_val)){
+
+                                    $this->crnrstn_ssdtla_enabled = true;
+                                    $this->crnrstn_asset_family = 'module_key';
+                                    $this->crnrstn_asset_return_method_key = $tmp_salt_ugc_val;
+                                    //error_log(__LINE__ . ' http mgr module_key.');
+
+                                    //error_log(__LINE__ . ' http mgr [' . print_r($this->crnrstn_ssdtla_enabled, true) . '] [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+
+                                    //return true;
 
                                 }
 
@@ -573,7 +644,11 @@ class crnrstn_http_manager {
                 break;
                 case 'P':
 
+                    //error_log(__LINE__ . ' http mgr [' . $this->oCRNRSTN->request_id . '].');
+
                     if($this->issetHTTP($_POST)){
+
+                        //error_log(__LINE__ . ' http mgr [' . $this->oCRNRSTN->request_id . '].');
 
                         /*
                         'crnrstn_xhr_root', 'crnrstn_xhr_root');
@@ -603,6 +678,7 @@ class crnrstn_http_manager {
                         // CRNRSTN :: WILL ALWAYS PROCESS DATA SENT THROUGH CRNRSTN ::
                         // ...THERE WILL STILL BE SUPPORT FOR DIRECT HTTP POST/GET ACCESS.
                         if($this->issetParam($_POST, 'crnrstn_pssdtl_packet')){
+                            //error_log(__LINE__ . ' http mgr.');
 
                             $this->form_integration_isset_ARRAY['POST'] = true;
                             $this->crnrstn_ssdtla_enabled = true;
@@ -635,7 +711,7 @@ class crnrstn_http_manager {
 
         }
 
-        return $this->crnrstn_ssdtla_enabled;
+        return true;
 
     }
 

@@ -678,7 +678,11 @@ class crnrstn_content_source_controller {
 
         }
 
-        return $this->content_sauce_ARRAY[$resource];
+        if(isset($this->content_sauce_ARRAY[$resource])){
+
+            return $this->content_sauce_ARRAY[$resource];
+
+        }
 
     }
 
@@ -2527,6 +2531,57 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
                 break;
+
+                case 'config_set_crnrstn_as_err_handler':
+                    /*
+                    public function config_set_crnrstn_as_err_handler($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_is_active = true, $error_types_profile = NULL){
+
+                    ON SUCCESS
+                    return true;
+
+                    ON ERR
+                    return false;
+
+                    */
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+                    //
+                    // METHOD DEFINITION
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_method_definition = $token . $this->module_key . '(<br>
+                        &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $env_key = <span class="crnrstn_documentation_method_integer_data">CRNRSTN_RESOURCE_ALL</span>,<br>
+                        &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $crnrstn_is_active = <span class="crnrstn_documentation_method_data_system_val">true</span>,<br>
+                        &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $error_types_profile = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
+                        ): <span class="crnrstn_documentation_method_data_type">string</span>';
+                    $this->sauce($tmp_method_definition);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
+
+                    //
+                    // RETURN VALUE
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_str = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
+
+                    break;
                 case 'config_set_ui_theme_style':
                     /*
                     public function config_set_ui_theme_style($env_key = CRNRSTN_RESOURCE_ALL, $theme_profile = CRNRSTN_UI_DARKNIGHT){
@@ -5597,56 +5652,6 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
                 break;
-                case 'config_set_crnrstn_as_err_handler':
-                    /*
-                    public function config_set_crnrstn_as_err_handler($env_key = CRNRSTN_RESOURCE_ALL, $crnrstn_is_active = true, $error_types_profile = NULL){
-
-                    ON SUCCESS
-                    return true;
-
-                    ON ERR
-                    return false;
-
-                    */
-    
-                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
-    
-                    //
-                    // PAGE TITLE
-                    $tmp_title_array = array();
-                    $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
-                    $this->sauce($tmp_title_array['PAGE_TITLE']);
-                    $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
-                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
-    
-                    //
-                    // METHOD DEFINITION
-                    $token = $this->return_content_deep_link_token();
-                    $tmp_method_definition = $token . $this->module_key . '(<br>
-                        &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $env_key = <span class="crnrstn_documentation_method_integer_data">CRNRSTN_RESOURCE_ALL</span>,<br>
-                        &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $crnrstn_is_active = <span class="crnrstn_documentation_method_data_system_val">true</span>,<br>
-                        &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">integer</span> $error_types_profile = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
-                        ): <span class="crnrstn_documentation_method_data_type">string</span>';
-                    $this->sauce($tmp_method_definition);
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
-    
-                    //
-                    // RETURN VALUE
-                    $token = $this->return_content_deep_link_token();
-                    $tmp_str = '<p>' . $token . 'CONTENT PENDING.</p>';
-                    $this->sauce($tmp_str);
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
-    
-                    //
-                    // RELATED METHODS
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
-    
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
-                        
-                break;
                 case 'set_desktop':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
@@ -5897,6 +5902,49 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
                 break;
+                case 'strrtrim':
+                    /*
+                    public function config_init_html_mode_email($env_key = CRNRSTN_RESOURCE_ALL, $is_HTML = true){
+
+                    */
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+                    //
+                    // METHOD DEFINITION
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_method_definition = $token . $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $env_key = <span class="crnrstn_documentation_method_integer_data">CRNRSTN_RESOURCE_ALL</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $is_HTML = <span class="crnrstn_documentation_method_integer_data">true</span><br>
+                    ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
+                    $this->sauce($tmp_method_definition);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
+
+                    //
+                    // RETURN VALUE
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_str = '<p>' . $token . 'Returns boolean TRUE.</p>';
+                    $this->sauce($tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
+
+                    break;
                 case 'soap_defencoding':
 
                     /*
@@ -13400,8 +13448,10 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     LIGHTBOX.JS and supports the mobile, tablet, and desktop experience
                                                     for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
                                                     <br><br>
-                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
-                $tmp_output_ARRAY['URL'][] = '';
+                                                    ' . $this->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') . '&nbsp;
+                                                    ' . $this->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/CRNRSTN_v2_0_0') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 25, 25, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
+                $tmp_output_ARRAY['URL'][] = 'https://lightsaber.crnrstn.evifweb.com/';
 
             break;
             case 'CRNRSTN_CSS_FRAMEWORK_SIMPLE_GRID':
@@ -13843,8 +13893,10 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The desktop stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
                                                     <br><br>
-                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
-                $tmp_output_ARRAY['URL'][] = '';
+                                                    ' . $this->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') . '&nbsp;
+                                                    ' . $this->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/CRNRSTN_v2_0_0') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 25, 25, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
+                $tmp_output_ARRAY['URL'][] = 'https://lightsaber.crnrstn.evifweb.com/';
 
             break;
             case 'CRNRSTN_UI_CSS_MAIN_TABLET':
@@ -15060,6 +15112,15 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_DOCUMENTATION;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_DOCUMENTATION';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_RESOURCE_DEEP_LINK':
+            case CRNRSTN_RESOURCE_DEEP_LINK:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_RESOURCE_DEEP_LINK;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_RESOURCE_DEEP_LINK';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
 
