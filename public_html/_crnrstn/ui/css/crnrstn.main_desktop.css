@@ -116,9 +116,13 @@
 .crnrstn_documentation_r_icon_rel                           { position: relative; float: right; height: 0; width: 30px; }
 .crnrstn_documentation_r_icon                               { position: absolute; margin: 0; top:-50px; left:-14px;}
 .crnrstn_the_r_text_link_sup                                { padding: 0 0 0 3px; line-height: 1px;}
+.crnrstn_documentation_lnk_share_rel                        { position: relative; float: right; width:165px; }
+.crnrstn_documentation_lnk_share                            { position: absolute; width:100px; height:15px; padding: 14px 10px 3px 0; font-family: "Courier New", Courier, monospace; font-size:12px; line-height: 20px;text-align: right;}
+.crnrstn_documentation_lnk_share a                          { text-decoration: none; color: #0066CC; text-decoration: underline;}
 .crnrstn_documentation_lnk_top_rel                          { position: relative; float: right; width:65px; }
 .crnrstn_documentation_lnk_top                              { position: absolute; width:50px; height:15px; padding: 14px 10px 3px 0; font-family: "Courier New", Courier, monospace; font-size:12px; line-height: 20px;text-align: right;}
-.crnrstn_documentation_dyn_content_shell                    { /*width: 64%;*/min-width: 400px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
+.crnrstn_documentation_lnk_top a                            { text-decoration: none; color: #0066CC; text-decoration: underline;}
+.crnrstn_documentation_dyn_content_shell                    { /*width: 64%;*/min-width: 400px; max-width:865px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
 .crnrstn_documentation_dyn_content_title                    { }
 .crnrstn_documentation_dyn_content_title h1                 { overflow-wrap: break-word; font-size: 100%; } /*font-size: 45px;*/
 .crnrstn_documentation_dyn_content_title h2                 { margin-bottom:0; font-size: 100%;}
@@ -258,10 +262,10 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_interact_ui_side_nav ul                    { list-style:none; margin: 0; padding: 0;}
 .crnrstn_interact_ui_side_nav_5                     { padding:0 0 0 5px;}
 
-@media screen and (max-height: 450px) {
-    .crnrstn_interact_ui_side_nav                   { }
-    .crnrstn_interact_ui_side_nav a                 { font-size: 18px;}
-}
+/*@media screen and (max-height: 450px) {*/
+/*    .crnrstn_interact_ui_side_nav                   { }*/
+/*    .crnrstn_interact_ui_side_nav a                 { font-size: 18px;}*/
+/*}*/
 
 /*CRNRSTN::INTEGRATION INTERACT UI MODULE :: MESSENGER*/
 .crnrstn_interact_ui_wrapper                        { position:-webkit-sticky; position: sticky; bottom:5px; left:-3000px; width:0; height: 0; overflow: hidden;}

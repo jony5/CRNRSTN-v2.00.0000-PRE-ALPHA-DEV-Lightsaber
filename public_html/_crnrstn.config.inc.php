@@ -181,31 +181,6 @@ $CRNRSTN_loggingProfile = CRNRSTN_LOG_ALL;
 // INSTANTIATE AN INSTANCE OF CRNRSTN ::
 $oCRNRSTN = new crnrstn(__FILE__, $CRNRSTN_config_serial, $CRNRSTN_debug_mode, $PHPMAILER_debug_mode, $CRNRSTN_loggingProfile);
 
-//
-// FLAGS FOR USER INTERFACE THEME STYLES
-// CRNRSTN_UI_PHPNIGHT              // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
-// CRNRSTN_UI_DARKNIGHT             // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER. NOTHING COULD BE DARKER. NOTHING.
-// CRNRSTN_UI_PHP                   // ALL ABOUT THE BUSINESS.
-// CRNRSTN_UI_GREYSKYS              // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
-// CRNRSTN_UI_HTML                  // BE LIGHT AND HAPPY.
-// CRNRSTN_UI_DAYLIGHT              // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
-// CRNRSTN_UI_FEATHER               // LIGHTER THAN DAYLIGHT.
-// CRNRSTN_UI_GLASS_LIGHT_COPY      // UI EXPERIMENTAL
-// CRNRSTN_UI_GLASS_DARK_COPY       // UI EXPERIMENTAL
-// CRNRSTN_UI_WOOD                  // GOT WOOD?
-// CRNRSTN_UI_TERMINAL              // GREEN TEXT. BLACK BACKGROUND. HARDCORE.
-// CRNRSTN_UI_RANDOM
-$oCRNRSTN->config_set_ui_theme_style(CRNRSTN_RESOURCE_ALL, CRNRSTN_UI_DARKNIGHT);
-
-//
-// INITIALIZE DEFAULTS FOR EACH ENVIRONMENT.
-$oCRNRSTN->config_load_defaults(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
-
-$oCRNRSTN->set_timezone_default('America/New_York');
-$oCRNRSTN->ini_set('max_execution_time', 60);
-$oCRNRSTN->ini_set('memory_limit', -1);
-//$oCRNRSTN->ini_set('memory_limit', '300M');
-
 /**
 REFERENCE OF ERROR LEVEL CONSTANTS
 http://php.net/error-reporting
@@ -285,6 +260,34 @@ $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PORT', '80'
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PROTOCOL', 'HTTP/1.1', 5);
 
 //
+// FLAGS FOR USER INTERFACE THEME STYLES
+// CRNRSTN_UI_PHPNIGHT              // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+// CRNRSTN_UI_DARKNIGHT             // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER. NOTHING COULD BE DARKER. NOTHING.
+// CRNRSTN_UI_PHP                   // ALL ABOUT THE BUSINESS.
+// CRNRSTN_UI_GREYSKYS              // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
+// CRNRSTN_UI_HTML                  // BE LIGHT AND HAPPY.
+// CRNRSTN_UI_DAYLIGHT              // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+// CRNRSTN_UI_FEATHER               // LIGHTER THAN DAYLIGHT.
+// CRNRSTN_UI_GLASS_LIGHT_COPY      // UI EXPERIMENTAL
+// CRNRSTN_UI_GLASS_DARK_COPY       // UI EXPERIMENTAL
+// CRNRSTN_UI_WOOD                  // GOT WOOD?
+// CRNRSTN_UI_TERMINAL              // GREEN TEXT. BLACK BACKGROUND. HARDCORE.
+// CRNRSTN_UI_RANDOM
+//
+// CALL THIS BEFORE LOADING SYSTEM DEFAULTS [config_load_defaults()] SO THAT THE SELECTED
+// THEME CAN BE SENT TO THE CLIENT FOR CLIENT UI/UX CONFIGURATION.
+$oCRNRSTN->config_set_ui_theme_style(CRNRSTN_RESOURCE_ALL, CRNRSTN_UI_DARKNIGHT);
+
+//
+// INITIALIZE DEFAULTS FOR EACH ENVIRONMENT.
+$oCRNRSTN->config_load_defaults(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
+
+$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/New_York');
+$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'max_execution_time', 60);
+//$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'memory_limit', -1);
+//$oCRNRSTN->config_ini_set('memory_limit', '300M');
+
+//
 // INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT.
 $oCRNRSTN->config_add_database(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.secure/_crnrstn.db.config.inc.php');
 
@@ -354,7 +357,7 @@ $oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO');
  *
  * @return	boolean TRUE
  * Example ::
- * $oCRNRSTN->config_init_images_transport_mode(CRNRSTN_ASSET_MODE_BASE64);
+ * $oCRNRSTN->config_init_system_asset_mode(CRNRSTN_ASSET_MODE_BASE64);
  *
  */
 /*
@@ -397,8 +400,6 @@ CRNRSTN_ASSET_MAPPING
 CRNRSTN_ASSET_MAPPING_PROXY
 
 */
-// $env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MAPPING, $soap_endpoint = NULL
-//$oCRNRSTN->config_init_asset_mapping();
 //$oCRNRSTN->config_init_asset_tunnel_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MAPPING_PROXY, 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/');
 
 /*
@@ -430,7 +431,6 @@ $oCRNRSTN->config_init_asset_mapping_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROO
 $oCRNRSTN->config_init_asset_mapping_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');
 $oCRNRSTN->config_init_asset_mapping_system_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
 $oCRNRSTN->config_init_asset_mapping_social_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
-//$oCRNRSTN->config_init_asset_tunnel_routing_css(CRNRSTN_RESOURCE_ALL, false);   // TOGGLE ROUTING OFF...CHECK.
 
 //
 // INITIALIZE LOGGING FUNCTIONALITY FOR EACH ENVIRONMENT

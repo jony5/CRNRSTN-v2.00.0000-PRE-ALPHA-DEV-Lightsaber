@@ -62,90 +62,26 @@ class crnrstn_cookie_manager {
 	public static $thisCookieCrawler_ARRAY = array();
 	protected $oLogger;
 
-	public $oCRNRSTN_USR;
-	
-	public function __construct($name = NULL, $value = NULL, $expire = NULL, $path = NULL, $domain = NULL, $secure = NULL, $httponly = NULL){
+	public $oCRNRSTN;
+
+    public function __construct($oCRNRSTN){
 		
-		//
-		// IF WE HAVE COOKIE NAME, ADD THE COOKIE
-		if(isset($name)){
-
-			//
-			// BECAUSE THE EXPIRE ARGUMENT IS INTEGER, IT CANNOT BE SKIPPED WITH AN EMPTY STRING, USE A ZERO (0) INSTEAD.
-			if(!isset($expire)){
-
-				$expire = 0;
-
-			}
-			
-			//
-			// CHECK FOR INITIALIZATION OF COOKIE ENCRYPTION IN THIS SESSION
-            if($this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true)){
-			
-				//
-				// SET THE COOKIE
-				self::$cookieValue_Encrypted = $this->param_cookie_encrypt($value);
-				self::$cookieName_Encrypted = self::$cookieName_ChecksumSeed . $this->oCRNRSTN_USR->crcINT($name);
-								
-				return setcookie(self::$cookieName_Encrypted, self::$cookieValue_Encrypted, $expire, $path, $domain, $secure, $httponly);
-				
-			}else{
-			
-				//
-				// SET THE COOKIE
-				return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
-
-			}
-
-		}
-
-        return true;
-
+	    $this->oCRNRSTN = $oCRNRSTN;
+	    
+        $this->oLogger = new crnrstn_logging(__CLASS__, $oCRNRSTN);
+	 
 	}
-
-//    public function initialize_oCRNRSTN_USR($oCRNRSTN_USR){
-//
-//        $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-//
-//        //
-//        // INSTANTIATE LOGGER
-//        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
-//
-//    }
 	
-	public function addCookie($name, $value = NULL, $expire = NULL, $path = NULL, $domain = NULL, $secure =  NULL, $httponly = NULL){
+	public function addCookie($name, $value, $expire, $path, $domain, $secure, $httponly){
 
 	    try{
 
 			if(isset($name)){
-				
-				//
-				// BECAUSE THE EXPIRE ARGUMENT IS INTEGER, IT CANNOT BE SKIPPED WITH AN EMPTY STRING, USE A ZERO (0) INSTEAD.
-				if(!isset($expire)){
 
-					$expire = 0;
+                //
+                // SET THE COOKIE
+                return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
 
-				}
-				
-				//
-				// CHECK FOR INITIALIZATION OF COOKIE ENCRYPTION IN THIS SESSION
-                if($this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true)){
-				
-					//
-					// SET THE COOKIE
-					self::$cookieValue_Encrypted = $this->param_cookie_encrypt($value);
-					self::$cookieName_Encrypted = self::$cookieName_ChecksumSeed.$this->oCRNRSTN_USR->crcINT($name);
-									
-					return setcookie(self::$cookieName_Encrypted,self::$cookieValue_Encrypted, $expire, $path, $domain, $secure, $httponly);
-					
-				}else{
-						
-					//
-					// SET THE COOKIE
-					return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
-
-				}
-				
 			}else{
 				
 				//
@@ -158,7 +94,7 @@ class crnrstn_cookie_manager {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
 			return false;
 
@@ -166,35 +102,16 @@ class crnrstn_cookie_manager {
 
 	}
 	
-	public function addRawCookie($name, $value = NULL, $expire = NULL, $path = NULL, $domain = NULL, $secure = NULL, $httponly = NULL){
+	public function addRawCookie($name, $value, $expire, $path, $domain, $secure, $httponly){
 
 	    try{
 
 			if(isset($name)){
-				
-				//
-				// BECAUSE THE EXPIRE ARGUMENT IS INTEGER, IT CANNOT BE SKIPPED WITH AN EMPTY STRING, USE A ZERO (0) INSTEAD.
-				if(!isset($expire)){
 
-					$expire=0;
+                //
+                // SET THE RAW COOKIE. CLEAR TEXT
+                return setrawcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
 
-				}
-
-                if($this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true)){
-
-					self::$cookieValue_Encrypted = $this->param_cookie_encrypt($value);
-					self::$cookieName_Encrypted = self::$cookieName_ChecksumSeed.$this->oCRNRSTN_USR->crcINT($name);
-					
-					setrawcookie(self::$cookieName_Encrypted, self::$cookieValue_Encrypted, $expire, $path, $domain, $secure, $httponly);
-					
-				}else{
-					
-					//
-					// SET THE RAW COOKIE. CLEAR TEXT
-					setrawcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
-				
-				}
-				
 			}else{
 				
 				//
@@ -202,18 +119,20 @@ class crnrstn_cookie_manager {
 				throw new Exception('A raw cookie failed to be initialized due to missing NAME parameter.');
 
 			}
-			
-		}catch( Exception $e ) {
+
+		}catch(Exception $e){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
 
 	    }
 	    
 	}
 	
-	public function deleteCookie($name, $path = NULL){
+	public function deleteCookie($name, $path){
 		
 		//
 		// CHECK FOR REQUIRED INFORMATION
@@ -221,23 +140,9 @@ class crnrstn_cookie_manager {
 
 			if(isset($name)){
 				
-				//
-				// OK TO ATTEMPT DELETION OF COOKIE
-				// CHECK FOR COOPKIE ENCRYPTION LAYER
-                if($this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true)){
-					
-					//
-					// OK TO ATTEMPT DELETION OF COOKIE
-					self::$cookieName_Encrypted = self::$cookieName_ChecksumSeed.$this->oCRNRSTN_USR->crcINT($name);
-					setcookie(self::$cookieName_Encrypted, '', 1, $path);
-					
-				}else{
-				
-					//
-					// NO COOKIE ENCRYPTION. SET COOKIE. 
-					setcookie($name, '', 1, $path);
-					
-				}
+                //
+                // NO COOKIE ENCRYPTION. SET COOKIE.
+                return setcookie($name, '', 1, $path);
 
 			}else{
 				
@@ -247,11 +152,13 @@ class crnrstn_cookie_manager {
 
 			}
 
-		}catch( Exception $e ) {
+		}catch(Exception $e){
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
 
 		}
 
@@ -264,36 +171,10 @@ class crnrstn_cookie_manager {
 		try{
 
 			if(isset($name)){
-				
-				//
-				// OK TO ATTEMPT TO GET COOKIE
-				// CHECK FOR INITIALIZATION OF COOKIE ENCRYPTION IN THIS SESSION
-                if($this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true)){
 
-				    self::$cookieName_Encrypted = self::$cookieName_ChecksumSeed . $this->oCRNRSTN_USR->crcINT($name);
-
-					if(isset($_COOKIE[self::$cookieName_Encrypted])){
-
-						self::$cookieValue_Encrypted = $_COOKIE[self::$cookieName_Encrypted];
-
-						return $this->param_cookie_decrypt(self::$cookieValue_Encrypted);
-
-					}else{
-						
-						//
-						// $_COOKIE NOT SET WITH THIS PARAMETER NAME. IS THE CALLING SCRIPT AT A $path THAT
-                        // PROVIDES VISIBILITY TO THE COOKIE FOR WHICH YOU ARE SEARCHING?
-						return false;
-
-					}
-				
-				}else{
-					
-					//
-					// NO ENCRYPTION. RETURN COOKIE.
-					return $_COOKIE[$name];
-
-				}
+                //
+                // NO ENCRYPTION. RETURN COOKIE.
+                return $_COOKIE[$name];
 
 			}else{
 				
@@ -307,7 +188,7 @@ class crnrstn_cookie_manager {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
 			return false;
 
@@ -323,17 +204,17 @@ class crnrstn_cookie_manager {
 
                 //
                 // DATA TYPE MUST BE ENCRYPTABLE...AND SAFE FOR URI
-                //if(in_array(gettype($data), $this->oCRNRSTN_USR->oCRNRSTN_ENV->encryptableDataTypes)){
-                if(isset($this->oCRNRSTN_USR->oCRNRSTN_ENV->encryptableDataTypes[gettype($data)])){
+                //if(in_array(gettype($data), $this->oCRNRSTN->oCRNRSTN_ENV->encryptableDataTypes)){
+                if(isset($this->oCRNRSTN->oCRNRSTN_ENV->encryptableDataTypes[gettype($data)])){
 
-                    if($this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true)) {
+                    if($this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true)) {
 
                         //
                         // EXTRACT DATA FROM SESSION DDO
-                        $tmp_encrypt_cipher = $this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
-                        $tmp_encrypt_secret_key = $this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_secret_key', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
-                        $tmp_encrypt_options = $this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_options', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
-                        $tmp_hmac_alg = $this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN_USR->return_prefixed_ddo_key('hmac_alg', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
+                        $tmp_encrypt_cipher = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
+                        $tmp_encrypt_secret_key = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_secret_key', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
+                        $tmp_encrypt_options = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_options', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
+                        $tmp_hmac_alg = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('hmac_alg', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
 
                         #
                         # Source: http://php.net/manual/en/function.openssl-encrypt.php
@@ -372,7 +253,7 @@ class crnrstn_cookie_manager {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
 			return false;
 
@@ -400,14 +281,14 @@ class crnrstn_cookie_manager {
 
                 }
 
-                if($this->oCRNRSTN_USR->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false)){
+                if($this->oCRNRSTN->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false)){
 
                     //
                     // EXTRACT DATA FROM SESSION DDO
-                    $tmp_encrypt_cipher = $this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
-                    $tmp_encrypt_secret_key = $this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_secret_key', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
-                    $tmp_encrypt_options = $this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN_USR->return_prefixed_ddo_key('encrypt_options', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
-                    $tmp_hmac_alg = $this->oCRNRSTN_USR->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN_USR->return_prefixed_ddo_key('hmac_alg', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
+                    $tmp_encrypt_cipher = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
+                    $tmp_encrypt_secret_key = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_secret_key', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
+                    $tmp_encrypt_options = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_options', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
+                    $tmp_hmac_alg = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('hmac_alg', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
 
                     //
                     // ENABLE CIPHER OVERRIDE :: v2.0.0
@@ -428,7 +309,7 @@ class crnrstn_cookie_manager {
                     }else{
 
                         $secret_key = $secret_key_override;
-                        $tmp_open_ssl_digest_profile = $this->oCRNRSTN_USR->oCRNRSTN_ENV->return_openssl_digest_method();
+                        $tmp_open_ssl_digest_profile = $this->oCRNRSTN->oCRNRSTN_ENV->return_openssl_digest_method();
                         $secret_key = openssl_digest($secret_key, $tmp_open_ssl_digest_profile, true);
 
                     }
@@ -494,7 +375,7 @@ class crnrstn_cookie_manager {
 
             //
             // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
 
@@ -502,13 +383,13 @@ class crnrstn_cookie_manager {
 
 	}	
 	
-	public function deleteAllCookies($path=NULL){
+	public function deleteAllCookies($path){
 		
 		//
 		// LETS TRY WORKING WITH A HANDLE.
 		self::$cookie_ARRAY=array_keys($_COOKIE);
 
-		for ($x = 0; $x < count(self::$cookie_ARRAY); $x++){
+		for($x = 0; $x < count(self::$cookie_ARRAY); $x++){
 
 			setcookie(self::$cookie_ARRAY[$x], '', 1, $path);
 

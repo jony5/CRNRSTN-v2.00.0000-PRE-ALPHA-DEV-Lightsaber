@@ -202,11 +202,11 @@ class crnrstn_ui_tunnel_response_manager {
             $tmp_post_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data($module_nom . '_HASH');
             $tmp_module_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->retrieve_interact_ui_module_hash($module_nom);
 
-            //error_log(__LINE__ . ' ui tunn $tmp_crnrstn_request_source[' . $tmp_crnrstn_request_source . ']. $tmp_post_hash[' . $tmp_post_hash . ']. $tmp_module_hash[' . $tmp_module_hash . '].');
+            //error_log(__LINE__ . ' ui tunn source[' . $tmp_crnrstn_request_source . ']. [' . $module_nom . ']. $tmp_post_hash[' . $tmp_post_hash . ']. $tmp_module_hash[' . $tmp_module_hash . '].');
 
             //
             // TODO :: TTL CONSIDERATIONS
-            if($tmp_post_hash != $tmp_module_hash && $this->interact_ui_module_keys_ARRAY[$module_nom] == 'GLOBAL' && (strlen($tmp_module_page_key) < 1)){
+            if($tmp_post_hash != $tmp_module_hash && $this->interact_ui_module_keys_ARRAY[$module_nom] == 'GLOBAL'){
 
                 //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                 $tmp_xml_concat = true;
@@ -1360,7 +1360,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                     for($i = 0; $i < $tmp_lang_pref_cnt; $i++){
 
-                        $output_string .= '<language_preference><request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_serial($i) . '</request_id><request_referer>' . $_SERVER['HTTP_REFERER'] . '</request_referer>';
+                        $output_string .= '<language_preference><request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_serial($i) . '</request_id><request_referer><![CDATA[' . $_SERVER['HTTP_REFERER'] . ']]></request_referer>';
                         $output_string .= '<locale_identifier>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i) . '</locale_identifier><region_variant>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('region_variant', $i) . '</region_variant><factor_weighting>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('factor_weighting', $i) . '</factor_weighting><iso_language_nomination>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_language_nomination', $i) . '</iso_language_nomination><native_nomination><![CDATA[' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('native_nomination', $i) . ']]></native_nomination><iso_639-1_2002>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-1_2002', $i) . '</iso_639-1_2002><iso_639-2_1998>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-2_1998', $i) . '</iso_639-2_1998><iso_639-3_2007>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('iso_639-3_2007', $i) . '</iso_639-3_2007>';
                         $output_string .= '</language_preference>';
 
@@ -1372,7 +1372,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                         $output_string .= '<language_preference>
                         <request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_serial($i) . '</request_id>
-                        <request_referer>' . $_SERVER['HTTP_REFERER'] . '</request_referer>';
+                        <request_referer><![CDATA[' . $_SERVER['HTTP_REFERER'] . ']]></request_referer>';
 
                         $output_string .= '
                         <locale_identifier>' . $this->oCRNRSTN->oCRNRSTN_LANG_MGR->return_lang_pref_data('locale_identifier', $i) . '</locale_identifier>
@@ -2408,7 +2408,7 @@ class crnrstn_ui_tunnel_response_manager {
 
         if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
-            $tmp_xml_response_ARRAY[] = '<state_synchronization_data><serial_id><![CDATA[' . $tmp_serial_id . ']]></serial_id><serial>' . $tmp_serial . '</serial><request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $tmp_request_id . '</request_id><server_runtime>' . $this->oCRNRSTN->pretty_elapsed_time() . '</server_runtime><request_authorization_key>' . $this->oCRNRSTN->generate_new_key(64) . '</request_authorization_key><request_locale_identifier><![CDATA[' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . ']]></request_locale_identifier><request_referer>' . $_SERVER['HTTP_REFERER'] . '</request_referer><client_id>' . $tmp_client_id . '</client_id><client_auth_key>' . $tmp_client_auth_key. '</client_auth_key><server_name>' . $_SERVER['SERVER_NAME'] . '</server_name><server_ip_address>' . $_SERVER['SERVER_ADDR'] . '</server_ip_address><client_ip_address>' . $this->oCRNRSTN->return_client_ip() . '</client_ip_address><response_status>' . $tmp_status_report . '</response_status><client_profile><global_privacy_control><sec_gpc>null</sec_gpc></global_privacy_control><device_type>' . $this->oCRNRSTN->device_type_bit() . '|' . $this->oCRNRSTN->device_type() . '</device_type><language>' . $this->ssdtl_response_http_language_preference('xml') . '</language></client_profile>';
+            $tmp_xml_response_ARRAY[] = '<state_synchronization_data><serial_id><![CDATA[' . $tmp_serial_id . ']]></serial_id><serial>' . $tmp_serial . '</serial><request_id timestamp="' . $this->oCRNRSTN->return_micro_time() . '">' . $tmp_request_id . '</request_id><server_runtime>' . $this->oCRNRSTN->pretty_elapsed_time() . '</server_runtime><request_authorization_key>' . $this->oCRNRSTN->generate_new_key(64) . '</request_authorization_key><request_locale_identifier><![CDATA[' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . ']]></request_locale_identifier><request_referer><![CDATA[' . $_SERVER['HTTP_REFERER'] . ']]></request_referer><client_id>' . $tmp_client_id . '</client_id><client_auth_key>' . $tmp_client_auth_key. '</client_auth_key><server_name>' . $_SERVER['SERVER_NAME'] . '</server_name><server_ip_address>' . $_SERVER['SERVER_ADDR'] . '</server_ip_address><client_ip_address>' . $this->oCRNRSTN->return_client_ip() . '</client_ip_address><response_status>' . $tmp_status_report . '</response_status><client_profile><global_privacy_control><sec_gpc>null</sec_gpc></global_privacy_control><device_type>' . $this->oCRNRSTN->device_type_bit() . '|' . $this->oCRNRSTN->device_type() . '</device_type><language>' . $this->ssdtl_response_http_language_preference('xml') . '</language></client_profile>';
 
         }else{
 
@@ -2420,7 +2420,7 @@ class crnrstn_ui_tunnel_response_manager {
             <server_runtime>' . $this->oCRNRSTN->pretty_elapsed_time() . '</server_runtime>
             <request_authorization_key>' . $this->oCRNRSTN->generate_new_key(64) . '</request_authorization_key>
             <request_locale_identifier><![CDATA[' . $this->oCRNRSTN->return_client_header_value('Accept-Language') . ']]></request_locale_identifier>
-            <request_referer>' . $_SERVER['HTTP_REFERER'] . '</request_referer>
+            <request_referer><![CDATA[' . $_SERVER['HTTP_REFERER'] . ']]></request_referer>
             <client_id>' . $tmp_client_id . '</client_id>
             <client_auth_key>' . $tmp_client_auth_key. '</client_auth_key>
             <server_name>' . $_SERVER['SERVER_NAME'] . '</server_name>

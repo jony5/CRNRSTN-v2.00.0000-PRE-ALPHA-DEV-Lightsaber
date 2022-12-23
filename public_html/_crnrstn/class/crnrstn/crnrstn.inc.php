@@ -84,6 +84,7 @@ class crnrstn {
     protected $terminate_configuration_error_ARRAY = array();
 
     private static $crnrstn_session_salt;
+    protected $content_token_index;
     protected $env_key;
     private static $config_serial;
     protected $env_key_hash;
@@ -588,6 +589,13 @@ class crnrstn {
     public function header_options_apply(){
 
         $this->oCRNRSTN_ENV->header_options_apply();
+
+    }
+
+    public function get_headers($return_type = 'array'){
+
+        // OR $return_type = 'STRING' (CASE INSENSITIVE)
+        return $this->oCRNRSTN_ENV->get_headers($return_type);
 
     }
 
@@ -1828,6 +1836,44 @@ class crnrstn {
 
     }
 
+    public function config_set_timezone_default($env_key = CRNRSTN_RESOURCE_ALL, $timezone_id = NULL){
+
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
+
+                //
+                // CALLING METHOD (WITH NO PARAMS) WILL SYNC CRNRSTN :: TO SYSTEM TIMEZONE. RETURN CURRENT SYSTEM TIMEZONE.
+                if(!isset($timezone_id)){
+
+                    $tmp_timezone_name = date_default_timezone_get();
+                    self::$oCRNRSTN_CONFIG_MGR->input_data_value($tmp_timezone_name, 'timezone_default');
+
+                    return $tmp_timezone_name;
+
+                }
+
+                //
+                // List of Supported Timezones
+                // https://www.php.net/manual/en/timezones.php
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($timezone_id, 'timezone_default');
+
+                //
+                // SET CUSTOM TIMEZONE. RETURN FALSE IF THE TIMEZONEID ISN'T VALID, OR TRUE OTHERWISE.
+                return date_default_timezone_set($timezone_id);
+
+            }
+
+        }
+
+        return true;
+
+    }
+
     public function set_timezone_default($timezone_id){
 
         self::$oCRNRSTN_CONFIG_MGR->input_data_value($timezone_id, 'timezone_default');
@@ -1886,21 +1932,31 @@ class crnrstn {
 
     }
 
-    public function config_set_ui_theme_style($env_key = CRNRSTN_RESOURCE_ALL, $theme_profile = CRNRSTN_UI_DARKNIGHT){
+    public function config_set_ui_theme_style($env_key = CRNRSTN_RESOURCE_ALL, $theme_profile = NULL){
 
-        $tmp_env_key_hash = $this->hash($env_key);
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
-            if ($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash) {
+                //
+                // JUST CALLING THE METHOD (WITH NO PARAMS) IS SUFFICIENT.
+                if(!isset($theme_profile)){
+
+                    $theme_profile = CRNRSTN_UI_DARKNIGHT;
+
+                }
 
                 //
                 // CLEAR ALL THEMES
-                foreach ($this->system_theme_style_constants_ARRAY as $index => $const) {
+                foreach($this->system_theme_style_constants_ARRAY as $index => $const){
 
                     //
                     // IF BIT IS FLIPPED...TURN IT OFF.
-                    if ($this->is_bit_set($const)) {
+                    if($this->is_bit_set($const)){
 
                         $this->initialize_bit($const, false);
 
@@ -2165,12 +2221,72 @@ class crnrstn {
 
     }
 
+    public function config_load_defaults_terminal($env_key, $crnrstn_resource_config_file_path){
+
+        try{
+
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
+
+                if(is_file($crnrstn_resource_config_file_path)){
+
+                    //
+                    // ACQUIRE FILE VERSIONING CHECKSUM
+                    $tmp_file_md5 = md5_file($crnrstn_resource_config_file_path);
+                    self::$system_files_version_hash_ARRAY[$crnrstn_resource_config_file_path] = $tmp_file_md5;
+
+                    //
+                    // EXTRACT RESOURCE CONFIGURATION FROM FILE
+                    $this->error_log('Storing file path [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    $tmp_theme_style = $this->get_ui_theme_style();
+                    //self::$oCRNRSTN_CONFIG_MGR->input_data_value($dir_path, 'crnrstn_favicon_asset_tunnel_route_dir_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                    self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_system_defaults_config_file_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH', 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                    //error_log(__LINE__ . ' LOADED $tmp_theme_attributes_ARRAY[' . print_r($tmp_theme_attributes_ARRAY, true) . '].');
+                    //error_log(__LINE__ . ' LOADED $tmp_crnrstn_settings_ARRAY[' . print_r($tmp_crnrstn_settings_ARRAY, true) . '].');
+                    $this->apply_theme_style_profile($tmp_theme_style, $crnrstn_resource_config_file_path);
+
+                }else{
+
+                    //
+                    // WE COULD NOT FIND THE CONFIGURATION FILE
+                    $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                    //
+                    // HOOOSTON...VE HAF PROBLEM!
+                    //throw new Exception('Unable to process system resource for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
+
+                }
+
+            }
+
+            return true;
+
+        }catch(Exception $e){
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            //
+            // RETURN NOTHING
+            return false;
+
+        }
+
+    }
+
     public function config_load_defaults($env_key, $crnrstn_resource_config_file_path){
 
         try{
 
+            //
+            // IS THE ENVIRONMENT DETECTED?
             if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                 if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                     if(is_file($crnrstn_resource_config_file_path)){
@@ -2182,7 +2298,7 @@ class crnrstn {
 
                         //
                         // EXTRACT RESOURCE CONFIGURATION FROM FILE
-                        $this->error_log('Including and evaluating file [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                        $this->error_log('Storing file path [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
                         $tmp_theme_style = $this->get_ui_theme_style();
                         //self::$oCRNRSTN_CONFIG_MGR->input_data_value($dir_path, 'crnrstn_favicon_asset_tunnel_route_dir_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
@@ -2225,8 +2341,12 @@ class crnrstn {
 
     public function config_include_wordpress($env_key, $crnrstn_resource_config_file_path){
 
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
             if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_wp_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
@@ -2255,12 +2375,16 @@ class crnrstn {
 
     public function config_include_seo_analytics($env_key, $crnrstn_resource_config_file_path){
 
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
             self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_analytics_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
             if(is_file($crnrstn_resource_config_file_path)){
 
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                 if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                     //
@@ -2292,12 +2416,16 @@ class crnrstn {
 
     public function config_include_seo_engagement($env_key, $crnrstn_resource_config_file_path){
 
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
             self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
             if(is_file($crnrstn_resource_config_file_path)){
 
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                 if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                     //
@@ -2331,10 +2459,14 @@ class crnrstn {
 
         try{
 
+            //
+            // IS THE ENVIRONMENT DETECTED?
             if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
                 if(is_file($crnrstn_resource_config_file_path)){
 
+                    //
+                    // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                     if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                         //
@@ -2380,8 +2512,12 @@ class crnrstn {
 
         try{
 
+            //
+            // IS THE ENVIRONMENT DETECTED?
             if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                 if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                     if(is_file($crnrstn_resource_config_file_path)){
@@ -2460,22 +2596,10 @@ class crnrstn {
                 // EXTRACT RESOURCE CONFIGURATION FROM FILE
                 $this->error_log('Including and evaluating file [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                //foreach($this->system_theme_style_constants_ARRAY as $index => $theme_profile_constant){
+                $tmp_theme_attributes_ARRAY = array();
+                require($crnrstn_resource_config_file_path);
 
-                    //$this->config_queue_theme = $theme_profile_constant;
-                    //error_log(__LINE__ . ' crnrstn $index[' . $index . ']. [' . $this->config_queue_theme . '].');
-                    $tmp_theme_attributes_ARRAY = array();
-                    require($crnrstn_resource_config_file_path);
-
-                    $this->theme_attributes_ARRAY = $tmp_theme_attributes_ARRAY;
-
-                    //error_log(__LINE__ . ' crnrstn $index[' . print_r($this->theme_attributes_ARRAY, true) . '].');
-                    //die();
-                    //
-                    // CLEAR ARRAY
-                    //array_splice($tmp_theme_attributes_ARRAY, 0);
-
-                //}
+                $this->theme_attributes_ARRAY = $tmp_theme_attributes_ARRAY;
 
             }else{
 
@@ -2512,6 +2636,36 @@ class crnrstn {
             return false;
 
         }
+
+    }
+
+    public function return_module_deep_link_token($module_key, $salt = NULL){
+
+        if(!isset($this->content_token_index)){
+
+            $this->content_token_index = -1;
+
+        }
+
+        $this->content_token_index++;
+
+        if(isset($salt)){
+
+            $tmp_token_seed = $module_key . '_' . $this->hash($salt . '_' . $this->content_token_index, 'md5');
+
+        }else{
+
+            $tmp_token_seed = $module_key . '_' . $this->hash($this->content_token_index, 'md5');
+
+        }
+
+        //
+        // THIS WILL SALT THE CONTENT TO SUPPORT STRING COMPARISON CHECKS DURING JS DRIVEN STYLING AT THE CLIENT AND
+        // FOR USE IN (SEARCH RESULT, DOCS) SO THAT DEEP LINKS WILL HAVE AN ANCHOR TO WHICH TO AUTO-SCROLL TO AFTER THE
+        // PAGE LOADS. SEARCH "CRAWL" WILL STRIP THESE LINKS OUT AUTOMATICALLY AND USE THE DATA TO BUILD THE DEEP LINK.
+        $tmp_out_html = '<span class="crnrstn_hidden"><a name="crnrstn_tokenized_top_' . $tmp_token_seed . '"> ' . $tmp_token_seed . '</a></span>';
+
+        return $tmp_out_html;
 
     }
 
@@ -2572,11 +2726,13 @@ class crnrstn {
 
         */
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 if($is_HTML){
 
@@ -2598,11 +2754,13 @@ class crnrstn {
 
     public function config_init_js_css_minimization($env_key = CRNRSTN_RESOURCE_ALL, $production_min_js = true){
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 if(!$production_min_js){
 
@@ -2638,11 +2796,13 @@ class crnrstn {
 
         */
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 if(!$tunneling_active){
 
@@ -2682,11 +2842,13 @@ class crnrstn {
 
         */
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 if(!$tunneling_active){
 
@@ -2726,11 +2888,13 @@ class crnrstn {
 
         */
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 if(!$tunneling_active){
 
@@ -2770,11 +2934,13 @@ class crnrstn {
 
         */
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 if(!$tunneling_active){
 
@@ -2814,11 +2980,13 @@ class crnrstn {
 
         */
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 if(!$tunneling_active){
 
@@ -2850,40 +3018,6 @@ class crnrstn {
 
     }
 
-    public function config_init_asset_mapping($env_key = CRNRSTN_RESOURCE_ALL, $system_mapping_mode = CRNRSTN_ASSET_MAPPING, $proxy_http = NULL){
-
-        /*
-        CRNRSTN_ASSET_MAPPING
-        CRNRSTN_ASSET_MAPPING_PROXY
-
-        */
-
-        $tmp_env_key_hash = $this->hash($env_key);
-
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
-
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
-
-                if($system_mapping_mode == CRNRSTN_ASSET_MAPPING_PROXY){
-
-                    if(isset($proxy_http)){
-
-                        self::$oCRNRSTN_CONFIG_MGR->input_data_value($proxy_http, 'crnrstn_tunnel_routing_proxy_http');
-
-                    }
-
-                }
-
-                $this->oCRNRSTN_BITFLIP_MGR->initialize_bit($system_mapping_mode, true);
-
-            }
-
-        }
-
-        return true;
-
-    }
-
     public function config_init_system_asset_mode($env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MODE_BASE64){
 
         /*
@@ -2897,11 +3031,13 @@ class crnrstn {
 
         */
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 //
                 // CLEAR OUT ANY FLIPPED BITS
@@ -2945,11 +3081,13 @@ class crnrstn {
 
         }
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
+        //
+        // IS THE ENVIRONMENT DETECTED?
         if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-            if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                 //
                 // GUARANTEE TRAILING SLASH
@@ -3048,8 +3186,12 @@ class crnrstn {
 
         try{
 
+            //
+            // IS THE ENVIRONMENT DETECTED?
             if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                 if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_key_hash){
 
                     self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_is_active, 'is_active_CRNRSTN_as_err_handler', NULL, NULL, NULL, $env_key);
@@ -3230,24 +3372,36 @@ class crnrstn {
         $tmp_env_hash = $this->hash($env_key);
 
         //
-        // PROCESS BITWISE DATA DO THIS AFTER ENVIRONMENTAL DETECTION
-        //$this->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->set($profile_constant, true);
-        //error_log(__LINE__ .' '. __METHOD__ .' crnrstn_environment to receive logging array[' . $this->crcINT($this->config_serial).'][' . $this->crcINT($env_key).']=[' . $profile_constant . ']');
-        self::$sys_logging_profile_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $profile_constant;
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-        if(isset($profile_meta)){
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $tmp_env_hash)){
 
-            self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $profile_meta;
+                //
+                // PROCESS BITWISE DATA DO THIS AFTER ENVIRONMENTAL DETECTION
+                //$this->oCRNRSTN_BITFLIP_MGR->oCRNRSTN_BITWISE->set($profile_constant, true);
+                //error_log(__LINE__ .' '. __METHOD__ .' crnrstn_environment to receive logging array[' . $this->crcINT($this->config_serial).'][' . $this->crcINT($env_key).']=[' . $profile_constant . ']');
+                self::$sys_logging_profile_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $profile_constant;
 
-        }else{
+                if(isset($profile_meta)){
 
-            self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = '0';
+                    self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = $profile_meta;
+
+                }else{
+
+                    self::$sys_logging_meta_ARRAY[$this->config_serial_hash][$tmp_env_hash][] = '0';
+
+                }
+
+                //
+                // PROCESS META DATA
+                $this->error_log('Logging profile data has been received for [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+            }
 
         }
-
-        //
-        // PROCESS META DATA
-        $this->error_log('Logging profile data has been received for [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         return true;
 
@@ -3267,19 +3421,24 @@ class crnrstn {
 
     public function config_grant_exclusive_access($env_key, $ip_or_file){
 
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-            $this->grant_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ip_or_file;
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
-            $this->error_log('storing grant_exclusive_access IP profile [' . $ip_or_file . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->grant_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ip_or_file;
 
-            return true;
+                $this->error_log('storing grant_exclusive_access IP profile [' . $ip_or_file . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-            self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                return true;
 
-            if(is_file($crnrstn_resource_config_file_path)){
+                // TODO :: FINISH INTEGRATIONS INTO LIGHTSABER FOR ALL IP ADDRESS MGMT STUFF. DO THE WORK HERE.
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
-                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
+                if(is_file($crnrstn_resource_config_file_path)){
 
                     //
                     // ACQUIRE FILE VERSIONING CHECKSUM
@@ -3292,13 +3451,13 @@ class crnrstn {
 
                     include_once($crnrstn_resource_config_file_path);
 
+                }else{
+
+                    //
+                    // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
+                    $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
                 }
-
-            }else{
-
-                //
-                // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
-                $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             }
 
@@ -3310,19 +3469,24 @@ class crnrstn {
 
     public function config_deny_access($env_key, $ip_or_file){
 
-        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])) {
 
-            $this->deny_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ip_or_file;
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
-            $this->error_log('storing deny_access IP profile [' . $ip_or_file . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                $this->deny_accessIP_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $ip_or_file;
 
-            return true;
+                $this->error_log('storing deny_access IP profile [' . $ip_or_file . '] in memory for environment key [' . $env_key . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-            self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
+                return true;
 
-            if(is_file($crnrstn_resource_config_file_path)){
+                // TODO :: FINISH INTEGRATIONS INTO LIGHTSABER FOR ALL IP ADDRESS MGMT STUFF. DO THE WORK HERE.
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_engagement_config_file_path', NULL, NULL, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
 
-                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
+                if(is_file($crnrstn_resource_config_file_path)){
 
                     //
                     // ACQUIRE FILE VERSIONING CHECKSUM
@@ -3335,13 +3499,13 @@ class crnrstn {
 
                     include_once($crnrstn_resource_config_file_path);
 
+                }else{
+
+                    //
+                    // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
+                    $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
                 }
-
-            }else{
-
-                //
-                // WE COULD NOT FIND THE OPENSSL ENCRYPTION CONFIGURATION FILE
-                $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             }
 
@@ -3425,8 +3589,12 @@ class crnrstn {
 
             try{
 
+                //
+                // IS THE ENVIRONMENT DETECTED?
                 if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+                    //
+                    // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                     if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                         if(is_file($host_or_creds_path)){
@@ -3484,8 +3652,12 @@ class crnrstn {
 
         try{
 
+            //
+            // IS THE ENVIRONMENT DETECTED?
             if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                 if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                     $this->error_log('Sending ' . $data_key . ' WordPress profile information for [' . $env_key . '] to the CRNRSTN :: MySQLi database connection manager.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
@@ -3518,8 +3690,12 @@ class crnrstn {
 
             try{
 
+                //
+                // IS THE ENVIRONMENT DETECTED?
                 if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+                    //
+                    // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                     if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key)){
 
                         if(is_file($email_or_creds_path)){
@@ -3600,6 +3776,8 @@ class crnrstn {
 
     public function config_detect_environment($env_key = CRNRSTN_RESOURCE_ALL, $data_key = NULL, $value = NULL, $required_server_matches = 1){
 
+        //
+        // IS THE ENVIRONMENT NOT DETECTED?
         if(!isset(self::$env_select_ARRAY[$this->config_serial_hash])){
 
             if($required_server_matches < 0){
@@ -4104,27 +4282,10 @@ class crnrstn {
 
     public function tmp_restrict_this_lorem_ipsum_method($method){
 
-        //
-        // 'config_add_database' => 'DISABLED',
-        // 'config_deny_access' => 'DISABLED',
-        // 'config_detect_environment' => 'DISABLED',
-        // 'config_include_encryption' => 'DISABLED',
-        // 'config_include_wordpress' => 'DISABLED',
-        // 'is_configured' => 'DISABLED',
-        // 'config_init_images_http_dir' => 'DISABLED',
-        // 'config_set_crnrstn_as_err_handler' => 'DISABLED',
-        // 'return_system_image'=>'DISABLED',
-        // 'config_include_system_resources' => 'DISABLED',
-        // 'config_add_environment' => 'DISABLED','config_init_logging' => 'DISABLED',
-        // 'error_log' => 'DISABLED','config_add_seo_engagement' => 'DISABLED', 'get_disk_performance_metric' => 'DISABLED','config_include_seo_engagement' => 'DISABLED',
-        // 'iso_language_profile' => 'DISABLED','hash' => 'DISABLED','grant_permissions_fwrite' => 'DISABLED', 'ini_set' => 'DISABLED', 'config_include_seo_analytics' => 'DISABLED',
-        // 'return_system_image' => 'DISABLED','config_add_seo_analytics' => 'DISABLED','set_ui_theme_style' => 'DISABLED'
         $tmp_ARRAY = array(
 
             'config_add_administration' => 'DISABLED',
-            'config_init_images_transport_mode' => 'DISABLED',
             'form_hidden_input_add' => 'DISABLED',
-            'config_deny_access' => 'DISABLED',
             'form_input_add' => 'DISABLED',
             'form_input_feedback_copy_add' => 'DISABLED',
             'form_integration_html_packet_output' => 'DISABLED',
@@ -4132,7 +4293,6 @@ class crnrstn {
             'config_grant_exclusive_access' => 'DISABLED',
             'set_max_login_attempts' => 'DISABLED',
             'set_timeout_user_inactive' => 'DISABLED',
-            'set_timezone_default' => 'DISABLED'
 
             );
 
@@ -4299,9 +4459,9 @@ class crnrstn {
 
     private function config_add_database_connection($env_key, $host, $un, $pwd, $db, $port = NULL){
 
-        $tmp_env_key_hash = $this->hash($env_key);
-
-        if(($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)){
+        //
+        // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+        if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
             //$this->print_r('$env_key=[' . $env_key . ']. $host=[' . $host . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
             $this->oMYSQLI_CONN_MGR->add_connection($env_key, $host, $un, $pwd, $db, $port);
@@ -4320,8 +4480,6 @@ class crnrstn {
             $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
             $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
 
-            $tmp_env_key_hash = $this->hash($env_key);
-
             if(count($tmp_param_missing_ARRAY) > 0){
 
                 $this->error_log('Attempted ' . __METHOD__ . '(' . $data_key . ') but missing required parameters. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
@@ -4338,7 +4496,9 @@ class crnrstn {
 
                 }
 
-                if(($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)){
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+                if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                     //error_log(__LINE__ . ' crnrstn ' . __METHOD__ . ':: input_data_value(), WHERE $data_key=' . $data_key . ' $env_key=[' . $env_key . '/' . self::$server_env_key_ARRAY[$this->config_serial_hash] . '.].');
                     if(!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
@@ -4387,8 +4547,6 @@ class crnrstn {
             $tmp_param_missing_str = $tmp_param_err_str_ARRAY['string'];
             $tmp_param_missing_ARRAY = $tmp_param_err_str_ARRAY['index_array'];
 
-            $tmp_env_key_hash = $this->hash($env_key);
-
             if(count($tmp_param_missing_ARRAY) > 0){
 
                 $this->error_log('Attempted ' . __METHOD__ . '(' . $data_key . ') but missing required parameters. ' . $tmp_param_missing_str, __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
@@ -4397,7 +4555,9 @@ class crnrstn {
 
             }else{
 
-                if(($tmp_env_key_hash == self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) || ($env_key === CRNRSTN_RESOURCE_ALL)){
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+                if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
                     if(!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
 
@@ -4512,6 +4672,10 @@ class crnrstn {
 
     public function system_terminate($message_type = 'config_serial'){
 
+        //
+        // INITIALIZE SYSTEM DEFAULTS
+        $this->config_load_defaults_terminal(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
+
         if(!isset(self::$system_termination_flag_ARRAY[$message_type])){
 
             self::$system_termination_flag_ARRAY[$message_type] = 1;
@@ -4547,8 +4711,8 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                             $tmp_str_out = $this->print_r_str($tmp_str_in, NULL, CRNRSTN_UI_RANDOM, __LINE__, __METHOD__, __FILE__);
                             $theme_profile = $this->random_theme_constant;
 
-                            $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 268] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                            error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 268] in the CRNRSTN :: config file.');
+                            $this->error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 243] in the CRNRSTN :: config file.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                            error_log('To enable server detection, please configure CRNRSTN :: for this environment within the configuration file. For reference, please see: [lnum 243] in the CRNRSTN :: config file.');
 
                         break 2;
 
@@ -4579,7 +4743,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     
     <div style="text-align: left; font-family:Courier New, Courier, monospace; font-size:15px; line-height:23px; border-bottom: 0px solid #FFF;">//
         <br>// ' . $this->multi_lang_content_return('PLEASE_ENTER_VALID_ENV_DETECTION') . '
-        <br>// File Source: ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 268].' . '       
+        <br>// File Source: ' . CRNRSTN_ROOT . '/_crnrstn.config.inc.php [lnum 243].' . '       
         <br>// ' . $this->multi_lang_content_return('FOR_CONFIG_REFERENCE_PLEASE_SEE') . '
          
     </div>
@@ -4763,12 +4927,79 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
+    /**
+     * Retrieve the User-Agent.
+     *
+     * @return string|null The user agent if it's set.
+     */
+    public function get_user_agent(){
+
+        return $this->oCRNRSTN_ENV->get_user_agent();
+
+    }
+
+    /**
+     * Retrieve the list of known phone devices.
+     *
+     * @return array List of phone devices.
+     */
+    public function get_mobile_devices(){
+
+        return $this->oCRNRSTN_ENV->get_mobile_devices();
+
+    }
+
+    /**
+     * Retrieve the list of known tablet devices.
+     *
+     * @return array List of tablet devices.
+     */
+    public function get_tablet_devices(){
+
+        return $this->oCRNRSTN_ENV->get_tablet_devices();
+
+    }
+
+    /**
+     * Retrieve the list of known browsers. Specifically, the user agents.
+     *
+     * @return array List of browsers / user agents.
+     */
+    public function get_mobile_browsers(){
+
+        return $this->oCRNRSTN_ENV->get_browsers();
+
+    }
+
+    /**
+     * Retrieve the list of mobile operating systems.
+     *
+     * @return array The list of mobile operating systems.
+     */
+    public function get_mobile_os(){
+
+        return $this->oCRNRSTN_ENV->get_mobile_os();
+
+    }
+
+    /**
+     * Check if the device is mobile.
+     * Returns true if any type of mobile device detected, including special ones
+     *
+     * @return bool
+     */
     public function is_mobile($tablet_is_mobile = false, $magic_method = NULL){
 
         return $this->oCRNRSTN_ENV->oHTTP_MGR->is_mobile($tablet_is_mobile, $magic_method);
 
     }
 
+    /**
+     * Check if the device is a tablet.
+     * Return true if any type of tablet device is detected.
+     *
+     * @return bool
+     */
     public function is_tablet($mobile_is_tablet = false, $magic_method = NULL){
 
         return $this->oCRNRSTN_ENV->oHTTP_MGR->is_tablet($mobile_is_tablet, $magic_method);
@@ -4796,6 +5027,36 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
     public function set_mobile_custom($magic_method = 'isMobile()'){
 
         return $this->oCRNRSTN_ENV->oHTTP_MGR->set_mobile_custom($magic_method);
+
+    }
+
+    public function add_cookie($name, $value = "", $expires_or_options = 0, $path = "", $domain = "", $secure = false, $httponly = false){
+
+        return $this->oCRNRSTN_ENV->add_cookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly);
+
+    }
+
+    public function add_raw_cookie($name, $value = "", $expires_or_options = 0, $path = "", $domain = "", $secure = false, $httponly = false){
+
+        return $this->oCRNRSTN_ENV->add_raw_cookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly);
+
+    }
+
+    public function delete_all_cookies($path = ""){
+
+        return $this->oCRNRSTN_ENV->delete_all_cookies($path);
+
+    }
+
+    public function delete_cookie($name, $path = ""){
+
+        return $this->oCRNRSTN_ENV->delete_cookie($name, $path);
+
+    }
+
+    public function get_cookie($name){
+
+        return $this->oCRNRSTN_ENV->get_cookie($name);
 
     }
 
@@ -6411,9 +6672,13 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $data_type_title = 'CRNRSTN :: ANALYTICS';
             $env_key_hash = $this->hash($env_key);
 
+            //
+            // IS THE ENVIRONMENT DETECTED?
             if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-                if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash){
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+                if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash)){
 
                     $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$data_key', '$data_value');
                     $tmp_param_err_str_ARRAY = $this->return_regression_stripe_ARRAY('MISSING_STRING_DATA', $tmp_stripe_key_ARRAY, $env_key, $data_key, $data_value);
@@ -6480,8 +6745,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             $data_type_title = 'CRNRSTN :: ENGAGEMENT';
             $env_key_hash = $this->hash($env_key);
 
+            //
+            // IS THE ENVIRONMENT DETECTED?
             if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                 if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash){
 
                     $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$data_key', '$data_value');
@@ -6542,72 +6811,156 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function config_init_session_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+    private function config_init_session_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $tmp_data_profile_ARRAY = array();
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-        $data_type_family = 'CRNRSTN::RESOURCE::SESSION_ENCRYPTION';
-        $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
-        $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: SESSION';
-        $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_SESSION;
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
-        return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+                $tmp_data_profile_ARRAY = array();
 
-    }
+                $data_type_family = 'CRNRSTN::RESOURCE::SESSION_ENCRYPTION';
+                $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
+                $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: SESSION';
+                $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_SESSION;
 
-    public function config_init_cookie_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+                return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
 
-        $data_type_family = 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION';
-        $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
-        $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: COOKIE';
-        $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_COOKIE;
+            }
 
-        return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+        }
 
-    }
-
-    public function config_init_tunnel_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
-
-        $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
-        $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
-        $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: TUNNEL';
-        $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_TUNNEL;
-
-        return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+        return true;
 
     }
 
-    public function config_init_database_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+    private function config_init_cookie_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $data_type_family = 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION';
-        $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
-        $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: DATABASE';
-        $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_DATABASE;
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-        return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
+
+                $data_type_family = 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION';
+                $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
+                $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: COOKIE';
+                $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_COOKIE;
+
+                return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+
+            }
+
+        }
+
+        return true;
 
     }
 
-    public function config_init_soap_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+    private function config_init_tunnel_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $data_type_family = 'CRNRSTN::RESOURCE::SOAP_ENCRYPTION';
-        $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
-        $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: SOAP SERVICES';
-        $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_SOAP;
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-        return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
+
+                $data_type_family = 'CRNRSTN::RESOURCE::TUNNEL_ENCRYPTION';
+                $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
+                $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: TUNNEL';
+                $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_TUNNEL;
+
+                return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+
+            }
+
+        }
+
+        return true;
 
     }
 
-    public function config_init_OERSL_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+    private function config_init_database_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
-        $data_type_family = 'CRNRSTN::RESOURCE::OERSL_ENCRYPTION';
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-        $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
-        $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: OpenSSL Encryption Rotation Services Layer (OERSL)';
-        $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_OERSL;
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
 
-        return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+                $data_type_family = 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION';
+                $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
+                $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: DATABASE';
+                $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_DATABASE;
+
+                return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+
+            }
+
+        }
+
+        return true;
+
+    }
+
+    private function config_init_soap_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
+
+                $data_type_family = 'CRNRSTN::RESOURCE::SOAP_ENCRYPTION';
+                $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
+                $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: SOAP SERVICES';
+                $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_SOAP;
+
+                return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+
+            }
+
+        }
+
+        return true;
+
+    }
+
+    private function config_init_OERSL_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
+
+                $data_type_family = 'CRNRSTN::RESOURCE::OERSL_ENCRYPTION';
+
+                $tmp_data_profile_ARRAY['data_type_family'] = $data_type_family;
+                $tmp_data_profile_ARRAY['data_type_title'] = 'CRNRSTN :: OpenSSL Encryption Rotation Services Layer (OERSL)';
+                $tmp_data_profile_ARRAY['data_type_encryption_channel'] = CRNRSTN_ENCRYPT_OERSL;
+
+                return $this->apply_encryption_profile($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg, $tmp_data_profile_ARRAY);
+
+            }
+
+        }
+
+        return true;
 
     }
 
@@ -6621,8 +6974,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             $env_key_hash = $this->hash($env_key);
 
+            //
+            // IS THE ENVIRONMENT DETECTED?
             if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
                 if($env_key == CRNRSTN_RESOURCE_ALL || self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $env_key_hash){
 
                     $tmp_stripe_key_ARRAY = $this->return_stripe_key_ARRAY('$env_key', '$encrypt_cipher', '$encrypt_secret_key', '$hmac_alg');
@@ -9327,6 +9684,30 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         self::$oCRNRSTN_CONFIG_MGR->input_data_value($this->ini_set_ARRAY[$ini_setting], $ini_setting, NULL, 0);
 
         return $this->ini_set_ARRAY[$ini_setting];
+
+    }
+
+    public function config_ini_set($env_key, $ini_setting, $ini_value = NULL){
+
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key))){
+
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($ini_value, $ini_setting, NULL, 0);
+
+                $this->ini_set_ARRAY[$ini_setting] = $ini_value;
+
+                return ini_set($ini_setting, $ini_value);
+
+            }
+
+        }
+
+        return true;
 
     }
 

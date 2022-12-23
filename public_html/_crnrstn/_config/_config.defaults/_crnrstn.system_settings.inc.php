@@ -1,8 +1,13 @@
 <?php
 
-$tmp_crnrstn_settings_ARRAY = array();
-$tmp_str_settings = $this->generate_new_key(250);
-$tmp_crnrstn_settings_ARRAY[] = $tmp_str_settings;
+//
+// DOCUMENTATION
+$this->add_system_resource('share_component_is_active', false, 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
+
+
+
+
+
 
 /*
 SYSTEM DEFAULTS TO SUPPORT ::

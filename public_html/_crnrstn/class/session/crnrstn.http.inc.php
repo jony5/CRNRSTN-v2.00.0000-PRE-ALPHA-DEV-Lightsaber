@@ -1084,6 +1084,42 @@ class crnrstn_http_manager {
 
     }
 
+    public function get_headers($return_type){
+
+        return $this->oMOBI_DETECT->getHeaders($return_type);
+
+    }
+
+    public function get_user_agent(){
+
+        return $this->oMOBI_DETECT->getUserAgent();
+
+    }
+
+    public function get_mobile_devices(){
+
+        return $this->oMOBI_DETECT->getPhoneDevices();
+
+    }
+
+    public function get_tablet_devices(){
+
+        return $this->oMOBI_DETECT->getTabletDevices();
+
+    }
+
+    public function get_browsers(){
+
+        return $this->oMOBI_DETECT->getBrowsers();
+
+    }
+
+    public function get_mobile_os(){
+
+        return $this->oMOBI_DETECT->getOperatingSystems();
+
+    }
+
     private function add_header_attribute($name, $value, $overwrite_existing = false){
 
         $this->response_header_attribute_ARRAY['header'][] = $name . ': ' . $value;

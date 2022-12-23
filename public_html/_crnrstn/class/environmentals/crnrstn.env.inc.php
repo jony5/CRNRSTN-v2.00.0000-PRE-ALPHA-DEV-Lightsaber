@@ -179,7 +179,7 @@ class crnrstn_environment {
         // TODO :: OBJECT INSTANTIATION REFACTORING TO SUPPORT PERSISTENCE OF STATE
         // COOKIE MANAGER SHOULD INSTANTIATE LOOKING FOR COOKIE::SSDTLA INTEGRATIONS FROM BROWSER...
         // SESSION MANAGER SHOULD INSTANTIATE LOOKING FOR...FROM SESSION....ETC. Thursday, August 18, 2022 @ 0247 hrs
-        //$this->oCOOKIE_MGR = new crnrstn_cookie_manager();
+        $this->oCOOKIE_MGR = new crnrstn_cookie_manager($oCRNRSTN);
 
         $this->oHTTP_MGR = new crnrstn_http_manager($oCRNRSTN, $this);
 
@@ -6870,6 +6870,72 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
 
     }
 
+    public function get_headers($return_type){
+
+        return $this->oHTTP_MGR->get_headers($return_type);
+
+    }
+
+    public function get_user_agent(){
+
+        return $this->oHTTP_MGR->get_user_agent();
+
+    }
+
+    public function get_mobile_devices(){
+
+        return $this->oHTTP_MGR->get_mobile_devices();
+
+    }
+
+    public function get_tablet_devices(){
+
+        return $this->oHTTP_MGR->get_tablet_devices();
+
+    }
+
+    public function get_browsers(){
+
+        return $this->oHTTP_MGR->get_browsers();
+
+    }
+
+    public function get_mobile_os(){
+
+        return $this->oHTTP_MGR->get_mobile_os();
+
+    }
+
+    public function add_cookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly){
+
+        return $this->oCOOKIE_MGR->addCookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly);
+
+    }
+
+    public function add_raw_cookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly){
+
+        return $this->oCOOKIE_MGR->addRawCookie($name, $value, $expires_or_options, $path, $domain, $secure, $httponly);
+
+    }
+
+    public function delete_all_cookies($path){
+
+        return $this->oCOOKIE_MGR->deleteAllCookies($path);
+
+    }
+
+    public function delete_cookie($name, $path){
+
+        return $this->oCOOKIE_MGR->deleteCookie($name, $path);
+
+    }
+
+    public function get_cookie($name){
+
+        return $this->oCOOKIE_MGR->getCookie($name);
+
+    }
+
     /**
      * UTF-8 aware parse_url() replacement.
      *
@@ -8189,6 +8255,8 @@ class crnrstn_decoupled_data_object {
             break;
             case 'bool':
             case 'boolean':
+
+                //error_log(__LINE__ . ' ddo env $data_value=[' . print_r($data_value, true) . '].');
 
                 if(isset($index)){
 

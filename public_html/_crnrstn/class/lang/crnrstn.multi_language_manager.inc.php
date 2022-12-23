@@ -3377,6 +3377,22 @@ photo album
                 }
 
             break;
+            case 'DOCUMENTATION_MODULE_SHARE_TEXT':
+
+                switch($this->iso_language_html_current) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'Share';
+
+                    break;
+
+                }
+
+            break;
             case 'DOCUMENTATION_MODULE_TOP_TEXT':
 
                 switch($this->iso_language_html_current) {
