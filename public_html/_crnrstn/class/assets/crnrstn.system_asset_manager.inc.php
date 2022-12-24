@@ -4826,7 +4826,8 @@ class crnrstn_system_image_asset_manager {
 
                 $this->readfile_chunked($tmp_filepath);
 
-                ob_flush();
+                //ob_flush();
+                if(ob_get_level() > 0){ob_flush();}
                 flush();
                 exit();
 
@@ -9631,7 +9632,8 @@ class crnrstn_system_image_asset_manager {
 
                             $this->readfile_chunked($tmp_filepath);
 
-                            ob_flush();
+                            //ob_flush();
+                            if(ob_get_level() > 0){ob_flush();}
                             flush();
                             exit();
 
@@ -11335,7 +11337,10 @@ class crnrstn_system_image_asset_manager {
 
                             $this->readfile_chunked($tmp_filepath);
 
-                            ob_flush();
+                            //error_log(__LINE__ . ' asset mgr [' . $tmp_filepath . '].');
+
+                            //ob_flush();
+                            if(ob_get_level() > 0){ob_flush();}
                             flush();
                             exit();
 
@@ -11438,7 +11443,7 @@ class crnrstn_system_image_asset_manager {
 
                     }
 
-                    $this->oCRNRSTN->error_log(__LINE__ . ' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+//                    $this->oCRNRSTN->error_log(__LINE__ . ' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                     // $asset_data_key
                     switch($tmp_output_mode){
@@ -11455,7 +11460,7 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_UI_IMG_HTML_WRAPPED & CRNRSTN_UI_IMG_BASE64_PNG:
                         case CRNRSTN_UI_IMG_HTML_WRAPPED:
 
-                            $this->oCRNRSTN->error_log(__LINE__ . ' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+ //                           $this->oCRNRSTN->error_log(__LINE__ . ' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                             return $this->return_image_html_wrapped($tmp_filename, $tmp_width, $tmp_height, $tmp_alt_text, $tmp_title_text, $tmp_link, $tmp_target, $tmp_asset_family, $tmp_output_mode, $asset_mapping_mode);
 
@@ -11521,10 +11526,10 @@ class crnrstn_system_image_asset_manager {
                         case CRNRSTN_ASSET_MODE_BASE64:
                         case CRNRSTN_UI_IMG_BASE64:
 
-                            $this->oCRNRSTN->error_log(' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                            //$this->oCRNRSTN->error_log(' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                             if($this->oCRNRSTN->is_system_terminate_enabled()){
-                                $this->oCRNRSTN->error_log(' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
+                                //$this->oCRNRSTN->error_log(' asset mgr ASSET[' . $tmp_filename . ']. tmp_output_mode[' . $tmp_output_mode . ']. asset_family[' . print_r($this->asset_request_asset_family, true) . ']. asset_response_method_key[' . $this->asset_response_method_key . ']. $this->default_asset_mode[' . $this->default_asset_mode . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_CREATIVE_EMBED);
 
                                 $tmp_path = CRNRSTN_ROOT;
                                 $tmp_system_directory = '_crnrstn';
@@ -11709,7 +11714,8 @@ class crnrstn_system_image_asset_manager {
 
                             $this->readfile_chunked($tmp_filepath);
 
-                            ob_flush();
+                            //ob_flush();
+                            if(ob_get_level() > 0){ob_flush();}
                             flush();
                             exit();
 

@@ -311,6 +311,7 @@ class crnrstn_data_tunnel_services_manager{
             case 'crnrstn_interact_ui_search_src':
             case 'crnrstn_interact_ui_messenger_src':
             case 'crnrstn_interact_ui_system_footer_src':
+            case 'crnrstn_interact_ui_documentation_view_source_src':
 
                 //
                 // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME, BUT $module_nom WILL

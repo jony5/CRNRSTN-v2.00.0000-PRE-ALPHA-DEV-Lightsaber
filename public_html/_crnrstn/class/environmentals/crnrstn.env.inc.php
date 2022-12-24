@@ -7631,11 +7631,11 @@ class crnrstn_decoupled_data_object {
 
             }
 
-            $this->oCRNRSTN->error_log('Unable to locate data at position, ' . $data_key . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            //$this->oCRNRSTN->error_log('Unable to locate data at position, ' . $data_key . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         }
 
-        return false;
+        return 0;
 
     }
 
