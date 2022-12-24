@@ -145,9 +145,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.source_action_ux_element_id = 'page_load';
         this.max_xhr_retrys = 5;
         this.ssdtla_xhr_request_attempt_count_ARRAY = [];
+        this.share_component_resource_container_ARRAY = [];
+        this.share_component_resource_index_ARRAY = [];
         this.dom_element_mouse_state_tracker_ARRAY = [];
         this.dom_element_mouse_state_lock_ARRAY = [];
         this.dom_element_mouse_state_ARRAY = [];
+        this.dom_element_mouse_state_ARRAY['share_module_click'] = 'CLOSED';
         this.body_control_document_width = 0;
         this.body_control_window_width = 0;
         this.b_width_nav_expand = -1;
@@ -229,6 +232,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.data_tunnel_ttl_monitor_ARRAY = [];
         //this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = 30;
         this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = 2;
+        this.interact_ui_ttl_monitor_ARRAY = [];
+        this.interact_ui_ttl_monitor_ARRAY['share_module_click_ttl'] = 2;
 
         //
         // TODO :: NEED TO POPULATE THIS ARRAY FROM THE SSDTLA XML RESPONSE
@@ -1172,7 +1177,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     CRNRSTN_JS.prototype.refresh_stage_anchored_dom_component_css = function(){
 
         var search_mouse_out_listen = true;
+        var share_component_mouse_out_listen = true;
         var search_listen_str = 'crnrstn_interact_ui_side_nav_search';
+        var share_component_listen_str = 'crnrstn_module_share_component_wrapper';
 
         if(this.interact_ui_refresh_state_docs_bg === 'ENABLED'){
 
@@ -1212,12 +1219,46 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             var tmp_elemid = this.CRNRSTN_INTERACT_UI_ELEM_AT_MOUSE[i].id;
             if(tmp_elemid.length > 0){
 
+                //
+                // LISTEN FOR SEARCH.
                 if(this.stripos(tmp_elemid, search_listen_str)){
 
                     search_mouse_out_listen = false;
-                    i = (tmp_elem_cnt * 2) + 1;
+                    //i = (tmp_elem_cnt * 2) + 1;
 
                 }
+
+                if(this.dom_element_mouse_state_ARRAY['share_module_click'] === 'OPEN'){
+
+                    //
+                    // LISTEN FOR DEEP LINK SHARE COMPONENT.
+                    if(this.stripos(tmp_elemid, share_component_listen_str)) {
+
+                        share_component_mouse_out_listen = false;
+                        //i = (tmp_elem_cnt * 2) + 1;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        if(this.dom_element_mouse_state_ARRAY['share_module_click'] === 'OPEN'){
+
+            var tmp_share_component_ttl = this.get_resource('share_module_click_ttl');
+            if(share_component_mouse_out_listen){
+
+                //
+                // IF ANY DEEP LINK ARE OPEN...CLOSE.
+                this.share_component_close_all();
+
+            }else{
+
+                //
+                // PUNT TTL ON COMPONENT CLOSE. KEEP OPEN.
+                this.add_resource('share_module_click_ttl', 2);
 
             }
 
@@ -1240,6 +1281,103 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             this.size_element_y('crnrstn_interact_ui_side_nav')
 
         }
+
+    };
+
+    CRNRSTN_JS.prototype.share_component_close_all = function(){
+
+        var tmp_ttl = this.get_resource('share_module_click_ttl');
+
+        if(tmp_ttl < 0){
+
+            this.dom_element_mouse_state_ARRAY['share_module_click'] = 'CLOSE';
+
+            //
+            // CLOSE ALL.
+            //
+            // SOURCE :: https://www.geeksforgeeks.org/how-to-dynamically-create-and-apply-css-class-in-javascript/
+            var class_elem_set = document.querySelectorAll(".crnrstn_module_share_component_wrapper");
+
+            // Apply CSS property to it
+            for(var i = 0; i < class_elem_set.length; i++){
+
+                //
+                // PARSE OUT THE SERIAL. crnrstn_module_share_component_{SERIAL}
+                var tmp_share_id_ARRAY = class_elem_set[i].id.split('crnrstn_module_share_component_');
+                var tmp_cnt = tmp_share_id_ARRAY.length;
+                for(iii = 0; iii < tmp_cnt; iii++){
+
+                    if(tmp_share_id_ARRAY[iii].length > 0){
+
+                        this.set_ui_component_state('share_module_click_' + tmp_share_id_ARRAY[iii], 'OFF');
+                        document.getElementById("crnrstn_module_share_component_input_" + tmp_share_id_ARRAY[iii]).style.backgroundColor = "#FFF";
+                        document.getElementById("crnrstn_module_share_component_copy_status_" + tmp_share_id_ARRAY[iii]).innerHTML = "";
+
+                    }
+
+                }
+
+                if($(class_elem_set[i]).length){
+
+                    if(parseInt(this.string_clean_css_px_int($(class_elem_set[i]).css('width'))) > 5){
+
+                        $(class_elem_set[i]).animate({
+                            opacity: 0
+                        }, {
+                            duration: 1000,
+                            queue: false,
+                            specialEasing: {
+                                opacity: "swing"
+                            },
+                            complete: function(){
+
+                                $(class_elem_set[i]).animate({
+                                    width: 0,
+                                    height: 0
+                                }, {
+                                    duration: 0,
+                                    queue: false,
+                                    specialEasing: {
+                                        color: "swing"
+                                    },
+                                    complete: function () {
+
+                                        $(class_elem_set[i]).animate({
+                                            opacity: 1
+                                        }, {
+                                            duration: 0,
+                                            queue: false,
+                                            complete: function () {
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                });
+
+                            }
+
+                        });
+
+                    }
+
+                }
+
+            }
+
+            //
+            // RESET TTL TO TWO SECONDS.
+            this.add_resource('share_module_click_ttl', 2);
+
+            return true;
+
+        }
+
+        tmp_ttl--;
+
+        this.add_resource('share_module_click_ttl', tmp_ttl);
 
     };
 
@@ -5192,6 +5330,15 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         });
 
         //
+        // CRNRSTN :: DEEP LINK SUPPORT
+        $('body').on('click', 'a[rel^=crnrstn_module_share], area[rel^=crnrstn_signin], a[data-crnrstn_signin], area[data-crnrstn_signin]', function(event) {
+
+            self.crnrstn_signin();
+            return false;
+
+        });
+
+        //
         // CRNRSTN :: SIGN IN SUPPORT
         $('body').on('click', 'a[rel^=crnrstn_signin], area[rel^=crnrstn_signin], a[data-crnrstn_signin], area[data-crnrstn_signin]', function(event) {
 
@@ -8181,6 +8328,53 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+
+    CRNRSTN_JS.prototype.get_resource = function(data_type_key){
+
+        switch(data_type_key){
+            case 'share_module_click':
+
+                if(this.share_component_resource_container_ARRAY !== undefined){
+
+                    return this.share_component_resource_index_ARRAY;
+
+                }
+
+            break;
+            case 'share_module_click_ttl':
+            default:
+
+                return this.interact_ui_ttl_monitor_ARRAY[data_type_key];
+
+            break;
+
+        }
+
+    };
+
+    CRNRSTN_JS.prototype.add_resource = function(data_type_key, data_value){
+
+        switch(data_type_key){
+            case 'share_module_click':
+
+                if(this.share_component_resource_container_ARRAY[data_value] === undefined){
+
+                    this.share_component_resource_index_ARRAY[data_value] = 1;
+
+                }
+
+            break;
+            case 'share_module_click_ttl':
+            default:
+
+                this.interact_ui_ttl_monitor_ARRAY[data_type_key] = data_value;
+
+            break;
+
+        }
+
+    };
+
     CRNRSTN_JS.prototype.crnrstn_interact_ui_ux = function(ux_action, elem){
 
         //
@@ -8240,6 +8434,149 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 });
 
                 return false;
+
+            }
+
+            return false;
+
+        }
+
+        if(ux_action === 'share_module_link_select'){
+
+            //
+            // SOURCE :: https://stackoverflow.com/questions/1173194/select-all-div-text-with-single-mouse-click
+            // COMMENT :: https://stackoverflow.com/a/1173319
+            // AUTHOR :: Denis Sadowski :: https://stackoverflow.com/users/136482/denis-sadowski
+            if(document.selection){ // IE
+
+                var range = document.body.createTextRange();
+                range.moveToElementText(document.getElementById("crnrstn_module_share_component_input_" + elem));
+                range.select();
+
+            }else if(window.getSelection){
+
+                var range = document.createRange();
+                range.selectNode(document.getElementById("crnrstn_module_share_component_input_" + elem));
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+
+            }
+
+            //
+            // SOURCE :: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+            /* Copy the text inside the text field */
+            document.execCommand('copy');
+
+            /* Alert the copied text */
+            //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+            document.getElementById("crnrstn_module_share_component_input_" + elem).style.backgroundColor = "#95a3ff";
+            document.getElementById("crnrstn_module_share_component_copy_status_" + elem).innerHTML = "Copied!";
+
+        }
+
+        //
+        // SHARE COMPONENT SUPPORT
+        if(ux_action === 'share_module_click'){
+
+            tmp_state = this.get_ui_component_state(ux_action + '_' + elem);
+            if(this.dom_element_mouse_state_ARRAY['share_module_click'] !== 'OPEN' || tmp_state !== 'ON'){
+
+                this.set_ui_component_state(ux_action + '_' + elem, 'OFF');
+
+            }
+
+            var tgt_width = 102;
+            var tgt_height = 55;
+            var tgt_wrapper_height = parseInt(tgt_height) + parseInt(20);
+            var tgt_wrapper_width = parseInt(tgt_width) + parseInt(25);
+            this.dom_element_mouse_state_ARRAY['share_module_click'] = 'OPEN';
+
+            this.add_resource(ux_action, elem);
+            this.add_resource('share_module_click_ttl', 2);
+
+            if(this.get_ui_component_state(ux_action + '_' + elem) !== 'ON'){
+
+                //
+                // FIRE TO TURN OFF ACTION. SET TO "ON".
+                this.set_ui_component_state(ux_action + '_' + elem)
+
+                $('#crnrstn_module_share_component_wrapper_rel_' + elem).animate({
+                    width: 0,
+                    height: 0
+                }, {
+                    duration: 0,
+                    queue: false,
+                    complete: function () {
+
+                    }
+
+                });
+
+                $('#crnrstn_module_share_component_' + elem).animate({
+                    height: 0
+                }, {
+                    duration: 0,
+                    queue: false,
+                    complete: function () {
+
+                        $('#crnrstn_module_share_component_wrapper_rel_' + elem).animate({
+                            height: parseInt(tgt_wrapper_height),
+                            width: parseInt(tgt_wrapper_width)
+                        }, {
+                            duration: 50,
+                            queue: false,
+                            specialEasing: {
+                                height: "swing"
+                            },
+                            complete: function (){
+
+                                $('#crnrstn_module_share_component_' + elem).animate({
+                                    opacity: 1.0,
+                                    width: parseInt(tgt_width),
+                                    left: -22
+                                }, {
+                                    duration: 0,
+                                    queue: false,
+                                    complete: function () {
+
+                                        $('#crnrstn_module_share_component_' + elem).animate({
+                                            height: parseInt(tgt_height)
+                                        }, {
+                                            duration: 100,
+                                            queue: false,
+                                            specialEasing: {
+                                                height: "swing"
+                                            },
+                                            complete: function () {
+
+                                            }
+
+                                        });
+
+                                        $('#crnrstn_module_share_component_' + elem).animate({
+                                            paddingTop: parseInt(8),
+                                            paddingRight: parseInt(10),
+                                            paddingLeft: parseInt(10)
+                                        }, {
+                                            duration: 0,
+                                            queue: false,
+                                            complete: function () {
+
+                                            }
+
+                                        });
+
+                                    }
+
+                                });
+
+                            }
+
+                        });
+
+                    }
+
+                });
 
             }
 

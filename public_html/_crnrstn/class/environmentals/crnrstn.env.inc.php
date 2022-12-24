@@ -7832,7 +7832,7 @@ class crnrstn_decoupled_data_object {
                 return $tmp_crnrstn_data_packet_out . $tmp_data_packet_parameter_out . $tmp_str . $tmp_close;
 
             break;
-            case 'pssdtl_packet_data_array';
+            case 'pssdtl_packet_data_array':
 
                 $tmp_serialization_salt = $this->oCRNRSTN->salt();
 
@@ -7906,7 +7906,7 @@ class crnrstn_decoupled_data_object {
                 return $tmp_ARRAY;
 
             break;
-            case 'pssdtl_packet';
+            case 'pssdtl_packet':
 
                 $tmp_str_out = '';
                 $tmp_val = '';
@@ -8032,11 +8032,7 @@ class crnrstn_decoupled_data_object {
             case 'value':
 
                 //if($data_key == '1832337717::2678415634::404079999::version_php'){
-
-                    //error_log(__LINE__ . ' env ' . __METHOD__ . ':: [' . $index . ']' . $data_key . '.');
-
-                //}
-
+                //if($data_key == '54ab03abbade5b942a9f6c3d946daf4e0ee761eba9e525ab12adb3959d626576::share_component_is_active'){
                 //if($data_key == '6780e3fb74e6d79e416ede7df352e02400fe55271e3959ba0996cb47b525cac8db'){
 
                     //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, NULL, __LINE__, __METHOD__, __FILE__);
@@ -8132,7 +8128,7 @@ class crnrstn_decoupled_data_object {
                     // TODO :: SHOULD THIS RETURN SOMETHING TIED TO THE SESSION FOR PROPER
                     // TODO :: DETERMINATION OF "NO DATA TO RETURN"
                     // BOOLEAN FALSE WILL RETURN (string) 'false'
-                    //error_log(__LINE__ .' env ddo - return false... NOT SET ['.$data_key.']');
+                    //error_log(__LINE__ .' env ddo - return false... NOT SET [' . $data_key . ']');
                     //return false;
                     return $this->oCRNRSTN->session_salt('NO_MATCH');
 
@@ -8152,7 +8148,9 @@ class crnrstn_decoupled_data_object {
 
     public function add($data_value, $data_key = NULL, $index = NULL, $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $default_ttl = 60){
 
-//        if($data_key == 'ac7971ddce7e6720466d7fb07d03cdf6fd017a508d87ac7132d7d5d11a34f077db'){
+        //if($data_key == 'ac7971ddce7e6720466d7fb07d03cdf6fd017a508d87ac7132d7d5d11a34f077db'){
+//        if($data_key == '54ab03abbade5b942a9f6c3d946daf4e0ee761eba9e525ab12adb3959d626576::share_component_is_active'){
+//
 //
 //            $this->oCRNRSTN->print_r('$data_value=[' . $data_value . ']. $data_key=[' . $data_key . ']. $index=[' . $index . '].', NULL, NULL, __LINE__, __METHOD__, __FILE__);
 //
@@ -8256,7 +8254,7 @@ class crnrstn_decoupled_data_object {
             case 'bool':
             case 'boolean':
 
-                //error_log(__LINE__ . ' ddo env $data_value=[' . print_r($data_value, true) . '].');
+                //error_log(__LINE__ . '  env DDO->ADD BOOL $data_value[' . print_r($data_value, true) . ']. $data_key[' . $data_key . '].');
 
                 if(isset($index)){
 

@@ -2,9 +2,7 @@
 
 //
 // DOCUMENTATION
-$this->add_system_resource('share_component_is_active', false, 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
-
-
+$this->add_system_resource('share_component_is_active', true, 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
 
 
 

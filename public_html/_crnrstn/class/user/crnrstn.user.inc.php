@@ -10515,171 +10515,171 @@ function crnrstn_sticky_' . $tmp_social_serial . '(ux_action, url, target, elem)
 
     }
 
-    public function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN::RESOURCE'){
-
-        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
-
-        return $tmp_dataset_prefix_str . $resource_key;
-
-    }
-
-    private function return_dataset_nomination_prefix($output_format = NULL, $var0 = NULL, $var1 = NULL, $var2 = NULL, $var3 = NULL, $var4 = NULL, $var5 = NULL, $var6 = NULL, $var7 = NULL, $var8 = NULL, $var9 = NULL, $var10 = NULL, $var11 = NULL){
-
-        $tmp_var_index_pos = 0;
-        $tmp_total_index = 0;
-
-        if(!isset($output_format)){
-
-            $output_format = 'array';
-
-        }
-
-        $tmp_str_out = '';
-        $tmp_array_str_unit_ARRAY = array();
-        $tmp_array_out_ARRAY = array();
-
-        if(isset($var0)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var0 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var0;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var1)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var1 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var1;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var2)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var2 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var2;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var3)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var3 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var3;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var4)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var4 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var4;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var5)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var5 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var5;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var6)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var6 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var6;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var7)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var7 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var7;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var8)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var8 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var8;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var9)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var9 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var9;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var10)){
-
-            $tmp_total_index++;
-            $tmp_str_out .= $var10 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var10;
-
-        }
-
-        $tmp_var_index_pos++;
-        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
-
-        if(isset($var11)){
-
-            $tmp_str_out .= $var11 . '::';
-            $tmp_array_str_unit_ARRAY[] = $var11;
-
-        }
-
-        $tmp_array_out_ARRAY['string'] = $this->hash($tmp_str_out);
-        $tmp_array_out_ARRAY['index_array'] = $tmp_array_str_unit_ARRAY;
-
-        if($output_format == 'array') {
-
-            return $tmp_array_out_ARRAY;
-
-        }
-
-        //
-        // $output_format = 'string'
-        return $tmp_array_out_ARRAY['string'];
-
-    }
+//    public function return_ddo_key($resource_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
+//
+//        $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
+//
+//        return $tmp_dataset_prefix_str . $resource_key;
+//
+//    }
+//
+//    private function return_dataset_nomination_prefix($output_format = NULL, $var0 = NULL, $var1 = NULL, $var2 = NULL, $var3 = NULL, $var4 = NULL, $var5 = NULL, $var6 = NULL, $var7 = NULL, $var8 = NULL, $var9 = NULL, $var10 = NULL, $var11 = NULL){
+//
+//        $tmp_var_index_pos = 0;
+//        $tmp_total_index = 0;
+//
+//        if(!isset($output_format)){
+//
+//            $output_format = 'array';
+//
+//        }
+//
+//        $tmp_str_out = '';
+//        $tmp_array_str_unit_ARRAY = array();
+//        $tmp_array_out_ARRAY = array();
+//
+//        if(isset($var0)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var0 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var0;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var1)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var1 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var1;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var2)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var2 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var2;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var3)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var3 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var3;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var4)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var4 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var4;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var5)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var5 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var5;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var6)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var6 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var6;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var7)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var7 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var7;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var8)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var8 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var8;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var9)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var9 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var9;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var10)){
+//
+//            $tmp_total_index++;
+//            $tmp_str_out .= $var10 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var10;
+//
+//        }
+//
+//        $tmp_var_index_pos++;
+//        if($tmp_var_index_pos > $tmp_total_index) return $this->oCRNRSTN->output_regression_stripe_ARRAY($tmp_str_out, $tmp_array_str_unit_ARRAY, $output_format);
+//
+//        if(isset($var11)){
+//
+//            $tmp_str_out .= $var11 . '::';
+//            $tmp_array_str_unit_ARRAY[] = $var11;
+//
+//        }
+//
+//        $tmp_array_out_ARRAY['string'] = $this->hash($tmp_str_out);
+//        $tmp_array_out_ARRAY['index_array'] = $tmp_array_str_unit_ARRAY;
+//
+//        if($output_format == 'array') {
+//
+//            return $tmp_array_out_ARRAY;
+//
+//        }
+//
+//        //
+//        // $output_format = 'string'
+//        return $tmp_array_out_ARRAY['string'];
+//
+//    }
 
     public function proper_version($system = 'CRNRSTN'){
 

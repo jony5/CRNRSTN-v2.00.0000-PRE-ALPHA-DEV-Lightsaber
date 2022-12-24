@@ -277,14 +277,14 @@ class crnrstn_content_source_controller {
                 $tmp_ARRAY = array('print_r', 'print_r_str', 'var_dump');
 
             break;
-            case 'return_prefixed_ddo_key':
             case 'config_add_system_resource':
             case 'add_system_resource':
             case 'get_resource':
             case 'get_resource_count':
+            case 'return_ddo_key':
 
-                // return_prefixed_ddo_key
-                $tmp_ARRAY = array('add_system_resource', 'config_add_system_resource', 'get_resource', 'get_resource_count');
+                //
+                $tmp_ARRAY = array('add_system_resource', 'config_add_system_resource', 'get_resource', 'get_resource_count', 'return_ddo_key');
 
             break;
             case 'soap_defencoding':
@@ -567,7 +567,7 @@ class crnrstn_content_source_controller {
     public function return_micro_time(){
     public function return_m_start_time(){
 
-    public function return_prefixed_ddo_key($data_key, $env_key = NULL, $data_type_family = 'CRNRSTN::RESOURCE'){
+    public function return_ddo_key($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
 
     public function salt($length = NULL, $chars = NULL){
 
@@ -830,21 +830,6 @@ add_cookie
                         bool $httponly = false
                     ): bool
 
-                    */
-
-                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
-
-                    //
-                    // PAGE TITLE
-                    $tmp_title_array = array();
-                    $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
-                    $this->sauce($tmp_title_array['PAGE_TITLE']);
-                    $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
-                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
-                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
-
                     /*
 	                public function addCookie($name, $value = NULL, $expire = NULL, $path = NULL, $domain = NULL, $secure =  NULL, $httponly = NULL){
                     setcookie(
@@ -857,7 +842,31 @@ add_cookie
                         bool $httponly = false
                     ): bool
 
+                    SOURCE :: https://blog.shahednasser.com/how-to-easily-add-share-links-for-each-social-media-platform/
+                    <a href="https://twitter.com/intent/tweet?text=Awesome%20Blog!&url=blog.shahednasser.com">Share on Twitter</a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=blog.shahednasser.com">Share on LinkedIn</a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=blog.shahednasser.com&quote=Awesome%20Blog!">Share on Facebook</a>
+
+                    <a href="https://wa.me/?text=Awesome%20Blog!%5Cn%20blog.shahednasser.com">Share on Whatsapp</a>
+                    <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=blog.shahednasser.com&caption=Awesome%20blog!&tags=test%2Chello">Share on Tumblr</a>
+                    <a href="https://www.reddit.com/submit?url=blog.shahednasser.com&title=Awesome%20Blog!">Share on Reddit</a>
+
                     */
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    //$this->sauce_social_facebook_preview('');
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
 
                     //
                     // METHOD DEFINITION
@@ -901,7 +910,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1295,7 +1304,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
                     $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
@@ -1336,7 +1345,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1376,7 +1385,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1422,7 +1431,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1469,7 +1478,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1512,7 +1521,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1558,7 +1567,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1787,7 +1796,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1836,7 +1845,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1883,7 +1892,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1929,7 +1938,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -1975,7 +1984,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2014,7 +2023,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2057,7 +2066,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2100,7 +2109,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2144,7 +2153,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2191,7 +2200,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2236,7 +2245,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2281,7 +2290,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
@@ -2327,7 +2336,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2372,7 +2381,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2417,7 +2426,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2462,7 +2471,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2507,7 +2516,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2651,7 +2660,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2695,7 +2704,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2741,7 +2750,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2787,7 +2796,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2833,7 +2842,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2879,7 +2888,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2925,7 +2934,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -2972,7 +2981,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3015,7 +3024,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3064,7 +3073,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3154,7 +3163,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3200,7 +3209,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3250,7 +3259,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3298,7 +3307,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3341,7 +3350,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3480,7 +3489,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3654,7 +3663,7 @@ add_cookie
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3825,7 +3834,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -3868,7 +3877,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4008,7 +4017,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4059,7 +4068,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4102,7 +4111,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4142,7 +4151,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4182,7 +4191,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4222,7 +4231,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4262,7 +4271,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4685,7 +4694,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4729,7 +4738,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4772,7 +4781,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4815,7 +4824,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4884,7 +4893,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4927,7 +4936,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -4971,7 +4980,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -5016,7 +5025,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -5060,7 +5069,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -5207,7 +5216,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -5254,7 +5263,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -5670,7 +5679,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -5715,7 +5724,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -6097,7 +6106,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -6127,6 +6136,52 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
                 break;
+                case 'return_ddo_key':
+                    //
+                    /*
+                    public function return_ddo_key($resource_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
+
+                    */
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+                    //
+                    // METHOD DEFINITION
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_method_definition = $token . $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
+                    ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
+                    $this->sauce($tmp_method_definition);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
+
+                    //
+                    // RETURN VALUE
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_str = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
+
+
+
+                    break;
                 case 'return_int_const_profile':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
@@ -6237,7 +6292,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -6674,7 +6729,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -6718,7 +6773,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -6762,7 +6817,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7058,7 +7113,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7100,7 +7155,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7144,7 +7199,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7553,7 +7608,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7596,7 +7651,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7719,7 +7774,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7760,7 +7815,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7801,7 +7856,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7842,7 +7897,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7883,7 +7938,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7924,7 +7979,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -7965,7 +8020,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -8006,7 +8061,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // PAGE TITLE
                     $tmp_title_array = array();
                     $token = $this->return_content_deep_link_token();
-                    $tmp_title_array['PAGE_TITLE'] = '<h1>'. $token . $this->module_key . '</h1>';
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
@@ -14619,6 +14674,7 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     <br><br>
                                                     ' . $this->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') . '&nbsp;
                                                     ' . $this->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/CRNRSTN_v2_0_0') . '&nbsp;
+                                                    ' . $this->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a') . '&nbsp;
                                                     ' . $this->oCRNRSTN->return_system_image('FIVE', 25, 25, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = 'https://lightsaber.crnrstn.evifweb.com/';
 
@@ -15064,6 +15120,7 @@ between the server and client can be achieved with minimal effort and maximum da
                                                     <br><br>
                                                     ' . $this->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') . '&nbsp;
                                                     ' . $this->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/CRNRSTN_v2_0_0') . '&nbsp;
+                                                    ' . $this->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a') . '&nbsp;
                                                     ' . $this->oCRNRSTN->return_system_image('FIVE', 25, 25, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = 'https://lightsaber.crnrstn.evifweb.com/';
 
@@ -15079,7 +15136,10 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The tablet device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
                                                     <br><br>
-                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
+                                                    ' . $this->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') . '&nbsp;
+                                                    ' . $this->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/CRNRSTN_v2_0_0') . '&nbsp;
+                                                    ' . $this->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 25, 25, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;
@@ -15096,7 +15156,10 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['BROWSER_COMPATIBILITY'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = 'The mobile device stylesheet for C<span class="the_R_in_crnrstn">R</span>NRSTN :: INTERACT UI.
                                                     <br><br>
-                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 35, 35, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
+                                                    ' . $this->return_sticky_media_link('GITHUB_SMALL', 'https://github.com/jony5/CRNRSTN-v2.00.0000-PRE-ALPHA-DEV-Lightsaber') . '&nbsp;
+                                                    ' . $this->return_sticky_media_link('TWITTER_SMALL', 'https://twitter.com/CRNRSTN_v2_0_0') . '&nbsp;
+                                                    ' . $this->return_sticky_media_link('FACEBOOK_SMALL', 'https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a') . '&nbsp;
+                                                    ' . $this->oCRNRSTN->return_system_image('FIVE', 25, 25, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
                 $tmp_output_ARRAY['URL'][] = '';
 
             break;

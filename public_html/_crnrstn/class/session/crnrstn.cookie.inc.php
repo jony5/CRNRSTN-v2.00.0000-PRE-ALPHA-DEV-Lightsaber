@@ -207,14 +207,14 @@ class crnrstn_cookie_manager {
                 //if(in_array(gettype($data), $this->oCRNRSTN->oCRNRSTN_ENV->encryptableDataTypes)){
                 if(isset($this->oCRNRSTN->oCRNRSTN_ENV->encryptableDataTypes[gettype($data)])){
 
-                    if($this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true)) {
+                    if($this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN->return_ddo_key('encrypt_cipher', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), true)) {
 
                         //
                         // EXTRACT DATA FROM SESSION DDO
-                        $tmp_encrypt_cipher = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
-                        $tmp_encrypt_secret_key = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_secret_key', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
-                        $tmp_encrypt_options = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_options', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
-                        $tmp_hmac_alg = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('hmac_alg', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION'), true);
+                        $tmp_encrypt_cipher = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_ddo_key('encrypt_cipher', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), true);
+                        $tmp_encrypt_secret_key = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_ddo_key('encrypt_secret_key', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), true);
+                        $tmp_encrypt_options = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_ddo_key('encrypt_options', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), true);
+                        $tmp_hmac_alg = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_ddo_key('hmac_alg', 'CRNRSTN::RESOURCE::COOKIE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), true);
 
                         #
                         # Source: http://php.net/manual/en/function.openssl-encrypt.php
@@ -281,14 +281,14 @@ class crnrstn_cookie_manager {
 
                 }
 
-                if($this->oCRNRSTN->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false)){
+                if($this->oCRNRSTN->oCRNRSTN_ENV->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('isset', $this->oCRNRSTN->return_ddo_key('encrypt_cipher', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false)){
 
                     //
                     // EXTRACT DATA FROM SESSION DDO
-                    $tmp_encrypt_cipher = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_cipher', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
-                    $tmp_encrypt_secret_key = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_secret_key', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
-                    $tmp_encrypt_options = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('encrypt_options', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
-                    $tmp_hmac_alg = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_prefixed_ddo_key('hmac_alg', CRNRSTN_RESOURCE_ALL, 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION'), false);
+                    $tmp_encrypt_cipher = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_ddo_key('encrypt_cipher', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false);
+                    $tmp_encrypt_secret_key = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_ddo_key('encrypt_secret_key', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false);
+                    $tmp_encrypt_options = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_ddo_key('encrypt_options', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false);
+                    $tmp_hmac_alg = $this->oCRNRSTN->oSESSION_MGR->oCRNRSTN_SESSION_DDO->preach('value', $this->oCRNRSTN->return_ddo_key('hmac_alg', 'CRNRSTN::RESOURCE::DATABASE_ENCRYPTION', CRNRSTN_RESOURCE_ALL), false);
 
                     //
                     // ENABLE CIPHER OVERRIDE :: v2.0.0

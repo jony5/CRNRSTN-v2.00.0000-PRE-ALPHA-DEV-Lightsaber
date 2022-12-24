@@ -55,7 +55,7 @@ class crnrstn_content_generator {
 
     public $page_content_ARRAY = array();
     public $page_uri;
-    public $page_category_name_ARRAY;
+    public $page_module_key;
     public $page_subcategory_name_ARRAY;
     public $page_subsubcateg_name_ARRAY;
     public $page_serial;
@@ -93,6 +93,7 @@ class crnrstn_content_generator {
 
 	    $this->page_content_ARRAY[] = $tmp_serial;
 	    $this->page_serial = $tmp_serial;
+	    $this->page_module_key = $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->module_key;
 
 	    return $this->page_serial;
 
@@ -826,7 +827,8 @@ class crnrstn_content_generator {
     private function return_module_share_link(){
 
 	    $tmp_str = '';
-        $tmp_share_component_link = '';
+        //$tmp_share_component_link = '';
+        //<span class="crnrstn_hidden"><a name="crnrstn_tokenized_top_' . $tmp_token_seed . '"> ' . $tmp_token_seed . '</a></span>
         //$tmp_is_active_cnt = $this->oCRNRSTN->get_resource_count('share_component_is_active', 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
         $tmp_is_active = $this->oCRNRSTN->get_resource('share_component_is_active', 0, 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
         //error_log(__LINE__ . ' content gen [' . $tmp_is_active_cnt . ']share_component_is_active=[' . print_r($tmp_is_active, true) . '].');
@@ -834,9 +836,50 @@ class crnrstn_content_generator {
         //$tmp_out_html = '<span class="crnrstn_hidden"><a name="crnrstn_tokenized_top_' . $tmp_token_seed . '"> ' . $tmp_token_seed . '</a></span>';
         if($tmp_is_active){
 
+            //
+            // RETURN RAW SERIALIZED TOKEN.
+            $tmp_token_string = $this->oCRNRSTN->return_module_deep_link_token($this->page_module_key, NULL, false);
+
+            //
+            // RETURN HTML WRAPPED SHARE COMPONENT CONTENT.
+            $tmp_token_string_html_wrapped = $this->oCRNRSTN->return_module_deep_link_token($this->page_module_key, $tmp_token_string);
+            $tmp_http_root = $this->oCRNRSTN->crnrstn_http_endpoint();
+
+            /*
+            SOURCE :: https://blog.shahednasser.com/how-to-easily-add-share-links-for-each-social-media-platform/
+            <a href="https://twitter.com/intent/tweet?text=Awesome%20Blog!&url=blog.shahednasser.com">Share on Twiter</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=blog.shahednasser.com&quote=Awesome%20Blog!">Share on Facebook</a>
+            <a href="https://wa.me/?text=Awesome%20Blog!%5Cn%20blog.shahednasser.com">Share on Whatsapp</a>
+            <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=blog.shahednasser.com&caption=Awesome%20blog!&tags=test%2Chello">Share on Tumblr</a>
+            <a href="https://www.reddit.com/submit?url=blog.shahednasser.com&title=Awesome%20Blog!">Share on Reddit</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=blog.shahednasser.com">Share on LinkedIn</a>
+
+            */
+
+            $tmp_facebook_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_facebook_' . $this->page_module_key);
+            $tmp_twitter_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_twitter_' . $this->page_module_key);
+
             $tmp_str = '<div class="crnrstn_documentation_lnk_share_rel">
                                         <div class="crnrstn_documentation_lnk_share">
-                                            <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'share_module\', this);" rel="crnrstn_top_' . $this->oCRNRSTN->session_salt() . '">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_MODULE_SHARE_TEXT') . '</a>
+                                            ' . $tmp_token_string_html_wrapped . '
+                                            <a href="#" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'share_module_click\', \'' . $tmp_token_string . '\'); return false;">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_MODULE_SHARE_TEXT') . '</a>
+                                            <div class="crnrstn_cb"></div>
+                                            <div id="crnrstn_module_share_component_wrapper_rel_' . $tmp_token_string . '" class="crnrstn_module_share_component_wrapper_rel">
+                                                <div id="crnrstn_module_share_component_' . $tmp_token_string . '" class="crnrstn_module_share_component_wrapper">
+                                                    <form action="#" method="post" id="crnrstn_module_share_form_' . $tmp_token_string . '" name="crnrstn_module_share_form_' . $tmp_token_string . '" enctype="multipart/form-data" onsubmit="return false;">
+                                                        <input id="crnrstn_module_share_component_input_' . $tmp_token_string . '" name="crnrstn_module_share_component_input_' . $tmp_token_string . '" value="' . $tmp_http_root . '?' . $this->oCRNRSTN->session_salt() . '=' . $this->page_module_key .  '&crnrstn_autoscroll=' . $tmp_token_string . '" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'share_module_link_select\', \'' . $tmp_token_string . '\'); return false;">
+                                                        <div class="crnrstn_cb"></div>
+                                                        <div class="crnrstn_share_module_social_wrapper">
+                                                            <div class="crnrstn_module_share_social_link"><a href="' . $tmp_twitter_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_TWITTER', 15, 15, NULL, 'Tweet to Twitter', 'Tweet to Twitter', NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</a></div>                                                    
+                                                            <div class="crnrstn_module_share_social_link"><a href="' . $tmp_facebook_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_FACEBOOK', 15, 15, NULL, 'Share to Facebook', 'Share to Facebook', NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</a></div>                                                    
+                                                            <div id="crnrstn_module_share_component_copy_status_' . $tmp_token_string . '" class="crnrstn_module_share_component_copy_status"></div>
+                                                            <div class="crnrstn_cb"></div>
+                                                            
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="crnrstn_cb"></div>
                                         </div>
                                     </div>';
 
@@ -1222,8 +1265,6 @@ class crnrstn_content_generator {
 
                             break;
                             case 'NOTE':
-
-
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
                 

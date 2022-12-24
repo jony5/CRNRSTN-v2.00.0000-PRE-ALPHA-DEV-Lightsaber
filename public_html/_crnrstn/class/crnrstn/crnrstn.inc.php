@@ -320,6 +320,7 @@ class crnrstn {
         $sys_logging_profile_pack = $this->return_sys_logging_init_profile_pack();
         self::$oLog_ProfileManager = new crnrstn_logging_oprofile_manager($sys_logging_profile_pack, $this);
 
+
         $this->initialize_config_manager();
 
         //
@@ -456,6 +457,7 @@ class crnrstn {
             $this->error_log('Instantiating IP security manager object with client IP of [' . $_SERVER['REMOTE_ADDR'] . '] and phpsessionid[' . session_id() . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
             $this->oCRNRSTN_IPSECURITY_MGR = new crnrstn_ip_auth_manager($this);
+
             $this->oCRNRSTN_UI_HTML_MGR = new crnrstn_ui_html_manager($this);
             $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
 
@@ -1385,7 +1387,7 @@ class crnrstn {
 
     }
 
-    public function return_prefixed_ddo_key($data_key, $env_key = NULL, $data_type_family = 'CRNRSTN::RESOURCE'){
+    public function return_ddo_key($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
 
         if(!isset($env_key)){
 
@@ -1709,14 +1711,6 @@ class crnrstn {
         $tmp_output_str = '';
         $tmp_output_str_len = 0;
 
-        if(isset($background_noise)){
-
-            $background_noise = strtoupper($background_noise);
-
-        }
-
-        $code_controller = strtoupper($code_controller);
-
         //
         // BUILD STRING OF 0/1 USING $code_controller
         $tmp_code_controller_char_ARRAY = str_split($code_controller);
@@ -1742,7 +1736,7 @@ class crnrstn {
 
             if(!isset($background_noise)){
 
-                $background_noise = strtoupper($this->salt(40 + count(self::$char_01_ARRAY)));
+                $background_noise = $this->salt(40 + count(self::$char_01_ARRAY));
 
             }
 
@@ -1795,8 +1789,12 @@ class crnrstn {
         // SOURCE :: https://www.php.net/manual/en/function.range.php
         // SOURCE :: https://stackoverflow.com/questions/431912/way-to-get-all-alphabetic-chars-in-an-array-in-php
         // COMMENT :: https://stackoverflow.com/a/431930
+        // COMMENT :: https://stackoverflow.com/a/433119
         // AUTHOR :: PEZ :: https://stackoverflow.com/users/44639/pez
-        foreach(range('A', 'Z') as $letter){
+
+        $alphas = array_merge(range('A', 'Z'), range('a', 'z'));
+        //$alpha = range('A', 'Z')
+        foreach($alphas as $letter){
 
             self::$char_01_ARRAY[$letter] = $int_str_01;
             self::$char_01_index_ARRAY[$letter] = $char_count;
@@ -2639,23 +2637,39 @@ class crnrstn {
 
     }
 
-    public function return_module_deep_link_token($module_key, $salt = NULL){
+    public function return_module_deep_link_token($module_key, $token_override = NULL, $html_encapsulate = true){
 
-        if(!isset($this->content_token_index)){
+        if(!isset($token_override)){
 
-            $this->content_token_index = -1;
+            //
+            // IS THIS THE FIRST TOKEN?
+            if(!isset($this->content_token_index)){
+
+                $this->content_token_index = -1;
+
+            }
+
+            //
+            // GENERATE NEXT TOKEN.
+            $this->content_token_index++;
+
+            if(isset($salt)){
+
+                $tmp_token_seed = $this->hash($module_key . '_' . $salt . '_' . $this->content_token_index);
+
+            }else{
+
+                $tmp_token_seed = $this->hash($module_key . '_' . $this->content_token_index);
+
+            }
 
         }
 
-        $this->content_token_index++;
+        $tmp_token_seed = $this->return_encoder_wheel_output($tmp_token_seed,NULL, strlen($tmp_token_seed));
 
-        if(isset($salt)){
+        if(!$html_encapsulate){
 
-            $tmp_token_seed = $module_key . '_' . $this->hash($salt . '_' . $this->content_token_index, 'md5');
-
-        }else{
-
-            $tmp_token_seed = $module_key . '_' . $this->hash($this->content_token_index, 'md5');
+            return $tmp_token_seed;
 
         }
 
@@ -4396,8 +4410,6 @@ class crnrstn {
 
     public function get_resource($data_key, $index = NULL, $data_type_family = 'CRNRSTN::RESOURCE', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME){
 
-        //$this->print_r('$data_key=[' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $data_auth_request=[' . $data_auth_request . '].', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
-        //error_log(__LINE__ . ' crnrstn  [' . $data_key . ']. $index=[' . $index . ']. $data_type_family=[' . $data_type_family . ']. $data_auth_request=[' . $data_auth_request . '].');
         // public function retrieve_data_value($data_key, $data_type_family = 'CRNRSTN::RESOURCE', $index = NULL, $env_key = NULL, $soap_tunnel = false){
         if(isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
 
@@ -4408,12 +4420,6 @@ class crnrstn {
         $this->error_log('Environmental detection has failed. Cannot retrieve resource.', __LINE__, __METHOD__, __FILE__, CRNRSTN_BARNEY);
 
         return '';
-
-        // was here ->  return $this->oCRNRSTN_USR->get_resource($data_key, $index, $data_type_family, $soap_tunnel);   //<--  previous call
-        //                  return $this->oCRNRSTN_ENV->retrieve_data_value($data_key, $index, $data_type_family, $this->env_key, $soap_tunnel);
-        //                      return $this->oCRNRSTN->retrieve_data_value($data_key, $data_type_family, $index, $env_key, $soap_tunnel);
-        // now here! ---------->    return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value($data_key, $data_type_family, $index, $this->env_key, $soap_tunnel);
-        //                              return $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $soap_tunnel, $index);
 
     }
 
@@ -7034,18 +7040,22 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // DID WE DETERMINE ENVIRONMENT KEY THROUGH INITIALIZATION OF CRNRSTN? IF SO, THIS PARAMETER WILL BE SET. JUST USE IT.
-            if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] != ''){
+            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-                // Monday, August 22, 2022 @ 0231 hrs
-                // WE SUCCESSFULLY DETECTED THE ENVIRONMENT, PEOPLE. WOO-HOO. POP BOTTLES.
-                //$this->error_log('Detected server environment [' . self::$server_env_key_ARRAY[$this->config_serial_hash] . '] returned from private static array.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-                if($output_format == 'hash'){
+                if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] != ''){
 
-                    return self::$server_env_key_hash_ARRAY[$this->config_serial_hash];
+                    // Monday, August 22, 2022 @ 0231 hrs
+                    // WE SUCCESSFULLY DETECTED THE ENVIRONMENT, PEOPLE. WOO-HOO. POP BOTTLES.
+                    //$this->error_log('Detected server environment [' . self::$server_env_key_ARRAY[$this->config_serial_hash] . '] returned from private static array.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    if($output_format == 'hash'){
+
+                        return self::$server_env_key_hash_ARRAY[$this->config_serial_hash];
+
+                    }
+
+                    return self::$server_env_key_ARRAY[$this->config_serial_hash];
 
                 }
-
-                return self::$server_env_key_ARRAY[$this->config_serial_hash];
 
             }
 
@@ -7063,22 +7073,33 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
             //
             // WE SHOULD HAVE THIS VALUE BY NOW. IF EMPTY, HOOOSTON...VE HAF PROBLEM!
-            if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == ''){
+            if(!isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
 
-                $this->terminate_configuration_error_ARRAY['FAILED_ENVIRONMENTAL_DETECTION'] = 'ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].';
-                $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                if(self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == ''){
 
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                //throw new Exception('CRNRSTN :: Initialization Error :: Environmental detection failed to match a sufficient number of $_SERVER parameters to the servers configuration and therefore DID NOT successfully initialize CRNRSTN :: on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ')');
-                $this->system_terminate('detection');
+                    $this->terminate_configuration_error_ARRAY['FAILED_ENVIRONMENTAL_DETECTION'] = 'ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].';
+                    $this->error_log('ERROR :: we have processed ALL defined environmental resources and were unable to detect running environment with the ' . $this->system_hash_algo . ' hashed CRNRSTN :: config serial [' . $this->config_serial_hash . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                exit();
+                    //
+                    // HOOOSTON...VE HAF PROBLEM!
+                    //throw new Exception('CRNRSTN :: Initialization Error :: Environmental detection failed to match a sufficient number of $_SERVER parameters to the servers configuration and therefore DID NOT successfully initialize CRNRSTN :: on server ' . $_SERVER['SERVER_NAME'] . ' (' . $_SERVER['SERVER_ADDR'] . ')');
+                    $this->system_terminate('detection');
+
+                    exit();
+
+                }
+
+            }
+
+            if(!isset(self::$server_env_key_ARRAY[$this->config_serial_hash])){
+
+                //error_log(__LINE__ . ' crnrstn return CRNRSTN_RESOURCE_ALL for ENV KEY.');
+                //return CRNRSTN_RESOURCE_ALL;
+                return '';
 
             }
 
             $this->error_log('Returning detected environment [' . self::$server_env_key_ARRAY[$this->config_serial_hash] . '] as the selected running environment.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-
             return self::$server_env_key_ARRAY[$this->config_serial_hash];
 
         }catch(Exception $e){
@@ -12446,7 +12467,13 @@ class crnrstn_config_manager {
 
     }
 
-    private function return_prefixed_ddo_key($resource_key, $env_key, $data_type_family = 'CRNRSTN::RESOURCE'){
+    public function return_ddo_key($resource_key, $data_type_family = 'CRNRSTN::RESOURCE', $env_key = NULL){
+
+        if(!isset($env_key)){
+
+            $env_key = $this->oCRNRSTN->get_server_env();
+
+        }
 
         $tmp_dataset_prefix_str = $this->return_dataset_nomination_prefix('string', $this->config_serial_hash, $env_key, $data_type_family);
         //return $tmp_dataset_prefix_str . $resource_key;
@@ -12489,7 +12516,7 @@ class crnrstn_config_manager {
 
     public function get_resource_count($data_key, $data_type_family, $env_key){
 
-        return $this->oCRNRSTN_CONFIG_DDO->count($this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family));
+        return $this->oCRNRSTN_CONFIG_DDO->count($this->return_ddo_key($data_key, $data_type_family, $env_key));
 
     }
 
@@ -12499,6 +12526,7 @@ class crnrstn_config_manager {
 
             if(!isset($env_key)){
 
+                //$env_key = $this->oCRNRSTN->get_server_env();
                 $env_key = CRNRSTN_RESOURCE_ALL;
 
             }
@@ -12509,11 +12537,14 @@ class crnrstn_config_manager {
 
             }
 
-            // error_log(__LINE__ . ' '. __METHOD__ . ' [' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].');
-            // $this->oCRNRSTN->print_r(' crnrstn config '. __METHOD__ . ' [' . $data_key . '(strlen=' . strlen($data_key) . ')][' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . '].', 'CRNRSTN :: CONFIGURATION TEST',NULL, __LINE__,__METHOD__,__FILE__);
-            //$this->oCRNRSTN->error_log('Received $data_val=[' . $data_val . ']. $data_key=[' . $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family) . ']. $data_auth_profile=[' . $data_auth_profile . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+//            if($data_key == '54ab03abbade5b942a9f6c3d946daf4e0ee761eba9e525ab12adb3959d626576::share_component_is_active'){
+//
+//                error_log(__LINE__  . '  crnrstn config mgr [' . $env_key . ']. [' . $data_key . '].');
+//
+//            }
 
-            return $this->oCRNRSTN_CONFIG_DDO->add($data_val, $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $index, $data_auth_profile, $default_ttl);
+
+            return $this->oCRNRSTN_CONFIG_DDO->add($data_val, $this->return_ddo_key($data_key, $data_type_family, $env_key), $index, $data_auth_profile, $default_ttl);
 
             //
             // HOOOSTON...VE HAF PROBLEM!
@@ -12585,16 +12616,16 @@ class crnrstn_config_manager {
 
             }
 
-            $tmp_return_data_spec_a = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family), $data_auth_request, $index);
+            $tmp_return_data_spec_a = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_ddo_key($data_key, $data_type_family, $env_key), $data_auth_request, $index);
 
             //
             // IMPLEMENTATION OF SERIALIZED "NO MATCH" RETURN TO DEFINITIVELY INDICATE WHETHER
             // OR NOT WE SHOULD CHECK THE DATA_KEY AGAINST CRNRSTN_RESOURCE_ALL.
-            if($tmp_return_data_spec_a == $this->oCRNRSTN->session_salt()){
+            if($tmp_return_data_spec_a === $this->oCRNRSTN->session_salt()){
 
                 //
                 // WE NOW HAVE TO CHECK CRNRSTN_RESOURCE_ALL WITH THIS DATA KEY.
-                $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_prefixed_ddo_key($data_key, CRNRSTN_RESOURCE_ALL, $data_type_family), $data_auth_request, $index);
+                $tmp_return_data_spec_b = $this->oCRNRSTN_CONFIG_DDO->preach('value', $this->return_ddo_key($data_key, $data_type_family, CRNRSTN_RESOURCE_ALL), $data_auth_request, $index);
 
                 if($tmp_return_data_spec_b != $this->oCRNRSTN->session_salt()){
 
@@ -12648,7 +12679,7 @@ class crnrstn_config_manager {
 
     public function isset_data_key($data_key, $data_type_family, $env_key){
 
-        return $this->oCRNRSTN_CONFIG_DDO->preach('isset', $this->return_prefixed_ddo_key($data_key, $env_key, $data_type_family));
+        return $this->oCRNRSTN_CONFIG_DDO->preach('isset', $this->return_ddo_key($data_key, $data_type_family, $env_key));
 
     }
 

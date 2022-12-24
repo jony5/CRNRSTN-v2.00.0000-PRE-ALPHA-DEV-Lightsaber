@@ -31,6 +31,14 @@
 .crnrstn_general_post_recent_activity_copy p            { padding: 0 0 10px 0; line-height: 29px;}
 .crnrstn_general_post_recent_activity_copy blockquote   { padding: 0 0 10px 0; line-height: 29px; font-size: 90%;}
 
+/*CRNRSTN :: SHARE COMPONENT*/
+.crnrstn_module_share_component_wrapper_rel             { position: relative; width:0; height: 0; }
+.crnrstn_module_share_component_wrapper                 { position: absolute; width: 0; height: 0; padding:0; border: 1px solid #A5B9D8; background-color: #FFF; overflow: hidden;}
+.crnrstn_module_share_component_wrapper input           { border: 0; margin: 0; padding: 0; text-align: left; width:98%; font-size: 14px; font-family: "Courier New", Courier, monospace; color: #333;}
+.crnrstn_module_share_component_copy_status             { font-family: "Courier New", Courier, monospace; font-size: 13px; color: #0066CC; padding: 2px 0 0 0; }
+.crnrstn_module_share_social_link                       { float: left; padding: 5px 7px 0 0;}
+.crnrstn_module_share_social_wrapper                    { }
+
 /*border: 1px solid #2d0404;*/
 .crnrstn_documentation_browser_compatibility_nom_copy p { font-size: 12px;}
 .crnrstn_documentation_browser_compatibility_nom_copy   { font-family: "Courier New", Courier, monospace; font-size: 80%; color: #333; margin-right: 3px; padding:3px 4px 3px 4px; background-color: rgba(51, 51, 51, 0.05); border: 1px solid rgba(51, 51, 51, 0.25); border-radius: 5px;}
