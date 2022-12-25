@@ -2241,9 +2241,11 @@ class crnrstn {
                     $tmp_theme_style = $this->get_ui_theme_style();
                     //self::$oCRNRSTN_CONFIG_MGR->input_data_value($dir_path, 'crnrstn_favicon_asset_tunnel_route_dir_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
                     self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_resource_config_file_path, 'crnrstn_system_defaults_config_file_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH', 0, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $env_key);
-                    //error_log(__LINE__ . ' LOADED $tmp_theme_attributes_ARRAY[' . print_r($tmp_theme_attributes_ARRAY, true) . '].');
+                    //error_log(__LINE__ . ' LOADED $tmp_theme_style[' . $tmp_theme_style . ']. $tmp_theme_attributes_ARRAY[' . print_r($tmp_theme_attributes_ARRAY, true) . '].');
                     //error_log(__LINE__ . ' LOADED $tmp_crnrstn_settings_ARRAY[' . print_r($tmp_crnrstn_settings_ARRAY, true) . '].');
                     $this->apply_theme_style_profile($tmp_theme_style, $crnrstn_resource_config_file_path);
+
+                    die();
 
                 }else{
 
@@ -2597,6 +2599,7 @@ class crnrstn {
                 $tmp_theme_attributes_ARRAY = array();
                 require($crnrstn_resource_config_file_path);
 
+                //error_log(__LINE__ . ' LOADED $tmp_theme_style[' . $theme_profile . ']. $tmp_theme_attributes_ARRAY[' . print_r($tmp_theme_attributes_ARRAY[$theme_profile], true) . '].');
                 $this->theme_attributes_ARRAY = $tmp_theme_attributes_ARRAY;
 
             }else{
@@ -4680,7 +4683,11 @@ class crnrstn {
 
         //
         // INITIALIZE SYSTEM DEFAULTS
-        $this->config_load_defaults_terminal(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
+        if(!isset($this->theme_attributes_ARRAY)){
+
+            $this->config_load_defaults_terminal(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
+
+        }
 
         if(!isset(self::$system_termination_flag_ARRAY[$message_type])){
 

@@ -667,8 +667,9 @@ if(strlen($CRNRSTN_LISTENER_RESPONSE) > 0){
     // THE SPACE BETWEEN.
     echo $CRNRSTN_LISTENER_RESPONSE;
 
+    //ob_flush();
+    if(ob_get_level() > 0){ob_flush();}
     flush();
-    ob_flush();
     exit();
 
 }

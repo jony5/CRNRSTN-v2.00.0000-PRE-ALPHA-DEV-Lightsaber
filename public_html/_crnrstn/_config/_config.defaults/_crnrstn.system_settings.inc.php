@@ -1,10 +1,10 @@
 <?php
-
+/*
+// J5
+// Code is Poetry */
 //
 // DOCUMENTATION
 $this->add_system_resource('share_component_is_active', true, 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
-
-
 
 
 /*

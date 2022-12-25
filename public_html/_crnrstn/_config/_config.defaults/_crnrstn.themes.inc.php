@@ -1,4 +1,7 @@
 <?php
+/*
+// J5
+// Code is Poetry */
 // FLAGS FOR USER INTERFACE THEME STYLES
 // $this->system_theme_style_constants_ARRAY = array(
 // CRNRSTN_UI_PHPNIGHT                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.

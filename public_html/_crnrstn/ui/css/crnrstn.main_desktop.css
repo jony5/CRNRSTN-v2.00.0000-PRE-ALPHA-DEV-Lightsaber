@@ -56,8 +56,8 @@
 .crnrstn_general_copyright_shell a                  { text-decoration:none; color: #0066CC; text-decoration:underline;}
 
 /*NEED TO SET Z-INDEX THROUGH THE SSDTL FOR ADMIN ACCESS*/
-.crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; z-index: 9999; background-color: #000; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0;}
-.crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; width: 100%; z-index: 10000; text-align: center; font-weight: normal; outline: none;}
+.crnrstn_interact_ui_full_lightbox_overlay          { position: absolute; top: 0; left: 0; /*z-index: 9999;*/ background-color: #000; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0; overflow: hidden; }
+.crnrstn_interact_ui_full_lightbox                  { position: absolute; left: 0; z-index: 10000; text-align: center; font-weight: normal; outline: none; overflow: hidden; }
 
 /*CRNRSTN::INTEGRATION INTERACT UI MODULE :: SYSTEM FOOTER*/
 .crnrstn_ui_system_footer_shell                     { /*position:-webkit-sticky; position: sticky; bottom:5px;*/}
@@ -130,7 +130,7 @@
 .crnrstn_documentation_lnk_top_rel                          { position: relative; float: right; width:65px; }
 .crnrstn_documentation_lnk_top                              { position: absolute; width:50px; height:15px; padding: 14px 10px 3px 0; font-family: "Courier New", Courier, monospace; font-size:12px; line-height: 20px;text-align: right;}
 .crnrstn_documentation_lnk_top a                            { text-decoration: none; color: #0066CC; text-decoration: underline;}
-.crnrstn_documentation_dyn_content_shell                    { /*width: 64%;*/min-width: 400px; max-width:865px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
+.crnrstn_documentation_dyn_content_shell                    { /*width: 64%;*/min-width: 400px; max-width:850px; overflow-wrap: break-word; text-align: left; padding: 40px 0 0 40px;}
 .crnrstn_documentation_dyn_content_title                    { }
 .crnrstn_documentation_dyn_content_title h1                 { overflow-wrap: break-word; font-size: 100%; } /*font-size: 45px;*/
 .crnrstn_documentation_dyn_content_title h2                 { margin-bottom:0; font-size: 100%;}
@@ -373,7 +373,10 @@ ul.crnrstn_documentation_dyn_content_tech_specs             { list-style-type: s
 .crnrstn_mit_license_wrapper                { float:left; text-align: left; text-shadow: 1px 1px 2px #ECECEC, 0 0 1em #ECECEC, 0 0 0.2em #ECECEC;}
 
 /*HEAD SECTION::USER DASHBOARD*/
-body.crnrstn-disable-scrolling              { overflow: hidden;}
+body.crnrstn-disable-scrolling                                          { overflow: hidden; }
+.crnrstn_interact_ui_full_document.crnrstn-disable-scrolling            { overflow: hidden; }
+.crnrstn_interact_ui_full_lightbox.crnrstn-disable-scrolling            { overflow: hidden; }
+
 .crnrstn_logo_bg_wrapper                    { position: absolute; cursor: pointer; z-index: 1; width: 1px; height: 1px; background-repeat: no-repeat; overflow: visible;}
 .crnrstn_logo_bg                            { position: relative; width:345px; height:208px; background-repeat: no-repeat; overflow: hidden;}
 .crnrstn_dyn_branding_elem_wrapper          { float: right; padding:10px 20px 0 0;}

@@ -172,13 +172,16 @@ class crnrstn_ui_tunnel_response_manager {
 
         //
         // CRNRSTN :: LIGHTSABER DOCUMENTATION VIEW SOURCE FOOTER INTEGRATION
-        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = 1;
+        $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = 'GLOBAL';
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_documentation_view_source_src'] = -1;
 
+        //
+        // CRNRSTN :: THEME PROFILES (UI/UX STYLING)
         $this->interact_ui_module_keys_ARRAY['crnrstn_interact_ui_theme_profile'] = 'GLOBAL';
         $this->interact_ui_module_hash_ARRAY['crnrstn_interact_ui_theme_profile'] = 1;
         $this->interact_ui_module_ttl_ARRAY['crnrstn_interact_ui_theme_profile'] = -1;
+
     }
 
     private function return_interact_ui_ux_profile($output_format = 'xml'){
@@ -195,50 +198,114 @@ class crnrstn_ui_tunnel_response_manager {
         //
         // THE WAY THIS SHOULD WORK:
         // 1) EACH DOM MODULE SHOULD HAVE A KEY AND A HASH.
-        // 2) IF THE KEY IS PRESENT, RETURN THE CONTENT IF HASH IS DIFFERENT.
+        // 2) THEREFORE, RETURN THE THE MODULE KEY CONTENT IF THE HASH IS DIFFERENT.
         foreach($tmp_module_ARRAY as $index => $module_nom){
 
             $tmp_xml_concat = false;
             $tmp_post_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data($module_nom . '_HASH');
             $tmp_module_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->retrieve_interact_ui_module_hash($module_nom);
 
-            //error_log(__LINE__ . ' ui tunn source[' . $tmp_crnrstn_request_source . ']. [' . $module_nom . ']. $tmp_post_hash[' . $tmp_post_hash . ']. $tmp_module_hash[' . $tmp_module_hash . '].');
+            switch($module_nom){
+                case 'crnrstn_interact_ui_documentation_side_nav_src':
 
-            //
-            // TODO :: TTL CONSIDERATIONS
-            if($tmp_post_hash != $tmp_module_hash && $this->interact_ui_module_keys_ARRAY[$module_nom] == 'GLOBAL'){
+                    //
+                    // IF THE CONTENT HAS CHANGED ON THE SERVER, RETURN THE XML.
+                    if($tmp_post_hash != $tmp_module_hash){
 
-                //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
-                $tmp_xml_concat = true;
+                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        $tmp_xml_concat = true;
 
-            }
+                    }
 
-            $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
-            if($pos_docs_view_source !== false && $module_nom == 'crnrstn_interact_ui_documentation_view_source_src'){
+                break;
+                case 'crnrstn_interact_ui_documentation_content_src':
 
-                //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
-                $tmp_xml_concat = true;
+                    //
+                    // IF THE CONTENT HAS CHANGED ON THE SERVER, OR THIS IS RUNNING BECAUSE A LINK
+                    // WAS CLICKED...RETURN THE XML.
+                    if(($tmp_post_hash != $tmp_module_hash || $tmp_crnrstn_request_source === 'link_text_click')){
 
-            }
+                        //
+                        // MUTE DOCUMENTATION PAGE RESPONSE IF LINK CLICKED IS (1) MIT LICENSE OR (2) VIEW
+                        // FRAMEWORK SOURCE,...A FOOTER COMPONENT INTEGRATION...AT LEAST FOR STARTERS.
+                        $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
+                        if($tmp_module_page_key != 'mit_license' && $pos_docs_view_source === false && strlen($tmp_module_page_key) > 0){
 
-            if(($tmp_post_hash != $tmp_module_hash || $tmp_crnrstn_request_source === 'link_text_click') && $module_nom == 'crnrstn_interact_ui_documentation_content_src'){
+                            error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                            $tmp_xml_concat = true;
 
-                //
-                // MUTE DOCUMENTATION PAGE RESPONSE IF LINK CLICKED IS (1) MIT LICENSE OR (2) VIEW
-                // FRAMEWORK SOURCE,...A FOOTER COMPONENT INTEGRATION...AT LEAST FOR STARTERS.
-                if($tmp_module_page_key != 'mit_license' && $pos_docs_view_source === false){
+                        }
 
-                    //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
-                    $tmp_xml_concat = true;
+                    }
 
-                }
+                break;
+                case 'crnrstn_interact_ui_system_footer_src':
+                case 'crnrstn_interact_ui_search_src':
 
-            }
+                    //
+                    // RETURN THE MODULE XML IF THE CONTENT HAS CHANGED ON THE SERVER, WHICH SAID CONTENT
+                    // WILL NOT FOR THESE GUYS atm. THESE MODULE ARE PERMANENT BECAUSE THE HASH IS MADE
+                    // FROM THE MODULE KEY...WHICH IS PERMANENT...AND NOT HTML <P> CONTENT.
+                    // THESE MODULE (WHICH INCLUDES ALL SYSTEM THEME DEFAULTS) WILL BE SENT TO
+                    // THE CLIENT AND STORED ONLY ONE (1) TIME.
+                    if($tmp_post_hash != $tmp_module_hash){
 
-            if($tmp_module_page_key == 'mit_license' && $module_nom == 'crnrstn_interact_ui_mit_license_src'){
+                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        $tmp_xml_concat = true;
 
-                //error_log(__LINE__ . ' ui tunnel XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
-                $tmp_xml_concat = true;
+                    }
+
+
+                break;
+                case 'crnrstn_interact_ui_messenger_src':
+
+                    // HOLD ON A SEC.
+
+                break;
+                case 'crnrstn_interact_ui_documentation_view_source_src':
+
+                    //
+                    // IF THIS IS RUNNING BECAUSE A LINK WAS CLICKED...RETURN THE XML.
+                    $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
+                    if($pos_docs_view_source !== false){
+
+                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        $tmp_xml_concat = true;
+
+                    }
+
+                break;
+                case 'crnrstn_interact_ui_theme_profile':
+
+                    //
+                    // TODO :: TTL CONSIDERATIONS
+                    // IF THE CONTENT HAS CHANGED ON THE SERVER, RETURN THE XML.
+                    if($tmp_post_hash != $tmp_module_hash){
+
+                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        $tmp_xml_concat = true;
+
+                    }
+
+                break;
+                case 'crnrstn_interact_ui_mit_license_src':
+
+                    //
+                    // IF THE SSDTLA HOLDS THIS MODULE AS THE CLICKED LINK (crnrstn_interact_ui_link_text_click),
+                    // RETURN THE XML.
+                    if($tmp_module_page_key == 'mit_license'){
+
+                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        $tmp_xml_concat = true;
+
+                    }
+
+                break;
+                default:
+
+                    $this->oCRNRSTN->error_log('Unknown module name [' . $module_nom . '] Cannot produce or validate content HASH for SSDTLA XML return.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                break;
 
             }
 
