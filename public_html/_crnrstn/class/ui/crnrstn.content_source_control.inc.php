@@ -823,17 +823,29 @@ class crnrstn_content_source_controller {
                         bool $httponly = false
                     ): bool
 
-                    /*
-	                public function addCookie($name, $value = NULL, $expire = NULL, $path = NULL, $domain = NULL, $secure =  NULL, $httponly = NULL){
-                    setcookie(
-                        string ,
-                        string  = "",
-                        int $expires_or_options = 0,
-                        string $path = "",
-                        string $domain = "",
-                        bool $secure = false,
-                        bool $httponly = false
-                    ): bool
+                    = = = = = = = = =
+                    = = = = = = = = = JONY5.COM PROD META
+                    <meta name="distribution" content="Global" />
+
+                    <meta name="ROBOTS" content="index" />
+                    <meta name="ROBOTS" content="follow" />
+
+                    <meta property="og:url" content=""/>
+                    <meta property="og:site_name" content=""/>
+                    <meta property="og:title" content=""/>
+                    <meta property="og:image" content=""/>
+                    <meta property="og:description" content="" />
+                    <meta property="og:type" content="website"/>
+
+                    <meta name="twitter:card" content="summary"/>
+                    <meta name="twitter:title" content=""/>
+                    <meta name="twitter:image" content=""/>
+                    <meta name="twitter:description" content="" />
+
+                    <meta name="description" content="" />
+                    <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan
+                    harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web
+                    programming, marketing, CSS, XHTML, php, ajax" />
 
                     = = = = = = = = =
                     = = = = = = = = = TWITTER SOCIAL
