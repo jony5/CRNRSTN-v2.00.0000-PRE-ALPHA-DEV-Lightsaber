@@ -1793,6 +1793,8 @@ class crnrstn {
         // AUTHOR :: PEZ :: https://stackoverflow.com/users/44639/pez
 
         $alphas = array_merge(range('A', 'Z'), range('a', 'z'));
+        //error_log(__LINE__ . ' crnrstn [' . print_r($alphas, true) . ']. die();');
+
         //$alpha = range('A', 'Z')
         foreach($alphas as $letter){
 
@@ -2642,29 +2644,27 @@ class crnrstn {
 
     public function return_module_deep_link_token($module_key, $token_override = NULL, $html_encapsulate = true){
 
+        //
+        // IS THIS THE FIRST TOKEN?
+        if(!isset($this->content_token_index)){
+
+            $this->content_token_index = -1;
+
+        }
+
+        //
+        // GENERATE NEXT TOKEN.
+        $this->content_token_index++;
+
         if(!isset($token_override)){
 
-            //
-            // IS THIS THE FIRST TOKEN?
-            if(!isset($this->content_token_index)){
+            $tmp_token_seed = $this->hash($module_key . '_' . $this->content_token_index);
+            //error_log(__LINE__ .  '  ['.$module_key.']. $this->content_token_index['.$this->content_token_index.']. $tmp_token_seed['.$tmp_token_seed.'].');
 
-                $this->content_token_index = -1;
+        }else{
 
-            }
-
-            //
-            // GENERATE NEXT TOKEN.
-            $this->content_token_index++;
-
-            if(isset($salt)){
-
-                $tmp_token_seed = $this->hash($module_key . '_' . $salt . '_' . $this->content_token_index);
-
-            }else{
-
-                $tmp_token_seed = $this->hash($module_key . '_' . $this->content_token_index);
-
-            }
+            $tmp_token_seed = $this->hash($module_key . '_' . $token_override . '_' . $this->content_token_index);
+            //error_log(__LINE__ .  '  ['.$module_key.']. $this->content_token_index['.$this->content_token_index.']. $tmp_token_seed['.$tmp_token_seed.'].');
 
         }
 

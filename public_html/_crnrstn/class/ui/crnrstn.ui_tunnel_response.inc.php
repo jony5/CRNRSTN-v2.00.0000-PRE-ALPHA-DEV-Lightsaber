@@ -212,7 +212,7 @@ class crnrstn_ui_tunnel_response_manager {
                     // IF THE CONTENT HAS CHANGED ON THE SERVER, RETURN THE XML.
                     if($tmp_post_hash != $tmp_module_hash){
 
-                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                         $tmp_xml_concat = true;
 
                     }
@@ -231,7 +231,7 @@ class crnrstn_ui_tunnel_response_manager {
                         $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
                         if($tmp_module_page_key != 'mit_license' && $pos_docs_view_source === false && strlen($tmp_module_page_key) > 0){
 
-                            error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                            //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                             $tmp_xml_concat = true;
 
                         }
@@ -250,7 +250,7 @@ class crnrstn_ui_tunnel_response_manager {
                     // THE CLIENT AND STORED ONLY ONE (1) TIME.
                     if($tmp_post_hash != $tmp_module_hash){
 
-                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                         $tmp_xml_concat = true;
 
                     }
@@ -269,7 +269,7 @@ class crnrstn_ui_tunnel_response_manager {
                     $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
                     if($pos_docs_view_source !== false){
 
-                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                         $tmp_xml_concat = true;
 
                     }
@@ -282,7 +282,7 @@ class crnrstn_ui_tunnel_response_manager {
                     // IF THE CONTENT HAS CHANGED ON THE SERVER, RETURN THE XML.
                     if($tmp_post_hash != $tmp_module_hash){
 
-                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                         $tmp_xml_concat = true;
 
                     }
@@ -295,7 +295,7 @@ class crnrstn_ui_tunnel_response_manager {
                     // RETURN THE XML.
                     if($tmp_module_page_key == 'mit_license'){
 
-                        error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                        //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
                         $tmp_xml_concat = true;
 
                     }
