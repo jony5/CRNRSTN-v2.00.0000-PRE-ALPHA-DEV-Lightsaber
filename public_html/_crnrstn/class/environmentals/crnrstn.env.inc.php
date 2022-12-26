@@ -123,8 +123,8 @@ class crnrstn_environment {
     public function __construct($oCRNRSTN, $instanceType = NULL, $WORDPRESS_debug_mode = NULL) {
 
         $this->oCRNRSTN = $oCRNRSTN;
-        $this->env_key = $oCRNRSTN->get_server_env();
-        $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
+        $this->env_key = $oCRNRSTN->env_key();
+        $this->env_key_hash = $oCRNRSTN->env_key('hash');
         $this->system_hash_algo = $oCRNRSTN->system_hash_algo();
 
         $this->starttime = $oCRNRSTN->starttime;
@@ -216,7 +216,7 @@ class crnrstn_environment {
                     // FLASH WILD CARD RESOURCES OBJECT ARRAY TO ENVIRONMENTAL CLASS OBJECT
                     //$this->initializeWildCardResource($oCRNRSTN);
 
-                    //$this->oSESSION_MGR = new crnrstn_session_manager($oCRNRSTN);
+                    $this->oSESSION_MGR = new crnrstn_session_manager($oCRNRSTN);
 
                     $this->oCRNRSTN_IPSECURITY_MGR = clone $oCRNRSTN->oCRNRSTN_IPSECURITY_MGR;
                     unset($oCRNRSTN->oCRNRSTN_IPSECURITY_MGR);
@@ -1486,6 +1486,52 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
         }
 
         return $this->oCRNRSTN_USR;
+
+    }
+
+    public function get_session_resource($data_key){
+
+        return $this->oSESSION_MGR->get_session_resource($data_key);
+
+    }
+
+    public function add_ssdtla_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $index, $ttl){
+
+        switch($data_auth_profile){
+            case CRNRSTN_AUTHORIZE_SESSION:
+
+                //
+                // BASIC SESSION STORAGE
+                $this->oSESSION_MGR->add_ssdtla_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $index, $ttl);
+
+            break;
+            case CRNRSTN_AUTHORIZE_ALL:
+            case CRNRSTN_AUTHORIZE_SESSION & CRNRSTN_AUTHORIZE_RUNTIME_ONLY:
+
+                //
+                // BASIC SESSION STORAGE
+                $this->oSESSION_MGR->add_ssdtla_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $index, $ttl);
+
+                //
+                // BASIC RUNTIME STORAGE.
+                $this->oCRNRSTN->add_system_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $index, $this->oCRNRSTN->env_key(), $ttl);
+
+            break;
+            default:
+                // CRNRSTN_AUTHORIZE_RUNTIME_ONLY
+                //
+                // BASIC RUNTIME STORAGE.
+                $this->oCRNRSTN->add_system_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $index, $this->oCRNRSTN->env_key(), $ttl);
+
+            break;
+
+        }
+
+    }
+
+    public function isvalid_session_data($data_key){
+
+        return $this->oSESSION_MGR->isvalid_session_data($data_key);
 
     }
 
@@ -3479,8 +3525,12 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
     
     private function initializeErrorReporting($oCRNRSTN){
 
-        $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize server error_reporting() to [' . $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
-        error_reporting((int) $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
+        if(isset($oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash])){
+
+            $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('Initialize server error_reporting() to [' . $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash] . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+            error_reporting((int) $oCRNRSTN->env_err_reporting_profile_ARRAY[$this->config_serial_hash][$this->env_key_hash]);
+
+        }
 
     }
 
@@ -7619,7 +7669,7 @@ class crnrstn_decoupled_data_object {
 
     public function count($data_key){
 
-        if(strlen($this->oCRNRSTN->get_server_env()) > 0){
+        if(strlen($this->oCRNRSTN->env_key()) > 0){
 
             //$this->oCRNRSTN->print_r('$data_key=[' . $data_key . ']. . $this->data_value_ARRAY=[' . print_r($this->data_value_ARRAY, true) . ']. $tmp_db_profile_cnt=[' . $tmp_db_profile_cnt . ']', 'Output title.', NULL, __LINE__, __METHOD__, __FILE__);
 

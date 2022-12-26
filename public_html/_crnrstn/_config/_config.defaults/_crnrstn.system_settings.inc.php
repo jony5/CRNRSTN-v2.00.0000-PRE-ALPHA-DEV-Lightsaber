@@ -2,9 +2,18 @@
 /*
 // J5
 // Code is Poetry */
+
 //
-// DOCUMENTATION
-$this->add_system_resource('share_component_is_active', true, 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
+// CRNRSTN :: GENERAL SETTINGS
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'hash_algo', 'sha256', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'chmod_perms', 775, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'salt_length', 64, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'ssdtla_session_data_ttl', 180, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+
+//
+// CRNRSTN :: DOCUMENTATION
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'share_component_is_active', true, 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
 
 
 /*
@@ -12,13 +21,6 @@ SYSTEM DEFAULTS TO SUPPORT ::
 
 
 ===
-chmod($tmp_filepath, 775);
-
-======
-    public function salt($length = NULL, $chars = NULL){
-
-        $length = $this->salt_str_length;
-
 ======
 country_iso_code
 Return the client detected language preferences for the current
@@ -56,8 +58,7 @@ protected $ssdtl_packet_ttl = -1;
 // J5, my boy!
 // INITIALIZE ALPHA SHIFT CRYPT KEY
 $this->initialize_alpha_shift_crypt('JFIVEMYBOY');
-protected $system_hash_algo = 'sha256';
-private static $version_crnrstn = '2.00.0000 PRE-ALPHA-DEV (Lightsaber)';
+private static $version_crnrstn = '';
 public $system_database_table_prefix = 'crnrstn_';
 public $system_http_get_param_prefix = 'crnrstn_';
 public $max_storage_utilization = 85;

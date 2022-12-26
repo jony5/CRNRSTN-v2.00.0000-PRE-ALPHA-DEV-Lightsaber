@@ -12796,7 +12796,7 @@ class crnrstn_system_image_asset_manager {
             $tmp_current_perms = '';
             $tmp_data_str_out = $this->return_system_base64_file_contents();
 
-            $mkdir_mode = 775;
+            $mkdir_mode = $this->oCRNRSTN->get_resource('chmod_perms', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
             $tmp_filepath = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['path_filename'];
             $tmp_filename = self::$image_filesystem_meta_ARRAY[CRNRSTN_UI_IMG_BASE64][self::$request_salt]['filename'];
 
@@ -12839,7 +12839,7 @@ class crnrstn_system_image_asset_manager {
                 //
                 // TODO :: GET PERMISSIONS FROM SYSTEM DEFAULT.
                 // ADJUST FILE PERMISSIONS
-                chmod($tmp_filepath, 775);
+                chmod($tmp_filepath, $mkdir_mode);
 
                 $this->oCRNRSTN->error_log('Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 
@@ -12874,7 +12874,7 @@ class crnrstn_system_image_asset_manager {
                         //
                         // TODO :: GET PERMISSIONS FROM SYSTEM DEFAULT.
                         // ADJUST FILE PERMISSIONS
-                        chmod($tmp_filepath, 775);
+                        chmod($tmp_filepath, $mkdir_mode);
 
                         $this->oCRNRSTN->error_log('Success. System write of BASE64 file is complete. File: ' . $tmp_filename . '.', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
 

@@ -292,7 +292,7 @@ class crnrstn_mysqli_conn_manager {
 
             $tmp_data_key = 'db';
             $tmp_data_type_family = 'CRNRSTN_SYSTEM_RESOURCE::CRNRSTN_DATABASE';
-            //$tmp_db_profile_cnt = $this->oCRNRSTN->get_resource_count($tmp_data_key, $tmp_data_family_str, $this->oCRNRSTN->get_server_env());
+            //$tmp_db_profile_cnt = $this->oCRNRSTN->get_resource_count($tmp_data_key, $tmp_data_family_str, $this->oCRNRSTN->env_key());
             $tmp_db_profile_cnt = $this->oCRNRSTN->retrieve_data_count($tmp_data_key, $tmp_data_type_family);
             self::$db = $this->oCRNRSTN->get_resource('db', 0, $tmp_data_type_family);
             //self::$db = $this->oCRNRSTN->retrieve_data_value($tmp_data_key, $tmp_data_type_family);
@@ -324,7 +324,7 @@ class crnrstn_mysqli_conn_manager {
                     //$this->oCRNRSTN_USR->print_r('We do not have hash ' . $tmp_db_configuration_hash_salt_md5 . ' in the $tmp_config_hash_ARRAY array[' . print_r($tmp_config_hash_ARRAY, true) . '].', 'oDDO Testing', CRNRSTN_UI_DARKNIGHT, __LINE__, __METHOD__, __FILE__);
                     $tmp_config_hash_ARRAY[] = $tmp_db_configuration_hash_salt_md5;
 
-                    $this->config_add_system_resource($this->oCRNRSTN_USR->get_server_env(), '_CRNRSTN_DB_CNFG_HASH_ARRAY', $tmp_config_hash_ARRAY, $tmp_data_type_family,CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+                    $this->config_add_system_resource($this->oCRNRSTN_USR->env_key(), '_CRNRSTN_DB_CNFG_HASH_ARRAY', $tmp_config_hash_ARRAY, $tmp_data_type_family,CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
 
                 }
 

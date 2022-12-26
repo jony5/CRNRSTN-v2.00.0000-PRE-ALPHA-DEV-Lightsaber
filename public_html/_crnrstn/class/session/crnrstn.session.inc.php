@@ -87,12 +87,6 @@ class crnrstn_session_manager {
         // INITIALIZE ARRAY OF ENCRYPTABLE DATATYPES
         self::$encryptableDataTypes = array('string' => 'string', 'integer' => 'integer', 'double' => 'double', 'float' => 'float', 'int' => 'int');
 
-        //
-        // INITIALIZE CONFIG SERIAL FOR SESSION SERIALIZATION
-        $this->env_key = $this->oCRNRSTN->get_server_env();
-        $this->env_key_crc =  $this->oCRNRSTN->get_server_env('hash');
-        $this->config_serial_hash = $this->oCRNRSTN->get_server_config_serial('hash');
-
 		//
 		// Function Source ::
 		// http://php.net/manual/en/function.hash-equals.php#115635
@@ -120,16 +114,72 @@ class crnrstn_session_manager {
         }
 
     }
-//
-//    public function return_session_oDDO_profile($output_channel){
-//
-//	    $tmp_output_str = '';
-//
-//        $tmp_output_str = $this->oCRNRSTN_SESSION_DDO->preach($output_channel);
-//
-//        return $tmp_output_str;
-//
-//    }
+
+    public function isvalid_session_data($data_key){
+
+	    //$tmp_key = 'CRNRSTN_SESSION_ACCEL_' . $session_acceleration_key;
+
+	    if(!isset($_SESSION[$data_key])){
+
+	        return false;
+
+        }
+
+	    //
+        // 'datecreated', 'hash'
+	    $tmp_ssdtla_data_ARRAY = $_SESSION[$data_key];
+
+	    $tmp_ttl = $tmp_ssdtla_data_ARRAY['ttl'];
+
+        if($this->oCRNRSTN->is_ttl_expired($tmp_ssdtla_data_ARRAY['datecreated'], $tmp_ttl)){
+
+            return false;
+
+        }else{
+
+            return true;
+
+        }
+
+    }
+
+    public function get_session_resource($data_key){
+
+        if(isset($_SESSION[$data_key])){
+
+            $tmp_ssdtla_ARRAY = $_SESSION[$data_key];
+
+            return $tmp_ssdtla_ARRAY['data_value'];
+
+        }
+
+        return false;
+
+    }
+
+    public function add_ssdtla_resource($data_key, $data_value, $data_type_family, $data_auth_profile, $index, $ttl){
+
+        switch($data_auth_profile){
+            case CRNRSTN_AUTHORIZE_ALL:
+            case CRNRSTN_AUTHORIZE_SESSION:
+            case CRNRSTN_AUTHORIZE_SESSION & CRNRSTN_AUTHORIZE_RUNTIME_ONLY:
+            case CRNRSTN_AUTHORIZE_SESSION & CRNRSTN_AUTHORIZE_DATABASE:
+
+                $tmp_ARRAY = array();
+                $tmp_ARRAY['datecreated'] = time();
+                $tmp_ARRAY['data_value'] = $data_value;
+                $tmp_ARRAY['data_type_family'] = $data_type_family;
+                $tmp_ARRAY['ttl'] = $ttl;
+
+                //
+                // BASIC SESSION STORAGE
+                $_SESSION[$data_key] = $tmp_ARRAY;
+
+            break;
+
+        }
+
+    }
 
     public function init_session(){
 

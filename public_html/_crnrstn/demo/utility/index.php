@@ -142,7 +142,7 @@ $tmp_str = '/*
 */';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. crnrstn::', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('$this->env_key = $oCRNRSTN->get_server_env(\'hash\');', 'crnrstn::get_server_env()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('$this->env_key = $oCRNRSTN->env_key(\'hash\');', 'crnrstn::env_key()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $oCRNRSTN->print_r('$this->config_serial_hash = $oCRNRSTN->get_server_config_serial(\'hash\');', 'crnrstn::get_server_config_serial()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 

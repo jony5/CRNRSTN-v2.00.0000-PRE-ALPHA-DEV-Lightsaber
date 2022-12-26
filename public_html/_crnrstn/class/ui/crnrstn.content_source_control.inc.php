@@ -799,14 +799,6 @@ class crnrstn_content_source_controller {
                 public function system_base64_synchronize($data_key = NULL, $img_batch_size = 5){
                 public function mkdir_r($dirName, $mode = 777){
 
-                case 'return_set_bits':
-                case 'clear_all_bits_set_one':
-                case 'toggle_bit':
-                case 'is_bit_set':
-                case 'is_serialized_bit_set':
-                case 'initialize_bit':
-                case 'initialize_serialized_bit':
-
                 */
 
                 case 'add_cookie':
@@ -6527,7 +6519,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
 
 
-                    break;
+                break;
                 case 'return_int_const_profile':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
@@ -7446,7 +7438,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
-                    break;
+                break;
                 case 'set_ui_theme_style':
                     /*
                     public function set_ui_theme_style($theme_profile = NULL)
@@ -7531,7 +7523,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
-                    break;
+                break;
                 case 'soap_defencoding':
 
                     /*
@@ -7556,6 +7548,50 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION.
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(): <span class="crnrstn_documentation_method_data_type">string</span>';
+                    $this->sauce($tmp_method_definition);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
+
+                    //
+                    // RETURN VALUE
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_str = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
+
+                break;
+                case 'system_base64_synchronize':
+
+                    /*
+                    public function system_base64_synchronize($data_key = NULL, $img_batch_size = 5){
+
+                    */
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+                    //
+                    // METHOD DEFINITION
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_method_definition = $token . $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
+                    ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
 
@@ -8436,6 +8472,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                 break;
                 case 'config_add_administration':
+
                     /*
                     public function config_add_administration($env_key, $email_or_creds_path, $pwd = NULL, $ttl = 120, $max_login_attempts = 10){
 
@@ -8483,9 +8520,6 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
                     */
 
-
-                
-
                 case 'set_max_login_attempts':
                     /*
                     public function set_max_login_attempts($env_key, $max_login_attempts){
@@ -8499,6 +8533,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
 
 
                     */
+
                 case '/search/':
                     $tmp_categ_name = 'search results';
                     $tmp_subcateg_name = 'search results';            # MATCHES SECTION TITLE LINK COPY

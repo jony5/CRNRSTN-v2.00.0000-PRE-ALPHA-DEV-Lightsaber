@@ -359,7 +359,7 @@ class crnrstn_data_tunnel_services_manager{
 
         }
 
-        return $this->oCRNRSTN->hash($tmp_module_data);
+        return $this->oCRNRSTN->hash($tmp_module_data, NULL, false, $module_nom);
 
     }
 

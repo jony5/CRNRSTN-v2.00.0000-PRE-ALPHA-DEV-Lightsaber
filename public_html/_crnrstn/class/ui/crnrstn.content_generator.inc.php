@@ -840,7 +840,7 @@ class crnrstn_content_generator {
             // RETURN RAW SERIALIZED TOKEN.
             $tmp_token_string = $this->oCRNRSTN->return_module_deep_link_token($this->page_module_key, NULL, false);
 
-            error_log(__LINE__  . ' content gen page_module_key[' . $this->page_module_key . ']. $tmp_token_string['.$tmp_token_string.'].');
+            //error_log(__LINE__  . ' content gen page_module_key[' . $this->page_module_key . ']. $tmp_token_string['.$tmp_token_string.'].');
             //die();
 
             //

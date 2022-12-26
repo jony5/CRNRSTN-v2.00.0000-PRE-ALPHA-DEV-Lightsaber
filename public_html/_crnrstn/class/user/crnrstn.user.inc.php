@@ -152,8 +152,8 @@ class crnrstn_user{
         $this->oCRNRSTN_ENV = $oCRNRSTN_ENV;
 
         $this->starttime = $oCRNRSTN->starttime;
-        $this->env_key = $oCRNRSTN->get_server_env();
-        $this->env_key_hash = $oCRNRSTN->get_server_env('hash');
+        $this->env_key = $oCRNRSTN->env_key();
+        $this->env_key_hash = $oCRNRSTN->env_key('hash');
 
         $this->config_serial_hash = $this->oCRNRSTN_ENV->config_serial_hash;
 
