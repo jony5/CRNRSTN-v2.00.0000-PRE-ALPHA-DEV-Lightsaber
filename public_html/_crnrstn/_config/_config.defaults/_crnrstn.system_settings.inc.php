@@ -8,13 +8,42 @@
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'hash_algo', 'sha256', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'chmod_perms', 775, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'salt_length', 64, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'ssdtla_session_data_ttl', 10, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 
-$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'ssdtla_session_data_ttl', 180, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+//
+// CRNRSTN :: INTERACT UI SETTINGS
+// TODO :: MULTI-LANGUAGE SUPPORT
+$tmp_ARRAY = array('crnrstn_inactivity_refresh_ttl', 'crnrstn_ssdtla_module_sync_ttl',
+    'crnrstn_share_module_inactivity_close_ttl', 'crnrstn_page_load_ttl, bassdrive_is_live_ttl',
+    'the_situation_with_bassdrive_ttl', 'bassdrive_title_ttl', 'bassdrive_locale_city_province_ttl',
+    'bassdrive_locale_nation_ttl', 'stream_relays_ttl', 'social_media_connects_ttl', 'relay_performance_ttl', 'lifestyle_banner_ttl');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'interact_ui_ttl', $tmp_ARRAY, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+
+$tmp_ARRAY = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'interact_ui_month_abbrev', $tmp_ARRAY, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+
+$tmp_ARRAY = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'interact_ui_month', $tmp_ARRAY, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+
+$tmp_ARRAY = array('Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'interact_ui_day_abbrev', $tmp_ARRAY, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+
+$tmp_ARRAY = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'interact_ui_day', $tmp_ARRAY, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+$this->config_add_system_resource('BLUEHOST_JONY5', 'depeche_mode', CRNRSTN_DEBUG_OFF, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');                  // where CRNRSTN JS :: DEBUG MODES = [CRNRSTN_DEBUG_OFF, 100, 200, 300, 420, 500];
+$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'depeche_mode', 100, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');                              // where CRNRSTN JS :: DEBUG MODES = [CRNRSTN_DEBUG_OFF, 100, 200, 300, 420, 500];
+$this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'depeche_mode', 300, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');                     // where CRNRSTN JS :: DEBUG MODES = [CRNRSTN_DEBUG_OFF, 100, 200, 300, 420, 500];
+$this->config_add_system_resource('BLUEHOST_JONY5', 'debug_logging_output_channel', 'DOM', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');              // where CHANNEL = ['CONSOLE', 'DOM', 'ALERT'];
+$this->config_add_system_resource('BLUEHOST_EVIFWEB', 'debug_logging_output_channel', 'CONSOLE', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');        // where CHANNEL = ['CONSOLE', 'DOM', 'ALERT'];
+$this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'debug_logging_output_channel', 'DOM', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');   // where CHANNEL = ['CONSOLE', 'DOM', 'ALERT'];
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'page_load_ttl', 3, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'ssdtla_module_sync_ttl', 33, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'share_module_inactivity_close_ttl', 2, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'inactivity_refresh_ttl', 300, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 
 //
 // CRNRSTN :: DOCUMENTATION
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'share_component_is_active', true, 'CRNRSTN::RESOURCE::DOCUMENTATION_DEFAULTS');
-
 
 /*
 SYSTEM DEFAULTS TO SUPPORT ::

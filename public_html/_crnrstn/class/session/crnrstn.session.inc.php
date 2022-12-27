@@ -117,21 +117,13 @@ class crnrstn_session_manager {
 
     public function isvalid_session_data($data_key){
 
-	    //$tmp_key = 'CRNRSTN_SESSION_ACCEL_' . $session_acceleration_key;
-
 	    if(!isset($_SESSION[$data_key])){
 
 	        return false;
 
         }
 
-	    //
-        // 'datecreated', 'hash'
-	    $tmp_ssdtla_data_ARRAY = $_SESSION[$data_key];
-
-	    $tmp_ttl = $tmp_ssdtla_data_ARRAY['ttl'];
-
-        if($this->oCRNRSTN->is_ttl_expired($tmp_ssdtla_data_ARRAY['datecreated'], $tmp_ttl)){
+        if($this->is_ttl_expired($data_key)){
 
             return false;
 
@@ -140,6 +132,44 @@ class crnrstn_session_manager {
             return true;
 
         }
+
+    }
+
+    public function is_ttl_expired($data_key){
+
+        //
+        // $tmp_ssdtla_data_ARRAY['datecreated'] = time();
+        // $tmp_ssdtla_data_ARRAY['data_value'] = $data_value;
+        // $tmp_ssdtla_data_ARRAY['data_type_family'] = $data_type_family;
+        // $tmp_ssdtla_data_ARRAY['ttl'] = $ttl;
+        if(!isset($_SESSION[$data_key])){
+
+            return false;
+
+        }
+
+        $tmp_ssdtla_data_ARRAY = $_SESSION[$data_key];
+
+        $tmp_currtime_secs = time();
+        $tmp_starttime_secs = $tmp_ssdtla_data_ARRAY['datecreated'];
+
+        if($tmp_currtime_secs > $tmp_starttime_secs){
+
+            if(($tmp_currtime_secs - $tmp_starttime_secs) > (int) $tmp_ssdtla_data_ARRAY['ttl']){
+
+                return true;
+
+            }
+
+        }else{
+
+            //
+            // PROVIDED START TIME IS AHEAD OF CURRENT SYSTEM TIME. LIKE, HUH?
+            return false;
+
+        }
+
+        return false;
 
     }
 
@@ -171,6 +201,7 @@ class crnrstn_session_manager {
                 $tmp_ARRAY['data_type_family'] = $data_type_family;
                 $tmp_ARRAY['ttl'] = $ttl;
 
+
                 //
                 // BASIC SESSION STORAGE
                 $_SESSION[$data_key] = $tmp_ARRAY;
@@ -197,14 +228,14 @@ class crnrstn_session_manager {
 
                 //
                 // SESSION DATA FOR THREAD TO USE/ACCESS
-                error_log(__LINE__ . ' session COUNT OF SESSION MATCH=' . $tmp_session_count . '. NEED TO UPDATE CRNRSTN :: SESSION TABLE WITH FRESH ACTIVITY TIMESTAMPS.');
+                //error_log(__LINE__ . ' session COUNT OF SESSION MATCH=' . $tmp_session_count . '. NEED TO UPDATE CRNRSTN :: SESSION TABLE WITH FRESH ACTIVITY TIMESTAMPS.');
 
 
             }else{
 
                 //
                 // NEED TO CLEAN (OR PSSDTL) INITIALIZE A NEW CRNRSTN :: SESSION
-                error_log(__LINE__ . ' session COUNT OF SESSION MATCH=' . $tmp_session_count . '. NEED TO RECORD NEW SESSION.');
+                //error_log(__LINE__ . ' session COUNT OF SESSION MATCH=' . $tmp_session_count . '. NEED TO RECORD NEW SESSION.');
 
                 //
                 // DO WE START WITH PSSDTL / SSDTL DRIVEN SESSION DATA PROFILE
@@ -230,13 +261,13 @@ class crnrstn_session_manager {
 
                 //
                 // SESSION DATA FOR THREAD TO USE/ACCESS
-                error_log(__LINE__ . ' session COUNT OF SESSION MATCH=' . $tmp_session_count . '. NEED TO UPDATE CRNRSTN :: SESSION TABLE WITH FRESH ACTIVITY TIMESTAMPS.');
+                //error_log(__LINE__ . ' session COUNT OF SESSION MATCH=' . $tmp_session_count . '. NEED TO UPDATE CRNRSTN :: SESSION TABLE WITH FRESH ACTIVITY TIMESTAMPS.');
 
             }else{
 
                 //
                 // NEED TO CLEAN (OR PSSDTL) INITIALIZE A NEW CRNRSTN :: SESSION
-                error_log(__LINE__ . ' session COUNT OF SESSION MATCH=' . $tmp_session_count . '. NEED TO RECORD NEW SESSION.');
+                //error_log(__LINE__ . ' session COUNT OF SESSION MATCH=' . $tmp_session_count . '. NEED TO RECORD NEW SESSION.');
 
                 //
                 // DO WE START WITH PSSDTL / SSDTL DRIVEN SESSION DATA PROFILE

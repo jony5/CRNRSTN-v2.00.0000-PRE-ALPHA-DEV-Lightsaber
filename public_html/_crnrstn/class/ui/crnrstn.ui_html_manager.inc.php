@@ -181,7 +181,7 @@ class crnrstn_ui_html_manager {
 
     public function out_ui_module_html_system_mit_license(){
 
-        $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        $tmp_module_page_key = $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
         if(strlen($tmp_module_page_key) > 0){
 
@@ -455,7 +455,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     public function out_ui_module_html_system_footer_content_container(){
 
-	    $tmp_framework_link_value = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+	    $tmp_framework_link_value = $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
 	    $tmp_string_constant_ARRAY = explode('|', $tmp_framework_link_value);
 
@@ -511,7 +511,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             
         </div>';
 
-        error_log(__LINE__ . ' html mgr RETURN SSDTLA XML data for [' . $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '].');
+        error_log(__LINE__ . ' html mgr RETURN SSDTLA XML data for [' . $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click') . '].');
 
         return $tmp_html_out;
 

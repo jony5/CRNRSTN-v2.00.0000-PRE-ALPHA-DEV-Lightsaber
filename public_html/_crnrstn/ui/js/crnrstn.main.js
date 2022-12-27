@@ -179,11 +179,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         //
         // TODO :: NEED TO POPULATE THIS ARRAY FROM SSDTLA XML RESPONSE DATA
-        this.transaction_thread_id_key_ARRAY = ['crnrstn_interact_ui', 'bassdrive_last_updated',
-            'bassdrive_relay_access_by_bitrate', 'bassdrive_the_situation', 'bassdrive_title', 'bassdrive_social',
-            'bassdrive_locale_colors', 'bassdrive_locale_city_state_prov', 'bassdrive_connection_stats',
-            'bassdrive_history', 'bassdrive_reporting', 'bassdrive_archives', 'lifestyle_banner_image_rotation',
-            'wethrbug_results', 'living_stream_podcast_selection', 'css_validator_featured_element'];
+        this.transaction_thread_id_key_ARRAY = [];
 
         //
         // TODO :: NEED TO POPULATE THIS ARRAY FROM SSDTLA XML RESPONSE DATA
@@ -193,13 +189,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.data_array_adjusted_ttl_ARRAY = [];
         this.transaction_count_ARRAY = [];
         this.transaction_ARRAY = [];
-
-        //
-        // TODO :: NEED TO POPULATE THIS ARRAY FROM THE SSDTLA XML RESPONSE DATA
-        this.xml_node_ttl_indices_ARRAY = [
-            'bassdrive_is_live_ttl', 'the_situation_with_bassdrive_ttl', 'bassdrive_title_ttl',
-            'bassdrive_locale_city_province_ttl', 'bassdrive_locale_nation_ttl', 'stream_relays_ttl',
-            'social_media_connects_ttl', 'relay_performance_ttl', 'lifestyle_banner_ttl'];
 
         this.jony5_banner_mode = 'PLAY';
         this.client_rtime = '0:00:00';
@@ -229,19 +218,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.ttl_age_seconds = 1;   // secs
         this.client_rtime_pretty = '';
         this.client_rtime_millis = 0;
-        this.data_tunnel_ttl_monitor_ARRAY = [];
-        //this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = 30;
-        this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = 2;
         this.interact_ui_ttl_monitor_ARRAY = [];
-        this.interact_ui_ttl_monitor_ARRAY['share_module_click_ttl'] = 2;
 
-        //
-        // TODO :: NEED TO POPULATE THIS ARRAY FROM THE SSDTLA XML RESPONSE
-        // TODO :: MULTI-LANGUAGE SUPPORT
-        this.client_month_abbrev_ARRAY = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-        this.client_month_ARRAY = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        this.client_day_abbrev_ARRAY = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-        this.client_day_ARRAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        this.client_month_abbrev_ARRAY = [];
+        this.client_month_ARRAY = [];
+        this.client_day_abbrev_ARRAY = [];
+        this.client_day_ARRAY = [];
 
         //
         // CRNRSTN :: CLIENT RESPONSE
@@ -301,13 +283,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    /*
-    $( "#foo" ).on( "custom", function( event, param1, param2 ){
-      alert( param1 + "\n" + param2 );
-    });
-    $( "#foo").trigger( "custom", [ "Custom", "Event" ] );
-    */
-
     CRNRSTN_JS.prototype.option = function(options){
 
         $.extend(this.options, options);
@@ -336,7 +311,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         return this.session_salt;
 
     }
-    
+
     CRNRSTN_JS.prototype.set_ui_component_state = function(component_key, state = 'ON'){
 
         switch(component_key){
@@ -485,7 +460,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.link_text_click = function(page_key){
 
-        this.log_activity('[lnum 488] SSDTLA Sending request for data [' + page_key + '].', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 463] SSDTLA Sending request for data [' + page_key + '].', this.CRNRSTN_DEBUG_VERBOSE);
 
         this.current_page_key = page_key;
         this.content_refresh_trigger_source = 'link_text_click';
@@ -502,7 +477,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.ttl_tunnel_monitor_seconds = 1;
         this.ttl_age_seconds = -1;
         this.data_tunnel_ttl_monitor_isactive = false;
-        this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = -1;
+        this.interact_ui_ttl_monitor_ARRAY['crnrstn_page_load_ttl'] = -1;
 
         //
         // BEGIN UI PAGE LOAD VISUALIZATION EXPERIENCE.
@@ -651,7 +626,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             is_init_operation = true;
             $('<div id="crnrstn_interact_ui_full_doc_header_wrapper_rel" class="crnrstn_interact_ui_full_doc_header_wrapper_rel"><div class="crnrstn_cb"></div><div id="crnrstn_interact_ui_full_doc_header_wrapper" class="crnrstn_interact_ui_full_doc_header_wrapper"><div id="crnrstn_interact_ui_full_doc_close_wrapper_rel" class="crnrstn_interact_ui_full_doc_close_wrapper_rel"><div id="crnrstn_interact_ui_full_doc_close_wrapper" class="crnrstn_interact_ui_full_doc_close_wrapper"><div id="crnrstn_interact_ui_full_doc_close" class="crnrstn_interact_ui_full_doc_close" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);" onmouseover="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseover\', this);" onmouseout="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onmouseout\', this);"></div></div></div><div class="crnrstn_cb"></div></div></div><div id="crnrstn_interact_ui_full_lightbox_overlay" class="crnrstn_interact_ui_full_lightbox_overlay" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);"></div><div id="crnrstn_interact_ui_full_lightbox" class="crnrstn_interact_ui_full_lightbox" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'onclick\', this);"></div><div id="crnrstn_interact_ui_full_document_wrapper" class="crnrstn_interact_ui_full_document_wrapper"><div class="crnrstn_interact_ui_full_document_rel"><div id="crnrstn_interact_ui_full_document" class="crnrstn_interact_ui_full_document"></div><div id="crnrstn_ui_element_load_indicator_shell_rel" class="crnrstn_ui_element_load_indicator_shell_rel"><div id="crnrstn_ui_element_load_indicator_shell" class="crnrstn_ui_element_load_indicator_shell"><div id="crnrstn_ui_element_load_indicator_bg_rel" class="crnrstn_ui_element_load_indicator_bg_rel"><div id="crnrstn_ui_element_load_indicator_bg" class="crnrstn_ui_element_load_indicator_bg"></div></div><div id="crnrstn_ui_element_load_indicator_rel" class="crnrstn_ui_element_load_indicator_rel"><div id="crnrstn_ui_element_load_indicator" class="crnrstn_ui_element_load_indicator"></div></div></div></div><div id="crnrstn_documentation_dyn_shell_rel" class="crnrstn_documentation_dyn_shell_rel"><div id="crnrstn_documentation_dyn_shell_bg" class="crnrstn_documentation_dyn_shell_bg"><div class="crnrstn_cb"></div></div><div id="crnrstn_documentation_dyn_shell" class="crnrstn_documentation_dyn_shell"></div></div></div></div>').prependTo($('body'));
 
-            self.log_activity('[lnum 654] Initializing CRNRSTN :: INTERACT UI within the DOM.', self.CRNRSTN_DEBUG_VERBOSE);
+            self.log_activity('[lnum 629] Initializing CRNRSTN :: INTERACT UI within the DOM.', self.CRNRSTN_DEBUG_VERBOSE);
 
         }
 
@@ -837,7 +812,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //var self = this;
         //this.$system_footer = $('#crnrstn_ui_system_footer_src');
 
-        this.log_activity('[lnum 840] Initializing system footer.', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 815] Initializing system footer.', this.CRNRSTN_DEBUG_VERBOSE);
 
         $('#crnrstn_ui_system_footer_shell').html(module_content);
 
@@ -885,27 +860,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-    // CRNRSTN_JS.prototype.initialize_full_doc_navigation_pane = function(){
-    //
-    //     var self = this;
-    //
-    //     /*
-    //     We use a setTimeout 0 to pause JS execution and let the rendering catch-up.
-    //     Why do this? If the `disableScrolling` option is set to true, a class is added to the body
-    //     tag that disables scrolling and hides the scrollbar. We want to make sure the scrollbar is
-    //     hidden before we measure the document width, as the presence of the scrollbar will affect the
-    //     number.
-    //     */
-    //
-    //     setTimeout(function() {
-    //
-    //         $('#crnrstn_interact_ui_side_nav').css('max-height', parseInt($(window).height()));
-    //         $('#crnrstn_interact_ui_side_nav').css('height', parseInt($(window).height()));
-    //
-    //     }, 0);
-    //
-    // };
-
     CRNRSTN_JS.prototype.initialize_system_footer = function(){
 
         var self = this;
@@ -935,41 +889,49 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         // Both enable and build methods require the body tag to be in the DOM.
         $(document).ready(function() {
 
+            //
+            // LOAD CRNRSTN :: INTERACT UI SYSTEM SETTINGS.
+            self.load_system_settings();
+
             if(self.crnrstn_debug_mode === self.CRNRSTN_DEBUG_OFF){
 
             }else{
 
-                //
-                // THIS IS NOT THE SOLUTION WE NEED...BUT IT WILL WORK FOR NOW. 100% OF CRNRSTN :: JS CONFIGURATION
-                // SHOULD COME FROM THE SERVER CONFIG....IMHO.
-                if($('#crnrstn_client_ssdtla_debug_active').length){
+                if(self.CRNRSTN_LOGGING_OUTPUT === 'DOM'){
 
-                    $('<div id="crnrstn_activity_log_output_wrapper">' +
-                        '<div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 10px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG</div>' +
-                        '<div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper">' +
-                        '   <div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div>' +
-                        '</div>' +
-                        '<div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:100%; text-align: right; line-height: 20px;">' +
-                        '   <div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div>' +
-                        '   <div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div>' +
-                        '</div>' +
-                        '</div>').prependTo($('body'));
+                    //
+                    // THIS IS NOT THE SOLUTION WE NEED...BUT IT WILL WORK FOR NOW. 100% OF CRNRSTN :: JS CONFIGURATION
+                    // SHOULD COME FROM THE SERVER CONFIG....IMHO.
+                    if($('#crnrstn_client_ssdtla_debug_active').length){
 
-                    switch(self.CRNRSTN_LOGGING_OUTPUT){
-                        case 'DOM':
+                        $('<div id="crnrstn_activity_log_output_wrapper">' +
+                            '<div id="crnrstn_activity_log_output_title" style="float:left; padding:5px 0 5px 10px; text-align:left; font-family: Courier New, Courier, monospace; font-size:20px;">C<span class="the_R_in_crnrstn">R</span>NRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA) :: DEBUG</div>' +
+                            '<div id="crnrstn_activity_log" class="crnrstn_log_output_wrapper">' +
+                            '   <div id="crnrstn_activity_log_output" class="crnrstn_log_output"></div>' +
+                            '</div>' +
+                            '<div id="crnrstn_activity_log_output_lnk_wrapper" style="margin:0; width:100%; text-align: right; line-height: 20px;">' +
+                            '   <div onclick="oCRNRSTN_JS.crnrstn_ui_hide_ssdtla_debug();" style="float:right; padding:5px 5px 0 0; text-align:right;"><a href="#" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Hide</a></div>' +
+                            '   <div style="float:right; padding:5px 25px 0 0; text-align:right; font-family: Courier New, Courier, monospace; font-size:20px;"><a href="#" onclick="$(\'#crnrstn_activity_log_output\').html(\'\');" style="font-family: Courier New, Courier, monospace; color:#06C; font-size:12px;">Clear</a></div>' +
+                            '</div>' +
+                            '</div>').prependTo($('body'));
 
-                            $('#crnrstn_activity_log').animate({
-                                opacity: 1.0
-                            }, {
-                                duration: 1000,
-                                queue: false,
-                                complete: function () {
+                        switch(self.CRNRSTN_LOGGING_OUTPUT){
+                            case 'DOM':
 
-                                }
+                                $('#crnrstn_activity_log').animate({
+                                    opacity: 1.0
+                                }, {
+                                    duration: 1000,
+                                    queue: false,
+                                    complete: function () {
 
-                            });
+                                    }
 
-                        break;
+                                });
+
+                                break;
+
+                        }
 
                     }
 
@@ -977,9 +939,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             }
 
-            self.log_activity('[lnum 980] DOM READY.', self.CRNRSTN_DEBUG_VERBOSE);
-
-            self.session_salt = $("#crnrstn_session_salt").val();
+            self.log_activity('[lnum 942] DOM READY.', self.CRNRSTN_DEBUG_VERBOSE);
 
             //
             // EXTRACT CRNRSTN :: HTTP GET DATA
@@ -1025,6 +985,164 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+
+    CRNRSTN_JS.prototype.load_system_settings = function(){
+
+        /*
+        <input type="hidden" id="crnrstn_page_load_ttl" name="crnrstn_page_load_ttl" value="' . $this->oCRNRSTN->get_resource('page_load_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
+        <input type="hidden" id="crnrstn_inactivity_refresh_ttl" name="crnrstn_inactivity_refresh_ttl" value="' . $this->oCRNRSTN->get_resource('crnrstn_inactivity_refresh_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
+        <input type="hidden" id="crnrstn_ssdtla_module_sync_ttl" name="crnrstn_ssdtla_module_sync_ttl" value="' . $this->oCRNRSTN->get_resource('crnrstn_ssdtla_module_sync_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
+        <input type="hidden" id="crnrstn_share_module_inactivity_close_ttl" name="crnrstn_share_module_inactivity_close_ttl" value="' . $this->oCRNRSTN->get_resource('crnrstn_share_module_inactivity_close_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
+
+        <input type="hidden" id="crnrstn_debug_logging_output_channel" name="crnrstn_debug_logging_output_channel" value="' . $this->oCRNRSTN->get_resource('debug_logging_output_channel', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
+
+        <input type="hidden" id="crnrstn_depeche_mode" name="crnrstn_depeche_mode" value="' . $this->oCRNRSTN->get_resource('depeche_mode', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
+
+        */
+
+        this.session_salt = $("#crnrstn_session_salt").val();
+
+        this.load_setting_attribute('crnrstn_interact_ui_ttl');
+
+        if(tmp_attribute_value = this.load_setting_attribute('crnrstn_depeche_mode')){
+
+            this.crnrstn_debug_mode = parseInt(tmp_attribute_value);
+
+        }
+
+        if(tmp_attribute_value = this.load_setting_attribute('crnrstn_debug_logging_output_channel')){
+
+            this.CRNRSTN_LOGGING_OUTPUT = tmp_attribute_value;
+
+        }
+
+        //
+        // TTL MANAGEMENT.
+        if(tmp_attribute_value = this.load_setting_attribute('crnrstn_page_load_ttl')){
+
+            this.interact_ui_ttl_monitor_ARRAY['crnrstn_page_load_ttl'] = parseInt(tmp_attribute_value);
+            //
+            // this.ssdtl_response_data_container_ARRAY[tmp_attribute_value + '_0'] = tmp_attribute_value;
+            //
+            // this.initialize_ttl_tracking(tmp_attribute_value, 0);
+
+        }
+
+        if(tmp_attribute_value = this.load_setting_attribute('crnrstn_share_module_inactivity_close_ttl')){
+
+            this.interact_ui_ttl_monitor_ARRAY['crnrstn_share_module_inactivity_close_ttl'] = parseInt(tmp_attribute_value);
+
+        }
+
+        if(tmp_attribute_value = this.load_setting_attribute('crnrstn_ssdtla_module_sync_ttl')){
+
+            this.interact_ui_ttl_monitor_ARRAY['crnrstn_ssdtla_module_sync_ttl'] = parseInt(tmp_attribute_value);
+
+        }
+
+        if(tmp_attribute_value = this.load_setting_attribute('crnrstn_inactivity_refresh_ttl')){
+
+            this.interact_ui_ttl_monitor_ARRAY['crnrstn_inactivity_refresh_ttl'] = parseInt(tmp_attribute_value);
+
+        }
+
+        //this.initialize_system_settings_ttl_tracking();
+
+        //
+        // DATE TIME STRINGS
+        this.load_setting_attribute('crnrstn_interact_ui_month_abbrev');
+        this.load_setting_attribute('crnrstn_interact_ui_month');
+        this.load_setting_attribute('crnrstn_interact_ui_day_abbrev');
+        this.load_setting_attribute('crnrstn_interact_ui_day');
+
+    };
+
+    CRNRSTN_JS.prototype.load_setting_attribute = function(sys_attribute){
+
+        switch(sys_attribute){
+            case 'crnrstn_interact_ui_month_abbrev':
+
+                var tmp_data_piped = $('#' + sys_attribute).val();
+                var tmp_data_ARRAY = tmp_data_piped.split('|');
+                var tmp_data_cnt = tmp_data_ARRAY.length;
+
+                for(i = 0; i < tmp_data_cnt; i++){
+
+                    this.client_month_abbrev_ARRAY.push(tmp_data_ARRAY[i]);
+
+                }
+
+            break;
+            case 'crnrstn_interact_ui_month':
+
+                var tmp_data_piped = $('#' + sys_attribute).val();
+                var tmp_data_ARRAY = tmp_data_piped.split('|');
+                var tmp_data_cnt = tmp_data_ARRAY.length;
+
+                for(i = 0; i < tmp_data_cnt; i++){
+
+                    this.client_month_ARRAY.push(tmp_data_ARRAY[i]);
+
+                }
+
+            break;
+            case 'crnrstn_interact_ui_day_abbrev':
+
+                var tmp_data_piped = $('#' + sys_attribute).val();
+                var tmp_data_ARRAY = tmp_data_piped.split('|');
+                var tmp_data_cnt = tmp_data_ARRAY.length;
+
+                for(i = 0; i < tmp_data_cnt; i++){
+
+                    this.client_day_abbrev_ARRAY.push(tmp_data_ARRAY[i]);
+
+                }
+
+            break;
+            case 'crnrstn_interact_ui_day':
+
+                var tmp_data_piped = $('#' + sys_attribute).val();
+                var tmp_data_ARRAY = tmp_data_piped.split('|');
+                var tmp_data_cnt = tmp_data_ARRAY.length;
+
+                for(i = 0; i < tmp_data_cnt; i++){
+
+                    this.client_day_ARRAY.push(tmp_data_ARRAY[i]);
+
+                }
+
+            break;
+            case 'crnrstn_interact_ui_ttl':
+
+                var tmp_ttl_piped = $('#' + sys_attribute).val();
+                var tmp_ttl_ARRAY = tmp_ttl_piped.split('|');
+                var tmp_ttl_cnt = tmp_ttl_ARRAY.length;
+
+                for(i = 0; i < tmp_ttl_cnt; i++){
+
+                    this.interact_ui_ttl_monitor_ARRAY.push(tmp_ttl_ARRAY[i]);
+
+                }
+
+            break;
+            default:
+
+                var tmp_attribute_value = $('#' + sys_attribute).val();
+
+                if(tmp_attribute_value.length > 0){
+
+                    return tmp_attribute_value;
+
+                }
+
+                return false;
+
+            break;
+
+        }
+
+    };
+
     CRNRSTN_JS.prototype.process_request_for_deep_link = function(){
 
         //
@@ -1065,7 +1183,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     // AUTHOR :: Joe Riggs :: https://joe-riggs.com/blog/author/jriggs/
     CRNRSTN_JS.prototype.crnrstn_rtime_timer_cycle = function(){
 
-        this.log_activity('[lnum 1068] Begin client cycling of a second. TTL delta=[' + this.ttl_age_seconds + ']', this.CRNRSTN_DEBUG_CONTROLS);
+        this.log_activity('[lnum 1186] Begin client cycling of a second. TTL delta=[' + this.ttl_age_seconds + ']', this.CRNRSTN_DEBUG_CONTROLS);
 
         this.ttl_age_seconds = this.ttl_age_seconds + 1;
 
@@ -1247,7 +1365,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(this.dom_element_mouse_state_ARRAY['share_module_click'] === 'OPEN'){
 
-            var tmp_share_component_ttl = this.get_resource('share_module_click_ttl');
+            var tmp_share_component_ttl = this.get_resource('crnrstn_share_module_inactivity_close_ttl');
             if(share_component_mouse_out_listen){
 
                 //
@@ -1258,7 +1376,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 //
                 // PUNT TTL ON COMPONENT CLOSE. KEEP OPEN.
-                this.add_resource('share_module_click_ttl', 2);
+                this.add_resource('crnrstn_share_module_inactivity_close_ttl', 2);
 
             }
 
@@ -1286,7 +1404,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.share_component_close_all = function(){
 
-        var tmp_ttl = this.get_resource('share_module_click_ttl');
+        var tmp_ttl = this.get_resource('crnrstn_share_module_inactivity_close_ttl');
 
         if(tmp_ttl < 0){
 
@@ -1369,7 +1487,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             //
             // RESET TTL TO TWO SECONDS.
-            this.add_resource('share_module_click_ttl', 2);
+            this.add_resource('crnrstn_share_module_inactivity_close_ttl', 2);
 
             return true;
 
@@ -1377,7 +1495,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         tmp_ttl--;
 
-        this.add_resource('share_module_click_ttl', tmp_ttl);
+        this.add_resource('crnrstn_share_module_inactivity_close_ttl', tmp_ttl);
 
     };
 
@@ -1418,19 +1536,19 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.process_data_tunnel_ttl = function(){
 
-        this.log_activity('[lnum 1421] Analyzing SSDTLA TTL.', this.CRNRSTN_DEBUG_CONTROLS);
+        this.log_activity('[lnum 1539] Analyzing SSDTLA TTL.', this.CRNRSTN_DEBUG_CONTROLS);
 
         //
         // CHECK PAGE LOAD TTL
-        if(this.ttl_age_seconds > this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] && this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] != -1){
+        if(this.ttl_age_seconds > this.interact_ui_ttl_monitor_ARRAY['crnrstn_page_load_ttl'] && this.interact_ui_ttl_monitor_ARRAY['crnrstn_page_load_ttl'] != -1){
 
-            this.log_activity('[lnum 1427] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - PAGE LOAD TTL (' + this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] + ' secs).', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 1545] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - PAGE LOAD TTL (' + this.interact_ui_ttl_monitor_ARRAY['crnrstn_page_load_ttl'] + ' secs).', this.CRNRSTN_DEBUG_VERBOSE);
             this.fire_dom_state_controller();
 
             this.data_tunnel_ttl_monitor_isactive = false;
             this.ttl_tunnel_monitor_seconds = 1;
             this.ttl_age_seconds = -1;
-            this.data_tunnel_ttl_monitor_ARRAY['page_load_data_ttl'] = -1;
+            this.interact_ui_ttl_monitor_ARRAY['crnrstn_page_load_ttl'] = -1;
 
         }else{
 
@@ -1441,7 +1559,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 // CHECK FOR THREAD ID TTL EXPIRE
                 if(this.thread_id_ttl_expired()){
 
-                    this.log_activity('[lnum 1444] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) :: Generic State Management Request.', this.CRNRSTN_DEBUG_VERBOSE);   // CRNRSTN_DEBUG_BASIC
+                    this.log_activity('[lnum 1562] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) :: Generic State Management Request.', this.CRNRSTN_DEBUG_VERBOSE);   // CRNRSTN_DEBUG_BASIC
                     this.fire_dom_state_controller();
 
                     this.ttl_age_seconds = -1;
@@ -1454,9 +1572,9 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 //
                 // INACTIVITY REFRESH. SET TO 5 MIN (300s)?
-                if(this.ttl_tunnel_monitor_seconds > 300){
+                if(this.ttl_tunnel_monitor_seconds > parseInt(this.interact_ui_ttl_monitor_ARRAY['crnrstn_inactivity_refresh_ttl'])){
 
-                    this.log_activity('[lnum 1459] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - INACTIVITY REFRESH TTL (5 min).', this.CRNRSTN_DEBUG_VERBOSE);   // CRNRSTN_DEBUG_BASIC
+                    this.log_activity('[lnum 1577] CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA) TTL EXPIRED - INACTIVITY REFRESH TTL (5 min).', this.CRNRSTN_DEBUG_VERBOSE);   // CRNRSTN_DEBUG_BASIC
                     this.fire_dom_state_controller();
 
                     this.ttl_age_seconds = -1;
@@ -1485,13 +1603,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             var form = $("#crnrstn_soap_data_tunnel_frm");
             var dataString = $(form).serialize();
 
-            this.log_activity('[lnum 1488] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 1489] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
-            this.log_activity('[lnum 1490] SSDTLP ' + this.system_hash_algo + ' Hash = [' + $('#' + this.form_input_serialization_hash).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 1606] Sending CRNRSTN :: SOAP Services Data Tunnel Layer Packet (SSDTLP) in AJAX POST to [' + ssdtl_endpoint + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 1607] SSDTLP Serialization Key = [' + $('#' + this.form_input_serialization_key).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 1608] SSDTLP ' + this.system_hash_algo + ' Hash = [' + $('#' + this.form_input_serialization_hash).val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             if($('#crnrstn_interact_ui_link_text_click').val() != ''){
 
-                this.log_activity('[lnum 1494] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 1612] SSDTLP [ACTION] = [' + $('#crnrstn_interact_ui_link_text_click').val() + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             }
 
@@ -1534,7 +1652,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             tmp_size_final = new Blob([response_data.responseText]).size;
             tmp_size_final_pretty = oCRNRSTN_JS.format_bytes(tmp_size_final, 3);
 
-            oCRNRSTN_JS.log_activity('[lnum 1537] Receiving ' + tmp_size_final_pretty + ' in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+            oCRNRSTN_JS.log_activity('[lnum 1655] Receiving ' + tmp_size_final_pretty + ' in POST response from CRNRSTN :: SOAP Services Data Tunnel Layer Architecture (SSDTLA).', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             $('#crnrstn_ui_element_load_indicator').stop();
 
@@ -1613,7 +1731,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             queue: false,
             complete: function () {
 
-
             }
 
         });
@@ -1648,31 +1765,31 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         this.consume_http_get_param_data(param_name, param_data, this.current_serialization_key);
 
-                        this.log_activity('[lnum 1651] SUCCESS TEST CONTROL [' + param_name + ' = ' + this.http_get_data(param_name) + '].');
+                        this.log_activity('[lnum 1768] SUCCESS TEST CONTROL [' + param_name + ' = ' + this.http_get_data(param_name) + '].');
 
-                        this.log_activity('[lnum 1653] ERR TEST CONTROL [' + this.http_get_data('ssssss12345678hgvs') + '].', );
+                        this.log_activity('[lnum 1770] ERR TEST CONTROL [' + this.http_get_data('ssssss12345678hgvs') + '].', );
 
                         if(this.http_get_data('ssssss12345678hgvs')){
 
-                            this.log_activity('[lnum 1657] *THIS IS WHAT FAILURE LOOKS LIKE* ERR TEST BOOLEAN NEGATIVE [' + this.http_get_data('ssssss12345678hgvs') + '].', this.CRNRSTN_DEBUG_BASIC);
+                            this.log_activity('[lnum 1774] *THIS IS WHAT FAILURE LOOKS LIKE* ERR TEST BOOLEAN NEGATIVE [' + this.http_get_data('ssssss12345678hgvs') + '].', this.CRNRSTN_DEBUG_BASIC);
 
                         }
 
                         if(!this.http_get_data('ssssss12345678hgvs')){
 
-                            this.log_activity('[lnum 1663] *SUCCESS* ERR TEST BOOLEAN NEGATIVE ![INVERTED] [' + this.http_get_data('ssssss12345678hgvs') + '].');
+                            this.log_activity('[lnum 1780] *SUCCESS* ERR TEST BOOLEAN NEGATIVE ![INVERTED] [' + this.http_get_data('ssssss12345678hgvs') + '].');
 
                         }
 
                         if(this.http_get_data(param_name)){
 
-                            this.log_activity('[lnum 1669] *SUCCESS* ERR TEST BOOLEAN POSITIVE [' + this.http_get_data('ssssss12345678hgvs') + '].');
+                            this.log_activity('[lnum 1786] *SUCCESS* ERR TEST BOOLEAN POSITIVE [' + this.http_get_data('ssssss12345678hgvs') + '].');
 
                         }
 
                         if(!this.http_get_data(param_name)){
 
-                            this.log_activity('[lnum 1675] *THIS IS WHAT FAILURE LOOKS LIKE* ERR TEST BOOLEAN POSITIVE ![INVERTED] [' + this.http_get_data('ssssss12345678hgvs') + '].');
+                            this.log_activity('[lnum 1792] *THIS IS WHAT FAILURE LOOKS LIKE* ERR TEST BOOLEAN POSITIVE ![INVERTED] [' + this.http_get_data('ssssss12345678hgvs') + '].');
 
                         }
 
@@ -1737,8 +1854,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 if(response_data === undefined){
 
-                    this.log_activity('[lnum 1740] ERROR [undefined response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
-                    this.log_activity('[lnum 1741] Resending request SSDTLA request for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 1857] ERROR [undefined response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 1858] Resending request SSDTLA request for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                     tmp_cnt = this.ssdtla_xhr_request_attempt_count_ARRAY[data_type];
                     tmp_cnt = parseInt(tmp_cnt) + 1;
@@ -1754,8 +1871,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 if(response_data === null){
 
-                    this.log_activity('[lnum 1757] ERROR [NULL response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
-                    this.log_activity('[lnum 1758] SSDTLA Response [NULL] ERROR experienced on return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 1874] ERROR [NULL response_data] experienced on SSDTLA Response return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 1875] SSDTLA Response [NULL] ERROR experienced on return for ' + data_type + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                     tmp_cnt = this.ssdtla_xhr_request_attempt_count_ARRAY[data_type];
                     tmp_cnt = parseInt(tmp_cnt) + 1;
@@ -1776,7 +1893,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     var NODE_client_response = response_data.getElementsByTagName('client_response');
                     if(NODE_client_response.length > 0){
 
-                        this.log_activity('[lnum 1779] Extracting ' + data_type + ' data from CRNRSTN :: SOAP Services Data Tunnel Layer (SSDTL) response.', this.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 1896] Extracting ' + data_type + ' data from CRNRSTN :: SOAP Services Data Tunnel Layer (SSDTL) response.', this.CRNRSTN_DEBUG_VERBOSE);
                         this.consume_data_tunnel_xml_node(response_data, 'response_timestamp', 'client_response', 'timestamp' , serialize_response);
 
                         //
@@ -1809,7 +1926,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         var NODE_state_synchronization_data = response_data.getElementsByTagName('state_synchronization_data');
                         if (NODE_state_synchronization_data.length > 0) {
 
-                            this.log_activity('[lnum 1812] Extracting [state_synchronization_data] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                            this.log_activity('[lnum 1929] Extracting [state_synchronization_data] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                             this.consume_browser_state_sync_data(NODE_state_synchronization_data[0], serialize_response);
 
@@ -1823,7 +1940,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                             for(let i = 0; i < tmp_node_cnt; i++){
 
-                                this.log_activity('[lnum 1826] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                                this.log_activity('[lnum 1943] Extracting [response_status] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                                 this.consume_response_status_data(NODE_response_status[i], serialize_response);
 
@@ -1833,14 +1950,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         //
                         // RUNTIME
-                        //
                         var NODE_runtime = response_data.getElementsByTagName('runtime');
                         var tmp_node_cnt = NODE_runtime.length;
                         if(tmp_node_cnt > 0){
 
                             for(let i = 0; i < tmp_node_cnt; i++){
 
-                                this.log_activity('[lnum 1843] Extracting [runtime] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                                this.log_activity('[lnum 1959] Extracting [runtime] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                                 this.consume_response_runtime(NODE_runtime[i], serialize_response);
 
@@ -1856,7 +1972,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                             for(let i = 0; i < tmp_node_cnt; i++){
 
-                                this.log_activity('[lnum 1859] Extracting [client_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                                this.log_activity('[lnum 1975] Extracting [client_profile] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
                                 this.consume_response_client_profile_data(NODE_client_profile[i], serialize_response);
 
                             }
@@ -1901,7 +2017,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                             for(let i = 0; i < tmp_node_cnt; i++){
 
-                                this.log_activity('[lnum 1904] Extracting [bassdrive] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                                this.log_activity('[lnum 2020] Extracting [bassdrive] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
                                 this.consume_response_bassdrive_data(NODE_bassdrive[i], serialize_response);
 
                             }
@@ -1916,7 +2032,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                             for(let i = 0; i < tmp_node_cnt; i++){
 
-                                this.log_activity('[lnum 1919] Extracting [lifestyle_banner] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
+                                this.log_activity('[lnum 2035] Extracting [lifestyle_banner] data from CRNRSTN :: SSDTL response.', this.CRNRSTN_DEBUG_CONTROLS);
 
                                 this.consume_response_lifestyle_banner_data(NODE_lifestyle_banner[i], serialize_response);
 
@@ -1925,8 +2041,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         }
 
                         this.data_tunnel_ttl_monitor_isactive = true;
-                        this.log_activity('[lnum 1928] CRNRSTN :: SSDTL response consumption is now complete.', this.CRNRSTN_DEBUG_VERBOSE);
-                        this.log_activity('[lnum 1929] CRNRSTN :: SSDTL TTL monitoring for client state is now active.', this.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 2044] CRNRSTN :: SSDTL response consumption is now complete.', this.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 2045] CRNRSTN :: SSDTL TTL monitoring for client state is now active.', this.CRNRSTN_DEBUG_VERBOSE);
 
                     }
 
@@ -1934,6 +2050,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             break;
             case 'SOAP':
+
                 //
                 // CRNRSTN :: SOAP SERVICES DATA TUNNEL RAW SOAP RESPONSE TO BROWSER (EXPERIMENTAL)
 
@@ -2021,9 +2138,32 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    CRNRSTN_JS.prototype.initialize_system_settings_ttl_tracking = function(){
+
+        /*
+        DOM ::
+        crnrstn_inactivity_refresh_ttl
+
+        */
+
+        if($.inArray(nomination, this.interact_ui_ttl_monitor_ARRAY) >= 0){
+
+            this.ttl_array_pointer_index_ARRAY.push(nomination + '_' + index);
+            this.ttl_array_pointer_index_root_ARRAY[nomination + '_' + index] = nomination;
+
+            this.log_activity('[lnum 2154] TTL tracking has been initialized for XML node [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_VERBOSE);
+
+        }
+
+    };
+
     CRNRSTN_JS.prototype.initialize_ttl_tracking = function(nomination, index){
 
         /*
+        DOM ::
+        crnrstn_inactivity_refresh_ttl
+
+        XML ::
         bassdrive_is_live_ttl
         the_situation_with_bassdrive_ttl
         bassdrive_title_ttl
@@ -2036,12 +2176,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         */
 
-        if($.inArray(nomination, this.xml_node_ttl_indices_ARRAY) >= 0){
+        if($.inArray(nomination, this.interact_ui_ttl_monitor_ARRAY) >= 0){
 
             this.ttl_array_pointer_index_ARRAY.push(nomination + '_' + index);
             this.ttl_array_pointer_index_root_ARRAY[nomination + '_' + index] = nomination;
 
-            this.log_activity('[lnum 2044] TTL tracking has been initialized for XML node [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_BASIC);
+            this.log_activity('[lnum 2184] TTL tracking has been initialized for XML node [' + nomination + '] with index append of [\'_' + index + '\'].', this.CRNRSTN_DEBUG_VERBOSE);
 
         }
 
@@ -2055,7 +2195,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(!(response_data in this.jony5_lifestyle_banner_index_ARRAY)){
 
                     var tmp_str = this.extract_filename(response_data);
-                    this.log_activity('[lnum 2058] STORING CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 2198] STORING CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                     this.jony5_lifestyle_banner_index_ARRAY[response_data] = 1;
                     this.jony5_lifestyle_banner_images_ARRAY.push(response_data);
@@ -2063,7 +2203,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 }else{
 
                     var tmp_str = this.extract_filename(response_data);
-                    this.log_activity('[lnum 2066] SKIPPING CRNRSTN :: SSDTL RESPONSE REDUNDANT XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 2206] SKIPPING CRNRSTN :: SSDTL RESPONSE REDUNDANT XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -2075,7 +2215,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(!(response_data in this.jony5_lifestyle_banner_index_FULLSCREEN_ARRAY)){
 
                     var tmp_str = this.extract_filename(response_data);
-                    this.log_activity('[lnum 2078] STORING CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 2218] STORING CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                     this.jony5_lifestyle_banner_index_FULLSCREEN_ARRAY[response_data] = 1;
                     this.jony5_lifestyle_banner_images_FULLSCREEN_ARRAY.push(response_data);
@@ -2083,7 +2223,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 }else{
 
                     var tmp_str = this.extract_filename(response_data);
-                    this.log_activity('[lnum 2086] SKIPPING REDUNDANT CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 2226] SKIPPING REDUNDANT CRNRSTN :: SSDTL RESPONSE XML DATA [' + tmp_str + '] FROM NODE ' + nomination + '.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -2126,11 +2266,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(node_attribute_nom.length > 0){
 
-            this.log_activity('[lnum 2129] Storing XML data (len='+ tmp_data.length +') attribute [' + node_attribute_nom + '] from XML node [' + xml_nom + '] as [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_CONTROLS);
+            this.log_activity('[lnum 2269] Storing XML data (len='+ tmp_data.length +') attribute [' + node_attribute_nom + '] from XML node [' + xml_nom + '] as [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_CONTROLS);
 
         }else{
 
-            this.log_activity('[lnum 2133] Storing XML node [' + xml_nom + '] data[' + tmp_data + '] (len='+ tmp_data.length +') as [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_CONTROLS);
+            this.log_activity('[lnum 2273] Storing XML node [' + xml_nom + '] data[' + tmp_data + '] (len='+ tmp_data.length +') as [' + nomination + '] with index append of [\'_' + index + '\'] .', this.CRNRSTN_DEBUG_CONTROLS);
 
         }
 
@@ -2873,6 +3013,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         // WHERE thread_id_index = 'xml_node_name' + '_' + array_increment
         tmp_xml_node_nomination = this.ttl_array_pointer_index_root_ARRAY[thread_id_index];
         tmp_ttl_secs = this.return_data_tunnel_xml_data(tmp_xml_node_nomination);
+        //alert('[lnum 2955] ' + tmp_xml_node_nomination + ' [' + tmp_ttl_secs + '].');
 
         switch(tmp_xml_node_nomination){
             case 'lifestyle_banner_ttl':
@@ -2945,7 +3086,55 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 tmp_ttl_expired = true;
 
-                this.log_activity('[lnum 2948] TTL for a data tunneled thread [' + this.ttl_array_pointer_index_ARRAY[i] + '] has been expired at ' + this.ttl_age_seconds + ' seconds, where the threshold is ' + tmp_array_adjusted_ttl + ' secs.', this.CRNRSTN_DEBUG_BASIC);
+                this.log_activity('[lnum 3089] TTL for a data tunneled thread [' + this.ttl_array_pointer_index_ARRAY[i] + '] has been expired at ' + this.ttl_age_seconds + ' seconds, where the threshold is ' + tmp_array_adjusted_ttl + ' secs.', this.CRNRSTN_DEBUG_BASIC);
+
+            }
+
+        }
+
+        tmp_ttl_cnt = this.interact_ui_ttl_monitor_ARRAY.length;
+        for(let i = 0; i < tmp_ttl_cnt; i++){
+
+            //tmp_ttl_cnt = this.interact_ui_ttl_monitor_ARRAY.length;
+            if(this.interact_ui_ttl_monitor_ARRAY[i] !== undefined){
+
+                //
+                // THIS IS A UI ELEMENT MANAGED ELSEWHERE. NO NEED DATA TO REQUEST VIA SSDTLA FOR SHARE MODULE.
+                if(this.interact_ui_ttl_monitor_ARRAY[i] !== 'crnrstn_share_module_inactivity_close_ttl'){
+
+                    if((parseInt(this.interact_ui_ttl_monitor_ARRAY[this.interact_ui_ttl_monitor_ARRAY[i]]) < this.ttl_age_seconds)){
+
+                        if(this.dom_element_mouse_state_ARRAY['share_module_click'] === 'OPEN'){
+
+                            if(share_component_mouse_out_listen){
+
+                                //
+                                // IF ANY DEEP LINK ARE OPEN...CLOSE.
+                                this.share_component_close_all();
+
+                            }else{
+
+                                //
+                                // PUNT TTL ON COMPONENT CLOSE. KEEP OPEN.
+                                this.add_resource('crnrstn_share_module_inactivity_close_ttl', 2);
+
+                            }
+
+                        }
+
+                        //
+                        // TTL IS EXPIRED. ADD TO CLIENT SYNC REQUEST.
+                        //this.update_dom_state_controller_ttl(this.ttl_array_pointer_index_ARRAY[i]);
+                        this.update_dom_state_controller_ttl(this.interact_ui_ttl_monitor_ARRAY[i]);
+
+                        tmp_ttl_expired = true;
+                        alert('[lnum 3131]: ' + this.interact_ui_ttl_monitor_ARRAY[i] + ': ttl = ' + parseInt(this.interact_ui_ttl_monitor_ARRAY[this.interact_ui_ttl_monitor_ARRAY[i]]));
+
+                        this.log_activity('[lnum 3133] TTL for a data tunneled thread [' + this.ttl_array_pointer_index_ARRAY[i] + '] has been expired at ' + this.ttl_age_seconds + ' seconds, where the threshold is ' + tmp_array_adjusted_ttl + ' secs.', this.CRNRSTN_DEBUG_BASIC);
+
+                    }
+
+                }
 
             }
 
@@ -2971,7 +3160,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             tmp_cnt = tmp_cnt + (delta);
             this.transaction_thread_count_ARRAY[thread_id] = tmp_cnt;
 
-            this.log_activity('[lnum 2974] UI sync controller transaction thread count updated to ' + tmp_cnt + ' with the initialization of [' + thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+            this.log_activity('[lnum 3163] UI sync controller transaction thread count updated to ' + tmp_cnt + ' with the initialization of [' + thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
         }
 
@@ -3081,8 +3270,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         $('#' + this.form_input_serialization_key).val(this.current_serialization_key);
         $('#' + this.form_input_serialization_hash).val(this.current_serialization_hash);
 
-        this.log_activity('[lnum 3084] Setting current_serialization_key to ' + request_serial + '.', this.CRNRSTN_DEBUG_VERBOSE);
-        this.log_activity('[lnum 3085] Setting current_serialization_hash to ' + this.current_serialization_hash + '.', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 3273] Setting current_serialization_key to ' + request_serial + '.', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 3274] Setting current_serialization_hash to ' + this.current_serialization_hash + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
     };
 
@@ -3481,7 +3670,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         if(tmp_hash.length > 0){
 
                             $('#' + tmp_module_key_ARRAY[i] + '_HASH').val(tmp_hash);
-                            this.log_activity('[lnum 3484] UPDATE [' + tmp_module_key_ARRAY[i] + '_HASH' + '] to [' + tmp_hash + '].', this.CRNRSTN_DEBUG_VERBOSE);
+                            this.log_activity('[lnum 3673] UPDATE [' + tmp_module_key_ARRAY[i] + '_HASH' + '] to [' + tmp_hash + '].', this.CRNRSTN_DEBUG_VERBOSE);
 
                             this.interact_ui_animation_sequence(tmp_module_key_ARRAY[i]);
 
@@ -3594,7 +3783,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 if(this.jony5_banner_mode == 'PLAY'){
 
-                    this.log_activity('[lnum 3597] FIRE! FIRE! FIRE! [' + ui_thread_id + ']. ', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 3786] FIRE! FIRE! FIRE! [' + ui_thread_id + ']. ', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                     this.rotate_lifestyle_banner_image();
 
@@ -3603,7 +3792,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 3606] UI sync instructions have not been configured for [' + ui_thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 3795] UI sync instructions have not been configured for [' + ui_thread_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
 
@@ -3620,7 +3809,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 tmp_mit_content = this.return_data_tunnel_xml_data(module_key);
 
-                this.log_activity('[lnum 3623] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_mit_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 3812] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_mit_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 //alert('[lnum 3625] MIT content received. Setting overlay width, height, and Z.');
                 $('#crnrstn_interact_ui_full_lightbox_overlay').css('width', '100%');
@@ -3715,7 +3904,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
                 tmp_content_final = tmp_content;
 
-                this.log_activity('[lnum 3718] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 3907] Fire intro transition animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 $('#crnrstn_documentation_dyn_shell').animate({
                     top: this.docs_page_css_top + 'px',
@@ -3863,7 +4052,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                                 // AUTO SCROLL
                                                 if(this.get_pushed_autoscroll){
 
-                                                    alert('[lnum 3866] get_pushed_autoscroll[' + this.get_pushed_autoscroll + '].');
+                                                    alert('[lnum 4055] get_pushed_autoscroll[' + this.get_pushed_autoscroll + '].');
 
                                                 }
 
@@ -3987,13 +4176,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 //alert('[lnum 3164] [VIEW-SOURCE DYN FOOTER] we have arrived. throw animation. load content.');
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 3990] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 4179] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
             break;
             case 'crnrstn_interact_ui_documentation_side_nav_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 3996] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 4185] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 this.initialize_interact_ui_documentation_mode(tmp_content);
 
@@ -4001,7 +4190,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_interact_ui_system_footer_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 4004] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 4193] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
                 this.initialize_interact_ui_system_footer(tmp_content);
 
@@ -4020,18 +4209,18 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             case 'crnrstn_interact_ui_search_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 4023] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 4212] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
             break;
             case 'crnrstn_interact_ui_messenger_src':
 
                 tmp_content = this.return_data_tunnel_xml_data(module_key);
-                this.log_activity('[lnum 4029] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 4218] Fire component load animation sequence [' + module_key + '] for loaded XML data. Content len=' + oCRNRSTN_JS.pretty_format_number(tmp_content.length) + '.', this.CRNRSTN_DEBUG_VERBOSE);
 
             break;
             default:
 
-                this.log_activity('[lnum 4034] Cannot oCRNRSTN_JS.interact_ui_animation_sequence() on unknown XML node [' + module_key + '] which has been provided. ', this.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 4223] Cannot oCRNRSTN_JS.interact_ui_animation_sequence() on unknown XML node [' + module_key + '] which has been provided. ', this.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -4416,7 +4605,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 this.update_thread_count(action_id, 1, scheduler_invoked);
 
-                this.log_activity('[lnum 4419] UI sync controller set to fire [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 4608] UI sync controller set to fire [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
                 //
                 // FIRE UI UPDATE THREAD
@@ -4429,7 +4618,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                 this.ui_sync_controller_thread_delay_ARRAY[action_id] = delay_ttl;
 
-                this.log_activity('[lnum 4432] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 4621] UI sync controller has scheduled [' + action_id + '] to fire in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'stop':
@@ -4439,18 +4628,18 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'cancel':
 
-                this.log_activity('[lnum 4442] UI sync controller has cancelled [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 4631] UI sync controller has cancelled [' + action_id + '].', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'sleep':
 
-                this.log_activity('[lnum 4447] UI sync controller has put [' + action_id + '] to sleep.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 4636] UI sync controller has put [' + action_id + '] to sleep.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
             case 'silence_is_golden':
 
                 //this.update_thread_count(action_id, 1, scheduler_invoked);
-                this.log_activity('[lnum 4453] UI sync controller has scheduled [' + action_id + '] to run silently in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
+                this.log_activity('[lnum 4642] UI sync controller has scheduled [' + action_id + '] to run silently in ' + delay_ttl + ' seconds.', this.CRNRSTN_DEBUG_CONTROLS);
 
             break;
 
@@ -4474,7 +4663,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             if(!(image_uri in self.jony5_lifestyle_banner_index_ARRAY)){
 
                 var tmp_str = self.extract_filename(image_uri);
-                self.log_activity('[lnum 4477] STORING STATIC BANNER DOM DATA [' + tmp_str + '].', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                self.log_activity('[lnum 4666] STORING STATIC BANNER DOM DATA [' + tmp_str + '].', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 self.jony5_lifestyle_banner_index_ARRAY[image_uri] = 1;
                 self.jony5_lifestyle_banner_images_ARRAY.push(image_uri);
@@ -4494,7 +4683,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var tmp_str = this.extract_filename(tmp_next_image);
         var tmp_zindex_alpha = $("#jony5_banner_lifestyle_alpha").css('zIndex');
-        this.log_activity('[lnum 4497] STATIC DOM LOAD [' + tmp_str + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#jony5_banner_lifestyle_alpha').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 4686] STATIC DOM LOAD [' + tmp_str + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#jony5_banner_lifestyle_alpha').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         //
         // SELECT AN IMAGE AND LOAD IT INTO THE LOWEST Z-INDEX DOM ELEMENT
@@ -4510,11 +4699,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         var tmp_zindex_beta = $("#jony5_banner_lifestyle_beta").css('zIndex');
         $("#jony5_banner_lifestyle_beta").css('opacity', 0);
 
-        this.log_activity('[lnum 4513] STATIC DOM LOAD [' + tmp_str + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#jony5_banner_lifestyle_beta').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 4702] STATIC DOM LOAD [' + tmp_str + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#jony5_banner_lifestyle_beta').css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         this.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-        this.log_activity('[lnum 4517] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 4706] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
         this.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
         $('#banner_control_play_wrapper').html('<div class="banner_play_arrow"></div>');
@@ -4678,7 +4867,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 4681] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 4870] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -4827,7 +5016,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 4830] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 5019] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -5084,7 +5273,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     }
 
                     if((parseInt(tmp_new_doc_content_left) - parseInt(tmp_current_left)) >= 0){
-                        
+
                         //
                         // THIS IS TO SEE IF A==B; NOTE THAT COMPARING AN INTEGER TO A FLOAT (DOUBLE). OR MAYBE
                         // IT WAS TWO (2) FLOATS...
@@ -5198,7 +5387,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 5201] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 5390] Unknown DOM element id [' + dom_elem_id + '] received by size_element(). No action taken.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             break;
 
@@ -6799,7 +6988,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             var tmp_str = $('#' + dom_element_beta).html();
             tmp_str = this.extract_filename(tmp_str);
-            this.log_activity('[lnum 6802] ALPHA Z-SHIFTED ' + tmp_zindex_alpha + '->' + tmp_zindex_beta + '. [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_alpha).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 6991] ALPHA Z-SHIFTED ' + tmp_zindex_alpha + '->' + tmp_zindex_beta + '. [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_alpha).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             $('#' + dom_element_alpha).animate({
                 opacity: 1.0
@@ -6845,13 +7034,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-                                    self.log_activity('[lnum 6848] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 7037] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.set_ui_component_state('forward_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 6854] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 7043] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.set_ui_component_state('forward_btn_banner', 'OFF');
 
@@ -6859,13 +7048,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 2){
 
-                                    self.log_activity('[lnum 6862] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 7051] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.set_ui_component_state('back_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 6868] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 7057] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.set_ui_component_state('back_btn_banner', 'OFF');
 
@@ -6882,7 +7071,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.jony5_lifestyle_banner_sequence_position++;
 
                                 var tmp_str = self.extract_filename(tmp_next_image);
-                                self.log_activity('[lnum 6885] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 7074] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 0){
 
@@ -6897,7 +7086,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.back_press_cnt = self.back_press_cnt * 1;
                                 var result = self.jony5_lifestyle_banner_sequence_control_ARRAY.length - self.jony5_lifestyle_banner_sequence_position - self.back_press_cnt;
 
-                                self.log_activity('[lnum 6900] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 7089] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
@@ -6911,7 +7100,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-                                self.log_activity('[lnum 6914] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 7103] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                                 self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                             }
@@ -6936,7 +7125,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             var tmp_str = $('#' + dom_element_beta).html();
             tmp_str = this.extract_filename(tmp_str);
-            this.log_activity('[lnum 6939] BETA Z-SHIFTED ' + tmp_zindex_beta + '->' + tmp_zindex_alpha + ' [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_beta).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+            this.log_activity('[lnum 7128] BETA Z-SHIFTED ' + tmp_zindex_beta + '->' + tmp_zindex_alpha + ' [' + tmp_str + '] NOW FIRING! OPACITY-TRANSITION ' + $('#' + dom_element_beta).css( "opacity" ) + ' TO 1.0.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
             $('#' + dom_element_beta).animate({
                 opacity: 1.0
@@ -6982,13 +7171,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-                                    self.log_activity('[lnum 6985] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 7174] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.set_ui_component_state('forward_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 6991] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 7180] VISIBILITY FWD BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.set_ui_component_state('forward_btn_banner', 'OFF');
 
@@ -6996,13 +7185,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 2){
 
-                                    self.log_activity('[lnum 6999] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 7188] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.set_ui_component_state('back_btn_banner', 'ON');
 
                                 }else{
 
-                                    self.log_activity('[lnum 7005] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                    self.log_activity('[lnum 7194] VISIBILITY BACK BUTTON banner_sequence_position=[' + self.jony5_lifestyle_banner_sequence_position + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                                     self.set_ui_component_state('back_btn_banner', 'OFF');
 
@@ -7019,7 +7208,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                                 self.jony5_lifestyle_banner_sequence_position++;
 
                                 var tmp_str = self.extract_filename(tmp_next_image);
-                                self.log_activity('[lnum 7022] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 7211] QUEUE RANDOM IMAGE ' + tmp_index + ' (OUT OF ' + self.jony5_lifestyle_banner_images_ARRAY.length + '). [' + tmp_str + '].', self.CRNRSTN_DEBUG_VERBOSE);
 
                                 if(self.jony5_lifestyle_banner_sequence_position > 0){
 
@@ -7033,7 +7222,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.back_press_cnt = self.back_press_cnt * 1;
                                 var result = self.jony5_lifestyle_banner_sequence_control_ARRAY.length - self.jony5_lifestyle_banner_sequence_position - self.back_press_cnt;
-                                self.log_activity('[lnum 7036] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                                self.log_activity('[lnum 7225] FWD BUTTON ON IF [' + self.back_press_cnt + '][' + self.jony5_lifestyle_banner_sequence_position + '][' + result + '] < [' + self.jony5_lifestyle_banner_sequence_control_ARRAY.length + ']', self.CRNRSTN_DEBUG_VERBOSE);
                                 if((result != 0) && (result < self.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
                                     self.set_ui_component_state('forward_btn_banner', 'ON');
@@ -7046,7 +7235,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                                 self.load_image_lowest_z_indice('jony5_banner_lifestyle_alpha', 'jony5_banner_lifestyle_beta', tmp_next_image);
 
-                                self.log_activity('[lnum 7049] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                                self.log_activity('[lnum 7238] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                                 self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
@@ -7111,14 +7300,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var tmp_alpha_img = this.extract_filename($('#' + dom_element_alpha).html());
         var tmp_beta_img = this.extract_filename($('#' + dom_element_beta).html());
-        this.log_activity('[lnum 7114] TRANSITION AFTER BUTTON PRESS. ALPHA-Z[' + tmp_zindex_alpha + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 7303] TRANSITION AFTER BUTTON PRESS. ALPHA-Z[' + tmp_zindex_alpha + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         $('#' + dom_element_alpha).css('zIndex', tmp_zindex_beta);
         $('#' + dom_element_beta).css('zIndex', tmp_zindex_alpha);
 
         tmp_zindex_alpha_new = $('#' + dom_element_alpha).css( "zIndex" );
         tmp_zindex_beta_new = $('#' + dom_element_beta).css( "zIndex" );
-        this.log_activity('[lnum 7121] NEW ALPHA-Z[' + tmp_zindex_alpha_new + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta_new + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+        this.log_activity('[lnum 7310] NEW ALPHA-Z[' + tmp_zindex_alpha_new + '][' + tmp_alpha_img + '] *** BETA-Z[' + tmp_zindex_beta_new + '][' + tmp_beta_img + '].', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
         if(tmp_zindex_alpha < tmp_zindex_beta){
 
@@ -7142,7 +7331,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         },
                         complete: function () {
 
-                            self.log_activity('[lnum 7145] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                            self.log_activity('[lnum 7334] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                             self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                         }
@@ -7175,7 +7364,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         },
                         complete: function () {
 
-                            self.log_activity('[lnum 7178] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                            self.log_activity('[lnum 7367] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                             self.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                         }
@@ -7214,7 +7403,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                     $('#' + dom_element_alpha).html(image_html);
 
-                    self.log_activity('[lnum 7217] LOAD [' + tmp_fname + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#' + dom_element_alpha).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    self.log_activity('[lnum 7406] LOAD [' + tmp_fname + '] INTO ALPHA, where Z=' + tmp_zindex_alpha + ' OPACITY=' + $('#' + dom_element_alpha).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -7233,7 +7422,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 complete: function () {
 
                     $('#' + dom_element_beta).html(image_html);
-                    self.log_activity('[lnum 7236] LOAD [' + tmp_fname + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#' + dom_element_beta).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    self.log_activity('[lnum 7425] LOAD [' + tmp_fname + '] INTO BETA, where Z=' + tmp_zindex_beta + ' OPACITY=' + $('#' + dom_element_beta).css('opacity') + '.', self.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
 
                 }
 
@@ -7269,13 +7458,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 if(this.jony5_banner_mode == 'PLAY'){
 
                     this.jony5_banner_mode = 'PAUSE';
-                    this.log_activity('[lnum 7272] STOP BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 7461] STOP BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                     this.execution_delay_ui_sync_controller('stop', 'lifestyle_banner_image_rotation');
 
                 }else{
 
                     this.jony5_banner_mode = 'PLAY';
-                    this.log_activity('[lnum 7278] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                    this.log_activity('[lnum 7467] INITIALIZE 7 SECOND TTL ON ELEMENT HOLD - BANNER IMAGE ROTATION.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                     this.execution_delay_ui_sync_controller('schedule', 'lifestyle_banner_image_rotation', 7);
 
                 }
@@ -7285,13 +7474,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             case 'forward':
 
-                this.log_activity('[lnum 7288] ADVANCE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 7477] ADVANCE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                 this.jony5_lifestyle_advance_button('forward');
 
             break;
             case 'back':
 
-                this.log_activity('[lnum 7294] REVERSE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
+                this.log_activity('[lnum 7483] REVERSE ONE (1) BANNER IMAGE.', this.CRNRSTN_DEBUG_LIFESTYLE_BANNER);
                 this.jony5_lifestyle_advance_button('back');
 
             break;
@@ -7326,7 +7515,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
         tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-        this.log_activity('[lnum 7329] PRE-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 7518] PRE-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
         if(tmp_zindex_alpha < tmp_zindex_beta){
 
@@ -7354,7 +7543,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
                     tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-                    self.log_activity('[lnum 7357] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                    self.log_activity('[lnum 7546] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                     //
                     // OPACITY TO 1.0 THE TOP ELEM
@@ -7425,7 +7614,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
                     tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-                    self.log_activity('[lnum 7428] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
+                    self.log_activity('[lnum 7617] MID-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', self.CRNRSTN_DEBUG_VERBOSE);
 
                     //
                     // OPACITY TO 1.0 THE TOP ELEM
@@ -7477,7 +7666,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         tmp_zindex_beta = $('#jony5_banner_lifestyle_beta').css( "zIndex" );
         tmp_zindex_trans = $('#jony5_banner_lifestyle_transition_tmp').css( "zIndex" );
 
-        this.log_activity('[lnum 7480] POST-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 7669] POST-TRANSITION Z-INDICES tmp_zindex_trans=[' + tmp_zindex_trans + '] tmp_zindex_alpha=[' + tmp_zindex_alpha + '] tmp_zindex_beta=[' + tmp_zindex_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
     };
 
@@ -7550,13 +7739,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if((result != 0) && (result < this.jony5_lifestyle_banner_sequence_control_ARRAY.length)){
 
-            this.log_activity('[lnum 7553] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 7742] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.set_ui_component_state('forward_btn_banner', 'ON');
 
         }else{
 
-            this.log_activity('[lnum 7559] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 7748] VISIBILITY FWD BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.set_ui_component_state('forward_btn_banner', 'OFF');
 
@@ -7564,13 +7753,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         if(this.jony5_lifestyle_banner_sequence_position > 2){
 
-            this.log_activity('[lnum 7567] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 7756] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.set_ui_component_state('back_btn_banner', 'ON');
 
         }else{
 
-            this.log_activity('[lnum 7573] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 7762] VISIBILITY BACK BUTTON banner_sequence_position=[' + this.jony5_lifestyle_banner_sequence_position + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
             this.set_ui_component_state('back_btn_banner', 'OFF');
 
@@ -7597,7 +7786,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         var image_uri_alpha = this.jony5_lifestyle_banner_images_ARRAY[index_img_seq_int_alpha];
         var image_uri_beta = this.jony5_lifestyle_banner_images_ARRAY[index_img_seq_int_beta];
 
-        this.log_activity('[lnum 7600] BANNER STATE REVERSION DELTA[' + delta + '] index/img alpha=[' + index_img_seq_int_alpha + '/' + image_uri_alpha + '] index/img beta=[' + index_img_seq_int_beta + '/' + image_uri_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 7789] BANNER STATE REVERSION DELTA[' + delta + '] index/img alpha=[' + index_img_seq_int_alpha + '/' + image_uri_alpha + '] index/img beta=[' + index_img_seq_int_beta + '/' + image_uri_beta + ']', this.CRNRSTN_DEBUG_VERBOSE);
 
         var image_html_alpha = '<img src="' + image_uri_alpha + '" width="1180" height="250" alt="Jonathan \'J5\' Harris">';
         var image_html_beta = '<img src="' + image_uri_beta + '" width="1180" height="250" alt="Jonathan \'J5\' Harris">';
@@ -7797,7 +7986,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.sign_in_transition_via_micro_expansion = function(){
 
-        this.log_activity('[lnum 7800] [MOUSE CLICK] CRNRSTN :: INTERACT UI MODULE BEGIN SIGN IN FORM EXPANSION', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 7989] [MOUSE CLICK] CRNRSTN :: INTERACT UI MODULE BEGIN SIGN IN FORM EXPANSION', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         // crnrstn_interact_ui_wrapper
         // [current=bottom:5px; width: 100px; left: 84%; height: 80px;]
@@ -7993,7 +8182,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         //
         // CLEAR HIGHEST Z-INDEX FOR TRANSITION
         tmp_state_cnt = system_nav_state_ARRAY.length;
-        this.log_activity('[lnum 7996] zIndex shift for all ' + dom_handle_root + dom_handle_variant_element + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 8185] zIndex shift for all ' + dom_handle_root + dom_handle_variant_element + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         for(let i = 0; i < tmp_state_cnt; i++){
 
@@ -8008,7 +8197,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                     //
                     // SET TO 67 Z INDEX FOR STAGING IN 68
                     $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex', tmp_tgt_z);
-                    this.log_activity('[lnum 8011] zIndex shift for HIGHEST AT 68 [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                    this.log_activity('[lnum 8200] zIndex shift for HIGHEST AT 68 [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 }else{
 
@@ -8025,14 +8214,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 //if($tmp_str != ){
                 tmp_tgt_z = parseInt(this.baseline_z_index) + 6;
                 $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex', tmp_tgt_z);
-                this.log_activity('[lnum 8028] zIndex shift TO 66 FOR OTHERS [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 8217] zIndex shift TO 66 FOR OTHERS [' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '].', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 //}
 
             }
 
             //current_z_index_state_ARRAY[dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]] =
-            this.log_activity('[lnum 8035] current_z_index_state_ARRAY[' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '] = ' + $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex') + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+            this.log_activity('[lnum 8224] current_z_index_state_ARRAY[' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i] + '] = ' + $('#' + dom_handle_root + dom_handle_variant_element + system_nav_state_ARRAY[i]).css('zIndex') + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         }
 
@@ -8065,7 +8254,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 tmp_tgt_z = parseInt(this.baseline_z_index) + 8;
                 $('#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix).css('zIndex', tmp_tgt_z);
 
-                self.log_activity('[lnum 8068] SHOW ' + '#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix, oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                self.log_activity('[lnum 8257] SHOW ' + '#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix, oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                 $('#' + dom_handle_root + dom_handle_variant_element + dom_handle_postfix).animate({
                     opacity: 1.0
@@ -8082,7 +8271,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         self.dom_element_mouse_state_lock_ARRAY[dom_handle_root + dom_handle_variant_element] = 'OFF';
 
-                        self.log_activity('[lnum 8085] REMOVE dom_element_mouse_state_lock_ARRAY LOCK ON [' + '#' + dom_handle_root + dom_handle_variant_element + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        self.log_activity('[lnum 8274] REMOVE dom_element_mouse_state_lock_ARRAY LOCK ON [' + '#' + dom_handle_root + dom_handle_variant_element + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                     }
 
@@ -8096,7 +8285,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.launch_overlay_mit = function(element_id){
 
-        this.log_activity('[lnum 8099] Launch MIT license programme.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 8288] Launch MIT license programme.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         this.crnrstn_overlay_mode = 'MIT';
 
@@ -8113,7 +8302,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     CRNRSTN_JS.prototype.launch_framework_resources_integration_report = function(string_constant){
 
-        this.log_activity('[lnum 8116] Launch view source for ' + string_constant + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 8305] Launch view source for ' + string_constant + '.', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         //
         // SET THE LINK
@@ -8384,7 +8573,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 }
 
             break;
-            case 'share_module_click_ttl':
+            case 'crnrstn_share_module_inactivity_close_ttl':
             default:
 
                 return this.interact_ui_ttl_monitor_ARRAY[data_type_key];
@@ -8407,7 +8596,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 }
 
             break;
-            case 'share_module_click_ttl':
+            case 'crnrstn_share_module_inactivity_close_ttl':
             default:
 
                 this.interact_ui_ttl_monitor_ARRAY[data_type_key] = data_value;
@@ -8535,7 +8724,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             this.dom_element_mouse_state_ARRAY['share_module_click'] = 'OPEN';
 
             this.add_resource(ux_action, elem);
-            this.add_resource('share_module_click_ttl', 2);
+            this.add_resource('crnrstn_share_module_inactivity_close_ttl', 2);
 
             if(this.get_ui_component_state(ux_action + '_' + elem) !== 'ON'){
 
@@ -8868,7 +9057,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 8871] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 9060] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -9632,7 +9821,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             break;
             default:
 
-                this.log_activity('[lnum 9635] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 9824] [ACTION=' + ux_action + '] CRNRSTN :: INTERACT UI UNKNOWN ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             break;
 
@@ -9647,11 +9836,11 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         var dom_handle_element = dom_handle_root + dom_handle_variant_element;
 
-        this.log_activity('[lnum 9650] element_id_split_ARRAY[0]=' + element_id_split_ARRAY[0] + '] element_id_split_ARRAY[1]=' + element_id_split_ARRAY[1] + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+        this.log_activity('[lnum 9839] element_id_split_ARRAY[0]=' + element_id_split_ARRAY[0] + '] element_id_split_ARRAY[1]=' + element_id_split_ARRAY[1] + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
         if(this.dom_element_mouse_state_lock_ARRAY[dom_handle_element] === 'undefined'){
 
-            alert('[lnum 9654] dom_element_mouse_state_lock_ARRAY is undefined at ' + dom_handle_element + ' for ' + element_id + '.');
+            alert('[lnum 9843] dom_element_mouse_state_lock_ARRAY is undefined at ' + dom_handle_element + ' for ' + element_id + '.');
 
         }else{
 
@@ -9662,8 +9851,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         this.dom_element_mouse_state_tracker_ARRAY[dom_handle_variant_element] = '_hvr';
                         this.dom_element_mouse_state_lock_ARRAY[dom_handle_element] = 'ON';
-                        this.log_activity('[lnum 9665] [ACTION=onmouseover on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
-                        this.log_activity('[lnum 9666] LOCK ON FOR [' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 9854] [ACTION=onmouseover on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 9855] LOCK ON FOR [' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         dom_handle_postfix = '_hvr';
 
@@ -9708,7 +9897,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                         this.dom_element_mouse_state_tracker_ARRAY[dom_handle_variant_element] = '';
                         this.dom_element_mouse_state_ARRAY[dom_handle_element] = 'ON';
 
-                        this.log_activity('[lnum 9711] [ACTION=onmouseout on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                        this.log_activity('[lnum 9900] [ACTION=onmouseout on ' + element_id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
                         this.primary_ui_interact_nav_state_shift(dom_handle_root, dom_handle_variant_element, dom_handle_postfix);
 
@@ -9746,7 +9935,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 //
                 // FIRE TRANSITION TO TARGET IMAGE WITHIN ACTIVE ELEMENT
                 var target_dom_handle = dom_handle_root + dom_handle_variant_element + dom_handle_postfix;
-                this.log_activity('[lnum 9749] [ACTION=' + ux_action + '] [target_dom_handle=' + target_dom_handle + '] CRNRSTN :: INTERACT UI (UX) ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
+                this.log_activity('[lnum 9938] [ACTION=' + ux_action + '] [target_dom_handle=' + target_dom_handle + '] CRNRSTN :: INTERACT UI (UX) ELEMENT ID [' + elem.id + ']', oCRNRSTN_JS.CRNRSTN_DEBUG_VERBOSE);
 
             }
 

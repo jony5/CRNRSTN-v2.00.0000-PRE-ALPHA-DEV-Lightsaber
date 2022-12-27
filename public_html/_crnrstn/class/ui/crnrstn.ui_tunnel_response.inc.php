@@ -189,11 +189,11 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_out_str = '';
 
         $tmp_module_ARRAY = $this->return_interact_ui_module_programme('array');
-        $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        $tmp_module_page_key = $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
         //error_log(__LINE__ . ' ui tunnel $tmp_module_page_key=[' . $tmp_module_page_key . '].');
 
-        $tmp_crnrstn_request_source = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_request_source');
+        $tmp_crnrstn_request_source = $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_request_source');
 
         //
         // THE WAY THIS SHOULD WORK:
@@ -202,8 +202,8 @@ class crnrstn_ui_tunnel_response_manager {
         foreach($tmp_module_ARRAY as $index => $module_nom){
 
             $tmp_xml_concat = false;
-            $tmp_post_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data($module_nom . '_HASH');
-            $tmp_module_hash = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->retrieve_interact_ui_module_hash($module_nom);
+            $tmp_post_hash = $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data($module_nom . '_HASH');
+            $tmp_module_hash = $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->retrieve_interact_ui_module_hash($module_nom);
 
             switch($module_nom){
                 case 'crnrstn_interact_ui_documentation_side_nav_src':
@@ -231,10 +231,12 @@ class crnrstn_ui_tunnel_response_manager {
                         $pos_docs_view_source = strpos($tmp_module_page_key,'framework_view_source');
                         if($tmp_module_page_key != 'mit_license' && $pos_docs_view_source === false && strlen($tmp_module_page_key) > 0){
 
-                            //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].');
+                            //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_page_key=[' . $tmp_module_page_key . '][' . $tmp_post_hash . '].[' . $tmp_post_hash . '].');
                             $tmp_xml_concat = true;
 
                         }
+
+                        //error_log(__LINE__ . ' ui tunnel SSDTLA XML RETURN $module_nom=[' . $module_nom . '] $tmp_module_hash=[' . $tmp_module_hash . '][' . $tmp_post_hash . '].');
 
                     }
 
@@ -463,7 +465,7 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_SESSION_ID = session_id();
         $tmp_SERVER_IP = $this->oCRNRSTN->return_clean_json_string($_SERVER['SERVER_ADDR']);
         $tmp_CLIENT_ID = $this->oCRNRSTN->return_clean_json_string($this->oCRNRSTN->session_client_id);
-        $tmp_CLIENT_IP = $this->oCRNRSTN->data_decrypt($this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_soap_service_client_ip'));
+        $tmp_CLIENT_IP = $this->oCRNRSTN->data_decrypt($this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_soap_service_client_ip'));
 
         $tmp_CRNRSTN_SESSION_DATA_DATEMODIFIED = $tmp_timestamp_json;
         $tmp_CRNRSTN_SESSION_DATA_DATECREATED = $tmp_timestamp_json;
@@ -2324,7 +2326,7 @@ class crnrstn_ui_tunnel_response_manager {
         $tmp_is_error_message = '0';
 
         //$tmp_crnrstn_soap_service_client_ip = $this->oCRNRSTN->return_form_submitted_value('crnrstn_soap_service_client_ip');
-        $tmp_crnrstn_soap_service_client_ip = $this->oCRNRSTN->data_decrypt($this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_soap_service_client_ip'));
+        $tmp_crnrstn_soap_service_client_ip = $this->oCRNRSTN->data_decrypt($this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_soap_service_client_ip'));
 
         if($tmp_crnrstn_soap_service_client_ip != $this->oCRNRSTN->return_client_ip()){
 

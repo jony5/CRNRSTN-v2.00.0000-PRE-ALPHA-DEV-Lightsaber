@@ -116,7 +116,7 @@ class crnrstn_ui_content_assembler {
 
             //
             // SSDTLA PARAMETER EXTRACTION.
-            $tmp_module_page_key = $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+            $tmp_module_page_key = $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
 
         }
 

@@ -285,6 +285,15 @@ class crnrstn_data_tunnel_services_manager{
 
     public function retrieve_interact_ui_module_hash($module_nom){
 
+//        $tmp_hash = $this->oCRNRSTN->hash(NULL, NULL, false, $module_nom);
+//
+//        if(strlen($tmp_hash) > 0){
+//
+//            error_log(__LINE__ . ' dtsm accelerating hash [' . $module_nom . '].');
+//            return $tmp_hash;
+//
+//        }
+
         switch($module_nom) {
             case 'crnrstn_interact_ui_theme_profile':
 
@@ -359,7 +368,8 @@ class crnrstn_data_tunnel_services_manager{
 
         }
 
-        return $this->oCRNRSTN->hash($tmp_module_data, NULL, false, $module_nom);
+        //error_log(__LINE__ . ' dtsm building hash [' . $module_nom . '].');
+        return $this->oCRNRSTN->hash($tmp_module_data, NULL, true, $module_nom);
 
     }
 

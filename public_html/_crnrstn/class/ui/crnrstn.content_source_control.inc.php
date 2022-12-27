@@ -4966,12 +4966,15 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
 
-                    //
+                    //    public function hash($data, $algorithm = NULL, $runtime_acceleration = false, $session_acceleration_key = NULL){
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $data = <span class="crnrstn_documentation_method_data_system_val">NULL</span>,<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $algorithm = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $algorithm = <span class="crnrstn_documentation_method_data_system_val">NULL</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $runtime_acceleration = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $session_acceleration_key = <span class="crnrstn_documentation_method_data_system_val">NULL</span><br>
+
                     ): <span class="crnrstn_documentation_method_data_type">string</span>';
                     $this->sauce($tmp_method_definition);
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
@@ -4997,7 +5000,9 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     $param_index = 1;
                     $tmp_param_def[$param_index]['param_name'] = $token . '$algorithm';
                     $tmp_param_def[$param_index]['param_definition'] = '<p>The hashing algorithm to apply to the data. If left NULL, 
-                    the hashing profile on this server which will be used by default is <span class="crnrstn_general_post_code_copy">' . $this->oCRNRSTN->system_hash_algo() . '</span>.</p>';
+                    the current default hashing profile on this server is <span class="crnrstn_general_post_code_copy">' . $this->oCRNRSTN->system_hash_algo() . '</span>.
+                    <br>
+                    See <span class="crnrstn_general_post_code_copy">_crnrstn/_config/_config.defaults/_crnrstn.system_settings.inc.php</span></p>';
                     $tmp_param_def[$param_index]['param_required'] = false;
                     $this->sauce($tmp_param_def[$param_index]['param_name'].$tmp_param_def[$param_index]['param_name'].$this->return_param_required_str($tmp_param_def[$param_index]['param_required']));
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PARAMETER_DEFINITION', $tmp_param_def, $this->return_output_type());

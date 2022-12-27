@@ -535,7 +535,7 @@ class crnrstn_http_manager {
 
                             $this->form_integration_isset_ARRAY['GET'] = true;
                             $this->crnrstn_ssdtla_enabled = true;
-                            $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->http_data_services_initialize($var_parse_channel);
+                            $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->http_data_services_initialize($var_parse_channel);
 
                         }
 
@@ -682,7 +682,7 @@ class crnrstn_http_manager {
 
                             $this->form_integration_isset_ARRAY['POST'] = true;
                             $this->crnrstn_ssdtla_enabled = true;
-                            $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->http_data_services_initialize($var_parse_channel);
+                            $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->http_data_services_initialize($var_parse_channel);
 
                         }
 
@@ -700,7 +700,7 @@ class crnrstn_http_manager {
         // TITLE :: The Space Between
         if($this->crnrstn_ssdtla_enabled){
 
-            $this->oCRNRSTN->oCRNRSTN_DATA_TUNNEL_MGR->http_data_services_validation();
+            $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->http_data_services_validation();
 
             if($user_auth_check){
 

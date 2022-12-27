@@ -66,7 +66,7 @@ class crnrstn {
     public $oCRNRSTN_BITFLIP_MGR;
     public $oCRNRSTN_PERFORMANCE_REGULATOR;
     public $oCRNRSTN_LANG_MGR;
-    public $oCRNRSTN_DATA_TUNNEL_MGR;
+    public $oDATA_TUNNEL_SERVICES_MGR;
 
     //
     // THIS CAN BE MORE ROBUST (A PRETTY HTML DOCUMENT), BUT WE SHOULD HANDLE SOAP
@@ -250,7 +250,7 @@ class crnrstn {
         // INITIALIZE CRNRSTN :: CONFIGURATION MANAGER
         self::$oCRNRSTN_CONFIG_MGR = new crnrstn_config_manager($this);
 
-        $this->oCRNRSTN_DATA_TUNNEL_MGR = new crnrstn_data_tunnel_services_manager($this);
+        $this->oDATA_TUNNEL_SERVICES_MGR = new crnrstn_data_tunnel_services_manager($this);
 
         //
         // INSTANTIATE TRANSACTION RESPONSE MANAGER
@@ -554,8 +554,6 @@ class crnrstn {
     public function salt($length = NULL, $chars = NULL){
 
         $length = $this->salt_str_length;
-        error_log(__LINE__ . ' crnrstn ' . $this->salt_str_length . ' TIME TO DO IT. die();');
-
         return $this->generate_new_key($length, $chars);
 
     }
@@ -846,7 +844,7 @@ class crnrstn {
 
     public function form_get_resource($crnrstn_form_handle, $input_name){
 
-        return $this->oCRNRSTN_DATA_TUNNEL_MGR->form_get_resource($crnrstn_form_handle, $input_name);
+        return $this->oDATA_TUNNEL_SERVICES_MGR->form_get_resource($crnrstn_form_handle, $input_name);
 
     }
 
@@ -7532,31 +7530,6 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    public function is_ttl_expired($starttime, $ttl_secs = 300){
-
-        $tmp_currtime_secs = time();
-        $tmp_starttime_secs = $starttime;
-
-        if($tmp_currtime_secs > $tmp_starttime_secs){
-
-            if($tmp_currtime_secs - $tmp_starttime_secs < $ttl_secs){
-
-                return true;
-
-            }
-
-        }else{
-
-            //
-            // PROVIDED START TIME IS AHEAD OF CURRENT SYSTEM TIME. LIKE, HUH?
-            return false;
-
-        }
-
-        return false;
-
-    }
-
     private function elapsed($delta_secs, $microsecs = 0){
 
         $bit = array(
@@ -8542,7 +8515,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         </script>';
 
         $tmp_top_link_str = '';
-        $tmp_module_page_key = $this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        $tmp_module_page_key = $this->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
         if(strlen($tmp_module_page_key) > 0){
 
             //
@@ -8786,7 +8759,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         </script>';
 
         $tmp_top_link_str = '';
-        $tmp_module_page_key = $this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        $tmp_module_page_key = $this->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
         if(strlen($tmp_module_page_key) > 0){
 
             //
@@ -9046,7 +9019,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         </script>';
 
         $tmp_top_link_str = '';
-        $tmp_module_page_key = $this->oCRNRSTN_DATA_TUNNEL_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+        $tmp_module_page_key = $this->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
         if(strlen($tmp_module_page_key) > 0){
 
             //
@@ -12055,24 +12028,48 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
 
     }
 
-    public function hash($data, $algorithm = NULL, $runtime_acceleration = false, $session_acceleration_key = NULL){
+    public function hash($data = NULL, $algorithm = NULL, $runtime_acceleration = false, $session_acceleration_key = NULL){
 
-        if(isset($session_acceleration_key)){
+        $tmp_key = 'CRNRSTN_SESSION_ACCEL_' . $session_acceleration_key;
 
-            $tmp_key = 'CRNRSTN_SESSION_ACCEL_' . $session_acceleration_key;
+        if(isset($session_acceleration_key) && !isset($data)){
+
+            //error_log(__LINE__ . ' crnrstn ***BEING CHEEKY*** [' . $this->get_session_resource($tmp_key) . '].');
 
             if($this->isvalid_session_data($tmp_key)){
 
-                //error_log(__LINE__ . ' crnrstn HOT session_acceleration_key[' . $session_acceleration_key . '].');
+                //error_log(__LINE__ . ' crnrstn HOT SESSION STRAIGHT RETURN[' . $this->get_session_resource($tmp_key) . '].');
                 return $this->get_session_resource($tmp_key);
 
             }
 
-            $tmp_hash_val = $this->hash($data, $algorithm);
+            //error_log(__LINE__ . ' crnrstn ***TIME TO UPDATE SESSION*** [' . $this->get_session_resource($tmp_key) . '].');
 
-            $this->add_ssdtla_resource($tmp_key, $tmp_hash_val, NULL, CRNRSTN_AUTHORIZE_SESSION);
+        }else{
 
-            return $tmp_hash_val;
+            if(isset($session_acceleration_key)){
+
+                if($this->isvalid_session_data($tmp_key)){
+
+                    //error_log(__LINE__ . ' crnrstn HOT SESSION STRAIGHT RETURN[' . $this->get_session_resource($tmp_key) . '].');
+                    return $this->get_session_resource($tmp_key);
+
+                }
+
+                if(isset($data)){
+
+                    $tmp_hash_val = $this->hash($data, $algorithm);
+                    //error_log(__LINE__ . ' crnrstn **SLOW** HASH RETURN FOR SESSION STORAGE [' . $session_acceleration_key . ']. [' . $tmp_hash_val . ']');
+
+                    $this->add_ssdtla_resource($tmp_key, $tmp_hash_val, NULL, CRNRSTN_AUTHORIZE_SESSION);
+
+                    return $tmp_hash_val;
+
+                }
+
+                return '';
+
+            }
 
         }
 
@@ -12091,7 +12088,8 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         if($runtime_acceleration){
 
             if(isset($this->hash_acceleration_ARRAY[$data])){
-                
+
+                //error_log(__LINE__ . ' crnrstn HOT RUNTIME STRAIGHT RETURN [' . $this->hash_acceleration_ARRAY[$data] . '].');
                 return $this->hash_acceleration_ARRAY[$data];
                 
             }
@@ -12113,9 +12111,12 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
             break;
 
         }
-        
+
+        //error_log(__LINE__ . ' crnrstn **SLOW** HASH RETURN algorithm[' . $algorithm . ']. hash_val[' . $tmp_hash_val . ']. [' . $data . '].');
+
         if($runtime_acceleration){
 
+            //error_log(__LINE__ . ' crnrstn **NEUTRAL** HASH RUNTIME STORE [' . $tmp_hash_val . '].');
             $this->hash_acceleration_ARRAY[$data] = $tmp_hash_val;
             
         }
@@ -12123,7 +12124,7 @@ DATE :: Thursday, August 25, 2022 @ 0948 hrs ::
         return $tmp_hash_val;
 
     }
-//
+
 //    // https://www.php.net/manual/en/function.parse-url.php
 //    public function resolve_url($base, $url, $mb_safe = true) {
 //        if (!strlen($base)) return $url;
