@@ -6,6 +6,14 @@ require('_crnrstn.root.inc.php');
 include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 //
+//public function return_system_image($system_asset_constant, $width_override = NULL, $height_override = NULL, $link_override = NULL,
+//$alt_override = NULL, $title_override = NULL, $target_override = NULL, $output_mode = NULL){
+//echo $oCRNRSTN->return_system_image('SOCIAL_FACEBOOK');
+//echo '<br><br>';
+//echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 70, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED);
+//
+
+//
 // HTML FOOTER OUTPUT.
 // PASS TRUE TO SPOOL DESIRED CONTENT TO BE OUTPUTTED LATER
 // INTO THE HTML FOOTER VIA system_output_footer_html().

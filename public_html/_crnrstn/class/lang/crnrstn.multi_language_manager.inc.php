@@ -3145,6 +3145,38 @@ class crnrstn_multi_language_manager {
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
         switch($message_key) {
+            case 'SOCIAL_PREVIEW_TITLE':
+
+                switch($this->iso_language_html_current) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'CRNRSTN :: Lightsaber.';
+
+                    break;
+
+                }
+
+            break;
+            case 'SOCIAL_PREVIEW_DESCRIPTION':
+
+                switch($this->iso_language_html_current) {
+                    case 'es':
+
+                    break;
+                    default:
+
+                        //case 'en':
+                        return 'CRNRSTN :: is an MIT licensed PHP web services layer that properly joins a LAMP application to multiple hosting environments.';
+
+                    break;
+
+                }
+
+            break;
             case 'TEXT_REDIRECTING_TO':
 
                 switch($this->iso_language_html_current) {

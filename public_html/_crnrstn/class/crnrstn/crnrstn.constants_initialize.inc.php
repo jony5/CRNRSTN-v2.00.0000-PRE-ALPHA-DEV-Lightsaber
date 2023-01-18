@@ -533,6 +533,11 @@ function crnrstn_constants_init($const_nom){
             return (int) 7217;
 
         break;
+        case 'CRNRSTN_UI_IMG_STR':
+
+            return (int) 7218;
+
+        break;
 
         //
         // 7300-7399
@@ -837,29 +842,34 @@ function crnrstn_constants_init($const_nom){
             return (int) 7702;
 
         break;
-        case 'CRNRSTN_JS_ASSET_MAPPING':
+        case 'CRNRSTN_META_IMG_ASSET_MAPPING':
 
             return (int) 7703;
 
         break;
-        case 'CRNRSTN_CSS_ASSET_MAPPING':
+        case 'CRNRSTN_JS_ASSET_MAPPING':
 
             return (int) 7704;
 
         break;
-        case 'CRNRSTN_SYSTEM_EMAIL_IS_HTML':
+        case 'CRNRSTN_CSS_ASSET_MAPPING':
 
             return (int) 7705;
 
         break;
-        case 'CRNRSTN_ASSET_MAPPING':
+        case 'CRNRSTN_SYSTEM_EMAIL_IS_HTML':
 
             return (int) 7706;
 
         break;
-        case 'CRNRSTN_ASSET_MAPPING_PROXY':
+        case 'CRNRSTN_ASSET_MAPPING':
 
             return (int) 7707;
+
+        break;
+        case 'CRNRSTN_ASSET_MAPPING_PROXY':
+
+            return (int) 7708;
 
         break;
 

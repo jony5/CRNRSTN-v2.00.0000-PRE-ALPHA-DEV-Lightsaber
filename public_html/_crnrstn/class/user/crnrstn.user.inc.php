@@ -185,7 +185,7 @@ class crnrstn_user{
 
         //
         // INSTANTIATE QUERY SILO
-        self::$oSqlSilo = new crnrstn_database_sql_silo($this);
+        //self::$oSqlSilo = new crnrstn_database_sql_silo($this);
 
         //
         // INSTANTIATE DATABASE CONNECTION/QUERY/RESPONSE HANDLING INTEGRATIONS CRNRSTN ::

@@ -502,6 +502,7 @@ class crnrstn_environment {
         $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('You have reached the end of the CRNRSTN :: environmental detection and configuration process.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
         $this->oCRNRSTN->oLog_output_ARRAY[] = $this->error_log('CRNRSTN :: is now listening for requests.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
+        //error_log(__LINE__ . ' env calling oHTTP_MGR->client_request_listen.');
         return $this->oHTTP_MGR->client_request_listen();
 
     }
@@ -656,8 +657,7 @@ class crnrstn_environment {
             break;
             case CRNRSTN_RESOURCE_DEEP_LINK:
 
-                //error_log(__LINE__ . ' env return_output_CRNRSTN_UI_SYSTEM_REPORT_RESPONSE_RETURN ['. $output_format . '].');
-                $tmp_array = $this->return_output_CRNRSTN_RESOURCE_DEEP_LINK($output_format);
+                $tmp_array = $this->return_output_CRNRSTN_RESOURCE_DEEP_LINK();
                 $tmp_output = '';
 
                 //
@@ -715,60 +715,11 @@ class crnrstn_environment {
 
     }
 
-    public function return_http_data_services_meta($name){
-
-        switch($name){
-            case 'crnrstn_ssdtla_enabled':
-
-                return $this->oHTTP_MGR->crnrstn_ssdtla_enabled;
-
-            break;
-            case 'crnrstn_asset_family':
-
-                return $this->oHTTP_MGR->crnrstn_asset_family;
-
-            break;
-            case 'crnrstn_asset_return_method_key':
-
-                return $this->oHTTP_MGR->crnrstn_asset_return_method_key;
-
-            break;
-            case 'get':
-
-                $tmp_crnrstn_interact_data_transport_get_str = '';
-                $tmp_get_param_cnt = $this->oCRNRSTN->get_resource_count('crnrstn_interact_data_transport_get_param', 'CRNRSTN::RESOURCE::GET_DATA');
-                //error_log(__LINE__ . ' env GET[' . $tmp_get_param_cnt . '].');
-
-                for($i = 0; $i < $tmp_get_param_cnt; $i++){
-
-                    //error_log(__LINE__ . ' env GET[' . $i . '].');
-                    $tmp_crnrstn_interact_data_transport_get_str .= $this->oCRNRSTN->get_resource('crnrstn_interact_data_transport_get_param', $i, 'CRNRSTN::RESOURCE::GET_DATA') . '|';
-
-                }
-
-                if(strlen($tmp_crnrstn_interact_data_transport_get_str) > 0){
-
-                    $tmp_crnrstn_interact_data_transport_get_str = $this->oCRNRSTN->strrtrim($tmp_crnrstn_interact_data_transport_get_str, '|');
-
-                }
-
-                return $tmp_crnrstn_interact_data_transport_get_str;
-
-            break;
-            default:
-
-                return '';
-
-            break;
-
-        }
-
-    }
-
     private function return_output_CRNRSTN_UI_SOAP_DATA_TUNNEL(){
 
         $this->oCRNRSTN_USR->form_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_xhr_root', 'crnrstn_xhr_root');
 
+        $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_sysdate', 'crnrstn_interact_ui_sysdate');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_interact_ui_link_text_click', 'crnrstn_interact_ui_link_text_click');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_request_source', 'crnrstn_request_source');
         $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_resource_initialize', 'crnrstn_resource_initialize');
@@ -793,15 +744,17 @@ class crnrstn_environment {
 <!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI SOAP-SERVICES DATA TUNNEL LAYER MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
 ';
 
-        $tmp_resource_initialize = '';
-        if($this->return_http_data_services_meta('crnrstn_asset_family') === 'module_key'){
+        //error_log(__LINE__ . ' env crnrstn_asset_family[' . $this->oCRNRSTN->return_http_data_services_meta('crnrstn_asset_family') . '].');
 
-            $tmp_resource_initialize = $this->return_http_data_services_meta('crnrstn_asset_return_method_key');
+        $tmp_resource_initialize = '';
+        if($this->oCRNRSTN->return_http_data_services_meta('crnrstn_asset_family') === 'module_key' || $this->oCRNRSTN->return_http_data_services_meta('crnrstn_asset_family') === 'meta'){
+
+            $tmp_resource_initialize = $this->oCRNRSTN->return_http_data_services_meta('crnrstn_asset_return_method_key');
             //error_log(__LINE__ . ' env $tmp_resource_initialize[' . $tmp_resource_initialize . '].');
 
         }
 
-        $tmp_http_get_data_params = $this->return_http_data_services_meta('get');
+        $tmp_http_get_data_params = $this->oCRNRSTN->return_http_data_services_meta('get');
 
         if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
 
@@ -815,6 +768,7 @@ class crnrstn_environment {
         <textarea id="crnrstn_soap_srvc_data" name="crnrstn_soap_srvc_data" cols="130" rows="5">CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER PACKET (SSDTLP)</textarea>
         <button type="submit">SUBMIT</button>
         <input type="hidden" id="crnrstn_xhr_root" name="crnrstn_xhr_root" value="' . $this->oCRNRSTN->crnrstn_http_endpoint() . '">
+        <input type="hidden" id="crnrstn_interact_ui_sysdate" name="crnrstn_interact_ui_sysdate" value="' . date('F j, Y H:i:s') . '">>
         <input type="hidden" id="crnrstn_interact_ui_module_programme" name="crnrstn_interact_ui_module_programme" value="' . $this->oCRNRSTN->oCRNRSTN_TRM->return_interact_ui_module_programme() . '">        
         <input type="hidden" id="crnrstn_page_load_ttl" name="crnrstn_page_load_ttl" value="' . $this->oCRNRSTN->get_resource('page_load_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
         <input type="hidden" id="crnrstn_inactivity_refresh_ttl" name="crnrstn_inactivity_refresh_ttl" value="' . $this->oCRNRSTN->get_resource('inactivity_refresh_ttl', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
@@ -918,36 +872,59 @@ class crnrstn_environment {
 
     private function return_output_CRNRSTN_RESOURCE_DEEP_LINK(){
 
+        /*
+        January 14, 2023 @ 0509 hrs
+
+        NOTES:
+        What about MIT license deep link?
+        What about deep link for an article, a blog post, a landing page, etc.; the King's highway for page return.
+        What about static page return that does not use CRNRSTN_JS to load the content after DOM Ready? Any use?
+
+        */
+
         $tmp_str = '';
-        $tmp_crnrstn_asset_return_method_key = $this->return_http_data_services_meta('crnrstn_asset_return_method_key');
-        if(strlen($tmp_crnrstn_asset_return_method_key) > 0){
+        $tmp_node_cnt = 0;
+        $tmp_ARRAY = array();
+        $tmp_crnrstn_request_ugc_val = $this->oCRNRSTN->return_http_data_services_meta('crnrstn_request_ugc_val');
+//
+//        error_log(__LINE__ . ' env return_output_CRNRSTN_RESOURCE_DEEP_LINK RESPONSE RETURN ['. $tmp_crnrstn_request_ugc_val . '].');
+//        die();
+        if(strlen($tmp_crnrstn_request_ugc_val) > 0){
 
-            $tmp_str = $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page($tmp_crnrstn_asset_return_method_key);
+            //
+            // DOCUMENT
+            $tmp_document_str = $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_page($tmp_crnrstn_request_ugc_val);
+            $tmp_ARRAY[] = '<div id="crnrstn_deep_link_src_node_' . $tmp_node_cnt . '">' . $tmp_document_str . '</div>';
+            $tmp_node_cnt++;
+
+            //
+            // NAVIGATION
+            $tmp_nav_str = $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_documentation_nav();
+            $tmp_ARRAY[] = '<div id="crnrstn_deep_link_src_node_' . $tmp_node_cnt . '">' . $tmp_nav_str . '</div>';
+            $tmp_node_cnt++;
+
+            //
+            // SYSTEM FOOTER
+            $tmp_footer_str = $this->oCRNRSTN->oCRNRSTN_UI_HTML_MGR->out_ui_module_html_system_footer_content_container();
+            $tmp_ARRAY[] = '<div id="crnrstn_deep_link_src_node_' . $tmp_node_cnt . '">' . $tmp_footer_str . '</div>';
+            $tmp_node_cnt++;
 
         }
 
-        if($this->oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+        $tmp_str_array[] = '<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->';
+        $tmp_str_array[] = '<div id="crnrstn_interact_ui_deep_link_src" class="crnrstn_hidden">
+<div id="crnrstn_deep_link_src_node_count">' . $tmp_node_cnt . '</div>';
 
-            $tmp_str_array[] = '<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->';
-            $tmp_str_array[] = '<div id="crnrstn_interact_ui_deep_link_src" class="crnrstn_hidden">' . $tmp_str . '</div>';
-            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT -->';
+        foreach($tmp_ARRAY as $index => $str_src){
 
-        }else{
-
-            $tmp_str_array[] = '
-<!-- BEGIN ' . $this->oCRNRSTN_USR->proper_version() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT :: ' . $this->oCRNRSTN->return_micro_time() . ' -->
-';
-
-            $tmp_str_array[] = '        <div id="crnrstn_interact_ui_deep_link_src" class="crnrstn_hidden">' . $tmp_str . '</div>
-        ';
-
-            $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT -->
-';
+            $tmp_str_array[] = $str_src;
 
         }
+
+        $tmp_str_array[] = '</div>';
+        $tmp_str_array[] = '<!-- END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI DEEP LINK MODULE OUTPUT -->';
 
         return $tmp_str_array;
-
 
     }
 
@@ -1519,6 +1496,12 @@ END CRNRSTN :: v' . $this->oCRNRSTN_USR->version_crnrstn() . ' :: INTERACT UI SY
     public function get_session_resource($data_key){
 
         return $this->oSESSION_MGR->get_session_resource($data_key);
+
+    }
+
+    public function ssdtla_enabled(){
+
+        return $this->oHTTP_MGR->ssdtla_enabled;
 
     }
 

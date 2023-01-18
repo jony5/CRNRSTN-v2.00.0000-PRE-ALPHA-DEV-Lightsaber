@@ -86,9 +86,9 @@ require(CRNRSTN_ROOT . '/_crnrstn/class/database/crnrstn.database_query.inc.php'
 require(CRNRSTN_ROOT . '/_crnrstn/class/database/crnrstn.query_manager.inc.php');				        // DATABASE QUERY MANAGER
 require(CRNRSTN_ROOT . '/_crnrstn/class/database/crnrstn.results_paginator.inc.php');			        // DATABASE RESULT SET PAGINATION MANAGER
 require(CRNRSTN_ROOT . '/_crnrstn/class/session/crnrstn.redirect_controller.inc.php');			        // REDIRECT CONTROLLER
-require(CRNRSTN_ROOT . '/_crnrstn/_config/config.database.sql/crnrstn.db_sql_silo.inc.php');            // A QUERY SILO
 require(CRNRSTN_ROOT . '/_crnrstn/class/messenger/crnrstn.messenger_from_north.inc.php');               // MESSENGER FROM THE FURTHEST REACHES OF THE NORTH
 require(CRNRSTN_ROOT . '/_crnrstn/class/assets/crnrstn.system_asset_manager.inc.php');                  // SYSTEM ASSET MANAGER
+require(CRNRSTN_ROOT . '/_crnrstn/class/assets/crnrstn.client_assets.inc.php');                         // SYSTEM CSS + JS FRAMEWORK ASSETS [MODIFIED]
 require(CRNRSTN_ROOT . '/_crnrstn/class/accessibility/crnrstn.data_tunnel_services_manager.inc.php');   // DATA TUNNEL INTEGRATIONS
 require(CRNRSTN_ROOT . '/_crnrstn/class/ftp/crnrstn.lightning_ftp_manager.inc.php');                    // FIRE_FTP CONNECTION MANAGER
 require(CRNRSTN_ROOT . '/_crnrstn/class/ftp/crnrstn.wind_cloud_fire.inc.php');                          // ELECTRUM :: Ezekiel 1:4

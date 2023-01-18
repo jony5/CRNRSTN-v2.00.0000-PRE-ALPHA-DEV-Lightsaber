@@ -637,7 +637,7 @@ class crnrstn_ui_content_assembler {
 
     }
 
-	public function add_page_element($serial, $key, $data_ARRAY, $output_type){
+	public function add_page_element($serial, $key, $data_ARRAY, $output_type = 'SSDTLA'){
 
 	    if($output_type === 'sauce'){
 

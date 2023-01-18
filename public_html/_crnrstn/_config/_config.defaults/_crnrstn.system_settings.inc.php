@@ -5,14 +5,11 @@
 
 //
 // CRNRSTN :: GENERAL SETTINGS
+// TODO :: MULTI-LANGUAGE SUPPORT
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'hash_algo', 'sha256', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'chmod_perms', 775, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'salt_length', 64, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'ssdtla_session_data_ttl', 10, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
-
-//
-// CRNRSTN :: INTERACT UI SETTINGS
-// TODO :: MULTI-LANGUAGE SUPPORT
 $tmp_ARRAY = array('crnrstn_inactivity_refresh_ttl', 'crnrstn_ssdtla_module_sync_ttl',
     'crnrstn_share_module_inactivity_close_ttl', 'crnrstn_page_load_ttl, bassdrive_is_live_ttl',
     'the_situation_with_bassdrive_ttl', 'bassdrive_title_ttl', 'bassdrive_locale_city_province_ttl',
@@ -30,6 +27,9 @@ $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'interact_ui_day_abbrev'
 
 $tmp_ARRAY = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'interact_ui_day', $tmp_ARRAY, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
+
+//
+// CRNRSTN :: INTERACT UI SETTINGS
 $this->config_add_system_resource('BLUEHOST_JONY5', 'depeche_mode', CRNRSTN_DEBUG_OFF, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');                  // where CRNRSTN JS :: DEBUG MODES = [CRNRSTN_DEBUG_OFF, 100, 200, 300, 420, 500];
 $this->config_add_system_resource('BLUEHOST_EVIFWEB', 'depeche_mode', 100, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');                              // where CRNRSTN JS :: DEBUG MODES = [CRNRSTN_DEBUG_OFF, 100, 200, 300, 420, 500];
 $this->config_add_system_resource('LOCALHOST_CHAD_MACBOOKPRO', 'depeche_mode', 300, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');                     // where CRNRSTN JS :: DEBUG MODES = [CRNRSTN_DEBUG_OFF, 100, 200, 300, 420, 500];

@@ -175,7 +175,6 @@ class crnrstn_data_tunnel_services_manager{
         $this->received_data_ARRAY['crnrstn_session_client_id'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_session_client_id');
         $this->received_data_ARRAY['crnrstn_php_sessionid'] = $this->oCRNRSTN->return_form_submitted_value('crnrstn_php_sessionid');
 
-
 //        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_form_serial', true, $this->oCRNRSTN->generate_new_key(64), 'crnrstn_soap_srvc_form_serial');
 //        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_timestamp', true, $this->oCRNRSTN->return_micro_time(), 'crnrstn_soap_srvc_timestamp');
 //        $this->oCRNRSTN->form_hidden_input_add('crnrstn_soap_data_tunnel_form', 'crnrstn_soap_srvc_ttl', true, $this->oCRNRSTN->return_ssdtl_packet_ttl(), 'crnrstn_soap_srvc_ttl');
@@ -302,19 +301,39 @@ class crnrstn_data_tunnel_services_manager{
             break;
             case 'crnrstn_interact_ui_documentation_content_src':
 
-                $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
+                if(!isset($this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'])){
 
-                $tmp_page_sauce = $this->oCRNRSTN->sauce($tmp_module_page_key);
+                    //
+                    // DEEP LINK REQUEST NEEDS NO HASH CONSIDERATION TO BLOCK DATA RETURN. ALWAYS RETURN THE PAGE.
+                    $tmp_module_data = $this->oCRNRSTN->return_http_data_services_meta('crnrstn_request_ugc_val');
 
-                $tmp_module_data = $tmp_page_sauce;
+                }else{
+
+                    $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
+
+                    $tmp_page_sauce = $this->oCRNRSTN->sauce($tmp_module_page_key);
+
+                    $tmp_module_data = $tmp_page_sauce;
+
+                }
 
             break;
             case 'crnrstn_interact_ui_mit_license_src':
 
-                //
-                // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
-                $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
-                $tmp_module_data = $module_nom.$tmp_module_page_key;
+                if(!isset($this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'])){
+
+                    //
+                    // DEEP LINK REQUEST NEEDS NO HASH CONSIDERATION TO BLOCK DATA RETURN. ALWAYS RETURN THE PAGE.
+                    $tmp_module_data = $this->oCRNRSTN->return_http_data_services_meta('crnrstn_request_ugc_val');
+
+                }else {
+
+                    //
+                    // TIMESTAMP IN OUTPUT PRODUCES UNIQUE HASH EVERYTIME
+                    $tmp_module_page_key = $this->received_data_ARRAY['crnrstn_interact_ui_link_text_click'];
+                    $tmp_module_data = $module_nom . $tmp_module_page_key;
+
+                }
 
             break;
             case 'crnrstn_interact_ui_search_src':
@@ -368,7 +387,6 @@ class crnrstn_data_tunnel_services_manager{
 
         }
 
-        //error_log(__LINE__ . ' dtsm building hash [' . $module_nom . '].');
         return $this->oCRNRSTN->hash($tmp_module_data, NULL, true, $module_nom);
 
     }

@@ -130,6 +130,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         //
         // TODO :: NEED TO SET DEBUG MODE FROM SERVER RETURN/SSDTLA XML RESPONSE DATA (WILL HONOR ADMIN SESSION)
+        this.oSystem_date = 0;
+        this.system_date_str = '';
         this.session_salt = '';
         this.crnrstn_debug_mode = this.CRNRSTN_DEBUG_LIFESTYLE_BANNER;
         this.crnrstn_overlay_mode = 'OFF';
@@ -985,7 +987,6 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
-
     CRNRSTN_JS.prototype.load_system_settings = function(){
 
         /*
@@ -1003,6 +1004,12 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.session_salt = $("#crnrstn_session_salt").val();
 
         this.load_setting_attribute('crnrstn_interact_ui_ttl');
+
+        //
+        // TODO :: CONSIDER SSDTLA DEBUG REPORTING TIMESTAMP IN LINE WITH SERVER CONFIGURATION. SEE $oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/Denver');
+        // TODO :: CRNRSTN_JS SHOULD STILL TRACK LOCAL SYSTEM TIME FOR LOCAL DISPLAY AND REPORTING TO SERVER.
+        this.system_date_str = $('#crnrstn_interact_ui_sysdate').html();
+        this.oSystem_date = new Date(this.system_date_str);
 
         if(tmp_attribute_value = this.load_setting_attribute('crnrstn_depeche_mode')){
 
@@ -1154,7 +1161,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
             if(tmp_page.length > 0){
 
-                //alert('[1024] load deep link :: ' + this.session_salt + '=[' + tmp_page + ']. crnrstn_autoscroll[' + this.get_pushed_autoscroll + '].');
+                alert('[1024] load deep link :: ' + this.session_salt + '=[' + tmp_page + ']. crnrstn_autoscroll[' + this.get_pushed_autoscroll + '].');
                 //alert('[1025] CONTENT BODY[' + $('#crnrstn_interact_ui_deep_link_src').html() + '].');
 
             }

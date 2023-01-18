@@ -435,7 +435,7 @@ class crnrstn_ui_tunnel_response_manager {
 
                 if($this->oCRNRSTN->is_bit_set(CRNRSTN_ASSET_MAPPING)){
 
-//                    $this->crnrstn_ssdtla_enabled = true;
+//                    $this->ssdtla_enabled = true;
 //                    $this->crnrstn_asset_family = 'css';
 //                    $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_CSS';
 //                    $this->crnrstn_asset_meta_path = $this->oCRNRSTN->asset_return_method_key('css', $tmp_salt_ugc_val);

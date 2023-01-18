@@ -70,16 +70,15 @@ class crnrstn_http_manager {
     public $isMobile;
     public $isTablet;
     public $device_detected = false;
-    public $crnrstn_asset_family;
-    public $crnrstn_asset_return_method_key;
-    public $crnrstn_asset_meta_path;
+    //public $crnrstn_asset_family;
+    //public $crnrstn_asset_return_method_key;
+    //public $crnrstn_asset_meta_path;
 
     public $custom_device_ARRAY = array();
 
     public $form_integration_isset_ARRAY = array();
     public $response_header_attribute_ARRAY = array();
 
-    public $crnrstn_ssdtla_enabled = false;
     public $country_iso_code = 'en';
 
     public function __construct($oCRNRSTN, $oCRNRSTN_ENV) {
@@ -445,25 +444,27 @@ class crnrstn_http_manager {
 
     public function http_data_services_response($output_format = 'xml'){
 
+        //error_log(__LINE__ . ' http mgr  [' . $this->oCRNRSTN->return_http_data_services_meta('crnrstn_asset_family') . ']. die();');
+
         //
         // TOO[sic] SIMPLE...BUT GOOD FOR PROOF OF CONCEPT
-        if($this->crnrstn_ssdtla_enabled){
+        if($this->oCRNRSTN->ssdtla_enabled && ($this->oCRNRSTN->return_http_data_services_meta('crnrstn_asset_family') !== 'module_key')){
 
             $tmp_data_ARRAY = array();
 
             //
             // CRNRSTN :: ASSET MAPPING. PROCESS HTTP REQUEST RESPONSE FOR ASSET.
-            if(isset($this->crnrstn_asset_family)){
+            if(isset($this->oCRNRSTN->crnrstn_asset_family)){
 
                 $tmp_session_salt = $this->oCRNRSTN->session_salt();
 
-                $tmp_data_ARRAY['crnrstn_asset_method_key'] = $this->crnrstn_asset_return_method_key;
-                $tmp_data_ARRAY['crnrstn_asset_family'] = $this->crnrstn_asset_family;   // currently only css, js, system, social, or favicon
+                $tmp_data_ARRAY['crnrstn_asset_method_key'] = $this->oCRNRSTN->crnrstn_asset_return_method_key;
+                $tmp_data_ARRAY['crnrstn_asset_family'] = $this->oCRNRSTN->crnrstn_asset_family;   // currently only css, js, meta, system, social, or favicon
                 $tmp_data_ARRAY['crnrstn_asset_key'] = $_GET[$tmp_session_salt];         // asset name/key
 
-                if(isset($this->crnrstn_asset_meta_path)){
+                if(isset($this->oCRNRSTN->crnrstn_asset_meta_path)){
 
-                    $tmp_data_ARRAY['crnrstn_asset_meta_path'] = $this->crnrstn_asset_meta_path;
+                    $tmp_data_ARRAY['crnrstn_asset_meta_path'] = $this->oCRNRSTN->crnrstn_asset_meta_path;
 
                 }
 
@@ -473,7 +474,7 @@ class crnrstn_http_manager {
                 // SET RESPONSE OUTPUT MODE. THE KING'S HIGHWAY. GRIPPING THE LIGHTSABER (...BLADE!!).
                 //$this->oCRNRSTN->initialize_bit(CRNRSTN_ASSET_MAPPING);
 
-                $this->crnrstn_ssdtla_enabled = false;
+                $this->oCRNRSTN->ssdtla_enabled = false;
 //                [crnrstn_asset_method_key] => SOCIAL_ARCHIVES_HQ
 //                [crnrstn_asset_family] => social
 //                [crnrstn_asset_key] => social_archives_hq
@@ -508,6 +509,7 @@ class crnrstn_http_manager {
         // ESTABLISH SEQUENCE TO CHECK FOR crnrstn_pssdtl_packet
         $tmp_variables_order = $this->oCRNRSTN->ini_get('variables_order');
         $tmp_vo_ARRAY = str_split($tmp_variables_order);
+        //error_log(__LINE__ . ' http mgr [' . $tmp_variables_order . '].');
 
         /*
         Sets the order of the EGPCS (Environment, Get, Post, Cookie, and Server) variable
@@ -534,104 +536,27 @@ class crnrstn_http_manager {
                         if($this->issetParam($_GET, 'crnrstn_pssdtl_packet')){
 
                             $this->form_integration_isset_ARRAY['GET'] = true;
-                            $this->crnrstn_ssdtla_enabled = true;
+                            $this->oCRNRSTN->ssdtla_enabled = true;
                             $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->http_data_services_initialize($var_parse_channel);
 
                         }
 
-                        if($this->issetParam($_GET, $this->oCRNRSTN->session_salt())){
+                        //
+                        // WE MOVED THE SSDTLA PING TO A LOWER LEVEL IN CRNRSTN :: SO IT
+                        // SHOULD HAVE BEEN CALLED BY NOW.
+                        if($this->oCRNRSTN->ssdtla_pinged){
 
-                            $tmp_salt_ugc_val = $_GET[$this->oCRNRSTN->session_salt()];
-                            //error_log(__LINE__ . ' http mgr [' . $tmp_salt_ugc_val . '][' . $this->oCRNRSTN->request_id . '].');
+                            return $this->oCRNRSTN->ssdtla_enabled;
 
-                            if(strlen($tmp_salt_ugc_val) > 0){
+                        }else{
 
-                                if($this->oCRNRSTN->asset_routing_data_key_lookup('favicon', $tmp_salt_ugc_val)){
+                            if($this->issetParam($_GET, $this->oCRNRSTN->session_salt())){
 
-                                    $this->crnrstn_ssdtla_enabled = true;
-                                    $this->crnrstn_asset_family = 'favicon';
+                                $tmp_salt_ugc_val = $_GET[$this->oCRNRSTN->session_salt()];
 
-                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+                                if(strlen($tmp_salt_ugc_val) > 0){
 
-                                    //return true;
-
-                                }
-
-                                if($this->oCRNRSTN->asset_routing_data_key_lookup('system', $tmp_salt_ugc_val)){
-
-                                    $this->crnrstn_ssdtla_enabled = true;
-                                    $this->crnrstn_asset_family = 'system';
-                                    $this->crnrstn_asset_return_method_key = $this->oCRNRSTN->asset_return_method_key('system', $tmp_salt_ugc_val);
-
-                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
-
-                                    //return true;
-
-                                }
-
-                                if($this->oCRNRSTN->asset_routing_data_key_lookup('social', $tmp_salt_ugc_val)){
-
-                                    $this->crnrstn_ssdtla_enabled = true;
-                                    $this->crnrstn_asset_family = 'social';
-                                    $this->crnrstn_asset_return_method_key = $this->oCRNRSTN->asset_return_method_key('social', $tmp_salt_ugc_val);
-
-                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . ']  asset HOOKED[' . $tmp_salt_ugc_val . '].');
-
-                                    //return true;
-
-                                }
-
-                                if($this->oCRNRSTN->asset_routing_data_key_lookup('css', $tmp_salt_ugc_val)){
-
-                                    $this->crnrstn_ssdtla_enabled = true;
-                                    $this->crnrstn_asset_family = 'css';
-                                    $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_CSS';
-                                    $this->crnrstn_asset_meta_path = $this->oCRNRSTN->asset_return_method_key('css', $tmp_salt_ugc_val);
-
-                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . ']  asset HOOKED[' . $tmp_salt_ugc_val . '].');
-
-                                    //return true;
-
-                                }
-
-//                                error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . ']. [' . $tmp_salt_ugc_val . '].');
-
-                                if($this->oCRNRSTN->asset_routing_data_key_lookup('js', $tmp_salt_ugc_val)){
-
-                                    $this->crnrstn_ssdtla_enabled = true;
-                                    $this->crnrstn_asset_family = 'js';
-                                    $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_JS';
-                                    $this->crnrstn_asset_meta_path = $this->oCRNRSTN->asset_return_method_key('js', $tmp_salt_ugc_val);
-//
-//                                    error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
-//
-//                                    die();
-                                    //return true;
-
-                                }
-
-                                if($this->oCRNRSTN->asset_routing_data_key_lookup('integrations', $tmp_salt_ugc_val)){
-
-                                    $this->crnrstn_ssdtla_enabled = true;
-                                    $this->crnrstn_asset_family = 'integrations';
-                                    $this->crnrstn_asset_return_method_key = $this->oCRNRSTN->asset_return_method_key('integrations', $tmp_salt_ugc_val);
-
-                                    //error_log(__LINE__ . ' http mgr [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
-
-                                    //return true;
-
-                                }
-
-                                if($this->oCRNRSTN->asset_routing_data_key_lookup('module_key', $tmp_salt_ugc_val)){
-
-                                    $this->crnrstn_ssdtla_enabled = true;
-                                    $this->crnrstn_asset_family = 'module_key';
-                                    $this->crnrstn_asset_return_method_key = $tmp_salt_ugc_val;
-                                    //error_log(__LINE__ . ' http mgr module_key.');
-
-                                    //error_log(__LINE__ . ' http mgr [' . print_r($this->crnrstn_ssdtla_enabled, true) . '] [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
-
-                                    //return true;
+                                    return $this->oCRNRSTN->ssdtla_enabled();
 
                                 }
 
@@ -681,7 +606,7 @@ class crnrstn_http_manager {
                             //error_log(__LINE__ . ' http mgr.');
 
                             $this->form_integration_isset_ARRAY['POST'] = true;
-                            $this->crnrstn_ssdtla_enabled = true;
+                            $this->oCRNRSTN->ssdtla_enabled = true;
                             $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->http_data_services_initialize($var_parse_channel);
 
                         }
@@ -698,7 +623,7 @@ class crnrstn_http_manager {
         // BOOLEAN INDICATION OF A REQUEST FROM THE GATE-KEEPER/BEAN-COUNTER FOR THE SPACE BETWEEN
         // https://www.youtube.com/watch?v=YvzWRzTh7jg
         // TITLE :: The Space Between
-        if($this->crnrstn_ssdtla_enabled){
+        if($this->oCRNRSTN->ssdtla_enabled){
 
             $this->oCRNRSTN->oDATA_TUNNEL_SERVICES_MGR->http_data_services_validation();
 
@@ -1388,7 +1313,7 @@ class crnrstn_http_manager {
 
     public function receive_form_integration_packet($uri_passthrough = false, $cipher_override = NULL, $secret_key_override = NULL){
 
-        $this->crnrstn_ssdtla_enabled = false;
+        $this->oCRNRSTN->ssdtla_enabled = false;
 
         //
         // DO WE HAVE POST DATA?
@@ -1399,7 +1324,7 @@ class crnrstn_http_manager {
             if($this->issetParam($_POST, 'crnrstn_pssdtl_packet')){
 
                 $this->form_integration_isset_ARRAY['POST'] = true;
-                $this->crnrstn_ssdtla_enabled = true;
+                $this->oCRNRSTN->ssdtla_enabled = true;
 
                 $tmp_is_encrypted = '';
                 if($this->issetParam($_POST, 'crnrstn_pssdtl_packet_ENCRYPTED')){
@@ -1430,7 +1355,7 @@ class crnrstn_http_manager {
                 if($this->issetParam($_GET, 'crnrstn_pssdtl_packet')){
 
                     $this->form_integration_isset_ARRAY['GET'] = true;
-                    $this->crnrstn_ssdtla_enabled = true;
+                    $this->oCRNRSTN->ssdtla_enabled = true;
 
                     $tmp_is_encrypted = '';
                     if($this->issetParam($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED')){
@@ -1464,7 +1389,7 @@ class crnrstn_http_manager {
                 if($this->issetParam($_GET, 'crnrstn_pssdtl_packet')){
 
                     //error_log('4418 user - process crnrstn_pssdtl_packet @ _GET');
-                    $this->crnrstn_ssdtla_enabled = true;
+                    $this->oCRNRSTN->ssdtla_enabled = true;
 
                     $tmp_is_encrypted = '';
                     if($this->issetParam($_GET, 'crnrstn_pssdtl_packet_ENCRYPTED')){
@@ -1493,7 +1418,7 @@ class crnrstn_http_manager {
 
         }
 
-        return $this->crnrstn_ssdtla_enabled;
+        return $this->oCRNRSTN->ssdtla_enabled;
 
     }
 

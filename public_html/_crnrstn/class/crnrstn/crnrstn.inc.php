@@ -149,6 +149,14 @@ class crnrstn {
     protected $system_resource_constants = array();
     protected $system_ui_module_constants_ARRAY = array();
     protected $system_head_html_asset_array_spool_ARRAY = array();
+
+    public $ssdtla_pinged = false;
+    public $ssdtla_enabled = false;
+    public $crnrstn_request_ugc_val;
+    public $crnrstn_asset_family;
+    public $crnrstn_asset_return_method_key;
+    public $crnrstn_asset_meta_path;
+    public $asset_request_asset_family;
     
     protected $head_asset_footer_spool_ARRAY = array();
     protected $head_asset_head_spool_ARRAY = array();
@@ -472,6 +480,24 @@ class crnrstn {
 
     }
 
+    public function crnrstn_meta_keywords(){
+
+        return 'crnrstn, lightbox js, jquery, php, social media, mobile detect, nusoap, open source, xml, lightsaber, phpmailer, bassdrive, mit licensed, framework';
+
+    }
+
+    public function social_preview_title(){
+
+        return $this->multi_lang_content_return('SOCIAL_PREVIEW_TITLE');
+
+    }
+
+    public function social_preview_description(){
+
+        return $this->multi_lang_content_return('SOCIAL_PREVIEW_DESCRIPTION');
+
+    }
+
     public function initialize_defaults(){
 
         $tmp_algo = $this->get_resource('hash_algo', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS');
@@ -596,7 +622,28 @@ class crnrstn {
 
     public function header_signature_options_return(){
 
-        return $this->oCRNRSTN_ENV->header_signature_options_return();
+        if(isset($this->oCRNRSTN_ENV)){
+
+            return $this->oCRNRSTN_ENV->header_signature_options_return();
+
+        }
+
+        //
+        // ASSET MAPPING FIRES BEFORE INSTANTIATON OF oHTTP_MGR.
+        // NEED TO HANDLE HEADER SIGNATURE HERE TOO...FOR ASSET MAPPING.
+        $tmp_date = date('D, M j Y G:i:s T');
+        $tmp_date_expire = date('D, M j Y G:i:s T', strtotime('+ 7 days'));
+        $tmp_date_lastmod = date('D, j M Y G:i:s T');
+
+        $tmp_array = array();
+        $tmp_array[] = 'Content-Language: ' . $this->iso_language_profile();
+        $tmp_array[] = 'Content-Type: text/html; charset=UTF-8';
+        $tmp_array[] = 'Date: ' . $tmp_date;
+        $tmp_array[] = 'Expires: ' . $tmp_date_expire;
+        $tmp_array[] = 'Last-Modified: ' . $tmp_date_lastmod;
+        $tmp_array[] = 'X-Powered-By: CRNRSTN :: v' . $this->version_crnrstn();
+
+        return $tmp_array;
 
     }
 
@@ -621,18 +668,17 @@ class crnrstn {
 
     public function asset_routing_data_key_lookup($crnrstn_asset_family, $salt_ugc){
 
-        //return in_array($_GET[$this->session_salt()], $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family]);
-
-        //asset_return_method_key
-
-        //$this->asset_routing_data_key_lookup_ARRAY['system-meta-key']
         switch($crnrstn_asset_family){
             case 'favicon':
 
-                if($this->is_bit_set(CRNRSTN_FAVICON_ASSET_MAPPING)){
+                if($this->is_bit_set(CRNRSTN_FAVICON_ASSET_MAPPING) || strlen($this->crnrstn_asset_family) > 0){
 
                     if(isset($this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc])){
 
+                        $this->crnrstn_asset_family = $crnrstn_asset_family;
+                        $this->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                        //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc] . ']. $crnrstn_asset_family[' . $this->crnrstn_asset_family . '].');
                         return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
 
                     }
@@ -642,10 +688,14 @@ class crnrstn {
             break;
             case 'social':
 
-                if($this->is_bit_set(CRNRSTN_SOCIAL_IMG_ASSET_MAPPING)){
+                if($this->is_bit_set(CRNRSTN_SOCIAL_IMG_ASSET_MAPPING) || strlen($this->crnrstn_asset_family) > 0){
 
                     if(isset($this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc])){
 
+                        $this->crnrstn_asset_family = $crnrstn_asset_family;
+                        $this->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                        //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc] . ']. $crnrstn_asset_family[' . $this->crnrstn_asset_family . '].');
                         return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
 
                     }
@@ -653,12 +703,35 @@ class crnrstn {
                 }
 
             break;
+            case 'meta':
+
+                if(isset($this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc])){
+
+                    $this->crnrstn_asset_family = $crnrstn_asset_family;
+                    //$this->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                    //
+                    // ATTEMPT TO LOAD PAGE META FROM CONTENT SOURCE CONTROL HERE
+                    $this->oCRNRSTN_CS_CONTROLLER->load_page($salt_ugc, 'META');
+
+                    //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc] . ']. $crnrstn_asset_family[' . $this->crnrstn_asset_family . '].');
+                    return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
+
+                }
+
+            break;
             case 'system':
 
-                if($this->is_bit_set(CRNRSTN_SYSTEM_IMG_ASSET_MAPPING)){
+                //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . print_r($this->crnrstn_asset_family, true) . '].');
+
+                if($this->is_bit_set(CRNRSTN_SYSTEM_IMG_ASSET_MAPPING) || strlen($this->crnrstn_asset_family) > 0){
 
                     if(isset($this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc])){
 
+                        $this->crnrstn_asset_family = $crnrstn_asset_family;
+                        $this->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                        //error_log(__LINE__ . ' crnrstn $salt_ugc[' . $salt_ugc . ']. [' . $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc] . ']. $crnrstn_asset_family[' . $this->crnrstn_asset_family . '].');
                         return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
 
                     }
@@ -668,10 +741,14 @@ class crnrstn {
             break;
             case 'js':
 
-                if($this->is_bit_set(CRNRSTN_JS_ASSET_MAPPING)){
+                if($this->is_bit_set(CRNRSTN_JS_ASSET_MAPPING) || strlen($this->crnrstn_asset_family) > 0){
 
                     if(isset($this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc])){
 
+                        $this->crnrstn_asset_family = $crnrstn_asset_family;
+                        $this->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                        //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc] . ']. $crnrstn_asset_family[' . $this->crnrstn_asset_family . '].');
                         return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
 
                     }
@@ -681,10 +758,14 @@ class crnrstn {
             break;
             case 'css':
 
-                if($this->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING)){
+                if($this->is_bit_set(CRNRSTN_CSS_ASSET_MAPPING) || strlen($this->crnrstn_asset_family) > 0){
 
                     if(isset($this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc])){
 
+                        $this->crnrstn_asset_family = $crnrstn_asset_family;
+                        $this->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                        //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc] . ']. $crnrstn_asset_family[' . $this->crnrstn_asset_family . '].');
                         return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
 
                     }
@@ -696,6 +777,10 @@ class crnrstn {
 
                 if(isset($this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc])){
 
+                    $this->crnrstn_asset_family = $crnrstn_asset_family;
+                    $this->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                    //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc] . ']. $crnrstn_asset_family[' . $this->crnrstn_asset_family . '].');
                     return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
 
                 }
@@ -708,7 +793,12 @@ class crnrstn {
 
                 if(isset($tmp_ARRAY[$salt_ugc])){
 
-                    return true;
+                    $this->crnrstn_asset_family = $crnrstn_asset_family;
+                    $this->initialize_bit(CRNRSTN_ASSET_MAPPING);
+
+                    //error_log(__LINE__ . ' crnrstn module_key [' . $salt_ugc . ']. [' . $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc] . ']. $crnrstn_asset_family[' . $this->crnrstn_asset_family . '].');
+                    //return true;
+                    return $this->asset_routing_data_key_lookup_ARRAY[$crnrstn_asset_family][$salt_ugc];
 
                 }
 
@@ -723,7 +813,63 @@ class crnrstn {
 
     public function return_http_data_services_meta($name){
 
-        return $this->oCRNRSTN_ENV->return_http_data_services_meta($name);
+        switch($name){
+            case 'ssdtla_enabled':
+
+                //error_log(__LINE__ . ' env Does this look right 2 U? $name[' . $name . ']=[' . $this->ssdtla_enabled . '].');
+                return $this->ssdtla_enabled;
+
+            break;
+            case 'crnrstn_request_ugc_val':
+
+                //error_log(__LINE__ . ' env Does this look right 2 U? $name[' . $name . ']=[' . $this->crnrstn_request_ugc_val . '].');
+                return $this->crnrstn_request_ugc_val;
+
+            break;
+            case 'crnrstn_asset_family':
+
+                //error_log(__LINE__ . ' env Does this look right 2 U? $name[' . $name . ']=[' . $this->crnrstn_asset_family . '].');
+                //return $this->crnrstn_asset_family;
+                return $this->crnrstn_asset_family;
+                
+            break;
+            case 'crnrstn_asset_return_method_key':
+
+                //error_log(__LINE__ . ' env Does this look right 2 U? $name[' . $name . ']=[' . $this->crnrstn_asset_return_method_key . '].');
+                return $this->crnrstn_asset_return_method_key;
+
+            break;
+            case 'get':
+
+                $tmp_crnrstn_interact_data_transport_get_str = '';
+                $tmp_get_param_cnt = $this->get_resource_count('crnrstn_interact_data_transport_get_param', 'CRNRSTN::RESOURCE::GET_DATA');
+                //error_log(__LINE__ . ' env GET[' . $tmp_get_param_cnt . '].');
+
+                for($i = 0; $i < $tmp_get_param_cnt; $i++){
+
+                    //error_log(__LINE__ . ' env GET[' . $i . '].');
+                    $tmp_crnrstn_interact_data_transport_get_str .= $this->get_resource('crnrstn_interact_data_transport_get_param', $i, 'CRNRSTN::RESOURCE::GET_DATA') . '|';
+
+                }
+
+                if(strlen($tmp_crnrstn_interact_data_transport_get_str) > 0){
+
+                    $tmp_crnrstn_interact_data_transport_get_str = $this->strrtrim($tmp_crnrstn_interact_data_transport_get_str, '|');
+
+                }
+
+                //error_log(__LINE__ . ' env Does this look right 2 U? $name[' . $name . ']=[' . $tmp_crnrstn_interact_data_transport_get_str . '].');
+
+                return $tmp_crnrstn_interact_data_transport_get_str;
+
+            break;
+            default:
+
+                return '';
+
+            break;
+
+        }
 
     }
 
@@ -862,6 +1008,8 @@ class crnrstn {
 
     public function http_data_services_initialize(){
 
+        error_log(__LINE__ . '  crnrstn die()');
+        die();
         $this->oCRNRSTN_ENV->oHTTP_MGR->http_data_services_initialize();
 
     }
@@ -1322,6 +1470,114 @@ class crnrstn {
     public function version_linux(){
 
         return self::$oCRNRSTN_CONFIG_MGR->retrieve_data_value('version_linux');
+
+    }
+
+    public function return_social_share_url($social_app_key, $url, $title_caption = NULL, $tags = NULL, $is_sticky = true){
+        /*
+        https://blog.shahednasser.com/how-to-easily-add-share-links-for-each-social-media-platform/
+        */
+
+        switch(strtoupper($social_app_key)){
+            case 'FACEBOOK':
+                /*
+                FACEBOOK
+                <a href="https://www.facebook.com/sharer/sharer.php?
+                u=blog.shahednasser.com
+                &quote=Awesome%20Blog!">Share on Facebook</a>
+
+                */
+                $url_base = '';
+
+
+            break;
+            case 'LINKEDIN':
+                /*
+                LINKEDIN
+                <a href="https://www.linkedin.com/sharing/share-offsite/?
+                url=blog.shahednasser.com">Share on LinkedIn</a>
+
+                */
+
+            break;
+            case 'REDDIT':
+                /*
+                REDDIT
+                <a href="https://www.reddit.com/submit?
+                url=blog.shahednasser.com
+                &title=Awesome%20Blog!">Share on Reddit</a>
+
+                */
+
+            break;
+            case 'TUMBLR':
+
+                /*
+                TUMBLR
+                <a href="https://www.tumblr.com/widgets/share/tool?
+                canonicalUrl=blog.shahednasser.com
+                &caption=Awesome%20blog!
+                &tags=test%2Chello">Share on Tumblr</a>
+
+                */
+
+            break;
+            case 'TWITTER':
+
+                /*
+                TWITTER
+                <a href="https://twitter.com/intent/tweet?
+                text=Awesome%20Blog!
+                &url=blog.shahednasser.com">Share on Twitter</a>
+
+                */
+
+            break;
+            case 'WHATSAPP':
+
+                /*
+                WHATSAPP
+                <a href="https://wa.me/?
+                text=Awesome%20Blog!%5Cn%20blog.shahednasser.com">Share on Whatsapp</a>
+
+                */
+
+            break;
+
+        }
+
+        /*
+        TWITTER
+        <a href="https://twitter.com/intent/tweet?
+        text=Awesome%20Blog!
+        &url=blog.shahednasser.com">Share on Twitter</a>
+
+        LINKEDIN
+        <a href="https://www.linkedin.com/sharing/share-offsite/?
+        url=blog.shahednasser.com">Share on LinkedIn</a>
+
+        FACEBOOK
+        <a href="https://www.facebook.com/sharer/sharer.php?
+        u=blog.shahednasser.com
+        &quote=Awesome%20Blog!">Share on Facebook</a>
+
+        WHATSAPP
+        <a href="https://wa.me/?
+        text=Awesome%20Blog!%5Cn%20blog.shahednasser.com">Share on Whatsapp</a>
+
+        TUMBLR
+        <a href="https://www.tumblr.com/widgets/share/tool?
+        canonicalUrl=blog.shahednasser.com
+        &caption=Awesome%20blog!
+        &tags=test%2Chello">Share on Tumblr</a>
+
+        REDDIT
+        <a href="https://www.reddit.com/submit?
+        url=blog.shahednasser.com
+        &title=Awesome%20Blog!">Share on Reddit</a>
+
+        */
+
 
     }
 
@@ -2230,7 +2486,7 @@ class crnrstn {
 
     }
 
-    public function config_add_soap($env_key, $crnrstn_resource_config_file_path){
+    public function config_include_soap($env_key, $crnrstn_resource_config_file_path){
 
         //
         // TODO :: WE NEED TO MOVE THIS TO CMS BEHIND ADMIN LOGIN.
@@ -3053,6 +3309,46 @@ class crnrstn {
 
     }
 
+    public function config_init_asset_mapping_meta_img($env_key = CRNRSTN_RESOURCE_ALL, $tunneling_active = true, $dir_path = '', $http_path = ''){
+
+        //
+        // IS THE ENVIRONMENT DETECTED?
+        if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+            //
+            // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+            if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key, NULL, true))){
+
+                if(!$tunneling_active){
+
+                    //
+                    // IF BIT IS FLIPPED...TURN IT OFF.
+                    if($this->is_bit_set(CRNRSTN_META_IMG_ASSET_MAPPING)){
+
+                        $this->initialize_bit(CRNRSTN_META_IMG_ASSET_MAPPING, false);
+
+                    }
+
+                }
+
+                if($tunneling_active){
+
+                    $this->error_log('Activating CRNRSTN :: asset routing for meta preview social images.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+                    $this->oCRNRSTN_BITFLIP_MGR->initialize_bit(CRNRSTN_META_IMG_ASSET_MAPPING, true);
+
+                }
+
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($http_path, 'crnrstn_meta_preview_asset_tunnel_route_http_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+                self::$oCRNRSTN_CONFIG_MGR->input_data_value($dir_path, 'crnrstn_meta_preview_asset_tunnel_route_dir_path', 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+
+            }
+
+        }
+
+        return true;
+
+    }
+
     public function config_init_system_asset_mode($env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MODE_BASE64){
 
         /*
@@ -3172,6 +3468,7 @@ class crnrstn {
                 //, $crnrstn_http_endpoint = '',
                 // $crnrstn_dir_path = '',
                 // $crnrstn_root_directory = '_crnrstn'
+                //error_log(__LINE__ . ' crnrstn input_data_value() $crnrstn_http_endpoint['.$crnrstn_http_endpoint.'].');
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_http_endpoint, 'crnrstn_http_endpoint', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_path_dir, 'crnrstn_path_directory', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
                 self::$oCRNRSTN_CONFIG_MGR->input_data_value($crnrstn_system_directory, 'crnrstn_system_directory', 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES', 0, NULL, $env_key);
@@ -3575,6 +3872,8 @@ class crnrstn {
 
         }
 
+        return false;
+
     }
 
     public function specifyDatabaseExtension($env_key, $type){
@@ -3582,6 +3881,127 @@ class crnrstn {
         $this->error_log('CRNRSTN :: Specify database extension. Database type=[' . $type . '] specified for environment=[' . $env_key . '] on server [' . $_SERVER['SERVER_NAME'] . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
         self::$database_extension_type_ARRAY[$this->config_serial_hash][hash($this->system_hash_algo, $env_key)] = $type;
+
+    }
+
+    public function config_include_sql_silo($env_key, $crnrstn_resource_config_file_path){
+
+        try{
+
+            //
+            // IS THE ENVIRONMENT DETECTED?
+            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+                if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key, NULL, true))){
+
+                    if(is_file($crnrstn_resource_config_file_path)){
+
+                        //
+                        // ACQUIRE FILE VERSIONING CHECKSUM
+                        $tmp_file_md5 = md5_file($crnrstn_resource_config_file_path);
+                        self::$system_files_version_hash_ARRAY[$crnrstn_resource_config_file_path] = $tmp_file_md5;
+
+                        //
+                        // EXTRACT RESOURCE CONFIGURATION FROM FILE
+                        $this->error_log('Including and evaluating file [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        include_once($crnrstn_resource_config_file_path);
+
+                    }else{
+
+                        //
+                        // WE COULD NOT FIND THE CONFIGURATION FILE
+                        $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        //
+                        // HOOOSTON...VE HAF PROBLEM!
+                        //throw new Exception('Unable to process system resource for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
+
+                    }
+
+                }
+
+            }
+
+            return true;
+
+        }catch(Exception $e){
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            //
+            // RETURN NOTHING
+            return false;
+
+        }
+
+    }
+
+    public function config_include_social_media($env_key, $crnrstn_resource_config_file_path){
+
+        try{
+
+            //error_log(__LINE__. ' crnrstn env=' . $env_key);
+            $this->ssdtla_enabled();
+
+            //
+            // IS THE ENVIRONMENT DETECTED?
+            //if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash]) && !$this->ssdtla_enabled){
+            if(isset(self::$server_env_key_hash_ARRAY[$this->config_serial_hash])){
+
+                //error_log(__LINE__ . ' crnrstn ssdtla_enabled=' . print_r($tmp_bool, true). ' die();');
+                //die();
+
+                //
+                // DOES THE DETECTED ENVIRONMENT ALIGN WITH METHOD INPUT KEY?
+                if($env_key == CRNRSTN_RESOURCE_ALL || (self::$server_env_key_hash_ARRAY[$this->config_serial_hash] == $this->hash($env_key, NULL, true))){
+
+                    if(is_file($crnrstn_resource_config_file_path)){
+
+                        //
+                        // ACQUIRE FILE VERSIONING CHECKSUM
+                        $tmp_file_md5 = md5_file($crnrstn_resource_config_file_path);
+                        self::$system_files_version_hash_ARRAY[$crnrstn_resource_config_file_path] = $tmp_file_md5;
+
+                        //
+                        // EXTRACT RESOURCE CONFIGURATION FROM FILE
+                        $this->error_log('Including and evaluating file [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        include_once($crnrstn_resource_config_file_path);
+
+                    }else{
+
+                        //
+                        // WE COULD NOT FIND THE CONFIGURATION FILE
+                        $this->error_log('NOTICE :: File path data not recognized as a file. [' . $crnrstn_resource_config_file_path . '].', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
+
+                        //
+                        // HOOOSTON...VE HAF PROBLEM!
+                        //throw new Exception('Unable to process system resource for environment [' . self::$server_env_key_hash_ARRAY[$this->config_serial_hash] . '].');
+
+                    }
+
+                }
+
+            }
+
+            return true;
+
+        }catch(Exception $e){
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            $this->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            //
+            // RETURN NOTHING
+            return false;
+
+        }
 
     }
 
@@ -3993,7 +4413,8 @@ class crnrstn {
 
         $this->asset_routing_data_key_lookup_ARRAY['social'] = $tmp_ARRAY;
 
-        $tmp_ARRAY = array('5' => 'FIVE', 'apache_feather_logo'=> 'APACHE_FEATHER', 'crnrstn_R_lg' => 'CRNRSTN_R_LG', 'crnrstn_R_md' => 'CRNRSTN_R_MD',
+        $tmp_ARRAY = array('crnrstn_logo_social_preview_github_00' => 'SOCIAL_META_PREVIEW', '5' => 'FIVE', 'apache_feather_logo'=> 'APACHE_FEATHER',
+            'crnrstn_R_lg' => 'CRNRSTN_R_LG', 'crnrstn_R_md' => 'CRNRSTN_R_MD',
             'crnrstn_R_md_plus_wall' => 'CRNRSTN_R_WALL', 'crnrstn_R_sm' => 'CRNRSTN_R_SM', 'crnrstn_css_validator_logo_smedia' => 'crnrstn_css_validator_logo_smedia',
             'crnrstn_logo_lg' => 'CRNRSTN_LOGO', 'crnrstn_logo_md' => 'crnrstn_logo_md', 'crnrstn_logo_sm' => 'crnrstn_logo_sm',
             'crnrstn_logo_twitter_api_app_profile' => 'crnrstn_logo_twitter_api_app_profile', 'crnrstn_message_bubbles_seriesblue00' => 'MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00',
@@ -4031,12 +4452,114 @@ class crnrstn {
             'primary_nav_seriesblue00_120x120_minimize_hvr' => 'PRIMARY_NAV_BLUE00_MINIMIZE_HOVER',
             'primary_nav_seriesblue00_120x120_minimize_inactive' => 'PRIMARY_NAV_BLUE00_MINIMIZE_INACTIVE',
             'r_stone_giant_pillar' => 'R_STONE_GIANT_PILLAR', 'r_stone_pillar' => 'R_STONE_PILLAR', 'redhat_hat_logo' => 'REDHAT_HAT_LOGO',
-            'redhat_logo' => 'REDHAT_LOGO', 'signin_frm_reflection' => 'BG_ELEMENT_REFLECTION_SIGNIN', 'stache' => 'STACHE',
+            'redhat_logo' => 'REDHAT_LOGO', 'signin_frm_reflection' => 'BG_ELEMENT_REFLECTION_SIGNIN', 'stache' => 'STACHE', 'stache_social' => 'STACHE_SOCIAL',
             'success_chk' => 'SUCCESS_CHECK', 'triangle_alert' => 'NOTICE_TRI_ALERT', 'triangle_alert_hq' => 'NOTICE_TRI_ALERT_HQ',
             'wood' => 'WOOD', 'x' => 'TRANSPARENT_1X1', 'zend_framework' => 'ZEND_FRAMEWORK',
             'zend_framework_3' => 'ZEND_FRAMEWORK_3', 'zend_logo' => 'ZEND_LOGO');
 
         $this->asset_routing_data_key_lookup_ARRAY['system'] = $tmp_ARRAY;
+
+        $tmp_ARRAY = array('meta/php/add_cookie' => 'add_cookie', 'meta/php/add_raw_cookie' => 'add_raw_cookie',
+            'meta/php/add_system_resource' => 'add_system_resource', 'meta/php/better_scandir' => 'better_scandir',
+            'meta/php/bit_stringin' => 'bit_stringin', 'meta/php/bit_stringout' => 'bit_stringout', 'meta/php/catch_exception' => 'catch_exception',
+            'meta/php/clear_all_bits_set_one' => 'clear_all_bits_set_one', 'meta/php/config_add_database' => 'config_add_database',
+            'meta/php/config_add_environment' => 'config_add_environment', 'meta/php/config_add_seo_analytics' => 'config_add_seo_analytics',
+            'meta/php/config_add_seo_engagement' => 'config_add_seo_engagement', 'meta/php/config_add_system_resource' => 'config_add_system_resource',
+            'meta/php/config_deny_access' => 'config_deny_access', 'meta/php/config_detect_environment' => 'config_detect_environment',
+            'meta/php/config_include_encryption' => 'config_include_encryption', 'meta/php/config_include_seo_analytics' => 'config_include_seo_analytics',
+            'meta/php/config_include_seo_engagement' => 'config_include_seo_engagement', 'meta/php/config_include_social_media' => 'config_include_social_media',
+            'meta/php/config_include_sql_silo' => 'config_include_sql_silo', 'meta/php/config_include_system_resources' => 'config_include_system_resources', 'meta/php/config_include_wordpress' => 'config_include_wordpress',
+            'meta/php/config_ini_set' => 'config_ini_set', 'meta/php/config_init_asset_mapping_css' => 'config_init_asset_mapping_css',
+            'meta/php/config_init_asset_mapping_favicon' => 'config_init_asset_mapping_favicon', 'meta/php/config_init_asset_mapping_js' => 'config_init_asset_mapping_js',
+            'meta/php/config_init_asset_mapping_social_img' => 'config_init_asset_mapping_social_img', 'meta/php/config_init_asset_mapping_system_img' => 'config_init_asset_mapping_system_img',
+            'meta/php/config_init_cookie_encryption' => 'config_init_cookie_encryption', 'meta/php/config_init_database_encryption' => 'config_init_database_encryption',
+            'meta/php/config_init_html_mode_email' => 'config_init_html_mode_email', 'meta/php/config_init_http' => 'config_init_http',
+            'meta/php/config_init_js_css_minimization' => 'config_init_js_css_minimization', 'meta/php/config_init_logging' => 'config_init_logging',
+            'meta/php/config_init_oersl_encryption' => 'config_init_oersl_encryption', 'meta/php/config_init_session_encryption' => 'config_init_session_encryption',
+            'meta/php/config_init_soap_encryption' => 'config_init_soap_encryption', 'meta/php/config_init_system_asset_mode' => 'config_init_system_asset_mode',
+            'meta/php/config_init_tunnel_encryption' => 'config_init_tunnel_encryption', 'meta/php/config_load_defaults' => 'config_load_defaults',
+            'meta/php/config_set_crnrstn_as_err_handler' => 'config_set_crnrstn_as_err_handler', 'meta/php/config_set_timezone_default' => 'config_set_timezone_default',
+            'meta/php/config_set_ui_theme_style' => 'config_set_ui_theme_style', 'meta/php/data_decrypt' => 'data_decrypt', 'meta/php/data_encrypt' => 'data_encrypt',
+            'meta/php/delete_all_cookies' => 'delete_all_cookies', 'meta/php/delete_cookie' => 'delete_cookie', 'meta/php/device_type' => 'device_type',
+            'meta/php/device_type_bit' => 'device_type_bit', 'meta/php/error_log' => 'error_log', 'meta/php/format_bytes' => 'format_bytes',
+            'meta/php/generate_new_key' => 'generate_new_key', 'meta/php/get_cookie' => 'get_cookie', 'meta/php/get_disk_free_space' => 'get_disk_free_space',
+            'meta/php/get_disk_performance_metric' => 'get_disk_performance_metric', 'meta/php/get_disk_size' => 'get_disk_size',
+            'meta/php/get_headers' => 'get_headers', 'meta/php/get_mobile_browsers' => 'get_mobile_browsers', 'meta/php/get_mobile_devices' => 'get_mobile_devices',
+            'meta/php/get_mobile_os' => 'get_mobile_os', 'meta/php/get_resource' => 'get_resource', 'meta/php/get_resource_count' => 'get_resource_count',
+            'meta/php/get_tablet_devices' => 'get_tablet_devices', 'meta/php/get_user_agent' => 'get_user_agent', 'meta/php/grant_permissions_fwrite' => 'grant_permissions_fwrite',
+            'meta/php/hash' => 'hash', 'meta/php/header_options_add' => 'header_options_add', 'meta/php/header_options_apply' => 'header_options_apply',
+            'meta/php/header_signature_options_return' => 'header_signature_options_return', 'meta/php/ini_get' => 'ini_get', 'meta/php/ini_set' => 'ini_set',
+            'meta/php/initialize_bit' => 'initialize_bit', 'meta/php/initialize_serialized_bit' => 'initialize_serialized_bit',
+            'meta/php/is_bit_set' => 'is_bit_set', 'meta/php/is_configured' => 'is_configured', 'meta/php/is_mobile' => 'is_mobile',
+            'meta/php/is_serialized_bit_set' => 'is_serialized_bit_set', 'meta/php/is_ssl' => 'is_ssl', 'meta/php/is_tablet' => 'is_tablet',
+            'meta/php/iso_language_html' => 'iso_language_html', 'meta/php/iso_language_profile' => 'iso_language_profile', 'meta/php/iso_language_profile_count' => 'iso_language_profile_count',
+            'meta/php/isset_data_key' => 'isset_data_key', 'meta/php/isset_encryption' => 'isset_encryption', 'meta/php/openssl_get_cipher_methods' => 'openssl_get_cipher_methods',
+            'meta/php/print_r' => 'print_r', 'meta/php/print_r_str' => 'print_r_str', 'meta/php/proper_version' => 'proper_version', 'meta/php/return_ddo_key' => 'return_ddo_key',
+            'meta/php/return_int_const_profile' => 'return_int_const_profile', 'meta/php/return_set_bits' => 'return_set_bits', 'meta/php/return_sticky_media_link' => 'return_sticky_media_link',
+            'meta/php/return_system_image' => 'return_system_image', 'meta/php/return_youtube_embed' => 'return_youtube_embed', 'meta/php/salt' => 'salt',
+            'meta/php/serialized_bit_stringin' => 'serialized_bit_stringin', 'meta/php/serialized_bit_stringout' => 'serialized_bit_stringout',
+            'meta/php/set_desktop' => 'set_desktop', 'meta/php/set_mobile' => 'set_mobile', 'meta/php/set_tablet' => 'set_tablet', 'meta/php/set_timezone_default' => 'set_timezone_default',
+            'meta/php/set_ui_theme_style' => 'set_ui_theme_style', 'meta/php/soap_defencoding' => 'soap_defencoding', 'meta/php/strrtrim' => 'strrtrim',
+            'meta/php/system_base64_synchronize' => 'system_base64_synchronize', 'meta/php/system_hash_algo' => 'system_hash_algo',
+            'meta/php/system_output_footer_html' => 'system_output_footer_html', 'meta/php/system_output_head_html' => 'system_output_head_html',
+            'meta/php/toggle_bit' => 'toggle_bit', 'meta/php/toggle_serialized_bit' => 'toggle_serialized_bit', 'meta/php/var_dump' => 'var_dump',
+            'meta/php/version_apache' => 'version_apache', 'meta/php/version_crnrstn' => 'version_crnrstn', 'meta/php/version_linux' => 'version_linux',
+            'meta/php/version_mobile_detect' => 'version_mobile_detect', 'meta/php/version_mysqli' => 'version_mysqli', 'meta/php/version_openssl' => 'version_openssl',
+            'meta/php/version_php' => 'version_php', 'meta/php/version_soap' => 'version_soap');
+
+        $this->asset_routing_data_key_lookup_ARRAY['meta'] = $tmp_ARRAY;
+
+        $tmp_ARRAY = array('add_cookie' => 'ADD_COOKIE_SOCIAL_META_PREVIEW', 'add_raw_cookie' => 'ADD_RAW_COOKIE_SOCIAL_META_PREVIEW',
+            'add_system_resource' => 'ADD_SYSTEM_RESOURCE_SOCIAL_META_PREVIEW', 'better_scandir' => 'BETTER_SCANDIR_SOCIAL_META_PREVIEW',
+            'bit_stringin' => 'BIT_STRINGIN_SOCIAL_META_PREVIEW', 'bit_stringout' => 'BIT_STRINGOUT_SOCIAL_META_PREVIEW', 'catch_exception' => 'CATCH_EXCEPTION_SOCIAL_META_PREVIEW',
+            'clear_all_bits_set_one' => 'CLEAR_ALL_BITS_SET_ONE_SOCIAL_META_PREVIEW', 'config_add_database' => 'CONFIG_ADD_DATABASE_SOCIAL_META_PREVIEW',
+            'config_add_environment' => 'CONFIG_ADD_ENVIRONMENT_SOCIAL_META_PREVIEW', 'config_add_seo_analytics' => 'CONFIG_ADD_SEO_ANALYTICS_SOCIAL_META_PREVIEW',
+            'config_add_seo_engagement' => 'CONFIG_ADD_SEO_ENGAGEMENT_SOCIAL_META_PREVIEW', 'config_add_system_resource' => 'CONFIG_ADD_SYSTEM_RESOURCE_SOCIAL_META_PREVIEW',
+            'config_deny_access' => 'CONFIG_DENY_ACCESS_SOCIAL_META_PREVIEW', 'config_detect_environment' => 'CONFIG_DETECT_ENVIRONMENT_SOCIAL_META_PREVIEW',
+            'config_include_encryption' => 'CONFIG_INCLUDE_ENCRYPTION_SOCIAL_META_PREVIEW', 'config_include_seo_analytics' => 'CONFIG_INCLUDE_SEO_ANALYTICS_SOCIAL_META_PREVIEW',
+            'config_include_seo_engagement' => 'CONFIG_INCLUDE_SEO_ENGAGEMENT_SOCIAL_META_PREVIEW', 'config_include_social_media' => 'CONFIG_INCLUDE_SOCIAL_MEDIA_SOCIAL_META_PREVIEW',
+            'config_include_sql_silo' => 'CONFIG_INCLUDE_SQL_SILO_SOCIAL_META_PREVIEW', 'config_include_system_resources' => 'CONFIG_INCLUDE_SYSTEM_RESOURCES_SOCIAL_META_PREVIEW',
+            'config_include_wordpress' => 'CONFIG_INCLUDE_WORDPRESS_SOCIAL_META_PREVIEW', 'config_ini_set' => 'CONFIG_INI_SET_SOCIAL_META_PREVIEW',
+            'config_init_asset_mapping_css' => 'CONFIG_INIT_ASSET_MAPPING_CSS_SOCIAL_META_PREVIEW', 'config_init_asset_mapping_favicon' => 'CONFIG_INIT_ASSET_MAPPING_FAVICON_SOCIAL_META_PREVIEW',
+            'config_init_asset_mapping_js' => 'CONFIG_INIT_ASSET_MAPPING_JS_SOCIAL_META_PREVIEW', 'config_init_asset_mapping_social_img' => 'CONFIG_INIT_ASSET_MAPPING_SOCIAL_IMG_SOCIAL_META_PREVIEW',
+            'config_init_asset_mapping_system_img' => 'CONFIG_INIT_ASSET_MAPPING_SYSTEM_IMG_SOCIAL_META_PREVIEW', 'config_init_cookie_encryption' => 'CONFIG_INIT_COOKIE_ENCRYPTION_SOCIAL_META_PREVIEW',
+            'config_init_database_encryption' => 'CONFIG_INIT_DATABASE_ENCRYPTION_SOCIAL_META_PREVIEW', 'config_init_html_mode_email' => 'CONFIG_INIT_HTML_MODE_EMAIL_SOCIAL_META_PREVIEW',
+            'config_init_http' => 'CONFIG_INIT_HTTP_SOCIAL_META_PREVIEW', 'config_init_js_css_minimization' => 'CONFIG_INIT_JS_CSS_MINIMIZATION_SOCIAL_META_PREVIEW',
+            'config_init_logging' => 'CONFIG_INIT_LOGGING_SOCIAL_META_PREVIEW', 'config_init_oersl_encryption' => 'CONFIG_INIT_OERSL_ENCRYPTION_SOCIAL_META_PREVIEW',
+            'config_init_session_encryption' => 'CONFIG_INIT_SESSION_ENCRYPTION_SOCIAL_META_PREVIEW', 'config_init_soap_encryption' => 'CONFIG_INIT_SOAP_ENCRYPTION_SOCIAL_META_PREVIEW',
+            'config_init_system_asset_mode' => 'CONFIG_INIT_SYSTEM_ASSET_MODE_SOCIAL_META_PREVIEW', 'config_init_tunnel_encryption' => 'CONFIG_INIT_TUNNEL_ENCRYPTION_SOCIAL_META_PREVIEW',
+            'config_load_defaults' => 'CONFIG_LOAD_DEFAULTS_SOCIAL_META_PREVIEW', 'config_set_crnrstn_as_err_handler' => 'CONFIG_SET_CRNRSTN_AS_ERR_HANDLER_SOCIAL_META_PREVIEW',
+            'config_set_timezone_default' => 'CONFIG_SET_TIMEZONE_DEFAULT_SOCIAL_META_PREVIEW', 'config_set_ui_theme_style' => 'CONFIG_SET_UI_THEME_STYLE_SOCIAL_META_PREVIEW',
+            'data_decrypt' => 'DATA_DECRYPT_SOCIAL_META_PREVIEW', 'data_encrypt' => 'DATA_ENCRYPT_SOCIAL_META_PREVIEW', 'delete_all_cookies' => 'DELETE_ALL_COOKIES_SOCIAL_META_PREVIEW',
+            'delete_cookie' => 'DELETE_COOKIE_SOCIAL_META_PREVIEW', 'device_type' => 'DEVICE_TYPE_SOCIAL_META_PREVIEW', 'device_type_bit' => 'DEVICE_TYPE_BIT_SOCIAL_META_PREVIEW',
+            'error_log' => 'ERROR_LOG_SOCIAL_META_PREVIEW', 'format_bytes' => 'FORMAT_BYTES_SOCIAL_META_PREVIEW', 'generate_new_key' => 'GENERATE_NEW_KEY_SOCIAL_META_PREVIEW',
+            'get_cookie' => 'GET_COOKIE_SOCIAL_META_PREVIEW', 'get_disk_free_space' => 'GET_DISK_FREE_SPACE_SOCIAL_META_PREVIEW', 'get_disk_performance_metric' => 'GET_DISK_PERFORMANCE_METRIC_SOCIAL_META_PREVIEW',
+            'get_disk_size' => 'GET_DISK_SIZE_SOCIAL_META_PREVIEW', 'get_headers' => 'GET_HEADERS_SOCIAL_META_PREVIEW', 'get_mobile_browsers' => 'GET_MOBILE_BROWSERS_SOCIAL_META_PREVIEW',
+            'get_mobile_devices' => 'GET_MOBILE_DEVICES_SOCIAL_META_PREVIEW', 'get_mobile_os' => 'GET_MOBILE_OS_SOCIAL_META_PREVIEW', 'get_resource' => 'GET_RESOURCE_SOCIAL_META_PREVIEW',
+            'get_resource_count' => 'GET_RESOURCE_COUNT_SOCIAL_META_PREVIEW', 'get_tablet_devices' => 'GET_TABLET_DEVICES_SOCIAL_META_PREVIEW', 'get_user_agent' => 'GET_USER_AGENT_SOCIAL_META_PREVIEW',
+            'grant_permissions_fwrite' => 'GRANT_PERMISSIONS_FWRITE_SOCIAL_META_PREVIEW', 'hash' => 'HASH_SOCIAL_META_PREVIEW', 'header_options_add' => 'HEADER_OPTIONS_ADD_SOCIAL_META_PREVIEW',
+            'header_options_apply' => 'HEADER_OPTIONS_APPLY_SOCIAL_META_PREVIEW', 'header_signature_options_return' => 'HEADER_SIGNATURE_OPTIONS_RETURN_SOCIAL_META_PREVIEW',
+            'ini_get' => 'INI_GET_SOCIAL_META_PREVIEW', 'ini_set' => 'INI_SET_SOCIAL_META_PREVIEW', 'initialize_bit' => 'INITIALIZE_BIT_SOCIAL_META_PREVIEW',
+            'initialize_serialized_bit' => 'INITIALIZE_SERIALIZED_BIT_SOCIAL_META_PREVIEW', 'is_bit_set' => 'IS_BIT_SET_SOCIAL_META_PREVIEW',
+            'is_configured' => 'IS_CONFIGURED_SOCIAL_META_PREVIEW', 'is_mobile' => 'IS_MOBILE_SOCIAL_META_PREVIEW', 'is_serialized_bit_set' => 'IS_SERIALIZED_BIT_SET_SOCIAL_META_PREVIEW',
+            'is_ssl' => 'IS_SSL_SOCIAL_META_PREVIEW', 'is_tablet' => 'IS_TABLET_SOCIAL_META_PREVIEW', 'iso_language_html' => 'ISO_LANGUAGE_HTML_SOCIAL_META_PREVIEW',
+            'iso_language_profile' => 'ISO_LANGUAGE_PROFILE_SOCIAL_META_PREVIEW', 'iso_language_profile_count' => 'ISO_LANGUAGE_PROFILE_COUNT_SOCIAL_META_PREVIEW',
+            'isset_data_key' => 'ISSET_DATA_KEY_SOCIAL_META_PREVIEW', 'isset_encryption' => 'ISSET_ENCRYPTION_SOCIAL_META_PREVIEW', 'openssl_get_cipher_methods' => 'OPENSSL_GET_CIPHER_METHODS_SOCIAL_META_PREVIEW',
+            'print_r' => 'PRINT_R_SOCIAL_META_PREVIEW', 'print_r_str' => 'PRINT_R_STR_SOCIAL_META_PREVIEW', 'proper_version' => 'PROPER_VERSION_SOCIAL_META_PREVIEW',
+            'return_ddo_key' => 'RETURN_DDO_KEY_SOCIAL_META_PREVIEW', 'return_int_const_profile' => 'RETURN_INT_CONST_PROFILE_SOCIAL_META_PREVIEW', 'return_set_bits' => 'RETURN_SET_BITS_SOCIAL_META_PREVIEW',
+            'return_sticky_media_link' => 'RETURN_STICKY_MEDIA_LINK_SOCIAL_META_PREVIEW', 'return_system_image' => 'RETURN_SYSTEM_IMAGE_SOCIAL_META_PREVIEW',
+            'return_youtube_embed' => 'RETURN_YOUTUBE_EMBED_SOCIAL_META_PREVIEW', 'salt' => 'SALT_SOCIAL_META_PREVIEW', 'serialized_bit_stringin' => 'SERIALIZED_BIT_STRINGIN_SOCIAL_META_PREVIEW',
+            'serialized_bit_stringout' => 'SERIALIZED_BIT_STRINGOUT_SOCIAL_META_PREVIEW', 'set_desktop' => 'SET_DESKTOP_SOCIAL_META_PREVIEW', 'set_mobile' => 'SET_MOBILE_SOCIAL_META_PREVIEW',
+            'set_tablet' => 'SET_TABLET_SOCIAL_META_PREVIEW', 'set_timezone_default' => 'SET_TIMEZONE_DEFAULT_SOCIAL_META_PREVIEW', 'set_ui_theme_style' => 'SET_UI_THEME_STYLE_SOCIAL_META_PREVIEW',
+            'soap_defencoding' => 'SOAP_DEFENCODING_SOCIAL_META_PREVIEW', 'strrtrim' => 'STRRTRIM_SOCIAL_META_PREVIEW', 'system_base64_synchronize' => 'SYSTEM_BASE64_SYNCHRONIZE_SOCIAL_META_PREVIEW',
+            'system_hash_algo' => 'SYSTEM_HASH_ALGO_SOCIAL_META_PREVIEW', 'system_output_footer_html' => 'SYSTEM_OUTPUT_FOOTER_HTML_SOCIAL_META_PREVIEW',
+            'system_output_head_html' => 'SYSTEM_OUTPUT_HEAD_HTML_SOCIAL_META_PREVIEW', 'toggle_bit' => 'TOGGLE_BIT_SOCIAL_META_PREVIEW', 'toggle_serialized_bit' => 'TOGGLE_SERIALIZED_BIT_SOCIAL_META_PREVIEW',
+            'var_dump' => 'VAR_DUMP_SOCIAL_META_PREVIEW', 'version_apache' => 'VERSION_APACHE_SOCIAL_META_PREVIEW', 'version_crnrstn' => 'VERSION_CRNRSTN_SOCIAL_META_PREVIEW',
+            'version_linux' => 'VERSION_LINUX_SOCIAL_META_PREVIEW', 'version_mobile_detect' => 'VERSION_MOBILE_DETECT_SOCIAL_META_PREVIEW',
+            'version_mysqli' => 'VERSION_MYSQLI_SOCIAL_META_PREVIEW', 'version_openssl' => 'VERSION_OPENSSL_SOCIAL_META_PREVIEW', 'version_php' => 'VERSION_PHP_SOCIAL_META_PREVIEW',
+            'version_soap' => 'VERSION_SOAP_SOCIAL_META_PREVIEW');
+
+        $this->asset_routing_data_key_lookup_ARRAY['module_key'] = $tmp_ARRAY;
 
         $this->asset_routing_data_key_lookup_ARRAY['favicon'] = array('crnrstn/favicon.ico' => 'crnrstn/favicon.ico', 'jony5/favicon.ico' => 'jony5/favicon.ico', 'bassdrive/favicon.ico' => 'bassdrive/favicon.ico');
 
@@ -4764,7 +5287,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             switch($message_type){
                 case 'detection':
 
-                    $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
+                    if(!isset($this->oCRNRSTN_CS_CONTROLLER)){
+
+                        $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
+
+                    }
 
                     $this->config_init_system_asset_mode();
                     $this->config_init_http(CRNRSTN_RESOURCE_ALL, '', CRNRSTN_ROOT);
@@ -4815,7 +5342,11 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                 break;
                 default:
 
-                    $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
+                    if(!isset($this->oCRNRSTN_CS_CONTROLLER)){
+
+                        $this->oCRNRSTN_CS_CONTROLLER = $this->return_content_source_controller();
+
+                    }
 
                     $this->config_init_system_asset_mode();
                     $this->config_init_http(CRNRSTN_RESOURCE_ALL, '', CRNRSTN_ROOT);
@@ -5207,6 +5738,12 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
         }
 
+        //error_log(__LINE__ . ' crnrstn $resource_constant[' . $resource_constant . ']. $spool_for_output[' . print_r($spool_for_output, true) . ']. $footer_html_output[' . print_r($footer_html_output, true) . '].');
+
+        //
+        // META TAG INTEGRATIONS
+        $tmp_head_html_output .= $this->return_html_meta();
+
         //
         // CHECK FOR METHOD CALL PASSED RESOURCE PARAM...AND FLAG FOR OUTPUT.
         if(isset($resource_constant)){
@@ -5566,6 +6103,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)
                         if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL]) ){
 
+                            //error_log(__LINE__ . ' crnrstn str concat [CRNRSTN_UI_SOAP_DATA_TUNNEL].');
                             $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
                             $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
 
@@ -5627,6 +6165,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
                         //
                         // CRNRSTN :: SOAP-SERVICES DATA TUNNEL LAYER ARCHITECTURE (SSDTLA)
                         if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL]) ){
+                            //error_log(__LINE__ . ' crnrstn str concat [CRNRSTN_UI_SOAP_DATA_TUNNEL].');
 
                             $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
                             $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
@@ -5745,6 +6284,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
             }
 
             if(!isset($this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL])){
+                error_log(__LINE__ . ' crnrstn str concat [CRNRSTN_UI_SOAP_DATA_TUNNEL].');
 
                 $this->html_footer_build_flag_ARRAY[CRNRSTN_UI_SOAP_DATA_TUNNEL] = 1;
                 $tmp_footer_html_output .= $this->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
@@ -5766,6 +6306,127 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
         }
 
         return $tmp_footer_html_output;
+
+    }
+
+    private function return_html_meta(){
+
+        $tmp_str = '';
+
+        $tmp_meta_cnt = $this->get_resource_count('HTML_OUTPUT', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL');
+        if($tmp_meta_cnt < 1){
+
+            $tmp_str = '';
+            $tmp_source = '';
+            //$tmp_module_page_key = $this->oDATA_TUNNEL_SERVICES_MGR->return_received_data('crnrstn_interact_ui_link_text_click');
+
+            //
+            // ONLY LOAD CRNRSTN META FOR CRNRSTN.
+            //if(strlen($tmp_module_page_key) > 0 || $this->crnrstn_asset_family === 'module_key'){
+            if($this->crnrstn_asset_family === 'module_key' || $this->crnrstn_asset_family === 'meta'){
+
+                $tmp_source = 'CRNRSTN';
+
+            }
+
+            //error_log(__LINE__ . ' crnrstn crnrstn_asset_family[' . $this->crnrstn_asset_family . ']. $tmp_source[' . $tmp_source . ']. ssdtla_enabled[' . print_r($this->ssdtla_enabled,true) . '].');
+
+            switch($tmp_source){
+                case 'CRNRSTN':
+
+                    $tmp_meta_cnt = $this->get_resource_count('HTML_HEAD_CRNRSTN_META', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL');
+                    $tmp_meta_cnt_last = $tmp_meta_cnt - 1;
+
+                    //error_log(__LINE__ . ' crnrstn $tmp_meta_cnt[' . $tmp_meta_cnt . ']. crnrstn_request_ugc_val[' . $this->crnrstn_request_ugc_val . ']. crnrstn_asset_return_method_key[' . $this->crnrstn_asset_return_method_key . '].');
+                    $tmp_str .= '
+    ';
+                    for($i = 0; $i < $tmp_meta_cnt; $i++){
+
+                        $tmp_data = $this->get_resource('HTML_HEAD_CRNRSTN_META', $i, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL');
+                        if(is_array($tmp_data)){
+
+                            $tmp_cnt = sizeof($tmp_data);
+                            for($ii = 0; $ii < $tmp_cnt; $ii++){
+
+                                if($ii === 0){
+
+                                    $tmp_str .= $tmp_data[$ii] . '
+    ';
+
+                                }else{
+
+                                    $tmp_str .= $tmp_data[$ii] . '
+    ';
+
+                                }
+
+                            }
+
+                        }else{
+
+                            if($i === 0) {
+
+                                $tmp_str .= $tmp_data . '
+    ';
+
+                            }else{
+
+                                if($i === $tmp_meta_cnt_last){
+
+                                    $tmp_str .= $tmp_data;
+
+                                }else{
+
+                                    $tmp_str .= $tmp_data . '
+    ';
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                break;
+                default:
+
+                    $tmp_meta_cnt = $this->get_resource_count('HTML_HEAD_META', 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL');
+                    //error_log(__LINE__ . ' crnrstn $tmp_meta_cnt[' . $tmp_meta_cnt . '].');
+                    $tmp_str .= '
+    ';
+                    for($i = 0; $i < $tmp_meta_cnt; $i++){
+
+                        $tmp_data = $this->get_resource('HTML_HEAD_META', $i, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL');
+                        if(is_array($tmp_data)){
+
+                            $tmp_cnt = sizeof($tmp_data);
+                            for($ii = 0; $ii < $tmp_cnt; $ii++){
+
+                                $tmp_str .= $tmp_data[$ii] . '
+    ';
+
+                            }
+
+                        }else{
+
+                            //error_log(__LINE__ . ' crnrstn $tmp_meta_cnt[' . $tmp_meta_cnt . ']. $tmp_data[' . $tmp_data . ']');
+                            $tmp_str .= $tmp_data . '
+    ';
+
+                        }
+
+                    }
+
+                break;
+
+            }
+
+            $this->add_system_resource('HTML_OUTPUT', $tmp_str, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL');
+
+        }
+
+        return $tmp_str;
 
     }
 
@@ -6977,7 +7638,7 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     }
 
-    private function config_init_OERSL_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+    private function config_init_oersl_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
         //
         // IS THE ENVIRONMENT DETECTED?
@@ -10134,15 +10795,165 @@ $oCRNRSTN->config_detect_environment(\'APACHE_WOLF_PUP\', \'SERVER_NAME\', \'' .
 
     */
 
-    public function return_system_image($system_asset_constant, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $image_output_mode = NULL){
+    public function return_system_image($system_asset_constant, $width = NULL, $height = NULL, $hyperlink = NULL, $alt = NULL, $title = NULL, $target = NULL, $output_mode = CRNRSTN_UI_IMG_STR){
 
-        return $this->oCRNRSTN_ASSET_MGR->return_system_image($system_asset_constant, $width, $height, $hyperlink, $alt, $title, $target, $image_output_mode);
+        return $this->oCRNRSTN_ASSET_MGR->return_system_image($system_asset_constant, $width, $height, $hyperlink, $alt, $title, $target, $output_mode);
 
     }
 
     public function return_creative($media_element_key, $image_output_mode = NULL, $creative_mode = NULL){
 
         return $this->oCRNRSTN_ASSET_MGR->return_creative($media_element_key, $image_output_mode, $creative_mode);
+
+    }
+
+    private function isset_param($super_global, $param){
+
+        if(isset($super_global[$param])){
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
+    public function reset_asset_request_meta(){
+
+        //
+        // ONLY USED FOR ASSETS/IMAGES. EXCLUDE DEEP LINK FUNCTIONALITY.
+        if($this->crnrstn_asset_family === 'module_key'){
+
+            return NULL;
+
+        }
+
+        //error_log(__LINE__ . ' crnrstn *OPERATION OMITTTED* reset_asset_request_meta [' . $this->asset_response_method_key . '] [' . $this->crnrstn_asset_family . '] [' . $this->crnrstn_asset_meta_path . ']');
+        //$this->asset_response_method_key = NULL;
+        //$this->crnrstn_asset_family = NULL;
+        //$this->crnrstn_asset_meta_path = NULL;
+
+    }
+
+    public function ssdtla_enabled(){
+
+        $this->ssdtla_pinged = true;
+
+        //
+        // SUPPORT FOR ASSET MAPPING STRAIGHT IMAGE RETURN.
+        if($this->isset_param($_GET, $this->session_salt())){
+
+            $tmp_salt_ugc_val = $_GET[$this->session_salt()];
+            //error_log(__LINE__ . ' crnrstn [' . $tmp_salt_ugc_val . '][' . $this->request_id . '].');
+
+            if(strlen($tmp_salt_ugc_val) > 0){
+
+                if($this->asset_routing_data_key_lookup('favicon', $tmp_salt_ugc_val)){
+
+                    $this->ssdtla_enabled = true;
+                    $this->crnrstn_asset_family = 'favicon';
+                    $this->crnrstn_request_ugc_val = $tmp_salt_ugc_val;
+
+                    //error_log(__LINE__ . ' crnrstn [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+                    return true;
+
+                }
+
+                if($this->asset_routing_data_key_lookup('system', $tmp_salt_ugc_val)){
+
+                    $this->ssdtla_enabled = true;
+                    $this->crnrstn_asset_family = 'system';
+                    $this->crnrstn_asset_return_method_key = $this->asset_return_method_key('system', $tmp_salt_ugc_val);
+                    $this->crnrstn_request_ugc_val = $tmp_salt_ugc_val;
+
+                    //error_log(__LINE__ . ' crnrstn [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . ']. method_key[' . $this->crnrstn_asset_return_method_key . '].');
+                    return true;
+
+                }
+
+                if($this->asset_routing_data_key_lookup('social', $tmp_salt_ugc_val)){
+
+                    $this->ssdtla_enabled = true;
+                    $this->crnrstn_asset_family = 'social';
+                    $this->crnrstn_asset_return_method_key = $this->asset_return_method_key('social', $tmp_salt_ugc_val);
+                    $this->crnrstn_request_ugc_val = $tmp_salt_ugc_val;
+
+                    //error_log(__LINE__ . ' crnrstn [' . $this->crnrstn_asset_family . ']  asset HOOKED[' . $tmp_salt_ugc_val . '].');
+                    return true;
+
+                }
+
+                if($this->asset_routing_data_key_lookup('css', $tmp_salt_ugc_val)){
+
+                    $this->ssdtla_enabled = true;
+                    $this->crnrstn_asset_family = 'css';
+                    $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_CSS';
+                    $this->crnrstn_asset_meta_path = $this->asset_return_method_key('css', $tmp_salt_ugc_val);
+                    $this->crnrstn_request_ugc_val = $tmp_salt_ugc_val;
+
+                    //error_log(__LINE__ . ' crnrstn [' . $this->crnrstn_asset_family . ']  asset HOOKED[' . $tmp_salt_ugc_val . '].');
+                    return true;
+
+                }
+
+                if($this->asset_routing_data_key_lookup('js', $tmp_salt_ugc_val)){
+
+                    $this->ssdtla_enabled = true;
+                    $this->crnrstn_asset_family = 'js';
+                    $this->crnrstn_asset_return_method_key = 'CRNRSTN_UI_JS';
+                    $this->crnrstn_asset_meta_path = $this->asset_return_method_key('js', $tmp_salt_ugc_val);
+                    $this->crnrstn_request_ugc_val = $tmp_salt_ugc_val;
+
+                    //error_log(__LINE__ . ' crnrstn [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+                    return true;
+
+                }
+
+                if($this->asset_routing_data_key_lookup('integrations', $tmp_salt_ugc_val)){
+
+                    $this->ssdtla_enabled = true;
+                    $this->crnrstn_asset_family = 'integrations';
+                    $this->crnrstn_asset_return_method_key = $this->asset_return_method_key('integrations', $tmp_salt_ugc_val);
+                    $this->crnrstn_request_ugc_val = $tmp_salt_ugc_val;
+
+                    //error_log(__LINE__ . ' crnrstn [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . '].');
+                    return true;
+
+                }
+
+                if($this->asset_routing_data_key_lookup('meta', $tmp_salt_ugc_val)){
+
+                    $this->ssdtla_enabled = true;
+                    $this->crnrstn_asset_family = 'meta';
+                    $this->crnrstn_asset_return_method_key  = $this->asset_return_method_key('integrations', $tmp_salt_ugc_val);
+                    //$this->crnrstn_asset_return_method_key = $tmp_salt_ugc_val;
+                    $this->crnrstn_request_ugc_val = $tmp_salt_ugc_val;
+
+                    error_log(__LINE__ . ' crnrstn [' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . ']. request_id[' . $this->request_id . '].');
+                    return true;
+
+                }
+
+                if($this->asset_routing_data_key_lookup('module_key', $tmp_salt_ugc_val)){
+
+                    $this->ssdtla_enabled = true;
+                    $this->crnrstn_asset_family = 'module_key';
+                    $this->crnrstn_asset_return_method_key = $tmp_salt_ugc_val;
+                    $this->crnrstn_request_ugc_val = $tmp_salt_ugc_val;
+
+                    error_log(__LINE__ . ' crnrstn crnrstn_asset_family[' . $this->crnrstn_asset_family . '] asset HOOKED[' . $tmp_salt_ugc_val . ']. request_id[' . $this->request_id . '].');
+                    return true;
+
+                }
+
+            }
+
+        }
+
+        return false;
 
     }
 

@@ -36,6 +36,19 @@ CRNRSTN :: Multi-Media, Web, and Social Media Integrations
     ~ Vimeo
     ~ UX Remap/Override on Native Performance of Lightbox_js
 
+//
+// January 3, 2022 @ 1838 hrs
+// DEMONSTRATION OF VIDEO INTEGRATION
+// SOURCE :: https://www.timbuk2.com/collections/all-travel-bags/products/544-copilot-luggage-roller
+<div class="product-images__video-holder">
+    <video autoplay="autoplay" loop="loop" muted="muted" playsinline="" data-alt="N2||544-2-2000 544-4-2000" class="product-images__video">
+        <source src="https://cdn.shopify.com/videos/c/vp/cac86a2b83174b57bb818fe4e1b85561/cac86a2b83174b57bb818fe4e1b85561.SD-480p-1.0Mbps-9262805.mp4" type="video/mp4">
+        <source src="https://cdn.shopify.com/videos/c/vp/cac86a2b83174b57bb818fe4e1b85561/cac86a2b83174b57bb818fe4e1b85561.HD-1080p-3.3Mbps-9262805.mp4" type="video/mp4">
+        <source src="https://cdn.shopify.com/videos/c/vp/cac86a2b83174b57bb818fe4e1b85561/cac86a2b83174b57bb818fe4e1b85561.HD-720p-2.1Mbps-9262805.mp4" type="video/mp4">
+        <source src="https://cdn.shopify.com/videos/c/vp/cac86a2b83174b57bb818fe4e1b85561/cac86a2b83174b57bb818fe4e1b85561.m3u8" type="video/mp4">
+                            Your browser does not support the video tag.
+    </video>
+</div>
 
 ##public function return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true)
 ##public function config_youtube_gallery($width = 560, $height = 315, $fullscreen = true, $pagination_unit = 4, $gallery_key = 'xxxx_serial_xxxx');

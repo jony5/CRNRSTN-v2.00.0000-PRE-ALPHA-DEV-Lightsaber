@@ -46,7 +46,7 @@
 
 //
 // CRNRSTN :: DEFINITIONS FOR CLASSES AND CONSTANTS
-require( CRNRSTN_ROOT . '/_crnrstn/_crnrstn.classdefinitions.inc.php' );
+require(CRNRSTN_ROOT . '/_crnrstn/_crnrstn.classdefinitions.inc.php' );
 
 /**
  * $CRNRSTN_debug_mode
@@ -259,6 +259,89 @@ $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_ADDR', '172
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PORT', '80', 5);
 $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PROTOCOL', 'HTTP/1.1', 5);
 
+/**
+ * $oCRNRSTN->config_init_http()
+ * DESCRIPTION :: Configure public IP image HTTP URI directory endpoint(s) for
+ *  CRNRSTN :: system notifications.
+ *
+ * @param   string $env_key is a custom user-defined value representing a specific environment within
+ * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
+ * will be used throughout this configuration process.
+ *
+ * @param   string $crnrstn_http_endpoint the entire http/s access url terminating on /_crnrstn/.
+ *
+ * @param   string $crnrstn_dir_path the entire file access directory path terminating on /_crnrstn.
+
+ */
+
+$oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'http://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('BLUEHOST_EVIFWEB', 'https://lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_MACBOOKPRO', 'http://172.16.225.128/jony5/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+
+/**
+ * $oCRNRSTN->config_init_system_asset_mode()
+ * DESCRIPTION :: Configure the HTML email image handling profile for CRNRSTN :: system notifications.
+ * OPTIONS ::
+ * CRNRSTN_ASSET_MODE_PNG
+ * CRNRSTN_ASSET_MODE_JPEG
+ * CRNRSTN_ASSET_MODE_BASE64
+ *
+ * @param   int $system_asset_mode constant. Use of any system images will resolve when
+ * coupled with specification of the appropriate images hosting directory with
+ *
+ * $oCRNRSTN->config_init_images_http(). This will indicate the nature of the
+ * creative (png, jpg or base64 encoded) that is to be returned by
+ * CRNRSTN :: for web and email access.
+ *
+ * @return	boolean TRUE
+ * Example ::
+ * $oCRNRSTN->config_init_system_asset_mode(CRNRSTN_ASSET_MODE_BASE64);
+ *
+ */
+/*
+config_init_system_asset_mode()
+CRNRSTN_ASSET_MODE_PNG
+CRNRSTN_ASSET_MODE_JPEG
+CRNRSTN_ASSET_MODE_BASE64 (WILL CAUSE JS AND CSS META TO BE INJECTED DIRECTLY INTO HTML <HEAD>)
+
+*/
+//
+// $env_key = CRNRSTN_RESOURCE_ALL, $format_default = CRNRSTN_ASSET_MODE_BASE64
+$oCRNRSTN->config_init_system_asset_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG);
+//$oCRNRSTN->config_init_system_asset_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
+
+/*
+//
+// JAVASCRIPT FRAMEWORK MINIMIZATION MODE
+Before deploying your website to production, be mindful that unminified
+JavaScript can significantly slow down the page for your users.
+
+Calling this method [config_init_js_css_minimization()] will invoke the
+use of xxx.min.js where available. This setting can be bound to an admin
+or dev's sign-in session, and the javascript that is development will be
+returned to this authenticated user, alone.
+
+*/
+
+//
+// ENABLE RETURN OF min.js AND min.css WHERE AVAILABLE.
+// FALSE = DEVELOPMENT JS + CSS; TRUE = JS/CSS MINIMIZATION (PRODUCTION VERSION), WHEN AVAILABLE.
+//$oCRNRSTN->config_init_js_css_minimization();
+$oCRNRSTN->config_init_js_css_minimization('BLUEHOST_JONY5');
+$oCRNRSTN->config_init_js_css_minimization('BLUEHOST_EVIFWEB', false);
+$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_MACBOOKPRO', false);
+$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
+
+//
+// CRNRSTN_ASSET_MAPPING
+$oCRNRSTN->config_init_asset_mapping_favicon(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs/favicon/system');
+$oCRNRSTN->config_init_asset_mapping_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/css');
+$oCRNRSTN->config_init_asset_mapping_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');
+$oCRNRSTN->config_init_asset_mapping_system_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+$oCRNRSTN->config_init_asset_mapping_social_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+$oCRNRSTN->config_init_asset_mapping_meta_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+
 //
 // FLAGS FOR USER INTERFACE THEME STYLES
 // CRNRSTN_UI_PHPNIGHT              // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
@@ -282,10 +365,36 @@ $oCRNRSTN->config_set_ui_theme_style(CRNRSTN_RESOURCE_ALL, CRNRSTN_UI_DARKNIGHT)
 // INITIALIZE DEFAULTS FOR EACH ENVIRONMENT.
 $oCRNRSTN->config_load_defaults(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
 
+//
+// TODO :: SYNC SYSTEM FOOTER TO TIMEZONE CHANGES.
+// TODO :: SYNC $_SESSION TO CRNRSTN :: INTERACT UI REPORTED TIMEZONE [UTC DELTA].
+// TODO :: RUN CLIENT TIME UI FROM $_SESSION WITH HASH KEY CONTENT CONTROLS.
+// TODO :: TOGGLE ITALICS CRNRSTN :: INTERACT UI SYSTEM FOOTER FONT TRACKING STATUS OF THIS $_SESSION DRIVEN UI.
+// ...SO MY BEST GUESS IS THAT WHEN THIS (ABOVE) IS SETUP...THE SYSTEM FOOTER WILL LOAD
+// WITH SERVER TIME IN ITALICS FONT. THEN THE TIME WILL SHIFT TO CLIENT LOCAL TIME
+// AND SANS ITALICS...EVEN IF SERVER TIMEZONE AND BROWSER TIMEZONE ARE THE SAME.
+// WHAT HAPPENS IF SERVER TIMEZONE IS UPDATED (BELOW CODE) WITH NO BROWSER REFRESH?
+// I THINK A REPEAT OF THE ABOVE. (1) INTERACT UI WILL BLIP THE UI TO SERVER TZ IN ITALICS.
+// THEN (2) SHIFT BACK TO BROWSER LOCAL TZ SANS <EM>...EVEN IF SERVER TIMEZONE AND BROWSER
+// TIMEZONE ARE THE SAME. (3) TO LOCK THE UI TO $_SESSION LIKE A CHAD, JUST SEND THE DOM CONTENT BACK.
+// JANK (DOM DEV-TOOL "FORCE-INJECTED") CONTENT WOULD TURN ITALICS...THEN REVERT BACK TO CRNRSTN :: $_SESSION TIME
+// SANS ITALICS...OR...JUST REVERT BACK TO CRNRSTN :: $_SESSION TIME. ROTFLOL TRUUUUCK YOOOU MUUTHER TRUCKERRRRZZZZZZ!!
 $oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/New_York');
+//$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/Chicago');
+//$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/Denver');
+
+//
 $oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'max_execution_time', 60);
 //$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'memory_limit', -1);
 //$oCRNRSTN->config_ini_set('memory_limit', '300M');
+
+//
+// INITIALIZE SOCIAL MEDIA PROFILE FOR EACH ENVIRONMENT.
+$oCRNRSTN->config_include_social_media(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.social_media_meta.secure/_crnrstn.social_media_meta.inc.php');
+
+//
+// INITIALIZE SQL QUERY SILOS FOR EACH ENVIRONMENT.
+//$oCRNRSTN->config_include_sql_silo(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.sql/crnrstn.db_sql_silo.inc.php');
 
 //
 // INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT.
@@ -340,60 +449,9 @@ $oCRNRSTN->config_set_crnrstn_as_err_handler('BLUEHOST_EVIFWEB');
 $oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_MACBOOKPRO',false);
 $oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO');
 
-/**
- * $oCRNRSTN->config_init_system_asset_mode()
- * DESCRIPTION :: Configure the HTML email image handling profile for CRNRSTN :: system notifications.
- * OPTIONS ::
- * CRNRSTN_ASSET_MODE_PNG
- * CRNRSTN_ASSET_MODE_JPEG
- * CRNRSTN_ASSET_MODE_BASE64
- *
- * @param   int $system_asset_mode constant. Use of any system images will resolve when
- * coupled with specification of the appropriate images hosting directory with
- *
- * $oCRNRSTN->config_init_images_http(). This will indicate the nature of the
- * creative (png, jpg or base64 encoded) that is to be returned by
- * CRNRSTN :: for web and email access.
- *
- * @return	boolean TRUE
- * Example ::
- * $oCRNRSTN->config_init_system_asset_mode(CRNRSTN_ASSET_MODE_BASE64);
- *
- */
-/*
-config_init_system_asset_mode()
-CRNRSTN_ASSET_MODE_PNG
-CRNRSTN_ASSET_MODE_JPEG
-CRNRSTN_ASSET_MODE_BASE64 (WILL CAUSE JS AND CSS META TO BE INJECTED DIRECTLY INTO HTML <HEAD>)
-
-*/
-//
-// $env_key = CRNRSTN_RESOURCE_ALL, $format_default = CRNRSTN_ASSET_MODE_BASE64
-$oCRNRSTN->config_init_system_asset_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG);
-//$oCRNRSTN->config_init_system_asset_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
-
 // 
 // $env_key = CRNRSTN_RESOURCE_ALL, $is_HTML = true. If false, text email only for system communications (e.g. exception handling).
 $oCRNRSTN->config_init_html_mode_email();
-
-/**
- * $oCRNRSTN->config_init_http()
- * DESCRIPTION :: Configure public IP image HTTP URI directory endpoint(s) for
- *  CRNRSTN :: system notifications.
- *
- * @param   string $env_key is a custom user-defined value representing a specific environment within
- * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
- * will be used throughout this configuration process.
- *
- * @param   string $crnrstn_http_endpoint the entire http/s access url terminating on /_crnrstn/.
- *
- * @param   string $crnrstn_dir_path the entire file access directory path terminating on /_crnrstn.
-
-*/
-$oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'http://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('BLUEHOST_EVIFWEB', 'https://lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('LOCALHOST_MACBOOKPRO', 'http://172.16.225.128/jony5/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
 
 /*
 CRNRSTN_ASSET_MAPPING
@@ -401,36 +459,6 @@ CRNRSTN_ASSET_MAPPING_PROXY
 
 */
 //$oCRNRSTN->config_init_asset_tunnel_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MAPPING_PROXY, 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/');
-
-/*
-//
-// JAVASCRIPT FRAMEWORK MINIMIZATION MODE
-Before deploying your website to production, be mindful that unminified
-JavaScript can significantly slow down the page for your users.
-
-Calling this method [config_init_js_css_minimization()] will invoke the
-use of xxx.min.js where available. This setting can be bound to an admin
-or dev's sign-in session, and the javascript that is development will be
-returned to this authenticated user, alone.
-
-*/
-
-//
-// ENABLE RETURN OF min.js AND min.css WHERE AVAILABLE.
-// FALSE = DEVELOPMENT JS + CSS; TRUE = JS/CSS MINIMIZATION (PRODUCTION VERSION), WHEN AVAILABLE.
-//$oCRNRSTN->config_init_js_css_minimization();
-$oCRNRSTN->config_init_js_css_minimization('BLUEHOST_JONY5');
-$oCRNRSTN->config_init_js_css_minimization('BLUEHOST_EVIFWEB', false);
-$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_MACBOOKPRO', false);
-$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
-
-//
-// CRNRSTN_ASSET_MAPPING
-$oCRNRSTN->config_init_asset_mapping_favicon(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs/favicon/system');
-$oCRNRSTN->config_init_asset_mapping_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/css');
-$oCRNRSTN->config_init_asset_mapping_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');
-$oCRNRSTN->config_init_asset_mapping_system_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
-$oCRNRSTN->config_init_asset_mapping_social_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
 
 //
 // INITIALIZE LOGGING FUNCTIONALITY FOR EACH ENVIRONMENT

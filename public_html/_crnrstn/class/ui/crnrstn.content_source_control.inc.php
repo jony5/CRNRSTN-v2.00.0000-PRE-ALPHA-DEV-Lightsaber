@@ -305,14 +305,14 @@ class crnrstn_content_source_controller {
             break;
             case 'config_init_cookie_encryption':
             case 'config_init_session_encryption':
-            case 'config_init_OERSL_encryption':
+            case 'config_init_oersl_encryption':
             case 'config_init_database_encryption':
             case 'config_init_soap_encryption':
             case 'config_init_tunnel_encryption':
             case 'config_include_encryption':
 
                 $tmp_ARRAY = array('config_include_encryption', 'config_init_cookie_encryption',
-                    'config_init_database_encryption', 'config_init_OERSL_encryption', 'config_init_soap_encryption',
+                    'config_init_database_encryption', 'config_init_oersl_encryption', 'config_init_soap_encryption',
                     'config_init_session_encryption', 'config_init_tunnel_encryption');
 
             break;
@@ -681,11 +681,17 @@ class crnrstn_content_source_controller {
 
     public function find_filesize($file){
 
-
     public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
 
     public function return_youtube_embed($url, $width = 560, $height = 315, $fullscreen = true){
     public function return_sticky_text_link($media_element_key, $url = NULL, $target = '_blank', $email_channel = false){
+
+    public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
+    public function resource_filecache_version($file_path){
+    public function validate_DIR_endpoint($dir_path, $endpoint_type = 'DESTINATION', $mkdir_mode = 775){
+    public function encode_image($file_path, $filetype = NULL){
+    public function mkdir_r($dirName, $mode = 777){
+
 
     */
 
@@ -766,6 +772,244 @@ class crnrstn_content_source_controller {
 
     }
 
+    private function social_meta_title($str = ''){
+
+        $tmp_data_type_family = 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL';
+
+        $tmp_meta_cnt = $this->oCRNRSTN->get_resource_count('HTML_HEAD_CRNRSTN_META', $tmp_data_type_family);
+        for($i = 0; $i < $tmp_meta_cnt; $i++){
+
+            $tmp_data = $this->oCRNRSTN->get_resource('HTML_HEAD_CRNRSTN_META', $i, $tmp_data_type_family);
+            if(is_array($tmp_data)){
+
+                $tmp_cnt = sizeof($tmp_data);
+                for($ii = 0; $ii < $tmp_cnt; $ii++){
+
+                    $str_pos_og_title = stripos($tmp_data[$ii],'og:title');
+                    $str_pos_twitter_title = stripos($tmp_data[$ii],'twitter:title');
+                    if($str_pos_og_title !== false){
+
+                        $tmp_data[$ii] = '<meta property="og:title" content="' . $str . '" />
+';
+
+                    }
+
+                    if($str_pos_twitter_title !== false){
+
+                        $tmp_data[$ii] = '<meta property="twitter:title" content="' . $str . '" />';
+
+                    }
+
+                }
+
+                //
+                // JUST PUT THE DATA BACK INTO THE PLACE FROM WHENCE IT CAME.
+                $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+            }else{
+
+                $str_pos_og_title = stripos($tmp_data,'og:title');
+                $str_pos_twitter_title = stripos($tmp_data,'twitter:title');
+                if($str_pos_og_title !== false){
+
+                    $tmp_data = '<meta property="og:title" content="' . $str . '" />
+';
+
+                    $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+                }
+
+                if($str_pos_twitter_title !== false){
+
+                    $tmp_data = '<meta property="twitter:title" content="' . $str . '" />
+';
+
+                    $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+                }
+
+            }
+
+        }
+
+    }
+
+    private function social_meta_description($str = ''){
+
+        $tmp_data_type_family = 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL';
+
+        $tmp_meta_cnt = $this->oCRNRSTN->get_resource_count('HTML_HEAD_CRNRSTN_META', $tmp_data_type_family);
+        for($i = 0; $i < $tmp_meta_cnt; $i++){
+
+            $tmp_data = $this->oCRNRSTN->get_resource('HTML_HEAD_CRNRSTN_META', $i, $tmp_data_type_family);
+            if(is_array($tmp_data)){
+
+                $tmp_cnt = sizeof($tmp_data);
+                for($ii = 0; $ii < $tmp_cnt; $ii++){
+
+                    $str_pos_og_description = stripos($tmp_data[$ii],'og:description');
+                    $str_pos_twitter_description = stripos($tmp_data[$ii],'twitter:description');
+                    if($str_pos_og_description !== false){
+
+                        $tmp_data[$ii] = '<meta property="og:description" content="' . $str . '" />';
+
+                    }
+
+                    if($str_pos_twitter_description !== false){
+
+                        $tmp_data[$ii] = '<meta property="twitter:description" content="' . $str . '" />';
+
+                    }
+
+                }
+
+                //
+                // JUST PUT THE DATA BACK INTO THE PLACE FROM WHENCE IT CAME.
+                $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+            }else{
+
+                $str_pos_og_description = stripos($tmp_data,'og:description');
+                $str_pos_twitter_description = stripos($tmp_data,'twitter:description');
+                if($str_pos_og_description !== false){
+
+                    $tmp_data = '<meta property="og:description" content="' . $str . '" />';
+                    $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+                }
+
+                if($str_pos_twitter_description !== false){
+
+                    $tmp_data = '<meta property="twitter:description" content="' . $str . '" />';
+                    $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+                }
+
+            }
+
+        }
+
+    }
+
+    private function social_meta_image($str = ''){
+
+        $tmp_og_str = '';
+        $tmp_twitter_str = '';
+        $tmp_data_type_family = 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL';
+
+        //error_log(__LINE__ . ' content source $this->oCRNRSTN->crnrstn_asset_family[' . $this->oCRNRSTN->crnrstn_asset_family . ']. $this->oCRNRSTN->crnrstn_asset_return_method_key[' . $this->oCRNRSTN->crnrstn_asset_return_method_key . '].');
+        if(($this->oCRNRSTN->crnrstn_asset_family === 'module_key' || $this->oCRNRSTN->crnrstn_asset_family === 'meta') && strlen($this->oCRNRSTN->crnrstn_asset_return_method_key) > 0){
+
+            //$this->oCRNRSTN->crnrstn_asset_return_method_key = $tmp_salt_ugc_val;
+            //$tmp_http_endpoint = $this->oCRNRSTN->get_resource('crnrstn_http_endpoint', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+            //$tmp_path_directory = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+            $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+
+            $tmp_http = $this->oCRNRSTN->crnrstn_http_endpoint($this->oCRNRSTN->get_resource('crnrstn_system_asset_tunnel_route_http_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH'));
+
+            $tmp_map_http = $tmp_http . '?' . $this->oCRNRSTN->session_salt() . '=meta/php/' . $this->oCRNRSTN->crnrstn_asset_return_method_key;
+
+            if($this->oCRNRSTN->is_bit_set(CRNRSTN_ASSET_MODE_JPEG)){
+
+                $tmp_http = $tmp_http . $tmp_system_directory . DIRECTORY_SEPARATOR . 'ui' . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR . 'jpg/meta/php/' . $this->oCRNRSTN->crnrstn_asset_return_method_key . '.jpg';
+
+            }else{
+
+                $tmp_http = $tmp_http . $tmp_system_directory . DIRECTORY_SEPARATOR . 'ui' . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR . 'png/meta/php/' . $this->oCRNRSTN->crnrstn_asset_return_method_key . '.png';
+
+            }
+
+            if($this->oCRNRSTN->is_bit_set(CRNRSTN_ASSET_MAPPING) || $this->oCRNRSTN->is_bit_set(CRNRSTN_ASSET_MAPPING_PROXY)){
+
+                $tmp_img_url = $tmp_map_http;
+
+            }else{
+
+                $tmp_img_url = $tmp_http;
+
+            }
+
+            //error_log(__LINE__ . ' content source $this->oCRNRSTN->crnrstn_asset_family[' . $this->oCRNRSTN->crnrstn_asset_family . ']. $this->oCRNRSTN->crnrstn_asset_return_method_key[' . $this->oCRNRSTN->crnrstn_asset_return_method_key . ']. $tmp_img_url[' . $tmp_img_url . '].');
+
+            //
+            // METHOD PREVIEW IMAGE
+            $tmp_og_str .= '<meta property="og:image" content="' . $tmp_img_url . '" />
+';
+            $tmp_twitter_str .= '<meta property="twitter:image" content="' . $tmp_img_url . '" />
+';
+
+        }
+
+        //
+        // JONY5.COM MUSTACHE
+        $tmp_og_str .= '    <meta property="og:image" content="' . $this->oCRNRSTN->return_system_image('STACHE_SOCIAL') . '" />
+';
+        $tmp_twitter_str .= '    <meta property="twitter:image" content="' . $this->oCRNRSTN->return_system_image('STACHE_SOCIAL') . '" />
+';
+        //
+        // RANDOM BRANDING CREATIVE
+        $tmp_branding_ARRAY = array('LINUX_PENGUIN_SMALL', 'REDHAT_LOGO', 'APACHE_FEATHER', 'APACHE_POWER_VERSION', 'CRNRSTN_R', 'MYSQL_DOLPHIN', 'PHP_ELLIPSE', 'POWER_BY_PHP', 'ZEND_LOGO', 'ZEND_FRAMEWORK', 'ZEND_FRAMEWORK_3', 'REDHAT_HAT_LOGO');
+        $tmp_str = $tmp_branding_ARRAY[rand(0, 11)];
+        $tmp_og_str .= '    <meta property="og:image" content="' . $this->oCRNRSTN->return_system_image($tmp_str) . '" />
+';
+        $tmp_twitter_str .= '    <meta property="twitter:image" content="' . $this->oCRNRSTN->return_system_image($tmp_str) . '" />
+';
+        //
+        // RANDOM J5
+        $tmp_og_str .= '    <meta property="og:image" content="' . $this->oCRNRSTN->return_system_image('J5_WOLF_PUP_RAND') . '" />';
+        $tmp_twitter_str .= '    <meta property="twitter:image" content="' . $this->oCRNRSTN->return_system_image('J5_WOLF_PUP_RAND') . '" />';
+
+        $tmp_meta_cnt = $this->oCRNRSTN->get_resource_count('HTML_HEAD_CRNRSTN_META', $tmp_data_type_family);
+        for($i = 0; $i < $tmp_meta_cnt; $i++){
+
+            $tmp_data = $this->oCRNRSTN->get_resource('HTML_HEAD_CRNRSTN_META', $i, $tmp_data_type_family);
+            if(is_array($tmp_data)){
+
+                $tmp_cnt = sizeof($tmp_data);
+                for($ii = 0; $ii < $tmp_cnt; $ii++){
+
+                    $str_pos_og_image = stripos($tmp_data[$ii],'og:image');
+                    $str_pos_twitter_image = stripos($tmp_data[$ii],'twitter:image');
+                    if($str_pos_og_image !== false){
+
+                        $tmp_data[$ii] = $tmp_og_str;
+
+                    }
+
+                    if($str_pos_twitter_image !== false){
+
+                        $tmp_data[$ii] = $tmp_twitter_str;
+
+                    }
+
+                }
+
+                //
+                // JUST PUT THE DATA BACK INTO THE PLACE FROM WHENCE IT CAME.
+                $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_data, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+            }else{
+
+                $str_pos_og_image = stripos($tmp_data,'og:image');
+                $str_pos_twitter_image = stripos($tmp_data,'twitter:image');
+                if($str_pos_og_image !== false){
+
+                    $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_og_str, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+                }
+
+                if($str_pos_twitter_image !== false){
+
+                    $this->oCRNRSTN->add_system_resource('HTML_HEAD_CRNRSTN_META', $tmp_twitter_str, $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY, $i);
+
+                }
+
+            }
+
+        }
+
+    }
+
     public function return_output_type(){
 
         return $this->content_output_type_ARRAY[$this->module_key];
@@ -790,409 +1034,33 @@ class crnrstn_content_source_controller {
         try{
 
             switch($this->module_key){
-                /*
-                public function grant_permissions_fwrite($filepath, $minimum_bytes_required = 0){
-                public function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING, $secondary_asort = SORT_STRING, $descending_arsort = false){
-                public function resource_filecache_version($file_path){
-                public function validate_DIR_endpoint($dir_path, $endpoint_type = 'DESTINATION', $mkdir_mode = 775){
-                public function encode_image($file_path, $filetype = NULL){
-                public function system_base64_synchronize($data_key = NULL, $img_batch_size = 5){
-                public function mkdir_r($dirName, $mode = 777){
-
-                */
-
                 case 'add_cookie':
 
-                    /*
-	                public function addCookie($name, $value = NULL, $expire = NULL, $path = NULL, $domain = NULL, $secure =  NULL, $httponly = NULL){
-                    setcookie(
-                        string $name,
-                        string $value = "",
-                        int $expires_or_options = 0,
-                        string $path = "",
-                        string $domain = "",
-                        bool $secure = false,
-                        bool $httponly = false
-                    ): bool
+                    error_log(__LINE__ . ' content source $this->module_key['. $this->module_key . '].');
 
-                    = = = = = = = = =
-                    = = = = = = = = = JONY5.COM PROD META
-                    <meta name="distribution" content="Global" />
+                    if($output_type === 'META'){
 
-                    <meta name="ROBOTS" content="index" />
-                    <meta name="ROBOTS" content="follow" />
+                        //
+                        // SOCIAL TITLE
+                        $tmp_title = $this->oCRNRSTN->proper_version() . ' Documentation.';
+                        $this->social_meta_title($tmp_title);
 
-                    <meta property="og:url" content=""/>
-                    <meta property="og:site_name" content=""/>
-                    <meta property="og:title" content=""/>
-                    <meta property="og:image" content=""/>
-                    <meta property="og:description" content="" />
-                    <meta property="og:type" content="website"/>
+                        //
+                        // SOCIAL DESCRIPTION
+                        $this->social_meta_description('Send cookie data to the client.');
 
-                    <meta name="twitter:card" content="summary"/>
-                    <meta name="twitter:title" content=""/>
-                    <meta name="twitter:image" content=""/>
-                    <meta name="twitter:description" content="" />
+                        //
+                        // SOCIAL IMAGE
+                        $this->social_meta_image();
 
-                    <meta name="description" content="" />
-                    <meta name="keywords" content="jesus, christ, jesus christ, gospel, j5, jonathan, harris, jonathan
-                    harris, johnny 5, jony5, atlanta, moxie, agency, web, christian, web services, email, web
-                    programming, marketing, CSS, XHTML, php, ajax" />
+                        //
+                        // RETURN TO ORIGINAL VALUE.
+                        $this->module_key = $tmp_current_module_key;
+                        error_log(__LINE__ . ' content source $this->module_key['. $this->module_key . '].');
 
-                    = = = = = = = = =
-                    = = = = = = = = = TWITTER SOCIAL
-                    https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started
+                        return true;
 
-                    <meta name="twitter:card" content="summary" />
-                    <meta name="twitter:site" content="@nytimesbits" />
-                    <meta name="twitter:creator" content="@nickbilton" />
-                    <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
-                    <meta property="og:title" content="A Twitter for My Sister" />
-                    <meta property="og:description" content="In the early days, Twitter grew so quickly that it was
-                    almost impossible to add new features because engineers spent their time trying to keep the rocket
-                    ship from stalling." />
-                    <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
-
-                    URL Crawling & Caching
-                    Twitter’s crawler respects Google’s robots.txt specification when scanning URLs. If a page with card
-                    markup is blocked, no card will be shown. If an image URL is blocked, no thumbnail or photo will
-                    be shown.
-
-                    Twitter uses the User-Agent of Twitterbot (with version, such as Twitterbot/1.0), which can be used
-                    to create an exception in the robots.txt file.
-
-                    For example, here is a robots.txt which disallows crawling for all robots, except Twitter’s fetcher:
-
-                    User-agent: Twitterbot
-                    Disallow:
-
-                    User-agent: *
-                    Disallow: /
-                    Here is another example, which specifies which directories are allowed to be crawled by Twitterbot
-                    (in this case, disallowing all except the images and archives directories):
-
-                    User-agent: Twitterbot
-                    Disallow: *
-
-                    Allow: /images
-                    Allow: /archives
-                    The server’s robots.txt file must be saved as plain text with ASCII character encoding. To verify
-                    this, run the following command:
-
-                    $ file -I robots.txt
-                    robots.txt: text/plain; charset=us-ascii
-                    Content is cached by Twitter for 7 days after a link to a page with card markup has been published
-                    in a Tweet.
-
-                    If you encounter issues with cards in Tweets not appearing properly, see the Cards
-                    Troubleshooting Guide.
-
-                    = = = = = = = = =
-                    = = = = = = = = = FACEBOOK SOCIAL
-                    Best Practices
-                    Learn about the best practices for implementing Facebook Sharing for your websites and mobile apps
-                    to build app experiences that people understand and trust.
-
-                    Recommendations for Websites
-                    Implement the Facebook Crawler to generate a preview of your publicly available Facebook content.
-
-                    You must enable GZIP and/or deflate encoding on your web server to ensure that your website is
-                    shared correctly by our crawler.
-
-                    Use Open Graph meta tags to ensure the Facebook Crawler scrapes useful information, such as title,
-                    description, and preview image, about your website when it is shared on Facebook.
-
-                    Use the Sharing Debugger tool to test how your websites are viewed by our scraper. The debug tool
-                    also refreshes any scraped content we have for your websites, so it can be useful if you need to
-                    update them more often than the standard 24 hour update period.
-
-                    Track the interactions of people on your website as they happen with the Facebook SDK for
-                    JavaScript. You can subscribe to events such as someone clicking on a Like button, sending a message
-                    with the Send button, or making a comment. The FB.Event.subscribe reference guide to learn how to
-                    track these events.
-
-                    Turn on Follow to allow your content creators to share public updates with their followers, while
-                    saving personal updates for friends only. For example, journalists can allow readers or viewers to
-                    follow their public content, like photos taken on location or links to published articles. Follow is
-                    a simple, effective way for your audience to connect with you and keep up with your content, without
-                    adding you as a friend.
-
-                    Enable Follow - Go to your Page Account Settings and click on the Followers tab. Check the box to
-                    allow followers, and if you’d like, you can adjust your settings for follower comments and
-                    notifications.
-
-                    Fill out your timeline - Make sure your timeline looks professional: add a cover photo, your title
-                    and work history, key career milestones, and life events.
-
-                    Observe – Follow other journalists, photographers, authors, and anyone else who has built up a large
-                    follower base. Visit their timelines and check out the types of content they share.
-
-                    Post to your followers - Share interesting photos, links to your content, and updates about what
-                    you’re working on, etc. Any post you set to Public will be shown to your followers in Feed.
-
-                    Images
-                    Use images that are at least 1080 pixels in width for best display on high resolution devices. At
-                    the minimum, you should use images that are 600 pixels in width to display image link ads. We
-                    recommend using 1:1 images in your ad creatives for better performance with image link ads.
-                    Pre-cache your images by running the URL through the URL Sharing Debugger tool to pre-fetch metadata
-                    for the website. You should also do this if you update the image for a piece of content.
-
-                    Use og:image:width and og:image:height Open Graph tags to specify the image dimensions to the
-                    crawler so that it can render the image immediately without having to asynchronously download and
-                    process it.
-
-                    SOURCE :: https://blog.shahednasser.com/how-to-easily-add-share-links-for-each-social-media-platform/
-                    <a href="https://twitter.com/intent/tweet?text=Awesome%20Blog!&url=blog.shahednasser.com">Share on Twitter</a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=blog.shahednasser.com">Share on LinkedIn</a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=blog.shahednasser.com&quote=Awesome%20Blog!">Share on Facebook</a>
-
-                    <a href="https://wa.me/?text=Awesome%20Blog!%5Cn%20blog.shahednasser.com">Share on Whatsapp</a>
-                    <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=blog.shahednasser.com&caption=Awesome%20blog!&tags=test%2Chello">Share on Tumblr</a>
-                    <a href="https://www.reddit.com/submit?url=blog.shahednasser.com&title=Awesome%20Blog!">Share on Reddit</a>
-
-                    <meta property="og:url" content="<?php echo $social_url; ?>"/>
-                    <meta property="og:site_name" content="<?php echo $social_title; ?>"/>
-                    <meta property="og:title" content="<?php echo $social_desc; ?>"/>
-                    <meta property="og:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/<?php echo $social_img; ?>"/>
-                    <meta property="og:description" content="<?php echo $prim_desc; ?>" />
-                    <meta property="og:type" content="website"/>
-
-                    <meta name="twitter:card" content="summary"/>
-                    <meta name="twitter:title" content="<?php echo $social_title; ?>"/>
-                    <meta name="twitter:image" content="<?php echo $oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP').$oCRNRSTN_ENV->getEnvParam('ROOT_PATH_CLIENT_HTTP_DIR');  ?>common/imgs/<?php echo $social_img; ?>"/>
-                    <meta name="twitter:description" content="<?php echo $social_desc; ?>" />
-
-                    = = = = = = = = =
-                    = = = = = = = = =
-                    og:url
-                    <meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-                    The <a>canonical URL</a> for your page. This should be the undecorated URL, without session
-                    variables, user identifying parameters, or counters. Likes and Shares for this URL will aggregate at
-                    this URL. For example, mobile domain URLs should point to the desktop version of the URL as the
-                    canonical URL to aggregate Likes and Shares across different versions of the page.
-                    https://developers.facebook.com/docs/sharing/webmasters/getting-started/versioned-link
-
-                    og:title
-                    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
-                    The title of your article without any branding such as your site name.
-
-                    og:description
-                    <meta property="og:description" content="How much does culture influence creative thinking?" />
-                    A brief description of the content, usually between 2 and 4 sentences. This will displayed below the
-                    title of the post on Facebook.
-
-                    og:image
-                    <meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
-                    The URL of the image that appears when someone shares the content to Facebook. See below for more
-                    info, and check out our best practices guide to learn how to specify a high quality preview image.
-                    - - - - - - - - -
-                        Images in Link Shares
-                        The Open Graph meta-tag
-                        The og:image tag can be used to specify the URL of the image that appears when someone shares
-                        the content to Facebook. The full list of image properties can be found here.
-
-                        https://ogp.me/
-                            // IMG
-                            <meta property="og:image" content="https://example.com/ogp.jpg" />
-                            <meta property="og:image:secure_url" content="https://secure.example.com/ogp.jpg" />
-                            <meta property="og:image:type" content="image/jpeg" />
-                            <meta property="og:image:width" content="400" />
-                            <meta property="og:image:height" content="300" />
-                            <meta property="og:image:alt" content="A shiny red apple with a bite taken out" />
-                                Arrays
-                                If a tag can have multiple values, just put multiple versions of the same <meta> tag on
-                                your page. The first tag (from top to bottom) is given preference during conflicts.
-
-                                <meta property="og:image" content="https://example.com/rock.jpg" />
-                                <meta property="og:image" content="https://example.com/rock2.jpg" />
-                                Put structured properties after you declare their root tag. Whenever another root
-                                element is parsed, that structured property is considered to be done and another one
-                                is started.
-
-                                For example:
-                                    <meta property="og:image" content="https://example.com/rock.jpg" />
-                                    <meta property="og:image:width" content="300" />
-                                    <meta property="og:image:height" content="300" />
-                                    <meta property="og:image" content="https://example.com/rock2.jpg" />
-                                    <meta property="og:image" content="https://example.com/rock3.jpg" />
-                                    <meta property="og:image:height" content="1000" />
-
-                                ...means there are 3 images on this page, the first image is 300x300, the middle one has
-                                unspecified dimensions, and the last one is 1000px tall.
-
-                            // VIDEO
-                            <meta property="og:video" content="https://example.com/movie.swf" />
-                            <meta property="og:video:secure_url" content="https://secure.example.com/movie.swf" />
-                            <meta property="og:video:type" content="application/x-shockwave-flash" />
-                            <meta property="og:video:width" content="400" />
-                            <meta property="og:video:height" content="300" />
-
-                            // AUDIO
-                            <meta property="og:audio" content="https://example.com/sound.mp3" />
-                            <meta property="og:audio:secure_url" content="https://secure.example.com/sound.mp3" />
-                            <meta property="og:audio:type" content="audio/mpeg" />
-
-                        Requirements
-                        - The minimum allowed image dimension is 200 x 200 pixels.
-                        - The size of the image file must not exceed 8 MB.
-                        - Use images that are at least 1200 x 630 pixels for the best display on high resolution
-                          devices. At the minimum, you should use images that are 600 x 315 pixels to display link page
-                          posts with larger images.
-
-                        - If your image is smaller than 600 x 315 px, it will still display in the link page post, but
-                          the size will be much smaller.
-
-                        - We've also re-designed link page posts so that the aspect ratio for images is the same across
-                          desktop and mobile Feed. Try to keep your images as close to 1.91:1 aspect ratio as possible
-                          to display the full image in Feed without any cropping.
-
-                        - Our crawler only accepts gzip and deflate encodings, so make sure your server uses the
-                          right encoding.
-
-                        Use og:image:width and og:image:height Open Graph tags:
-                        Using these tags will specify the image dimensions to the crawler so that it can render the
-                        image immediately without having to asynchronously download and process it.
-
-                        https://developers.facebook.com/docs/sharing/webmasters/#images
-                        Images
-                        Use this set of properties for content that contains more than one image. See Sharing Best
-                        Practices for guidance on how best to use og:image.
-
-                        Meta tag	Description
-                        og:image
-                        URL for the image. To update an image after it's been published, use a new URL for the new
-                        image. Images are cached based on the URL and won't be updated unless the URL changes.
-
-                        og:image:url
-                        Equivalent to og:image
-
-                        og:image:secure_url
-                        https:// URL for the image
-
-                        og:image:type
-                        MIME type of the image. One of image/jpeg, image/gif or image/png
-
-                        og:image:width
-                        Width of image in pixels. Specify height and width for your image to ensure that the image loads
-                        properly the first time it's shared.
-
-                        og:image:height
-                        Height of image in pixels. Specify height and width for your image to ensure that the image
-                        loads properly the first time it's shared.
-
-                    - - - - - - - - -
-
-                    fb:app_id
-                    In order to use <a>Facebook Insights</a> you must add the app ID to your page. Insights lets you
-                    view analytics for traffic to your site from Facebook. Find the app ID in your <a>App Dashboard</a>.
-                    https://developers.facebook.com/micro_site/url/?click_from_context_menu=true&country=US&destination=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fsharing%2Freferral-insights&event_type=click&last_nav_impression_id=1yifrTgmTcny89UEF&max_percent_page_viewed=44&max_viewport_height_px=833&max_viewport_width_px=1329&orig_http_referrer=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fsharing%2Fwebmasters%2F&orig_request_uri=https%3A%2F%2Fdevelopers.facebook.com%2Fajax%2Fdocs%2Fnav%2F%3Fpath1%3Dsharing%26path2%3Dwebmasters&region=noam&scrolled=true&session_id=1HkM3PUNhQ2jc0edr&site=developers
-                    https://developers.facebook.com/apps/redirect/dashboard
-
-                    og:type
-                    <meta property="og:type" content="article" />
-                    The type of media of your content. This tag impacts how your content shows up in Feed. If you don't
-                    specify a type,the default is <>website</>. Each URL should be a single object, so multiple <>og:type</>
-                    values are not possible. Find the full list of object types in <a>Object Types Reference</a>.
-
-                    og:locale
-                    The locale of the resource. Defaults to <>en_US</>. You can also use <>og:locale:alternate</> if
-                    you have other available language translations available. Learn about the locales we support in our
-                    <a>documentation on localization</a>.
-
-                    = = = = = = = = =
-                    = = = = = = = = =
-                    https://developers.facebook.com/docs/sharing/webmasters/crawler
-                    The Facebook Crawler
-                    The Facebook Crawler crawls the HTML of an app or website that was shared on Facebook via copying
-                    and pasting the link or by a Facebook social plugin. The crawler gathers, caches, and displays
-                    information about the app or website such as its title, description, and thumbnail image.
-
-                    Crawler Requirements
-                    - Your server must use gzip and deflate encodings.
-                    - Any Open Graph properties need to be listed before the first 1 MB of your website or app, or it
-                      will be cutoff.
-                    - Ensure that the content can be crawled by the crawler within a few seconds or Facebook will be
-                      unable to display the content.
-                    - Your app or website should either generate and return a response with all required properties
-                      according to the bytes specified in the Range header of the crawler request or it should ignore
-                      the Range header altogether.
-                    - Add to your allow list either the user agent strings or the IP addresses (more secure) used by
-                      the crawler.
-                    - Ensure that your app or website allows the Facebook Crawler to crawl the privacy policy associated
-                      with your app or website.
-
-                    Crawler IPs and User Agents
-
-                    The Facebook crawler user agent strings:
-                        facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)
-                        facebookexternalhit/1.1
-                        facebookcatalog/1.0
-
-                    To get a current list of IP addresses the crawler uses, run the following command.
-                        whois -h whois.radb.net -- '-i origin AS32934' | grep ^route
-
-                    These IP addresses change often.
-
-                    Example Response
-                    ...
-                    route:      69.63.176.0/21
-                    route:      69.63.184.0/21
-                    route:      66.220.144.0/20
-                    route:      69.63.176.0/20
-                    route6:     2620:0:1c00::/40
-                    route6:     2a03:2880::/32
-                    route6:     2a03:2880:fffe::/48
-                    route6:     2a03:2880:ffff::/48
-                    route6:     2620:0:1cff::/48
-                    ...
-
-                    = = = = = = = = =
-                    = = = = = = = = =
-                    https://developers.facebook.com/docs/sharing/webmasters/optimizing#basic
-
-                    Optimizing Metadata
-                    The first time someone shares or likes a URL, the Facebook Crawler caches the resolved canonical URL
-                    and its metadata. You can view the results of this cache or force a re-scrape with the
-                    Sharing Debugger.
-
-                    You can optimize content by delivering only Open Graph meta tags to the crawler and only the content
-                    itself to regular users. Alternatively, you can choose to point the crawler to a separate page used
-                    only for metadata with <link rel="opengraph" href="..."/>.
-
-                    Handling Large Objects With Pointers
-                    If your content has large amounts of metadata, you can improve performance by serving the metadata
-                    and content from two separate URLs and using pointers to link the two pages. This approach is ideal
-                    for responsive sites because you can serve the same page to both desktop and mobile browsers.
-
-                    The URL where your content is hosted should contain the required Open Graph tags.
-
-                    Then, add an additional tag pointing to the page where extra metadata is hosted:
-                    <link rel="opengraph" href="{DESTINATION_URL}"/>
-
-                    At the destination URL, include any additional metadata as well as a pointer to the original page:
-                    <meta property="og:type" content="metadata"/>
-                    <link rel="origin" href={SOURCE_URL}/>
-
-                    Keep in mind:
-                    The source URL must contain the basic tags
-                    The source URL can have as many pointers as you like, but each page it points to should point back
-                    with a link rel="origin" tag Pointers are only one level deep, so a page of type ‘metadata’ can't
-                    contain another link rel="opengraph"
-
-                    Optimizing for a Mobile Subdomain
-                    Web apps that use subdomains for mobile-optimized versions can avoid adding extra metadata to the
-                    mobile views of their pages by using canonical URLs pointing to the desktop view of the
-                    same content.
-
-                    Just add this meta tag to the mobile URL:
-                        <link rel="canonical" href="DESKTOP_OBJECT_URL" />
-                        Make sure that you use an absolute path, rather than a relative path, for your canonical
-                        href value.
-
-                        The desktop page should include the basic Open Graph tags for your content, as it will be
-                        used by Facebook's scraper to uniquely identify that content.
-
-                    */
+                    }
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
 
@@ -1203,10 +1071,22 @@ class crnrstn_content_source_controller {
                     $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
                     $this->sauce($tmp_title_array['PAGE_TITLE']);
                     $token = $this->return_content_deep_link_token();
-                    //$this->sauce_social_facebook_preview('');
                     $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
                     $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+
+                    /*
+                    <meta property="og:title" content="' . $this->social_preview_title() . '" />
+                    <meta property="og:image" content="' . $this->return_system_image('SOCIAL_META_PREVIEW') . '" />
+                    <meta property="og:description" content="' . $this->social_preview_description() . '" />
+
+                    <meta name="twitter:title" content="' . $this->social_preview_title() . '" />
+                    <meta name="twitter:image" content="' . $this->return_system_image('SOCIAL_META_PREVIEW') . '" />
+                    <meta name="twitter:description" content="' . $this->social_preview_description() . '" />';
+                    $this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
+
+                    */
 
                     //
                     // METHOD DEFINITION
@@ -1258,6 +1138,19 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
 
                     //
+                    // SOCIAL TITLE
+                    $tmp_title = $this->oCRNRSTN->proper_version() . ' Documentation.';
+                    $this->social_meta_title($tmp_title);
+
+                    //
+                    // SOCIAL DESCRIPTION
+                    $this->social_meta_description('Send raw cookie data to the client.');
+
+                    //
+                    // SOCIAL IMAGE
+                    $this->social_meta_image();
+
+                    //
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
@@ -1285,7 +1178,7 @@ class crnrstn_content_source_controller {
 
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
-                    break;
+                break;
                 case 'add_system_resource':
 
                     self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
@@ -1696,6 +1589,49 @@ class crnrstn_content_source_controller {
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(): <span class="crnrstn_documentation_method_data_type">boolean</span>';
+                    $this->sauce($tmp_method_definition);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
+
+                    //
+                    // RETURN VALUE
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_str = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
+
+                break;
+                case 'catch_exception':
+                    /*
+                    public function catch_exception($exception_obj, $syslog_constant = LOG_DEBUG, $method = NULL, $namespace = NULL, $output_profile = NULL, $output_profile_override_meta = NULL, $wcr_override_pipe = NULL){
+
+                    */
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+                    //
+                    // METHOD DEFINITION
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_method_definition = $token . $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
+                    ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
 
@@ -2308,6 +2244,84 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
                 break;
+                case 'config_include_social_media':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+                    //
+                    // METHOD DEFINITION
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_method_definition = '<p>' . $token . $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $env_key,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $crnrstn_resource_config_file_path<br>
+                    ): <span class="crnrstn_documentation_method_data_type">boolean</span></p>';
+                    $this->sauce($tmp_method_definition);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition, $this->return_output_type());
+
+                    //
+                    // RETURN VALUE
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_str = '<p>' . $token . 'Returns boolean TRUE.</p>';
+                    $this->sauce($tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
+
+                break;
+                case 'config_include_sql_silo':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+                    //
+                    // METHOD DEFINITION
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_method_definition = '<p>' . $token . $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $env_key,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $crnrstn_resource_config_file_path<br>
+                    ): <span class="crnrstn_documentation_method_data_type">boolean</span></p>';
+                    $this->sauce($tmp_method_definition);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', $tmp_method_definition, $this->return_output_type());
+
+                    //
+                    // RETURN VALUE
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_str = '<p>' . $token . 'Returns boolean TRUE.</p>';
+                    $this->sauce($tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
+
+                break;
                 case 'config_include_wordpress':
                     /*
                     public function config_include_wordpress($env_key, $crnrstn_resource_config_file_path){
@@ -2662,6 +2676,47 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
                 break;
+                case 'config_init_asset_mapping_meta_img':
+
+                    self::$page_serial = $this->oCRNRSTN_UI_ASSEMBLER->initialize_page('PAGE');
+
+                    //
+                    // PAGE TITLE
+                    $tmp_title_array = array();
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_TITLE'] = '<h1>' . $token . $this->module_key . '</h1>';
+                    $this->sauce($tmp_title_array['PAGE_TITLE']);
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_title_array['PAGE_DESCRIPTION'] = '<p>' . $token . 'CONTENT PENDING.</p>';
+                    $this->sauce($tmp_title_array['PAGE_DESCRIPTION']);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_TITLE', $tmp_title_array, $this->return_output_type());
+
+                    //
+                    // METHOD DEFINITION
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_method_definition = $token . $this->module_key . '(<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">mixed</span> $env_key = <span class="crnrstn_documentation_method_integer_data">CRNRSTN_RESOURCE_ALL</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $tunneling_active = <span class="crnrstn_documentation_method_data_system_val">true</span>,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $dir_path = &quot;&quot;,<br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $http_path = &quot;&quot;<br>
+                    ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
+                    $this->sauce($tmp_method_definition);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'METHOD_DEFINITION', '<p>' . $tmp_method_definition . '</p>', $this->return_output_type());
+
+                    //
+                    // RETURN VALUE
+                    $token = $this->return_content_deep_link_token();
+                    $tmp_str = '<p>' . $token . 'Returns boolean TRUE.</p>';
+                    $this->sauce($tmp_str);
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RETURN_VALUE', $tmp_str, $this->return_output_type());
+
+                    //
+                    // RELATED METHODS
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'RELATED_METHODS', $this->return_related_methods($this->module_key), $this->return_output_type());
+
+                    $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
+
+                break;
                 case 'config_init_asset_mapping_social_img':
                     /*
                     public function config_init_asset_mapping_social_img($env_key = CRNRSTN_RESOURCE_ALL, $tunneling_active = true, $dir_path = '', $http_path = ''){
@@ -2865,7 +2920,7 @@ class crnrstn_content_source_controller {
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -3260,9 +3315,9 @@ class crnrstn_content_source_controller {
                     $this->oCRNRSTN_UI_ASSEMBLER->add_page_element(self::$page_serial, 'PAGE_STATISTICS', 'STANDARD_REPORT', $this->return_output_type());
 
                 break;
-                case 'config_init_OERSL_encryption':
+                case 'config_init_oersl_encryption':
                     /*
-                    private function config_init_OERSL_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
+                    private function config_init_oersl_encryption($env_key, $encrypt_cipher, $encrypt_secret_key, $encrypt_options, $hmac_alg){
 
                     */
 
@@ -3330,7 +3385,7 @@ class crnrstn_content_source_controller {
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -4183,7 +4238,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -4417,7 +4472,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -5048,7 +5103,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -5092,7 +5147,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -5247,7 +5302,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -6503,7 +6558,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -7083,7 +7138,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -7594,7 +7649,7 @@ $codeAlphabet .= "<span class="crnrstn_documentation_method_string_data">:+=_- )
                     // METHOD DEFINITION
                     $token = $this->return_content_deep_link_token();
                     $tmp_method_definition = $token . $this->module_key . '(<br>
-                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span><br>
+                    &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">boolean</span> $0000000 = <span class="crnrstn_documentation_method_data_system_val">false</span>,<br>
                     &nbsp;&nbsp;<span class="crnrstn_documentation_method_data_type">string</span> $0000000 = \'<span class="crnrstn_documentation_method_string_data">NULL</span>\'<br>
                     ): <span class="crnrstn_documentation_method_data_type">boolean</span>';
                     $this->sauce($tmp_method_definition);
@@ -16230,6 +16285,15 @@ between the server and client can be achieved with minimal effort and maximum da
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
 
             break;
+            case 'CRNRSTN_UI_IMG_STR':
+            case CRNRSTN_UI_IMG_STR:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_UI_IMG_STR;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_UI_IMG_STR';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
             case 'CRNRSTN_UI_CSS':
             case CRNRSTN_UI_CSS:
 
@@ -16640,6 +16704,15 @@ between the server and client can be achieved with minimal effort and maximum da
 
                 $tmp_output_ARRAY['INTEGER'] = CRNRSTN_SOCIAL_IMG_ASSET_MAPPING;
                 $tmp_output_ARRAY['STRING'] = 'CRNRSTN_SOCIAL_IMG_ASSET_MAPPING';
+                $tmp_output_ARRAY['TITLE'] = '';
+                $tmp_output_ARRAY['DESCRIPTION'] = '';
+
+            break;
+            case 'CRNRSTN_META_IMG_ASSET_MAPPING':
+            case CRNRSTN_META_IMG_ASSET_MAPPING:
+
+                $tmp_output_ARRAY['INTEGER'] = CRNRSTN_META_IMG_ASSET_MAPPING;
+                $tmp_output_ARRAY['STRING'] = 'CRNRSTN_META_IMG_ASSET_MAPPING';
                 $tmp_output_ARRAY['TITLE'] = '';
                 $tmp_output_ARRAY['DESCRIPTION'] = '';
 

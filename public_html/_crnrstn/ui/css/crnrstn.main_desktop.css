@@ -77,7 +77,8 @@
 
 .crnrstn_ui_system_footer_5                         { float: right; padding: 0 27px 0 0; }
 .crnrstn_ui_system_footer_stats_wrapper             { float: left; padding: 1px 20px 0 20px; }
-.crnrstn_ui_system_footer_stat                      { float: left; padding: 0 10px 0 0; }
+.crnrstn_ui_system_footer_stat                      { float: left; padding: 0 10px 0 0; font-style: italic; }
+
 .crnrstn_ui_mit_license_shell                       { position: absolute; z-index: 9999; width:0; height: 0; overflow: hidden; }
 
 /*CRNRSTN::INTEGRATION INTERACT UI MODULE :: DOCUMENTATION NAVIGATION*/
