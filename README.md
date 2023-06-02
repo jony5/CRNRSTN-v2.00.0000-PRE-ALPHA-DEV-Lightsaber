@@ -9,9 +9,9 @@ The SITE IS DOWN at this time. Hosting migration is in progress --> [lightsaber.
 
 It's taking too long (there are entire days when I can do nothing) to get a stable build to complete this deep link integration with documentation.
 
-[Click here](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/) for temp diagrams that are being used for decision making *now.
+[Click here](https://lightsaber.crnrstn.jony5.com/_tmp_diagrams/) for temp diagrams that are being used for decision making now.
 
-*Last update: Thursday, June 1, 2023 @ 17:15:37.467818 EDT.
+Last update: Thursday, June 1, 2023 @ 16:21:40.127432 EDT.
 
 
 [lightsaber.crnrstn.jony5.com](http://lightsaber.crnrstn.jony5.com/)
