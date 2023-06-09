@@ -15,3 +15,7 @@ Last updated on Wednesday, June 8, 2023 @ 06:11:11.883328 EDT. <-- Made visible.
 
 
 [lightsaber.crnrstn.jony5.com](http://lightsaber.crnrstn.jony5.com/)
+
+
+Soooo...just found this gem in the system while taking inventory:
+[Shhhhinnng!](https://lightsaber.crnrstn.jony5.com/_crnrstn/ui/js/_lib/frameworks/script.aculo.us/1.9.0/test/functional/sword.mp3)
