@@ -6,9 +6,10 @@ $fruit = array('apple', 'orange', 'tomato');
 $veggies = NULL;
 
 //
-// STORE ARRAY DATA AND RECEIVE THE DDO KEY IF NEEDED (WILL SUPPORT NEAR FUTURE FUNCTIONALITY).
-$ddo_key_FRUIT = $this->oCRNRSTN->add_system_resource('potentially_fruit', $fruit);
-$ddo_key_VEGGIES = $this->oCRNRSTN->add_system_resource('surely_not_fruit', $veggies);
+// STORE THE DATA WITH A KEY TO ACCESS THE DATA FROM
+// THE CRNRSTN :: DECOUPLED DATA OBJECT (DDO).
+$ddo_key_FRUIT = $this->oCRNRSTN->add_resource('potentially_fruit', $fruit);
+$ddo_key_VEGGIES = $this->oCRNRSTN->add_resource('surely_not_fruit', $veggies);
 
 //
 // THE SYSTEM POINTER TO THE DATA STORAGE LOCATION

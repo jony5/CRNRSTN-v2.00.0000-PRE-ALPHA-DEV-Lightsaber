@@ -1,0 +1,1 @@
+c:\apache\php\php.exe -f c:\apache\htdocs\ecrm\content\modules\actions\mail_JIRA_reminder.php

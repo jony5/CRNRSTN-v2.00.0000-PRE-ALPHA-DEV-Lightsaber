@@ -1,0 +1,5 @@
+CIS3310 Mon 7:15pm-9:45pm, cs200
+LGLS3020 TT 1:00pm-2:15pm, alc303
+LGLS4050 T  4:30pm-7:00pm, alc205
+RE31010  R  7:15pm-9:45pm, alc431
+CIS3730  W  4:30pm-7:00pm, gcb527

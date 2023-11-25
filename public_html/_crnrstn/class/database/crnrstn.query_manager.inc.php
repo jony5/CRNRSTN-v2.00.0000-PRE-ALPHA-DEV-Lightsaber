@@ -41,14 +41,15 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_query_manager
 #  VERSION :: 1.00.0000
 #  DATE :: Mon July 13, 2020 @ 0518hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI :: 
-#  DESCRIPTION :: Get down and dirty putting it all together to send to database and process returned results.
+#  DESCRIPTION :: Get down and dirty putting it all together to send to database
+#                 and process returned results.
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
 class crnrstn_query_manager {
@@ -73,7 +74,7 @@ class crnrstn_query_manager {
     private static $PQP_query_override = array();
     private static $PQP_key = array();
 
-    public function __construct($oCRNRSTN_USR) {
+    public function __construct($oCRNRSTN_USR){
 
         try{
 
@@ -97,10 +98,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -142,10 +143,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -191,10 +192,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -240,10 +241,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -286,10 +287,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -301,11 +302,11 @@ class crnrstn_query_manager {
 
         try{
 
-            if(is_object($oCRNRSTN_MySQLi)) {
+            if(is_object($oCRNRSTN_MySQLi)){
 
                 $connection_serial = $oCRNRSTN_MySQLi->returnConnSerial();
 
-                //if (sizeof(self::$requestSerialByKey[$connection_serial][$result_handle][$batch_key][$result_set_key]) == 1) {
+                //if(sizeof(self::$requestSerialByKey[$connection_serial][$result_handle][$batch_key][$result_set_key]) == 1){
                 if($this->pingProfileExistence($oCRNRSTN_MySQLi, $result_handle, $batch_key, $result_set_key)){
 
                     $request_serial = self::$requestSerialByKey[$connection_serial][$result_handle][$batch_key][$result_set_key][0];
@@ -316,7 +317,7 @@ class crnrstn_query_manager {
 
                     return $oQuery->retrieve_data_by_id($result_set_key, $piped_lookup_fieldname, $piped_lookup_id_data);
 
-                } else {
+                }else{
 
                     //
                     // HOOOSTON...VE HAF PROBLEM!
@@ -332,10 +333,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -382,7 +383,7 @@ class crnrstn_query_manager {
 
                         //
                         // RETURN FAKEY CRNRSTN MYSQLI CONNECTION OBJECT
-                        $fakey_oCRNRSTN_MySQLi = new crnrstn_database_connection_handle($this->oCRNRSTN_USR);
+                        $fakey_oCRNRSTN_MySQLi = new crnrstn_database_conn_handle($this->oCRNRSTN_USR);
                         $fakey_oCRNRSTN_MySQLi->load_connection_serial($fakey_mysqli_serial);
 
                         //
@@ -441,10 +442,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -487,10 +488,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -537,10 +538,10 @@ class crnrstn_query_manager {
             }
 
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -561,7 +562,7 @@ class crnrstn_query_manager {
                 // A BASIC CHECK FOR FAKEY INITIALIZATION
                 if(isset(self::$requestSerialByKey[$connection_serial])){
 
-                    if(sizeof(self::$requestSerialByKey[$connection_serial][$result_handle][$batch_key][$result_set_key]) == 1) {
+                    if(sizeof(self::$requestSerialByKey[$connection_serial][$result_handle][$batch_key][$result_set_key]) == 1){
 
                         return true;
 
@@ -584,10 +585,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -635,10 +636,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -682,10 +683,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -729,10 +730,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -777,11 +778,11 @@ class crnrstn_query_manager {
                 throw new Exception('Missing or NULL request_serial parameter for '. __FUNCTION__ .'.');
 
             }
-            
-        }catch( Exception $e ) {
+
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -795,13 +796,13 @@ class crnrstn_query_manager {
         $tmp_validQuery = false;
         $tmp_PQP_key_cnt = sizeof(self::$PQP_key[$request_serial]);
 
-        foreach($this->oQuery_ARRAY as $key=>$chunkArray0) {
+        foreach($this->oQuery_ARRAY as $key=>$chunkArray0){
 
             foreach($chunkArray0 as $query_serial=>$oQuery){
 
                 if(!in_array($query_serial, self::$validQuerySerial_log)){
 
-                    switch ($oQuery->query_life_stage) {
+                    switch ($oQuery->query_life_stage){
                         case 'READY':
                             /*
                             self::$PQP_sql_accelerate_FLAG[$request_serial]
@@ -895,10 +896,10 @@ class crnrstn_query_manager {
             }
 
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -955,10 +956,10 @@ class crnrstn_query_manager {
             }
 
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -983,10 +984,10 @@ class crnrstn_query_manager {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -995,7 +996,7 @@ class crnrstn_query_manager {
 
     }
 
-    public function __destruct() {
+    public function __destruct(){
 
     }
 

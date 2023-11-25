@@ -38,7 +38,7 @@ $this->oCRNRSTN_USR->init_validation_message('crnrstn_signin_flagship', 'crnrstn
 $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_signin_flagship', 'crnrstn_country_iso_code', true, $this->oCRNRSTN_USR->country_iso_code, 'crnrstn_country_iso_code');
 $this->oCRNRSTN_USR->form_hidden_input_add('crnrstn_signin_flagship', 'crnrstn_php_sessionid', true, session_id(), 'crnrstn_php_sessionid');
 
-$channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_output_channel_constants);
+$channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_device_channel_constants());
 
 switch($channel_constant[0]){
     case '12345':
@@ -157,7 +157,7 @@ switch($channel_constant[0]){
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             ' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON') . '
             ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI) .
-                $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN) . '
+                $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_CSS_MAIN_DESKTOP & CRNRSTN_JS_MAIN) . '
         </head>
         <body>
         <div class="crnrstn_body_wrapper">
@@ -193,9 +193,9 @@ switch($channel_constant[0]){
     
                     <div class="crnrstn_signin_meta_time_stats_wrapper">
                         <div id="crnrstn_signin_meta00_' . $this->page_serial . '" class="crnrstn_signin_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time() . ' ' . date('T') . '] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ' secs] [wtime <span id="crnrstn_wtime_' . $this->page_serial . '"></span>]</div>
-                        <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('FIVE', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+                        <div id="crnrstn_signin_meta01_' . $this->page_serial . '" class="crnrstn_signin_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('FIVE', CRNRSTN_HTML) . '</div>
     
-                        <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+                        <div class="crnrstn_signin_backdrop_logo">' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_HTML) . '</div>
     
                         <div class="crnrstn_cb"></div>
                     </div>
@@ -214,7 +214,7 @@ switch($channel_constant[0]){
     
                                         <div class="crnrstn_err_wrap_outter_email crnrstn_err_wrap">
                                             <div class="crnrstn_err_wrap_inner_email">
-                                                <div class="crnrstn_err_wrap_email" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_PNG) . '\');">
+                                                <div class="crnrstn_err_wrap_email" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_PNG) . '\');">
                                                     <div id="crnrstn_auth_e_ERR" class="crnrstn_err_wrap_copy">Email is Required.&nbsp;&nbsp;&nbsp;</div>
                                                 </div>
                                             </div>
@@ -244,7 +244,7 @@ switch($channel_constant[0]){
                                     
                                     <div class="crnrstn_err_wrap_outter_password crnrstn_err_wrap">
                                         <div class="crnrstn_err_wrap_inner_password">
-                                            <div class="crnrstn_err_wrap_password" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_PNG) . '\');">
+                                            <div class="crnrstn_err_wrap_password" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_PNG) . '\');">
                                                 <div id="crnrstn_auth_pwd_ERR" class="crnrstn_err_wrap_copy">Password is Required&nbsp;&nbsp;&nbsp;</div>
                                             </div>
                                         </div>
@@ -278,7 +278,7 @@ switch($channel_constant[0]){
                                         <div class="crnrstn_cb"></div>
     
                                         <div class="crnrstn_signin_module_stats_wrapper">
-                                            <div class="crnrstn_signin_module_stats_ip_wrapper">' . $this->oCRNRSTN->multi_lang_content_return('COPY_YOUR_IP') . ' :: <span class="crnrstn_signin_module_stats_ip">' . $this->oCRNRSTN_USR->return_client_ip() . '</span></div>
+                                            <div class="crnrstn_signin_module_stats_ip_wrapper">' . $this->oCRNRSTN->multi_lang_content_return('COPY_YOUR_IP') . ' :: <span class="crnrstn_signin_module_stats_ip">' . $this->oCRNRSTN_USR->client_ip() . '</span></div>
                                             <div class="crnrstn_signin_module_stats_attempts">' . $this->oCRNRSTN->multi_lang_content_return('COPY_LOGIN_ATTEMPTS') . ' :: ' . $this->oCRNRSTN_USR->account_max_login_attempts() . '</div>
                                             <div class="crnrstn_signin_module_stats_remaining">' . $this->oCRNRSTN->multi_lang_content_return('COPY_ATTEMPTS_REMAINING') . ' :: <span id="crnrstn_signin_module_stats_remaining_cnt" class="crnrstn_signin_module_stats_remaining_cnt">' . $this->oCRNRSTN_USR->account_remaining_login_attempts() . '</span></div>
                                             <!--<div style="text-align:right; color: #000; font-size:10px; font-family: Courier, monospace">Access denied :: <span style="color: #F90000;">30 min</span></div>-->

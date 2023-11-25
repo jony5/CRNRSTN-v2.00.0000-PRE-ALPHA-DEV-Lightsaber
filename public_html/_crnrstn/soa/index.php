@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 require('../../_crnrstn.root.inc.php');
 include_once( CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
@@ -56,6 +56,9 @@ $server->debug_flag = $oCRNRSTN_USR->return_SOAP_SVC_debugMode();
 
 $server->configureWSDL("CRNRSTN_SOAP_SERVICES", $oCRNRSTN_USR->get_resource('SOA_NAMESPACE'));
 $server->wsdl->schemaTargetNamespace = $oCRNRSTN_USR->get_resource('SOA_NAMESPACE');
+//
+// TODO :: OBJECT SERIALIZATION IN $_SESSION FOR LIGHTSABER?
+// TODO :: CAN WE RE-ARCH CRNRSTN :: SOAP TO USE $oCRNRSTN?...I.E. $this->.....
 $_SESSION['oCRNRSTN_USR'] = $oCRNRSTN_USR;
 
 //
@@ -751,56 +754,55 @@ function returnCRNRSTN_UI_GLOBAL_SYNC($soapRequest) {
 
 }
 
-$server->register('tunnelEncryptCalibrationRequest',     		 	   		            // method name
-    array('oTunnelEncryptionCalibrationRequest' => 'tns:oTunnelEncryptionCalibrationRequest'),	                // input parameters
-    array('return' => 'tns:oCalibrationResponse'),								            // output parameters
-    'urn:tunnelEncryptCalibrationRequestwsdl',                		            // namespace
-    'urn:tunnelEncryptCalibrationRequestwsdl#tunnelEncryptCalibrationRequest',    // soapaction
-    'rpc',                                    					                    // style
-    'encoded',                                						                    // use
-    'Initiate handshake with the CRNRSTN :: SOAP Services Layer.'		        // documentation
+$server->register('tunnelEncryptCalibrationRequest',     		 	   		                        // method name
+    array('oTunnelEncryptionCalibrationRequest' => 'tns:oTunnelEncryptionCalibrationRequest'),	    // input parameters
+    array('return' => 'tns:oCalibrationResponse'),								                    // output parameters
+    'urn:tunnelEncryptCalibrationRequestwsdl',                		                                // namespace
+    'urn:tunnelEncryptCalibrationRequestwsdl#tunnelEncryptCalibrationRequest',                      // soapaction
+    'rpc',                                    					                                    // style
+    'encoded',                                						                                // use
+    'Initiate handshake with the CRNRSTN :: SOAP Services Layer.'		                            // documentation
 );
 
-$server->register('mayItakeTheKingsHighway',     		 	   		        // method name
-    array('oKingsHighwayAuthRequest' => 'tns:oKingsHighwayAuthRequest'),	    // input parameters
-    array('return' => 'tns:oKingsHighwayAuthResponse'),								// output parameters
-    'urn:mayItakeTheKingsHighwaywsdl',                		        // namespace
-    'urn:mayItakeTheKingsHighwaywsdl#mayItakeTheKingsHighway',	    // soapaction
-    'rpc',                                    					        // style
-    'encoded',                                						        // use
+$server->register('mayItakeTheKingsHighway',     		 	   		                                // method name
+    array('oKingsHighwayAuthRequest' => 'tns:oKingsHighwayAuthRequest'),	                        // input parameters
+    array('return' => 'tns:oKingsHighwayAuthResponse'),								                // output parameters
+    'urn:mayItakeTheKingsHighwaywsdl',                		                                        // namespace
+    'urn:mayItakeTheKingsHighwaywsdl#mayItakeTheKingsHighway',	                                    // soapaction
+    'rpc',                                    					                                    // style
+    'encoded',                                						                                // use
     'Authorization request to straight send an email message with no changes (i.e. dynamic content injection) to body.'		// documentation
 );
 
-$server->register('takeTheKingsHighway',     		 	   		            // method name
-    array('oKingsHighwayNotification' => 'tns:oKingsHighwayNotification'),	    // input parameters
-    array('return' => 'tns:oEmailSendReport'),								    // output parameters
-    'urn:takeTheKingsHighwaywsdl',                		            // namespace
-    'urn:takeTheKingsHighwaywsdl#takeTheKingsHighway',	            // soapaction
-    'rpc',                                    					        // style
-    'encoded',                                						        // use
+$server->register('takeTheKingsHighway',     		 	   		                                    // method name
+    array('oKingsHighwayNotification' => 'tns:oKingsHighwayNotification'),	                        // input parameters
+    array('return' => 'tns:oEmailSendReport'),								                        // output parameters
+    'urn:takeTheKingsHighwaywsdl',                		                                            // namespace
+    'urn:takeTheKingsHighwaywsdl#takeTheKingsHighway',	                                            // soapaction
+    'rpc',                                    					                                    // style
+    'encoded',                                						                                // use
     'Straight send an email message with no changes (i.e. dynamic content injection) to body.'		// documentation
 );
 
-$server->register('sendElectrumPerformanceReport',     		 	   		            // method name
-    array('oElectrumPerformanceReport' => 'tns:oElectrumPerformanceReport'),	            // input parameters
-    array('return' => 'tns:oEmailSendReport'),								                // output parameters
-    'urn:sendElectrumPerformanceReportwsdl',                		                // namespace
-    'urn:sendElectrumPerformanceReportwsdl#sendElectrumPerformanceReport',	    // soapaction
-    'rpc',                                    					                    // style
-    'encoded',                                						                    // use
+$server->register('sendElectrumPerformanceReport',     		 	   		                            // method name
+    array('oElectrumPerformanceReport' => 'tns:oElectrumPerformanceReport'),	                    // input parameters
+    array('return' => 'tns:oEmailSendReport'),								                        // output parameters
+    'urn:sendElectrumPerformanceReportwsdl',                		                                // namespace
+    'urn:sendElectrumPerformanceReportwsdl#sendElectrumPerformanceReport',	                        // soapaction
+    'rpc',                                    					                                    // style
+    'encoded',                                						                                // use
     'Send a templated system notification reporting on the performance of a CRNRSTN :: Electrum process.'		// documentation
 );
 
-$server->register('returnCRNRSTN_UI_GLOBAL_SYNC',     		 	   		            // method name
-    array('oCRNRSTN_UI_GLOBAL_SYNC_REQUEST' => 'tns:oCRNRSTN_UI_GLOBAL_SYNC_REQUEST'),	    // input parameters
-    array('return' => 'tns:oCRNRSTN_UI_SYNC_PACKET'),								        // output parameters
-    'urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl',                		                // namespace
-    'urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl#returnCRNRSTN_UI_GLOBAL_SYNC',	        // soapaction
-    'rpc',                                    					                    // style
-    'encoded',                                						                    // use
-    'Request a packet of data to refresh browser ui content.'                  // documentation
+$server->register('returnCRNRSTN_UI_GLOBAL_SYNC',     		 	   		                            // method name
+    array('oCRNRSTN_UI_GLOBAL_SYNC_REQUEST' => 'tns:oCRNRSTN_UI_GLOBAL_SYNC_REQUEST'),	            // input parameters
+    array('return' => 'tns:oCRNRSTN_UI_SYNC_PACKET'),								                // output parameters
+    'urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl',                		                                    // namespace
+    'urn:returnCRNRSTN_UI_GLOBAL_SYNCwsdl#returnCRNRSTN_UI_GLOBAL_SYNC',	                        // soapaction
+    'rpc',                                    					                                    // style
+    'encoded',                                						                                // use
+    'Request a packet of data to refresh browser ui content.'                                       // documentation
 );
-
 
 if(!$oCRNRSTN_USR->isset_http_superglobal('GET')){
 

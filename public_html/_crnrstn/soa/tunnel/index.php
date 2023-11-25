@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 require_once('../../../_crnrstn.root.inc.php');
 include_once( CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
@@ -51,7 +51,7 @@ $tmp_filename_xml = $oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$oCRNRSTN_USR->
 header('Content-Type: application/xml; charset=iso-8859-1');
 header('Cache-Control: no-store');
 header('Access-Control-Allow-Origin: *');
-//header('Content-Disposition: inline; filename="crnrstn_data_transport_packet.xml');
+//header('Content-Disposition: inline; filename="crnrstn_data_tunnel_packet.xml');
 
 $oCRNRSTN_USR->readfile_chunked($tmp_filename_xml);
 die();
@@ -105,7 +105,7 @@ if($oCRNRSTN_USR->http_data_services_initialize(false, true)) {
 <input type="hidden" name="crnrstn_soap_srvc_ttl_banner_rotate_tablet" value="7">
 <input type="hidden" name="crnrstn_soap_srvc_ttl_banner_rotate_mobile" value="7">
 <input type="hidden" name="crnrstn_soap_srvc_device_type" value="">
-<input type="hidden" name="crnrstn_soap_srvc_transport_protocol_version" value="' . $this->version_soap.'">
+<input type="hidden" name="crnrstn_soap_srvc_tunnel_protocol_version" value="' . $this->version_soap.'">
 <input type="hidden" name="crnrstn_soap_srvc_encoding" value="' . $tmp_oNUSOAP_BASE->soap_defencoding.'">
 <input type="hidden" name="crnrstn_soap_srvc_response_format" value="soap-SOAP, soap;q=0.9, xml;0.7, json;0.1, csv;0, carrier_pigeon;-0.9">
 

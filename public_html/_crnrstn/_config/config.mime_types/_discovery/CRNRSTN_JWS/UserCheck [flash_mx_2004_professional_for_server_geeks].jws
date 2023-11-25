@@ -1,0 +1,68 @@
+/* 
+  If this file is saved as a .jws file, it will be exposed as an
+  "instant" web service by many engines. Alternatively, it can be
+  saved and compiled as an ordinary Java class, then configured
+  to be exposed as a web service with a <service> element in your 
+  JSP/J2EE server's WEB-INF/server-config.wsdd configuration file.
+*/
+
+import java.sql.*;
+import java.util.*;
+
+public class UserCheck {
+
+  private String dbDriver = "sun.jdbc.odbc.JdbcOdbcDriver";
+  private String dbURL = "jdbc:odbc:VenueDB";
+  
+  // This function is exposed via Web Services
+  public int getCustomerID(String username, String password) 
+    throws java.lang.ClassNotFoundException, java.sql.SQLException
+  {
+    // This is the SQL query statement we will use to fetch data
+    String sql = "SELECT idCustomer FROM Customers " +
+      "WHERE sUsername = '" + username + "' " +
+      "AND sPassword = '" + password + "'"; 
+
+    // Execute the SQL query against the example database
+    Class.forName(dbDriver);
+  	Connection con=DriverManager.getConnection(dbURL);
+    ResultSet rs = con.createStatement().executeQuery(sql);
+
+    rs.first();
+    return rs.getInt("idCustomer");
+  }
+  
+
+  public boolean isUsernameAvailable(String username) 
+    throws java.lang.ClassNotFoundException, java.sql.SQLException
+  {
+    // This is the SQL query statement we will use to fetch data
+    String sql = "SELECT idCustomer FROM Customers " +
+      "WHERE sUsername = '" + username + "' "; 
+
+    // Execute the SQL query against the example database
+    Class.forName(dbDriver);
+  	Connection con=DriverManager.getConnection(dbURL);
+    ResultSet rs = con.createStatement().executeQuery(sql);
+
+    // Return true if no records found; false otherwise
+    return !rs.first();
+  }  
+  
+  
+  public int createNewCustomer(String username, String password, String firstName, String lastName, String telephone, String email) 
+    throws java.lang.ClassNotFoundException, java.sql.SQLException
+  {
+    // This is the SQL query statement we will use to insert new record
+    String sql = "INSERT INTO Customers (sUsername, sPassword, sFirstName, sLastName, sTelephone) " +
+      "VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + telephone + "')"; 
+
+    // Insert new record into the database
+    Class.forName(dbDriver);
+  	Connection con=DriverManager.getConnection(dbURL);
+    con.createStatement().executeQuery(sql);
+
+    // Return the just-inserted customer ID
+    return getCustomerID(username, password);
+  }  
+}

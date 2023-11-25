@@ -1,0 +1,6 @@
+============================================================================
+   "I don't know how to play this game, please tell me how."    -----> SHOW
+   "Skip the Instructions and begin the game."			-----> SKIP
+   "Nevermind...I have other things to do (i.e. exit game)."	-----> EXIT
+============================================================================
+Your Selection (i.e. type the word 'EXIT' to exit game): 

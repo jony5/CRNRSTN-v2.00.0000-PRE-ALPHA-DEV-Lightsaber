@@ -1,0 +1,1 @@
+c:\apache\php\php.exe -f c:\apache\htdocs\phonelist\actions\xml_update.php

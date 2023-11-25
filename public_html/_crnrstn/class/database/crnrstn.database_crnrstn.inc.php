@@ -41,67 +41,114 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_database_crnrstn
 #  VERSION :: 1.00.0000
 #  DATE :: July 13, 2020 @ 0448hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI :: 
-#  DESCRIPTION :: The CRNRSTN :: for database support within CRNRSTN ::.
+#  DESCRIPTION :: I go with CRNRSTN :: for database support; I am the cornerstone
+#                 for database within CRNRSTN ::
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
 class crnrstn_database_crnrstn {
 
     public $oCRNRSTN_USR;
     protected $oLogger;
-    private static $oCRNRSTN_ENV;
     private static $oQueryManager;
     private static $oDB_wiring;
 
     public $crnrstn_db_crnrstn_serial;
 
-    public function __construct($oCRNRSTN_USR = NULL) {
+    public function __construct($oCRNRSTN_USR){
 
         try{
 
-            if(isset($oCRNRSTN_USR)){
+            $this->oCRNRSTN_USR = $oCRNRSTN_USR;
+            //$this->oCRNRSTN_USR->error_log('[' . __CLASS__ . '] READY TO WORK 4 U.', __LINE__, __METHOD__, __FILE__, CRNRSTN_SETTINGS_CRNRSTN);
 
-                $this->oCRNRSTN_USR = $oCRNRSTN_USR;
+//            if(isset($oCRNRSTN_USR)){
+//
+//                $this->oCRNRSTN_USR = $oCRNRSTN_USR;
+//
+//                //
+//                // SERIALIZE OBJECT - LEN32
+//                $this->crnrstn_db_crnrstn_serial = $this->oCRNRSTN_USR->generate_new_key();
+//
+//                //
+//                // INSTANTIATE LOGGER
+//                $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
+//
+//                //
+//                // INSTANTIATE DB WIRING
+//                self::$oDB_wiring = new crnrstn_database_wiring($this->oCRNRSTN_USR);
+//
+//            }else{
+//
+//                //
+//                // HOOOSTON...VE HAF PROBLEM!
+//                throw new Exception('ERR :: oCRNRSTN_USR is a required parameter for '. __CLASS__ .' :: '. __FUNCTION__ .'.');
+//
+//            }
+//
+//            //
+//            // INSTANTIATE QUERY MANAGER
+//            self::$oQueryManager = new crnrstn_query_manager($this->oCRNRSTN_USR);
 
-                //
-                // SERIALIZE OBJECT - LEN32
-                $this->crnrstn_db_crnrstn_serial = $this->oCRNRSTN_USR->generate_new_key();
-
-                //
-                // HOLD ENVIRONMENTALS
-                self::$oCRNRSTN_ENV = $this->oCRNRSTN_USR->return_oCRNRSTN_ENV();
-
-                //
-                // INSTANTIATE LOGGER
-                $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
-
-                //
-                // INSTANTIATE DB WIRING
-                self::$oDB_wiring = new crnrstn_database_wiring($this->oCRNRSTN_USR);
-
-            }else{
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('ERR :: oCRNRSTN_USR is a required parameter for '. __CLASS__ .' :: '. __FUNCTION__ .'.');
-
-            }
+        }catch(Exception $e){
 
             //
-            // INSTANTIATE QUERY MANAGER
-            self::$oQueryManager = new crnrstn_query_manager($this->oCRNRSTN_USR);
-
-        }catch( Exception $e ) {
-
-            //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+        }
+
+    }
+
+    public function config_load_static_application_data($data_type){
+
+        switch($data_type){
+            case 'sql_interval_values':
+
+                return array(array('MICROSECOND' => 'MICROSECONDS'),
+                array('SECOND' => 'SECONDS'), array('MINUTE' => 'MINUTES'), array('HOUR' => 'HOURS'),
+                array('DAY' => 'DAYS'), array('WEEK' => 'WEEKS'), array('MONTH' => 'MONTHS'),
+                array('QUARTER' => 'QUARTERS'), array('YEAR' => 'YEARS'),
+                array('SECOND_MICROSECOND' => 'SECONDS.MICROSECONDS'),
+                array('MINUTE_MICROSECOND' => 'MINUTES:SECONDS.MICROSECONDS'), array('MINUTE_SECOND' => 'MINUTES:SECONDS'),
+                array('HOUR_MICROSECOND' => 'HOURS:MINUTES:SECONDS.MICROSECONDS'),
+                array('HOUR_SECOND' => 'HOURS:MINUTES:SECONDS'), array('HOUR_MINUTE' => 'HOURS:MINUTES'),
+                array('DAY_MICROSECOND' => 'DAYS HOURS:MINUTES:SECONDS.MICROSECONDS'),
+                array('DAY_SECOND' => 'DAYS HOURS:MINUTES:SECONDS'), array('DAY_MINUTE' => 'DAYS HOURS:MINUTES'),
+                array('DAY_HOUR' => 'DAYS HOURS'), array('YEAR_MONTH' => 'YEARS-MONTHS'));
+
+            break;
+            case 'sql_interval_string_patterns':
+
+                return array('SECONDS_MICROSECONDS' => 9,
+                'SECONDS_MICROSECOND' => 9, 'SECOND_MICROSECONDS' => 9, 'SECOND_MICROSECOND' => 9,
+                'MINUTES_MICROSECONDS' => 10, 'MINUTES_MICROSECOND' => 10, 'MINUTE_MICROSECONDS' => 10,
+                'MINUTE_MICROSECOND' => 10, 'HOURS_MICROSECONDS' => 12, 'HOURS_MICROSECOND' => 12,
+                'HOUR_MICROSECONDS' => 12, 'HOUR_MICROSECOND' => 12, 'DAYS_MICROSECONDS' => 15, 'DAYS_MICROSECOND' => 15,
+                'DAY_MICROSECONDS' => 15, 'DAY_MICROSECOND' => 15, 'MINUTES_SECONDS' => 11, 'MINUTES_SECOND' => 11,
+                'MINUTE_SECONDS' => 11, 'MINUTE_SECOND' => 11, 'MICROSECONDS' => 0, 'MICROSECOND' => 0,
+                'HOURS_SECONDS' => 13, 'HOURS_SECOND' => 13, 'HOUR_SECONDS' => 13, 'HOUR_SECOND' => 13,
+                'HOURS_MINUTES' => 14, 'HOUR_MINUTES' => 14, 'HOURS_MINUTE' => 14, 'HOUR_MINUTE' => 14,
+                'DAYS_SECONDS' => 16, 'DAYS_SECOND' => 16, 'DAY_SECONDS' => 16, 'DAY_SECOND' => 16, 'DAYS_MINUTES' => 17,
+                'DAYS_MINUTE' => 17, 'DAY_MINUTES' => 17, 'DAY_MINUTE' => 17, 'YEARS_MONTHS' => 19, 'YEARS_MONTH' => 19,
+                'YEAR_MONTHS' => 19, 'YEAR_MONTH' => 19, 'DAYS_HOURS' => 18, 'DAYS_HOUR' => 18, 'DAY_HOURS' => 18,
+                'DAY_HOUR' => 18, 'QUARTERS' => 7, 'QUARTER' => 7, 'SECONDS' => 1, 'SECOND' => 1, 'MINUTES' => 2,
+                'MINUTE' => 2, 'MONTHS' => 6, 'MONTH' => 6, 'HOURS' => 3, 'HOUR' => 3, 'WEEKS' => 5, 'WEEK' => 5,
+                'YEARS' => 8, 'YEAR' => 8, 'DAYS' => 4, 'MINS' => 2, 'SECS' => 1, 'QTR' => 7, 'MTH' => 6, 'DAY' => 4,
+                'MIN' => 2, 'SEC' => 1, 'YR' => 8, 'WK' => 5, 'HR' => 3);
+
+            break;
+            default:
+
+                error_log(__LINE__ . ' env Unknown SWITCH CASE received. ['. strval($data_type) . '].');
+
+            break;
 
         }
 
@@ -220,17 +267,17 @@ class crnrstn_database_crnrstn {
                 break;
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
 
     }
 
-    public function __destruct() {
+    public function __destruct(){
 
     }
 

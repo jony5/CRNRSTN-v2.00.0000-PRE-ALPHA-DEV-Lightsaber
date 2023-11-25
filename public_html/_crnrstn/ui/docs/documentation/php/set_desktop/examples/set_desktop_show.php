@@ -9,7 +9,7 @@ $oCRNRSTN->set_desktop();
 
 //
 // A DIRECT CHECK ON THE FLIPPED BIT FOR DESKTOP.
-if($oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_DESKTOP)){
+if($oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_DESKTOP) === true){
 
     echo 'Look, ma. I\'m flagged as desktop!';
 

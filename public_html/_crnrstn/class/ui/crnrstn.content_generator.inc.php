@@ -41,13 +41,15 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_content_generator
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  VERSION :: 1.00.0000
 #  DATE :: July 4, 2020 @ 1620hrs
 #  DESCRIPTION ::
+#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
+#
 class crnrstn_content_generator {
 
     protected $oLogger;
@@ -102,7 +104,7 @@ class crnrstn_content_generator {
     public function return_page_serial(){
 
 	    return $this->oCRNRSTN->oCRNRSTN_CS_CONTROLLER->return_page_serial();
-	    
+	
     }
 
     public function load_page($module_page_key){
@@ -127,7 +129,7 @@ class crnrstn_content_generator {
                 case 'RELATED_METHODS':
                 case 'PAGE_STATISTICS':
 
-                    if($data_ARRAY === '' || $data_ARRAY === NULL){
+                    if($data_ARRAY == '' || $data_ARRAY == NULL){
 
                         $data_ARRAY = ' ';
 
@@ -150,14 +152,14 @@ class crnrstn_content_generator {
 //                   4 $tmp_ARRAY['example_execute_file'] = '/ui/docs/documentation/php/' . $this->module_key . '/examples/' . $this->module_key . '_exec.php';
 
                     $tmp_example_title_main = $data_ARRAY['example_title_main'];
-                    if($tmp_example_title_main === '' || $tmp_example_title_main === NULL){
+                    if($tmp_example_title_main == '' || $tmp_example_title_main == NULL){
 
                         $tmp_example_title_main = ' ';
 
                     }
 
                     $tmp_example_title_integrated = $data_ARRAY['example_title_integrated'];
-                    if($data_ARRAY['example_title_integrated'] === ''){
+                    if($data_ARRAY['example_title_integrated'] == ''){
 
                         $tmp_example_title_integrated = NULL;
 
@@ -185,10 +187,10 @@ class crnrstn_content_generator {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -204,8 +206,8 @@ class crnrstn_content_generator {
         $oQueryProfileMgr = new crnrstn_query_profile_manager($this->oCRNRSTN);
         $html_out = '';
 
-        $tmp_path_directory = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
-        $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+        $tmp_path_directory = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN::RESOURCE::HTTP_IMAGES');
+        $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN::RESOURCE::HTTP_IMAGES');
 
         switch($channel){
             case 'mobile':
@@ -214,9 +216,9 @@ class crnrstn_content_generator {
                 // MOBILE EXPERIENCE
                 // PROCESS FOR SEARCH RESULTS
                 // ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
-                if($this->oCRNRSTN->http_data_services_initialize()) {
+                if($this->oCRNRSTN->http_data_services_initialize()){
 
-                    if($this->oCRNRSTN->isset_crnrstn_services_http() || $this->oCRNRSTN->isset_crnrstn_services_http('GET')) {
+                    if($this->oCRNRSTN->isset_crnrstn_services_http() || $this->oCRNRSTN->isset_crnrstn_services_http('GET')){
 
                         //
                         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
@@ -273,14 +275,14 @@ class crnrstn_content_generator {
 
                         //
                         // IF WE HAVE PAGE DATA...
-                        if ($tmp_page_cnt > 0) {
+                        if($tmp_page_cnt > 0){
 
                             //
                             // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
                             $tmp_ugc_search_str = $this->oCRNRSTN->get_http_resource('q');
 
                             $pos = strpos($tmp_ugc_search_str, '"');
-                            if ($pos !== false) {
+                            if($pos !== false){
                                 error_log('200 search - process for quotes...will break up words.');
                                 //
                                 // SEARCH ON QUOTED WORDS
@@ -295,7 +297,7 @@ class crnrstn_content_generator {
                                 // BUILD AND ADD QUERY
                                 $tmp_cnt = sizeof($tmp_ugc_array);
                                 $tmp_ugc_search_clean_str_ARRAY = array();
-                                for ($i = 0; $i < $tmp_cnt; $i++) {
+                                for ($i = 0; $i < $tmp_cnt; $i++){
 
                                     $tmp_ugc_search_clean_str_ARRAY[$i] = strtolower($oSideBitch_Usr->str_sanitize($tmp_ugc_array[$i], 'search'));
 
@@ -333,7 +335,7 @@ class crnrstn_content_generator {
                                 //
                                 // COMBINE ALL DESIRED RESULT SETS INTO ONE TO SEQUENCE AND/OR PURGE DUPLICATES
                                 // FOR EACH WORD OR QUOTED STRING RESULT SET
-                                for ($i = 0; $i < $tmp_cnt; $i++) {
+                                for ($i = 0; $i < $tmp_cnt; $i++){
 
                                     #$this->oCRNRSTN->resultSetMerge(($oQueryProfileMgr, {ORIGINAL RESULT SET KEY}, {TARGET RESULT SET KEY}, {MERGE KEY FIELD...PIPE OK}, {SEQUENCE KEY FIELD(S)...PIPE OK} {MERGE FIELD DATATYPE...PIPE OK})
                                     $this->oCRNRSTN->resultSetMerge($oQueryProfileMgr, 'QUOTED_SEARCH_' . $i, 'MERGED_SEARCH_RESULTS', 'CONTENT_ID', true,'CONTENT_LENGTH_RAW|DATECREATED', 'INTEGER|DATETIME');
@@ -360,7 +362,7 @@ class crnrstn_content_generator {
                                 // FOR EACH ROW IN MERGED RESULT SET
                                 $cur_pos = ($tmp_max_desktop_results*$tmp_current_pagination_pos) - $tmp_max_desktop_results;
 
-                                for ($i = $cur_pos; $i < $tmp_max_desktop_results+$cur_pos; $i++) {
+                                for ($i = $cur_pos; $i < $tmp_max_desktop_results+$cur_pos; $i++){
 
                                     $tmp_content_id = $this->oCRNRSTN->return_db_value($oQueryProfileMgr, 'MERGED_SEARCH_RESULTS', 'CONTENT_ID', $i);
 
@@ -384,7 +386,7 @@ class crnrstn_content_generator {
 
                                 }
 
-                            } else {
+                            }else{
 
                                 //
                                 // NO QUOTES...PROCESS ENTIRE UGC
@@ -426,7 +428,7 @@ class crnrstn_content_generator {
                                 //
                                 // COMBINE ALL DESIRED RESULT SETS INTO ONE TO SEQUENCE AND/OR PURGE DUPLICATES
                                 // FOR EACH WORD OR QUOTED STRING RESULT SET
-                                for ($i = 0; $i < $tmp_cnt; $i++) {
+                                for ($i = 0; $i < $tmp_cnt; $i++){
 
                                     $this->oCRNRSTN->resultSetMerge($oQueryProfileMgr, 'PLAIN_SEARCH', 'MERGED_SEARCH_RESULTS', 'CONTENT_ID', true,'CONTENT_LENGTH_RAW|DATECREATED', 'INTEGER|DATETIME');
 
@@ -435,7 +437,7 @@ class crnrstn_content_generator {
                                 $tmp_result_set_cnt = $tmp_ugc_s_results_record_cnt = $this->oCRNRSTN->return_record_count($oQueryProfileMgr, 'MERGED_SEARCH_RESULTS');
                                 $this->oCRNRSTN->increment_results_count_total($tmp_result_set_cnt);
 
-                                if ($tmp_ugc_s_results_record_cnt > 0) {
+                                if($tmp_ugc_s_results_record_cnt > 0){
 
                                     $tmp_max_desktop_results = $this->oCRNRSTN->get_resource('RESULT_MAX_DESKTOP');
                                     $this->oCRNRSTN->set_maximum_display_result_count($tmp_max_desktop_results);
@@ -448,7 +450,7 @@ class crnrstn_content_generator {
 
                                     //
                                     // BUILD HTML OUTPUT AND RETURN
-                                    //for ($ii = {PAGINATION_START_POS}; $ii < $tmp_max_desktop_results; $ii++) {
+                                    //for ($ii = {PAGINATION_START_POS}; $ii < $tmp_max_desktop_results; $ii++){
                                     $tmp_current_pagination_pos = $this->oCRNRSTN->returnCurrentPaginationPos($pagination_serial);
                                     //error_log('348 - [' . $tmp_max_desktop_results.'] current_pagination_pos=' . $tmp_current_pagination_pos);
 
@@ -463,7 +465,7 @@ class crnrstn_content_generator {
 
                                     }
 
-                                    for ($ii = $cur_pos; $ii < $tmp_max_desktop_results+$cur_pos; $ii++) {
+                                    for ($ii = $cur_pos; $ii < $tmp_max_desktop_results+$cur_pos; $ii++){
 
                                         $tmp_content_id = $this->oCRNRSTN->return_db_value($oQueryProfileMgr, 'MERGED_SEARCH_RESULTS', 'CONTENT_ID', $ii);
 
@@ -519,9 +521,9 @@ class crnrstn_content_generator {
                 // DESKTOP EXPERIENCE
                 // PROCESS FOR SEARCH RESULTS
                 // ENABLE THIS PAGE TO RECEIVE HTTP POST/GET DATA
-                if($this->oCRNRSTN->http_data_services_initialize()) {
+                if($this->oCRNRSTN->http_data_services_initialize()){
 
-                    if($this->oCRNRSTN->isset_crnrstn_services_http() || $this->oCRNRSTN->isset_crnrstn_services_http('GET')) {
+                    if($this->oCRNRSTN->isset_crnrstn_services_http() || $this->oCRNRSTN->isset_crnrstn_services_http('GET')){
 
                         //
                         // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
@@ -578,14 +580,14 @@ class crnrstn_content_generator {
 
                         //
                         // IF WE HAVE PAGE DATA...
-                        if ($tmp_page_cnt > 0) {
+                        if($tmp_page_cnt > 0){
 
                             //
                             // PREPARE RECEIVED INPUT PARAMETERS FOR DATABASE QUERY
                             $tmp_ugc_search_str = $this->oCRNRSTN->get_http_resource('t');
 
                             $pos = strpos($tmp_ugc_search_str, '"');
-                            if ($pos !== false) {
+                            if($pos !== false){
                                 error_log('200 search - process for quotes...will break up words.');
                                 //
                                 // SEARCH ON QUOTED WORDS
@@ -600,7 +602,7 @@ class crnrstn_content_generator {
                                 // BUILD AND ADD QUERY
                                 $tmp_cnt = sizeof($tmp_ugc_array);
                                 $tmp_ugc_search_clean_str_ARRAY = array();
-                                for ($i = 0; $i < $tmp_cnt; $i++) {
+                                for ($i = 0; $i < $tmp_cnt; $i++){
 
                                     $tmp_ugc_search_clean_str_ARRAY[$i] = strtolower($oSideBitch_Usr->str_sanitize($tmp_ugc_array[$i], 'search'));
 
@@ -638,7 +640,7 @@ class crnrstn_content_generator {
                                 //
                                 // COMBINE ALL DESIRED RESULT SETS INTO ONE TO SEQUENCE AND/OR PURGE DUPLICATES
                                 // FOR EACH WORD OR QUOTED STRING RESULT SET
-                                for ($i = 0; $i < $tmp_cnt; $i++) {
+                                for ($i = 0; $i < $tmp_cnt; $i++){
 
                                     #$this->oCRNRSTN->resultSetMerge(($oQueryProfileMgr, {ORIGINAL RESULT SET KEY}, {TARGET RESULT SET KEY}, {MERGE KEY FIELD...PIPE OK}, {SEQUENCE KEY FIELD(S)...PIPE OK} {MERGE FIELD DATATYPE...PIPE OK})
                                     $this->oCRNRSTN->resultSetMerge($oQueryProfileMgr, 'QUOTED_SEARCH_' . $i, 'MERGED_SEARCH_RESULTS', 'CONTENT_ID', true,'CONTENT_LENGTH_RAW|DATECREATED', 'INTEGER|DATETIME');
@@ -665,7 +667,7 @@ class crnrstn_content_generator {
                                 // FOR EACH ROW IN MERGED RESULT SET
                                 $cur_pos = ($tmp_max_desktop_results*$tmp_current_pagination_pos) - $tmp_max_desktop_results;
 
-                                for ($i = $cur_pos; $i < $tmp_max_desktop_results+$cur_pos; $i++) {
+                                for ($i = $cur_pos; $i < $tmp_max_desktop_results+$cur_pos; $i++){
 
                                     $tmp_content_id = $this->oCRNRSTN->return_db_value($oQueryProfileMgr, 'MERGED_SEARCH_RESULTS', 'CONTENT_ID', $i);
 
@@ -689,7 +691,7 @@ class crnrstn_content_generator {
 
                                 }
 
-                            } else {
+                            }else{
 
                                 //
                                 // NO QUOTES...PROCESS ENTIRE UGC
@@ -729,7 +731,7 @@ class crnrstn_content_generator {
                                 //
                                 // COMBINE ALL DESIRED RESULT SETS INTO ONE TO SEQUENCE AND/OR PURGE DUPLICATES
                                 // FOR EACH WORD OR QUOTED STRING RESULT SET
-                                for ($i = 0; $i < $tmp_cnt; $i++) {
+                                for ($i = 0; $i < $tmp_cnt; $i++){
 
                                     $this->oCRNRSTN->resultSetMerge($oQueryProfileMgr, 'PLAIN_SEARCH', 'MERGED_SEARCH_RESULTS', 'CONTENT_ID', true,'CONTENT_LENGTH_RAW|DATECREATED', 'INTEGER|DATETIME');
 
@@ -738,7 +740,7 @@ class crnrstn_content_generator {
                                 $tmp_result_set_cnt = $tmp_ugc_s_results_record_cnt = $this->oCRNRSTN->return_record_count($oQueryProfileMgr, 'MERGED_SEARCH_RESULTS');
                                 $this->oCRNRSTN->increment_results_count_total($tmp_result_set_cnt);
 
-                                if ($tmp_ugc_s_results_record_cnt > 0) {
+                                if($tmp_ugc_s_results_record_cnt > 0){
 
                                     $tmp_max_desktop_results = $this->oCRNRSTN->get_resource('RESULT_MAX_DESKTOP');
                                     $this->oCRNRSTN->set_maximum_display_result_count($tmp_max_desktop_results);
@@ -751,7 +753,7 @@ class crnrstn_content_generator {
 
                                     //
                                     // BUILD HTML OUTPUT AND RETURN
-                                    //for ($ii = {PAGINATION_START_POS}; $ii < $tmp_max_desktop_results; $ii++) {
+                                    //for ($ii = {PAGINATION_START_POS}; $ii < $tmp_max_desktop_results; $ii++){
                                     $tmp_current_pagination_pos = $this->oCRNRSTN->returnCurrentPaginationPos($pagination_serial);
                                     //error_log('348 - [' . $tmp_max_desktop_results.'] current_pagination_pos=' . $tmp_current_pagination_pos);
 
@@ -766,7 +768,7 @@ class crnrstn_content_generator {
 
                                     }
 
-                                    for ($ii = $cur_pos; $ii < $tmp_max_desktop_results+$cur_pos; $ii++) {
+                                    for ($ii = $cur_pos; $ii < $tmp_max_desktop_results+$cur_pos; $ii++){
 
                                         $tmp_content_id = $this->oCRNRSTN->return_db_value($oQueryProfileMgr, 'MERGED_SEARCH_RESULTS', 'CONTENT_ID', $ii);
 
@@ -839,6 +841,7 @@ class crnrstn_content_generator {
             //
             // RETURN RAW SERIALIZED TOKEN.
             $tmp_token_string = $this->oCRNRSTN->return_module_deep_link_token($this->page_module_key, NULL, false);
+            $tmp_share_component_html_ARRAY = array();
 
             //error_log(__LINE__  . ' content gen page_module_key[' . $this->page_module_key . ']. $tmp_token_string['.$tmp_token_string.'].');
             //die();
@@ -858,12 +861,56 @@ class crnrstn_content_generator {
             <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=blog.shahednasser.com&caption=Awesome%20blog!&tags=test%2Chello">Share on Tumblr</a>
             <a href="https://www.reddit.com/submit?url=blog.shahednasser.com&title=Awesome%20Blog!">Share on Reddit</a>
 
+            $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'share_module_facebook_media_is_active', true, 'CRNRSTN::RESOURCE::SOCIAL');
+            $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'share_module_linkedin_media_is_active', true, 'CRNRSTN::RESOURCE::SOCIAL');
+            $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'share_module_reddit_media_is_active', true, 'CRNRSTN::RESOURCE::SOCIAL');
+            $this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'share_module_twitter_media_is_active', true, 'CRNRSTN::RESOURCE::SOCIAL');
+
             */
 
-            $tmp_facebook_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_facebook_' . $this->page_module_key);
-            $tmp_twitter_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_twitter_' . $this->page_module_key);
-            $tmp_linkedin_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_linkedin_' . $this->page_module_key);
-            $tmp_reddit_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_reddit_' . $this->page_module_key);
+            $tmp_facebook_is_active = $this->oCRNRSTN->get_resource('share_module_facebook_media_is_active', 0, 'CRNRSTN::RESOURCE::SOCIAL');
+            $tmp_twitter_is_active = $this->oCRNRSTN->get_resource('share_module_twitter_media_is_active', 0, 'CRNRSTN::RESOURCE::SOCIAL');
+            $tmp_linkedin_is_active = $this->oCRNRSTN->get_resource('share_module_linkedin_media_is_active', 0, 'CRNRSTN::RESOURCE::SOCIAL');
+            $tmp_reddit_is_active = $this->oCRNRSTN->get_resource('share_module_reddit_media_is_active', 0, 'CRNRSTN::RESOURCE::SOCIAL');
+
+            if($tmp_twitter_is_active){
+
+                $tmp_twitter_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_twitter_' . $this->page_module_key);
+                $tmp_share_component_html_ARRAY[] = '<div class="crnrstn_module_share_social_link"><a href="' . $tmp_twitter_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_TWITTER', 15, 15, NULL, 'Tweet to Twitter.', 'Tweet to Twitter.', NULL, CRNRSTN_HTML) . '</a></div>
+        ';
+
+            }
+
+            if($tmp_facebook_is_active){
+
+                $tmp_facebook_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_facebook_' . $this->page_module_key);
+                $tmp_share_component_html_ARRAY[] = '<div class="crnrstn_module_share_social_link"><a href="' . $tmp_facebook_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_FACEBOOK', 15, 15, NULL, 'Share to Facebook.', 'Share to Facebook.', NULL, CRNRSTN_HTML) . '</a></div>
+        ';
+
+            }
+
+            if($tmp_linkedin_is_active){
+
+                $tmp_linkedin_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_linkedin_' . $this->page_module_key);
+                $tmp_share_component_html_ARRAY[] = '<div class="crnrstn_module_share_social_link"><a href="' . $tmp_linkedin_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_LINKEDIN', 15, 15, NULL, 'Post to LinkedIn.', 'Post to LinkedIn.', NULL, CRNRSTN_HTML) . '</a></div>
+        ';
+
+            }
+
+            if($tmp_reddit_is_active){
+
+                $tmp_reddit_link = $this->oCRNRSTN->return_sticky_link('https://www.facebook.com/media/set/?set=a.10152398953669503.1073741836.586549502&type=1&l=4ba17e313a', 'crnrstn_share_reddit_' . $this->page_module_key);
+                $tmp_share_component_html_ARRAY[] = '<div class="crnrstn_module_share_social_link"><a href="' . $tmp_linkedin_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_REDDIT', 15, 15, NULL, 'Post to Reddit.', 'Post to Reddit.', NULL, CRNRSTN_HTML) . '</a></div>
+';
+
+            }
+
+            $tmp_share_html = '';
+            foreach($tmp_share_component_html_ARRAY as $index => $val){
+
+                $tmp_share_html .= $val;
+
+            }
 
             $tmp_str = '<div class="crnrstn_documentation_lnk_share_rel">
                                         <div class="crnrstn_documentation_lnk_share">
@@ -876,13 +923,10 @@ class crnrstn_content_generator {
                                                         <input id="crnrstn_module_share_component_input_' . $tmp_token_string . '" name="crnrstn_module_share_component_input_' . $tmp_token_string . '" value="' . $tmp_http_root . '?' . $this->oCRNRSTN->session_salt() . '=' . $this->page_module_key .  '&crnrstn_autoscroll=' . $tmp_token_string . '" onclick="oCRNRSTN_JS.crnrstn_interact_ui_ux(\'share_module_link_select\', \'' . $tmp_token_string . '\'); return false;">
                                                         <div class="crnrstn_cb"></div>
                                                         <div class="crnrstn_share_module_social_wrapper">
-                                                            <div class="crnrstn_module_share_social_link"><a href="' . $tmp_twitter_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_TWITTER', 15, 15, NULL, 'Tweet to Twitter.', 'Tweet to Twitter.', NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</a></div>                                                    
-                                                            <div class="crnrstn_module_share_social_link"><a href="' . $tmp_facebook_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_FACEBOOK', 15, 15, NULL, 'Share to Facebook.', 'Share to Facebook.', NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</a></div>                                                    
-                                                            <div class="crnrstn_module_share_social_link"><a href="' . $tmp_linkedin_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_LINKEDIN', 15, 15, NULL, 'Post to LinkedIn.', 'Post to LinkedIn.', NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</a></div>                                                    
-                                                            <div class="crnrstn_module_share_social_link"><a href="' . $tmp_linkedin_link . '" target="_blank">' . $this->oCRNRSTN->return_system_image('SOCIAL_REDDIT', 15, 15, NULL, 'Post to Reddit.', 'Post to Reddit.', NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</a></div>                                                    
+                                                            ' . $tmp_share_html . '
                                                             <div id="crnrstn_module_share_component_copy_status_' . $tmp_token_string . '" class="crnrstn_module_share_component_copy_status"></div>
                                                             <div class="crnrstn_cb"></div>
-                                                            
+
                                                         </div>
                                                     </form>
                                                 </div>
@@ -901,7 +945,7 @@ class crnrstn_content_generator {
 
         $html_out = '';
 
-	    switch($channel){
+        switch($channel){
             case 'index':
                 //$html_out .= $this->prep_page_index_content($this->page_subsubcateg_name_ARRAY[$serial]);
                 $search_result = '';
@@ -1200,7 +1244,7 @@ class crnrstn_content_generator {
                 // THE R
                 $tmp_html_the_r = '<div class="crnrstn_documentation_r_icon_shell">
                                         <div class="crnrstn_documentation_r_icon_rel">
-                                            <div class="crnrstn_documentation_r_icon">' . $this->oCRNRSTN->return_system_image('CRNRSTN_R_MD', 30, 40, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+                                            <div class="crnrstn_documentation_r_icon">' . $this->oCRNRSTN->return_system_image('CRNRSTN_R_MD', 30, 40, NULL, NULL, NULL, NULL, CRNRSTN_HTML) . '</div>
                                         </div>
                                     </div>';
 
@@ -1230,43 +1274,43 @@ class crnrstn_content_generator {
                             case 'PAGE_TITLE':
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 <div class="crnrstn_documentation_dyn_content_title">' . $val['PAGE_TITLE'] . '</div>
                                 <div class="crnrstn_documentation_dyn_content_description">' . $val['PAGE_DESCRIPTION'] . '</div>
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
-                            
+
                                         <div class="crnrstn_documentation_dyn_content_title">' . $val['PAGE_TITLE'] . '</div>
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val['PAGE_DESCRIPTION'] . '</div>
-                                        
+
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                
+
                                     <div class="crnrstn_hidden_void">
                                         <div class="crnrstn_documentation_dyn_content_title">' . $val['PAGE_TITLE'] . '</div>
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val['PAGE_DESCRIPTION'] . '</div>
-                                    
+
                                     </div>
-                                    
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1275,45 +1319,45 @@ class crnrstn_content_generator {
                             case 'NOTE':
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
                                 <div class="crnrstn_documentation_dyn_content_note_copy">' . $val['NOTE_COPY'] . '</div>
-    
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $this->return_module_share_link() . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_note_copy">' . $val['NOTE_COPY'] . '</div>
-                            
+
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
                                         <div class="crnrstn_interact_ui_bg_title_note">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_NOTE') . '</div>
-                                        <div class="crnrstn_interact_ui_bg_r_stone_pillar_small">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', '', 160, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
-                                        
+                                        <div class="crnrstn_interact_ui_bg_r_stone_pillar_small">' . $this->oCRNRSTN->return_system_image('R_STONE_PILLAR', '', 160, NULL, NULL, NULL, NULL, CRNRSTN_HTML) . '</div>
+
                                     </div>
-                                    
+
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_note_copy">' . $val['NOTE_COPY'] . '</div>
                                     </div>
-                                
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1338,7 +1382,7 @@ class crnrstn_content_generator {
                                 }
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
@@ -1348,14 +1392,14 @@ class crnrstn_content_generator {
                                         ' . $tmp_spec_li . '
                                     </ul>
                                 </div>
-    
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
 
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
@@ -1369,12 +1413,12 @@ class crnrstn_content_generator {
                                         </div>
 
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
                                         <div class="crnrstn_interact_ui_bg_title_tech_spec">' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_BACKGROUND_COPY_TECH_SPECS') . '</div>
 
                                     </div>
-                                    
+
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_tech_specs_wrapper">
@@ -1384,11 +1428,11 @@ class crnrstn_content_generator {
                                         </div>
 
                                     </div>
-                                    
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1397,42 +1441,42 @@ class crnrstn_content_generator {
                             case 'GENERAL_COPY_NAKED':
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
                                 <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
-    
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $this->return_module_share_link() . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
-                            
+
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
+
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
-                                    
+
                                     </div>
-                                
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1441,7 +1485,7 @@ class crnrstn_content_generator {
                             case 'GENERAL_COPY_R_STONE':
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
@@ -1450,34 +1494,34 @@ class crnrstn_content_generator {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $this->return_module_share_link() . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
-                            
+
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg">
-                                        <div class="crnrstn_interact_ui_bg_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', '', 1640, NULL, NULL, NULL, NULL, CRNRSTN_UI_IMG_HTML_WRAPPED) . '</div>
+                                        <div class="crnrstn_interact_ui_bg_r_stone_pillar">' . $this->oCRNRSTN->return_system_image('R_STONE_GIANT_PILLAR', '', 1640, NULL, NULL, NULL, NULL, CRNRSTN_HTML) . '</div>
                                     </div>
-                                    
+
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
-                                        
+
                                     </div>
-                                
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1486,7 +1530,7 @@ class crnrstn_content_generator {
                             case 'METHOD_DEFINITION':
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
@@ -1494,40 +1538,40 @@ class crnrstn_content_generator {
                                 <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
                                 <div class="crnrstn_documentation_dyn_content_method_definition">' . $val . '</div>
                                 ' .  $tmp_html_the_r . '
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $this->return_module_share_link() . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_method_definition">' . $val . '</div>
                                         ' . $tmp_html_the_r . '
-                                        
+
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                
+
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_METHOD_DEFINITION') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_method_definition">' . $val . '</div>
                                         ' . $tmp_html_the_r . '
-                                        
+
                                     </div>
-                                    
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1577,45 +1621,45 @@ class crnrstn_content_generator {
                                 }
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
                                 <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_PARAMETER_DEFINITION') . '</h3></div>
                                 <div class="crnrstn_documentation_dyn_content_description">' . $tmp_definition_str . '</div>
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $this->return_module_share_link() . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_PARAMETER_DEFINITION') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_description">' . $tmp_definition_str . '</div>
 
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                
+
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_PARAMETER_DEFINITION') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_description">' . $tmp_definition_str . '</div>
-                                    
+
                                     </div>
-                                    
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1624,45 +1668,45 @@ class crnrstn_content_generator {
                             case 'RETURN_VALUE':
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
                                 ' . $tmp_html_top_link . '
                                 <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
                                 <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $this->return_module_share_link() . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
 
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                
+
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RETURN_VALUE') . '</h3></div>
                                         <div class="crnrstn_documentation_dyn_content_description">' . $val . '</div>
-                                    
+
                                     </div>
-                                    
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1692,45 +1736,45 @@ class crnrstn_content_generator {
                                     }
 
                                     $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                                         <div class="crnrstn_documentation_dyn_content_module_border">
                                             <div class="crnrstn_hidden_void">
                                                 ' . $tmp_html_top_link . '
                                                 <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
                                                 <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                                        
+
                                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                                    
+
                                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                                               
+
                                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                                         ' . $this->return_module_share_link() . $tmp_html_top_link . '
                                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
                                                         <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
-                
+
                                                     </div>
-                                                    
+
                                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                                
+
                                                     <div class="crnrstn_hidden_void">
                                                         ' . $tmp_html_top_link . '
                                                         <div class="crnrstn_documentation_dyn_content_title"><h3>' . $this->oCRNRSTN->multi_lang_content_return('DOCUMENTATION_TITLE_RELATED_METHODS') . '</h3></div>
                                                         <div class="crnrstn_documentation_dyn_content_related_methods">' . $tmp_related_methods . '</div>
-                                                    
+
                                                     </div>
-                                                    
+
                                                 </div>
-                                            
+
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>';
@@ -1777,7 +1821,7 @@ class crnrstn_content_generator {
                                 }
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
@@ -1787,34 +1831,34 @@ class crnrstn_content_generator {
                             </div>
                         </div>
                     </div>
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         <div class="crnrstn_documentation_dyn_content_title"><h2>' . $val['title_string'] . '</h2></div>
                                         <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                                         ' . $tmp_example_test_out . '
-                            
+
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                    
+
                                     <div class="crnrstn_hidden_void">
                                         <div class="crnrstn_documentation_dyn_content_title"><h2>' . $val['title_string'] . '</h2></div>
                                         <div class="crnrstn_documentation_dyn_content_example">' . $tmp_example_test . '</div>
                                         ' . $tmp_example_test_out . '
-                                        
+
                                     </div>
-                                
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -1845,7 +1889,7 @@ class crnrstn_content_generator {
 
                                 */
 
-//                                switch($val) {
+//                                switch($val){
 //                                    case 'STANDARD_REPORT':
 //
 //                                        $tmp_hashed_html = '';
@@ -2002,7 +2046,7 @@ class crnrstn_content_generator {
                                 $tmp_report = $this->oCRNRSTN->return_report_module_out(CRNRSTN_RESPONSE_REPORT);
 
                                 $html_out .= '<div class="crnrstn_documentation_dyn_content_module_wrap_s3">
-                
+
                     <div class="crnrstn_documentation_dyn_content_module_border_rel">
                         <div class="crnrstn_documentation_dyn_content_module_border">
                             <div class="crnrstn_hidden_void">
@@ -2012,32 +2056,32 @@ class crnrstn_content_generator {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="crnrstn_documentation_dyn_content_module_wrap_s2_outter">
                         <div class="crnrstn_documentation_dyn_content_module_wrap_s2_inner">
-                        
+
                             <div class="crnrstn_documentation_dyn_content_module_bg_rel">
-                                    
+
                                 <div class="crnrstn_documentation_dyn_content_module_wrap_s1_rel">
-                               
+
                                     <div class="crnrstn_documentation_dyn_content_module_wrap_s1">
                                         ' . $this->return_module_share_link() . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_page_stats_content">' . $tmp_report . '</div>
                                         ' . $tmp_html_the_r . '
                                     </div>
-                                    
+
                                     <div class="crnrstn_documentation_dyn_content_module_bg"></div>
-                                
+
                                     <div class="crnrstn_hidden_void">
                                         ' . $tmp_html_top_link . '
                                         <div class="crnrstn_documentation_page_stats_content">' . $tmp_report . '</div>
                                         ' . $tmp_html_the_r . '
                                     </div>
-                                    
+
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>';
@@ -2054,7 +2098,7 @@ class crnrstn_content_generator {
                 <div class="crnrstn_cb"></div>
                 <div id="crnrstn_interact_ui_documentation_j5_wolf_pup" class="crnrstn_interact_ui_documentation_j5_wolf_pup">
                     <div id="crnrstn_interact_ui_documentation_j5_wolf_pup_inner_wrap" class="crnrstn_interact_ui_documentation_j5_wolf_pup_inner_wrap">
-                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
+                        ' . $this->oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_HTML) . '
                     </div>
                 </div>
                 <div class="crnrstn_cb"></div>
@@ -2106,8 +2150,8 @@ class crnrstn_content_generator {
 
     public function retrieve_code_example_html($filepath){
 
-        $tmp_path_dir = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
-        $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+        $tmp_path_dir = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN::RESOURCE::HTTP_IMAGES');
+        $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN::RESOURCE::HTTP_IMAGES');
 
         $filepath = $tmp_path_dir . DIRECTORY_SEPARATOR . $tmp_system_directory . $filepath;
 
@@ -2119,8 +2163,8 @@ class crnrstn_content_generator {
 
         if($filepath != ''){
 
-            $tmp_path_dir = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
-            $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+            $tmp_path_dir = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN::RESOURCE::HTTP_IMAGES');
+            $tmp_system_directory = $this->oCRNRSTN->get_resource('crnrstn_system_directory', 0, 'CRNRSTN::RESOURCE::HTTP_IMAGES');
 
             $filepath = $tmp_path_dir . DIRECTORY_SEPARATOR . $tmp_system_directory . $filepath;
 
@@ -2158,7 +2202,7 @@ class crnrstn_content_generator {
 
     }
 
-	public function __destruct() {
+	public function __destruct(){
 		
 	}
 }

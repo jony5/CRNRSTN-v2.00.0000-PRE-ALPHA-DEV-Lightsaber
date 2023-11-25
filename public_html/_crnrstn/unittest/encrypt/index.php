@@ -179,7 +179,7 @@ $oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_
 $oCRNRSTN->form_input_add('openssl_mysql_storage_performance', 'crnrstn_openssl_profile_randomization');
 
 $tmp_array = $oCRNRSTN->openssl_get_cipher_methods();
-foreach ($tmp_array as $key1 => $data1) {
+foreach($tmp_array as $key1 => $data1) {
 
     $cipher_ARRAY[] = $data1;
     $cipher_dom_log_ARRAY[$data1] = '<div class="crnrstn_log_entry">' . $data1 . "</div>";
@@ -220,7 +220,7 @@ foreach ($tmp_array as $key1 => $data1) {
 }
 
 $tmp_array = hash_algos();
-foreach ($tmp_array as $key1 => $data1) {
+foreach($tmp_array as $key1 => $data1) {
 
     $algorithm_ARRAY[] = $data1;
     $algorithm_dom_log_ARRAY[$data1] = '<div class="crnrstn_log_entry">' . $data1 . "</div>";
@@ -271,7 +271,7 @@ foreach ($tmp_array as $key1 => $data1) {
 <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
 <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY) .
     $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI).
-    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_CSS_MAIN_DESKTOP & CRNRSTN_JS_MAIN); ?>
 <style>
     *                                           { }
     .the_R_in_crnrstn                           { color:#F90000; }
@@ -346,7 +346,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
                                 <div id="crnrstn_cipher_dom_chkbx_ARRAY" style="display:none; position:absolute; left: 25px; top: 9px; width: 200px; border-left: 5px solid #1677e0; border-top: 1px solid #9a9292; border-right: 1px solid #9a9292; border-bottom: 1px solid #9a9292; background-color: #FFF; overflow: scroll; height: 300px;">
                                     <div class="crnrstn_field_input_array_wrapper" style="padding:0 0 0 10px; width: 190px;">
                                         <?php
-                                        foreach ($cipher_dom_chkbx_ARRAY as $key1 => $data1) {
+                                        foreach($cipher_dom_chkbx_ARRAY as $key1 => $data1) {
 
                                             echo '<div class="crnrstn_field_input_array_elem">
                                                 <div style="float: left; padding: 5px 0 0 2px;">' . $data1 . '</div> 
@@ -365,7 +365,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
                     <select name="crnrstn_openssl_cipher">
                         <option value="">- Select</option>
                         <?php
-                        foreach ($cipher_dom_combo_ARRAY as $key1 => $data1) {
+                        foreach($cipher_dom_combo_ARRAY as $key1 => $data1) {
 
                             if(isset($cipher_dom_chkbx_state_ARRAY[$key1])){
 
@@ -393,7 +393,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
                                 <div id="crnrstn_algorithm_dom_chkbx_ARRAY" style="display:none; position:absolute; left: 25px; top: 9px; width: 200px; border-left: 5px solid #1677e0; border-top: 1px solid #9a9292; border-right: 1px solid #9a9292; border-bottom: 1px solid #9a9292; background-color: #FFF; overflow: scroll; height: 300px;">
                                     <div class="crnrstn_field_input_array_wrapper" style="padding:0 0 0 10px; width: 190px;">
                                         <?php
-                                        foreach ($algorithm_dom_chkbx_ARRAY as $key1 => $data1) {
+                                        foreach($algorithm_dom_chkbx_ARRAY as $key1 => $data1) {
 
                                             echo '<div class="crnrstn_field_input_array_elem">
                                                 <div style="float: left; padding: 5px 0 0 2px;">' . $data1 . '</div> 
@@ -411,7 +411,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
                     <select name="crnrstn_openssl_algorithm">
                         <option value="">- Select</option>
                         <?php
-                        foreach ($algorithm_dom_combo_ARRAY as $key1 => $data1) {
+                        foreach($algorithm_dom_combo_ARRAY as $key1 => $data1) {
 
                             if(isset($algorithm_dom_chkbx_state_ARRAY[$key1])){
 
@@ -614,7 +614,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('openssl_mysql_sto
         <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
             <div id="crnrstn_j5_wolf_pup_inner_wrap" class="crnrstn_j5_wolf_pup_inner_wrap">
                 <?php
-                echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
+                echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_HTML);
                 ?>
             </div>
         </div>

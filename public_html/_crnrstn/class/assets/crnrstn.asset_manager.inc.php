@@ -41,315 +41,14 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
-#
-#  CLASS :: crnrstn_asset_validator
-#  VERSION :: 1.00.0000
-#  DATE :: April 14, 2020 2202hrs
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI ::
-#  DESCRIPTION ::
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
-#
-class crnrstn_asset_validator {
-
-    private static $asset_type;
-    private static $asset_ext;
-    private static $asset_mime;
-    private static $auth_mime_cnt = 0;
-
-    private static $approved_mime_ARRAY = array();
-
-    public function __construct($type, $ext, $mime){
-
-        self::$asset_type = $type;
-        self::$asset_ext = $ext;
-        self::$asset_mime = $mime;
-
-        switch(self::$asset_type){
-            case 'BRIEF':
-
-                //
-                // HOW CAN I REUSE THIS CODE THE BEST...SO I HAVE TO DO THE LEAST WORK?
-                $this->add_auth_mime_type('txt','text/plain');
-                $this->add_auth_mime_type('doc','application/msword');
-                $this->add_auth_mime_type('docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-                $this->add_auth_mime_type('odt','application/vnd.oasis.opendocument.text');
-                $this->add_auth_mime_type('pdf','application/pdf');
-                $this->add_auth_mime_type('rtf','application/rtf');
-                $this->add_auth_mime_type('tex','application/x-tex');
-                $this->add_auth_mime_type('wks','application/vnd.ms-works');
-                $this->add_auth_mime_type('wps','application/vnd.ms-works');
-                $this->add_auth_mime_type('wpd','application/vnd.wordperfect');
-                $this->add_auth_mime_type('zip','application/zip');
-                $this->add_auth_mime_type('zip','multipart/x-zip');
-                $this->add_auth_mime_type('xls','application/vnd.ms-excel');
-                $this->add_auth_mime_type('xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                $this->add_auth_mime_type('ppt','application/vnd.ms-powerpoint');
-                $this->add_auth_mime_type('ods','application/vnd.oasis.opendocument.spreadsheet');
-                $this->add_auth_mime_type('pps','application/vnd.ms-powerpoint');
-                $this->add_auth_mime_type('ppsx','application/vnd.openxmlformats-officedocument.presentationml.slideshow');
-
-            break;
-            case 'CREATIVE':
-                $this->add_auth_mime_type('jpg','image/jpeg');
-                $this->add_auth_mime_type('jpg','image/pjpeg');
-                $this->add_auth_mime_type('jpeg','image/jpeg');
-                $this->add_auth_mime_type('jpeg','image/pjpeg');
-                $this->add_auth_mime_type('jpg2','image/jpeg');
-                $this->add_auth_mime_type('gif','image/gif');
-                $this->add_auth_mime_type('bmp','image/bmp');
-                $this->add_auth_mime_type('bmp','image/x-windows-bmp');
-                $this->add_auth_mime_type('jpe','application/rtf');
-                $this->add_auth_mime_type('jpe','image/jpeg');
-                $this->add_auth_mime_type('jpe','image/pjpeg');
-                $this->add_auth_mime_type('jpe','application/rtf');
-                $this->add_auth_mime_type('jfif','image/pipeg');
-                $this->add_auth_mime_type('tif','image/tiff');
-                $this->add_auth_mime_type('tif','image/x-tiff');
-                $this->add_auth_mime_type('tiff','application/vnd.ms-works');
-                $this->add_auth_mime_type('pdf','application/pdf');
-                $this->add_auth_mime_type('ico','image/x-icon');
-                $this->add_auth_mime_type('mp2','video/mpeg');
-                $this->add_auth_mime_type('mpa','video/mpeg');
-                $this->add_auth_mime_type('mpe','video/mpeg');
-                $this->add_auth_mime_type('mpeg','video/mpeg');
-                $this->add_auth_mime_type('mpg','video/mpeg');
-                $this->add_auth_mime_type('mpg','audio/mpeg');
-                $this->add_auth_mime_type('mpv2','video/mpeg');
-                $this->add_auth_mime_type('mp4','image/x-icon');
-                $this->add_auth_mime_type('mov','video/quicktime');
-                $this->add_auth_mime_type('qt','video/quicktime');
-                $this->add_auth_mime_type('avi','video/x-msvideo');
-                $this->add_auth_mime_type('movie','video/x-sgi-movie');
-                $this->add_auth_mime_type('swf','application/x-shockwave-flash');
-                $this->add_auth_mime_type('svg','image/svg+xml');
-                $this->add_auth_mime_type('avi','application/x-troff-msvideo');
-                $this->add_auth_mime_type('avi','video/avi');
-                $this->add_auth_mime_type('avi','video/msvideo');
-                $this->add_auth_mime_type('avi','video/x-msvideo');
-                $this->add_auth_mime_type('avs','video/avs-video');
-                $this->add_auth_mime_type('m1v','video/mpeg');
-                $this->add_auth_mime_type('m2a','audio/mpeg');
-                $this->add_auth_mime_type('m2v','video/mpeg');
-                $this->add_auth_mime_type('m3u','audio/x-mpequrl');
-                $this->add_auth_mime_type('mid','application/x-midi');
-                $this->add_auth_mime_type('mid','audio/midi');
-                $this->add_auth_mime_type('mid','audio/x-mid');
-                $this->add_auth_mime_type('mid','audio/x-midi');
-                $this->add_auth_mime_type('mid','music/crescendo');
-                $this->add_auth_mime_type('mid','x-music/x-midi');
-                $this->add_auth_mime_type('midi','application/x-midi');
-                $this->add_auth_mime_type('midi','audio/midi');
-                $this->add_auth_mime_type('midi','audio/x-mid');
-                $this->add_auth_mime_type('midi','audio/x-midi');
-                $this->add_auth_mime_type('midi','music/crescendo');
-                $this->add_auth_mime_type('midi','x-music/x-midi');
-                $this->add_auth_mime_type('mjpg','video/x-motion-jpeg');
-                $this->add_auth_mime_type('mp2','audio/mpeg');
-                $this->add_auth_mime_type('mp2','audio/x-mpeg');
-                $this->add_auth_mime_type('mp2','video/mpeg');
-                $this->add_auth_mime_type('mp2','video/x-mpeg');
-                $this->add_auth_mime_type('mp2','video/x-mpeq2a');
-                $this->add_auth_mime_type('mp3','audio/mpeg3');
-                $this->add_auth_mime_type('mp3','audio/x-mpeg-3');
-                $this->add_auth_mime_type('mp3','video/mpeg');
-                $this->add_auth_mime_type('mp3','video/x-mpeg');
-                $this->add_auth_mime_type('mpa','audio/mpeg');
-                $this->add_auth_mime_type('mpa','video/mpeg');
-                $this->add_auth_mime_type('mpe','video/mpeg');
-                $this->add_auth_mime_type('mpga','audio/mpeg');
-                $this->add_auth_mime_type('mv','video/x-sgi-movie');
-                $this->add_auth_mime_type('pic','image/pict');
-                $this->add_auth_mime_type('pict','image/pict');
-                $this->add_auth_mime_type('png','image/png');
-                $this->add_auth_mime_type('qif','image/x-quicktime');
-                $this->add_auth_mime_type('qtc','video/x-qtc');
-                $this->add_auth_mime_type('qti','image/x-quicktime');
-                $this->add_auth_mime_type('qtif','image/x-quicktime');
-                $this->add_auth_mime_type('ra','audio/x-pn-realaudio');
-                $this->add_auth_mime_type('ra','audio/x-pn-realaudio-plugin');
-                $this->add_auth_mime_type('ra','audio/x-realaudio');
-                $this->add_auth_mime_type('ram','audio/x-pn-realaudio');
-                $this->add_auth_mime_type('wav','audio/wav');
-                $this->add_auth_mime_type('wav','audio/x-wav');
-                $this->add_auth_mime_type('zip','application/zip');
-                $this->add_auth_mime_type('zip','multipart/x-zip');
-
-            break;
-            case 'REPORT':
-                $this->add_auth_mime_type('txt','text/plain');
-                $this->add_auth_mime_type('doc','application/msword');
-                $this->add_auth_mime_type('docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-                $this->add_auth_mime_type('odt','application/vnd.oasis.opendocument.text');
-                $this->add_auth_mime_type('pdf','application/pdf');
-                $this->add_auth_mime_type('rtf','application/rtf');
-                $this->add_auth_mime_type('tex','application/x-tex');
-                $this->add_auth_mime_type('wks','application/vnd.ms-works');
-                $this->add_auth_mime_type('wps','application/vnd.ms-works');
-                $this->add_auth_mime_type('wpd','application/vnd.wordperfect');
-                $this->add_auth_mime_type('zip','application/zip');
-                $this->add_auth_mime_type('zip','multipart/x-zip');
-                $this->add_auth_mime_type('xls','application/vnd.ms-excel');
-                $this->add_auth_mime_type('xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                $this->add_auth_mime_type('ppt','application/vnd.ms-powerpoint');
-                $this->add_auth_mime_type('ods','application/vnd.oasis.opendocument.spreadsheet');
-                $this->add_auth_mime_type('pps','application/vnd.ms-powerpoint');
-                $this->add_auth_mime_type('ppsx','application/vnd.openxmlformats-officedocument.presentationml.slideshow');
-
-            break;
-            case 'DELIVERABLE':
-            case 'STREAM':
-                $this->add_auth_mime_type('txt','text/plain');
-                $this->add_auth_mime_type('doc','application/msword');
-                $this->add_auth_mime_type('docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-                $this->add_auth_mime_type('odt','application/vnd.oasis.opendocument.text');
-                $this->add_auth_mime_type('pdf','application/pdf');
-                $this->add_auth_mime_type('rtf','application/rtf');
-                $this->add_auth_mime_type('tex','application/x-tex');
-                $this->add_auth_mime_type('wks','application/vnd.ms-works');
-                $this->add_auth_mime_type('wps','application/vnd.ms-works');
-                $this->add_auth_mime_type('wpd','application/vnd.wordperfect');
-                $this->add_auth_mime_type('xls','application/vnd.ms-excel');
-                $this->add_auth_mime_type('xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                $this->add_auth_mime_type('ppt','application/vnd.ms-powerpoint');
-                $this->add_auth_mime_type('ods','application/vnd.oasis.opendocument.spreadsheet');
-                $this->add_auth_mime_type('pps','application/vnd.ms-powerpoint');
-                $this->add_auth_mime_type('ppsx','application/vnd.openxmlformats-officedocument.presentationml.slideshow');
-                $this->add_auth_mime_type('jpg','image/jpeg');
-                $this->add_auth_mime_type('jpg','image/pjpeg');
-                $this->add_auth_mime_type('jpeg','image/jpeg');
-                $this->add_auth_mime_type('jpeg','image/pjpeg');
-                $this->add_auth_mime_type('jpg2','image/jpeg');
-                $this->add_auth_mime_type('gif','image/gif');
-                $this->add_auth_mime_type('bmp','image/bmp');
-                $this->add_auth_mime_type('bmp','image/x-windows-bmp');
-                $this->add_auth_mime_type('jpe','application/rtf');
-                $this->add_auth_mime_type('jpe','image/jpeg');
-                $this->add_auth_mime_type('jpe','image/pjpeg');
-                $this->add_auth_mime_type('jpe','application/rtf');
-                $this->add_auth_mime_type('jfif','image/pipeg');
-                $this->add_auth_mime_type('tif','image/tiff');
-                $this->add_auth_mime_type('tif','image/x-tiff');
-                $this->add_auth_mime_type('tiff','application/vnd.ms-works');
-                $this->add_auth_mime_type('pdf','application/pdf');
-                $this->add_auth_mime_type('ico','image/x-icon');
-                $this->add_auth_mime_type('mp2','video/mpeg');
-                $this->add_auth_mime_type('mpa','video/mpeg');
-                $this->add_auth_mime_type('mpe','video/mpeg');
-                $this->add_auth_mime_type('mpeg','video/mpeg');
-                $this->add_auth_mime_type('mpg','video/mpeg');
-                $this->add_auth_mime_type('mpg','audio/mpeg');
-                $this->add_auth_mime_type('mpv2','video/mpeg');
-                $this->add_auth_mime_type('mp4','image/x-icon');
-                $this->add_auth_mime_type('mov','video/quicktime');
-                $this->add_auth_mime_type('qt','video/quicktime');
-                $this->add_auth_mime_type('avi','video/x-msvideo');
-                $this->add_auth_mime_type('movie','video/x-sgi-movie');
-                $this->add_auth_mime_type('swf','application/x-shockwave-flash');
-                $this->add_auth_mime_type('svg','image/svg+xml');
-                $this->add_auth_mime_type('avi','application/x-troff-msvideo');
-                $this->add_auth_mime_type('avi','video/avi');
-                $this->add_auth_mime_type('avi','video/msvideo');
-                $this->add_auth_mime_type('avi','video/x-msvideo');
-                $this->add_auth_mime_type('avs','video/avs-video');
-                $this->add_auth_mime_type('m1v','video/mpeg');
-                $this->add_auth_mime_type('m2a','audio/mpeg');
-                $this->add_auth_mime_type('m2v','video/mpeg');
-                $this->add_auth_mime_type('m3u','audio/x-mpequrl');
-                $this->add_auth_mime_type('mid','application/x-midi');
-                $this->add_auth_mime_type('mid','audio/midi');
-                $this->add_auth_mime_type('mid','audio/x-mid');
-                $this->add_auth_mime_type('mid','audio/x-midi');
-                $this->add_auth_mime_type('mid','music/crescendo');
-                $this->add_auth_mime_type('mid','x-music/x-midi');
-                $this->add_auth_mime_type('midi','application/x-midi');
-                $this->add_auth_mime_type('midi','audio/midi');
-                $this->add_auth_mime_type('midi','audio/x-mid');
-                $this->add_auth_mime_type('midi','audio/x-midi');
-                $this->add_auth_mime_type('midi','music/crescendo');
-                $this->add_auth_mime_type('midi','x-music/x-midi');
-                $this->add_auth_mime_type('mjpg','video/x-motion-jpeg');
-                $this->add_auth_mime_type('mp2','audio/mpeg');
-                $this->add_auth_mime_type('mp2','audio/x-mpeg');
-                $this->add_auth_mime_type('mp2','video/mpeg');
-                $this->add_auth_mime_type('mp2','video/x-mpeg');
-                $this->add_auth_mime_type('mp2','video/x-mpeq2a');
-                $this->add_auth_mime_type('mp3','audio/mpeg3');
-                $this->add_auth_mime_type('mp3','audio/x-mpeg-3');
-                $this->add_auth_mime_type('mp3','video/mpeg');
-                $this->add_auth_mime_type('mp3','video/x-mpeg');
-                $this->add_auth_mime_type('mpa','audio/mpeg');
-                $this->add_auth_mime_type('mpa','video/mpeg');
-                $this->add_auth_mime_type('mpe','video/mpeg');
-                $this->add_auth_mime_type('mpga','audio/mpeg');
-                $this->add_auth_mime_type('mv','video/x-sgi-movie');
-                $this->add_auth_mime_type('pic','image/pict');
-                $this->add_auth_mime_type('pict','image/pict');
-                $this->add_auth_mime_type('png','image/png');
-                $this->add_auth_mime_type('qif','image/x-quicktime');
-                $this->add_auth_mime_type('qtc','video/x-qtc');
-                $this->add_auth_mime_type('qti','image/x-quicktime');
-                $this->add_auth_mime_type('qtif','image/x-quicktime');
-                $this->add_auth_mime_type('ra','audio/x-pn-realaudio');
-                $this->add_auth_mime_type('ra','audio/x-pn-realaudio-plugin');
-                $this->add_auth_mime_type('ra','audio/x-realaudio');
-                $this->add_auth_mime_type('ram','audio/x-pn-realaudio');
-                $this->add_auth_mime_type('wav','audio/wav');
-                $this->add_auth_mime_type('wav','audio/x-wav');
-                $this->add_auth_mime_type('zip','application/zip');
-                $this->add_auth_mime_type('zip','multipart/x-zip');
-
-            break;
-            default:
-
-            break;
-
-        }
-
-    }
-
-    public function isValid(){
-
-        $tmp_loop_size = sizeof(self::$approved_mime_ARRAY);
-        for($i=0;$i<$tmp_loop_size;$i++){
-
-            //
-            // RUN THROUGH ONCE FOR MATCH
-            if(isset(self::$approved_mime_ARRAY[$i][crc32(self::$asset_ext)][crc32(self::$asset_mime)])){
-
-                return true;
-            }
-
-        }
-
-        return false;
-
-    }
-
-    private function add_auth_mime_type($ext,$mime){
-
-        //
-        // ADD APPROVED MIME TYPE
-        self::$approved_mime_ARRAY[self::$auth_mime_cnt][crc32($ext)][crc32($mime)] = 1;
-        self::$auth_mime_cnt++;
-
-    }
-
-    public function __destruct() {
-
-    }
-
-}
-
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_asset_manager
 #  VERSION :: 1.00.0000
 #  DATE :: August 21, 2018 2305hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI ::
-#  DESCRIPTION ::
+#  DESCRIPTION :: [ARCHIVAL - Saturday, October 28, 2023 @ 0253 hrs]
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
 class crnrstn_asset_manager {
@@ -386,9 +85,9 @@ class crnrstn_asset_manager {
 	public $assetData = array();
 	public $assetParams = array();
 
-	public function __construct($oUSER, $oENV, $oDB) {
+	public function __construct($oUSER, $oENV, $oDB){
 		
-		// 
+		//
 		// INSTANTIATE LOGGER
 		self::$oLogger = new crnrstn_logging();
 		self::$oUser = $oUSER;
@@ -575,7 +274,7 @@ class crnrstn_asset_manager {
 					$this->readfile_chunked($tmp_filePath);
 				}
 				
-				ob_flush(); 
+				ob_flush();
    			    flush();
 
 			break;
@@ -667,7 +366,7 @@ class crnrstn_asset_manager {
 		//
 		// INITIALIZE PARAMS FOR SOAP OBJECT REQUEST
 		self::$params = array('oAssetAccessGrantReq' =>
-			array('ASSET_ID' => $this->retrieve_HTTP_Data('ASSET_ID'), 
+			array('ASSET_ID' => $this->retrieve_HTTP_Data('ASSET_ID'),
 			'KIVOTOS_ID' => $this->retrieve_HTTP_Data("KIVOTOS_ID"),
 			'CLIENT_ID' => $this->retrieve_HTTP_Data("CLIENT_ID"),
 			'USER_ID' => $this->retrieve_HTTP_Data("USER_ID"),
@@ -724,7 +423,7 @@ class crnrstn_asset_manager {
 				
 				$tmp_loop_size1 = sizeof($pos);
 				for($ii=0;$ii<$tmp_loop_size1;$ii++){
-					if ($pos[$ii] !== false) {
+					if($pos[$ii] !== false){
 						
 						//
 						// I HAVE BEEN FOUND
@@ -799,7 +498,7 @@ class crnrstn_asset_manager {
 				//
 				// INITIALIZE PARAMS FOR SOAP OBJECT REQUEST. TIME TO UPDATE WEB SERVICE TO HANDLE STREAM SPECIFIC DATA
 				self::$params = array('oUploadAssetInfo' =>
-					array('ASSET_ID' => $this->assetParams['ASSET_ID'], 
+					array('ASSET_ID' => $this->assetParams['ASSET_ID'],
 					'ASSET_TYPE' => self::$oUser->retrieve_Form_Data("ASSET_TYPE"),
                     'SPECIALTY_TYPE' => self::$oUser->retrieve_Form_Data("SPECIALTY_TYPE"),
 					'KIVOTOS_ID' => self::$oUser->retrieve_Form_Data("KIVOTOS_ID"),
@@ -918,7 +617,7 @@ class crnrstn_asset_manager {
 				//
 				// INITIALIZE PARAMS FOR SOAP OBJECT REQUEST.
 				self::$params = array('oUploadAssetInfo' =>
-					array('ASSET_ID' => $this->assetParams['ASSET_ID'], 
+					array('ASSET_ID' => $this->assetParams['ASSET_ID'],
 					'ASSET_TYPE' => self::$oUser->retrieve_Form_Data("ASSET_TYPE"),
 					'KIVOTOS_ID' => self::$oUser->retrieve_Form_Data("KIVOTOS_ID"),
 					'CLIENT_ID' => self::$oUser->retrieve_Form_Data("CLIENT_ID"),
@@ -993,11 +692,11 @@ class crnrstn_asset_manager {
 		
 		//
 		// CHECK FILE
-		if (!isset($_FILES['assetfile']['error']) || is_array($_FILES['assetfile']['error'])) {
+		if(!isset($_FILES['assetfile']['error']) || is_array($_FILES['assetfile']['error'])){
 			throw new Exception('Invalid parameters in file upload _FILES array.');
 		}
 		
-		switch ($_FILES['assetfile']['error']) {
+		switch ($_FILES['assetfile']['error']){
 			case UPLOAD_ERR_OK:
 				$this->assetParams['ASSET_UPLOAD_STATUS'] = 'UPLOAD_ERR_OK';
 			break;
@@ -1073,7 +772,7 @@ class crnrstn_asset_manager {
 
                             //
                             // COPY FULL VERSION
-                            if (!move_uploaded_file($_FILES["assetfile"]["tmp_name"], $this->assetParams['TARGET_THUMB_FULL_FILE'])) {
+                            if(!move_uploaded_file($_FILES["assetfile"]["tmp_name"], $this->assetParams['TARGET_THUMB_FULL_FILE'])){
                                 self::$oLogger->captureNotice('asset_manager->processFile()', LOG_EMERG, 'error saving asset [' . $this->assetParams['TARGET_THUMB_FULL_FILE'].']');
                                 self::$newAssetStatus = 'processed=error';
                             }else{
@@ -1101,7 +800,7 @@ class crnrstn_asset_manager {
                                     $this->assetParams['IMAGE_SAVE_FUNC'] = 'imagejpeg';*/
 
                                     //
-                                    // NEED TO ESTABLISH TARGET THUMB DIMENSIONS. MAYBE PUSH THIS TO THE CONFIG FILE.
+                                    // NEED TO ESTABLISH TARGET THUMB DIMENSIONS. MAYBE WRITE THIS TO THE CONFIG FILE.
                                     /*
                                      * LARGE    [w=500]
                                      * MEDIUM   [w=300]
@@ -1123,7 +822,7 @@ class crnrstn_asset_manager {
                                     $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                     imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                    if (file_exists($this->assetParams['TARGET_THUMB_LARGE_FILE'])) {
+                                    if(file_exists($this->assetParams['TARGET_THUMB_LARGE_FILE'])){
                                         unlink($this->assetParams['TARGET_THUMB_LARGE_FILE']);
                                     }
 
@@ -1148,7 +847,7 @@ class crnrstn_asset_manager {
                                         $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                         imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                        if (file_exists($this->assetParams['TARGET_THUMB_MEDIUM_FILE'])) {
+                                        if(file_exists($this->assetParams['TARGET_THUMB_MEDIUM_FILE'])){
                                             unlink($this->assetParams['TARGET_THUMB_MEDIUM_FILE']);
                                         }
 
@@ -1173,7 +872,7 @@ class crnrstn_asset_manager {
                                             $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                             imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                            if (file_exists($this->assetParams['TARGET_THUMB_SMALL_FILE'])) {
+                                            if(file_exists($this->assetParams['TARGET_THUMB_SMALL_FILE'])){
                                                 unlink($this->assetParams['TARGET_THUMB_SMALL_FILE']);
                                             }
 
@@ -1204,7 +903,7 @@ class crnrstn_asset_manager {
                                     $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                     imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                    if (file_exists($this->assetParams['TARGET_THUMB_LARGE_FILE'])) {
+                                    if(file_exists($this->assetParams['TARGET_THUMB_LARGE_FILE'])){
                                         unlink($this->assetParams['TARGET_THUMB_LARGE_FILE']);
                                     }
 
@@ -1229,7 +928,7 @@ class crnrstn_asset_manager {
                                         $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                         imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                        if (file_exists($this->assetParams['TARGET_THUMB_MEDIUM_FILE'])) {
+                                        if(file_exists($this->assetParams['TARGET_THUMB_MEDIUM_FILE'])){
                                             unlink($this->assetParams['TARGET_THUMB_MEDIUM_FILE']);
                                         }
 
@@ -1254,7 +953,7 @@ class crnrstn_asset_manager {
                                             $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                             imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                            if (file_exists($this->assetParams['TARGET_THUMB_SMALL_FILE'])) {
+                                            if(file_exists($this->assetParams['TARGET_THUMB_SMALL_FILE'])){
                                                 unlink($this->assetParams['TARGET_THUMB_SMALL_FILE']);
                                             }
 
@@ -1300,10 +999,10 @@ class crnrstn_asset_manager {
                         $this->assetParams['TARGET_THUMB_MEDIUM_FILE'] = "";
                         $this->assetParams['TARGET_THUMB_SMALL_FILE'] = "";
 
-                        if (move_uploaded_file($_FILES["assetfile"]["tmp_name"], self::$TARGET_FILE)) {
+                        if(move_uploaded_file($_FILES["assetfile"]["tmp_name"], self::$TARGET_FILE)){
                             error_log("assetmgr (955) success me");
                             self::$newAssetStatus = 'processed=success';
-                        } else {
+                        }else{
                             error_log("assetmgr (958) error me");
                             self::$newAssetStatus = 'processed=error';
                             self::$oLogger->captureNotice('asset_manager->processFile()', LOG_EMERG, 'error saving non-resizable asset [' . $this->assetParams['TARGET_THUMB_SMALL_FILE'].']');
@@ -1330,9 +1029,9 @@ class crnrstn_asset_manager {
                     $this->assetParams['TARGET_THUMB_MEDIUM_FILE'] = "";
                     $this->assetParams['TARGET_THUMB_SMALL_FILE'] = "";
 
-                    if (move_uploaded_file($_FILES["assetfile"]["tmp_name"], self::$TARGET_FILE)) {
+                    if(move_uploaded_file($_FILES["assetfile"]["tmp_name"], self::$TARGET_FILE)){
                         self::$newAssetStatus = 'processed=success';
-                    } else {
+                    }else{
                         self::$newAssetStatus = 'processed=error';
                     }
 
@@ -1363,9 +1062,9 @@ class crnrstn_asset_manager {
                             $this->assetParams['TARGET_THUMB_MEDIUM_FILE'] = "";
                             $this->assetParams['TARGET_THUMB_SMALL_FILE'] = "";
 
-                            if (move_uploaded_file($_FILES["assetfile"]["tmp_name"], self::$TARGET_FILE)) {
+                            if(move_uploaded_file($_FILES["assetfile"]["tmp_name"], self::$TARGET_FILE)){
                                 self::$newAssetStatus = 'processed=success';
-                            } else {
+                            }else{
                                 self::$newAssetStatus = 'processed=error';
                             }
 
@@ -1405,7 +1104,7 @@ class crnrstn_asset_manager {
 
                                     //
                                     // COPY FULL VERSION
-                                    if (!move_uploaded_file($_FILES["assetfile"]["tmp_name"], $this->assetParams['TARGET_THUMB_FULL_FILE'])) {
+                                    if(!move_uploaded_file($_FILES["assetfile"]["tmp_name"], $this->assetParams['TARGET_THUMB_FULL_FILE'])){
                                         self::$oLogger->captureNotice('asset_manager->processFile()', LOG_EMERG, 'error saving asset [' . $this->assetParams['TARGET_THUMB_FULL_FILE'] . ']');
                                         self::$newAssetStatus = 'processed=error';
                                     }else{
@@ -1433,7 +1132,7 @@ class crnrstn_asset_manager {
                                             $this->assetParams['IMAGE_SAVE_FUNC'] = 'imagejpeg';*/
 
                                             //
-                                            // NEED TO ESTABLISH TARGET THUMB DIMENSIONS. MAYBE PUSH THIS TO THE CONFIG FILE.
+                                            // NEED TO ESTABLISH TARGET THUMB DIMENSIONS. MAYBE WRITE THIS TO THE CONFIG FILE.
                                             /*
                                              * LARGE    [w=self::$thumb_size_LG]
                                              * MEDIUM   [w=self::$thumb_size_MED]
@@ -1452,7 +1151,7 @@ class crnrstn_asset_manager {
                                             $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                             imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                            if (file_exists($this->assetParams['TARGET_THUMB_LARGE_FILE'])) {
+                                            if(file_exists($this->assetParams['TARGET_THUMB_LARGE_FILE'])){
                                                 unlink($this->assetParams['TARGET_THUMB_LARGE_FILE']);
                                             }
 
@@ -1477,7 +1176,7 @@ class crnrstn_asset_manager {
                                                 $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                                 imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                                if (file_exists($this->assetParams['TARGET_THUMB_MEDIUM_FILE'])) {
+                                                if(file_exists($this->assetParams['TARGET_THUMB_MEDIUM_FILE'])){
                                                     unlink($this->assetParams['TARGET_THUMB_MEDIUM_FILE']);
                                                 }
 
@@ -1502,7 +1201,7 @@ class crnrstn_asset_manager {
                                                     $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                                     imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                                    if (file_exists($this->assetParams['TARGET_THUMB_SMALL_FILE'])) {
+                                                    if(file_exists($this->assetParams['TARGET_THUMB_SMALL_FILE'])){
                                                         unlink($this->assetParams['TARGET_THUMB_SMALL_FILE']);
                                                     }
 
@@ -1533,7 +1232,7 @@ class crnrstn_asset_manager {
                                             $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                             imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                            if (file_exists($this->assetParams['TARGET_THUMB_LARGE_FILE'])) {
+                                            if(file_exists($this->assetParams['TARGET_THUMB_LARGE_FILE'])){
                                                 unlink($this->assetParams['TARGET_THUMB_LARGE_FILE']);
                                             }
 
@@ -1558,7 +1257,7 @@ class crnrstn_asset_manager {
                                                 $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                                 imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                                if (file_exists($this->assetParams['TARGET_THUMB_MEDIUM_FILE'])) {
+                                                if(file_exists($this->assetParams['TARGET_THUMB_MEDIUM_FILE'])){
                                                     unlink($this->assetParams['TARGET_THUMB_MEDIUM_FILE']);
                                                 }
 
@@ -1583,7 +1282,7 @@ class crnrstn_asset_manager {
                                                     $tmp = imagecreatetruecolor($newWidth, $newHeight);
                                                     imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $original_width, $original_height);
 
-                                                    if (file_exists($this->assetParams['TARGET_THUMB_SMALL_FILE'])) {
+                                                    if(file_exists($this->assetParams['TARGET_THUMB_SMALL_FILE'])){
                                                         unlink($this->assetParams['TARGET_THUMB_SMALL_FILE']);
                                                     }
 
@@ -1625,10 +1324,10 @@ class crnrstn_asset_manager {
                                 $this->assetParams['FILE_SIZE'] = filesize($_FILES["assetfile"]["tmp_name"]);
                                 $this->assetParams['TARGET_FILE_PATH'] = self::$oEnv->getEnvParam('DOCUMENT_ROOT').self::$oEnv->getEnvParam('DOCUMENT_ROOT_DIR').'/assets/_file_storage/' . $tmp_client_dir.'/' . $tmp_assetSerial.'.' . $this->assetParams['FILE_EXT'];
 
-                                if (move_uploaded_file($_FILES["assetfile"]["tmp_name"], self::$TARGET_FILE)) {
+                                if(move_uploaded_file($_FILES["assetfile"]["tmp_name"], self::$TARGET_FILE)){
                                     error_log("assetmgr (955) success me");
                                     self::$newAssetStatus = 'processed=success';
-                                } else {
+                                }else{
                                     error_log("assetmgr (958) error me");
                                     self::$newAssetStatus = 'processed=error';
                                     self::$oLogger->captureNotice('asset_manager->processFile()', LOG_EMERG, 'error saving non-resizable asset [' . $this->assetParams['TARGET_THUMB_SMALL_FILE'].']');
@@ -1684,22 +1383,22 @@ class crnrstn_asset_manager {
             $tmp_thumb_dir_array[2] = $client_dir.'/' . $tmp_thumb_dir.'/' . $tmp_thumb_med_dir;
             $tmp_thumb_dir_array[3] = $client_dir.'/' . $tmp_thumb_dir.'/' . $tmp_thumb_sm_dir;
 
-            if (!mkdir($tmp_thumb_dir_array[0], 0777, true)) {
+            if(!mkdir($tmp_thumb_dir_array[0], 0777, true)){
                 self::$oLogger->captureNotice('asset_manager->thumbDirCreate()', LOG_EMERG, 'error making directory [' . $tmp_thumb_dir_array[0].']');
                 return NULL;
             }
 
-            if (!mkdir($tmp_thumb_dir_array[1], 0777, true)) {
+            if(!mkdir($tmp_thumb_dir_array[1], 0777, true)){
                 self::$oLogger->captureNotice('asset_manager->thumbDirCreate()', LOG_EMERG, 'error making directory [' . $tmp_thumb_dir_array[1].']');
                 return NULL;
             }
 
-            if (!mkdir($tmp_thumb_dir_array[2], 0777, true)) {
+            if(!mkdir($tmp_thumb_dir_array[2], 0777, true)){
                 self::$oLogger->captureNotice('asset_manager->thumbDirCreate()', LOG_EMERG, 'error making directory [' . $tmp_thumb_dir_array[2].']');
                 return NULL;
             }
 
-            if (!mkdir($tmp_thumb_dir_array[3], 0777, true)) {
+            if(!mkdir($tmp_thumb_dir_array[3], 0777, true)){
                 self::$oLogger->captureNotice('asset_manager->thumbDirCreate()', LOG_EMERG, 'error making directory [' . $tmp_thumb_dir_array[3].']');
                 return NULL;
             }
@@ -1719,7 +1418,6 @@ class crnrstn_asset_manager {
         // COMMENT :: https://stackoverflow.com/a/13596913
         // AUTHOR :: P. Galbraith :: https://stackoverflow.com/users/1059001/p-galbraith
         switch($this->assetParams['FILE_MIME_TYPE']){
-            case 'image/pjpeg':
             case 'image/jpeg':
 
                 #$image_create_func = 'imagecreatefromjpeg';
@@ -1775,49 +1473,49 @@ class crnrstn_asset_manager {
 	
 	//
 	// SOURCE :: http://php.net/manual/en/function.readfile.php
-	private function readfile_chunked($filename,$retbytes=true) {
+	private function readfile_chunked($filename,$retbytes=true){
 		$chunksize = 1*(1024*1024); // how many bytes per chunk
 		$buffer = '';
 		$cnt =0;
 		// $handle = fopen($filename, 'rb');
 		$handle = fopen($filename, 'rb');
-		if ($handle === false) {
+		if($handle === false){
 			return false;
 		}
-		while (!feof($handle)) {
+		while(!feof($handle)){
 			$buffer = fread($handle, $chunksize);
 			echo $buffer;
-			if ($retbytes) {
+			if($retbytes){
 				$cnt += strlen($buffer);
 			}
 		}
 			$status = fclose($handle);
-		if ($retbytes && $status) {
+		if($retbytes && $status){
 			return $cnt; // return num. bytes delivered like readfile() does.
-		} 
+		}
 		return $status;
 	
-	} 
+	}
 	
-	public function recurse_copy($src,$dst) { 
-		$dir = opendir($src); 
-		mkdir($dst); 
-		while(false !== ( $file = readdir($dir)) ) { 
-			if (( $file != '.' ) && ( $file != '..' )) { 
-				if ( is_dir($src . '/' . $file) ) { 
-					recurse_copy($src . '/' . $file,$dst . '/' . $file); 
-				} 
-				else { 
-					copy($src . '/' . $file,$dst . '/' . $file); 
-				} 
-			} 
-		} 
-		closedir($dir); 
+	public function recurse_copy($src,$dst){
+		$dir = opendir($src);
+		mkdir($dst);
+		while(false !== ( $file = readdir($dir)) ){
+			if(( $file != '.' ) && ( $file != '..' )){
+				if( is_dir($src . '/' . $file) ){
+					recurse_copy($src . '/' . $file,$dst . '/' . $file);
+				}
+				else{
+					copy($src . '/' . $file,$dst . '/' . $file);
+				}
+			}
+		}
+		closedir($dir);
 	}
 	
 	public function process_for_filename($str){
 		
-		// 
+		//
 		// TRIM TO 100 CHARS
 		return substr($this->normalizeString($str),0,100);
 
@@ -1828,7 +1526,7 @@ class crnrstn_asset_manager {
     // COMMENT :: https://stackoverflow.com/a/19018736
 	// AUTHOR :: SequenceDigitale.com :: https://stackoverflow.com/users/489281/sequencedigitale-com
 	private function normalizeString($str = ''){
-		$str = strip_tags($str); 
+		$str = strip_tags($str);
 		$str = preg_replace('/[\r\n\t ]+/', ' ', $str);
 		$str = preg_replace('/[\"\*\/\:\<\>\?\'\|]+/', ' ', $str);
 		$str = strtolower($str);
@@ -1847,8 +1545,8 @@ class crnrstn_asset_manager {
 	//	SOURCE :: http://au2.php.net/manual/en/function.move-uploaded-file.php
 	// Example #1 Uploading multiple files
 	//	$uploads_dir = '/uploads';
-	//	foreach ($_FILES["pictures"]["error"] as $key => $error) {
-	//		if ($error == UPLOAD_ERR_OK) {
+	//	foreach($_FILES["pictures"]["error"] as $key => $error){
+	//		if($error == UPLOAD_ERR_OK){
 	//			$tmp_name = $_FILES["pictures"]["tmp_name"][$key];
 	//			// basename() may prevent filesystem traversal attacks;
 	//			// further validation/sanitation of the filename may be appropriate
@@ -1862,10 +1560,10 @@ class crnrstn_asset_manager {
 	//use :
 	//
 	//AddHandler cgi-script .php .pl .jsp .asp .sh .cgi
-	//Options -ExecCGI  
+	//Options -ExecCGI
 	
 	
-	public function __destruct() {
+	public function __destruct(){
 		
 	}
 }

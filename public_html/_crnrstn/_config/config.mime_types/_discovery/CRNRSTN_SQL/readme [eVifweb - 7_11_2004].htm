@@ -1,0 +1,14 @@
+<h2>Flash MX 2004 Professional for Server Geeks </h2>
+<h3>SQL script to create &quot;venue&quot; example database</h3>
+<p> The enclosed <strong>VenueDB_mysql.sql</strong> file can be used to populate a database with the table metadata and row data expectd by the book's examples. </p>
+<ol>
+  <li>Create a database called <strong>venue</strong> using a GUI tool, via CREATE DATABASE, or using the following command-line syntax:<br>
+    <strong>mysqladmin create database venue </strong></li>
+  <li>Execute the contents of VenueDB_mysql.sql using ordinary command-line syntax, for instance: <br>
+    <strong>mysql venue &lt; VenueDB_mysql.sql</strong></li>
+  <li>Make  changes to the new database's permissions that are appropriate for your environment (if any). </li>
+</ol>
+<p>You can now proceed to create a datasource for your application server of choice, as discussed on page 20-21 of the book. For ColdFusion servers, you'll just use the CF Administrator as usual. For ASP.NET or Java/J2EE servers, you'll now create an OBDC DSN called VenueDB that maps to the new database. Of course, you are not required to use ODBC in order to use Flash in your own applications (it is only used in the book so that different database systems could be used with each example without code changes). </p>
+<p>This VenueDB_mysql.sql file was created using <strong>mysqldump</strong> under MySQL 4.0.17. It should work with any reasonably recent version of MySQL. See your MySQL documentation for details about &quot;restoring&quot; a database that has been &quot;backed up&quot; with mysqldump.</p>
+<p>Thanks very much for buying the book. I hope it proves useful. Visit <a href="http://www.flashforservergeeks.com">www.flashforservergeeks.com</a> for updates and means to contact me. Thanks again!</p>
+<p>nate</p>

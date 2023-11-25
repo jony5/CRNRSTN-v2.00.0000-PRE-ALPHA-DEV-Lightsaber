@@ -16,8 +16,8 @@ foreach($oCRNRSTN->system_theme_style_constants_ARRAY as $index => $int_const){
         $tmp_theme_style = $int_const;
 
         $tmp_theme_style_ARRAY = $oCRNRSTN->return_constant_profile_ARRAY($tmp_theme_style);
-        $tmp_theme_style_nom = $tmp_theme_style_ARRAY['STRING'];
-        $tmp_theme_style_int = $tmp_theme_style_ARRAY['INTEGER'];
+        $tmp_theme_style_nom = $tmp_theme_style_ARRAY[CRNRSTN_STRING];
+        $tmp_theme_style_int = $tmp_theme_style_ARRAY[CRNRSTN_INTEGER];
 
         break 1;
 
@@ -56,7 +56,7 @@ $oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
     <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
     <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY) .
         $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI).
-        $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
+        $oCRNRSTN->ui_content_module_out(CRNRSTN_CSS_MAIN_DESKTOP & CRNRSTN_JS_MAIN); ?>
     <style>
         .the_R_in_crnrstn                           { color:#F90000; }
         .crnrstn_logo_wrapper                       { padding: 15px 0 20px 15px; }
@@ -70,13 +70,14 @@ $oCRNRSTN->config_add_environment('BLUEHOST', E_ALL & ~E_NOTICE & ~E_STRICT);
 </head>
 <body>
 <div id="crnrstn_top_shell_<?php echo $oCRNRSTN->session_salt(); ?>"><a id="__crnrstn_top_<?php echo $oCRNRSTN->session_salt(); ?>"></a></div>
-<div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>"></div>
+<div class="crnrstn_logo_wrapper"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_BASE64_PNG); ?>" height="70" alt="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>"></div>
 
 <?php
 /*
 user form_input_add
-$tmp_dtf_FORM_HANDLE = 'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_field_input_name_hash;
-if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
+$tmp_dtf_FORM_HANDLE = 'CRNRSTN::RESOURCE::FORM_HANDLE::' . $tmp_form_handle_hash . '::' . $tmp_field_input_name_hash;
+if(!($this->oCRNRSTN->isset_resource('data_value', 'override_interact_theme_sprite_icon_mouseover_effect_magnification_zoom_percent', 'CRNRSTN::RESOURCE::SPRITE_ICON') === true)){
+///if(!$this->oCRNRSTN->isset_data_key('FORM_INPUT_NAME', $tmp_dtf_FORM_HANDLE)){
 
 
 
@@ -110,36 +111,46 @@ $tmp_str = '/*
     
     RUNTIME ONLY (R) IS THE DEFAULT FOR ALL DATA PUT INTO THE SYSTEM.
     
+    -----
     DATA HANDLING ARCHITECTURES
-    0 :: D :: DATABASE (MySQLi Connection Required)
-    1 :: S :: SSDTL PACKET (SOAP WRAPPED PSSDTL PACKET. THE BROWSER IS A SERVER.)
-    2 :: J :: PSSDTL PACKET (OPENSSL ENCRYPTED JSON OBJECT)
-    3 :: P :: $_SERVER SESSION (PHP SESSION ARRAY SUPER GLOBAL)
-    4 :: C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)
-    5 :: R :: RUNTIME ONLY
-    
-    * COOKIE DID NOT MAKE THE LIST...BUT "C" IS ACCOUNTED FOR IN THE ABOVE!  :)
+    -----
+    G :: HTTP $_GET REQUEST.
+    P :: HTTP $_POST REQUEST.
+    H :: PHP SERVER SESSION ($_SESSION SUPER GLOBAL ARRAY).
+    S :: CRNRSTN :: SSDTLA PACKET (SOAP WRAPPED ENCRYPTED PSSDTLA PACKET. THE BROWSER WILL TALK LIKE A SERVER).
+    J :: CRNRSTN :: PSSDTLA PACKET (OPENSSL ENCRYPTED JSON OBJECT).
+    C :: CARRIER PIGEON (AVIAN OF HOMING VARIANT)...OR BROWSER COOKIE...
+    D :: DATABASE (MySQLi CONNECTION).
+    R :: RUNTIME.
+    O :: SIMPLE OBJECT ACCESS PROTOCOL (NuSOAP 0.9.5, SOAP 1.1).
+    F :: SERVER LOCAL FILE SYSTEM.
 
-    DSJPCR
-    
-    SYSTEM RESOURCE DATA HANDLING ARCHITECTURE INTEGER CONSTANTS ::
-    CRNRSTN_AUTHORIZE_RUNTIME_ONLY
+    GPHSJCDROF
+
+    -----    
+    CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA 
+    OBJECT (DDO) SERVICES LAYER AUTHORIZATION 
+    PROFILES FOR DATA HANDLING.
+    -----
     CRNRSTN_AUTHORIZE_ALL
+    CRNRSTN_AUTHORIZE_GET
+    CRNRSTN_AUTHORIZE_POST
+    CRNRSTN_AUTHORIZE_COOKIE
+    CRNRSTN_AUTHORIZE_SESSION
     CRNRSTN_AUTHORIZE_DATABASE
     CRNRSTN_AUTHORIZE_SSDTLA
-    CRNRSTN_AUTHORIZE_PSSDTLA
-    CRNRSTN_AUTHORIZE_SESSION
-    CRNRSTN_AUTHORIZE_COOKIE
+    CRNRSTN_AUTHORIZE_PSSDTLA            
+    CRNRSTN_AUTHORIZE_RUNTIME
     CRNRSTN_AUTHORIZE_SOAP
-    CRNRSTN_AUTHORIZE_GET
     CRNRSTN_AUTHORIZE_ISEMAIL
+    CRNRSTN_AUTHORIZE_ISUSERNAME
     CRNRSTN_AUTHORIZE_ISPASSWORD
    
     Example ::
-    $oCRNRSTN->config_add_system_resource(\'BLUEHOST\', \'ROOT_PATH_CLIENT_HTTP\', \'http://jony5.com/\', CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+    $oCRNRSTN->config_add_resource(\'BLUEHOST\', \'ROOT_PATH_CLIENT_HTTP\', \'http://jony5.com/\', CRNRSTN_AUTHORIZE_RUNTIME);
     For demonstration of use, see: /_crnrstn/_config/config.system_resource.secure/_crnrstn.system_resource.inc.php
     
-*/';
+    */';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: CODE NOTES. crnrstn::', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $oCRNRSTN->print_r('$this->env_key = $oCRNRSTN->env_key(\'hash\');', 'crnrstn::env_key()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
@@ -148,17 +159,17 @@ $oCRNRSTN->print_r('$this->config_serial_hash = $oCRNRSTN->get_server_config_ser
 
 
 $tmp_str = '$tmp_data_key = \'crnrstn_pssdtl_packet\';
-$tmp_data_type_family = \'CRNRSTN_SYSTEM_RESOURCE::FORM_HANDLE::\' . md5($crnrstn_form_handle);
+$tmp_data_type_family = \'CRNRSTN::RESOURCE::FORM_HANDLE::\' . md5($crnrstn_form_handle);
 if(!$this->oCRNRSTN->isset_data_key($crnrstn_form_handle, $tmp_data_type_family)){
 
-    // add_system_resource($data_key, $data_value, $data_type_family = \'CRNRSTN::RESOURCE\', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME_ONLY){
-    $this->oCRNRSTN->add_system_resource($tmp_data_key, \'data_value_here\', $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME_ONLY);
+    // add_resource($data_key, $data_value, $data_type_family = \'CRNRSTN::RESOURCE\', $data_auth_profile = CRNRSTN_AUTHORIZE_RUNTIME){
+    $this->oCRNRSTN->add_resource($tmp_data_key, \'data_value_here\', $tmp_data_type_family, CRNRSTN_AUTHORIZE_RUNTIME);
     
 }';
 
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_usr::form_serialize_new()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$tmp_str = '$oCRNRSTN->get_resource($data_key, $index = NULL, $data_type_family = \'CRNRSTN::RESOURCE\', $data_auth_request = CRNRSTN_OUTPUT_RUNTIME);';
+$tmp_str = '$oCRNRSTN->get_resource($data_key, $index = NULL, $data_type_family = \'CRNRSTN::RESOURCE\', $data_auth_request = CRNRSTN_AUTHORIZE_RUNTIME);';
 $oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn::retrieve_data_value()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $tmp_str = '$this->oCRNRSTN->retrieve_data_count(\'FORM_INPUT_FIELD_NAME\', $tmp_data_type_family)';
@@ -220,9 +231,9 @@ if(!$this->oCRNRSTN->grant_permissions_fwrite($tmp_filepath, $tmp_minimum_bytes_
     throw new Exception(\'WARNING. Disk space exceeds \' . $this->oCRNRSTN->get_disk_performance_metric(\'maximum_disk_use\') . \'% minimum allocation of free space. File write [\' . $tmp_filepath . \'] stopped. CRNRSTN :: is configured to stop file writes when allocation of free space on disk exceeds specified limits.\');
 
 }';
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_asset_manager::system_base64_write()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$tmp_str = '$_SESSION[\'CRNRSTN_\' . $this->oCRNRSTN->get_server_config_serial(\'hash\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = __CLASS__ . \'::\' . __METHOD__ . \'() attempted to fopen \' . $tmp_filepath . \' after the write permissions to related to same were first chmod to \' . str_pad($mkdir_mode, \'4\', \'0\', STR_PAD_LEFT) . \'. An attempt to open was again made, but \';
+$tmp_str = '$_SESSION[\'CRNRSTN_\' . $this->oCRNRSTN->get_server_config_serial(\'hash\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = __CLASS__ . \'::\' . __METHOD__ . \'() attempted to fopen \' . $tmp_filepath . \' after the write permissions to related to same were first chmod to \' . str_pad($permissions_chmod, \'4\', \'0\', STR_PAD_LEFT) . \'. An attempt to open was again made, but \';
 if($resource_file = fopen($tmp_filepath, \'w\')){
 
     $_SESSION[\'CRNRSTN_\'. $this->oCRNRSTN->get_server_config_serial(\'hash\')][\'CRNRSTN_EXCEPTION_PREFIX\'] = \'\';
@@ -234,7 +245,7 @@ if($resource_file = fopen($tmp_filepath, \'w\')){
 
 }';
 
-$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_image_asset_manager::system_base64_write()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r($tmp_str, 'CRNRSTN :: SNIPPET FROM crnrstn_system_asset_manager::system_base64_write()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 
 $oCRNRSTN->print_r('$oCRNRSTN->print_r(\'Output content.\', NULL, CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);', '$oCRNRSTN->print_r()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
@@ -243,9 +254,9 @@ $oCRNRSTN->print_r('$tmp_str = $oCRNRSTN->print_r_str(\'Output content.\', \'Out
 
 $oCRNRSTN->print_r('$oCRNRSTN->error_log(\'Output content.\', __LINE__, __METHOD__, __FILE__, INT_CONSTANT_LOG_SILO);', '$oCRNRSTN->error_log()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('echo $oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', \'\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', CRNRSTN_UI_IMG_HTML_WRAPPED);', '$oCRNRSTN->return_system_image()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('echo $oCRNRSTN->return_system_image(\'CRNRSTN_LOGO\', \'\', 1000, \'http://jony5.com/\', \'J5 MY BOY!\', \'title text\', \'_blank\', CRNRSTN_HTML);', '$oCRNRSTN->return_system_image()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
-$oCRNRSTN->print_r('echo $oCRNRSTN->return_youtube_embed(\'https://www.youtube.com/watch?v=NePb9UWK8Yg\', 560, 315, true);', '$oCRNRSTN->return_youtube_embed()',$tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
+$oCRNRSTN->print_r('echo $oCRNRSTN->return_youtube_embed(\'https://www.youtube.com/watch?v=NePb9UWK8Yg\', 560, 315, true);', '$oCRNRSTN->return_youtube_embed()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
 $oCRNRSTN->print_r('$oCRNRSTN->get_resource(\'DOCUMENT_ROOT\')', '$oCRNRSTN->get_resource()', $tmp_theme_style_int, __LINE__, __METHOD__, __FILE__);
 
@@ -270,7 +281,7 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
 //return $this->oCRNRSTN->generate_new_key($len, $char_selection);
 
 
-//echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 1000, 'http://jony5.com/', 'J5 MY BOY!', 'AWESOME!', '_blank', CRNRSTN_UI_IMG_HTML_WRAPPED);
+//echo $oCRNRSTN->return_system_image('CRNRSTN_LOGO', '', 1000, 'http://jony5.com/', 'J5 MY BOY!', 'AWESOME!', '_blank', CRNRSTN_HTML);
 
 ?>
 
@@ -337,7 +348,7 @@ $oCRNRSTN->system_base64_integrate(CRNRSTN_ROOT . '/_crnrstn/demo/common/imgs/j5
     <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
         <div id="crnrstn_j5_wolf_pup_inner_wrap" class="crnrstn_j5_wolf_pup_inner_wrap">
             <?php
-            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
+            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_HTML);
             ?>
         </div>
     </div>

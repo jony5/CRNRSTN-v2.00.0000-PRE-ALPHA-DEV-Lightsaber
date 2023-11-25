@@ -1,0 +1,51 @@
+/*	CSS Code is Poetry - Moxie  */
+
+*									{ border:0px; padding:0px; margin:0px; font-family:Arial, Helvetica, sans-serif; }
+
+#login-wrapper						{ width:420px; text-align:center; margin:0px auto; text-align:left; }
+#login-wrapper .title				{ font-size:18px; font-weight:bold; }
+#login-wrapper .mlogo				{ text-align:left; }
+#login-wrapper .field-name			{ float:left; font-size:13px; color:#666; padding-top:7px; width:55px; }
+#login-wrapper input				{ float:left; background-color:#E3E3E3; color:#333; font-weight:bold; font-size:13px; padding-left:5px; }
+#login-wrapper .input-wrapper		{ width:330px; float:right; text-align:right; }
+#login-wrapper .login-field			{ height:28px; width:240px; margin-left:20px; }
+#login-wrapper .form-text-link		{ }
+#login-wrapper a					{ text-decoration:none; font-size:12px; color:#EE7910; float:left; padding-left:20px; padding-top:10px; }
+#login-wrapper .btn-wrapper			{ float:right; margin-right:10px; }
+#login-wrapper .form-text-link		{ float:right; margin-right:70px; }
+
+.crnrstn-title						{ color:#E10000; }
+
+#footer-copyright					{ font-size:10px; color:#ccc;}
+
+
+/*FORM*/ 
+
+.btn-wrapper						{ background-color:#333; height:32px; float:left; cursor:pointer; }
+.btn-text							{ color:#FFF; font-size:11px; font-weight:bold; text-align:center; margin:0px auto; padding:10px 10px 0px 10px;}
+.errRed								{ color:#F5340B; }
+.inputbx .borderRed					{ border-color:#F5340B; border:1px solid #F5340B; }
+.err_msg							{ clear:both; color:#E10000; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold; visibility:hidden; }
+
+/*FORM INPUT & CONTENT*/
+.ishell								{ visibility:hidden; }
+.copy								{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px;}
+.radio_img_wrapper					{ cursor:pointer; }
+.inputbx input						{ font-family:Arial, Helvetica, sans-serif;}
+.input_copy							{ font-size:12px; color:#333333; }
+.req_star							{ color:#F5340B; }
+.field-name							{ float:left; font-size:13px; color:#666; padding-top:7px; }
+.subhead							{ font-weight:bold; font-size:14px; color:#000; font-family:Arial, Helvetica, sans-serif;}
+
+/*UTILITY*/  
+.hidden								{ width:0px; height:0px; position:absolute; left:-2000px; overflow:hidden;}
+.cb 								{ display:block; clear:both; height:0px; line-height:0px; overflow:hidden; width:100%; font-size:1px;}
+.cb_5	 							{ display:block; clear:both; height:5px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_10	 							{ display:block; clear:both; height:10px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_20								{ display:block; clear:both; height:20px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_30								{ display:block; clear:both; height:30px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_40								{ display:block; clear:both; height:40px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_50	 							{ display:block; clear:both; height:50px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_75								{ display:block; clear:both; height:75px;  line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}  	
+.cb_100 							{ display:block; clear:both; height:100px; line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}
+.cb_200								{ display:block; clear:both; height:200px; line-height:1px; overflow:hidden; border:0px; padding:0px; margin:0px; font-size:1px;}

@@ -41,11 +41,11 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_multi_language_manager
 #  VERSION :: 1.00.0000
-#  DATE :: Friday May 14, 2021 @ 0611hrs
+#  DATE :: Friday, May 14, 2021 @ 0611hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI :: 
 #  DESCRIPTION :: Multi-language management.
@@ -77,12 +77,12 @@ class crnrstn_multi_language_manager {
         //
         // INSTANTIATE LOGGER
         $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
-        
+
 	}
 
 	public function return_lang_pref_data($data_element, $i){
 
-        if($data_element === NULL || $data_element === ''){
+        if($data_element == NULL || $data_element == ''){
 
             //error_log(__LINE__ . ' $data_element[' . $data_element . ']. [' . print_r($this->lang_pref_data_ARRAY, true) . ']');
 
@@ -93,7 +93,7 @@ class crnrstn_multi_language_manager {
 
         }
 
-        if($data_element === CRNRSTN_RESOURCE_ALL){
+        if($data_element == CRNRSTN_RESOURCE_ALL){
 
             //error_log(__LINE__ . ' $data_element[' . $data_element . ']. [' . print_r($this->lang_pref_data_ARRAY, true) . ']');
 
@@ -2911,7 +2911,7 @@ class crnrstn_multi_language_manager {
 
         $tmp_lang_pref_complete_ARRAY = array();
 
-        foreach (self::$lang_pref_seq_ARRAY as $index => $serialization){
+        foreach(self::$lang_pref_seq_ARRAY as $index => $serialization){
 
             if(isset(self::$lang_pref_region_ARRAY[$serialization])){
 
@@ -2930,7 +2930,7 @@ class crnrstn_multi_language_manager {
         $i = 0;
         $tmp_region = $tmp_weight = '';
         $tmp_lang_flag = array();
-        foreach (self::$lang_pref_seq_ARRAY as $index => $serialization){
+        foreach(self::$lang_pref_seq_ARRAY as $index => $serialization){
 
             if(isset($tmp_lang_pref_complete_ARRAY[self::$lang_pref_base_ARRAY[$serialization]]['weight'])){
 
@@ -3061,8 +3061,16 @@ class crnrstn_multi_language_manager {
         if(!$this->isset_iso_language_profile()){
 
             //
-            // LOAD CLIENT HEADER DATA
+            // LOAD CLIENT HEADER DATA.
             $header_accept_language = $this->oCRNRSTN->return_client_header_value('Accept-Language');
+
+            //
+            // JUST RETURN SYSTEM DEFAULT FOR ANY PRE-INITIALIZATION CONFIGURATION DRIVERS.
+            if(!isset($header_accept_language)){
+
+                return $this->oCRNRSTN->iso_language_html_default;
+
+            }
 
             $this->consume_accept_language_data($header_accept_language);
 
@@ -3070,7 +3078,7 @@ class crnrstn_multi_language_manager {
 
         //
         // FOR EACH OF THE CLIENT'S PREFERRED LANGUAGES, LOOP THROUGH THE
-        // AVAILABLE OPTIONS WITHIN CRNRSTN ::. IF THERE ARE NO MATCHES,
+        // AVAILABLE OPTIONS WITHIN CRNRSTN :: IF THERE ARE NO MATCHES,
         // RETURN A PREVIOUSLY SPECIFIED DEFAULT.
         foreach($this->lang_pref_data_ARRAY as $index => $langchunk_ARRAY0){
 
@@ -3081,7 +3089,7 @@ class crnrstn_multi_language_manager {
                 return $langchunk_ARRAY0['iso_639-1_2002'];
 
             }
-            
+
         }
 
         return $this->oCRNRSTN->iso_language_html_default;
@@ -3144,10 +3152,10 @@ class crnrstn_multi_language_manager {
 
         //
         // WORRY NOT. THIS WILL BE DATABASE DRIVEN.
-        switch($message_key) {
+        switch($message_key){
             case 'SOCIAL_PREVIEW_TITLE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3163,7 +3171,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'SOCIAL_PREVIEW_DESCRIPTION':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3179,7 +3187,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'TEXT_REDIRECTING_TO':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3195,14 +3203,14 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE_WELCOME':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
                     default:
 
                         //case 'en':
-                        return 'Welcome to C<span class="the_R_in_crnrstn">R</span>NRSTN ::.';
+                        return 'Welcome to C<span class="the_R_in_crnrstn">R</span>NRSTN ::';
 
                     break;
 
@@ -3211,7 +3219,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE_DESCRIPTION':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3227,7 +3235,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE_DEMONSTRATION':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3243,7 +3251,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_DEMONSTRATION_DESCRIPTION':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3259,7 +3267,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TEXT_FILE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3275,7 +3283,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TEXT_SEE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3291,7 +3299,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE_RECENT_ACTIVITY':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3307,7 +3315,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_RECENT_ACTIVITY_DESCRIPTION':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3323,7 +3331,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_RECENT_ACTIVITY_CRICKETS_CHIRPING':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3339,7 +3347,7 @@ class crnrstn_multi_language_manager {
             break;
             case 'DEFAULT_LANDING_TITLE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                         break;
@@ -3363,7 +3371,7 @@ photo album
             break;
             case 'DEFAULT_LANDING_TEXT_CHECK_OUT':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3379,7 +3387,7 @@ photo album
             break;
             case 'DEFAULT_LANDING_TEXT_PHOTO_ALBUM':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3395,7 +3403,7 @@ photo album
             break;
             case 'DEFAULT_LANDING_TEXT_ALL_RIGHTS':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3411,7 +3419,7 @@ photo album
             break;
             case 'DOCUMENTATION_MODULE_SHARE_TEXT':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3427,7 +3435,7 @@ photo album
             break;
             case 'DOCUMENTATION_MODULE_TOP_TEXT':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3443,7 +3451,7 @@ photo album
             break;
             case 'DOCUMENTATION_TITLE_RELATED_METHODS':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3459,7 +3467,7 @@ photo album
             break;
             case 'DOCUMENTATION_TITLE_RETURN_VALUE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3475,7 +3483,7 @@ photo album
             break;
             case 'DOCUMENTATION_TITLE_PARAMETER_DEFINITION':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3491,7 +3499,7 @@ photo album
             break;
             case 'DOCUMENTATION_TITLE_METHOD_DEFINITION':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3507,7 +3515,7 @@ photo album
             break;
             case 'DOCUMENTATION_EXAMPLE_1_INTEGRATED_TITLE_TXT_ERROR_LOG':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3523,7 +3531,7 @@ photo album
             break;
             case 'DOCUMENTATION_BACKGROUND_COPY_TECH_SPECS':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3550,7 +3558,7 @@ photo album
             break;
             case 'DOCUMENTATION_EXAMPLE_TITLE_TXT':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3571,7 +3579,7 @@ photo album
             break;
             case 'DOCUMENTATION_BACKGROUND_COPY_NOTE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3592,7 +3600,7 @@ photo album
             break;
             case 'LNK_DOWNLOAD_TXT_FOOTER':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3608,7 +3616,7 @@ photo album
             break;
             case 'FOR_CONFIG_REFERENCE_PLEASE_SEE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3624,7 +3632,7 @@ photo album
             break;
             case 'FOR_REFERENCE_PLEASE_SEE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3640,7 +3648,7 @@ photo album
             break;
             case 'TO_COPY_THE_CHAR_SERIAL_TO_CLIPBOARD':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3656,7 +3664,7 @@ photo album
             break;
             case 'CLICK_HERE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3672,7 +3680,7 @@ photo album
             break;
             case 'TO_COPY_THE_LINES_ABOVE_TO_CLIPBOARD':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3688,15 +3696,14 @@ photo album
             break;
             case 'PLEASE_ENTER_VALID_ENV_DETECTION':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
                     default:
                         //case 'en':
 
-                        return 'To enable server detection, please configure C<span style="color:#F90000;">R</span>NRSTN :: for this 
-environment within the configuration file.';
+                        return 'To enable server detection, please configure C<span style="color:#F90000;">R</span>NRSTN :: for this environment within the configuration file.';
 
                     break;
 
@@ -3705,7 +3712,7 @@ environment within the configuration file.';
             break;
             case 'PLEASE_ENTER_A_CONFIG_SERIAL':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3721,7 +3728,7 @@ environment within the configuration file.';
             break;
             case 'SYSTEM_IMAGE_SYNC_ENTER_JPG_PNG':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3737,7 +3744,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_MENU':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3753,7 +3760,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_MENU':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3769,7 +3776,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_CLOSE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3785,7 +3792,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_CLOSE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3801,7 +3808,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_FULLSCREEN':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3817,7 +3824,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_FULLSCREEN':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3833,7 +3840,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_MINIMIZE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3849,7 +3856,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_MINIMIZE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3865,7 +3872,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_ALT_FIVEDEV':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                         break;
@@ -3881,7 +3888,7 @@ environment within the configuration file.';
             break;
             case 'UI_PRIMARY_NAV_TITLE_FIVEDEV':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3897,7 +3904,7 @@ environment within the configuration file.';
             break;
             case 'FORM_LNK_TXT_EULA':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3913,7 +3920,7 @@ environment within the configuration file.';
             break;
             case 'CHKBX_TEXT_PROCESS_TO_BATCH':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3929,7 +3936,7 @@ environment within the configuration file.';
             break;
             case 'FORM_BUTTON_TEXT_CONNECT':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3945,7 +3952,7 @@ environment within the configuration file.';
             break;
             case 'FORM_LABEL_PASSWORD_OPTIONAL':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3961,7 +3968,7 @@ environment within the configuration file.';
             break;
             case 'FORM_LABEL_USERNAME':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3977,7 +3984,7 @@ environment within the configuration file.';
             break;
             case 'TEXT_PLACEHOLDER_CHAR_COUNT':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -3992,7 +3999,7 @@ environment within the configuration file.';
             break;
             case 'BUTTON_TEXT_SUBMIT':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4008,7 +4015,7 @@ environment within the configuration file.';
             break;
             case 'BUTTON_TEXT_ADD':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4024,7 +4031,7 @@ environment within the configuration file.';
             break;
             case 'CRNRSTN_SESSION_INACTIVE_EXPIRE':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4040,7 +4047,7 @@ environment within the configuration file.';
             break;
             case 'EMAIL_REQUIRED':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4056,7 +4063,7 @@ environment within the configuration file.';
             break;
             case 'PASSWORD_REQUIRED':
 
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4071,7 +4078,7 @@ environment within the configuration file.';
 
             break;
             case 'INPUT_LABEL_PASSWORD':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                         break;
@@ -4086,7 +4093,7 @@ environment within the configuration file.';
 
             break;
             case 'INPUT_LABEL_EMAIL':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4101,7 +4108,7 @@ environment within the configuration file.';
 
             break;
             case 'BTN_TEXT_SIGN_IN':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                         break;
@@ -4116,7 +4123,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_PART1_NEED_TO':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                         break;
@@ -4131,7 +4138,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_PART2_CREATE_ACCOUNT':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4146,7 +4153,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_PART_x_OR':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4161,7 +4168,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_PART3_FORGET_PWD':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4176,7 +4183,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_YOUR_IP':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4191,7 +4198,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_LOGIN_ATTEMPTS':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4206,7 +4213,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_ATTEMPTS_REMAINING':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4221,7 +4228,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_ALL_RIGHTS_PART1':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4236,7 +4243,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_ALL_RIGHTS_PART2':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4251,7 +4258,7 @@ environment within the configuration file.';
 
             break;
             case 'COPY_ALL_RIGHTS_PART_MIT':
-                switch($this->iso_language_html_current) {
+                switch($this->iso_language_html_current){
                     case 'es':
 
                     break;
@@ -4272,7 +4279,7 @@ environment within the configuration file.';
 
     }
 
-    public function __destruct() {
+    public function __destruct(){
 
 	}
 

@@ -10,7 +10,7 @@ $tmp_html_out .= 'Current device type integer constant: ' . $device_type_bit . '
 // GET THE STRING REPRESENTATION OF THE INTEGER CONSTANT.
 $tmp_device_type_str = $this->oCRNRSTN->return_int_const_profile($device_type_bit, 'STRING');
 
-if($this->oCRNRSTN->is_bit_set($device_type_bit)){
+if($this->oCRNRSTN->is_bit_set($device_type_bit) === true){
 
     $tmp_html_out .= 'The bit has been flipped for the device type integer constant, ' . $tmp_device_type_str . '.';
 

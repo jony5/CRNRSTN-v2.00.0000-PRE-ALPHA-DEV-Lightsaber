@@ -1,0 +1,321 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; COLOR: #000000; PADDING-TOP: 0px; BACKGROUND-COLOR: #ffffff
+}
+A:link {
+	COLOR: #003366; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #663377; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #663377; TEXT-DECORATION: underline
+}
+.page {
+	COLOR: #000000; BACKGROUND-COLOR: #ffffff
+}
+TD {
+	FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+TH {
+	FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+P {
+	FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+LI {
+	FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+.tborder {
+	BORDER-RIGHT: #003366 1px solid; BORDER-TOP: #003366 1px solid; FONT-SIZE: 10pt; BORDER-LEFT: #003366 1px solid; COLOR: #000000; BORDER-BOTTOM: #003366 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.tcat {
+	BACKGROUND: url(../../techtalk-images/gradients/gradient_tcat.jpg) #003366 no-repeat; FONT: bold 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; COLOR: #ffffff
+}
+.tcat A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.tcat A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.tcat A:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+.tcat A:active {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+.thead {
+	FONT: bold 9px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; COLOR: #ffffff; BACKGROUND-COLOR: #0066cc
+}
+.thead A:link {
+	COLOR: #ffffff
+}
+.thead A:visited {
+	COLOR: #ffffff
+}
+.thead A:hover {
+	COLOR: #ffffff
+}
+.thead A:active {
+	COLOR: #ffffff
+}
+.tfoot {
+	FONT-SIZE: 10pt; COLOR: #ffffff; BACKGROUND-COLOR: #0066cc
+}
+.tfoot A:link {
+	COLOR: #e0e0f6
+}
+.tfoot A:visited {
+	COLOR: #e0e0f6
+}
+.tfoot A:hover {
+	COLOR: #ffffff
+}
+.tfoot A:active {
+	COLOR: #ffffff
+}
+.alt1 {
+	FONT-SIZE: 10pt; COLOR: #000000; BACKGROUND-COLOR: #f1f1f1
+}
+.alt1Active {
+	FONT-SIZE: 10pt; COLOR: #000000; BACKGROUND-COLOR: #f1f1f1
+}
+.alt2 {
+	FONT-SIZE: 10pt; COLOR: #000000; BACKGROUND-COLOR: #e1e1e1
+}
+.alt2Active {
+	FONT-SIZE: 10pt; COLOR: #000000; BACKGROUND-COLOR: #e1e1e1
+}
+.alt3 {
+	COLOR: #000000; BACKGROUND-COLOR: #d5d8e5
+}
+.wysiwyg {
+	FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; COLOR: #000000; BACKGROUND-COLOR: #f1f1f1
+}
+TEXTAREA {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid
+}
+.bginput {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid
+}
+.button {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; FONT: 8pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid
+}
+SELECT {
+	FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+OPTION {
+	FONT-SIZE: 10pt; FONT-FAMILY: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+OPTGROUP {
+	FONT-SIZE: 10pt; FONT-FAMILY: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+.smallfont {
+	FONT: 8pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+.time {
+	FONT-SIZE: 8pt; COLOR: #003366
+}
+.navbar {
+	FONT: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif
+}
+.highlight {
+	FONT-WEIGHT: bold; COLOR: #ff0000
+}
+.fjsel {
+	COLOR: #cccccc; BACKGROUND-COLOR: #0066cc
+}
+.fjdpth0 {
+	COLOR: #000000; BACKGROUND-COLOR: #f1f1f1
+}
+.panel {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 10pt; PADDING-BOTTOM: 10px; COLOR: #000000; PADDING-TOP: 10px
+}
+.panelsurround {
+	FONT-SIZE: 10pt; COLOR: #000000; BACKGROUND-COLOR: #f1f1f1
+}
+LEGEND {
+	FONT: 10pt tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; COLOR: #003366
+}
+.vbmenu_control {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 3px; FONT: bold 8pt tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; COLOR: #ffffff; PADDING-TOP: 3px; WHITE-SPACE: nowrap; BACKGROUND-COLOR: #0066cc
+}
+.vbmenu_control A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.vbmenu_control A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.vbmenu_control A:hover {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.vbmenu_control A:active {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.vbmenu_popup {
+	BORDER-RIGHT: #003366 1px solid; BORDER-TOP: #003366 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: #003366 1px solid; COLOR: #000000; BORDER-BOTTOM: #003366 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.vbmenu_option {
+	FONT: 8pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; CURSOR: hand; COLOR: #000000; WHITE-SPACE: nowrap; BACKGROUND-COLOR: #e1e1e1
+}
+.vbmenu_option A:link {
+	COLOR: #003366; TEXT-DECORATION: none
+}
+.vbmenu_option A:visited {
+	COLOR: #003366; TEXT-DECORATION: none
+}
+.vbmenu_option A:hover {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+.vbmenu_option A:active {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+.vbmenu_hilite {
+	FONT: 8pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif; CURSOR: hand; COLOR: #003366; WHITE-SPACE: nowrap; BACKGROUND-COLOR: #cccccc
+}
+.vbmenu_hilite A:link {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+.vbmenu_hilite A:visited {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+.vbmenu_hilite A:hover {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+.vbmenu_hilite A:active {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+.bigusername {
+	FONT-SIZE: 14pt
+}
+TD.thead {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px
+}
+DIV.thead {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px
+}
+.pagenav A {
+	TEXT-DECORATION: none
+}
+.pagenav TD {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+.fieldset {
+	MARGIN-BOTTOM: 6px
+}
+.fieldset {
+	FONT-SIZE: 11px
+}
+.fieldset TD {
+	FONT-SIZE: 11px
+}
+.fieldset P {
+	FONT-SIZE: 11px
+}
+.fieldset LI {
+	FONT-SIZE: 11px
+}
+FORM {
+	DISPLAY: inline
+}
+LABEL {
+	CURSOR: default
+}
+.normal {
+	FONT-WEIGHT: normal
+}
+.inlineimg {
+	VERTICAL-ALIGN: middle
+}
+.header {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: url(/techtalkforums/techtalk-images/gradients/code.jpg) #f1f1f1 no-repeat right top; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; HEIGHT: 75px
+}
+.miniforum_container {
+	WIDTH: 190px; MARGIN-RIGHT: 20px; TEXT-ALIGN: center
+}
+.text_container {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 10pt; BACKGROUND: #f1f1f1; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; TEXT-ALIGN: left
+}
+.head_container {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; BACKGROUND: #e1e1e1; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; TEXT-ALIGN: left
+}
+.leaderboard_container {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; BACKGROUND: url(/techtalkforums/techtalk-images/gradients/arrows.jpg) #ffffff repeat-x; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; HEIGHT: 120px; TEXT-ALIGN: left
+}
+.copyright {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: url(/techtalkforums/techtalk-images/gradients/arrows-bottom.jpg) #ffffff repeat-x left bottom; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.sidebar {
+	FONT-SIZE: 8pt; MARGIN-LEFT: 20px; WIDTH: 160px; TEXT-ALIGN: left
+}
+.detail {
+	FONT-SIZE: 11px; FLOAT: right
+}
+.googlead {
+	WIDTH: 468px; HEIGHT: 60px
+}
+.skyscraper {
+	BORDER-RIGHT: #003366 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #003366 1px solid; PADDING-LEFT: 5px; BACKGROUND: #f1f1f1; PADDING-BOTTOM: 5px; MARGIN-LEFT: 20px; BORDER-LEFT: #003366 1px solid; WIDTH: 120px; PADDING-TOP: 5px; BORDER-BOTTOM: #003366 1px solid; HEIGHT: 600px
+}
+.half_banner {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; WIDTH: 234px; PADDING-TOP: 5px; HEIGHT: 60px
+}
+.banner {
+	BORDER-RIGHT: #003366 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #003366 1px solid; PADDING-LEFT: 5px; BACKGROUND: #f1f1f1; PADDING-BOTTOM: 5px; BORDER-LEFT: #003366 1px solid; WIDTH: 468px; PADDING-TOP: 5px; BORDER-BOTTOM: #003366 1px solid; HEIGHT: 60px
+}
+.medium_box {
+	BORDER-RIGHT: #003366 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #003366 1px solid; PADDING-LEFT: 5px; BACKGROUND: #e1e1e1; PADDING-BOTTOM: 5px; BORDER-LEFT: #003366 1px solid; WIDTH: 300px; PADDING-TOP: 5px; BORDER-BOTTOM: #003366 1px solid; HEIGHT: 250px
+}
+.box {
+	BORDER-RIGHT: #003366 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #003366 1px solid; PADDING-LEFT: 5px; BACKGROUND: #e1e1e1; PADDING-BOTTOM: 5px; BORDER-LEFT: #003366 1px solid; WIDTH: 336px; PADDING-TOP: 5px; BORDER-BOTTOM: #003366 1px solid; HEIGHT: 280px
+}
+.leaderboard {
+	BORDER-RIGHT: #003366 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #003366 1px solid; PADDING-LEFT: 5px; BACKGROUND: #f1f1f1; PADDING-BOTTOM: 5px; BORDER-LEFT: #003366 1px solid; WIDTH: 728px; PADDING-TOP: 5px; BORDER-BOTTOM: #003366 1px solid; HEIGHT: 90px
+}
+.footer {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BORDER-LEFT-WIDTH: 0px; FONT-SIZE: 8pt; BACKGROUND: #e1e1e1; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; HEIGHT: 20px; TEXT-ALIGN: right; BORDER-RIGHT-WIDTH: 0px
+}
+.navigation {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #663377; PADDING-BOTTOM: 10px; COLOR: #ffffff; PADDING-TOP: 10px; BORDER-BOTTOM: #003366 5px solid
+}
+.navigation A {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ffffff; TEXT-DECORATION: none
+}
+.navigation A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.navigation A:hover {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.navigation A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.navigation INPUT {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid
+}
+.categories {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 8pt; BACKGROUND: url(/techtalkforums/techtalk-images/gradients/gradient_nav.gif) #003366; PADDING-BOTTOM: 5px; COLOR: #ffffff; PADDING-TOP: 5px; TEXT-ALIGN: center
+}
+.categories A {
+	COLOR: #ffffff
+}
+.categories A:link {
+	COLOR: #ffffff
+}
+.categories A:hover {
+	COLOR: #ffffff
+}
+.categories A:visited {
+	COLOR: #ffffff
+}
+.spaced {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 14pt; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 10pt; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}

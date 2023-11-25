@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_ux_manager
 #  VERSION :: 1.00.0000
@@ -137,7 +137,7 @@ class crnrstn_ux_manager {
 
     }
 
-    public function __destruct() {
+    public function __destruct(){
 
 	}
 

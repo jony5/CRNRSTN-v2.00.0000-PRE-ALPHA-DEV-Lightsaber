@@ -1,0 +1,4 @@
+SEE, \\192.168.1.68\Public_WDShare2010_6TB_R1\Backups\Files\cd_archives\MyDocs7_11_04_misc_files\servergeek
+
+OWNER: Flash MX 2004 Professional for Server Geeks
+FILE:  fsg_example_files_v01b.zip

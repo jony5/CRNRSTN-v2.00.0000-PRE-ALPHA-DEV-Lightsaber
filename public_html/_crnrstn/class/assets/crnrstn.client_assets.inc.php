@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_client_assets
 #  VERSION :: 1.00.0000
@@ -53,14 +53,13 @@
 #
 class crnrstn_client_assets {
 
-    public $oCRRNSTN;
+    public $oCRNRSTN;
 
     public function __construct($oCRNRSTN){
 
         $this->oCRNRSTN = $oCRNRSTN;
 
 	}
-
 
     public function jquery_mobile_external_png_1_4_5_css(){
 
@@ -4146,7 +4145,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
                 text-align: left;
 		display: block;
 	}
-	/* Add a fair amount of top margin to visually separate each row when stacked */  
+	/* Add a fair amount of top margin to visually separate each row when stacked */
 	.ui-table-reflow tbody th {
                 margin-top: 3em;
 	}
@@ -9282,7 +9281,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
                 text-align: left;
 		display: block;
 	}
-	/* Add a fair amount of top margin to visually separate each row when stacked */  
+	/* Add a fair amount of top margin to visually separate each row when stacked */
 	.ui-table-reflow tbody th {
                 margin-top: 3em;
 	}
@@ -13667,7 +13666,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
                 text-align: left;
 		display: block;
 	}
-	/* Add a fair amount of top margin to visually separate each row when stacked */  
+	/* Add a fair amount of top margin to visually separate each row when stacked */
 	.ui-table-reflow tbody th {
                 margin-top: 3em;
 	}
@@ -19015,7 +19014,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
                 text-align: left;
 		display: block;
 	}
-	/* Add a fair amount of top margin to visually separate each row when stacked */  
+	/* Add a fair amount of top margin to visually separate each row when stacked */
 	.ui-table-reflow tbody th {
                 margin-top: 3em;
 	}
@@ -19319,14 +19318,14 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
     public function crnrstn_lightbox_css(){
 
         $tmp_session_salt = $this->oCRNRSTN->session_salt();
-        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_map_dir_root', 0, 'CRNRSTN::RESOURCE::ASSET_PATH');
 
         $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
-        $tmp_cache_ver_loading = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/loading.gif');
-        $tmp_cache_ver_prev = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/prev.png');
-        $tmp_cache_ver_next = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/next.png');
-        $tmp_cache_ver_close = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/close.png');
+        $tmp_cache_ver_loading = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/images/loading.gif');
+        $tmp_cache_ver_prev = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/images/prev.png');
+        $tmp_cache_ver_next = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/images/next.png');
+        $tmp_cache_ver_close = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/images/close.png');
 
         return '/*
 // J5
@@ -19544,14 +19543,14 @@ body.lb-disable-scrolling {
     public function crnrstn_lightbox_min_css(){
 
         $tmp_session_salt = $this->oCRNRSTN->session_salt();
-        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_map_dir_root', 0, 'CRNRSTN::RESOURCE::ASSET_PATH');
 
         $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
-        $tmp_cache_ver_loading = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/loading.gif');
-        $tmp_cache_ver_prev = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/prev.png');
-        $tmp_cache_ver_next = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/next.png');
-        $tmp_cache_ver_close = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/lightbox-2.11.3/images/close.png');
+        $tmp_cache_ver_loading = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/images/loading.gif');
+        $tmp_cache_ver_prev = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/images/prev.png');
+        $tmp_cache_ver_next = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/images/next.png');
+        $tmp_cache_ver_close = $this->oCRNRSTN->resource_filecache_version($tmp_path_js . '/_lib/frameworks/lightbox.js/2.11.3/images/close.png');
 
         return '/*
 // J5
@@ -19566,7 +19565,7 @@ body.lb-disable-scrolling {
     public function crnrstn_lightbox_2_03_3_css(){
 
         $tmp_session_salt = $this->oCRNRSTN->session_salt();
-        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_map_dir_root', 0, 'CRNRSTN::RESOURCE::ASSET_PATH');
 
         $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
@@ -19664,7 +19663,7 @@ body.lb-disable-scrolling {
     public function crnrstn_lightbox_2_03_3_js(){
 
         $tmp_session_salt = $this->oCRNRSTN->session_salt();
-        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_map_dir_root', 0, 'CRNRSTN::RESOURCE::ASSET_PATH');
 
         $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 
@@ -19818,7 +19817,7 @@ setInnerHTML: function(element,content) {
 //
 Array.prototype.removeDuplicates = function () {
 for(i = 0; i < this.length; i++){
-    for(j = this.length-1; j>i; j--){        
+    for(j = this.length-1; j>i; j--){
         if(this[i][0] == this[j][0]){
             this.splice(j,1);
         }
@@ -19863,7 +19862,7 @@ Lightbox.prototype = {
 // overlay and the image container.
 //
 initialize: function() {	
-    
+
     this.updateImageList();
 
     // Code inserts html at the bottom of the page that looks similar to this:
@@ -19901,13 +19900,13 @@ initialize: function() {
 
 
     var objBody = document.getElementsByTagName(\"body\").item(0);
-    
+
     var objOverlay = document.createElement(\"div\");
     objOverlay.setAttribute('id','overlay');
     objOverlay.style.display = 'none';
     objOverlay.onclick = function() { myLightbox.end(); }
     objBody.appendChild(objOverlay);
-    
+
     var objLightbox = document.createElement(\"div\");
     objLightbox.setAttribute('id','lightbox');
     objLightbox.style.display = 'none';
@@ -19919,7 +19918,7 @@ initialize: function() {
         }
     };
     objBody.appendChild(objLightbox);
-        
+
     var objOuterImageContainer = document.createElement(\"div\");
     objOuterImageContainer.setAttribute('id','outerImageContainer');
     objLightbox.appendChild(objOuterImageContainer);
@@ -19951,7 +19950,7 @@ initialize: function() {
     objPrevLink.setAttribute('id','prevLink');
     objPrevLink.setAttribute('href','#');
     objHoverNav.appendChild(objPrevLink);
-    
+
     var objNextLink = document.createElement(\"a\");
     objNextLink.setAttribute('id','nextLink');
     objNextLink.setAttribute('href','#');
@@ -19990,7 +19989,7 @@ initialize: function() {
     var objNumberDisplay = document.createElement(\"span\");
     objNumberDisplay.setAttribute('id','numberDisplay');
     objImageDetails.appendChild(objNumberDisplay);
-    
+
     var objBottomNav = document.createElement(\"div\");
     objBottomNav.setAttribute('id','bottomNav');
     objImageData.appendChild(objBottomNav);
@@ -20090,9 +20089,9 @@ initialize: function() {
     var lightboxLeft = arrayPageScroll[0];
     Element.setTop('lightbox', lightboxTop);
     Element.setLeft('lightbox', lightboxLeft);
-    
+
     Element.show('lightbox');
-    
+
     this.changeImage(imageNum);
 },
 
@@ -20500,7 +20499,7 @@ Event.observe(window, 'load', initLightbox, false);
     public function crnrstn_backbone_1_4_1_min_js(){
 
         $tmp_session_salt = $this->oCRNRSTN->session_salt();
-        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_mapping_dir_path', 0, 'CRNRSTN_SYSTEM_RESOURCE::ASSET_PATH');
+        $tmp_path_js = $this->oCRNRSTN->get_resource('crnrstn_js_asset_map_dir_root', 0, 'CRNRSTN::RESOURCE::ASSET_PATH');
 
         $tmp_http_path = $this->oCRNRSTN->crnrstn_http_endpoint();
 

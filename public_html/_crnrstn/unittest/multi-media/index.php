@@ -76,9 +76,8 @@ $tmp_youtube_video_url_ARRAY = array();
 //$tmp_youtube_video_url_ARRAY[] = '';
 //$tmp_youtube_video_url_ARRAY[] = '';
 //$tmp_youtube_video_url_ARRAY[] = '';
-//$tmp_youtube_video_url_ARRAY[] = '';
-//$tmp_youtube_video_url_ARRAY[] = '';
-
+$tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=8nGIcjakOAE';
+$tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=Tbv4sBv4zZk';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=tDS6WkzpJsw';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=PYQjEgOoaVg';
 $tmp_youtube_video_url_ARRAY[] = 'https://www.youtube.com/watch?v=UhsjFpRblb4';
@@ -112,7 +111,7 @@ $sprite_serial = $oCRNRSTN->generate_new_key(10);
 <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
 <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY) .
     $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI).
-    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_CSS_MAIN_DESKTOP & CRNRSTN_JS_MAIN); ?>
 
 <style>
     .the_R_in_crnrstn                           { color:#F90000; }
@@ -209,7 +208,7 @@ $sprite_serial = $oCRNRSTN->generate_new_key(10);
     <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
         <div id="crnrstn_j5_wolf_pup_inner_wrap" class="crnrstn_j5_wolf_pup_inner_wrap">
             <?php
-            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
+            echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_HTML);
             ?>
         </div>
     </div>

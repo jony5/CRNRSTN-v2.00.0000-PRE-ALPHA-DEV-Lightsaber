@@ -314,7 +314,7 @@ class crnrstn_POP3
         //So ignore errors here
         try {
             @fclose($this->pop_conn);
-        } catch (crnrstn_Exception $e) {
+        }catch(crnrstn_Exception $e){
             //Do nothing
         }
     }
@@ -386,7 +386,7 @@ class crnrstn_POP3
         $this->errors[] = $error;
         if ($this->do_debug >= 1) {
             echo '<pre>';
-            foreach ($this->errors as $e) {
+            foreach ($this->errors as $e){
                 print_r($e);
             }
             echo '</pre>';

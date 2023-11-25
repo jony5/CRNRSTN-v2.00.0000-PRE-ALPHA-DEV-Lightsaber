@@ -11,7 +11,7 @@ if($this->oCRNRSTN->is_mobile()){
 //
 // A DIRECT CHECK ON THE FLIPPED BIT FOR MOBILE
 // CAN ALSO CONFIRM THE SITUATION.
-if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_MOBILE)){
+if($this->oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_MOBILE) === true){
 
     $tmp_html_out .=  'Hold my beer, I\'m flagged as mobile!<br><br>';
 

@@ -159,7 +159,7 @@ class crnrstn_soap_server_manager {
 	public $soap_resp_SEARCHRESULTS = array();
 	
 	
-	public function __construct($svcEnv) {
+	public function __construct($svcEnv){
 	
 		self::$oWebServicesEnvironment = $svcEnv;
 		
@@ -1279,9 +1279,10 @@ class crnrstn_soap_server_manager {
 		return $cleanString;
 	}
 	
-	public function __destruct() {
+	public function __destruct(){
 
 	}
+
 }
 
 ?>

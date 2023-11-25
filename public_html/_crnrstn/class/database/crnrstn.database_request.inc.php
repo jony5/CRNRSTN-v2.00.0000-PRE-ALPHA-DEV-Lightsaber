@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_database_request
 #  VERSION :: 1.00.0000
@@ -60,7 +60,7 @@ class crnrstn_database_request {
 
 	public $crnrstn_database_request_serial;
 
-	public function __construct($oCRNRSTN_USR = NULL) {
+	public function __construct($oCRNRSTN_USR = NULL){
 
         try{
 
@@ -69,7 +69,7 @@ class crnrstn_database_request {
             if(isset($oCRNRSTN_USR) && is_object($oCRNRSTN_USR)){
 
                 //
-                // HOLD USER and ENVIRONMENTALS
+                // HOLD USER and ENVIRONMENT.
                 $this->oCRNRSTN_USR = $oCRNRSTN_USR;
                 self::$oCRNRSTN_ENV = $oCRNRSTN_USR->return_oCRNRSTN_ENV();
 
@@ -89,10 +89,10 @@ class crnrstn_database_request {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -179,10 +179,10 @@ class crnrstn_database_request {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -197,14 +197,16 @@ class crnrstn_database_request {
 
                 $tmp_warning_str = '';
 
-                if (mysqli_warning_count($heavy_mysqli)) {
+                if(mysqli_warning_count($heavy_mysqli)){
 
                     $tmp_warning_str .= ' WARNING [';
                     $e = mysqli_get_warnings($heavy_mysqli);
 
-                    do {
+                    do{
+
                         $tmp_warning_str .= '|errno: ' . $e->errno.'::' . $e->message;
-                    } while ($e->next());
+
+                    }while($e->next());
 
                     $tmp_warning_str .= ']';
 
@@ -226,7 +228,7 @@ class crnrstn_database_request {
                     //
                     // REMAIN STILL WHILE YOUR LIFE IS EXTRACTED
                     # $rowcount=0; CONTINUE ROWCNT FROM PREVIOUS RESULT PROCESSING
-                    while ($row = $result->fetch_row()) {
+                    while($row = $result->fetch_row()){
 
                         foreach($row as $field_position=>$value){
                             //
@@ -250,10 +252,10 @@ class crnrstn_database_request {
 
             return NULL;
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -272,14 +274,16 @@ class crnrstn_database_request {
 
                 $tmp_warning_str = '';
 
-                if (mysqli_warning_count($heavy_mysqli)) {
+                if(mysqli_warning_count($heavy_mysqli)){
 
                     $tmp_warning_str .= ' WARNING [';
                     $e = mysqli_get_warnings($heavy_mysqli);
 
-                    do {
+                    do{
+
                         $tmp_warning_str .= '|errno: ' . $e->errno.'::' . $e->message;
-                    } while ($e->next());
+
+                    }while ($e->next());
 
                     $tmp_warning_str .= ']';
 
@@ -305,7 +309,7 @@ class crnrstn_database_request {
 
                         $first_run = NULL;
 
-                        if ($result = $heavy_mysqli->store_result()) {
+                        if($result = $heavy_mysqli->store_result()){
 
                             $num_rows = mysqli_num_rows($result);
 
@@ -317,7 +321,7 @@ class crnrstn_database_request {
 
                             }
 
-                            while ($row = $result->fetch_row()) {
+                            while($row = $result->fetch_row()){
 
                                 if(!isset($first_run)){
                                     $first_run = true;
@@ -353,7 +357,7 @@ class crnrstn_database_request {
 
                         $tmp_oQuery->updateRecordCount();
 
-                        if ($heavy_mysqli->more_results()) {
+                        if($heavy_mysqli->more_results()){
                             //
                             // END OF RECORD. MORE TO FOLLOW. LET'S SMOKE TEST THIS. I HOPE IT INCREMENTS PER EACH SELECT QUERY RESULTS COMPLETION. (APPARENTLY, IT DOES)
                             // NOPE...WILL NOT ALWAYS INCREMENT...IF NO RESULTS...NO INCREMENT.<-- THIS WAS A HUGE PROBLEM...THROWING
@@ -366,19 +370,18 @@ class crnrstn_database_request {
 
                             }
 
-
                         }
 
-                    } while ($heavy_mysqli->more_results() && $heavy_mysqli->next_result());
+                    }while($heavy_mysqli->more_results() && $heavy_mysqli->next_result());
 
                 }
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -396,7 +399,7 @@ class crnrstn_database_request {
 
     }
 
-    public function __destruct() {
+    public function __destruct(){
 
 	}
 

@@ -1,0 +1,65 @@
+	Sunday	Monday	Tuesday	Wed	Thursday	Friday	Saturday			
+ Time										
+7:00										
+	M_Watch					M_Watch				
+7:30										
+										
+8:00			Leave by 7:45 for Marta..1 hr.-->State/2hr-->. Emory							
+										
+8:30										
+										
+9:00							REI			
+							REI			
+9:30			DSC 3120		DSC 3120		REI	DSC 3120		
+			*		*		REI	9:30-10:45		
+10:00			*		*		REI	"Nargunkar, ALC 30"		
+			*		*		REI	overload--OK'ed		
+10:30	T_Mtg		*		*		REI		
+			*		*		REI		
+11:00			MGT 3500		MGT 3500		REI	MGT 3500	
+			*		*		REI	11:00-12:15	
+11:30			*		*		REI	"Jason Yu, ALC 331"	
+			*		*		REI		
+12:00			*		*		REI		
+			*		*		REI		
+12:30			*		*		REI		
+		GRK101	BROTHERS	GRK101		GRK101	REI		GRK101
+1:00		*	CIS 3280	*	CIS 3280	*	REI	CIS 3280	12:50-1:40
+		*	*	*	*	*	REI	1:00-2:15	"Pratt, Emerson Hall 504"
+1:30		*	*	*	*	*	REI	"Moore, ALC 331"	
+		*	*	*	*	*	REI		
+2:00	REI		*		*		REI		
+	REI		*		*		REI		
+2:30	REI		FI 3300		FI 3300		REI	FI 3300		
+	REI		*		84318		REI	2:30-3:45		
+3:00	REI		*		*		REI	"TBA, ALC 213"		
+	REI		*		*		REI			
+3:30	REI		*		*		REI			
+	REI		*		*		REI			
+4:00	REI						REI			
+	REI						REI			
+4:30	REI				CIS 3300		REI	CIS 3300		
+	REI				*		REI	4:30-7:00		
+5:00	REI				*	REI	REI	"Hubona, Sparks 133"		
+	REI	Jonathan Harris			*	REI				
+5:30	REI	REI	FALL 2002 		*	REI				
+	REI	REI			*	REI				
+6:00	REI	REI			*	REI				
+	REI	REI			*	REI				
+6:30		REI			*	REI		
+		REI			*	REI		
+7:00		REI			*	REI		
+		REI				REI		
+7:30		REI				REI		
+		REI				REI		
+8:00		REI				REI		
+	Video	REI		P_Mtg		REI	C_Mtg	
+9:00		REI				REI		
+		REI				REI		
+9:30		REI				REI		
+								
+	Sunday	Monday	Tuesday	Wed	Thursday	Friday	Saturday	
+
+Hrs. Work	1pm - 6pm	5pm - 9:30pm	OFF	OFF	OFF	5pm-9:30pm	9:50-5pm	
+								total
+	5	4				4.5	7.25	20.75

@@ -1,0 +1,1293 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0053)http://www.daniweb.com/techtalkforums/thread6499.html -->
+<HTML lang=en dir=ltr><HEAD><TITLE>Populating & Retrieving Data in a listbox : ASP.NET (w/ VB.NET)</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR>
+<META 
+content="programming forum, computer forum, programming help, computer help, tech support, technical support, web development, website promotion, seo" 
+name=keywords>
+<META 
+content=".NET articles, tutorials, and other references and resources. Tech support, programming, web development, and website promotion community. Forums to get free computer help and support." 
+name=description><LINK title="DaniWeb forums" href="/" rel=top><LINK 
+title=Search href="/techtalkforums/search.php" rel=search><LINK title=FAQ 
+href="/techtalkforums/faq.php" rel=help><LINK title="Staff Info" 
+href="/techtalkforums/showgroups.php" rel=author><!-- CSS Stylesheet --><LINK 
+href="Populating &amp; Retrieving Data in a listbox_files/style-237be1a1-00003.css" 
+type=text/css rel=stylesheet><!-- / CSS Stylesheet -->
+<SCRIPT type=text/javascript>
+<!--
+var SESSIONURL = "";
+var IMGDIR_MISC = "/techtalkforums/techtalk-images/misc";
+// -->
+</SCRIPT>
+
+<SCRIPT 
+src="Populating &amp; Retrieving Data in a listbox_files/vbulletin_global.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT 
+src="Populating &amp; Retrieving Data in a listbox_files/vbulletin_menu.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT language=JavaScript type=text/JavaScript>
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</SCRIPT>
+</HEAD>
+<BODY onload=""><A name=top></A><!-- daniweb forum categories -->
+<DIV class=categories><STRONG><A title="computer forum" 
+href="http://www.daniweb.com/techtalkforums/">Forum Index</A></STRONG> | 
+<STRONG><A title="tech blogs" href="http://www.daniweb.com/blogs/">Tech 
+Blogs</A></STRONG> | <STRONG><A title="code snippets" 
+href="http://www.daniweb.com/code/">Code Snippets</A></STRONG> | <STRONG><A 
+title=tutorials href="http://www.daniweb.com/tutorials/">Tutorials</A></STRONG> 
+| <STRONG><A href="http://www.daniweb.com/chat/">IRC Chat</A></STRONG><BR></DIV><!-- / daniweb forum categories --><!-- programming logo and banner -->
+<DIV class=header>
+<DIV class=detail>
+<DIV style="PADDING-BOTTOM: 5px; WIDTH: 250px; PADDING-TOP: 15px"><!-- login form -->
+<FORM onsubmit=md5hash(vb_login_password,vb_login_md5password) 
+action=/techtalkforums/login.php method=post>
+<SCRIPT 
+src="Populating &amp; Retrieving Data in a listbox_files/vbulletin_md5.js" 
+type=text/javascript></SCRIPT>
+
+<TABLE cellSpacing=5 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD class=smallfont noWrap>User Name</TD>
+    <TD><INPUT class=button id=navbar_username 
+      onfocus="if (this.value == 'User Name') this.value = '';" accessKey=u 
+      tabIndex=1 size=10 value="User Name" name=vb_login_username></TD>
+    <TD class=smallfont noWrap colSpan=2><LABEL 
+      for=cb_cookieuser_navbar><INPUT id=cb_cookieuser_navbar accessKey=c 
+      tabIndex=3 type=checkbox CHECKED value=1 name=cookieuser>Remember 
+      Me?</LABEL></TD></TR>
+  <TR>
+    <TD class=smallfont>Password</TD>
+    <TD><INPUT class=button accessKey=p tabIndex=2 type=password size=10 
+      name=vb_login_password></TD>
+    <TD noWrap><INPUT class=button title="Enter your username and password in the boxes provided to login, or click the 'register' button to create a profile for yourself." accessKey=s tabIndex=4 type=submit value="Log in"> 
+      [ <A class=smallfont 
+      href="http://www.daniweb.com/techtalkforums/register.php?">Register</A> ] 
+    </TD></TR></TBODY></TABLE><INPUT type=hidden name=s> <INPUT type=hidden 
+value=login name=do> <INPUT type=hidden value=1 name=forceredirect> <INPUT 
+type=hidden name=vb_login_md5password> </FORM><!-- / login form --></DIV></DIV>
+<DIV style="PADDING-TOP: 5px"><A href="http://www.daniweb.com/"><IMG height=55 
+alt=".NET Tutorials Computer Support Community" 
+src="Populating &amp; Retrieving Data in a listbox_files/daniweb-logo.gif" 
+width=195 border=0></A></DIV></DIV><!-- / programming logo and banner --><!-- log out script -->
+<SCRIPT type=text/javascript>
+<!--
+function log_out()
+{
+	ht = document.getElementsByTagName("html");
+	ht[0].style.filter = "progid:DXImageTransform.Microsoft.BasicImage(grayscale=1)";
+	if (confirm('Are you sure you want to log out?'))
+	{
+		return true;
+	}
+	else
+	{
+		ht[0].style.filter = "";
+		return false;
+	}
+}
+//-->
+</SCRIPT>
+<!-- / log out script --><!-- content table --><!-- nav buttons bar -->
+<FORM action=/techtalkforums/search.php method=post>
+<DIV class=navigation><!-- forum --><SPAN class=detail 
+style="PADDING-TOP: 2px"><A 
+href="http://www.daniweb.com/techtalkforums/register.php?">Register</A> | <A 
+href="http://www.daniweb.com/techtalkforums/search.php?do=getdaily">Today's 
+Posts</A> | <A 
+href="http://www.daniweb.com/techtalkforums/search.php?do=process&amp;replyless=1&amp;replylimit=0&amp;dontcache=1">Unanswered 
+Threads</A> </SPAN><!-- / forum --><!-- search --><INPUT type=hidden 
+value=process name=do> <INPUT type=hidden value=0 name=showposts> <A 
+href="http://www.daniweb.com/techtalkforums/search.php?">Search:</A> <INPUT 
+style="WIDTH: 80px" name=query><!-- go button --> <INPUT class=button type=submit value=Go> <!-- / search --></DIV></FORM><!-- / nav buttons bar -->
+<DIV class=leaderboard_container>
+<DIV 
+style="PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px" 
+noWrap>
+<DIV class=detail>
+<DIV class=leaderboard><!-- TF 728x90 JScript VAR code -->
+<CENTER>
+<SCRIPT language=javascript><!--
+document.write('<scr'+'ipt language=javascript src="http://a.tribalfusion.com/j.ad?site=DaniWeb&adSpace=ROS&size=728x90&type=var&pop=0&requestID='+((new Date()).getTime() % 2147483648) + Math.random()+'"></scr'+'ipt>');
+//-->
+</SCRIPT>
+<NOSCRIPT><A 
+href="http://a.tribalfusion.com/i.click?site=DaniWeb&amp;adSpace=ROS&amp;size=728x90&amp;requestID=297356488" 
+target=_blank><IMG height=90 alt="Click Here" 
+src="Populating &amp; Retrieving Data in a listbox_files/8-DHS_P4P19812_memory_10-20_728x90.gif" 
+width=728 border=0></A> </NOSCRIPT></CENTER><!-- TF 728x90 JScript VAR code -->
+<DIV id=beacon_10 
+style="LEFT: 0px; VISIBILITY: hidden; POSITION: absolute; TOP: 0px"><IMG 
+style="WIDTH: 0px; HEIGHT: 0px" height=0 alt="" 
+src="Populating &amp; Retrieving Data in a listbox_files/adlog.gif" 
+width=0></DIV></DIV></DIV>
+<DIV class=smallfont style="MARGIN-TOP: 10px"><STRONG><IMG height=5 alt="" 
+src="Populating &amp; Retrieving Data in a listbox_files/subforum_link.gif" 
+width=5>&nbsp;<A title="programming languages" 
+href="http://www.daniweb.com/techtalkforums/forum2.html">Programming</A><BR><IMG 
+height=5 alt="" 
+src="Populating &amp; Retrieving Data in a listbox_files/subforum_link.gif" 
+width=5>&nbsp;<A title="scripting languages" 
+href="http://www.daniweb.com/techtalkforums/forum31.html">Scripting 
+Languages</A><BR><IMG height=5 alt="" 
+src="Populating &amp; Retrieving Data in a listbox_files/subforum_link.gif" 
+width=5>&nbsp;<A title="web development" 
+href="http://www.daniweb.com/techtalkforums/forum36.html">Web 
+Development</A><BR><IMG height=5 alt="" 
+src="Populating &amp; Retrieving Data in a listbox_files/subforum_link.gif" 
+width=5>&nbsp;<A title="website promotion and seo" 
+href="http://www.daniweb.com/techtalkforums/forum25.html">Website 
+Promotion</A><BR><IMG height=5 alt="" 
+src="Populating &amp; Retrieving Data in a listbox_files/subforum_link.gif" 
+width=5>&nbsp;<A title="technical support" 
+href="http://www.daniweb.com/techtalkforums/forum1.html">Tech 
+Support</A><BR><IMG height=5 alt="" 
+src="Populating &amp; Retrieving Data in a listbox_files/subforum_link.gif" 
+width=5>&nbsp;<A title="off topic chat" 
+href="http://www.daniweb.com/techtalkforums/forum3.html">Coffee 
+House</A></STRONG> </DIV></DIV></DIV><!-- open content container -->
+<DIV align=center>
+<DIV class=page style="WIDTH: 100%; TEXT-ALIGN: left">
+<DIV 
+style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px"><BR>
+<DIV class=tborder>
+<DIV class=thead>Welcome to DaniWeb forums!</DIV>
+<DIV class=text_container><SPAN class=smallfont><STRONG><A 
+href="http://www.daniweb.com/techtalkforums/">DaniWeb computer 
+forums</A></STRONG> is where cool techies unite. Get <STRONG><A 
+href="http://www.daniweb.com/techtalkforums/forum1.html">tech 
+support</A></STRONG>, <STRONG><A 
+href="http://www.daniweb.com/techtalkforums/forum2.html">programming</A></STRONG>, 
+<STRONG><A href="http://www.daniweb.com/techtalkforums/forum36.html">web 
+development</A></STRONG>, or <STRONG><A 
+href="http://www.daniweb.com/techtalkforums/forum25.html">website promotion and 
+seo</A></STRONG> support and be part of our growing community. Or just come and 
+chat with other techies like yourself; both newbies and gurus are welcome. You 
+may have to <A 
+href="http://www.daniweb.com/techtalkforums/register.php?"><STRONG>register</STRONG></A> 
+before you can post. If you are a registered member but you have forgotten your 
+username or password, <A 
+href="http://www.daniweb.com/techtalkforums/login.php?do=lostpw"><STRONG>click 
+here</STRONG></A>. </SPAN></DIV></DIV><BR><!-- breadcrumb, login, pm info -->
+<DIV class=tborder>
+<DIV class=text_container><SPAN class=navbar><A accessKey=1 
+href="http://www.daniweb.com/techtalkforums/">DaniWeb forums</A> &gt; <A 
+href="http://www.daniweb.com/techtalkforums/forum2.html">Programming 
+Languages</A> &gt; <A 
+href="http://www.daniweb.com/techtalkforums/forum59.html">.NET Framework</A> 
+&gt; <A href="http://www.daniweb.com/techtalkforums/forum69.html">.NET 
+Tutorials</A> &gt; <STRONG>Populating &amp; Retrieving Data in a listbox : 
+ASP.NET (w/ VB.NET) </STRONG></SPAN></DIV></DIV>
+<DIV 
+style="PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px">
+<DIV 
+style="PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FLOAT: left; PADDING-BOTTOM: 2px; WIDTH: 52px; PADDING-TOP: 2px"><IMG 
+alt="" src="Populating &amp; Retrieving Data in a listbox_files/icon-69_new.gif" 
+border=0></DIV>
+<H1><STRONG>Populating &amp; Retrieving Data in a listbox : ASP.NET (w/ 
+VB.NET)</STRONG></H1>
+<H2><SPAN class=smallfont><A 
+href="http://www.daniweb.com/techtalkforums/forum69.html">.NET 
+Tutorials</A></SPAN></H2></DIV><!-- / breadcrumb, login, pm info --><BR><A 
+id=poststop name=poststop></A><!-- controls above postbits -->
+<TABLE style="MARGIN-BOTTOM: 3px" cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+  <TBODY>
+  <TR vAlign=bottom>
+    <TD class=smallfont><A 
+      href="http://www.daniweb.com/techtalkforums/newreply.php?do=newreply&amp;noquote=1&amp;p=30906"><IMG 
+      alt=Reply 
+      src="Populating &amp; Retrieving Data in a listbox_files/reply.gif" 
+      border=0></A></TD></TR></TBODY></TABLE><!-- / controls above postbits --><!-- toolbar -->
+<TABLE class=tborder style="BORDER-BOTTOM-WIDTH: 0px" cellSpacing=0 
+cellPadding=5 width="100%" align=center border=0>
+  <TBODY>
+  <TR>
+    <TD class=tcat width="100%">
+      <DIV class=smallfont> </DIV></TD>
+    <TD class=vbmenu_control id=threadtools><A accessKey=3 
+      href="http://www.daniweb.com/techtalkforums/thread6499.html#goto_threadtools">Thread 
+      Tools</A>
+      <SCRIPT type=text/javascript> vbmenu_register("threadtools"); </SCRIPT>
+       </TD>
+    <TD class=vbmenu_control id=threadsearch><A 
+      href="http://www.daniweb.com/techtalkforums/thread6499.html#goto_threadsearch">Search 
+      this Thread</A>
+      <SCRIPT type=text/javascript> vbmenu_register("threadsearch"); </SCRIPT>
+       </TD>
+    <TD class=vbmenu_control id=displaymodes><A 
+      href="http://www.daniweb.com/techtalkforums/thread6499.html#goto_displaymodes">Display 
+      Modes</A>
+      <SCRIPT type=text/javascript> vbmenu_register("displaymodes"); </SCRIPT>
+       
+</TD></TR></TBODY></TABLE><!-- / toolbar --><!-- end content table --></DIV></DIV></DIV><!-- / close content container --><!-- / end content table -->
+<DIV id=posts><!-- post #30906 --><!-- open content container -->
+<DIV align=center>
+<DIV class=page style="WIDTH: 100%; TEXT-ALIGN: left">
+<DIV 
+style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px">
+<DIV 
+style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 5px; PADDING-TOP: 0px"><!-- this is not the last post shown on the page -->
+<TABLE class=tborder cellSpacing=0 cellPadding=5 width="100%" align=center 
+border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead 
+      style="FONT-WEIGHT: normal"><!-- status icon and date --><A 
+      name=post30906><IMG class=inlineimg alt=Old 
+      src="Populating &amp; Retrieving Data in a listbox_files/post_old.gif" 
+      border=0></A> 06-01-2004, 12:35 AM <!-- / status icon and date --></TD>
+    <TD class=thead style="FONT-WEIGHT: normal" align=right>&nbsp; #<A 
+      href="http://www.daniweb.com/techtalkforums/showpost.php?p=30906&amp;postcount=1" 
+      target=new><STRONG>1</STRONG></A> </TD></TR>
+  <TR vAlign=top>
+    <TD class=alt1 width=175>
+      <DIV id=postmenu_30906><A class=bigusername 
+      href="http://www.daniweb.com/techtalkforums/member.php?u=131"><FONT 
+      color=red><B>Paladine</B></FONT></A>
+      <SCRIPT 
+      type=text/javascript> vbmenu_register("postmenu_30906", true); </SCRIPT>
+       </DIV>
+      <DIV class=smallfont><IMG alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/colleague.jpg" 
+      border=0></DIV>
+      <DIV class=smallfont><BR><A 
+      href="http://www.daniweb.com/techtalkforums/member.php?u=131"><IMG 
+      alt="Paladine's Avatar" 
+      src="Populating &amp; Retrieving Data in a listbox_files/avatar131_0.gif" 
+      border=0></A> </DIV><BR>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Title:</STRONG> Deity 
+      </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Join Date:</STRONG> Feb 
+      2003 </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Status:</STRONG> <FONT 
+      color=red>Offline</FONT> </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Posts:</STRONG> 359 
+</DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Reputation:</STRONG> <IMG 
+      class=inlineimg alt="Paladine has a spectacular aura about" 
+      src="Populating &amp; Retrieving Data in a listbox_files/reputation_pos.gif" 
+      border=0><IMG class=inlineimg alt="Paladine has a spectacular aura about" 
+      src="Populating &amp; Retrieving Data in a listbox_files/reputation_pos.gif" 
+      border=0> </DIV>
+      <DIV></DIV></TD>
+    <TD class=alt1><!-- icon and title -->
+      <DIV class=smallfont>
+      <H2 class=smallfont><IMG class=inlineimg alt=Arrow 
+      src="Populating &amp; Retrieving Data in a listbox_files/icon2.gif" 
+      border=0> <STRONG>Populating &amp; Retrieving Data in a listbox : ASP.NET 
+      (w/ VB.NET)</STRONG> </H2></DIV>
+      <HR style="COLOR: #ffffff" SIZE=1>
+<!-- / icon and title --><!-- message -->
+      <DIV>This a just a basic webform setup of a listbox being populated with 
+      data from a database, in this case the Northwind Access database, and then 
+      populating textboxes with data related to the item the user 
+      selects.<BR><BR><U>1. WebForm </U><BR>-Create an ASP.NET webform 
+      page<BR>-Add a <B>listbox server control</B> and set <B>AutoPostBack</B> 
+      <I>property</I> to <B>True</B><BR>-Add <U>9</U> <B>textbox server 
+      controls</B> and give them appropriate <I>ID's</I> to match the 
+      <I>FieldNames</I> from the datasource. <BR><I>i.e</I> txtProductID for 
+      ProductID, txtProductName for ProductName, etc<BR>-Add a <B>checkbox 
+      server control</B> for the <I>discontinued</I> option for a particular 
+      product.<BR>-For visual design purposes I would recommended associated 
+      labels to indicate what will appear in the textboxes.<BR><BR><I>Sample 
+      Code:</I> - <I>Partial Code listing</I><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 802px"><DIV dir=ltr style="TEXT-ALIGN: left">
+&lt;form id="Form1" method="post" runat="server"&gt;
+&lt;!-- |||||	BEGIN OUTER TABLE	||||| --&gt;
+&lt;table id="tblMain" style="WIDTH: 568px; HEIGHT: 340px" cellSpacing="1" cellPadding="1" width="568" border="0"&gt;
+  &lt;tr&gt;
+    &lt;td align="center" colSpan="2"&gt;Products&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td style="WIDTH: 219px" rowSpan="9"&gt;
+		&lt;asp:listbox id=lstProducts runat="server" autopostback="True" width="232px" height="299px"&gt;&lt;/asp:listbox&gt;
+    &lt;/td&gt;
+    &lt;td style="HEIGHT: 199px"&gt;&lt;!--- |||||	Start Inner Table	||||| --&gt;
+		&lt;table id="tblInner" cellSpacing="1" cellPadding="1" width="300" border="1"&gt;
+        &lt;tr&gt;
+          &lt;td style="HEIGHT: 26px"&gt;&lt;asp:label id="lblID" runat="server" Width="112px"&gt;Product ID&lt;/asp:label&gt;&lt;asp:textbox id=txtID tabIndex="1" runat="server" width="48px" font-bold="True" enabled="False"&gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:label id="lblProductName" runat="server" Width="112px"&gt;Product Name&lt;/asp:label&gt;&lt;asp:textbox id="txtName" tabIndex="2" runat="server" &gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:label id="lblSupplier" runat="server" Width="112px"&gt;Supplier&lt;/asp:label&gt;&lt;asp:textbox id="txtSupplier" tabIndex="3" runat="server" &gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:label id="lblCategory" runat="server" Width="112px"&gt;Category&lt;/asp:label&gt;&lt;asp:textbox id="txtCategory" tabIndex="4" runat="server" &gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:label id="lblQtyPerUnit" runat="server" Width="112px"&gt;Quantity Per Unit&lt;/asp:label&gt;&lt;asp:textbox id="txtQtyPerUnit" tabIndex="5" runat="server" &gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:label id="lblUnitPrice" runat="server" Width="112px"&gt;Unit Price&lt;/asp:label&gt;&lt;asp:textbox id="txtUnitPrice" tabIndex="6" runat="server" &gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:label id="lblUnitsInStock" runat="server" Width="112px"&gt;Units In Stock&lt;/asp:label&gt;&lt;asp:textbox id="txtUnitsInStock" tabIndex="7" runat="server" &gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:label id="lblUnitsOnOrder" runat="server" Width="112px"&gt;Units on Order&lt;/asp:label&gt;&lt;asp:textbox id="txtUnitsOnOrder" tabIndex="8" runat="server" &gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:label id="lblReorderLevel" runat="server" width="112px"&gt;Reorder Point&lt;/asp:label&gt;&lt;asp:textbox id="txtReOrder" tabIndex="9" runat="server" &gt;&lt;/asp:textbox&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;asp:Label id="lblDC" runat="server" Width="112px"&gt;Discontinued&lt;/asp:Label&gt;
+				&lt;asp:checkbox id="chkDC" tabIndex="10" runat="server"/&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;/table&gt;&lt;!--	|||||	END OF INNER TABLE	||||| ---&gt;
+	&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;&lt;!--	|||||	END OUTER TABLE	|||||	--&gt;
+&lt;p&gt;&lt;asp:label id=lblMsg runat="server" width="568px"&gt;&lt;/asp:label&gt;&lt;/p&gt;
+&lt;/form&gt;</DIV></PRE></DIV><BR><BR><U>2. Web.Config Settings - 
+      Connection String</U> <BR>-Modify to meets your particular setup.<BR>-I 
+      prefere to place the connection string in the web.config file <IMG 
+      class=inlineimg title=Cool alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/icon_cool.gif" 
+      border=0> as it does add a performance boost, as well as simplify coding a 
+      web application that consistantly uses the same DataSource.<BR>-CASE 
+      SENSITIVE! <IMG class=inlineimg title="Big Grin" alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/icon_biggrin.gif" 
+      border=0><BR><BR><I>Sample Code:</I> - <I>Partial Code listing</I><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 178px"><DIV dir=ltr style="TEXT-ALIGN: left">
+&lt;configuration&gt;
+  &lt;!--	|||||	Application Settings	|||||	--&gt;
+  &lt;appSettings&gt;
+	&lt;add key="strConn" value="Provider = Microsoft.Jet.OLEDB.4.0;Data Source=C:\Inetpub\wwwroot\Northwind.mdb;User ID=Admin;Password=;" /&gt;
+  &lt;/appSettings&gt;
+  &lt;system.web&gt;
+  '	...
+  '	...
+  '	...</DIV></PRE></DIV><BR><BR><U>3. Write the code behind for the 
+      WebForm</U><BR><U>a. Import Required Namespaces</U><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 114px"><DIV dir=ltr style="TEXT-ALIGN: left">
+	Imports System.Web.Security     '   |||||   Required Class for Authentication
+	Imports System.Data             '   |||||   DB Accessing Import
+	Imports System.Data.OleDb       '   ||||||  Access Database Required Import!
+	Imports System.Configuration    '   ||||||  Required for Web.Config appSettings |||||
+	</DIV></PRE></DIV><BR><BR><U>b. Create Class Variable(s)</U><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 66px"><DIV dir=ltr style="TEXT-ALIGN: left">
+	Dim MyConn As OleDbConnection = New OleDbConnection(ConfigurationSettings.AppSettings("strConn"))
+	</DIV></PRE></DIV><BR><BR><U>c. Add the code in the <B>Page_Load</B> 
+      Event to populate the <B>listbox</B></U><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 178px"><DIV dir=ltr style="TEXT-ALIGN: left">
+	    Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+	        If Not Page.IsPostBack Then
+	            '   |||||   Fill the Listbox with Product Items
+	            ListLoad()
+	            '   |||||   Set the default selected item (usually the first on the list)
+	            lstProducts.SelectedIndex = 0
+	        End If
+    	    End Sub
+    	 </DIV></PRE></DIV><BR><BR><I><U>ListLoad() Subroutine</U></I><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 594px"><DIV dir=ltr style="TEXT-ALIGN: left">
+    	  '   |||||   FILL THE LIST BOX   |||||
+	     Private Sub ListLoad()
+	         '   |||||   DECLARE VARIABLES   |||||
+	         Dim strProducts As String = "SELECT ProductID, ProductName FROM Products"
+	         Dim oCmd As New OleDbCommand(strProducts, MyConn)
+	         Dim objReader As OleDbDataReader
+	 
+	         Try
+	             '   |||||   Check if Connection to DB is already open, if not, then open a connection
+	             If MyConn.State = ConnectionState.Closed Then
+	                 '   |||||   DB not already Open...so open it
+	                 MyConn.Open()
+	             End If
+	             '   |||||   Set DataReader Obj to Results of the connection made
+	             '   |||||   Setting the DataReader this way will allow you to close the reader
+	             '   |||||   and the connection as the same time.
+	             objReader = oCmd.ExecuteReader(CommandBehavior.CloseConnection)
+	             '   |||||   Clear any possible items in the Listbox prior to databinding.
+	             lstProducts.Items.Clear()
+	             '   |||||   Set the DataValueField to the Primary Key
+	             lstProducts.DataValueField = "ProductID"
+	             '   |||||   Set the DataTextField to the text/data you want to display
+	             lstProducts.DataTextField = "ProductName"
+	             '   |||||   Set the DataSource the the OleDBDataReader's result
+	             lstProducts.DataSource = objReader
+	             '   |||||   Bind the Source Data to the Web/Server Control
+	             lstProducts.DataBind()
+	             '   |||||   Close the Connection and the Reader
+	             objReader.Close()
+	         Catch ex As Exception
+	             '   |||||   Handle any Exceptions
+	             MsgBox("Error Connecting to Database!", MsgBoxStyle.Critical)
+	         End Try
+	       End Sub
+	 </DIV></PRE></DIV><BR><BR>-Now that you have the listbox populated, what 
+      about the textboxes?<BR>-Well, what we want to happen is that when the 
+      user selects any item in the listbox we want to have the data on that item 
+      populate the textboxes.<BR>-The first two steps have been done to make 
+      this work. The first was setting the <B>AutoPostBack</B> <I>property</I> 
+      to <B>True</B> for the listbox, and the second was <BR>setting the 
+      <B>DataValueField</B> (<I>primary key</I>) and <B>DataTextField</B> for 
+      the listbox data. The third part is now obtain the data on the selection 
+      the user has made, which is done by the code in the 
+      <B>SelectedIndexChanged</B> <I>event</I><BR><BR><U>SelectIndexChanged</U> 
+      code :<BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 770px"><DIV dir=ltr style="TEXT-ALIGN: left">
+	 rivate Sub lstProducts_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstProducts.SelectedIndexChanged
+	         '   |||||   "This event will post to the server only if the AutoPostBack property is TRUE ||||
+	         '   |||||   If the Index of the selected item is changed 
+	         '   |||||   (default = 0, i.e. First item in list)
+	         '   |||||   Then display the details of the selected item
+	         '   |||||   DELCARE VARIABLES   |||||
+	         Dim objCmd As OleDbCommand
+	         Dim objReader As OleDbDataReader
+	         Dim strSQL As String
+	         '   |||||   Create SQL String
+	         strSQL = "SELECT ProductID, ProductName, QuantityPerUnit, UnitPrice, UnitsInStock,"
+	         strSQL &amp;= " UnitsOnOrder, ReorderLevel, Discontinued FROM Products"
+	         strSQL &amp;= " WHERE ProductID = "
+	         '   ||||| Returns the DataValueField
+	         strSQL &amp;= lstProducts.SelectedItem.Value
+	 
+	         objCmd = New OleDbCommand(strSQL, MyConn)
+	 
+	         Try
+	             If MyConn.State = ConnectionState.Closed Then
+	                 MyConn.Open()
+	             End If
+	 
+	             objReader = objCmd.ExecuteReader(CommandBehavior.CloseConnection)
+	             '   |||||   Loop through the Reader to retrieve data    
+	             '   |||||   and set each textbox/checkbox to appropriate data from datasource
+	             While objReader.Read()
+	                 With objReader
+	                     txtID.Text = .Item("ProductID")
+	                     txtName.Text = .Item("ProductName")
+	                     txtQtyPerUnit.Text = .Item("QuantityPerUnit")
+	                     txtUnitPrice.Text = .Item("UnitPrice")
+	                     txtUnitsInStock.Text = .Item("UnitsInStock")
+	                     txtUnitsOnOrder.Text = .Item("UnitsOnOrder")
+	                     txtReOrder.Text = .Item("ReorderLevel")
+	                     chkDC.Checked = .Item("Discontinued")
+	                 End With
+	             End While
+	 
+	         Catch ex As Exception
+	             lblMsg.Text = ex.Message
+	         End Try
+	         'End If
+	 
+	     End Sub
+	</DIV></PRE></DIV><BR><BR>Now just "run" the webform and you are done. 
+      <BR><BR>Of course this is a simple set of code and concept, but the 
+      principles that you can now build on from here will enable you do a 
+      variety to things, like dropdown menu lists, or listboxes of background 
+      color choices, just to name a few.<BR><BR>I could have done a number of 
+      things different, or have add more funcitonality, which I do plan to do. 
+      As I modify and expand this concept further I will post the changes and 
+      the results. <BR><BR>Happy Coding! <IMG class=inlineimg title=Cool alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/icon_cool.gif" 
+      border=0></DIV><!-- / message --><!-- sig -->
+      <DIV>__________________<BR><IMG alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/MyLogo4.jpg" 
+      border=0><BR><FONT size=1><FONT face="Microsoft Sans Serif"><I>"Only one 
+      thing is impossible for God: To find any sense in any copyright law on the 
+      planet." <BR>- <B>Mark Twain.</B></I></FONT></FONT><BR><BR><A 
+      href="http://www.daniweb.com/techtalkforums/thread6028.html" 
+      target=_blank>ASP.Net Login Page Code</A> | <A 
+      href="http://www.daniweb.com/techtalkforums/thread6499.html" 
+      target=_blank>ASP.Net Listbox Control</A> </DIV><!-- / sig --></TD></TR>
+  <TR>
+    <TD class=alt2>&nbsp; </TD>
+    <TD class=alt2 align=right><!-- controls --><A 
+      href="http://www.daniweb.com/techtalkforums/newreply.php?do=newreply&amp;p=30906"><IMG 
+      onmouseover=this.filters.alpha.opacity=100 
+      style="FILTER: alpha(opacity=65)" onmouseout=this.filters.alpha.opacity=65 
+      alt="Reply With Quote" 
+      src="Populating &amp; Retrieving Data in a listbox_files/quote.gif" 
+      border=0></A> <!-- / controls --></TD></TR></TBODY></TABLE><!-- post 30906 popup menu -->
+<DIV class=vbmenu_popup id=postmenu_30906_menu 
+style="DISPLAY: none; FILTER: alpha(opacity=85); moz-opacity: 0.8">
+<TABLE cellSpacing=1 cellPadding=4 border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead>Paladine</TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/member.php?userid=131">View 
+      Public Profile</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/private.php?do=newpm&amp;userid=131">Send 
+      a private message to Paladine</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www3.telus.net/public/tmlohnes/Index.htm">Visit Paladine's 
+      homepage!</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/search.php?do=finduser&amp;userid=131">Find 
+      More Posts by Paladine</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/profile.php?do=addlist&amp;userlist=buddy&amp;u=131">Add 
+      Paladine to Your Buddy List</A></TD></TR></TBODY></TABLE></DIV><!-- / post 30906 popup menu --><!-- text advertising -->
+<DIV style="PADDING-TOP: 5px">
+<DIV class=tborder>
+<DIV class=thead>Sponsored Links</DIV>
+<DIV class=text_container style="HEIGHT: 90px; TEXT-ALIGN: center">
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-8426641637123945";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_channel ="7685669071";
+google_ad_type = "text";
+google_color_border = "F1F1F1";
+google_color_bg = "F1F1F1";
+google_color_link = "003366";
+google_color_url = "0066CC";
+google_color_text = "000000";
+//--></SCRIPT>
+
+<SCRIPT src="Populating &amp; Retrieving Data in a listbox_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+</DIV></DIV></DIV><!-- / text advertising --></DIV></DIV></DIV></DIV><!-- / close content container --><!-- / post #30906 --><!-- post #30924 --><!-- open content container -->
+<DIV align=center>
+<DIV class=page style="WIDTH: 100%; TEXT-ALIGN: left">
+<DIV 
+style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px">
+<DIV 
+style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 5px; PADDING-TOP: 0px"><!-- this is not the last post shown on the page -->
+<TABLE class=tborder cellSpacing=0 cellPadding=5 width="100%" align=center 
+border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead 
+      style="FONT-WEIGHT: normal"><!-- status icon and date --><A 
+      name=post30924><IMG class=inlineimg alt=Old 
+      src="Populating &amp; Retrieving Data in a listbox_files/post_old.gif" 
+      border=0></A> 06-01-2004, 02:15 AM <!-- / status icon and date --></TD>
+    <TD class=thead style="FONT-WEIGHT: normal" align=right>&nbsp; #<A 
+      href="http://www.daniweb.com/techtalkforums/showpost.php?p=30924&amp;postcount=2" 
+      target=new><STRONG>2</STRONG></A> </TD></TR>
+  <TR vAlign=top>
+    <TD class=alt1 width=175>
+      <DIV id=postmenu_30924><A class=bigusername 
+      href="http://www.daniweb.com/techtalkforums/member.php?u=131"><FONT 
+      color=red><B>Paladine</B></FONT></A>
+      <SCRIPT 
+      type=text/javascript> vbmenu_register("postmenu_30924", true); </SCRIPT>
+       </DIV>
+      <DIV class=smallfont><IMG alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/colleague.jpg" 
+      border=0></DIV>
+      <DIV class=smallfont><BR><A 
+      href="http://www.daniweb.com/techtalkforums/member.php?u=131"><IMG 
+      alt="Paladine's Avatar" 
+      src="Populating &amp; Retrieving Data in a listbox_files/avatar131_0.gif" 
+      border=0></A> </DIV><BR>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Title:</STRONG> Deity 
+      </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Join Date:</STRONG> Feb 
+      2003 </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Status:</STRONG> <FONT 
+      color=red>Offline</FONT> </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Posts:</STRONG> 359 
+</DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Reputation:</STRONG> <IMG 
+      class=inlineimg alt="Paladine has a spectacular aura about" 
+      src="Populating &amp; Retrieving Data in a listbox_files/reputation_pos.gif" 
+      border=0><IMG class=inlineimg alt="Paladine has a spectacular aura about" 
+      src="Populating &amp; Retrieving Data in a listbox_files/reputation_pos.gif" 
+      border=0> </DIV>
+      <DIV></DIV></TD>
+    <TD class=alt1><!-- icon and title -->
+      <DIV class=smallfont>
+      <H2 class=smallfont><IMG class=inlineimg alt=Question 
+      src="Populating &amp; Retrieving Data in a listbox_files/icon5.gif" 
+      border=0> <STRONG>Re: Populating &amp; Retrieving Data in a listbox : 
+      ASP.NET (w/ VB.NET)</STRONG> </H2></DIV>
+      <HR style="COLOR: #ffffff" SIZE=1>
+<!-- / icon and title --><!-- message -->
+      <DIV>Additions and Changes to the Above - For Supplier &amp; Category 
+      DropDownLists:<BR><BR><U>1. Change both <B>txtSupplier</B> and 
+      <B>txtCategory</B> to a <B>DropDownList server 
+      control</B></U><BR><BR><U>2. Change the SQL string in <B>ListLoad()</B> 
+      <I>subroutine</I> to the following:</U><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 146px"><DIV dir=ltr style="TEXT-ALIGN: left">
+ '   |||||   Create SQL String
+        strSQL = "SELECT ProductID, ProductName, SupplierID, CategoryID, "
+        strSQL &amp;= "QuantityPerUnit, UnitPrice, UnitsInStock,"
+        strSQL &amp;= " UnitsOnOrder, ReorderLevel, Discontinued FROM Products"
+        strSQL &amp;= " WHERE ProductID = "
+        '   ||||| Returns the DataValueField
+        strSQL &amp;= lstProducts.SelectedItem.Value</DIV></PRE></DIV><BR><BR><BR><U>3. 
+      Add TWO new variables to the <B>ListLoad()</B> <I>subroutine</I></U><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 66px"><DIV dir=ltr style="TEXT-ALIGN: left">
+ '   |||||   Variables to Store/Pass SupplierID &amp; CategoryID
+ Dim intSupplier, intCat As Integer</DIV></PRE></DIV><BR><BR><BR><U>4. 
+      Modify the <I>Try...Catch</I> block in the <B>ListLoad()</B> 
+      <I>subroutine</I> to the following:</U><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 578px"><DIV dir=ltr style="TEXT-ALIGN: left">
+	Try
+            If MyConn.State = ConnectionState.Closed Then
+                MyConn.Open()
+            End If
+
+            objReader = objCmd.ExecuteReader(CommandBehavior.CloseConnection)
+            '   |||||   Loop through the Reader to retrieve data    
+            '   |||||   and set each textbox/checkbox to appropriate data from datasource
+            While objReader.Read()
+                With objReader
+                    txtID.Text = .Item("ProductID")
+                    txtName.Text = .Item("ProductName")
+                    txtQtyPerUnit.Text = .Item("QuantityPerUnit")
+                    txtUnitPrice.Text = .Item("UnitPrice")
+                    txtUnitsInStock.Text = .Item("UnitsInStock")
+                    txtUnitsOnOrder.Text = .Item("UnitsOnOrder")
+                    txtReOrder.Text = .Item("ReorderLevel")
+                    chkDC.Checked = .Item("Discontinued")
+                    '   |||||   Get Supplier
+                    intSupplier = CInt(.Item("SupplierID"))
+                    intCat = CInt(.Item("CategoryID"))
+                End With
+            End While
+
+        Catch ex As Exception
+            lblMsg.Text = ex.Message
+        Finally
+            objReader.Close()
+            '   |||||   Load Supplier
+            LoadSuppliers(intSupplier)
+            '   |||||   Load Category
+            LoadCategories(intCat)
+        End Try
+ </DIV></PRE></DIV><BR><BR><BR><U>5. Create the <B>LoadSuppliers</B> &amp; 
+      <B>LoadCategories</B> <I>subroutines</I></U><BR><BR>-Code provided is the 
+      for LoadSuppliers subroutine, which is a carbon copy of the LoadCategories 
+      subroutine<BR><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 434px"><DIV dir=ltr style="TEXT-ALIGN: left">
+     Private Sub LoadSuppliers(ByVal intValue As Integer)
+         Dim strSuppliers As String = "SELECT SupplierID, CompanyName FROM Suppliers"
+         Dim oCmd As New OleDbCommand(strSuppliers, MyConn)
+         Dim objReader As OleDbDataReader
+ 
+         Try
+             If MyConn.State = ConnectionState.Closed Then
+                 '   |||||   DB not already Open...so open it
+                 MyConn.Open()
+             End If
+             objReader = oCmd.ExecuteReader(CommandBehavior.CloseConnection)
+             cboSupplier.Items.Clear()
+             cboSupplier.DataValueField = "SupplierID"
+             cboSupplier.DataTextField = "CompanyName"
+             cboSupplier.DataSource = objReader
+             cboSupplier.DataBind()
+             cboSupplier.SelectedIndex = intValue
+         Catch ex As Exception
+             lblMsg.Text = ex.Message
+         Finally
+             objReader.Close()
+         End Try
+ 
+    End Sub
+  </DIV></PRE></DIV><BR><BR>These are just some minor changes to add 
+      further functionality to the initial code.<BR><BR>Happy Coding! <IMG 
+      class=inlineimg title=Cool alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/icon_cool.gif" 
+      border=0></DIV><!-- / message --><!-- sig -->
+      <DIV>__________________<BR><IMG alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/MyLogo4.jpg" 
+      border=0><BR><FONT size=1><FONT face="Microsoft Sans Serif"><I>"Only one 
+      thing is impossible for God: To find any sense in any copyright law on the 
+      planet." <BR>- <B>Mark Twain.</B></I></FONT></FONT><BR><BR><A 
+      href="http://www.daniweb.com/techtalkforums/thread6028.html" 
+      target=_blank>ASP.Net Login Page Code</A> | <A 
+      href="http://www.daniweb.com/techtalkforums/thread6499.html" 
+      target=_blank>ASP.Net Listbox Control</A> </DIV><!-- / sig --></TD></TR>
+  <TR>
+    <TD class=alt2>&nbsp; </TD>
+    <TD class=alt2 align=right><!-- controls --><A 
+      href="http://www.daniweb.com/techtalkforums/newreply.php?do=newreply&amp;p=30924"><IMG 
+      onmouseover=this.filters.alpha.opacity=100 
+      style="FILTER: alpha(opacity=65)" onmouseout=this.filters.alpha.opacity=65 
+      alt="Reply With Quote" 
+      src="Populating &amp; Retrieving Data in a listbox_files/quote.gif" 
+      border=0></A> <!-- / controls --></TD></TR></TBODY></TABLE><!-- post 30924 popup menu -->
+<DIV class=vbmenu_popup id=postmenu_30924_menu 
+style="DISPLAY: none; FILTER: alpha(opacity=85); moz-opacity: 0.8">
+<TABLE cellSpacing=1 cellPadding=4 border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead>Paladine</TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/member.php?userid=131">View 
+      Public Profile</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/private.php?do=newpm&amp;userid=131">Send 
+      a private message to Paladine</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www3.telus.net/public/tmlohnes/Index.htm">Visit Paladine's 
+      homepage!</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/search.php?do=finduser&amp;userid=131">Find 
+      More Posts by Paladine</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/profile.php?do=addlist&amp;userlist=buddy&amp;u=131">Add 
+      Paladine to Your Buddy List</A></TD></TR></TBODY></TABLE></DIV><!-- / post 30924 popup menu --></DIV></DIV></DIV></DIV><!-- / close content container --><!-- / post #30924 --><!-- post #31553 --><!-- open content container -->
+<DIV align=center>
+<DIV class=page style="WIDTH: 100%; TEXT-ALIGN: left">
+<DIV 
+style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px">
+<DIV 
+style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 5px; PADDING-TOP: 0px">
+<TABLE class=tborder cellSpacing=0 cellPadding=5 width="100%" align=center 
+border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead 
+      style="FONT-WEIGHT: normal"><!-- status icon and date --><A 
+      name=post31553><IMG class=inlineimg alt=Old 
+      src="Populating &amp; Retrieving Data in a listbox_files/post_old.gif" 
+      border=0></A> 06-03-2004, 01:14 PM <!-- / status icon and date --></TD>
+    <TD class=thead style="FONT-WEIGHT: normal" align=right>&nbsp; #<A 
+      href="http://www.daniweb.com/techtalkforums/showpost.php?p=31553&amp;postcount=3" 
+      target=new><STRONG>3</STRONG></A> </TD></TR>
+  <TR vAlign=top>
+    <TD class=alt1 width=175>
+      <DIV id=postmenu_31553><A class=bigusername 
+      href="http://www.daniweb.com/techtalkforums/member.php?u=131"><FONT 
+      color=red><B>Paladine</B></FONT></A>
+      <SCRIPT 
+      type=text/javascript> vbmenu_register("postmenu_31553", true); </SCRIPT>
+       </DIV>
+      <DIV class=smallfont><IMG alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/colleague.jpg" 
+      border=0></DIV>
+      <DIV class=smallfont><BR><A 
+      href="http://www.daniweb.com/techtalkforums/member.php?u=131"><IMG 
+      alt="Paladine's Avatar" 
+      src="Populating &amp; Retrieving Data in a listbox_files/avatar131_0.gif" 
+      border=0></A> </DIV><BR>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Title:</STRONG> Deity 
+      </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Join Date:</STRONG> Feb 
+      2003 </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Status:</STRONG> <FONT 
+      color=red>Offline</FONT> </DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Posts:</STRONG> 359 
+</DIV>
+      <DIV class=smallfont style="MARGIN: 5px"><STRONG>Reputation:</STRONG> <IMG 
+      class=inlineimg alt="Paladine has a spectacular aura about" 
+      src="Populating &amp; Retrieving Data in a listbox_files/reputation_pos.gif" 
+      border=0><IMG class=inlineimg alt="Paladine has a spectacular aura about" 
+      src="Populating &amp; Retrieving Data in a listbox_files/reputation_pos.gif" 
+      border=0> </DIV>
+      <DIV></DIV></TD>
+    <TD class=alt1><!-- icon and title -->
+      <DIV class=smallfont>
+      <H2 class=smallfont><IMG class=inlineimg alt=Arrow 
+      src="Populating &amp; Retrieving Data in a listbox_files/icon2.gif" 
+      border=0> <STRONG>Adding Next &amp; Previous Record Controls</STRONG> 
+      </H2></DIV>
+      <HR style="COLOR: #ffffff" SIZE=1>
+<!-- / icon and title --><!-- message -->
+      <DIV>And addition of sorts. This small addition will allow the user to 
+      click a <U>Next</U> and <U>Previous</U> button to move within the data in 
+      the listbox and dynamically update the textboxes/drop downlists displaying 
+      the item details. <BR><BR>Add two Webform <B>button controls</B>, give 
+      them appropriate <I>ID's</I> and add the code for their <U>OnClick</U> 
+      events.<BR><BR><BR><B>Next Button</B><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 290px"><DIV dir=ltr style="TEXT-ALIGN: left">
+<FONT color=#0000ff><FONT size=3>Private Sub </FONT></FONT><FONT size=3>imgNext_Click(<FONT color=#0000ff>ByVal </FONT>sender <FONT color=#0000ff>As </FONT>System.Object, <FONT color=#0000ff>ByVal </FONT>e <FONT color=#0000ff>As </FONT>System.Web.UI.ImageClickEventArgs) <FONT color=#0000ff>Handles </FONT>imgNext.Click
+        <FONT color=#008000>'   |||||   Move to next Record &amp; re-populate the textboxes/dropdownlists
+        '   ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        '   Watch for the range values, as the Items.Count gives the total number of
+        '   items, and the Index values of the listbox are zero based, therefore 
+        '   deduct 1 from the count value to get the last index value.
+        '   |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        </FONT><FONT color=#0000ff>If </FONT>lstProducts.SelectedIndex &gt;= lstProducts.Items.Count - 1 <FONT color=#0000ff>Then
+            </FONT>lstProducts.SelectedIndex = 0
+        <FONT color=#0000ff>Else
+            </FONT>lstProducts.SelectedIndex += 1
+        <FONT color=#0000ff>End If
+        </FONT><FONT color=#008000>'   |||||   Index has now changed, so call the appropriate method
+        </FONT><FONT color=#0000ff>Call </FONT>lstProducts_SelectedIndexChanged(sender, e)
+
+<FONT color=#0000ff>End Sub</FONT></FONT></DIV></PRE></DIV><BR><BR><B>Previous 
+      Button</B><BR>
+      <DIV style="MARGIN: 5px 20px 20px">
+      <DIV class=smallfont style="MARGIN-BOTTOM: 2px">Code:</DIV><PRE class=alt2 style="BORDER-RIGHT: 1px inset; PADDING-RIGHT: 5px; BORDER-TOP: 1px inset; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; MARGIN: 0px; OVERFLOW: auto; BORDER-LEFT: 1px inset; WIDTH: 640px; PADDING-TOP: 5px; BORDER-BOTTOM: 1px inset; HEIGHT: 290px"><DIV dir=ltr style="TEXT-ALIGN: left">
+    <FONT color=#0000ff><FONT size=3>Private Sub </FONT></FONT><FONT size=3>imgPrev_Click(<FONT color=#0000ff>ByVal </FONT>sender <FONT color=#0000ff>As </FONT>System.Object, <FONT color=#0000ff>ByVal </FONT>e <FONT color=#0000ff>As </FONT>System.Web.UI.ImageClickEventArgs) <FONT color=#0000ff>Handles </FONT>imgPrev.Click
+        <FONT color=#008000>'   |||||   Move to the previous record in the list
+        '   |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        '   Remember that the Index value can not be less than Zero (must be a 
+        '   positive number value) and if the Index is at 0, then previous would 
+        '   take you to the last item in the list; Count -1
+        '   |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        </FONT><FONT color=#0000ff>If </FONT>lstProducts.SelectedIndex &gt; 0 <FONT color=#0000ff>Then
+            </FONT>lstProducts.SelectedIndex -= 1
+        <FONT color=#0000ff>Else
+            </FONT>lstProducts.SelectedIndex = lstProducts.Items.Count - 1
+        <FONT color=#0000ff>End If
+        </FONT><FONT color=#008000>'   ||||||  Index has now changed, so call the IndexChanged event
+        </FONT><FONT color=#0000ff>Call </FONT>lstProducts_SelectedIndexChanged(sender, e)
+
+    <FONT color=#0000ff>End Sub</FONT></FONT></DIV></PRE></DIV><BR><BR>It 
+      should be noted that I used an <B>ImageButton</B> control, but you can use 
+      the <B>standard webform button</B> control or even a <B>HyperLink</B> 
+      button control if you want. Just be sure to modify the above code 
+      accordingly.<BR><BR>Happy Coding <IMG class=inlineimg title=Cool alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/icon_cool.gif" 
+      border=0></DIV><!-- / message --><!-- sig -->
+      <DIV>__________________<BR><IMG alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/MyLogo4.jpg" 
+      border=0><BR><FONT size=1><FONT face="Microsoft Sans Serif"><I>"Only one 
+      thing is impossible for God: To find any sense in any copyright law on the 
+      planet." <BR>- <B>Mark Twain.</B></I></FONT></FONT><BR><BR><A 
+      href="http://www.daniweb.com/techtalkforums/thread6028.html" 
+      target=_blank>ASP.Net Login Page Code</A> | <A 
+      href="http://www.daniweb.com/techtalkforums/thread6499.html" 
+      target=_blank>ASP.Net Listbox Control</A> </DIV><!-- / sig --></TD></TR>
+  <TR>
+    <TD class=alt2>&nbsp; </TD>
+    <TD class=alt2 align=right><!-- controls --><A 
+      href="http://www.daniweb.com/techtalkforums/newreply.php?do=newreply&amp;p=31553"><IMG 
+      onmouseover=this.filters.alpha.opacity=100 
+      style="FILTER: alpha(opacity=65)" onmouseout=this.filters.alpha.opacity=65 
+      alt="Reply With Quote" 
+      src="Populating &amp; Retrieving Data in a listbox_files/quote.gif" 
+      border=0></A> <!-- / controls --></TD></TR></TBODY></TABLE><!-- post 31553 popup menu -->
+<DIV class=vbmenu_popup id=postmenu_31553_menu 
+style="DISPLAY: none; FILTER: alpha(opacity=85); moz-opacity: 0.8">
+<TABLE cellSpacing=1 cellPadding=4 border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead>Paladine</TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/member.php?userid=131">View 
+      Public Profile</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/private.php?do=newpm&amp;userid=131">Send 
+      a private message to Paladine</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www3.telus.net/public/tmlohnes/Index.htm">Visit Paladine's 
+      homepage!</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/search.php?do=finduser&amp;userid=131">Find 
+      More Posts by Paladine</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/profile.php?do=addlist&amp;userlist=buddy&amp;u=131">Add 
+      Paladine to Your Buddy List</A></TD></TR></TBODY></TABLE></DIV><!-- / post 31553 popup menu --></DIV></DIV></DIV></DIV><!-- / close content container --><!-- / post #31553 --></DIV><!-- start content table --><!-- open content container -->
+<DIV align=center>
+<DIV class=page style="WIDTH: 100%; TEXT-ALIGN: left">
+<DIV 
+style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px"><!-- / start content table --><!-- text advertising -->
+<DIV style="PADDING-BOTTOM: 5px">
+<DIV class=tborder>
+<DIV class=thead>Sponsored Links</DIV>
+<DIV class=text_container style="HEIGHT: 90px; TEXT-ALIGN: center">
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-8426641637123945";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_channel ="7685669071";
+google_ad_type = "text";
+google_color_border = "F1F1F1";
+google_color_bg = "F1F1F1";
+google_color_link = "003366";
+google_color_url = "0066CC";
+google_color_text = "000000";
+//--></SCRIPT>
+
+<SCRIPT src="Populating &amp; Retrieving Data in a listbox_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+</DIV></DIV></DIV><!-- / text advertising --><!-- controls below postbits -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD class=smallfont><A 
+      href="http://www.daniweb.com/techtalkforums/newreply.php?do=newreply&amp;noquote=1&amp;p=31553"><IMG 
+      alt=Reply 
+      src="Populating &amp; Retrieving Data in a listbox_files/reply.gif" 
+      border=0></A></TD></TR></TBODY></TABLE><!-- / controls below postbits --><BR>
+<DIV class=smallfont align=center><STRONG>«</STRONG> <A 
+href="http://www.daniweb.com/techtalkforums/showthread.php?t=6499&amp;goto=nextoldest">Previous 
+Thread</A> | <A 
+href="http://www.daniweb.com/techtalkforums/showthread.php?t=6499&amp;goto=nextnewest">Next 
+Thread</A> <STRONG>»</STRONG> </DIV><BR><!-- currently active users --><!-- currently active users --><!-- popup menu contents --><BR><!-- thread tools menu -->
+<DIV class=vbmenu_popup id=threadtools_menu 
+style="DISPLAY: none; FILTER: alpha(opacity=85); moz-opacity: 0.8">
+<FORM name=threadadminform action=postings.php method=post>
+<TABLE cellSpacing=1 cellPadding=4 border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead>Thread Tools<A name=goto_threadtools></A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><IMG class=inlineimg alt="Show Printable Version" 
+      src="Populating &amp; Retrieving Data in a listbox_files/printer.gif"> <A 
+      accessKey=3 
+      href="http://www.daniweb.com/techtalkforums/printthread.php?t=6499">Show 
+      Printable Version</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><IMG class=inlineimg alt="Email this Page" 
+      src="Populating &amp; Retrieving Data in a listbox_files/sendtofriend.gif"> 
+      <A 
+      href="http://www.daniweb.com/techtalkforums/sendmessage.php?do=sendtofriend&amp;t=6499">Email 
+      this Page</A></TD></TR></TBODY></TABLE></FORM></DIV><!-- / thread tools menu --><!-- **************************************************** --><!-- thread display mode menu -->
+<DIV class=vbmenu_popup id=displaymodes_menu 
+style="DISPLAY: none; FILTER: alpha(opacity=85); moz-opacity: 0.8">
+<TABLE cellSpacing=1 cellPadding=4 border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead>Display Modes<A name=goto_displaymodes></A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option title=nohilite><IMG class=inlineimg 
+      alt="Linear Mode" 
+      src="Populating &amp; Retrieving Data in a listbox_files/mode_linear.gif"> 
+      <STRONG>Linear Mode</STRONG></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><IMG class=inlineimg alt="Hybrid Mode" 
+      src="Populating &amp; Retrieving Data in a listbox_files/mode_hybrid.gif"> 
+      <A 
+      href="http://www.daniweb.com/techtalkforums/showthread.php?mode=hybrid&amp;t=6499">Switch 
+      to Hybrid Mode</A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><IMG class=inlineimg alt="Threaded Mode" 
+      src="Populating &amp; Retrieving Data in a listbox_files/mode_threaded.gif"> 
+      <A 
+      href="http://www.daniweb.com/techtalkforums/showthread.php?p=30906&amp;mode=threaded#post30906">Switch 
+      to Threaded Mode</A></TD></TR></TBODY></TABLE></DIV><!-- / thread display mode menu --><!-- **************************************************** --><!-- thread search menu -->
+<DIV class=vbmenu_popup id=threadsearch_menu 
+style="DISPLAY: none; FILTER: alpha(opacity=85); moz-opacity: 0.8">
+<FORM action=search.php method=post>
+<TABLE cellSpacing=1 cellPadding=4 border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead>Search this Thread<A name=goto_threadsearch></A></TD></TR>
+  <TR>
+    <TD class=vbmenu_option title=nohilite><INPUT type=hidden name=s> <INPUT 
+      type=hidden value=process name=do> <INPUT type=hidden value=1 
+      name=searchthread> <INPUT type=hidden value=1 name=showposts> <INPUT 
+      type=hidden value=6499 name=searchthreadid> <INPUT class=bginput 
+      name=query><!-- go button --> 
+    <INPUT class=button type=submit value=Go><BR></TD></TR>
+  <TR>
+    <TD class=vbmenu_option><A 
+      href="http://www.daniweb.com/techtalkforums/search.php?">Advanced 
+      Search</A></TD></TR></TBODY></TABLE></FORM></DIV><!-- / thread search menu --><!-- **************************************************** --><!-- thread rating menu -->
+<DIV class=vbmenu_popup id=threadrating_menu 
+style="DISPLAY: none; FILTER: alpha(opacity=85); moz-opacity: 0.8">
+<FORM action=threadrate.php method=post>
+<TABLE cellSpacing=1 cellPadding=4 border=0>
+  <TBODY>
+  <TR>
+    <TD class=thead>Rate This Thread<A name=goto_threadrating></A></TD></TR>
+  <TR>
+    <TD>You have already rated this thread</TD></TR></TBODY></TABLE></FORM></DIV><!-- / thread rating menu --><!-- / popup menu contents --><!-- forum rules and admin links -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
+  <TBODY>
+  <TR vAlign=bottom>
+    <TD class=smallfont align=left>
+      <TABLE class=tborder cellSpacing=0 cellPadding=5 width=180 border=0>
+        <THEAD>
+        <TR>
+          <TD class=thead><A style="FLOAT: right" 
+            onclick="return toggle_collapse('forumrules')" 
+            href="http://www.daniweb.com/techtalkforums/thread6499.html#top"><IMG 
+            id=collapseimg_forumrules alt="" 
+            src="Populating &amp; Retrieving Data in a listbox_files/collapse_thead.gif" 
+            border=0></A> Posting Rules </TD></TR></THEAD>
+        <TBODY id=collapseobj_forumrules>
+        <TR>
+          <TD class=alt1 noWrap>
+            <DIV class=smallfont>
+            <DIV>You <STRONG>may not</STRONG> post new threads</DIV>
+            <DIV>You <STRONG>may not</STRONG> post replies</DIV>
+            <DIV>You <STRONG>may not</STRONG> post attachments</DIV>
+            <DIV>You <STRONG>may not</STRONG> edit your posts</DIV>
+            <HR>
+
+            <DIV><A 
+            href="http://www.daniweb.com/techtalkforums/misc.php?do=bbcode" 
+            target=_blank>vB code</A> is <STRONG>On</STRONG></DIV>
+            <DIV><A 
+            href="http://www.daniweb.com/techtalkforums/misc.php?do=showsmilies" 
+            target=_blank>Smilies</A> are <STRONG>On</STRONG></DIV>
+            <DIV><A 
+            href="http://www.daniweb.com/techtalkforums/misc.php?do=bbcode#imgcode" 
+            target=_blank>[IMG]</A> code is <STRONG>On</STRONG></DIV>
+            <DIV>HTML code is 
+      <STRONG>Off</STRONG></DIV></DIV></TD></TR></TBODY></TABLE></TD>
+    <TD class=smallfont align=right>
+      <TABLE cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD>
+            <DIV class=smallfont style="WHITE-SPACE: nowrap; TEXT-ALIGN: left">
+            <FORM action=forumdisplay.php method=get><INPUT type=hidden name=s> 
+            <INPUT type=hidden name=daysprune> <STRONG>Forum 
+            Jump</STRONG><BR><SELECT onchange=this.form.submit(); name=f> 
+              <OPTGROUP label="Site Areas"> <OPTION value=-1>Please select 
+                one</OPTION> <OPTION value=cp>User Control Panel</OPTION> 
+                <OPTION value=pm>Private Messages</OPTION> <OPTION 
+                value=subs>Subscriptions</OPTION> <OPTION value=wol>Who's 
+                Online</OPTION> <OPTION value=search>Search Forums</OPTION> 
+                <OPTION value=home>Forums Home</OPTION> <OPTION 
+                value=-1>--------------------</OPTION> </OPTGROUP> <OPTGROUP 
+              label=Forums> <OPTION class=fjdpth0 value=2>Programming 
+                Languages</OPTION> <OPTION class=fjdpth1 value=8>&nbsp; &nbsp; C 
+                / C++</OPTION> <OPTION class=fjdpth2 value=21>&nbsp; &nbsp; 
+                &nbsp; &nbsp; C / C++ Tutorials</OPTION> <OPTION class=fjdpth2 
+                value=70>&nbsp; &nbsp; &nbsp; &nbsp; C / C++ Book 
+                Reviews</OPTION> <OPTION class=fjdpth2 value=30>&nbsp; &nbsp; 
+                &nbsp; &nbsp; C / C++ Code Snippets</OPTION> <OPTION 
+                class=fjdpth1 value=9>&nbsp; &nbsp; Java</OPTION> <OPTION 
+                class=fjdpth2 value=67>&nbsp; &nbsp; &nbsp; &nbsp; Java 
+                Tutorials</OPTION> <OPTION class=fjdpth2 value=71>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Java Book Reviews</OPTION> <OPTION class=fjdpth2 
+                value=27>&nbsp; &nbsp; &nbsp; &nbsp; Java Code Snippets</OPTION> 
+                <OPTION class=fjdpth1 value=4>&nbsp; &nbsp; QBasic / Visual 
+                Basic</OPTION> <OPTION class=fjdpth2 value=68>&nbsp; &nbsp; 
+                &nbsp; &nbsp; QBasic / VB Tutorials</OPTION> <OPTION 
+                class=fjdpth2 value=72>&nbsp; &nbsp; &nbsp; &nbsp; QBasic / VB 
+                Book Reviews</OPTION> <OPTION class=fjdpth2 value=20>&nbsp; 
+                &nbsp; &nbsp; &nbsp; QBasic / VB Code Snippets</OPTION> <OPTION 
+                class=fjdpth1 value=59>&nbsp; &nbsp; .NET Framework</OPTION> 
+                <OPTION class=fjdpth2 value=18>&nbsp; &nbsp; &nbsp; &nbsp; 
+                ASP.NET</OPTION> <OPTION class=fjdpth2 value=58>&nbsp; &nbsp; 
+                &nbsp; &nbsp; VB.NET</OPTION> <OPTION class=fjdpth2 
+                value=61>&nbsp; &nbsp; &nbsp; &nbsp; C#</OPTION> <OPTION 
+                class=fjsel value=69 selected>&nbsp; &nbsp; &nbsp; &nbsp; .NET 
+                Tutorials</OPTION> <OPTION class=fjdpth2 value=73>&nbsp; &nbsp; 
+                &nbsp; &nbsp; .NET Book Reviews</OPTION> <OPTION class=fjdpth2 
+                value=54>&nbsp; &nbsp; &nbsp; &nbsp; .NET Code Snippets</OPTION> 
+                <OPTION class=fjdpth1 value=60>&nbsp; &nbsp; Other Languages / 
+                General Coding</OPTION> <OPTION class=fjdpth2 value=84>&nbsp; 
+                &nbsp; &nbsp; &nbsp; Programming Tutorials</OPTION> <OPTION 
+                class=fjdpth2 value=49>&nbsp; &nbsp; &nbsp; &nbsp; Book 
+                Reviews</OPTION> <OPTION class=fjdpth2 value=66>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Code Snippets</OPTION> <OPTION class=fjdpth1 
+                value=14>&nbsp; &nbsp; Computer Science</OPTION> <OPTION 
+                class=fjdpth2 value=40>&nbsp; &nbsp; &nbsp; &nbsp; Computer 
+                Science Tutorials</OPTION> <OPTION class=fjdpth2 value=88>&nbsp; 
+                &nbsp; &nbsp; &nbsp; Computer Science Book Reviews</OPTION> 
+                <OPTION class=fjdpth0 value=31>Scripting Languages</OPTION> 
+                <OPTION class=fjdpth1 value=17>&nbsp; &nbsp; PHP</OPTION> 
+                <OPTION class=fjdpth2 value=78>&nbsp; &nbsp; &nbsp; &nbsp; PHP 
+                Tutorials</OPTION> <OPTION class=fjdpth2 value=63>&nbsp; &nbsp; 
+                &nbsp; &nbsp; PHP Book Reviews</OPTION> <OPTION class=fjdpth2 
+                value=53>&nbsp; &nbsp; &nbsp; &nbsp; PHP Code Snippets</OPTION> 
+                <OPTION class=fjdpth1 value=62>&nbsp; &nbsp; ASP</OPTION> 
+                <OPTION class=fjdpth2 value=35>&nbsp; &nbsp; &nbsp; &nbsp; ASP 
+                Tutorials</OPTION> <OPTION class=fjdpth2 value=74>&nbsp; &nbsp; 
+                &nbsp; &nbsp; ASP Book Reviews</OPTION> <OPTION class=fjdpth2 
+                value=47>&nbsp; &nbsp; &nbsp; &nbsp; ASP Code Snippets</OPTION> 
+                <OPTION class=fjdpth1 value=19>&nbsp; &nbsp; ColdFusion</OPTION> 
+                <OPTION class=fjdpth2 value=79>&nbsp; &nbsp; &nbsp; &nbsp; 
+                ColdFusion Tutorials</OPTION> <OPTION class=fjdpth2 
+                value=75>&nbsp; &nbsp; &nbsp; &nbsp; ColdFusion Book 
+                Reviews</OPTION> <OPTION class=fjdpth2 value=55>&nbsp; &nbsp; 
+                &nbsp; &nbsp; ColdFusion Code Snippets</OPTION> <OPTION 
+                class=fjdpth1 value=23>&nbsp; &nbsp; CGI / Perl / 
+                Python</OPTION> <OPTION class=fjdpth2 value=85>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Shell Scripting Tutorials</OPTION> <OPTION 
+                class=fjdpth2 value=83>&nbsp; &nbsp; &nbsp; &nbsp; CGI Book 
+                Reviews</OPTION> <OPTION class=fjdpth2 value=56>&nbsp; &nbsp; 
+                &nbsp; &nbsp; CGI Code Snippets</OPTION> <OPTION class=fjdpth1 
+                value=24>&nbsp; &nbsp; JSP</OPTION> <OPTION class=fjdpth2 
+                value=57>&nbsp; &nbsp; &nbsp; &nbsp; JSP Code Snippets</OPTION> 
+                <OPTION class=fjdpth0 value=36>Web Development</OPTION> <OPTION 
+                class=fjdpth1 value=16>&nbsp; &nbsp; Databases</OPTION> <OPTION 
+                class=fjdpth2 value=81>&nbsp; &nbsp; &nbsp; &nbsp; Databases 
+                Tutorials</OPTION> <OPTION class=fjdpth2 value=80>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Databases Book Reviews</OPTION> <OPTION 
+                class=fjdpth1 value=5>&nbsp; &nbsp; Web Technologies</OPTION> 
+                <OPTION class=fjdpth1 value=33>&nbsp; &nbsp; Web 
+                Hosting</OPTION> <OPTION class=fjdpth2 value=34>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Web Hosting Tutorials</OPTION> <OPTION 
+                class=fjdpth2 value=90>&nbsp; &nbsp; &nbsp; &nbsp; 
+                Apache</OPTION> <OPTION class=fjdpth1 value=15>&nbsp; &nbsp; Web 
+                Design</OPTION> <OPTION class=fjdpth2 value=76>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Web Design Tutorials</OPTION> <OPTION 
+                class=fjdpth2 value=28>&nbsp; &nbsp; &nbsp; &nbsp; Graphics and 
+                Multimedia</OPTION> <OPTION class=fjdpth2 value=82>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Web Design Book Reviews</OPTION> <OPTION 
+                class=fjdpth1 value=46>&nbsp; &nbsp; eCommerce / Generating 
+                Revenue</OPTION> <OPTION class=fjdpth1 value=51>&nbsp; &nbsp; 
+                Site Reviews</OPTION> <OPTION class=fjdpth0 value=25>Website 
+                Promotion</OPTION> <OPTION class=fjdpth1 value=45>&nbsp; &nbsp; 
+                Search Engines / SEO</OPTION> <OPTION class=fjdpth1 
+                value=50>&nbsp; &nbsp; Building a Community</OPTION> <OPTION 
+                class=fjdpth1 value=43>&nbsp; &nbsp; Promotion / Marketing 
+                Techniques</OPTION> <OPTION class=fjdpth2 value=91>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Web Promotion Articles</OPTION> <OPTION 
+                class=fjdpth2 value=87>&nbsp; &nbsp; &nbsp; &nbsp; Web Promotion 
+                Book Reviews</OPTION> <OPTION class=fjdpth1 value=65>&nbsp; 
+                &nbsp; Traffic Exchange / Buy &amp; Sell Ad Space</OPTION> 
+                <OPTION class=fjdpth1 value=52>&nbsp; &nbsp; Webmaster 
+                Marketplace</OPTION> <OPTION class=fjdpth0 value=1>Tech 
+                Support</OPTION> <OPTION class=fjdpth1 value=10>&nbsp; &nbsp; 
+                Windows NT/2000/XP/2003</OPTION> <OPTION class=fjdpth2 
+                value=37>&nbsp; &nbsp; &nbsp; &nbsp; Windows tips 'n' 
+                tweaks</OPTION> <OPTION class=fjdpth1 value=32>&nbsp; &nbsp; 
+                Windows 95/98/98se/Me</OPTION> <OPTION class=fjdpth1 
+                value=29>&nbsp; &nbsp; Internet Explorer</OPTION> <OPTION 
+                class=fjdpth1 value=92>&nbsp; &nbsp; Windows Software</OPTION> 
+                <OPTION class=fjdpth1 value=64>&nbsp; &nbsp; Security</OPTION> 
+                <OPTION class=fjdpth1 value=11>&nbsp; &nbsp; Mac</OPTION> 
+                <OPTION class=fjdpth2 value=77>&nbsp; &nbsp; &nbsp; &nbsp; Mac 
+                tips 'n' tweaks</OPTION> <OPTION class=fjdpth2 value=89>&nbsp; 
+                &nbsp; &nbsp; &nbsp; Mac Community Discussion</OPTION> <OPTION 
+                class=fjdpth1 value=12>&nbsp; &nbsp; Linux / Unix</OPTION> 
+                <OPTION class=fjdpth2 value=39>&nbsp; &nbsp; &nbsp; &nbsp; Linux 
+                Tutorials</OPTION> <OPTION class=fjdpth1 value=13>&nbsp; &nbsp; 
+                Networking</OPTION> <OPTION class=fjdpth2 value=86>&nbsp; &nbsp; 
+                &nbsp; &nbsp; Networking Tutorials</OPTION> <OPTION 
+                class=fjdpth2 value=22>&nbsp; &nbsp; &nbsp; &nbsp; 
+                Novell</OPTION> <OPTION class=fjdpth1 value=7>&nbsp; &nbsp; 
+                Hardware</OPTION> <OPTION class=fjdpth0 value=3>Coffee 
+                House</OPTION> <OPTION class=fjdpth1 value=48>&nbsp; &nbsp; IT 
+                Careers / Corporate Computing</OPTION> <OPTION class=fjdpth1 
+                value=42>&nbsp; &nbsp; Help Wanted / Employment 
+                Opportunities</OPTION> <OPTION class=fjdpth1 value=38>&nbsp; 
+                &nbsp; Contests</OPTION> <OPTION class=fjdpth1 value=26>&nbsp; 
+                &nbsp; Site News and Feedback</OPTION> <OPTION class=fjdpth1 
+                value=6>&nbsp; &nbsp; Geek's Lounge</OPTION> </OPTGROUP></SELECT><!-- go button --> <INPUT class=button type=submit value=Go> 
+      </FORM></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- /forum rules and admin links --><BR>
+<TABLE class=tborder cellSpacing=0 cellPadding=5 width="100%" align=center 
+border=0>
+  <THEAD>
+  <TR>
+    <TD class=tcat width="100%" colSpan=5><A style="FLOAT: right" 
+      onclick="return toggle_collapse('similarthreads')" 
+      href="http://www.daniweb.com/techtalkforums/thread6499.html#top"><IMG 
+      id=collapseimg_similarthreads alt="" 
+      src="Populating &amp; Retrieving Data in a listbox_files/collapse_tcat.gif" 
+      border=0></A> Similar Threads<A name=similarthreads></A> </TD></TR></THEAD>
+  <TBODY id=collapseobj_similarthreads>
+  <TR class=thead align=middle>
+    <TD class=thead width="40%">Thread</TD>
+    <TD class=thead noWrap width="15%">Thread Starter</TD>
+    <TD class=thead width="20%">Forum</TD>
+    <TD class=thead width="5%">Replies</TD>
+    <TD class=thead width="20%">Last Post</TD></TR>
+  <TR>
+    <TD class=alt1 align=left><SPAN class=smallfont><A 
+      title="This is sample code for a ASP.Net Login page (using Visual Basic.Net code behind) with OleDB connection to an Access Database using ADO.Net.&#10;&#10;The datebase used is the Access Northwind Database.  With the connection string being placed in the web.config file.&#10;&#10;1. Web Config File code:&#10;&#10;&#10;<?xml..." 
+      href="http://www.daniweb.com/techtalkforums/showthread.php?t=6028">Simple 
+      ASP.Net Login Page (Using VB.Net)</A></SPAN></TD>
+    <TD class=alt2 noWrap><SPAN class=smallfont>Paladine</SPAN></TD>
+    <TD class=alt1 noWrap><SPAN class=smallfont>.NET Tutorials</SPAN></TD>
+    <TD class=alt2 align=middle><SPAN class=smallfont>13</SPAN></TD>
+    <TD class=alt1 align=right><SPAN class=smallfont>Yesterday <SPAN 
+      class=time>12:29 PM</SPAN></SPAN></TD></TR>
+  <TR>
+    <TD class=alt1 align=left><SPAN class=smallfont><A 
+      title='Somebody told me that he could access c++ private data members without using the " Friend" type or public functions.He gave a source code and that was compiled in Turbo c++3.0 :-(&#10;May I post that here?' 
+      href="http://www.daniweb.com/techtalkforums/showthread.php?t=1460">accessing 
+      private data members</A></SPAN></TD>
+    <TD class=alt2 noWrap><SPAN class=smallfont>camelNotation</SPAN></TD>
+    <TD class=alt1 noWrap><SPAN class=smallfont>C / C++</SPAN></TD>
+    <TD class=alt2 align=middle><SPAN class=smallfont>7</SPAN></TD>
+    <TD class=alt1 align=right><SPAN class=smallfont>07-14-2004 <SPAN 
+      class=time>03:28 PM</SPAN></SPAN></TD></TR>
+  <TR>
+    <TD class=alt1 align=left><SPAN class=smallfont><A 
+      title="I am a new user of Ad-aware and I dont know very much about computers, viruses, spyware, and adware. I just downloaded Ad-Aware, 6.0 and ran a scan. The results definitely seem to be a cause for concern. This is what it said:&#10;&#10;Lavasoft Ad-aware Personal Build 6.181&#10;Logfile created on  :Wednesday,..." 
+      href="http://www.daniweb.com/techtalkforums/showthread.php?t=6321">interpretation 
+      of ad-aware scan</A></SPAN></TD>
+    <TD class=alt2 noWrap><SPAN class=smallfont>lola</SPAN></TD>
+    <TD class=alt1 noWrap><SPAN class=smallfont>Security</SPAN></TD>
+    <TD class=alt2 align=middle><SPAN class=smallfont>5</SPAN></TD>
+    <TD class=alt1 align=right><SPAN class=smallfont>06-24-2004 <SPAN 
+      class=time>09:36 
+PM</SPAN></SPAN></TD></TR></TBODY></TABLE><BR><BR></DIV></DIV></DIV><!-- / close content container --><!-- /content area table --><!-- Do not remove <img src="http://www.daniweb.com/techtalkforums/cron.php?&amp;rand=467119" alt="" width="1" height="1" border="0" /> or your scheduled tasks will cease to function --><IMG 
+height=1 alt="" 
+src="Populating &amp; Retrieving Data in a listbox_files/clear.gif" width=1 
+border=0> <!-- Do not remove <img src="http://www.daniweb.com/techtalkforums/cron.php?&amp;rand=467119" alt="" width="1" height="1" border="0" /> or your scheduled tasks will cease to function --><BR>
+<DIV class=copyright>
+<DIV class=detail>
+<DIV class=box><!-- TF 336x280 JScript code -->
+<CENTER>
+<SCRIPT language=javascript><!--
+document.write('<scr'+'ipt language=javascript src="http://a.tribalfusion.com/j.ad?site=DaniWeb&adSpace=ROS&size=336x280&requestID='+((new Date()).getTime() % 2147483648) + Math.random()+'"></scr'+'ipt>');
+//-->
+</SCRIPT>
+<NOSCRIPT><A 
+href="http://a.tribalfusion.com/i.click?site=DaniWeb&amp;adSpace=ROS&amp;size=336x280&amp;requestID=1627373592" 
+target=_blank><IMG height=280 alt="Click Here" 
+src="Populating &amp; Retrieving Data in a listbox_files/181796.gif" width=336 
+border=0></A> </NOSCRIPT></CENTER><!-- TF 336x280 JScript code -->
+<DIV id=beacon_9 
+style="LEFT: 0px; VISIBILITY: hidden; POSITION: absolute; TOP: 0px"><IMG 
+style="WIDTH: 0px; HEIGHT: 0px" height=0 alt="" 
+src="C:\Data\evifweb\Populating &amp; Retrieving Data in a listbox_files\adlog(1).gif" 
+width=0></DIV></DIV></DIV>
+<DIV style="MARGIN-TOP: 190px"><A href="http://www.daniweb.com/"><IMG height=80 
+alt="DaniWeb forums" 
+src="Populating &amp; Retrieving Data in a listbox_files/db.gif" width=150 
+border=0></A> 
+<DIV class=smallfont>All times are GMT -4. The time now is <SPAN 
+class=time>01:05 AM</SPAN>.</DIV>
+<DIV class=smallfont><!-- Do not remove this copyright notice -->
+<DIV class=smallfont>© 2003-04 Dani (cscgal)</DIV>vBulletin v3.0.3, Copyright 
+©2000-2004, Jelsoft Enterprises Ltd. <!-- Do not remove this copyright notice --></DIV></DIV></DIV>
+<FORM action=index.php method=get>
+<DIV class=navigation align=right><A 
+href="http://www.daniweb.com/techtalkforums/sendmessage.php">Contact Us</A> - <A 
+href="http://www.daniweb.com/linktous.php">Enrich Your Site</A> - <A 
+href="http://www.daniweb.com/mediakit/">Advertise</A> - <A 
+href="http://www.daniweb.com/techtalkforums/faq.php?faq=daniweb_faq#faq_rules">Rules</A> 
+- <A href="http://www.daniweb.com/techtalkforums/thread6499.html#top">Top</A> 
+</DIV></FORM>
+<DIV class=footer><A href="http://www.aewebworks.com/" target=_blank>Personals 
+Script</A> | <A href="http://www.aluriasoftware.com/" target=_blank>Spyware 
+Removal</A> | <A href="http://www.thelogocreator.com/" target=_blank>Logo 
+Design</A> | <A href="http://www.seo-guy-hosting.com/" target=_blank>Hosting</A> 
+</DIV>
+<SCRIPT type=text/javascript>
+<!--
+	// Main vBulletin Javascript Initialization
+	vBulletin_init();
+
+	// Initialize 'Active' Table Cells
+	//activecells_init();
+//-->
+</SCRIPT>
+<!-- temp -->
+<DIV 
+style="DISPLAY: none"><!-- thread rate --><!-- / thread rate --></DIV></BODY></HTML>

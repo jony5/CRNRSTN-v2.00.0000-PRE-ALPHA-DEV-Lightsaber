@@ -7,7 +7,7 @@
 #  CRNRSTN ::
 #  CRNRSTN Suite :: An Open Source PHP Class Library providing a robust services interface layer to both facilitate,
 #  augment, and enhance the operations of code base for an application across multiple hosting environments.
-#  Copyright (C) 2012-2022 eVifweb development
+#  Copyright (C) 2012-2023 eVifweb development
 #  VERSION :: 2.00.0000 PRE-ALPHA-DEV (Lightsaber)
 #  RELEASE DATE (v1.0.0) :: July 4, 2018 - Happy Independence Day from my dog and I to you...wherever and whenever you are.
 #  AUTHOR :: Jonathan 'J5' Harris, Lead Full Stack Developer
@@ -42,15 +42,15 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 
 //
-// CRNRSTN :: DEFINITIONS FOR CLASSES AND CONSTANTS
+// CRNRSTN :: DEFINITIONS FOR CLASSES AND CONSTANTS.
 require(CRNRSTN_ROOT . '/_crnrstn/_crnrstn.classdefinitions.inc.php' );
 
 /**
  * $CRNRSTN_debug_mode
- * DESCRIPTION :: The master debug mode control variable for the CRNRSTN Suite ::.
+ * DESCRIPTION :: The master debug mode control variable for the CRNRSTN Suite ::
  * OPTIONS ::
  * * $CRNRSTN_debug_mode = 0 = CRNRSTN_DEBUG_OFF
  * * $CRNRSTN_debug_mode = 1 = CRNRSTN_DEBUG_NATIVE_ERR_LOG
@@ -98,6 +98,7 @@ require(CRNRSTN_ROOT . '/_crnrstn/_crnrstn.classdefinitions.inc.php' );
  * @var int
 */
 $CRNRSTN_debug_mode = CRNRSTN_DEBUG_OFF;
+//$CRNRSTN_debug_mode = CRNRSTN_DEBUG_NATIVE_ERR_LOG;
 
 /**
  * $PHPMAILER_debug_mode
@@ -114,8 +115,8 @@ $CRNRSTN_debug_mode = CRNRSTN_DEBUG_OFF;
  *
  * @var int
  *
- * !!CAUTION :: $PHPMAILER_debug_mode = 4 WILL expose all SMTP usernames and passwords to the CRNRSTN :: debug layer
- * which includes browser accessible output modes of SCREEN_TEXT, SCREEN or SCREEN_HTML, and SCREEN_HTML_HIDDEN!!
+ * !!CAUTION :: $PHPMAILER_debug_mode = 4 WILL expose all SMTP usernames and passwords to CRNRSTN :: EXCEPTION HANDLING
+ * SERVICES LAYER which includes browser accessible output modes of SCREEN_TEXT, SCREEN or SCREEN_HTML, and SCREEN_HTML_HIDDEN!!
  */
 $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO USE 4 AT ALL...imho.
 
@@ -124,7 +125,7 @@ $PHPMAILER_debug_mode = 0;   // !!NEVER PROMOTE 4 TO PRODUCTION IP!! BEST NOT TO
  * OPTIONS ::
  * * This should be a unique and custom string.
  *
- * DESCRIPTION :: Serialize this configuration of CRNRSTN ::. If multiple CRNRSTN :: config
+ * DESCRIPTION :: Serialize this configuration of CRNRSTN :: If multiple CRNRSTN :: config
  *  files are running within this environment (e.g. n+1 micro-sites at the same IP) make
  *  this value unique for each configuration file in order to prevent SESSION resource
  *  contention for any site-to-site traffic in the form of array value overwrites (unless
@@ -175,54 +176,55 @@ $CRNRSTN_config_serial = '';
  * @var integer         // DOCUMENTATION (IN CODE) IT'S LIKE..."WELCOME TO 5 YEARS AGO!" NEEDS A SOLID GO.
  */
 
-$CRNRSTN_loggingProfile = CRNRSTN_LOG_ALL;
+$CRNRSTN_logging_profile = CRNRSTN_LOG_ALL;
 
 //
 // INSTANTIATE AN INSTANCE OF CRNRSTN ::
-$oCRNRSTN = new crnrstn(__FILE__, $CRNRSTN_config_serial, $CRNRSTN_debug_mode, $PHPMAILER_debug_mode, $CRNRSTN_loggingProfile);
+$oCRNRSTN = new crnrstn(__FILE__, $CRNRSTN_config_serial, $CRNRSTN_debug_mode, $PHPMAILER_debug_mode, $CRNRSTN_logging_profile);
 
-/**
+/*
 REFERENCE OF ERROR LEVEL CONSTANTS
 http://php.net/error-reporting
 
 The error level constants are always available as part of the PHP core.
-; E_ALL             - All errors and warnings (includes E_STRICT as of PHP 6.0.0)
-; E_ERROR           - fatal run-time errors
-; E_RECOVERABLE_ERROR - almost fatal run-time errors
-; E_WARNING         - run-time warnings (non-fatal errors)
-; E_PARSE           - compile-time parse errors
-; E_NOTICE          - run-time notices (these are warnings which often result
-;                     from a bug in your code, but it's possible that it was
-;                     intentional (e.g., using an uninitialized variable and
-;                     relying on the fact it's automatically initialized to an
-;                     empty string)
-; E_STRICT          - run-time notices, enable to have PHP suggest changes
-;                     to your code which will ensure the best interoperability
-;                     and forward compatibility of your code
-; E_CORE_ERROR      - fatal errors that occur during PHP's initial startup
-; E_CORE_WARNING    - warnings (non-fatal errors) that occur during PHP's
-;                     initial startup
-; E_COMPILE_ERROR   - fatal compile-time errors
-; E_COMPILE_WARNING - compile-time warnings (non-fatal errors)
-; E_USER_ERROR      - user-generated error message
-; E_USER_WARNING    - user-generated warning message
-; E_USER_NOTICE     - user-generated notice message
-; E_DEPRECATED      - warn about code that will not work in future versions
-;                     of PHP
-; E_USER_DEPRECATED - user-generated deprecation warnings
+E_ALL             - All errors and warnings (includes E_STRICT as of PHP 6.0.0)
+E_ERROR           - fatal run-time errors
+E_RECOVERABLE_ERROR - almost fatal run-time errors
+E_WARNING         - run-time warnings (non-fatal errors)
+E_PARSE           - compile-time parse errors
+E_NOTICE          - run-time notices (these are warnings which often result
+                    from a bug in your code, but it's possible that it was
+                    intentional (e.g., using an uninitialized variable and
+                    relying on the fact it's automatically initialized to an
+                    empty string)
+E_STRICT          - run-time notices, enable to have PHP suggest changes
+                    to your code which will ensure the best interoperability
+                    and forward compatibility of your code
+E_CORE_ERROR      - fatal errors that occur during PHP's initial startup
+E_CORE_WARNING    - warnings (non-fatal errors) that occur during PHP's
+                    initial startup
+E_COMPILE_ERROR   - fatal compile-time errors
+E_COMPILE_WARNING - compile-time warnings (non-fatal errors)
+E_USER_ERROR      - user-generated error message
+E_USER_WARNING    - user-generated warning message
+E_USER_NOTICE     - user-generated notice message
+E_DEPRECATED      - warn about code that will not work in future versions
+                    of PHP
+E_USER_DEPRECATED - user-generated deprecation warnings
 
-; Common Values for error reporting:
-;   	E_ALL (Show all errors, warnings and notices including coding standards.)
-;   	E_ALL & ~E_NOTICE (Show all errors, except for notices)
-;   	E_ALL & ~E_NOTICE & ~E_STRICT (Show all errors, except for notices and coding standards warnings.)
-;   	E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (Show only errors)
-;
-; Default Value: E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
-; Development Value: E_ALL
-; Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
+Common Values for error reporting:
+  	E_ALL (Show all errors, warnings and notices including coding standards.)
+  	E_ALL & ~E_NOTICE (Show all errors, except for notices)
+  	E_ALL & ~E_NOTICE & ~E_STRICT (Show all errors, except for notices and coding standards warnings.)
+  	E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (Show only errors)
+
+Default Value: E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
+Development Value: E_ALL
+Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
+
 */
 
-/**
+/*
  * $oCRNRSTN->config_add_environment()
  * DESCRIPTION :: Key an environment to enable CRNRSTN :: detection and resource configuration.
  *
@@ -233,31 +235,115 @@ The error level constants are always available as part of the PHP core.
  * @param error level constant integer(s) profiles $errorReporting will allow for configuration
  * of the error reporting profile for the specified application development/hosting environment.
  *
+ * @param   integer $system_html_comments_mode manages the content format of HTML and TEXT
+ * comments in CRNRSTN :: system output. The system predefined integer constant options for
+ * this include:
+ *      CRNRSTN_HTML_COMMENTS_NONE (no comments)
+ *      CRNRSTN_HTML_COMMENTS_SILENT_GOLD (alias of CRNRSTN_HTML_COMMENTS_NONE)
+ *      CRNRSTN_HTML_COMMENTS_CDN_STABILITY_CONTROL_ENABLED (no timestamps in comments)
+ *      CRNRSTN_HTML_COMMENTS_ENLARGED_PHYLACTERIES (alias of CRNRSTN_HTML_COMMENTS_FULL)
+ *      CRNRSTN_HTML_COMMENTS_FULL (this is the default)
+ *
+ *      Thursday September 7, 2023 @ 0643 hrs
+ *
  * @return	boolean TRUE or FALSE
  *
  * Example ::
- * $oCRNRSTN->addEnvironment('LOCALHOST', E_ALL);
- * The above example will expose all errors, warnings and notices (including coding standards) to the
- * environment represented to CRNRSTN :: within this configuration file + includes by the env_key 'LOCALHOST'.
+ * $oCRNRSTN->config_add_environment('LOCALHOST_PC', E_ALL);    // TOSHIBA M100 [eVifweb, HARDWARE (XAMPP/XP PRO, SP3) CIRCA 2005] :: RADIOHEAD.
+ * NOTE: E_ALL will bubble up all errors, warnings and notices (including coding standards) from the
+ * server environment...which said output can then be handled in accordance with the error handling
+ * profile as is configured in CRNRSTN :: for the running environment.
+ *
+ * $system_html_comments_mode HAS BEEN IMPLEMENTED, BUT IT IS NOT YET TESTED. Thursday September 7, 2023 @ 0736 hrs
+ * TODO :: REMOVE THIS TODO WHEN ALL OF THE ABOVE $system_html_comments_mode OPTIONS ARE TESTED.
  */
 $oCRNRSTN->config_add_environment('BLUEHOST_JONY5', E_ALL & ~E_NOTICE & ~E_STRICT);
-$oCRNRSTN->config_add_environment('BLUEHOST_EVIFWEB', E_ALL & ~E_NOTICE & ~E_STRICT);
-$oCRNRSTN->config_add_environment('LOCALHOST_MACBOOKPRO', E_ALL);
+$oCRNRSTN->config_add_environment('BLUEHOST_EVIFWEB', E_ALL & ~E_NOTICE & ~E_STRICT, CRNRSTN_HTML_COMMENTS_NONE);
 $oCRNRSTN->config_add_environment('LOCALHOST_CHAD_MACBOOKPRO', E_ALL);
+$oCRNRSTN->config_add_environment('LOCALHOST_PC_XP', E_ALL);
 
 //
-// ENVIRONMENTAL DETECTION
+// ENVIRONMENTAL DETECTION.
 $oCRNRSTN->config_detect_environment('BLUEHOST_JONY5', 'SERVER_NAME', 'lightsaber.crnrstn.jony5.com');
 $oCRNRSTN->config_detect_environment('BLUEHOST_EVIFWEB', 'SERVER_NAME', 'lightsaber.crnrstn.evifweb.com');
-$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.129', 1);
+$oCRNRSTN->config_detect_environment('LOCALHOST_CHAD_MACBOOKPRO', 'SERVER_NAME', '172.16.225.139', 1);
 
 //
 // ENVIRONMENTAL DETECTION DEMONSTRATION OF CASE REQUIRING MORE THAN ONE (1) $_SERVER[] MATCH TO
-// POSITIVELY DETECT THE RUNNING ENVIRONMENT
-$oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_NAME', '172.16.225.128', 5);
-$oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_ADDR', '172.16.225.128', 5);
-$oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PORT', '80', 5);
-$oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PROTOCOL', 'HTTP/1.1', 5);
+// POSITIVELY DETECT THE RUNNING ENVIRONMENT.
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC_XP', 'SERVER_NAME', '172.16.225.138', 4);
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC_XP', 'SERVER_ADDR', '172.16.225.138', 4);
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC_XP', 'SERVER_PORT', '80', 4);
+$oCRNRSTN->config_detect_environment('LOCALHOST_PC_XP', 'SERVER_PROTOCOL', 'HTTP/1.1', 4);
+
+/*
+//
+// THE CRNRSTN :: RESOURCE AUTHORIZATION PROFILE SETS A DEFAULT
+// DATA HANDLNG BEHAVIOR FOR DATA THAT IS RECEIVED INTO THE SYSTEM
+// THROUGH THE USE OF CERTAIN METHODS. THIS HAS EFFECT, FOR
+// EXAMPLE, WITH THE FOLLOWING METHODS:
+//      - $oCRNRSTN->config_add_resource(),
+//      - $oCRNRSTN->add_resource(), 
+//      - $oCRNRSTN->get_resource_count(), AND
+//      - $oCRNRSTN->get_resource()
+//
+// FOR AFFECTING DATA HANDLING POLICES OF THE CRNRSTN :: MULTI-
+// CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES LAYER.
+CRNRSTN :: RESOURCE AUTHORIZATION PROFILE INTEGER CONSTANTS.
+-----
+CRNRSTN_AUTHORIZE_ALL
+CRNRSTN_AUTHORIZE_GET
+CRNRSTN_AUTHORIZE_POST
+CRNRSTN_AUTHORIZE_COOKIE
+CRNRSTN_AUTHORIZE_SESSION
+CRNRSTN_AUTHORIZE_DATABASE
+CRNRSTN_AUTHORIZE_SSDTLA
+CRNRSTN_AUTHORIZE_PSSDTLA
+CRNRSTN_AUTHORIZE_RUNTIME
+CRNRSTN_AUTHORIZE_SOAP
+CRNRSTN_AUTHORIZE_FILE
+
+FOR CRNRSTN :: CHANNEL CONFIGURATONS,
+PLEASE SEE $oCRNRSTN->get_channel_config(CRNRSTN_AUTHORIZE_SOAP);
+
+*/
+$oCRNRSTN->config_data_authorization_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_AUTHORIZE_RUNTIME);
+
+//
+// INITIALIZE CRNRSTN :: SERVER ADMINISTRATION
+// AND APPLICATION SUPPORT ACCOUNT
+// AUTHENTICATION EMAIL.
+$oCRNRSTN->config_admin_email(CRNRSTN_RESOURCE_ALL, 'Jonathan Harris j00000101@gmail.com, Jonathan J5 Harris j5@jony5.com, jharris@eVifweb.com');
+
+//
+// INITIALIZE SETTINGS FOR EACH ENVIRONMENT.
+// CRNRSTN :: PLAID FIRES HERE.
+error_log(__LINE__ . ' config STARTING [config_load_system_settings()] [rtime ' . $oCRNRSTN->wall_time() . '].');
+$oCRNRSTN->config_load_system_settings(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.system_settings.inc.php');
+
+//
+// MEMORY USE MANAGEMENT.
+// CRNRSTN :: MULTI-CHANNEL DECOUPLED DATA OBJECT (DDO) SERVICES
+// LAYER INITIALIZATION STACK FOR APPLICATION ACCELERATION AND THE
+// ESTABLISHMENT OF DATA HANDLING PROFILE PERFORMANCE BOUNDARIES.
+//
+// NEED CRNRSTN :: MULTI-CHANNEL CONFIGURATION INFO?
+// PLEASE SEE $oCRNRSTN->get_channel_config(CRNRSTN_CHANNEL_SOAP);
+//
+// NEED CRNRSTN :: MULTI-CHANNEL CHANNEL PERFORMANCE REPORTING?
+// PLEASE SEE $oCRNRSTN->channel_report($channel_constant, $report_id);                  // WHERE, $channel_constant = CRNRSTN_CHANNEL_SOAP AND $report_id = (int) 0, 1, 2, 3, 4, OR 5;
+// PLEASE SEE $oCRNRSTN->channel_report($channel_constant_ARRAY, $report_id_ARRAY);      // WHERE, $channel_constant_ARRRAY = array(CRNRSTN_CHANNEL_GET, CRNRSTN_CHANNEL_POST, CRNRSTN_CHANNEL_SOAP) AND $report_id = array(0, 1, 2, 5)
+// TRY, $oCRNRSTN->lightweight_page_return($oCRNRSTN->channel_report($channel_ARRAY, $report_id_ARRAY));
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_GET, '2 MB', -1);                    // INCLUDES CRNRSTN :: PLAID $_GET[] DATA FOR REPORTING.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_POST, $oCRNRSTN->file_upload_max_size(false), -1, false);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_COOKIE, '2 MB', 300, false);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SESSION, '2 MB', 12);                // CRNRSTN :: PLAID ACTIVE CHANNEL.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_DATABASE, -1, -1, false);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SSDTLA, -1, 60, false);
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_PSSDTLA, -1, 60, false);             // NOTE: THIS WILL CRASH THE CRNRSTN :: PSSDTLA RIGHT NOW.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_RUNTIME, -1, -1);                    // CRNRSTN :: PLAID ACTIVE CHANNEL.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_SOAP, 65535, -1, false);             // 65,535 IS THE LARGEST NUMBER THAT CAN BE HELD IN A 16 BIT UNSIGNED INTEGER.
+$oCRNRSTN->config_init_channel(CRNRSTN_RESOURCE_ALL, CRNRSTN_CHANNEL_FILE, -1, -1, false);
 
 /**
  * $oCRNRSTN->config_init_http()
@@ -273,47 +359,44 @@ $oCRNRSTN->config_detect_environment('LOCALHOST_MACBOOKPRO', 'SERVER_PROTOCOL', 
  * @param   string $crnrstn_dir_path the entire file access directory path terminating on /_crnrstn.
 
  */
-
-$oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'http://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('BLUEHOST_JONY5', 'https://lightsaber.crnrstn.jony5.com/', CRNRSTN_ROOT, '_crnrstn');
 $oCRNRSTN->config_init_http('BLUEHOST_EVIFWEB', 'https://lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('LOCALHOST_MACBOOKPRO', 'http://172.16.225.128/jony5/', CRNRSTN_ROOT, '_crnrstn');
-$oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/lightsaber.crnrstn.evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_CHAD_MACBOOKPRO', 'http://172.16.225.139/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
+$oCRNRSTN->config_init_http('LOCALHOST_PC_XP', 'http://172.16.225.138/evifweb.com/', CRNRSTN_ROOT, '_crnrstn');
 
 /**
- * $oCRNRSTN->config_init_system_asset_mode()
+ * $oCRNRSTN->config_init_sys_resp_return_profile($env_key = CRNRSTN_RESOURCE_ALL, $system_asset_mode = CRNRSTN_ASSET_MODE_BASE64)
  * DESCRIPTION :: Configure the HTML email image handling profile for CRNRSTN :: system notifications.
  * OPTIONS ::
- * CRNRSTN_ASSET_MODE_PNG
- * CRNRSTN_ASSET_MODE_JPEG
- * CRNRSTN_ASSET_MODE_BASE64
+ * CRNRSTN_ASSET_MODE_PNG:      ALL CRNRSTN :: system images load the PNG versions of the file.
+ * CRNRSTN_ASSET_MODE_JPEG:     ALL CRNRSTN :: system images load the JPG version of the file.
+ * CRNRSTN_ASSET_MODE_BASE64:   ALL CRNRSTN :: system images and all CRNRSTN :: integrated 3rd
+ *                              party JS Frameworks and CSS Frameworks load as embedded BASE64,
+ *                              SCRIPT, and STYLE tags...respectively...within the HTML. This
+ *                              makes mobile and tablet FAAAASST!
  *
- * @param   int $system_asset_mode constant. Use of any system images will resolve when
- * coupled with specification of the appropriate images hosting directory with
- *
- * $oCRNRSTN->config_init_images_http(). This will indicate the nature of the
- * creative (png, jpg or base64 encoded) that is to be returned by
- * CRNRSTN :: for web and email access.
- *
- * @return	boolean TRUE
- * Example ::
- * $oCRNRSTN->config_init_system_asset_mode(CRNRSTN_ASSET_MODE_BASE64);
+ * NOTE: Please note that any one-off system image method call within the application can
+ * override these global configuration asset mode settings for BASE64, PNG, JPEG, or GIF
+ * resource return executions within the application.
  *
  */
-/*
-config_init_system_asset_mode()
-CRNRSTN_ASSET_MODE_PNG
-CRNRSTN_ASSET_MODE_JPEG
-CRNRSTN_ASSET_MODE_BASE64 (WILL CAUSE JS AND CSS META TO BE INJECTED DIRECTLY INTO HTML <HEAD>)
+//$oCRNRSTN->config_init_sys_resp_return_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64, CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_SESSION);
+//$oCRNRSTN->config_init_sys_resp_return_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_JPEG, CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_SESSION);
+$oCRNRSTN->config_init_sys_resp_return_profile(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG, CRNRSTN_AUTHORIZE_RUNTIME & CRNRSTN_AUTHORIZE_SESSION);
 
-*/
 //
-// $env_key = CRNRSTN_RESOURCE_ALL, $format_default = CRNRSTN_ASSET_MODE_BASE64
-$oCRNRSTN->config_init_system_asset_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_PNG);
-//$oCRNRSTN->config_init_system_asset_mode(CRNRSTN_RESOURCE_ALL, CRNRSTN_ASSET_MODE_BASE64);
+// CRNRSTN :: SYSTEM INTEGRATIONS.
+// PROVIDE SETTING OVERRIDES FOR CRNRSTN :: DISK VOLUME MANAGEMENT TO
+// AFFECT LOCAL STORAGE OF CRNRSTN :: CREATED FILES CONTAINING
+// ASSET META AND BASE64 ENCODED VERSIONS OF WEBSITE INTEGRATION FILES
+// THAT ARE SEAMLESSLY MANAGED BY CRNRSTN ::
+//
+// config_init_file_system_integrations(CRNRSTN_RESOURCE_ALL, $disk_write_authorization = true, $disk_percent_full_warning_override = 70, $disk_percent_full_max_override = 80);
+$oCRNRSTN->config_init_file_system_integrations(CRNRSTN_RESOURCE_ALL, true);
 
 /*
 //
-// JAVASCRIPT FRAMEWORK MINIMIZATION MODE
+// JAVASCRIPT FRAMEWORK MINIMIZATION MODE.
 Before deploying your website to production, be mindful that unminified
 JavaScript can significantly slow down the page for your users.
 
@@ -323,31 +406,77 @@ or dev's sign-in session, and the javascript that is development will be
 returned to this authenticated user, alone.
 
 */
-
 //
 // ENABLE RETURN OF min.js AND min.css WHERE AVAILABLE.
-// FALSE = DEVELOPMENT JS + CSS; TRUE = JS/CSS MINIMIZATION (PRODUCTION VERSION), WHEN AVAILABLE.
-//$oCRNRSTN->config_init_js_css_minimization();
+// FALSE RETURNS DEVELOPMENT JS + CSS;
+// TRUE [FLIPS BIT: CRNRSTN_JS_CSS_PROD_MIN] RETURNS JS/CSS MINIMIZATION (PRODUCTION VERSION),
+// WHEN AVAILABLE.
 $oCRNRSTN->config_init_js_css_minimization('BLUEHOST_JONY5');
 $oCRNRSTN->config_init_js_css_minimization('BLUEHOST_EVIFWEB', false);
-$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_MACBOOKPRO', false);
 $oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
+$oCRNRSTN->config_init_js_css_minimization('LOCALHOST_PC_XP', false);
 
 //
-// CRNRSTN_ASSET_MAPPING
-$oCRNRSTN->config_init_asset_mapping_favicon(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs/favicon/system');
-$oCRNRSTN->config_init_asset_mapping_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/css');
-$oCRNRSTN->config_init_asset_mapping_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');
-$oCRNRSTN->config_init_asset_mapping_system_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
-$oCRNRSTN->config_init_asset_mapping_social_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
-$oCRNRSTN->config_init_asset_mapping_meta_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+// CRNRSTN :: SYSTEM ASSET MAPPING
+$oCRNRSTN->config_init_asset_map_favicon(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs/favicon');
+$oCRNRSTN->config_init_asset_map_css(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/css');
+$oCRNRSTN->config_init_asset_map_js(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/js');
+$oCRNRSTN->config_init_asset_map_system_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+$oCRNRSTN->config_init_asset_map_social_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
+$oCRNRSTN->config_init_asset_map_meta_img(CRNRSTN_RESOURCE_ALL, true, CRNRSTN_ROOT . '/_crnrstn/ui/imgs');
 
 //
-// FLAGS FOR USER INTERFACE THEME STYLES
+// TODO :: SYNC SYSTEM FOOTER TO TIMEZONE CHANGES.
+// TODO :: SYNC $_SESSION TO CRNRSTN :: INTERACT UI REPORTED TIMEZONE [UTC DELTA].
+// TODO :: RUN CLIENT TIME UI FROM $_SESSION WITH HASH KEY CONTENT CONTROLS.
+// TODO :: TOGGLE ITALICS CRNRSTN :: INTERACT UI SYSTEM FOOTER FONT TRACKING STATUS OF THIS $_SESSION DRIVEN UI.
+// ...SO MY BEST GUESS IS THAT WHEN THIS (ABOVE) IS SETUP...THE SYSTEM FOOTER WILL LOAD
+// WITH SERVER TIME IN ITALICS FONT. THEN THE TIME WILL SHIFT TO CLIENT LOCAL TIME
+// AND SANS ITALICS...EVEN IF SERVER TIMEZONE AND BROWSER TIMEZONE ARE THE SAME.
+// WHAT HAPPENS IF SERVER TIMEZONE IS UPDATED (BELOW CODE) WITH NO BROWSER REFRESH?
+// I THINK A REPEAT OF THE ABOVE. (1) CRNRSTN :: INTERACT UI (I.E., oCRNRSTN_JS) WILL
+// BLIP THE CLIENT UI TO THE SERVER TZ IN ITALICS THEN (2) SHIFT BACK TO BROWSER LOCAL
+// TZ SANS <EM>...EVEN IF SERVER TIMEZONE AND BROWSER TIMEZONE ARE THE SAME. (3) TO LOCK
+// THE UI TO $_SESSION LIKE A CHAD, JUST SEND THE DOM CONTENT BACK.
+//
+// SO ANY JANK (DOM DEV-TOOL "FORCE-INJECTED") CONTENT...AND EVEN OF THE MOST ASTUTE HACKER
+// WOULD TURN ITALICS...BEFORE THEIR VERY VIRGIN EYES. THEN EVERYTING WOULD REVERT BACK TO
+// CRNRSTN :: SERVER $_SESSION TIME...SANS ITALICS.
+//
+// WE COULD ALSO REVERT THE HACKED HTML CONTENT STRAIGHT BACK TO THE PROPER TIMEZONE LOCALE
+// BROWSER TIME...AND NOT SAY ANYTHING TO SUCKER JIVE TURKEY.
+$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/New_York');
+//$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/Chicago');
+//$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/Denver');
+
+$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'allow_url_include', true);
+$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'max_execution_time', 32);
+//$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'memory_limit', -1);
+//$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'memory_limit', '300M');
+
+
+error_log(__LINE__ . ' config STARTING [config_load_system_overrides()] [rtime ' . $oCRNRSTN->wall_time() . '].');
+
+//
+// INITIALIZE DEFAULTS FOR EACH ENVIRONMENT.
+// CRNRSTN :: PLAID FIRES HERE.
+$oCRNRSTN->config_load_system_overrides(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
+
+$tmp_channel_ARRAY = $oCRNRSTN->get_channel_config('soap');
+
+$oCRNRSTN->destruct_output .= '<pre><code>[' . $oCRNRSTN->return_micro_time()  . '] [lnum ' .  __LINE__ . '] [rtime ' . $oCRNRSTN->wall_time() . '] [file ' . __FILE__  . '] 
+C<span style="color:#F90000;">R</span>NRSTN :: MULTI-CHANNEL [' . $tmp_channel_ARRAY['DESCRIPTION'] . '] PROFILE <br><br>// # # C # R # N # R # S # T # N # : : # # # #<br><br>' . print_r($tmp_channel_ARRAY, true) . ']</code></pre>';
+
+error_log(__LINE__ . ' config STOPPED AFTER [config_load_system_overrides()] [rtime ' . $oCRNRSTN->wall_time() . '].');
+die();
+
+//
+// FLAGS FOR USER INTERFACE THEME STYLES.
+// -----
 // CRNRSTN_UI_PHPNIGHT              // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
 // CRNRSTN_UI_DARKNIGHT             // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER. NOTHING COULD BE DARKER. NOTHING.
 // CRNRSTN_UI_PHP                   // ALL ABOUT THE BUSINESS.
-// CRNRSTN_UI_GREYSKYS              // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
+// CRNRSTN_UI_GREYSKY               // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
 // CRNRSTN_UI_HTML                  // BE LIGHT AND HAPPY.
 // CRNRSTN_UI_DAYLIGHT              // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
 // CRNRSTN_UI_FEATHER               // LIGHTER THAN DAYLIGHT.
@@ -359,42 +488,19 @@ $oCRNRSTN->config_init_asset_mapping_meta_img(CRNRSTN_RESOURCE_ALL, true, CRNRST
 //
 // CALL THIS BEFORE LOADING SYSTEM DEFAULTS [config_load_defaults()] SO THAT THE SELECTED
 // THEME CAN BE SENT TO THE CLIENT FOR CLIENT UI/UX CONFIGURATION.
-$oCRNRSTN->config_set_ui_theme_style(CRNRSTN_RESOURCE_ALL, CRNRSTN_UI_DARKNIGHT);
-
-//
-// INITIALIZE DEFAULTS FOR EACH ENVIRONMENT.
-$oCRNRSTN->config_load_defaults(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.load.inc.php');
-
-//
-// TODO :: SYNC SYSTEM FOOTER TO TIMEZONE CHANGES.
-// TODO :: SYNC $_SESSION TO CRNRSTN :: INTERACT UI REPORTED TIMEZONE [UTC DELTA].
-// TODO :: RUN CLIENT TIME UI FROM $_SESSION WITH HASH KEY CONTENT CONTROLS.
-// TODO :: TOGGLE ITALICS CRNRSTN :: INTERACT UI SYSTEM FOOTER FONT TRACKING STATUS OF THIS $_SESSION DRIVEN UI.
-// ...SO MY BEST GUESS IS THAT WHEN THIS (ABOVE) IS SETUP...THE SYSTEM FOOTER WILL LOAD
-// WITH SERVER TIME IN ITALICS FONT. THEN THE TIME WILL SHIFT TO CLIENT LOCAL TIME
-// AND SANS ITALICS...EVEN IF SERVER TIMEZONE AND BROWSER TIMEZONE ARE THE SAME.
-// WHAT HAPPENS IF SERVER TIMEZONE IS UPDATED (BELOW CODE) WITH NO BROWSER REFRESH?
-// I THINK A REPEAT OF THE ABOVE. (1) INTERACT UI WILL BLIP THE UI TO SERVER TZ IN ITALICS.
-// THEN (2) SHIFT BACK TO BROWSER LOCAL TZ SANS <EM>...EVEN IF SERVER TIMEZONE AND BROWSER
-// TIMEZONE ARE THE SAME. (3) TO LOCK THE UI TO $_SESSION LIKE A CHAD, JUST SEND THE DOM CONTENT BACK.
-// JANK (DOM DEV-TOOL "FORCE-INJECTED") CONTENT WOULD TURN ITALICS...THEN REVERT BACK TO CRNRSTN :: $_SESSION TIME
-// SANS ITALICS...OR...JUST REVERT BACK TO CRNRSTN :: $_SESSION TIME. ROTFLOL TRUUUUCK YOOOU MUUTHER TRUCKERRRRZZZZZZ!!
-$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/New_York');
-//$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/Chicago');
-//$oCRNRSTN->config_set_timezone_default(CRNRSTN_RESOURCE_ALL, 'America/Denver');
-
-//
-$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'max_execution_time', 60);
-//$oCRNRSTN->config_ini_set(CRNRSTN_RESOURCE_ALL, 'memory_limit', -1);
-//$oCRNRSTN->config_ini_set('memory_limit', '300M');
+$oCRNRSTN->config_set_ui_theme_style(CRNRSTN_RESOURCE_ALL, CRNRSTN_UI_DARKNIGHT, CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.themes.inc.php');
 
 //
 // INITIALIZE SOCIAL MEDIA PROFILE FOR EACH ENVIRONMENT.
 $oCRNRSTN->config_include_social_media(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.social_media_meta.secure/_crnrstn.social_media_meta.inc.php');
 
 //
+// INITIALIZATION OF CRNRSTN :: WILD CARD RESOURCES.
+$oCRNRSTN->config_include_wild_card_resources(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.resource_wildcards.secure/_crnrstn.resource_wildcards.inc.php');
+
+//
 // INITIALIZE SQL QUERY SILOS FOR EACH ENVIRONMENT.
-//$oCRNRSTN->config_include_sql_silo(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.sql/crnrstn.db_sql_silo.inc.php');
+$oCRNRSTN->config_include_sql_silo(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.database.sql/crnrstn.db_sql_silo.inc.php');
 
 //
 // INITIALIZE DATABASE FUNCTIONALITY FOR EACH ENVIRONMENT.
@@ -446,12 +552,8 @@ $oCRNRSTN->config_include_wordpress(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnr
  */
 $oCRNRSTN->config_set_crnrstn_as_err_handler('BLUEHOST_JONY5');
 $oCRNRSTN->config_set_crnrstn_as_err_handler('BLUEHOST_EVIFWEB');
-$oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_MACBOOKPRO',false);
-$oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO');
-
-// 
-// $env_key = CRNRSTN_RESOURCE_ALL, $is_HTML = true. If false, text email only for system communications (e.g. exception handling).
-$oCRNRSTN->config_init_html_mode_email();
+$oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_CHAD_MACBOOKPRO', false);
+$oCRNRSTN->config_set_crnrstn_as_err_handler('LOCALHOST_PC_XP');
 
 /*
 CRNRSTN_ASSET_MAPPING
@@ -492,7 +594,6 @@ CRNRSTN_ASSET_MAPPING_PROXY
  * * CRNRSTN_LOG_FILE_FTP = IN DEVELOPMENT
  * * CRNRSTN_LOG_ELECTRUM = IN DEVELOPMENT
  *
- *
  * @param   string $loggingEndpointPipe reflects the piped values passed into $loggingProfilePipe wherein which
  * keys such as EMAIL, EMAIL_PROXY and FILE that have additional data dependencies that need to be met can
  * be satisfied. There needs to be the same number of pipes...even for NULL data...for all three (3) piped
@@ -526,151 +627,83 @@ $oCRNRSTN->config_init_logging('BLUEHOST_EVIFWEB', CRNRSTN_LOG_DEFAULT,'CRNRSTN:
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_EMAIL,'CRNRSTN::INTEGRATIONS');
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_FILE, 'CRNRSTN::INTEGRATIONS');
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_SCREEN);
-//$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKPRO', CRNRSTN_LOG_SCREEN_HTML);
-$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKPRO', CRNRSTN_LOG_DEFAULT);
+//$oCRNRSTN->config_init_logging('LOCALHOST_PC_XP', CRNRSTN_LOG_SCREEN_HTML);
+$oCRNRSTN->config_init_logging('LOCALHOST_PC_XP', CRNRSTN_LOG_DEFAULT);
 $oCRNRSTN->config_init_logging('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_LOG_DEFAULT);
 
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_SCREEN_TEXT);
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL',CRNRSTN_LOG_SCREEN_HTML_HIDDEN);
-
 //$oCRNRSTN->config_init_logging('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_LOG_FILE, CRNRSTN_ROOT . '/_backup_test/_tmp/');
 
 //
 // INITIALIZE SECURITY PROTOCOLS FOR EXCLUSIVE RESOURCE ACCESS. 2 FORMATS.
 /**
- * $oCRNRSTN->grant_exclusive_access()
+ * $oCRNRSTN->config_ip_grant_exclusive_access()
  *
  * DESCRIPTION :: To grant exclusive access to an IP/range, the grant_exclusive_access() method will
  *  evaluate the comma delimited string of IP/ranges provided and will return TRUE if the client IP
  *  is to be granted access; FALSE will be returned if the client IP is outside the range of
- *  IP provided to config_grant_exclusive_access().
+ *  IP provided to config_ip_grant_exclusive_access(). A path to the IP settings file can also be provided.
  *
  * @param   string $env_key is a custom user-defined value representing a specific environment within
  * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
  * will be used throughout this configuration process.
  *
- * @param   string $ipOrFile serves a dual purpose of containing either a comma delimited set of IP
+ * @param   string $ip_or_file serves a dual purpose of containing either a comma delimited set of IP
  * from which a set of IP ranges will be derived in order to evaluate the client IP for appropriateness
- * or a path to an IP address security include file called _crnrstn.ipauthmgr.config.inc.php within
- * the CRNRSTN :: distribution which will be used for the same.
- *
- * NOTE :: A demo IP address security include file ships with CRNRSTN ::, and can be found at:
- * /_crnrstn/_config/config.ipauthmgr.secure/_crnrstn.ipauthmgr.config.inc.php
+ * or a path to an IP address security include file called _crnrstn.ip_authorization_manager.grant_exclusive.config.inc.php
+ * within the CRNRSTN :: distribution which will be used for the same.
  *
  * Example using the CRNRSTN :: include file within the original 1.0.0 documentation site called "crnrstn" ::
- * $oCRNRSTN->config_grant_exclusive_access('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//_crnrstn//_config//config.ipauthmgr.secure//_crnrstn.ipauthmgr.config.inc.php');
+ * $oCRNRSTN->config_ip_grant_exclusive_access('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//_crnrstn//_config//config.ipauthmgr.secure//_crnrstn.ip_authorization_manager.grant_exclusive.config.inc.php');
  *
  * Example of in-line IP (for exclusive access to the application) specification ::
- * $oCRNRSTN->config_grant_exclusive_access('LOCALHOST_MACBOOKTERMINAL','192.168.172.*,192.168.173.*,192.168.174.3, FE80::230:80FF:FEF3:4701');
+ * $oCRNRSTN->config_ip_grant_exclusive_access('LOCALHOST_MACBOOKTERMINAL','192.168.172.*,192.168.173.*,192.168.174.3, FE80::230:80FF:FEF3:4701');
  */
-# FORMAT 1. PASS IN ENVIRONMENT KEY AND THE PATH TO A PRECONFIGURED CRNRSTN :: IP
-# AUTHENTICATION MANAGER CONFIGURATION FILE ON THE SERVER.
-#$oCRNRSTN->config_grant_exclusive_access('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//_crnrstn//_config//config.ipauthmgr.secure//_crnrstn.ipauthmgr.config.inc.php');
+# FORMAT 1.
+#$oCRNRSTN->config_ip_grant_exclusive_access('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//_crnrstn//_config//config.ipauthmgr.secure//_crnrstn.ip_authorization_manager.grant_exclusive.config.inc.php');
+$oCRNRSTN->config_ip_grant_exclusive_access('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_ROOT . '/_crnrstn/_config/config.ipauthmgr.secure/_crnrstn.ip_authorization_manager.grant_exclusive.config.inc.php');
 
-# FORMAT 2. PASS IN ENVIRONMENT KEY AND IP ADDRESS (OR COMMA DELIMITED LIST OF IPv4 or IPv6 IPs)
-#$oCRNRSTN->config_grant_exclusive_access('LOCALHOST_MACBOOKTERMINAL','192.168.172.*,192.168.173.*,192.168.174.3');
+# FORMAT 2.
+#$oCRNRSTN->config_ip_grant_exclusive_access('CYEXX_SOLUTIONS', '192.168.172.*, 192.168.173.*, 192.168.174.3');
 
 //
 // INITIALIZE SECURITY PROTOCOLS FOR RESOURCE DENIAL. 2 FORMATS.
 /**
- * $oCRNRSTN->config_deny_access()
+ * $oCRNRSTN->config_ip_deny_access()
  *
  * DESCRIPTION :: To deny access to resources before potentially returning a result or
- *  processing data, the denyAccess() method will evaluate the comma delimited string of
+ *  processing data, the config_ip_deny_access() method will evaluate the comma delimited string of
  *  IP/ranges provided and will return TRUE if the client IP matches the provided $ip
  *  (FALSE if otherwise). One may then process the remainder of the
- *  use-case appropriately.
+ *  use-case appropriately. A path to the IP settings file can also be provided.
  *
  * @param   string $env_key is a custom user-defined value representing a specific environment within
  * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
  * will be used throughout this configuration process.
  *
- * @param   string $ipOrFile serves a dual purpose of containing either a comma delimited set of IP
+ * @param   string $ip_or_file serves a dual purpose of containing either a comma delimited set of IP
  * from which a set of IP ranges will be derived in order to evaluate the client IP for appropriateness
- * or a path to an IP address security include file called _crnrstn.ipauthmgr.config.inc.php within
+ * or a path to an IP address security include file called _crnrstn.ip_authorization_manager.deny_access.config.inc.php within
  * the CRNRSTN :: distribution which will be used for the same.
  *
- * NOTE :: A demo IP address security include file ships with CRNRSTN ::, and can be found at:
- * /config.ipauthmgr.secure/_crnrstn.ipauthmgr.config.inc.php
- *
  * Example using the CRNRSTN :: include file within the original 1.0.0 documentation site called "crnrstn" ::
- * $oCRNRSTN->denyAccess('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//_crnrstn//_config//config.ipauthmgr.secure//_crnrstn.ipauthmgr.config.inc.php');
+ * $oCRNRSTN->denyAccess('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//crnrstn//_crnrstn//_config//config.ipauthmgr.secure//_crnrstn.ip_authorization_manager.deny_access.config.inc.php');
  *
  * Example of in-line IP (for exclusive access to the application) specification ::
- * $oCRNRSTN->denyAccess('LOCALHOST_MACBOOKTERMINAL','192.168.172.*,192.168.173.*,192.168.174.3, FE80::230:80FF:FEF3:4701');
+ * $oCRNRSTN->denyAccess('LOCALHOST_CHAD_MACBOOKPRO','192.168.172.*,192.168.173.*,192.168.174.3, FE80::230:80FF:FEF3:4701');
  */
-# FORMAT 1. PASS IN ENVIRONMENT KEY AND PATH TO A CONFIG FILE ON THE SERVER.
-#$oCRNRSTN->config_deny_access('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//jony5.com//_crnrstn//_config//config.ipauthmgr.secure//_crnrstn.ipauthmgr.config.inc.php');
-#$oCRNRSTN->config_deny_access('LOCALHOST_MACBOOKTERMINAL', '/var/www/html/woodford/_crnrstn/_config/config.ipauthmgr.secure/denyaccess/_crnrstn.ipauthmgr.config.inc.php');
+# FORMAT 1.
+#$oCRNRSTN->config_ip_deny_access('LOCALHOST_PC', 'C://DATA_GOVT_SURVEILLANCE//_wwwroot//xampp//htdocs//jony5.com//_crnrstn//_config//config.ipauthmgr.secure//_crnrstn.ip_authorization_manager.deny_access.config.inc.php');
+$oCRNRSTN->config_ip_deny_access('LOCALHOST_CHAD_MACBOOKPRO', CRNRSTN_ROOT . '/_crnrstn/_config/config.ipauthmgr.secure/_crnrstn.ip_authorization_manager.deny_access.config.inc.php');
 
-# FORMAT 2. PASS IN ENVIRONMENT KEY AND IP ADDRESS (OR COMMA DELIMITED LIST OF IPv4 or IPv6 IPs)
-#$oCRNRSTN->config_deny_access('CYEXX_SOLUTIONS','172.16.110.1');
-$oCRNRSTN->config_deny_access('LOCALHOST_MACBOOKTERMINAL','172.16.110.1');
-#$oCRNRSTN->config_deny_access('LOCALHOST_PC','127.0.0.10, 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5');
-
-//
-// THIS SHOULD BE CHANGING ONCE SESSION IS SUPPORTED.
-$oCRNRSTN->is_configured();
+# FORMAT 2.
+#$oCRNRSTN->config_ip_deny_access('CYEXX_SOLUTIONS', '172.16.110.1');
 
 //
 // TODO :: MACHINE SOAP ACCOUNT AUTH IS ABOUT TO BE REFACTORED TO ELSEWHERE. Saturday, August 20, 2022 @ 0320 hrs
 // INITIALIZE CRNRSTN :: SOAP SERVICES LAYER RESOURCE ACCESS
 //$oCRNRSTN->config_add_soap(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.soap.secure/_crnrstn.soap.config.inc.php');
-
-//
-// INITIALIZE ADMINISTRATION FOR EACH ENVIRONMENT. 2 WAYS TO USE THIS METHOD.
-/**
- * $oCRNRSTN->add_administration()
- *
- * DESCRIPTION :: Add administrative credentials for each environment in-line at this location or provide a path to
- *  the remote specification of the same within the file _crnrstn.admin.config.inc.php. Any in-line administration
- *  auth creds will be processed before looking for the add_administration() credentials include file.
- *
- * @param   string $env_key is a custom user-defined value representing a specific environment within
- * which this application will be running (such as 'localhost_PC' or 'PREPROD-02-AKAMAI') and which key
- * will be used throughout this configuration process.
- *
- * @param   string $email_or_creds_path serves a dual purpose of containing either the Administrator email
- * address (which said email address would be followed by another...at this point...no longer
- * optional...parameter $pwd) or a path to a administrative credentials include file
- * called _crnrstn.admin.config.inc.php within the CRNRSTN :: distro.
- **
- * @param   string $pwd contains the password for the user name associated with this database connection.
- *
- * @param   integer $ttl contains the number of seconds for authentication timeout due to session inactivity for
- * the admin login. This value can be overridden with a new configuration by the Admin within the application
- * after logging into CRNRSTN ::.
- **
- * NOTE :: A demo Administration authorization credentials include file ships with CRNRSTN ::, and can be found at:
- * /_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php
- *
- * Example using the CRNRSTN :: include file ::
- * $oCRNRSTN->add_administration('CYEXX_SOLUTIONS', '/home/jony5/crnrstn.v2.jony5.com/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
- *
- * Example of in-line Administration credentials specification ::
- * $oCRNRSTN->add_administration('LOCALHOST_PC', 'j5@jony5.com', 'hello-admin-pa55w0rd!', 120);
- */
-//$oCRNRSTN->set_max_login_attempts(CRNRSTN_RESOURCE_ALL, 10);
-//$oCRNRSTN->set_timeout_user_inactive(CRNRSTN_RESOURCE_ALL, 900);
-$oCRNRSTN->config_add_administration(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-
-//
-// CONFIGURE PER ENVIRONMENT
-//$oCRNRSTN->set_max_login_attempts('BLUEHOST', 10);
-//$oCRNRSTN->set_max_login_attempts('BLUEHOST_GITHUB', 10);
-//$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKTERMINAL', 10);
-//$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKTERMINAL_8', 10);
-//$oCRNRSTN->set_max_login_attempts('LOCALHOST_MACBOOKPRO', 10);
-//$oCRNRSTN->set_timeout_user_inactive('BLUEHOST', 900);
-//$oCRNRSTN->set_timeout_user_inactive('BLUEHOST_GITHUB', 900);
-//$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKTERMINAL', 900);
-//$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKTERMINAL_8', 900);
-//$oCRNRSTN->set_timeout_user_inactive('LOCALHOST_MACBOOKPRO', 900);
-//$oCRNRSTN->add_administration('BLUEHOST', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-//$oCRNRSTN->add_administration('BLUEHOST_GITHUB', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-//$oCRNRSTN->add_administration('LOCALHOST_MACBOOKTERMINAL', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-//$oCRNRSTN->add_administration('LOCALHOST_MACBOOKTERMINAL_8', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
-//$oCRNRSTN->add_administration('LOCALHOST_MACBOOKPRO', CRNRSTN_ROOT . '/_crnrstn/_config/config.admin.secure/_crnrstn.admin.config.inc.php');
 
 //
 // INITIALIZATION OF THIRD PARTY WEB REPORTING AND ANALYTICS
@@ -683,19 +716,75 @@ $oCRNRSTN->config_include_seo_analytics(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_
 $oCRNRSTN->config_include_seo_engagement(CRNRSTN_RESOURCE_ALL, CRNRSTN_ROOT . '/_crnrstn/_config/config.seo_engagement.secure/_crnrstn.engagement.inc.php');
 
 //
-// LISTEN HERE.
-$CRNRSTN_LISTENER_RESPONSE = $oCRNRSTN->client_request_listen();
+// WE ARE LISTENING FOR THE CRNRSTN :: SOAP SERVICES DATA TUNNEL
+// LAYER (SSDTL) AND THE CRNRSTN :: PSEUDO-SOAP SERVICES DATA
+// TUNNEL LAYER (PSSDTL) ARCHITECTURES ACROSS ALL CHANNELS
+//
+// "GPHSJCDROF"
+//
+// THE CRNRSTN :: SSDTL & PSSDTL ARCHITECTURES STAND UPON AN
+// INTEGER CONSTANT (NUMBERS BASED) SWITCHING SYSTEM IN ORDER TO
+// SEAMELESSLY FACILITATE BOTH ENCRYPTED AND UNENCRYPTED DATA
+// TRANSFER BETWEEN oCRNRSTN_JS :: BROWSER AND oCRNRSTN :: SERVER
+// FOR ALL SYSTEM CONTENT AND BASIC SYSTEM SETTINGS. THIS IS THE
+// CRNRSTN :: GOVERNMENT CHEESE OF DATA TRANSPORTATION, BOYS.
+//
+// 5
+//
+// Tuesday, November 21, 2023 @ 0758 hrs.
+//
+// ALSO, WE ARE NOW OUTSIDE ANY WINDOW OF OPPORTUNITY FOR GOING TO
+// CRNRSTN :: PLAID IN THE PUREST AND MOST TRADITIONAL SENSE...
+// ...PLAID IS WHERE WE OBTAIN THOSE RIDICULOUSLY FAST JS, CSS, AND
+// IMG HTTP/HTTPS $_GET[] RETURN TIMES!!
+//
+// ON UBUNTU 18.04 RUNNING PHP 7.0.22 AND MySQLi 5.0.12...,
+// CRNRSTN :: PLAID EASILY HITS *RUNTIME = 0.0406889 SECONDS. AT
+// THIS POINT, THE CRNRSTN :: MULTI-CHANNEL CHANNEL CALLED RUNTIME
+// KNOWS EXACTLY (VIA MEMORY POINTER) WHAT ASSET IS BEING
+// REQUESTED FOR RETURN.
+//
+// AND THAT'S NOT THE END OF IT; CRNRSTN :: WILL SEND ALL SYSTEM
+// AND PHP.NET REDIRECTS TO PLAID FOR THE BEST DEVELOPER SUPPORT
+// RESPONSE TIMES POSSIBLE.
+//
+// AND THAT'S NOT THE END OF IT; CRNRSTN :: ALSO HAS ALL RESOURCES
+// IN MEMORY AT THIS TIME TO FULFILL THE REQUEST. ALL REMAINING
+// TIME IS SPENT BUILDING CHEEKY RESPONSE HEADERS, FORMATTING
+// OUTPUT, AND REPORTING ON THE PERFORMANCE OF ALL OF THE ABOVE.
+//
+// AND THAT'S NOT THE END OF IT; APPLY ALL OF THE ABOVE TO CUSTOM
+// PATHS FOR RESOURCES ON THE SERVER SUCH AS A BACKUP (PLZ READ AS
+// "NOT OPEN PORT 80 MATERIAL") DIRECTORY OF XLS, PDF, CSV, AND
+// MPEG FILES OR FOLDERS ON THE SERVER THAT HOLD PICS FROM THE
+// FAMILY REUNION USING, $oCRNRSTN->config_integrate_file_system();
+// AND $oCRNRSTN->system_output_file_html(). CRNRSTN :: WILL SEND
+// THESE LOCAL RESOURCES STRAIGHT TO CRNRSTN :: PLAID.
+// PRO TIP: DUE TO THE REQUIREMENT FOR OPENSSL TUNNEL ENCRYPTION
+// WHEN THE CRNRSTN :: PSSDTLA (THE GOV'T CHEESE ARCH) CARRIES A
+// PAYLOAD OVER $_GET, CRNRSTN :: PLAID IS FASTER WHEN CRNRSTN ::
+// IS GIVEN LOCAL DIR WRITE ACCESS WHICH WILL SUPPORT PROPER FILE
+// SYSTEM INTEGRATIONS AND A COMPLETE FUNCTIONAL BYPASS ON
+// THE SSDTLA.
+//
+// * NOTE: THERE HAS BEEN A SIGNIFICANT RE-ARCH, AND WE SHOULD PULL
+//         A FRESH CRNRSTN :: PLAID RUN TIME ONCE THE $_GET[] RE-
+//         ARCH IS COMPLETE.
+//
+error_log(__LINE__ . ' config STOPPED BEFORE LAST LISTEN [client_request_listen()] [rtime ' . $oCRNRSTN->wall_time() . '].');
+die();
 
+$CRNRSTN_LISTENER_RESPONSE = $oCRNRSTN->client_request_listen();
 if(strlen($CRNRSTN_LISTENER_RESPONSE) > 0){
 
     //sleep(2);
-    //error_log(__LINE__ . ' config $CRNRSTN_LISTENER_RESPONSE =[' . $CRNRSTN_LISTENER_RESPONSE . '].');
+    //error_log(__LINE__ . ' config $CRNRSTN_LISTENER_RESPONSE[' . $CRNRSTN_LISTENER_RESPONSE . '].');
 
     //
-    // THE SPACE BETWEEN.
+    // https://www.youtube.com/watch?v=YvzWRzTh7jg
+    // TITLE :: The Space Between
     echo $CRNRSTN_LISTENER_RESPONSE;
 
-    //ob_flush();
     if(ob_get_level() > 0){ob_flush();}
     flush();
     exit();
@@ -706,4 +795,4 @@ if(strlen($CRNRSTN_LISTENER_RESPONSE) > 0){
 # # # # #
 # # # # #
 # # # # #
-# # # # # 	END OF CRNRSTN :: CONFIGURATION
+# # # # # 	END OF CRNRSTN :: CONFIGURATION.

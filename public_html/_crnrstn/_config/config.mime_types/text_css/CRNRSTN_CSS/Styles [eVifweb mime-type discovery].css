@@ -1,0 +1,22 @@
+body
+{
+	background-color: Azure;
+	/*font-family:Tahoma, Verdana, Helvetica, Sans-Serif; // CODE COMMENTED OUT DUE TO IDE WARNINGS. Saturday, September 16, 2023 @ 0128 hrs. */
+}
+TABLE
+{
+	/*border:border-width=0; // CODE COMMENTED OUT DUE TO IDE WARNINGS. Saturday, September 16, 2023 @ 0128 hrs. */
+}
+
+.TextBox
+{
+	border: black 1px solid;
+	/*font-family: Tahoma, Verdana, Helvetica, Sans-Serif; // CODE COMMENTED OUT DUE TO IDE WARNINGS. Saturday, September 16, 2023 @ 0128 hrs. */
+}
+
+.Button
+{
+	border: black 1px solid;
+	/*font-family: Tahoma, Verdana, Helvetica, Sans-Serif; // CODE COMMENTED OUT DUE TO IDE WARNINGS. Saturday, September 16, 2023 @ 0128 hrs. */
+	background-color: Gainsboro;
+}

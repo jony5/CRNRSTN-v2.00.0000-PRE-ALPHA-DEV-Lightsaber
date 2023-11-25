@@ -41,11 +41,11 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_accessibility_manager
 #  VERSION :: 1.00.0000
-#  DATE :: Tuesday May 25, 2021 @ 1616hrs
+#  DATE :: Tuesday, May 25, 2021 @ 1616hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI :: 
 #  DESCRIPTION :: Web standards accessibility management.

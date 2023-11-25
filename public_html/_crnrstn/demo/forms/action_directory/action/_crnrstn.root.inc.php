@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 if ( ! session_id() ) @ session_start();
 $CRNRSTN_ROOT_OFFSET = '../../../../../';
 @define('CRNRSTN_ROOT', crnrstn_root_dir_shift($CRNRSTN_ROOT_OFFSET));

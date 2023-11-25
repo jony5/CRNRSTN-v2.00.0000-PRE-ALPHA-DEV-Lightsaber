@@ -7,7 +7,7 @@ $fruit = array('apple', 'orange', 'tomato');
 
 //
 // STORE DATA DURING THE CONFIGURATION SITUATION
-$this->oCRNRSTN->add_system_resource('potentially_fruit', $fruit);
+$this->oCRNRSTN->add_resource('potentially_fruit', $fruit);
 
 //
 // EXTRACT THE SYSTEM RESOURCE

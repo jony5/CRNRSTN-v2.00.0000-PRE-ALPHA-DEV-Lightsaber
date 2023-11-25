@@ -14,8 +14,8 @@ $veggies = '';
 
 //
 // STORE ARRAY DATA, AND RECEIVE THE DDO KEY IF NEEDED
-$ddo_key_FRUIT = $this->oCRNRSTN->add_system_resource('potentially_fruit', $fruit);
-$ddo_key_VEGGIES = $this->oCRNRSTN->add_system_resource('surely_not_fruit', $veggies);
+$ddo_key_FRUIT = $this->oCRNRSTN->add_resource('potentially_fruit', $fruit);
+$ddo_key_VEGGIES = $this->oCRNRSTN->add_resource('surely_not_fruit', $veggies);
 
 //
 // OUTPUT THE SYSTEM POINTER TO THE DATA STORAGE LOCATION (DDO KEY)

@@ -228,13 +228,13 @@ $oCRNRSTN_USR
 $data = 'J5, my boy!';
 
 $tmp_password_A = $oCRNRSTN_USR->generate_new_key(64);
-$tmp_password_A = openssl_digest($tmp_password_A, $oCRNRSTN_USR->return_openssl_digest_method(), true);
+$tmp_password_A = openssl_digest($tmp_password_A, $oCRNRSTN->get_resource('openssl_cipher', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS'), true);
 
 $tmp_password_B = $oCRNRSTN_USR->generate_new_key(64);
-$tmp_password_B = openssl_digest($tmp_password_B, $oCRNRSTN_USR->return_openssl_digest_method(), true);
+$tmp_password_B = openssl_digest($tmp_password_B, $oCRNRSTN->get_resource('openssl_cipher', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS'), true);
 
 $tmp_password_D = $oCRNRSTN_USR->generate_new_key(64);
-$tmp_password_D = openssl_digest($tmp_password_D, $oCRNRSTN_USR->return_openssl_digest_method(), true);
+$tmp_password_D = openssl_digest($tmp_password_D, $oCRNRSTN->get_resource('openssl_cipher', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS'), true);
 
 //
 // GET AND/OR CLEAR ANY OPENSSL ERR
@@ -375,7 +375,7 @@ openssl_error_return($openssl_err_queue_ARRAY,__LINE__, '--openssl_public_decryp
 <?php echo $oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON'); ?>
 <?php echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY) .
     $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI).
-    $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
+    $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_CSS_MAIN_DESKTOP & CRNRSTN_JS_MAIN); ?>
 <style>
     *                                           { font-family:Arial, Helvetica, sans-serif;}
     .the_R_in_crnrstn                           { color:#F90000; }
@@ -502,7 +502,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
         <div class="crnrstn_log_entry">Key details:</div>
         <?php
 
-        foreach ($tmp_details_ARRAY as $index => $val){
+        foreach($tmp_details_ARRAY as $index => $val){
 
             echo '<div class="crnrstn_log_entry">';
             echo print_r($index, true);
@@ -510,7 +510,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
             if(is_array($val)){
 
-                foreach ($val as $index2 => $val2){
+                foreach($val as $index2 => $val2){
 
                     echo '<div class="crnrstn_log_entry">--';
                     echo print_r($index2, true);
@@ -622,7 +622,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
 <?php
 
-echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
+echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_SOAP_DATA_TUNNEL);
 
 ?>
 
@@ -691,7 +691,7 @@ echo $oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_SOAP_DATA_TUNNEL);
         <div style="position:relative;">
             <div style="position:absolute; z-index:68; margin: 2px 0 0 16px; border: 1px solid #FFF;">
                 <div id="crnrstn_interact_ui_bg_solid" class="crnrstn_interact_ui_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
-                    <?php echo $oCRNRSTN_USR->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_HTML_WRAPPED); ?>
+                    <?php echo $oCRNRSTN_USR->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_HTML); ?>
                     <div class="crnrstn_cb"></div>
                 </div>
             </div>

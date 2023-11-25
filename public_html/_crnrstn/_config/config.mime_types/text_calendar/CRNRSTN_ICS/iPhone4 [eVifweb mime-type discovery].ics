@@ -1,0 +1,53 @@
+BEGIN:VCALENDAR
+PRODID:-//Microsoft Corporation//Outlook 12.0 MIMEDIR//EN
+VERSION:2.0
+METHOD:PUBLISH
+X-MS-OLK-FORCEINSPECTOROPEN:TRUE
+BEGIN:VEVENT
+CLASS:PUBLIC
+CREATED:20110125T165334Z
+DESCRIPTION:Today is the long awaited\, much anticipated\, exclusive opport
+	unity for valued Verizon Wireless customers to purchase iPhone 4 prior to 
+	it being available to everyone else.\n\nThere’s never been a better time
+	 to upgrade your phone or add a line to your account.\n\nOrder your iPhone
+	 4 now from our reserved quantity\, on a first-come\, first-served basis.\
+	nhttp://verizonwireless.com/iphoneorder\n
+DTEND:20110203T083000Z
+DTSTAMP:20110125T165334Z
+DTSTART:20110203T080000Z
+LAST-MODIFIED:20110125T165334Z
+LOCATION:Online Only
+PRIORITY:5
+SEQUENCE:0
+SUMMARY;LANGUAGE=en-us:iPhone 4. Verizon. It begins today.
+TRANSP:OPAQUE
+UID:040000008200E00074C5B7101A82E00800000000604C56AE83BCCB01000000000000000
+	010000000361E3B9D40681F47805B7C248AA96F18
+X-ALT-DESC;FMTTYPE=text/html:<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//E
+	N">\n<HTML>\n<HEAD>\n<META NAME="Generator" CONTENT="MS Exchange Server ve
+	rsion 08.00.0681.000">\n<TITLE></TITLE>\n</HEAD>\n<BODY>\n<!-- Converted f
+	rom text/rtf format -->\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calib
+	ri">Today is the long awaited\, much anticipated\, exclusive opportunity f
+	or valued Verizon Wireless customers to purchase iPhone 4 prior to it bein
+	g available to everyone else.</FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="
+	en-us"><FONT FACE="Calibri">There’s never been a better time to upgrade 
+	your phone or add a line to your account.</FONT></SPAN></P>\n\n<P DIR=LTR>
+	<SPAN LANG="en-us"><FONT FACE="Calibri">Order your iPhone 4 now from our r
+	eserved quantity\, on a first-come\, first-served basis.</FONT></SPAN></P>
+	\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri"><A HREF="http://ver
+	izonwireless.com/iphoneorder">http://verizonwireless.com/iphoneorder</A></
+	FONT></SPAN><SPAN LANG="en-us"></SPAN></P>\n\n</BODY>\n</HTML>
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+X-MS-OLK-ALLOWEXTERNCHECK:TRUE
+X-MS-OLK-APPTLASTSEQUENCE:0
+X-MS-OLK-AUTOFILLLOCATION:FALSE
+X-MS-OLK-CONFTYPE:0
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -36,7 +36,7 @@ if($oCRNRSTN->http_data_services_initialize()){
 <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
 <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY) .
     $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI).
-    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_CSS_MAIN_DESKTOP & CRNRSTN_JS_MAIN); ?>
 <style>
 
     .the_R_in_crnrstn                           { color:#F90000; }

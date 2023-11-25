@@ -1,0 +1,3 @@
+CIS3260 grades:
+
+HW1:	20 points/ 20 points

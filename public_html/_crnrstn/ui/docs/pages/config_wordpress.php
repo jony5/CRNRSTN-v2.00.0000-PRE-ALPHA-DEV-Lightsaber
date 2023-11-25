@@ -2,7 +2,7 @@
 /*
 // J5
 // Code is Poetry */
-$channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_output_channel_constants);
+$channel_constant = $this->oCRNRSTN_USR->return_set_bits($this->oCRNRSTN_USR->system_device_channel_constants());
 
 switch($channel_constant[0]){
     case CRNRSTN_CHANNEL_MOBILE:
@@ -128,14 +128,14 @@ switch($channel_constant[0]){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         ' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_FAVICON') . '
         ' . $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI) .
-            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN) . '
+            $this->oCRNRSTN_USR->ui_content_module_out(CRNRSTN_CSS_MAIN_DESKTOP & CRNRSTN_JS_MAIN) . '
     </head>
     <body class="crnrstn-disable-scrolling">
     <div class="crnrstn_body_wrapper">
         <div class="crnrstn_body_shell">
             <div class="crnrstn_hdr_branding_shell">
                 <div class="crnrstn_logo_bg_wrapper" onclick="load_page(\'' . $tmp_lnk_welcome . '\');">
-                    <div class="crnrstn_logo_bg" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_PNG) . '\');"></div>
+                    <div class="crnrstn_logo_bg" style="background-image:url(\'' . $this->oCRNRSTN_USR->return_creative('CRNRSTN_LOGO', CRNRSTN_PNG) . '\');"></div>
                 </div>
                 
                 <div class="crnrstn_branding_elem_wrapper">
@@ -269,7 +269,7 @@ define(\'WP_DEBUG\', \'' . $this->oCRNRSTN_USR->tidy_boolean($this->oCRNRSTN_USR
                                         
                             <div class="crnrstn_meta_time_stats_content">
                             
-                                <div id="crnrstn_meta00_' . $this->page_serial.'" class="crnrstn_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time().' '.date('T').'] [rtime ' . $this->oCRNRSTN_USR->wall_time().' secs] [wtime <span id="crnrstn_wtime_' . $this->page_serial.'"></span>] <div class="crnrstn_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('FIVE', CRNRSTN_UI_IMG_HTML_WRAPPED).'</div></div>
+                                <div id="crnrstn_meta00_' . $this->page_serial.'" class="crnrstn_meta_time_stats">[' . $this->oCRNRSTN_USR->return_micro_time().' '.date('T').'] [rtime ' . $this->oCRNRSTN_USR->wall_time().' secs] [wtime <span id="crnrstn_wtime_' . $this->page_serial.'"></span>] <div class="crnrstn_meta_5_logo">' . $this->oCRNRSTN_USR->return_creative('FIVE', CRNRSTN_HTML).'</div></div>
                   
                             </div>  
                               

@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_database_wiring
 #  VERSION :: 1.00.0000
@@ -51,7 +51,7 @@
 #  DESCRIPTION :: Really tie it all together.
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
-class crnrstn_database_wiring{
+class crnrstn_database_wiring {
 
     protected $oLogger;
     public $class_name;
@@ -85,7 +85,7 @@ class crnrstn_database_wiring{
 
         $this->class_name = get_class();
 
-        try {
+        try{
 
             if(isset($oCRNRSTN_USR)){
 
@@ -103,10 +103,10 @@ class crnrstn_database_wiring{
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -143,10 +143,10 @@ class crnrstn_database_wiring{
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -171,10 +171,10 @@ class crnrstn_database_wiring{
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -199,10 +199,10 @@ class crnrstn_database_wiring{
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -251,10 +251,10 @@ class crnrstn_database_wiring{
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;

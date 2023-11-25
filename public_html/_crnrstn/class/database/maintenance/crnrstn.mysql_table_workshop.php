@@ -41,13 +41,13 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_mysql_table_workshop
 #  VERSION :: 1.00.0000
 #  DATE :: December 1, 2021 @ 2100 hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI :: 
+#  URI ::
 #  DESCRIPTION :: A MySQL table maintenance class.
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
@@ -59,7 +59,7 @@ class crnrstn_mysql_table_workshop {
     private static $social_link_field_ARRAY = array();
     private static $social_media_key_ARRAY = array();
 
-    public function __construct($oCRNRSTN_USR) {
+    public function __construct($oCRNRSTN_USR){
 
         $this->oCRNRSTN_USR = $oCRNRSTN_USR;
 
@@ -127,7 +127,7 @@ class crnrstn_mysql_table_workshop {
 
     public function add_crc_checksum_to_table($table_name, $serial_field_nom, $checksum_field_nom){
 
-        try {
+        try{
 
             $oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
             $mysqli = $oCRNRSTN_MySQLi->return_conn_object();
@@ -146,13 +146,13 @@ class crnrstn_mysql_table_workshop {
 
             $tmp_CHECK_SUM_DATA_count = $this->oCRNRSTN_USR->return_record_count('CHECK_SUM_DATA');
 
-             for($i = 0; $i < $tmp_CHECK_SUM_DATA_count; $i++) {
+             for($i = 0; $i < $tmp_CHECK_SUM_DATA_count; $i++){
 
                 $tmp_SOCIAL_ID = trim($this->oCRNRSTN_USR->return_database_value('CHECK_SUM_DATA', $serial_field_nom, $i));
 
                 //
                 // IF STREAM KEY UNDETERMINED, THROW EXCEPTION AND SPOIL THIS RECORD.
-                if (strlen($tmp_SOCIAL_ID) > 0) {
+                if(strlen($tmp_SOCIAL_ID) > 0){
 
                     $ts = $this->oCRNRSTN_USR->return_query_date_time_stamp();
                     $tmp_checksum = $this->oCRNRSTN_USR->crcINT($tmp_SOCIAL_ID);
@@ -177,10 +177,10 @@ class crnrstn_mysql_table_workshop {
             return '<div style="padding:20px; color:#6c645c; line-height: 25px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">' . __METHOD__ . '<br>All done on ' . $tmp_CHECK_SUM_DATA_count . ' records! [lnum '. __LINE__ .'] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ']</div>';
             //throw new Exception('CRNRSTN :: ' . $this->oCRNRSTN_USR->version_crnrstn().' :: Invalid Bassdrive Relay JSON from URL=[' . $this->oCRNRSTN_USR->get_resource('BASSDRIVE_RELAY_STATE').'] ERROR on '. __METHOD__ .' from ' . $_SERVER['SERVER_NAME'].' (' . $_SERVER['SERVER_ADDR'].'). Where err=' . $this->oRELAY_MANAGER->return_relay_ojson_err());
 
-        } catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -191,7 +191,7 @@ class crnrstn_mysql_table_workshop {
 
     public function restructure_stream_relay_social_table(){
 
-        try {
+        try{
 
             $tmp_UPDATE_link_processed_cnt = $tmp_INSERT_link_processed_cnt = 0;
 
@@ -251,7 +251,7 @@ class crnrstn_mysql_table_workshop {
 
             $tmp_SOCIAL_LINK_DATA_count = $this->oCRNRSTN_USR->return_record_count('SOCIAL_LINK_DATA');
 
-            for($i = 0; $i < $tmp_SOCIAL_LINK_DATA_count; $i++) {
+            for($i = 0; $i < $tmp_SOCIAL_LINK_DATA_count; $i++){
 
                 $tmp_SOCIAL_ID_SOLO = trim($this->oCRNRSTN_USR->return_database_value('SOCIAL_LINK_DATA', 'SOCIAL_ID', $i));
                 $tmp_STREAM_KEY_SOLO = trim($this->oCRNRSTN_USR->return_database_value('SOCIAL_LINK_DATA', 'STREAM_KEY', $i));
@@ -308,7 +308,7 @@ class crnrstn_mysql_table_workshop {
                             `ISACTIVE` = 5,
                             `CLICKTHROUGH_URL` = "' . $mysqli->real_escape_string($tmp_SOCIAL_URL) . '",
                             `DATEMODIFIED` = "' . $ts . '"
-                            WHERE `SOCIAL_ID` = "' . $mysqli->real_escape_string($tmp_SOCIAL_ID_SOLO) . '" 
+                            WHERE `SOCIAL_ID` = "' . $mysqli->real_escape_string($tmp_SOCIAL_ID_SOLO) . '"
                             AND `SOCIAL_ID_CRC32` = ' . $this->oCRNRSTN_USR->crcINT($tmp_SOCIAL_ID_SOLO) . ' LIMIT 1;';
 
                         }
@@ -336,7 +336,7 @@ class crnrstn_mysql_table_workshop {
                 SET
                 `ISACTIVE` = 5,
                 `DATEMODIFIED` = "' . $ts . '"
-                WHERE `SOCIAL_ID` = "' . $mysqli->real_escape_string($tmp_SOCIAL_ID_SOLO) . '" 
+                WHERE `SOCIAL_ID` = "' . $mysqli->real_escape_string($tmp_SOCIAL_ID_SOLO) . '"
                 AND `SOCIAL_ID_CRC32` = ' . $this->oCRNRSTN_USR->crcINT($tmp_SOCIAL_ID_SOLO) . ' LIMIT 1;';
 
                 $tmp_result_set_key = $this->oCRNRSTN_USR->load_query_profile('CRNRSTN_SYSTEM_MAINT', '!!jesus_is_my_dear_lord!', '', __LINE__, __METHOD__);
@@ -351,10 +351,10 @@ class crnrstn_mysql_table_workshop {
             return '<div style="padding:20px; color:#6c645c; line-height: 25px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">' . __METHOD__ . '<br>All done on ' . $tmp_INSERT_link_processed_cnt + $tmp_UPDATE_link_processed_cnt . ' records[' . $tmp_UPDATE_link_processed_cnt . '/' . $tmp_INSERT_link_processed_cnt . ']! [lnum '. __LINE__ .'] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ' secs]</div>';
             //throw new Exception('CRNRSTN :: ' . $this->oCRNRSTN_USR->version_crnrstn().' :: Invalid Bassdrive Relay JSON from URL=[' . $this->oCRNRSTN_USR->get_resource('BASSDRIVE_RELAY_STATE').'] ERROR on '. __METHOD__ .' from ' . $_SERVER['SERVER_NAME'].' (' . $_SERVER['SERVER_ADDR'].'). Where err=' . $this->oRELAY_MANAGER->return_relay_ojson_err());
 
-        } catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -365,7 +365,7 @@ class crnrstn_mysql_table_workshop {
 
     public function populate_jony5_lifestyle_images_table(){
 
-        try {
+        try{
 
             $oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
             $mysqli = $oCRNRSTN_MySQLi->return_conn_object();
@@ -374,7 +374,7 @@ class crnrstn_mysql_table_workshop {
             $dir_path = 'common/imgs/lifestyle_banner/desktop/';
             $tmp_IMAGE_count = 0;
             $tmp_sql_batch_size = 30;
-            
+
             $tmp_dir = $this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT').$this->oCRNRSTN_USR->get_resource('DOCUMENT_ROOT_DIR').'/' . $dir_path;
             $image_filename_array = scandir($tmp_dir, 1);
 
@@ -396,7 +396,7 @@ class crnrstn_mysql_table_workshop {
 
             }
 
-            $tmp_query='SELECT 
+            $tmp_query='SELECT
                     `crnrstn_jony5_lifestyle_images`.`IMAGE_FILENAME_DESKTOP`
                 FROM `crnrstn_jony5_lifestyle_images`;';
             $tmp_result_set_key = $this->oCRNRSTN_USR->load_query_profile('CRNRSTN_SYSTEM_SUPPORT_REQUEST', '!!jesus_is_my_dear_lord!', 'IMAGE_IS_UNIQUE_CHECK', __LINE__, __METHOD__);
@@ -418,7 +418,7 @@ class crnrstn_mysql_table_workshop {
 
             $tmp_query_cnt = 0;
             $tmp_query = '';
-            foreach ($tmp_clean_image_array as $index => $filename){
+            foreach($tmp_clean_image_array as $index => $filename){
 
                 $tmp_file_path = $tmp_dir.$tmp_clean_image_array[$index];
 
@@ -488,7 +488,7 @@ class crnrstn_mysql_table_workshop {
 
                     }else{
 
-                        if($tmp_query_cnt == 311) {
+                        if($tmp_query_cnt == 311){
 
                             return '<div style="padding:20px; color:#6c645c; line-height: 25px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">' . __METHOD__ . '<br>All done on <a href="https://www.youtube.com/watch?v=KWo-02Hsab4" target="_blank">' . $tmp_query_cnt . '</a> images! [lnum '. __LINE__ .'] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ']</div>';
 
@@ -511,10 +511,10 @@ class crnrstn_mysql_table_workshop {
 
             return '<div style="padding:20px; color:#6c645c; line-height: 25px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">' . __METHOD__ . '<br>All done on ' . $tmp_query_cnt . ' images! [lnum '. __LINE__ .'] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ']</div>';
 
-        } catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -525,7 +525,7 @@ class crnrstn_mysql_table_workshop {
 
     public function populate_meta_lookup_foreign_key_LOCALE(){
 
-        try {
+        try{
 
             $tmp_LOCALE_DATA_count = 0;
 
@@ -540,7 +540,7 @@ class crnrstn_mysql_table_workshop {
                 `crnrstn_stream_relay_meta_lookup`.`ABOUT_ID`,
                 `crnrstn_stream_relay_meta_lookup`.`COLORS_ID`,
                 `crnrstn_stream_relay_meta_lookup`.`STREAM_COLORS_KEY`
-            FROM `crnrstn_stream_relay_meta_lookup` 
+            FROM `crnrstn_stream_relay_meta_lookup`
             WHERE `crnrstn_stream_relay_meta_lookup`.`ISACTIVE` = 1 ORDER BY `crnrstn_stream_relay_meta_lookup`.`DATEMODIFIED` ASC LIMIT 7;';
 
             $tmp_result_set_key = $this->oCRNRSTN_USR->load_query_profile('CRNRSTN_SYSTEM_MAINT', '!jesus_is_my_dear_lord!', 'META_LOOKUP_DATA', __LINE__, __METHOD__);
@@ -552,7 +552,7 @@ class crnrstn_mysql_table_workshop {
 
             $tmp_META_LOOKUP_DATA_count = $this->oCRNRSTN_USR->return_record_count('META_LOOKUP_DATA');
 
-            for($i = 0; $i < $tmp_META_LOOKUP_DATA_count; $i++) {
+            for($i = 0; $i < $tmp_META_LOOKUP_DATA_count; $i++){
 
                 $tmp_META_LOOKUP_ID = trim($this->oCRNRSTN_USR->return_database_value('META_LOOKUP_DATA', 'META_LOOKUP_ID', $i));
                 $tmp_STREAM_KEY = trim($this->oCRNRSTN_USR->return_database_value('META_LOOKUP_DATA', 'STREAM_KEY', $i));
@@ -586,7 +586,7 @@ class crnrstn_mysql_table_workshop {
                     `DATEMODIFIED` = "' . $ts . '"
                     WHERE `META_LOOKUP_ID` = "' . $tmp_META_LOOKUP_ID . '"
                     AND `STREAM_KEY` = "' . $tmp_STREAM_KEY . '"
-                    AND `STREAM_KEY_CRC32` = "' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_KEY) . '" 
+                    AND `STREAM_KEY_CRC32` = "' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_KEY) . '"
                     AND `ISACTIVE` = 1 LIMIT 1;
                     ';
 
@@ -605,10 +605,10 @@ class crnrstn_mysql_table_workshop {
 
             return '<div style="padding:20px; color:#6c645c; line-height: 25px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">' . __METHOD__ . '<br>All done on ' . $tmp_LOCALE_DATA_count . ' records! [lnum '. __LINE__ .'] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ']</div>';
 
-        } catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -619,7 +619,7 @@ class crnrstn_mysql_table_workshop {
 
     public function populate_meta_lookup_foreign_key_SOCIAL(){
 
-        try {
+        try{
 
             $tmp_SOCIAL_DATA_count = 0;
 
@@ -634,7 +634,7 @@ class crnrstn_mysql_table_workshop {
                 `crnrstn_stream_relay_meta_lookup`.`ABOUT_ID`,
                 `crnrstn_stream_relay_meta_lookup`.`COLORS_ID`,
                 `crnrstn_stream_relay_meta_lookup`.`STREAM_COLORS_KEY`
-            FROM `crnrstn_stream_relay_meta_lookup` 
+            FROM `crnrstn_stream_relay_meta_lookup`
             WHERE `crnrstn_stream_relay_meta_lookup`.`ISACTIVE` = 1 ORDER BY `crnrstn_stream_relay_meta_lookup`.`SOCIAL_ID` ASC LIMIT 157;';
 
             $tmp_result_set_key = $this->oCRNRSTN_USR->load_query_profile('CRNRSTN_SYSTEM_MAINT', '!jesus_is_my_dear_lord!', 'META_LOOKUP_DATA', __LINE__, __METHOD__);
@@ -646,7 +646,7 @@ class crnrstn_mysql_table_workshop {
 
             $tmp_META_LOOKUP_DATA_count = $this->oCRNRSTN_USR->return_record_count('META_LOOKUP_DATA');
 
-            for($i = 0; $i < $tmp_META_LOOKUP_DATA_count; $i++) {
+            for($i = 0; $i < $tmp_META_LOOKUP_DATA_count; $i++){
 
                 $tmp_META_LOOKUP_ID = trim($this->oCRNRSTN_USR->return_database_value('META_LOOKUP_DATA', 'META_LOOKUP_ID', $i));
                 $tmp_STREAM_KEY = trim($this->oCRNRSTN_USR->return_database_value('META_LOOKUP_DATA', 'STREAM_KEY', $i));
@@ -656,7 +656,7 @@ class crnrstn_mysql_table_workshop {
                 $tmp_query = 'SELECT `crnrstn_stream_relay_social`.`SOCIAL_ID`
                 FROM `crnrstn_stream_relay_social`
                 WHERE `crnrstn_stream_relay_social`.`STREAM_KEY` = "' . $tmp_STREAM_KEY . '"
-                AND `crnrstn_stream_relay_social`.`STREAM_KEY_CRC32` = ' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_KEY) . ' 
+                AND `crnrstn_stream_relay_social`.`STREAM_KEY_CRC32` = ' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_KEY) . '
                 AND `crnrstn_stream_relay_social`.`ISACTIVE` = 1 LIMIT 1;
                 ';
 
@@ -681,7 +681,7 @@ class crnrstn_mysql_table_workshop {
                     `DATEMODIFIED` = "' . $ts . '"
                     WHERE `META_LOOKUP_ID` = "' . $tmp_META_LOOKUP_ID . '"
                     AND `STREAM_KEY` = "' . $tmp_STREAM_KEY . '"
-                    AND `STREAM_KEY_CRC32` = "' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_KEY) . '" 
+                    AND `STREAM_KEY_CRC32` = "' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_KEY) . '"
                     AND `ISACTIVE` = 1 LIMIT 1;
                     ';
 
@@ -700,10 +700,10 @@ class crnrstn_mysql_table_workshop {
 
             return '<div style="padding:20px; color:#6c645c; line-height: 25px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">' . __METHOD__ . '<br>All done on ' . $tmp_SOCIAL_DATA_count . ' records! [lnum '. __LINE__ .'] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ']</div>';
 
-        } catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -714,7 +714,7 @@ class crnrstn_mysql_table_workshop {
 
     public function populate_meta_lookup_foreign_key_COLORS(){
 
-        try {
+        try{
 
             $tmp_SOCIAL_DATA_count = 0;
 
@@ -729,7 +729,7 @@ class crnrstn_mysql_table_workshop {
                 `crnrstn_stream_relay_meta_lookup`.`ABOUT_ID`,
                 `crnrstn_stream_relay_meta_lookup`.`COLORS_ID`,
                 `crnrstn_stream_relay_meta_lookup`.`STREAM_COLORS_KEY`
-            FROM `crnrstn_stream_relay_meta_lookup` 
+            FROM `crnrstn_stream_relay_meta_lookup`
             WHERE `crnrstn_stream_relay_meta_lookup`.`ISACTIVE` = 1 ORDER BY `crnrstn_stream_relay_meta_lookup`.`SOCIAL_ID` DESC LIMIT 5;';
 
             $tmp_result_set_key = $this->oCRNRSTN_USR->load_query_profile('CRNRSTN_SYSTEM_MAINT', '!jesus_is_my_dear_lord!', 'META_LOOKUP_DATA', __LINE__, __METHOD__);
@@ -741,7 +741,7 @@ class crnrstn_mysql_table_workshop {
 
             $tmp_META_LOOKUP_DATA_count = $this->oCRNRSTN_USR->return_record_count('META_LOOKUP_DATA');
 
-            for($i = 0; $i < $tmp_META_LOOKUP_DATA_count; $i++) {
+            for($i = 0; $i < $tmp_META_LOOKUP_DATA_count; $i++){
 
                 $tmp_META_LOOKUP_ID = trim($this->oCRNRSTN_USR->return_database_value('META_LOOKUP_DATA', 'META_LOOKUP_ID', $i));
                 $tmp_STREAM_KEY = trim($this->oCRNRSTN_USR->return_database_value('META_LOOKUP_DATA', 'STREAM_KEY', $i));
@@ -752,7 +752,7 @@ class crnrstn_mysql_table_workshop {
                 $tmp_query = 'SELECT `crnrstn_stream_relay_colors`.`COLORS_ID`
                 FROM `crnrstn_stream_relay_colors`
                 WHERE `crnrstn_stream_relay_colors`.`STREAM_COLORS_KEY` = "' . $tmp_STREAM_COLORS_KEY . '"
-                AND `crnrstn_stream_relay_colors`.`STREAM_COLORS_KEY_CRC32` = ' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_COLORS_KEY) . ' 
+                AND `crnrstn_stream_relay_colors`.`STREAM_COLORS_KEY_CRC32` = ' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_COLORS_KEY) . '
                 AND `crnrstn_stream_relay_colors`.`ISACTIVE` = 1 LIMIT 1;
                 ';
 
@@ -777,7 +777,7 @@ class crnrstn_mysql_table_workshop {
                     `DATEMODIFIED` = "' . $ts . '"
                     WHERE `META_LOOKUP_ID` = "' . $tmp_META_LOOKUP_ID . '"
                     AND `STREAM_KEY` = "' . $tmp_STREAM_KEY . '"
-                    AND `STREAM_KEY_CRC32` = "' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_KEY) . '" 
+                    AND `STREAM_KEY_CRC32` = "' . $this->oCRNRSTN_USR->crcINT($tmp_STREAM_KEY) . '"
                     AND `ISACTIVE` = 1 LIMIT 1;
                     ';
 
@@ -796,10 +796,10 @@ class crnrstn_mysql_table_workshop {
 
             return '<div style="padding:20px; color:#6c645c; line-height: 25px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">' . __METHOD__ . '<br>All done on ' . $tmp_SOCIAL_DATA_count . ' records! [lnum '. __LINE__ .'] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ']</div>';
 
-        } catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -815,15 +815,15 @@ class crnrstn_mysql_table_workshop {
 
     public function populate_locale_table(){
 
-        try {
+        try{
 
             $oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
             $mysqli = $oCRNRSTN_MySQLi->return_conn_object();
 
-            $tmp_query = 'SELECT 
+            $tmp_query = 'SELECT
             `crnrstn_stream_relay_social_OLD`.`STREAM_KEY`,
             `crnrstn_stream_relay_social_OLD`.`LOCALE_CITY_STATE_PROV_NATION`
-            FROM `crnrstn_stream_relay_social_OLD` 
+            FROM `crnrstn_stream_relay_social_OLD`
             WHERE `crnrstn_stream_relay_social_OLD`.`LOCALE_CITY_STATE_PROV_NATION` != "";';
 
             $tmp_result_set_key = $this->oCRNRSTN_USR->load_query_profile('CRNRSTN_SYSTEM_MAINT', '!jesus_is_my_dear_lord!', 'LOCALE_DATA', __LINE__, __METHOD__);
@@ -835,7 +835,7 @@ class crnrstn_mysql_table_workshop {
 
             $tmp_LOCALE_DATA_count = $this->oCRNRSTN_USR->return_record_count('LOCALE_DATA');
 
-            for($i = 0; $i < $tmp_LOCALE_DATA_count; $i++) {
+            for($i = 0; $i < $tmp_LOCALE_DATA_count; $i++){
 
                 $tmp_LOCALE_ID = $this->oCRNRSTN_USR->generate_new_key(64);
                 $tmp_STREAM_KEY = trim($this->oCRNRSTN_USR->return_database_value('LOCALE_DATA', 'STREAM_KEY', $i));
@@ -869,10 +869,10 @@ class crnrstn_mysql_table_workshop {
 
             return '<div style="padding:20px; color:#6c645c; line-height: 25px; font-size: 16px; font-family: Arial, Helvetica, sans-serif;">' . __METHOD__ . '<br>All done on ' . $tmp_LOCALE_DATA_count . ' records! [lnum '. __LINE__ .'] [rtime ' . $this->oCRNRSTN_USR->wall_time() . ']</div>';
 
-        } catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;

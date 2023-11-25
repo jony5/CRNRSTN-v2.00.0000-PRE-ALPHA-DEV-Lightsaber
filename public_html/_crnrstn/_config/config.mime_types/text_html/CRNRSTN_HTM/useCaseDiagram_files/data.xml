@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisioDocument>
+	<DocumentProperties>
+		<Title>useCaseDiagram</Title>
+		<HyperlinkBase href=""></HyperlinkBase>
+	</DocumentProperties>
+	<Pages>
+		<Page ID="0" Name="Use Case-1" NameU="Static Structure-1">
+			<Shapes>
+				<Shape ID="1" UniqueID="{7FC7C6F0-9C4D-4247-8CFC-C28AB711D795}" Name="Sheet.1" NameU="Sheet.1">
+					<Text>BriarCliff Pharmacy Website</Text>
+					<XForm>
+						<PinX Unit="IN">1.800000000000000</PinX>
+						<PinY Unit="IN">10.661111111111111</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="2" UniqueID="{0D74F8D0-767B-4521-9304-EA811A320134}" Name="Sheet.2" NameU="Sheet.2">
+					<Text>UseCase Diagram</Text>
+					<XForm>
+						<PinX Unit="IN">1.455555555555556</PinX>
+						<PinY Unit="IN">10.461111111111112</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="4" UniqueID="{2B30BB86-FB13-4DC5-875E-4D0D7D47126C}" Name="Watermark Title" NameU="Watermark Title" Master="18">
+					<Text>Use Case</Text>
+					<XForm>
+						<PinX Unit="IN">0.000000000000000</PinX>
+						<PinY Unit="IN">11.000000000000002</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="3" UniqueID="{CBC7D59D-4942-41E1-A12E-901C456DC1DF}" Name="System Boundary" NameU="System Boundary" Master="23">
+					<Text>BriarCliff Pharmacy Website</Text>
+					<XForm>
+						<PinX Unit="IN">4.350000000000000</PinX>
+						<PinY Unit="IN">6.637500000000001</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="5" UniqueID="{7A1A8ABD-5B9E-4ED0-8B4A-105F9F25CC3C}" Name="Actor" NameU="Actor" Master="24">
+					<Text>Manager</Text>
+					<XForm>
+						<PinX Unit="IN">1.360000000000000</PinX>
+						<PinY Unit="IN">8.000000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="6" UniqueID="{19F756E7-5827-4DD6-AB1B-5E3917D116F8}" Name="Actor.6" NameU="Actor.6" Master="24">
+					<Text>Administrator</Text>
+					<XForm>
+						<PinX Unit="IN">7.460000000000001</PinX>
+						<PinY Unit="IN">8.234999999999999</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{72B34813-D8AE-44F5-BDEF-5371F5BB20CF}" Name="Actor.8" NameU="Actor.8" Master="24">
+					<Text>Public User</Text>
+					<XForm>
+						<PinX Unit="IN">1.340000000000000</PinX>
+						<PinY Unit="IN">5.165000000000001</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="9" UniqueID="{A3FF956D-BCB8-4280-A61F-875C65B285DE}" Name="Use Case" NameU="Use Case" Master="22">
+					<Text>View Pharmacy
+Information</Text>
+					<XForm>
+						<PinX Unit="IN">3.500000000000000</PinX>
+						<PinY Unit="IN">5.950000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="10" UniqueID="{36FA3F05-BB44-48C8-A63E-626DD19DCD34}" Name="Use Case.10" NameU="Use Case.10" Master="22">
+					<Text>Request Online
+Prescription Refil</Text>
+					<XForm>
+						<PinX Unit="IN">4.500000000000000</PinX>
+						<PinY Unit="IN">5.350000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="11" UniqueID="{EE6B7AD3-8B1B-4758-B49F-4315A9C39ABD}" Name="Use Case.11" NameU="Use Case.11" Master="22">
+					<Text>View Diabetic Shop</Text>
+					<XForm>
+						<PinX Unit="IN">3.562700737347223</PinX>
+						<PinY Unit="IN">7.300000000000001</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="12" UniqueID="{25E5E817-9EFC-4BC6-A5F1-C5F664F03FBD}" Name="Use Case.12" NameU="Use Case.12" Master="22">
+					<Text>Get Insurance
+Information</Text>
+					<XForm>
+						<PinX Unit="IN">3.400000000000000</PinX>
+						<PinY Unit="IN">8.449999999999999</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="13" UniqueID="{21A748E9-24AB-4E4D-B60E-B5CDECBD5160}" Name="Package" NameU="Package" Master="25">
+					<Text>Mapquest</Text>
+					<XForm>
+						<PinX Unit="IN">7.525000000000000</PinX>
+						<PinY Unit="IN">4.900000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="7" UniqueID="{609E6A73-5848-4AD7-A2F5-B9E35D502DF5}" Name="Use Case.7" NameU="Use Case.7" Master="22">
+					<Text>Update Database</Text>
+					<XForm>
+						<PinX Unit="IN">5.887955729666667</PinX>
+						<PinY Unit="IN">6.043977864833334</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="16" UniqueID="{86D9CF90-C8E3-4752-B134-81F9631C607C}" Name="Use Case.16" NameU="Use Case.16" Master="22">
+					<Text>Get Refils Requests</Text>
+					<XForm>
+						<PinX Unit="IN">5.149587674111111</PinX>
+						<PinY Unit="IN">7.174793837055556</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="17" UniqueID="{ECDC0345-6079-434F-92B7-B13B8603DCA9}" Name="Sheet.17" NameU="Sheet.17">
+					<Text>&lt;&lt; includes &gt;&gt;</Text>
+					<XForm>
+						<PinX Unit="IN">5.200000000000000</PinX>
+						<PinY Unit="IN">5.648713009335468</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="18" UniqueID="{3A2265D1-1608-4703-AFF6-4CC16241BBA7}" Name="Use Case.18" NameU="Use Case.18" Master="22">
+					<Text>Get Pharmacy
+Driving Directions</Text>
+					<XForm>
+						<PinX Unit="IN">4.500000000000000</PinX>
+						<PinY Unit="IN">4.450000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="19" UniqueID="{860D9691-4897-4988-BB9E-F8FBCA54F379}" Name="Uses" NameU="Uses" Master="26">
+					<XForm>
+						<PinX Unit="IN">2.262369905098959</PinX>
+						<PinY Unit="IN">7.748863636363636</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="21" UniqueID="{83A51FB4-8E26-46C6-A77A-CE3693324F64}" Name="Uses.21" NameU="Uses.21" Master="26">
+					<XForm>
+						<PinX Unit="IN">2.260000000000000</PinX>
+						<PinY Unit="IN">7.073863636363637</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="23" UniqueID="{0DF1409D-B56A-4B2A-B99C-C6670A1D70AC}" Name="Uses.23" NameU="Uses.23" Master="26">
+					<XForm>
+						<PinX Unit="IN">6.030763262341742</PinX>
+						<PinY Unit="IN">4.674999999999999</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="25" UniqueID="{C4201F96-D127-475D-989E-18FDE2185A1A}" Name="Use Case.25" NameU="Use Case.25" Master="22">
+					<Text>Send Refil Email</Text>
+					<XForm>
+						<PinX Unit="IN">5.200000000000001</PinX>
+						<PinY Unit="IN">8.500000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="26" UniqueID="{384380F6-0E83-4053-8F54-DD62FAF49BC6}" Name="Uses.26" NameU="Uses.26" Master="26">
+					<XForm>
+						<PinX Unit="IN">6.500000000000002</PinX>
+						<PinY Unit="IN">8.466363636363635</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="28" UniqueID="{CCE50CFE-322E-4FE6-8563-E504B4F1E4B1}" Name="Uses.28" NameU="Uses.28" Master="26">
+					<XForm>
+						<PinX Unit="IN">6.509919777925131</PinX>
+						<PinY Unit="IN">7.803760554891413</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="30" UniqueID="{22B6AF80-F329-4861-A161-C3C76BCBDF5B}" Name="Uses.30" NameU="Uses.30" Master="26">
+					<XForm>
+						<PinX Unit="IN">2.750000000000000</PinX>
+						<PinY Unit="IN">5.356363636363637</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="32" UniqueID="{A8622A5E-EB17-46C5-A3E9-5EAB0DFFF42A}" Name="Uses.32" NameU="Uses.32" Master="26">
+					<XForm>
+						<PinX Unit="IN">2.370000000000000</PinX>
+						<PinY Unit="IN">6.901950672645740</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="34" UniqueID="{07BA37FF-9BED-4CCA-9A67-8919F751B58B}" Name="Uses.34" NameU="Uses.34" Master="26">
+					<XForm>
+						<PinX Unit="IN">2.744236737658257</PinX>
+						<PinY Unit="IN">4.906363636363637</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="36" UniqueID="{DB5CE0D4-2310-4E66-9FFD-F07E8FC1B9B6}" Name="Sheet.36" NameU="Sheet.36">
+					<Text>&lt;&lt; includes &gt;&gt;</Text>
+					<XForm>
+						<PinX Unit="IN">4.993825645164730</PinX>
+						<PinY Unit="IN">7.286076408530056</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="37" UniqueID="{B015A4F7-AE3C-4DF8-ABF9-FC70B432D7A3}" Name="Uses.37" NameU="Uses.37" Master="26">
+					<XForm>
+						<PinX Unit="IN">2.356987578939453</PinX>
+						<PinY Unit="IN">6.226745962523142</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="39" UniqueID="{A3149458-7DB9-4FD4-A97E-EB8D149D26A5}" Name="Uses.39" NameU="Uses.39" Master="26">
+					<XForm>
+						<PinX Unit="IN">2.250000000000000</PinX>
+						<PinY Unit="IN">5.656363636363637</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="41" UniqueID="{C87F1256-00C9-4CB3-A3D0-3ECB2ED28364}" Name="Uses.41" NameU="Uses.41" Master="26">
+					<XForm>
+						<PinX Unit="IN">2.303750000000000</PinX>
+						<PinY Unit="IN">8.417613636363637</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="43" UniqueID="{48CC8E07-2A9B-47E5-9FB7-107731CC2ECF}" Name="Package.43" NameU="Package.43" Master="25">
+					<Text>Email Account</Text>
+					<XForm>
+						<PinX Unit="IN">7.525000000000000</PinX>
+						<PinY Unit="IN">6.350000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="46" UniqueID="{7FF14A5A-3AD7-4049-8249-DF02FB1E4CA7}" Name="Uses.46" NameU="Uses.46" Master="26">
+					<XForm>
+						<PinX Unit="IN">6.277997550099039</PinX>
+						<PinY Unit="IN">6.567974690701687</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="48" UniqueID="{4A4BFC86-FD15-4FA2-B288-B7B33DC98BF2}" Name="Uses.48" NameU="Uses.48" Master="26">
+					<XForm>
+						<PinX Unit="IN">6.281250000000000</PinX>
+						<PinY Unit="IN">7.331250000000000</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+		<Page ID="4" Name="Use Case-2" NameU="Use Case-2">
+			<Shapes>
+				<Shape ID="1" UniqueID="{C6AE613F-3D49-414A-8F50-847C9E609658}" Name="Watermark Title" NameU="Watermark Title" Master="18">
+					<Text>Use Case</Text>
+					<XForm>
+						<PinX Unit="IN">0.000000000000000</PinX>
+						<PinY Unit="IN">11.000000000000002</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+		<Page ID="5" Name="Use Case-3" NameU="Use Case-3">
+			<Shapes>
+				<Shape ID="1" UniqueID="{B0E7E80E-FC1E-444A-AA10-4CD80FA00A17}" Name="Watermark Title" NameU="Watermark Title" Master="18">
+					<Text>Use Case</Text>
+					<XForm>
+						<PinX Unit="IN">0.000000000000000</PinX>
+						<PinY Unit="IN">11.000000000000002</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+	</Pages>
+</VisioDocument>

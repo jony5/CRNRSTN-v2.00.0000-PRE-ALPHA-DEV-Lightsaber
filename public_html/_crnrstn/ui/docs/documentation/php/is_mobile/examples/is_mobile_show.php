@@ -14,7 +14,7 @@ if($oCRNRSTN->is_mobile()){
 //
 // A DIRECT CHECK ON THE FLIPPED BIT FOR MOBILE
 // CAN ALSO CONFIRM THE SITUATION.
-if($oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_MOBILE)){
+if($oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_MOBILE) === true){
 
     echo 'Hold my beer, I\'m flagged as mobile!<br><br>';
 

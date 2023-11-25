@@ -28,4 +28,4 @@ $this->config_add_seo_engagement('BLUEHOST_JONY5', 'DEMO_ENGAGEMENT', $tmp_str_J
 $this->config_add_seo_engagement('BLUEHOST_EVIFWEB', 'DEMO_ENGAGEMENT', $tmp_str_EVIFWEB);
 $this->config_add_seo_engagement('LOCALHOST_CHAD_MACBOOKPRO', 'DEMO_ENGAGEMENT_TEST', $tmp_str_JONY5_TEST, false);
 $this->config_add_seo_engagement('LOCALHOST_CHAD_MACBOOKPRO', 'DEMO_ENGAGEMENT', $tmp_str_CHAD_MACBOOKPRO);
-$this->config_add_seo_engagement('LOCALHOST_MACBOOKPRO', 'DEMO_ENGAGEMENT', $tmp_str_MACBOOKPRO);
+$this->config_add_seo_engagement('LOCALHOST_PC_XP', 'DEMO_ENGAGEMENT', $tmp_str_MACBOOKPRO);

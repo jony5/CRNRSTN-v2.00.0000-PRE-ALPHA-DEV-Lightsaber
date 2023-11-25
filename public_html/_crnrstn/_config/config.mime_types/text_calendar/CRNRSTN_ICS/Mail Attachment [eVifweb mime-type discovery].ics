@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART:20110203T080000Z
+DTEND:20110203T083000Z
+DTSTAMP:20110125T175926Z
+ORGANIZER;CN=c00000101@gmail.com:mailto:c00000101@gmail.com
+UID:040000008200E00074C5B7101A82E00800000000604C56AE83BCCB01000000000000000
+ 010000000361E3B9D40681F47805B7C248AA96F18
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=j5@jony5.com;X-NUM-GUESTS=0:mailto:j5@jony5.com
+CLASS:PUBLIC
+CREATED:20110125T163521Z
+DESCRIPTION:Today is the long awaited\, much anticipated\, exclusive opport
+ unity for valued Verizon Wireless customers to purchase iPhone 4 prior to i
+ t being available to everyone else.\n\nThere’s never been a better time to 
+ upgrade your phone or add a line to your account.\n\nOrder your iPhone 4 no
+ w from our reserved quantity\, on a first-come\, first-served basis.\n\nhtt
+ p://verizonwireless.com/iphoneorder\nView your event at http://www.google.c
+ om/calendar/event?action=VIEW&eid=XzYwcTMwYzFnNjBvMzBlMWk2MG80YWMxZzYwcmo4Z
+ 3BsODhyajJjMWg4NHMzNGg5ZzYwczMwYzFnNjBvMzBjMWc2b28zOGdwbDZwMGthZTFqODkxazZn
+ aGc2NG8zMGMxZzYwbzMwYzFnNjBvMzBjMWc2MG8zMmMxZzYwbzMwYzFnNmNyMzJoOWo4OHNrOGQ
+ xZzZvczMyaGhrNnNzMzBkYTI2dDFqNGQxbzg1MGppZGk2NjRzMCBqNUBqb255NS5jb20&tok=MT
+ kjYzAwMDAwMTAxQGdtYWlsLmNvbThhNGI2NjJiMjEzMWU4YWMyZDZkMzdmNTE4YWVkMWViYmQ2N
+ mI1ZTM&ctz=America%2FNew_York&hl=en.
+LAST-MODIFIED:20110125T175925Z
+LOCATION:Online Only
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:iPhone 4. Verizon. It begins today.
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)https://www.gosolar.gsu.edu/bprod/plsql/hwskoacc.P_ViewAcct -->
+<HTML><HEAD><TITLE>Student Account Summary by Term</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<META content=no-cache http-equiv=Pragma name="">
+<META content=no-cache http-equiv=Cache-Control name=""><LINK 
+href="late fee_files/web_defer.css" rel=stylesheet type=text/css>
+<SCRIPT language=JavaScript>
+<!-- Hide JavaScript from older browsers 
+var submitcount=0;
+function checkSubmit() {
+if (submitcount == 0)
+   {
+   submitcount++;
+   return true;
+   }
+else
+   {
+   alert("Your changes have already been submitted.");
+   return false;
+   }
+}
+//  Function to open a window
+function windowOpen(window_url) {
+   helpWin = window.open(window_url,'','toolbar=yes,status=no,scrollbars=yes,menubar=yes,resizable=yes,directories=no,location=no,width=350,height=400');
+   if (document.images) { 
+       if (helpWin) helpWin.focus()
+   }
+}
+//  End script hiding -->
+</SCRIPT>
+
+<META content="MSHTML 5.00.2920.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff><IMG border=0 hspace=0 name=GeorgiaStateUniversity 
+src="late fee_files/gsu.gif"> 
+<TABLE bgColor=#b0c4de border=0 cellPadding=2 cellSpacing=0 width="100%">
+  <TBODY>
+  <TR>
+    <TD>
+      <H3>GoSOLAR - Georgia State Online Access to Records</H3></TD>
+    <TD align=middle width=35><A 
+      href="https://www.gosolar.gsu.edu/bprod/plsql/twbkwbis.P_GenMenu?name=amenu.P_AdminMnu" 
+      onmouseout="window.status='';  return true" 
+      onmouseover="window.status='Return to the Menu';  return true" target=_top 
+      ALT="Exit"><IMG alt=Menu border=0 height=16 hspace=0 name=GeneralMenu 
+      src="late fee_files/twggmenu.gif" width=16><BR><FONT 
+      size=-1>menu</FONT></A></TD>
+    <TD align=middle width=35><A 
+      href="javascript:windowOpen('/wtlhelp/twbhhelp.htm')" 
+      onmouseout="window.status=''; return true" 
+      onmouseover="window.status='Get help for this page';  return true" 
+      ALT="Help"><IMG alt=Help border=0 height=16 hspace=0 name=GeneralHelp 
+      src="late fee_files/twgghelp.gif" width=16><BR><FONT 
+      size=-1>help</FONT></A></TD>
+    <TD align=middle width=35><A 
+      href="https://www.gosolar.gsu.edu/bprod/plsql/twbkwbis.P_Logout" 
+      onmouseout="window.status='';  return true" 
+      onmouseover="window.status='Exit the System';  return true" target=_top 
+      ALT="Exit"><IMG alt=Exit border=0 height=16 hspace=0 name=Exit 
+      src="late fee_files/twggexit.gif" width=16><BR><FONT 
+      size=-1>exit</FONT></A></TD></TR></TBODY></TABLE>
+<P>
+<CENTER>
+<CENTER><FONT size=-1>[ <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='Main Menu'; return true">Main</A></NOBR></FONT> 
+<FONT size=-1>| <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/twbkwbis.P_GenMenu?name=amenu.P_RegMnu" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='Registration Menu'; return true">Registration</A></NOBR></FONT> 
+<FONT size=-1>| <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/twbkwbis.P_GenMenu?name=amenu.P_AdminMnu" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='Student Records'; return true">Student 
+Records</A></NOBR></FONT> <FONT size=-1>| <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/twbkwbis.P_GenMenu?name=amenu.P_StuAcctMnu" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='Student Accounts'; return true">Student 
+Accounts</A></NOBR></FONT> <FONT size=-1>| <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/twbkwbis.P_GenMenu?name=amenu.P_FAApplStuMnu" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='Financial Aid Menu'; return true">Financial 
+Aid</A></NOBR></FONT> <FONT size=-1>| <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/twbkwbis.P_GenMenu?name=bmenu.P_GenMnu" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='Personal Information'; return true">Personal 
+Information</A></NOBR></FONT> <FONT size=-1>]</FONT> </CENTER></CENTER>
+<P>
+<TABLE border=0 cellPadding=2 cellSpacing=0 width="100%">
+  <TBODY>
+  <TR>
+    <TD><B>Student Account Summary by Term</B></TD>
+    <TD align=right width=200><B>Jonathan P. Harris</B></TD></TR></TBODY></TABLE>
+<P><FONT face=Arial,Helvetica,Geneva,Swiss,SunSans-Regular><!--  ** END OF twgkwbis.P_OpenDoc **  -->
+<TABLE border=0 cellPadding=2>
+  <TBODY>
+  <TR vAlign=top>
+    <TD class=pldefault><IMG align=top alt=Note border=0 height=24 hspace=0 
+      name=GeneralNote src="late fee_files/twgginfo.gif" width=27></TD>
+    <TD class=pldefault>This is your account summary by term. Anticipated 
+      third party contract payments, financial aid, and memos are <B>NOT</B> 
+      included in the summary.
+      <P>Estimated Hope will be considered as temporary payment until the Hope 
+      process is finalized.
+      <P></P></TD></TR></TBODY></TABLE>
+<P>
+<TABLE bgColor=#ffffff border=1 cellPadding=2 cellSpacing=0>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD align=right class=ddheader colSpan=4><B>Account Balance:</B></TD>
+    <TD align=right class=dddefault>1,773.50</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=middle class=ddheader colSpan=5><B>Spring Semester 
+2003</B></TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=middle class=ddlabel><B>Detail Code</B></TD>
+    <TD align=middle class=ddlabel><B>Description</B></TD>
+    <TD align=middle class=ddlabel><B>Charge</B></TD>
+    <TD align=middle class=ddlabel><B>Payment</B></TD>
+    <TD align=middle class=ddlabel><B>Balance</B></TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MACT</TD>
+    <TD align=left class=dddefault>Activity Fee</TD>
+    <TD align=right class=dddefault>57.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>57.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MATH</TD>
+    <TD align=left class=dddefault>Athletic Fee</TD>
+    <TD align=right class=dddefault>81.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>81.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MHEA</TD>
+    <TD align=left class=dddefault>Health Fee</TD>
+    <TD align=right class=dddefault>17.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>17.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MREC</TD>
+    <TD align=left class=dddefault>Recreation Fee</TD>
+    <TD align=right class=dddefault>53.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>53.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MSCF</TD>
+    <TD align=left class=dddefault>Student Center/Facility Fee</TD>
+    <TD align=right class=dddefault>36.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>36.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MTEC</TD>
+    <TD align=left class=dddefault>Technology Fee</TD>
+    <TD align=right class=dddefault>75.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>75.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MTRA</TD>
+    <TD align=left class=dddefault>Transportation Fee</TD>
+    <TD align=right class=dddefault>22.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>22.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>TUII</TD>
+    <TD align=left class=dddefault>In-State Tuition</TD>
+    <TD align=right class=dddefault>1,395.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>1,395.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD class=dddead rowSpan=3>&nbsp;</TD>
+    <TD align=right class=ddlabel><B>Term Charges:</B></TD>
+    <TD align=right class=dddefault>1,736.00</TD>
+    <TD class=dddead colSpan=2>&nbsp;</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=right class=ddlabel><B>Term Credits and Payments:</B></TD>
+    <TD class=dddead>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD>
+    <TD class=dddead>&nbsp;</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=right class=ddlabel><B>Term Balance:</B></TD>
+    <TD class=dddead colSpan=2>&nbsp;</TD>
+    <TD align=right class=dddefault>1,736.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD class=ddseparator colSpan=5>&nbsp;</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=middle class=ddheader colSpan=5><B>Fall Semester 2002</B></TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=middle class=ddlabel><B>Detail Code</B></TD>
+    <TD align=middle class=ddlabel><B>Description</B></TD>
+    <TD align=middle class=ddlabel><B>Charge</B></TD>
+    <TD align=middle class=ddlabel><B>Payment</B></TD>
+    <TD align=middle class=ddlabel><B>Balance</B></TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>LATE</TD>
+    <TD align=left class=dddefault>Late Registration Fee</TD>
+    <TD align=right class=dddefault>37.50</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>37.50</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MACT</TD>
+    <TD align=left class=dddefault>Activity Fee</TD>
+    <TD align=right class=dddefault>57.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MATH</TD>
+    <TD align=left class=dddefault>Athletic Fee</TD>
+    <TD align=right class=dddefault>81.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MHEA</TD>
+    <TD align=left class=dddefault>Health Fee</TD>
+    <TD align=right class=dddefault>17.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MREC</TD>
+    <TD align=left class=dddefault>Recreation Fee</TD>
+    <TD align=right class=dddefault>53.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MSCF</TD>
+    <TD align=left class=dddefault>Student Center/Facility Fee</TD>
+    <TD align=right class=dddefault>36.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MTEC</TD>
+    <TD align=left class=dddefault>Technology Fee</TD>
+    <TD align=right class=dddefault>75.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>MTRA</TD>
+    <TD align=left class=dddefault>Transportation Fee</TD>
+    <TD align=right class=dddefault>22.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>RFND</TD>
+    <TD align=left class=dddefault>Refund</TD>
+    <TD align=right class=dddefault>1,250.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>TUII</TD>
+    <TD align=left class=dddefault>In-State Tuition</TD>
+    <TD align=right class=dddefault>1,395.00</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>CHEK</TD>
+    <TD align=left class=dddefault>Check</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>1,736.00</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=left class=dddefault>TPMT</TD>
+    <TD align=left class=dddefault>Contract Payment</TD>
+    <TD align=right class=dddefault>&nbsp;</TD>
+    <TD align=right class=dddefault>1,250.00</TD>
+    <TD align=right class=dddefault>0.00</TD></TR>
+  <TR align=left vAlign=top>
+    <TD class=dddead rowSpan=4>&nbsp;</TD>
+    <TD align=right class=ddlabel><B>Term Charges:</B></TD>
+    <TD align=right class=dddefault>3,023.50</TD>
+    <TD class=dddead colSpan=2>&nbsp;</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=right class=ddlabel><B>Term Credits and Payments:</B></TD>
+    <TD class=dddead>&nbsp;</TD>
+    <TD align=right class=dddefault>2,986.00</TD>
+    <TD class=dddead>&nbsp;</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=right class=ddlabel><B>Term Balance:</B></TD>
+    <TD class=dddead colSpan=2>&nbsp;</TD>
+    <TD align=right class=dddefault>37.50</TD></TR>
+  <TR align=left vAlign=top>
+    <TD align=right class=ddlabel><B>Account Balance:</B></TD>
+    <TD class=dddead colSpan=2>&nbsp;</TD>
+    <TD align=right class=dddefault>1,773.50</TD></TR></TBODY></TABLE><!--  ** START OF twgkwbis.P_CloseDoc **  -->
+<P> 
+<P></FONT>
+<CENTER><FONT size=-1>[ <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/hwskoacc.P_ViewAcctTotal" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='View Student Account Summary'; return true">View 
+Student Account Summary</A></NOBR></FONT> <FONT size=-1>| <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/hwskcpmt.P_CreditCardPayment" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='Pay Tuition &amp; Fees'; return true">Pay Tuition 
+&amp; Fees</A></NOBR></FONT> <FONT size=-1>| <NOBR><A 
+href="https://www.gosolar.gsu.edu/bprod/plsql/wwskfees.P_Disp_Fee_DueDates" 
+onmouseout="window.status=''; return true" 
+onmouseover="window.status='View Fee Payment Deadlines'; return true">View Fee 
+Payment Deadlines</A></NOBR></FONT> <FONT size=-1>]</FONT> </CENTER>
+<P><!-- ERROR in anchor2 usage, curl and cname cannot be NULL --><A 
+name=" "><IMG align=right alt="Powered by SCT" border=0 height=20 hspace=0 
+name=GeneralPoweredBySCT src="late fee_files/twggpsct.gif" width=143> </A><BR>
+<H5>Release: 5.4</H5></BODY></HTML>

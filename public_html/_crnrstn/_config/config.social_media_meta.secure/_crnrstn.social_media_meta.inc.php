@@ -11,76 +11,113 @@ HTML_HEAD_CRNRSTN_META - This content supports CRNRSTN :: Lightsaber deep links 
 */
 
 $meta_ARRAY = array();
-$tmp_data_type_family = 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::SOCIAL';
+$tmp_data_type_family = 'CRNRSTN::RESOURCE::GENERAL_SETTINGS::META';
 
 //
-// META :: DISTRIBUTION
-$meta_str = '<meta name="distribution" content="global" />';
-$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
+// META :: FAVICON.
+//$meta_str = '<link rel="shortcut icon" type="image/x-icon" href="https://lightsaber.crnrstn.jony5.com/?crnrstn_0010111011=crnrstn/favicon.ico&crnrstn_=420.00" />';
+//$meta_str = $this->return_creative('CRNRSTN_FAVICON', CRNRSTN_FAVICON);
+//error_log(__LINE__ . ' settings $meta_str[' . $meta_str . '].');
+//$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
 
 //
-// META :: ROBOTS
-$meta_str = '<meta name="robots" content="index,follow" />';
-$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
+// META :: CONTENT TYPE.
+$meta_str = '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
 
 //
-// META :: GLOBAL SOCIAL PROFILE
-$meta_ARRAY[] = '<meta property="og:title" content="" />';
-$meta_ARRAY[] = '<meta property="og:type" content="website" />';
-$meta_ARRAY[] = '<meta property="og:url" content="" />';
-$meta_ARRAY[] = '<meta property="og:image" content="" />';
-$meta_ARRAY[] = '<meta property="og:site_name" content="" />';
-$meta_ARRAY[] = '<meta property="og:description" content="" />';
-$meta_ARRAY[] = '<meta name="twitter:card" content="summary" />';
-$meta_ARRAY[] = '<meta name="twitter:title" content="" />';
-$meta_ARRAY[] = '<meta name="twitter:image" content="" />';
-$meta_ARRAY[] = '<meta name="twitter:description" content="" />';
-//$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_ARRAY, $tmp_data_type_family);
+// META :: DISTRIBUTION.
+$meta_str = '<meta name="distribution" content="global"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
+
+//
+// META :: ROBOTS.
+$meta_str = '<meta name="robots" content="index,follow"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
+
+//
+// META :: VIEWPORT.
+$meta_str = '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
+
+//
+// META :: GLOBAL SOCIAL PROFILE.
+$meta_ARRAY[] = '<meta property="og:type" content="website"/>';
+$meta_ARRAY[] = '<meta property="og:title" content=""/>';
+$meta_ARRAY[] = '<meta property="og:description" content=""/>';
+$meta_ARRAY[] = '<meta property="og:url" content=""/>';
+$meta_ARRAY[] = '<meta property="og:site_name" content=""/>';
+//$meta_ARRAY[] = '<meta property="article:publisher" content="https://www.facebook.com/react"/>';
+$meta_ARRAY[] = '<meta property="og:image" content=""/>';
+$meta_ARRAY[] = '<meta property="og:image:secure_url" content=""/>';
+$meta_ARRAY[] = '<meta name="twitter:card" content="summary"/>';
+$meta_ARRAY[] = '<meta name="twitter:description" content=""/>';
+$meta_ARRAY[] = '<meta name="twitter:title" content=""/>';
+$meta_ARRAY[] = '<meta name="twitter:image" content=""/>';
+//$meta_ARRAY[] = '<meta name="twitter:creator" content="@j00000101"/>';
+
+//$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_ARRAY, $tmp_data_type_family);
 // UNCOMMENT AND COMPLETE THE ABOVE TO ACTIVATE THIS SOCIAL META.
 
 //
-// META :: GLOBAL WEBSITE DESCRIPTION
-$meta_str = '<meta name="description" content="' . $this->proper_version() . ' :: ADD GLOBAL META DESCRIPTION HERE." />';
-//$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
+// META :: GLOBAL WEBSITE DESCRIPTION.
+$meta_str = '<meta name="description" content="' . $this->proper_version() . ' :: ADD GLOBAL META DESCRIPTION HERE."/>';
+//$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
 // UNCOMMENT AND COMPLETE THE ABOVE TO ACTIVATE THIS META.
 
 //
-// META :: GLOBAL WEBSITE KEYWORDS
-$meta_str = '<meta name="keywords" content="' . $this->proper_version() . ' :: ADD GLOBAL KEY WORDS." />';
-//$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
+// META :: GLOBAL WEBSITE KEYWORDS.
+$meta_str = '<meta name="keywords" content="' . $this->proper_version() . ' :: ADD GLOBAL KEY WORDS."/>';
+//$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_META', $meta_str, $tmp_data_type_family);
 // UNCOMMENT AND COMPLETE THE ABOVE TO ACTIVATE THIS SOCIAL META.
 
 //
-// # # C # R # N # R # S # T # N # : : # # ##
+// # # C # R # N # R # S # T # N # : : # # # #
 // CRNRSTN :: Lightsaber META CONFIGURATION
-// CRNRSTN :: META :: DISTRIBUTION
-$meta_str = '<meta name="distribution" content="global" />';
-$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
+//
+// META :: FAVICON.
+$meta_str = $this->return_creative('CRNRSTN_FAVICON', CRNRSTN_FAVICON);
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
 
 //
-// CRNRSTN :: META :: ROBOTS
-$meta_str = '<meta name="robots" content="index,follow" />';
-$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
+// CRNRSTN :: META :: DISTRIBUTION.
+$meta_str = '<meta name="distribution" content="global"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
 
 //
-// META :: CRNRSTN :: SYSTEM SOCIAL PROFILE
-$meta_CRNRSTN_ARRAY[] = '<meta property="og:title" content="' . $this->social_preview_title() . '" />';
-$meta_CRNRSTN_ARRAY[] = '<meta property="og:type" content="website" />';
-$meta_CRNRSTN_ARRAY[] = '<meta property="og:url" content="' . $this->current_location() . '" />';
-$meta_CRNRSTN_ARRAY[] = '<meta property="og:image" content="' . $this->return_system_image('SOCIAL_META_PREVIEW') . '" />';
-$meta_CRNRSTN_ARRAY[] = '<meta property="og:site_name" content="' . $this->proper_version() . '" />';
-$meta_CRNRSTN_ARRAY[] = '<meta property="og:description" content="' . $this->social_preview_description() . '" />';
-$meta_CRNRSTN_ARRAY[] = '<meta name="twitter:card" content="summary" />';
+// CRNRSTN :: META :: ROBOTS.
+$meta_str = '<meta name="robots" content="index,follow"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
+
+//
+// CRNRSTN :: META :: VIEWPORT.
+$meta_str = '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
+
+//
+// META :: CRNRSTN :: SYSTEM SOCIAL PROFILE.
+//$meta_CRNRSTN_ARRAY[] = '<link rel="canonical" href={DEEP-LINK-INTEGRATION}" />';
+$meta_CRNRSTN_ARRAY[] = '<meta property="og:type" content="website"/>';
+$meta_CRNRSTN_ARRAY[] = '<meta property="og:title" content="' . $this->social_preview_title() . '"/>';
+$meta_CRNRSTN_ARRAY[] = '<meta property="og:description" content="' . $this->social_preview_description() . '"/>';
+$meta_CRNRSTN_ARRAY[] = '<meta property="og:url" content="' . $this->current_location() . '"/>';
+$meta_CRNRSTN_ARRAY[] = '<meta property="og:site_name" content="' . $this->proper_version() . '"/>';
+//$meta_CRNRSTN_ARRAY[] = '<meta property="article:publisher" content="https://www.facebook.com/react"/>';
+//$meta_CRNRSTN_ARRAY[] = '<meta property="og:image" content="' . $this->return_creative('SOCIAL_META_PREVIEW', CRNRSTN_STRING) . '"/>';
+//$meta_CRNRSTN_ARRAY[] = '<meta property="og:image:secure_url" content="' . $this->return_creative('SOCIAL_META_PREVIEW', CRNRSTN_STRING) . '"/>';
+$meta_CRNRSTN_ARRAY[] = '<meta name="twitter:card" content="summary"/>';
+$meta_CRNRSTN_ARRAY[] = '<meta name="twitter:description" content="' . $this->social_preview_description() . '"/>';
 $meta_CRNRSTN_ARRAY[] = '<meta name="twitter:title" content="' . $this->social_preview_title() . '" />';
-$meta_CRNRSTN_ARRAY[] = '<meta name="twitter:image" content="' . $this->return_system_image('SOCIAL_META_PREVIEW') . '" />';
-$meta_CRNRSTN_ARRAY[] = '<meta name="twitter:description" content="' . $this->social_preview_description() . '" />';
-$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_CRNRSTN_ARRAY, $tmp_data_type_family);
+//$meta_CRNRSTN_ARRAY[] = '<meta name="twitter:image" content="' . $this->return_creative('SOCIAL_META_PREVIEW', CRNRSTN_STRING) . '"/>';
+$meta_CRNRSTN_ARRAY[] = '<meta name="twitter:creator" content="@CRNRSTN_v2_0_0"/>';
 
-$meta_str = '<meta name="description" content="' . $this->social_preview_description() . '" />';
-$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_CRNRSTN_ARRAY, $tmp_data_type_family);
 
-$meta_str = '<meta name="keywords" content="' . $this->crnrstn_meta_keywords() . '" />';
-$this->config_add_system_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
+$meta_str = '<meta name="description" content="' . $this->social_preview_description() . '"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
+
+$meta_str = '<meta name="keywords" content="' . $this->crnrstn_meta_keywords() . '"/>';
+$this->config_add_resource(CRNRSTN_RESOURCE_ALL, 'HTML_HEAD_CRNRSTN_META', $meta_str, $tmp_data_type_family);
 
 /*
 Basic HTML Meta Tags
@@ -91,7 +128,7 @@ https://gist.github.com/lancejpollard/1978404#basic-html-meta-tags
 <meta name="copyright"content="company name">
 <meta name="language" content="ES">
 <meta name="robots" content="index,follow" />
-<meta name="revised" content="Sunday, July 18th, 2010, 5:15 pm" />
+<meta name="revised" content="Sunday, July 18th, 2010, 5:15 pm"/>
 <meta name="abstract" content="">
 <meta name="topic" content="">
 <meta name="summary" content="">

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  <head>
+  <title>Management - CommercialNet</title>
+  
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="author" content="CommercialNet" />
+    <meta name="ROBOTS" content="ALL" />
+    <meta name="description" content="CommercialNet Rich Media Presentations" />
+    <meta name="KEYWORDS" content="" />
+	
+<style type="text/css">
+
+@import url("management_files/style.css");
+
+</style>
+
+<link rel="shortcut icon" href="management_files/images/favicon.ico" />
+
+<script language="javascript" type="text/javascript">
+<!-- hide from javascript disabled browsers.
+
+//-->
+</script>
+</head>
+
+<body>
+<a name="top"></a>
+<div id="logo">
+</div>
+
+<div id="topDemoLink"><a href="http://www.mydvt.com" target="_blank"><img src="management_files/images/demoIcon.jpg" alt="Demo" /></a></div>
+
+<div id="nav">
+	<div id="links">
+			<!-- Main Navigation -->
+		<div class="mainNav" style="border-left:0px;"><a href="index.html">home</a></div>
+		<div class="mainNav"><a href="about.shtml">about cn</a></div>
+		<div class="mainNav"><a href="techno.shtml">techno</a></div>
+		<div class="mainNavSelect"><a href="corporate.shtml">corporate</a></div>
+		<div class="mainNav"><a href="resources.shtml">resources</a></div>
+		<div class="mainNav"><a href="announce.shtml">announcements</a></div>
+		<div class="mainNav"><a href="contact.shtml">contact</a></div>
+		
+    <div id="navCap"></div>
+		<div id="demoLink"><a href="http://www.commercialnet.biz/pdf/dvt_pik.pdf" target="_blank"><img src="management_files/images/pageIcon.gif" alt="View Our Brochure" /></a></div>
+	</div>
+</div>
+
+<div id="blueBar">
+	<div class="subNav">MANAGEMENT</div>
+</div>
+
+<div id="pageHead"><img src="management_files/images/corpHeader.jpg" alt="Management" /></div>
+
+<div id="bodyCopy">
+
+<!--#include file="management_files/bodyCopy/management.txt" -->
+
+  <div id="boxCap"><img src="management_files/images/littleBox.gif" alt="" /></div>
+</div>
+
+<div id="intFooter">&copy; 2005 CommercialNet, Inc.</div>
+
+</body>
+</html>

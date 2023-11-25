@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/*
+// J5
+// Code is Poetry */
+.the_V_in_evifweb                                   { color:#F90000; font-weight: bold; }
+
+.eVifweb_body_shell_rel                             { position: relative; width: 100%;}
+.eVifweb_body_shell_abs                             { position: absolute; width: 100%;}
+
+.eVifweb_crnrstn_logo_bg_rel                        { position: relative; text-align: center; margin: 0 auto; width: 100%;}
+.eVifweb_crnrstn_logo_bg_abs                        { position: absolute;}
+
+.eVifweb_body_copy                                  { font-size: 17px; font-family: Arial, Helvetica, sans-serif; color: #333; text-align: left; padding-left: 10px;}
+
+.eVifweb_body_copy p                                { width: 802px;}
+.eVifweb_body_copy h1                               { width: 802px; padding-left:50px; }
+
+.eVifweb_codeview_rel                               { padding: 30px 20px 30px 30px; width: 100%; text-align: left;}
+.eVifweb_codeview_abs pre                           { font-family: "Courier New", Courier, monospace; font-size: 15px;}
+
+.eVifweb_copyright                                  { font-size: 11px; color: #333;}

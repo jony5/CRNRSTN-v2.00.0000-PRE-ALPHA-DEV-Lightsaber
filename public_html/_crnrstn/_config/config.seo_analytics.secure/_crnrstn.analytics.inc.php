@@ -39,4 +39,4 @@ $this->config_add_seo_analytics('BLUEHOST_JONY5', 'GOOGLE_ANALYTICS', $tmp_str_J
 $this->config_add_seo_analytics('BLUEHOST_EVIFWEB', 'GOOGLE_ANALYTICS', $tmp_str_EVIFWEB);
 $this->config_add_seo_analytics('LOCALHOST_CHAD_MACBOOKPRO', 'GOOGLE_ANALYTICS_TEST', $tmp_str_JONY5_TEST, false);
 $this->config_add_seo_analytics('LOCALHOST_CHAD_MACBOOKPRO', 'GOOGLE_ANALYTICS', $tmp_str_CHAD_MACBOOKPRO);
-$this->config_add_seo_analytics('LOCALHOST_MACBOOKPRO', 'GOOGLE_ANALYTICS', $tmp_str_MACBOOKPRO);
+$this->config_add_seo_analytics('LOCALHOST_PC_XP', 'GOOGLE_ANALYTICS', $tmp_str_MACBOOKPRO);

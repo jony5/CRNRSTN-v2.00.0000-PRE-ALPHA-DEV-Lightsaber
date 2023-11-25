@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #  CLASS :: crnrstn_database_sql_silo
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  VERSION :: 1.00.0000
@@ -51,15 +51,15 @@
 class crnrstn_database_sql_silo {
 
     protected $oLogger;
-    public $oCRNRSTN_USR;
+    public $oCRNRSTN;
 
-	public function __construct($oCRNRSTN_USR) {
+	public function __construct($oCRNRSTN){
 
-        $this->oCRNRSTN_USR = $oCRNRSTN_USR;
+        $this->oCRNRSTN = $oCRNRSTN;
 
 		// 
-		// INSTANTIATE LOGGER
-		$this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
+		// INSTANTIATE LOGGER.
+		$this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
 	}
 
@@ -72,7 +72,7 @@ class crnrstn_database_sql_silo {
 
     private function returnQuery($oCRNRSTN_USR, $oCRNRSTN_MySQLi, $result_set_key){
 
-	    error_log('sql silo 75 [' . $result_set_key . ']');
+	    error_log(__LINE__ . ' sql silo 75 [' . $result_set_key . '].');
 
         $mysqli = $oCRNRSTN_MySQLi->return_conn_object();
 
@@ -81,7 +81,73 @@ class crnrstn_database_sql_silo {
             switch($result_set_key){
                 case 'LOG_BASSDRIVE_PROCESSED':
 
-                    $query = 'SELECT `crnrstn_global_bassdrive_log_processed`.`LOG_PROCESSED_ID`,
+                    return $this->return_LOG_BASSDRIVE_PROCESSED();
+
+                break;
+                case 'LOG_BASSDRIVE':
+
+                    return $this->return_LOG_BASSDRIVE();
+
+                break;
+                case 'BASSDRIVE_STREAM':
+
+                    return $this->return_BASSDRIVE_STREAM();
+
+                break;
+                case 'BASSDRIVE_STREAM_COLORS':
+
+                    return $this->return_BASSDRIVE_STREAM_COLORS();
+
+                break;
+                case 'BASSDRIVE_STREAM_KEY_PATTERN_LOOKUP':
+
+                    return $this->return_BASSDRIVE_STREAM_KEY_PATTERN_LOOKUP();
+
+                break;
+                case 'BASSDRIVE_STREAM_SOCIAL_CONFIG':
+
+                    return $this->return_BASSDRIVE_STREAM_SOCIAL_CONFIG();
+
+                break;
+                case 'LANG_PACKS':
+
+                    return $this->return_LANG_PACKS();
+
+                break;
+                case 'NEW_OR_KEEPALIVE_SESSION':
+
+                    return $this->return_NEW_OR_KEEPALIVE_SESSION($this->oCRNRSTN->oCRNRSTN_USR, $mysqli);
+
+                break;
+                default:
+
+                    //
+                    // HOOOSTON...VE HAF PROBLEM!
+                    throw new Exception('No query has been configured able to be loaded from the result set key [' . $result_set_key.'].');
+
+                break;
+
+            }
+
+        }catch(Exception $e){
+
+            //
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
+            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+
+            return false;
+
+        }
+
+        //
+        // RETURN QUERY
+        return $query;
+
+    }
+
+    private function return_LOG_BASSDRIVE_PROCESSED(){
+
+	    return 'SELECT `crnrstn_global_bassdrive_log_processed`.`LOG_PROCESSED_ID`,
                         `crnrstn_global_bassdrive_log_processed`.`BASSDRIVE_LOG_ID`,
                         `crnrstn_global_bassdrive_log_processed`.`BASSDRIVE_LOG_ID_CRC32`,
                         `crnrstn_global_bassdrive_log_processed`.`ISACTIVE`,
@@ -90,11 +156,11 @@ class crnrstn_database_sql_silo {
                     FROM `crnrstn_global_bassdrive_log_processed` 
                     WHERE `crnrstn_global_bassdrive_log_processed`.`ISACTIVE` = 1;';
 
-                break;
-                case 'LOG_BASSDRIVE':
+    }
 
-                    // 4500
-                    $query = 'SELECT `crnrstn_global_bassdrive_log`.`BASSDRIVE_LOG_ID`,
+    private function return_LOG_BASSDRIVE(){
+
+        return 'SELECT `crnrstn_global_bassdrive_log`.`BASSDRIVE_LOG_ID`,
                         `crnrstn_global_bassdrive_log`.`PROGRAM_TITLE`,
                         `crnrstn_global_bassdrive_log`.`STREAM_RELAY_JSON`,
                         `crnrstn_global_bassdrive_log`.`DATEMODIFIED`
@@ -104,10 +170,11 @@ class crnrstn_database_sql_silo {
                     OR `crnrstn_global_bassdrive_log`.`PROCESSING_STATE` = "RELOAD"
                     ORDER BY DATEMODIFIED DESC LIMIT 1;';
 
-                break;
-                case 'BASSDRIVE_STREAM':
+    }
 
-                    $query = 'SELECT `bassdrive_stream`.`STREAM_ID`,
+    private function return_BASSDRIVE_STREAM(){
+
+        return 'SELECT `bassdrive_stream`.`STREAM_ID`,
                         `bassdrive_stream`.`STREAM_KEY`,
                         `bassdrive_stream`.`STREAM_KEY_CRC32`,
                         `bassdrive_stream`.`COLORS_NAME_KEY`,
@@ -116,10 +183,11 @@ class crnrstn_database_sql_silo {
                     FROM `bassdrive_stream`
                     WHERE `bassdrive_stream`.`ISACTIVE` = 1;';
 
-                break;
-                case 'BASSDRIVE_STREAM_COLORS':
+    }
 
-                    $query = 'SELECT `bassdrive_stream_colors`.`COLORS_ID`,
+    private function return_BASSDRIVE_STREAM_COLORS(){
+
+        return 'SELECT `bassdrive_stream_colors`.`COLORS_ID`,
                         `bassdrive_stream_colors`.`COLORS_NAME_KEY`,
                         `bassdrive_stream_colors`.`COLORS_NAME_KEY_CRC32`,
                         `bassdrive_stream_colors`.`COLORS_IMG_FILENAME`,
@@ -130,10 +198,11 @@ class crnrstn_database_sql_silo {
                     FROM `bassdrive_stream_colors`
                     WHERE `bassdrive_stream_colors`.`ISACTIVE` = 1;';
 
-                break;
-                case 'BASSDRIVE_STREAM_KEY_PATTERN_LOOKUP':
+    }
 
-                    $query = 'SELECT `crnrstn_stream_relay_string_patterns`.`STRING_PATTERN_ID`,
+    private function return_BASSDRIVE_STREAM_KEY_PATTERN_LOOKUP(){
+
+        return 'SELECT `crnrstn_stream_relay_string_patterns`.`STRING_PATTERN_ID`,
                         `crnrstn_stream_relay_string_patterns`.`STREAM_KEY`,
                         `crnrstn_stream_relay_string_patterns`.`STRING_PATTERN_TYPE`,
                         `crnrstn_stream_relay_string_patterns`.`STRING_PATTERN_LENGTH`,
@@ -143,10 +212,11 @@ class crnrstn_database_sql_silo {
                     WHERE `crnrstn_stream_relay_string_patterns`.`ISACTIVE` = 1
                     ORDER BY `crnrstn_stream_relay_string_patterns`.`STRING_PATTERN_LENGTH` DESC;';
 
-                break;
-                case 'BASSDRIVE_STREAM_SOCIAL_CONFIG':
+    }
 
-                    $query = 'SELECT `bassdrive_stream_social_config`.`SOCIAL_ID`,
+    private function return_BASSDRIVE_STREAM_SOCIAL_CONFIG(){
+
+        return 'SELECT `bassdrive_stream_social_config`.`SOCIAL_ID`,
                         `bassdrive_stream_social_config`.`STREAM_KEY`,
                         `bassdrive_stream_social_config`.`STREAM_KEY_CRC32`,
                         `bassdrive_stream_social_config`.`LOG_JSON_SERIAL`,
@@ -190,12 +260,13 @@ class crnrstn_database_sql_silo {
                         `bassdrive_stream_social_config`.`DATEMODIFIED`,
                         `bassdrive_stream_social_config`.`DATECREATED`
                     FROM `bassdrive_stream_social_config`
-                    WHERE `bassdrive_stream_social_config`.`ISACTIVE` = 1;
-                    ';
+                    WHERE `bassdrive_stream_social_config`.`ISACTIVE` = 1;';
 
-                break;
-                case 'LANG_PACKS':
-                    $query = 'SELECT `cia00_lang_packs`.`LANGPACK_ID`,
+    }
+
+    private function return_LANG_PACKS(){
+
+        return 'SELECT `cia00_lang_packs`.`LANGPACK_ID`,
                             `cia00_lang_packs`.`LANG_ID`,
                             `cia00_lang_packs`.`NAME`,
                             `cia00_lang_packs`.`NATIVE_NAME`,
@@ -210,18 +281,20 @@ class crnrstn_database_sql_silo {
                         FROM `cia00_lang_packs`  
                         WHERE `cia00_lang_packs`.`ISACTIVE`="1";';
 
-                break;
-                case 'NEW_OR_KEEPALIVE_SESSION':
+    }
 
-                    $ts = $oCRNRSTN_USR->return_query_date_time_stamp();
+    private function return_NEW_OR_KEEPALIVE_SESSION($oCRNRSTN_USR, $mysqli){
 
-                    if(!$oCRNRSTN_USR->isset_data_key('USER_ID')){
-                        //
-                        // THIS IS A NEW USER. GENERATE NEW USER_ID.
-                        $tmp_userid = $oCRNRSTN_USR->generate_new_key(50);
-                        $oCRNRSTN_USR->set_session_param('USER_ID', $tmp_userid);
+        $ts = $oCRNRSTN_USR->return_query_date_time_stamp();
+        if(!($this->oCRNRSTN->isset_resource('data_value', 'USER_ID', 'CRNRSTN::RESOURCE::ACCOUNT') == true)){
+        //if(!$oCRNRSTN_USR->isset_data_key('USER_ID')){
+            //
+            // THIS IS A NEW USER. GENERATE NEW USER_ID.
+            $tmp_userid = $this->oCRNRSTN->generate_new_key(50);
+            $tmp_result = $this->oCRNRSTN->add_resource('USER_ID', $tmp_userid, 'CRNRSTN::RESOURCE::ACCOUNT', CRNRSTN_AUTHORIZE_SESSION, 0);
+            //$oCRNRSTN_USR->set_session_param('USER_ID', $tmp_userid);
 
-                        $query = 'INSERT INTO `sessions`
+            $query = 'INSERT INTO `sessions`
                         (`SESSIONID`,
                         `SESSIONID_CRC32`,
                         `USERID`,
@@ -231,57 +304,32 @@ class crnrstn_database_sql_silo {
                         `DATEMODIFIED`)
                         VALUES
                         ("'.session_id().'",
-                        "' . $oCRNRSTN_USR->crcINT(session_id()).'",
+                        "' . $this->oCRNRSTN->hash(session_id(), 'crc32').'",
                         "' . $tmp_userid.'",
-                        "' . $oCRNRSTN_USR->crcINT($tmp_userid).'",
+                        "' . $this->oCRNRSTN->hash($tmp_userid, 'crc32').'",
                         INET_ATON("' . $_SERVER['REMOTE_ADDR'] . '"),
                         INET6_ATON("' . $_SERVER['REMOTE_ADDR'] . '"),
-                        "' . $ts.'");
-                        ';
+                        "' . $ts.'");';
 
-                    }else{
-
-                        //
-                        // THIS USER SESSION IS ACTIVE. RETRIEVE USER_ID FROM SESSION.
-                        $tmp_userid = $oCRNRSTN_USR->get_session_param('USER_ID');
-
-                        $query = 'UPDATE `sessions` SET `sessions`.`DATEMODIFIED`="' . $ts.'" 
-                                WHERE `sessions`.`SESSIONID`="' . $mysqli->real_escape_string(session_id()) . '" AND 
-								`sessions`.`SESSIONID_CRC32`="' . $oCRNRSTN_USR->crcINT(session_id()) . '" AND
-								`sessions`.`USERID`="' . $mysqli->real_escape_string($tmp_userid).'" AND 
-								`sessions`.`USERID_CRC32`="' . $oCRNRSTN_USR->crcINT($tmp_userid).'" LIMIT 1;';
-                    }
-
-                    //$oCRNRSTN_USR->create_AdHocVar('USER_ID', $tmp_userid);
-                    //$tmp_userid = $oCRNRSTN_USR->get_AdHocVar('USER_ID');
-
-                break;
-                default:
-
-                    //
-                    // HOOOSTON...VE HAF PROBLEM!
-                    throw new Exception('No query has been configured able to be loaded from the result set key [' . $result_set_key.'].');
-
-                break;
-            }
-
-        }catch( Exception $e ) {
+        }else{
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
+            // THIS USER SESSION IS ACTIVE. RETRIEVE USER_ID FROM SESSION.
+            // $tmp_userid = $oCRNRSTN_USR->get_session_param('USER_ID');
+            $tmp_userid = $this->oCRNRSTN->get_resource('err_reporting_profile', 0, 'CRNRSTN::RESOURCE::CONFIGURATION');
 
-            return false;
-
+            $query = 'UPDATE `sessions` SET `sessions`.`DATEMODIFIED`="' . $ts.'" 
+                    WHERE `sessions`.`SESSIONID`="' . $mysqli->real_escape_string(session_id()) . '" AND 
+                    `sessions`.`SESSIONID_CRC32`="' . $this->oCRNRSTN->hash(session_id(), 'crc32') . '" AND
+                    `sessions`.`USERID`="' . $mysqli->real_escape_string($tmp_userid).'" AND 
+                    `sessions`.`USERID_CRC32`="' . $this->oCRNRSTN->hash($tmp_userid, 'crc32').'" LIMIT 1;';
         }
 
-        //
-        // RETURN QUERY
         return $query;
 
     }
 
-	public function __destruct() {
+	public function __destruct(){
 		
 	}
 

@@ -47,14 +47,14 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             ~ CONSIDER EMPLOYEE vs CLIENT IN CONTEXT OF EXTRANET AND THE VISIBILITY THERE. E.G., WHY WOULD CLIENT "A"
               SEE ACTIVITY FOR CLIENT "B" IN THE SYSTEM?
         * LIVING STREAMS COMMUNICATIONS MESSAGING LAYER WHERE USER @MENTIONS THROW ALERTS TO USERS FOR REAL-TIME
-          COMMUNICATIONS IN SYSTEM. CONSIDER DATA OUTPUT FORMAT FOR MOBILE DEVICE APPLICATION PUSHING AND PULLING
-          CRNRSTN :: DRIVEN MOBILE COMMUNICATIONS WHERE LOGGING INTO CRNRSTN :: WILL EXPOSE TO THE SAME "MOBILE APP"
-          THREAD WITHIN THE RUNNING LAMP ENVIRONMENT.
+          COMMUNICATIONS IN SYSTEM. CONSIDER DATA OUTPUT FORMAT FOR MOBILE DEVICE APPLICATION READS AND WRITES OF
+          CRNRSTN :: DRIVEN MOBILE DEVICE COMMUNICATIONS WHERE LOGGING INTO CRNRSTN :: WILL EXPOSE TO THE SAME
+          "MOBILE APP" THREAD WITHIN THE RUNNING LAMP ENVIRONMENT.
         * WE NEED TO PUT TOGETHER A EULA FOR ANY ACCOUNTS IN THE SYSTEM (EULA INTERSTITIAL WAY-POINT WHEN ACTIVATING
           ANY ACCOUNT) WHICH HONORS ALL OF THE ABOVE.
 
 */
-// # # C # R # N # R # S # T # N # : : # # ##
+// # # C # R # N # R # S # T # N # : : # # # #
 // #
 // #  CLASS :: oCRNRSTN_JS
 // #  VERSION :: 1.00.0000
@@ -884,6 +884,47 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
     };
 
+    //crnrstn_deep_link_hash_node_
+    //
+
+    CRNRSTN_JS.prototype.initialize_dom_injected_content = function(){
+
+        if($('#crnrstn_deep_link_src_node_count').length){
+
+            //
+            // WE HAVE A DEEP LINK REQUEST TO PROCESS.
+            var hash_elem_id = '';
+            var component_cnt = parseInt($('#crnrstn_deep_link_src_node_count').html());
+            var nav_is_init = false;
+
+            for(var i=0; i < component_cnt; i++){
+
+                var hash_elem_id = 'crnrstn_deep_link_hash_node_' + i;
+
+                if($('#' + hash_elem_id).length){
+
+                    //
+                    // NAVIGATION HASH INITIALIZATION.
+                    if($('#crnrstn_interact_ui_documentation_side_nav_src_HASH').length && !nav_is_init){
+
+                        nav_is_init = true;
+                        $('#crnrstn_interact_ui_documentation_side_nav_src_HASH').val($('#' + hash_elem_id).html());
+                        //alert('[lnum 909] NAV_HASH=[' + $('#' + hash_elem_id).html() + '].  total component_cnt:' + component_cnt + '.');
+                        this.log_activity('[lnum 910] Qty. ' + component_cnt + ' components received for page initialization. crnrstn_interact_ui_documentation_side_nav_src_HASH=[' + $('#' + hash_elem_id).html() + '].  total component_cnt:' + component_cnt + '.', this.CRNRSTN_DEBUG_VERBOSE);
+
+                    }
+
+                    //
+                    // PAGE LOAD...HERE? Tuesday, February 28, 2023 @ 0358 hrs
+
+                }
+
+            }
+
+        }
+
+    };
+
     CRNRSTN_JS.prototype.crnrstn_init = function(){
 
         var self = this;
@@ -957,6 +998,10 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             var tmp_module_key_ARRAY = tmp_module_keys.split('|');
             var module_cnt = tmp_module_key_ARRAY.length;
 
+            //
+            // INITIALIZE CONTENT HASH FOR DEEP LINK INTEGRATION SUPPORT.
+            self.initialize_dom_injected_content();
+
             for(var i = 0; i < module_cnt; i++){
 
                 //
@@ -997,7 +1042,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         <input type="hidden" id="crnrstn_debug_logging_output_channel" name="crnrstn_debug_logging_output_channel" value="' . $this->oCRNRSTN->get_resource('debug_logging_output_channel', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
 
-        <input type="hidden" id="crnrstn_depeche_mode" name="crnrstn_depeche_mode" value="' . $this->oCRNRSTN->get_resource('depeche_mode', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
+        <input type="hidden" id="crnrstn_depeche_mode" name="crnrstn_depeche_mode" value="' . $this->oCRNRSTN->get_resource('client_debug_mode', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS') . '">
 
         */
 
@@ -1011,7 +1056,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         this.system_date_str = $('#crnrstn_interact_ui_sysdate').html();
         this.oSystem_date = new Date(this.system_date_str);
 
-        if(tmp_attribute_value = this.load_setting_attribute('crnrstn_depeche_mode')){
+        if(tmp_attribute_value = this.load_setting_attribute('crnrstn_client_debug_mode')){
 
             this.crnrstn_debug_mode = parseInt(tmp_attribute_value);
 
@@ -1754,7 +1799,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         // LOAD GET PARAMS
         var param_name = '';
         var param_data = '';
-        var tmp_get_params = $('#crnrstn_interact_data_transport_get_params').val();
+        var tmp_get_params = $('#crnrstn_interact_data_tunnel_get_params').val();
 
         if(tmp_get_params !== undefined){
 
@@ -1905,7 +1950,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                         //
                         // RECEIVE NEW SOAP SERVICES DATA TUNNEL LAYER FORM PACKET SITUATION....SITUATION
-                        this.consume_data_tunnel_xml_node(response_data, 'ssdtl_packet', 'soap_data_tunnel_layer_fih_packet', '' , serialize_response);
+                        this.consume_data_tunnel_xml_node(response_data, 'ssdtl_packet', 'soap_services_data_tunnel_layer_packet', '' , serialize_response);
 
                         //
                         // IF WE HAVE RESPONSE STATUS REPORT DATA
@@ -2246,7 +2291,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         tmp_data = tmp_data.trim();
 
-        if(xml_nom === 'soap_data_tunnel_layer_fih_packet'){
+        if(xml_nom === 'soap_services_data_tunnel_layer_packet'){
 
             if(tmp_data != ''){
 
@@ -3454,7 +3499,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             <div class="crnrstn_interact_ui">
                 <div id="crnrstn_interact_ui_bg_border" class="crnrstn_interact_ui_bg_border"></div>
                 <div id="crnrstn_interact_ui_bg_solid" class="crnrstn_interact_ui_bg_solid" onclick="oCRNRSTN_JS.sign_in_transition_via_micro_expansion();">
-                    ' . $this->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_UI_IMG_HTML_WRAPPED) . '
+                    ' . $this->return_creative('MESSAGE_CONVERSATION_BUBBLE_MICRO_THUMB_BLUE00', CRNRSTN_HTML) . '
                     <div class="crnrstn_cb"></div>
                 </div>
                 <div id="crnrstn_interact_ui_content_wrapper" class="crnrstn_interact_ui_content_wrapper">
@@ -3478,6 +3523,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
                 </div>
             </div>
         </div>
+
         */
 
     };
@@ -4361,7 +4407,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             $(class_elem_set[i]).css('fontFamily', this.get_theme_attribute('interact.ui.document_page_title_copy_font_family'));
             $(class_elem_set[i]).css('fontWeight', this.get_theme_attribute('interact.ui.document_page_title_copy_font_weight'));
             $(class_elem_set[i]).css('lineHeight', this.get_theme_attribute('interact.ui.document_page_title_copy_line_height'));
-            $(class_elem_set[i]).css('overflowWrap', this.get_theme_attribute('interact.ui.document_page_copy_overflowrap'));
+            $(class_elem_set[i]).css('overflowWrap', this.get_theme_attribute('interact.ui.document_page_copy_overflow_wrap'));
             $(class_elem_set[i]).css('textShadow', this.get_theme_attribute('interact.ui.document_page_title_copy_text_shadow'));
 
             $(class_elem_set[i]).animate({
@@ -6233,9 +6279,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
                             break;
                             default:
-                                //
-                                // SILENCE IS GOLDEN
-
+                                // SILENCE IS GOLDEN.
                             break;
 
                         }
@@ -7273,8 +7317,8 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
     CRNRSTN_JS.prototype.extract_filename = function(str_path){
 
         //
-        // TODO :: GET SITE WWW ROOT INFO FROM THE PSSDTLP/CRNRSTN :: DDO UI TUNNEL RESPONSE
-        // SITUATION....IN FACT, WHY DON'T YOU GET ALL THE VALUES WITH FLIPPED BITS.
+        // TODO :: GET SITE WWW ROOT INFO FROM THE PSSDTLP/CRNRSTN :: DECOUPLED DATA OBJECT (DDO)
+        // UI TUNNEL RESPONSE SITUATION. IN FACT, WHY NOT GET ALL THE VALUES WITH FLIPPED BITS?
         // var str_array = str_path.split(this.get_resource('ROOT_PATH_CLIENT_HTTP') + this.get_resource('ROOT_PATH_CLIENT_HTTP_DIR') + 'common/imgs/lifestyle_banner/desktop/');
         var str_array = str_path.c('http://172.16.225.128/jony5/common/imgs/lifestyle_banner/desktop/');
         var tmp_str = str_array[1];
@@ -8707,7 +8751,7 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
             document.execCommand('copy');
 
             /* Alert the copied text */
-            //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_' . $tmp_hash . '").innerHTML);
+            //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_' . $tmp_hash . '").innerHTML);
             document.getElementById("crnrstn_module_share_component_input_" + elem).style.backgroundColor = "#95a3ff";
             document.getElementById("crnrstn_module_share_component_copy_status_" + elem).innerHTML = "Copied!";
 
@@ -9744,13 +9788,13 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
         if(document.selection){ // IE
 
             var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById('crnstn_print_r_source_' + elem_hash));
+            range.moveToElementText(document.getElementById('crnrstn_print_r_source_' + elem_hash));
             range.select();
 
         }else if (window.getSelection){
 
             var range = document.createRange();
-            range.selectNode(document.getElementById('crnstn_print_r_source_' + elem_hash));
+            range.selectNode(document.getElementById('crnrstn_print_r_source_' + elem_hash));
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
 
@@ -9763,27 +9807,27 @@ SERVER DRIVEN VARIABLE INITIALIZATION AND STATE MANAGEMENT - REAL-TIME MANAGEMEN
 
         //
         // ONLY HTTPS
-        // navigator.clipboard.writeText($('#crnstn_print_r_source_' + elem_hash).html()).then(
+        // navigator.clipboard.writeText($('#crnrstn_print_r_source_' + elem_hash).html()).then(
         //     () => {
         //         /* clipboard successfully set */
-        //         //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_" + elem_hash).innerHTML);
+        //         //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_" + elem_hash).innerHTML);
         //
         //     },
         //     () => {
         //         /* clipboard write failed */
-        //         //alert("FAIL::Copied the text: " + document.getElementById("crnstn_print_r_source_" + elem_hash).innerHTML);
+        //         //alert("FAIL::Copied the text: " + document.getElementById("crnrstn_print_r_source_" + elem_hash).innerHTML);
         //
         //     }
         // );
 
         /* Alert the copied text */
-        //alert("Copied the text: " + document.getElementById("crnstn_print_r_source_" + elem_hash).innerHTML);
-        //alert("Highlight Color: " + $('#crnstn_print_r_highlight_color_' + elem_hash).html());
-        document.getElementById('crnstn_print_r_source_' + elem_hash).style.backgroundColor = $('#crnstn_print_r_highlight_color_' + elem_hash).html();
-        //$('#crnstn_print_r_source_' + elem_hash).css('backgroundColor', $('#crnstn_print_r_highlight_color_' + elem_hash).html());
+        //alert("Copied the text: " + document.getElementById("crnrstn_print_r_source_" + elem_hash).innerHTML);
+        //alert("Highlight Color: " + $('#crnrstn_print_r_highlight_color_' + elem_hash).html());
+        document.getElementById('crnrstn_print_r_source_' + elem_hash).style.backgroundColor = $('#crnrstn_print_r_highlight_color_' + elem_hash).html();
+        //$('#crnrstn_print_r_source_' + elem_hash).css('backgroundColor', $('#crnrstn_print_r_highlight_color_' + elem_hash).html());
 
-        // $('#crnstn_print_r_source_' + elem_hash).animate({
-        //     backgroundColor: $('#crnstn_print_r_highlight_color_' + elem_hash).html()
+        // $('#crnrstn_print_r_source_' + elem_hash).animate({
+        //     backgroundColor: $('#crnrstn_print_r_highlight_color_' + elem_hash).html()
         // }, {
         //     duration: 500,
         //     queue: false,

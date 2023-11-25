@@ -1,0 +1,137 @@
+<%@ Page Language="VB" ContentType="text/html" ResponseEncoding="iso-8859-1" %>
+<html>
+<head>
+<title>DispersenetRealty Contact Us</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</head>
+<body background="backgrounds/site_template_BG.jpg" text="#000066" link="#000066" vlink="#660033" onLoad="MM_preloadImages('buttons/hot_spot/btn_Home_a.gif','buttons/hot_spot/btn_AboutUs_a.gif')">
+<a href="index.html"><img src="buttons/home_link_hidden.gif" width="832" height="133" border="0"></a>
+<div id="Layer2" style="position:absolute; left:546px; top:229px; width:79px; height:22px; z-index:2">*Email: 
+</div>
+<div id="Layer8" style="position:absolute; left:279px; top:505px; width:519px; height:125px; z-index:8"> 
+
+</div>
+<div id="Layer9" style="position:absolute; left:266px; top:619px; width:130px; height:28px; z-index:9">I 
+  am interested in:</div>
+<div id="Layer10" style="position:absolute; left:448px; top:623px; width:167px; height:28px; z-index:10">Selling 
+  a home</div>
+<div id="Layer11" style="position:absolute; left:447px; top:646px; width:167px; height:27px; z-index:11">Buying 
+  a home</div>
+<div id="Layer12" style="position:absolute; left:447px; top:695px; width:168px; height:31px; z-index:12">More 
+  information </div>
+<div id="Layer13" style="position:absolute; left:447px; top:671px; width:169px; height:31px; z-index:13">Special 
+  Offers </div>
+<div id="Layer14" style="position:absolute; left:415px; top:623px; width:24px; height:26px; z-index:14"> 
+
+</div>
+<div id="Layer15" style="position:absolute; left:415px; top:696px; width:24px; height:27px; z-index:15"> 
+
+</div>
+<div id="Layer16" style="position:absolute; left:415px; top:672px; width:23px; height:29px; z-index:16"> 
+
+</div>
+
+<div id="Layer18" style="position:absolute; left:274px; top:734px; width:525px; height:27px; z-index:18"> 
+  <form name="form11" method="post" action="http://www.webhost4life.com/cgi-bin/ultra/ultra-mail.pl">
+<input type="Hidden" name="XX-subject" value="Dispersenet - AUTO-generated form">
+<input type="Hidden" name="XX-send-to-email" value="jony5@juno.com">
+<input type="Hidden" name="XX-redirect-to-url" value="http://www.dispersenet.jony5.com">
+<input type="Hidden" name="XX-email" value="postmaster@jony5.com" >
+    <input type="text" id=name="Comments" size="30">
+	<textarea name="Comments" WRAP=physical COLS=50 ROWS=10></textarea>
+    <div align="center">
+      <input name="submit" type="submit" id="submit" value=" Send Mail ">
+    </div>
+  </form>
+  
+  <form name="form12" method="post" action="http://www.webhost4life.com/cgi-bin/ultra/ultra-mail.pl">
+<input type="Hidden" name="XX-subject" value="Dispersenet - AUTO-generated form">
+<input type="Hidden" name="XX-send-to-email" value="jony5@juno.com">
+<input type="Hidden" name="XX-redirect-to-url" value="http://www.dispersenet.jony5.com">
+<input type="Hidden" name="XX-email" value="postmaster@jony5.com" > 
+    <div align="center">
+      <input name="clear_form" type="reset" id="clear_form" value="Clear Form">
+    </div>
+  </form>
+  <div align="center"></div>
+</div>
+<div id="Layer3" style="position:absolute; left:270px; top:231px; width:120px; height:34px; z-index:19">*First 
+  Name: </div>
+<div id="Layer4" style="position:absolute; left:269px; top:285px; width:123px; height:36px; z-index:20">*Last 
+  Name:</div>
+<div id="Layer5" style="position:absolute; left:268px; top:337px; width:132px; height:36px; z-index:21">Daytime 
+  Phone:</div>
+<div id="Layer6" style="position:absolute; left:268px; top:389px; width:132px; height:36px; z-index:22">Evening 
+  Phone:</div>
+<div id="Layer7" style="position:absolute; left:267px; top:489px; width:132px; height:35px; z-index:23">Comments:</div>
+<div id="Layer1" style="position:absolute; left:546px; top:285px; width:155px; height:29px; z-index:24">Street 
+  Address: </div>
+<div id="Layer19" style="position:absolute; left:542px; top:389px; width:163px; height:28px; z-index:25">City:</div>
+<div id="Layer20" style="position:absolute; left:546px; top:339px; width:176px; height:29px; z-index:26">State/Province:</div>
+<div id="Layer21" style="position:absolute; left:541px; top:441px; width:185px; height:42px; z-index:27">Zip/Postal 
+  Code: </div>
+
+<div id="Layer23" style="position:absolute; left:279px; top:303px; width:154px; height:57px; z-index:29"> 
+</div>
+<div id="Layer24" style="position:absolute; left:279px; top:355px; width:181px; height:52px; z-index:30"> 
+</div>
+<div id="Layer25" style="position:absolute; left:278px; top:407px; width:146px; height:49px; z-index:31"> 
+</div>
+<div id="Layer26" style="position:absolute; left:555px; top:356px; width:201px; height:50px; z-index:32"> 
+</div>
+<div id="Layer27" style="position:absolute; left:554px; top:406px; width:203px; height:50px; z-index:33"> 
+</div>
+<div id="Layer28" style="position:absolute; left:551px; top:458px; width:207px; height:55px; z-index:34"> 
+</div>
+<div id="Layer29" style="position:absolute; left:556px; top:302px; width:200px; height:53px; z-index:35"> 
+</div>
+<div id="Layer30" style="position:absolute; left:556px; top:247px; width:200px; height:56px; z-index:36"> 
+</div>
+<div id="Layer31" style="position:absolute; left:268px; top:441px; width:154px; height:32px; z-index:37">Fax:</div>
+<div id="Layer32" style="position:absolute; left:278px; top:459px; width:179px; height:49px; z-index:38"> 
+</div>
+<p><a href="index.aspx"> 
+  <!-- fwtable fwsrc="topbanner.png" fwbase="topbanner" fwstyle="Dreamweaver" fwdocid = "742308039" fwnested="0" -->
+  </a> </p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp; </p>
+<p align="left"><a href="index.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Home_Highlight','','buttons/hot_spot/btn_Home_a.gif',1)"><img src="buttons/hot_spot/btn_Home_na.gif" name="Home_Highlight" width="168" height="31" border="0"></a></p>
+<p align="left"><a href="aboutus.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('AboutUs_Active','','buttons/hot_spot/btn_AboutUs_a.gif',1)"><img src="buttons/hot_spot/btn_AboutUs_na.gif" name="AboutUs_Active" width="168" height="31" border="0"></a></p>
+<p align="left">&nbsp;</p>
+<div id="Layer2" style="position:absolute; left:-2px; top:793px; width:11px; height:151px; z-index:2"></div>
+<p>&nbsp;</p>
+</body>
+</html>

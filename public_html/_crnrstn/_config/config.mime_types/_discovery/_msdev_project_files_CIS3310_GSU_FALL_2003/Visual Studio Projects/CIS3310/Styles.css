@@ -1,0 +1,22 @@
+body
+{
+	background-color: Azure;
+	font-family:Tahoma, Verdana, Helvetica, Sans-Serif;
+}
+TABLE
+{
+	border:border-width=0;
+}
+
+.TextBox
+{
+	border: black 1px solid;
+	font-family: Tahoma, Verdana, Helvetica, Sans-Serif;
+}
+
+.Button
+{
+	border: black 1px solid;
+	font-family: Tahoma, Verdana, Helvetica, Sans-Serif;
+	background-color: Gainsboro;
+}

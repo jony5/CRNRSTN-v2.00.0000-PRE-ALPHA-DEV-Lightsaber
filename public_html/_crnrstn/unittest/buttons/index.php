@@ -127,20 +127,20 @@ $oCRNRSTN
 $data = 'J5, my boy!';
 
 $tmp_password_A = $oCRNRSTN->generate_new_key(64);
-$tmp_password_A = openssl_digest($tmp_password_A, $oCRNRSTN->return_openssl_digest_method(), true);
+$tmp_password_A = openssl_digest($tmp_password_A, $oCRNRSTN->get_resource('openssl_cipher', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS'), true);
 
 $tmp_password_B = $oCRNRSTN->generate_new_key(64);
-$tmp_password_B = openssl_digest($tmp_password_B, $oCRNRSTN->return_openssl_digest_method(), true);
+$tmp_password_B = openssl_digest($tmp_password_B, $oCRNRSTN->get_resource('openssl_cipher', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS'), true);
 
 $tmp_password_D = $oCRNRSTN->generate_new_key(64);
-$tmp_password_D = openssl_digest($tmp_password_D, $oCRNRSTN->return_openssl_digest_method(), true);
+$tmp_password_D = openssl_digest($tmp_password_D, $oCRNRSTN->get_resource('openssl_cipher', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS'), true);
 
 //
 // GET AND/OR CLEAR ANY OPENSSL ERR
 openssl_error_return($openssl_err_queue_ARRAY,__LINE__, '--openssl_digest');
 
 $config = array(
-    'digest_alg' => $oCRNRSTN->return_openssl_digest_method(),
+    'digest_alg' => $oCRNRSTN->get_resource('openssl_cipher', 0, 'CRNRSTN::RESOURCE::GENERAL_SETTINGS'),
     'private_key_bits' => 4096,
     'private_key_type' => OPENSSL_KEYTYPE_RSA,
 );
@@ -274,7 +274,7 @@ openssl_error_return($openssl_err_queue_ARRAY,__LINE__, '--openssl_public_decryp
 <?php echo $oCRNRSTN->return_creative('CRNRSTN_FAVICON'); ?>
 <?php echo $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY) .
     $oCRNRSTN->ui_content_module_out(CRNRSTN_JS_FRAMEWORK_JQUERY_UI).
-    $oCRNRSTN->ui_content_module_out(CRNRSTN_UI_CSS_MAIN_DESKTOP & CRNRSTN_UI_JS_MAIN); ?>
+    $oCRNRSTN->ui_content_module_out(CRNRSTN_CSS_MAIN_DESKTOP & CRNRSTN_JS_MAIN); ?>
 <style>
     *                                           { }
     .the_R_in_crnrstn                           { color:#F90000; }
@@ -384,9 +384,9 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
         YOUTUBE
 
         */
-        //echo '<img src="' . $oCRNRSTN->return_creative('MYSQL_DOLPHIN', CRNRSTN_UI_IMG_BASE64) .'" height="100">';
+        //echo '<img src="' . $oCRNRSTN->return_creative('MYSQL_DOLPHIN', CRNRSTN_BASE64) .'" height="100">';
 
-        echo '<div style="float: right;"><img src="' . $oCRNRSTN->return_creative('REDHAT_LOGO', CRNRSTN_UI_IMG_BASE64) . '" width="103"></div><div class="crnrstn_cb_10" style="border-bottom: 2px solid #dbdbdb;"></div>';
+        echo '<div style="float: right;"><img src="' . $oCRNRSTN->return_creative('REDHAT_LOGO', CRNRSTN_BASE64) . '" width="103"></div><div class="crnrstn_cb_10" style="border-bottom: 2px solid #dbdbdb;"></div>';
         echo '<div class="crnrstn_cb_30"></div>';
 
         echo '<div style="font-weight: bold; font-size: 20px;">Web ::</div><div class="crnrstn_cb"></div>';
@@ -445,7 +445,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
         <div class="crnrstn_log_entry">Key details:</div>
         <?php
 
-        foreach ($tmp_details_ARRAY as $index => $val){
+        foreach($tmp_details_ARRAY as $index => $val){
 
             echo '<div class="crnrstn_log_entry">';
             echo print_r($index, true);
@@ -453,7 +453,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
 
             if(is_array($val)){
 
-                foreach ($val as $index2 => $val2){
+                foreach($val as $index2 => $val2){
 
                     echo '<div class="crnrstn_log_entry">--';
                     echo print_r($index2, true);
@@ -520,7 +520,7 @@ echo $oCRNRSTN_UNITTEST_MGR->return_automation_initialization('curl');
         <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
             <div id="crnrstn_j5_wolf_pup_inner_wrap" class="crnrstn_j5_wolf_pup_inner_wrap">
                 <?php
-                echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
+                echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_HTML);
                 ?>
             </div>
         </div>

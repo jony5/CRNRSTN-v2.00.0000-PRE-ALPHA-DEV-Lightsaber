@@ -41,18 +41,20 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_wind_cloud_fire
 #  VERSION :: 2.00.0000
 #  DATE :: November 9, 2018 @ 1117hrs
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  URI :: 
-#  DESCRIPTION :: A robust SFTP/FTP/LOCAL_DIR file mover. This is Electrum ::.
+#  DESCRIPTION :: A robust SFTP/FTP/LOCAL_DIR file mover. This is Electrum ::
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
-#  EZEKIEL 1:4 - AND I LOOKED, AND THERE CAME A STORM WIND FROM THE NORTH, A GREAT CLOUD AND A FIRE
-#  FLASHING INCESSANTLY; AND THERE WAS A BRIGHTNESS AROUND IT, AND FROM THE MIDST OF IT
-#  THERE WAS SOMETHING LIKE THE SIGHT OF ELECTRUM, FROM THE MIDST OF THE FIRE.
+#  EZEKIEL 1:4 - AND I LOOKED, AND THERE CAME A STORM WIND FROM THE NORTH,
+#                A GREAT CLOUD AND A FIRE FLASHING INCESSANTLY; AND THERE
+#                WAS A BRIGHTNESS AROUND IT, AND FROM THE MIDST OF IT
+#                THERE WAS SOMETHING LIKE THE SIGHT OF ELECTRUM, FROM THE
+#                MIDST OF THE FIRE.
 #
 class crnrstn_wind_cloud_fire {
 
@@ -101,7 +103,7 @@ class crnrstn_wind_cloud_fire {
     protected $source_file_uid_INT_at_path_ARRAY = array();
     protected $source_file_gid_INT_at_path_ARRAY = array();
 
-    protected $max_storage_utilization = 90;
+    protected $max_disk_storage_utilization = 90;
 
     protected $ftp_recursive_sniffed_directory_ARRAY = array();
 
@@ -206,12 +208,12 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
+            // RETURN FALSE.
             return false;
 
         }
@@ -324,11 +326,11 @@ class crnrstn_wind_cloud_fire {
                 $file_size = $file_size + $wheel_high_awesome_eyes->return_filesize_bytes();
 
             }
-            
+
             if($wheel_high_awesome_eyes->is_skipped()){
 
                 $skipped_count++;
-                
+
             }
 
             if($wheel_high_awesome_eyes->is_transfer_error()){
@@ -581,12 +583,12 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
+            // RETURN FALSE.
             return false;
 
         }
@@ -628,12 +630,12 @@ class crnrstn_wind_cloud_fire {
 
             return NULL;
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
+            // RETURN FALSE.
             return false;
 
         }
@@ -680,7 +682,7 @@ class crnrstn_wind_cloud_fire {
 
             if(isset($asset_transfer_suppression_ARRAY[$this->electrum_process_id])){
 
-                foreach($asset_transfer_suppression_ARRAY[$this->electrum_process_id][$execution_batch_serial] as $key => $exclusion_profile_ARRAY) {
+                foreach($asset_transfer_suppression_ARRAY[$this->electrum_process_id][$execution_batch_serial] as $key => $exclusion_profile_ARRAY){
 
                     $exclusion_serial = $exclusion_profile_ARRAY['exclusion_serial'];
                     $exclusion_type = $exclusion_profile_ARRAY['exclusion_type'];
@@ -690,10 +692,10 @@ class crnrstn_wind_cloud_fire {
                     $exclusion_check_result['wcr_path_specified'] = '';
                     $exclusion_profile_exclude_ARRAY[$exclusion_serial][$exclusion_type][$qualification_pattern] = true;
 
-                    if (isset($WCRkey_or_DIRPATH)) {
+                    if(isset($WCRkey_or_DIRPATH)){
                         $all_excludes_open = false;
 
-                        if ($oEndpoint_WCRkey_or_path != $WCRkey_or_DIRPATH && $WCRkey_or_DIRPATH != '' && $WCRkey_or_DIRPATH != NULL) {
+                        if($oEndpoint_WCRkey_or_path != $WCRkey_or_DIRPATH && $WCRkey_or_DIRPATH != '' && $WCRkey_or_DIRPATH != NULL){
 
                             $exclusion_profile_exclude_ARRAY[$exclusion_serial][$exclusion_type][$qualification_pattern] = false;
 
@@ -713,7 +715,7 @@ class crnrstn_wind_cloud_fire {
                     $exclusion_check_result['exclusion_meta'] = '';
                     //$this->oCRNRSTN_USR->error_log('PROCESS EXCLUSION [' . $exclusion_type . '][' . $key . '][' . $filePath . ']', __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-                    switch ($exclusion_type) {
+                    switch ($exclusion_type){
                         case 'DIRECTORY':
                             //#['DIRECTORY']['NOMINATION'][] = $WCRkey_or_DIRPATH;
                             //#['DIRECTORY']['NOMINATION'][] = $qualification_pattern;
@@ -1032,12 +1034,12 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
+            // RETURN FALSE.
             return false;
 
         }
@@ -1100,7 +1102,7 @@ class crnrstn_wind_cloud_fire {
 
     public function localStorageUse_doNotPassUsagePercent($maxStorageUse){
 
-        $tmp_maxStorage = $this->oCRNRSTN_USR->str_sanitize($maxStorageUse, 'max_storage_utilization');
+        $tmp_maxStorage = $this->oCRNRSTN_USR->str_sanitize($maxStorageUse, 'clean_percentage_numbers');
 
         $tmp_maxStorage = (int) $tmp_maxStorage * 1;
 
@@ -1108,13 +1110,13 @@ class crnrstn_wind_cloud_fire {
 
             if(is_integer($tmp_maxStorage) || is_int($tmp_maxStorage) || is_float($tmp_maxStorage) || is_double($tmp_maxStorage)){
 
-                $this->max_storage_utilization = $tmp_maxStorage;
+                $this->max_disk_storage_utilization = $tmp_maxStorage;
 
             }else{
 
                 if(strtolower($tmp_maxStorage) == 'fullretard'){
 
-                    $this->max_storage_utilization = 100;
+                    $this->max_disk_storage_utilization = 100;
 
                 }else{
 
@@ -1126,12 +1128,12 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
+            // RETURN FALSE.
             return false;
 
         }
@@ -1170,7 +1172,7 @@ class crnrstn_wind_cloud_fire {
         $oEndpoint_serial_dest = $FIREHOT_oEndpoint_DESTINATION->return_serial();
 
         $total_wheels_count = sizeof($this->directory_content_ARRAY[$oEndpoint_serial]);
-        if(isset($this->directory_dir_content_ARRAY[$oEndpoint_serial])) {
+        if(isset($this->directory_dir_content_ARRAY[$oEndpoint_serial])){
 
             $total_wheels_dir_count = sizeof($this->directory_dir_content_ARRAY[$oEndpoint_serial]);
 
@@ -1198,7 +1200,7 @@ class crnrstn_wind_cloud_fire {
 
             if(isset($this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filePath])){
 
-                if($this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filePath]!=-1) {
+                if($this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filePath]!=-1){
 
                     $oWheel_high_awesome->init_fileSize_bytes($this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filePath]);
 
@@ -1339,16 +1341,16 @@ class crnrstn_wind_cloud_fire {
         // CALCULATE PERCENTAGE UTILIZATION OF REQUEST
         $percentage_utilization_ask = 100-((($tmp_file_size_total + ($tmp_destination_diskSize_bytes-$tmp_destination_capacity))/$tmp_destination_diskSize_bytes)*100);
 
-        if($percentage_utilization_ask > $this->max_storage_utilization){
+        if($percentage_utilization_ask > $this->max_disk_storage_utilization){
 
             $percentage_utilization_ask = 100-((($tmp_file_size_total + ($tmp_destination_diskSize_bytes-$tmp_destination_capacity))/$tmp_destination_diskSize_bytes)*100);
 
             //
             // HOOOSTON...VE HAF PROBLEM!
-            throw new Exception('The CRNRSTN :: Electrum max local DIR destination storage utilization has been exceeded with an ask which would result in ' . $percentage_utilization_ask.'% usage. This being when ' . $this->max_storage_utilization.'% is the currently configured maximum [See electrum_doNotPassDiskUsagePercent()]. For the record, only ' . $tmp_destination_capacity.' is available at ' . $FIREHOT_oEndpoint_DESTINATION->return_LOCAL_DIR_PATH().'.');
+            throw new Exception('The CRNRSTN :: Electrum max local DIR destination storage utilization has been exceeded with an ask which would result in ' . $percentage_utilization_ask.'% usage. This being when ' . $this->max_disk_storage_utilization.'% is the currently configured maximum [See electrum_doNotPassDiskUsagePercent()]. For the record, only ' . $tmp_destination_capacity.' is available at ' . $FIREHOT_oEndpoint_DESTINATION->return_LOCAL_DIR_PATH().'.');
 
         }else{
-            
+
             $this->oCRNRSTN_USR->error_log('The CRNRSTN :: Electrum process is handling FD asset transfer of ' . $total_wheels_count.' assets from ' . $FIREHOT_oEndpoint_SOURCE->return_FTP_SERVER().'::' . $FIREHOT_oEndpoint_SOURCE->return_FTP_PORT().' @ [DIR::' . $FIREHOT_oEndpoint_SOURCE->return_FTP_DIR_PATH().'] to DIR[' . $FIREHOT_oEndpoint_DESTINATION->return_LOCAL_DIR_PATH().'].', __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
             $wheels_high_awesome_cnt = 0;
@@ -1365,7 +1367,7 @@ class crnrstn_wind_cloud_fire {
 
                 if(isset($this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filePath])){
 
-                    if($this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filePath]!=-1) {
+                    if($this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filePath]!=-1){
 
                         $oWheel_high_awesome->init_fileSize_bytes($this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filePath]);
 
@@ -1382,13 +1384,13 @@ class crnrstn_wind_cloud_fire {
 
                 }
 
-                if ($wheels_high_awesome_cnt < 5) {
+                if($wheels_high_awesome_cnt < 5) {
 
                     $this->oCRNRSTN_USR->error_log('FD TRANSFER[' . $wheels_high_awesome_cnt . ']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-                } else {
+                }else{
 
-                    if ($wheels_high_awesome_cnt > ($total_wheels_count - 5)) {
+                    if($wheels_high_awesome_cnt > ($total_wheels_count - 5)) {
 
                         $this->oCRNRSTN_USR->error_log('FD TRANSFER[' . $wheels_high_awesome_cnt . ']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
@@ -1403,7 +1405,7 @@ class crnrstn_wind_cloud_fire {
             if($total_wheels_dir_count>0){
 
                 //
-                // EMPTY DIRECTORIES FROM FTP TO PUSH TO LOCAL DIRECTORY
+                // EMPTY DIRECTORIES FROM FTP TO WRITE TO LOCAL DIRECTORY
                 foreach($this->directory_dir_content_ARRAY[$oEndpoint_serial] as $filePath => $key){
 
                     //
@@ -1428,13 +1430,13 @@ class crnrstn_wind_cloud_fire {
 
                     }
 
-                    if ($wheels_high_awesome_cnt < 5) {
+                    if($wheels_high_awesome_cnt < 5) {
 
                         $this->oCRNRSTN_USR->error_log('FD TRANSFER[' . $wheels_high_awesome_cnt . ']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-                    } else {
+                    }else{
 
-                        if ($wheels_high_awesome_cnt > ($total_wheels_count - 5)) {
+                        if($wheels_high_awesome_cnt > ($total_wheels_count - 5)) {
 
                             $this->oCRNRSTN_USR->error_log('FD TRANSFER[' . $wheels_high_awesome_cnt . ']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
@@ -1508,13 +1510,13 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-            if ($wheels_high_awesome_cnt < 5) {
+            if($wheels_high_awesome_cnt < 5) {
 
                 $this->oCRNRSTN_USR->error_log('DF TRANSFER[' . $wheels_high_awesome_cnt . ']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-            } else {
+            }else{
 
-                if ($wheels_high_awesome_cnt > ($total_wheels_count - 5)) {
+                if($wheels_high_awesome_cnt > ($total_wheels_count - 5)) {
 
                     $this->oCRNRSTN_USR->error_log('DF TRANSFER[' . $wheels_high_awesome_cnt . ']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
@@ -1567,13 +1569,13 @@ class crnrstn_wind_cloud_fire {
             // CALCULATE PERCENTAGE UTILIZATION OF REQUEST
             $percentage_utilization_ask = 100-((($tmp_file_size_total + ($tmp_destination_diskSize_bytes-$tmp_destination_capacity))/$tmp_destination_diskSize_bytes)*100);
 
-            if($percentage_utilization_ask > $this->max_storage_utilization){
+            if($percentage_utilization_ask > $this->max_disk_storage_utilization){
 
                 $percentage_utilization_ask = 100-((($tmp_file_size_total + ($tmp_destination_diskSize_bytes-$tmp_destination_capacity))/$tmp_destination_diskSize_bytes)*100);
 
                 //
                 // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('The CRNRSTN :: Electrum max local DIR destination storage utilization has been exceeded with an ask which would result in ' . $percentage_utilization_ask.'% usage. This being when ' . $this->max_storage_utilization.'% is the currently configured maximum [See electrum_doNotPassDiskUsagePercent()]. For the record, only ' . $tmp_destination_capacity.' is available at ' . $FIREHOT_oEndpoint_DESTINATION->return_LOCAL_DIR_PATH().'.');
+                throw new Exception('The CRNRSTN :: Electrum max local DIR destination storage utilization has been exceeded with an ask which would result in ' . $percentage_utilization_ask.'% usage. This being when ' . $this->max_disk_storage_utilization.'% is the currently configured maximum [See electrum_doNotPassDiskUsagePercent()]. For the record, only ' . $tmp_destination_capacity.' is available at ' . $FIREHOT_oEndpoint_DESTINATION->return_LOCAL_DIR_PATH().'.');
 
             }else{
 
@@ -1611,13 +1613,13 @@ class crnrstn_wind_cloud_fire {
 
                     }
 
-                    if ($wheels_high_awesome_cnt < 5) {
+                    if($wheels_high_awesome_cnt < 5) {
 
                         $this->oCRNRSTN_USR->error_log('DD TRANSFER[' . $wheels_high_awesome_cnt . ']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-                    } else {
+                    }else{
 
-                        if ($wheels_high_awesome_cnt > ($total_wheels_count - 5)) {
+                        if($wheels_high_awesome_cnt > ($total_wheels_count - 5)) {
 
                             $this->oCRNRSTN_USR->error_log('DD TRANSFER[' . $wheels_high_awesome_cnt . ']=>' . $filePath, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
@@ -1631,12 +1633,12 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
+            // RETURN FALSE.
             return false;
 
         }
@@ -1800,7 +1802,7 @@ class crnrstn_wind_cloud_fire {
 
                 $this->oCRNRSTN_USR->error_log('****** DESTINATION ENDPOINT = DIRECTORY[' . $tmp_dest_DIR.'] ******', __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-                if ($this->validate_DIR_endpoint('DESTINATION', $tmp_dest_DIR, $mkdir_permissons_mode)) {
+                if($this->validate_DIR_endpoint('DESTINATION', $tmp_dest_DIR, $mkdir_permissons_mode)) {
 
                     $FIREHOT_oEndpoint_DESTINATION->log_connection_status('batch transfer :: destination validation complete');
 
@@ -1871,12 +1873,12 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
+            // RETURN FALSE.
             return false;
 
         }
@@ -2014,11 +2016,11 @@ class crnrstn_wind_cloud_fire {
                         // $this->oLighting_bolt_ARRAY['SOURCE'][$endpoint_serial][$endpoint_id][$key] = $FIREHOT_oEndpoint;
                         foreach($this->oLighting_bolt_ARRAY['SOURCE'] as $endpoint_serial => $serial_ARRAY){
 
-                            foreach($serial_ARRAY as $endpoint_id => $oEndpoint_ARRAY) {
+                            foreach($serial_ARRAY as $endpoint_id => $oEndpoint_ARRAY){
 
-                                foreach ($oEndpoint_ARRAY as $key => $FIREHOT_oEndpoint) {
+                                foreach($oEndpoint_ARRAY as $key => $FIREHOT_oEndpoint){
 
-                                    if (!isset($this->processed_source_ARRAY[$execution_serial][$endpoint_serial])) {
+                                    if(!isset($this->processed_source_ARRAY[$execution_serial][$endpoint_serial])){
                                         $this->processed_source_ARRAY[$execution_serial][$endpoint_serial] = 1;
 
                                         $tmp_connection_type = $FIREHOT_oEndpoint->return_connection_type();
@@ -2180,7 +2182,7 @@ class crnrstn_wind_cloud_fire {
             flush();
             ob_flush();
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -2298,7 +2300,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -2416,7 +2418,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -2529,7 +2531,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -2646,7 +2648,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -2763,7 +2765,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -2874,7 +2876,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -2977,7 +2979,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -3067,7 +3069,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -3161,7 +3163,7 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -3356,7 +3358,7 @@ class crnrstn_wind_cloud_fire {
 
         if(!isset(self::$oFourLivingCreatures_FTP)){
 
-            self::$oFourLivingCreatures_FTP = new crnrstn_fire_ftp_manager($this->oCRNRSTN_USR);
+            self::$oFourLivingCreatures_FTP = new crnrstn_fire_ftp_conn_manager($this->oCRNRSTN_USR);
 
         }
 
@@ -3364,7 +3366,7 @@ class crnrstn_wind_cloud_fire {
 
     }
 
-    private function validate_DIR_endpoint($flow_type, $dirPath, $mkdir_mode=777){
+    private function validate_DIR_endpoint($flow_type, $dirPath, $permissions_chmod=777){
 
         try{
 
@@ -3414,8 +3416,8 @@ class crnrstn_wind_cloud_fire {
                             $tmp_current_perms = substr(decoct( fileperms($dirPath) ), 2);
                             $tmp_config_serial = $this->oCRNRSTN_USR->get_server_config_serial();
 
-                            $_SESSION['CRNRSTN_'.$this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'The CRNRSTN :: Electrum process has experienced permissions related error as the destination directory, '.$dirPath.' ('.$tmp_current_perms.'), is NOT writable to '.$mkdir_mode.', and furthermore ';
-                            if(chmod($dirPath, $mkdir_mode)){
+                            $_SESSION['CRNRSTN_'.$this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = 'The CRNRSTN :: Electrum process has experienced permissions related error as the destination directory, '.$dirPath.' ('.$tmp_current_perms.'), is NOT writable to '.$permissions_chmod.', and furthermore ';
+                            if(chmod($dirPath, $permissions_chmod)){
 
                                 $_SESSION['CRNRSTN_'.$this->oCRNRSTN_USR->crcINT($tmp_config_serial)]['CRNRSTN_EXCEPTION_PREFIX'] = '';
                                 return true;
@@ -3434,13 +3436,13 @@ class crnrstn_wind_cloud_fire {
 
                     }else{
 
-                        if (!$this->mkdir_r($dirPath, $mkdir_mode)) {
+                        if(!$this->mkdir_r($dirPath, $permissions_chmod)) {
 
-                            $mkdir_mode = octdec( str_pad($mkdir_mode,4,'0',STR_PAD_LEFT) );
+                            $permissions_chmod = octdec( str_pad($permissions_chmod,4,'0',STR_PAD_LEFT) );
 
                             //
                             // HOOOSTON...VE HAF PROBLEM!
-                            throw new Exception('The CRNRSTN :: Electrum process has experienced error as the destination directory does NOT exist, and it could NOT be created as '.$mkdir_mode.'.');
+                            throw new Exception('The CRNRSTN :: Electrum process has experienced error as the destination directory does NOT exist, and it could NOT be created as '.$permissions_chmod.'.');
 
                         }else{
 
@@ -3453,7 +3455,7 @@ class crnrstn_wind_cloud_fire {
                 break;
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -3475,9 +3477,9 @@ class crnrstn_wind_cloud_fire {
 
             $dirs = explode('/', $dirName);
             $dir='';
-            foreach ($dirs as $part) {
+            foreach($dirs as $part){
                 $dir.=$part.'/';
-                if (!is_dir($dir) && strlen($dir)>0) {
+                if(!is_dir($dir) && strlen($dir)>0){
                     if(!mkdir($dir, $mode)){
                         $error = error_get_last();
 
@@ -3491,10 +3493,10 @@ class crnrstn_wind_cloud_fire {
 
             return true;
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -3517,7 +3519,7 @@ class crnrstn_wind_cloud_fire {
             //
             // STORE BASE(ROOT) ENDPOINT DIRECTORY
             $this->ftp_recursive_sniffed_directory_ARRAY[$oEndpoint_serial][] = $path;
-            
+
             # HIDDEN FILES HIDDEN - CONFIG UPDATES FOR VSFTPD :: UBUNTU 18.04
             #https://devanswers.co/installing-ftp-server-vsftpd-ubuntu-18-04/
 
@@ -3531,14 +3533,14 @@ class crnrstn_wind_cloud_fire {
 
             $result = array();
 
-            foreach ($lines as $line){
+            foreach($lines as $line){
 
                 $tokens = explode(" ", $line);
                 $name = $tokens[count($tokens) - 1];
                 $type = $tokens[0][0];
                 $filepath = $path . "/" . $name;
 
-                if ($type == 'd'){
+                if($type == 'd'){
 
                     $this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$filepath] = 0;
                     $this->ftp_recursive_sniffed_directory_ARRAY[$oEndpoint_serial][] = $filepath;
@@ -3601,13 +3603,13 @@ class crnrstn_wind_cloud_fire {
 
             $result = array();
 
-            foreach ($lines as $line){
+            foreach($lines as $line){
                 $tokens = explode(" ", $line);
                 $name = $tokens[count($tokens) - 1];
                 $type = $tokens[0][0];
                 $filepath = $path . "/" . $name;
 
-                if ($type == 'd')
+                if($type == 'd')
                 {
                     $result = array_merge($result, $this->ftp_list_files_recursive($ftp_stream, $filepath));
                 }
@@ -3618,7 +3620,7 @@ class crnrstn_wind_cloud_fire {
             }
             return $result;
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
@@ -3642,7 +3644,7 @@ class crnrstn_wind_cloud_fire {
             foreach($this->ftp_recursive_sniffed_directory_ARRAY[$oEndpoint_serial] as $dirKey => $dirPath){
 
                 $pos = strpos($filePath, $dirPath);
-                if ($pos !== false && !isset($tmp_FTP_dirPath_flagOut_ARRAY[$dirPath])) {
+                if($pos !== false && !isset($tmp_FTP_dirPath_flagOut_ARRAY[$dirPath])) {
 
                     //
                     // DISQUALIFY THIS DIRECTORY FOR FILE PATH MATCH
@@ -3658,7 +3660,7 @@ class crnrstn_wind_cloud_fire {
             foreach($this->ftp_recursive_sniffed_directory_ARRAY[$oEndpoint_serial] as $dirKey2 => $dirPath2) {
 
                 $pos = strpos($dirPath, $dirPath2);
-                if ($pos !== false && !isset($tmp_FTP_dirPath_flagOut_ARRAY[$dirPath])) {
+                if($pos !== false && !isset($tmp_FTP_dirPath_flagOut_ARRAY[$dirPath])) {
 
                     if( strlen($dirPath2) != strlen($dirPath)){
 
@@ -3738,7 +3740,7 @@ class crnrstn_wind_cloud_fire {
 
                 //
                 // WE HAVE A DIRECTORY RESULT
-                if ($this->path_no_slash_dot($results[$search_pos])) {
+                if($this->path_no_slash_dot($results[$search_pos])) {
 
                     //
                     // DIRECTORY WITH GOOD FORMAT
@@ -3751,7 +3753,7 @@ class crnrstn_wind_cloud_fire {
 
                         $current_result_path = $results[$search_pos];
                         $pos = strpos($current_result_path, $prev_result_path);
-                        if ($pos !== false) {
+                        if($pos !== false) {
 
                             //
                             // TRANSITION CURRENT TO PREVIOUS
@@ -3809,25 +3811,25 @@ class crnrstn_wind_cloud_fire {
         $results_totalSize = 0;
 
         $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
-        foreach ($objects as $name => $object) {
-            //if ((strpos($name, '/.') !== false) || (strpos($name, '/..') !== false)) {
-            if ((strpos($name, '/..') !== false)) {
+        foreach($objects as $name => $object){
+            //if((strpos($name, '/.') !== false) || (strpos($name, '/..') !== false)){
+            if((strpos($name, '/..') !== false)) {
 
-            } else {
+            }else{
 
                 $this->source_file_size_at_path_ARRAY[$oEndpoint_serial][$name] = 0;
 
-                if (!$files_only) {
+                if(!$files_only) {
 
                     $results[] = $name;
                     //$this->oCRNRSTN_USR->error_log('RAW ->' . $name, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
-                    if (!(is_dir($name))) {
+                    if(!(is_dir($name))) {
                         //$this->oCRNRSTN_USR->error_log('FILE ->'.$name, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
                         //
                         // WE HAVE A FILE
-                        if ($this->path_no_slash_dot($name)) {
+                        if($this->path_no_slash_dot($name)) {
 
                             $results_filePath_output[$name] = 1;
                             $results_final_output[$name] = 1;
@@ -3862,7 +3864,7 @@ class crnrstn_wind_cloud_fire {
 
                         $is_dir_status_array[] = 0;
 
-                    } else {
+                    }else{
                         //$this->oCRNRSTN_USR->error_log('DIR ->'.$name, __LINE__, __METHOD__, __FILE__, CRNRSTN_ELECTRUM);
 
                         //
@@ -3871,9 +3873,9 @@ class crnrstn_wind_cloud_fire {
 
                     }
 
-                } else {
+                }else{
 
-                    if (!(is_dir($name))) {
+                    if(!(is_dir($name))) {
 
                         $results[] = $name;
 
@@ -3887,7 +3889,7 @@ class crnrstn_wind_cloud_fire {
 
         //
         // SEARCH FOR EMPTY DIRECTORIES
-        if (!$files_only) {
+        if(!$files_only) {
             $tmp_dirPath_flag_ARRAY = array();
             $tmp_dirPath_ARRAY = array();
             $tmp_dirPath_flagOut_ARRAY = array();
@@ -3914,7 +3916,7 @@ class crnrstn_wind_cloud_fire {
 
                 foreach($tmp_dirPath_flag_ARRAY as $dirPath => $dirKey){
                     $pos = strpos($filePth, $dirPath);
-                    if ($pos !== false && !isset($tmp_dirPath_flagOut_ARRAY[$dirPath])) {
+                    if($pos !== false && !isset($tmp_dirPath_flagOut_ARRAY[$dirPath])) {
 
                         //
                         // DISQUALIFY THIS DIRECTORY FOR FILE PATH MATCH
@@ -4147,18 +4149,18 @@ class crnrstn_wind_cloud_fire {
 
                         $tmp_sect_final_out .= $tmp_exclusion_source_shell;
 
-                        if ($hot_dest_connection_ARRAY[$oEndpoint_serial]['connection_type'] == 'FTP') {
+                        if($hot_dest_connection_ARRAY[$oEndpoint_serial]['connection_type'] == 'FTP') {
 
                             $tmp_server = $oEndpoint->return_FTP_SERVER();
                             $tmp_FTP_DIR_PATH = $oEndpoint->return_FTP_DIR_PATH();
 
                             $tmp_source_path = 'FTP ['.$tmp_server . '] ' . $tmp_FTP_DIR_PATH;
 
-                        } else {
+                        }else{
 
                             $tmp_source_path = $oEndpoint->return_LOCAL_DIR_PATH();
 
-                            if (!is_dir($tmp_source_path)) {
+                            if(!is_dir($tmp_source_path)) {
 
                                 $local_oWCR_key = $oEndpoint->return_local_oWCR_key();
                                 $tmp_source_path = $this->oCRNRSTN_USR->get_resource('LOCAL_DIR_PATH', $local_oWCR_key);
@@ -4171,7 +4173,7 @@ class crnrstn_wind_cloud_fire {
                         // **  where $hot_dest_connection_ARRAY = $tmp_suppression_profile[$result_ARRAY['pattern_type']][$oEndpoint_serial]['total_filesize']
                         $tmp_total_excluded_filesize = $hot_dest_connection_ARRAY[$oEndpoint_serial]['total_filesize'];
 
-                        if ($content_type == 'ELECTRUM_DATA_HANDLING_FILE_EXCLUSION_SOURCE_HTML') {
+                        if($content_type == 'ELECTRUM_DATA_HANDLING_FILE_EXCLUSION_SOURCE_HTML') {
 
                             if(strlen($tmp_source_path)>71){
 
@@ -4204,7 +4206,7 @@ class crnrstn_wind_cloud_fire {
 
                             //$this->oCRNRSTN_USR->error_log($tmp_sect_final_out, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_PROFILE');
 
-                        } else {
+                        }else{
 
                             if(strlen($tmp_source_path)>52) {
 
@@ -4214,7 +4216,7 @@ class crnrstn_wind_cloud_fire {
                                 $tmp_path_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
 
                                 $tmp_source_path = '';
-                                foreach ($tmp_path_array['chunked_content'] as $key => $str_line) {
+                                foreach($tmp_path_array['chunked_content'] as $key => $str_line){
 
                                     $tmp_source_path .= $str_line . '
 ...';
@@ -4308,7 +4310,7 @@ class crnrstn_wind_cloud_fire {
 
                         //
                         // SET EXCLUSION RULE TITLE
-                        if (!isset($tmp_pattern_title_flag_ARRAY[$pattern_type]['title_copy'])) {
+                        if(!isset($tmp_pattern_title_flag_ARRAY[$pattern_type]['title_copy'])) {
 
                             $tmp_final_out .= $tmp_exclusion_section_shell;
 
@@ -4319,12 +4321,12 @@ class crnrstn_wind_cloud_fire {
 
                             //
                             // SET EXCLUSION RULE - AFFECTED SOURCE DATA
-                            if ($content_type == 'ELECTRUM_DATA_HANDLING_PROFILE_HTML') {
+                            if($content_type == 'ELECTRUM_DATA_HANDLING_PROFILE_HTML') {
 
                                 $tmp_exclusion_source_heavy = $this->loadElectrumData($execution_serial, $batch_serial, 'ELECTRUM_DATA_HANDLING_FILE_EXCLUSION_SOURCE_HTML', $tmp_exclusion_source_shell_HTML, $tmp_suppression_profile[$pattern_type]);
                                 $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{FILE_EXCLUSION_SOURCE_DIR_SECTION_HTML}', $tmp_exclusion_source_heavy, $tmp_final_out);
 
-                            } else {
+                            }else{
 
                                 $tmp_exclusion_source_heavy = $this->loadElectrumData($execution_serial, $batch_serial, 'ELECTRUM_DATA_HANDLING_FILE_EXCLUSION_SOURCE_TEXT', $tmp_exclusion_source_shell_TEXT, $tmp_suppression_profile[$pattern_type]);
                                 $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{FILE_EXCLUSION_SOURCE_DIR_SECTION_TEXT}', $tmp_exclusion_source_heavy, $tmp_final_out);
@@ -4406,13 +4408,13 @@ class crnrstn_wind_cloud_fire {
 
                     $tmp_sect_final_out .= $section_content_shell;
 
-                    if ($content_type == 'ELECTRUM_DESTINATION_PATHS_DETAIL_HTML') {
+                    if($content_type == 'ELECTRUM_DESTINATION_PATHS_DETAIL_HTML') {
 
-                        if ($tmp_total_file_movements == 1) {
+                        if($tmp_total_file_movements == 1) {
 
                             $tmp_sect_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_FILES_MOVED_COUNT}', $tmp_total_file_movements . ' asset', $tmp_sect_final_out);
 
-                        } else {
+                        }else{
 
                             $tmp_sect_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_FILES_MOVED_COUNT}', $tmp_total_file_movements . ' assets', $tmp_sect_final_out);
 
@@ -4421,13 +4423,13 @@ class crnrstn_wind_cloud_fire {
                         $tmp_sect_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_FILES_MOVED_PATH}', $tmp_dyn_dest_path_HTML, $tmp_sect_final_out);
 
 
-                    } else {
+                    }else{
 
-                        if ($tmp_total_file_movements == 1) {
+                        if($tmp_total_file_movements == 1) {
 
                             $tmp_sect_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_FILES_MOVED_COUNT}', $tmp_total_file_movements . ' asset', $tmp_sect_final_out);
 
-                        } else {
+                        }else{
 
                             $tmp_sect_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_FILES_MOVED_COUNT}', $tmp_total_file_movements . ' assets', $tmp_sect_final_out);
 
@@ -4462,7 +4464,7 @@ class crnrstn_wind_cloud_fire {
                         $tmp_endpoint_type = 'Local Directory';
                         $tmp_dest_DIR_PATH = $tmp_oEndpoint->return_LOCAL_DIR_PATH();
 
-                        if (!is_dir($tmp_dest_DIR_PATH)) {
+                        if(!is_dir($tmp_dest_DIR_PATH)) {
 
                             $local_oWCR_key = $tmp_oEndpoint->return_local_oWCR_key();
                             $tmp_dest_DIR_PATH = $this->oCRNRSTN_USR->get_resource('LOCAL_DIR_PATH', $local_oWCR_key);
@@ -4500,7 +4502,7 @@ class crnrstn_wind_cloud_fire {
 
                     }
 
-                    if ($content_type == 'ELECTRUM_DATA_DESTINATION_HTML') {
+                    if($content_type == 'ELECTRUM_DATA_DESTINATION_HTML') {
 
                         if($tmp_timestamp_nom != '' && is_dir($tmp_dest_path_or_ip)){
 
@@ -4545,19 +4547,19 @@ class crnrstn_wind_cloud_fire {
                         $this->oCRNRSTN_USR->error_log('oWheel tmp_dest_path_or_ip_HTML='.$tmp_dest_path_or_ip_HTML, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
 
 
-                        $tmp_cummulative_dest_path = $this->return_electrumDataDestinationPathDetailsOutputShell('HTML');
+                        $tmp_cumulative_dest_path = $this->return_electrumDataDestinationPathDetailsOutputShell('HTML');
 
-                        $tmp_cummulative_dest_path = $this->loadElectrumData($execution_serial, $batch_serial, 'ELECTRUM_DESTINATION_PATHS_DETAIL_HTML', $tmp_cummulative_dest_path, $hot_dest_connection_ARRAY);
+                        $tmp_cumulative_dest_path = $this->loadElectrumData($execution_serial, $batch_serial, 'ELECTRUM_DESTINATION_PATHS_DETAIL_HTML', $tmp_cumulative_dest_path, $hot_dest_connection_ARRAY);
 
                         $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{THUMB_BORDER_TOP}', $tmp_thumb_border_top, $tmp_final_out);
                         $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{STATUS_THUMBNAIL_QUICKGLANCE}', $tmp_thumb, $tmp_final_out);
                         $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{STATUS_COPY_QUICKGLANCE}', $tmp_copy, $tmp_final_out);
                         $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_PATH_OR_IP+PORT}', $tmp_dest_path_or_ip_TITLE, $tmp_final_out);
                         //$tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_FILES_MOVED_COUNT}', $total_endpoint_file_count . ' files', $tmp_final_out);
-                        $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ELECTRUM_DESTINATION_PATHS_DETAIL_HTML}', $tmp_cummulative_dest_path, $tmp_final_out);
+                        $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ELECTRUM_DESTINATION_PATHS_DETAIL_HTML}', $tmp_cumulative_dest_path, $tmp_final_out);
                         $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_TYPE}', $tmp_endpoint_type, $tmp_final_out);
 
-                    } else {
+                    }else{
 
                         if($tmp_timestamp_nom!='' && is_dir($tmp_dest_path_or_ip)){
 
@@ -4569,7 +4571,7 @@ class crnrstn_wind_cloud_fire {
 
                         }
 
-                        if (strlen($tmp_dest_path_or_ip) > 52) {
+                        if(strlen($tmp_dest_path_or_ip) > 52) {
 
                             //
                             // BREAK AT GOOD 52 CHAR CHUNK TO THE END
@@ -4593,13 +4595,13 @@ class crnrstn_wind_cloud_fire {
 
                         //
                         // TEXT VERSION
-                        $tmp_cummulative_dest_path = $this->return_electrumDataDestinationPathDetailsOutputShell();
-                        $tmp_cummulative_dest_path = $this->loadElectrumData($execution_serial, $batch_serial, 'ELECTRUM_DESTINATION_PATHS_DETAIL_TEXT', $tmp_cummulative_dest_path, $hot_dest_connection_ARRAY);
+                        $tmp_cumulative_dest_path = $this->return_electrumDataDestinationPathDetailsOutputShell();
+                        $tmp_cumulative_dest_path = $this->loadElectrumData($execution_serial, $batch_serial, 'ELECTRUM_DESTINATION_PATHS_DETAIL_TEXT', $tmp_cumulative_dest_path, $hot_dest_connection_ARRAY);
 
                         $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{STATUS_THUMBNAIL_QUICKGLANCE}', $tmp_thumb_TEXT, $tmp_final_out);
                         $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_PATH_OR_IP+PORT}', $tmp_dest_path_or_ip_TEXT, $tmp_final_out);
                         //$tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_FILES_MOVED_COUNT}', $total_endpoint_file_count . ' files', $tmp_final_out);
-                        $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ELECTRUM_DESTINATION_PATHS_DETAIL_TEXT}', $tmp_cummulative_dest_path, $tmp_final_out);
+                        $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ELECTRUM_DESTINATION_PATHS_DETAIL_TEXT}', $tmp_cumulative_dest_path, $tmp_final_out);
                         $tmp_final_out = $this->oCRNRSTN_USR->proper_replace('{ENDPOINT_TYPE}', $tmp_endpoint_type, $tmp_final_out);
 
                     }
@@ -4626,7 +4628,7 @@ class crnrstn_wind_cloud_fire {
                         $tmp_endpoint_type = 'Local Directory';
                         $tmp_src_DIR_PATH = $tmp_oEndpoint->return_LOCAL_DIR_PATH();
 
-                        if (!is_dir($tmp_src_DIR_PATH)) {
+                        if(!is_dir($tmp_src_DIR_PATH)) {
 
                             $local_oWCR_key = $tmp_oEndpoint->return_local_oWCR_key();
                             $tmp_src_DIR_PATH = $this->oCRNRSTN_USR->get_resource('LOCAL_DIR_PATH', $local_oWCR_key);
@@ -4946,10 +4948,10 @@ class crnrstn_wind_cloud_fire {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -4964,31 +4966,47 @@ class crnrstn_wind_cloud_fire {
 
         //$perms = fileperms('/etc/passwd');
 
-        switch ($perms & 0xF000) {
+        switch($perms & 0xF000){
             case 0xC000: // socket
+
                 $info = 's';
-                break;
+
+            break;
             case 0xA000: // symbolic link
+
                 $info = 'l';
-                break;
+
+            break;
             case 0x8000: // regular
+
                 $info = 'r';
-                break;
+
+            break;
             case 0x6000: // block special
+
                 $info = 'b';
-                break;
+
+            break;
             case 0x4000: // directory
+
                 $info = 'd';
-                break;
+
+            break;
             case 0x2000: // character special
+
                 $info = 'c';
-                break;
+
+            break;
             case 0x1000: // FIFO pipe
+
                 $info = 'p';
-                break;
+
+            break;
             default: // unknown
+
                 $info = 'u';
-        }
+
+            }
 
         // Owner
         $info .= (($perms & 0x0100) ? 'r' : '-');
@@ -5085,10 +5103,10 @@ class crnrstn_wind_cloud_fire {
 
             return NULL;
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -5099,7 +5117,7 @@ class crnrstn_wind_cloud_fire {
 
     private function return_electrumDataHandlingSourceDIROutputShell($msg_format='TEXT'){
 
-        switch($msg_format) {
+        switch($msg_format){
             case 'HTML':
 
                 $tmp_content = '<tr>
@@ -5111,13 +5129,14 @@ class crnrstn_wind_cloud_fire {
                                                     </td>
                                                 </tr>';
 
-                break;
+            break;
             default:
 
                 $tmp_content = '{FILE_EXCLUSION_SOURCE_DIR_TEXT}
 {FILE_EXCLUSION_SOURCE_STATS_TEXT}';
 
-                break;
+            break;
+
         }
 
         return $tmp_content;
@@ -5221,9 +5240,9 @@ Electrum - Errors Experienced During Operation
                                                             <tr>
                                                                 <td colspan="3">
                                                                     <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
-                                                                    
+
                                                                         {ELECTRUM_DESTINATION_PATHS_DETAIL_HTML}
-                                                                        
+
                                                                     </table>
                                                                 </td>
                                                             </tr>
@@ -5236,8 +5255,7 @@ Electrum - Errors Experienced During Operation
                                         </td>
                                     </tr>';
 
-
-                break;
+            break;
             default:
 
                 $tmp_content = '= = = = = = = = = = = = = = = = = = = = = = = = =
@@ -5246,7 +5264,7 @@ Electrum - Errors Experienced During Operation
 {ELECTRUM_DESTINATION_PATHS_DETAIL_TEXT}
 ';
 
-                break;
+            break;
 
         }
 
@@ -5272,9 +5290,11 @@ Electrum - Errors Experienced During Operation
 {ENDPOINT_FILES_MOVED_PATH}';
 
             break;
+
         }
 
         return $tmp_content;
+
     }
 
     private function return_electrumDataSourceOutputShell($msg_format='TEXT'){
@@ -5290,7 +5310,7 @@ Electrum - Errors Experienced During Operation
                                                     <div style="vertical-align:center; border-left:15px solid #FFF; border-top:{THUMB_BORDER_TOP}px solid #FFF; border-bottom:10px solid #FFF; font-family: Arial, Helvetica, sans-serif; font-size:16px; text-align:left;">{STATUS_THUMBNAIL_QUICKGLANCE}</div>
                                                 </td>
                                                 <td valign="top" style="border-left:10px solid #FFF; vertical-align:top;">
-    
+
                                                     <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                                                         <tr>
                                                             <td style="width:140px;"><div style="border-top:12px solid #FFF; border-bottom:10px solid #FFF; font-family: Arial, Helvetica, sans-serif; font-size:16px; line-height: 18px; text-align:left;">{ENDPOINT_TYPE} ::</div></td>
@@ -5304,14 +5324,13 @@ Electrum - Errors Experienced During Operation
                                                             <td colspan="3"><div style="border-top:12px solid #FFF; border-bottom:10px solid #FFF; font-family: Arial, Helvetica, sans-serif; font-size:16px; line-height: 22px; text-align:left;">{ENDPOINT_PATH}</div></td>
                                                         </tr>
                                                     </table>
-    
+
                                                 </td>
-    
+
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>';
-
 
             break;
             default:
@@ -5416,727 +5435,6 @@ Electrum - Errors Experienced During Operation
     public function __destruct() {
 
         $this->terminate_all_ftp();
-
-    }
-
-}
-
-# # C # R # N # R # S # T # N # : : # # ##
-#
-#  CLASS :: crnrstn_electrum_the_statistician
-#  VERSION :: 1.00.0000
-#  DATE :: October 12, 2020 @ 1520hrs
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI :: 
-#  DESCRIPTION :: Brought in at the end...to keep things nice and tidy for the purpose of email reporting notifications.
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
-#  Ezekiel 1:12 - AND EACH WENT STRAIGHT FORWARD; WHEREVER THE SPIRIT WAS TO GO, THEY WENT; THEY DID NOT TURN AS THEY WENT.
-#
-class crnrstn_electrum_the_statistician {
-
-    protected $oLogger;
-    public $oCRNRSTN_USR;
-
-    protected $electrum_process_id;
-    protected $execution_batch_serial;
-    protected $startTime;
-    protected $timestamp_versioning_pattern;
-    protected $timestamp_nom_ARRAY = array();
-    protected $content_only_path_to_destination = false;
-
-    protected $source_endpoint_isValid_ARRAY = array();
-    protected $source_endpoint_protocol_ARRAY = array();
-    protected $source_endpoint_stats_serial_ARRAY = array();
-    protected $source_endpoint_stats_pathindex_ARRAY = array();
-    protected $source_endpoint_stats_path_serialindex_ARRAY = array();
-    protected $source_endpoint_serial_ARRAY = array();
-    protected $source_endpoint_id_ARRAY = array();
-    protected $source_endpoint_perms_ARRAY = array();
-    protected $source_endpoint_err_reason_ARRAY = array();
-    protected $source_endpoint_ftp_server_ARRAY = array();
-    protected $source_endpoint_ftp_port_ARRAY = array();
-
-    protected $destination_endpoint_stats_serial_ARRAY = array();
-    protected $destination_endpoint_stats_pathindex_ARRAY = array();
-    protected $destination_endpoint_stats_path_serialindex_ARRAY = array();
-    protected $destination_endpoint_isValid_ARRAY = array();
-    protected $destination_endpoint_protocol_ARRAY = array();
-    protected $destination_endpoint_serial_ARRAY = array();
-    protected $destination_endpoint_id_ARRAY = array();
-    protected $destination_endpoint_ftp_server_ARRAY = array();
-    protected $destination_endpoint_ftp_port_ARRAY = array();
-    protected $destination_endpoint_perms_ARRAY = array();
-    protected $destination_endpoint_mkdir_mode_ARRAY = array();
-    protected $destination_endpoint_err_reason_ARRAY = array();
-    protected $destination_endpoint_isFlatFile_ARRAY = array();
-
-    protected $transfer_success_count_ARRAY = array();
-    protected $filesize_success_count_ARRAY = array();
-
-    protected $custom_folder_name;
-
-    public function __construct($oCRNRSTN_USR){
-
-        $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-
-        //
-        // INSTANTIATE LOGGER
-        $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
-
-    }
-
-    public function init_directory_datestamp_nom($oEndpoint_serial, $ts_nom){
-
-        $this->timestamp_nom_ARRAY[$oEndpoint_serial] = $ts_nom;
-
-    }
-
-    public function copyFilesToFolder($custom_folder_name){
-
-        $this->custom_folder_name = $custom_folder_name;
-
-    }
-
-    public function return_FD_destination_stats_array($oEndpoint_serial_SOURCE, $oEndpoint_serial_DESTINATION, $SOURCE_filePath=NULL){
-
-        # $ftp_root_dir_path
-        # $tmp_mksubdir_destination_path
-        # $target_destination_file_path
-
-        $tmp_ARRAY = array();
-
-        //
-        // GET DESTINATION ENDPOINT STATS DATA
-        foreach($this->destination_endpoint_stats_serial_ARRAY as $key_dest => $destination_stats_serial){
-
-            if($oEndpoint_serial_DESTINATION == $this->destination_endpoint_serial_ARRAY[$destination_stats_serial]){
-
-                //
-                // LOCAL_DIR
-                $destination_is_flat_file = $this->destination_endpoint_isFlatFile_ARRAY[$destination_stats_serial];
-                $destination_isValid = $this->destination_endpoint_isValid_ARRAY[$destination_stats_serial];
-                $destination_protocol = $this->destination_endpoint_protocol_ARRAY[$destination_stats_serial];
-                $destination_oEndpoint_serial = $this->destination_endpoint_serial_ARRAY[$destination_stats_serial];
-                $destination_oEndpoint_id = $this->destination_endpoint_id_ARRAY[$destination_stats_serial];
-                $destination_current_perms = $this->destination_endpoint_perms_ARRAY[$destination_stats_serial];
-                $destination_MKDIR_MODE = $this->destination_endpoint_mkdir_mode_ARRAY[$destination_stats_serial];
-                $destination_DIR_PATH = $this->destination_endpoint_stats_path_serialindex_ARRAY[$destination_stats_serial];
-
-            }
-
-        }
-
-        $tmp_ARRAY['DESTINATION_FILEPATH'] = $this->return_destination_stats_path($oEndpoint_serial_SOURCE, $oEndpoint_serial_DESTINATION);
-
-        if($tmp_slashChar = $this->return_slashChar($tmp_ARRAY['DESTINATION_FILEPATH'])){
-
-            $tmp_ARRAY['DESTINATION_FILEPATH'] = rtrim($tmp_ARRAY['DESTINATION_FILEPATH'], $tmp_slashChar). $tmp_slashChar;
-
-            $tmp_chop_ARRAY = explode($tmp_slashChar, $tmp_ARRAY['DESTINATION_FILEPATH']);
-            $tmp_node_cnt = sizeof($tmp_chop_ARRAY);
-
-            //$this->oCRNRSTN_USR->error_log('oWheel :: We want to get target path['.$target_destination_file_path.'] starting from => '.$tmp_ARRAY[$tmp_node_cnt-2], __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_FILE_TRANSFER');
-
-            $tmp_destination_node_ARRAY = explode($tmp_chop_ARRAY[$tmp_node_cnt-2], $SOURCE_filePath);
-
-            $tmp_mksubdir_destination_path = dirname($tmp_destination_node_ARRAY[1]);
-
-        }else{
-
-            $tmp_mksubdir_destination_path = dirname($tmp_ARRAY['DESTINATION_FILEPATH']);
-
-        }
-
-        $tmp_ARRAY['DIR_PATH'] = $destination_DIR_PATH;
-        $tmp_ARRAY['MKSUB_DIR'] = $tmp_mksubdir_destination_path;
-
-        return $tmp_ARRAY;
-
-    }
-
-    public function return_DF_destination_stats_array($oEndpoint_serial_SOURCE, $oEndpoint_serial_DESTINATION, $SOURCE_filepath){
-
-        # $ftp_root_dir_path
-        # $tmp_mksubdir_destination_path
-        # $target_destination_file_path
-        # $target_destination_dir_path
-
-        $tmp_ARRAY = array();
-
-        //
-        // GET DESTINATION ENDPOINT STATS DATA
-        foreach($this->destination_endpoint_stats_serial_ARRAY as $key_dest => $destination_stats_serial){
-
-            if($oEndpoint_serial_DESTINATION == $this->destination_endpoint_serial_ARRAY[$destination_stats_serial]){
-
-                //
-                // FTP
-                $destination_is_flat_file = $this->destination_endpoint_isFlatFile_ARRAY[$destination_stats_serial];
-                $destination_isValid = $this->destination_endpoint_isValid_ARRAY[$destination_stats_serial];
-                $destination_protocol = $this->destination_endpoint_protocol_ARRAY[$destination_stats_serial];
-                $destination_oEndpoint_serial = $this->destination_endpoint_serial_ARRAY[$destination_stats_serial];
-                $destination_oEndpoint_id = $this->destination_endpoint_id_ARRAY[$destination_stats_serial];
-                $destination_FTP_SERVER = $this->destination_endpoint_ftp_server_ARRAY[$destination_stats_serial];
-                $destination_FTP_PORT = $this->destination_endpoint_ftp_port_ARRAY[$destination_stats_serial];
-                $destination_FTP_DIR_PATH = $this->destination_endpoint_stats_path_serialindex_ARRAY[$destination_stats_serial];
-
-            }
-
-        }
-
-        $tmp_ARRAY['DESTINATION_FILEPATH'] = $this->return_destination_stats_path($oEndpoint_serial_SOURCE, $oEndpoint_serial_DESTINATION);
-
-        $tmp_slashChar = $this->return_slashChar($tmp_ARRAY['DESTINATION_FILEPATH']);
-        $tmp_split_ARRAY = explode($tmp_slashChar, $tmp_ARRAY['DESTINATION_FILEPATH']);
-
-        $tmp_sect_cnt = sizeof($tmp_split_ARRAY);
-        $tmp_ARRAY['SPLIT_DIR'] = $tmp_split_ARRAY[$tmp_sect_cnt-2];
-
-        $tmp_splice_ARRAY = explode($tmp_ARRAY['SPLIT_DIR'], $SOURCE_filepath);
-
-        if($tmp_slashChar = $this->return_slashChar($destination_FTP_DIR_PATH)){
-
-            $destination_FTP_DIR_PATH = rtrim($destination_FTP_DIR_PATH, $tmp_slashChar). $tmp_slashChar;
-
-            $tmp_chop_ARRAY = explode($tmp_slashChar, $destination_FTP_DIR_PATH);
-            $tmp_node_cnt = sizeof($tmp_chop_ARRAY);
-
-            $tmp_destination_node_ARRAY = explode($tmp_chop_ARRAY[$tmp_node_cnt-2], $tmp_ARRAY['DESTINATION_FILEPATH']);
-
-            $tmp_mksubdir_destination_path = dirname($tmp_destination_node_ARRAY[1]);
-
-        }else{
-
-            $tmp_mksubdir_destination_path = dirname($tmp_ARRAY['DESTINATION_FILEPATH']);
-
-        }
-
-        $tmp_ARRAY['FTP_DIR_PATH'] = $destination_FTP_DIR_PATH;
-        $tmp_ARRAY['MKSUB_DIR'] = $tmp_mksubdir_destination_path;
-
-        return $tmp_ARRAY;
-
-    }
-
-    public function return_destination_stats_path($serial_oEndpoint_SOURCE, $serial_oEndpoint_DESTINATION){
-
-        $destination_path = '';
-
-        #$this->destination_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-        #source_endpoint_stats_serial_ARRAY
-
-        //
-        // GET DESTINATION ENDPOINT STATS DATA
-        foreach($this->destination_endpoint_stats_serial_ARRAY as $key_dest => $destination_stats_serial){
-
-            if($serial_oEndpoint_DESTINATION == $this->destination_endpoint_serial_ARRAY[$destination_stats_serial]){
-
-                switch($this->destination_endpoint_protocol_ARRAY[$destination_stats_serial]){
-                    case 'FTP':
-
-                        //
-                        // FTP
-                        $destination_is_flat_file = $this->destination_endpoint_isFlatFile_ARRAY[$destination_stats_serial];
-                        $destination_isValid = $this->destination_endpoint_isValid_ARRAY[$destination_stats_serial];
-                        $destination_protocol = $this->destination_endpoint_protocol_ARRAY[$destination_stats_serial];
-                        $destination_oEndpoint_serial = $this->destination_endpoint_serial_ARRAY[$destination_stats_serial];
-                        $destination_oEndpoint_id = $this->destination_endpoint_id_ARRAY[$destination_stats_serial];
-                        $destination_FTP_SERVER = $this->destination_endpoint_ftp_server_ARRAY[$destination_stats_serial];
-                        $destination_FTP_PORT = $this->destination_endpoint_ftp_port_ARRAY[$destination_stats_serial];
-                        $destination_FTP_DIR_PATH = $this->destination_endpoint_stats_path_serialindex_ARRAY[$destination_stats_serial];
-
-                    break;
-                    default:
-
-                        //
-                        // LOCAL_DIR
-                        $destination_is_flat_file = $this->destination_endpoint_isFlatFile_ARRAY[$destination_stats_serial];
-                        $destination_isValid = $this->destination_endpoint_isValid_ARRAY[$destination_stats_serial];
-                        $destination_protocol = $this->destination_endpoint_protocol_ARRAY[$destination_stats_serial];
-                        $destination_oEndpoint_serial = $this->destination_endpoint_serial_ARRAY[$destination_stats_serial];
-                        $destination_oEndpoint_id = $this->destination_endpoint_id_ARRAY[$destination_stats_serial];
-                        $destination_current_perms = $this->destination_endpoint_perms_ARRAY[$destination_stats_serial];
-                        $destination_MKDIR_MODE = $this->destination_endpoint_mkdir_mode_ARRAY[$destination_stats_serial];
-                        $destination_DIR_PATH = $this->destination_endpoint_stats_path_serialindex_ARRAY[$destination_stats_serial];
-
-                    break;
-                }
-
-            }
-
-        }
-
-        //
-        // GET SOURCE ENDPOINT STATS SERIAL
-        foreach($this->source_endpoint_stats_serial_ARRAY as $key_src => $source_stats_serial){
-
-            if($serial_oEndpoint_SOURCE == $this->source_endpoint_serial_ARRAY[$source_stats_serial]){
-
-                switch($this->source_endpoint_protocol_ARRAY[$source_stats_serial]){
-                    case 'FTP':
-
-                        //
-                        // FTP
-                        $source_isValid = $this->source_endpoint_isValid_ARRAY[$source_stats_serial];
-                        $source_protocol = $this->source_endpoint_protocol_ARRAY[$source_stats_serial];
-                        $source_oEndpoint_serial = $this->source_endpoint_serial_ARRAY[$source_stats_serial];
-                        $source_oEndpoint_id = $this->source_endpoint_id_ARRAY[$source_stats_serial];
-                        $source_FTP_SERVER = $this->source_endpoint_ftp_server_ARRAY[$source_stats_serial];
-                        $source_FTP_PORT = $this->source_endpoint_ftp_port_ARRAY[$source_stats_serial];
-                        $source_FTP_DIR_PATH = $this->source_endpoint_stats_path_serialindex_ARRAY[$source_stats_serial];
-
-                    break;
-                    default:
-
-                        //
-                        // LOCAL_DIR
-                        $source_isValid = $this->source_endpoint_isValid_ARRAY[$source_stats_serial];
-                        $source_protocol = $this->source_endpoint_protocol_ARRAY[$source_stats_serial];
-                        $source_oEndpoint_serial = $this->source_endpoint_serial_ARRAY[$source_stats_serial];
-                        $source_oEndpoint_id = $this->source_endpoint_id_ARRAY[$source_stats_serial];
-                        $source_current_perms = $this->source_endpoint_perms_ARRAY[$source_stats_serial];
-                        $source_DIR_PATH = $this->source_endpoint_stats_path_serialindex_ARRAY[$source_stats_serial];
-
-                    break;
-                }
-
-            }
-
-        }
-
-        switch($destination_protocol){
-            case 'FTP':
-
-                if($dest_slashChar = $this->return_slashChar($destination_FTP_DIR_PATH)){
-
-                }else{
-
-                    $dest_slashChar = DIRECTORY_SEPARATOR;
-
-                }
-
-                $destination_path .= rtrim($destination_FTP_DIR_PATH,$dest_slashChar).$dest_slashChar;
-
-                if(isset($this->custom_folder_name)){
-
-                    //
-                    // APPEND CUSTOM DIR TO PATH AT DESTINATION
-                    $destination_path .= rtrim($this->custom_folder_name, $dest_slashChar).$dest_slashChar;
-
-                }
-
-                //
-                // APPEND DATE STAMPED DIR NAME TO PATH
-                if(isset($this->timestamp_nom_ARRAY[$source_oEndpoint_serial])){
-
-                    $timestamp_nom = $this->timestamp_nom_ARRAY[$source_oEndpoint_serial];
-
-                    $destination_path .= $timestamp_nom.$dest_slashChar;
-
-                }else{
-
-                    if($this->timestamp_versioning_pattern!='') {
-
-                        if(!($timestamp_nom = date($this->timestamp_versioning_pattern, time()))){
-
-                            $timestamp_nom = date('Ymd_H_i_s', time());
-
-                        }
-
-                        $destination_path .= $timestamp_nom.$dest_slashChar;
-
-                    }
-
-
-                }
-
-                if($this->content_only_path_to_destination){
-
-                    //
-                    // NO REPLICATION (AT DESTINATION) OF CONTAINING DIR AT SOURCE
-
-                }else{
-
-                    //
-                    // REPLICATE TO DESTINATION...CONTAINING DIR AT SOURCE
-                    switch($source_protocol) {
-                        case 'FTP':
-
-                            if($src_slashChar = $this->return_slashChar($source_FTP_DIR_PATH)){
-
-
-                            }else{
-
-                                $src_slashChar = DIRECTORY_SEPARATOR;
-
-                            }
-
-                            $source_FTP_DIR_PATH = rtrim($source_FTP_DIR_PATH, $src_slashChar).$src_slashChar;
-
-                            $tmp_src_dir_ARRAY = explode($src_slashChar, $source_FTP_DIR_PATH);
-
-                        break;
-                        default:
-
-                            if($src_slashChar = $this->return_slashChar($source_DIR_PATH)){
-
-
-                            }else{
-
-                                $src_slashChar = DIRECTORY_SEPARATOR;
-
-                            }
-
-                            $source_DIR_PATH = rtrim($source_DIR_PATH, $src_slashChar).$src_slashChar;
-
-                            $tmp_src_dir_ARRAY = explode($src_slashChar, $source_DIR_PATH);
-
-                        break;
-                    }
-
-                    $tmp_dir_sect_cnt = sizeof($tmp_src_dir_ARRAY);
-
-                    $destination_path .= $tmp_src_dir_ARRAY[$tmp_dir_sect_cnt-2].$dest_slashChar;
-
-                }
-
-            break;
-            default:
-
-                if($dest_slashChar = $this->return_slashChar($destination_DIR_PATH)){
-
-                }else{
-
-                    $dest_slashChar = DIRECTORY_SEPARATOR;
-
-                }
-
-                $destination_path .= rtrim($destination_DIR_PATH, $dest_slashChar).$dest_slashChar;
-
-                if(isset($this->custom_folder_name)){
-
-                    //
-                    // APPEND CUSTOM DIR TO PATH AT DESTINATION
-                    $destination_path .= rtrim($this->custom_folder_name, $dest_slashChar).$dest_slashChar;
-
-                }
-
-                //
-                // APPEND DATE STAMPED DIR NAME TO PATH
-                if(isset($this->timestamp_nom_ARRAY[$source_oEndpoint_serial])){
-
-                    $timestamp_nom = $this->timestamp_nom_ARRAY[$source_oEndpoint_serial];
-
-                    $destination_path .= $timestamp_nom . $dest_slashChar;
-
-                }else{
-
-                    if ($this->timestamp_versioning_pattern != '') {
-
-                        if (!($timestamp_nom = date($this->timestamp_versioning_pattern, time()))) {
-
-                            $timestamp_nom = date('Ymd_H_i_s', time());
-
-                        }
-
-                        $destination_path .= $timestamp_nom . $dest_slashChar;
-
-                    }
-
-                }
-
-                if($this->content_only_path_to_destination){
-
-                    //
-                    // NO REPLICATION (AT DESTINATION) OF CONTAINING DIR AT SOURCE
-
-                }else{
-
-                    //
-                    // REPLICATE TO DESTINATION...CONTAINING DIR AT SOURCE
-                    switch($source_protocol) {
-                        case 'FTP':
-
-                            if($src_slashChar = $this->return_slashChar($source_FTP_DIR_PATH)){
-
-
-                            }else{
-
-                                $src_slashChar = DIRECTORY_SEPARATOR;
-
-                            }
-
-                            $source_FTP_DIR_PATH = rtrim($source_FTP_DIR_PATH, $src_slashChar).$src_slashChar;
-
-                            $tmp_src_dir_ARRAY = explode($src_slashChar, $source_FTP_DIR_PATH);
-
-                        break;
-                        default:
-
-                            if($src_slashChar = $this->return_slashChar($source_DIR_PATH)){
-
-
-                            }else{
-
-                                $src_slashChar = DIRECTORY_SEPARATOR;
-
-                            }
-
-                            $source_DIR_PATH = rtrim($source_DIR_PATH, $src_slashChar).$src_slashChar;
-
-                            $tmp_src_dir_ARRAY = explode($src_slashChar, $source_DIR_PATH);
-
-                        break;
-                    }
-
-                    $tmp_dir_sect_cnt = sizeof($tmp_src_dir_ARRAY);
-
-                    $destination_path .= $tmp_src_dir_ARRAY[$tmp_dir_sect_cnt-2].$dest_slashChar;
-
-                }
-
-            break;
-
-        }
-
-        //$this->oCRNRSTN_USR->error_log('destination_path='.$destination_path, __LINE__, __METHOD__, __FILE__, 'CRNRSTN_oELECTRUM_PROFILE');
-
-        return $destination_path;
-
-    }
-
-    public function return_source_to_destination_stats_array($execution_serial, $batch_serial, $oEndpoint_DESTINATION){
-
-        $tmp_ARRAY = array();
-        $src_to_dest_cnt = 0;
-
-        $tmp_serial_oEndpoint_DESTINATION = $oEndpoint_DESTINATION->return_serial();
-
-        foreach($this->transfer_success_count_ARRAY[$execution_serial][$batch_serial] as $serial_oEndpoint_SOURCE => $chunkARRAY0){
-
-            foreach($chunkARRAY0 as $serial_oEndpoint_DESTINATION => $asset_transfer_count){
-
-                if($tmp_serial_oEndpoint_DESTINATION == $serial_oEndpoint_DESTINATION){
-
-                    $tmp_ARRAY['activity_stats'][$src_to_dest_cnt]['asset_transfer_count'] = $asset_transfer_count;
-                    $tmp_ARRAY['activity_stats'][$src_to_dest_cnt]['destination_path'] = $this->return_destination_stats_path($serial_oEndpoint_SOURCE, $serial_oEndpoint_DESTINATION);
-
-                    $src_to_dest_cnt++;
-
-                }
-
-            }
-
-        }
-
-        $tmp_ARRAY['src_to_dest_cnt'] = $src_to_dest_cnt;
-
-        return $tmp_ARRAY;
-
-    }
-
-    public function plus_one_asset_transfer($oEndpoint_serial_SOURCE, $oEndpoint_serial_DESTINATION, $execution_serial, $execution_batch_serial, $file_size){
-
-        if(!isset($this->transfer_success_count_ARRAY[$execution_serial][$execution_batch_serial][$oEndpoint_serial_SOURCE][$oEndpoint_serial_DESTINATION])){
-
-            $this->transfer_success_count_ARRAY[$execution_serial][$execution_batch_serial][$oEndpoint_serial_SOURCE][$oEndpoint_serial_DESTINATION] = 0;
-            $this->filesize_success_count_ARRAY[$execution_serial][$execution_batch_serial][$oEndpoint_serial_SOURCE][$oEndpoint_serial_DESTINATION] = 0;
-
-        }
-
-        $this->transfer_success_count_ARRAY[$execution_serial][$execution_batch_serial][$oEndpoint_serial_SOURCE][$oEndpoint_serial_DESTINATION] += 1;
-        $this->filesize_success_count_ARRAY[$execution_serial][$execution_batch_serial][$oEndpoint_serial_SOURCE][$oEndpoint_serial_DESTINATION] += $file_size;
-
-    }
-
-    public function init_electrum($electrum_process_id, $execution_batch_serial, $startTime, $timestamp_versioning_pattern=NULL){
-
-        $this->electrum_process_id = $electrum_process_id;
-        $this->execution_batch_serial = $execution_batch_serial;
-        $this->startTime = $startTime;
-        $this->timestamp_versioning_pattern = $timestamp_versioning_pattern;
-
-    }
-
-    public function moveContentOnly($excludeContainingDir){
-
-        $this->content_only_path_to_destination = $excludeContainingDir;
-
-    }
-
-
-    public function add_valid_source_DIR($dirPath, $endpoint_serial, $endpoint_id, $current_perms){
-
-        $tmp_stats_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-
-        $this->source_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-        $this->source_endpoint_stats_pathindex_ARRAY[$dirPath] = $tmp_stats_endpoint_serial;
-        $this->source_endpoint_stats_path_serialindex_ARRAY[$tmp_stats_endpoint_serial] = $dirPath;
-
-        $this->source_endpoint_isValid_ARRAY[$tmp_stats_endpoint_serial] = true;
-        $this->source_endpoint_protocol_ARRAY[$tmp_stats_endpoint_serial] = 'LOCAL_DIR';
-        $this->source_endpoint_serial_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_serial;
-        $this->source_endpoint_id_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_id;
-        $this->source_endpoint_perms_ARRAY[$tmp_stats_endpoint_serial] = $current_perms;
-
-    }
-
-    public function add_invalid_source_DIR($dirPath, $endpoint_serial, $endpoint_id, $current_perms, $err_reason){
-
-        $tmp_stats_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-
-        $this->source_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-
-        $this->source_endpoint_stats_pathindex_ARRAY[$dirPath] = $tmp_stats_endpoint_serial;
-        $this->source_endpoint_stats_path_serialindex_ARRAY[$tmp_stats_endpoint_serial] = $dirPath;
-
-        $this->source_endpoint_isValid_ARRAY[$tmp_stats_endpoint_serial] = false;
-        $this->source_endpoint_protocol_ARRAY[$tmp_stats_endpoint_serial] = 'LOCAL_DIR';
-        $this->source_endpoint_serial_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_serial;
-        $this->source_endpoint_id_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_id;
-        $this->source_endpoint_perms_ARRAY[$tmp_stats_endpoint_serial] = $current_perms;
-        $this->source_endpoint_err_reason_ARRAY[$tmp_stats_endpoint_serial] = $err_reason;
-
-    }
-
-    public function add_valid_source_FTP($FTP_DIR_PATH, $FTP_SERVER, $FTP_PORT, $endpoint_serial, $endpoint_id){
-
-        $tmp_stats_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-
-        $this->source_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-
-        $this->source_endpoint_stats_pathindex_ARRAY[$FTP_DIR_PATH] = $tmp_stats_endpoint_serial;
-        $this->source_endpoint_stats_path_serialindex_ARRAY[$tmp_stats_endpoint_serial] = $FTP_DIR_PATH;
-
-        $this->source_endpoint_isValid_ARRAY[$tmp_stats_endpoint_serial] = true;
-        $this->source_endpoint_protocol_ARRAY[$tmp_stats_endpoint_serial] = 'FTP';
-        $this->source_endpoint_serial_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_serial;
-        $this->source_endpoint_id_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_id;
-        $this->source_endpoint_ftp_server_ARRAY[$tmp_stats_endpoint_serial] = $FTP_SERVER;
-        $this->source_endpoint_ftp_port_ARRAY[$tmp_stats_endpoint_serial] = $FTP_PORT;
-
-    }
-
-    public function add_invalid_source_FTP($FTP_DIR_PATH, $FTP_SERVER, $FTP_PORT, $endpoint_serial, $endpoint_id){
-
-        $tmp_stats_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-
-        $this->source_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-
-        $this->source_endpoint_stats_pathindex_ARRAY[$FTP_DIR_PATH] = $tmp_stats_endpoint_serial;
-        $this->source_endpoint_stats_path_serialindex_ARRAY[$tmp_stats_endpoint_serial] = $FTP_DIR_PATH;
-
-        $this->source_endpoint_isValid_ARRAY[$tmp_stats_endpoint_serial] = false;
-        $this->source_endpoint_protocol_ARRAY[$tmp_stats_endpoint_serial] = 'FTP';
-        $this->source_endpoint_serial_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_serial;
-        $this->source_endpoint_id_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_id;
-        $this->source_endpoint_ftp_server_ARRAY[$tmp_stats_endpoint_serial] = $FTP_SERVER;
-        $this->source_endpoint_ftp_port_ARRAY[$tmp_stats_endpoint_serial] = $FTP_PORT;
-
-    }
-
-    public function add_valid_destination_FTP($FTP_DIR_PATH, $FTP_SERVER, $FTP_PORT, $endpoint_serial, $endpoint_id, $is_flat_file=false){
-
-        $tmp_stats_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-
-        $this->destination_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-
-        $this->destination_endpoint_stats_pathindex_ARRAY[$FTP_DIR_PATH] = $tmp_stats_endpoint_serial;
-        $this->destination_endpoint_stats_path_serialindex_ARRAY[$tmp_stats_endpoint_serial] = $FTP_DIR_PATH;
-
-        $this->destination_endpoint_isFlatFile_ARRAY[$tmp_stats_endpoint_serial] = $is_flat_file;
-        $this->destination_endpoint_isValid_ARRAY[$tmp_stats_endpoint_serial] = true;
-        $this->destination_endpoint_protocol_ARRAY[$tmp_stats_endpoint_serial] = 'FTP';
-        $this->destination_endpoint_serial_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_serial;
-        $this->destination_endpoint_id_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_id;
-        $this->destination_endpoint_ftp_server_ARRAY[$tmp_stats_endpoint_serial] = $FTP_SERVER;
-        $this->destination_endpoint_ftp_port_ARRAY[$tmp_stats_endpoint_serial] = $FTP_PORT;
-
-    }
-
-    public function add_invalid_destination_FTP($FTP_DIR_PATH, $FTP_SERVER, $FTP_PORT, $endpoint_serial, $endpoint_id){
-
-        $tmp_stats_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-
-        $this->destination_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-
-        $this->destination_endpoint_stats_pathindex_ARRAY[$FTP_DIR_PATH] = $tmp_stats_endpoint_serial;
-        $this->destination_endpoint_stats_path_serialindex_ARRAY[$tmp_stats_endpoint_serial] = $FTP_DIR_PATH;
-
-        $this->destination_endpoint_isFlatFile_ARRAY[$tmp_stats_endpoint_serial] = false;
-        $this->destination_endpoint_isValid_ARRAY[$tmp_stats_endpoint_serial] = false;
-        $this->destination_endpoint_protocol_ARRAY[$tmp_stats_endpoint_serial] = 'FTP';
-        $this->destination_endpoint_serial_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_serial;
-        $this->destination_endpoint_id_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_id;
-        $this->destination_endpoint_ftp_server_ARRAY[$tmp_stats_endpoint_serial] = $FTP_SERVER;
-        $this->destination_endpoint_ftp_port_ARRAY[$tmp_stats_endpoint_serial] = $FTP_PORT;
-
-    }
-
-    public function add_valid_destination_DIR($DIR_PATH, $endpoint_serial, $endpoint_id, $current_perms, $MKDIR_MODE, $is_flat_file=false){
-
-        $tmp_stats_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-
-        $this->destination_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-
-        $this->destination_endpoint_stats_pathindex_ARRAY[$DIR_PATH] = $tmp_stats_endpoint_serial;
-        $this->destination_endpoint_stats_path_serialindex_ARRAY[$tmp_stats_endpoint_serial] = $DIR_PATH;
-
-        $this->destination_endpoint_isFlatFile_ARRAY[$tmp_stats_endpoint_serial] = $is_flat_file;
-        $this->destination_endpoint_isValid_ARRAY[$tmp_stats_endpoint_serial] = true;
-        $this->destination_endpoint_protocol_ARRAY[$tmp_stats_endpoint_serial] = 'LOCAL_DIR';
-        $this->destination_endpoint_serial_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_serial;
-        $this->destination_endpoint_id_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_id;
-        $this->destination_endpoint_perms_ARRAY[$tmp_stats_endpoint_serial] = $current_perms;
-        $this->destination_endpoint_mkdir_mode_ARRAY[$tmp_stats_endpoint_serial] = $MKDIR_MODE;
-
-    }
-
-    public function add_invalid_destination_DIR($DIR_PATH, $endpoint_serial, $endpoint_id, $current_perms, $MKDIR_MODE, $err_reason){
-
-        $tmp_stats_endpoint_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-
-        $this->destination_endpoint_stats_serial_ARRAY[] = $tmp_stats_endpoint_serial;
-
-        $this->destination_endpoint_stats_pathindex_ARRAY[$DIR_PATH] = $tmp_stats_endpoint_serial;
-        $this->destination_endpoint_stats_path_serialindex_ARRAY[$tmp_stats_endpoint_serial] = $DIR_PATH;
-
-        $this->destination_endpoint_isFlatFile_ARRAY[$tmp_stats_endpoint_serial] = false;
-        $this->destination_endpoint_isValid_ARRAY[$tmp_stats_endpoint_serial] = false;
-        $this->destination_endpoint_protocol_ARRAY[$tmp_stats_endpoint_serial] = 'LOCAL_DIR';
-        $this->destination_endpoint_serial_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_serial;
-        $this->destination_endpoint_id_ARRAY[$tmp_stats_endpoint_serial] = $endpoint_id;
-        $this->destination_endpoint_perms_ARRAY[$tmp_stats_endpoint_serial] = $current_perms;
-        $this->destination_endpoint_mkdir_mode_ARRAY[$tmp_stats_endpoint_serial] = $MKDIR_MODE;
-        $this->destination_endpoint_err_reason_ARRAY[$tmp_stats_endpoint_serial] = $err_reason;
-
-    }
-
-    private function return_slashChar($path){
-
-        $pos_fslash = strpos($path,'/');
-
-        if($pos_fslash !== false) {
-
-            return '/';
-
-        }else{
-
-            $pos_bslash = strpos($path,'\\');
-            if($pos_bslash !== false) {
-
-                return '\\';
-            }else{
-
-                return false;
-
-            }
-
-        }
-
-    }
-
-    public function __destruct() {
 
     }
 

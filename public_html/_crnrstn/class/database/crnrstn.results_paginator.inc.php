@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_results_paginator
 #  VERSION :: 1.00.0000
@@ -51,7 +51,7 @@
 #  DESCRIPTION :: Results pagination.
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
-class crnrstn_results_paginator{
+class crnrstn_results_paginator {
 
     protected $oLogger;
     public $oCRNRSTN_USR;
@@ -64,7 +64,7 @@ class crnrstn_results_paginator{
     protected $pagination_sensation_endpoint = array();
     protected $pagination_handle_var = array();
 
-    public function __construct($oCRNRSTN_USR) {
+    public function __construct($oCRNRSTN_USR){
 
         $this->oCRNRSTN_USR = $oCRNRSTN_USR;
 
@@ -331,10 +331,10 @@ class crnrstn_results_paginator{
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -358,27 +358,27 @@ class crnrstn_results_paginator{
         </form>
         <script>
         //<!--
-        
+
         function ugc_search_sync(){
-            
+
             var input_handle = document.getElementById("' . $tmp_form_input.'");
             input_handle.value = 1;
-            
+
             var form_handle = document.getElementById("' . $tmp_form_serial.'");
             form_handle.submit();
-            
+
         }
-            
+
          function crnrstn_' . $this->oCRNRSTN_USR->crcINT('fire_click_event').'(pagination_index){
-         
+
             var input_handle = document.getElementById("' . $tmp_form_input.'");
             input_handle.value = pagination_index;
-             
+
             var form_handle = document.getElementById("' . $tmp_form_serial.'");
             form_handle.submit();
-            
+
          }
-         
+
         //-->
         </script>
         ';
@@ -421,10 +421,10 @@ class crnrstn_results_paginator{
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -483,9 +483,9 @@ class crnrstn_results_paginator{
 
         try{
 
-            if(!isset($pagination_serial)) {
+            if(!isset($pagination_serial)){
 
-                if (!isset($this->current_pagination_serial)) {
+                if(!isset($this->current_pagination_serial)){
 
                     $this->current_pagination_serial = $this->oCRNRSTN_USR->generate_new_key();
                     $this->pagination_sensation_endpoint[$this->current_pagination_serial] = '#';
@@ -514,10 +514,10 @@ class crnrstn_results_paginator{
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -634,7 +634,7 @@ class crnrstn_results_paginator{
 
             }else{
 
-                if(!isset($this->current_pagination_sensation[$pagination_serial])) {
+                if(!isset($this->current_pagination_sensation[$pagination_serial])){
 
                     $this->current_pagination_sensation[$pagination_serial] = 1;
 
@@ -644,10 +644,10 @@ class crnrstn_results_paginator{
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -700,10 +700,10 @@ class crnrstn_results_paginator{
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -735,10 +735,10 @@ class crnrstn_results_paginator{
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -823,10 +823,10 @@ class crnrstn_results_paginator{
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -876,10 +876,10 @@ class crnrstn_results_paginator{
                 }
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -888,7 +888,7 @@ class crnrstn_results_paginator{
 
     }
 
-    public function __destruct() {
+    public function __destruct(){
 
 
     }

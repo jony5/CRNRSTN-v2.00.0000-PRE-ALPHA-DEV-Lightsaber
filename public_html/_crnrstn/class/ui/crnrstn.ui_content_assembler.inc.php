@@ -41,13 +41,14 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_ui_content_assembler
 #  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
 #  VERSION :: 2.00.0000
 #  DATE :: June 10, 2020 @ 2130 hrs
 #  DESCRIPTION ::
+#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
 class crnrstn_ui_content_assembler {
 
@@ -57,11 +58,11 @@ class crnrstn_ui_content_assembler {
 
 	private static $page_path;
 
-	public function __construct($oCRNRSTN) {
+	public function __construct($oCRNRSTN){
 
         $this->oCRNRSTN = $oCRNRSTN;
 
-		// 
+		//
 		// INSTANTIATE LOGGER
 		$this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN);
 
@@ -207,7 +208,7 @@ class crnrstn_ui_content_assembler {
         //
         // CLEAR CHUNKED DATA
         $query = 'DELETE FROM `search_content_chunked`
-                    WHERE `search_content_chunked`.`PAGE_SERIAL`="' . $mysqli->real_escape_string($tmp_page_serial).'" 
+                    WHERE `search_content_chunked`.`PAGE_SERIAL`="' . $mysqli->real_escape_string($tmp_page_serial).'"
                     AND `search_content_chunked`.`PAGE_SERIAL_CRC`="' . $this->oCRNRSTN->crcINT($tmp_page_serial).'";';
 
         $oQueryProfileMgr->loadQueryProfile($oCRNRSTN_MySQLi, 'INIT_PAGE_SEARCH', '!jesus_is_my_dear_lord!', 'DELETE_CHUNKED');
@@ -229,7 +230,7 @@ class crnrstn_ui_content_assembler {
                     `search_content`.`DATEMODIFIED`,
                     `search_content`.`DATECREATED`
                 FROM `search_content`
-                WHERE `search_content`.`PAGE_SERIAL`="' . $mysqli->real_escape_string($tmp_page_serial).'" 
+                WHERE `search_content`.`PAGE_SERIAL`="' . $mysqli->real_escape_string($tmp_page_serial).'"
                 AND `search_content`.`PAGE_SERIAL_CRC`="' . $this->oCRNRSTN->crcINT($tmp_page_serial).'" LIMIT 1;
                 ';
 
@@ -260,7 +261,7 @@ class crnrstn_ui_content_assembler {
             `PAGE_CONTENT_RAW` = "' . $mysqli->real_escape_string($tmp_page_content).'",
             `BOOLEAN_TEST` = true,
             `CONTENT_LENGTH_RAW` = "' . $tmp_page_content_len.'",
-            `MODIFIED_BY_IP` = "' . $this->oCRNRSTN->return_client_ip().'",
+            `MODIFIED_BY_IP` = "' . $this->oCRNRSTN->client_ip().'",
             `MODIFIED_BY_USERAGENT` = "' . $_SERVER['HTTP_USER_AGENT'].'",
             `DATEMODIFIED` = "' . $ts.'"
             WHERE `CONTENT_ID`= "' . $tmp_content_id . '"
@@ -276,8 +277,8 @@ class crnrstn_ui_content_assembler {
 
             //
             // BREAK CONTENT INTO CHUNKS
-            $tmp_page_content = $this->str_sanitize($tmp_page_content,'index');
-            $tmp_search_result_display = $this->str_sanitize($tmp_search_result_display,'index');
+            $tmp_page_content = $this->oCRNRSTN->str_sanitize($tmp_page_content,'index');
+            $tmp_search_result_display = $this->oCRNRSTN->str_sanitize($tmp_search_result_display,'index');
 
             $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_search_result_display, 200);
             $tmp_sresult_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
@@ -291,7 +292,7 @@ class crnrstn_ui_content_assembler {
 
             for($i=0;$i<$chunk_cnt;$i++){
                 $tmp_chunk_id = $this->oCRNRSTN->generate_new_key(70);
-                $tmp_chunk_search = strtolower($this->str_sanitize($tmp_chunked_array['chunked_content'][$i],'search'));
+                $tmp_chunk_search = strtolower($this->oCRNRSTN->str_sanitize($tmp_chunked_array['chunked_content'][$i],'search'));
 
                 $tmp_chunk_len_search = strlen($tmp_chunk_search);
                 $tmp_chunk_len_raw = strlen($tmp_chunked_array['chunked_content'][$i]);
@@ -324,8 +325,8 @@ class crnrstn_ui_content_assembler {
                                     "' . $mysqli->real_escape_string($tmp_chunk_title).'",
                                     "' . $tmp_chunk_len_search.'",
                                     "' . $tmp_chunk_len_raw.'",
-                                    "' . $this->oCRNRSTN->return_client_ip().'",
-                                    "' . $this->oCRNRSTN->return_client_ip().'",
+                                    "' . $this->oCRNRSTN->client_ip().'",
+                                    "' . $this->oCRNRSTN->client_ip().'",
                                     "' . $_SERVER['HTTP_USER_AGENT'].'",
                                     "' . $_SERVER['HTTP_USER_AGENT'].'",
                                     "' . $ts.'");
@@ -368,8 +369,8 @@ class crnrstn_ui_content_assembler {
                         "' . $mysqli->real_escape_string(self::$page_path).'",
                         "' . $mysqli->real_escape_string($tmp_page_content).'",
                         "' . $tmp_page_content_len.'",
-                        "' . $this->oCRNRSTN->return_client_ip().'",
-                        "' . $this->oCRNRSTN->return_client_ip().'",
+                        "' . $this->oCRNRSTN->client_ip().'",
+                        "' . $this->oCRNRSTN->client_ip().'",
                         "' . $_SERVER['HTTP_USER_AGENT'].'",
                         "' . $_SERVER['HTTP_USER_AGENT'].'",
                         "' . $ts.'");
@@ -385,8 +386,8 @@ class crnrstn_ui_content_assembler {
 
             //
             // BREAK CONTENT INTO CHUNKS
-            $tmp_page_content = $this->str_sanitize($tmp_page_content,'index');
-            $tmp_search_result_display = $this->str_sanitize($tmp_search_result_display,'index');
+            $tmp_page_content = $this->oCRNRSTN->str_sanitize($tmp_page_content,'index');
+            $tmp_search_result_display = $this->oCRNRSTN->str_sanitize($tmp_search_result_display,'index');
 
             $oChunkRestrictData = $this->oCRNRSTN->chunkPageData($tmp_search_result_display, 200);
             $tmp_sresult_array['chunked_content'] = $oChunkRestrictData->return_linesArray();
@@ -433,8 +434,8 @@ class crnrstn_ui_content_assembler {
                                     "' . $mysqli->real_escape_string($tmp_chunk_title).'",
                                     "' . $tmp_chunk_len_search.'",
                                     "' . $tmp_chunk_len_raw.'",
-                                    "' . $this->oCRNRSTN->return_client_ip().'",
-                                    "' . $this->oCRNRSTN->return_client_ip().'",
+                                    "' . $this->oCRNRSTN->client_ip().'",
+                                    "' . $this->oCRNRSTN->client_ip().'",
                                     "' . $_SERVER['HTTP_USER_AGENT'].'",
                                     "' . $_SERVER['HTTP_USER_AGENT'].'",
                                     "' . $ts.'");
@@ -485,7 +486,7 @@ class crnrstn_ui_content_assembler {
         $tmp_page_uri = $this->oCRNRSTN->crnrstn_http_endpoint().$page_path;
 
         if($content_title!=''){
-            
+
             $content_title = '<span class="s_result_title">' . $content_title . ' ::</span> ';
 
             //$result_HTML = '<div id="sresult_' . $tmp_result_id . '" class="s_resultfull_wrapper" onmouseover="ajax_search_result(\'#sresult_' . $tmp_result_id . '\', \'mouseover\'); return false;" onmouseout="ajax_search_result(\'#sresult_' . $tmp_result_id . '\', \'mouseout\'); return false;" onclick="loadPage(\'' . $tmp_page_uri.'\'); return false;">' . $content_title.$return_content.'...</div>';
@@ -520,7 +521,7 @@ class crnrstn_ui_content_assembler {
         }
 
         return $result_HTML;
-        
+
     }
 
     public function return_ajax_search_result_mobile($ugc_search_str, $page_path, $return_content, $content_title){
@@ -573,8 +574,6 @@ class crnrstn_ui_content_assembler {
         /*
         $search_expression = "apple bear \"Tom Cruise\" or 'Mickey Mouse' another word";
 
-        ?>
-
         The result will be:
         Array
         (
@@ -586,12 +585,14 @@ class crnrstn_ui_content_assembler {
             [5] => another
             [6] => word
         )
-	     * */
+
+	   */
+
     }
 
     public function initialize_page($key){
 
-        try {
+        try{
 
             switch($key){
                 case 'PAGE':
@@ -625,10 +626,10 @@ class crnrstn_ui_content_assembler {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -639,14 +640,14 @@ class crnrstn_ui_content_assembler {
 
 	public function add_page_element($serial, $key, $data_ARRAY, $output_type = 'SSDTLA'){
 
-	    if($output_type === 'sauce'){
+	    if($output_type == 'sauce'){
 
 	        return NULL;
 
         }
 
 	    //error_log(__LINE__ . ' ui cnt mgr $serial[' . $serial . ']. $key[' . $key . '].');
-        try {
+        try{
 
             if(strlen($key)<1){
 
@@ -681,10 +682,10 @@ class crnrstn_ui_content_assembler {
 
             }
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -724,7 +725,7 @@ class crnrstn_ui_content_assembler {
         }else{
 
             echo '';
-            
+
         }
 
         return NULL;
@@ -740,7 +741,7 @@ class crnrstn_ui_content_assembler {
         }else{
 
 	        echo '';
-	        
+	
         }
 
 	    return NULL;
@@ -752,22 +753,22 @@ class crnrstn_ui_content_assembler {
     private function linkify($showimg = 1, $value, $protocols = array('http', 'mail', 'https'), array $attributes = array('target' => '_blank')){
         // Link attributes
         $attr = '';
-        foreach ($attributes as $key => $val) {
+        foreach($attributes as $key => $val){
             $attr = ' ' . $key . '="' . htmlentities($val) . '"';
         }
 
         $links = array();
 
         // Extract existing links and tags
-        $value = preg_replace_callback('~(<a .*?>.*?</a>|<.*?>)~i', function ($match) use (&$links) { return '<' . array_push($links, $match[1]) . '>'; }, $value);
+        $value = preg_replace_callback('~(<a .*?>.*?</a>|<.*?>)~i', function ($match) use (&$links){ return '<' . array_push($links, $match[1]) . '>'; }, $value);
 
         // Extract text links for each protocol
-        foreach ((array)$protocols as $protocol) {
-            switch ($protocol) {
+        foreach((array)$protocols as $protocol){
+            switch($protocol){
                 case 'http':
                 case 'https':   $value = preg_replace_callback('~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])~i',
-                    function ($match) use ($protocol, &$links, $attr, $showimg) {
-                        if ($match[1]){
+                    function ($match) use ($protocol, &$links, $attr, $showimg){
+                        if($match[1]){
                             $protocol = $match[1]; $link = $match[2] ?: $match[3];
                             // Youtube
                             if($showimg == 1){
@@ -817,101 +818,17 @@ class crnrstn_ui_content_assembler {
 
                         }
                     }, $value); break;
-                case 'mail':    $value = preg_replace_callback('~([^\s<]+?@[^\s<]+?\.[^\s<]+)(?<![\.,:])~', function ($match) use (&$links, $attr) { return '<' . array_push($links, "<a $attr href=\"mailto:{$match[1]}\" class=\"htmllink\">{$match[1]}</a>") . '>'; }, $value); break;
-                case 'twitter': $value = preg_replace_callback('~(?<!\w)[@#](\w++)~', function ($match) use (&$links, $attr) { return '<' . array_push($links, "<a $attr href=\"https://twitter.com/" . ($match[0][0] == '@' ? '' : 'search/%23') . $match[1]  . "\" class=\"htmllink\">{$match[0]}</a>") . '>'; }, $value); break;
-                default:        $value = preg_replace_callback('~' . preg_quote($protocol, '~') . '://([^\s<]+?)(?<![\.,:])~i', function ($match) use ($protocol, &$links, $attr) { return '<' . array_push($links, "<a $attr href=\"$protocol://{$match[1]}\" class=\"htmllink\">{$match[1]}</a>") . '>'; }, $value); break;
+                case 'mail':    $value = preg_replace_callback('~([^\s<]+?@[^\s<]+?\.[^\s<]+)(?<![\.,:])~', function ($match) use (&$links, $attr){ return '<' . array_push($links, "<a $attr href=\"mailto:{$match[1]}\" class=\"htmllink\">{$match[1]}</a>") . '>'; }, $value); break;
+                case 'twitter': $value = preg_replace_callback('~(?<!\w)[@#](\w++)~', function ($match) use (&$links, $attr){ return '<' . array_push($links, "<a $attr href=\"https://twitter.com/" . ($match[0][0] == '@' ? '' : 'search/%23') . $match[1]  . "\" class=\"htmllink\">{$match[0]}</a>") . '>'; }, $value); break;
+                default:        $value = preg_replace_callback('~' . preg_quote($protocol, '~') . '://([^\s<]+?)(?<![\.,:])~i', function ($match) use ($protocol, &$links, $attr){ return '<' . array_push($links, "<a $attr href=\"$protocol://{$match[1]}\" class=\"htmllink\">{$match[1]}</a>") . '>'; }, $value); break;
             }
         }
 
         // Insert all link
-        return preg_replace_callback('/<(\d+)>/', function ($match) use (&$links) { return $links[$match[1] - 1]; }, $value);
+        return preg_replace_callback('/<(\d+)>/', function ($match) use (&$links){ return $links[$match[1] - 1]; }, $value);
     }
 
-    public function str_sanitize($str, $type){
-
-        $patterns = array();
-        $replacements = array();
-
-        $type = strtolower($type);
-
-        try{
-
-            switch($type){
-                case 'index':
-
-                    $patterns[0] = '&nbsp;';
-                    $patterns[1] = ')';
-                    $replacements[0] = ' ';
-                    $replacements[1] = ') ';
-
-                break;
-                case 'search':
-
-                    $patterns[0] = "
-";
-                    $patterns[1] = '"';
-                    $patterns[2] = '=';
-                    $patterns[3] = '{';
-                    $patterns[4] = '}';
-                    $patterns[5] = '(';
-                    $patterns[6] = ')';
-                    $patterns[7] = ' ';
-                    $patterns[8] = '	';
-                    $patterns[9] = ',';
-                    $patterns[10] = '\n';
-                    $patterns[11] = '\r';
-                    $patterns[12] = '\'';
-                    $patterns[13] = '/';
-                    $patterns[14] = '#';
-                    $patterns[15] = ';';
-                    $patterns[16] = ':';
-                    //$patterns[17] = '>';
-
-                    $replacements[0] = '';
-                    $replacements[1] = '';
-                    $replacements[2] = '';
-                    $replacements[3] = '';
-                    $replacements[4] = '';
-                    $replacements[5] = '';
-                    $replacements[6] = '';
-                    $replacements[7] = '';
-                    $replacements[8] = '';
-                    $replacements[9] = '';
-                    $replacements[10] = '';
-                    $replacements[11] = '';
-                    $replacements[12] = '';
-                    $replacements[13] = '';
-                    $replacements[14] = '';
-                    $replacements[15] = '';
-                    $replacements[16] = '';
-                    //$replacements[17] = '';
-
-                break;
-                default:
-
-                    //
-                    // HOOOSTON...VE HAF PROBLEM!
-                    throw new Exception('Unable to determine string sanitization algorithm [' . $type . '] for the content[' . $str.'].');
-
-                break;
-
-            }
-
-        } catch( Exception $e ) {
-
-            $this->oCRNRSTN->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
-        }
-
-        $str = str_replace($patterns, $replacements, $str);
-
-        return $str;
-
-    }
-
-	public function __destruct() {
+	public function __destruct(){
 		
 	}
 

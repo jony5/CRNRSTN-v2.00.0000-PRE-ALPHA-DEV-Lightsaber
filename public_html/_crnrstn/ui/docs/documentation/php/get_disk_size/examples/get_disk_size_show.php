@@ -7,7 +7,7 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 
 //
 // JUST NEED A VALID SERVER PATH. WE WILL WRITE NOTHING.
-$tmp_write_path = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN_SYSTEM_RESOURCE::HTTP_IMAGES');
+$tmp_write_path = $this->oCRNRSTN->get_resource('crnrstn_path_directory', 0, 'CRNRSTN::RESOURCE::HTTP_IMAGES');
 
 //
 // MAKE SOME SMALL DATA.
@@ -17,7 +17,7 @@ $tmp_small_data_size = strlen($tmp_small_data);
 //
 // FAKE SOME BIG DATA. MAYBE PROD IS GOOD FOR IT?
 $tmp_big_data = $oCRNRSTN->generate_new_key(50);
-$tmp_big_data_size = 107374182400;     // 100 GB
+$tmp_big_data_size = $this->oCRNRSTN->format_bytes('100 GB');
 
 //
 // GET WRITE PERMISSIONS FOR SMALL DATA.

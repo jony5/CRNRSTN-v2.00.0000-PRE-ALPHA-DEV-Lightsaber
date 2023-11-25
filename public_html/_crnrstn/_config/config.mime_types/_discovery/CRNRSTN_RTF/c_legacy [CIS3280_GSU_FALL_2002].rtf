@@ -1,0 +1,350 @@
+{\rtf1\ansi\ansicpg1252
+{\fonttbl
+{\f1\fscript\fcharset0\fprq0 Comic Sans MS;}
+{\f2\froman\fcharset0\fprq0 Times New Roman;}
+{\f3\fmodern\fcharset0\fprq0 Courier New;}
+{\f4\fmodern\fcharset0\fprq0 Courier;}
+{\f5\fswiss\fcharset0\fprq0 AvantGarde;}
+}
+{\colortbl;
+\red0\green0\blue0;
+}
+{\stylesheet
+{\s1\qc\f1\fs36\ppscheme13312\lang1033\level1 heading 1;}
+{\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\level2 heading 2;}
+{\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033\level3 heading 3;}
+{\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033\level4 heading 4;}
+{\s5\li1260\fi-180\f1\fs20\ppscheme-1\lang1033\level5 heading 5;}
+{\s6\li1620\fi-180\f1\fs20\ppscheme-1\lang1033\level6 heading 6;}
+}
+\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 C Legacy Code Topics}{\f2\ppscheme-1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 The C Preprocessor}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 preprocessing\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\loch\af1\hich\f1\fs24 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs24\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs24 occurs before a program is compiled. \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\loch\af1\hich\f1\fs24 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs24\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs24 inclusion of other files \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\loch\af1\hich\f1\fs24 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs24\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs24 definition of }{\i\loch\f1\fs24 symbolic constants}{\loch\f1\fs24  and }{\i\loch\f1\fs24 macros,\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs24 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs24\pnscheme-1{\pntxtb \'96}}{\i\loch\f1\fs24 conditional compilation}{\loch\f1\fs24  of program code\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs24 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs24\pnscheme-1{\pntxtb \'96}}{\i\loch\f1\fs24 conditional execution of preprocessor directives}{\loch\f1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs32 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs32\pnscheme-3{\pntxtb \'95}}{\loch\f1\fs32\ppscheme-3 Format of preprocessor directives:}{\loch\f1\fs32 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs24 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs24\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs24 lines begin with }{\b\hich\af3\loch\f3\fs24 #}{\loch\f1\fs24  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs24 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs24\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs24 only whitespace characters before directives on a line \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs24 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs24\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs24 they are not C++ statements - no semicolon (}{\b\hich\af3\loch\f3\fs24 ;}{\loch\f1\fs24 )}{\f1\fs24 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 The }{\b\loch\f3\fs28\ppscheme-3 #include}{\b\loch\f1\fs28\ppscheme-3  Preprocessor Directive}{\b\loch\f1\fs28\ppscheme256 \tab }{\loch\f2\fs28\ppscheme1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af3\hich\f3\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs28\pnscheme-1{\pntxtb \'95}}{\b\loch\f3\fs28 #include}{\loch\f1\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs20 copy of a specified file included in place of the directive}{\f1\fs20  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\hich\af3\loch\f3\fs20 \tab #include <filename> - }{\hich\af2\loch\f1\fs20 searches standard library for file \tab \tab (use for standard library files)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\hich\af3\loch\f3\fs20 \tab #include "filename"}{\b\hich\af3\loch\f3\fs20  -}{\hich\af2\loch\f1\fs20  searches current directory, then \tab \tab \tab standard library (use for user-defined files)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\hich\af2\loch\f1\fs28 Used for\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\hich\af2\loch\f1\fs20 loading header files (}{\b\hich\af3\loch\f3\fs20 #include <iostream>}{\hich\af2\loch\f1\fs20 )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\hich\af2\loch\f1\fs20 programs with multiple source files to be compiled together\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\hich\af2\loch\f1\fs20 header file - has common declarations and definitions (classes, structures, function prototypes)\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af3\hich\f3\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs18\pnscheme-1{\pntxtb \'95}}{\b\hich\af3\loch\f3\fs18 #include}{\hich\af2\loch\f1\fs18  statement in each file\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\hich\af2\loch\f1\fs20 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 The }{\b\loch\f3\fs28\ppscheme-3 #define}{\b\loch\f1\fs28\ppscheme-3  Preprocessor Directive: Symbolic Constants}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\loch\af1\hich\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-1{\pntxtb \'95}}{\loch\f1\fs28  }{\b\hich\af4\loch\f3\fs28\ppscheme-3 #define}{\loch\f1\fs28\ppscheme-3  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\loch\af1\hich\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs20 preprocessor directive used to create symbolic constants and macros.\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\loch\f1\fs28\ppscheme-3 Symbolic constants}{\loch\f1\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs20 when program compiled, all occurrences of symbolic constant replaced with replacement text\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\loch\f1\fs28\ppscheme-3 Format:}{\loch\f1\fs28  }{\b\loch\f3\fs20 #define }{\b\i\loch\f3\fs20 identifier replacement-text}{\loch\f1\fs28  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs20 Example: }{\b\loch\f3\fs20 #define PI 3.14159}{\loch\f1\fs20  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\loch\f1\fs20 everything to right of identifier replaces text\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\hich\af4\loch\f3\fs20 \tab #define}{\loch\f1\fs20  }{\b\hich\af4\loch\f3\fs20 PI}{\loch\f1\fs20  }{\b\hich\af4\loch\f3\fs20 =}{\loch\f1\fs20  }{\b\hich\af4\loch\f3\fs20 3.14159}{\loch\f1\fs20  \par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'95}}{\loch\f1\fs18 replaces "}{\b\hich\af3\loch\f3\fs18 PI"}{\loch\f1\fs18  with " }{\b\hich\af3\loch\f3\fs18 = 3.14159"}{\hich\af2\loch\f1\fs18 , probably results in an error\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\hich\af2\loch\f1\fs20 cannot redefine symbolic constants with more }{\b\hich\af3\loch\f3\fs20 #define}{\hich\af2\loch\f1\fs20  statements\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\loch\f1\fs18 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 The }{\b\loch\f3\fs28\ppscheme-3 #define}{\b\loch\f1\fs28\ppscheme-3  Preprocessor Directive: Macros}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 Macro }{\f1\fs28 - operation defined in }{\b\f3\fs28 #define\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 intended for C programs}{\b\f3\fs20 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 macro without arguments: treated like a symbolic constant\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 macro with arguments: arguments substituted for replacement text, macro expanded\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 performs a text substitution - no data type checking\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\hich\af2\loch\f1\fs18 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\hich\af2\loch\f1\fs18 Example:}{\b\loch\f3\fs18  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\loch\f3\fs18 #define CIRCLE_AREA( x ) ( PI * ( x ) * ( x ) )}{\b\f1\fs18  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f1\fs18 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\loch\f3\fs18 area = CIRCLE_AREA( 4 );}{\b\f1\fs18   \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f1\fs18 \tab \tab }{\f1\fs18 becomes\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\loch\f3\fs18 area = ( 3.14159 * ( 4 ) * ( 4 ) );}{\b\f1\fs18  \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 The }{\b\loch\f3\fs28\ppscheme-3 #define}{\b\loch\f1\fs28\ppscheme-3  Preprocessor Directive: Macros}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 use parentheses:\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 without them, \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\loch\f3\fs16 #define CIRCLE_AREA( x )  PI * ( x ) * ( x ) }{\b\f1\fs16 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\loch\f3\fs16 area = CIRCLE_AREA( c + 2 );\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\hich\af2\loch\f1\fs16 \tab becomes\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\loch\f3\fs16 area = 3.14159 * c + 2 * c + 2;\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\hich\af2\loch\f1\fs16 \tab which evaluates incorrectly}{\b\loch\f3\fs16  \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\hich\af2\loch\f1\fs28\ppscheme-3 multiple arguments:}{\b\hich\af3\loch\f3\fs20\ppscheme-3 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\hich\af3\loch\f3\fs16 #define RECTANGLE_AREA( x, y )  ( ( x ) * ( y ) ) \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\hich\af3\loch\f3\fs16 rectArea = RECTANGLE_AREA( a + 4, b + 7 );}{\b\hich\af3\loch\f3\fs16  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\hich\af2\loch\f1\fs16 \tab becomes\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\hich\af3\loch\f3\fs16 rectArea = ( ( a + 4 ) * ( b + 7 ) ); \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af3\hich\f3\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\hich\af3\loch\f3\fs28\ppscheme-3 #undef}{\hich\af2\loch\f1\fs28\ppscheme-3 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\hich\af2\loch\f1\fs20 undefines a symbolic constant or macro, which can later be redefined\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Conditional Compilation}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 At compile time}{\f1\fs28  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 control preprocessor directives and compilation\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 cast expressions, }{\b\f3\fs20 sizeof, }{\f1\fs20 enumeration constants cannot be evaluated\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 structure similar to }{\b\f3\fs28\ppscheme-3 if\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\loch\f3\fs20 \tab }{\b\loch\f3\fs18 #if !defined( NULL )\line    #define NULL 0\line #endif}{\b\f3\fs18  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 determines if symbolic constant}{\b\f3\fs20  NULL}{\f1\fs20  defined\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'95}}{\f1\fs18 if }{\b\f3\fs18 NULL}{\f1\fs18  is defined, }{\b\f3\fs18 defined(NULL)}{\f1\fs18  evaluates to }{\b\f3\fs18 1\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'95}}{\f1\fs18 if }{\b\f3\fs18 NULL}{\f1\fs18  not defined, defines }{\b\f3\fs18 NULL}{\f1\fs18  as }{\b\f3\fs18 0\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 every }{\b\f3\fs20 #if}{\f1\fs20  ends with }{\b\f3\fs20 #endif\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs20\pnscheme-1{\pntxtb \'96}}{\b\f3\fs20 #ifdef}{\f1\fs20  short for }{\b\f3\fs20 #if defined(}{\i\f3\fs20 name}{\b\f3\fs20 )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs20\pnscheme-1{\pntxtb \'96}}{\b\f3\fs20 #ifndef}{\f1\fs20  short for }{\b\f3\fs20 #if !defined(}{\i\f3\fs20 name}{\b\f3\fs20 )\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Conditional Compilation}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 Other statements:}{\f1\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 #elif - }{\f1\fs20 equivalent of }{\b\f3\fs20 else if}{\f1\fs20  in an }{\b\f3\fs20 if}{\f1\fs20  structure\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 #else - }{\f1\fs20 equivalent of }{\b\f3\fs20 else}{\f1\fs20  in an }{\b\f3\fs20 if}{\f1\fs20  structure\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 "Comment out" code\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 cannot use }{\b\f3\fs20 /* ... */\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 use\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\b\f3\fs18 #if 0\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f1\fs20\ppscheme-1\lang1033 {\b\f3\fs18 code commented out\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\b\f3\fs18 #endif\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs20 \tab to enable code, change }{\b\f3\fs20 0}{\f1\fs20  to }{\b\f1\fs20 1\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs18 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 A Debug Macro}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 The }{\b\loch\f3\fs28\ppscheme-3 #error}{\b\loch\f1\fs28\ppscheme-3  and }{\b\loch\f3\fs28\ppscheme-3 #pragma}{\b\loch\f1\fs28\ppscheme-3  Preprocessor Directives}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f3\fs28\ppscheme-3 #error}{\f1\fs28\ppscheme-3  }{\i\f1\fs28\ppscheme-3 tokens\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 tokens - sequences of characters separated by spaces\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs18\pnscheme-1{\pntxtb \'95}}{\b\f3\fs18 "I like C++"}{\f1\fs18  has 3 tokens\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 prints message and tokens (depends on implementation)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 for example: when }{\b\f3\fs20 #error}{\f1\fs20  encountered, tokens displayed and preprocessing stops (program does not compile)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\b\f3\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f3\fs28\ppscheme-3 #pragma }{\i\f1\fs28\ppscheme-3 tokens\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 implementation defined action (consult compiler documentation)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 pragmas not recognized by compiler are ignored\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Predefined Symbolic Constants}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-1{\pntxtb \'95}}{\f1\fs28 Five predefined symbolic constants\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 cannot be used in }{\b\f3\fs20 #define}{\f1\fs20  or }{\b\f3\fs20 #undef}{\b\f3 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Variable-Length Argument Lists}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 In C++, we use function overloading\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-3{\pntxtb \'96}}{\f1\fs20\ppscheme-3 Variable length argument lists for programmers working}{\f1\fs20  with C Legacy Code\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 Functions with unspecified number of arguments\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 include }{\b\f3\fs20 <cstdarg>\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 use ellipsis (}{\b\f3\fs20 ...}{\f1\fs20 ) at end of parameter list\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 need at least one defined parameter\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs16 double myfunction (int i, ...); \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'96}}{\f1\fs18 \tab prototype with variable length argument list\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Variable-Length Argument Lists}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 Macros and declarations in function definition\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 va_list - }{\f1\fs20 type specifier, required (}{\b\f3\fs20 va_list arguments;}{\f1\fs20 )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 va_start(arguments, }{\i\f1\fs20 other variables}{\b\f3\fs20 )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs20 \tab - intializes parameters, required before use\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 va_arg(arguments, }{\i\f1\fs20 type}{\b\f3\fs20 ) - }{\f1\fs20 returns a parameter each time }{\b\f3\fs20 va_arg}{\f1\fs20  is called.  Automatically points to next parameter.\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 va_end(arguments)}{\f3\fs20  }{\f1\fs20 - helps function have a normal return}{\b\f1\fs20 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1. Load <cstdarg> header\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1.1 Function prototype (variable length argument list)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1.2 Initialize variables\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2. Function calls\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3. Function definition\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3.1 Create }{\b\f3\fs16 ap}{\b\f5\fs16  (}{\b\f3\fs16 va_list}{\b\f5\fs16  object)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3.2 Initialize }{\b\f3\fs16 ap}{\b\f5\fs16  (}{\b\f3\fs16 va_start(ap, i)}{\b\f5\fs16 )\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3.3 Access arguments\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 va_arg(ap, double)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3.4 End function\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 va_end(ap);\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 return total/1;\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 Program Output\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Using Command-Line Arguments}{\b\loch\f1\fs28\ppscheme256 \tab \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 Pass arguments to }{\b\f3\fs28\ppscheme-3 main}{\f1\fs28\ppscheme-3  in DOS and UNIX}{\f1\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 int main( int argc, char *argv[] )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 \tab int argc - }{\f1\fs20 number of arguments passed\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20  \tab char *argv[] - }{\f1\fs20 array of strings, has names of arguments in \tab order (}{\b\f3\fs20 argv[0]}{\f1\fs20  is first argument)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs20 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs20 Example:  }{\b\f3\fs20 $ copy input output\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 \tab argc: 3\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 \tab argv[0]: "copy"\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 \tab argv[1]: "input"\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\b\f3\fs20 \tab argv[2]: "output"\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 Copy a file into another\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1. Load headers\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1.1 Initialize variables\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2. Check number of parameters\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2.1 Link }{\b\f3\fs16 ifstream }{\b\f5\fs16 object with input file.\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2.2 Link }{\b\f3\fs16 ofstream}{\b\f5\fs16  object with output file.\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2.3 Copy input to output, character by character.\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Program Termination with }{\b\hich\af3\loch\f3\fs28\ppscheme-3 exit}{\b\loch\f1\fs28\ppscheme-3  and }{\b\hich\af3\loch\f3\fs28\ppscheme-3 atexit}{\b\loch\f1\fs28\ppscheme-3 \tab }{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 function }{\b\f3\fs28\ppscheme-3 exit}{\b\f3\fs28  -}{\f1\fs28  forces a program to terminate\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 parameters - symbolic constants }{\b\f3\fs20 EXIT_SUCCESS}{\f1\fs20  or }{\b\f3\fs20 EXIT_FAILURE\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 returns implementation-defined value\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs20\pnscheme-1{\pntxtb \'96}}{\b\f3\fs20 exit(EXIT_SUCCESS);\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 function }{\b\f3\fs28\ppscheme-3 atexit}{\b\f3\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs20\pnscheme-1{\pntxtb \'96}}{\b\f3\fs20 atexit(functionToRun); - }{\f1\fs20 registers }{\b\f3\fs20 functionToRun}{\f1\fs20  to execute upon successful program termination\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs18\pnscheme-1{\pntxtb \'95}}{\b\f3\fs18 atexit}{\f1\fs18  itself does not terminate the program\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'95}}{\f1\fs18 register up to 32 functions (multiple }{\b\f3\fs18 atexit()}{\f1\fs18  statements)\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'95}}{\f1\fs18 functions called in reverse register order\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'95}}{\f1\fs18 called function cannot take arguments or return values\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1. Register function }{\b\f3\fs16 print}{\b\f5\fs16  using }{\b\f3\fs16 atexit\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2. User input\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3. Output\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3.1 Function definition\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3.1 Function definition\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 Program Output\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Signal Handling\tab }{\loch\f2\fs16\ppscheme1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 signal\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 an unexpected event, can terminate program\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\loch\af1\hich\f1\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'95}}{\loch\f1\fs18 interrupts (}{\b\hich\af3\loch\f3\fs18 <ctrl> c}{\loch\f1\fs18 ), illegal instructions, segmentation violations, termination orders, floating-point exceptions (division by zero, multiplying large floats)}{\f1\fs18  \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 function }{\b\f3\fs28\ppscheme-3 signal}{\b\f1\fs28  }{\f1\fs28 traps unexpected events\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 header }{\b\f3\fs20 <csignal>\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 two arguments: signal number, pointer to function to handle it\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 function }{\b\f3\fs28\ppscheme-3 raise}{\f1\fs28\ppscheme-3 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 takes in integer signal number and creates signal\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs20 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Signal Handling}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme256 Signal Handling\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-1{\pntxtb \'95}}{\f1\fs28 Dynamic memory allocation\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 can create dynamic arrays\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\b\f3\fs24 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs24 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs24\pnscheme-1{\pntxtb \'95}}{\b\f3\fs24 calloc(nmembers, size)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs18\pnscheme-1{\pntxtb \'96}}{\b\f3\fs18 nmembers -}{\f1\fs18  number of members\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs18\pnscheme-1{\pntxtb \'96}}{\b\f3\fs18 size - }{\f1\fs18 size of each member\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'96}}{\f1\fs18 returns pointer to dynamic array\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\b\f3\fs24 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs24 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs24\pnscheme-1{\pntxtb \'95}}{\b\f3\fs24 realloc(pointerToObject, newSize)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs18\pnscheme-1{\pntxtb \'96}}{\b\f3\fs18 pointerToObject - }{\f1\fs18 pointer to the object being reallocated\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs18\pnscheme-1{\pntxtb \'96}}{\b\f3\fs18 newSize - }{\f1\fs18 new size of the object\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'96}}{\f1\fs18 returns pointer to reallocated memory\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'96}}{\f1\fs18 returns }{\b\f3\fs18 NULL}{\b\f1\fs18  }{\f1\fs18 if cannot allocate space}{\b\f1\fs18 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'96}}{\f1\fs18 if }{\b\f3\fs18 newSize = 0}{\f1\fs18 , object freed\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'96}}{\f1\fs18 if }{\b\f3\fs18 pointerToObject = 0}{\f1\fs18 , acts like }{\b\f3\fs18 malloc}{\f1\fs18 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs18 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1. Function prototype\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2. Generate random number\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2.1 }{\b\f3\fs16 raise}{\b\f5\fs16  signal if       }{\b\f3\fs16 x == 25\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3. Function definition\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 Program Output\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 The Unconditional Branch: }{\b\hich\af3\loch\f3\fs28\ppscheme-3 goto}{\b\hich\af3\loch\f3\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 unstructured programming}{\f1\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 use when \tab performance crucial\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20  }{\b\f3\fs20 break}{\f1\fs20  to exit loop instead of waiting until condition becomes }{\b\f3\fs20 false\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\b\f3\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f3\fs28\ppscheme-3 goto}{\f1\fs28\ppscheme-3  statement}{\f1\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 changes flow control to first statement after specified label\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 label: identifier and colon (i.e. }{\b\f3\fs20 start:}{\f1\fs20 )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 quick escape from deeply nested loop}{\b\f3\fs20 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf3\pnfs20\pnscheme-1{\pntxtb \'96}}{\b\f3\fs20 goto start;\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs20 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs20 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1. Initialize variables\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1.1}{\b\f3\fs16  start:}{\b\f5\fs16  label\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2. Loop using }{\b\f3\fs16 goto\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3. Output\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 Program Output\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme256 Unions\tab }{\loch\f2\fs16\ppscheme1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f3\fs28\ppscheme-3 union -}{\f1\fs28\ppscheme-3  memory that contains a variety of objects over time\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 only contains one data member at a time\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 members of a union share space\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 conserves storage\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 only the last data member defined can be accessed\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f3\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf3\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f3\fs28\ppscheme-3 union}{\f1\fs28\ppscheme-3  declarations\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 same as }{\b\f3\fs20 class}{\f1\fs20  or }{\b\f3\fs20 struct\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\b\f3\fs18 union Number \'7b\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\b\f3\fs18   int x;\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\b\f3\fs18   float y;\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\b\f3\fs18 \'7d ;\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\b\f3\fs18 Union myObject;\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\b\loch\f1\fs28\ppscheme-3 Unions}{\b\loch\f1\fs28\ppscheme256 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 Valid }{\b\f3\fs28\ppscheme-3 union}{\f1\fs28\ppscheme-3  operations\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 assignment to union of same type:  }{\b\f3\fs20 =\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 taking address:}{\b\f3\fs20  &\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 accessing union members:}{\b\f3\fs20  .\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 accessing members using pointers:}{\b\f3\fs20  ->\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\f1\fs28 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs28\pnscheme-3{\pntxtb \'95}}{\f1\fs28\ppscheme-3 Anonymous }{\b\f3\fs28\ppscheme-3 union}{\f1\fs28\ppscheme-3 s}{\f1\fs28 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 no type name\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 does not create a type, but does create an unnamed object\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 contains only }{\b\f3\fs20 public}{\f1\fs20  data members\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 data members accessed like normal variables\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f1\fs24\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs18 \'95\tab}{\*\pn\pnlvlblt\pnf1\pnfs18\pnscheme-1{\pntxtb \'95}}{\f1\fs18 use name, no }{\b\f3\fs18 .}{\f1\fs18  or }{\b\f3\fs18 ->}{\f1\fs18  required\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f1\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf1\pnfs20\pnscheme-1{\pntxtb \'96}}{\f1\fs20 if declared globally, must be }{\b\f3\fs20 static\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f1\fs28\ppscheme-1\lang1033 {\f1\fs20 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1. Declare }{\b\f3\fs16 union}{\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1.1 Declare }{\b\f3\fs16 union}{\b\f5\fs16  object\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 1.2 Initialize variable\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 2. Set variables\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 3. Output}{\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033\ql {\b\f1\fs14\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f1\fs36\ppscheme-1\lang1033\li0\fi0 {\b\f5\fs16 Program Output\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 Formatted I/O}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1 printf}{\f1 ()\par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 Using}{\f1\ppscheme-3  printf}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 printf}{\f1\ppscheme-3 () - Format specification}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 Format Specifications }{\f1\ppscheme-3 con\'92t}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 Format Specifications }{\f1\ppscheme-3 con\'92t}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 scanf}{\f1\ppscheme-3 () - Parsing input}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 Format Control String}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 Format Specifications for }{\f1\ppscheme-3 scanf}{\f1\ppscheme-3 ()}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 Format specification types}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 sscanf}{\f1\ppscheme-3 () - Example}{\f1 \par 
+}\pard\plain\ltrpar\s1\qc\f1\fs36\ppscheme13312\lang1033 {\f1\ppscheme-3 sscanf}{\f1\ppscheme-3  Example }{\f1\ppscheme-3 con\'92t}{\f1 \par 
+}
+}

@@ -1,0 +1,56 @@
+<h1>Management</h1>
+
+<h2>Michael Ayers, Chief Executive Officer</h2>
+<p>Michael Ayers is an accomplished multimedia artist and programmer who uses his knowledge of systems development and project management to lead CommercialNet into the future. Experienced in 3D modeling and rendering, as well as Flash animation and actionscripting, Michael's strong technical knowledge is complimented by his ability to lead both sales and technical departments to achieve outstanding results on every project.</p>
+
+<p>In his spare time, Michael is a Volkswagen enthusiast and co-founder of southernVolks, a leading VW/Audi car club that has become more popular every year since it was established in 2000. His corporate experience in relationship building and business development has contributed greatly to the growing popularity of the club's events and list of sponsors.</p>
+
+<p>Michael is a graduate of the Art Institute of Atlanta where he earned a Bachelor of Fine Arts in the Media Arts and Animation program.</p>
+
+<h2>Randall Bollig, Chief Technology Officer</h2>
+<p>Randall is an Internet Guru with extensive experience in database applications and network/datacenter 
+operations. His technical knowledge, coupled with a B.B.A. in Management, has powered several profitable 
+“dot com” startups. His ventures include network communications, accounting software development, and 
+retail e-commerce businesses. In his spare time, Randall enjoys photography, backpacking, recreational 
+aviation, and combat robotics. He is a Co-Chairman of CommercialNet, Inc.</p>
+
+<h2>Robert P. Humphries, Executive Vice President & Chief Operating Officer</h2>
+<p>Robert Humphries has twelve years of corporate planning, technology marketing, and investor relations 
+experience in traditional and interactive media. After a term of service in the U.S. Army, he began his 
+entrepreneurial career in environmental design and was one of the first in the industry to use mobile 
+technology for onsite sales and job management. Since then, he has held key senior-management positions 
+including: Senior Regional Manager for a division of CitiGroup, Director of Corporate Communications for 
+Premier Financial, Chief Operating Officer for Buckhead Atlanta, and VP of Marketing Communications and 
+Investor Relations for MediaBus Networks, a publicly traded interactive television company.</p>
+
+<p>In 1999, Robert produced Concert2Cure, a non-profit music event for the American Cancer Society that earned 
+a proclamation by then-Governor Roy Barnes who declared March 5th "Cancer Awareness Day" - now an official 
+Georgia holiday. Robert has also written a pending process patent in the area of Consumer eMetric Measurement 
+using Networked Systems. While on active duty, Robert pursued his B.S. degree through the U.S. Army's ACAP 
+program in International Affairs and Military Sciences. He is Co-Chairman of CommercialNet, Inc.</p>
+
+<h2>Jonathan "J5" Harris, Senior Vice President, Comptroller</h2>
+<p>Beginning his IT career in freelance software programming, J5 gradually flowed into web-based application 
+development and design. In the Fall of 2004, J5 began work with an Atlanta-based marketing research 
+company where he spent much of his time developing proprietary software applications and preparing data 
+for assimilation into pre-existing database tables. After [three weeks of] spending his lunch breaks at 
+Starbucks® designing web sites for friends and business associates, J5 figured that he had found his niche - 
+getting wired on caffeine while being plugged into the Web.</p>
+
+<p>Subsequently, in his senior year at Georgia State University, J5 launched EvifWeb Development, a project 
+production company specializing in Macromedia Flash® development and the .NET platform. He graduated from 
+GSU with a B.A. in Multimedia Development.</p>
+
+
+<h2>Ian Clyne, Senior Technology Consultant</h2>
+<p>Ian Clyne is an Australian-born multi-talented artist in more than one respect. As a musician, Ian played piano 
+with the popular Muddy Waters band and has written hit songs for internationally acclaimed pop bands such as INXS. 
+As a programmer, Ian was the lead consulting developer for Apple® who architected and wrote the Apple Quicktime VR 
+application used by millions of people around the globe. His talents are highly prized by Fortune 100 companies such 
+as CitiBank where his programming skills and acute knowledge of business processes allowed Citi to increase its check 
+processing speed from two checks per second to over 1,500 checks per second.</p>
+
+<p>Ian is recognized globally as one of the top programmers in the world. He has been recognized by dozens of 
+magazines, newspapers and online journals for his talents in both music and computing.</p>
+
+<div class="backToTop"><a href="#top">Back to Top</a></div>

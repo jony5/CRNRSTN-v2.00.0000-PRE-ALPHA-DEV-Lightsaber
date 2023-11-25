@@ -1,0 +1,11 @@
+<?php
+$sendTo = "jony5@juno.com";
+$subject = "EJC Site Submission";
+
+$headers = "From: " . $_POST["user_name"];
+$headers .= "<" . $_POST["user_email"] . ">\r\n";
+$headers .= "Reply-To: " . $_POST["user_email"]; 
+$message = $_POST["user_comment"];
+
+mail($sendTo, $subject, $message, $headers);
+?>

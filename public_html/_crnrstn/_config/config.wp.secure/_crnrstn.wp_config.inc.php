@@ -21,10 +21,10 @@ $this->config_add_data_wp('BLUEHOST_EVIFWEB', 'DB_HOST', 'localhost');
 # # # # #
 ### NEW WORDPRESS CONFIG
 ### CRNRSTN :: WORDPRESS INTEGRATIONS
-$this->config_add_data_wp('LOCALHOST_MACBOOKPRO', 'DB_NAME', 'jony5_stage');
-$this->config_add_data_wp('LOCALHOST_MACBOOKPRO', 'DB_USER', 'jony5_stage');
-$this->config_add_data_wp('LOCALHOST_MACBOOKPRO', 'DB_PASSWORD', 'aXNTPxGPeLRwYzTS');
-$this->config_add_data_wp('LOCALHOST_MACBOOKPRO', 'DB_HOST', 'localhost');
+$this->config_add_data_wp('LOCALHOST_PC_XP', 'DB_NAME', 'jony5_stage');
+$this->config_add_data_wp('LOCALHOST_PC_XP', 'DB_USER', 'jony5_stage');
+$this->config_add_data_wp('LOCALHOST_PC_XP', 'DB_PASSWORD', 'aXNTPxGPeLRwYzTS');
+$this->config_add_data_wp('LOCALHOST_PC_XP', 'DB_HOST', 'localhost');
 
 # # # # #
 ### NEW WORDPRESS CONFIG

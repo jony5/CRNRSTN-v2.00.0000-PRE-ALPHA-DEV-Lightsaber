@@ -1,0 +1,372 @@
+{\rtf1\ansi\ansicpg1252
+{\fonttbl
+{\f1\fscript\fcharset0\fprq0 Comic Sans MS;}
+{\f2\froman\fcharset0\fprq0 Times New Roman;}
+{\f3\fswiss\fcharset0\fprq0 AvantGarde;}
+{\f4\fmodern\fcharset0\fprq0 Courier New;}
+}
+{\colortbl;
+\red0\green0\blue0;
+}
+{\stylesheet
+{\s1\qc\b\f3\fs28\ppscheme13312\lang1033\level1 heading 1;}
+{\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\level2 heading 2;}
+{\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033\level3 heading 3;}
+{\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033\level4 heading 4;}
+{\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033\level5 heading 5;}
+{\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033\level6 heading 6;}
+}
+\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\b0\f1\fs36\ppscheme-1 Pointers, Strings, and Sorting}{\b0\f2\fs36\ppscheme-1 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Pointer Variable Declarations and Initialization\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Pointer variables\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Contain memory addresses as their values \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Normal variables contain a specific value (direct reference)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Pointers contain the address of a variable that has a specific value (indirect reference)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Indirection\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Referencing a pointer value\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Pointer declarations\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 *}{\f2  indicates variable is a pointer\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 int}{\b\f4  *myPtr;\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2      declares a pointer to an }{\b\f4 int}{\f2 , a pointer of type }{\b\f4 int *\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Multiple pointers require multiple asterisks\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 int}{\b\f4  *myPtr1, *myPtr2;\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Pointer Variable Declarations and Initialization\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Can declare pointers to any data type\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Pointers initialization\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Initialized to }{\b\f4 0}{\f2 , }{\b\f4 NULL}{\f2 , or an address\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs20\pnscheme-1{\pntxtb \'95}}{\b\f4 0}{\f2  or }{\b\f4 NULL}{\f2  points to nothing\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Address Operator\tab \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-1{\pntxtb \'95}}{\b\f4 &}{\f2  (address operator)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Returns the address of its operand\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Example\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4  }{\b\f2  }{\b\f4 int}{\b\f4  y = 5;\line }{\b\f4 int}{\b\f4  *yPtr;\line }{\b\f4 yPtr}{\b\f4  = &y;    // }{\b\f4 yPtr}{\b\f4  gets address of y\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 yPtr}{\f2  \'93points to\'94 }{\b\f4 y\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Dereferencing Operators\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-1{\pntxtb \'95}}{\b\f4 *}{\f2  (indirection/dereferencing operator)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Returns the value of what its operand points to\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 *}{\b\f4 yPtr}{\f2  returns }{\b\f4 y}{\f2  (because }{\b\f4 yPtr}{\f2  points to }{\b\f4 y}{\f2 ).\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 *}{\f2  can be used to assign a value to a location in memory\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 *yptr = 7;      // changes y to 7\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Dereferenced pointer (operand of }{\b\f4 *}{\f2 ) must be an lvalue (no constants)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-1{\pntxtb \'95}}{\b\f4 *}{\f2   and }{\b\f4 &}{\f2  are inverses\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Cancel each other out\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 *&}{\b\f4 myVar}{\b\f4  == }{\b\f4 myVar}{\b\f4 \par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f2               }{\f2 and\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 &*}{\b\f4 yPtr}{\b\f4  == }{\b\f4 yPtr}{\b\f4 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.  Declare variables\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2  Initialize variables\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 3.  Print\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 Program Output\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Function Parameters by Reference\tab \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\i\f2\ppscheme-3 Call by reference}{\f2  with pointer arguments\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Pass address of argument using }{\b\f4 &}{\f2  operator\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Allows you to change actual location in memory\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Arrays are not passed with }{\b\f4 &}{\f2  because the array name is already a pointer\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 *}{\f2  operator used as alias/nickname for variable inside of function\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4  void }{\b\f4 doubleNum}{\b\f4 ( }{\b\f4 int}{\b\f4  *number )\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4  \'7b\line    *number = 2 * ( *number );\line \'7d\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 *number}{\f2  used as nickname for the variable passed in\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 When the function is called, }{\f2\ppscheme-3 must be passed an address}{\f2 \par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4   }{\b\f4 doubleNum}{\b\f4 ( &}{\b\f4 myNum}{\b\f4  );\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.  Function prototype - takes a pointer to an }{\b\loch\f4\fs16 int}{\b\loch\f3\fs16 .\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.1  Initialize variables\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.  Call function\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 3.  Define function\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 Program Output\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Using the Const Qualifier with Pointers\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-1{\pntxtb \'95}}{\b\f4 const}{\f2  qualifier\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Variable cannot be changed\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 const}{\f2  used when function does not need to change a variable\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Attempting to change a }{\b\f4 const}{\f2  variable is a compiler error\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-1{\pntxtb \'95}}{\b\f4 const}{\f2  pointers\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Point to same memory location\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Must be initialized when declared\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 int *const myPtr = &x;\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Constant pointer to a non-constant }{\b\f4 int\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 const int *myPtr = &x;\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Non-constant pointer to a constant }{\b\f4 int}{\b\f4 \par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 const int *const Ptr = &x;\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Constant pointer to a constant }{\b\f4 int}{\b\f4 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.  Declare variables\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.1  Declare }{\b\loch\f4\fs16 const}{\b\loch\f3\fs16  pointer to an }{\b\loch\f4\fs16 int}{\b\loch\f3\fs16 .\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.  Change }{\b\loch\f4\fs16 *ptr}{\b\loch\f3\fs16  (which is }{\b\loch\f4\fs16 x}{\b\loch\f3\fs16 ).\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.1  Attempt to change }{\b\loch\f4\fs16 ptr.\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 3. }{\b\hich\af3\loch\f3\fs16 Output\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\hich\af3\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\hich\af3\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\hich\af3\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 Program Output}{\b\hich\af3\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Structures\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Accessing Structure Elements\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Linked Lists\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Linked Lists\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Traversing a linked list\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Sorting\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Bubblesort}{\f3 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Runtime of }{\f3 Bubblesort}{\f3 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Bubble Sort Using Call-by-reference\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Implement bubblesort using pointers\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 swap}{\f2  function must receive the address (using }{\b\f4 &}{\f2 ) of the array elements\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 array elements have call-by-value default\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Using pointers and the }{\b\f4 *}{\f2  operator, }{\b\f4 swap}{\f2  is able to switch the values of the actual array elements\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Psuedocode\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\i\f2\ppscheme-5 Initialize array\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\i\f2\ppscheme-5    print data in original order\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\i\f2\ppscheme-5 Call function bubblesort\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\i\f2\ppscheme-5 \tab print sorted array\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\i\f2\ppscheme-5 Define bubblesort\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\i\f2\fs20\ppscheme-5 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Bubble Sort Using Call-by-reference\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f4\ppscheme-3 sizeof}{\f2\ppscheme-3 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Returns size of operand in bytes\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 For arrays, }{\f2 sizeof}{\f2  returns\par 
+}\pard\plain\ltrpar\s5\li1260\fi-180\f2\fs20\ppscheme-1\lang1033 {\f2 ( the size of 1 element ) * ( number of elements )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 if }{\b\f4 sizeof( }{\b\f4 int}{\b\f4  ) = 4}{\f2 , then\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 int myArray[10];\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 cout << sizeof(myArray);\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2      will print 40\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f4\ppscheme-3 sizeof}{\f2  can be used with\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Variable names\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Type names\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Constant values\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.  Initialize array\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.1  Declare variables\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.  Print array\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.1  Call }{\b\loch\f4\fs16 bubbleSort}{\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.2  Print array\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 3.  Define }{\b\loch\f4\fs16 bubbleSort}{\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 3.1  Define }{\b\loch\f4\fs16 swap\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f4\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\hich\af3\loch\f3\fs16 Program Output\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Pointer Expressions and Pointer Arithmetic\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 Pointer arithmetic}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Increment/decrement pointer  }{\b\f4 (++}{\f2  or }{\b\f4 --}{\f2 )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Add/subtract an integer to/from a pointer( }{\b\f4 +}{\f2  or }{\b\f4 +=}{\f2  , }{\b\f4 -}{\f2  or }{\b\f4 -=}{\f2 )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Pointers may be subtracted from each other\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Pointer arithmetic is usually performed on an array\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 5 element }{\b\f4 int}{\f2  array on a machine using 4 byte }{\b\f4 int}{\f2 s\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 vPtr}{\f2  points to first element }{\b\f4 v[ 0 ]}{\f2 , which is at location 3000\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs20\pnscheme-1{\pntxtb \'95}}{\b\f4 vPtr}{\b\f4  = 3000}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 vPtr += 2}{\f2 ; sets }{\b\f4 vPtr}{\f2  to }{\b\f4 3008\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs20\pnscheme-1{\pntxtb \'95}}{\b\f4 vPtr}{\f2  points to }{\b\f4 v[ 2 ]}{\f2 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Pointer Expressions and Pointer Arithmetic\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 Subtracting pointers}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Returns the number of elements between two addresses\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4\fs24 \tab }{\b\f4 vPtr2 = v[ 2 ];\line }{\b\f4 vPtr}{\b\f4  = v[ 0 ];\line vPtr2 - vPtr == 2\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 Pointer comparison}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Test which pointer points to the higher numbered array element\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Test if a pointer points to }{\b\f4 0}{\f2  (}{\b\f4 NULL}{\f2 )\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 if ( }{\b\f4 vPtr}{\b\f4  == \'910\'92 )\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4    statement\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Pointer Expressions and Pointer Arithmetic\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 Pointer assignment}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 If not the same type, a cast operator must be used\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Exception: pointer to }{\b\f4 void}{\f2  (type }{\b\f4 void *}{\f2 )\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Generic pointer, represents any type\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 No casting needed to convert a pointer to }{\b\f4 void}{\f2  pointer\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs20\pnscheme-1{\pntxtb \'95}}{\b\f4 void}{\f2  pointers cannot be }{\f2 dereferenced}{\f2 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Arrays of Pointers\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Arrays can contain pointers\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Commonly used to store an array of strings\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 char *suit[ 4 ] = \'7b"Hearts", "Diamonds",\line                  }{\b\f2  }{\b\f4 "Clubs", "Spades" \'7d;\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Each element of suit is a pointer to a }{\b\f4 char *}{\f2  (a string)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 The strings are not in the array, only pointers to the strings are in the array\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 suit}{\f2  array has a fixed size, but strings can be of any size\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Case Study: A Card Shuffling and Dealing Simulation\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Card shuffling program\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Use an array of pointers to strings, to store suit names\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Use a double scripted array (suit by value)\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Place 1-52 into the array to specify the order in which the cards are dealt\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\hich\af3\loch\f3\ppscheme256 Case Study: A Card Shuffling and Dealing Simulation\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs24 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs24\pnscheme-1{\pntxtb \'95}}{\f2\fs24 Pseudocode}{\f2\fs24  for shuffling and dealing\line simulation}{\i\f2\fs24\ppscheme-5 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\i\loch\f2\fs24\ppscheme-5 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\i\loch\f2\fs13\ppscheme-5 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\i\f2\fs15\ppscheme-5 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\f2 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.  Initialize }{\b\loch\f4\fs16 suit}{\b\loch\f3\fs16  and }{\b\loch\f4\fs16 face}{\b\loch\f3\fs16  arrays\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1.1  Initialize }{\b\loch\f4\fs16 deck}{\b\loch\f3\fs16  array\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.  Call function }{\b\loch\f4\fs16 shuffle}{\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.1  Call function }{\b\loch\f4\fs16 deal}{\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 3.  Define functions}{\b\f3\fs16  \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs12 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\f3\fs16 Program Output\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Function Pointers\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 Pointers to functions}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Contain the address of the function\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Similar to how an array name is the address of its first element\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Function name is starting address of code that defines function\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 Function pointers can be}{\f2  \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Passed to functions\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Stored in arrays\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Assigned to other function pointers\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Function Pointers\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 Example: }{\f2\ppscheme-3 bubblesort}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Function }{\b\f4 bubble}{\f2  takes a function pointer\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 The function determines whether the the array is sorted into ascending or descending sorting\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 The argument in }{\b\f4 bubble}{\f2  for the function pointer\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 bool ( *compare )( int, int )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2 \tab tells }{\b\f4 bubble}{\f2  to expect a pointer to a function that takes two }{\b\f4 int}{\f2 s and returns a }{\b\f4 bool}{\b\f4 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 If the parentheses were left out\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 bool *compare( int, int )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\f2    would declare a function that receives two integers and returns a pointer to a }{\b\f4 bool}{\f2 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 1. Initialize array\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.  Prompt for ascending or descending sorting\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.1  Put appropriate function pointer into }{\b\loch\f3\fs16 bubblesort}{\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 2.2  Call }{\b\loch\f4\fs16 bubble}{\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 3.  Print results\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 3.1  Define functions\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033\ql {\b0\f3\fs10\ppscheme-1 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 3.1  Define functions\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033\li0\fi0 {\b\loch\f3\fs16 Program output\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Fundamentals of Characters and Strings\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 Character constant}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Integer value of a character\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Single quotes\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs22\pnscheme-1{\pntxtb \'96}}{\b\f4 'z'}{\f2  is the integer value of }{\b\f4 z}{\f2 , which is }{\b\f4 122}{\f2  \par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 String\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Series of characters treated as one unit\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Can include letters, digits, special characters  }{\b\f4 +}{\f2 , }{\b\f4 -}{\f2 , }{\b\f4 *}{\f2  ...\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 String literal (string constants)\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Enclosed in double quotes, for example:\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 "I like Aardvarks"\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Array of characters, ends with null character }{\b\f4 '\'5c0'\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Strings are constant pointers (like arrays)\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Value of string is the address of its first character\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Fundamentals of Characters and Strings\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-1{\pntxtb \'95}}{\f2 String assignment\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Character array:\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 char color[] = "blue";\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Creates 5 element }{\b\f4 char}{\f2  array, }{\b\f4 color}{\f2 , (last element is }{\b\f4 '\'5c0'}{\f2 )\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 variable of type }{\b\f4 char *\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 char *colorPtr = "blue";\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Creates a pointer to string }{\b\f4 \'93blue\'94}{\f2 , }{\b\f4 colorPtr}{\f2 , and stores it somewhere in memory\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Fundamentals of Characters and Strings\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs28\pnscheme-3{\pntxtb \'95}}{\f2\ppscheme-3 Reading strings}{\f2 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Assign input to character array }{\b\f4 word[ 20 ]\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 \tab cin >> word}{\f2   \par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Reads characters until whitespace or EOF\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 String could exceed array size\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 cin}{\b\f4  >> setw( 20 ) >> word;\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 Reads 19 characters (space reserved for }{\b\f4 '\'5c0'}{\f2 )\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f4\ppscheme-3 cin.getline}{\b\f4 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Reads a line of text\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Using }{\b\f4 cin.getline}{\b\f4 \par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 cin.getline}{\b\f4 ( array, size, delimiter character);\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 Fundamentals of Characters and Strings\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs28 \'95\tab}{\*\pn\pnlvlblt\pnf4\pnfs28\pnscheme-3{\pntxtb \'95}}{\b\f4\ppscheme-3 cin.getline}{\b\f4 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Copies input into specified array until either\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 One less than the size is reached\par 
+}\pard\plain\ltrpar\s4\li900\fi-180\f2\fs20\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'95}}{\f2 The delimiter character is input\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs22 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs22\pnscheme-1{\pntxtb \'96}}{\f2 Example\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 char sentence[ 80 ];\par 
+}\pard\plain\ltrpar\s6\li1620\fi-180\f2\fs20\ppscheme-1\lang1033 {\b\f4 cin.getline}{\b\f4 ( sentence, 80, '\'5cn' );\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\b\f4 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\f3 String Manipulation Functions of the String-handling Library\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\f2\fs24 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs24\pnscheme-3{\pntxtb \'95}}{\f2\fs24\ppscheme-3 String handling library}{\f2\fs24  }{\b\f4\fs24 <}{\b\f4\fs24 cstring}{\b\f4\fs24 >}{\f2\fs24  provides functions to\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\f2\fs20 Manipulate strings\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\f2\fs20 Compare strings\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\f2\fs20 Search strings\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\f2\fs20 Tokenize strings (separate them into logical pieces)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs24 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs24\pnscheme-3{\pntxtb \'95}}{\f2\fs24\ppscheme-3 ASCII character code}{\f2\fs24 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\f2\fs20 Strings are compared using their character codes\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\f2\fs20 Easy to make comparisons (greater than, less than, equal to)\par 
+}\pard\plain\ltrpar\s2\li270\fi-270\f2\fs28\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs24 \'95\tab}{\*\pn\pnlvlblt\pnf2\pnfs24\pnscheme-3{\pntxtb \'95}}{\f2\fs24\ppscheme-3 Tokenizing \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\f2\fs20 Breaking strings into tokens, separated by user-specified characters\par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f2\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf2\pnfs20\pnscheme-1{\pntxtb \'96}}{\f2\fs20 Tokens are usually logical units, such as words (separated by spaces)}{\b\f4\fs20 \par 
+}\pard\plain\ltrpar\s3\li585\fi-225\f2\fs22\ppscheme-1\lang1033 {\pntext\pard\plain\f4\fs20 \'96\tab}{\*\pn\pnlvlblt\pnf4\pnfs20\pnscheme-1{\pntxtb \'96}}{\b\f4\fs20 "This is my string"}{\b\f2\fs20  }{\f2\fs20  has 4 word tokens (separated by spaces)\par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\hich\af3\loch\f3\fs24\ppscheme256 String Manipulation Functions of the String-handling Library}{\b0\hich\af3\loch\f3\fs20\ppscheme256 \par 
+}\pard\plain\ltrpar\s1\qc\b\f3\fs28\ppscheme13312\lang1033 {\hich\af3\loch\f3\fs24\ppscheme256 String Manipulation Functions of the String-handling Library (III)}{\b0\hich\af3\loch\f3\fs20\ppscheme256 \par 
+}
+}

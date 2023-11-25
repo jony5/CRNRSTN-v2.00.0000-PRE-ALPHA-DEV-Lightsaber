@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_soa_endpoint_request_manager
 #  VERSION :: 2.00.0000
@@ -50,10 +50,11 @@
 #  URI :: 
 #  DESCRIPTION :: CRNRSTN :: SOAP Server Request Manager.
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
-#  NUMBERS 20:17 - PLEASE LET US PASS THROUGH YOUR LAND. WE WILL NOT PASS THROUGH
-#  FIELD OR THROUGH VINEYARD, NOR WILL WE WATER FROM ANY WELL; WE WILL GO ALONG
-#  THE KING'S HIGHWAY, NOT TURNING ASIDE TO THE RIGHT OR TO THE LEFT, UNTIL WE
-#  PASS THROUGH YOUR TERRITORY.
+#  NUMBERS 20:17 - PLEASE LET US PASS THROUGH YOUR LAND. WE WILL NOT
+#                  PASS THROUGH FIELD OR THROUGH VINEYARD, NOR WILL
+#                  WE WATER FROM ANY WELL; WE WILL GO ALONG THE KING'S
+#                  HIGHWAY, NOT TURNING ASIDE TO THE RIGHT OR TO THE
+#                  LEFT, UNTIL WE PASS THROUGH YOUR TERRITORY.
 #
 class crnrstn_soa_endpoint_request_manager {
 
@@ -75,12 +76,12 @@ class crnrstn_soa_endpoint_request_manager {
 
     protected $profile_endpoint_data_ARRAY = array();
 	
-	public function __construct($oCRNRSTN_USR) {
+	public function __construct($oCRNRSTN_USR){
 
 	    $this->oCRNRSTN_USR = $oCRNRSTN_USR;
 
         $this->tmp_starttime = $this->oCRNRSTN_USR->starttime;
-        $this->tmp_starttime_ARRAY = explode('.',$this->tmp_starttime);
+        $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
         $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
         $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
@@ -97,7 +98,7 @@ class crnrstn_soa_endpoint_request_manager {
         error_log(__LINE__ .' SERVER - tunnelEncryptCalibrationRequest() REQUEST RECEIVED self::$oSoapRequest['.print_r($oSoapRequest, true).'].');
 
         $this->tmp_starttime = $this->oCRNRSTN_USR->starttime;
-        $this->tmp_starttime_ARRAY = explode('.',$this->tmp_starttime);
+        $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
         $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
         $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
@@ -114,7 +115,7 @@ class crnrstn_soa_endpoint_request_manager {
 
         if($tmp_SERVER_ADDRESS_SOAP_CLIENT == ''){
 
-            $tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN_USR->return_client_ip();
+            $tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN_USR->client_ip();
 
         }
 
@@ -188,14 +189,14 @@ class crnrstn_soa_endpoint_request_manager {
 
         if($tmp_SERVER_ADDRESS_SOAP_CLIENT == ''){
 
-            $tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN_USR->return_client_ip();
+            $tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN_USR->client_ip();
 
         }
 
         if($this->return_requestParam('CRNRSTN_PACKET_IS_ENCRYPTED', __METHOD__) != 'TRUE'){
 
             $this->tmp_starttime = $this->oCRNRSTN_USR->starttime;
-            $this->tmp_starttime_ARRAY = explode('.',$this->tmp_starttime);
+            $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
             $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
             $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
@@ -220,7 +221,7 @@ class crnrstn_soa_endpoint_request_manager {
         }else{
 
             $this->tmp_starttime = $this->oCRNRSTN_USR->starttime;
-            $this->tmp_starttime_ARRAY = explode('.',$this->tmp_starttime);
+            $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
             $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
             $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
@@ -310,7 +311,7 @@ class crnrstn_soa_endpoint_request_manager {
 
             self::$oSoapRequest = $oSoapRequest;
 
-            $this->tmp_starttime_ARRAY = explode('.',$this->tmp_starttime);
+            $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
             $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
             $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
@@ -320,7 +321,7 @@ class crnrstn_soa_endpoint_request_manager {
 
             if($tmp_SERVER_ADDRESS_SOAP_CLIENT == ''){
 
-                $tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN_USR->return_client_ip();
+                $tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN_USR->client_ip();
 
             }
 
@@ -879,12 +880,12 @@ class crnrstn_soa_endpoint_request_manager {
             return $tmp_array;
 
 
-        } catch (Exception $e) {
+        }catch(Exception $e){
 
 	        error_log(__LINE__ .' SERVER - catching exception....'. __METHOD__);
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $tmp_ = $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
             error_log(__LINE__ .' SERVER - catching exception....'.print_r($tmp_, true));
 
@@ -907,14 +908,14 @@ class crnrstn_soa_endpoint_request_manager {
 
         if($tmp_SERVER_ADDRESS_SOAP_CLIENT == ''){
 
-            $tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN_USR->return_client_ip();
+            $tmp_SERVER_ADDRESS_SOAP_CLIENT = $this->oCRNRSTN_USR->client_ip();
 
         }
 
         if($this->return_requestParam('CRNRSTN_PACKET_IS_ENCRYPTED', __METHOD__) != 'TRUE'){
             $this->SOAP_request_isEncrypted = false;
             $this->tmp_starttime = $this->oCRNRSTN_USR->starttime;
-            $this->tmp_starttime_ARRAY = explode('.',$this->tmp_starttime);
+            $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
             $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
             $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
@@ -940,7 +941,7 @@ class crnrstn_soa_endpoint_request_manager {
 
             $this->SOAP_request_isEncrypted = true;
             $this->tmp_starttime = $this->oCRNRSTN_USR->starttime;
-            $this->tmp_starttime_ARRAY = explode('.',$this->tmp_starttime);
+            $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
             $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
             $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
@@ -1105,77 +1106,77 @@ class crnrstn_soa_endpoint_request_manager {
 
                                 $tmp_RECIPIENT_EMAIL[] = $attribute_content;
 
-                                break;
+                            break;
                             case 'RECIPIENT_NAME':
 
                                 $tmp_RECIPIENT_NAME[] = $attribute_content;
 
-                                break;
+                            break;
                             case 'FROM_EMAIL':
 
                                 $tmp_FROM_EMAIL = $attribute_content;
 
-                                break;
+                            break;
                             case 'FROM_NAME':
 
                                 $tmp_FROM_NAME = $attribute_content;
 
-                                break;
+                            break;
                             case 'REPLYTO_EMAIL':
 
                                 $tmp_REPLYTO_EMAIL[] = $attribute_content;
 
-                                break;
+                            break;
                             case 'REPLYTO_NAME':
 
                                 $tmp_REPLYTO_NAME[] = $attribute_content;
 
-                                break;
+                            break;
                             case 'CC_EMAIL':
 
                                 $tmp_CC_EMAIL[] = $attribute_content;
 
-                                break;
+                            break;
                             case 'CC_NAME':
 
                                 $tmp_CC_NAME[] = $attribute_content;
 
-                                break;
+                            break;
                             case 'BCC_EMAIL':
 
                                 $tmp_BCC_EMAIL[] = $attribute_content;
 
-                                break;
+                            break;
                             case 'BCC_NAME':
 
                                 $tmp_BCC_NAME[] = $attribute_content;
 
-                                break;
+                            break;
                             case 'SMTP_KEEPALIVE':
 
                                 $tmp_SMTP_KEEPALIVE = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
                             case 'DUP_SUPPRESS':
 
                                 $tmp_DUP_SUPPRESS = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
                             case 'ALLOW_EMPTY':
 
                                 $tmp_ALLOW_EMPTY = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
                             case 'ISHTML':
 
                                 $tmp_isHTML = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
                             case 'SMTP_TIMEOUT':
 
                                 $tmp_SMTP_TIMEOUT = (int) $attribute_content;
 
-                                break;
+                            break;
                             case 'PRIORITY':
 
                                 $tmp_PRIORITY = $attribute_content;
@@ -1189,21 +1190,21 @@ class crnrstn_soa_endpoint_request_manager {
 
                                         $tmp_PRIORITY = 1;
 
-                                        break;
+                                    break;
                                     case '3':
                                     case 3:
                                     case 'NORMAL':
 
                                         $tmp_PRIORITY = 3;
 
-                                        break;
+                                    break;
                                     case '5':
                                     case 5:
                                     case 'LOW':
 
                                         $tmp_PRIORITY = 5;
 
-                                        break;
+                                    break;
                                     default:
 
                                         $tmp_PRIORITY = 3;
@@ -1212,86 +1213,86 @@ class crnrstn_soa_endpoint_request_manager {
                                         // HOOOSTON...VE HAF PROBLEM!
                                         $oCRNRSTN_n->error_log('The provided priority level of "' . $tmp_PRIORITY.'" is invalid; NORMAL priority has been applied. Options include, "HIGH" or 1, "NORMAL" or 3 and "LOW" or 5.', __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
 
-                                        break;
+                                    break;
 
                                 }
 
-                                break;
+                            break;
                             case 'WORDWRAP':
 
                                 $tmp_WORDWRAP = (int) $attribute_content;
 
-                                break;
+                            break;
                             case 'EMAIL_PROTOCOL':
 
                                 $tmp_EMAIL_PROTOCOL = trim(strtoupper($attribute_content));
 
-                                break;
+                            break;
                             case 'CHARSET':
 
                                 $tmp_CHARSET = $attribute_content;
 
-                                break;
+                            break;
                             case 'MESSAGE_ENCODING':
 
                                 $tmp_MESSAGE_ENCODING = $attribute_content;
 
-                                break;
+                            break;
                             case 'SMTP_SECURE':
 
                                 $tmp_SMTP_SECURE = strtolower(trim($attribute_content));
 
-                                break;
+                            break;
                             case 'SMTP_AUTOTLS':
 
                                 $tmp_SMTP_AUTOTLS = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
                             case 'SMTP_AUTH':
 
                                 $tmp_SMTP_AUTH = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
                             case 'SMTP_SERVER':
 
                                 $tmp_SMTP_SERVER = $attribute_content;
 
-                                break;
+                            break;
                             case 'SMTP_PORT_OUTGOING':
 
                                 $tmp_SMTP_PORT_OUTGOING = $attribute_content;
 
-                                break;
+                            break;
                             case 'SMTP_USERNAME':
 
                                 $tmp_SMTP_USERNAME = $attribute_content;
 
-                                break;
+                            break;
                             case 'SMTP_PASSWORD':
 
                                 $tmp_SMTP_PASSWORD = $attribute_content;
 
-                                break;
+                            break;
                             case 'SENDMAIL_PATH':
 
                                 $tmp_SENDMAIL_PATH = $attribute_content;
 
-                                break;
+                            break;
                             case 'USE_SENDMAIL_OPTIONS':
 
                                 $tmp_USE_SENDMAIL_OPTIONS = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
                             case 'DIBYA_SAHOO_SSL_CERT_BYPASS':
 
                                 $tmp_DIBYA_SAHOO_SSL_CERT_BYPASS = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
                             case 'TRY_OTHER_EMAIL_METHODS_ON_ERR':
 
                                 $tmp_TRY_OTHER_EMAIL_METHODS_ON_ERR = (bool) $oCRNRSTN_n->tidy_boolean($attribute_content);
 
-                                break;
+                            break;
 
                         }
 
@@ -1321,13 +1322,13 @@ class crnrstn_soa_endpoint_request_manager {
 
                     }
 
-                    break;
+                break;
                 case 'crnrstn_environment':
                 case 'crnrstn':
 
                     $tmp_recipient_cnt = sizeof($tmp_RECIPIENT_EMAIL);
 
-                    for ($i = 0; $i < $tmp_recipient_cnt; $i++) {
+                    for ($i = 0; $i < $tmp_recipient_cnt; $i++){
 
                         if(!($tmp_DUP_SUPPRESS && isset($tmp_sent_suppression[strtolower($tmp_RECIPIENT_EMAIL[$i])]))){
 
@@ -1441,22 +1442,22 @@ class crnrstn_soa_endpoint_request_manager {
 
                                     }
 
-                                    break;
+                                break;
                                 case 'SENDMAIL':
 
                                     $crnrstn_phpmailer->isSendmail();
 
-                                    break;
+                                break;
                                 case 'QMAIL':
 
                                     $crnrstn_phpmailer->isQmail();
 
-                                    break;
+                                break;
                                 case 'MAIL':
 
                                     $crnrstn_phpmailer->isMail();
 
-                                    break;
+                                break;
 
                             }
 
@@ -1475,11 +1476,11 @@ class crnrstn_soa_endpoint_request_manager {
 
                             }
 
-                            if (isset($tmp_RECIPIENT_NAME[$i])) {
+                            if(isset($tmp_RECIPIENT_NAME[$i])){
 
                                 $tmp_name = $tmp_RECIPIENT_NAME[$i];
 
-                            } else {
+                            }else{
 
                                 $tmp_name = '';
 
@@ -1503,7 +1504,7 @@ class crnrstn_soa_endpoint_request_manager {
 
                             $crnrstn_phpmailer->AltBody = $tmp_TEXT_Body;
 
-                            if ($tmp_isHTML) {
+                            if($tmp_isHTML){
 
                                 //
                                 // PREPARE HTML VERSION
@@ -1552,7 +1553,7 @@ class crnrstn_soa_endpoint_request_manager {
                                                 error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Graceful degradation to pentiary email send protocol is commencing due to: ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                 $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
-                                                if(!$crnrstn_phpmailer->Send()) {
+                                                if(!$crnrstn_phpmailer->Send()){
 
                                                     //
                                                     // ...on my usage of the term "hexapolynomial"...as being of the
@@ -1586,7 +1587,7 @@ class crnrstn_soa_endpoint_request_manager {
                                                     error_log(__LINE__ . 'An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . ' via ' . strtoupper($crnrstn_phpmailer->Mailer) . '. Attempting final graceful degradation...hexapolynomial in nature...albeit CRNRSTN :: has, at this point, already measured and found to be wanting the fifth (5th) and final email send use case of the four (4) official and available protocols for things of this nature per /crnrstn_PHPMailer/. TLDR; ...an empty string will now be sent as the mailer protocol, and the results for which what one would hope...could only be the best. ' . $crnrstn_phpmailer->ErrorInfo);
 
                                                     $crnrstn_phpmailer = $this->next_mail_protocol_option($crnrstn_phpmailer);
-                                                    if (!$crnrstn_phpmailer->Send()) {
+                                                    if(!$crnrstn_phpmailer->Send()){
 
                                                         $oCRNRSTN_n->error_log('An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo, __LINE__, __METHOD__, __FILE__, CRNRSTN_GABRIEL);
                                                         error_log(__LINE__ . ' - An error was experienced while attempting to send an email to ' . $oCRNRSTN_n->str_sanitize($tmp_RECIPIENT_EMAIL[$i], 'email_private') . '. Abandoning email delivery efforts due to: ' . $crnrstn_phpmailer->ErrorInfo);
@@ -1695,7 +1696,7 @@ class crnrstn_soa_endpoint_request_manager {
         self::$oSoapRequest = $oSoapRequest;
 
         $this->tmp_starttime = $this->oCRNRSTN_USR->starttime;
-        $this->tmp_starttime_ARRAY = explode('.',$this->tmp_starttime);
+        $this->tmp_starttime_ARRAY = explode('.', $this->tmp_starttime);
         $this->tmp_precise_timestamp = date('Y-m-d H:i:s', $this->tmp_starttime_ARRAY[0]);
         $this->tmp_precise_timestamp .= '.' . $this->tmp_starttime_ARRAY[1];
 
@@ -1909,7 +1910,7 @@ class crnrstn_soa_endpoint_request_manager {
 
                 if($tmp_size_oCC>0){
 
-                    for($i=0; $i<$tmp_size_oCC; $i++) {
+                    for($i=0; $i<$tmp_size_oCC; $i++){
 
                         if(isset($tmp_oCC[$i]['FIRSTNAME'])){
 
@@ -1934,7 +1935,7 @@ class crnrstn_soa_endpoint_request_manager {
 
                 if($tmp_size_oBCC>0){
 
-                    for($i=0; $i<$tmp_size_oBCC; $i++) {
+                    for($i=0; $i<$tmp_size_oBCC; $i++){
 
                         if(isset($tmp_oBCC[$i]['FIRSTNAME'])){
 
@@ -2239,11 +2240,11 @@ This email was sent to {}.
                         // OBJECT :: oStatusReport
                         //error_log('556 - SOAP SERVER SEND[' . $tmp_size_oRECIPIENT . '|' . $i . '] TO ' . $tmp_oRECIPIENT[$i]['EMAILADDRESS']);
                         $tmp_oStatusReport = $this->SOAPserver_sendEmail($tmp_oRECIPIENT[$i]);
-                        
+
                         if($tmp_oStatusReport['IS_SENT'] == 'TRUE'){
-                            
+
                             $SOAP_send_success_cnt++;
-                            
+
                         }else{
 
                             if($tmp_oStatusReport['SEND_STATUS'] == 'SEND SUPPRESSED'){
@@ -2255,7 +2256,7 @@ This email was sent to {}.
                                 $SOAP_send_error_cnt++;
 
                             }
-                            
+
                         }
 
                         if($this->SOAP_request_isEncrypted){
@@ -2514,19 +2515,19 @@ This email was sent to {}.
                 return NULL;
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             //
-            // RETURN FALSE
+            // RETURN FALSE.
             return false;
 
         }
 
     }
 	
-	public function __destruct() {
+	public function __destruct(){
 
 	}
 }

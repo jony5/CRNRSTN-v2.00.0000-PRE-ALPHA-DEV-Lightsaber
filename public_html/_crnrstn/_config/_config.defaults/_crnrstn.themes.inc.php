@@ -2,20 +2,21 @@
 /*
 // J5
 // Code is Poetry */
+
 // FLAGS FOR USER INTERFACE THEME STYLES
-// $this->system_theme_style_constants_ARRAY = array(
-// CRNRSTN_UI_PHPNIGHT                 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
-// CRNRSTN_UI_DARKNIGHT                // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER. NOTHING COULD BE DARKER. NOTHING.
-// CRNRSTN_UI_PHP                      // ALL ABOUT THE BUSINESS.
-// CRNRSTN_UI_GREYSKYS                 // // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) PRO DISPLAYS.
-// CRNRSTN_UI_HTML                     // BE LIGHT AND HAPPY.
-// CRNRSTN_UI_DAYLIGHT                 // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
-// CRNRSTN_UI_FEATHER                  // LIGHTER THAN DAYLIGHT.
-// CRNRSTN_UI_GLASS_LIGHT_COPY,
-// CRNRSTN_UI_GLASS_DARK_COPY
-// CRNRSTN_UI_WOOD
-// CRNRSTN_UI_TERMINAL,
-// CRNRSTN_UI_RANDOM);
+// -----
+// CRNRSTN_UI_PHPNIGHT              // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
+// CRNRSTN_UI_DARKNIGHT             // LIKE CRNRSTN_UI_PHPNIGHT, BUT DARKER. NOTHING COULD BE DARKER. NOTHING.
+// CRNRSTN_UI_PHP                   // ALL ABOUT THE BUSINESS.
+// CRNRSTN_UI_GREYSKY               // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
+// CRNRSTN_UI_HTML                  // BE LIGHT AND HAPPY.
+// CRNRSTN_UI_DAYLIGHT              // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
+// CRNRSTN_UI_FEATHER               // LIGHTER THAN DAYLIGHT.
+// CRNRSTN_UI_GLASS_LIGHT_COPY      // UI EXPERIMENTAL
+// CRNRSTN_UI_GLASS_DARK_COPY       // UI EXPERIMENTAL
+// CRNRSTN_UI_WOOD                  // GOT WOOD?
+// CRNRSTN_UI_TERMINAL              // GREEN TEXT. BLACK BACKGROUND. HARDCORE.
+// CRNRSTN_UI_RANDOM
 
 $tmp_theme_attributes_ARRAY = array();
 $tmp_pos = 0;
@@ -24,14 +25,14 @@ $tmp_pos = 0;
 // REPLICATION OF LEAD DEVELOPER IDE THEME. HOW CRNRSTN :: LIGHTSABER LOOKS TO ME.
 $int_const = CRNRSTN_UI_PHPNIGHT;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 0;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#7EC3E6';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#9876AA';
@@ -41,6 +42,9 @@ $tmp_theme_attributes_ARRAY[$int_const]['highlight.string'] = '#54B33E';
 
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.background-color'] = '#131314';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.background-opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1.0';
+
+//
+// TODO :: GET PIXELS OUT OF HERE...AND PUT oCRNRSTN->ui_css_length_unit_clean() INTO THE EQUATION.
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.border-width'] = '3px';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.border-color'] = '#9E9E9E';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.border-style'] = 'solid';
@@ -59,15 +63,25 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
+
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -84,8 +98,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -109,8 +123,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';
@@ -130,14 +144,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // NOTHING COULD BE DARKER. NOTHING.
 $int_const = CRNRSTN_UI_DARKNIGHT;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 1;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#006498';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#9E9D9F';
@@ -166,16 +180,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius']
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION BACKGROUND OVERLAY
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION BACKGROUND OVERLAY.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -192,7 +214,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
@@ -217,7 +239,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -237,14 +259,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // ALL ABOUT THE BUSINESS.
 $int_const = CRNRSTN_UI_PHP;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 2;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#008000';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#191A31';
@@ -272,15 +294,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -297,8 +328,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -322,7 +353,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -341,16 +372,16 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 //
 // ALONE AND SAD WITH A NICE CUP OF COFFEE, A RACK MOUNTED
 // DUAL-VIDEO CARD MAC PRO, AND FOUR (4) APPLE PRO DISPLAYS.
-$int_const = CRNRSTN_UI_GREYSKYS;
+$int_const = CRNRSTN_UI_GREYSKY;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 3;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#D4762D';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#939393';
@@ -378,15 +409,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -403,8 +443,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -428,7 +468,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -448,14 +488,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // BE LIGHT AND HAPPY.
 $int_const = CRNRSTN_UI_HTML;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 4;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#169B2B';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#B72620';
@@ -483,15 +523,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -508,8 +557,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -533,7 +582,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -553,14 +602,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // LIKE CRNRSTN_UI_HTML BUT...LIGHTER. NOTHING COULD BE LIGHTER.
 $int_const = CRNRSTN_UI_DAYLIGHT;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 5;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#5AC86C';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#CC6762';
@@ -588,15 +637,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -613,8 +671,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -638,7 +696,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -658,14 +716,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // LIGHTER THAN DAYLIGHT.
 $int_const = CRNRSTN_UI_FEATHER;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 6;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#7CD38B';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#D78783';
@@ -695,15 +753,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -720,8 +787,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -745,7 +812,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -765,14 +832,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // CONCEPT WORK IN PROGRESS.
 $int_const = CRNRSTN_UI_GLASS_LIGHT_COPY;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 7;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#7CD38B';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#D78783';
@@ -800,15 +867,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -825,8 +901,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -850,7 +926,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -870,14 +946,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // CONCEPT WORK IN PROGRESS.
 $int_const = CRNRSTN_UI_GLASS_DARK_COPY;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 8;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#008000';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#191A31';
@@ -905,15 +981,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -930,8 +1015,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -955,7 +1040,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -975,14 +1060,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // GOT WOOD?
 $int_const = CRNRSTN_UI_WOOD;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 9;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#7CD38B';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#D78783';
@@ -1010,15 +1095,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -1035,8 +1129,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -1060,7 +1154,7 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
+// CRNRSTN :: INTERACT UI.
 // DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
@@ -1080,14 +1174,14 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution
 // GREEN TEXT. BLACK BACKGROUND. HARDCORE.
 $int_const = CRNRSTN_UI_TERMINAL;
 $tmp_resource_meta_ARRAY = $this->return_int_const_profile($int_const);
-$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY['STRING'];
-$tmp_theme_attributes_ARRAY[$int_const]['INTEGER'] = $tmp_resource_meta_ARRAY['INTEGER'];
+$tmp_theme_attributes_ARRAY[$int_const]['NOM_STRING'] = $tmp_resource_meta_ARRAY[CRNRSTN_STRING];
+$tmp_theme_attributes_ARRAY[$int_const][CRNRSTN_INTEGER] = $tmp_resource_meta_ARRAY[CRNRSTN_INTEGER];
 $tmp_theme_attributes_ARRAY[$int_const]['TITLE'] = $tmp_resource_meta_ARRAY['TITLE'];
 $tmp_theme_attributes_ARRAY[$int_const]['DESCRIPTION'] = $tmp_resource_meta_ARRAY['DESCRIPTION'];
 $tmp_theme_attributes_ARRAY[$int_const]['POSITION'] = $tmp_pos++;
 $tmp_theme_attributes_ARRAY[$int_const]['DISPLAY_POSITION'] = 10;
 $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 0;
-if($this->is_bit_set($int_const)) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
+if($this->is_bit_set($int_const) == true) $tmp_theme_attributes_ARRAY[$int_const]['IS_ACTIVE'] = 1;
 
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.comment'] = '#257129';
 $tmp_theme_attributes_ARRAY[$int_const]['highlight.default'] = '#41DB3C';
@@ -1115,15 +1209,24 @@ $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.blur-radius'][]
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.spread-radius'][] = '';
 $tmp_theme_attributes_ARRAY[$int_const]['stage.canvas.box-shadow.color'][] = '#BFBFBF';
 
-// CRNRSTN :: INTERACT UI
+//
+// CRNRSTN :: INTERACT UI.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_color'][] = '#003eff';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_opacity'][] = '0.8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_bg_overlay_background_zindex'][] = '1';
-$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflowrap'][] = 'break-word';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_copy_overflow_wrap'][] = 'break-word';
+
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_thirdparty_tm_is_active'] = 1;        // [1=ON, 0=OFF]
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_background_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_height'] = 25;
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color'] = '#FFF';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseout_effect_dimmed_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65); opacity: 0.65';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_effect_brighten_color_opacity'] = 'filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); opacity: 0';
+$tmp_theme_attributes_ARRAY[$int_const]['interact.ui.sprite_icon_mouseover_magnification_zoom'] = 1.15;
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_font_weight'][] = 'bold';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_color'][] = '#333';
@@ -1140,8 +1243,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_fo
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_copy_margin_bottom'][] = '0';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION PAGE TITLE SECTION :: PAGE TITLE DESCRIPTION.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_font_family'][] = 'Arial, Helvetica, sans-serif';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_color'][] = '#333';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_width'][] = '90%';
@@ -1165,8 +1268,8 @@ $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_descrip
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_title_description_text_embed_image_line_height'][] = '90px';
 
 //
-// CRNRSTN :: INTERACT UI
-// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE
+// CRNRSTN :: INTERACT UI.
+// DOCUMENTATION GENERAL :: ALERT / CAUTION NOTE.
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_border'][] = '1px solid #A5B9D8';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_margin'][] = '10px 20px 10px 20px';
 $tmp_theme_attributes_ARRAY[$int_const]['interact.ui.document_page_alert_caution_border_wrap_padding'][] = '10px 0 10px 0';

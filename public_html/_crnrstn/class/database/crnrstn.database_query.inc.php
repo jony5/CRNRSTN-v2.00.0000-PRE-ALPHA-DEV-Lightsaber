@@ -41,7 +41,7 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 #
 #  CLASS :: crnrstn_database_query
 #  VERSION :: 1.00.0000
@@ -51,7 +51,7 @@
 #  DESCRIPTION :: A statement made in the language of structured query.
 #  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
 #
-class crnrstn_database_query {
+class crnrstn_database_query{
 
     protected $oLogger;
     public $oSqlSelect_tracker;
@@ -103,11 +103,11 @@ class crnrstn_database_query {
     protected $lookupSerialIndex = array();
     protected $loadedLookupSerialIndex = array();
 
-    public function __construct($oCRNRSTN_USR) {
+    public function __construct($oCRNRSTN_USR){
 
         $this->class_name = get_class();
         $this->query_life_stage = 'NEW';
-        
+
         try{
 
             if(isset($oCRNRSTN_USR)){
@@ -115,7 +115,7 @@ class crnrstn_database_query {
                 $this->oCRNRSTN_USR = $oCRNRSTN_USR;
 
                 $this->oSqlSelect_tracker = new crnrstn_sqlselect_tracker($this->oCRNRSTN_USR);
-                
+
                 //
                 // SERIALIZE OBJECT - LEN32
                 $this->crnrstn_db_query_serial = $this->oCRNRSTN_USR->generate_new_key();
@@ -129,8 +129,8 @@ class crnrstn_database_query {
                 $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
 
                 $this->date_created = $this->date_modified = $this->oLogger->returnMicroTime();
-                $this->creator_ip = $this->oCRNRSTN_USR->return_client_ip();
-                $this->modifier_ip = $this->oCRNRSTN_USR->return_client_ip();
+                $this->creator_ip = $this->oCRNRSTN_USR->client_ip();
+                $this->modifier_ip = $this->oCRNRSTN_USR->client_ip();
                 $this->php_sessionid = session_id();
                 $this->http_accept_language = self::$oCRNRSTN_ENV->safe_getServerArrayVar('HTTP_ACCEPT_LANGUAGE');
                 $this->http_user_agent = self::$oCRNRSTN_ENV->safe_getServerArrayVar('HTTP_USER_AGENT');
@@ -142,13 +142,13 @@ class crnrstn_database_query {
                 $this->http_accept_charset = self::$oCRNRSTN_ENV->safe_getServerArrayVar('HTTP_ACCEPT_CHARSET');
                 $this->request_method = self::$oCRNRSTN_ENV->safe_getServerArrayVar('REQUEST_METHOD');
 
-                if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                if(!empty($_SERVER['HTTP_CLIENT_IP'])){
 
                     $this->http_client_ip = $_SERVER['HTTP_CLIENT_IP'];
 
                 }
 
-                if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
 
                     $this->http_x_forwarded_for = $_SERVER['HTTP_X_FORWARDED_FOR'];
 
@@ -162,10 +162,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -219,10 +219,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -1310,10 +1310,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -1378,12 +1378,12 @@ class crnrstn_database_query {
                     // IS THE MERGE FIELD VALUE CURRENTLY LOADED INTO FAKEY...AND FORCE DISTINCT *NOT* DESIRED OR...VICE-VERSA?
                     $mergefield_pipe_pos = strpos($merge_fields_piped, '|');
 
-                    if ($mergefield_pipe_pos !== false) {
+                    if($mergefield_pipe_pos !== false){
 
                         $oQuery_merge_fields_ARRAY = explode('|', $merge_fields_piped);
                         $piped_merge_fields_cnt = sizeof($oQuery_merge_fields_ARRAY);
 
-                        for($ii = 0; $ii < $piped_merge_fields_cnt; $ii++) {
+                        for($ii = 0; $ii < $piped_merge_fields_cnt; $ii++){
 
                             $oQuery_merge_fieldname = $oQuery_merge_fields_ARRAY[$ii];
                             $value = $oQuery->return_db_value($oQuery_result_set_key, $oQuery_merge_fieldname, $oQueryRowPos);
@@ -1452,10 +1452,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -1482,7 +1482,7 @@ class crnrstn_database_query {
 
                         $pos = strpos($this->dataByID_field_position[$this->loadedLookupSerialIndex[$result_set_key]][$result_set_key][$i], $piped_primary_id_fields);
 
-                        if($pos === false){
+                        if($pos == false){
 
                             $piped_primary_id_fields .= $this->dataByID_field_position[$this->loadedLookupSerialIndex[$result_set_key]][$result_set_key][$i].'|';
 
@@ -1498,7 +1498,7 @@ class crnrstn_database_query {
 
                         $pos = strpos($piped_primary_id_fields, '|');
 
-                        if ($pos !== false) {
+                        if($pos !== false){
 
                             //
                             // PROCESS PIPE DELIM FOR MULTIPLE KEY BY ID FIELDS
@@ -1551,13 +1551,13 @@ class crnrstn_database_query {
                     $tmp_id_field_position = array();
                     $pos = strpos($piped_primary_id_fields, '|');
 
-                    if ($pos !== false) {
+                    if($pos !== false){
 
                         //
                         // PROCESS PIPE DELIM FOR MULTIPLE KEY BY ID FIELDS
                         $tmp_pipe_id_ARRAY = explode('|', $piped_primary_id_fields);
                         $tmp_lookup_field_cnt = sizeof($tmp_pipe_id_ARRAY);
-                        for($i = 0; $i < $tmp_lookup_field_cnt; $i++) {
+                        for($i = 0; $i < $tmp_lookup_field_cnt; $i++){
 
                             $tmp_id_field_position[$result_set_key][] = $tmp_pipe_id_ARRAY[$i];
 
@@ -1599,10 +1599,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -2208,10 +2208,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -2221,7 +2221,7 @@ class crnrstn_database_query {
 
     public function retrieve_data_by_id($result_set_key, $piped_lookup_fieldname, $piped_lookup_id_data){
 
-        try {
+        try{
 
             if(!isset($piped_lookup_id_data)){
                 $tmp_lookup_id_data_cnt = sizeof($this->dataByID_lookup_value[$this->loadedLookupSerialIndex[$result_set_key]][$result_set_key]);
@@ -2301,7 +2301,7 @@ class crnrstn_database_query {
             }else{
 
                 $pos = strpos($piped_lookup_id_data, '|');
-                if ($pos !== false) {
+                if($pos !== false){
 
                     //
                     // PROCESS PIPE DELIM FOR MULTI KEY BY ID
@@ -2368,10 +2368,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch (Exception $e) {
+        }catch (Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -2422,10 +2422,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -2451,10 +2451,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
         }
@@ -2512,7 +2512,7 @@ class crnrstn_database_query {
                 //
                 // DO WE HAVE AN "AS" FIELD RENAME. IF SO, HANDLE IT.
                 $pos = stripos($tmp_field_chop_array[$i], ' AS ');
-                if ($pos !== false) {
+                if($pos !== false){
 
                     //
                     // SPLIT FIELD BY AS AND TAKE SECOND INDEX FOR FIELD NAME
@@ -2531,13 +2531,13 @@ class crnrstn_database_query {
                     $pos_dot = stripos($tmp_field_chop_array[$i], '.');
                     $pos_comma = stripos($tmp_field_chop_array[$i], ',');
 
-                    if ($pos_dot !== false) {
+                    if($pos_dot !== false){
 
                         $tmp_single_field_array = explode('.', $tmp_field_chop_array[$i]);
 
                     }else{
 
-                        if ($pos_comma !== false) {
+                        if($pos_comma !== false){
 
                             $tmp_single_field_array = explode(',', $tmp_field_chop_array[$i]);
 
@@ -2660,10 +2660,10 @@ class crnrstn_database_query {
 
             }
 
-        }catch( Exception $e ) {
+        }catch(Exception $e){
 
             //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
+            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER.
             $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
 
             return false;
@@ -2672,347 +2672,7 @@ class crnrstn_database_query {
 
     }
 
-    public function __destruct() {
-
-    }
-
-}
-
-# # C # R # N # R # S # T # N # : : # # ##
-#
-#  CLASS :: crnrstn_sqlselect_tracker
-#  VERSION :: 1.00.0000
-#  DATE :: Tuesday July 14, 2020 @ 1400hrs
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI :: 
-#  DESCRIPTION :: Make it possible to associate an SQL field name with the query's result set data.
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
-#
-class crnrstn_sqlselect_tracker {
-
-    protected $oLogger;
-    public $oCRNRSTN_USR;
-
-    protected $select_fieldName_ARRAY = array();
-    protected $select_fieldPos_ARRAY = array();
-
-    public function __construct($oCRNRSTN_USR) {
-
-        try{
-
-            if(isset($oCRNRSTN_USR)){
-                $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-
-                $oCRNRSTN_ENV = $this->oCRNRSTN_USR->return_oCRNRSTN_ENV();
-
-                //
-                // INSTANTIATE LOGGER
-                $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
-
-            }else{
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('oCRNRSTN_USR is a required parameter for crnrstn_sqlselect_tracker :: __construct().');
-
-            }
-
-        }catch( Exception $e ) {
-
-            //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-        }
-
-    }
-
-    public function return_fieldPositionByName($result_set_key, $fieldname, $nullNotice = true){
-
-        try{
-
-            if(isset($this->select_fieldPos_ARRAY[$fieldname])) {
-
-                return $this->select_fieldPos_ARRAY[$fieldname];
-
-            }else{
-
-                if($nullNotice){
-
-                    //
-                    // HOOOSTON...VE HAF PROBLEM!
-                    throw new Exception('No field name called "'.$fieldname.'" has been found in the provided query result set key ['.$result_set_key.'].');
-
-                }else{
-
-                    return -2;
-
-                }
-            }
-
-        }catch( Exception $e ) {
-
-            //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
-        }
-
-    }
-
-    public function return_fieldNameByPosition($pos, $nullNotice = true){
-
-        if(isset($this->select_fieldName_ARRAY[$pos])) {
-
-            return $this->select_fieldName_ARRAY[$pos];
-
-        }else{
-
-            if($nullNotice){
-
-                $this->oCRNRSTN_USR->error_log('No field name is stored in position ['.$pos.'] out of a possible maximum total of ['.sizeof($this->select_fieldName_ARRAY).'].', __LINE__, __METHOD__, __FILE__, CRNRSTN_LOG_ALL);
-
-                return false;
-
-            }
-
-            return -1;
-
-        }
-
-    }
-
-    public function return_fieldCount(){
-
-        return sizeof($this->select_fieldPos_ARRAY);
-
-    }
-
-    public function reset_fakeyFields(){
-
-        array_splice($this->select_fieldPos_ARRAY, 0);
-        array_splice($this->select_fieldName_ARRAY, 0);
-
-    }
-
-    public function addFieldName($fieldname){
-
-        //error_log('2676 query - add field name['.$fieldname.']');
-        $this->select_fieldName_ARRAY[] = $fieldname;
-
-        $tmp_position = sizeof($this->select_fieldName_ARRAY);
-        $tmp_position--;
-        $this->select_fieldPos_ARRAY[$fieldname] = $tmp_position;
-
-    }
-
-    public function __destruct() {
-
-    }
-
-}
-
-# # C # R # N # R # S # T # N # : : # # ##
-#
-#  CLASS :: crnrstn_query_profile_manager
-#  VERSION :: 1.00.0000
-#  DATE :: Thursday July 16, 2020 @ 2158hrs
-#  AUTHOR :: Jonathan 'J5' Harris, jharris@eVifweb.com
-#  URI :: 
-#  DESCRIPTION :: Tell me everything that I want to know about query and CRNRSTN ::.
-#  LICENSE :: MIT | http://crnrstn.evifweb.com/licensing/
-#
-class crnrstn_query_profile_manager {
-
-    protected $oLogger;
-    public $oCRNRSTN_USR;
-
-    protected $query_profile_serial_key = array();
-    //protected $MySQLi = array();
-    public $MySQLi = array();
-    protected $result_handle = array();
-    protected $batch_key = array();
-    protected $result_set_key = array();
-
-    public function __construct($oCRNRSTN_USR) {
-
-        try{
-
-            if(isset($oCRNRSTN_USR)){
-
-                $this->oCRNRSTN_USR = $oCRNRSTN_USR;
-
-                //
-                // INSTANTIATE LOGGER
-                $this->oLogger = new crnrstn_logging(__CLASS__, $this->oCRNRSTN_USR);
-
-            }else{
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('oCRNRSTN_USR is a required parameter for '. __METHOD__ .'.');
-
-            }
-
-        }catch( Exception $e ) {
-
-            //
-            // LET CRNRSTN :: HANDLE THIS PER THE LOGGING PROFILE CONFIGURATION FOR THIS SERVER 
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-        }
-
-    }
-
-    public function loadQueryProfile($result_handle, $batch_key, $result_set_key){
-
-        $oCRNRSTN_MySQLi = $this->oCRNRSTN_USR->return_crnrstn_mysqli();
-
-        $tmp_query_profile_serial = $this->oCRNRSTN_USR->generate_new_key(50);
-        $this->query_profile_serial_key[$tmp_query_profile_serial] = $result_set_key;
-
-        $this->MySQLi[$tmp_query_profile_serial] = $oCRNRSTN_MySQLi;
-        $this->result_handle[$tmp_query_profile_serial] = $result_handle;
-        $this->batch_key[$tmp_query_profile_serial] = $batch_key;
-        $this->result_set_key[$tmp_query_profile_serial] = $result_set_key;
-
-    }
-
-    public function returnQueryProfileSerial($result_set_key){
-
-        try{
-
-            # $this->query_profile_serial_key[$tmp_query_profile_serial] = $result_set_key;
-            foreach($this->query_profile_serial_key as $tmp_query_profile_serial=>$loaded_result_set_key){
-
-                //error_log('2763 query - ['.$result_set_key.']['.$loaded_result_set_key.']');
-                if($result_set_key == $loaded_result_set_key){
-
-                    return $tmp_query_profile_serial;
-
-                }
-
-            }
-
-            //
-            // HOOOSTON...VE HAF PROBLEM!
-            throw new Exception('No query profile has been loaded via oQueryProfileMgr->loadQueryProfile() with the query result set key of "'.$result_set_key.'".');
-
-        }catch( Exception $e ) {
-
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
-        }
-
-    }
-
-    public function return_MySQLi($result_set_key){
-
-        try{
-
-            $tmp_query_profile_serial = $this->returnQueryProfileSerial($result_set_key);
-
-            if(isset($this->MySQLi[$tmp_query_profile_serial])){
-
-                return $this->MySQLi[$tmp_query_profile_serial];
-
-            }else{
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('No mysqli database connection associated with the query result set key of "'.$result_set_key.'" could be found.');
-
-            }
-
-        }catch( Exception $e ) {
-
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
-        }
-
-    }
-
-    public function isset_query_result_set_key($result_set_key){
-
-        foreach($this->query_profile_serial_key as $tmp_query_profile_serial => $loaded_result_set_key){
-
-            if($result_set_key == $loaded_result_set_key){
-
-                //error_log(__LINE__ . ' query '.$result_set_key.' IS SET!');
-
-                return true;
-
-            }
-
-        }
-
-        //error_log(__LINE__ . ' query '.$result_set_key.' IS NOT SET! query_profile_serial_key='.print_r($this->query_profile_serial_key, true));
-        return false;
-
-    }
-
-    public function return_resultHandle($result_set_key){
-
-        try{
-
-            $tmp_query_profile_serial = $this->returnQueryProfileSerial($result_set_key);
-
-            if(isset($this->result_handle[$tmp_query_profile_serial])){
-
-                return $this->result_handle[$tmp_query_profile_serial];
-
-            }else{
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('No results handle associated with the query result set key of "'.$result_set_key.'" could be found.');
-
-            }
-
-        }catch( Exception $e ) {
-
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
-        }
-
-    }
-
-    public function return_batchKey($result_set_key){
-
-        $tmp_query_profile_serial = $this->returnQueryProfileSerial($result_set_key);
-
-        try{
-
-            if(isset($this->batch_key[$tmp_query_profile_serial])){
-
-                return $this->batch_key[$tmp_query_profile_serial];
-
-            }else{
-
-                //
-                // HOOOSTON...VE HAF PROBLEM!
-                throw new Exception('No batch key associated with the query result set key of "'.$result_set_key.'" could be found.');
-
-            }
-
-        }catch( Exception $e ) {
-
-            $this->oCRNRSTN_USR->catch_exception($e, LOG_ERR, __METHOD__, __NAMESPACE__);
-
-            return false;
-
-        }
-    }
-
-    public function __destruct() {
+    public function __destruct(){
 
     }
 

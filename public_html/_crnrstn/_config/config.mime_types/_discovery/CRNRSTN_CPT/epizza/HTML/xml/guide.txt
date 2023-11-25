@@ -1,0 +1,17 @@
+epizza XML guide:
+
+menuitems
+	- menuitem
+		category
+		name
+		complement
+		size
+		price
+		smallprice
+		mediumprice
+		largeprice
+		compsmallproce
+		complargeprice
+		description
+		dagger
+	

@@ -1,0 +1,688 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://www.agilemodeling.com/artifacts/componentDiagram.htm -->
+<HTML><HEAD><TITLE>UML 2 Component Diagram</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Visual Modeling, UML 2, FDD, eXtreme Programming, XP, Agile Modeling, AM, OOA&amp;D, UML, Data modeling, Process Modeling, Business Process Modeling, BPR, Unified Modeling Language, Software Process, Software Methodology, Software Engineering, Agile Development" 
+name=KEYWORDS>
+<META content="MSHTML 6.00.2800.1226" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK 
+href="UML 2 Component Diagram_files/global.css" type=text/css rel=STYLESHEET>
+<STYLE>LI.MsoNormal {
+	FONT-SIZE: 10pt; MARGIN: 0in 0in 0pt; FONT-FAMILY: "Times New Roman"; mso-style-parent: ""
+}
+TABLE.MsoTableGrid {
+	BORDER-RIGHT: windowtext 1pt solid; BORDER-TOP: windowtext 1pt solid; FONT-SIZE: 10pt; BORDER-LEFT: windowtext 1pt solid; BORDER-BOTTOM: windowtext 1pt solid; FONT-FAMILY: "Times New Roman"
+}
+</STYLE>
+</HEAD>
+<BODY bgColor=#999966>
+<TABLE cellSpacing=3 cellPadding=3 border=0>
+  <TBODY>
+  <TR><!--- Logo ---><!--- Header --->
+    <TD width=673>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width=17 bgColor=#ffffcc height=65><IMG height=65 alt="" 
+            src="UML 2 Component Diagram_files/header_end.gif" width=17 
+          border=0></TD>
+          <TD class=header width=394 bgColor=#ffffcc>The Official<BR>Agile 
+            Modeling (AM) Site</TD>
+          <TD width=262 bgColor=#ffffcc height=65><A 
+            href="http://www.agilemodeling.com/"><IMG height=65 
+            src="UML 2 Component Diagram_files/am_logo.gif" width=112 
+            align=right border=0></A></TD></TR></TBODY></TABLE></TD></TR>
+  <TR><!--- Index ---><!--- Body --->
+    <TD vAlign=top>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width=15 bgColor=#ffffcc height=12><IMG height=15 alt="" 
+            src="UML 2 Component Diagram_files/content_header_left.gif" width=12 
+            border=0></TD>
+          <TD class=title-bar align=left width="100%" bgColor=#ffffcc height=12 
+          rowSpan=2><A 
+            href="http://www.agilemodeling.com/artifacts/index.htm"><FONT 
+            size=3>Modeling Artifacts</FONT></A><FONT size=3>&gt;UML 2 Component 
+            Diagram</FONT></TD>
+          <TD align=right width=15 bgColor=#ffffcc height=12><IMG height=15 
+            alt="" src="UML 2 Component Diagram_files/content_header_right.gif" 
+            width=12 border=0></TD></TR>
+        <TR>
+          <TD width=15 bgColor=#ffffcc height=5><IMG height=1 alt="" src="" 
+            width=1 border=0></TD>
+          <TD width=15 bgColor=#ffffcc height=5><IMG height=1 alt="" src="" 
+            width=1 border=0></TD></TR>
+        <TR>
+          <TD bgColor=white colSpan=3>
+            <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top width=3 height=470><IMG height=1 alt="" src="" 
+                  width=1 border=0></TD>
+                <TD class=body vAlign=top width="100%" height=370>
+                  <H1>UML 2 Component Diagram</H1>
+                  <P><B>by <A 
+                  href="http://www.ronin-intl.com/company/scottAmbler.html">Scott 
+                  W. Ambler</A>, Copyright 2003</B></P>
+                  <P>&nbsp;</P>
+                  <P class=MsoNormal>Component-based development (CBD) and 
+                  object-oriented development go hand-in-hand, and it is 
+                  generally recognized that object technology is the preferred 
+                  foundation from which to build components.&nbsp; I typically 
+                  use UML component diagrams as an architecture-level artifact, 
+                  either to model the business software architecture, the 
+                  technical software architecture, or more often than not both 
+                  of these architectural aspects.&nbsp; Physical architecture 
+                  issues, in particular hardware issues, are better addressed 
+                  via <A 
+                  href="http://www.agilemodeling.com/artifacts/deploymentDiagram.htm">UML 
+                  deployment diagrams</A> or <A 
+                  href="http://www.agilemodeling.com/artifacts/networkDiagram.htm">network 
+                  diagrams</A>.&nbsp; In fact I'll often iterate back and forth 
+                  between these diagrams.</P>
+                  <P class=MsoNormal>Component diagrams are particularly useful 
+                  with larger teams.&nbsp; Your initial architectural modeling 
+                  efforts during <A 
+                  href="http://www.agilemodeling.com/essays/amdd.htm">cycle 
+                  0</A> should focus on identifying the initial architectural 
+                  landscape for your system.&nbsp; UML component diagrams are 
+                  great for doing this as they enable you to model the 
+                  high-level software components, and more importantly the 
+                  interfaces to those components.&nbsp; Once the interfaces are 
+                  defined, and agreed to by your team, it makes it much easier 
+                  to organize the development effort between subteams. You will 
+                  discover the need to evolve the interfaces to reflect new 
+                  requirements or changes to your design as your project 
+                  progresses, changes that need to be negotiated between the 
+                  subteams and then implemented appropriately.</P>
+                  <P class=MsoNormal><A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure1">Figure 
+                  1</A> presents an example component model, using the UML 2 
+                  notation, for the university system.&nbsp; <A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure2UML1">Figure 
+                  2</A> depicts the same diagram using UML 1.x notation.&nbsp; 
+                  As you can see, there are several notational 
+                  differences.&nbsp; UML 2 components are modeled as simple 
+                  rectangles, whereas in UML 1.x there were depicted as 
+                  rectangles with two smaller rectangles jutting out from the 
+                  left-hand side.&nbsp; As you can see UML 2 uses this symbol as 
+                  a visual stereotype within the rectangle to indicate that the 
+                  rectangle represents a component although the textual 
+                  stereotype of <I>component</I> is also acceptable (as you see 
+                  with the <I>Schedule</I> component).&nbsp; &nbsp;Both diagrams 
+                  model dependencies, either between components or between 
+                  components and interfaces.&nbsp; You can also see that both 
+                  diagrams use the lollipop symbol to indicate an implemented 
+                  interface although the UML 2 version introduces the socket 
+                  symbol to indicate a required interface.&nbsp; As far as I’m 
+                  concerned the socket symbol is effectively a visual stereotype 
+                  applied to a dependency, the equivalent textual stereotype is 
+                  shown on the dependency between the <I>Persistence</I> 
+                  component and the <I>JDBC</I> interface.&nbsp; &nbsp;</P>
+                  <P>&nbsp;</P>
+                  <P><B><A name=Figure1>Figure 1</A>. UML 2.x component 
+                  diagram.</B></P>
+                  <P><IMG height=341 
+                  src="UML 2 Component Diagram_files/componentDiagramUML2.jpeg" 
+                  width=676 border=0></P>
+                  <P>&nbsp;</P>
+                  <P><B><A name=Figure2UML1>Figure 2. UML 1.x component 
+                  diagram.</A></B></P>
+                  <P><IMG height=340 
+                  src="UML 2 Component Diagram_files/componentDiagramUML1.jpeg" 
+                  width=678 border=0></P>
+                  <P class=MsoNormal>Diagrams such as <A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure1">Figure 
+                  1</A> are often referred to as “wiring diagrams” because they 
+                  show how the various software components are “wired together” 
+                  to build your overall application.&nbsp; The lines between 
+                  components are often to as connectors, the implication being 
+                  that some sort of messaging will occur across the 
+                  connectors.</P>
+                  <P class=MsoNormal>I usually draw component diagrams on 
+                  whiteboards although for both of the examples I’ve used a 
+                  drawing tool to depict the notation accurately.&nbsp; You can 
+                  use component diagrams for both logical and physical modeling 
+                  although I prefer to use them for physical modeling of the 
+                  software architecture of a system.&nbsp; <A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure1">Figure 
+                  1</A> shows the large-scale domain components for the system 
+                  we’re building, including two user interface components which 
+                  map to two different applications which we’re building as part 
+                  of the overall system.&nbsp; This diagram includes both 
+                  business and technical architecture aspects – the components 
+                  with the <I>infrastructure</I> and <I>database</I> stereotypes 
+                  are clearly technical in nature – and that’s perfectly 
+                  fine.&nbsp; The important thing is that we’re considering both 
+                  business and technical aspects in our architecture, not just 
+                  technical issues, and for whatever reason we’ve chosen to 
+                  create a single diagram which includes both views.</P>
+                  <P class=MsoNormal>&nbsp;</P>
+                  <H3><A name=InterfacesAndPorts>Interfaces and Ports</A></H3>
+                  <P class=MsoNormal>Components may both provide and require 
+                  interfaces.&nbsp; An interface is the definition of a 
+                  collection of one or more methods, and zero or more 
+                  attributes, ideally one that defines a cohesive set of 
+                  behaviors.&nbsp; A provided interface is modeled using the 
+                  lollipop notation and a required interface is modeled using 
+                  the socket notation.&nbsp; A port is a feature of a classifier 
+                  that specifies a distinct interaction point between the 
+                  classifier and its environment.&nbsp; Ports are depicted as 
+                  small squares on the sides of classifiers.</P>
+                  <P class=MsoNormal>For example, <A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure3InterfacesAndPorts">Figure 
+                  3</A> shows a detailed component diagram which contains three 
+                  components.&nbsp; There are several interesting features to 
+                  note about this diagram:</P>
+                  <OL>
+                    <LI>
+                    <P class=MsoNormal>Ports can be named, such as the 
+                    <I>Security</I> and <I>Data</I> ports on the <I>Student</I> 
+                    component. </P>
+                    <LI>
+                    <P class=MsoNormal>Ports can support unidirectional 
+                    communication or bi-directional communication.&nbsp; The 
+                    <I>Student</I> component implements three ports, two 
+                    unidirectional ports and one bi-directional ports.&nbsp; The 
+                    left-most port is an input port, the <I>Security</I> port is 
+                    an output port, and the <I>Data</I> port is a bi-directional 
+                    port. </P>
+                    <LI>
+                    <P class=MsoNormal>The <I>StudentAdministration</I> and 
+                    <I>StudentSchedule</I> interfaces are application specific 
+                    and may include overlapping method signatures.&nbsp; I’ve 
+                    found this approach to be more understandable to the clients 
+                    of the component as each application team is provided their 
+                    own specific interface which isn’t encumbered with methods 
+                    they don’t need. </P>
+                    <LI>
+                    <P class=MsoNormal>The diagram isn’t “wired” together yet – 
+                    I haven’t connected the <I>Student</I> component to the two 
+                    security components yet.&nbsp; </P>
+                    <LI>
+                    <P class=MsoNormal>You don’t need to use all of the provided 
+                    interfaces of a component.&nbsp; My team has decided to use 
+                    the <I>X-Security</I> component for <A 
+                    href="http://www.agiledata.org/essays/accessControl.html">access 
+                    control</A> and the <I>MegaEncrypter</I> component for 
+                    encryption.&nbsp; Both of these fictional components are 
+                    commercial off the shelf packages (COTS) which we’ve 
+                    purchased.&nbsp; Although <I>X-Security</I> implements both 
+                    security interfaces required by <I>Student</I> the other 
+                    component implements the <I>Encryption</I> interface much 
+                    more efficiently so we’ve decided to use both security 
+                    components. </P></LI></OL>
+                  <P>&nbsp;</P>
+                  <P><B><A name=Figure3InterfacesAndPorts>Figure 3. Modeling 
+                  interfaces and ports.</A></B></P>
+                  <P><IMG height=507 
+                  src="UML 2 Component Diagram_files/componentInterfaces.jpeg" 
+                  width=676 border=0></P>
+                  <P>&nbsp;</P>
+                  <H3><A name=Implementing>Implementing</A> a Component</H3>
+                  <P class=MsoNormal>So how do you actually build a 
+                  component?&nbsp; Although there are various strategies to do 
+                  so, there are several basic principles that you can 
+                  follow.&nbsp;&nbsp; <A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure4Implementing">Figure 
+                  4</A> depicts a design for the Student component, depicting it 
+                  as a UML frame (it’s also common to use component notation, 
+                  e.g. a rectangle with the component stereotype in the 
+                  top-right corner, instead of a frame).&nbsp; Interesting 
+                  points about this diagram are:</P>
+                  <OL>
+                    <LI>
+                    <P class=MsoNormal>I simplified the ports to either provide 
+                    or require a single interface.&nbsp; This enables me to 
+                    easily and explicitly model the relationships between the 
+                    ports and the internals of the component. </P>
+                    <LI>
+                    <P class=MsoNormal>I’ve modeled relationships between ports 
+                    and internal classes in three different ways: as a 
+                    stereotyped delegates relationship, as a delegates 
+                    relationship, and as a realizes relationship.&nbsp; A 
+                    delegates relationship is a line with an open arrowhead on 
+                    it and a realizes relationship is a dashed arrow with a 
+                    closed arrowhead.&nbsp; Because the delegates notation is 
+                    exactly the same notation that is used for unidirectional 
+                    associations there is an opportunity for confusion – as a 
+                    result I recommend indicating the stereotype on the 
+                    relationship to make it clear what you mean.&nbsp; The 
+                    realizes notation, for example <I>AdministrationFacade</I> 
+                    realizes the port containing the 
+                    <I>StudentAdministration</I> interface, used to be my 
+                    preferred approach because in my mind ports are logical 
+                    modeling constructs that are realized by physical constructs 
+                    such as classes.&nbsp; However, the delegates association 
+                    has the advantage that it indicates the flow of 
+                    communication and as a result seems to be easier to 
+                    understand. </P>
+                    <LI>
+                    <P class=MsoNormal>The <I>Data</I> and <I>Security</I> 
+                    classes use the same names as the corresponding ports in 
+                    Figure 8<!--[if gte mso 9]><xml>
+                          <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F00520065006600340037003700380034003300390039000000</w:data>
+                          </xml><![endif]-->. </P>
+                    <LI>
+                    <P class=MsoNormal>Classes such as 
+                    <I>AdministrationFacade</I>, <I>ScheduleFacade</I>, 
+                    <I>StudentData</I>, <I>Data</I>, and <I>Security</I> 
+                    implement the Façade design pattern (Gamma et. al. 
+                    1995).&nbsp; The basic idea is that they implement the 
+                    public operations required by the interfaces, operations 
+                    that typically just delegate messages to the appropriate 
+                    classes.&nbsp; Together the <I>AdministrationFacade</I>, 
+                    <I>ScheduleFacade</I>, and <I>StudentData</I> classes 
+                    implement the public interface of the <I>Student</I> 
+                    component.&nbsp; <I>StudentData</I>, <I>Data</I>, and 
+                    <I>Security</I> wrap access to external components so that 
+                    the internal classes are not directly coupled to other 
+                    physical components. </P>
+                    <LI>Expect to adapt incoming/outgoing interactions back and 
+                    forth between data-oriented and object-oriented 
+                    messages.&nbsp; An incoming message may be implemented as a 
+                    web service which takes XML as a parameter and returns XML 
+                    as the result.&nbsp; The internal objects within the 
+                    component, on the other hand, need messages sent to them 
+                    with either objects or data as parameters and return 
+                    values.&nbsp; The implication is that you need to marshal 
+                    the data and objects back and forth between each other, 
+                    something addressed by the <I>Adapter</I> design pattern 
+                    (Gamma et al., 1995). 
+                    <LI>
+                    <P class=MsoNormal>Another way to implement the public 
+                    interface would have been to implement a single façade class 
+                    called <I>StudentComponent</I> which implements the required 
+                    public interfaces and delegates appropriately. </P>
+                    <LI>
+                    <P class=MsoNormal>When designing the <I>StudentData</I> 
+                    class the team realized that it needed to work with our 
+                    existing <I>XMLProcessor</I> component, therefore we added 
+                    the connection to this component. </P></LI></OL>
+                  <P class=MsoNormal>&nbsp;</P>
+                  <P><B><A name=Figure4Implementing>Figure 4. Designing a 
+                  component.</A></B></P>
+                  <P><IMG height=376 
+                  src="UML 2 Component Diagram_files/componentDesign.jpeg" 
+                  width=676 border=0></P>
+                  <P class=MsoNormal>&nbsp;</P>
+                  <P class=MsoNormal><A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure3InterfacesAndPorts">Figure 
+                  3</A> makes it obvious that building components is 
+                  costly.&nbsp; Creating the <I>Student</I> component as shown 
+                  in <A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure3InterfacesAndPorts">Figure 
+                  3</A> doesn’t make much sense – I’ve added five new classes to 
+                  support two domain classes, a clear case of 
+                  overbuilding.&nbsp; This approach would make sense if there 
+                  was twenty classes, and would make a lot of sense for fifty 
+                  domain classes, because the additional five classes reduce the 
+                  coupling within your system while at the same time implement a 
+                  large-scale, reusable domain component.&nbsp; The point is 
+                  that you should only take a component-based approach when the 
+                  benefit of doing so outweighs the additional cost.</P>
+                  <P>&nbsp;</P>
+                  <H3><A name=Creating>Creating</A> Component Diagrams</H3>
+                  <P class=MsoNormal>There are two fundamental strategies for 
+                  developing a component model, either top down or bottom 
+                  up.&nbsp; Given the choice I prefer the top-down approach 
+                  because it provides a good mechanism for identifying the 
+                  “software landscape” early in the project, something that is 
+                  particularly important for teams comprised of several subteams 
+                  because you want to work towards the same vision.&nbsp; 
+                  Unfortunately a top-down approach suffers from the tendency to 
+                  promote over-architecting, and hence over-building, of your 
+                  system.&nbsp; For example <A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Figure1">Figure 
+                  1</A> calls out <I>Security</I> and <I>Persistence</I> 
+                  components but you might not yet need anything even remotely 
+                  that complicated.&nbsp; It would be a serious mistake to focus 
+                  on building these two components instead of implementing 
+                  actual business functionality that your stakeholders actually 
+                  need.&nbsp; </P>
+                  <P class=MsoNormal>A second way to develop component models is 
+                  from the bottom up.&nbsp; I’ll do this when we have an 
+                  existing collection of classes that have been developed and we 
+                  decide to componentize our design.&nbsp; Componentizing is 
+                  often done to rescue reusable functionality out of an existing 
+                  application or to split an application up so it can be easily 
+                  dispersed between subteams.&nbsp; &nbsp;When I’m 
+                  componentizing an existing object design I’ll often iterate 
+                  through the following steps:</P>
+                  <OL>
+                    <LI>
+                    <P class=MsoNormal><B>Keep components cohesive</B>.&nbsp; A 
+                    component should implement a single, related set of 
+                    functionality.&nbsp; This may be the user interface logic 
+                    for a single user application, business classes comprising a 
+                    large-scale domain concept, or technical classes 
+                    representing a common infrastructure concept. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Assign user interface classes to 
+                    application components</B>.&nbsp; User interface classes, 
+                    those that implement screens, pages, or reports, as well as 
+                    those that implement “glue logic” such as identifying which 
+                    screen/page/… to display should be placed in components with 
+                    the <I>application</I> stereotype.&nbsp; In Java these types 
+                    of classes would include Java Server Pages (JSPs), servlets, 
+                    and screen classes implemented via user interface class 
+                    libraries such as Swing. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Assign technical classes to 
+                    infrastructure components</B>. &nbsp;Technical classes, such 
+                    as those that implement system-level services such as 
+                    security, persistence, or middleware should be assigned to 
+                    components which have the <I>infrastructure</I> stereotype. 
+                    </P>
+                    <LI>
+                    <P class=MsoNormal><B>Define class contracts</B>.&nbsp; A 
+                    class contract is any method that directly responds to a 
+                    message sent from other objects.&nbsp; For example, the 
+                    contracts of the <I>Seminar</I> class likely include 
+                    operations such as <I>enrollStudent()</I> and 
+                    <I>dropStudent()</I>. For the purpose of identifying 
+                    components, you can ignore all the operations that aren’t 
+                    class contracts because they don’t contribute to 
+                    communication between objects distributed in different 
+                    components. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Assign hierarchies to the same 
+                    component</B>. &nbsp;99.9% of the time I find that it makes 
+                    sense to assign all of the classes of a hierarchy, either an 
+                    inheritance hierarchy or a composition hierarchy, to the 
+                    same component.&nbsp; </P>
+                    <LI>
+                    <P class=MsoNormal><B>Identify domain components</B>. A 
+                    domain component is a set of classes that collaborate among 
+                    themselves to support a cohesive set of contracts. The basic 
+                    idea is that classes, and even other domain components, are 
+                    able to send messages to domain components either to request 
+                    information or to request an action be performed. On the 
+                    outside, domain components appear simple, actually they 
+                    appear like any other type of object but, on the inside, 
+                    they are often quite complex because they encapsulate the 
+                    behavior of several classes. &nbsp;A key goal is you want to 
+                    organize your design into several components in such a way 
+                    as to reduce the amount of information flowing between them. 
+                    Any information passed between components, either in the 
+                    form of messages or the objects that are returned as the 
+                    result of a message send, represents potential traffic on 
+                    your network (if the components are deployed to different 
+                    nodes). Because you want to minimize network traffic to 
+                    reduce the response time of your application, you want to 
+                    design your domain components in such a way that most of the 
+                    information flow occurs within the components and not 
+                    between them. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Identify the “collaboration type” of 
+                    business classes</B>.&nbsp; To determine which domain 
+                    component a business class belongs to you need to analyze 
+                    the collaborations it is involved with to determine its 
+                    distribution type. A server class is one that receives 
+                    messages, but doesn’t send them. A client class is one that 
+                    sends messages, but doesn’t receive them. A client/server 
+                    class is one that both sends and receives messages.&nbsp; 
+                    Once you have identified the distribution type of each 
+                    class, you are in a position to start identifying potential 
+                    domain components. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Server classes belong in their own 
+                    component.</B> Pure server classes belong in a domain 
+                    component and often form their own domain components because 
+                    they are the “last stop” for message flow within an 
+                    application. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Merge a component into its only 
+                    client.</B> If you have a domain component that is a server 
+                    to only one other domain component, you may decide to 
+                    combine the two components.&nbsp; &nbsp; </P>
+                    <LI>
+                    <P class=MsoNormal><B>Pure client classes don’t belong in 
+                    domain components.</B> Client classes don’t belong in a 
+                    domain component because they<B> </B>only generate messages, 
+                    they don’t receive them, whereas the purpose of a domain 
+                    component is to respond to messages. Therefore, client 
+                    classes have nothing to add to the functionality offered by 
+                    a domain component and very likely belong in an application 
+                    component instead. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Highly coupled classes belong in the 
+                    same component.</B> When two classes collaborate frequently, 
+                    this is an indication they should be in the same domain 
+                    component to reduce the network traffic between the two 
+                    classes. This is especially true when that interaction 
+                    involves large objects, either passed as parameters or 
+                    received as return values. By including them in the same 
+                    domain component you reduce the potential network traffic 
+                    between them. The basic idea is that highly coupled classes 
+                    belong together. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Minimize the size of the message flow 
+                    between components.</B> Client/server<B> </B>classes belong 
+                    in a domain component, but there may be a choice as to which 
+                    domain component they belong to. This is where you need to 
+                    consider issues such as the information flow going into and 
+                    out of the class.&nbsp; Communication within a component 
+                    will often be simple message sends between objects in 
+                    memory, communication between components may require an 
+                    expensive marshalling effort in which a message and its 
+                    parameters are converted to data, transmitted, and then 
+                    converted back into a message again. </P>
+                    <LI>
+                    <P class=MsoNormal><B>Define component contracts</B>.&nbsp; 
+                    Each component will offer services to its clients, each such 
+                    service is a component contract. </P></LI></OL>
+                  <P>&nbsp;</P>
+                  <P class=MsoNormal><A 
+                  href="http://www.agilemodeling.com/artifacts/componentDiagram.htm#Table1">Table 
+                  1</A> summarizes several design principles presented in Agile 
+                  Software Development (Martin, Newkirk, Koss 2003) for 
+                  improving the quality of packages or components.&nbsp;&nbsp; I 
+                  present them here because I find them of greatest value when 
+                  it comes to component modeling.</P>
+                  <P><B><A name=Table1>Table 1</A>. Component design 
+                  principles.</B></P>
+                  <TABLE class=MsoTableGrid 
+                  style="BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; BORDER-COLLAPSE: collapse" 
+                  cellSpacing=0 cellPadding=0 border=1>
+                    <TBODY>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: windowtext 1pt solid; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal><B>Principle</B></P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: windowtext 1pt solid; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal><B>Description</B></P></TD></TR>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal>Acyclic Dependencies</P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal>Allow no cycles in the dependencies 
+                        graph between components.&nbsp; For example disallow A 
+                        <SPAN style="FONT-FAMILY: Wingdings">è</SPAN> B <SPAN 
+                        style="FONT-FAMILY: Wingdings">è</SPAN> C <SPAN 
+                        style="FONT-FAMILY: Wingdings">è</SPAN> A because it 
+                        includes a cycle.</P></TD></TR>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal>Common Closure</P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal>The classes of a component should be 
+                        closed together against the same kinds of changes.&nbsp; 
+                        A change that affects a class within a component should 
+                        not affect classes outside that component.&nbsp; In 
+                        other words your components should be cohesive in that 
+                        sweeping changes across several components are not 
+                        required.</P></TD></TR>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal>Common Reuse</P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal>The classes in a component are reused 
+                        together.&nbsp; If you reuse one class in a component 
+                        you reuse them all.&nbsp; This is another principle 
+                        addressing cohesion.</P></TD></TR>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal>Dependency Inversion</P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal>Abstractions should not depend on 
+                        details, instead details should depend on 
+                        abstractions.</P></TD></TR>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal>Open-Closed</P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal>Software elements should be open for 
+                        extension but closed for modification.</P></TD></TR>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal>Release-Reuse Equivalency</P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal>The granule of reuse is the granule 
+                        of release.&nbsp; In other words you should not reuse 
+                        only part of a released software element.</P></TD></TR>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal>Stable Abstractions</P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal>A component should be as abstract as 
+                        it is stable.&nbsp; A component should be sufficiently 
+                        abstract so that it can be extended without affecting 
+                        its stability. </P></TD></TR>
+                    <TR>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: windowtext 1pt solid; WIDTH: 113.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=151>
+                        <P class=MsoNormal>Stable Dependencies</P></TD>
+                      <TD 
+                      style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 329.4pt; PADDING-TOP: 0in; BORDER-BOTTOM: windowtext 1pt solid" 
+                      vAlign=top width=439>
+                        <P class=MsoNormal>Depend on the direction of stability 
+                        – If component A depends on component B, then B should 
+                        be more stable (e.g. less likely to change) than 
+                      A.</P></TD></TR></TBODY></TABLE>
+                  <P>&nbsp;</P>
+                  <P>&nbsp;</P>
+                  <H3>Remaining Agile</H3>
+                  <P class=MsoNormal>My most successful use of component models 
+                  was with a team where we drew a diagram similar to<!--[if gte mso 9]> <a href="#Figure1">Figure 1</a><xml>
+                        <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F00520065006600340037003700370037003300330037000000</w:data>
+                        </xml><![endif]-->, albeit a much 
+                  larger one with over twenty components, on a whiteboard.&nbsp; 
+                  This whiteboard was situated in the team work area where 
+                  everyone could see the board.&nbsp; We developed the diagram 
+                  early in the project and updated it as required throughout the 
+                  project.&nbsp; We kept it on the board because it provided a 
+                  high-level map of the architecture of our software, a map that 
+                  we used from time to time as we worked and more importantly 
+                  engendered many interesting conversations regarding the 
+                  overall system design. </P>
+                  <P class=MsoNormal>There are several advantages to components 
+                  that promote agility.&nbsp; First, components are reusable 
+                  building blocks from which you can build software, increasing 
+                  your productivity as a developer.&nbsp; Second, components can 
+                  improve your testing productivity because they can be treated 
+                  as elements which you can black-box unit and integration test. 
+                  &nbsp;&nbsp;Testing is discussed in detail in <A 
+                  href="http://www.ronin-intl.com/publications/floot.html">Full 
+                  Lifecycle Object-Oriented Testing (FLOOT)</A>.</P>
+                  <P>&nbsp;</P>
+                  <P>Notice: This artifact description has been excerpted from 
+                  <A href="http://www.ambysoft.com/theObjectPrimer.html">The 
+                  Object Primer 3rd Edition: Agile Modeling Driven Development 
+                  with UML 2</A>.&nbsp; The book goes into greater detail.
+                  <HR>
+
+                  <H3><A name=SuggestedReading>Suggested Reading</A></H3>
+                  <UL>
+                    <LI><A 
+                    href="http://www.modelingstyle.info/componentDiagram.html">UML 
+                    Component Diagramming Guidelines</A> </LI></UL>
+                  <P>&nbsp;
+                  <H3><A name=AdditionalReading>Additional Reading</A></H3>
+                  <P>To learn more about Agile Modeling (AM), consider the book
+                  <P>&nbsp;<B><A 
+                  href="http://www.ambysoft.com/agileModeling.html"><IMG 
+                  height=140 alt="Agile Modeling" 
+                  src="UML 2 Component Diagram_files/0471202827.01.MZZZZZZZ.jpeg" 
+                  width=110 border=0></A></B>
+                  <UL>
+                    <LI><A href="http://www.agilemodeling.com/">Agile Modeling 
+                    Home Page</A> 
+                    <LI><A href="http://www.agilemodeling.com/essays.htm">Agile 
+                    Modeling Essays</A> 
+                    <LI><A href="http://www.agiledata.org/">Agile Data Home 
+                    Page</A> 
+                    <LI><A 
+                    href="http://www.agilemodeling.com/essays/modelingTechniques.htm">Artifacts 
+                    for Agile Modeling: The UML and Beyond&nbsp; </A>
+                    <LI><A href="http://www.modelingstyle.info/">Modeling Style 
+                    Home Page</A> </LI></UL>
+                  <P>&nbsp;
+                  <H3><A name=LetUsHelp>Let Us Help</A></H3>
+                  <P><A href="http://www.ronin-intl.com/">Ronin International, 
+                  Inc.</A> continues to help numerous organizations to learn 
+                  about and hopefully adopt agile techniques and 
+                  philosophies.&nbsp; We offer both <A 
+                  href="http://www.ronin-intl.com/services/index.html">consulting</A> 
+                  and <A style="FONT-SIZE: 10pt; COLOR: #660033" 
+                  href="http://www.ronin-intl.com/training/index.html">training</A> 
+                  offerings.&nbsp; In addition we host several sites - <A 
+                  href="http://www.agilemodeling.com/">Agile Modeling</A>, <A 
+                  href="http://www.agiledata.org/">Agile Database 
+                  Techniques</A>, <A href="http://www.modelingstyle.info/">UML 
+                  Modeling Style Guidelines</A>, <A 
+                  href="http://www.enterpriseunifiedprocess.info/">Enterprise 
+                  Unified Process (EUP)</A> - that you may find of value.
+                  <P>You might find several of my books to be of interest, 
+                  including <A 
+                  href="http://www.ambysoft.com/theObjectPrimer.html">The Object 
+                  Primer</A>, <A 
+                  href="http://www.ambysoft.com/agileModeling.html">Agile 
+                  Modeling</A>, <A 
+                  href="http://www.ambysoft.com/elementsUMLStyle.html">The 
+                  Elements of UML Style</A>, and <A 
+                  href="http://www.ambysoft.com/agileDatabaseTechniques.html">Agile 
+                  Database Techniques</A>.
+                  <P>For more information please contact Michael Vizdos at 
+                  866-AT-RONIN (U.S. number) or via e-mail (<A 
+                  href="mailto:michael.vizdos@ronin-intl.com">michael.vizdos@ronin-intl.com</A>). 
+
+                  <P>&nbsp;
+                  <P><A href="http://www.agilemodeling.com/"><IMG 
+                  src="UML 2 Component Diagram_files/counts50.gif" border=0></A> 
+                  visits since August 4, 
+        2003.</P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></BODY></HTML>

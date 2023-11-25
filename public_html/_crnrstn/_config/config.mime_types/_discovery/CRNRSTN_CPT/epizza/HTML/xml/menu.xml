@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="epizza_menu.xslt"?>
+<menuitems>
+
+<!-- appetizers -->
+	<menuitem>
+	<category>appetizers</category>
+	<name>Fresh Baked Garlic Parmesan Breadsticks</name>
+	<complement>With Cheese</complement>
+	<size>small</size>
+	<smallprice>2.45</smallprice>
+	<largeprice>3.95</largeprice>
+	<compsmallprice>4.45</compsmallprice>
+	<complargeprice>7.50</complargeprice>
+	<description>Served with hot marinara sauce</description>
+	</menuitem>
+	
+	<menuitem>
+	<category>appetizers</category>
+	<name>Spinach &amp; Artichoke Dip, Fresh Baked Breadsticks</name>
+	<price>6.95</price>
+	</menuitem>
+
+<!--  toppings -->
+	<menuitem>
+	<category>topping</category>
+	<name>Anchovies</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Artichoke hearts</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Bacon</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Basil</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Black Olives</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Broccoli</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Extra Cheese</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Feta</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Fire roasted red peppers</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Goat Cheese</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Green Olives</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Green Pepper</name>
+	</menuitem>
+	
+	<menuitem>
+
+	<category>topping</category>
+	<name>Ground Beef</name>
+	</menuitem>
+	
+	<menuitem>
+
+	<category>topping</category>
+	<name>Honeyroast Garlic</name>
+	</menuitem>
+	
+	<menuitem>
+
+	<category>topping</category>
+	<name>House Roasted Chicken</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Hickory Pit Ham</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Italian Sausage</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Jalapenos</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Meetballs</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Mushrooms</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Oven Roasted Zucchini</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Onions</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Pepperoni</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Pineapple</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Portobello Mushrooms</name>
+	<dagger>true</dagger>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Ricotta Cheese</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Roasted Peanuts</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Roma Tomatoes</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Toasted Sesame Seeds</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Sharp Cheddar</name>
+	</menuitem>
+
+	<menuitem>
+	<category>topping</category>
+	<name>Shrimp</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Spinach</name>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>Sun-dried Tomatoes</name>
+	<dagger>true</dagger>
+	</menuitem>
+	
+	<menuitem>
+	<category>topping</category>
+	<name>White Raisins</name>
+	</menuitem>
+
+	/* Pizza category */
+	<menuitem>
+	<category>pizzagroup</category>
+	<individualprice>8.45</individualprice>
+	<mediumprice>18.25</mediumprice>
+	<largeprice>23.95</largeprice>
+	</menuitem>
+	
+	<menuitem>
+	<category>pizza</category>
+	<name>White</name>
+	<description>Mozzarella, provolone, parmesan, ricotta, garlic butter, fresh basil, Roma tomatoes, sesame seeds</description>
+	</menuitem>
+	
+	
+	<menuitem>
+	<category>pizza</category>
+	<name>Everybody's</name>
+	<description>Mushrooms, pepperoni, green peppers, Roma tomatoes, extra cheese</description>
+	</menuitem>
+	
+	<menuitem>
+	<category>pizza</category>
+	<name>Paradiso</name>
+	<description>Pesto, 4 cheeses, Roma tomatoes, onion, house roasted chicken, toasted sesame seeds</description>
+	</menuitem>
+	
+	<menuitem>
+	<category>pizza</category>
+	<name>Chico</name>
+	<description>Pineapple, white raisins, hickory pit ham, garlic butter, 3 cheeses</description>
+	</menuitem>
+	
+	<menuitem>
+	<category>pizza</category>
+	<name>Everybody's Vegetable</name>
+	<description>Mushrooms, green peppers, Roma tomatoes, onions, extra cheese</description>
+	</menuitem>
+	
+	<menuitem>
+	<category>pizza</category>
+	<name>Italian Market</name>
+	<description>Pesto, oven roasted zucchini, fresh spinach, mushrooms, onion, fire-roasted red peppers,honeyroast garlic, cheeses, hot pepper-infused E. V. olive oil</description>
+	</menuitem>
+	
+	<menuitem>
+	<category>pizza</category>
+	<name>Cheeseless</name>
+	<description>Oven roasted zucchini, fresh spinach, mushrooms, onion, fire-roasted red peppers, Roma tomatoes, broccoli, sun-dried tomatoes, sesame seeds and hot pepper-infused E.V. olive oil</description>
+	</menuitem>
+
+	<menuitem>
+	<category>pizza</category>
+	<name>BBQ Chicken</name>
+	<description>House roasted chicken, smokey BBQ sauce, 3 cheeses, mushrooms, Roma tomato (jalapenos on request)</description>
+	</menuitem>
+
+	/* PIZZA-CRISPS CATEGORY  */
+	<menuitem>
+	<category>pizzacrisps</category>
+	<name>Cheese</name>
+	<price>9.75</price>
+	<description>Mozzarella, provolone and parmesan cheeses, onion, vinaigrette</description>
+	</menuitem>	
+	
+	<menuitem>
+	<category>pizzacrisps</category>
+	<name>Greenfields</name>
+	<price>14.75</price>
+	<description>Fresh spinach, field greens and basil, hot pepper-infused E.V. olive oil, garlic butter, provolone cheese</description>
+	</menuitem>	
+	
+	<menuitem>
+	<category>pizzacrisps</category>
+	<name>Florentine</name>
+	<price>12.50</price>
+	<description>Fresh spinach, Roma tomato, mozzarella, provolone, parmesan, sharp cheddar, vinaigrette</description>
+	</menuitem>
+
+	
+</menuitems>

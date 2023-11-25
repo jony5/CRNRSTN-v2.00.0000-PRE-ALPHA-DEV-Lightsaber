@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<script type="text/javascript" src="script/prototype.js"></script>
+<script type="text/javascript" src="script/rico.js"></script>
+<script type="text/javascript" src="script/effects.js"></script>
+<script type="text/javascript" src="script/builder.js"></script>
+<script type="text/javascript" src="script/controls.js"></script>
+<script type="text/javascript" src="script/scriptaculous.js"></script>
+<script type="text/javascript" src="script/slider.js"></script>
+<script type="text/javascript" src="script/behaviour.js"></script>
+<script type="text/javascript" src="script/framework.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+	function loadmyxml(){
+		new Ajax.Updater('xmlload', 'xml/menu.xml', {asynchronous:true, evalScripts:true});
+	}
+</script>
+
+<title>Everybody's Pizza - Menu</title>
+</head>
+
+<body>
+
+<div id="xmlload"><!-- DYN XML content --></div>
+
+<script language="JavaScript" type="text/javascript">
+loadmyxml();
+</script>
+
+</body>
+</html>

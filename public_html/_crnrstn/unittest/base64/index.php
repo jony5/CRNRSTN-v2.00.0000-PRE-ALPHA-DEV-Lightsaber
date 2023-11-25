@@ -10,28 +10,28 @@ include_once(CRNRSTN_ROOT . '/_crnrstn.config.inc.php');
 // SYNC CRNRSTN :: NATIVE SYSTEM BASE64
 //$oCRNRSTN->system_base64_synchronize();
 
-//echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath, CRNRSTN_UI_IMG_BASE64, $width, $height, $alt_text, $title_text, $link, $target);
+//echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath, CRNRSTN_BASE64, $width, $height, $alt, $title, $link, $target);
 //echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);  // IMAGE NATIVE DEFAULTS (OR RESULTS FROM system_base64_integrations_file_sync())
 
 //
 // SET CUSTOM IMAGE DEFAULTS
-//$oCRNRSTN->system_base64_integrations_file_sync($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+//$oCRNRSTN->system_base64_integrations_file_sync($dir_filepath, $width, $height, $alt, $title, $link, $target);
 
 //
 // WALK AWAY WITH [PNG, JPEG, AND BASE64] OPTIONALLY SET TO CUSTOM IMAGE DEFAULTS
-//$oCRNRSTN->system_base64_integrations_file_heal($dir_filepath, $width, $height, $alt_text, $title_text, $link, $target);
+//$oCRNRSTN->system_base64_integrations_file_heal($dir_filepath, $width, $height, $alt, $title, $link, $target);
 
 //$oCRNRSTN->system_base64_integrations_file_css_heal();
 
 // CRNRSTN :: IMAGE OUTPUT MODE VALUES
-// CRNRSTN_UI_IMG_SOAP_DATA_TUNNEL, CRNRSTN_UI_IMG_BASE64, CRNRSTN_UI_IMG_BASE64_PNG,
-// CRNRSTN_UI_IMG_BASE64_JPEG, CRNRSTN_UI_IMG_HTML_WRAPPED,
-// CRNRSTN_UI_IMG_HTML_WRAPPED, CRNRSTN_UI_IMG_HTML_WRAPPED,
-// CRNRSTN_UI_IMG_JPEG, CRNRSTN_UI_IMG_HTML_WRAPPED
+// CRNRSTN_UI_SOAP_DATA_TUNNEL, CRNRSTN_BASE64, CRNRSTN_BASE64_PNG,
+// CRNRSTN_BASE64_JPEG, CRNRSTN_HTML,
+// CRNRSTN_HTML, CRNRSTN_HTML,
+// CRNRSTN_JPEG, CRNRSTN_HTML
 
 
 // SYSTEM IMAGE :: $oCRNRSTN->return_creative(); $oCRNRSTN->return_branding_creative();
-echo '<br><br><br>' . $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_UI_IMG_HTML_WRAPPED);
+echo '<br><br><br>' . $oCRNRSTN->return_creative('CRNRSTN_LOGO', CRNRSTN_HTML);
 
 // CUSTOM IMAGE :: $oCRNRSTN->return_img();
 //echo '<br><br><br>' . $oCRNRSTN->return_img($dir_filepath);
@@ -63,8 +63,8 @@ j5_pup_top_right
 
 //$oCRNRSTN->print_r('System BASE64 processing complete.', 'Image Processing.', CRNRSTN_UI_PHPNIGHT, __LINE__, __METHOD__, __FILE__);
 //echo  '<div style="padding: 40px;">' . $oCRNRSTN->return_creative('SUCCESS_CHECK') . '</div>';
-//echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_HTML_WRAPPED);
-//echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_UI_IMG_PNG) . '" width="100" height="100">';
+//echo  $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_HTML);
+//echo '<img src="' . $oCRNRSTN->return_creative('SUCCESS_CHECK', CRNRSTN_PNG) . '" width="100" height="100">';
 
 //die();
 
@@ -195,7 +195,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 
         <div class="crnrstn_log_entry" style="border-bottom: 2px solid #F90000;">
 
-            <div style="float: right; padding: 2px 20px 10px 0;"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_R_LG', CRNRSTN_UI_IMG_BASE64);  ?>" width="22" height="30" alt="R" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>"></div>
+            <div style="float: right; padding: 2px 20px 10px 0;"><img src="<?php echo $oCRNRSTN->return_creative('CRNRSTN_R_LG', CRNRSTN_BASE64);  ?>" width="22" height="30" alt="R" title="CRNRSTN :: v<?php echo $oCRNRSTN->version_crnrstn(); ?>"></div>
             <div class="crnrstn_cb"></div>
 
         </div>
@@ -245,7 +245,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
     </div>
     <div style="padding:5px 0 0 0; width: 523px; text-align: center; margin: 0 auto;">
         <div style="float: left;">
-            <?php echo $oCRNRSTN->return_branding_creative(false, CRNRSTN_UI_IMG_HTML_WRAPPED); ?>
+            <?php echo $oCRNRSTN->return_branding_creative(false, CRNRSTN_HTML); ?>
         </div>
         <div style="float: right;">
             <span style="text-align: right; font-family: Arial, Helvetica, sans-serif;"><?php echo $oCRNRSTN->return_form_submitted_value('crnrstn_image_to_process_name'); ?></span>
@@ -382,7 +382,7 @@ $oCRNRSTN->form_input_add('crnrstn_image_to_encode', 'crnrstn_resource_filecache
 <div id="crnrstn_j5_wolf_pup_outter_wrap" class="crnrstn_j5_wolf_pup_outter_wrap">
     <div id="crnrstn_j5_wolf_pup_inner_wrap" class="crnrstn_j5_wolf_pup_inner_wrap">
         <?php
-        echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_UI_IMG_HTML_WRAPPED);
+        echo $oCRNRSTN->return_creative('J5_WOLF_PUP_RAND', CRNRSTN_HTML);
         ?>
     </div>
 </div>

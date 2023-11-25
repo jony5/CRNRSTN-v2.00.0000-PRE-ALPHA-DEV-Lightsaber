@@ -41,8 +41,8 @@
 #       CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 #       DEALINGS IN THE SOFTWARE.
 #
-# # C # R # N # R # S # T # N # : : # # ##
+# # C # R # N # R # S # T # N # : : # # # #
 //
-// CRNRSTN :: DEFAULTS
-include_once(CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.system_settings.inc.php');
-include_once(CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.themes.inc.php');
+// CRNRSTN :: SYSTEM INLUDES AND OVERRIDES.
+//include_once(CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.system_settings.inc.php');		// REQUIRED EARLER IN THE CRNRSTN :: STACK DUE TO STICKY <HTML> LINKS GETTING INTO PHP.INI SYSTEM DOCUMENTATION.
+include_once(CRNRSTN_ROOT . '/_crnrstn/_config/_config.defaults/_crnrstn.system_overrides.inc.php');

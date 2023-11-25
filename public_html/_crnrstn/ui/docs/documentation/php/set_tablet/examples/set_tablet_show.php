@@ -9,7 +9,7 @@ $oCRNRSTN->set_tablet();
 
 //
 // A QUICK CHECK ON THE FLIPPED BIT FOR TABLET.
-if($oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_TABLET)){
+if($oCRNRSTN->is_bit_set(CRNRSTN_CHANNEL_TABLET) === true){
 
     echo 'Got tablet?';
 

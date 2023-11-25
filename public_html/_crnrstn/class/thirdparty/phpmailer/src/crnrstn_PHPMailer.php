@@ -2552,17 +2552,17 @@ class crnrstn_PHPMailer
     {
         $len = 32; //32 bytes = 256 bits
         $bytes = '';
-        if (function_exists('random_bytes')) {
-            try {
+        if(function_exists('random_bytes')){
+            try{
                 $bytes = random_bytes($len);
-            } catch (\Exception $e) {
+            }catch(\Exception $e){
                 //Do nothing
             }
-        } elseif (function_exists('openssl_random_pseudo_bytes')) {
+        }elseif(function_exists('openssl_random_pseudo_bytes')){
             /** @noinspection CryptographicallySecureRandomnessInspection */
             $bytes = openssl_random_pseudo_bytes($len);
         }
-        if ($bytes === '') {
+        if($bytes === ''){
             //We failed to produce a proper random string, so make do.
             //Use a hash to force the length to the same as the other methods
             $bytes = hash('sha256', uniqid((string) mt_rand(), true), true);

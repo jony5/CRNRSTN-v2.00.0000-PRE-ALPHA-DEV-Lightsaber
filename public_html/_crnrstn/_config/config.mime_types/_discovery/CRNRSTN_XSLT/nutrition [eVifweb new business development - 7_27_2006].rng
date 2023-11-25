@@ -1,0 +1,80 @@
+<grammar datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+  xmlns="http://relaxng.org/ns/structure/1.0">
+
+<start>
+<element name="nutrition">
+	<ref name="daily-values-defn"/>
+	<oneOrMore>
+		<ref name="food-defn"/>
+	</oneOrMore>
+</element>
+</start>
+
+<define name="daily-values-defn">
+	<element name="daily-values">
+		<element name="total-fat">
+			<ref name="decimal-units-defn"/>
+		</element>
+		<element name="saturated-fat">
+			<ref name="decimal-units-defn"/>
+		</element>
+		<element name="cholesterol">
+			<ref name="decimal-units-defn"/>
+		</element>
+		<element name="sodium">
+			<ref name="decimal-units-defn"/>
+		</element>
+		<element name="carb">
+			<ref name="decimal-units-defn"/>
+		</element>
+		<element name="fiber">
+			<ref name="decimal-units-defn"/>
+		</element>
+		<element name="protein">
+			<ref name="decimal-units-defn"/>
+		</element>
+	</element>
+</define>
+
+<define name="decimal-units-defn">
+	<data type="decimal"/>
+	<attribute name="units"><text/></attribute>
+</define>
+
+<define name="food-defn">
+	<element name="food">
+		<element name="name"><text/></element>
+		<element name="mfr"><text/></element>
+		<element name="serving">
+			<ref name="decimal-units-defn"/>
+		</element>
+		<element name="calories">
+			<empty/>
+			<attribute name="total"><data type="decimal"/></attribute>
+			<attribute name="fat"><data type="decimal"/></attribute>
+		</element>
+		<element name="total-fat"><data type="decimal"/></element>
+		<element name="saturated-fat"><data type="decimal"/></element>
+		<element name="cholesterol"><data type="decimal"/></element>
+		<element name="sodium"><data type="decimal"/></element>
+		<element name="carb"><data type="decimal"/></element>
+		<element name="fiber"><data type="decimal"/></element>
+		<element name="protein"><data type="decimal"/></element>
+		<element name="vitamins">
+			<element name="a"><ref name="percent-defn"/></element>
+			<element name="c"><ref name="percent-defn"/></element>
+		</element>
+		<element name="minerals">
+			<element name="ca"><ref name="percent-defn"/></element>
+			<element name="fe"><ref name="percent-defn"/></element>
+		</element>
+	</element>
+</define>
+
+<define name="percent-defn">
+	<data type="decimal">
+		<param name="minInclusive">0</param>
+		<param name="maxInclusive">100</param>
+	</data>
+</define>
+</grammar>

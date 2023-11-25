@@ -1,0 +1,213 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red223\green223\blue223;\red246\green194\blue141;}
+\margl1440\margr1440\vieww5700\viewh16580\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 Insert 1M records with batch size of 5K.\
+start time :: 
+\fs26 2012-05-02 14:08:34
+\fs24 \
+end time :: 
+\fs26 2012-05-02 14:08:52
+\fs24 \
+delta :: 18s\
+trans/sec :: 11.111\
+\
+Insert 1M records with batch size of .5K.\
+start time :: 
+\fs26 2012-05-02 14:10:01
+\fs24 \
+end time :: 
+\fs26 2012-05-02 14:10:18\
+delta :: 17s\
+
+\fs24 trans/sec :: 117.647\
+ \
+
+\fs26 \
+
+\fs24 Insert 1M records with batch size of 10.\
+start time :: 
+\fs26 2012-05-02 22:57:46 [14s + 27s ]
+\fs24 \
+end time :: 
+\fs26 2012-05-02 22:58:27\
+delta :: 41 | 42 | 41\
+
+\fs24 trans/sec :: 24390.244
+\fs26 \
+\
+
+\fs24 Insert 1M records with batch size of 5.\
+start time :: 
+\fs26 2012-05-02 23:09:34 [40s + 22s]
+\fs24 \
+end time :: 
+\fs26 2012-05-02 23:10:37\
+delta :: 63 | 63 | 66 | 62\
+
+\fs24 trans/sec :: 15873.016\
+\
+\
+Insert 1M records with batch size of 2.\
+start time :: 
+\fs26  \cb2 2012-05-02 23:21:55 \cb1 [26s + 60s + 22s]
+\fs24 \
+end time :: 
+\fs26 \cb3 2012-05-02 23:23:45\cb1 \
+delta :: 110 | 112 | 107 | 108\
+
+\fs24 trans/sec :: 9090.909\
+\pard\pardeftab720\ql\qnatural
+
+\fs26 \cf0  \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+\cf0 [no size check on batchcount]\
+
+\fs24 Insert 1M records with batch size of 1.\
+start time :: 
+\fs26 2012-05-02 14:15:40  [20s + 4m + 31s]
+\fs24 \
+end time :: 
+\fs26 2012-05-02 14:20:31\
+delta :: 291\
+
+\fs24 trans/sec :: 3436.426
+\fs26 \
+
+\fs24 \
+\
+
+\fs26 [with size check on batchcount]\
+
+\fs24 Insert 1M records with batch size of 1.
+\fs26 \
+
+\fs24 start time :: 
+\fs26 2012-05-02 22:24:23 [37s + 4 + 6s]
+\fs24 \
+end time :: 
+\fs26 2012-05-02 22:29:06\
+delta :: 291 | 293\
+
+\fs24 trans/sec :: 3533.569 | 
+\f1\b \
+\pard\pardeftab720\ql\qnatural
+\cf0 \
+E_ERROR\
+E_WARNING\
+E_PARSE\
+E_NOTICE\
+\
+\
+E_USER_ERROR\
+E_USER_WARNING\
+E_USER_NOTICE\
+\
+E_STRICT\
+\
+E_DEPRECATED\
+E_USER_DEPRECATED\
+\
+E_ALL\
+= = = = = = = = = = = = = = = = = = = = = = = = \
+\
+CRNRSTN \
+\
+ClASSES\
+EnvironmentalAwareness\
+Form\
+User\
+AddressRestrictions\
+BasicLogger\
+MySQLDriver\
+Browser\
+\
+\
+APPLICATION CONFIG PARAMS\
+FILEROOT_HTTP\
+FILEROOT_NONHTTP\
+HTTP\
+NAMESPACE\
+\
+MISC_PARAM_A\
+MISC_PARAM_B\
+MISC_PARAM_C\
+MISC_PARAM_D\
+MISC_PARAM_E\
+MISC_PARAM_F\
+MISC_PARAM_G\
+\
+DBNAME0\
+DBNAME1\
+DBNAME2\
+DBNAME3\
+DBNAME4\
+DBUSER0\
+DBUSER1\
+DBUSER2\
+DBUSER3\
+DBUSER4\
+DBPORT0\
+DBPORT1\
+DBPORT2\
+DBPORT3\
+DBPORT4\
+DBHOST0\
+DBHOST1\
+DBHOST2\
+DBHOST3\
+DBHOST4\
+DBPWD0\
+DBPWD1\
+DBPWD2\
+DBPWD3\
+DBPWD4\
+\
+\
+\
+\
+\
+\
+//\
+// CRNRSTN CONFIG.INC.PHP DATA PASSTHROUGH TEST\
+echo "<br /><br />__ENV->HTTP()--> ".$__ENV->HTTP();\
+echo "<br />__ENV->HTTP()--> ".$__ENV->HTTP();\
+echo "<br />__ENV->HTTP()--> ".$__ENV->HTTP();v\
+\
+\
+echo "DB Params ::<br />";\
+echo "<br />__ENV->DBNAME()--> ".$__ENV->DBNAME();\
+echo "<br />__ENV->DBUSER()--> ".$__ENV->DBUSER();\
+echo "<br />__ENV->DBHOST()--> ".$__ENV->DBHOST();\
+echo "<br />__ENV->DBPORT()--> ".$__ENV->DBPORT();\
+echo "<br />__ENV->DBPWD()--> ".$__ENV->DBPWD();\
+\
+echo "<br /><br />__ENV->DBNAME0()--> ".$__ENV->DBNAME0();\
+echo "<br />__ENV->DBUSER0()--> ".$__ENV->DBUSER0();\
+echo "<br />__ENV->DBHOST0()--> ".$__ENV->DBHOST0();\
+echo "<br />__ENV->DBPORT0()--> ".$__ENV->DBPORT0();\
+echo "<br />__ENV->DBPWD0()--> ".$__ENV->DBPWD0();\
+\
+echo "<br /><br />__ENV->DBNAME1()--> ".$__ENV->DBNAME1();\
+echo "<br />__ENV->DBUSER1()--> ".$__ENV->DBUSER1();\
+echo "<br />__ENV->DBHOST1()--> ".$__ENV->DBHOST1();\
+echo "<br />__ENV->DBPORT1()--> ".$__ENV->DBPORT1();\
+echo "<br />__ENV->DBPWD1()--> ".$__ENV->DBPWD1();\
+\
+echo "<br /><br />__ENV->DBNAME2()--> ".$__ENV->DBNAME2();\
+echo "<br />__ENV->DBUSER2()--> ".$__ENV->DBUSER2();\
+echo "<br />__ENV->DBHOST2()--> ".$__ENV->DBHOST2();\
+echo "<br />__ENV->DBPORT2()--> ".$__ENV->DBPORT2();\
+echo "<br />__ENV->DBPWD2()--> ".$__ENV->DBPWD2();\
+\
+echo "<br /><br />__ENV->FILEROOT_HTTP()--> ".$__ENV->FILEROOT_HTTP();\
+echo "<br />__ENV->FILEROOT_NONHTTP()--> ".$__ENV->FILEROOT_NONHTTP();\
+echo "<br />__ENV->NAMESPACE()--> ".$__ENV->NAMESPACE();\
+echo "<br />__ENV->MISC_PARAM_B()--> ".$__ENV->MISC_PARAM_B();\
+echo "<br />__ENV->MISC_PARAM_C()--> ".$__ENV->MISC_PARAM_C();\
+echo "<br />__ENV->MISC_PARAM_D()--> ".$__ENV->MISC_PARAM_D();\
+\
+}

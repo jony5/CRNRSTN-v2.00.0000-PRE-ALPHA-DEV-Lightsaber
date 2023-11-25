@@ -16,7 +16,7 @@ $oCRNRSTN->config_init_js_css_minimization('LOCALHOST_CHAD_MACBOOKPRO', false);
 // SETTINGS FOR THE RUNNING ENVIRONMENT WILL DRIVE THE BELOW.
 //
 // HERE IS A QUICK CHECK TO SEE IF THE BIT IS FLIPPED.
-if($oCRNRSTN->is_bit_set(CRNRSTN_RESOURCE_PRODUCTION_MIN_JS_CSS)){
+if($oCRNRSTN->is_bit_set(CRNRSTN_JS_CSS_PROD_MIN) === true){
 
     echo 'PROD ACTIVE. Loading filename.min.js and filename.min.css resources.';
 

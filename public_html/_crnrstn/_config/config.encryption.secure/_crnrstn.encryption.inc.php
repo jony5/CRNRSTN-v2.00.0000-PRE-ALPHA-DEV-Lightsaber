@@ -2,7 +2,7 @@
 
 /**
  * $oCRNRSTN->init_session_encryption()
- * TODO :: FACILITATE GRACEFUL ROTATION OF THESE ENCRYPTION PROTOCOLS
+ * TODO :: FACILITATE GRACEFUL ROTATION OF THESE ENCRYPTION PROTOCOLS   <-- SEE OERSL.
  *
  * DESCRIPTION :: To configure any of your SERVER environments to hide persistent CRNRSTN :: configuration
  *  session data behind a layer of encryption, run $oCRNRSTN->init_session_encryption()...as defined below...
@@ -51,12 +51,12 @@
  * will depend on the installation and compilation options used for OpenSSL in your machine(s).
  *
  * Example ::
- * $oCRNRSTN->init_session_encryption('LOCALHOST_MACBOOKPRO', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');
+ * $oCRNRSTN->init_session_encryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');          // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
  */
-$this->config_init_session_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'this-Is-theession_e-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_session_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'this-Is-ession_ethe-encryDption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_session_encryption('LOCALHOST_MACBOOKPRO', 'AES-192-OFB', 'this-Is-the-enession_ecrypti0n-key', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_session_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'this-Is-theession_e-CHAD-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_session_encryption('BLUEHOST_JONY5', 'AES-256-CTR', '0(.sRg*QieO7@3Uc?di+mzL}=nQVC9Em', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_session_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', '}8gHpd?Q(7PKFqfscZ&7*ITDgdf@AKRt', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_session_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', '7+yyZF9R#20@8fi2-p5(xyWE#j4: U3x', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_session_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'iB{5kb&0-I+C&MRF(i8Ip&ad4(igYN%#', OPENSSL_RAW_DATA, 'sha256');
 
 //
 // INITIALIZATION FOR ENCRYPTION :: CRNRSTN :: COOKIE DATA :: ADVANCED CONFIGURATION PARAMETERS
@@ -116,13 +116,13 @@ $this->config_init_session_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB'
  * will depend on the installation and compilation options used for OpenSSL in your machine(s).
  *
  * Example ::
- * $oCRNRSTN->init_cookie_encryption('LOCALHOST_MACBOOKPRO', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');
+ * $oCRNRSTN->init_cookie_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');        // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
  */
-$this->config_init_cookie_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'this-Is-tcookie_he-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_cookie_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'this-Is-the-encookie_cryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_cookie_encryption('LOCALHOST_MACBOOKPRO', 'AES-256-CTR', 'this-Is-the-encryptiocookie_n-key', OPENSSL_RAW_DATA, 'gost');
-$this->config_init_cookie_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-256-CTR', 'this-Is-the-cookie_CHAD-encryption-key', OPENSSL_RAW_DATA, 'gost');
-//#$this->config_init_cookie_encryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-encryption-key', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_cookie_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'II0]E{w D:?vRrb+a-3&i]U9Ei~ABI4?', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_cookie_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', '4?4x&M$%nXiJ$4Qizs~&*cD~+~1~F]Ll', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_cookie_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-256-CTR', '5T:J~ws:r#($EZYwWZG)k9$SsSPr&NR+', OPENSSL_RAW_DATA, 'gost');
+$this->config_init_cookie_encryption('LOCALHOST_PC_XP', 'AES-256-CTR', 'M?3]~in?Y$K3DEeLZ:8frEuA &6uz4o5', OPENSSL_RAW_DATA, 'gost');
+//#$this->config_init_cookie_encryption('LOCALHOST_PC', 'AES-192-OFB', 'vVdE!n.Di4vk+=$0Yj:1-tb(aAD)4lc6', OPENSSL_RAW_DATA, 'sha256');         // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
 
 //
 // INITIALIZATION FOR ENCRYPTION :: CRNRSTN :: TUNNELLED DATA :: ADVANCED CONFIGURATION PARAMETERS
@@ -181,24 +181,39 @@ $this->config_init_cookie_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-256-CTR',
  * will depend on the installation and compilation options used for OpenSSL in your machine(s).
  *
  * Example ::
- * $oCRNRSTN->init_tunnel_encryption('LOCALHOST_MACBOOKPRO', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');
+ * $oCRNRSTN->init_tunnel_encryption('LOCALHOST_PC', 'AES-192-OFB', 'this-Is-the-s3cret-encrypti0n-key', OPENSSL_RAW_DATA, 'sha256');               // TOSHIBA M100 [eVifweb] :: RADIOHEAD.
  */
-$this->config_init_tunnel_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'this-Is-unnel_the-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_tunnel_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'this-Is-d-encryunnel_ption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_tunnel_encryption('LOCALHOST_MACBOOKPRO', 'AES-192-OFB', 'hello-therunnel_e-mr-encryption-key', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_tunnel_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'hello-unnel_there-mr-CHAD- encryption-key', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_tunnel_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'l:pRuxhyg*uuO@(2k}:(:~U6#{qX(f}.', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_tunnel_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'Tkk7TvQ-xeE$c{#D1a6nC#]AV{]A7*Zd', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_tunnel_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', '[bP*Tf=B{o0OewI@Nm=A8y7mq72eJ jB', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_tunnel_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '[YZ3$?pd%[$DROExVDL4O-R)_xW[[T F', OPENSSL_RAW_DATA, 'sha256');
 
-$this->config_init_database_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'this-Is-thedatabase-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_database_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'this-Is-d-thedatabase-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_database_encryption('LOCALHOST_MACBOOKPRO', 'AES-192-OFB', 'hellothedatabase-there-mr-encryption-key', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_database_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'hellothedatabase-there-mr-CHAD- encryption-key', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_get_encryption('BLUEHOST_JONY5', 'AES-256-CTR', '?D}@zZ:}7EPwYXcsAy4!f%da@#O#S(A#', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_get_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'rX7ngy-tdV 80n}hlcnJVv{mx*$DL3T{', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_get_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', '=[8gC]y(C9r)EXLn%%ZbBO#lb6*~jZqX', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_get_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'CrYk%ROwg%2btUyVEAgnjG0vr*QZW1(v', OPENSSL_RAW_DATA, 'sha256');
 
-$this->config_init_soap_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'this-Is-thesoap-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_soap_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'this-Is-d-thesoape-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_soap_encryption('LOCALHOST_MACBOOKPRO', 'AES-192-OFB', 'hellothsoapase-there-mr-encryption-key', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_soap_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'hellothsoapase-there-mr-CHAD- encryption-key', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_post_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'f2joVqpP}G*qc2HL b8FY*vgG4CroB=g', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_post_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', '}?tyG?R .JLj-E&2.P. RdI.(5VD%1@d', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_post_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'z?Pi+6[8!HGIX_[tmy4Y97obWQFur$?&', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_post_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', 'X~s[Az+65*~PVx@nMaD1JDNJ4xARN#@1', OPENSSL_RAW_DATA, 'sha256');
 
-$this->config_init_oersl_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'this-Is-the-en_OERSLcryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_oersl_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'this-Is-d_OERSL-encryption-key', OPENSSL_RAW_DATA, 'ripemd256');
-$this->config_init_oersl_encryption('LOCALHOST_MACBOOKPRO', 'AES-192-OFB', 'hello-there-m_OERSLr-encryption-key', OPENSSL_RAW_DATA, 'sha256');
-$this->config_init_oersl_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'hello-th_OERSLere-mr-CHAD- encryption-key', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_database_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'z0}n+2*Xe(zb*_ddphir)VFL)ZuNm.5v', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_database_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', 'hrkuXz:V+-ZUx:K9vIpKQBXfq4IctRcS', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_database_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'jIXA{ *+I_Q}rt(vp2B]l!mm6(jC$-f$', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_database_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '7mGiCkisIImW{}npDu&yk(6fa_gJROH!', OPENSSL_RAW_DATA, 'sha256');
+
+$this->config_init_soap_encryption('BLUEHOST_JONY5', 'AES-256-CTR', '6Jh28hwCug{zetTTx39OvHawva]4ck}M', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_soap_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', ']O*Jb%6]GV$wm_P4~a~IK3XDF-$jnI=5', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_soap_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'QMHQ$-oP:Ki7#fM1zYJ&@{aNZA.=nD?o', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_soap_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '3q?PCqf1*DP4%Z8yQNbp~C&Ln.IeT QU', OPENSSL_RAW_DATA, 'sha256');
+
+$this->config_init_file_encryption('BLUEHOST_JONY5', 'AES-256-CTR', '6Jh00hwCug{zetTTx39OvHawva]4ck}M', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_file_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', ']O*Jb%6]GV$wm_P447~IK3XDF-$jnI=5', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_file_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'QMHQ$-oP:Ki7#h21zYJ&@{aNZA.=nD?o', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_file_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '3q?PCqf1*DP4%Z8yQ0rp~C&Ln.IeT QU', OPENSSL_RAW_DATA, 'sha256');
+
+$this->config_init_oersl_encryption('BLUEHOST_JONY5', 'AES-256-CTR', 'BVRJfa[&{LXyir4Spg$ *fICdXRg4R?L', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_oersl_encryption('BLUEHOST_EVIFWEB', 'AES-256-CTR', '-z(ine9+EQlDC@-J#_fkFuTS% JLr xj', OPENSSL_RAW_DATA, 'ripemd256');
+$this->config_init_oersl_encryption('LOCALHOST_CHAD_MACBOOKPRO', 'AES-192-OFB', 'rmnQMLYcsFXLW$xEM*]Y)ePH=2ujVkL?', OPENSSL_RAW_DATA, 'sha256');
+$this->config_init_oersl_encryption('LOCALHOST_PC_XP', 'AES-192-OFB', '_uvQqbhR97]sPo.WPh{FMS+}Sim9(0d}', OPENSSL_RAW_DATA, 'sha256');

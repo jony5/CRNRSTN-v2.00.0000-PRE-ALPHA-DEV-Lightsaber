@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>mootoolkit documentation</title>
+	<style type="text/css" media="screen">
+		@import "style.css";
+	</style>
+	<script type="text/javascript" src="../scripts/prototype.lite.js"></script>
+	<script type="text/javascript" src="../scripts/moo.fx.js"></script>
+	<script type="text/javascript" src="../scripts/moo.fx.pack.js"></script>
+	<script type="text/javascript" src="site.js"></script>
+</head>
+
+<body>
+<div id="container">
+	<a id="top"></a>
+	<h1>mootoolkit documentation <span>v1</span></h1>
+	<ul class="menu">
+		<li><a href="#moofx">moo.fx</a> - simple javascript effects in 3kb</li>
+		<li><a href="#moofxpack">moo.fx.pack</a> - extended effects in 6kb</li>
+		<li><a href="#mooajax">moo.ajax</a> - a nice &amp; REALLY small (1kb) ajax class</li>
+		<li><a href="#examples">Examples</a> - some code examples</li>
+		<li><a href="#links">Useful Links</a> - some links, moofx related.</li>
+	</ul>
+
+	<h2><a id="moofx"></a>moo.fx <span><a href="../scripts/moo.fx.js">download</a> <a href="#top">back to top</a></span></h2>
+	
+	<div class="doku">
+		<h3>introduction</h3>
+		<p>moo.fx.js provides controls to modify Height, Width, and Opacity with builtin checks that won't let a user break the effect with multiple crazy clicks.</p>
+		<p>depends on <a href="../scripts/prototype.lite.js">prototype.lite.js</a> OR <a href="htto://prototype.conio.net">the full prototype.js</a></p>
+		
+		<h3>basic usage</h3>
+		<p>Include the scripts in the head of your document</p>
+		
+<pre><code>&lt;script type="text/javascript" src="prototype.lite.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="moo.fx.js"&gt;&lt;/script&gt;
+</code></pre>
+
+		<p>Define an effect</p>
+		
+<pre><code>var myEffect = new fx.Height(myelement , {duration: 500, onComplete: function()
+  {
+    alert('the effect is completed');
+  }
+});</code></pre>
+
+		<p>Call an effect method on an event of your choice, just make sure the effect has been created first.</p>
+		
+<pre><code>myEffect.toggle()</code></pre>
+		
+		<h3>effects</h3>
+		<ul>
+			<li><code>fx.Height</code> - modify the height of the element.</li>
+			<li><code>fx.Width</code> - modify the width of the element.</li>
+			<li><code>fx.Opacity</code> - modify the opacity of the element. Has another method: setOpacity, to sudden set the opacity (crossbrowser) without displaying an effect.</li>
+		</ul>
+		<h3>methods</h3>
+		<ul>
+			<li><code>toggle</code> - toggles an element from the current position to position 0. If it's called for an fx.Height object, it will go from the current height to zero height, and from zero height to the height of the element</li>
+			<li><code>hide</code> - hides an element setting its style to opacity 0, height 0 or width 0, depending on the effect.</li>
+			<li><code>custom</code> - takes a parameters starting value and ending value. Used, for example, to half fade an element. (<code>myEffect.custom(1, 0.5)</code>)</li>
+			<li><code>clearTimer</code> - clear an element's timer, to to allow sudden call or cancel an effect.</li>
+		</ul>
+		<h3>options</h3>
+		<ul>
+			<li><code>duration</code> - duration of the effect, in milliseconds.</li>
+			<li><code>onComplete</code> - a function that will get called upon effect completion.</li>
+			<li><code>transition</code> - transition type. A list of transitions can be found on the bottom of both moo.fx.js and moo.fx.pack.js .</li>
+		</ul>
+	</div>
+	
+	<h2><a id="moofxpack"></a>moo.fx.pack <span><a href="../scripts/moo.fx.pack.js">download</a> <a href="#top">back to top</a></span></h2>
+	
+	<div class="doku">
+		<h3>introduction</h3>
+		<p>moo.fx.pack is the effect extension for moo.fx. Provides combination effects, cookie based effects (will remember position), page scrolling, text resizing, and some more transitions</p>
+		<p>depends on prototype.lite (or full prototype) and moo.fx. All effects inherits moo.fx options and <code>custom</code>, <code>hide</code>, and <code>clearTimer</code> methods.</p>
+		<h3>effects</h3>
+		<dl>
+			<dt><code>fx.Text</code></dt>
+			<dd>
+				<p>Modify the text size of the element. Has an optional option, <code>unit</code>. default is em.</p>
+			</dd>
+			<dt><code>fx.Combo</code></dt>
+			<dd>
+				<p>Used to modify width and height and opacity togheter. Has <code>customSize</code> and <code>ResizeTo</code> as custom methods. Takes as options <code>height:true</code> or <code>height: false</code>, <code>width:true</code> or <code>width:false</code>, and <code>opacity:true</code> or <code>opacity:false</code>, and the default moo.fx options.</p>
+				<p>The method <code>customSize</code> takes as parameters the height to add and the width to add (<code>myEffect.modify(100, 100)</code>). This method assumes you have set options for both width and height.</p>
+				<p>The method <code>ResizeTo</code> takes as parameters the height and the width to go to (<code>myEffect.custom(100, 100)</code>). This method assumes you have set options for both width and height.</p>
+			</dd>
+			<dt><code>fx.Accordion</code></dt>
+			<dd>
+				<p>Creates an accordion, based on the elements of your choice.</p>
+				<p>Takes as parameters two arrays, one for the 'switches' (the elements you click on), and the other for the elements that will collapse/expande.</p>
+				<p>You can also set as options <code>height:true</code> or <code>height: false</code>, <code>width:true</code> or <code>width:false</code>, and <code>opacity:true</code> or <code>opacity:false</code>, and the default moo.fx options.</p>
+				
+				<p>The method <code>showThisHideOpen</code> takes as parameters one of the elements to be toggled, and will hide the others. Is useful if you want one section to be opened by default, or if you want to open a section from somewhere else.</p>
+			</dd>
+			<dt><code>fx.RememberHeight</code></dt>
+			<dd>
+				<p>Remembers the height of an element by writing a cookie.</p>
+				<p>Use the method <code>resize</code> instead of <code>custom</code> if you want to remember custom values.</p>
+				<p>The methods <code>toggle</code> and <code>hide</code> work as always, but also set a cookie.</p>
+			</dd>
+			<dt><code>fx.Scroll</code></dt>
+			<dd>
+				<p>The method <code>scrollTo</code> scrolls the window from the current position to an element's position (<code>myEffect.scrollTo(element);</code>).</p>
+			</dd>
+		</dl>
+		
+	</div>
+	
+	<h2><a id="mooajax"></a>moo.ajax <span> <a href="http://www.mad4milk.net/examples/mooajax/moo.ajax.js">download</a> <a href="#top">back to top</a></span></h2>
+	<div class="doku">
+		<h3>basic moo.ajax usage</h3>
+		<p>moo.ajax is a very simple ajax class, to be used with prototype.lite from moo.fx. It's roughly based on the prototype one, so their usage are very similar. To make any request just call <code>new ajax(url, options);</code> where url is a link to your server-side script.</p>
+		
+		<h3>options</h3>
+		<ul>
+			<li><code>method</code> - choose either <code>post</code> or <code>get</code>. The default is post.</li>
+			<li><code>postBody</code> - if you choose post as method, you can write parameters here.</li>
+			<li><code>onComplete</code> - a function that will get called upon the request completion.</li>
+			<li><code>update</code> - a dom element or an element's id. This element will be filled with the request's responsetext.</li>
+		</ul>
+
+	
+	</div>
+	
+	
+	<h2><a id="examples"></a>Examples <span> <a href="#top">back to top</a></span></h2>
+	<div class="doku">
+		<h3>use moo.fx.pack to create an accordion effect</h3>
+		<p>Let's say I want to create an accordion made of divs with <code>class="stretcher"</code>, 
+		so I want it to execute by clicking on the link that has <code>class="stretchtoggle"</code>.
+
+		<p>This is the html:</p>
+<pre><code>&lt;div id="main"&gt;
+  &lt;a class="stretchtoggle"&gt;Toggle this div&lt;/a&gt;
+  &lt;div class="stretcher"&gt;
+    this will be stretched by the link.
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>And this is the javascript:</p>
+<pre><code><span>//we define two arrays, containing our toggles and divs.</span>
+var myDivs = document.getElementsByClassName('stretcher');
+var myLinks = document.getElementsByClassName('stretchtoggle');
+
+<span>//then we create the effect.</span>
+var myAccordion = new fx.Accordion(myLinks, myDivs, {opacity: true});
+</code></pre>
+	<p>We're done! Please note that document.getElementsByClassName is a function found in prototype.js (and prototype.lite.js)</p>
+	
+	<h3>moo.ajax, call a php script via post</h3>
+	<p>This will call my script.php via post, setting as parameter sleep=3. When the request is complete I want an alert with the response text, and I want an element to be updated with the responsetext as well.</p>
+<pre><code>new ajax ('sleep.php', {
+	postBody: 'sleep=3', 
+	update: $('myelementid'), 
+	onComplete: myFunction
+});
+<span>//this will be called on request completion. 
+//The request object will be passed by moo.ajax as default.</span>
+function myFunction(request){
+  alert(request.responseText);
+}
+</code></pre>
+<p><a href="http://www.mad4milk.net/examples/mooajax">A live example</a> is also available.	
+	
+	</div>
+	
+	<h2><a id="links"></a>Useful Links <span> <a href="#top">back to top</a></span></h2>
+	<div class="doku">
+	<ul class="links">
+		<li><a href="http://www.mad4milk.net/entry/moo.fx-how-to-create-a-custom-effect">How to create a custom effect with moofx</a> - from mad4milk blog.</li>
+		<li><a href="http://www.mad4milk.net/entry/scroll-your-internal-links-smoothly">Smooth scrolling internal links</a> - the effect you're seeing in this documentation.</li>
+		<li><a href="http://www.mad4milk.net/entry/moo.ajax">moo.ajax</a> - a brief explanations and a simle example.</li>
+		<li><a href="http://prototype.conio.net">prototype.js</a> - The javascript library.</li>
+	</ul>
+	</div>
+<p class="copy">&copy; 2005 Valerio Proietti, <a class="mad" href="http://www.mad4milk.net">m<b>A</b>d4milk</a></p>
+</div>
+
+<script type="text/javascript">ScrollLinks.start();</script>
+</body>
+</html>
