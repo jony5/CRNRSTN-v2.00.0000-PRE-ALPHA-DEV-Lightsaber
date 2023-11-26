@@ -157,8 +157,18 @@ class TransactionBatch extends {
 					if ($result = mysqli_use_result($this->_FreshBatch_oMysqli)) {
 						
 						//
-						// PREPARE QUERIES FOR POP, DROP, AND LOCK.
+						// PREPARE QUERIES TO POP, DROP, AND LOCK IT!
+                        // -----
+                        // ABOVE IS THE CLOSEST (NEEDED A BANG TO BE PERFECT)
+                        // ORIGINAL COMMENT FROM A Q4 2011 MOXIE REAL-TIME
+                        // MESSAGING SOAP SERVICES PROJECT UPON WHICH I PUT A
+                        // 25% SALARY ADJUSTMENT FOR EVERYONE ON MY TEAM
+                        // IN CORPORATE. I WAS FIRED A FEW MONTHS LATER.
+                        //
+                        // SOMEONE CHANGED MY COMMENT FROM 2011 TO:
+                        // "PREPARE QUERIES FOR LOCK AND LOAD."
 						//
+                        // [VIDEO LINK FOR SOURCE]
 						// Huey - Pop, Lock & Drop It (Video Edit)
 						// https://www.youtube.com/watch?v=WEYMaSoXQUM
 						$this->_queryToLock="UPDATE `rtm_transactions_email` SET ISRUNNING=true, BATCH_STARTDATE='".date("Y-m-d H:i:s",time())."' WHERE ";
