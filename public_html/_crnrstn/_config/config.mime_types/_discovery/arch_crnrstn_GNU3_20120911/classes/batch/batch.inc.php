@@ -2,7 +2,7 @@
 
 //
 // CONNECTION MANAGEMENT
-class TransactionBatch extends {
+class TransactionBatch {
    public $_Log;
    public $_Env;
    public $_oMysqli;
